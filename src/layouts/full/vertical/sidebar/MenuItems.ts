@@ -73,17 +73,15 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
-    title: 'Modern',
-    icon: IconAperture,
-    href: '/dashboards/modern',
-    chip: 'New',
-    chipColor: 'secondary',
+    title: 'Dashboards',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
   },
   {
     id: uniqueId(),
-    title: 'eCommerce',
-    icon: IconShoppingCart,
-    href: '/dashboards/ecommerce',
+    title: 'Trang CTV tiếp thị sp',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
   },
   {
     navlabel: true,
@@ -99,10 +97,19 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Trang CTV tiếp thị sp',
-    icon: IconPackage,
-    href: '/apps/collaborate/',
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
   },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
+  },
+
   {
     id: uniqueId(),
     title: 'Blog',

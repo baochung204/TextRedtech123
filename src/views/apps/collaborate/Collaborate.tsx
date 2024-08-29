@@ -25,6 +25,7 @@ import icon4 from '../../../assets/images/svgs/icon-mailbox.svg';
 import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
 import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
 import icon7 from '../../../assets/images/svgs/img.png';
+import Banner1 from 'src/components/widgets/banners/Banner1';
 
 interface cardType {
   icon: string;
@@ -272,94 +273,6 @@ const CollaboratePost = () => {
             <Grid item xs={12} lg={8} style={{ height: 'auto', margin: '30px 0px' }}>
               <ProductPerformances />
             </Grid>
-            <Grid>
-              <Box
-                sx={{
-                  position: 'relative',
-                  display: { md: 'inline-block', xs: 'none' },
-                  width: '100%',
-                  maxWidth: '100%',
-                  textAlign: 'center',
-                }}
-              >
-                <img
-                  src="https://www.pageonepower.com/hs-fs/hubfs/Footer-4.png?width=1440&height=576&name=Footer-4.png"
-                  alt=""
-                  style={{ maxWidth: '100%' }}
-                />
-                <div
-                  style={{
-                    textAlign: 'center',
-                    width: '510px',
-                    position: 'absolute',
-                    top: '40%',
-                    left: '60%',
-                    transform: 'translate(-50%, -50%)',
-                    color: 'black',
-                    lineHeight: '1.2',
-                    fontSize: '40px',
-                    fontWeight: 'bold',
-                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                  }}
-                >
-                  <span>Sử dụng hình ảnh sản phẩm để gia tăng hiệu quả marketing</span>
-                  <Typography variant="body1" color="textSecondary">
-                    Chỉ được phép chứa chữ cái, chữ số và dấu gạch dưới Sử dụng hình ảnh sản phẩm để
-                    gia tăng hiệu quả marketing tăng hiệu quả marketing
-                  </Typography>
-                  <div>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      sx={{ width: '250px', marginTop: '20px', padding: '10px 0' }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M5 12l14 0" />
-                        <path d="M5 12l6 6" />
-                        <path d="M5 12l6 -6" />
-                      </svg>
-                      <span style={{ marginLeft: ' 10px' }}>GIỚI THIỆU DỊCH VỤ</span>
-                    </Button>{' '}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      sx={{ width: '250px', marginTop: '20px', padding: '10px 0' }}
-                    >
-                      <span style={{ marginRight: ' 10px' }}> HÌNH ẢNH VÀ VIDEO</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M5 12l14 0" />
-                        <path d="M15 16l4 -4" />
-                        <path d="M15 8l4 4" />
-                      </svg>
-                    </Button>{' '}
-                  </div>
-                </div>
-              </Box>
-            </Grid>
           </TabPanel>
           <TabPanel value="3">
             {' '}
@@ -367,6 +280,10 @@ const CollaboratePost = () => {
           </TabPanel>
         </TabContext>
       </Box>
+
+      <Grid item xs={12}>
+        <Banner1 />
+      </Grid>
     </Box>
   );
 };

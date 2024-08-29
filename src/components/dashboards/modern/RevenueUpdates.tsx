@@ -16,12 +16,12 @@ const RevenueUpdates = () => {
     setMonth(event.target.value);
   };
 
-  // chart color
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
 
-  // chart
+  // Cấu hình biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'bar',
@@ -81,19 +81,19 @@ const RevenueUpdates = () => {
   };
   const seriescolumnchart = [
     {
-      name: 'Eanings this month',
+      name: 'Thu nhập trong tháng',
       data: [1.5, 2.7, 2.2, 3.6, 1.5, 1.0],
     },
     {
-      name: 'Expense this month',
+      name: 'Chi phí trong tháng',
       data: [-1.8, -1.1, -2.5, -1.5, -0.6, -1.8],
     },
   ];
 
   return (
     <DashboardCard
-      title="Revenue Updates"
-      subtitle="Overview of Profit"
+      title="Cập nhật doanh thu"
+      subtitle="Tổng quan về lợi nhuận"
       action={
         <CustomSelect
           labelId="month-dd"
@@ -102,25 +102,25 @@ const RevenueUpdates = () => {
           value={month}
           onChange={handleChange}
         >
-          <MenuItem value={1}>March 2023</MenuItem>
-          <MenuItem value={2}>April 2023</MenuItem>
-          <MenuItem value={3}>May 2023</MenuItem>
+          <MenuItem value={1}>Tháng 3, 2023</MenuItem>
+          <MenuItem value={2}>Tháng 4, 2023</MenuItem>
+          <MenuItem value={3}>Tháng 5, 2023</MenuItem>
         </CustomSelect>
       }
     >
       <Grid container spacing={3}>
-        {/* column */}
+        {/* Cột */}
         <Grid item xs={12} sm={8}>
           <Box className="rounded-bars">
-          <Chart
-            options={optionscolumnchart}
-            series={seriescolumnchart}
-            type="bar"
-            height="370px"
-          />
+            <Chart
+              options={optionscolumnchart}
+              series={seriescolumnchart}
+              type="bar"
+              height="370px"
+            />
           </Box>
         </Grid>
-        {/* column */}
+        {/* Cột */}
         <Grid item xs={12} sm={4}>
           <Stack spacing={3} mt={3}>
             <Stack direction="row" spacing={2} alignItems="center">
@@ -141,7 +141,7 @@ const RevenueUpdates = () => {
                   $63,489.50
                 </Typography>
                 <Typography variant="subtitle2" color="textSecondary">
-                  Total Earnings
+                  Tổng thu nhập
                 </Typography>
               </Box>
             </Stack>
@@ -153,7 +153,7 @@ const RevenueUpdates = () => {
               ></Avatar>
               <Box>
                 <Typography variant="subtitle1" color="textSecondary">
-                  Earnings this month
+                  Thu nhập trong tháng
                 </Typography>
                 <Typography variant="h5">$48,820</Typography>
               </Box>
@@ -164,14 +164,14 @@ const RevenueUpdates = () => {
               ></Avatar>
               <Box>
                 <Typography variant="subtitle1" color="textSecondary">
-                  Expense this month
+                  Chi phí trong tháng
                 </Typography>
                 <Typography variant="h5">$26,498</Typography>
               </Box>
             </Stack>
           </Stack>
           <Button color="primary" variant="contained" fullWidth>
-            View Full Report
+            Xem báo cáo đầy đủ
           </Button>
         </Grid>
       </Grid>

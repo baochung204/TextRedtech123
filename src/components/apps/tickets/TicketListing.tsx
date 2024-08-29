@@ -80,12 +80,12 @@ const TicketListing = () => {
     return ticket.Status === 'Open'
       ? theme.palette.success.light
       : ticket.Status === 'Closed'
-        ? theme.palette.error.light
-        : ticket.Status === 'Pending'
-          ? theme.palette.warning.light
-          : ticket.Status === 'Moderate'
-            ? theme.palette.primary.light
-            : 'primary';
+      ? theme.palette.error.light
+      : ticket.Status === 'Pending'
+      ? theme.palette.warning.light
+      : ticket.Status === 'Moderate'
+      ? theme.palette.primary.light
+      : 'primary';
   };
 
   return (
