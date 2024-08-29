@@ -5,6 +5,9 @@ import { Grid, Box, Container, useMediaQuery, styled, Stack, Theme } from '@mui/
 import BannerContent from './BannerContent';
 import bannerbgImg1 from 'src/assets/images/landingpage/bannerimg1.svg';
 import bannerbgImg2 from 'src/assets/images/landingpage/bannerimg2.svg';
+import bannerbgImg3 from 'src/assets/images/landingpage/ai.png';
+import bannerbgImg4 from 'src/assets/images/landingpage/ai2.png';
+import bannerbgImg5 from 'src/assets/images/landingpage/chatbot.png';
 
 const Banner = () => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
@@ -18,7 +21,7 @@ const Banner = () => {
         transform: 'translate3d(0px, -100%, 0px)',
       },
     },
-    
+
     animation: 'slideup 35s linear infinite',
   }));
 
@@ -31,7 +34,7 @@ const Banner = () => {
         transform: 'translate3d(0px, 0, 0px)',
       },
     },
-    
+
     animation: 'slideDown 35s linear infinite',
   }));
 
@@ -56,18 +59,61 @@ const Banner = () => {
                 <Stack direction={'row'}>
                   <Box>
                     <SliderBox>
-                      <img src={bannerbgImg1} alt="banner" />
+                      <img
+                        src={bannerbgImg5}
+                        alt="banner"
+                        style={{ width: '400px', margin: '20px 5px', borderRadius: '20px' }}
+                      />
                     </SliderBox>
                     <SliderBox>
-                      <img src={bannerbgImg1} alt="banner" />
+                      <img
+                        src={bannerbgImg4}
+                        alt="banner"
+                        style={{ width: '400px', margin: '20px 5px', borderRadius: '20px' }}
+                      />
+                    </SliderBox>
+                    <SliderBox>
+                      <img
+                        src={bannerbgImg3}
+                        alt="banner"
+                        style={{ width: '400px', margin: '20px 5px', borderRadius: '20px' }}
+                      />
                     </SliderBox>
                   </Box>
                   <Box>
                     <SliderBox2>
-                      <img src={bannerbgImg2} alt="banner" />
+                      <img
+                        src={bannerbgImg3}
+                        alt="banner"
+                        style={{
+                          width: '400px',
+                          marginRight: '5px',
+                          marginLeft: '5px',
+                          marginBottom: '80px',
+                          borderRadius: '20px',
+                        }}
+                      />
                     </SliderBox2>
                     <SliderBox2>
-                      <img src={bannerbgImg2} alt="banner" />
+                      <img
+                        src={bannerbgImg4}
+                        alt="banner"
+                        style={{
+                          width: '400px',
+                          marginRight: '5px',
+                          marginLeft: '5px',
+                          marginBottom: '80px',
+
+                          borderRadius: '20px',
+                        }}
+                      />
+                    </SliderBox2>
+                    <SliderBox2>
+                      <img
+                        src={bannerbgImg5}
+                        alt="banner"
+                        style={{ width: '400px', margin: '20px 5px', borderRadius: '20px' }}
+                      />
                     </SliderBox2>
                   </Box>
                 </Stack>
