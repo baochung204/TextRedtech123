@@ -99,6 +99,26 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
+    title: 'Assistant',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'My Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant',
+      },
+      {
+        id: uniqueId(),
+        title: 'Editor Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant/add',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
     title: 'Trang CTV tiếp thị sp',
     icon: IconPackage,
     href: '/apps/collaborate/',
