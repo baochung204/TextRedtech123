@@ -48,17 +48,6 @@ const CompanyAffiliate = () => {
             <Divider />
             <AccordionDetails>
               <Box>
-                <CustomFormLabel htmlFor="registration">
-                  Biên bản xác nhận doanh nghiệp
-                </CustomFormLabel>
-                <Input
-                  id="registration"
-                  type="file"
-                  fullWidth
-                  inputProps={{ accept: '*' }} // Accept all file types. You can specify specific types like "image/*", "application/pdf", etc.
-                />
-              </Box>
-              <Box>
                 <CustomFormLabel htmlFor="name">Họ và tên</CustomFormLabel>
                 <CustomTextField
                   id="name"
@@ -91,6 +80,17 @@ const CompanyAffiliate = () => {
             </AccordionSummary>
             <Divider />
             <AccordionDetails>
+              <Box>
+                <CustomFormLabel htmlFor="registration">
+                  Biên bản xác nhận doanh nghiệp
+                </CustomFormLabel>
+                <Input
+                  id="registration"
+                  type="file"
+                  fullWidth
+                  inputProps={{ accept: '*' }} // Accept all file types. You can specify specific types like "image/*", "application/pdf", etc.
+                />
+              </Box>
               <Box>
                 <CustomFormLabel htmlFor="companyName">Tên công ty</CustomFormLabel>
                 <CustomTextField
@@ -153,7 +153,7 @@ const CompanyAffiliate = () => {
                   fullWidth
                 />
               </Box>
-              <Grid container spacing={3}>
+              <Grid container spacing={3} mb={2} mt={2}>
                 <Grid item xs={6}>
                   <FormControl fullWidth>
                     <InputLabel id="bank-select-label">Chọn ngân hàng</InputLabel>

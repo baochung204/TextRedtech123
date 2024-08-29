@@ -22,14 +22,14 @@ const ProfileTab = () => {
 
   const ProfileTabs: profileType[] = [
     {
-      label: 'Đăng ký affiliate',
-      icon: <IconUserCircle size="20" />,
-      to: '/apps/affiliate',
-    },
-    {
       label: 'Trang cá nhân',
       icon: <IconUserCircle size="20" />,
       to: '/user-profile',
+    },
+    {
+      label: 'Đăng ký affiliate',
+      icon: <IconUserCircle size="20" />,
+      to: '/apps/affiliate',
     },
     {
       label: 'Người theo dõi',
