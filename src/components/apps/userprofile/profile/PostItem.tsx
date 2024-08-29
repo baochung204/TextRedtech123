@@ -178,5 +178,4 @@ const PostItem = ({ post }: Props) => {
   );
 };
 
-
 export default PostItem;

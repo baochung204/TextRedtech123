@@ -12,22 +12,6 @@ const AuthSocialButtons = ({ title }: signInType) => (
     <Stack direction="row" justifyContent="center" spacing={2} mt={3}>
       <CustomSocialButton>
         <Avatar
-          src={icon2}
-          alt={icon2}
-          sx={{
-            width: 25,
-            height: 25,
-            borderRadius: 0,
-            mr: 1,
-          }}
-        />
-        <Box sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}>
-          {title}{' '}
-        </Box>{' '}
-        FB
-      </CustomSocialButton>
-      <CustomSocialButton>
-        <Avatar
           src={icon1}
           alt={icon1}
           sx={{
@@ -42,13 +26,13 @@ const AuthSocialButtons = ({ title }: signInType) => (
         </Box>{' '}
         Google
       </CustomSocialButton>
-      {/* <CustomSocialButton>
+      <CustomSocialButton>
         <Avatar
-          src={icon1}
-          alt={icon1}
+          src={icon2}
+          alt={icon2}
           sx={{
-            width: 16,
-            height: 16,
+            width: 25,
+            height: 25,
             borderRadius: 0,
             mr: 1,
           }}
@@ -56,8 +40,8 @@ const AuthSocialButtons = ({ title }: signInType) => (
         <Box sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}>
           {title}{' '}
         </Box>{' '}
-        Tele
-      </CustomSocialButton> */}
+        FB
+      </CustomSocialButton>
     </Stack>
   </>
 );

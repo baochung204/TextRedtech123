@@ -1,28 +1,30 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import React from 'react';
 import {
-  Avatar,
-  Box,
-  Button,
-  CardMedia,
-  Fab,
   Grid,
-  Stack,
-  styled,
+  Box,
   Typography,
+  Button,
+  Avatar,
+  Stack,
+  CardMedia,
+  styled,
+  Fab,
 } from '@mui/material';
+import profilecover from 'src/assets/images/backgrounds/profilebg.jpg';
+import userimg from 'src/assets/images/profile/user-1.jpg';
 import {
+  IconBrandDribbble,
   IconBrandFacebook,
-  IconBrandTelegram,
+  IconBrandTwitter,
   IconBrandYoutube,
   IconFileDescription,
   IconUserCheck,
   IconUserCircle,
 } from '@tabler/icons-react';
-import profilecover from 'src/assets/images/backgrounds/profilebg.jpg';
-import userimg from 'src/assets/images/profile/user-1.jpg';
-import BlankCard from '../../../shared/BlankCard';
 import ProfileTab from './ProfileTab';
+import BlankCard from '../../../shared/BlankCard';
 
 const ProfileBanner = () => {
   const ProfileImage = styled(Box)(() => ({
@@ -65,7 +67,7 @@ const ProfileBanner = () => {
                   938
                 </Typography>
                 <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                  Posts
+                  Bài đăng
                 </Typography>
               </Box>
               <Box>
@@ -76,7 +78,7 @@ const ProfileBanner = () => {
                   3,586
                 </Typography>
                 <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                  Followers
+                  Người theo dõi
                 </Typography>
               </Box>
               <Box>
@@ -87,7 +89,7 @@ const ProfileBanner = () => {
                   2,659
                 </Typography>
                 <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                  Following
+                  Đang theo dõi
                 </Typography>
               </Box>
             </Stack>
@@ -130,10 +132,10 @@ const ProfileBanner = () => {
                 </ProfileImage>
                 <Box mt={1}>
                   <Typography fontWeight={600} variant="h5">
-                    Mathew Anderson
+                    Nguyễn Đăng Hòa
                   </Typography>
                   <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                    Designer
+                    (Hòa đẹp trai)
                   </Typography>
                 </Box>
               </Box>
@@ -158,22 +160,16 @@ const ProfileBanner = () => {
                 <IconBrandFacebook size="16" />
               </Fab>
               <Fab size="small" color="primary" sx={{ backgroundColor: '#1DA1F2' }}>
-                {/* <IconBrandYoutube size="18" /> */}
-                <img
-                  src="https://img.icons8.com/?size=100&id=105876&format=png&color=ffffff"
-                  alt=""
-                  width="18"
-                  color="white"
-                />
+                <IconBrandTwitter size="18" />
               </Fab>
               <Fab size="small" color="error" sx={{ backgroundColor: '#EA4C89' }}>
-                <IconBrandTelegram size="18" />
+                <IconBrandDribbble size="18" />
               </Fab>
               <Fab size="small" color="error" sx={{ backgroundColor: '#CD201F' }}>
                 <IconBrandYoutube size="18" />
               </Fab>
               <Button color="primary" variant="contained">
-                Add To Story
+                Tạo tin
               </Button>
             </Stack>
           </Grid>

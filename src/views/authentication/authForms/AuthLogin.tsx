@@ -26,33 +26,48 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
         {title}
       </Typography>
     ) : null}
+
     {subtext}
+
+    <AuthSocialButtons title="Đăng ký với" />
+    {/* <Box mt={3}>
+      <Divider>
+        <Typography
+          component="span"
+          color="textSecondary"
+          variant="h6"
+          fontWeight="400"
+          position="relative"
+          px={2}
+        >
+          Hoặc đăng ký với
+        </Typography>
+      </Divider>
+    </Box> */}
+
     <Stack>
       <Box>
-        <CustomFormLabel htmlFor="username">Username</CustomFormLabel>
-        <CustomTextField id="username" variant="outlined" fullWidth />
+        <CustomFormLabel htmlFor="gmail">Gmail</CustomFormLabel>
+        <CustomTextField id="gmail" variant="outlined" fullWidth />
       </Box>
       <Box>
-        <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
+        <CustomFormLabel htmlFor="password">Mật khẩu</CustomFormLabel>
         <CustomTextField id="password" type="password" variant="outlined" fullWidth />
       </Box>
       <Stack justifyContent="space-between" direction="row" alignItems="center" my={2}>
         <FormGroup>
-          <FormControlLabel
-            control={<CustomCheckbox defaultChecked />}
-            label="Remeber this Device"
-          />
+          <FormControlLabel control={<CustomCheckbox defaultChecked />} label="Nhớ mật khẩu" />
         </FormGroup>
         <Typography
           component={Link}
-          to="/auth/forgot-password"
+          to="/auth/forgot-password2"
           fontWeight="500"
           sx={{
             textDecoration: 'none',
             color: 'primary.main',
           }}
         >
-          Forgot Password ?
+          Quên mật khẩu ?
         </Typography>
       </Stack>
     </Stack>
@@ -66,24 +81,9 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
         to="/"
         type="submit"
       >
-        Sign In
+        Đăng nhập
       </Button>
-    </Box>{' '}
-    <Box mt={3}>
-      <Divider>
-        <Typography
-          component="span"
-          color="textSecondary"
-          variant="h6"
-          fontWeight="400"
-          position="relative"
-          px={2}
-        >
-          or sign in with
-        </Typography>
-      </Divider>
     </Box>
-    <AuthSocialButtons title="Sign in with" />
     {subtitle}
   </>
 );

@@ -46,8 +46,8 @@ const ForgotPassword2 = () => (
               variant="subtitle2"
               fontWeight="400"
             >
-              Please enter the email address associated with your account and We will email you a
-              link to reset your password.
+              Vui lòng nhập địa chỉ email được liên kết với tài khoản của bạn và chúng tôi sẽ gửi
+              email cho bạn liên kết để thiết lập lại mật khẩu của bạn.
             </Typography>
             <AuthForgotPassword />
           </Card>
