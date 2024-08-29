@@ -2,16 +2,7 @@
 // @ts-ignore
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Box,
-  Menu,
-  Avatar,
-  Typography,
-  Divider,
-  Button,
-  IconButton,
-  Stack
-} from '@mui/material';
+import { Box, Menu, Avatar, Typography, Divider, Button, IconButton, Stack } from '@mui/material';
 import * as dropdownData from './data';
 
 import { IconMail } from '@tabler/icons-react';
@@ -78,7 +69,7 @@ const Profile = () => {
               Mathew Anderson
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-            Designer
+              Designer
             </Typography>
             <Typography
               variant="subtitle2"
@@ -145,6 +136,44 @@ const Profile = () => {
             </Box>
           </Box>
         ))}
+        <Box sx={{ py: 2, px: 0 }} className="hover-text-primary">
+          <Link to={'/history/buy-service'}>
+            <Stack direction="row" spacing={2}>
+              <Box
+                width="45px"
+                height="45px"
+                bgcolor="primary.light"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Avatar
+                  src={''}
+                  alt={''}
+                  sx={{
+                    width: 24,
+                    height: 24,
+                    borderRadius: 0,
+                  }}
+                />
+              </Box>
+              <Box>
+                <Typography
+                  variant="subtitle2"
+                  fontWeight={600}
+                  color="textPrimary"
+                  className="text-hover"
+                  noWrap
+                  sx={{
+                    width: '240px',
+                  }}
+                >
+                  Lịch sử mua dịch vụ
+                </Typography>
+              </Box>
+            </Stack>
+          </Link>
+        </Box>
         <Box mt={2}>
           <Box bgcolor="primary.light" p={3} mb={3} overflow="hidden" position="relative">
             <Box display="flex" justifyContent="space-between">
