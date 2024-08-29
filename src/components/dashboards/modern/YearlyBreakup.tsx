@@ -10,13 +10,13 @@ import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
 
 const YearlyBreakup = () => {
-  // chart color
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primarylight = theme.palette.primary.light;
   const successlight = theme.palette.success.light;
 
-  // chart
+  // Cấu hình biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'donut',
@@ -64,9 +64,9 @@ const YearlyBreakup = () => {
   const seriescolumnchart = [38, 40, 25];
 
   return (
-    <DashboardCard title="Yearly Breakup">
+    <DashboardCard title="Phân Tích Hàng Năm">
       <Grid container spacing={3}>
-        {/* column */}
+        {/* Cột */}
         <Grid item xs={7} sm={7}>
           <Typography variant="h3" fontWeight="700">
             $36,358
@@ -79,7 +79,7 @@ const YearlyBreakup = () => {
               +9%
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              last year
+              năm trước
             </Typography>
           </Stack>
           <Stack spacing={3} mt={5} direction="row">
@@ -101,7 +101,7 @@ const YearlyBreakup = () => {
             </Stack>
           </Stack>
         </Grid>
-        {/* column */}
+        {/* Cột */}
         <Grid item xs={5} sm={5}>
           <Chart
             options={optionscolumnchart}

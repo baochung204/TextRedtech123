@@ -8,12 +8,12 @@ import DashboardWidgetCard from '../../shared/DashboardWidgetCard';
 import { Props } from 'react-apexcharts';
 
 const EmployeeSalary = () => {
-  // chart color
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primarylight = theme.palette.grey[100];
 
-  // chart
+  // Cấu hình biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'bar',
@@ -47,7 +47,7 @@ const EmployeeSalary = () => {
       },
     },
     xaxis: {
-      categories: [['Apr'], ['May'], ['June'], ['July'], ['Aug'], ['Sept']],
+      categories: [['Tháng 4'], ['Tháng 5'], ['Tháng 6'], ['Tháng 7'], ['Tháng 8'], ['Tháng 9']],
       axisBorder: {
         show: false,
       },
@@ -70,11 +70,11 @@ const EmployeeSalary = () => {
 
   return (
     <DashboardWidgetCard
-      title="Employee Salary"
-      subtitle="Every month"
-      dataLabel1="Salary"
+      title="Lương Nhân Viên"
+      subtitle="Hàng tháng"
+      dataLabel1="Lương"
       dataItem1="$36,358"
-      dataLabel2="Profit"
+      dataLabel2="Lợi nhuận"
       dataItem2="$5,296"
     >
       <>

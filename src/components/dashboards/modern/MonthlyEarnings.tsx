@@ -10,13 +10,13 @@ import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
 
 const MonthlyEarnings = () => {
-  // chart color
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const secondary = theme.palette.secondary.main;
   const secondarylight = theme.palette.secondary.light;
   const errorlight = theme.palette.error.light;
 
-  // chart
+  // Cấu hình biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'area',
@@ -82,7 +82,7 @@ const MonthlyEarnings = () => {
             +9%
           </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            last year
+            năm ngoái
           </Typography>
         </Stack>
       </>

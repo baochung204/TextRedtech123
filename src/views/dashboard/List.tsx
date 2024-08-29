@@ -20,6 +20,7 @@ import Customers from 'src/components/dashboards/modern/Customers';
 import Projects from 'src/components/dashboards/modern/Projects';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
+import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
 
 const List = () => {
   return (
@@ -29,7 +30,6 @@ const List = () => {
         <Box mt={3}>
           <Grid container spacing={3}>
             {/* column */}
-
             <Grid item xs={12} lg={12}>
               <Grid container spacing={3}>
                 {' '}
@@ -53,13 +53,12 @@ const List = () => {
                 </Grid>{' '}
               </Grid>{' '}
             </Grid>
-
             <Grid item xs={12} lg={8}>
               <RevenueUpdates />
             </Grid>
             {/* column */}
             <Grid item xs={12} lg={4}>
-              <Grid container spacing={3}>
+              <Grid container spacing={1}>
                 <Grid item xs={12} sm={6} lg={12}>
                   <YearlyBreakup />
                 </Grid>
@@ -67,6 +66,15 @@ const List = () => {
                   <MonthlyEarnings />
                 </Grid>
               </Grid>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <WeeklyStats />
+            </Grid>
+            <Grid item xs={12} lg={4}>
+              <PaymentGateways />
+            </Grid>{' '}
+            <Grid item xs={12} lg={4}>
+              <SellingProducts />
             </Grid>
             <Grid item xs={12} lg={12}>
               {' '}
