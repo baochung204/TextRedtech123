@@ -1,15 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { Grid, Box, Card, Typography } from '@mui/material';
-
-import Logo from 'src/layouts/full/shared/logo/Logo';
+import { Grid, Box, Card, Typography, Stack } from '@mui/material';
+import { Link } from 'react-router-dom';
 import PageContainer from 'src/components/container/PageContainer';
+import Logo from 'src/layouts/full/shared/logo/Logo';
 
-import AuthTwoSteps from '../authForms/AuthTwoSteps';
+import AuthRegister from '../authForms/AuthRegister';
+import AuthSocialButtons from '../authForms/AuthSocialButtons';
 
-const TwoSteps2 = () => (
-  <PageContainer title="Forgot Password" description="this is Forgot Password page">
+const Register2 = () => (
+  <PageContainer title="Register" description="this is Register page">
     <Box
       sx={{
         position: 'relative',
@@ -30,24 +31,44 @@ const TwoSteps2 = () => (
           item
           xs={12}
           sm={12}
-          lg={5}
-          xl={4}
+          lg={8}
+          xl={6}
           display="flex"
           justifyContent="center"
           alignItems="center"
         >
-          <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '450px' }}>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Logo />
-            </Box>
-            <Typography variant="subtitle1" textAlign="center" color="textSecondary" mb={1}>
-              We sent a verification code to your mobile. Enter the code from the mobile in the
-              field below.
-            </Typography>
-            <Typography variant="subtitle1" textAlign="center" fontWeight="700" mb={1}>
-              ******1234
-            </Typography>
-            <AuthTwoSteps />
+          <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%' }}>
+            <Grid container spacing={4}>
+              {/* Left Column */}
+              <Grid item xs={12} md={6}>
+                <Box display="flex" alignItems="center" justifyContent="center" sx={{ mb: 3 }}>
+                  <Logo />
+                </Box>
+                <AuthSocialButtons title="Đăng ký với" />
+
+                <Stack direction="row" spacing={1} mt={3}>
+                  <Typography color="textSecondary" variant="h6" fontWeight="400">
+                    Bạn đã có tài khoản?
+                  </Typography>
+                  <Typography
+                    component={Link}
+                    to="/auth/login2"
+                    fontWeight="500"
+                    sx={{
+                      textDecoration: 'none',
+                      color: 'primary.main',
+                    }}
+                  >
+                    Đăng nhập
+                  </Typography>
+                </Stack>
+              </Grid>
+
+              {/* Right Column */}
+              <Grid item xs={12} md={6}>
+                <AuthRegister />
+              </Grid>
+            </Grid>
           </Card>
         </Grid>
       </Grid>
@@ -55,4 +76,4 @@ const TwoSteps2 = () => (
   </PageContainer>
 );
 
-export default TwoSteps2;
+export default Register2;

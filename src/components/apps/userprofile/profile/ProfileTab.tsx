@@ -22,22 +22,27 @@ const ProfileTab = () => {
 
   const ProfileTabs: profileType[] = [
     {
-      label: 'Profile',
+      label: 'Đăng ký affiliate',
+      icon: <IconUserCircle size="20" />,
+      to: '/apps/affiliate',
+    },
+    {
+      label: 'Trang cá nhân',
       icon: <IconUserCircle size="20" />,
       to: '/user-profile',
     },
     {
-      label: 'Followers',
+      label: 'Người theo dõi',
       icon: <IconHeart size="20" />,
       to: '/apps/followers',
     },
     {
-      label: 'Friends',
+      label: 'Bạn bè',
       icon: <IconUserCircle size="20" />,
       to: '/apps/friends',
     },
     {
-      label: 'Gallery',
+      label: 'Ảnh',
       icon: <IconPhoto size="20" />,
       to: '/apps/gallery',
     },
@@ -45,8 +50,18 @@ const ProfileTab = () => {
 
   return (
     <Box mt={1} sx={{ mt: 1, backgroundColor: (theme) => theme.palette.grey[100] }}>
-      <Box justifyContent={'end'} display="flex" sx={{ overflow: 'auto', width: { xs: '333px', sm: 'auto' } }}>
-        <Tabs value={value} onChange={handleChange} aria-label="scrollable prevent tabs example" variant="scrollable" scrollButtons="auto">
+      <Box
+        justifyContent={'end'}
+        display="flex"
+        sx={{ overflow: 'auto', width: { xs: '333px', sm: 'auto' } }}
+      >
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="scrollable prevent tabs example"
+          variant="scrollable"
+          scrollButtons="auto"
+        >
           {ProfileTabs.map((tab) => {
             return (
               <Tab

@@ -7,6 +7,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import Logo from 'src/layouts/full/shared/logo/Logo';
 
 import AuthRegister from '../authForms/AuthRegister';
+import AuthSocialButtons from '../authForms/AuthSocialButtons';
 
 const Register2 = () => (
   <PageContainer title="Register" description="this is Register page">
@@ -30,28 +31,26 @@ const Register2 = () => (
           item
           xs={12}
           sm={12}
-          lg={5}
-          xl={4}
+          lg={8}
+          xl={6}
           display="flex"
           justifyContent="center"
           alignItems="center"
         >
-          <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '450px' }}>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Logo />
-            </Box>
-            <AuthRegister
-              subtext={
-                <Typography variant="subtitle1" textAlign="center" color="textSecondary" mb={1}>
-                  Your Social Campaigns
-                </Typography>
-              }
-              subtitle={
+          <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%' }}>
+            <Grid container spacing={4}>
+              {/* Left Column */}
+              <Grid item xs={12} md={6}>
+                <Box display="flex" alignItems="center" justifyContent="center" sx={{ mb: 3 }}>
+                  <Logo />
+                </Box>
+                <AuthSocialButtons title="Đăng ký với" />
+
                 <Stack direction="row" spacing={1} mt={3}>
                   <Typography color="textSecondary" variant="h6" fontWeight="400">
-                    Already have an Account?
+                    Bạn đã có tài khoản?
                   </Typography>
-                  <Typography 
+                  <Typography
                     component={Link}
                     to="/auth/login2"
                     fontWeight="500"
@@ -60,11 +59,16 @@ const Register2 = () => (
                       color: 'primary.main',
                     }}
                   >
-                    Sign In
+                    Đăng nhập
                   </Typography>
                 </Stack>
-              }
-            />
+              </Grid>
+
+              {/* Right Column */}
+              <Grid item xs={12} md={6}>
+                <AuthRegister />
+              </Grid>
+            </Grid>
           </Card>
         </Grid>
       </Grid>
