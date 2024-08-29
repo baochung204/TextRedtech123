@@ -115,7 +115,14 @@ const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintena
 
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
-
+// buypoint
+const BuyPoint = Loadable(lazy(() => import('../views/buypoint/buypoint')));
+const BuyPointService = Loadable(lazy(() => import('../views/buyservicepackage/buyservice')));
+// history
+const HistoryBuyPoint = Loadable(lazy(() => import('../views/historybuypoint/historybuypoint')));
+const HistoryBuyService = Loadable(
+  lazy(() => import('../views/historybuyservice/historybuyservice')),
+);
 const Router = [
   {
     path: '/',
@@ -191,6 +198,10 @@ const Router = [
       { path: '/widgets/cards', element: <WidgetCards /> },
       { path: '/widgets/banners', element: <WidgetBanners /> },
       { path: '/widgets/charts', element: <WidgetCharts /> },
+      { path: '/buy/point', element: <BuyPoint /> },
+      { path: '/buy/service', element: <BuyPointService /> },
+      { path: '/history/buy-point', element: <HistoryBuyPoint /> },
+      { path: '/history/buy-service', element: <HistoryBuyService /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },
