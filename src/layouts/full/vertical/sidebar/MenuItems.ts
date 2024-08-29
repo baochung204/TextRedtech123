@@ -86,6 +86,12 @@ const Menuitems: MenuitemsType[] = [
     href: '/dashboards/ecommerce',
   },
   {
+    id: uniqueId(),
+    title: 'List',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
+  },
+  {
     navlabel: true,
     subheader: 'Apps',
   },

@@ -112,12 +112,12 @@ const RevenueUpdates = () => {
         {/* column */}
         <Grid item xs={12} sm={8}>
           <Box className="rounded-bars">
-          <Chart
-            options={optionscolumnchart}
-            series={seriescolumnchart}
-            type="bar"
-            height="370px"
-          />
+            <Chart
+              options={optionscolumnchart}
+              series={seriescolumnchart}
+              type="bar"
+              height="370px"
+            />
           </Box>
         </Grid>
         {/* column */}

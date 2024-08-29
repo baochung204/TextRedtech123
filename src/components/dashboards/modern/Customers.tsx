@@ -76,8 +76,8 @@ const Customers = () => {
           Customers
         </Typography>
         <Typography variant="h4">36,358</Typography>
-        <Stack direction="row" spacing={1} mt={1} alignItems="center">
-          <Avatar sx={{ bgcolor: errorlight, width: 24, height: 24 }}>
+        <Stack direction="row" spacing={1} mt={0} alignItems="center">
+          <Avatar sx={{ bgcolor: errorlight, width: 24, height: 23 }}>
             <IconArrowDownRight width={18} color="#FA896B" />
           </Avatar>
           <Typography variant="subtitle2" fontWeight="600">
