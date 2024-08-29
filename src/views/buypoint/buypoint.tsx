@@ -2,7 +2,17 @@ import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 
 import ChildCard from 'src/components/shared/ChildCard';
-import { Box, Button, Grid, styled, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  styled,
+  Typography,
+} from '@mui/material';
 import visa from '../../assets/images/pay/visa_acffbd.png';
 import zalo from '../../assets/images/pay/zalopay_8e254f.png';
 import momo from '../../assets/images/pay/momo_4256e5.png';
@@ -13,6 +23,8 @@ import card_american from '../../assets/images/pay/card_american_express_51cd3f.
 import bank_transfer from '../../assets/images/pay/BankTransfer_facae0.png';
 import giftbox from '../../assets/images/icon.png/gift_9521097.png';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { set } from 'lodash';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -54,6 +66,10 @@ const IconCoin = () => (
   </svg>
 );
 const BuyPoint = () => {
+  const [openPopup, setOpenPopup] = useState(false);
+  const onHanldeClickOpenPopup = () => {
+    setOpenPopup(!openPopup);
+  };
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
       <Breadcrumb title="Quy Đổi Ngân Lượng  " items={BCrumb} />
@@ -153,7 +169,13 @@ const BuyPoint = () => {
               }}
             >
               <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <img src={giftbox} alt="Giftbox" width={25} height={25} />
+                <img
+                  src={giftbox}
+                  alt="Giftbox"
+                  width={25}
+                  height={25}
+                  onClick={() => onHanldeClickOpenPopup()}
+                />
               </Box>
 
               <BoxStyled
@@ -556,6 +578,24 @@ const BuyPoint = () => {
             </Button>
           </Box>
         </Box>
+        <Dialog open={openPopup}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <DialogTitle>Thông tin khuyến mãi</DialogTitle>
+            <Button onClick={() => onHanldeClickOpenPopup()}>X</Button>
+          </Box>
+
+          <DialogContent>
+            <Typography variant="body1">
+              Chúc mừng bạn! Bạn đã nhận được một ưu đãi đặc biệt cho việc quy đổi ngân lượng.
+            </Typography>
+          </DialogContent>
+          <DialogContent>
+            <Typography>
+              Chi Tiêu Tối Thiểu: 100.000 VNĐ Xu Nhận Được: 1 xu cho mỗi 1.000 VNĐ chi tiêu Thời
+              Gian Áp Dụng: 1 tuần
+            </Typography>
+          </DialogContent>
+        </Dialog>
       </ChildCard>
     </PageContainer>
   );
