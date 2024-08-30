@@ -12,63 +12,28 @@ import CustomSelect from '../../forms/theme-elements/CustomSelect';
 // images
 import user1 from 'src/assets/images/profile/user-1.jpg';
 
-interface locationType {
+interface GenderType {
   value: string;
   label: string;
 }
 
 // locations
-const locations: locationType[] = [
+const locations: GenderType[] = [
   {
-    value: 'us',
-    label: 'United States',
+    value: 'Nam',
+    label: 'Nam',
   },
   {
-    value: 'uk',
-    label: 'United Kingdom',
-  },
-  {
-    value: 'india',
-    label: 'India',
-  },
-  {
-    value: 'russia',
-    label: 'Russia',
-  },
-];
-
-// currency
-const currencies: locationType[] = [
-  {
-    value: 'us',
-    label: 'US Dollar ($)',
-  },
-  {
-    value: 'uk',
-    label: 'United Kingdom (Pound)',
-  },
-  {
-    value: 'india',
-    label: 'India (INR)',
-  },
-  {
-    value: 'russia',
-    label: 'Russia (Ruble)',
+    value: 'Nữ',
+    label: 'Nữ',
   },
 ];
 
 const AccountTab = () => {
-  const [location, setLocation] = React.useState('india');
+  const [location, setLocation] = React.useState('Nam');
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
-  };
-
-  //   currency
-  const [currency, setCurrency] = React.useState('india');
-
-  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrency(event.target.value);
   };
 
   return (
@@ -78,9 +43,11 @@ const AccountTab = () => {
         <BlankCard>
           <CardContent>
             <Typography variant="h5" mb={1}>
-              Change Profile
+              Chỉnh sửa trang cá nhân
             </Typography>
-            <Typography color="textSecondary" mb={3}>Change your profile picture from here</Typography>
+            <Typography color="textSecondary" mb={3}>
+              Cập nhật ảnh đại diện
+            </Typography>
             <Box textAlign="center" display="flex" justifyContent="center">
               <Box>
                 <Avatar
@@ -90,15 +57,15 @@ const AccountTab = () => {
                 />
                 <Stack direction="row" justifyContent="center" spacing={2} my={3}>
                   <Button variant="contained" color="primary" component="label">
-                    Upload
+                    Tải lên
                     <input hidden accept="image/*" multiple type="file" />
                   </Button>
                   <Button variant="outlined" color="error">
-                    Reset
+                    Cài lại
                   </Button>
                 </Stack>
                 <Typography variant="subtitle1" color="textSecondary" mb={4}>
-                  Allowed JPG, GIF or PNG. Max size of 800K
+                  Cho phép JPG, GIF hoặc PNG. Kích thước tối đa 800K
                 </Typography>
               </Box>
             </Box>
@@ -110,9 +77,11 @@ const AccountTab = () => {
         <BlankCard>
           <CardContent>
             <Typography variant="h5" mb={1}>
-              Change Password
+              Đổi mật khẩu
             </Typography>
-            <Typography color="textSecondary" mb={3}>To change your password please confirm here</Typography>
+            <Typography color="textSecondary" mb={3}>
+              Nhập các thông tin bên dưới
+            </Typography>
             <form>
               <CustomFormLabel
                 sx={{
@@ -120,7 +89,7 @@ const AccountTab = () => {
                 }}
                 htmlFor="text-cpwd"
               >
-                Current Password
+                Mật khẩu hiện tại
               </CustomFormLabel>
               <CustomTextField
                 id="text-cpwd"
@@ -130,7 +99,7 @@ const AccountTab = () => {
                 type="password"
               />
               {/* 2 */}
-              <CustomFormLabel htmlFor="text-npwd">New Password</CustomFormLabel>
+              <CustomFormLabel htmlFor="text-npwd">Mật khẩu mới</CustomFormLabel>
               <CustomTextField
                 id="text-npwd"
                 value="MathewAnderson"
@@ -139,7 +108,7 @@ const AccountTab = () => {
                 type="password"
               />
               {/* 3 */}
-              <CustomFormLabel htmlFor="text-conpwd">Confirm Password</CustomFormLabel>
+              <CustomFormLabel htmlFor="text-conpwd">Xác nhận mật khẩu</CustomFormLabel>
               <CustomTextField
                 id="text-conpwd"
                 value="MathewAnderson"
@@ -156,9 +125,11 @@ const AccountTab = () => {
         <BlankCard>
           <CardContent>
             <Typography variant="h5" mb={1}>
-              Personal Details
+              Chi tiết trang cá nhân
             </Typography>
-            <Typography color="textSecondary" mb={3}>To change your personal detail , edit and save from here</Typography>
+            <Typography color="textSecondary" mb={3}>
+              Chỉnh sửa thông tin cá nhân tại đây
+            </Typography>
             <form>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -168,28 +139,11 @@ const AccountTab = () => {
                     }}
                     htmlFor="text-name"
                   >
-                    Your Name
+                    Họ và tên
                   </CustomFormLabel>
                   <CustomTextField
                     id="text-name"
-                    value="Mathew Anderson"
-                    variant="outlined"
-                    fullWidth
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  {/* 2 */}
-                  <CustomFormLabel
-                    sx={{
-                      mt: 0,
-                    }}
-                    htmlFor="text-store-name"
-                  >
-                    Store Name
-                  </CustomFormLabel>
-                  <CustomTextField
-                    id="text-store-name"
-                    value="Maxima Studio"
+                    value="Nguyễn Đăng Hòa"
                     variant="outlined"
                     fullWidth
                   />
@@ -202,7 +156,7 @@ const AccountTab = () => {
                     }}
                     htmlFor="text-location"
                   >
-                    Location
+                    Giới tính
                   </CustomFormLabel>
                   <CustomSelect
                     fullWidth
@@ -218,30 +172,7 @@ const AccountTab = () => {
                     ))}
                   </CustomSelect>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  {/* 4 */}
-                  <CustomFormLabel
-                    sx={{
-                      mt: 0,
-                    }}
-                    htmlFor="text-currency"
-                  >
-                    Currency
-                  </CustomFormLabel>
-                  <CustomSelect
-                    fullWidth
-                    id="text-currency"
-                    variant="outlined"
-                    value={currency}
-                    onChange={handleChange2}
-                  >
-                    {currencies.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </CustomSelect>
-                </Grid>
+
                 <Grid item xs={12} sm={6}>
                   {/* 5 */}
                   <CustomFormLabel
@@ -250,11 +181,11 @@ const AccountTab = () => {
                     }}
                     htmlFor="text-email"
                   >
-                    Email
+                    Gmail
                   </CustomFormLabel>
                   <CustomTextField
                     id="text-email"
-                    value="info@modernize.com"
+                    value="infor@gmail.com"
                     variant="outlined"
                     fullWidth
                   />
@@ -267,11 +198,11 @@ const AccountTab = () => {
                     }}
                     htmlFor="text-phone"
                   >
-                    Phone
+                    Số điện thoại
                   </CustomFormLabel>
                   <CustomTextField
                     id="text-phone"
-                    value="+91 12345 65478"
+                    value="+981 522 873"
                     variant="outlined"
                     fullWidth
                   />
@@ -284,14 +215,9 @@ const AccountTab = () => {
                     }}
                     htmlFor="text-address"
                   >
-                    Address
+                    Ngày sinh
                   </CustomFormLabel>
-                  <CustomTextField
-                    id="text-address"
-                    value="814 Howard Street, 120065, India"
-                    variant="outlined"
-                    fullWidth
-                  />
+                  <CustomTextField id="text-address" variant="outlined" type="date" fullWidth />
                 </Grid>
               </Grid>
             </form>
@@ -299,10 +225,10 @@ const AccountTab = () => {
         </BlankCard>
         <Stack direction="row" spacing={2} sx={{ justifyContent: 'end' }} mt={3}>
           <Button size="large" variant="contained" color="primary">
-            Save
+            Lưu
           </Button>
           <Button size="large" variant="text" color="error">
-            Cancel
+            Hủy
           </Button>
         </Stack>
       </Grid>
