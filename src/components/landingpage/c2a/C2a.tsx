@@ -51,10 +51,10 @@ const C2a = () => {
                 <CardContent sx={{ py: 5 }}>
                   <Box textAlign="center">
                     <Typography variant="h3" fontWeight={600}>
-                      Haven't found an answer to your question?
+                    Bạn vẫn chưa tìm được câu trả lời cho câu hỏi của mình?
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary" mt={1}>
-                      Connect with us either on discord or email us
+                    Kết nối với chúng tôi trên Discord hoặc gửi email cho chúng tôi
                     </Typography>
                   </Box>
                   <Stack
@@ -69,14 +69,14 @@ const C2a = () => {
                       color="primary"
                       href="https://discord.gg/XujgB8ww4n"
                     >
-                      Ask on Discord
+                      Hỏi trên chatbox
                     </StyledButton>
                     <StyledButton2
                       variant="outlined"
                       color="secondary"
                       href="https://adminmart.com/support"
                     >
-                      Submit Ticket
+                      Gửi về
                     </StyledButton2>
                   </Stack>
                 </CardContent>

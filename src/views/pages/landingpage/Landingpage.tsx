@@ -19,7 +19,7 @@ const Landingpage = () => {
     <PageContainer title="Landingpage" description="this is Landingpage">
       <LpHeader />
       <Banner />
-      <DemoSlider />
+      {/* <DemoSlider /> */}
       <Frameworks />
       <Testimonial />
       <Features />

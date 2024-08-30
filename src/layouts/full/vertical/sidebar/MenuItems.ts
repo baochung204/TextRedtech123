@@ -70,38 +70,41 @@ const Menuitems: MenuitemsType[] = [
     navlabel: true,
     subheader: 'Home',
   },
+
+
   {
     id: uniqueId(),
-    title: 'Dashboard',
+    title: 'Dashboards',
     icon: IconShoppingCart,
     href: '/dashboards/list',
   },
   {
     id: uniqueId(),
-    title: 'Collaborate',
-    icon: IconShoppingCart,
-    href: '/apps/collaborate',
+    title: 'Trang CTV tiếp thị sp',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
+  },
+  {
+    navlabel: true,
+    subheader: 'Apps',
+
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
   },
   {
     id: uniqueId(),
-    title: 'Assistant',
-    icon: IconChartDonut3,
-    href: '/apps/assistant/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'My Assistant',
-        icon: IconPoint,
-        href: '/apps/assistant',
-      },
-      {
-        id: uniqueId(),
-        title: 'Editor Assistant',
-        icon: IconPoint,
-        href: '/apps/assistant/add',
-      },
-    ],
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
   },
+
   {
     id: uniqueId(),
     title: 'Landingpage',
