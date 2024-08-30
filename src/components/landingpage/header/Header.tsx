@@ -50,13 +50,10 @@ const LpHeader = () => {
 
   const [y, setY] = React.useState(window.scrollY);
 
-  const handleNavigation = React.useCallback(
-    (e: Event | any) => {
-      const window = e.currentTarget;
-      setY(window.scrollY);
-    },
-    [],
-  );
+  const handleNavigation = React.useCallback((e: Event | any) => {
+    const window = e.currentTarget;
+    setY(window.scrollY);
+  }, []);
 
   React.useEffect(() => {
     setY(window.scrollY);

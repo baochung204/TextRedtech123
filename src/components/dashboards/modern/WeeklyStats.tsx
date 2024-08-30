@@ -18,7 +18,7 @@ interface Stat {
 }
 
 const WeeklyStats: React.FC = () => {
-  // chart color
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primarylight = theme.palette.primary.light;
@@ -27,7 +27,7 @@ const WeeklyStats: React.FC = () => {
   const secondary = theme.palette.success.main;
   const secondarylight = theme.palette.success.light;
 
-  // chart
+  // Biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'area',
@@ -68,7 +68,7 @@ const WeeklyStats: React.FC = () => {
   };
   const seriescolumnchart = [
     {
-      name: 'Weekly Stats',
+      name: 'Thống kê hàng tuần',
       color: primary,
       data: [5, 15, 5, 10, 5],
     },
@@ -85,7 +85,7 @@ const WeeklyStats: React.FC = () => {
     },
     {
       title: 'Best Seller',
-      subtitle: 'Footware',
+      subtitle: 'Hàng bán chạy nhất',
       percent: '45',
       color: secondary,
       lightcolor: secondarylight,
@@ -93,7 +93,7 @@ const WeeklyStats: React.FC = () => {
     },
     {
       title: 'Most Commented',
-      subtitle: 'Fashionware',
+      subtitle: 'Hàng được bình luận nhiều nhất',
       percent: '14',
       color: error,
       lightcolor: errorlight,
@@ -102,7 +102,7 @@ const WeeklyStats: React.FC = () => {
   ];
 
   return (
-    <DashboardCard title="Weekly Stats" subtitle="Average sales">
+    <DashboardCard title="Thống kê hàng tuần" subtitle="Doanh số trung bình">
       <>
         <Stack mt={4}>
           <Chart

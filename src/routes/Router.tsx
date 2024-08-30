@@ -3,8 +3,10 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
+
 import Assistant from 'src/views/apps/assistant/Assistant';
 import AssistantAdd from 'src/views/apps/assistant/AssistantEditor';
+
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -13,13 +15,13 @@ const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')))
 /* ****Pages***** */
 const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
+const List = Loadable(lazy(() => import('../views/dashboard/List')));
 
 /* ****Apps***** */
 const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
 const BlogDetail = Loadable(lazy(() => import('../views/apps/blog/BlogPost')));
 const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')));
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
-
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
 const Tickets = Loadable(lazy(() => import('../views/apps/tickets/Tickets')));
@@ -33,8 +35,12 @@ const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar'
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followers')));
 const Friends = Loadable(lazy(() => import('../views/apps/user-profile/Friends')));
+
 const Gallery = Loadable(lazy(() => import('../views/apps/user-profile/Gallery')));
 const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
+
+//affiliate
+const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
 
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
@@ -117,7 +123,14 @@ const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintena
 
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
-
+// buypoint
+const BuyPoint = Loadable(lazy(() => import('../views/buypoint/buypoint')));
+const BuyPointService = Loadable(lazy(() => import('../views/buyservicepackage/buyservice')));
+// history
+const HistoryBuyPoint = Loadable(lazy(() => import('../views/historybuypoint/historybuypoint')));
+const HistoryBuyService = Loadable(
+  lazy(() => import('../views/historybuyservice/historybuyservice')),
+);
 const Router = [
   {
     path: '/',
@@ -126,10 +139,15 @@ const Router = [
       { path: '/', element: <Navigate to="/dashboards/modern" /> },
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
+      { path: '/dashboards/list', exact: true, element: <List /> },
+      { path: '/apps/assistant', element: <Assistant /> },
+      { path: '/apps/assistant/add', element: <Assistant_Add/> },
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
+
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantAdd/> },
+
       { path: '/apps/blog/posts', element: <Blog /> },
       { path: '/apps/blog/detail/:id', element: <BlogDetail /> },
       { path: '/apps/chats', element: <Chats /> },
@@ -142,6 +160,7 @@ const Router = [
       { path: '/apps/ecommerce/detail/:id', element: <EcommerceDetail /> },
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
+      { path: '/apps/affiliate', element: <Affiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user-profile', element: <UserProfile /> },
       { path: '/apps/calendar', element: <Calendar /> },
@@ -193,6 +212,10 @@ const Router = [
       { path: '/widgets/cards', element: <WidgetCards /> },
       { path: '/widgets/banners', element: <WidgetBanners /> },
       { path: '/widgets/charts', element: <WidgetCharts /> },
+      { path: '/buy/point', element: <BuyPoint /> },
+      { path: '/buy/service', element: <BuyPointService /> },
+      { path: '/history/buy-point', element: <HistoryBuyPoint /> },
+      { path: '/history/buy-service', element: <HistoryBuyService /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },

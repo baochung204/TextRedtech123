@@ -17,18 +17,14 @@ export interface TableType {
 
 export interface EnTableType {
   id: string;
-  imgsrc: string;
-  name: string;
-  email: string;
-  pname: string;
-  teams: {
-    id: string;
-    color: string;
-    text: string;
-  }[];
-  status: string;
-  weeks: string;
-  budget: string;
+  amount: number; // số tiền
+  paymentMethod: string; // phương thức thanh toán
+  numberPrice: number; // số tiền thanh toán
+  requestId: string; // id yêu cầu
+  createdAt: Date; //ngày thanh toán
+  completedAt: Date | null; //ngày hoàn tất thanh toán
+  status: number; // tình trạng
+  invoice: number; // hóa đơn
 }
 
 const basicsTableData: TableType[] = [
@@ -137,214 +133,91 @@ const basicsTableData: TableType[] = [
 const EnhancedTableData: EnTableType[] = [
   {
     id: '1',
-    imgsrc: img1,
-    name: 'Sunil Joshi',
-    email: 'sunil@gmail.com',
-    pname: 'Elite Admin',
-    teams: [
-      {
-        id: '1.1',
-        color: 'secondary.main',
-        text: 'S',
-      },
-      {
-        id: '1.2',
-        color: 'error.main',
-        text: 'D',
-      },
-    ],
-    status: 'Active',
-    weeks: '11',
-    budget: '3.9',
+    amount: 70,
+    paymentMethod: '123 456 789',
+    numberPrice: 21.0,
+    requestId: '10000017392941114415106834',
+    createdAt: new Date('2024-07-18T18:47:28'),
+    completedAt: new Date('2024-07-18T18:47:36'),
+    status: 1,
+    invoice: 1,
   },
   {
     id: '2',
-    imgsrc: img2,
-    name: 'Andrew McDownland',
-    email: 'andrew@gmail.com',
-    pname: 'Real Homes WP Theme',
-    teams: [
-      {
-        id: '2.1',
-        color: 'primary.main',
-        text: 'A',
-      },
-      {
-        id: '2.2',
-        color: 'warning.main',
-        text: 'X',
-      },
-      {
-        id: '2.3',
-        color: 'secondary.main',
-        text: 'N',
-      },
-    ],
-    status: 'Pending',
-    weeks: '19',
-    budget: '24.5',
+    amount: 150,
+    paymentMethod: '987 654 321',
+    numberPrice: 33.0,
+    requestId: '10000017392941114415106835',
+    createdAt: new Date('2024-07-19T10:15:12'),
+    completedAt: new Date('2024-07-19T10:20:30'),
+    status: 2,
+    invoice: 2,
   },
   {
     id: '3',
-    imgsrc: img3,
-    name: 'Christopher Jamil',
-    email: 'jamil@gmail.com',
-    pname: 'MedicalPro WP Theme',
-    teams: [
-      {
-        id: '3.1',
-        color: 'error.main',
-        text: 'X',
-      },
-    ],
-    status: 'Completed',
-    weeks: '30',
-    budget: '12.8',
+    amount: 120,
+    paymentMethod: '112 233 445',
+    numberPrice: 44.0,
+    requestId: '10000017392941114415106836',
+    createdAt: new Date('2024-07-20T14:35:48'),
+    completedAt: new Date('2024-07-20T14:40:20'),
+    status: 3,
+    invoice: 3,
   },
   {
     id: '4',
-    imgsrc: img4,
-    name: 'Mathew Anderson',
-    email: 'nirav@gmail.com',
-    pname: 'Hosting Press HTML',
-    teams: [
-      {
-        id: '4.1',
-        color: 'primary.main',
-        text: 'Y',
-      },
-      {
-        id: '4.2',
-        color: 'error.main',
-        text: 'X',
-      },
-    ],
-    status: 'Active',
-    weeks: '40',
-    budget: '2.4',
+    amount: 200,
+    paymentMethod: '445 556 667',
+    numberPrice: 21.555,
+    requestId: '10000017392941114415106837',
+    createdAt: new Date('2024-07-21T16:00:00'),
+    completedAt: new Date('2024-07-21T16:05:10'),
+    status: 3,
+    invoice: 3,
   },
   {
     id: '5',
-    imgsrc: img5,
-    name: 'Micheal Doe',
-    email: 'micheal@gmail.com',
-    pname: 'Helping Hands WP Theme',
-    teams: [
-      {
-        id: '5.1',
-        color: 'secondary.main',
-        text: 'S',
-      },
-    ],
-    status: 'Cancel',
-    weeks: '1',
-    budget: '9.3',
+    amount: 90,
+    paymentMethod: '778 899 000',
+    numberPrice: 66.0,
+    requestId: '10000017392941114415106838',
+    createdAt: new Date('2024-07-22T09:45:22'),
+    completedAt: new Date('2024-07-22T09:50:58'),
+    status: 1,
+    invoice: 1,
   },
   {
     id: '6',
-    imgsrc: img4,
-    name: 'Mathew Anderson',
-    email: 'nirav@gmail.com',
-    pname: 'Hosting Press HTML',
-    teams: [
-      {
-        id: '6.1',
-        color: 'primary.main',
-        text: 'Y',
-      },
-      {
-        id: '6.2',
-        color: 'error.main',
-        text: 'X',
-      },
-    ],
-    status: 'Active',
-    weeks: '16',
-    budget: '2.4',
+    amount: 110,
+    paymentMethod: '334 455 667',
+    numberPrice: 777.0,
+    requestId: '10000017392941114415106839',
+    createdAt: new Date('2024-07-23T11:11:11'),
+    completedAt: new Date('2024-07-23T11:15:45'),
+    status: 2,
+    invoice: 2,
   },
   {
     id: '7',
-    imgsrc: img1,
-    name: 'Sunil Joshi',
-    email: 'sunil@gmail.com',
-    pname: 'Elite Admin',
-    teams: [
-      {
-        id: '7.1',
-        color: 'secondary.main',
-        text: 'S',
-      },
-      {
-        id: '7.2',
-        color: 'error.main',
-        text: 'D',
-      },
-    ],
-    status: 'Active',
-    weeks: '12',
-    budget: '3.9',
+    amount: 80,
+    paymentMethod: '998 877 665',
+    numberPrice: 777.0,
+    requestId: '10000017392941114415106840',
+    createdAt: new Date('2024-07-24T13:30:10'),
+    completedAt: new Date('2024-07-24T13:35:50'),
+    status: 2,
+    invoice: 2,
   },
-  {
-    id: '8',
-    imgsrc: img2,
-    name: 'Andrew McDownland',
-    email: 'andrew@gmail.com',
-    pname: 'Real Homes WP Theme',
-    teams: [
-      {
-        id: '8.1',
-        color: 'primary.main',
-        text: 'A',
-      },
-      {
-        id: '8.2',
-        color: 'warning.main',
-        text: 'X',
-      },
-      {
-        id: '8.3',
-        color: 'secondary.main',
-        text: 'N',
-      },
-    ],
-    status: 'Pending',
-    weeks: '14',
-    budget: '24.5',
-  },
-  {
-    id: '9',
-    imgsrc: img3,
-    name: 'Christopher Jamil',
-    email: 'jamil@gmail.com',
-    pname: 'MedicalPro WP Theme',
-    teams: [
-      {
-        id: '9.1',
-        color: 'error.main',
-        text: 'X',
-      },
-    ],
-    status: 'Completed',
-    weeks: '12',
-    budget: '12.8',
-  },
-
   {
     id: '10',
-    imgsrc: img5,
-    name: 'Micheal Doe',
-    email: 'micheal@gmail.com',
-    pname: 'Helping Hands WP Theme',
-    teams: [
-      {
-        id: '10.1',
-        color: 'secondary.main',
-        text: 'S',
-      },
-    ],
-    status: 'Cancel',
-    weeks: '9',
-    budget: '9.3',
+    amount: 50,
+    paymentMethod: '887 766 554',
+    numberPrice: 99.0,
+    requestId: '10000017392941114415106843',
+    createdAt: new Date('2024-07-27T18:00:00'),
+    completedAt: new Date('2024-07-27T18:05:15'),
+    status: 1,
+    invoice: 1,
   },
 ];
 export { basicsTableData, EnhancedTableData };

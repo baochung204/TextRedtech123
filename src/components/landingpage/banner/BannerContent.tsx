@@ -4,7 +4,6 @@ import React from 'react';
 import { Typography, Box, Button, Stack, styled, useMediaQuery, Theme } from '@mui/material';
 import { IconRocket } from '@tabler/icons-react';
 
-
 // third party
 
 import { motion } from 'framer-motion';
@@ -15,9 +14,8 @@ const StyledButton = styled(Button)(() => ({
 }));
 
 const BannerContent = () => {
-
   const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
-  
+
   return (
     <Box mt={lgDown ? 8 : 0}>
       <motion.div
@@ -48,11 +46,11 @@ const BannerContent = () => {
             },
           }}
         >
-          Most powerful &{' '}
+          Redtech &{' '}
           <Typography component={'span'} variant="inherit" color={'primary'}>
-            Developer friendly
+            Trợ thủ AI
           </Typography>{' '}
-          React dashboard
+          đắc lực cho nhà sáng tạo nội dung
         </Typography>
       </motion.div>
       <Box pt={4} pb={3}>
@@ -67,8 +65,8 @@ const BannerContent = () => {
           }}
         >
           <Typography variant="h5" fontWeight={300}>
-            Modernize comes with light & dark color skins, well designed dashboards, applications
-            and pages.
+            Vượt trội với công nghệ tổng hợp và nhận dạng tiếng nói tiên tiến, chúng tôi mang đến
+            khả năng sáng tạo nội dung đầy lôi cuốn và hiệu quả hơn bao giờ hết.
           </Typography>
         </motion.div>
       </Box>
@@ -84,11 +82,11 @@ const BannerContent = () => {
       >
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} mt={3}>
           <StyledButton variant="contained" color="primary" href="/auth/login">
-            Login
+            Dùng thử miễn phí
           </StyledButton>
 
           <StyledButton variant="outlined" href="/dashboards/modern">
-            Live Preview
+            Liên hệ
           </StyledButton>
         </Stack>
       </motion.div>

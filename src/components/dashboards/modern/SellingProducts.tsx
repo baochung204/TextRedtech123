@@ -39,13 +39,13 @@ const SellingProducts = () => {
     <Paper sx={{ bgcolor: 'primary.main', border: `1px solid ${borderColor}` }} variant="outlined">
       <CardContent>
         <Typography variant="h5" color="white">
-          Best selling products
+          Sản phẩm bán chạy nhất
         </Typography>
         <Typography variant="subtitle1" color="white" mb={4}>
-          Overview 2023
+          Tổng quan 2024
         </Typography>
 
-        <Box textAlign="center" mt={2} mb="-90px">
+        <Box textAlign="center" mt={5} mb="-90px">
           <img src={SavingsImg} alt={SavingsImg} width={'300px'} />
         </Box>
       </CardContent>

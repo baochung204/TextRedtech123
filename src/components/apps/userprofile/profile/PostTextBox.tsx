@@ -10,7 +10,7 @@ export const PostTextBox = () => {
     <ChildCard>
       <TextField
         id="outlined-multiline-static"
-        placeholder="Share your thoughts"
+        placeholder="Bạn đang nghĩ gì ?"
         multiline
         fullWidth
         rows={4}
@@ -21,7 +21,7 @@ export const PostTextBox = () => {
         </Fab>
         <Button variant="text" color="inherit" component="label">
           <input hidden accept="image/*" multiple type="file" />
-          Photo / Video
+          Ảnh / Video
         </Button>
 
         <Button
@@ -34,12 +34,12 @@ export const PostTextBox = () => {
             </Fab>
           }
         >
-          Article
+          Bài báo
           <input hidden accept="image/*" multiple type="file" />
         </Button>
 
         <Button variant="contained" color="primary" sx={{ ml: 'auto' }}>
-          Post
+          Đăng
         </Button>
       </Stack>
     </ChildCard>

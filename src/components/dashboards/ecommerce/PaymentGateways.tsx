@@ -5,11 +5,10 @@ import { useTheme } from '@mui/material/styles';
 import { Stack, Typography, Avatar, Box, Button } from '@mui/material';
 import DashboardCard from '../../shared/DashboardCard';
 
-import icon1Img from "src/assets/images/svgs/icon-paypal.svg"
-import icon2Img from "src/assets/images/svgs/icon-office-bag.svg"
-import icon3Img from "src/assets/images/svgs/icon-master-card.svg"
-import icon4Img from "src/assets/images/svgs/icon-pie.svg"
-
+import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
+import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
+import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
+import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
 
 interface statType {
   title: string;
@@ -18,11 +17,10 @@ interface statType {
   color: string;
   lightcolor: string;
   icon: string;
-  }
+}
 
-  const PaymentGateways: React.FC = () => {
-
-  // chart color
+const PaymentGateways: React.FC = () => {
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primarylight = theme.palette.primary.light;
@@ -33,35 +31,34 @@ interface statType {
   const secondary = theme.palette.success.main;
   const secondarylight = theme.palette.success.light;
 
-
-    const stats: statType[] = [
+  const stats: statType[] = [
     {
       title: 'Paypal',
-      subtitle: 'Big Brands',
+      subtitle: 'Thương hiệu lớn',
       price: 6235,
       color: primary,
       lightcolor: primarylight,
       icon: icon1Img,
     },
     {
-      title: 'Wallet',
-      subtitle: 'Bill payment',
+      title: 'Ví',
+      subtitle: 'Thanh toán hóa đơn',
       price: 345,
       color: secondary,
       lightcolor: secondarylight,
       icon: icon2Img,
     },
     {
-      title: 'Credit Card',
-      subtitle: 'Money reversed',
+      title: 'Thẻ tín dụng',
+      subtitle: 'Tiền bị hoàn lại',
       price: 2235,
       color: warning,
       lightcolor: warninglight,
       icon: icon3Img,
     },
     {
-      title: 'Refund',
-      subtitle: 'Bill Payment',
+      title: 'Hoàn tiền',
+      subtitle: 'Thanh toán hóa đơn',
       price: 32,
       color: error,
       lightcolor: errorlight,
@@ -70,7 +67,7 @@ interface statType {
   ];
 
   return (
-    <DashboardCard title="Payment Gateways" subtitle="Platform For Income">
+    <DashboardCard title="Cổng thanh toán" subtitle="Nền tảng kiếm thu nhập">
       <>
         <Stack spacing={3} mt={5}>
           {stats.map((stat, i) => (
@@ -86,7 +83,7 @@ interface statType {
                   variant="rounded"
                   sx={{ bgcolor: stat.lightcolor, color: stat.color, width: 40, height: 40 }}
                 >
-                    <Avatar src={stat.icon} alt={stat.icon} sx={{ width: 24, height: 24 }} />
+                  <Avatar src={stat.icon} alt={stat.icon} sx={{ width: 24, height: 24 }} />
                 </Avatar>
                 <Box>
                   <Typography variant="h6" mb="4px">
@@ -108,8 +105,8 @@ interface statType {
               )}
             </Stack>
           ))}
-          <Button variant="outlined" color="primary" sx={{mt: "40px !important"}}>
-            View all transactions
+          <Button variant="outlined" color="primary" sx={{ mt: '40px !important' }}>
+            Xem tất cả giao dịch
           </Button>
         </Stack>
       </>

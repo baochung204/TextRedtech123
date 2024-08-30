@@ -9,14 +9,13 @@ import { IconArrowUpLeft } from '@tabler/icons-react';
 import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
 
-
 const Projects = () => {
-  // chart color
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const successlight = theme.palette.success.light;
 
-  // chart
+  // Cấu hình biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'bar',
@@ -94,10 +93,10 @@ const Projects = () => {
     <DashboardCard>
       <>
         <Typography variant="subtitle2" color="textSecondary">
-          Projects
+          Dự án
         </Typography>
         <Typography variant="h4">78,298</Typography>
-        <Stack direction="row" spacing={1} my={1} alignItems="center">
+        <Stack direction="row" spacing={1} my={0} alignItems="center">
           <Avatar sx={{ bgcolor: successlight, width: 24, height: 24 }}>
             <IconArrowUpLeft width={18} color="#39B69A" />
           </Avatar>

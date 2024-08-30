@@ -62,7 +62,7 @@ import {
   IconBoxAlignBottom,
   IconBoxAlignLeft,
   IconBorderStyle2,
-  IconAppWindow,
+  IconAppWindow
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
@@ -116,12 +116,6 @@ const Menuitems: MenuitemsType[] = [
         href: '/apps/assistant/add',
       },
     ],
-  },
-  {
-    id: uniqueId(),
-    title: 'Trang CTV tiếp thị sp',
-    icon: IconPackage,
-    href: '/apps/collaborate/',
   },
   {
     id: uniqueId(),
@@ -569,7 +563,7 @@ const Menuitems: MenuitemsType[] = [
     navlabel: true,
     subheader: 'Auth',
   },
-
+  
   {
     id: uniqueId(),
     title: 'Login',
@@ -649,7 +643,7 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/auth/two-steps2',
       },
-    ],
+    ]
   },
   {
     id: uniqueId(),
@@ -663,7 +657,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconSettings,
     href: '/auth/maintenance',
   },
-
+ 
   {
     navlabel: true,
     subheader: 'Other',
