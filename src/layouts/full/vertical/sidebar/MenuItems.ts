@@ -97,6 +97,26 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
+    title: 'Assistant',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'My Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant',
+      },
+      {
+        id: uniqueId(),
+        title: 'Editor Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant/add',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
     title: 'Modern',
     icon: IconAperture,
     href: '/dashboards/modern',
@@ -110,26 +130,26 @@ const Menuitems: MenuitemsType[] = [
     href: '/dashboards/ecommerce',
   },
 
-  {
-    id: uniqueId(),
-    title: 'Blog',
-    icon: IconChartDonut3,
-    href: '/apps/blog/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Posts',
-        icon: IconPoint,
-        href: '/apps/blog/posts',
-      },
-      {
-        id: uniqueId(),
-        title: 'Detail',
-        icon: IconPoint,
-        href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
-      },
-    ],
-  },
+  // {
+  //   id: uniqueId(),
+  //   title: 'Blog',
+  //   icon: IconChartDonut3,
+  //   href: '/apps/blog/',
+  //   children: [
+  //     {
+  //       id: uniqueId(),
+  //       title: 'Posts',
+  //       icon: IconPoint,
+  //       href: '/apps/blog/posts',
+  //     },
+  //     {
+  //       id: uniqueId(),
+  //       title: 'Detail',
+  //       icon: IconPoint,
+  //       href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
+  //     },
+  //   ],
+  // },
   {
     id: uniqueId(),
     title: 'Ecommerce',
