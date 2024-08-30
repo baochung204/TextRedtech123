@@ -111,6 +111,29 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     navlabel: true,
+    subheader: 'Admin',
+  },
+  {
+    id: uniqueId(),
+    title: 'Dashboard',
+    icon: IconAppWindow,
+    href: '/admin/dashborard',
+  },
+  {
+    id: uniqueId(),
+    title: 'Quản lý sản phẩm',
+    icon: IconAppWindow,
+    href: '/admin/products',
+  },
+  {
+    id: uniqueId(),
+    title: 'Quản lý tài khoản',
+    icon: IconAppWindow,
+    href: '/admin/user',
+  },
+
+  {
+    navlabel: true,
     subheader: 'Apps',
   },
 
