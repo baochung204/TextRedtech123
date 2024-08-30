@@ -1,11 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useState } from 'react';
-import { Box, Button, Divider, Grid, styled, Paper } from '@mui/material';
+import { Box, Button, Divider, Grid, Paper, styled } from '@mui/material';
 import { IconChevronDown } from '@tabler/icons-react';
+import { useState } from 'react';
 import AppLinks from 'src/layouts/full/vertical/header/AppLinks';
+import Language from 'src/layouts/full/vertical/header/Language';
+import Notifications from 'src/layouts/full/vertical/header/Notification';
+import Profile from 'src/layouts/full/vertical/header/Profile';
 import QuickLinks from 'src/layouts/full/vertical/header/QuickLinks';
 import DemosDD from './DemosDD';
+import Cart from 'src/layouts/full/vertical/header/Cart';
 
 const Navigations = () => {
 
@@ -51,7 +55,7 @@ const Navigations = () => {
                 onMouseEnter={handleOpen} onMouseLeave={handleClose}
                 endIcon={<IconChevronDown size="15" style={{ marginLeft: '-5px', marginTop: '2px' }} />}
             >
-                Demos
+                Trang chủ
             </StyledButton>
             {open && (
                 <Paper
@@ -79,7 +83,7 @@ const Navigations = () => {
                     }}
                     endIcon={<IconChevronDown size="15" style={{ marginLeft: '-5px', marginTop: '2px' }} />}
                 >
-                    Pages
+                    Assistant
                 </StyledButton>
                 {open2 && (
                     <Paper
@@ -111,14 +115,24 @@ const Navigations = () => {
                 )}
             </Box>
             <StyledButton color="inherit" variant="text" href="https://demos.adminmart.com/premium/react/modernize-react/docs/index.html">
-                Documentation
+            giới thiệu
             </StyledButton>
             <StyledButton color="inherit" variant="text" href="https://adminmart.com/support/">
-                Support
+            Liên hệ
             </StyledButton>
-            <Button color="primary" target="_blank" variant="contained" href="#">
+            <StyledButton color="inherit" variant="text" href="https://adminmart.com/support/">
+            Mua point
+            </StyledButton>
+            <StyledButton color="inherit" variant="text" href="https://adminmart.com/support/">
+            Mua dịch vụ
+            </StyledButton>
+            {/* <Button color="primary" target="_blank" variant="contained" href="#">
                 Buy Now
-            </Button>
+            </Button> */}
+            <Language/>
+            <Cart/>
+            <Notifications/>
+            <Profile/>
         </>
     );
 };
