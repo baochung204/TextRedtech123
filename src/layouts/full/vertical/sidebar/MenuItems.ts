@@ -62,7 +62,7 @@ import {
   IconBoxAlignBottom,
   IconBoxAlignLeft,
   IconBorderStyle2,
-  IconAppWindow
+  IconAppWindow,
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
@@ -71,33 +71,19 @@ const Menuitems: MenuitemsType[] = [
     subheader: 'Home',
   },
 
+
   {
     id: uniqueId(),
-    title: 'Modern',
-    icon: IconAperture,
-    href: '/dashboards/modern',
-    chip: 'New',
-    chipColor: 'secondary',
-  },
-  {
-    id: uniqueId(),
-    title: 'eCommerce',
+    title: 'Dashboards',
     icon: IconShoppingCart,
-    href: '/dashboards/ecommerce',
-  },
-  {
-    navlabel: true,
-    subheader: 'Apps',
+    href: '/dashboards/list',
   },
   {
     id: uniqueId(),
-    title: 'Contacts',
+    title: 'Trang CTV tiếp thị sp',
     icon: IconPackage,
-    chip: '2',
-    chipColor: 'secondary',
-    href: '/apps/contacts',
-  },
-  {
+    href: '/apps/collaborate/',
+  }, {
     id: uniqueId(),
     title: 'Assistant',
     icon: IconChartDonut3,
@@ -116,7 +102,69 @@ const Menuitems: MenuitemsType[] = [
         href: '/apps/assistant/add',
       },
     ],
+  },  {
+    id: uniqueId(),
+    title: 'Landingpage',
+    icon: IconAppWindow,
+    href: '/landingpage',
   },
+  {
+    navlabel: true,
+    subheader: 'Apps',
+
+  },
+
+ 
+
+
+  {
+    id: uniqueId(),
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
+  },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Landingpage',
+    icon: IconAppWindow,
+    href: '/landingpage',
+  },
+  {
+    navlabel: true,
+    subheader: 'Apps',
+  },
+  {
+    id: uniqueId(),
+    title: 'Contacts',
+    icon: IconPackage,
+    chip: '2',
+    chipColor: 'secondary',
+    href: '/apps/contacts',
+  },
+  {
+    id: uniqueId(),
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
+  },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
+  },
+
   {
     id: uniqueId(),
     title: 'Blog',
@@ -260,12 +308,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconHelp,
     href: '/pages/faq',
   },
-  {
-    id: uniqueId(),
-    title: 'Landingpage',
-    icon: IconAppWindow,
-    href: '/landingpage',
-  },
+
   {
     id: uniqueId(),
     title: 'Widgets',
@@ -563,7 +606,7 @@ const Menuitems: MenuitemsType[] = [
     navlabel: true,
     subheader: 'Auth',
   },
-  
+
   {
     id: uniqueId(),
     title: 'Login',
@@ -643,7 +686,7 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/auth/two-steps2',
       },
-    ]
+    ],
   },
   {
     id: uniqueId(),
@@ -657,7 +700,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconSettings,
     href: '/auth/maintenance',
   },
- 
+
   {
     navlabel: true,
     subheader: 'Other',
