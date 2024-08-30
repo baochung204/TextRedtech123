@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -20,6 +21,15 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import { IconChevronDown } from '@tabler/icons-react';
 
 const CompanyAffiliate = () => {
+  const [selectedFileName, setSelectedFileName] = useState('');
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFileName(file.name);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -84,12 +94,24 @@ const CompanyAffiliate = () => {
                 <CustomFormLabel htmlFor="registration">
                   Biên bản xác nhận doanh nghiệp
                 </CustomFormLabel>
-                <Input
-                  id="registration"
-                  type="file"
-                  fullWidth
-                  inputProps={{ accept: '*' }} // Accept all file types. You can specify specific types like "image/*", "application/pdf", etc.
-                />
+                {selectedFileName && (
+                  <Typography variant="body2" color="textPrimary" mb={1}>
+                    File đã chọn: {selectedFileName}
+                  </Typography>
+                )}
+                <Button variant="contained" component="label" color="primary" fullWidth>
+                  Chọn tệp
+                  <Input
+                    id="registration"
+                    type="file"
+                    inputProps={{ accept: '*' }} // Accept all file types. You can specify specific types like "image/*", "application/pdf", etc.
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                  />
+                </Button>
+                <Typography variant="caption" color="textSecondary">
+                  (Chỉ chấp nhận các định dạng tệp như: PDF, DOCX, JPG, PNG)
+                </Typography>
               </Box>
               <Box>
                 <CustomFormLabel htmlFor="companyName">Tên công ty</CustomFormLabel>
@@ -195,7 +217,7 @@ const CompanyAffiliate = () => {
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <Button variant="contained" color="success" size="large" fullWidth type="submit">
+                <Button variant="contained" color="primary" size="large" fullWidth type="submit">
                   Đăng ký
                 </Button>
               </Grid>
