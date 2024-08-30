@@ -24,46 +24,46 @@ interface SliderType {
 
 const SliderData: SliderType[] = [
   {
-    title: 'Jenny Wilson',
-    subtitle: 'Features avaibility',
+    title: 'Tèo anh',
+    subtitle: 'Tính năng khả dụng',
     avatar: img1,
     subtext:
-      'The dashboard template from adminmart has helped me provide a clean and sleek look to my dashboard and made it look exactly the way I wanted it to, mainly without having.',
+      'Mẫu bảng điều khiển từ adminmart đã giúp tôi cung cấp giao diện sạch sẽ và đẹp mắt cho bảng điều khiển của mình và làm cho nó trông chính xác theo cách tôi muốn, chủ yếu là không cần phải có.',
   },
   {
-    title: 'Minshan Cui',
-    subtitle: 'Features avaibility',
+    title: 'Tèo em',
+    subtitle: 'Tính năng khả dụng',
     avatar: img2,
     subtext:
-      'The quality of design is excellent, customizability and flexibility much better than the other products available in the market.I strongly recommend the AdminMart to other.',
+      'Chất lượng thiết kế tuyệt vời, khả năng tùy chỉnh và tính linh hoạt tốt hơn nhiều so với các sản phẩm khác có trên thị trường. Tôi thực sự giới thiệu AdminMart cho những người khác.',
   },
   {
-    title: 'Eminson Mendoza',
-    subtitle: 'Features avaibility',
+    title: 'Tèo chị',
+    subtitle: 'Tính năng khả dụng',
     avatar: img3,
     subtext:
-      'This template is great, UI-rich and up-to-date. Although it is pretty much complete, I suggest to improve a bit of documentation. Thanks & Highly recomended!',
+      'Mẫu này tuyệt vời, giao diện người dùng phong phú và cập nhật. Mặc dù khá đầy đủ, tôi đề xuất cải thiện một chút tài liệu. Cảm ơn & Rất khuyến khích!',
   },
   {
-    title: 'Jenny Wilson',
-    subtitle: 'Features avaibility',
+    title: 'Tèo cháu',
+    subtitle: 'Tính năng khả dụng',
     avatar: img1,
     subtext:
-      'The dashboard template from adminmart has helped me provide a clean and sleek look to my dashboard and made it look exactly the way I wanted it to, mainly without having.',
+      'Mẫu bảng điều khiển từ adminmart đã giúp tôi cung cấp giao diện sạch sẽ và đẹp mắt cho bảng điều khiển của mình và làm cho nó trông chính xác theo cách tôi muốn, chủ yếu là không cần phải có.',
   },
   {
-    title: 'Minshan Cui',
-    subtitle: 'Features avaibility',
+    title: 'Tèo cậu',
+    subtitle: 'Tính năng khả dụng',
     avatar: img2,
     subtext:
-      'The quality of design is excellent, customizability and flexibility much better than the other products available in the market.I strongly recommend the AdminMart to other.',
+      'Chất lượng thiết kế tuyệt vời, khả năng tùy chỉnh và tính linh hoạt tốt hơn nhiều so với các sản phẩm khác có trên thị trường. Tôi thực sự giới thiệu AdminMart cho những người khác.',
   },
   {
-    title: 'Eminson Mendoza',
-    subtitle: 'Features avaibility',
+    title: 'Tèo bác',
+    subtitle: 'Tính năng khả dụng',
     avatar: img3,
     subtext:
-      'This template is great, UI-rich and up-to-date. Although it is pretty much complete, I suggest to improve a bit of documentation. Thanks & Highly recomended!',
+      'Mẫu này tuyệt vời, giao diện người dùng phong phú và cập nhật. Mặc dù khá đầy đủ, tôi đề xuất cải thiện một chút tài liệu. Cảm ơn & Rất khuyến khích!',
   },
 ];
 

@@ -19,7 +19,7 @@ const FeaturesTitle = () => {
                         lg: '43px',
                         xs: '30px'
                     }
-                }}>Other Amazing Features & Flexibility Provided</Typography>
+                }}>Các tính năng tuyệt vời khác và tính linh hoạt được cung cấp</Typography>
             </Grid>
         </Grid>
     );

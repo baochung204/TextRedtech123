@@ -1,116 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React from 'react';
 import FeaturesTitle from './FeaturesTitle';
-import { Typography, Grid, Container, Box } from '@mui/material';
-import {
-  IconAdjustments,
-  IconArchive,
-  IconArrowsShuffle,
-  IconBook,
-  IconBuildingCarousel,
-  IconCalendar,
-  IconChartPie,
-  IconDatabase,
-  IconDiamond,
-  IconLanguageKatakana,
-  IconLayersIntersect,
-  IconMessages,
-  IconRefresh,
-  IconShieldLock,
-  IconTag,
-  IconWand,
-} from '@tabler/icons-react';
+import { Typography, Grid, Container, Box, Button } from '@mui/material';
 import AnimationFadeIn from '../animation/Animation';
-
-interface FeaturesType {
-  icon: React.ReactElement;
-  title: string;
-  subtext: string;
-}
-
-const featuresData: FeaturesType[] = [
-  {
-    icon: <IconWand width={40} height={40} strokeWidth={1.5} />,
-    title: '6 Theme Colors',
-    subtext: 'We have included 6 pre-defined Theme Colors with Elegant Admin.',
-  },
-  {
-    icon: <IconShieldLock width={40} height={40} strokeWidth={1.5} />,
-    title: 'JWT + Firebase Auth',
-    subtext: 'It is JSON Object is used to securely transfer information over the web.',
-  },
-  {
-    icon: <IconArchive width={40} height={40} strokeWidth={1.5} />,
-    title: '50+ Page Templates',
-    subtext: 'Yes, we have 5 demos & 50+ Pages per demo to make it easier.',
-  },
-  {
-    icon: <IconAdjustments width={40} height={40} strokeWidth={1.5} />,
-    title: '45+ UI Components',
-    subtext: 'Almost 45+ UI Components being given with Modernize Admin Pack.',
-  },
-  {
-    icon: <IconTag width={40} height={40} strokeWidth={1.5} />,
-    title: 'Material Ui',
-    subtext: 'Its been made with Material Ui and full responsive layout.',
-  },
-  {
-    icon: <IconDiamond width={40} height={40} strokeWidth={1.5} />,
-    title: '3400+ Font Icons',
-    subtext: 'Lots of Icon Fonts are included here in the package of Elegant Admin.',
-  },
-  {
-    icon: <IconDatabase width={40} height={40} strokeWidth={1.5} />,
-    title: 'Axios',
-    subtext: 'Axios is a promise-based HTTP Client for node.js and the browser.',
-  },
-  {
-    icon: <IconLanguageKatakana width={40} height={40} strokeWidth={1.5} />,
-    title: 'i18 React',
-    subtext: 'react-i18 is a powerful internationalization framework for React.',
-  },
-  {
-    icon: <IconBuildingCarousel width={40} height={40} strokeWidth={1.5} />,
-    title: 'Slick Carousel',
-    subtext: 'The Last React Carousel You will Ever Need!',
-  },
-  {
-    icon: <IconArrowsShuffle width={40} height={40} strokeWidth={1.5} />,
-    title: 'Easy to Customize',
-    subtext: 'Customization will be easy as we understand your pain.',
-  },
-  {
-    icon: <IconChartPie width={40} height={40} strokeWidth={1.5} />,
-    title: 'Lots of Chart Options',
-    subtext: 'You name it and we have it, Yes lots of variations for Charts.',
-  },
-  {
-    icon: <IconLayersIntersect width={40} height={40} strokeWidth={1.5} />,
-    title: 'Lots of Table Examples',
-    subtext: 'Data Tables are initial requirement and we added them.',
-  },
-  {
-    icon: <IconRefresh width={40} height={40} strokeWidth={1.5} />,
-    title: 'Regular Updates',
-    subtext: 'We are constantly updating our pack with new features.',
-  },
-  {
-    icon: <IconBook width={40} height={40} strokeWidth={1.5} />,
-    title: 'Detailed Documentation',
-    subtext: 'We have made detailed documentation, so it will easy to use.',
-  },
-  {
-    icon: <IconCalendar width={40} height={40} strokeWidth={1.5} />,
-    title: 'Calendar Design',
-    subtext: 'Calendar is available with our package & in nice design.',
-  },
-  {
-    icon: <IconMessages width={40} height={40} strokeWidth={1.5} />,
-    title: 'Dedicated Support',
-    subtext: 'We believe in supreme support is key and we offer that.',
-  },
-];
+import bannerbgImg3 from 'src/assets/images/landingpage/ai.png';
+import bannerbgImg4 from 'src/assets/images/landingpage/ai2.png';
+import bannerbgImg5 from 'src/assets/images/landingpage/chatbot.png';
 
 const Features = () => {
   return (
@@ -119,19 +13,93 @@ const Features = () => {
         <FeaturesTitle />
         <AnimationFadeIn>
           <Box mt={6}>
-            <Grid container spacing={3}>
-              {featuresData.map((feature, index) => (
-                <Grid item xs={12} sm={4} lg={3} textAlign="center" key={index}>
-                  <Box color="primary.main">{feature.icon}</Box>
-                  <Typography variant="h5" mt={3}>
-                    {feature.title}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary" mt={1} mb={3}>
-                    {feature.subtext}
-                  </Typography>
-                </Grid>
-              ))}
+            {/* Section 1 */}
+            <Grid container spacing={4} alignItems="center">
+              <Grid item xs={12} md={6}>
+                <Box>
+                  <img
+                    src={bannerbgImg3}
+                    alt="Feature Image"
+                    style={{ width: '100%', height: '300px', borderRadius: '16px' }}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography variant="h5" gutterBottom>
+                  Chữ thành lời
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  Công cụ tạo tiếng nói nhân tạo AI từ văn bản chỉ trong tích tắc, mở ra một kỷ nguyên mới về tổng hợp tiếng nói chất lượng cao, giàu cảm xúc như con người.
+                </Typography>
+                <Box mt={2}>
+                  <Button variant="contained" color="primary" sx={{ mr: 2, borderRadius: '8px' }}>
+                    Dùng thử
+                  </Button>
+                  <Button variant="outlined" color="primary" sx={{ borderRadius: '8px' }}>
+                    Khám phá
+                  </Button>
+                </Box>
+              </Grid>
             </Grid>
+
+            {/* Section 2 */}
+            <Grid container spacing={4} alignItems="center" mt={6}>
+              <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
+                <Typography variant="h5" gutterBottom>
+                  Lồng tiếng AI
+                </Typography>
+                <Typography variant="body1">
+                  Giải pháp lồng tiếng bằng công nghệ tiếng nói và dịch máy AI tiên tiến, giúp tạo ra sản phẩm lồng tiếng chất lượng cao một cách nhanh chóng và hiệu quả chi phí.
+                </Typography>
+                <Box mt={2}>
+                  <Button variant="contained" color="primary" sx={{ mr: 2, borderRadius: '8px' }}>
+                    Dùng thử
+                  </Button>
+                  <Button variant="outlined" color="primary" sx={{ borderRadius: '8px' }}>
+                    Khám phá
+                  </Button>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
+                <Box>
+                  <img
+                    src={bannerbgImg4}
+                    alt="Feature Image"
+                    style={{ width: '100%', height: '300px', borderRadius: '16px' }}
+                  />
+                </Box>
+              </Grid>
+            </Grid>
+
+            {/* Section 3 */}
+            <Grid container spacing={4} alignItems="center" mt={6}>
+              <Grid item xs={12} md={6}>
+                <Box>
+                  <img
+                    src={bannerbgImg5}
+                    alt="Feature Image"
+                    style={{ width: '100%', height: '300px', borderRadius: '16px' }}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography variant="h5" gutterBottom>
+                  AIVoice API
+                </Typography>
+                <Typography variant="body1">
+                  Nền tảng tích hợp nhanh chóng giọng nói nhân tạo và các dịch vụ tiếng nói vào hệ thống của bạn mà không cần đầu tư nhiều thời gian và nguồn lực phát triển từ đầu.
+                </Typography>
+                <Box mt={2}>
+                  <Button variant="contained" color="primary" sx={{ mr: 2, borderRadius: '8px' }}>
+                    Dùng thử
+                  </Button>
+                  <Button variant="outlined" color="primary" sx={{ borderRadius: '8px' }}>
+                    Khám phá
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+
           </Box>
         </AnimationFadeIn>
       </Container>

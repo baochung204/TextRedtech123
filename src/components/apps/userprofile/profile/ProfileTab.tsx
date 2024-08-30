@@ -23,27 +23,27 @@ const ProfileTab = () => {
   const ProfileTabs: profileType[] = [
     {
       label: 'Trang cá nhân',
-      icon: <IconUserCircle size="19" />,
+      icon: <IconUserCircle size="20" />,
       to: '/user-profile',
     },
     {
       label: 'Đăng ký affiliate',
-      icon: <IconUserCircle size="19" />,
+      icon: <IconUserCircle size="20" />,
       to: '/apps/affiliate',
     },
     {
       label: 'Người theo dõi',
-      icon: <IconHeart size="19" />,
+      icon: <IconHeart size="20" />,
       to: '/apps/followers',
     },
     {
       label: 'Bạn bè',
-      icon: <IconUserCircle size="19" />,
+      icon: <IconUserCircle size="20" />,
       to: '/apps/friends',
     },
     {
       label: 'Ảnh',
-      icon: <IconPhoto size="19" />,
+      icon: <IconPhoto size="20" />,
       to: '/apps/gallery',
     },
   ];
