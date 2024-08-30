@@ -71,7 +71,6 @@ const Menuitems: MenuitemsType[] = [
     subheader: 'Home',
   },
 
-
   {
     id: uniqueId(),
     title: 'Dashboards',
@@ -83,7 +82,8 @@ const Menuitems: MenuitemsType[] = [
     title: 'Trang CTV tiếp thị sp',
     icon: IconPackage,
     href: '/apps/collaborate/',
-  }, {
+  },
+  {
     id: uniqueId(),
     title: 'Assistant',
     icon: IconChartDonut3,
@@ -102,7 +102,8 @@ const Menuitems: MenuitemsType[] = [
         href: '/apps/assistant/add',
       },
     ],
-  },  {
+  },
+  {
     id: uniqueId(),
     title: 'Landingpage',
     icon: IconAppWindow,
@@ -110,12 +111,31 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     navlabel: true,
-    subheader: 'Apps',
-
+    subheader: 'Admin',
+  },
+  {
+    id: uniqueId(),
+    title: 'Dashboard',
+    icon: IconAppWindow,
+    href: '/admin/dashborard',
+  },
+  {
+    id: uniqueId(),
+    title: 'Quản lý sản phẩm',
+    icon: IconAppWindow,
+    href: '/admin/products',
+  },
+  {
+    id: uniqueId(),
+    title: 'Quản lý tài khoản',
+    icon: IconAppWindow,
+    href: '/admin/user',
   },
 
- 
-
+  {
+    navlabel: true,
+    subheader: 'Apps',
+  },
 
   {
     id: uniqueId(),

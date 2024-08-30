@@ -90,7 +90,7 @@ const Banner1 = () => {
               src={ai}
               alt="AI"
               sx={{
-                width: { xs: 400, md: 500, lg: 700 },
+                width: { xs: 400, md: 450, lg: 500, xl: 700 },
                 height: 300,
               }}
             />
