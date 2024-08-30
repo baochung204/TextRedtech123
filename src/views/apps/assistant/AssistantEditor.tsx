@@ -18,7 +18,7 @@ const BCrumb = [
   },
 ];
 
-const AssistantAdd = () => {
+const AssistantEditor = () => {
   return (
     <PageContainer title="Shop List" description="this is Shop List page">
       {/* breadcrumb */}
@@ -33,4 +33,4 @@ const AssistantAdd = () => {
   );
 };
 
-export default AssistantAdd;
+export default AssistantEditor;

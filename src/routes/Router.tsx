@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 
 import Assistant from 'src/views/apps/assistant/Assistant';
-import AssistantAdd from 'src/views/apps/assistant/AssistantEditor';
+import AssistantEditor from 'src/views/apps/assistant/AssistantEditor';
 
 
 /* ***Layouts**** */
@@ -145,7 +145,7 @@ const Router = [
       { path: '/apps/collaborate', element: <Collaborate /> },
 
       { path: '/apps/assistant', element: <Assistant /> },
-      { path: '/apps/assistant/add', element: <AssistantAdd/> },
+      { path: '/apps/assistant/add', element: <AssistantEditor/> },
 
       { path: '/apps/blog/posts', element: <Blog /> },
       { path: '/apps/blog/detail/:id', element: <BlogDetail /> },

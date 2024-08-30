@@ -32,10 +32,7 @@ import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel
 import AddIcon from '@mui/icons-material/Add';
 import ParentCard from 'src/components/shared/ParentCard';
 import { IconMoodSmile, IconPaperclip, IconPhoto, IconSend, IconVolume, IconVolume2 } from '@tabler/icons-react';
-import ChatMsgSent from '../chats/ChatMsgSent';
-import ChatListing from '../chats/ChatListing';
-import ChatInsideSidebar from '../chats/ChatInsideSidebar';
-import ChatContent from '../chats/ChatContent';
+
 
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
@@ -70,7 +67,7 @@ function CustomThumbComponent(props: SliderValueLabelProps) {
   );
 }
 
-const Assistant_Add = () => {
+const AssistantEditor = () => {
   const [age, setAge] = React.useState('1');
   const [select1, setSelect] = React.useState('1');
   const [select2, setSelect2] = React.useState('1');
@@ -212,4 +209,4 @@ const Assistant_Add = () => {
   );
 };
 
-export default Assistant_Add;
+export default AssistantEditor;
