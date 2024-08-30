@@ -140,8 +140,7 @@ const Router = [
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
-      { path: '/apps/assistant', element: <Assistant /> },
-      { path: '/apps/assistant/add', element: <Assistant_Add/> },
+  
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
 
