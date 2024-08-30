@@ -62,7 +62,7 @@ import {
   IconBoxAlignBottom,
   IconBoxAlignLeft,
   IconBorderStyle2,
-  IconAppWindow,
+  IconAppWindow
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
@@ -73,15 +73,17 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
-    title: 'Dashboards',
-    icon: IconShoppingCart,
-    href: '/dashboards/list',
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
   },
   {
     id: uniqueId(),
-    title: 'Trang CTV tiếp thị sp',
-    icon: IconPackage,
-    href: '/apps/collaborate/',
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
   },
   {
     navlabel: true,
@@ -97,19 +99,24 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Modern',
-    icon: IconAperture,
-    href: '/dashboards/modern',
-    chip: 'New',
-    chipColor: 'secondary',
+    title: 'Assistant',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'My Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant',
+      },
+      {
+        id: uniqueId(),
+        title: 'Editor Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant/add',
+      },
+    ],
   },
-  {
-    id: uniqueId(),
-    title: 'eCommerce',
-    icon: IconShoppingCart,
-    href: '/dashboards/ecommerce',
-  },
-
   {
     id: uniqueId(),
     title: 'Blog',
@@ -556,7 +563,7 @@ const Menuitems: MenuitemsType[] = [
     navlabel: true,
     subheader: 'Auth',
   },
-
+  
   {
     id: uniqueId(),
     title: 'Login',
@@ -636,7 +643,7 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/auth/two-steps2',
       },
-    ],
+    ]
   },
   {
     id: uniqueId(),
@@ -650,7 +657,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconSettings,
     href: '/auth/maintenance',
   },
-
+ 
   {
     navlabel: true,
     subheader: 'Other',
