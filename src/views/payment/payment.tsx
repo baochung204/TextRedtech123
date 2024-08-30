@@ -14,6 +14,7 @@ import {
   TextField,
   FormControl,
   Radio,
+  RadioGroup,
 } from '@mui/material';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
@@ -71,7 +72,7 @@ const PayMentPonit = () => {
       <Breadcrumb title="Thanh Toán" items={BCrumb}>
         <img src={emailIcon} alt={emailIcon} width={'165px'} />
       </Breadcrumb>
-      <Box sx={{ display: 'flex', gap: 2 }}>
+      <Box sx={{ display: { xs: 'block', md: 'flex' }, gap: 2 }}>
         <Box>
           <AppCard>
             <Drawer
@@ -88,117 +89,132 @@ const PayMentPonit = () => {
                   <Box alignItems="center">
                     <Typography variant="h4">Tiêu chuẩn</Typography>
                   </Box>
-
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      borderBottom: '1px solid #F2F6FA',
-                      borderRadius: 0,
-                      py: 2,
-                    }}
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="female"
+                    name="radio-buttons-group"
                   >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                      <Radio
-                        color="default"
-                        inputProps={{ 'aria-label': 'checkbox with default color' }}
-                        sx={{ width: '10px', height: '10px' }}
-                      />
-                      <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo tháng</Typography>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        borderBottom: '1px solid #F2F6FA',
+                        borderRadius: 0,
+                        py: 2,
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <Radio
+                          color="default"
+                          value="top"
+                          inputProps={{ 'aria-label': 'checkbox with default color' }}
+                          sx={{ width: '10px', height: '10px' }}
+                        />
+                        <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo tháng</Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'end',
+                          alignItems: 'end',
+                        }}
+                      >
+                        <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.000 VNĐ</Typography>
+                      </Box>
                     </Box>
                     <Box
                       sx={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'end',
-                        alignItems: 'end',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        borderBottom: '1px solid #F2F6FA',
+                        borderRadius: 0,
+                        py: 2,
                       }}
                     >
-                      <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.000 VNĐ</Typography>
-                    </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      borderBottom: '1px solid #F2F6FA',
-                      borderRadius: 0,
-                      py: 2,
-                    }}
-                  >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                      <Radio
-                        color="default"
-                        inputProps={{ 'aria-label': 'checkbox with default color' }}
-                        sx={{ width: '10px', height: '10px' }}
-                      />
-                      <Box>
-                        <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo quý</Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <Radio
+                          value="body"
+                          color="default"
+                          inputProps={{ 'aria-label': 'checkbox with default color' }}
+                          sx={{ width: '10px', height: '10px' }}
+                        />
+                        <Box>
+                          <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo quý</Typography>
+                          <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
+                            Tiết kiệm 77.000 VNĐ{' '}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'end',
+                          alignItems: 'end',
+                        }}
+                      >
+                        <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.999 VNĐ</Typography>
                         <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                          Tiết kiệm 77.000 VNĐ{' '}
+                          520.000 VNĐ/quý
                         </Typography>
                       </Box>
                     </Box>
                     <Box
                       sx={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'end',
-                        alignItems: 'end',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        borderBottom: '1px solid #F2F6FA',
+                        borderRadius: 0,
+                        py: 2,
                       }}
                     >
-                      <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.999 VNĐ</Typography>
-                      <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                        520.000 VNĐ/quý
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      borderBottom: '1px solid #F2F6FA',
-                      borderRadius: 0,
-                      py: 2,
-                    }}
-                  >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                      <Radio
-                        color="default"
-                        inputProps={{ 'aria-label': 'checkbox with default color' }}
-                        sx={{ width: '10px', height: '10px' }}
-                      />
-                      <Box>
-                        <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo năm</Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <Radio
+                          value="end"
+                          color="default"
+                          inputProps={{ 'aria-label': 'checkbox with default color' }}
+                          sx={{ width: '10px', height: '10px' }}
+                        />
+                        <Box>
+                          <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo năm</Typography>
+                          <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
+                            Tiết kiệm 489.000 VNĐ{' '}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'end',
+                          alignItems: 'end',
+                        }}
+                      >
+                        <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.999 VNĐ</Typography>
                         <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                          Tiết kiệm 489.000 VNĐ{' '}
+                          1.899.000 VNĐ/năm
                         </Typography>
                       </Box>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'end',
-                        alignItems: 'end',
-                      }}
-                    >
-                      <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.999 VNĐ</Typography>
-                      <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                        1.899.000 VNĐ/năm
-                      </Typography>
-                    </Box>
-                  </Box>
+                    </Box>{' '}
+                  </RadioGroup>
                 </Box>
+
                 <Box sx={{ py: 3 }}>
                   <Box alignItems="center">
                     <Typography variant="h4">Chọn phương thức thanh toán</Typography>
                   </Box>
                   <Box>
-                    <Grid container textAlign="center" sx={{ pt: 4, gap: '10px' }}>
+                    <Grid
+                      container
+                      textAlign="center"
+                      sx={{ pt: 4, gap: '10px' }}
+                      display={'flex'}
+                      justifyContent={'center'}
+                    >
                       <Grid sx={{}}>
                         <Box
                           sx={{
