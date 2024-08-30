@@ -123,6 +123,8 @@ const HistoryBuyPoint = Loadable(lazy(() => import('../views/historybuypoint/his
 const HistoryBuyService = Loadable(
   lazy(() => import('../views/historybuyservice/historybuyservice')),
 );
+// pay
+const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 const Router = [
   {
     path: '/',
@@ -198,6 +200,7 @@ const Router = [
       { path: '/widgets/banners', element: <WidgetBanners /> },
       { path: '/widgets/charts', element: <WidgetCharts /> },
       { path: '/buy/point', element: <BuyPoint /> },
+      { path: '/pay/point', element: <PaymentPoint /> },
       { path: '/buy/service', element: <BuyPointService /> },
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
       { path: '/history/buy-service', element: <HistoryBuyService /> },
