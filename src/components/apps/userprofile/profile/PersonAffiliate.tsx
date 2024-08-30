@@ -182,13 +182,16 @@ const PersonAffiliate = () => {
                   </Box>
                 )}
                 <CustomFormLabel htmlFor="image1">Mặt trước căn cước công dân</CustomFormLabel>
-                <Input
-                  id="image1"
-                  type="file"
-                  fullWidth
-                  accept="image/*"
-                  onChange={handleImage1Change}
-                />
+                <Button variant="contained" component="label" color="primary">
+                  Choose File
+                  <Input
+                    id="image1"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImage1Change}
+                    style={{ display: 'none' }}
+                  />
+                </Button>
               </Box>
               <Box mb={2}>
                 {selectedImage2 && (
@@ -209,13 +212,16 @@ const PersonAffiliate = () => {
                   </Box>
                 )}
                 <CustomFormLabel htmlFor="image2">Mặt sau căn cước công dân</CustomFormLabel>
-                <Input
-                  id="image2"
-                  type="file"
-                  fullWidth
-                  accept="image/*"
-                  onChange={handleImage2Change}
-                />
+                <Button variant="contained" component="label" color="primary">
+                  Choose File
+                  <Input
+                    id="image2"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImage2Change}
+                    style={{ display: 'none' }}
+                  />
+                </Button>
               </Box>
             </AccordionDetails>
           </Accordion>
@@ -236,7 +242,7 @@ const PersonAffiliate = () => {
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Button variant="contained" color="success" size="large" fullWidth type="submit">
+              <Button variant="contained" color="primary" size="large" fullWidth type="submit">
                 Đăng ký
               </Button>
             </Grid>
