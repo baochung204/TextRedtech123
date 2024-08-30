@@ -8,13 +8,12 @@ import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
 
 const RevenueUpdates: React.FC = () => {
-
-  // chart color
+  // màu sắc biểu đồ
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
 
-  // chart
+  // biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'bar',
@@ -49,7 +48,6 @@ const RevenueUpdates: React.FC = () => {
     },
     grid: {
       show: false,
-
     },
     yaxis: {
       min: -5,
@@ -57,10 +55,10 @@ const RevenueUpdates: React.FC = () => {
       tickAmount: 4,
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5'],
       axisTicks: {
         show: false,
-      }
+      },
     },
     tooltip: {
       theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
@@ -69,19 +67,17 @@ const RevenueUpdates: React.FC = () => {
   };
   const seriescolumnchart = [
     {
-      name: 'Footware',
+      name: 'Giày dép',
       data: [2.5, 3.7, 3.2, 2.6, 1.9],
     },
     {
-      name: 'Fashionware',
+      name: 'Thời trang',
       data: [-2.8, -1.1, -3.0, -1.5, -1.9],
     },
   ];
 
   return (
-    <DashboardCard
-      title="Revenue Updates"
-      subtitle="Overview of Profit">
+    <DashboardCard title="Cập nhật doanh thu" subtitle="Tổng quan về lợi nhuận">
       <>
         <Stack direction="row" spacing={3}>
           <Stack direction="row" alignItems="center" spacing={1}>
@@ -90,7 +86,7 @@ const RevenueUpdates: React.FC = () => {
             ></Avatar>
             <Box>
               <Typography variant="subtitle2" fontSize="12px" color="textSecondary">
-                Footware
+                Giày dép
               </Typography>
             </Box>
           </Stack>
@@ -100,13 +96,18 @@ const RevenueUpdates: React.FC = () => {
             ></Avatar>
             <Box>
               <Typography variant="subtitle2" fontSize="12px" color="textSecondary">
-                Fashionware
+                Thời trang
               </Typography>
             </Box>
           </Stack>
         </Stack>
         <Box className="rounded-bars">
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="320px" />
+          <Chart
+            options={optionscolumnchart}
+            series={seriescolumnchart}
+            type="bar"
+            height="320px"
+          />
         </Box>
       </>
     </DashboardCard>

@@ -73,6 +73,72 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
+    title: 'Dashboards',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
+  },
+  {
+    id: uniqueId(),
+    title: 'Trang CTV tiếp thị sp',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
+  },
+  {
+    id: uniqueId(),
+    title: 'Assistant',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'My Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant',
+      },
+      {
+        id: uniqueId(),
+        title: 'Editor Assistant',
+        icon: IconPoint,
+        href: '/apps/assistant/add',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Landingpage',
+    icon: IconAppWindow,
+    href: '/landingpage',
+  },
+  {
+    navlabel: true,
+    subheader: 'Admin',
+  },
+  {
+    id: uniqueId(),
+    title: 'Dashboard',
+    icon: IconAppWindow,
+    href: '/admin/dashborard',
+  },
+  {
+    id: uniqueId(),
+    title: 'Quản lý sản phẩm',
+    icon: IconAppWindow,
+    href: '/admin/products',
+  },
+  {
+    id: uniqueId(),
+    title: 'Quản lý tài khoản',
+    icon: IconAppWindow,
+    href: '/admin/user',
+  },
+
+  {
+    navlabel: true,
+    subheader: 'Apps',
+  },
+
+  {
+    id: uniqueId(),
     title: 'Modern',
     icon: IconAperture,
     href: '/dashboards/modern',
@@ -84,6 +150,13 @@ const Menuitems: MenuitemsType[] = [
     title: 'eCommerce',
     icon: IconShoppingCart,
     href: '/dashboards/ecommerce',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Landingpage',
+    icon: IconAppWindow,
+    href: '/landingpage',
   },
   {
     navlabel: true,
@@ -99,10 +172,19 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Trang CTV tiếp thị sp',
-    icon: IconPackage,
-    href: '/apps/collaborate/',
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
   },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
+  },
+
   {
     id: uniqueId(),
     title: 'Blog',
@@ -246,12 +328,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconHelp,
     href: '/pages/faq',
   },
-  {
-    id: uniqueId(),
-    title: 'Landingpage',
-    icon: IconAppWindow,
-    href: '/landingpage',
-  },
+
   {
     id: uniqueId(),
     title: 'Widgets',

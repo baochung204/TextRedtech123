@@ -10,13 +10,13 @@ import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
 
 const Customers = () => {
-  // chart color
+  // Màu sắc biểu đồ
   const theme = useTheme();
   const secondary = theme.palette.secondary.main;
   const secondarylight = theme.palette.secondary.light;
   const errorlight = theme.palette.error.light;
 
-  // chart
+  // Cấu hình biểu đồ
   const optionscolumnchart: Props = {
     chart: {
       type: 'area',
@@ -73,11 +73,11 @@ const Customers = () => {
     >
       <>
         <Typography variant="subtitle2" color="textSecondary">
-          Customers
+          Khách hàng
         </Typography>
         <Typography variant="h4">36,358</Typography>
-        <Stack direction="row" spacing={1} mt={1} alignItems="center">
-          <Avatar sx={{ bgcolor: errorlight, width: 24, height: 24 }}>
+        <Stack direction="row" spacing={1} mt={0} alignItems="center">
+          <Avatar sx={{ bgcolor: errorlight, width: 24, height: 23 }}>
             <IconArrowDownRight width={18} color="#FA896B" />
           </Avatar>
           <Typography variant="subtitle2" fontWeight="600">

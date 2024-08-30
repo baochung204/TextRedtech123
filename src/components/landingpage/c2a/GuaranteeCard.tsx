@@ -32,9 +32,9 @@ const GuaranteeCard = () => {
               <img src={badgeImg} alt="bagde" />
             </Box>
             <Box pl={3}>
-              <Typography variant="h4">100% moneyback guarantee</Typography>
+              <Typography variant="h4">Đảm bảo hoàn lại tiền 100%</Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                We offer 48 hours moneyback guarantee.
+              Chúng tôi cung cấp bảo đảm hoàn lại tiền trong 48 giờ.
               </Typography>
             </Box>
           </Stack>
@@ -54,7 +54,7 @@ const GuaranteeCard = () => {
             }}
           >
             <StyledButton variant="contained" color="primary" href="#">
-              Contact
+              Liên hệ
             </StyledButton>
           </Stack>
         </Stack>
