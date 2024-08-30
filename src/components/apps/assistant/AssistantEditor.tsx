@@ -11,7 +11,10 @@ import {
   FormControlLabel,
   Button,
   SliderValueLabelProps,
-  Stack
+  Stack,
+  IconButton,
+  Popover,
+  InputBase
 } from '@mui/material';
 import { SliderThumb } from '@mui/material/Slider';
 
@@ -28,7 +31,11 @@ import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutl
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import AddIcon from '@mui/icons-material/Add';
 import ParentCard from 'src/components/shared/ParentCard';
-import { IconVolume, IconVolume2 } from '@tabler/icons-react';
+import { IconMoodSmile, IconPaperclip, IconPhoto, IconSend, IconVolume, IconVolume2 } from '@tabler/icons-react';
+import ChatMsgSent from '../chats/ChatMsgSent';
+import ChatListing from '../chats/ChatListing';
+import ChatInsideSidebar from '../chats/ChatInsideSidebar';
+import ChatContent from '../chats/ChatContent';
 
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
@@ -174,7 +181,7 @@ const Assistant_Add = () => {
                   </Button>
                 
               </CustomFormLabel>
-            
+              
             
             
           </Grid>
