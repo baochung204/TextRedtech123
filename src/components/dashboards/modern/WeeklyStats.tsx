@@ -112,7 +112,7 @@ const WeeklyStats: React.FC = () => {
             height="130px"
           />
         </Stack>
-        <Stack spacing={3} mt={3}>
+        <Stack spacing={3} mt={0}>
           {stats.map((stat, i) => (
             <Stack
               direction="row"
