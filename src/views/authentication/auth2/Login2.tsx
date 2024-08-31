@@ -46,7 +46,7 @@ const Login2 = () => {
                 subtitle={
                   <Stack direction="row" spacing={1} justifyContent="center" mt={3}>
                     <Typography color="textSecondary" variant="h6" fontWeight="500">
-                      Bạn mới biết đến Modernize?
+                      Bạn đã có tài khoản chưa ?
                     </Typography>
                     <Typography
                       component={Link}
@@ -57,7 +57,7 @@ const Login2 = () => {
                         color: 'primary.main',
                       }}
                     >
-                      Đăng ký
+                      Đăng ký ngay
                     </Typography>
                   </Stack>
                 }
