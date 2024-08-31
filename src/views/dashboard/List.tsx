@@ -70,13 +70,13 @@ const List = () => {
             <Grid item xs={12} sm={6} lg={4}>
               <WeeklyStats />
             </Grid>
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <PaymentGateways />
             </Grid>{' '}
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <SellingProducts />
             </Grid>
-            <Grid item xs={12} lg={12}>
+            <Grid item xs={12} sm={6} lg={12}>
               {' '}
               <ItemTable1 />{' '}
             </Grid>

@@ -26,6 +26,7 @@ import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
 import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
 import icon7 from '../../../assets/images/svgs/img.png';
 import Banner1 from 'src/components/widgets/banners/Banner1';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
 interface cardType {
   icon: string;
@@ -89,21 +90,26 @@ const CollaboratePost = () => {
   return (
     <Box>
       <div style={{ display: 'flex', justifyContent: 'end' }}>
-        <div>
-          <FormControl sx={{ margin: '20px 0', minWidth: 120 }}>
-            <InputLabel id="month-dd">Chọn thời gian</InputLabel>
-            <Select
-              labelId="month-dd"
-              id="month-dd"
-              value={month}
-              onChange={handleSelectChange}
-              label="Chọn thời gian"
-            >
-              <MenuItem value={5}>1 tuần</MenuItem>
-              <MenuItem value={6}>1 tháng</MenuItem>
-              <MenuItem value={7}>1 năm</MenuItem>
-            </Select>
-          </FormControl>
+        <div style={{ display: 'flex', width: '320px', alignItems: 'center', gap: '10px' }}>
+          <CustomTextField
+            id="date"
+            type="date"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          tới
+          <CustomTextField
+            id="date"
+            type="date"
+            variant="outlined"
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
         </div>
       </div>
       <Box display="flex" width="100%" flexWrap="wrap">

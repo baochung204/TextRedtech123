@@ -1,14 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { Card, CardContent, Typography, Button, Box, Grid } from '@mui/material';
+import { Card, CardContent, Typography, Button, Box, Grid, Hidden } from '@mui/material';
 import ai from 'src/assets/images/svgs/ai.png';
+import { hi } from 'date-fns/locale';
 const Banner1 = () => {
   return (
     <Card
       elevation={0}
       sx={{
-        backgroundColor: (theme) => theme.palette.info.light,
+        backgroundColor: '#6EA0CC',
         py: 0,
         overflow: 'hidden',
         position: 'relative',
@@ -25,7 +26,7 @@ const Banner1 = () => {
                 },
               }}
             >
-              <Typography variant="h5">
+              <Typography variant="h5" fontSize={30} lineHeight={1.5}>
                 Sử dụng hình ảnh sản phẩm để gia tăng hiệu quả marketing
               </Typography>
               <Typography variant="subtitle1" color="textSecondary" my={2}>
@@ -60,7 +61,7 @@ const Banner1 = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  sx={{ width: '210px', marginTop: '20px', padding: '10px 0' }}
+                  sx={{ width: '210px', marginTop: '20px', padding: '10px 0', marginLeft: ' 10px' }}
                 >
                   <span style={{ marginRight: ' 10px' }}> HÌNH ẢNH VÀ VIDEO</span>
                   <svg
@@ -90,8 +91,9 @@ const Banner1 = () => {
               src={ai}
               alt="AI"
               sx={{
-                width: { xs: 400, md: 450, lg: 500, xl: 700 },
-                height: 300,
+                height: '100%',
+                objectFit: 'cover',
+                width: { xs: 400, md: 490, lg: 500, xl: 500, xxl: 800 },
               }}
             />
           </Grid>
