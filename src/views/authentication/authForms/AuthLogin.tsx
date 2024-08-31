@@ -1,15 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import {
-  Box,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  Button,
-  Stack,
-  Divider,
-} from '@mui/material';
+import { Box, Typography, FormGroup, FormControlLabel, Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { loginType } from 'src/types/auth/auth';
@@ -29,7 +21,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
 
     {subtext}
 
-    <AuthSocialButtons title="Đăng ký với" />
+    <AuthSocialButtons title="Đăng nhập với" />
     {/* <Box mt={3}>
       <Divider>
         <Typography
@@ -47,8 +39,13 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
 
     <Stack>
       <Box>
-        <CustomFormLabel htmlFor="gmail">Gmail</CustomFormLabel>
-        <CustomTextField id="gmail" variant="outlined" fullWidth />
+        <CustomFormLabel htmlFor="gmail">Gmail hoặc số điện thoại</CustomFormLabel>
+        <CustomTextField
+          id="gmail"
+          variant="outlined"
+          fullWidth
+          placeholder="Nhập số điện thoại hoặc gmail của bạn"
+        />
       </Box>
       <Box>
         <CustomFormLabel htmlFor="password">Mật khẩu</CustomFormLabel>
