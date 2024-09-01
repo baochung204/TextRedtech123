@@ -574,7 +574,9 @@ const BuyPoint = () => {
                 },
               }}
             >
-              Thanh toán ngay
+              <Link to={'/pay/point'} style={{ color: 'white' }}>
+                Thanh toán ngay
+              </Link>
             </Button>
           </Box>
         </Box>

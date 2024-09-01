@@ -27,7 +27,7 @@ const AssistantEditor = () => {
         {/* ------------------------------------------- */}
         {/* Left part */}
         {/* ------------------------------------------- */}
-        <Assistant_Add/>
+        <Assistant_Add />
       </BlankCard>
     </PageContainer>
   );
