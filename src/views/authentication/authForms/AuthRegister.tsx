@@ -14,29 +14,58 @@ import { Link } from 'react-router-dom';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
 import { registerType } from 'src/types/auth/auth';
-import AuthSocialButtons from './AuthSocialButtons';
+import { Any } from 'react-spring';
 
 const AuthRegister = ({ title, subtitle }: registerType) => {
   const [gender, setGender] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  const [confirmPassword, setConfirmPassword] = useState('');
+  interface Errors {
+    username?: string;
+    email?: string;
+    phoneNumber?: string;
+    password?: string;
+    confirmPassword?: string; // Add confirmPassword property
+  }
 
+  const [errors, setErrors] = useState<Errors>({});
+
+  const validateUsername = (username: string) => {
+    return username.trim().length > 2;
+  };
+  const handleUsernameChange = (e) => {
+    const usernameValue = e.target.value;
+    setUsername(usernameValue);
+
+    if (!validateUsername(usernameValue)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: 'Tên người dùng phải có ít nhất 3 ký tự.',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: '',
+      }));
+    }
+  };
   // Email validation function
-  const validateEmail = (email) => {
+  const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   // Phone number validation function (Vietnamese format)
-  const validatePhoneNumber = (number) => {
+  const validatePhoneNumber = (number: string) => {
     const phoneRegex = /^(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})$/;
     return phoneRegex.test(number);
   };
 
   // Password validation function (minimum 8 digits)
-  const validatePassword = (password) => {
+  const validatePassword = (password: string) => {
     return password.length >= 8;
   };
 
@@ -48,7 +77,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
     if (!validateEmail(emailValue)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: 'Please enter a valid email address.',
+        email: 'Vui lòng nhập địa chỉ email hợp lệ.',
       }));
     } else {
       setErrors((prevErrors) => ({
@@ -66,7 +95,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
     if (!validatePhoneNumber(phoneNumberValue)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        phoneNumber: 'Please enter correct phone',
+        phoneNumber: 'Vui lòng nhập số điện thoại chính xác.',
       }));
     } else {
       setErrors((prevErrors) => ({
@@ -84,7 +113,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
     if (!validatePassword(passwordValue)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        password: 'Password must be at least 8 characters long.',
+        password: 'Mật khẩu phải có ít nhất 8 ký tự.',
       }));
     } else {
       setErrors((prevErrors) => ({
@@ -93,15 +122,33 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
       }));
     }
   };
+  const handleConfirmPasswordChange = (e) => {
+    const confirmPasswordValue = e.target.value;
+    setConfirmPassword(confirmPasswordValue);
 
+    if (password !== confirmPasswordValue) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: 'Mật khẩu không khớp.',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: '',
+      }));
+    }
+  };
   // Handle change function for gender selection
-  const handleGenderChange = (event) => {
+  const handleGenderChange = (event: Any) => {
     setGender(event.target.value);
   };
 
   return (
     <>
       <Box>
+        <Typography variant="h4" fontWeight="600" mb={3}>
+          Đăng ký thành viên Redtech
+        </Typography>
         <Grid container spacing={2}>
           {/* First Row: Name */}
           <Grid container item xs={12} spacing={2} alignItems="center">
@@ -109,7 +156,16 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
               <CustomFormLabel htmlFor="name">Họ và Tên</CustomFormLabel>
             </Grid>
             <Grid item xs={8}>
-              <CustomTextField id="name" variant="outlined" fullWidth />
+              <CustomTextField
+                id="name"
+                variant="outlined"
+                fullWidth
+                onChange={handleUsernameChange}
+                type="text"
+                label="Nhập họ và tên của bạn"
+                error={!!errors.username}
+                helperText={errors.username}
+              />
             </Grid>
           </Grid>
 
@@ -127,6 +183,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
                 onChange={handleEmailChange}
                 error={!!errors.email}
                 helperText={errors.email}
+                label="Nhập email của bạn"
               />
             </Grid>
           </Grid>
@@ -146,43 +203,10 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
                 onChange={handlePhoneNumberChange}
                 error={!!errors.phoneNumber}
                 helperText={errors.phoneNumber}
+                label="Nhập số điện thoại của bạn"
               />
             </Grid>
           </Grid>
-
-          {/* Fourth Row: Date of Birth */}
-          <Grid container item xs={12} spacing={2} alignItems="center">
-            <Grid item xs={4}>
-              <CustomFormLabel htmlFor="dateofbirth">Ngày sinh</CustomFormLabel>
-            </Grid>
-            <Grid item xs={8}>
-              <CustomTextField id="dateofbirth" variant="outlined" fullWidth type="date" />
-            </Grid>
-          </Grid>
-
-          {/* Fifth Row: Gender */}
-          <Grid container item xs={12} spacing={2} alignItems="center">
-            <Grid item xs={4}>
-              <CustomFormLabel htmlFor="gender">Giới tính</CustomFormLabel>
-            </Grid>
-            <Grid item xs={8}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Giới tính</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Gender"
-                  value={gender}
-                  onChange={handleGenderChange}
-                >
-                  <MenuItem value="male">Trai</MenuItem>
-                  <MenuItem value="female">Gái</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
-
-          {/* Sixth Row: Password */}
           <Grid container item xs={12} spacing={2} alignItems="center">
             <Grid item xs={4}>
               <CustomFormLabel htmlFor="password">Mật khẩu</CustomFormLabel>
@@ -191,15 +215,35 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
               <CustomTextField
                 id="password"
                 variant="outlined"
-                type="password"
                 fullWidth
+                type="password"
                 value={password}
                 onChange={handlePasswordChange}
                 error={!!errors.password}
                 helperText={errors.password}
+                label="Nhập mật khẩu của bạn"
               />
             </Grid>
           </Grid>
+          <Grid container item xs={12} spacing={2} alignItems="center">
+            <Grid item xs={4}>
+              <CustomFormLabel htmlFor="confirmPassword">Nhập Lại mật khẩu</CustomFormLabel>
+            </Grid>
+            <Grid item xs={8}>
+              <CustomTextField
+                id="confirmPassword"
+                variant="outlined"
+                fullWidth
+                type="password"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                error={!!errors.confirmPassword}
+                helperText={errors.confirmPassword}
+                label="Nhập lại mật khẩu của bạn"
+              />
+            </Grid>
+          </Grid>
+          {/* Fifth Row: Gender */}
         </Grid>
 
         <Button
