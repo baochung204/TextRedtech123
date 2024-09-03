@@ -147,12 +147,12 @@ const CollaboratePost = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box textAlign={'start'}>
+          <Box textAlign={{ sx: 'center', lg: 'start' }}>
             {' '}
             <Button
               variant="contained"
               color="primary"
-              sx={{ width: '250px', marginTop: '20px', padding: '10px 0' }}
+              sx={{ width: '250px', marginTop: '20px', padding: '10px 0', marginX: 'auto' }}
             >
               GỬi YÊU CẦU THANH TOÁN
             </Button>
@@ -180,7 +180,7 @@ const CollaboratePost = () => {
           <Box display="flex" justifyContent="space-between" flexWrap="wrap" padding="10px">
             <Grid container display={'flex'} justifyContent={'space-between'} gap={'2px'}>
               {topcards.map((topcard, i) => (
-                <Grid item xs={12} sm={4} lg={2} key={i}>
+                <Grid item xs={12} sm={12} lg={3} xl={2} key={i}>
                   <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
                     <CardContent>
                       <img src={topcard.icon} alt={topcard.icon} width="50" />

@@ -1,28 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  Avatar,
-  Stack,
-  CardMedia,
-  styled,
-  Fab,
-} from '@mui/material';
+import { Grid, Box, Typography, Button, Avatar, Stack, CardMedia, styled } from '@mui/material';
 import profilecover from 'src/assets/images/backgrounds/profilebg.jpg';
 import userimg from 'src/assets/images/profile/user-1.jpg';
-import {
-  IconBrandDribbble,
-  IconBrandFacebook,
-  IconBrandTwitter,
-  IconBrandYoutube,
-  IconFileDescription,
-  IconUserCheck,
-  IconUserCircle,
-} from '@tabler/icons-react';
+import { IconFileDescription, IconUserCheck } from '@tabler/icons-react';
+import VerifiedIcon from '@mui/icons-material/Verified';
 import ProfileTab from './ProfileTab';
 import BlankCard from '../../../shared/BlankCard';
 
@@ -67,18 +50,7 @@ const ProfileBanner = () => {
                   938
                 </Typography>
                 <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                  Bài đăng
-                </Typography>
-              </Box>
-              <Box>
-                <Typography color="text.secondary">
-                  <IconUserCircle width="20" />
-                </Typography>
-                <Typography variant="h4" fontWeight="600">
-                  3,586
-                </Typography>
-                <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                  Người theo dõi
+                  Số point
                 </Typography>
               </Box>
               <Box>
@@ -89,7 +61,7 @@ const ProfileBanner = () => {
                   2,659
                 </Typography>
                 <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                  Đang theo dõi
+                  Số người trợ lý
                 </Typography>
               </Box>
             </Stack>
@@ -131,11 +103,12 @@ const ProfileBanner = () => {
                   />
                 </ProfileImage>
                 <Box mt={1}>
-                  <Typography fontWeight={600} variant="h5">
+                  <Typography fontWeight={600} variant="h5" display="flex" alignItems="center">
                     Nguyễn Đăng Hòa
+                    <VerifiedIcon sx={{ color: '#1DA1F2', fontSize: '20px', ml: 1 }} />
                   </Typography>
                   <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                    (Hòa đẹp trai)
+                    (0981522873)
                   </Typography>
                 </Box>
               </Box>
@@ -156,20 +129,8 @@ const ProfileBanner = () => {
             }}
           >
             <Stack direction={'row'} gap={2} alignItems="center" justifyContent="center" my={2}>
-              <Fab size="small" color="primary" sx={{ backgroundColor: '#1877F2' }}>
-                <IconBrandFacebook size="16" />
-              </Fab>
-              <Fab size="small" color="primary" sx={{ backgroundColor: '#1DA1F2' }}>
-                <IconBrandTwitter size="18" />
-              </Fab>
-              <Fab size="small" color="error" sx={{ backgroundColor: '#EA4C89' }}>
-                <IconBrandDribbble size="18" />
-              </Fab>
-              <Fab size="small" color="error" sx={{ backgroundColor: '#CD201F' }}>
-                <IconBrandYoutube size="18" />
-              </Fab>
               <Button color="primary" variant="contained">
-                Tạo tin
+                Gửi ticket
               </Button>
             </Stack>
           </Grid>

@@ -35,9 +35,13 @@ const Logo: FC = () => {
           alignItems: 'center',
         }}
       >
+<<<<<<< HEAD
         {/* {customizer.activeMode === 'dark' ? <LogoLight /> : <LogoDark />}
          */}
         <img src={logoRedtech} alt="" width={180} height={40} />
+=======
+        {customizer.activeMode === 'dark' ? <LogoDark /> : <LogoDark />}
+>>>>>>> main
       </LinkStyled>
     );
   }
@@ -50,7 +54,7 @@ const Logo: FC = () => {
         alignItems: 'center',
       }}
     >
-      {customizer.activeMode === 'dark' ? <LogoDarkRTL /> : <LogoLightRTL />}
+      {customizer.activeMode === 'dark' ? <LogoDark /> : <LogoDark />}
     </LinkStyled>
   );
 };
