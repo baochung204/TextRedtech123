@@ -46,11 +46,13 @@ const Login2 = () => {
                 subtitle={
                   <Stack direction="row" spacing={1} justifyContent="center" mt={3}>
                     <Typography color="textSecondary" variant="h6" fontWeight="500">
-                      Bạn đã có tài khoản chưa ?
+
+                      Bạn chưa có tài khoản ?
+
                     </Typography>
                     <Typography
                       component={Link}
-                      to="/auth/register2"
+                      to="/auth/register"
                       fontWeight="500"
                       sx={{
                         textDecoration: 'none',

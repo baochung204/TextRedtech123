@@ -9,6 +9,7 @@ import img1 from 'src/assets/images/backgrounds/login-bg.svg';
 import Logo from 'src/layouts/full/shared/logo/Logo';
 
 import AuthRegister from '../authForms/AuthRegister';
+import AuthSocialButtons from '../authForms/AuthSocialButtons';
 
 const Register = () => (
   <PageContainer title="Register" description="this is Register page">
@@ -37,6 +38,7 @@ const Register = () => (
           <Box px={3}>
             <Logo />
           </Box>
+
           <Box
             alignItems="center"
             justifyContent="center"
@@ -80,7 +82,7 @@ const Register = () => (
             subtitle={
               <Stack direction="row" spacing={1} mt={3}>
                 <Typography color="textSecondary" variant="h6" fontWeight="400">
-                  Already have an Account?
+                  Bạn đã có tài khoản?
                 </Typography>
                 <Typography
                   component={Link}
@@ -91,7 +93,7 @@ const Register = () => (
                     color: 'primary.main',
                   }}
                 >
-                  Sign In
+                  Đăng nhập
                 </Typography>
               </Stack>
             }

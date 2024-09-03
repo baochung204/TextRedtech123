@@ -34,7 +34,7 @@ const Logo: FC = () => {
           alignItems: 'center',
         }}
       >
-        {customizer.activeMode === 'dark' ? <LogoLight /> : <LogoDark />}
+        {customizer.activeMode === 'dark' ? <LogoDark /> : <LogoDark />}
       </LinkStyled>
     );
   }
@@ -47,7 +47,7 @@ const Logo: FC = () => {
         alignItems: 'center',
       }}
     >
-      {customizer.activeMode === 'dark' ? <LogoDarkRTL /> : <LogoLightRTL />}
+      {customizer.activeMode === 'dark' ? <LogoDark /> : <LogoDark />}
     </LinkStyled>
   );
 };
