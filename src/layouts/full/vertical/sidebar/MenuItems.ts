@@ -122,6 +122,11 @@ const Menuitems: MenuitemsType[] = [
     href: '/apps/rule',
   },
   {
+    title: 'Danh sách khách hàng',
+    icon: IconAppWindow,
+    href: '/apps/customerList',
+  },
+  {
     navlabel: true,
     subheader: 'Admin',
   },

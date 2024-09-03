@@ -36,6 +36,7 @@ const EcomProductList = Loadable(lazy(() => import('../views/apps/eCommerce/Ecom
 const EcomProductCheckout = Loadable(
   lazy(() => import('../views/apps/eCommerce/EcommerceCheckout')),
 );
+
 const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followers')));
