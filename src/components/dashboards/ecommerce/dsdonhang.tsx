@@ -23,7 +23,7 @@ import DashboardCard from '../../shared/DashboardCard';
 import img1 from 'src/assets/images/products/s6.jpg';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-const ProductPerformances = () => {
+const DSdonhang = () => {
   // for select
   const [month, setMonth] = React.useState('1');
 
@@ -286,10 +286,10 @@ const ProductPerformances = () => {
                 </Typography>
               </TableCell>{' '}
               {/* <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  SỐ ĐIỆN THOẠI
-                </Typography>
-              </TableCell> */}
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    SỐ ĐIỆN THOẠI
+                  </Typography>
+                </TableCell> */}
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
                   GÓI ĐƠN HÀNG
@@ -301,10 +301,10 @@ const ProductPerformances = () => {
                 </Typography>
               </TableCell>
               {/* <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  TRẠNG THÁI
-                </Typography>
-              </TableCell> */}
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    TRẠNG THÁI
+                  </Typography>
+                </TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -426,12 +426,12 @@ const ProductPerformances = () => {
               </TableCell>
             </TableRow>
             {/* <TableRow>
-              <TableCell colSpan={7}>
-                <Typography textAlign={'center'} color="textSecondary">
-                  Không có dữ liệu để hiển thị
-                </Typography>
-              </TableCell>
-            </TableRow> */}
+                <TableCell colSpan={7}>
+                  <Typography textAlign={'center'} color="textSecondary">
+                    Không có dữ liệu để hiển thị
+                  </Typography>
+                </TableCell>
+              </TableRow> */}
             {/* 2 */}
           </TableBody>
         </Table>
@@ -440,4 +440,4 @@ const ProductPerformances = () => {
   );
 };
 
-export default ProductPerformances;
+export default DSdonhang;
