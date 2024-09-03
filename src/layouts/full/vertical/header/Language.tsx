@@ -5,9 +5,7 @@ import { Avatar, IconButton, Menu, MenuItem, Typography, Stack } from '@mui/mate
 import { useSelector, useDispatch } from 'src/store/Store';
 import { setLanguage } from 'src/store/customizer/CustomizerSlice';
 import FlagEn from 'src/assets/images/flag/icon-flag-en.svg';
-import FlagFr from 'src/assets/images/flag/icon-flag-fr.svg';
-import FlagCn from 'src/assets/images/flag/icon-flag-cn.svg';
-import FlagSa from 'src/assets/images/flag/icon-flag-sa.svg';
+import FlagVn from 'src/assets/images/flag/icon-flag-vn.svg';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { AppState } from 'src/store/Store';
@@ -19,20 +17,9 @@ const Languages = [
     value: 'en',
   },
   {
-    flagname: '中国人 (Chinese)',
-    icon: FlagCn,
+    flagname: 'Tiếng Việt (VI)',
+    icon: FlagVn,
     value: 'ch',
-  },
-  {
-    flagname: 'français (French)',
-    icon: FlagFr,
-    value: 'fr',
-  },
-
-  {
-    flagname: 'عربي (Arabic)',
-    icon: FlagSa,
-    value: 'ar',
   },
 ];
 
