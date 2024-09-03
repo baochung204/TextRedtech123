@@ -5,6 +5,8 @@ import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import Assistant from 'src/views/apps/assistant/Assistant';
 import AssistantEditor from 'src/views/apps/assistant/AssistantEditor';
+import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
+import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
@@ -168,6 +170,8 @@ const Router = [
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
       { path: '/apps/affiliate', element: <Affiliate /> },
+      { path: '/apps/person-affiliate', element: <PersonAffiliate /> },
+      { path: '/apps/company-affiliate', element: <CompanyAffiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user-profile', element: <UserProfile /> },
       { path: '/apps/calendar', element: <Calendar /> },

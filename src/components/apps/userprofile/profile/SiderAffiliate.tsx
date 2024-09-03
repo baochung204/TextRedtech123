@@ -1,11 +1,18 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-const SiderAffiliate = ({ onTabChange }: { onTabChange: (tab: string) => void }) => {
+const SiderAffiliate = () => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center', // Centers the box horizontally
+        mt: 5, // Optional: Adds some margin at the top to position it better vertically
+      }}
+    >
       <Box
         sx={{
           width: drawerWidth,
@@ -15,13 +22,17 @@ const SiderAffiliate = ({ onTabChange }: { onTabChange: (tab: string) => void })
           flexDirection: 'column',
           alignItems: 'center',
           gap: 2,
+          boxShadow: 3, // Optional shadow
+          borderRadius: 2, // Optional rounded corners
+          backgroundColor: 'white', // Optional background color
         }}
       >
         <Button
           variant="outlined"
           color="secondary"
           fullWidth
-          onClick={() => onTabChange('Cá nhân')}
+          component={Link}
+          to="/apps/person-affiliate"
         >
           Cá nhân
         </Button>
@@ -29,7 +40,8 @@ const SiderAffiliate = ({ onTabChange }: { onTabChange: (tab: string) => void })
           variant="outlined"
           color="secondary"
           fullWidth
-          onClick={() => onTabChange('Doanh nghiệp')}
+          component={Link}
+          to="/apps/company-affiliate"
         >
           Doanh nghiệp
         </Button>

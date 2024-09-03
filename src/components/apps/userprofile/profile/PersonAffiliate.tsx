@@ -1,26 +1,36 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import React, { useState } from 'react';
 import {
   Box,
+  Stepper,
+  Step,
+  StepLabel,
   Button,
-  FormControl,
-  Grid,
-  Input,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
   Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Divider,
+  FormControlLabel,
+  Alert,
+  Stack,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Input,
   IconButton,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { IconChevronDown } from '@tabler/icons-react';
+import PageContainer from 'src/components/container/PageContainer';
 import CloseIcon from '@mui/icons-material/Close';
-import React, { useState } from 'react';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+
+const steps = [
+  'Hướng dẫn',
+  'Tài khoản cá nhân',
+  'Thông tin liên hệ',
+  'Tài liệu xác minh',
+  'Kết thúc',
+];
 
 const PersonAffiliate = () => {
   const [selectedImage1, setSelectedImage1] = useState(null);
@@ -33,7 +43,6 @@ const PersonAffiliate = () => {
   const handleImage2Change = (event) => {
     setSelectedImage2(URL.createObjectURL(event.target.files[0]));
   };
-
   const handleRemoveImage1 = () => {
     setSelectedImage1(null);
   };
@@ -41,215 +50,281 @@ const PersonAffiliate = () => {
   const handleRemoveImage2 = () => {
     setSelectedImage2(null);
   };
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
+  const isStepOptional = (step: any) => step === 1;
+
+  const isStepSkipped = (step: any) => skipped.has(step);
+
+  const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      // You probably want to guard against something like this,
+      // it should never occur unless someone's actively trying to break something.
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+
+      return newSkipped;
+    });
+  };
+
+  // eslint-disable-next-line consistent-return
+  const handleSteps = (step: any) => {
+    switch (step) {
+      case 0:
+        return (
+          <Box>
+            <p>Hãy làm theo các bước sau để đăng ký affiliate dưới dạng cá nhân</p>
+          </Box>
+        );
+      case 1:
+        return (
+          <Box>
+            <Box>
+              <CustomFormLabel htmlFor="banknumber">Số tài khoản</CustomFormLabel>
+              <CustomTextField
+                id="banknumber"
+                variant="outlined"
+                placeholder="Nhập số tài khoản của bạn"
+                fullWidth
+              />
+            </Box>
+            <Box>
+              <CustomFormLabel htmlFor="password">Tên tài khoản</CustomFormLabel>
+              <CustomTextField
+                id="password"
+                type="password"
+                variant="outlined"
+                placeholder="Nhập tên tài khoản của bạn"
+                fullWidth
+              />
+            </Box>
+            <Box>
+              <CustomFormLabel htmlFor="gender">Chọn ngân hàng</CustomFormLabel>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Chọn ngân hàng</InputLabel>
+                <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Gender">
+                  <MenuItem value="mb">Mb bank</MenuItem>
+                  <MenuItem value="tp">TP bank</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Box>
+        );
+      case 2:
+        return (
+          <Box>
+            <Box>
+              <CustomFormLabel htmlFor="gmail">Gmail</CustomFormLabel>
+              <CustomTextField
+                id="gmail"
+                type="email"
+                variant="outlined"
+                placeholder="Nhập gmail của bạn"
+                fullWidth
+              />
+            </Box>
+            <Box>
+              <CustomFormLabel htmlFor="phonenumber">Số điện thoại</CustomFormLabel>
+              <CustomTextField
+                id="phonenumber"
+                type="tel"
+                variant="outlined"
+                placeholder="Nhập số điện thoại của bạn"
+                fullWidth
+              />
+            </Box>
+            <Box>
+              <CustomFormLabel htmlFor="address">Địa chỉ</CustomFormLabel>
+              <CustomTextField
+                id="address"
+                type="text"
+                variant="outlined"
+                placeholder="Nhập địa chỉ của bạn"
+                fullWidth
+              />
+            </Box>
+          </Box>
+        );
+      case 3:
+        return (
+          <Box>
+            <Box mb={2}>
+              {selectedImage1 && (
+                <Box mb={2} position="relative">
+                  <Typography variant="subtitle1">Mặt trước căn cước công dân:</Typography>
+                  <img
+                    src={selectedImage1}
+                    alt="Selected 1"
+                    style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
+                  />
+                  <IconButton
+                    size="small"
+                    onClick={handleRemoveImage1}
+                    sx={{ position: 'absolute', top: 0, right: 0 }}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
+              )}
+              <CustomFormLabel htmlFor="image1">Mặt trước căn cước công dân</CustomFormLabel>
+              <Button variant="contained" component="label" color="primary">
+                Tải tệp lên
+                <Input
+                  id="image1"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImage1Change}
+                  style={{ display: 'none' }}
+                />
+              </Button>
+            </Box>
+            <Box mb={2}>
+              {selectedImage2 && (
+                <Box mb={2} position="relative">
+                  <Typography variant="subtitle1">Mặt sau căn cước công dân:</Typography>
+                  <img
+                    src={selectedImage2}
+                    alt="Selected 2"
+                    style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
+                  />
+                  <IconButton
+                    size="small"
+                    onClick={handleRemoveImage2}
+                    sx={{ position: 'absolute', top: 0, right: 0 }}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
+              )}
+              <CustomFormLabel htmlFor="image2">Mặt sau căn cước công dân</CustomFormLabel>
+              <Button variant="contained" component="label" color="primary">
+                Tải tệp lên
+                <Input
+                  id="image2"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImage2Change}
+                  style={{ display: 'none' }}
+                />
+              </Button>
+            </Box>
+          </Box>
+        );
+      case 4:
+        return (
+          <Box pt={3}>
+            <Typography variant="h5">Terms and condition</Typography>
+            <Typography variant="body2" sx={{ mt: 1 }}>
+              Sard about this site or you have been to it, but you cannot figure out what it is or
+              what it can do. MTA web directory isSard about this site or you have been to it, but
+              you cannot figure out what it is or what it can do. MTA web directory is
+            </Typography>
+            <FormControlLabel
+              control={<CustomCheckbox defaultChecked />}
+              label="Agree with terms?"
+            />
+          </Box>
+        );
+      default:
+        break;
+    }
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
   };
 
   return (
-    <Box
-      sx={{
-        flexShrink: 0,
-        p: 3,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
-      }}
-    >
-      <form onSubmit={handleSubmit}>
-        <Stack spacing={2}>
-          <Typography variant="h6" px={2} py={1}>
-            Đăng ký affiliate cá nhân
-          </Typography>
-          <Accordion elevation={9}>
-            <AccordionSummary
-              expandIcon={<IconChevronDown />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography variant="h6" px={2} py={1}>
-                Tài khoản cá nhân
-              </Typography>
-            </AccordionSummary>
-            <Divider />
-            <AccordionDetails>
-              <Box>
-                <CustomFormLabel htmlFor="banknumber">Số tài khoản</CustomFormLabel>
-                <CustomTextField
-                  id="banknumber"
-                  variant="outlined"
-                  placeholder="Nhập số tài khoản của bạn"
-                  fullWidth
-                />
-              </Box>
-              <Box>
-                <CustomFormLabel htmlFor="password">Tên tài khoản</CustomFormLabel>
-                <CustomTextField
-                  id="password"
-                  type="password"
-                  variant="outlined"
-                  placeholder="Nhập tên tài khoản của bạn"
-                  fullWidth
-                />
-              </Box>
-              <Box>
-                <CustomFormLabel htmlFor="gender">Chọn ngân hàng</CustomFormLabel>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Chọn ngân hàng</InputLabel>
-                  <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Gender">
-                    <MenuItem value="mb">Mb bank</MenuItem>
-                    <MenuItem value="tp">TP bank</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
+    <PageContainer>
+      <Box mt={4}>
+        <Stepper activeStep={activeStep}>
+          {steps.map((label, index) => {
+            const stepProps: { completed?: boolean } = {};
+            const labelProps: {
+              optional?: React.ReactNode;
+            } = {};
+            // if (isStepOptional(index)) {
+            //   labelProps.optional = <Typography variant="caption">Optional</Typography>;
+            // }
+            if (isStepSkipped(index)) {
+              stepProps.completed = false;
+            }
 
-          <Accordion elevation={9}>
-            <AccordionSummary
-              expandIcon={<IconChevronDown />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography variant="h6" px={2} py={1}>
-                Thông tin liên hệ
-              </Typography>
-            </AccordionSummary>
-            <Divider />
-            <AccordionDetails>
-              <Box>
-                <CustomFormLabel htmlFor="gmail">Gmail</CustomFormLabel>
-                <CustomTextField
-                  id="gmail"
-                  type="email"
-                  variant="outlined"
-                  placeholder="Nhập gmail của bạn"
-                  fullWidth
-                />
-              </Box>
-              <Box>
-                <CustomFormLabel htmlFor="phonenumber">Số điện thoại</CustomFormLabel>
-                <CustomTextField
-                  id="phonenumber"
-                  type="tel"
-                  variant="outlined"
-                  placeholder="Nhập số điện thoại của bạn"
-                  fullWidth
-                />
-              </Box>
-              <Box>
-                <CustomFormLabel htmlFor="address">Địa chỉ</CustomFormLabel>
-                <CustomTextField
-                  id="address"
-                  type="text"
-                  variant="outlined"
-                  placeholder="Nhập địa chỉ của bạn"
-                  fullWidth
-                />
-              </Box>
-            </AccordionDetails>
-          </Accordion>
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        {activeStep === steps.length ? (
+          <>
+            <Stack spacing={2} mt={3}>
+              <Alert severity="success">
+                Bạn đã hoàn thành việc đăng ký - chờ chúng tôi phê duyệt trong vòng 24h
+              </Alert>
 
-          <Accordion elevation={9}>
-            <AccordionSummary
-              expandIcon={<IconChevronDown />}
-              aria-controls="panel3a-content"
-              id="panel3a-header"
-            >
-              <Typography variant="h6" px={2} py={1}>
-                Tài liệu xác minh
-              </Typography>
-            </AccordionSummary>
-            <Divider />
-            <AccordionDetails>
-              <Box mb={2}>
-                {selectedImage1 && (
-                  <Box mb={2} position="relative">
-                    <Typography variant="subtitle1">Mặt trước căn cước công dân:</Typography>
-                    <img
-                      src={selectedImage1}
-                      alt="Selected 1"
-                      style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
-                    />
-                    <IconButton
-                      size="small"
-                      onClick={handleRemoveImage1}
-                      sx={{ position: 'absolute', top: 0, right: 0 }}
-                    >
-                      <CloseIcon />
-                    </IconButton>
-                  </Box>
-                )}
-                <CustomFormLabel htmlFor="image1">Mặt trước căn cước công dân</CustomFormLabel>
-                <Button variant="contained" component="label" color="primary">
-                  Choose File
-                  <Input
-                    id="image1"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImage1Change}
-                    style={{ display: 'none' }}
-                  />
+              <Box textAlign="right">
+                <Button onClick={handleReset} variant="contained" color="error">
+                  Cài lại
                 </Button>
               </Box>
-              <Box mb={2}>
-                {selectedImage2 && (
-                  <Box mb={2} position="relative">
-                    <Typography variant="subtitle1">Mặt sau căn cước công dân:</Typography>
-                    <img
-                      src={selectedImage2}
-                      alt="Selected 2"
-                      style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
-                    />
-                    <IconButton
-                      size="small"
-                      onClick={handleRemoveImage2}
-                      sx={{ position: 'absolute', top: 0, right: 0 }}
-                    >
-                      <CloseIcon />
-                    </IconButton>
-                  </Box>
-                )}
-                <CustomFormLabel htmlFor="image2">Mặt sau căn cước công dân</CustomFormLabel>
-                <Button variant="contained" component="label" color="primary">
-                  Choose File
-                  <Input
-                    id="image2"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImage2Change}
-                    style={{ display: 'none' }}
-                  />
-                </Button>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
-        </Stack>
+            </Stack>
+          </>
+        ) : (
+          <>
+            <Box>{handleSteps(activeStep)}</Box>
 
-        <Box mt={4}>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
+            <Box display="flex" flexDirection="row" mt={3}>
               <Button
-                color="primary"
-                variant="outlined"
-                size="large"
-                fullWidth
-                component={Link}
-                to="/"
+                color="inherit"
+                variant="contained"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
               >
-                Hủy
+                Quay lại
               </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button variant="contained" color="primary" size="large" fullWidth type="submit">
-                Đăng ký
+              <Box flex="1 1 auto" />
+              {isStepOptional(activeStep) && (
+                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                  Bỏ qua
+                </Button>
+              )}
+
+              <Button
+                onClick={handleNext}
+                variant="contained"
+                color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
+              >
+                {activeStep === steps.length - 1 ? 'Kế thúc' : 'Tiếp theo'}
               </Button>
-            </Grid>
-          </Grid>
-        </Box>
-      </form>
-    </Box>
+            </Box>
+          </>
+        )}
+      </Box>
+    </PageContainer>
   );
 };
 
