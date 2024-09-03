@@ -112,6 +112,11 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
+    title: 'Chính sách và điều khoản',
+    icon: IconAppWindow,
+    href: '/apps/rule',
+  },
+  {
     title: 'Danh sách khách hàng',
     icon: IconAppWindow,
     href: '/apps/customerList',
