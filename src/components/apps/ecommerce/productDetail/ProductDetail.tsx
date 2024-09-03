@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
-// MUI Elements
+import { useParams, Link } from 'react-router-dom';
 import {
   Box,
   Grid,
@@ -16,7 +13,6 @@ import {
   Fab,
   ButtonGroup,
 } from '@mui/material';
-
 import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts, addToCart } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import { IconCheck, IconMinus, IconPlus } from '@tabler/icons-react';
@@ -26,7 +22,7 @@ import { ProductType } from 'src/types/apps/eCommerce';
 const ProductDetail = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const Id: any = useParams();
+  const { id } = useParams();  // Sử dụng destructuring cho params
 
   // Get Product
   useEffect(() => {
@@ -34,19 +30,19 @@ const ProductDetail = () => {
   }, [dispatch]);
 
   // Get Products
-  const product: ProductType = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
+  const product: ProductType = useSelector((state) => state.ecommerceReducer.products[Number(id) - 1]);
 
-  /// select colors on click
+  // Select colors on click
   const [scolor, setScolor] = useState(product ? product.colors[0] : '');
   const setColor = (e: string) => {
     setScolor(e);
   };
 
-  //set qty
+  // Set qty
   const [count, setCount] = useState(1);
 
-  // for alert when added something to cart
-  const [cartalert, setCartalert] = React.useState(false);
+  // For alert when added something to cart
+  const [cartalert, setCartalert] = useState(false);
 
   const handleClick = () => {
     setCartalert(true);
@@ -59,22 +55,23 @@ const ProductDetail = () => {
     setCartalert(false);
   };
 
+  // Convert USD to VND
+  const convertToVND = (amount: number, rate: number = 24000) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount * rate);
+  };
+
   return (
     <Box p={2}>
       {product ? (
         <>
           <Box display="flex" alignItems="center">
-            {/* ------------------------------------------- */}
             {/* Badge and category */}
-            {/* ------------------------------------------- */}
             <Chip label="In Stock" color="success" size="small" />
             <Typography color="textSecondary" variant="caption" ml={1} textTransform="capitalize">
               {product.category}
             </Typography>
           </Box>
-          {/* ------------------------------------------- */}
           {/* Title and description */}
-          {/* ------------------------------------------- */}
           <Typography fontWeight="600" variant="h4" mt={1}>
             {product.title}
           </Typography>
@@ -82,22 +79,18 @@ const ProductDetail = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ex arcu, tincidunt bibendum
             felis.
           </Typography>
-          {/* ------------------------------------------- */}
           {/* Price */}
-          {/* ------------------------------------------- */}
           <Typography mt={2} variant="h4" fontWeight={600}>
             <Box
               component={'small'}
               color={theme.palette.text.secondary}
               sx={{ textDecoration: 'line-through' }}
             >
-              ${product.salesPrice}
+              {convertToVND(product.salesPrice)}
             </Box>{' '}
-            ${product.price}
+            {convertToVND(product.price)}
           </Typography>
-          {/* ------------------------------------------- */}
           {/* Ratings */}
-          {/* ------------------------------------------- */}
           <Stack direction={'row'} alignItems="center" gap="10px" mt={2} pb={3}>
             <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
             <Link to="/" color="inherit">
@@ -105,10 +98,8 @@ const ProductDetail = () => {
             </Link>
           </Stack>
           <Divider />
-          {/* ------------------------------------------- */}
           {/* Colors */}
-          {/* ------------------------------------------- */}
-          <Stack py={4} direction="row" alignItems="center">
+          {/* <Stack py={4} direction="row" alignItems="center">
             <Typography variant="h6" mr={1}>
               Colors:
             </Typography>
@@ -133,13 +124,11 @@ const ProductDetail = () => {
                 </Fab>
               ))}
             </Box>
-          </Stack>
-          {/* ------------------------------------------- */}
+          </Stack> */}
           {/* Qty */}
-          {/* ------------------------------------------- */}
           <Stack direction="row" alignItems="center" pb={5}>
             <Typography variant="h6" mr={4}>
-              QTY:
+              Số lượng:
             </Typography>
             <Box>
               <ButtonGroup size="small" color="secondary" aria-label="small button group">
@@ -154,9 +143,7 @@ const ProductDetail = () => {
             </Box>
           </Stack>
           <Divider />
-          {/* ------------------------------------------- */}
           {/* Buttons */}
-          {/* ------------------------------------------- */}
           <Grid container spacing={2} mt={3}>
             <Grid item xs={12} lg={4} md={6}>
               <Button
@@ -168,7 +155,7 @@ const ProductDetail = () => {
                 to="/apps/eco-checkout"
                 onClick={() => dispatch(addToCart(product))}
               >
-                Buy Now
+                Mua ngay
               </Button>
             </Grid>
             <Grid item xs={12} lg={4} md={6}>
@@ -179,19 +166,17 @@ const ProductDetail = () => {
                 variant="contained"
                 onClick={() => dispatch(addToCart(product)) && handleClick()}
               >
-                Add to Cart
+                Thêm giỏ hàng
               </Button>
             </Grid>
           </Grid>
           <Typography color="textSecondary" variant="body1" mt={4}>
-            Dispatched in 2-3 weeks
+            Gửi đi trong vòng 2-3 tuần
           </Typography>
           <Link to="/" color="inherit">
-            Why the longer time for delivery?
+            Tại sao thời gian giao hàng lại lâu hơn?
           </Link>
-          {/* ------------------------------------------- */}
           {/* Alert When click on add to cart */}
-          {/* ------------------------------------------- */}
           <AlertCart handleClose={handleClose} openCartAlert={cartalert} />
         </>
       ) : (

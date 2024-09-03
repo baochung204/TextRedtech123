@@ -21,6 +21,9 @@ import { Props } from 'react-apexcharts';
 // import DashboardCard from '../../shared/DashboardCard';
 
 import img1 from 'src/assets/images/products/s6.jpg';
+import img2 from 'src/assets/images/products/s5.jpg';
+import img3 from 'src/assets/images/products/s7.jpg';
+
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from './../../../components/forms/theme-elements/CustomSelect';
 import DashboardCard from './../../../components/shared/DashboardCard';
@@ -320,17 +323,17 @@ const Danhsachdh = () => {
                   <Avatar src={img1} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
-                      ABC
+                      Nguyễn Huy Hoàng
                     </Typography>
                     <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Electronics
+                      Tăng cường tương tác
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  bádvg@gmail.com
+                  hoanghn@gmail.com
                 </Typography>
               </TableCell>{' '}
               <TableCell>
@@ -340,12 +343,12 @@ const Danhsachdh = () => {
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  $1.020.001 ngàn
+                  Chatbot marketing
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  $1.020 ngàn
+                  10.000 VNĐ
                 </Typography>
               </TableCell>
             </TableRow>
@@ -356,20 +359,20 @@ const Danhsachdh = () => {
               </TableCell>{' '}
               <TableCell>
                 <Stack direction="row" spacing={2}>
-                  <Avatar src={img1} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                  <Avatar src={img2} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
-                      DEF
+                      Lê Thị Hương
                     </Typography>
                     <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Electronics
+                      Hỗ trợ khách hàng
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>{' '}
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  ẹasg@gmail.com
+                  Huongtl@gmail.com
                 </Typography>
               </TableCell>{' '}
               <TableCell>
@@ -379,12 +382,12 @@ const Danhsachdh = () => {
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  $2.305 ngàn
+                  Chatbot hỗ trợ khách hàng
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  $1.020 ngàn
+                  12.001 VNĐ
                 </Typography>
               </TableCell>
             </TableRow>{' '}
@@ -395,20 +398,20 @@ const Danhsachdh = () => {
               </TableCell>
               <TableCell>
                 <Stack direction="row" spacing={2}>
-                  <Avatar src={img1} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                  <Avatar src={img3} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
-                      ABC
+                      Trần Văn Huy
                     </Typography>
                     <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Electronics
+                      Thương mại điện tử
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  sdg@gmail.com
+                  huyvt@gmail.com
                 </Typography>
               </TableCell>{' '}
               <TableCell>
@@ -418,12 +421,12 @@ const Danhsachdh = () => {
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  $3.284 ngàn
+                  Chatbot thương mại điện tử
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  $1.020.001 ngàn
+                  11.290 VNĐ
                 </Typography>
               </TableCell>
             </TableRow>

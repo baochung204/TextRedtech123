@@ -16,7 +16,7 @@ import {
   Divider,
   TextField,
   Button,
-  Skeleton
+  Skeleton,
 } from '@mui/material';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import { IconEye, IconMessage2, IconPoint, IconQuote } from '@tabler/icons-react';
@@ -79,7 +79,7 @@ const BlogDetail = () => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
-    
+
     return () => clearTimeout(timer);
   }, []);
 

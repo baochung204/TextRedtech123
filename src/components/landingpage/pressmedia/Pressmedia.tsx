@@ -25,7 +25,7 @@ const SliderData: SliderType[] = [
     },
     {
         image: img2,
-        title: 'Tèo em',
+        title: 'Tèo em đến từ thạch thất',
         subtext:
             'Chất lượng thiết kế tuyệt vời, khả năng tùy chỉnh và tính linh hoạt tốt hơn nhiều so với các sản phẩm khác có trên thị trường. Tôi thực sự giới thiệu AdminMart cho những người khác.',
     },
@@ -92,6 +92,13 @@ const PressMedia = () => {
         ],
     };
 
+    const maxCharCount = 100;
+
+    const truncatedText = (text) => {
+        if (text.length <= maxCharCount) return text;
+        return text.substring(0, maxCharCount) + '...';
+    };
+
     return (
         <Box pt={14} pb={11}>
             <Container maxWidth="lg">
@@ -112,7 +119,7 @@ const PressMedia = () => {
                                                 {slider.title}
                                             </Typography>
                                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                                {slider.subtext}
+                                                {truncatedText(slider.subtext)}
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
