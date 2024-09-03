@@ -27,6 +27,9 @@ import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
 import icon7 from '../../../assets/images/svgs/img.png';
 import Banner1 from 'src/components/widgets/banners/Banner1';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
+import Danhsachdh from './dsdh';
+import HistoryMoney from './lsrt';
 
 interface cardType {
   icon: string;
@@ -129,18 +132,14 @@ const CollaboratePost = () => {
           <Box marginTop="30px" borderBottom="1px solid #EEEEEE">
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Typography variant="h6" fontSize="15px">
-                  Số tiền trong trạng thái chờ
-                </Typography>
+                <Typography variant="h3">Số dư</Typography>
 
                 <Typography variant="h1" fontSize="38px" margin="20px 0">
                   0 đ
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="h6" fontSize="15px">
-                  Số tiền đã nhận
-                </Typography>
+                <Typography variant="h3">Đang xử lý</Typography>
                 <Typography variant="h1" fontSize="38px" margin="20px 0">
                   0 đ
                 </Typography>
@@ -149,13 +148,14 @@ const CollaboratePost = () => {
           </Box>
           <Box textAlign={{ sx: 'center', lg: 'start' }}>
             {' '}
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ width: '250px', marginTop: '20px', padding: '10px 0', marginX: 'auto' }}
-            >
-              GỬi YÊU CẦU THANH TOÁN
-            </Button>
+            <div style={{ width: '250px', marginTop: '20px', padding: '10px 0', margin: 'auto' }}>
+              <Button variant="contained" color="primary" sx={{ marginX: '5px' }}>
+                RÚT TIỀN
+              </Button>
+              <Button variant="contained" color="primary" sx={{ marginX: '5px' }}>
+                Đổi POIN
+              </Button>
+            </div>
             <Box
               display="flex"
               margin="10px 0"
@@ -269,7 +269,7 @@ const CollaboratePost = () => {
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab label="Danh sách Đơn Hàng" value="1" />
-              <Tab label="Yêu cầu rút tiền" value="2" />
+              <Tab label="lịch sử rút tiền" value="2" />
             </TabList>
           </Box>
 
@@ -277,12 +277,15 @@ const CollaboratePost = () => {
             {' '}
             <h1>Danh sách Đơn Hàng</h1>
             <Grid item xs={12} lg={8} style={{ height: 'auto', margin: '30px 0px' }}>
-              <ProductPerformances />
+              <Danhsachdh />
             </Grid>
           </TabPanel>
-          <TabPanel value="3">
+          <TabPanel value="2">
             {' '}
-            <h1>Yêu cầu rút tiền </h1>
+            <h1>Lịch sử rút tiền</h1>
+            <Grid item xs={12} lg={8} style={{ height: 'auto', margin: '30px 0px' }}>
+              <HistoryMoney />
+            </Grid>
           </TabPanel>
         </TabContext>
       </Box>
