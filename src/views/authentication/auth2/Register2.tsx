@@ -44,7 +44,6 @@ const Register2 = () => (
                 <Box display="flex" alignItems="center" justifyContent="center" sx={{ mb: 3 }}>
                   <Logo />
                 </Box>
-                <AuthSocialButtons title="Đăng ký với" />
 
                 <Stack direction="row" spacing={1} mt={3}>
                   <Typography color="textSecondary" variant="h6" fontWeight="400">

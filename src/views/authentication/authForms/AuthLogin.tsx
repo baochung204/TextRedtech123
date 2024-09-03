@@ -1,15 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import {
-  Box,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  Button,
-  Stack,
-  Divider,
-} from '@mui/material';
+import { Box, Typography, FormGroup, FormControlLabel, Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { loginType } from 'src/types/auth/auth';
@@ -29,34 +21,34 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
 
     {subtext}
 
-    <AuthSocialButtons title="Đăng ký với" />
-    {/* <Box mt={3}>
-      <Divider>
-        <Typography
-          component="span"
-          color="textSecondary"
-          variant="h6"
-          fontWeight="400"
-          position="relative"
-          px={2}
-        >
-          Hoặc đăng ký với
-        </Typography>
-      </Divider>
-    </Box> */}
+    <AuthSocialButtons title="Đăng nhập với" />
+
 
     <Stack>
       <Box>
-        <CustomFormLabel htmlFor="gmail">Gmail</CustomFormLabel>
-        <CustomTextField id="gmail" variant="outlined" fullWidth />
+
+        <CustomFormLabel htmlFor="gmail">Tài khoản</CustomFormLabel>
+        <CustomTextField id="gmail" variant="outlined" fullWidth required: true label="Email hoặc số điện thoại" />
+        {/* <span style={{ padding: '0 10px' }}>Vui lòng Nhập Email của bạn </span> */}
+
+
       </Box>
       <Box>
         <CustomFormLabel htmlFor="password">Mật khẩu</CustomFormLabel>
-        <CustomTextField id="password" type="password" variant="outlined" fullWidth />
+        <CustomTextField
+          id="password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          required: true
+          label="Nhập mật khẩu của bạn"
+        />
+        {/* <span style={{ padding: '0 10px' }}>Vui lòng Nhập Email của bạn </span> */}
+
       </Box>
       <Stack justifyContent="space-between" direction="row" alignItems="center" my={2}>
         <FormGroup>
-          <FormControlLabel control={<CustomCheckbox defaultChecked />} label="Nhớ mật khẩu" />
+          <FormControlLabel control={<CustomCheckbox  />} label="Nhớ mật khẩu" />
         </FormGroup>
         <Typography
           component={Link}
