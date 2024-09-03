@@ -25,7 +25,8 @@ const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')))
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
-const AssistantEditor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantEditor')));
+
+const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
 
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
