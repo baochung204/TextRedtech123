@@ -85,6 +85,12 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
+    title: 'Danh sách khách hàng',
+    icon: IconPackage,
+    href: '/apps/customerlist',
+  },
+  {
+    id: uniqueId(),
     title: 'Assistant',
     icon: IconChartDonut3,
     href: '/apps/assistant/',
