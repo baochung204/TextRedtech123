@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Box, Stack, Typography, CardContent, Grid, Rating, Skeleton } from '@mui/material';
 import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
@@ -25,7 +25,7 @@ const ProductRelated = () => {
     filterRelatedProduct(state.ecommerceReducer.products),
   );
 
-  // skeleton
+  // Skeleton
   const [isLoading, setLoading] = React.useState(true);
 
   useEffect(() => {
@@ -36,17 +36,19 @@ const ProductRelated = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const convertToVND = (amount: number, rate: number = 24000) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount * rate);
+  };
+
   return (
     <Box>
       <Typography variant="h4" mb={2} mt={5}>
-        Related Products
+        Sản phẩm liên quan
       </Typography>
       <Grid container spacing={3}>
         {Relatedproducts.map((product) => (
           <Grid item xs={12} lg={3} sm={4} display="flex" alignItems="stretch" key={product.title}>
-            {/* ------------------------------------------- */}
             {/* Product Card */}
-            {/* ------------------------------------------- */}
             <BlankCard sx={{ p: 0 }} className="hoverCard">
               <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
                 {isLoading ? (
@@ -57,11 +59,11 @@ const ProductRelated = () => {
               </Typography>
               <CardContent sx={{ p: 3, pt: 2 }}>
                 <Typography fontWeight={600}>{product.title}</Typography>
-                <Stack direction="row" alignItems="center" justifyContent="space-between" mt={1}>
-                  <Stack direction="row" alignItems="center">
-                    <Typography variant="h5">${product.price}</Typography>
+                <Stack direction="column" spacing={1} mt={1}>
+                  <Stack direction="row" alignItems="center" justifyContent="space-between">
+                    <Typography variant="h5">{convertToVND(product.price)}</Typography>
                     <Typography color={'GrayText'} ml={1} sx={{ textDecoration: 'line-through' }}>
-                      ${product.salesPrice}
+                      {convertToVND(product.salesPrice)}
                     </Typography>
                   </Stack>
                   <Rating name="read-only" size="small" value={product.rating} readOnly />
