@@ -116,6 +116,12 @@ const Menuitems: MenuitemsType[] = [
     href: '/landingpage',
   },
   {
+    id: uniqueId(),
+    title: 'Chính sách và điều khoản',
+    icon: IconAppWindow,
+    href: '/apps/rule',
+  },
+  {
     navlabel: true,
     subheader: 'Admin',
   },
