@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Switch } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -45,6 +45,9 @@ const SiderAffiliate = () => {
         >
           Doanh nghiệp
         </Button>
+        <Box textAlign="center">
+          <Switch defaultChecked />
+        </Box>
       </Box>
     </Box>
   );
