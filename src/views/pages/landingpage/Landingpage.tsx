@@ -13,6 +13,7 @@ import Footer from '../../../components/landingpage/footer/Footer';
 import Frameworks from '../../../components/landingpage/frameworks/Frameworks';
 import LpHeader from '../../../components/landingpage/header/Header';
 import Testimonial from '../../../components/landingpage/testimonial/Testimonial';
+import PressMedia from 'src/components/landingpage/pressmedia/Pressmedia';
 
 const Landingpage = () => {
   return (
@@ -21,6 +22,7 @@ const Landingpage = () => {
       <Banner />
       {/* <DemoSlider /> */}
       <Frameworks />
+      <PressMedia/>
       <Testimonial />
       <Features />
       <C2a />

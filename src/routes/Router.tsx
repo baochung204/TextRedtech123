@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import Assistant from 'src/views/apps/assistant/Assistant';
 import AssistantEditor from 'src/views/apps/assistant/AssistantEditor';
+
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
@@ -77,7 +78,7 @@ const FormVertical = Loadable(lazy(() => import('../views/forms/FormVertical')))
 const FormWizard = Loadable(lazy(() => import('../views/forms/FormWizard')));
 const FormValidation = Loadable(lazy(() => import('../views/forms/FormValidation')));
 const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/QuillEditor')));
-
+import FormRequest from 'src/views/forms/FormRequest';
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -206,6 +207,7 @@ const Router = [
       { path: '/forms/form-custom', element: <FormCustom /> },
       { path: '/forms/form-wizard', element: <FormWizard /> },
       { path: '/forms/form-validation', element: <FormValidation /> },
+      { path: '/forms/form-request', element: <FormRequest /> },
       { path: '/forms/form-horizontal', element: <FormHorizontal /> },
       { path: '/forms/form-vertical', element: <FormVertical /> },
       { path: '/forms/quill-editor', element: <QuillEditor /> },

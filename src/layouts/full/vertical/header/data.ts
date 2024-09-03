@@ -120,7 +120,7 @@ interface ProfileType {
 const profile: ProfileType[] = [
   {
     href: '/user-profile',
-    title: 'Thông tin cá nhân',
+    title: 'Quản lý tài khoản',
     subtitle: 'Account Settings',
     icon: icon1,
   },
@@ -131,14 +131,20 @@ const profile: ProfileType[] = [
     icon: icon1,
   },
   {
-    href: '/apps/email',
-    title: 'My Inbox',
+    href: '/auth/forgot-password2',
+    title: 'Đổi mật khẩu',
     subtitle: 'Messages & Emails',
     icon: icon2,
   },
   {
     href: '/apps/notes',
     title: 'My Tasks',
+    subtitle: 'To-do and Daily Tasks',
+    icon: icon3,
+  },
+  {
+    href: '/forms/form-request',
+    title: 'Yêu cầu tính năng',
     subtitle: 'To-do and Daily Tasks',
     icon: icon3,
   },

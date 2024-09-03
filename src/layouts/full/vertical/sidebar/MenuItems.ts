@@ -445,6 +445,13 @@ const Menuitems: MenuitemsType[] = [
     icon: IconFiles,
     href: '/forms/form-validation',
   },
+
+  {
+    id: uniqueId(),
+    title: 'Form Request',
+    icon: IconFiles,
+    href: '/forms/form-request',
+  },
   {
     id: uniqueId(),
     title: 'Quill Editor',
