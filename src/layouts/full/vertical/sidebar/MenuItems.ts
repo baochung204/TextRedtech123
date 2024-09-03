@@ -116,6 +116,12 @@ const Menuitems: MenuitemsType[] = [
     href: '/landingpage',
   },
   {
+    id: uniqueId(),
+    title: 'Danh sách khách hàng',
+    icon: IconAppWindow,
+    href: '/apps/customerList',
+  },
+  {
     navlabel: true,
     subheader: 'Admin',
   },

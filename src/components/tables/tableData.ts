@@ -27,6 +27,69 @@ export interface EnTableType {
   invoice: number; // hóa đơn
 }
 
+export interface CustomerListTable {
+  id: string,
+  name: string, // họ tên
+  email: string, // email
+  phone: string, // SĐT
+  registrationDate: string, // Ngày đăng ký
+  totalExpenses: string, // Tổng tiền thanh toán
+  electronics: string,
+  image: string
+}
+const DataRowCustomerTable: CustomerListTable[] = [
+  {
+    id: '1',
+    name: 'Lê Tài Đức',
+    email: 'duc.lt@redon.com',
+    phone: '0987654321',
+    registrationDate: '12/02/2024',
+    totalExpenses: '100.000',
+    electronics: 'Electronics A',
+    image: img1
+  },
+  {
+    id: '2',
+    name: 'Nguyễn Thùy Linh',
+    email: 'linh.nt@redon.com',
+    phone: '0965842361',
+    registrationDate: '24/01/2024',
+    totalExpenses: '200.000',
+    electronics: 'Electronics B',
+    image: img2
+  },
+  {
+    id: '3',
+    name: 'Phạm Thành Long',
+    email: 'long.pt@redon.com',
+    phone: '0976521238',
+    registrationDate: '01/02/2024',
+    totalExpenses: '300.000',
+    electronics: 'Electronics C',
+    image: img3
+  },
+  {
+    id: '4',
+    name: 'Vũ Đình Hùng',
+    email: 'hung.vd@redon.com',
+    phone: '0951326548',
+    registrationDate: '12/05/2024',
+    totalExpenses: '400.000',
+    electronics: 'Electronics D',
+    image: img4
+  },
+  {
+    id: '5',
+    name: 'Hoàng Hải Dương',
+    email: 'dung.hh@redon.com',
+    phone: '0965874126',
+    registrationDate: '09/08/2024',
+    totalExpenses: '500.000',
+    electronics: 'Electronics E',
+    image: img5
+  },
+];
+
 const basicsTableData: TableType[] = [
   {
     id: '1',
@@ -220,4 +283,4 @@ const EnhancedTableData: EnTableType[] = [
     invoice: 1,
   },
 ];
-export { basicsTableData, EnhancedTableData };
+export { basicsTableData, EnhancedTableData, DataRowCustomerTable };
