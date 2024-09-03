@@ -3,8 +3,6 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
-import Assistant from 'src/views/apps/assistant/Assistant';
-import AssistantEditor from 'src/views/apps/assistant/AssistantEditor';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -26,6 +24,8 @@ const BlogDetail = Loadable(lazy(() => import('../views/apps/blog/BlogPost')));
 const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')));
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
+const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
+const AssistantAdd = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantEditor')));
 
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
