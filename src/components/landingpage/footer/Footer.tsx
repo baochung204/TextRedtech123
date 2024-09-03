@@ -15,7 +15,7 @@ const Footer = () => {
             <Link target="_blank" href="https://adminmart.com/">
               <Typography color="textSecondary" component="span" display="inline">
                 {' '}
-                AdminMart
+                Redtech
               </Typography>{' '}
             </Link>
             .

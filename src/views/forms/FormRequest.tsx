@@ -1,4 +1,4 @@
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 import FVReques from 'src/components/forms/form-validation/FVRequest';
 import ChildCard from 'src/components/shared/ChildCard';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
@@ -16,24 +16,28 @@ const BCrumb = [
 
 const FormRequest = () => {
     return (
-        <PageContainer title="Form Request" description="this is Form Request page">
-            <Breadcrumb title="Form Request" items={BCrumb} />
+            <PageContainer title="Form Request" description="this is Form Request page">
+                <Breadcrumb title="Form Request" items={BCrumb} />
+                <Typography align='center' variant="h5" gutterBottom>
+                    Gửi yêu cầu và góp ý tính năng
+                </Typography>
+                <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    minHeight="80vh"
+                >
 
-            <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                minHeight="80vh"
-            >
-                <Grid container spacing={3} justifyContent="center">
+                    {/* <Grid container spacing={3} justifyContent="center"> */}
                     <Grid item xs={12} sm={8} md={6}>
-                        <ChildCard title="Gửi yêu cầu và góp ý tính năng">
+                        <ChildCard>
                             <FVReques />
                         </ChildCard>
                     </Grid>
-                </Grid>
-            </Box>
-        </PageContainer>
+                    {/* </Grid> */}
+                </Box>
+            </PageContainer>
+   
     );
 }
 

@@ -91,8 +91,8 @@ const ProductDesc = () => {
             scrollButtons
             indicatorColor="primary"
           >
-            <Tab label="Description" {...a11yProps(0)} />
-            <Tab label="Reviews" {...a11yProps(1)} />
+            <Tab label="Mô tả" {...a11yProps(0)} />
+            <Tab label="Đánh giá" {...a11yProps(1)} />
           </Tabs>
         </Box>
         {/* ------------------------------------------- */}
@@ -100,19 +100,14 @@ const ProductDesc = () => {
         {/* ------------------------------------------- */}
         <TabPanel value={value} index={0}>
           <Typography variant="h5">
-            Sed at diam elit. Vivamus tortor odio, pellentesque eu tincidunt a, aliquet sit amet
-            lorem pellentesque eu tincidunt a, aliquet sit amet lorem.
+            "Nhưng tại sao lại như vậy? Hãy sống trong sự ghét bỏ, sự kết hợp với các loại hình từ, chọn lựa từ lạc vào các loại hình khác."
           </Typography>
           <Typography color="textSecondary" mt={4}>
-            Cras eget elit semper, congue sapien id, pellentesque diam. Nulla faucibus diam nec
-            fermentum ullamcorper. Praesent sed ipsum ut augue vestibulum malesuada. Duis vitae
-            volutpat odio. Integer sit amet elit ac justo sagittis dignissim.
+          Thực hiện các bước bằng cách giữ vững chất lượng, kết hợp các thành phần khác. Không có gì có thể làm giảm đi sự ảnh hưởng. Hiện tại đang được sử dụng trong các lĩnh vực khác nhau. Đảm bảo duy trì sự chính xác.
+
           </Typography>
           <Typography color="textSecondary" variant="body1" fontWeight={400} mt={4}>
-            Vivamus quis metus in nunc semper efficitur eget vitae diam. Proin justo diam, venenatis
-            sit amet eros in, iaculis auctor magna. Pellentesque sit amet accumsan urna, sit amet
-            pretium ipsum. Fusce condimentum venenatis mauris et luctus. Vestibulum ante ipsum
-            primis in faucibus orci luctus et ultrices posuere cubilia curae;
+            "Sống với sự hiệu quả hiện tại. Nếu bạn làm việc với sự chính xác, tạo ra sự phát triển tối ưu. Giữ cho các yêu cầu được đặt ra, và tạo ra sự kết hợp tối ưu."
           </Typography>
         </TabPanel>
         {/* ------------------------------------------- */}
@@ -131,7 +126,7 @@ const ProductDesc = () => {
                   spacing={2}
                   sx={{ height: '100%' }}
                 >
-                  <Typography variant="subtitle1">Average Rating</Typography>
+                  <Typography variant="subtitle1">Đánh giá trung bình</Typography>
                   <Typography variant="h1" color="primary" fontWeight={600}>
                     4/5
                   </Typography>
@@ -175,7 +170,7 @@ const ProductDesc = () => {
                   sx={{ height: '100%' }}
                 >
                   <Button variant="outlined" size="large" startIcon={<IconPencil />}>
-                    Write an Review
+                  Viết Đánh giá
                   </Button>
                 </Stack>
               </Paper>
