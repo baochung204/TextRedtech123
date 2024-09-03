@@ -24,6 +24,7 @@ import bank_transfer from '../../assets/images/pay/BankTransfer_facae0.png';
 import giftbox from '../../assets/images/icon.png/gift_9521097.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import logochicken from 'src/assets/images/logos/logo chicken.png';
 import { set } from 'lodash';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
@@ -138,7 +139,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   70
@@ -187,7 +194,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   350
@@ -232,7 +245,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   700
@@ -276,7 +295,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   1,400
@@ -323,7 +348,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   3,500
@@ -370,7 +401,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   7000
@@ -417,7 +454,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   17,500
@@ -464,7 +507,13 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <IconCoin />
+                <img
+                  src={logochicken}
+                  alt=""
+                  width={30}
+                  height={30}
+                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
+                />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   Tùy chỉnh

@@ -57,41 +57,39 @@ const Profile = () => {
         sx={{
           '& .MuiMenu-paper': {
             width: '360px',
-            p: 4,
+            px: 2,
+            pt: 3,
           },
         }}
       >
-        <Typography variant="h5">User Profile</Typography>
-        <Stack direction="row" py={3} spacing={2} alignItems="center">
-          <Avatar src={ProfileImg} alt={ProfileImg} sx={{ width: 95, height: 95 }} />
+        <Typography variant="h5">Thông tin tài khoản</Typography>
+        <Stack direction="row" py={2} spacing={1} alignItems="center">
+          <Avatar src={ProfileImg} alt={ProfileImg} sx={{ width: 80, height: 80 }} />
           <Box>
-            <Typography variant="subtitle2" color="textPrimary" fontWeight={600}>
-              Mathew Anderson
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
-              Designer
+            <Typography variant="subtitle1" color="textPrimary" fontWeight={600}>
+              Nguyễn Văn A
             </Typography>
             <Typography
               variant="subtitle2"
               color="textSecondary"
               display="flex"
               alignItems="center"
-              gap={1}
+              sx={{ gap: '2px' }}
             >
               <IconMail width={15} height={15} />
-              info@modernize.com
+              nguyenvana123@gmail.com
             </Typography>
           </Box>
         </Stack>
         <Divider />
         {dropdownData.profile.map((profile) => (
           <Box key={profile.title}>
-            <Box sx={{ py: 2, px: 0 }} className="hover-text-primary">
+            <Box sx={{ pt: 2, px: 0 }} className="hover-text-primary">
               <Link to={profile.href}>
                 <Stack direction="row" spacing={2}>
                   <Box
-                    width="45px"
-                    height="45px"
+                    width="30px"
+                    height="30px"
                     bgcolor="primary.light"
                     display="flex"
                     alignItems="center"
@@ -104,6 +102,7 @@ const Profile = () => {
                         width: 24,
                         height: 24,
                         borderRadius: 0,
+                        color: 'black',
                       }}
                     />
                   </Box>
@@ -116,19 +115,10 @@ const Profile = () => {
                       noWrap
                       sx={{
                         width: '240px',
+                        fontSize: 16,
                       }}
                     >
                       {profile.title}
-                    </Typography>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      sx={{
-                        width: '240px',
-                      }}
-                      noWrap
-                    >
-                      {profile.subtitle}
                     </Typography>
                   </Box>
                 </Stack>
@@ -136,61 +126,24 @@ const Profile = () => {
             </Box>
           </Box>
         ))}
-        <Box sx={{ py: 2, px: 0 }} className="hover-text-primary">
-          <Link to={'/history/buy-service'}>
-            <Stack direction="row" spacing={2}>
-              <Box
-                width="45px"
-                height="45px"
-                bgcolor="primary.light"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Avatar
-                  src={''}
-                  alt={''}
-                  sx={{
-                    width: 24,
-                    height: 24,
-                    borderRadius: 0,
-                  }}
-                />
-              </Box>
-              <Box>
-                <Typography
-                  variant="subtitle2"
-                  fontWeight={600}
-                  color="textPrimary"
-                  className="text-hover"
-                  noWrap
-                  sx={{
-                    width: '240px',
-                  }}
-                >
-                  Lịch sử mua dịch vụ
-                </Typography>
-              </Box>
-            </Stack>
-          </Link>
-        </Box>
-        <Box mt={2}>
+
+        <Box my={'15px'}>
           <Box bgcolor="primary.light" p={3} mb={3} overflow="hidden" position="relative">
             <Box display="flex" justifyContent="space-between">
               <Box>
                 <Typography variant="h5" mb={2}>
-                  Unlimited <br />
-                  Access
+                  SỞ HỮU NGAY <br />
+                  ĐỪNG BỎ LỠ!
                 </Typography>
                 <Button variant="contained" color="primary">
-                  Upgrade
+                  Mua ngay
                 </Button>
               </Box>
               <img src={unlimitedImg} alt="unlimited" className="signup-bg"></img>
             </Box>
           </Box>
           <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>
-            Logout
+            Đăng xuất
           </Button>
         </Box>
       </Menu>

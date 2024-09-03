@@ -79,6 +79,8 @@ const FormWizard = Loadable(lazy(() => import('../views/forms/FormWizard')));
 const FormValidation = Loadable(lazy(() => import('../views/forms/FormValidation')));
 const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/QuillEditor')));
 import FormRequest from 'src/views/forms/FormRequest';
+import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
+import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -169,6 +171,8 @@ const Router = [
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
       { path: '/apps/affiliate', element: <Affiliate /> },
+      { path: '/apps/person-affiliate', element: <PersonAffiliate /> },
+      { path: '/apps/company-affiliate', element: <CompanyAffiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user-profile', element: <UserProfile /> },
       { path: '/apps/calendar', element: <Calendar /> },

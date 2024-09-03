@@ -9,10 +9,30 @@ import FrameworksTitle from './FrameworksTitle';
 
 // Define the images you want to display
 const images = [
-  { id: 1, src: bannerbgImg3, title: 'Tiết kiệm tới 90% chi phí và thời gian', subtitle: 'Giảm thiểu chi phí vận hành và tối ưu hóa quy trình.' },
-  { id: 2, src: bannerbgImg4, title: 'Sáng tạo nội dung không giới hạn', subtitle: 'Tạo ra nội dung phong phú và sáng tạo không ngừng.' },
-  { id: 3, src: bannerbgImg5, title: 'Giọng nói đầy cảm xúc như con người', subtitle: 'Trải nghiệm giọng nói chân thực và tự nhiên.' },
-  { id: 4, src: bannerbgImg3, title: 'Đa ứng dụng và dễ dàng tích hợp', subtitle: 'Tích hợp dễ dàng với các hệ thống hiện có.' },
+  {
+    id: 1,
+    src: bannerbgImg3,
+    title: 'Tiết kiệm tới 90% chi phí và thời gian',
+    subtitle: 'Giảm thiểu chi phí vận hành và tối ưu hóa quy trình.',
+  },
+  {
+    id: 2,
+    src: bannerbgImg4,
+    title: 'Sáng tạo nội dung không giới hạn',
+    subtitle: 'Tạo ra nội dung phong phú và sáng tạo không ngừng.',
+  },
+  {
+    id: 3,
+    src: bannerbgImg5,
+    title: 'Giọng nói đầy cảm xúc như con người',
+    subtitle: 'Trải nghiệm giọng nói chân thực và tự nhiên.',
+  },
+  {
+    id: 4,
+    src: bannerbgImg3,
+    title: 'Đa ứng dụng và dễ dàng tích hợp',
+    subtitle: 'Tích hợp dễ dàng với các hệ thống hiện có.',
+  },
 ];
 
 const SliderBox = styled(Box)(({ theme }) => ({
@@ -97,10 +117,9 @@ const Frameworks = () => {
           <FrameworksTitle />
         </Box>
 
+
         <Stack direction="row" spacing={2} alignItems="center">
-          <SliderBox
-            style={{ backgroundImage: `url(${currentImage})` }}
-          />
+          <SliderBox style={{ backgroundImage: `url(${currentImage})` }} />
           <Stack spacing={2}>
             {images.map((image, index) => (
               <StyledListItem key={image.id}>
