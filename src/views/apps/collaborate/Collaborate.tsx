@@ -27,6 +27,10 @@ import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
 import icon7 from '../../../assets/images/svgs/img.png';
 import Banner1 from 'src/components/widgets/banners/Banner1';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
+import Danhsachdh from './dsdh';
+import HistoryMoney from './lsrt';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
 interface cardType {
   icon: string;
@@ -37,33 +41,33 @@ interface cardType {
 const topcards: cardType[] = [
   {
     icon: icon7,
-    title: 'Lượt Clicks',
+    title: 'Clicks',
     digits: '96',
     bgcolor: 'warning',
   },
   {
     icon: icon2,
-    title: 'Thành Viên',
-    digits: '3,650',
+    title: 'Member',
+    digits: '3.650',
     bgcolor: 'primary',
   },
   {
     icon: icon1,
-    title: 'Tỉ Lệ',
-    digits: '35 %',
+    title: 'Đơn hàng',
+    digits: '3850',
     bgcolor: 'secondary',
   },
 
   {
-    icon: icon6,
-    title: 'Payroll',
-    digits: '$96k',
+    icon: icon5,
+    title: 'Danh Thu',
+    digits: '96 tỉ',
     bgcolor: 'success',
   },
   {
     icon: icon1,
-    title: 'Reports',
-    digits: '59',
+    title: 'CVR',
+    digits: '26%',
     bgcolor: 'info',
   },
 ];
@@ -86,11 +90,32 @@ const CollaboratePost = () => {
       setMonth('7');
     }
   };
-
+  const BCrumb = [
+    {
+      to: '/',
+      title: 'Home',
+    },
+    {
+      to: '/apps/blog/posts',
+      title: 'Blog',
+    },
+    {
+      title: 'Blog post',
+    },
+  ];
   return (
     <Box>
+      <Breadcrumb title="Blog Detail" items={BCrumb} />{' '}
       <div style={{ display: 'flex', justifyContent: 'end' }}>
-        <div style={{ display: 'flex', width: '320px', alignItems: 'center', gap: '10px' }}>
+        <div
+          style={{
+            display: 'flex',
+            width: '320px',
+            alignItems: 'center',
+            gap: '10px',
+            margin: '10px 0',
+          }}
+        >
           <CustomTextField
             id="date"
             type="date"
@@ -116,7 +141,7 @@ const CollaboratePost = () => {
         <Box
           width={{ xs: '100%', md: '30%' }}
           textAlign={{ xs: 'center', md: 'left', xl: 'left' }}
-          margin="0px"
+          margin="0px "
         >
           <Box
             borderBottom="1px solid #EEEEEE"
@@ -129,18 +154,14 @@ const CollaboratePost = () => {
           <Box marginTop="30px" borderBottom="1px solid #EEEEEE">
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Typography variant="h6" fontSize="15px">
-                  Số tiền trong trạng thái chờ
-                </Typography>
+                <Typography variant="h3">Số dư</Typography>
 
                 <Typography variant="h1" fontSize="38px" margin="20px 0">
                   0 đ
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="h6" fontSize="15px">
-                  Số tiền đã nhận
-                </Typography>
+                <Typography variant="h3">Đang xử lý</Typography>
                 <Typography variant="h1" fontSize="38px" margin="20px 0">
                   0 đ
                 </Typography>
@@ -149,13 +170,22 @@ const CollaboratePost = () => {
           </Box>
           <Box textAlign={{ sx: 'center', lg: 'start' }}>
             {' '}
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ width: '250px', marginTop: '20px', padding: '10px 0', marginX: 'auto' }}
+            <div
+              style={{
+                // width: '300px', marginTop: '20px', padding: '10px 0', margin: 'auto'
+                display: 'flex',
+                justifyContent: 'space-between',
+                gap: '10px',
+                margin: 'auto',
+              }}
             >
-              GỬi YÊU CẦU THANH TOÁN
-            </Button>
+              <Button variant="contained" color="primary" sx={{ width: '45%' }}>
+                RÚT TIỀN
+              </Button>
+              <Button variant="contained" color="primary" sx={{ width: '45%' }}>
+                ĐỔI POINT
+              </Button>
+            </div>
             <Box
               display="flex"
               margin="10px 0"
@@ -166,9 +196,15 @@ const CollaboratePost = () => {
               <IconButton sx={{ padding: '0 2px' }}>
                 <IconPackage />
               </IconButton>
-              <Typography variant="body1" color="textSecondary" width="240px">
+              <Typography
+                variant="body1"
+                color="textSecondary"
+                width="300px"
+                margin="0 20px"
+                padding={'0 ,20px'}
+              >
                 <span>
-                  Vbee tiến hành chi trả từ ngày 15-20 hàng tháng cho tất cả tài khoản Affiliate{' '}
+                  Redtech tiến hành chi trả từ ngày 15-20 hàng tháng cho tất cả tài khoản Affiliate{' '}
                   <a href="#">Chính sách </a>. Hạn mức thanh toán tối thiểu là 2.000.000đ
                 </span>
               </Typography>
@@ -211,7 +247,7 @@ const CollaboratePost = () => {
                 <CustomOutlinedInput
                   id="http"
                   placeholder="http://s"
-                  value="http://vbee.vn/affiliate/123456"
+                  value="http://Redtech.vn/affiliate/123456"
                   fontSize="17px"
                   fullWidth
                 />
@@ -245,7 +281,7 @@ const CollaboratePost = () => {
                 <CustomOutlinedInput
                   id="http"
                   placeholder="http://s"
-                  value="http://vbee.vn/affiliate/123456"
+                  value="http://Redtech.vn/affiliate/123456"
                   fontSize="17px"
                   fullWidth
                 />
@@ -263,13 +299,12 @@ const CollaboratePost = () => {
           </Box>
         </Box>
       </Box>
-
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab label="Danh sách Đơn Hàng" value="1" />
-              <Tab label="Yêu cầu rút tiền" value="2" />
+              <Tab label="lịch sử rút tiền" value="2" />
             </TabList>
           </Box>
 
@@ -277,16 +312,18 @@ const CollaboratePost = () => {
             {' '}
             <h1>Danh sách Đơn Hàng</h1>
             <Grid item xs={12} lg={8} style={{ height: 'auto', margin: '30px 0px' }}>
-              <ProductPerformances />
+              <Danhsachdh />
             </Grid>
           </TabPanel>
-          <TabPanel value="3">
+          <TabPanel value="2">
             {' '}
-            <h1>Yêu cầu rút tiền </h1>
+            <h1>Lịch sử rút tiền</h1>
+            <Grid item xs={12} lg={8} style={{ height: 'auto', margin: '30px 0px' }}>
+              <HistoryMoney />
+            </Grid>
           </TabPanel>
         </TabContext>
       </Box>
-
       <Grid item xs={12}>
         <Banner1 />
       </Grid>

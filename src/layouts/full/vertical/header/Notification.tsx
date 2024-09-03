@@ -11,7 +11,7 @@ import {
   Typography,
   Button,
   Chip,
-  Stack
+  Stack,
 } from '@mui/material';
 import * as dropdownData from './data';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
@@ -65,8 +65,8 @@ const Notifications = () => {
         }}
       >
         <Stack direction="row" py={2} px={4} justifyContent="space-between" alignItems="center">
-          <Typography variant="h6">Notifications</Typography>
-          <Chip label="5 new" color="primary" size="small" />
+          <Typography variant="h6">Thông báo</Typography>
+          <Chip label="5 thông báo mới" color="primary" size="small" />
         </Stack>
         <Scrollbar sx={{ height: '385px' }}>
           {dropdownData.notifications.map((notification, index) => (
@@ -111,7 +111,7 @@ const Notifications = () => {
         </Scrollbar>
         <Box p={3} pb={1}>
           <Button to="/apps/email" variant="outlined" component={Link} color="primary" fullWidth>
-            See all Notifications
+            Xem tất cả thông báo
           </Button>
         </Box>
       </Menu>

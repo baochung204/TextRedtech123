@@ -85,6 +85,12 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
+    title: 'Danh sách khách hàng',
+    icon: IconPackage,
+    href: '/apps/customerlist',
+  },
+  {
+    id: uniqueId(),
     title: 'Assistant',
     icon: IconChartDonut3,
     href: '/apps/assistant/',
@@ -450,6 +456,13 @@ const Menuitems: MenuitemsType[] = [
     title: 'Form Validation',
     icon: IconFiles,
     href: '/forms/form-validation',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Form Request',
+    icon: IconFiles,
+    href: '/forms/form-request',
   },
   {
     id: uniqueId(),

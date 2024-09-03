@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Typography,
-  Button,
-  Grid,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Stack,
-} from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
-import { registerType } from 'src/types/auth/auth';
-import { Any } from 'react-spring';
 
-const AuthRegister = ({ title, subtitle }: registerType) => {
-  const [gender, setGender] = useState('');
+import { registerType } from 'src/types/auth/auth';
+import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
+
+const AuthRegister = ({ subtitle }: registerType) => {
+  // const [gender, setGender] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -36,7 +26,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
   const validateUsername = (username: string) => {
     return username.trim().length > 2;
   };
-  const handleUsernameChange = (e) => {
+  const handleUsernameChange = (e: any) => {
     const usernameValue = e.target.value;
     setUsername(usernameValue);
 
@@ -70,7 +60,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
   };
 
   // Handle change function for email validation
-  const handleEmailChange = (e) => {
+  const handleEmailChange = (e: any) => {
     const emailValue = e.target.value;
     setEmail(emailValue);
 
@@ -88,7 +78,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
   };
 
   // Handle change function for phone number validation
-  const handlePhoneNumberChange = (e) => {
+  const handlePhoneNumberChange = (e: any) => {
     const phoneNumberValue = e.target.value;
     setPhoneNumber(phoneNumberValue);
 
@@ -106,7 +96,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
   };
 
   // Handle change function for password validation
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: any) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
 
@@ -122,7 +112,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
       }));
     }
   };
-  const handleConfirmPasswordChange = (e) => {
+  const handleConfirmPasswordChange = (e: any) => {
     const confirmPasswordValue = e.target.value;
     setConfirmPassword(confirmPasswordValue);
 
@@ -139,9 +129,9 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
     }
   };
   // Handle change function for gender selection
-  const handleGenderChange = (event: Any) => {
-    setGender(event.target.value);
-  };
+  // const handleGenderChange = (event: any) => {
+  //   setGender(event.target.value);
+  // };
 
   return (
     <>
@@ -157,11 +147,12 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
             </Grid>
             <Grid item xs={8}>
               <CustomTextField
-                id="name"
+                id="username"
                 variant="outlined"
                 fullWidth
                 onChange={handleUsernameChange}
                 type="text"
+                value={username}
                 label="Nhập họ và tên của bạn"
                 error={!!errors.username}
                 helperText={errors.username}
@@ -253,7 +244,7 @@ const AuthRegister = ({ title, subtitle }: registerType) => {
           fullWidth
           sx={{ mt: 3 }}
           component={Link}
-          to="/auth/login2"
+          to="/auth/login"
         >
           Đăng ký
         </Button>

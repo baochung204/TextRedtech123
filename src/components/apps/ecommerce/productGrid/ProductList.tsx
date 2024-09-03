@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React, { useEffect } from 'react';
 import { filter, orderBy } from 'lodash';
 import {
@@ -64,28 +62,27 @@ const ProductList = ({ onClick }: Props) => {
 
     // FILTER PRODUCTS
     if (filters.category !== 'All') {
-      //products = filter(products, (_product) => includes(_product.category, filters.category));
       products = products.filter((_product) => _product.category.includes(filters.category));
     }
 
-    //FILTER PRODUCTS BY GENDER
+    // FILTER PRODUCTS BY GENDER
     if (filters.gender !== 'All') {
       products = filter(products, (_product) => _product.gender === filters.gender);
     }
 
-    //FILTER PRODUCTS BY GENDER
+    // FILTER PRODUCTS BY COLOR
     if (filters.color !== 'All') {
       products = products.filter((_product) => _product.colors.includes(filters.color));
     }
 
-    //FILTER PRODUCTS BY Search
+    // FILTER PRODUCTS BY SEARCH
     if (search !== '') {
       products = products.filter((_product) =>
         _product.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
       );
     }
 
-    //FILTER PRODUCTS BY Price
+    // FILTER PRODUCTS BY PRICE
     if (filters.price !== 'All') {
       const minMax = filters.price ? filters.price.split('-') : '';
       products = products.filter((_product) =>
@@ -119,7 +116,7 @@ const ProductList = ({ onClick }: Props) => {
     setCartalert(false);
   };
 
-  // skeleton
+  // Skeleton
   const [isLoading, setLoading] = React.useState(true);
 
   useEffect(() => {
@@ -130,14 +127,17 @@ const ProductList = ({ onClick }: Props) => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Convert to VND
+  const convertToVND = (amount: number, rate: number = 24000) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount * rate);
+  };
+
   return (
     <Box>
-      {/* ------------------------------------------- */}
-      {/* Header Detail page */}
-      {/* ------------------------------------------- */}
+      {/* Header */}
       <Stack direction="row" justifyContent="space-between" pb={3}>
         {lgUp ? (
-          <Typography variant="h5">Products</Typography>
+          <Typography variant="h5">Sản phẩm</Typography>
         ) : (
           <Fab onClick={onClick} color="primary" size="small">
             <IconMenu2 width="16" />
@@ -148,95 +148,63 @@ const ProductList = ({ onClick }: Props) => {
         </Box>
       </Stack>
 
-      {/* ------------------------------------------- */}
-      {/* Page Listing product */}
-      {/* ------------------------------------------- */}
+      {/* Product Listing */}
       <Grid container spacing={3}>
         {getProducts.length > 0 ? (
-          <>
-            {getProducts.map((product) => (
-              <Grid
-                item
-                xs={12}
-                lg={4}
-                md={4}
-                sm={6}
-                display="flex"
-                alignItems="stretch"
-                key={product.id}
-              >
-                {/* ------------------------------------------- */}
-                {/* Product Card */}
-                {/* ------------------------------------------- */}
-                {isLoading ? (
-                  <>
-                    <Skeleton
-                      variant="rectangular"
-                      width={270}
-                      height={300}
-                      sx={{ borderRadius: (theme) => theme.shape.borderRadius / 5 }}
-                    ></Skeleton>
-                  </>
-                ) : (
-                  <BlankCard className="hoverCard">
-                    <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
-                      <img src={product.photo} alt="img" width="100%" />
-                    </Typography>
-                    <Tooltip title="Add To Cart">
-                      <Fab
-                        size="small"
-                        color="primary"
-                        onClick={() => dispatch(addToCart(product)) && handleClick()}
-                        sx={{ bottom: '75px', right: '15px', position: 'absolute' }}
-                      >
-                        <IconBasket size="16" />
-                      </Fab>
-                    </Tooltip>
-                    <CardContent sx={{ p: 3, pt: 2 }}>
-                      <Typography variant="h6">{product.title}</Typography>
-                      <Stack
-                        direction="row"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        mt={1}
-                      >
-                        <Stack direction="row" alignItems="center">
-                          <Typography variant="h6">${product.price}</Typography>
-                          <Typography
-                            color="textSecondary"
-                            ml={1}
-                            sx={{ textDecoration: 'line-through' }}
-                          >
-                            ${product.salesPrice}
-                          </Typography>
-                        </Stack>
-                        <Rating name="read-only" size="small" value={product.rating} readOnly />
+          getProducts.map((product) => (
+            <Grid item xs={12} lg={4} md={4} sm={6} display="flex" alignItems="stretch" key={product.id}>
+              {isLoading ? (
+                <Skeleton
+                  variant="rectangular"
+                  width={270}
+                  height={300}
+                  sx={{ borderRadius: (theme) => theme.shape.borderRadius / 5 }}
+                />
+              ) : (
+                <BlankCard className="hoverCard" sx={{ position: 'relative' }}>
+                  <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
+                    <img src={product.photo} alt={product.title} width="100%" />
+                  </Typography>
+                  <Tooltip title="Add To Cart">
+                    <Fab
+                      size="small"
+                      color="primary"
+                      onClick={() => dispatch(addToCart(product)) && handleClick()}
+                      sx={{ bottom: '10px', right: '10px', position: 'absolute' }}
+                    >
+                      <IconBasket size="16" />
+                    </Fab>
+                  </Tooltip>
+                  <CardContent sx={{ p: 3, pt: 2 }}>
+                    <Typography variant="h6">{product.title}</Typography>
+                    <Stack direction="column" spacing={1} mt={1}>
+                      <Stack direction="row" alignItems="center" justifyContent="space-between">
+                        <Typography variant="h6">{convertToVND(product.price)}</Typography>
+                        <Typography color="textSecondary" ml={1} sx={{ textDecoration: 'line-through' }}>
+                          {convertToVND(product.salesPrice)}
+                        </Typography>
                       </Stack>
-                    </CardContent>
-                  </BlankCard>
-                )}
-                <AlertCart handleClose={handleClose} openCartAlert={cartalert} />
-                {/* ------------------------------------------- */}
-                {/* Product Card */}
-                {/* ------------------------------------------- */}
-              </Grid>
-            ))}
-          </>
-        ) : (
-          <>
-            <Grid item xs={12} lg={12} md={12} sm={12}>
-              <Box textAlign="center" mt={6}>
-                <img src={emptyCart} alt="cart" width="200px" />
-                <Typography variant="h2">There is no Product</Typography>
-                <Typography variant="h6" mb={3}>
-                  The Product you are searching is no longer available.
-                </Typography>
-                <Button variant="contained" onClick={() => dispatch(filterReset())}>
-                  Try Again
-                </Button>
-              </Box>
+                      <Rating name="read-only" size="small" value={product.rating} readOnly />
+                    </Stack>
+                  </CardContent>
+                </BlankCard>
+              )}
+              <AlertCart handleClose={handleClose} openCartAlert={cartalert} />
             </Grid>
-          </>
+          ))
+        ) : (
+          <Grid item xs={12}>
+            <Box textAlign="center" mt={6}>
+              <img src={emptyCart} alt="cart" width="200px" />
+              <Typography variant="h2">No Products Found</Typography>
+              <Typography variant="h6" mb={3}>
+                The product you are searching is no longer available.
+              </Typography>
+              <Button variant="contained" onClick={() => dispatch(filterReset())}>
+                Try Again
+              </Button>
+            </Box>
+          </Grid>
         )}
       </Grid>
     </Box>

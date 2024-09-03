@@ -87,10 +87,10 @@ const CartItems = () => {
         <Box textAlign="center" mb={3}>
           <img src={emptyCart} alt="cart" width="200px" />
           <Typography variant="h5" mb={2}>
-            Cart is Empty
+            Không có sản phẩm nào
           </Typography>
           <Button component={Link} to="/apps/ecommerce/shop" variant="contained">
-            Go back to Shopping
+            Đi tới trang shop
           </Button>
         </Box>
       )}
