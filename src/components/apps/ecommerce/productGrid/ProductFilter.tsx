@@ -63,48 +63,48 @@ const ProductFilter = () => {
   const filterCategory: ProductFiterType[] = [
     {
       id: 1,
-      filterbyTitle: 'Filter by Category',
+      filterbyTitle: 'Lọc theo danh mục',
     },
     {
       id: 2,
-      name: 'All',
+      name: 'Tất cả',
       sort: 'All',
       icon: IconCircles,
     },
     {
       id: 3,
-      name: 'Fashion',
-      sort: 'fashion',
+      name: 'ChatAi',
+      sort: 'chatAi',
       icon: IconHanger,
     },
     {
       id: 9,
-      name: 'Books',
-      sort: 'books',
+      name: 'ChatBox',
+      sort: 'chatbox',
       icon: IconNotebook,
     },
     {
       id: 10,
-      name: 'Toys',
-      sort: 'toys',
+      name: 'OpenAi',
+      sort: 'openai',
       icon: IconMoodSmile,
     },
-    {
-      id: 11,
-      name: 'Electronics',
-      sort: 'electronics',
-      icon: IconDeviceLaptop,
-    },
+    // {
+    //   id: 11,
+    //   name: 'Electronics',
+    //   sort: 'electronics',
+    //   icon: IconDeviceLaptop,
+    // },
     {
       id: 6,
       devider: true,
     },
   ];
   const filterbySort = [
-    { id: 1, value: 'newest', label: 'Newest', icon: IconAd2 },
-    { id: 2, value: 'priceDesc', label: 'Price: High-Low', icon: IconSortAscending2 },
-    { id: 3, value: 'priceAsc', label: 'Price: Low-High', icon: IconSortDescending2 },
-    { id: 4, value: 'discount', label: 'Discounted', icon: IconAd2 },
+    { id: 1, value: 'newest', label: 'Mới nhất', icon: IconAd2 },
+    { id: 2, value: 'priceDesc', label: 'Giá: Cao-Thấp', icon: IconSortAscending2 },
+    { id: 3, value: 'priceAsc', label: 'Giá: Thấp-Cao', icon: IconSortDescending2 },
+    { id: 4, value: 'discount', label: 'Giảm giá', icon: IconAd2 },
   ];
   const filterbyPrice = [
     {
@@ -114,22 +114,22 @@ const ProductFilter = () => {
     },
     {
       id: 1,
-      label: '0-50',
-      value: '0-50',
+      label: '0-50.000 VNĐ',
+      value: '0-50.000',
     },
     {
       id: 3,
-      label: '50-100',
+      label: '50.000-100.000 VNĐ',
       value: '50-100',
     },
     {
       id: 4,
-      label: '100-200',
+      label: '100.000-200.000 VNĐ',
       value: '100-200',
     },
     {
       id: 5,
-      label: 'Over 200',
+      label: 'Over 200.000 VNĐ',
       value: '200-99999',
     },
   ];
@@ -180,7 +180,7 @@ const ProductFilter = () => {
         {/* Sort by */}
         {/* ------------------------------------------- */}
         <Typography variant="subtitle2" fontWeight={600} px={3} mt={3} pb={2}>
-          Sort By
+        Sắp xếp theo
         </Typography>
         {filterbySort.map((filter) => {
           return (
@@ -201,7 +201,7 @@ const ProductFilter = () => {
         {/* ------------------------------------------- */}
         {/* Filter By Gender */}
         {/* ------------------------------------------- */}
-        <Box p={3}>
+        {/* <Box p={3}>
           <Typography variant="subtitle2" fontWeight={600}>
             By Gender
           </Typography>
@@ -221,13 +221,13 @@ const ProductFilter = () => {
               />
             ))}
           </FormGroup>
-        </Box>
+        </Box> */}
         <Divider></Divider>
         {/* ------------------------------------------- */}
         {/* Filter By Pricing */}
         {/* ------------------------------------------- */}
         <Typography variant="h6" px={3} mt={3} pb={2}>
-          By Pricing
+        Theo giá cả
         </Typography>
         <Box p={3} pt={0}>
           <FormGroup>
@@ -247,13 +247,13 @@ const ProductFilter = () => {
           </FormGroup>
         </Box>
         <Divider></Divider>
-        <Typography variant="h6" px={3} mt={3} pb={2}>
+        {/* <Typography variant="h6" px={3} mt={3} pb={2}>
           By Colors
-        </Typography>
+        </Typography> */}
         {/* ------------------------------------------- */}
         {/* Filter By colors */}
         {/* ------------------------------------------- */}
-        <Box p={3} pt={0}>
+        {/* <Box p={3} pt={0}>
           <Stack direction={'row'} flexWrap="wrap" gap={1}>
             {filterbyColors.map((curColor) => {
               if (curColor !== 'All') {
@@ -281,14 +281,14 @@ const ProductFilter = () => {
               }
             })}
           </Stack>
-        </Box>
+        </Box> */}
         <Divider></Divider>
         {/* ------------------------------------------- */}
         {/* Reset */}
         {/* ------------------------------------------- */}
         <Box p={3}>
           <Button variant="contained" onClick={() => dispatch(filterReset())} fullWidth>
-            Reset Filters
+          Đặt lại bộ lọc
           </Button>
         </Box>
       </List>

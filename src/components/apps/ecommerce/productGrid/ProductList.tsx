@@ -129,6 +129,10 @@ const ProductList = ({ onClick }: Props) => {
 
     return () => clearTimeout(timer);
   }, []);
+  //CHUYEN TIEN VIET
+  const convertToVND = (amount: number, rate: number = 24000) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount * rate);
+  };
 
   return (
     <Box>
@@ -137,7 +141,7 @@ const ProductList = ({ onClick }: Props) => {
       {/* ------------------------------------------- */}
       <Stack direction="row" justifyContent="space-between" pb={3}>
         {lgUp ? (
-          <Typography variant="h5">Products</Typography>
+          <Typography variant="h5">Sản phẩm</Typography>
         ) : (
           <Fab onClick={onClick} color="primary" size="small">
             <IconMenu2 width="16" />
@@ -201,15 +205,18 @@ const ProductList = ({ onClick }: Props) => {
                         mt={1}
                       >
                         <Stack direction="row" alignItems="center">
-                          <Typography variant="h6">${product.price}</Typography>
+                          <Typography variant="h6">
+                            {convertToVND(product.price)}
+                          </Typography>
                           <Typography
                             color="textSecondary"
                             ml={1}
                             sx={{ textDecoration: 'line-through' }}
                           >
-                            ${product.salesPrice}
+                            {convertToVND(product.salesPrice)}
                           </Typography>
                         </Stack>
+
                         <Rating name="read-only" size="small" value={product.rating} readOnly />
                       </Stack>
                     </CardContent>
