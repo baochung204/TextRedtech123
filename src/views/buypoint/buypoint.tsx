@@ -25,7 +25,7 @@ import giftbox from '../../assets/images/icon.png/gift_9521097.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
-import { set } from 'lodash';
+import Iconbowtie from 'src/assets/images/logos/iconbowtie.png';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -91,7 +91,7 @@ const BuyPoint = () => {
             }}
           >
             <marquee maxWidth="50%">
-              <Typography variant="h3" sx={{ color: '#F22A51', fontWeight: 700, fontSize: 16 }}>
+              <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 16 }}>
                 Quy Đổi Ngân Lượng chương trình khuyến mại 25% cho các huynh đệ quy đổi ngân lượng
                 lần đầu tiên
               </Typography>
@@ -139,13 +139,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   70
@@ -175,12 +169,12 @@ const BuyPoint = () => {
                 position: 'relative',
               }}
             >
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
+              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
                 <img
-                  src={giftbox}
+                  src={Iconbowtie}
                   alt="Giftbox"
-                  width={25}
-                  height={25}
+                  width={60}
+                  height={60}
                   onClick={() => onHanldeClickOpenPopup()}
                 />
               </Box>
@@ -194,13 +188,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   350
@@ -231,10 +219,14 @@ const BuyPoint = () => {
               }}
             >
               {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
+              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                <img
+                  src={Iconbowtie}
+                  alt="Giftbox"
+                  width={60}
+                  height={60}
+                  onClick={() => onHanldeClickOpenPopup()}
+                />
               </Box>
               <BoxStyled
                 sx={{
@@ -245,13 +237,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   700
@@ -281,10 +267,14 @@ const BuyPoint = () => {
               }}
             >
               {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
+              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                <img
+                  src={Iconbowtie}
+                  alt="Giftbox"
+                  width={60}
+                  height={60}
+                  onClick={() => onHanldeClickOpenPopup()}
+                />
               </Box>
               <BoxStyled
                 sx={{
@@ -295,13 +285,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   1,400
@@ -334,10 +318,14 @@ const BuyPoint = () => {
               }}
             >
               {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
+              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                <img
+                  src={Iconbowtie}
+                  alt="Giftbox"
+                  width={60}
+                  height={60}
+                  onClick={() => onHanldeClickOpenPopup()}
+                />
               </Box>
               <BoxStyled
                 sx={{
@@ -348,13 +336,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   3,500
@@ -387,10 +369,14 @@ const BuyPoint = () => {
               }}
             >
               {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
+              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                <img
+                  src={Iconbowtie}
+                  alt="Giftbox"
+                  width={60}
+                  height={60}
+                  onClick={() => onHanldeClickOpenPopup()}
+                />
               </Box>
               <BoxStyled
                 sx={{
@@ -401,13 +387,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   7000
@@ -440,10 +420,14 @@ const BuyPoint = () => {
               }}
             >
               {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
+              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                <img
+                  src={Iconbowtie}
+                  alt="Giftbox"
+                  width={60}
+                  height={60}
+                  onClick={() => onHanldeClickOpenPopup()}
+                />
               </Box>
               <BoxStyled
                 sx={{
@@ -454,13 +438,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   17,500
@@ -493,10 +471,14 @@ const BuyPoint = () => {
               }}
             >
               {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
+              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+                <img
+                  src={Iconbowtie}
+                  alt="Giftbox"
+                  width={60}
+                  height={60}
+                  onClick={() => onHanldeClickOpenPopup()}
+                />
               </Box>
               <BoxStyled
                 sx={{
@@ -507,13 +489,7 @@ const BuyPoint = () => {
                   padding: '0',
                 }}
               >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
+                <img src={logochicken} alt="" width={30} height={30} />
 
                 <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
                   Tùy chỉnh
@@ -597,7 +573,7 @@ const BuyPoint = () => {
             <Typography variant="h3" sx={{ color: 'black', fontWeight: 600, fontSize: 18 }}>
               Tổng tiền :
             </Typography>
-            <Typography variant="h3" sx={{ color: '#F22A51', fontWeight: 700, fontSize: 20 }}>
+            <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
               ₫1,055,000
             </Typography>
           </Box>
@@ -615,7 +591,7 @@ const BuyPoint = () => {
               sx={{
                 px: 7,
                 py: 1,
-                backgroundColor: '#FE2C55',
+                backgroundColor: '#FC2032',
                 fontWeight: 700,
                 fontSize: 18,
                 ':hover': {
