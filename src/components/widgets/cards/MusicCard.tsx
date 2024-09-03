@@ -1,5 +1,15 @@
-import React, {useEffect} from 'react';
-import { CardContent, Typography, Grid, Card, CardMedia, Box, IconButton, Stack, Skeleton } from '@mui/material';
+import React, { useEffect } from 'react';
+import {
+  CardContent,
+  Typography,
+  Grid,
+  Card,
+  CardMedia,
+  Box,
+  IconButton,
+  Stack,
+  Skeleton,
+} from '@mui/material';
 import img1 from 'src/assets/images/blog/blog-img5.jpg';
 import img2 from 'src/assets/images/blog/blog-img4.jpg';
 import img3 from 'src/assets/images/blog/blog-img3.jpg';
@@ -10,7 +20,6 @@ interface musiccardType {
   subheader: string;
   img: string;
 }
-
 
 const musicCard: musiccardType[] = [
   {
@@ -37,7 +46,7 @@ const MusicCard = () => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
