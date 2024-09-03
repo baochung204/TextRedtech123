@@ -127,8 +127,8 @@ const profile: ProfileType[] = [
   {
     href: '/user-profile',
     title: 'Quản lý tài khoản',
-    // subtitle: 'Account Settings',
-    icon: Iconuser,
+    subtitle: 'Account Settings',
+    icon: icon1,
   },
   {
     href: '/admin',
@@ -137,28 +137,22 @@ const profile: ProfileType[] = [
     icon: Iconkey,
   },
   {
-    href: '/apps/email',
-    title: 'Cài đặt bảo mật',
-    // subtitle: 'Messages & Emails',
-    icon: Iconseting,
+    href: '/auth/forgot-password2',
+    title: 'Đổi mật khẩu',
+    subtitle: 'Messages & Emails',
+    icon: icon2,
   },
   {
     href: '/apps/notes',
-    title: 'Tạo ticket',
-    // subtitle: 'To-do and Daily Tasks',
-    icon: Iconticket,
+    title: 'My Tasks',
+    subtitle: 'To-do and Daily Tasks',
+    icon: icon3,
   },
   {
-    href: '/apps/email',
-    title: 'Lịch sử mua dịch vụ',
-    // subtitle: 'Messages & Emails',
-    icon: Iconhistory,
-  },
-  {
-    href: '/apps/email',
+    href: '/forms/form-request',
     title: 'Yêu cầu tính năng',
-    // subtitle: 'Messages & Emails',
-    icon: Iconwrite,
+    subtitle: 'To-do and Daily Tasks',
+    icon: icon3,
   },
 ];
 

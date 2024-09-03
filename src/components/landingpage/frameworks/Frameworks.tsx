@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 // images
 import bannerbgImg3 from 'src/assets/images/landingpage/ai.png';
 import bannerbgImg4 from 'src/assets/images/landingpage/ai2.png';
-import bannerbgImg5 from 'src/assets/images/landingpage/chatbot.png';
+import bannerbgImg5 from 'src/assets/images/landingpage/qchatbot.png';
 import FrameworksTitle from './FrameworksTitle';
 
 // Define the images you want to display
@@ -60,9 +60,6 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
     height: '0',
     border: '8px solid transparent',
     borderRightColor: theme.palette.primary.main,
-    borderLeft: '8px solid transparent',
-    borderTop: '8px solid transparent',
-    borderBottom: '8px solid transparent',
     opacity: 0,
     transition: 'opacity 0.3s ease, transform 0.3s ease',
   },
@@ -72,25 +69,23 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const Subtitle = styled(Typography)(({ theme }) => ({
-  position: 'absolute',
-  left: '40px',
-  top: '100%',
-  transform: 'translateY(10px)',
-  padding: '5px 0',
+const Subtitle = styled(Typography)<{ visible: boolean }>(({ theme, visible }) => ({
+  paddingLeft: '40px',
   fontSize: '14px',
   color: theme.palette.text.secondary,
   whiteSpace: 'nowrap',
-  opacity: 0,
-  transition: 'opacity 0.3s ease',
+  height: visible ? 'auto' : '0',
+  opacity: visible ? 1 : 0,
+  transition: 'opacity 0.3s ease, height 0.3s ease',
+  overflow: 'hidden',
+  marginTop: visible ? '10px' : '0', // Add margin-top to push elements down
 }));
 
 const StyledListItem = styled(Box)(({ theme }) => ({
   position: 'relative',
   padding: '10px 0',
-  '&:hover ${Subtitle}': {
-    opacity: 1,
-  },
+  minHeight: '40px', // Ensure minimum height to accommodate subtitle
+  transition: 'min-height 0.3s ease',
 }));
 
 const Frameworks = () => {
@@ -99,7 +94,7 @@ const Frameworks = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -119,10 +114,9 @@ const Frameworks = () => {
       <Container maxWidth="lg">
         {/* Title */}
         <Box mb={9}>
-          {' '}
-          {/* Thêm margin-bottom */}
           <FrameworksTitle />
         </Box>
+
 
         <Stack direction="row" spacing={2} alignItems="center">
           <SliderBox style={{ backgroundImage: `url(${currentImage})` }} />
@@ -133,11 +127,12 @@ const Frameworks = () => {
                   variant="h6"
                   className={index === currentImageIndex ? 'active' : ''}
                   onMouseEnter={() => setCurrentImageIndex(index)}
-                  onMouseLeave={() => setCurrentImageIndex(index)}
                 >
                   {image.title}
-                  <Subtitle>{image.subtitle}</Subtitle>
                 </StyledTypography>
+                <Subtitle visible={index === currentImageIndex}>
+                  {image.subtitle}
+                </Subtitle>
               </StyledListItem>
             ))}
           </Stack>

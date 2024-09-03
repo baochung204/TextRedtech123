@@ -85,7 +85,17 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
+<<<<<<< HEAD
     title: 'Trợ lý',
+=======
+    title: 'Danh sách khách hàng',
+    icon: IconPackage,
+    href: '/apps/customerlist',
+  },
+  {
+    id: uniqueId(),
+    title: 'Assistant',
+>>>>>>> main
     icon: IconChartDonut3,
     href: '/apps/assistant/',
     children: [
@@ -110,6 +120,12 @@ const Menuitems: MenuitemsType[] = [
     href: '/dashboards/list',
   },
 
+  {
+    id: uniqueId(),
+    title: 'Danh sách khách hàng',
+    icon: IconAppWindow,
+    href: '/apps/customerList',
+  },
   {
     navlabel: true,
     subheader: 'Quản trị',
@@ -465,6 +481,13 @@ const Menuitems: MenuitemsType[] = [
     title: 'Form Validation',
     icon: IconFiles,
     href: '/forms/form-validation',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Form Request',
+    icon: IconFiles,
+    href: '/forms/form-request',
   },
   {
     id: uniqueId(),

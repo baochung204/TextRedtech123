@@ -3,10 +3,7 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
-import Assistant from 'src/views/apps/assistant/Assistant';
-import AssistantEditor from 'src/views/apps/assistant/AssistantEditor';
-import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
-import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
+
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
@@ -26,6 +23,10 @@ const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
 const BlogDetail = Loadable(lazy(() => import('../views/apps/blog/BlogPost')));
 const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')));
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
+const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
+const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
+const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
+
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
 const Tickets = Loadable(lazy(() => import('../views/apps/tickets/Tickets')));
@@ -35,6 +36,7 @@ const EcomProductList = Loadable(lazy(() => import('../views/apps/eCommerce/Ecom
 const EcomProductCheckout = Loadable(
   lazy(() => import('../views/apps/eCommerce/EcommerceCheckout')),
 );
+
 const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followers')));
@@ -79,7 +81,9 @@ const FormVertical = Loadable(lazy(() => import('../views/forms/FormVertical')))
 const FormWizard = Loadable(lazy(() => import('../views/forms/FormWizard')));
 const FormValidation = Loadable(lazy(() => import('../views/forms/FormValidation')));
 const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/QuillEditor')));
-
+import FormRequest from 'src/views/forms/FormRequest';
+import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
+import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -152,6 +156,8 @@ const Router = [
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
+      { path: '/apps/customerlist', element: <CustomerList /> },
+
       // { path: '/admin', element: <Blog /> },
       { path: '/admin/dashborard', element: <Admin /> },
       { path: '/admin/products', element: <Adminproducts /> },
@@ -210,6 +216,7 @@ const Router = [
       { path: '/forms/form-custom', element: <FormCustom /> },
       { path: '/forms/form-wizard', element: <FormWizard /> },
       { path: '/forms/form-validation', element: <FormValidation /> },
+      { path: '/forms/form-request', element: <FormRequest /> },
       { path: '/forms/form-horizontal', element: <FormHorizontal /> },
       { path: '/forms/form-vertical', element: <FormVertical /> },
       { path: '/forms/quill-editor', element: <QuillEditor /> },

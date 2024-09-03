@@ -2,12 +2,12 @@
 // @ts-ignore
 import React from 'react';
 import { Grid, Box, Card, Typography, Stack } from '@mui/material';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PageContainer from 'src/components/container/PageContainer';
 import Logo from 'src/layouts/full/shared/logo/Logo';
 
 import AuthRegister from '../authForms/AuthRegister';
-import AuthSocialButtons from '../authForms/AuthSocialButtons';
+// import AuthSocialButtons from '../authForms/AuthSocialButtons';
 
 const Register2 = () => (
   <PageContainer title="Register" description="this is Register page">
@@ -49,9 +49,9 @@ const Register2 = () => (
                   <Typography color="textSecondary" variant="h6" fontWeight="400">
                     Bạn đã có tài khoản?
                   </Typography>
-                  <Typography
+                  {/* <Typography
                     component={Link}
-                    to="/auth/login2"
+                    to="/auth/login"
                     fontWeight="500"
                     sx={{
                       textDecoration: 'none',
@@ -59,7 +59,7 @@ const Register2 = () => (
                     }}
                   >
                     Đăng nhập
-                  </Typography>
+                  </Typography> */}
                 </Stack>
               </Grid>
 
