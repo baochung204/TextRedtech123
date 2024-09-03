@@ -2,7 +2,7 @@
 // @ts-ignore
 import React, { useState } from 'react';
 import { sum } from 'lodash';
-import {  IconShoppingCart, IconX } from '@tabler/icons-react';
+import { IconShoppingCart, IconX } from '@tabler/icons-react';
 import { Box, Typography, Badge, Drawer, IconButton, Button, Stack } from '@mui/material';
 import { useSelector } from 'src/store/Store';
 import { Link } from 'react-router-dom';
@@ -61,7 +61,7 @@ const Cart = () => {
       >
         <Box display="flex" alignItems="center" p={3} pb={0} justifyContent="space-between">
           <Typography variant="h5" fontWeight={600}>
-            Shopping Cart
+            Giỏ hàng
           </Typography>
           <Box>
             <IconButton
@@ -99,7 +99,7 @@ const Cart = () => {
                 variant="contained"
                 color="primary"
               >
-                Checkout
+                Thanh Toán
               </Button>
             </>
           ) : (

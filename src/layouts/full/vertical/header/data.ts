@@ -1,3 +1,4 @@
+import { Iconticket } from 'src/assets/images/iconHeadrProfile/ticket.png';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
@@ -15,7 +16,12 @@ import ddIcon5 from 'src/assets/images/svgs/icon-dd-mobile.svg';
 import ddIcon6 from 'src/assets/images/svgs/icon-dd-lifebuoy.svg';
 import ddIcon7 from 'src/assets/images/svgs/icon-dd-message-box.svg';
 import ddIcon8 from 'src/assets/images/svgs/icon-dd-application.svg';
-
+import Iconuser from 'src/assets/images/iconHeadrProfile/user-profile.png';
+import Iconseting from 'src/assets/images/iconHeadrProfile/seting.png';
+import Iconwrite from 'src/assets/images/iconHeadrProfile/write.png';
+import Iconkey from 'src/assets/images/iconHeadrProfile/key.png';
+import Iconhistory from 'src/assets/images/iconHeadrProfile/history.png';
+import Iconticket from 'src/assets/images/iconHeadrProfile/ticket1.png';
 // Notifications dropdown
 
 interface notificationType {
@@ -114,33 +120,45 @@ const messages: messageType[] = [
 interface ProfileType {
   href: string;
   title: string;
-  subtitle: string;
+  // subtitle:string;
   icon: any;
 }
 const profile: ProfileType[] = [
   {
     href: '/user-profile',
-    title: 'Thông tin cá nhân',
-    subtitle: 'Account Settings',
-    icon: icon1,
+    title: 'Quản lý tài khoản',
+    // subtitle: 'Account Settings',
+    icon: Iconuser,
   },
   {
     href: '/admin',
-    title: 'Quản trị viên ',
-    subtitle: 'Account Settings',
-    icon: icon1,
+    title: 'Đổi mật khẩu',
+    // subtitle: 'Account Settings',
+    icon: Iconkey,
   },
   {
     href: '/apps/email',
-    title: 'My Inbox',
-    subtitle: 'Messages & Emails',
-    icon: icon2,
+    title: 'Cài đặt bảo mật',
+    // subtitle: 'Messages & Emails',
+    icon: Iconseting,
   },
   {
     href: '/apps/notes',
-    title: 'My Tasks',
-    subtitle: 'To-do and Daily Tasks',
-    icon: icon3,
+    title: 'Tạo ticket',
+    // subtitle: 'To-do and Daily Tasks',
+    icon: Iconticket,
+  },
+  {
+    href: '/apps/email',
+    title: 'Lịch sử mua dịch vụ',
+    // subtitle: 'Messages & Emails',
+    icon: Iconhistory,
+  },
+  {
+    href: '/apps/email',
+    title: 'Yêu cầu tính năng',
+    // subtitle: 'Messages & Emails',
+    icon: Iconwrite,
   },
 ];
 
@@ -155,51 +173,51 @@ interface appsLinkType {
 
 const appsLink: appsLinkType[] = [
   {
-    href: '/apps/chats',
-    title: 'Chat Application',
-    subtext: 'New messages arrived',
+    href: '/404',
+    title: 'Free tool 1',
+    subtext: 'Tính năng 1',
     avatar: ddIcon1,
   },
   {
-    href: '/apps/ecommerce/shop',
-    title: 'eCommerce App',
-    subtext: 'New stock available',
+    href: '/404',
+    title: 'Free tool 2',
+    subtext: 'Tính năng 2',
     avatar: ddIcon2,
   },
   {
     href: '/apps/notes',
-    title: 'Notes App',
-    subtext: 'To-do and Daily tasks',
+    title: 'Free tool 3',
+    subtext: 'Tính năng 3',
     avatar: ddIcon3,
   },
   {
     href: '/apps/calendar',
-    title: 'Calendar App',
-    subtext: 'Get dates',
+    title: 'Free tool 4',
+    subtext: 'Tính năng 4',
     avatar: ddIcon4,
   },
   {
     href: '/apps/contacts',
-    title: 'Contact Application',
-    subtext: '2 Unsaved Contacts',
+    title: 'Free tool 5',
+    subtext: 'Tính năng 5',
     avatar: ddIcon5,
   },
   {
     href: '/apps/tickets',
-    title: 'Tickets App',
-    subtext: 'Submit tickets',
+    title: 'Free tool 6',
+    subtext: 'Tính năng 6',
     avatar: ddIcon6,
   },
   {
     href: '/apps/email',
-    title: 'Email App',
-    subtext: 'Get new emails',
+    title: 'Free tool 7',
+    subtext: 'Tính năng 7',
     avatar: ddIcon7,
   },
   {
     href: '/apps/blog/posts',
-    title: 'Blog App',
-    subtext: 'added new blog',
+    title: 'Free tool 8',
+    subtext: 'Tính năng 8',
     avatar: ddIcon8,
   },
 ];

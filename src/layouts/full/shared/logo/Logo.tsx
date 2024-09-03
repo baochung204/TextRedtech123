@@ -15,7 +15,7 @@ import { ReactComponent as LogoLight } from 'src/assets/images/logos/light-logo.
 import { ReactComponent as LogoLightRTL } from 'src/assets/images/logos/light-logo-rtl.svg';
 import { styled } from '@mui/material';
 import { AppState } from 'src/store/Store';
-
+import logoRedtech from 'src/assets/images/logos/Hệ thống nhận diện_Logo - REDTECH.png';
 const Logo: FC = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const LinkStyled = styled(Link)(() => ({
@@ -23,6 +23,7 @@ const Logo: FC = () => {
     width: customizer.isCollapse ? '40px' : '180px',
     overflow: 'hidden',
     display: 'block',
+    margin: 'auto',
   }));
 
   if (customizer.activeDir === 'ltr') {
@@ -34,7 +35,9 @@ const Logo: FC = () => {
           alignItems: 'center',
         }}
       >
-        {customizer.activeMode === 'dark' ? <LogoLight /> : <LogoDark />}
+        {/* {customizer.activeMode === 'dark' ? <LogoLight /> : <LogoDark />}
+         */}
+        <img src={logoRedtech} alt="" width={180} height={40} />
       </LinkStyled>
     );
   }
