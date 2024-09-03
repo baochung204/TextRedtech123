@@ -85,17 +85,7 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-<<<<<<< HEAD
     title: 'Trợ lý',
-=======
-    title: 'Danh sách khách hàng',
-    icon: IconPackage,
-    href: '/apps/customerlist',
-  },
-  {
-    id: uniqueId(),
-    title: 'Assistant',
->>>>>>> main
     icon: IconChartDonut3,
     href: '/apps/assistant/',
     children: [
