@@ -21,7 +21,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
 
     {subtext}
 
-    <AuthSocialButtons title="Đăng nhập với" />
+    <AuthSocialButtons title="Đăng nhập " />
 
 
     <Stack>
