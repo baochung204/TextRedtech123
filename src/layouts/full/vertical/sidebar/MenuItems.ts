@@ -68,12 +68,18 @@ import {
 const Menuitems: MenuitemsType[] = [
   {
     navlabel: true,
-    subheader: 'Home',
+    subheader: 'Trang chủ',
+  },
+  {
+    id: uniqueId(),
+    title: 'Trang chủ',
+    icon: IconAppWindow,
+    href: '/landingpage',
   },
 
   {
     id: uniqueId(),
-    title: 'Affiliate ',
+    title: 'Affiliate',
     icon: IconPackage,
     href: '/apps/collaborate/',
     children: [
@@ -88,24 +94,23 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/apps/customerList',
       },
-    ]
+    ],
   },
-
   {
     id: uniqueId(),
-    title: 'Assistant',
+    title: 'Trợ lý',
     icon: IconChartDonut3,
     href: '/apps/assistant/',
     children: [
       {
         id: uniqueId(),
-        title: 'My Assistant',
+        title: 'Quản lý Trợ lý',
         icon: IconPoint,
         href: '/apps/assistant',
       },
       {
         id: uniqueId(),
-        title: 'Editor Assistant',
+        title: 'Tạo Trợ lý',
         icon: IconPoint,
         href: '/apps/assistant/add',
       },
@@ -113,17 +118,51 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Landingpage',
-    icon: IconAppWindow,
-    href: '/landingpage',
+    title: 'Thông kê',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
   },
+
   {
-    navlabel: true,
-    subheader: 'Admin',
+    id: uniqueId(),
+    title: 'Chính sách và điều khoản',
+    icon: IconAppWindow,
+    href: '/apps/rule',
   },
   {
     id: uniqueId(),
-    title: 'Dashboard',
+    title: 'Trạng thái affilate',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thành công',
+        icon: IconPoint,
+        href: '/apps/success',
+      },
+      {
+        id: uniqueId(),
+        title: 'Thất bại',
+        icon: IconPoint,
+        href: '/apps/fail',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đang chờ',
+        icon: IconPoint,
+        href: '/apps/pending',
+      },
+    ],
+  },
+
+  {
+    navlabel: true,
+    subheader: 'Quản trị',
+  },
+  {
+    id: uniqueId(),
+    title: 'Thống kê  ',
     icon: IconAppWindow,
     href: '/admin/dashborard',
   },
@@ -138,6 +177,26 @@ const Menuitems: MenuitemsType[] = [
     title: 'Quản lý tài khoản',
     icon: IconAppWindow,
     href: '/admin/user',
+  },
+  {
+    navlabel: true,
+    subheader: 'Shop',
+  },
+  {
+    id: uniqueId(),
+    title: 'Sản phẩm',
+    icon: IconPoint,
+    href: '/apps/ecommerce/shop',
+  },
+  {
+    navlabel: true,
+    subheader: 'Bài viết',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bài viết',
+    icon: IconPoint,
+    href: '/',
   },
 
   {

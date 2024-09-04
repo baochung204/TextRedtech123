@@ -36,7 +36,7 @@ const EcomProductList = Loadable(lazy(() => import('../views/apps/eCommerce/Ecom
 const EcomProductCheckout = Loadable(
   lazy(() => import('../views/apps/eCommerce/EcommerceCheckout')),
 );
-
+const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
 const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followers')));
@@ -157,7 +157,7 @@ const Router = [
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist', element: <CustomerList /> },
-
+      { path: '/apps/rule', element: <Rule /> },
       // { path: '/admin', element: <Blog /> },
       { path: '/admin/dashborard', element: <Admin /> },
       { path: '/admin/products', element: <Adminproducts /> },
