@@ -1,17 +1,21 @@
-/* .testimonial-slider .slick-slide {
-    margin: 0 18px;
-} */
+/* CSS */
+.slick-slide {
+    padding: 0 10px; /* Thay đổi khoảng cách giữa các thẻ */
+}
 
-.slick-dots li button:before {
-    font-size: 10px;
+.slick-track {
+    display: flex;
 }
-.testimonial-slider .slick-list{
-    padding:0 0 20px 0;
+
+.slick-slide > div {
+    display: flex;
+    justify-content: center;
 }
-.slick-dots li {
+
+.slick-slide .slick-slide {
     margin: 0;
 }
 
-.slick-dots {
-    bottom: -50px
+.slick-slide img {
+    width: 100%;
 }
