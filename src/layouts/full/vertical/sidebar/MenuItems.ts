@@ -91,13 +91,13 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'My Assistant',
+        title: 'Quản lý Trợ lý',
         icon: IconPoint,
         href: '/apps/assistant',
       },
       {
         id: uniqueId(),
-        title: 'Editor Assistant',
+        title: 'Tạo Trợ lý',
         icon: IconPoint,
         href: '/apps/assistant/add',
       },

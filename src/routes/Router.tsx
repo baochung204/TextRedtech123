@@ -129,7 +129,7 @@ const TwoSteps = Loadable(lazy(() => import('../views/authentication/auth1/TwoSt
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
-
+const Updating = Loadable(lazy(()=> import('../views/authentication/Updating')));
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
 // buypoint
@@ -257,6 +257,8 @@ const Router = [
       { path: '/auth/two-steps', element: <TwoSteps /> },
       { path: '/auth/two-steps2', element: <TwoSteps2 /> },
       { path: '/auth/maintenance', element: <Maintenance /> },
+      { path: '/auth/updating', element: <Updating /> },
+
       { path: '/landingpage', element: <Landingpage /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
