@@ -98,8 +98,8 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 
 interface OrderType {
-  orderno: string;
-  items: string;
+  id: string;
+  model: string;
   imgsrc: any;
   customer: string;
   total: string;
@@ -109,8 +109,8 @@ interface OrderType {
 
 const rows: OrderType[] = [
   {
-    orderno: 'ORD - 0120145',
-    items: '5',
+    id: 'ORD - 0120145',
+    model: 'GPT-3.5',
     imgsrc: img1,
     customer: 'Sunil Joshi',
     total: '550,000',
@@ -118,8 +118,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 09:51:40',
   },
   {
-    orderno: 'ORD - 0120146',
-    items: '1',
+    id: 'ORD - 0120146',
+    model: 'GPT-4',
     imgsrc: img2,
     customer: 'John Deo',
     total: '45,000',
@@ -127,8 +127,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 07:46:00',
   },
   {
-    orderno: 'ORD - 0120460',
-    items: '3',
+    id: 'ORD - 0120460',
+    model: 'GPT-4',
     imgsrc: img3,
     customer: 'Mily Peter',
     total: '57,000',
@@ -136,8 +136,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 04:19:38',
   },
   {
-    orderno: 'ORD - 0124060',
-    items: '11',
+    id: 'ORD - 0124060',
+    model: 'GPT-3',
     imgsrc: img4,
     customer: 'Andrew McDownland',
     total: '457,000',
@@ -145,8 +145,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 04:12:29',
   },
   {
-    orderno: 'ORD - 0124568',
-    items: '4',
+    id: 'ORD - 0124568',
+    model: 'GPT-4',
     imgsrc: img5,
     customer: 'Christopher Jamil',
     total: '120,000',
@@ -154,8 +154,8 @@ const rows: OrderType[] = [
     date: '15 Apr, 2021 04:12:50',
   },
   {
-    orderno: 'ORD - 0120146',
-    items: '1',
+    id: 'ORD - 0120146',
+    model: 'GPT-4',
     imgsrc: img2,
     customer: 'John Deo',
     total: '45,000',
@@ -163,8 +163,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 07:46:00',
   },
   {
-    orderno: 'ORD - 0120460',
-    items: '3',
+    id: 'ORD - 0120460',
+    model: 'GPT-4',
     imgsrc: img3,
     customer: 'Mily Peter',
     total: '57,000',
@@ -172,8 +172,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 04:19:38',
   },
   {
-    orderno: 'ORD - 0124060',
-    items: '11',
+    id: 'ORD - 0124060',
+    model: 'GPT-3',
     imgsrc: img4,
     customer: 'Andrew McDownland',
     total: '457,000',
@@ -181,8 +181,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 04:12:29',
   },
   {
-    orderno: 'ORD - 0124568',
-    items: '4',
+    id: 'ORD - 0124568',
+    model: 'GPT-4',
     imgsrc: img5,
     customer: 'Christopher Jamil',
     total: '120,000',
@@ -190,8 +190,8 @@ const rows: OrderType[] = [
     date: '15 Apr, 2021 04:12:50',
   },
   {
-    orderno: 'ORD - 0120145',
-    items: '5',
+    id: 'ORD - 0120145',
+    model: 'GPT-4',
     imgsrc: img1,
     customer: 'Sunil Joshi',
     total: '550,000',
@@ -199,8 +199,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 09:51:40',
   },
   {
-    orderno: 'ORD - 0124060',
-    items: '11',
+    id: 'ORD - 0124060',
+    model: 'GPT-4',
     imgsrc: img4,
     customer: 'Andrew McDownland',
     total: '457,000',
@@ -208,8 +208,8 @@ const rows: OrderType[] = [
     date: '10 Jun, 2021 04:12:29',
   },
   {
-    orderno: 'ORD - 0124568',
-    items: '4',
+    id: 'ORD - 0124568',
+    model: 'GPT-4',
     imgsrc: img5,
     customer: 'Christopher Jamil',
     total: '120,000',
@@ -238,9 +238,8 @@ const Assistant = () => {
   };
 
   return (
-    <PageContainer title="My Assistant" description="this is Pagination Table page">
-      <ParentCard title="My Assistant">
-      
+    <PageContainer title="Table" description="this is Pagination Table page">
+      <ParentCard title="Quản lý Assistant">
         <BlankCard>
           <TableContainer>
             <Table
@@ -252,23 +251,23 @@ const Assistant = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>
-                    <Typography variant="h6">Order No.</Typography>
+                    <Typography variant="h6">Id</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Customer</Typography>
+                    <Typography variant="h6">Tên</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Items</Typography>
+                    <Typography variant="h6">Model</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Total</Typography>
+                    <Typography variant="h6">Tích hợp</Typography>
                   </TableCell>
 
                   <TableCell>
-                    <Typography variant="h6">Date</Typography>
+                    <Typography variant="h6">Ngày tạo</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">ACTIONS</Typography>
+                    <Typography variant="h6">Hoạt động </Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -279,11 +278,11 @@ const Assistant = () => {
                 ).map((row, index) => (
                   <TableRow key={index}>
                     <TableCell>
-                      <Typography variant="subtitle2">{row.orderno}</Typography>
+                      <Typography variant="subtitle2">{row.id}</Typography>
                     </TableCell>
                     <TableCell>
-                      <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+                      <Stack direction="row" spacing={2} alignmodel="center">
+                        {/* <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} /> */}
                         <Typography variant="subtitle2" fontWeight="600">
                           {row.customer}
                         </Typography>
@@ -291,7 +290,7 @@ const Assistant = () => {
                     </TableCell>
                     <TableCell>
                       <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        {row.items}
+                        {row.model}
                       </Typography>
                     </TableCell>
 
@@ -306,8 +305,8 @@ const Assistant = () => {
                     </TableCell>
                     <TableCell>
                       
-                      <DeleteIcon/>
-                      <EditIcon/>
+                      <EditIcon sx={{marginRight: '10px', cursor: "pointer"}}/>
+                      <DeleteIcon sx={{marginRight: '10px', cursor: "pointer"}}/>
                     </TableCell>
                   </TableRow>
                 ))}
