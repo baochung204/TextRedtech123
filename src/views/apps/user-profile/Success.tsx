@@ -1,8 +1,6 @@
 import { Avatar, Box, Grid, styled, Typography } from '@mui/material';
 import userimg from 'src/assets/images/profile/user-1.jpg';
-
 import certificate from 'src/assets/images/certificate/certificate.png';
-
 import React from 'react';
 
 const ProfileImage = styled(Box)(() => ({
@@ -16,22 +14,18 @@ const ProfileImage = styled(Box)(() => ({
   margin: '0 auto',
 }));
 
-
-// const SuccessMessageWrapper = styled(Box)(() => ({
-//   backgroundColor: '#f0fff4',
-//   padding: '20px',
-//   borderRadius: '8px',
-//   border: '2px solid #4caf50',
-//   marginTop: '20px',
-// }));
-
+const SuccessMessageWrapper = styled(Box)(() => ({
+  backgroundColor: '#f0fff4',
+  padding: '20px',
+  borderRadius: '8px',
+  border: '2px solid #4caf50',
+  marginTop: '20px',
+}));
 
 const Success = () => {
   return (
     <>
-
       <Grid container spacing={2}>
-
         <Grid item xs={12}>
           <Box
             sx={{
@@ -42,10 +36,8 @@ const Success = () => {
             }}
           >
             <Grid container spacing={2} alignItems="center" justifyContent="center">
-
               {/* Left side (Avatar, User Info, Certificate) */}
               <Grid item xs={6} sm={6} textAlign="center">
-
                 <ProfileImage>
                   <Avatar
                     src={userimg}
@@ -59,62 +51,41 @@ const Success = () => {
                   />
                 </ProfileImage>
 
-
                 {/* User Information */}
-
-              </Grid>
-
-              <Grid item xs={8} sm={9} textAlign="left">
-
                 <Typography
                   variant="h4"
                   component="h1"
                   gutterBottom
                   sx={{ fontWeight: 'bold', color: '#333', marginTop: '10px' }}
+                >
                   Nguyễn Đăng Hòa
                 </Typography>
+
                 <Typography variant="body1" sx={{ color: '#555', marginBottom: '4px' }}>
                   0981522873
                 </Typography>
-
                 <Typography variant="body1" sx={{ color: '#555', marginBottom: '20px' }}>
                   hoaace2003@gmail.com
                 </Typography>
+                {/* Success icon */}
                 <img
                   src="https://static.vecteezy.com/system/resources/previews/009/342/746/original/tick-and-cross-clipart-design-illustration-free-png.png"
                   alt="Success Icon"
-                  style={{ width: '150px', height: '150px', marginBottom: '20px' }}
+                  style={{ width: '90px', height: '90px', marginBottom: '20px' }}
                 />
-
-                {/* Certificate */}
               </Grid>
 
               {/* Center (Success Icon and Message) */}
               <Grid item xs={6} sm={6} textAlign="center">
-                {/* Success icon */}
+                {/* Certificate */}
                 <img
                   src={certificate}
                   alt="Certificate"
                   style={{ marginTop: '20px', width: '350px', height: '400px' }}
                 />
               </Grid>
-              {/* <Grid item xs={12} sm={12} textAlign="center">
-
-                <Typography variant="body1" sx={{ color: '#555' }}>
-                  hoaace2003@gmail.com
-                </Typography>
-              </Grid>
-
-              {/* Success message below */}
-              <Grid item xs={12} textAlign="center">
-                <img
-                  src="https://static.vecteezy.com/system/resources/previews/009/342/746/original/tick-and-cross-clipart-design-illustration-free-png.png"
-                  alt=""
-                  style={{ width: '170px', height: '170px' }}
-                />
-
-                {/* Enhanced Success Message */}
-
+              <Grid item xs={12} sm={12}>
+                {/* Success Message */}
                 <SuccessMessageWrapper>
                   <Typography
                     variant="h5"
@@ -134,9 +105,7 @@ const Success = () => {
                     kiếm hoa hồng từ mỗi lượt giới thiệu.
                   </Typography>
                 </SuccessMessageWrapper>
-
               </Grid>
-
             </Grid>
           </Box>
         </Grid>
