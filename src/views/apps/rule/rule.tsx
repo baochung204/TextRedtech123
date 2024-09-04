@@ -4,8 +4,7 @@ import React from 'react';
 const rule = () => {
   return (
     <>
-
-
+      {/* thay */}
       <Typography
         variant="h1"
         align="center"
@@ -17,7 +16,7 @@ const rule = () => {
       <Box
         sx={{
           padding: '16px',
-        }}      
+        }}
       >
         <h3>MỤC I. ĐỐI TÁC</h3>
         <div>
