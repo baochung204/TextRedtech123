@@ -34,7 +34,7 @@ const ProfileTab = () => {
     {
       label: 'Thông tin tài khoản',
       icon: <IconHeart size="20" />,
-      to: '/apps/followers',
+      to: '/user-profile',
     },
     {
       label: 'Người theo dõi',

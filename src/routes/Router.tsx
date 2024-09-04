@@ -47,6 +47,9 @@ const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
 
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
+const Success = Loadable(lazy(() => import('../views/apps/user-profile/Success')));
+const Fail = Loadable(lazy(() => import('../views/apps/user-profile/Fail')));
+const Pending = Loadable(lazy(() => import('../views/apps/user-profile/Pending')));
 
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
@@ -143,6 +146,7 @@ const HistoryBuyService = Loadable(
 
 // rule
 const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
+
 // pay
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 const Router = [
@@ -181,6 +185,9 @@ const Router = [
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
       { path: '/apps/affiliate', element: <Affiliate /> },
+      { path: '/apps/success', element: <Success /> },
+      { path: '/apps/fail', element: <Fail /> },
+      { path: '/apps/pending', element: <Pending /> },
       { path: '/apps/person-affiliate', element: <PersonAffiliate /> },
       { path: '/apps/company-affiliate', element: <CompanyAffiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
