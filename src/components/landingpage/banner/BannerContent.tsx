@@ -29,9 +29,9 @@ const BannerContent = () => {
       >
         <Typography variant="h6" display={'flex'} gap={1} mb={2}>
           <Typography color={'secondary'}>
-            <IconRocket size={'21'} />
+            {/* <IconRocket size={'21'} /> */}
           </Typography>{' '}
-          Kick start your project with
+          {/* Kick start your project with */}
         </Typography>
 
         <Typography
