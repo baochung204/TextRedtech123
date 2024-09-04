@@ -74,7 +74,7 @@ const ProductFilter = () => {
     {
       id: 3,
       name: 'ChatAi',
-      sort: 'chatAi',
+      sort: 'fashion',
       icon: IconHanger,
     },
     {

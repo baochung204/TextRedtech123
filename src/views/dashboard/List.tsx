@@ -1,6 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  IconButton,
+  Stack,
+  Typography,
+} from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 import Expence from 'src/components/dashboards/ecommerce/Expence';
@@ -21,7 +30,9 @@ import Projects from 'src/components/dashboards/modern/Projects';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
 import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
-
+import { IconPlayerPlay, IconPlayerSkipBack } from '@tabler/icons-react';
+import { IconPlayerSkipForward } from '@tabler/icons-react';
+import img1 from 'src/assets/images/blog/blog-img5.jpg';
 const List = () => {
   return (
     <div>

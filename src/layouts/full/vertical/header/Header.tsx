@@ -44,7 +44,7 @@ const Header = () => {
     width: '100%',
     color: theme.palette.text.secondary,
   }));
-
+  const a = 70000;
   return (
     <AppBarStyled position="sticky" color="default">
       <ToolbarStyled>
@@ -71,7 +71,17 @@ const Header = () => {
 
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-          <Box sx={{ display: 'flex', gap: 1, p: '12px', alignItems: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 1,
+              px: '15px',
+              py: '3px',
+              alignItems: 'center',
+              borderRadius: '5px',
+              border: '1px solid #FC2005',
+            }}
+          >
             <Typography
               sx={{
                 fontSize: { sx: '14px', sm: '16px' },
@@ -81,7 +91,7 @@ const Header = () => {
                 position: 'relative',
               }}
             >
-              70000
+              {a.toLocaleString('vn-VN')}
             </Typography>
             {/* <Box sx={{ backgroundColor: 'black', w: '40px', h: '40px' }}>
               <img src={logochicken} alt="" width={30} height={30} style={{ padding: '2px' }} />

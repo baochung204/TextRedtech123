@@ -94,7 +94,7 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/apps/customerList',
       },
-    ]
+    ],
   },
   {
     id: uniqueId(),
@@ -129,7 +129,33 @@ const Menuitems: MenuitemsType[] = [
     icon: IconAppWindow,
     href: '/apps/rule',
   },
-  
+  {
+    id: uniqueId(),
+    title: 'Trạng thái affilate',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thành công',
+        icon: IconPoint,
+        href: '/apps/success',
+      },
+      {
+        id: uniqueId(),
+        title: 'Thất bại',
+        icon: IconPoint,
+        href: '/apps/fail',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đang chờ',
+        icon: IconPoint,
+        href: '/apps/pending',
+      },
+    ],
+  },
+
   {
     navlabel: true,
     subheader: 'Quản trị',

@@ -70,7 +70,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/apps/chats"
+        to="/apps/ecommerce/shop"
         component={Link}
       >
         Khóa học
@@ -79,7 +79,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/apps/calendar"
+        to="/apps/rule"
         component={Link}
       >
         Tài liệu
@@ -97,7 +97,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/buy/point"
+        to="/landingpage"
         component={Link}
       >
         Sự kiện
@@ -106,7 +106,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/buy/service"
+        to="/auth/updating"
         component={Link}
       >
         Mini game
