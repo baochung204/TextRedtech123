@@ -27,6 +27,7 @@ const Cart = () => {
       {/* ------------------------------------------- */}
       {/* Cart Content */}
       {/* ------------------------------------------- */}
+
       <Box>
         <CartItems />
       </Box>
@@ -46,10 +47,11 @@ const Cart = () => {
           }),
         }}
       >
-        <Badge color="error" badgeContent={bcount}>
+        {' '}
+        <Badge color="warning" badgeContent={bcount}>
           <IconShoppingCart size="21" stroke="1.5" />
         </Badge>
-      </IconButton>
+      </IconButton>{' '}
       {/* ------------------------------------------- */}
       {/* Cart Sidebar */}
       {/* ------------------------------------------- */}

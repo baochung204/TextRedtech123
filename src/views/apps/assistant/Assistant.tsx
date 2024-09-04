@@ -11,17 +11,17 @@ import AddIcon from '@mui/icons-material/Add';
 const BCrumb = [
   {
     to: '/',
-    title: 'Home',
+    title: 'Trang chủ',
   },
   {
     to: '/apps/assistant',
-    title: 'My Assistant',
+    title: 'Quản lý Assistant',
   },
 ];
 
 const Assistant = () => {
   return (
-    <PageContainer title="Shop List" description="this is Shop List page">
+    <PageContainer title="Assistant" description="this is Shop List page">
       {/* breadcrumb */}
       <Breadcrumb title="Assistant" items={BCrumb} />
       <Button
@@ -30,7 +30,7 @@ const Assistant = () => {
             style={{  marginBottom:'20px' }} // Khoảng cách giữa ParentCard và Button
           >
             <AddIcon fontSize="small" style={{ marginRight: '8px' }} />
-            Add New
+            Thêm mới
           </Button>
       <BlankCard>
         {/* ------------------------------------------- */}

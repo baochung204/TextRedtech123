@@ -12,14 +12,14 @@ import { AppState } from 'src/store/Store';
 
 const Languages = [
   {
+    flagname: 'Tiếng Việt (VI)',
+    icon: FlagVn,
+    value: 'vn',
+  },
+  {
     flagname: 'English (UK)',
     icon: FlagEn,
     value: 'en',
-  },
-  {
-    flagname: 'Tiếng Việt (VI)',
-    icon: FlagVn,
-    value: 'ch',
   },
 ];
 

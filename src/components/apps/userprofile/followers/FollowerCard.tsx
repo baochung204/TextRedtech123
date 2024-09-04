@@ -45,7 +45,7 @@ const FollowerCard = () => {
           <Stack direction="row" alignItems={'center'} mt={2}>
             <Box>
               <Typography variant="h3">
-                Followers &nbsp;
+                Trợ lý &nbsp;
                 <Chip label={getFollowers.length} color="secondary" size="small" />
               </Typography>
             </Box>
@@ -78,7 +78,9 @@ const FollowerCard = () => {
                   <Stack direction={'row'} gap={2} alignItems="center">
                     <Avatar alt="Remy Sharp" src={profile.avatar} />
                     <Box>
-                      <Typography variant="h6" textOverflow={'ellipsis'} noWrap>{profile.name}</Typography>
+                      <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
+                        {profile.name}
+                      </Typography>
                       <Typography
                         variant="caption"
                         sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
