@@ -167,49 +167,49 @@ interface appsLinkType {
 
 const appsLink: appsLinkType[] = [
   {
-    href: '/404',
+    href: '/auth/updating',
     title: 'Free tool 1',
     subtext: 'Tính năng 1',
     avatar: ddIcon1,
   },
   {
-    href: '/404',
+    href: '/auth/updating',
     title: 'Free tool 2',
     subtext: 'Tính năng 2',
     avatar: ddIcon2,
   },
   {
-    href: '/apps/notes',
+    href: '/auth/updating',
     title: 'Free tool 3',
     subtext: 'Tính năng 3',
     avatar: ddIcon3,
   },
   {
-    href: '/apps/calendar',
+    href: '/auth/updating',
     title: 'Free tool 4',
     subtext: 'Tính năng 4',
     avatar: ddIcon4,
   },
   {
-    href: '/apps/contacts',
+    href: '/auth/updating',
     title: 'Free tool 5',
     subtext: 'Tính năng 5',
     avatar: ddIcon5,
   },
   {
-    href: '/apps/tickets',
+    href: '/auth/updating',
     title: 'Free tool 6',
     subtext: 'Tính năng 6',
     avatar: ddIcon6,
   },
   {
-    href: '/apps/email',
+    href: '/auth/updating',
     title: 'Free tool 7',
     subtext: 'Tính năng 7',
     avatar: ddIcon7,
   },
   {
-    href: '/apps/blog/posts',
+    href: '/auth/updating',
     title: 'Free tool 8',
     subtext: 'Tính năng 8',
     avatar: ddIcon8,

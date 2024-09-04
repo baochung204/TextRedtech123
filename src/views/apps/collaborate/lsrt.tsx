@@ -21,6 +21,7 @@ import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
+import { tabledh } from 'src/components/tables/tabledh';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
 const BCrumb = [
@@ -42,7 +43,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
   return 0;
 }
-const rows: EnTableType[] = EnhancedTableData;
+const rows: EnTableType[] = tabledh;
 
 type Order = 'asc' | 'desc';
 

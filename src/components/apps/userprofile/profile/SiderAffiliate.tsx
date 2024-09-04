@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Switch } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -27,6 +27,19 @@ const SiderAffiliate = () => {
           backgroundColor: 'white', // Optional background color
         }}
       >
+        <Typography
+          variant="h6"
+          align="center"
+          sx={{
+            mb: 2, // Adds some margin below the text
+            textAlign: 'justify', // Justifies text so that it starts and ends at the same point
+            width: '100%', // Ensures the text takes up the full width of the box
+          }}
+        >
+          Bạn muốn kiếm thêm thu nhập từ việc giới thiệu sản phẩm? Hãy chọn phương thức phù hợp với
+          bạn nhất!
+        </Typography>
+
         <Button
           variant="outlined"
           color="secondary"
@@ -45,9 +58,6 @@ const SiderAffiliate = () => {
         >
           Doanh nghiệp
         </Button>
-        <Box textAlign="center">
-          <Switch defaultChecked />
-        </Box>
       </Box>
     </Box>
   );
