@@ -16,22 +16,18 @@ const ProfileImage = styled(Box)(() => ({
   margin: '0 auto',
 }));
 
-
-// const SuccessMessageWrapper = styled(Box)(() => ({
-//   backgroundColor: '#f0fff4',
-//   padding: '20px',
-//   borderRadius: '8px',
-//   border: '2px solid #4caf50',
-//   marginTop: '20px',
-// }));
-
+const SuccessMessageWrapper = styled(Box)(() => ({
+  backgroundColor: '#f0fff4',
+  padding: '20px',
+  borderRadius: '8px',
+  border: '2px solid #4caf50',
+  marginTop: '20px',
+}));
 
 const Success = () => {
   return (
     <>
-
       <Grid container spacing={2}>
-
         <Grid item xs={12}>
           <Box
             sx={{
@@ -42,10 +38,8 @@ const Success = () => {
             }}
           >
             <Grid container spacing={2} alignItems="center" justifyContent="center">
-
               {/* Left side (Avatar, User Info, Certificate) */}
               <Grid item xs={6} sm={6} textAlign="center">
-
                 <ProfileImage>
                   <Avatar
                     src={userimg}
@@ -59,20 +53,19 @@ const Success = () => {
                   />
                 </ProfileImage>
 
-
                 {/* User Information */}
-
               </Grid>
 
               <Grid item xs={8} sm={9} textAlign="left">
-
                 <Typography
                   variant="h4"
                   component="h1"
                   gutterBottom
                   sx={{ fontWeight: 'bold', color: '#333', marginTop: '10px' }}
+                >
                   Nguyễn Đăng Hòa
                 </Typography>
+
                 <Typography variant="body1" sx={{ color: '#555', marginBottom: '4px' }}>
                   0981522873
                 </Typography>
@@ -134,9 +127,7 @@ const Success = () => {
                     kiếm hoa hồng từ mỗi lượt giới thiệu.
                   </Typography>
                 </SuccessMessageWrapper>
-
               </Grid>
-
             </Grid>
           </Box>
         </Grid>
