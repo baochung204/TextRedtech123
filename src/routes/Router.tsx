@@ -84,6 +84,7 @@ const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/Quil
 import FormRequest from 'src/views/forms/FormRequest';
 import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
+
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -139,6 +140,9 @@ const HistoryBuyPoint = Loadable(lazy(() => import('../views/historybuypoint/his
 const HistoryBuyService = Loadable(
   lazy(() => import('../views/historybuyservice/historybuyservice')),
 );
+
+// rule
+const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
 // pay
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 const Router = [
@@ -153,6 +157,7 @@ const Router = [
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
+      { path: '/apps/rule', element: <Rule /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },

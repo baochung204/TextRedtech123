@@ -68,30 +68,24 @@ import {
 const Menuitems: MenuitemsType[] = [
   {
     navlabel: true,
-    subheader: 'Home',
+    subheader: 'Trang chủ',
+  },
+  {
+    id: uniqueId(),
+    title: 'Trang chủ',
+    icon: IconAppWindow,
+    href: '/landingpage',
   },
 
   {
     id: uniqueId(),
-    title: 'Dashboards',
-    icon: IconShoppingCart,
-    href: '/dashboards/list',
-  },
-  {
-    id: uniqueId(),
-    title: 'Trang CTV tiếp thị sp',
+    title: 'Trang tiếp thị sản phẩm',
     icon: IconPackage,
     href: '/apps/collaborate/',
   },
   {
     id: uniqueId(),
-    title: 'Danh sách khách hàng',
-    icon: IconPackage,
-    href: '/apps/customerlist',
-  },
-  {
-    id: uniqueId(),
-    title: 'Assistant',
+    title: 'Trợ lý',
     icon: IconChartDonut3,
     href: '/apps/assistant/',
     children: [
@@ -111,23 +105,29 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Landingpage',
-    icon: IconAppWindow,
-    href: '/landingpage',
+    title: 'Thông kê',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
   },
+
   {
     id: uniqueId(),
+    title: 'Chính sách và điều khoản',
+    icon: IconAppWindow,
+    href: '/apps/rule',
+  },
+  {
     title: 'Danh sách khách hàng',
     icon: IconAppWindow,
     href: '/apps/customerList',
   },
   {
     navlabel: true,
-    subheader: 'Admin',
+    subheader: 'Quản trị',
   },
   {
     id: uniqueId(),
-    title: 'Dashboard',
+    title: 'Thống kê  ',
     icon: IconAppWindow,
     href: '/admin/dashborard',
   },
@@ -142,6 +142,26 @@ const Menuitems: MenuitemsType[] = [
     title: 'Quản lý tài khoản',
     icon: IconAppWindow,
     href: '/admin/user',
+  },
+  {
+    navlabel: true,
+    subheader: 'Shop',
+  },
+  {
+    id: uniqueId(),
+    title: 'Sản phẩm',
+    icon: IconPoint,
+    href: '/apps/ecommerce/shop',
+  },
+  {
+    navlabel: true,
+    subheader: 'Bài viết',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bài viết',
+    icon: IconPoint,
+    href: '/',
   },
 
   {
