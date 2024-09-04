@@ -79,9 +79,22 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
-    title: 'Trang tiếp thị sản phẩm',
+    title: 'Tiếp thị ',
     icon: IconPackage,
     href: '/apps/collaborate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Tiếp thị sản phẩm',
+        icon: IconPoint,
+        href: '/apps/collaborate/',
+      },
+      {
+        title: 'Danh sách khách hàng',
+        icon: IconPoint,
+        href: '/apps/customerList',
+      },
+    ]
   },
   {
     id: uniqueId(),
@@ -116,11 +129,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconAppWindow,
     href: '/apps/rule',
   },
-  {
-    title: 'Danh sách khách hàng',
-    icon: IconAppWindow,
-    href: '/apps/customerList',
-  },
+  
   {
     navlabel: true,
     subheader: 'Quản trị',
