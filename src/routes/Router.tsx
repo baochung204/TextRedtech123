@@ -50,7 +50,6 @@ const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affilia
 const Success = Loadable(lazy(() => import('../views/apps/user-profile/Success')));
 const Fail = Loadable(lazy(() => import('../views/apps/user-profile/Fail')));
 const Pending = Loadable(lazy(() => import('../views/apps/user-profile/Pending')));
-
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
 const MuiAccordion = Loadable(lazy(() => import('../views/ui-components/MuiAccordion')));
@@ -132,7 +131,7 @@ const TwoSteps = Loadable(lazy(() => import('../views/authentication/auth1/TwoSt
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
-const Updating = Loadable(lazy(()=> import('../views/authentication/Updating')));
+const Updating = Loadable(lazy(() => import('../views/authentication/Updating')));
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
 // buypoint
@@ -146,7 +145,6 @@ const HistoryBuyService = Loadable(
 
 // rule
 const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
-
 // pay
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 const Router = [

@@ -94,7 +94,7 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/apps/customerList',
       },
-    ]
+    ],
   },
   {
     id: uniqueId(),
@@ -155,7 +155,7 @@ const Menuitems: MenuitemsType[] = [
       },
     ],
   },
-  
+
   {
     navlabel: true,
     subheader: 'Quản trị',
@@ -218,7 +218,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconShoppingCart,
     href: '/dashboards/ecommerce',
   },
-  
+
   {
     id: uniqueId(),
     title: 'Landingpage',
