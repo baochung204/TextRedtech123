@@ -22,16 +22,16 @@ import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import { tabledh } from 'src/components/tables/tabledh';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Trang chủ',
-  },
-  { to: '/buy/point', title: 'Quy đổi ngân lượng' },
-  { title: 'Lịch sử quy đổi ' },
-];
+// const BCrumb = [
+//   {
+//     to: '/',
+//     title: 'Trang chủ',
+//   },
+//   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
+//   { title: 'Lịch sử quy đổi ' },
+// ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -96,22 +96,10 @@ const headCells: HeadCell[] = [
     label: 'ID Yêu cầu',
   },
   {
-    id: 'paymentMethod',
-    numeric: false,
-    disablePadding: false,
-    label: 'Phương thức thanh toán',
-  },
-  {
     id: 'amount',
     numeric: false,
     disablePadding: false,
     label: 'Số tiền',
-  },
-  {
-    id: 'numberPrice',
-    numeric: false,
-    disablePadding: false,
-    label: 'Thanh toán',
   },
   {
     id: 'status',
@@ -314,7 +302,7 @@ const HistoryMoney = () => {
                         // aria-checked={isItemSelected}
                         tabIndex={-1}
                         key={row.id}
-                        // selected={isItemSelected}
+                      // selected={isItemSelected}
                       >
                         <TableCell>
                           <Stack spacing={2} direction="row">
