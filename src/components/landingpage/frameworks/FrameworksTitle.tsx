@@ -22,7 +22,7 @@ const FrameworksTitle = () => {
                         color: 'text.primary'
                     }}
                 >
-                    "Ưu điểm của Vbee AIVoice"
+                    "Ưu điểm của Redtech AIVoice"
                 </Typography>
                 <Typography 
                     variant="h2" 
