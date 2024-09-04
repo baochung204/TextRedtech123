@@ -238,8 +238,8 @@ const Assistant = () => {
   };
 
   return (
-    <PageContainer title="Table" description="this is Pagination Table page">
-      <ParentCard title="Quản lý Assistant">
+    <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
+      <ParentCard title="Quản lý Trợ lý">
         <BlankCard>
           <TableContainer>
             <Table
