@@ -25,7 +25,7 @@ const ProfileImage = styled(Box)(() => ({
 const Success = () => {
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} my={5}>
         <Grid item xs={12}>
           <Box
             sx={{

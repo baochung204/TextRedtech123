@@ -56,11 +56,11 @@ const SliderData: SliderType[] = [
     subtitle: 'Tính năng khả dụng',
     avatar: img2,
     subtext:
-      'Chất lượng thiết kế tuyệt vời, khả năng tùy chỉnh và tính linh hoạt tốt hơn nhiều so với các sản phẩm khác có trên thị trường. Tôi thực sự giới thiệu AdminMart cho những người khác.',
+      'Chất lượng thiết  kế tuyệt vời, khả năng tùy chỉnh và tính linh hoạt tốt hơn nhiều so với các sản phẩm khác có trên thị trường. Tôi thực sự giới thiệu AdminMart cho những người khác.',
   },
   {
     title: 'Tèo bác',
-    subtitle: 'Tính năng khả dụng',
+    subtitle: 'Tính năng khả dụng ',
     avatar: img3,
     subtext:
       'Mẫu này tuyệt vời, giao diện người dùng phong phú và cập nhật. Mặc dù khá đầy đủ, tôi đề xuất cải thiện một chút tài liệu. Cảm ơn & Rất khuyến khích!',
@@ -120,8 +120,27 @@ const Testimonial = () => {
                       <Stack direction="row">
                         <Avatar src={slider.avatar} alt="user" sx={{ width: 40, height: 40 }} />
                         <Box ml={2}>
-                          <Typography variant="h6">{slider.title}</Typography>
-                          <Typography color="textSecondary" variant="subtitle1">
+                          <Typography
+                            variant="h6"
+                            style={{
+                              width: '160px',
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                            }}
+                          >
+                            {slider.title}
+                          </Typography>
+                          <Typography
+                            color="textSecondary"
+                            variant="subtitle1"
+                            style={{
+                              width: '160px',
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                            }}
+                          >
                             {slider.subtitle}
                           </Typography>
                         </Box>

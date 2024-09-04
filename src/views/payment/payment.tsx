@@ -1,6 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import React, { useState } from 'react';
+import { Stack } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 import {
   Box,
   Drawer,
@@ -15,13 +19,18 @@ import {
   FormControl,
   Radio,
   RadioGroup,
+  Card,
+  CardMedia,
+  CardContent,
+  Tooltip,
 } from '@mui/material';
+import logochicken from 'src/assets/images/logos/logo chicken.png';
+
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 import AppCard from 'src/components/shared/AppCard';
 import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
 import { IconChevronDown } from '@tabler/icons-react';
-import giftBox from '../../assets/images/icon.png/gift_9521097.png';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -32,6 +41,7 @@ import Iconpaypal from 'src/assets/images/logoPay/paypal.svg';
 import Iconvnpay from 'src/assets/images/logoPay/vnpay.svg';
 import Iconzalopay from 'src/assets/images/logoPay/zalopay.svg';
 import Iconshopeepay from 'src/assets/images/logoPay/shopeepay.svg';
+import { title } from 'process';
 const CustomInput = styled((props: any) => <TextField {...props} />)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     borderRadius: '50px',
@@ -66,6 +76,37 @@ const PayMentPonit = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
+  };
+  const [selectedPackage, setSelectedPackage] = useState(null);
+
+  const packages = [
+    {
+      id: 5,
+      img: 'http://localhost:5173/src/assets/images/products/s11.jpg',
+      title: 'Chatbot marketing',
+      price: 1055000,
+      reward: 'Thưởng 10%',
+    },
+    {
+      id: 6,
+      img: 'http://localhost:5173/src/assets/images/products/s10.jpg',
+      title: 'Chatbot hỗ trợ khách hàng',
+      price: 2010000,
+      reward: 'Thưởng 15%',
+    },
+    {
+      id: 7,
+      img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
+      title: 'Chatbot thương mại điện tử',
+      price: 5025000,
+      reward: 'Thưởng 20%',
+    },
+  ];
+
+  const handleSelectPackage = (pkg: any) => {
+    setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
+    console.log(`Đã chọn gói ${pkg.amount}`);
+    // Thêm logic xử lý khi khách hàng chọn gói.
   };
   return (
     <PageContainer title="Email App" description="this is email page">
@@ -590,7 +631,7 @@ const PayMentPonit = () => {
               </Box>
               <Box sx={{ mt: 2, backgroundColor: 'white' }}>
                 <Box display={'flex'} alignItems="center">
-                  <Typography variant="h4">Khuyến mại</Typography>
+                  <Typography variant="h4">Khuyến mãi</Typography>
                 </Box>
                 <Accordion
                   sx={{
@@ -628,7 +669,7 @@ const PayMentPonit = () => {
                       autoComplete="current-password"
                       variant="outlined"
                       fullWidth
-                      placeholder="Nhập mã khuyến mại"
+                      placeholder="Nhập mã khuyến mãi"
                       sx={{
                         px: 0,
                         width: '80%',
@@ -708,57 +749,147 @@ const PayMentPonit = () => {
                     </Box>
                   </Box>
                 </Accordion>
-                <Box
+                <Accordion
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-
-                    '&:hover button': {
-                      opacity: 1,
-                      visibility: 'visible',
-                      zIndex: 10,
-                    },
-                    '&:hover .price': {
-                      opacity: 0,
-                      visibility: 'hidden',
-                    },
+                    mt: 2,
+                    border: 'none',
+                    boxShadow: 'none',
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <img src={giftBox} alt="" width={20} height={20} />
-                    <Typography sx={{ fontSize: 16, fontWeight: 500 }}>Giảm 900.000 VNĐ</Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
-                    <Box
-                      className="price"
-                      sx={{
-                        fontSize: 16,
-                        fontWeight: 500,
-                        mr: '-85px',
-                      }}
-                    >
-                      -900.000 VNĐ{' '}
-                    </Box>
-                    <Button
-                      variant="outlined"
-                      color="warning"
-                      sx={{
-                        backgroundColor: 'white',
-                        height: '35px',
-                        opacity: 0,
-                        visibility: 'hidden',
-                        transition: 'opacity 0.3s ease, visibility 0.3s ease',
-                      }}
-                    >
-                      Áp dụng
-                    </Button>
-                  </Box>
-                </Box>
+                  <AccordionSummary
+                    expandIcon={<IconChevronDown />}
+                    sx={{
+                      fontSize: 15,
+                      px: 0,
+                      border: 'none',
+                      boxShadow: 'none',
+                    }}
+                  >
+                    <Typography variant="body2" sx={{ fontSize: 15, fontWeight: 500 }}>
+                      Gợi ý thêm gói học để nhận ưu đãi
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails
+                    sx={{
+                      border: 'none',
+                      boxShadow: 'none',
+                      display: 'flex',
+                      flexDirection: 'column', // Đặt các phần tử theo chiều dọc
+                      gap: 2,
+                      px: 0,
+                    }}
+                  >
+                    <Grid container spacing={1}>
+                      {packages.map((pkg) => (
+                        <Grid item xs={12} md={12} key={pkg.id}>
+                          <Card
+                            sx={{
+                              borderRadius: '15px',
+                              overflow: 'hidden',
+                              boxShadow:
+                                selectedPackage === pkg.id
+                                  ? '0 6px 18px rgba(0, 255, 0, 0.4)'
+                                  : '0 6px 18px rgba(0,0,0,0.1)',
+                              transition: 'transform 0.3s',
+                              height: 'auto',
+                              marginY: '0px',
+                              paddingY: '0px',
+
+                              transform: selectedPackage === pkg.id ? 'scale(1.05) ' : 'scale(1)',
+                            }}
+                            onClick={() => handleSelectPackage(pkg)}
+                          >
+                            <CardContent
+                              sx={{
+                                position: 'relative',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                              }}
+                            >
+                              <div style={{ display: 'flex', gap: '20px' }}>
+                                <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
+                                  <img src={pkg.img} alt={''} width="150" />
+                                </Typography>
+                                <div>
+                                  <Tooltip title={pkg.reward} arrow>
+                                    <Typography
+                                      variant="h6"
+                                      sx={{
+                                        fontWeight: 'bold',
+                                        mb: 1,
+                                        width: '200px',
+                                        fontSize: '20px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '5px',
+                                      }}
+                                    >
+                                      {pkg.title}
+                                    </Typography>
+                                  </Tooltip>
+                                  <Typography sx={{ color: '#888', mb: 1, fontSize: '15px' }}>
+                                    Giá: {pkg.price.toLocaleString()} VND
+                                  </Typography>
+                                  {pkg.reward && (
+                                    <Typography
+                                      sx={{
+                                        color: '#ff6f61',
+                                        fontWeight: 'bold',
+                                        mb: 2,
+                                        fontSize: '20px',
+                                      }}
+                                    >
+                                      {pkg.reward}
+                                    </Typography>
+                                  )}
+                                </div>
+                              </div>
+
+                              <Button
+                                variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
+                                color="warning"
+                                sx={{
+                                  height: '35px',
+
+                                  backgroundImage:
+                                    selectedPackage === pkg.id
+                                      ? 'linear-gradient(45deg, #ff6f61, #ff9a76)'
+                                      : 'none',
+                                  borderColor:
+                                    selectedPackage === pkg.id ? 'transparent' : '#FFD60A',
+                                }}
+                              >
+                                {selectedPackage === pkg.id ? 'Đã chọn' : 'Chọn Mua'}
+                              </Button>
+                              {selectedPackage === pkg.id && (
+                                <CheckCircleIcon
+                                  sx={{
+                                    position: 'absolute',
+                                    top: 15,
+                                    right: 14,
+
+                                    color: 'green',
+                                  }}
+                                />
+                              )}
+                            </CardContent>
+                          </Card>
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </AccordionDetails>
+                  <Box sx={{ my: 2, display: 'flex', justifyContent: 'end' }}>
+                    <Typography variant="h5">Tổng tiền : </Typography>
+                    <Typography variant="h5" sx={{ color: 'red', paddingX: '3px' }}>
+                      99.999 VNĐ
+                    </Typography>
+                  </Box>{' '}
+                </Accordion>
               </Box>
               <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
                 <Typography variant="h4">Tổng </Typography>
                 <Typography variant="h4" sx={{ color: '#FFA300' }}>
-                  999.000 VNĐ
+                  21.999.999 VNĐ
                 </Typography>
               </Box>
               <Accordion
