@@ -24,12 +24,7 @@ const Affiliate = () => {
         <Grid container spacing={3}>
           <Grid item sm={12}>
             <SiderAffiliate />
-            {/* onTabChange={handleTabChange} */}
           </Grid>
-          {/* <Grid item sm={8}>
-            {selectedTab === 'Cá nhân' && <PersonAffiliate />}
-            {selectedTab === 'Doanh nghiệp' && <CompanyAffiliate />}
-          </Grid> */}
         </Grid>
       </PageContainer>
     </>
