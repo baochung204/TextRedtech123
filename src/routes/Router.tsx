@@ -145,6 +145,7 @@ const HistoryBuyService = Loadable(
 
 // rule
 const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
+
 // pay
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 const Router = [
