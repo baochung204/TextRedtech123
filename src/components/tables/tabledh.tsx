@@ -1,9 +1,18 @@
-const tabledh: any = [
+
+interface TableDH {
+  id: string,
+  amount: number,
+  requestId: string,
+  createdAt: Date,
+  completedAt: Date,
+  status: number,
+  invoice: number
+}
+
+const tabledh: TableDH[] = [
   {
     id: '1',
-    amount: 70,
-    paymentMethod: '123 456 789',
-    numberPrice: 21.0,
+    amount: 1000000,
     requestId: '1000003537254534',
     createdAt: new Date('2024-07-18T18:47:28'),
     completedAt: new Date('2024-07-18T18:47:36'),
@@ -12,9 +21,7 @@ const tabledh: any = [
   },
   {
     id: '2',
-    amount: 150,
-    paymentMethod: '987 654 321',
-    numberPrice: 33.0,
+    amount: 2000000,
     requestId: '1000002672542535',
     createdAt: new Date('2024-07-19T10:15:12'),
     completedAt: new Date('2024-07-19T10:20:30'),
@@ -23,9 +30,7 @@ const tabledh: any = [
   },
   {
     id: '3',
-    amount: 120,
-    paymentMethod: '112 233 445',
-    numberPrice: 44.0,
+    amount: 5000000,
     requestId: '1000002362564366',
     createdAt: new Date('2024-07-20T14:35:48'),
     completedAt: new Date('2024-07-20T14:40:20'),
@@ -34,9 +39,7 @@ const tabledh: any = [
   },
   {
     id: '4',
-    amount: 200,
-    paymentMethod: '445 556 667',
-    numberPrice: 21.555,
+    amount: 6000000,
     requestId: '10000034539151068',
     createdAt: new Date('2024-07-21T16:00:00'),
     completedAt: new Date('2024-07-21T16:05:10'),
@@ -45,10 +48,8 @@ const tabledh: any = [
   },
   {
     id: '5',
-    amount: 90,
-    paymentMethod: '778 899 000',
-    numberPrice: 66.0,
-    requestId: '1000007484563423',
+    amount: 90000000,
+    requestId: '10000034539151069',
     createdAt: new Date('2024-07-22T09:45:22'),
     completedAt: new Date('2024-07-22T09:50:58'),
     status: 1,
@@ -56,9 +57,7 @@ const tabledh: any = [
   },
   {
     id: '6',
-    amount: 110,
-    paymentMethod: '334 455 667',
-    numberPrice: 777.0,
+    amount: 45000000,
     requestId: '1000003468272345',
     createdAt: new Date('2024-07-23T11:11:11'),
     completedAt: new Date('2024-07-23T11:15:45'),
@@ -67,9 +66,7 @@ const tabledh: any = [
   },
   {
     id: '7',
-    amount: 80,
-    paymentMethod: '998 877 665',
-    numberPrice: 777.0,
+    amount: 3200000,
     requestId: '1000003457254688',
     createdAt: new Date('2024-07-24T13:30:10'),
     completedAt: new Date('2024-07-24T13:35:50'),
@@ -78,9 +75,7 @@ const tabledh: any = [
   },
   {
     id: '10',
-    amount: 50,
-    paymentMethod: '887 766 554',
-    numberPrice: 99.0,
+    amount: 75000000,
     requestId: '100000086904503',
     createdAt: new Date('2024-07-27T18:00:00'),
     completedAt: new Date('2024-07-27T18:05:15'),

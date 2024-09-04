@@ -73,22 +73,24 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
-    title: 'Dashboards',
-    icon: IconShoppingCart,
-    href: '/dashboards/list',
-  },
-  {
-    id: uniqueId(),
-    title: 'Trang CTV tiếp thị sp',
+    title: 'Affiliate ',
     icon: IconPackage,
     href: '/apps/collaborate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Affiliate sản phẩm',
+        icon: IconPoint,
+        href: '/apps/collaborate/',
+      },
+      {
+        title: 'Danh sách khách hàng',
+        icon: IconPoint,
+        href: '/apps/customerList',
+      },
+    ]
   },
-  {
-    id: uniqueId(),
-    title: 'Danh sách khách hàng',
-    icon: IconPackage,
-    href: '/apps/customerlist',
-  },
+
   {
     id: uniqueId(),
     title: 'Assistant',
@@ -114,12 +116,6 @@ const Menuitems: MenuitemsType[] = [
     title: 'Landingpage',
     icon: IconAppWindow,
     href: '/landingpage',
-  },
-  {
-    id: uniqueId(),
-    title: 'Danh sách khách hàng',
-    icon: IconAppWindow,
-    href: '/apps/customerList',
   },
   {
     navlabel: true,

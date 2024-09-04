@@ -3,69 +3,74 @@ import {
   Box,
   Button,
   CardContent,
-  FormControl,
+  // FormControl,
   Grid,
   IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
+  // InputLabel,
+  // MenuItem,
+  // Select,
   Tab,
   Typography,
 } from '@mui/material';
 import { IconPackage } from '@tabler/icons-react';
 import React from 'react';
-import ProductPerformances from 'src/components/dashboards/ecommerce/ProductPerformances';
+// import ProductPerformances from 'src/components/dashboards/ecommerce/ProductPerformances';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
+import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
-import ChildCard from 'src/components/shared/ChildCard';
+// import ChildCard from 'src/components/shared/ChildCard';
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-import icon2 from '../../../assets/images/svgs/icon-user-male.svg';
-import icon3 from '../../../assets/images/svgs/icon-briefcase.svg';
-import icon4 from '../../../assets/images/svgs/icon-mailbox.svg';
-import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
-import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
-import icon7 from '../../../assets/images/svgs/img.png';
 import Banner1 from 'src/components/widgets/banners/Banner1';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
+// import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import { FaChartLine } from "react-icons/fa";
+import { GiClick } from "react-icons/gi";
+import { PiPersonFill } from "react-icons/pi";
+import { BiSolidPurchaseTag } from "react-icons/bi";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Dayjs } from 'dayjs';
+
+
 
 interface cardType {
-  icon: string;
+  icon: JSX.Element;
   title: string;
   digits: string;
   bgcolor: string;
 }
 const topcards: cardType[] = [
   {
-    icon: icon7,
+    icon: <GiClick size={40} color='#FFAE1F'/>,
     title: 'Clicks',
     digits: '96',
     bgcolor: 'warning',
   },
   {
-    icon: icon2,
-    title: 'Member',
+    icon: <PiPersonFill size={40} color='#5D87FF'/>,
+    title: 'Khách hàng',
     digits: '3.650',
     bgcolor: 'primary',
   },
   {
-    icon: icon1,
+    icon: <BiSolidPurchaseTag size={40} color='#49BEFF' />,
     title: 'Đơn hàng',
     digits: '3850',
     bgcolor: 'secondary',
   },
 
   {
-    icon: icon5,
+    icon: <FaChartLine size={40} color='#13DEB9' />,
     title: 'Danh Thu',
     digits: '96 tỉ',
     bgcolor: 'success',
   },
   {
-    icon: icon1,
+    icon: <img src={icon1} alt="" />,
     title: 'CVR',
     digits: '26%',
     bgcolor: 'info',
@@ -73,23 +78,24 @@ const topcards: cardType[] = [
 ];
 const CollaboratePost = () => {
   const [value, setValue] = React.useState('1');
-
+  const [value1, setValue1] = React.useState<Dayjs | null>(null)
+  const [value2, setValue2] = React.useState<Dayjs | null>(null)
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  const [month, setMonth] = React.useState('5');
+  // const [month, setMonth] = React.useState('5');
 
-  const handleSelectChange = (event: any) => {
-    setMonth(event.target.value);
-    // Cập nhật TabPanel tương ứng với giá trị chọn từ Select
-    if (event.target.value === 5) {
-      setMonth('5');
-    } else if (event.target.value === 6) {
-      setMonth('6');
-    } else if (event.target.value === 7) {
-      setMonth('7');
-    }
-  };
+  // const handleSelectChange = (event: any) => {
+  //   setMonth(event.target.value);
+  //   // Cập nhật TabPanel tương ứng với giá trị chọn từ Select
+  //   if (event.target.value === 5) {
+  //     setMonth('5');
+  //   } else if (event.target.value === 6) {
+  //     setMonth('6');
+  //   } else if (event.target.value === 7) {
+  //     setMonth('7');
+  //   }
+  // };
   const BCrumb = [
     {
       to: '/',
@@ -110,31 +116,60 @@ const CollaboratePost = () => {
         <div
           style={{
             display: 'flex',
-            width: '320px',
             alignItems: 'center',
             gap: '10px',
             margin: '10px 0',
           }}
         >
-          <CustomTextField
-            id="date"
-            type="date"
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value1}
+              onChange={(newValue) => {
+                setValue1(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
           tới
-          <CustomTextField
-            id="date"
-            type="date"
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value2}
+              onChange={(newValue) => {
+                setValue2(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
         </div>
       </div>
       <Box display="flex" width="100%" flexWrap="wrap">
@@ -142,50 +177,41 @@ const CollaboratePost = () => {
           width={{ xs: '100%', md: '30%' }}
           textAlign={{ xs: 'center', md: 'left', xl: 'left' }}
           margin="0px "
+
         >
           <Box
             borderBottom="1px solid #EEEEEE"
             width={{ md: '250px', lg: '250px', xl: '320px', xs: '320px' }}
-            marginX={{ xs: 'auto', md: '0' }}
+            marginX={{ xs: 'auto', md: '0px' }}
           >
             <MonthlyEarnings />
           </Box>
 
-          <Box marginTop="30px" borderBottom="1px solid #EEEEEE">
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Typography variant="h3">Số dư</Typography>
-
-                <Typography variant="h1" fontSize="38px" margin="20px 0">
-                  0 đ
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="h3">Đang xử lý</Typography>
-                <Typography variant="h1" fontSize="38px" margin="20px 0">
-                  0 đ
-                </Typography>
-              </Grid>
-            </Grid>
+          <Box
+            borderBottom="1px solid #EEEEEE"
+            width={{ md: '250px', lg: '250px', xl: '320px', xs: '320px' }}
+            marginY={{ xs: '10px', md: '10px', lg: '20px' }}
+            marginX={{ xs: 'auto', md: '0px' }}
+          >
+            <MonthlyEarnings1 />
           </Box>
-          <Box textAlign={{ sx: 'center', lg: 'start' }}>
+          <Box paddingRight='10px' textAlign={{ sx: 'center', lg: 'start' }}>
             {' '}
-            <div
-              style={{
-                // width: '300px', marginTop: '20px', padding: '10px 0', margin: 'auto'
-                display: 'flex',
-                justifyContent: 'space-between',
-                gap: '10px',
-                margin: 'auto',
-              }}
+            <Box
+              borderBottom="1px solid #EEEEEE"
+              width={{ md: '250px', lg: '250px', xl: '320px', xs: '320px' }}
+              marginY={{ xs: '10px', md: '10px', lg: '20px' }}
+              marginX={{ xs: 'auto', md: '0px' }}
+              display={'flex'}
+              justifyContent={'space-between'}
             >
-              <Button variant="contained" color="primary" sx={{ width: '45%' }}>
+              <Button variant="contained" color="primary" sx={{ width: '46%' }}>
                 RÚT TIỀN
               </Button>
-              <Button variant="contained" color="primary" sx={{ width: '45%' }}>
+              <Button variant="contained" color="primary" sx={{ width: '46%' }}>
                 ĐỔI POINT
               </Button>
-            </div>
+            </Box>
             <Box
               display="flex"
               margin="10px 0"
@@ -205,7 +231,7 @@ const CollaboratePost = () => {
               >
                 <span>
                   Redtech tiến hành chi trả từ ngày 15-20 hàng tháng cho tất cả tài khoản Affiliate{' '}
-                  <a href="#">Chính sách </a>. Hạn mức thanh toán tối thiểu là 2.000.000đ
+                  <a style={{ color: '#5D87FF' }} href="/apps/rule">Chính sách </a>. Hạn mức thanh toán tối thiểu là 2.000.000đ
                 </span>
               </Typography>
             </Box>
@@ -219,7 +245,7 @@ const CollaboratePost = () => {
                 <Grid item xs={12} sm={12} lg={3} xl={2} key={i}>
                   <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
                     <CardContent>
-                      <img src={topcard.icon} alt={topcard.icon} width="50" />
+                      {topcard.icon}
                       <Typography
                         color={topcard.bgcolor + '.main'}
                         mt={1}
