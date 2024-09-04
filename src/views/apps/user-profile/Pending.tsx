@@ -38,7 +38,8 @@ const RotatingImage = styled('img')(() => ({
 const Pending = () => {
   return (
     <>
-      <Grid container spacing={2} my={5}>
+
+      <Grid container spacing={2}>
         {/* Box with the content divided into left and right sections */}
         <Grid item xs={12}>
           <Box

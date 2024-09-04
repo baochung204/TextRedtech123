@@ -218,7 +218,24 @@ const Menuitems: MenuitemsType[] = [
     icon: IconShoppingCart,
     href: '/dashboards/ecommerce',
   },
-
+  {
+    id: uniqueId(),
+    title: 'Thành công',
+    icon: IconShoppingCart,
+    href: '/apps/success',
+  },
+  {
+    id: uniqueId(),
+    title: 'Thất bại',
+    icon: IconShoppingCart,
+    href: '/apps/fail',
+  },
+  {
+    id: uniqueId(),
+    title: 'Đang chờ',
+    icon: IconShoppingCart,
+    href: '/apps/pending',
+  },
   {
     id: uniqueId(),
     title: 'Landingpage',

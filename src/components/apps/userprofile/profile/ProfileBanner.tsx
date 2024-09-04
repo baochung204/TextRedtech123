@@ -4,11 +4,9 @@ import React from 'react';
 import { Grid, Box, Typography, Button, Avatar, Stack, CardMedia, styled } from '@mui/material';
 import profilecover from 'src/assets/images/backgrounds/profilebg.jpg';
 import userimg from 'src/assets/images/profile/user-1.jpg';
-import { IconFileDescription, IconUserCheck } from '@tabler/icons-react';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ProfileTab from './ProfileTab';
 import BlankCard from '../../../shared/BlankCard';
-import logochicken from 'src/assets/images/logos/logo chicken.png';
 import { Link } from 'react-router-dom';
 const ProfileBanner = () => {
   const ProfileImage = styled(Box)(() => ({
