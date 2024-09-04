@@ -853,12 +853,11 @@ const PayMentPonit = () => {
                     fontSize: 18,
                     px: 4,
                     py: 1,
-                    color: 'black',
+                    color: 'white',
                     fontWeight: 600,
-                    backgroundColor: '#FFD60A',
+                    backgroundColor: '#FFA300',
                     ':hover': {
-                      backgroundColor: '#FFE155',
-                      color: 'black',
+                      backgroundColor: '#FFC75E ',
                     },
                   }}
                 >
