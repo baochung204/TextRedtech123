@@ -21,11 +21,11 @@ import discover from '../../assets/images/pay/discover_4adc90.png';
 import diners from '../../assets/images/pay/diners_0faca9.png';
 import card_american from '../../assets/images/pay/card_american_express_51cd3f.png';
 import bank_transfer from '../../assets/images/pay/BankTransfer_facae0.png';
-import giftbox from '../../assets/images/icon.png/gift_9521097.png';
+import Iconbowtie from '../../assets/images/icon.png/quà.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
-import Iconbowtie from 'src/assets/images/logos/iconbowtie.png';
+import Iconbowtie1 from 'src/assets/images/logos/iconbowtie.png';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -90,7 +90,7 @@ const BuyPoint = () => {
               gap: 1,
             }}
           >
-            <marquee maxWidth="50%">
+            <marquee maxWidth="50%" style={{ background: '#F5F5F5' }}>
               <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 16 }}>
                 Quy Đổi Ngân Lượng chương trình khuyến mại 25% cho các huynh đệ quy đổi ngân lượng
                 lần đầu tiên
@@ -147,7 +147,7 @@ const BuyPoint = () => {
               </BoxStyled>
 
               <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫20,100
+                20,100 VNĐ
               </Typography>
             </BoxStyled>
           </Grid>
@@ -196,7 +196,7 @@ const BuyPoint = () => {
               </BoxStyled>
 
               <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫100,500
+                100,500 VNĐ
               </Typography>
             </BoxStyled>
           </Grid>
@@ -244,7 +244,7 @@ const BuyPoint = () => {
                 </Typography>
               </BoxStyled>
               <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫201,000
+                201,000 VNĐ
               </Typography>
             </BoxStyled>
           </Grid>
@@ -295,7 +295,7 @@ const BuyPoint = () => {
                 variant="h6"
                 sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
               >
-                ₫402,000
+                402,000 VNĐ
               </Typography>
             </BoxStyled>
           </Grid>
@@ -346,7 +346,7 @@ const BuyPoint = () => {
                 variant="h6"
                 sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
               >
-                ₫1,0.055,000
+                1.055,000 VNĐ
               </Typography>
             </BoxStyled>
           </Grid>
@@ -397,7 +397,7 @@ const BuyPoint = () => {
                 variant="h6"
                 sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
               >
-                ₫2.010.000
+                2.010.000 VNĐ
               </Typography>
             </BoxStyled>
           </Grid>
@@ -448,7 +448,7 @@ const BuyPoint = () => {
                 variant="h6"
                 sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
               >
-                ₫5.025.000
+                5.025.000 VNĐ
               </Typography>
             </BoxStyled>
           </Grid>
@@ -574,7 +574,7 @@ const BuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              ₫1,055,000
+              1,055,000 VNĐ
             </Typography>
           </Box>
           <Box

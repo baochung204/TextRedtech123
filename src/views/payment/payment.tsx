@@ -25,6 +25,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
+// import logochicken from 'src/assets/images/logos/logo chicken.png';
 
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
@@ -85,6 +86,8 @@ const PayMentPonit = () => {
       img: 'http://localhost:5173/src/assets/images/products/s11.jpg',
       title: 'Chatbot marketing',
       price: 1055000,
+      discount: 1023900,
+
       reward: 'Thưởng 10%',
     },
     {
@@ -92,6 +95,8 @@ const PayMentPonit = () => {
       img: 'http://localhost:5173/src/assets/images/products/s10.jpg',
       title: 'Chatbot hỗ trợ khách hàng',
       price: 2010000,
+      discount: 1995002,
+
       reward: 'Thưởng 15%',
     },
     {
@@ -99,6 +104,7 @@ const PayMentPonit = () => {
       img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
       title: 'Chatbot thương mại điện tử',
       price: 5025000,
+      discount: 3935000,
       reward: 'Thưởng 20%',
     },
   ];
@@ -125,7 +131,7 @@ const PayMentPonit = () => {
                 [`& .MuiDrawer-paper`]: { position: 'relative' },
               }}
             >
-              <Box sx={{ p: 3 }}>
+              {/* <Box sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Box alignItems="center">
                     <Typography variant="h4">Tiêu chuẩn</Typography>
@@ -568,7 +574,7 @@ const PayMentPonit = () => {
                     </Grid>
                   </Box>
                 </Box>
-              </Box>
+              </Box> */}
             </Drawer>
           </AppCard>
         </Box>
@@ -591,15 +597,23 @@ const PayMentPonit = () => {
                 </Box>
                 <Box>
                   <Grid container sx={{ mt: 2 }}>
-                    <Grid item lg={6} xs={12}>
+                    <Grid item lg={4} xs={12}>
                       <Typography variant="body2" color="text.secondary">
                         Họ Và Tên
                       </Typography>
                       <Typography variant="subtitle1" mb={0.5} fontWeight={600}>
-                        Nguyễn Văn A
+                        Nguyễn Văn Bình
                       </Typography>
                     </Grid>
-                    <Grid item lg={6} xs={12}>
+                    <Grid item lg={4} xs={12}>
+                      <Typography variant="body2" color="text.secondary">
+                        Email
+                      </Typography>
+                      <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
+                        binhvn.reman@gmail.com
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={4} xs={12}>
                       <Typography variant="body2" color="text.secondary">
                         Số Điện Thoại
                       </Typography>
@@ -625,14 +639,11 @@ const PayMentPonit = () => {
                     <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
                       Giá gói
                     </Typography>
-                    <Typography>đ199.000</Typography>
+                    <Typography>1,055,000 VNĐ</Typography>
                   </Box>
                 </Box>
               </Box>
               <Box sx={{ mt: 2, backgroundColor: 'white' }}>
-                <Box display={'flex'} alignItems="center">
-                  <Typography variant="h4">Khuyến mãi</Typography>
-                </Box>
                 <Accordion
                   sx={{
                     mt: 2,
@@ -649,8 +660,8 @@ const PayMentPonit = () => {
                       boxShadow: 'none',
                     }}
                   >
-                    <Typography variant="body2" sx={{ fontSize: 15, fontWeight: 500 }}>
-                      Thêm mã khuyến mãi giới thiệu
+                    <Typography variant="body2" sx={{ fontSize: 17, fontWeight: 500 }}>
+                      Mã khuyến mãi
                     </Typography>
                   </AccordionSummary>
 
@@ -765,8 +776,8 @@ const PayMentPonit = () => {
                       boxShadow: 'none',
                     }}
                   >
-                    <Typography variant="body2" sx={{ fontSize: 15, fontWeight: 500 }}>
-                      Gợi ý thêm gói học để nhận ưu đãi
+                    <Typography variant="body2" sx={{ fontSize: 16, fontWeight: 500 }}>
+                      Gợi ý thêm
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails
@@ -781,7 +792,7 @@ const PayMentPonit = () => {
                   >
                     <Grid container spacing={1}>
                       {packages.map((pkg) => (
-                        <Grid item xs={12} md={12} key={pkg.id}>
+                        <Grid item xs={12} md={6} key={pkg.id}>
                           <Card
                             sx={{
                               borderRadius: '15px',
@@ -795,7 +806,7 @@ const PayMentPonit = () => {
                               marginY: '0px',
                               paddingY: '0px',
 
-                              transform: selectedPackage === pkg.id ? 'scale(1.05) ' : 'scale(1)',
+                              transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
                             }}
                             onClick={() => handleSelectPackage(pkg)}
                           >
@@ -804,11 +815,17 @@ const PayMentPonit = () => {
                                 position: 'relative',
                                 display: 'flex',
                                 justifyContent: 'space-between',
+                                alignItems: 'end',
                               }}
                             >
                               <div style={{ display: 'flex', gap: '20px' }}>
                                 <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
-                                  <img src={pkg.img} alt={''} width="150" />
+                                  <img
+                                    src={pkg.img}
+                                    alt={''}
+                                    width="100"
+                                    style={{ borderRadius: '10px' }}
+                                  />
                                 </Typography>
                                 <div>
                                   <Tooltip title={pkg.reward} arrow>
@@ -818,25 +835,39 @@ const PayMentPonit = () => {
                                         fontWeight: 'bold',
                                         mb: 1,
                                         width: '200px',
-                                        fontSize: '20px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '5px',
+                                        // display: 'flex',
+                                        // alignItems: 'center',
+
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        whiteSpace: 'nowrap',
                                       }}
                                     >
                                       {pkg.title}
                                     </Typography>
                                   </Tooltip>
-                                  <Typography sx={{ color: '#888', mb: 1, fontSize: '15px' }}>
-                                    Giá: {pkg.price.toLocaleString()} VND
-                                  </Typography>
+                                  <div style={{ display: 'flex', gap: '20px' }}>
+                                    {' '}
+                                    <Typography
+                                      sx={{
+                                        color: 'Black',
+                                        fontWeight: 'bold',
+                                        mb: 1,
+                                        fontSize: '14px',
+                                      }}
+                                    >
+                                      {pkg.discount.toLocaleString()} VND
+                                    </Typography>
+                                    <Typography sx={{ color: '#888', mb: 1 }}>
+                                      <del> {pkg.price.toLocaleString()} VND</del>
+                                    </Typography>{' '}
+                                  </div>
                                   {pkg.reward && (
                                     <Typography
                                       sx={{
                                         color: '#ff6f61',
                                         fontWeight: 'bold',
                                         mb: 2,
-                                        fontSize: '20px',
                                       }}
                                     >
                                       {pkg.reward}
@@ -850,7 +881,7 @@ const PayMentPonit = () => {
                                 color="warning"
                                 sx={{
                                   height: '35px',
-
+                                  marginBottom: '10px',
                                   backgroundImage:
                                     selectedPackage === pkg.id
                                       ? 'linear-gradient(45deg, #ff6f61, #ff9a76)'
@@ -861,35 +892,50 @@ const PayMentPonit = () => {
                               >
                                 {selectedPackage === pkg.id ? 'Đã chọn' : 'Chọn Mua'}
                               </Button>
-                              {selectedPackage === pkg.id && (
-                                <CheckCircleIcon
-                                  sx={{
-                                    position: 'absolute',
-                                    top: 15,
-                                    right: 14,
-
-                                    color: 'green',
-                                  }}
-                                />
-                              )}
                             </CardContent>
                           </Card>
                         </Grid>
                       ))}
                     </Grid>
                   </AccordionDetails>
-                  <Box sx={{ my: 2, display: 'flex', justifyContent: 'end' }}>
-                    <Typography variant="h5">Tổng tiền : </Typography>
+                  <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography variant="h5">Tổng giá gói : </Typography>
                     <Typography variant="h5" sx={{ color: 'red', paddingX: '3px' }}>
-                      99.999 VNĐ
+                      1.023.900 VND
                     </Typography>
                   </Box>{' '}
                 </Accordion>
+                <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="h5" sx={{ display: 'flex' }}>
+                    Giá gốc :
+                  </Typography>
+                  <Typography variant="h5" sx={{ color: 'red', paddingX: '3px' }}>
+                    2,078,900 VNĐ
+                  </Typography>
+                </Box>{' '}
+                <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="h5">Tiết kiệm : </Typography>
+                  <Typography variant="h5" sx={{ color: 'red', paddingX: '3px' }}>
+                    - 531,030 VND
+                  </Typography>
+                </Box>{' '}
+                <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="h5">Tổng tiền trước VAT : </Typography>
+                  <Typography variant="h5" sx={{ color: 'red', paddingX: '3px' }}>
+                    1,547,870 VND
+                  </Typography>
+                </Box>
+                <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="h5">VAT (10%) : </Typography>
+                  <Typography variant="h5" sx={{ color: 'red', paddingX: '3px' }}>
+                    154,787 VNĐ
+                  </Typography>
+                </Box>{' '}
               </Box>
               <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h4">Tổng </Typography>
+                <Typography variant="h4">Tổng cộng </Typography>
                 <Typography variant="h4" sx={{ color: '#FFA300' }}>
-                  21.999.999 VNĐ
+                  1,702,657 VNĐ
                 </Typography>
               </Box>
               <Accordion
