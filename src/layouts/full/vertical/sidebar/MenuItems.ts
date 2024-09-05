@@ -79,13 +79,13 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
-    title: 'Tiếp thị ',
+    title: 'Affiliate',
     icon: IconPackage,
     href: '/apps/collaborate/',
     children: [
       {
         id: uniqueId(),
-        title: 'Tiếp thị sản phẩm',
+        title: 'Affiliate sản phẩm',
         icon: IconPoint,
         href: '/apps/collaborate/',
       },
@@ -131,9 +131,9 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Trạng thái affilate',
+    title: 'Trạng thái affiliate',
     icon: IconChartDonut3,
-    href: '/apps/assistant/',
+    href: '/apps/affiliate',
     children: [
       {
         id: uniqueId(),
@@ -218,24 +218,7 @@ const Menuitems: MenuitemsType[] = [
     icon: IconShoppingCart,
     href: '/dashboards/ecommerce',
   },
-  {
-    id: uniqueId(),
-    title: 'Thành công',
-    icon: IconShoppingCart,
-    href: '/apps/success',
-  },
-  {
-    id: uniqueId(),
-    title: 'Thất bại',
-    icon: IconShoppingCart,
-    href: '/apps/fail',
-  },
-  {
-    id: uniqueId(),
-    title: 'Đang chờ',
-    icon: IconShoppingCart,
-    href: '/apps/pending',
-  },
+
   {
     id: uniqueId(),
     title: 'Landingpage',

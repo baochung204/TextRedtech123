@@ -4,10 +4,14 @@ import React from 'react';
 const rule = () => {
   return (
     <>
-      <div style={{ marginTop: '50px' }}>
-        <Typography variant="h1" align="center" my={5}>
-          Chính sách và điều khoản
-        </Typography>
+      {/* thay */}
+      <Typography
+        variant="h1"
+        align="center"
+      >
+        Chính sách và điều khoản
+      </Typography>
+
 
         <Box
           sx={{
@@ -423,6 +427,7 @@ const rule = () => {
           </div>
         </Box>
       </div>
+
     </>
   );
 };

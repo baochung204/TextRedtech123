@@ -124,7 +124,7 @@ const SalesTwo = () => {
           <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="25px" />
         </Box>
 
-        <Typography variant="h4">$16.5k<span><IconArrowUpRight width={18} color="#39B69A" /></span></Typography>
+        <Typography variant="h4">16.5tr<span><IconArrowUpRight width={18} color="#39B69A" /></span></Typography>
         <Typography variant="subtitle2" color="textSecondary">
           Sales
         </Typography>
