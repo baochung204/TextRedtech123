@@ -96,11 +96,11 @@ const PaymentGateways: React.FC = () => {
               </Stack>
               {stat.price < 400 ? (
                 <Typography variant="subtitle2" color="textSecondary" fontWeight="600">
-                  -${stat.price}
+                  -{stat.price}tr
                 </Typography>
               ) : (
                 <Typography variant="subtitle2" fontWeight="600">
-                  +${stat.price}
+                  +{stat.price}tr
                 </Typography>
               )}
             </Stack>

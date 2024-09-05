@@ -331,24 +331,7 @@ const HistoryMoney = () => {
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.paymentMethod}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.numberPrice}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
+
                         <TableCell>
                           <Stack spacing={2} direction="row">
                             <Box>

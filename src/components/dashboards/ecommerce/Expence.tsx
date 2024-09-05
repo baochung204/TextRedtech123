@@ -35,20 +35,27 @@ const Expence = () => {
           background: 'transparent',
         },
       },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      show: false,
-    },
-    legend: {
-      show: false,
-    },
-    tooltip: {
-      theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
-      fillSeriesColor: false,
-    },
+
+    };
+    const seriesexpencechart = [60, 25, 15];
+
+    return (
+      <DashboardCard>
+        <>
+          <Typography variant="h4">10tr VNĐ</Typography>
+          <Typography variant="subtitle2" color="textSecondary" mb={2}>
+            Expense
+          </Typography>
+          <Chart
+            options={optionsexpencechart}
+            series={seriesexpencechart}
+            type="donut"
+            height="120"
+          />
+        </>
+      </DashboardCard>
+    );
+
   };
   const seriesexpencechart = [60, 25, 15];
 
