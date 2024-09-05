@@ -1,40 +1,28 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import {
-  Box,
-  Button,
-  CardContent,
-  // FormControl,
-  Grid,
-  IconButton,
-  // InputLabel,
-  // MenuItem,
-  // Select,
-  Tab,
-  Typography,
-} from '@mui/material';
+
+import { Box, Button, CardContent, Grid, IconButton, Tab, Typography } from '@mui/material';
 import { IconPackage } from '@tabler/icons-react';
 import React from 'react';
-// import ProductPerformances from 'src/components/dashboards/ecommerce/ProductPerformances';
+
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
-// import ChildCard from 'src/components/shared/ChildCard';
-import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-import Banner1 from 'src/components/widgets/banners/Banner1';
+
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-// import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
+import Banner1 from 'src/components/widgets/banners/Banner1';
+import icon1 from '../../../assets/images/svgs/icon-connect.svg';
+
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-
+// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Dayjs } from 'dayjs';
 import { BiSolidPurchaseTag } from 'react-icons/bi';
-import { PiPersonFill } from 'react-icons/pi';
 import { FaChartLine } from 'react-icons/fa';
 import { GiClick } from 'react-icons/gi';
+import { PiPersonFill } from 'react-icons/pi';
 
 interface cardType {
   icon: JSX.Element;
@@ -82,35 +70,23 @@ const CollaboratePost = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  // const [month, setMonth] = React.useState('5');
 
-  // const handleSelectChange = (event: any) => {
-  //   setMonth(event.target.value);
-  //   // Cập nhật TabPanel tương ứng với giá trị chọn từ Select
-  //   if (event.target.value === 5) {
-  //     setMonth('5');
-  //   } else if (event.target.value === 6) {
-  //     setMonth('6');
-  //   } else if (event.target.value === 7) {
-  //     setMonth('7');
-  //   }
-  // };
-  const BCrumb = [
-    {
-      to: '/',
-      title: 'Home',
-    },
-    {
-      to: '/apps/blog/posts',
-      title: 'Blog',
-    },
-    {
-      title: 'Blog post',
-    },
-  ];
+  // const BCrumb = [
+  //   {
+  //     to: '/',
+  //     title: 'Home',
+  //   },
+  //   {
+  //     to: '/apps/blog/posts',
+  //     title: 'Blog',
+  //   },
+  //   {
+  //     title: 'Blog post',
+  //   },
+  // ];
   return (
     <Box>
-      <Breadcrumb title="Blog Detail" items={BCrumb} />{' '}
+      {/* <Breadcrumb title="Blog Detail" items={BCrumb} />{' '} */}
       <div style={{ display: 'flex', justifyContent: 'end' }}>
         <div
           style={{

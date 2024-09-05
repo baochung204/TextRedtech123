@@ -8,8 +8,20 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Dayjs } from 'dayjs';
-
-
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+const BCrumb = [
+    {
+        to: '/',
+        title: 'Home',
+    },
+    {
+        to: '/apps/blog/posts',
+        title: 'Blog',
+    },
+    {
+        title: 'Blog post',
+    },
+]
 const CustomerList = () => {
     const [month, setMonth] = React.useState('1');
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +31,7 @@ const CustomerList = () => {
     const [value1, setValue1] = React.useState<Dayjs | null>(null)
     return (
         <div>
-
+            <Breadcrumb title="Blog Detail" items={BCrumb} />{' '}
             <DashboardCard
                 title="Danh sách khách hàng"
                 action={
