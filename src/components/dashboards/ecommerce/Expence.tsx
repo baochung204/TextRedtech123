@@ -64,7 +64,7 @@ const Expence = () => {
           options={optionsexpencechart}
           series={seriesexpencechart}
           type="donut"
-          height="120"
+          height="113"
         />
       </>
     </DashboardCard>

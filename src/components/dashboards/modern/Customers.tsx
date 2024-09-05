@@ -66,7 +66,7 @@ const Customers = () => {
             options={optionscolumnchart}
             series={seriescolumnchart}
             type="area"
-            height="110px"
+            height="75px"
           />
         </>
       }
