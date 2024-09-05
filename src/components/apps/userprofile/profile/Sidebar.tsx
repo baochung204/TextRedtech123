@@ -54,7 +54,6 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
           }
           value={tab.value}
           sx={{
-            display: 'flex',
             minHeight: 72, // Chiều cao tối thiểu cho mỗi tab
             justifyContent: 'center', // Căn trái toàn bộ nội dung tab
             alignItems: 'flex-start',
