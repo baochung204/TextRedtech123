@@ -10,6 +10,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
+  Input,
   styled,
   Typography,
 } from '@mui/material';
@@ -23,7 +24,7 @@ import card_american from '../../assets/images/pay/card_american_express_51cd3f.
 import bank_transfer from '../../assets/images/pay/BankTransfer_facae0.png';
 import giftbox from '../../assets/images/icon.png/gift_9521097.png';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
 import Iconbowtie from 'src/assets/images/logos/iconbowtie.png';
 const BoxStyled = styled(Box)(() => ({
@@ -87,44 +88,65 @@ const BuyPoint = () => {
       images: logochicken,
       text1: 70,
       text2: 20100,
-    }, 
+    },
     {
       images: logochicken,
       text1: 350,
       text2: 100500,
-    }, 
+    },
     {
       images: logochicken,
       text1: 700,
       text2: 201000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 1400,
       text2: 402000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 3500,
       text2: 1055000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 7000,
       text2: 2010000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 17500,
       text2: 5025000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 'Tùy chỉnh',
       text2: 'Hỗ trợ số lượng lớn',
-    }, 
+    },
   ]
+  const [click, setClick] = useState<boolean>(false);
+  const [value, setValue] = useState<string | null>(null)
+  const [toggle, setToggle] = useState<number | null>(null)
 
+  useEffect(() => {
+    if (value !== null) {
+      const number = parseInt(value, 10);
+      if (!isNaN(number)) {
+        setToggle(number * 287)
+      } else {
+        setToggle(null)
+
+      }
+    }
+
+  }, [value])
+  // const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const rawValue = e.target.value.replace(/,/g, ''); // Xóa dấu phân cách cũ
+  //   if (!isNaN(Number(rawValue))) { // Kiểm tra nếu là số
+  //     setValue(Number(rawValue).toLocaleString('vi-VN')); // Định dạng và lưu giá trị
+  //   }
+  // };
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
       <Breadcrumb title="Quy Đổi Ngân Lượng  " items={BCrumb} />
@@ -167,7 +189,7 @@ const BuyPoint = () => {
         </Box>
 
         <Grid container spacing={3} textAlign="center" sx={{ pt: 4 }}>
-          {data.map((items, index) => 
+          {data.map((items, index) =>
             <Grid item lg={3} sm={6} xs={12} key={index}>
               <BoxStyled
                 sx={{
@@ -194,15 +216,34 @@ const BuyPoint = () => {
                   }}
                 >
                   <img src={items.images} alt="" width={30} height={30} />
-
-                  <Typography variant="h3" sx={{ fontWeight: 700 }}>
-                    {typeof (items.text1) === 'string' ? <>{items.text1}</> : <>{items.text1.toLocaleString('vi-VN')}</>}
-                  </Typography>
+                  {typeof (items.text1) === 'string' ?
+                    <> <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                      {!click ?
+                        <div onClick={() => setClick(!click)}>{items.text1}</div>
+                        :
+                        <Input
+                          value={value}
+                          onChange={e => setValue(e.target.value)}
+                          // onChange={handleChange1}
+                          onBlur={value === null ? () => setClick(false) : undefined}
+                          inputProps={{
+                            style: { textAlign: 'center', fontSize: '24px', color: '#5D87FF', fontWeight: '700' }
+                          }}
+                        />
+                      }
+                    </Typography> </> :
+                    <> <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                      {items.text1.toLocaleString('vi-VN')}{' '}
+                    </Typography></>}
                 </BoxStyled>
+                {typeof (items.text1) === 'string' ?
+                  <> <Typography variant="h6" sx={{ paddingTop: '5px' }}>
+                    {toggle === null ? items.text2 : <>{toggle} {''} VNĐ</>}
 
-                <Typography variant="h6" sx={{ paddingTop: '5px' }}>
-                  {typeof (items.text2) === 'string' ? <>{items.text2}</> : <>{items.text2.toLocaleString('vi-VN')}</>}
-                </Typography>
+                  </Typography> </> :
+                  <> <Typography variant="h6" sx={{ paddingTop: '5px' }}>
+                    {items.text2.toLocaleString('vi-VN')}{' '}  VNĐ
+                  </Typography></>}
               </BoxStyled>
             </Grid>
           )}
