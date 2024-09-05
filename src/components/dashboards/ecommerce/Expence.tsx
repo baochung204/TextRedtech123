@@ -20,13 +20,12 @@ const Expence = () => {
     chart: {
       type: 'donut',
       fontFamily: "'Plus Jakarta Sans', sans-serif;",
-
       toolbar: {
         show: false,
       },
       height: 120,
     },
-    labels: ['Profit', 'Revenue', 'Expance'],
+    labels: ['Profit', 'Revenue', 'Expense'],
     colors: [primary, error, secondary],
     plotOptions: {
       pie: {
@@ -35,28 +34,9 @@ const Expence = () => {
           background: 'transparent',
         },
       },
-
-    };
-    const seriesexpencechart = [60, 25, 15];
-
-    return (
-      <DashboardCard>
-        <>
-          <Typography variant="h4">10tr VNĐ</Typography>
-          <Typography variant="subtitle2" color="textSecondary" mb={2}>
-            Expense
-          </Typography>
-          <Chart
-            options={optionsexpencechart}
-            series={seriesexpencechart}
-            type="donut"
-            height="120"
-          />
-        </>
-      </DashboardCard>
-    );
-
+    },
   };
+
   const seriesexpencechart = [60, 25, 15];
 
   return (
