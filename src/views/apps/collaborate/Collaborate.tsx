@@ -172,7 +172,6 @@ const CollaboratePost = () => {
           <Box paddingRight="10px" textAlign={{ sx: 'center', lg: 'start' }}>
             {' '}
             <Box
-              borderBottom="1px solid #EEEEEE"
               width={{ md: '250px', lg: '250px', xl: '320px', xs: '320px' }}
               marginY={{ xs: '10px', md: '10px', lg: '20px' }}
               marginX={{ xs: 'auto', md: '0px' }}
