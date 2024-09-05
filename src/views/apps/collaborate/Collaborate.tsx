@@ -71,19 +71,19 @@ const CollaboratePost = () => {
     setValue(newValue);
   };
 
-  const BCrumb = [
-    {
-      to: '/',
-      title: 'Home',
-    },
-    {
-      to: '/apps/blog/posts',
-      title: 'Blog',
-    },
-    {
-      title: 'Blog post',
-    },
-  ];
+  // const BCrumb = [
+  //   {
+  //     to: '/',
+  //     title: 'Home',
+  //   },
+  //   {
+  //     to: '/apps/blog/posts',
+  //     title: 'Blog',
+  //   },
+  //   {
+  //     title: 'Blog post',
+  //   },
+  // ];
   return (
     <Box>
       {/* <Breadcrumb title="Blog Detail" items={BCrumb} />{' '} */}
