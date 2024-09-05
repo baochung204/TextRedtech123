@@ -90,9 +90,16 @@ const Menuitems: MenuitemsType[] = [
         href: '/apps/collaborate/',
       },
       {
+        id: uniqueId(),
         title: 'Danh sách khách hàng',
         icon: IconPoint,
         href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Chính sách và điều khoản',
+        icon: IconAppWindow,
+        href: '/apps/rule',
       },
     ],
   },
@@ -118,17 +125,12 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Thông kê',
+    title: 'Thống kê',
     icon: IconShoppingCart,
     href: '/dashboards/list',
   },
 
-  {
-    id: uniqueId(),
-    title: 'Chính sách và điều khoản',
-    icon: IconAppWindow,
-    href: '/apps/rule',
-  },
+  
   {
     id: uniqueId(),
     title: 'Trạng thái affiliate',
