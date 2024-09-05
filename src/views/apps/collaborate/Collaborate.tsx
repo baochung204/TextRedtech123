@@ -25,7 +25,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 // import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import { FaChartLine } from "react-icons/fa";
 import { GiClick } from "react-icons/gi";
 import { PiPersonFill } from "react-icons/pi";
@@ -111,7 +111,7 @@ const CollaboratePost = () => {
   ];
   return (
     <Box>
-      <Breadcrumb title="Blog Detail" items={BCrumb} />{' '}
+      {/* <Breadcrumb title="Blog Detail" items={BCrumb} />{' '} */}
       <div style={{ display: 'flex', justifyContent: 'end' }}>
         <div
           style={{

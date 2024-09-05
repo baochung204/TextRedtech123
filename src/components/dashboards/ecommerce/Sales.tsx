@@ -82,7 +82,7 @@ const Sales = () => {
   return (
     <DashboardCard>
       <>
-        <Typography variant="h4">20.000.000 VNĐ</Typography>
+        <Typography variant="h4">20tr VNĐ</Typography>
         <Typography variant="subtitle2" color="textSecondary" mb={3}>
           Sales
         </Typography>
