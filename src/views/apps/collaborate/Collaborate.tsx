@@ -25,16 +25,17 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 // import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-
+// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import { FaChartLine } from "react-icons/fa";
+import { GiClick } from "react-icons/gi";
+import { PiPersonFill } from "react-icons/pi";
+import { BiSolidPurchaseTag } from "react-icons/bi";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Dayjs } from 'dayjs';
-import { BiSolidPurchaseTag } from 'react-icons/bi';
-import { PiPersonFill } from 'react-icons/pi';
-import { FaChartLine } from 'react-icons/fa';
-import { GiClick } from 'react-icons/gi';
+
+
 
 interface cardType {
   icon: JSX.Element;
@@ -44,26 +45,26 @@ interface cardType {
 }
 const topcards: cardType[] = [
   {
-    icon: <GiClick size={40} color="#FFAE1F" />,
+    icon: <GiClick size={40} color='#FFAE1F'/>,
     title: 'Clicks',
     digits: '96',
     bgcolor: 'warning',
   },
   {
-    icon: <PiPersonFill size={40} color="#5D87FF" />,
+    icon: <PiPersonFill size={40} color='#5D87FF'/>,
     title: 'Khách hàng',
     digits: '3.650',
     bgcolor: 'primary',
   },
   {
-    icon: <BiSolidPurchaseTag size={40} color="#49BEFF" />,
+    icon: <BiSolidPurchaseTag size={40} color='#49BEFF' />,
     title: 'Đơn hàng',
     digits: '3850',
     bgcolor: 'secondary',
   },
 
   {
-    icon: <FaChartLine size={40} color="#13DEB9" />,
+    icon: <FaChartLine size={40} color='#13DEB9' />,
     title: 'Danh Thu',
     digits: '96 tỉ',
     bgcolor: 'success',
@@ -77,8 +78,8 @@ const topcards: cardType[] = [
 ];
 const CollaboratePost = () => {
   const [value, setValue] = React.useState('1');
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
-  const [value2, setValue2] = React.useState<Dayjs | null>(null);
+  const [value1, setValue1] = React.useState<Dayjs | null>(null)
+  const [value2, setValue2] = React.useState<Dayjs | null>(null)
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -110,7 +111,7 @@ const CollaboratePost = () => {
   ];
   return (
     <Box>
-      <Breadcrumb title="Blog Detail" items={BCrumb} />{' '}
+      {/* <Breadcrumb title="Blog Detail" items={BCrumb} />{' '} */}
       <div style={{ display: 'flex', justifyContent: 'end' }}>
         <div
           style={{
@@ -176,6 +177,7 @@ const CollaboratePost = () => {
           width={{ xs: '100%', md: '30%' }}
           textAlign={{ xs: 'center', md: 'left', xl: 'left' }}
           margin="0px "
+
         >
           <Box
             borderBottom="1px solid #EEEEEE"
@@ -193,7 +195,7 @@ const CollaboratePost = () => {
           >
             <MonthlyEarnings1 />
           </Box>
-          <Box paddingRight="10px" textAlign={{ sx: 'center', lg: 'start' }}>
+          <Box paddingRight='10px' textAlign={{ sx: 'center', lg: 'start' }}>
             {' '}
             <Box
               borderBottom="1px solid #EEEEEE"
@@ -229,10 +231,7 @@ const CollaboratePost = () => {
               >
                 <span>
                   Redtech tiến hành chi trả từ ngày 15-20 hàng tháng cho tất cả tài khoản Affiliate{' '}
-                  <a style={{ color: '#5D87FF' }} href="/apps/rule">
-                    Chính sách{' '}
-                  </a>
-                  . Hạn mức thanh toán tối thiểu là 2.000.000đ
+                  <a style={{ color: '#5D87FF' }} href="/apps/rule">Chính sách </a>. Hạn mức thanh toán tối thiểu là 2.000.000đ
                 </span>
               </Typography>
             </Box>

@@ -56,7 +56,7 @@
     return (
       <DashboardCard>
         <>
-          <Typography variant="h4">10.000.000 VNĐ</Typography>
+          <Typography variant="h4">10tr VNĐ</Typography>
           <Typography variant="subtitle2" color="textSecondary" mb={2}>
             Expense
           </Typography>
