@@ -1,8 +1,8 @@
 import { Avatar, Box, Button, Grid, styled, Typography } from '@mui/material';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import React from 'react';
+import fail from 'src/assets/images/certificate/failre.png';
 import { Link } from 'react-router-dom'; // Import useNavigate for navigation
-
 
 const ProfileImage = styled(Box)(() => ({
   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -73,13 +73,7 @@ const Fail = () => {
 
               {/* Failure message below */}
               <Grid item xs={12} textAlign="center">
-                <img
-                  src="https://media.istockphoto.com/id/1210968750/vi/vec-to/bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%E1%BB%AF-th%E1%BA%ADp-x-d%E1%BA%A5u-vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-m%C3%A0u-%C4%91%E1%BB%8F-ki%E1%BB%83u-ph%E1%BA%B3ng-%C4%91%C6%B0%E1%BB%A3c-c%C3%A1ch-ly-minh-h%E1%BB%8Da-vector.jpg?s=612x612&w=0&k=20&c=Kid2m9LO8nXzMyum-SXvR_DKBflS0WWCHIV-EJpdq6k="
-
-                  alt="Error Image"
-
-                  style={{ width: '200px', height: '170px' }}
-                />
+                <img src={fail} alt="Error Image" style={{ width: '200px', height: '170px' }} />
 
                 {/* Failure Message */}
                 <FailMessageWrapper>
@@ -109,7 +103,6 @@ const Fail = () => {
                   >
                     Trở lại trang đăng ký
                   </Button>
-
                 </FailMessageWrapper>
               </Grid>
             </Grid>

@@ -1,15 +1,15 @@
 import { Grid } from '@mui/material';
 import { useState } from 'react';
 import PageContainer from 'src/components/container/PageContainer';
-
 import { default as AccountInformation } from 'src/components/apps/userprofile/profile/AccountInformation';
 import BusinessInformation from 'src/components/apps/userprofile/profile/BusinessInformation';
 import PersonalInformation from 'src/components/apps/userprofile/profile/PersonalInformation';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
 import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
+import ReceiveEmail from 'src/components/apps/userprofile/profile/ReceiveEmail';
 
 const UserProfile = () => {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string>('personal');
 
   const handleButtonClick = (buttonName: string) => {
     setSelected(buttonName);
@@ -29,6 +29,7 @@ const UserProfile = () => {
             {selected === 'personal' && <PersonalInformation />}
             {selected === 'account' && <AccountInformation />}
             {selected === 'business' && <BusinessInformation />}
+            {selected === 'email' && <ReceiveEmail />}
           </Grid>
         </Grid>
       </Grid>

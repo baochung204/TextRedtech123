@@ -657,7 +657,7 @@ const CompanyAffiliate = () => {
       case 4:
         return (
           <Box pt={3}>
-            <Typography variant="body2" sx={{ mt: 1 }}>
+            <Typography variant="body2" sx={{ mt: 1, fontSize: '15px' }}>
               <p>Chúng tôi xin chân thành cảm ơn bạn đã tin tưởng và sử dụng Redtech !</p>
               <p>
                 Việc bạn tham gia cùng chúng tôi không chỉ là một bước khởi đầu mới, mà còn là động

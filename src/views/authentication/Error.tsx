@@ -13,10 +13,10 @@ const Error = () => (
     <Container maxWidth="md">
       <img src={ErrorImg} alt="404" />
       <Typography align="center" variant="h1" mb={4}>
-        Opps!!!
+        Xin lỗi
       </Typography>
       <Typography align="center" variant="h4" mb={4}>
-        This page you are looking for could not be found.
+        Trang này không tồn tại. Vui lòng kiểm tra lại địa chỉ hoặc quay lại trang chủ.
       </Typography>
       <Button
         color="primary"
@@ -25,7 +25,7 @@ const Error = () => (
         to="/dashboards/modern"
         disableElevation
       >
-        Go Back to Home
+        Trở lại trang chủ
       </Button>
     </Container>
   </Box>
