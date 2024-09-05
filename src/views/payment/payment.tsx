@@ -43,6 +43,7 @@ import Iconvnpay from 'src/assets/images/logoPay/vnpay.svg';
 import Iconzalopay from 'src/assets/images/logoPay/zalopay.svg';
 import Iconshopeepay from 'src/assets/images/logoPay/shopeepay.svg';
 import { title } from 'process';
+
 const CustomInput = styled((props: any) => <TextField {...props} />)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     borderRadius: '50px',
@@ -68,15 +69,10 @@ const BCrumb = [
   { to: '/pay/point', title: 'Thanh Toán' },
 ];
 const PayMentPonit = () => {
-  const [checked, setChecked] = React.useState(true);
-  const [onClick, setOnClick] = useState(false);
+  const [checked, setChecked] = React.useState(false);
 
-  const onHandleClick = () => {
-    setOnClick(!onClick);
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
+  const handleCheckboxChange = () => {
+    setChecked(!checked);
   };
   const [selectedPackage, setSelectedPackage] = useState(null);
 
@@ -883,11 +879,7 @@ const PayMentPonit = () => {
                               }}
                               sx={{ right: { xs: '-15px', md: '45px' } }}
                             >
-                              <img
-                                src={sale}
-                                alt=""
-                                style={{ width: '70px', display: { xs: 'none', md: 'block' } }}
-                              />
+                              <img src={sale} alt="" style={{ width: '70px' }} />
                             </Box>
                           </Card>
                         </Grid>
@@ -964,92 +956,95 @@ const PayMentPonit = () => {
                     1,702,657 đ
                   </Typography>
                 </Box>
-                <Accordion
-                  sx={{
-                    mt: 2,
-                    boxShadow: 'none',
-                  }}
-                >
-                  <AccordionSummary
-                    expandIcon={<IconChevronDown />}
+
+                <Box sx={{ my: 2 }}>
+                  <Box
                     sx={{
-                      fontSize: 15,
-                      px: 0,
-                      border: 'none',
-                      boxShadow: 'none',
+                      display: 'flex',
+                      gap: '6px',
+                      alignItems: 'center',
+                      cursor: 'pointer',
+                    }}
+                    onClick={handleCheckboxChange}
+                  >
+                    <CustomCheckbox checked={checked} />
+                    <Typography sx={{ fontSize: 16, fontWeight: 500 }}>Xuất hóa đơn</Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      height: checked ? 'auto' : 0, // Đặt height tự động khi checked
+                      overflow: 'hidden', // Ẩn nội dung khi height là 0
+                      transition: 'height 0.5s ease', // Hiệu ứng transition mượt mà
+                      opacity: checked ? 1 : 0, // Thêm hiệu ứng opacity
+                      transitionProperty: 'height, opacity',
                     }}
                   >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        gap: '6px',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <CustomCheckbox
-                        checked={checked}
-                        onChange={handleChange}
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                      />
-                      <Typography sx={{ fontSize: 16, fontWeight: 500 }}>Xuất hóa đơn</Typography>
-                    </Box>
-                  </AccordionSummary>
-                  <Box sx={{ display: 'flex', gap: '6px', p: 2 }}>
-                    <img src={iconWarning} width={25} height={25} alt="" />
-                    <Typography>
-                      Quý khách vui lòng cung cấp đúng thông tin để xuất hóa đơn. Công ty không chịu
-                      trách nhiệm xử lý trong trường hợp quý khách điền sai thông tin hoặc doanh
-                      nghiệp không còn hoạt động.
-                    </Typography>
+                    {checked && (
+                      <Box>
+                        <Box sx={{ display: 'flex', gap: '6px', p: 2 }}>
+                          <img src={iconWarning} alt="" />
+                          <Typography>
+                            Quý khách vui lòng cung cấp đúng thông tin để xuất hóa đơn. Công ty
+                            không chịu trách nhiệm xử lý trong trường hợp quý khách điền sai thông
+                            tin hoặc doanh nghiệp không còn hoạt động.
+                          </Typography>
+                        </Box>
+                        <form>
+                          <FormControl fullWidth>
+                            <CustomFormLabel sx={{ mt: 2 }}>Mã số thuế</CustomFormLabel>
+                            <CustomTextField
+                              id="error-text-input"
+                              variant="outlined"
+                              fullWidth
+                              required
+                              placeholder="Mã số thuế"
+                            />
+                            <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                          </FormControl>
+
+                          <FormControl fullWidth>
+                            <CustomFormLabel sx={{ mt: 2 }}>Tên công ty</CustomFormLabel>
+                            <CustomTextField
+                              id="error-text-input"
+                              variant="outlined"
+                              placeholder="tối thiểu 2 ký tự"
+                              fullWidth
+                              required
+                            />
+                            <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                          </FormControl>
+
+                          <FormControl fullWidth>
+                            <CustomFormLabel sx={{ mt: 2 }}>Địa chỉ</CustomFormLabel>
+                            <CustomTextField
+                              id="error-text-input"
+                              variant="outlined"
+                              fullWidth
+                              required
+                              placeholder="Địa chỉ công ty"
+                            />
+                            <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                          </FormControl>
+
+                          <FormControl fullWidth>
+                            <CustomFormLabel sx={{ mt: 2 }}>
+                              Email nhận hóa đơn điện tử
+                            </CustomFormLabel>
+                            <CustomTextField
+                              id="error-text-input"
+                              variant="outlined"
+                              fullWidth
+                              required
+                              placeholder="Email"
+                            />
+                            <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                          </FormControl>
+                        </form>
+                      </Box>
+                    )}
                   </Box>
-                  <form>
-                    <FormControl fullWidth>
-                      {' '}
-                      <FormControl fullWidth>
-                        <CustomFormLabel sx={{ mt: 2 }}>Mã số thuế</CustomFormLabel>
-                        <CustomTextField
-                          id="error-text-input"
-                          variant="outlined"
-                          fullWidth
-                          required
-                          placeholder="Mã số thuế"
-                        />
-                        <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
-                      </FormControl>{' '}
-                      <CustomFormLabel sx={{ mt: 2 }}>Tên công ty</CustomFormLabel>
-                      <CustomTextField
-                        id="error-text-input"
-                        variant="outlined"
-                        placeholder="tối thiểu 2 ký tự"
-                        fullWidth
-                        required
-                      />
-                      <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
-                    </FormControl>{' '}
-                    <FormControl fullWidth>
-                      <CustomFormLabel sx={{ mt: 2 }}>Địa chỉ </CustomFormLabel>
-                      <CustomTextField
-                        id="error-text-input"
-                        variant="outlined"
-                        fullWidth
-                        required
-                        placeholder="Địa chỉ công ty"
-                      />
-                      <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
-                    </FormControl>{' '}
-                    <FormControl fullWidth>
-                      <CustomFormLabel sx={{ mt: 2 }}>Email nhận hóa đơn điện tử</CustomFormLabel>
-                      <CustomTextField
-                        id="error-text-input"
-                        variant="outlined"
-                        fullWidth
-                        required
-                        placeholder="Email"
-                      />
-                      <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
-                    </FormControl>{' '}
-                  </form>
-                </Accordion>
+                </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                   <Button
                     sx={{
@@ -1063,6 +1058,7 @@ const PayMentPonit = () => {
                         backgroundColor: '#DC143C ',
                       },
                     }}
+                    onClick={() => {}}
                   >
                     Thanh Toán{' '}
                   </Button>

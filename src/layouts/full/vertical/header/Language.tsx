@@ -6,17 +6,12 @@ import { useSelector, useDispatch } from 'src/store/Store';
 import { setLanguage } from 'src/store/customizer/CustomizerSlice';
 import FlagEn from 'src/assets/images/flag/icon-flag-en.svg';
 import FlagVn from 'src/assets/images/flag/icon-flag-vn.svg';
-import FlagFr from 'src/assets/images/flag/icon-flag-fr.svg';
+
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { AppState } from 'src/store/Store';
 
 const Languages = [
-  {
-    flagname: 'Tiếng Pháp (FR)',
-    icon: FlagFr,
-    value: 'fr',
-  },
   {
     flagname: 'Tiếng Anh (UK)',
     icon: FlagEn,

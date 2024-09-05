@@ -67,15 +67,11 @@ const IconCoin = () => (
   </svg>
 );
 
-
 interface BuyPointProps {
-  images: string,
-  text1: number | string,
-  text2: number | string,
-
+  images: string;
+  text1: number | string;
+  text2: number | string;
 }
-
-
 
 const BuyPoint = () => {
   const [openPopup, setOpenPopup] = useState(false);
@@ -87,43 +83,43 @@ const BuyPoint = () => {
       images: logochicken,
       text1: 70,
       text2: 20100,
-    }, 
+    },
     {
       images: logochicken,
       text1: 350,
       text2: 100500,
-    }, 
+    },
     {
       images: logochicken,
       text1: 700,
       text2: 201000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 1400,
       text2: 402000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 3500,
       text2: 1055000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 7000,
       text2: 2010000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 17500,
       text2: 5025000,
-    }, 
+    },
     {
       images: logochicken,
       text1: 'Tùy chỉnh',
       text2: 'Hỗ trợ số lượng lớn',
-    }, 
-  ]
+    },
+  ];
 
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
@@ -167,7 +163,7 @@ const BuyPoint = () => {
         </Box>
 
         <Grid container spacing={3} textAlign="center" sx={{ pt: 4 }}>
-          {data.map((items, index) => 
+          {data.map((items, index) => (
             <Grid item lg={3} sm={6} xs={12} key={index}>
               <BoxStyled
                 sx={{
@@ -182,7 +178,6 @@ const BuyPoint = () => {
                   gap: '-10px',
                   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                 }}
-
               >
                 <BoxStyled
                   sx={{
@@ -196,16 +191,24 @@ const BuyPoint = () => {
                   <img src={items.images} alt="" width={30} height={30} />
 
                   <Typography variant="h3" sx={{ fontWeight: 700 }}>
-                    {typeof (items.text1) === 'string' ? <>{items.text1}</> : <>{items.text1.toLocaleString('vi-VN')}</>}
+                    {typeof items.text1 === 'string' ? (
+                      <>{items.text1}</>
+                    ) : (
+                      <>{items.text1.toLocaleString('vi-VN')}</>
+                    )}
                   </Typography>
                 </BoxStyled>
 
                 <Typography variant="h6" sx={{ paddingTop: '5px' }}>
-                  {typeof (items.text2) === 'string' ? <>{items.text2}</> : <>{items.text2.toLocaleString('vi-VN')}</>}
+                  {typeof items.text2 === 'string' ? (
+                    <>{items.text2}</>
+                  ) : (
+                    <>{items.text2.toLocaleString('vi-VN')}</>
+                  )}
                 </Typography>
               </BoxStyled>
             </Grid>
-          )}
+          ))}
         </Grid>
         <Box
           sx={{
@@ -216,9 +219,7 @@ const BuyPoint = () => {
             mt: { xs: 1, sm: 5, md: 5 },
           }}
         >
-          <Typography sx={{ fontWeight: 600, fontSize: 16, color: 'black' }}>
-            Phương thức thanh toán :
-          </Typography>
+          <Typography sx={{ fontWeight: 600, fontSize: 16 }}>Phương thức thanh toán :</Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
             <ul
               style={{
@@ -273,7 +274,7 @@ const BuyPoint = () => {
               xs: { alignContent: 'center' },
             }}
           >
-            <Typography variant="h3" sx={{ color: 'black', fontWeight: 600, fontSize: 18 }}>
+            <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 18 }}>
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
