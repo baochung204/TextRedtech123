@@ -6,6 +6,7 @@ import BusinessInformation from 'src/components/apps/userprofile/profile/Busines
 import PersonalInformation from 'src/components/apps/userprofile/profile/PersonalInformation';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
 import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
+import ReceiveEmail from 'src/components/apps/userprofile/profile/ReceiveEmail';
 
 const UserProfile = () => {
   const [selected, setSelected] = useState<string>('personal');
@@ -28,6 +29,7 @@ const UserProfile = () => {
             {selected === 'personal' && <PersonalInformation />}
             {selected === 'account' && <AccountInformation />}
             {selected === 'business' && <BusinessInformation />}
+            {selected === 'email' && <ReceiveEmail />}
           </Grid>
         </Grid>
       </Grid>

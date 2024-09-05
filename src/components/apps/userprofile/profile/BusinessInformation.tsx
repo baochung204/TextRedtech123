@@ -10,7 +10,7 @@ const BusinessInformation = () => {
     companyName: 'Công ty ABC',
     companyAddress: '456 Đường XYZ, TP. Hồ Chí Minh',
   });
-
+  
   const handleEditClick = (field: string) => {
     setEditing(field);
   };
