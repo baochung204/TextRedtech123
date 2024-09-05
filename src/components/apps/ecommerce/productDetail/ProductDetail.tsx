@@ -10,19 +10,18 @@ import {
   Divider,
   Stack,
   useTheme,
-  Fab,
   ButtonGroup,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts, addToCart } from '../../../../store/apps/eCommerce/ECommerceSlice';
-import { IconCheck, IconMinus, IconPlus } from '@tabler/icons-react';
+import { IconMinus, IconPlus } from '@tabler/icons-react';
 import AlertCart from '../productCart/AlertCart';
 import { ProductType } from 'src/types/apps/eCommerce';
 
 const ProductDetail = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const { id } = useParams();  // Sử dụng destructuring cho params
+  const { id } = useParams();
 
   // Get Product
   useEffect(() => {
@@ -31,12 +30,6 @@ const ProductDetail = () => {
 
   // Get Products
   const product: ProductType = useSelector((state) => state.ecommerceReducer.products[Number(id) - 1]);
-
-  // Select colors on click
-  const [scolor, setScolor] = useState(product ? product.colors[0] : '');
-  const setColor = (e: string) => {
-    setScolor(e);
-  };
 
   // Set qty
   const [count, setCount] = useState(1);
@@ -76,8 +69,7 @@ const ProductDetail = () => {
             {product.title}
           </Typography>
           <Typography variant="subtitle2" mt={1} color={theme.palette.text.secondary}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ex arcu, tincidunt bibendum
-            felis.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ex arcu, tincidunt bibendum felis.
           </Typography>
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
@@ -98,39 +90,12 @@ const ProductDetail = () => {
             </Link>
           </Stack>
           <Divider />
-          {/* Colors */}
-          {/* <Stack py={4} direction="row" alignItems="center">
-            <Typography variant="h6" mr={1}>
-              Colors:
-            </Typography>
-            <Box>
-              {product.colors.map((color) => (
-                <Fab
-                  color="primary"
-                  sx={{
-                    transition: '0.1s ease-in',
-                    scale: scolor === color ? '0.9' : '0.7',
-                    backgroundColor: `${color}`,
-                    '&:hover': {
-                      backgroundColor: `${color}`,
-                      opacity: 0.7,
-                    },
-                  }}
-                  size="small"
-                  key={color}
-                  onClick={() => setColor(color)}
-                >
-                  {scolor === color ? <IconCheck size="1.1rem" /> : ''}
-                </Fab>
-              ))}
-            </Box>
-          </Stack> */}
           {/* Qty */}
           <Stack direction="row" alignItems="center" pb={5}>
-            <Typography variant="h6" mr={4}>
+            <Typography variant="h6" mt={4} mr={4}>
               Số lượng:
             </Typography>
-            <Box>
+            <Box mt={4}>
               <ButtonGroup size="small" color="secondary" aria-label="small button group">
                 <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
                   <IconMinus size="1.1rem" />
@@ -144,7 +109,7 @@ const ProductDetail = () => {
           </Stack>
           <Divider />
           {/* Buttons */}
-          <Grid container spacing={2} mt={3}>
+          <Grid container spacing={2} mt={5}>
             <Grid item xs={12} lg={4} md={6}>
               <Button
                 color="primary"
@@ -170,7 +135,7 @@ const ProductDetail = () => {
               </Button>
             </Grid>
           </Grid>
-          <Typography color="textSecondary" variant="body1" mt={4}>
+          <Typography color="textSecondary" variant="body1" mt={4} mb={3}>
             Gửi đi trong vòng 2-3 tuần
           </Typography>
           <Link to="/" color="inherit">

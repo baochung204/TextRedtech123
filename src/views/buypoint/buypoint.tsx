@@ -25,7 +25,7 @@ import giftbox from '../../assets/images/icon.png/gift_9521097.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
-import { set } from 'lodash';
+import Iconbowtie from 'src/assets/images/logos/iconbowtie.png';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -66,11 +66,65 @@ const IconCoin = () => (
     ></path>
   </svg>
 );
+
+
+interface BuyPointProps {
+  images: string,
+  text1: number | string,
+  text2: number | string,
+
+}
+
+
+
 const BuyPoint = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const onHanldeClickOpenPopup = () => {
     setOpenPopup(!openPopup);
   };
+  const data: BuyPointProps[] = [
+    {
+      images: logochicken,
+      text1: 70,
+      text2: 20100,
+    }, 
+    {
+      images: logochicken,
+      text1: 350,
+      text2: 100500,
+    }, 
+    {
+      images: logochicken,
+      text1: 700,
+      text2: 201000,
+    }, 
+    {
+      images: logochicken,
+      text1: 1400,
+      text2: 402000,
+    }, 
+    {
+      images: logochicken,
+      text1: 3500,
+      text2: 1055000,
+    }, 
+    {
+      images: logochicken,
+      text1: 7000,
+      text2: 2010000,
+    }, 
+    {
+      images: logochicken,
+      text1: 17500,
+      text2: 5025000,
+    }, 
+    {
+      images: logochicken,
+      text1: 'Tùy chỉnh',
+      text2: 'Hỗ trợ số lượng lớn',
+    }, 
+  ]
+
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
       <Breadcrumb title="Quy Đổi Ngân Lượng  " items={BCrumb} />
@@ -91,7 +145,7 @@ const BuyPoint = () => {
             }}
           >
             <marquee maxWidth="50%">
-              <Typography variant="h3" sx={{ color: '#F22A51', fontWeight: 700, fontSize: 16 }}>
+              <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 16 }}>
                 Quy Đổi Ngân Lượng chương trình khuyến mại 25% cho các huynh đệ quy đổi ngân lượng
                 lần đầu tiên
               </Typography>
@@ -113,420 +167,45 @@ const BuyPoint = () => {
         </Box>
 
         <Grid container spacing={3} textAlign="center" sx={{ pt: 4 }}>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
-              }}
-            >
+          {data.map((items, index) => 
+            <Grid item lg={3} sm={6} xs={12} key={index}>
               <BoxStyled
                 sx={{
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  color: 'primary.main',
                   display: 'flex',
+                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
+                  height: '120px',
+                  gap: '-10px',
+                  boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                 }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
 
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  70
+              >
+                <BoxStyled
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '6px',
+                    padding: '0',
+                  }}
+                >
+                  <img src={items.images} alt="" width={30} height={30} />
+
+                  <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                    {typeof (items.text1) === 'string' ? <>{items.text1}</> : <>{items.text1.toLocaleString('vi-VN')}</>}
+                  </Typography>
+                </BoxStyled>
+
+                <Typography variant="h6" sx={{ paddingTop: '5px' }}>
+                  {typeof (items.text2) === 'string' ? <>{items.text2}</> : <>{items.text2.toLocaleString('vi-VN')}</>}
                 </Typography>
               </BoxStyled>
-
-              <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫20,100
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <img
-                  src={giftbox}
-                  alt="Giftbox"
-                  width={25}
-                  height={25}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  350
-                </Typography>
-              </BoxStyled>
-
-              <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫100,500
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  700
-                </Typography>
-              </BoxStyled>
-              <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫201,000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  1,400
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫402,000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  3,500
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫1,0.055,000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  7000
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫2.010.000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  17,500
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫5.025.000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-                <>
-                  <img src={giftbox} alt="" width={25} height={25} />
-                </>
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img
-                  src={logochicken}
-                  alt=""
-                  width={30}
-                  height={30}
-                  style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-                />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  Tùy chỉnh
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                Hỗ trợ số lượng lớn
-              </Typography>
-            </BoxStyled>
-          </Grid>
+            </Grid>
+          )}
         </Grid>
         <Box
           sx={{
@@ -597,7 +276,7 @@ const BuyPoint = () => {
             <Typography variant="h3" sx={{ color: 'black', fontWeight: 600, fontSize: 18 }}>
               Tổng tiền :
             </Typography>
-            <Typography variant="h3" sx={{ color: '#F22A51', fontWeight: 700, fontSize: 20 }}>
+            <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
               ₫1,055,000
             </Typography>
           </Box>
@@ -615,7 +294,7 @@ const BuyPoint = () => {
               sx={{
                 px: 7,
                 py: 1,
-                backgroundColor: '#FE2C55',
+                backgroundColor: '#FC2032',
                 fontWeight: 700,
                 fontSize: 18,
                 ':hover': {

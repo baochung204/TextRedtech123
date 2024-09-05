@@ -1,8 +1,6 @@
 import React from 'react';
-import { Box, Button, Switch } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-
-const drawerWidth = 240;
 
 const SiderAffiliate = () => {
   return (
@@ -15,7 +13,7 @@ const SiderAffiliate = () => {
     >
       <Box
         sx={{
-          width: drawerWidth,
+          width: 500,
           flexShrink: 0,
           p: 3,
           display: 'flex',
@@ -27,27 +25,43 @@ const SiderAffiliate = () => {
           backgroundColor: 'white', // Optional background color
         }}
       >
-        <Button
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          component={Link}
-          to="/apps/person-affiliate"
+        <Typography
+          variant="h6"
+          align="center"
+          sx={{
+            mb: 2, // Adds some margin below the text
+            textAlign: 'justify', // Justifies text so that it starts and ends at the same point
+            width: '100%', // Ensures the text takes up the full width of the box
+          }}
         >
-          Cá nhân
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          component={Link}
-          to="/apps/company-affiliate"
-        >
-          Doanh nghiệp
-        </Button>
-        <Box textAlign="center">
-          <Switch defaultChecked />
-        </Box>
+          Bạn muốn kiếm thêm thu nhập từ việc giới thiệu sản phẩm? Hãy chọn phương thức phù hợp với
+          bạn nhất!
+        </Typography>
+
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              component={Link}
+              to="/apps/person-affiliate"
+            >
+              Cá nhân
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              component={Link}
+              to="/apps/company-affiliate"
+            >
+              Doanh nghiệp
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

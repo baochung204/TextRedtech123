@@ -10,24 +10,24 @@ import Assistant_Add from 'src/components/apps/assistant/AssistantEditor';
 const BCrumb = [
   {
     to: '/',
-    title: 'Home',
+    title: 'Trang chủ',
   },
   {
     to: '/apps/assistant/add',
-    title: 'Editor Assistant',
+    title: 'Tạo Assistant',
   },
 ];
 
 const AssistantEditor = () => {
   return (
-    <PageContainer title="Shop List" description="this is Shop List page">
+    <PageContainer title="Tạo Assistant" description="this is Shop List page">
       {/* breadcrumb */}
-      <Breadcrumb title="Assistant" items={BCrumb} />
+      <Breadcrumb title="Tạo Assistant" items={BCrumb} />
       <BlankCard>
         {/* ------------------------------------------- */}
         {/* Left part */}
         {/* ------------------------------------------- */}
-        <Assistant_Add />
+        <Assistant_Add/>
       </BlankCard>
     </PageContainer>
   );

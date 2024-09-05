@@ -44,7 +44,7 @@ const Header = () => {
     width: '100%',
     color: theme.palette.text.secondary,
   }));
-
+  const a = 70000;
   return (
     <AppBarStyled position="sticky" color="default">
       <ToolbarStyled>
@@ -71,37 +71,42 @@ const Header = () => {
 
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-          <Box sx={{ display: 'flex', gap: 1, p: '12px' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 1,
+              px: '15px',
+              py: '3px',
+              alignItems: 'center',
+              borderRadius: '5px',
+              border: '1px solid #FC2005',
+            }}
+          >
             <Typography
               sx={{
-                fontSize: '16px',
+                fontSize: { sx: '14px', sm: '16px' },
                 fontWeight: 600,
-                color: '#FF9933',
+                color: '#FC2032',
                 alignItems: 'flex-end',
                 position: 'relative',
-                mt: '10px',
               }}
             >
-              70000
+              {a.toLocaleString('vn-VN')}
             </Typography>
             {/* <Box sx={{ backgroundColor: 'black', w: '40px', h: '40px' }}>
               <img src={logochicken} alt="" width={30} height={30} style={{ padding: '2px' }} />
             </Box> */}
-            <img
-              src={logochicken}
-              alt=""
-              width={30}
-              height={30}
-              style={{ padding: '4px', backgroundColor: '#FFE0B3', borderRadius: 50 }}
-            />
+            <img src={logochicken} alt="" width={30} height={30} />
           </Box>
           <Box sx={{ p: '12px' }}>
             <Link to={'/buy/point'}>
               <Button
                 sx={{
-                  backgroundColor: '#FFC75E',
+                  backgroundColor: '#FC2032',
                   color: 'white',
-                  ':hover': { backgroundColor: '#FFA300' },
+                  ':hover': { backgroundColor: '#CA0211' },
+                  fontSize: { xs: '12px', sm: '14px', md: '16px' },
+                  px: { xs: '5px', sm: '10px', md: '20px' },
                 }}
               >
                 Nạp Gà
