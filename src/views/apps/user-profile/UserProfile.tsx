@@ -6,7 +6,7 @@ import { default as AccountInformation } from 'src/components/apps/userprofile/p
 import BusinessInformation from 'src/components/apps/userprofile/profile/BusinessInformation';
 import PersonalInformation from 'src/components/apps/userprofile/profile/PersonalInformation';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
-import Sidebar from 'src/components/apps/userprofile/profile/SideBar';
+import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
 
 const UserProfile = () => {
   const [selected, setSelected] = useState<string | null>(null);
