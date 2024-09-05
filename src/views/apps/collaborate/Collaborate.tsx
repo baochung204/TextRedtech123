@@ -1,28 +1,20 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import {
-  Box,
-  Button,
-  CardContent,
-  // FormControl,
-  Grid,
-  IconButton,
-  // InputLabel,
-  // MenuItem,
-  // Select,
-  Tab,
-  Typography,
-} from '@mui/material';
+import { Box, Button, CardContent, Grid, IconButton, Tab, Typography } from '@mui/material';
 import { IconPackage } from '@tabler/icons-react';
 import React from 'react';
 // import ProductPerformances from 'src/components/dashboards/ecommerce/ProductPerformances';
+
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
-// import ChildCard from 'src/components/shared/ChildCard';
+
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
+import icon2 from '../../../assets/images/svgs/icon-user-male.svg';
+import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
+import icon7 from '../../../assets/images/svgs/img.png';
 import Banner1 from 'src/components/widgets/banners/Banner1';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-// import DSdonhang from './../../../components/dashboards/ecommerce/dsdonhang';
+
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
@@ -83,19 +75,7 @@ const CollaboratePost = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  // const [month, setMonth] = React.useState('5');
 
-  // const handleSelectChange = (event: any) => {
-  //   setMonth(event.target.value);
-  //   // Cập nhật TabPanel tương ứng với giá trị chọn từ Select
-  //   if (event.target.value === 5) {
-  //     setMonth('5');
-  //   } else if (event.target.value === 6) {
-  //     setMonth('6');
-  //   } else if (event.target.value === 7) {
-  //     setMonth('7');
-  //   }
-  // };
   const BCrumb = [
     {
       to: '/',
