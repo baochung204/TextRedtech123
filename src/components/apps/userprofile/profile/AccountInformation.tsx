@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Snackbar, Alert } from '@mui/material';
-import { IconUserCircle, IconEdit, IconCheck } from '@tabler/icons-react';
+import { Box, Typography, IconButton, TextField } from '@mui/material';
+import { IconUserCircle, IconEdit } from '@tabler/icons-react'; // Thay thế với biểu tượng bạn muốn
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
   const [accountInfo, setAccountInfo] = useState({
     username: 'ngoc-toan',
     email: 'nqton301004@gmail.com',
@@ -25,13 +24,7 @@ const AccountInformation = () => {
 
   const handleSaveClick = () => {
     setEditing(null);
-    setSuccess(true); // Hiển thị thông báo thành công
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSaveClick();
-    }
+    // Thực hiện lưu dữ liệu ở đây, ví dụ: gọi API để cập nhật dữ liệu
   };
 
   const renderField = (field: string, label: string) => (
@@ -44,12 +37,11 @@ const AccountInformation = () => {
           <TextField
             value={accountInfo[field as keyof typeof accountInfo]}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown} // Xử lý sự kiện Enter
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
           />
           <IconButton onClick={handleSaveClick}>
-            <IconCheck />
+            <IconEdit />
           </IconButton>
         </>
       ) : (
@@ -81,18 +73,6 @@ const AccountInformation = () => {
       {renderField('email', 'Email')}
       {renderField('address', 'Địa chỉ')}
       {renderField('gender', 'Giới tính')}
-
-      {/* Snackbar hiển thị thông báo thành công */}
-      <Snackbar
-        open={success}
-        autoHideDuration={3000}
-        onClose={() => setSuccess(false)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert onClose={() => setSuccess(false)} severity="success" sx={{ width: '100%' }}>
-          Cập nhật thành công!
-        </Alert>
-      </Snackbar>
     </Box>
   );
 };
