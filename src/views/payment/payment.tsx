@@ -69,7 +69,7 @@ const BCrumb = [
   { to: '/pay/point', title: 'Thanh Toán' },
 ];
 const PayMentPonit = () => {
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const handleCheckboxChange = () => {
     setChecked(!checked);
@@ -1058,6 +1058,7 @@ const PayMentPonit = () => {
                         backgroundColor: '#DC143C ',
                       },
                     }}
+                    onClick={() => {}}
                   >
                     Thanh Toán{' '}
                   </Button>
