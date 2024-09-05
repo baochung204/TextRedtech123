@@ -75,8 +75,8 @@ const BusinessInformation = () => {
         margin: '0 auto', // Căn giữa trang
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
-        <IconBriefcase /> Thông tin doanh nghiệp
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
+        <IconBriefcase /> <span>Thông tin doanh nghiệp</span>
       </Typography>
       {renderField('taxCode', 'Mã số thuế')}
       {renderField('companyName', 'Tên công ty')}

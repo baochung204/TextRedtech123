@@ -9,7 +9,7 @@ const PersonalInformation = () => {
     name: 'Ngô Quốc Toản',
     email: 'nqton301004@gmail.com',
     phone: '0123456789',
-    address: '123 Đường ABC, TP. Hồ Chí Minh'
+    address: '123 Đường ABC, TP. Hồ Chí Minh',
   });
 
   const handleEditClick = (field: string) => {
@@ -76,8 +76,8 @@ const PersonalInformation = () => {
         margin: '0 auto', // Căn giữa trang
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
-        <IconUser /> Thông tin cá nhân
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
+        <IconUser /> <span>Thông tin cá nhân</span>
       </Typography>
       {renderField('name', 'Tên')}
       {renderField('email', 'Email')}

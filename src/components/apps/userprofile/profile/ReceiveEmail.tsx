@@ -1,5 +1,14 @@
 import { Email } from '@mui/icons-material';
-import { Box, Typography, Checkbox, FormControlLabel, FormGroup, Button, Alert, AlertTitle } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Button,
+  Alert,
+  AlertTitle,
+} from '@mui/material';
 import { useState } from 'react';
 
 const ReceiveEmail = () => {
@@ -14,7 +23,10 @@ const ReceiveEmail = () => {
 
   const [checked, setChecked] = useState(initialState);
   const [savedState, setSavedState] = useState(initialState);
-  const [showAlert, setShowAlert] = useState<{ success: boolean; cancel: boolean }>({ success: false, cancel: false });
+  const [showAlert, setShowAlert] = useState<{ success: boolean; cancel: boolean }>({
+    success: false,
+    cancel: false,
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked({
@@ -45,8 +57,8 @@ const ReceiveEmail = () => {
         margin: '0 auto', // Căn giữa trang
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
-        <Email /> Tùy chọn nhận Email
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
+        <Email /> <span> Tùy chọn nhận Email</span>
       </Typography>
 
       <FormGroup>
