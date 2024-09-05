@@ -87,7 +87,7 @@ const Sales = () => {
           Sales
         </Typography>
         <Box className="rounded-bars">
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="90px" />
+        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="83px" />
         </Box>
       </>
     </DashboardCard>
