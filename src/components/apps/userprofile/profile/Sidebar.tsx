@@ -36,7 +36,6 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
           label={tab.label}
           value={tab.value}
           sx={{
-            display: 'flex',
             minHeight: 72, // Chiều cao tối thiểu cho mỗi tab
             '&.Mui-selected': {
               color: 'primary.main',

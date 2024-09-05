@@ -1,54 +1,51 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import React from 'react';
-import { Tabs, Tab, Box } from '@mui/material';
-import { IconHeart, IconPhoto, IconUserCircle } from '@tabler/icons-react';
+import React, { useState } from 'react';
+import { Box, Tab, Tabs, Menu, MenuItem } from '@mui/material';
+import { IconLock, IconUser, IconUserCircle, IconTicket } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const ProfileTab = () => {
   const location = useLocation();
-  const [value, setValue] = React.useState(location.pathname);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  const [value, setValue] = useState(location.pathname);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+  };
+
+  const handleBảoMậtClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   interface profileType {
     label: string;
     icon: JSX.Element;
-    to: string;
+    to?: string;
+    dropdown?: boolean;
   }
 
   const ProfileTabs: profileType[] = [
-    // {
-    //   label: 'Trang cá nhân',
-    //   icon: <IconUserCircle size="20" />,
-    //   to: '/user-profile',
-    // },
-    // {
-    //   label: 'Đăng ký affiliate',
-    //   icon: <IconUserCircle size="20" />,
-    //   to: '/apps/affiliate',
-    // },
     {
-      label: 'Thông tin tài khoản',
-      icon: <IconHeart size="20" />,
+      label: 'Thông tin cá nhân',
+      icon: <IconUser size="20" />,
       to: '/user-profile',
     },
     {
-      label: 'Người theo dõi',
-      icon: <IconHeart size="20" />,
-      to: '/apps/followers',
+      label: 'Bảo mật',
+      icon: <IconLock size="20" />,
+      dropdown: true,
     },
     {
-      label: 'Bạn bè',
+      label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
-      to: '/apps/friends',
+      to: '/apps/assistant',
     },
     {
-      label: 'Ảnh',
-      icon: <IconPhoto size="20" />,
+      label: 'Ticket',
+      icon: <IconTicket size="20" />,
       to: '/apps/gallery',
     },
   ];
@@ -56,32 +53,62 @@ const ProfileTab = () => {
   return (
     <Box mt={1} sx={{ mt: 1, backgroundColor: (theme) => theme.palette.grey[100] }}>
       <Box
-        justifyContent={'end'}
+        justifyContent="end"
         display="flex"
         sx={{ overflow: 'auto', width: { xs: '333px', sm: 'auto' } }}
       >
         <Tabs
           value={value}
           onChange={handleChange}
-          aria-label="scrollable prevent tabs example"
+          aria-label="profile tabs"
           variant="scrollable"
           scrollButtons="auto"
         >
           {ProfileTabs.map((tab) => {
-            return (
-              <Tab
-                iconPosition="start"
-                label={tab.label}
-                sx={{ minHeight: '50px' }}
-                icon={tab.icon}
-                component={Link}
-                to={tab.to}
-                value={tab.to}
-                key={tab.label}
-              />
-            );
+            if (tab.dropdown) {
+              return (
+                <Tab
+                  key={tab.label}
+                  iconPosition="start"
+                  label={tab.label}
+                  sx={{ minHeight: '50px' }}
+                  icon={tab.icon}
+                  onClick={handleBảoMậtClick}
+                />
+              );
+            } else {
+              return (
+                <Tab
+                  key={tab.label}
+                  iconPosition="start"
+                  label={tab.label}
+                  sx={{ minHeight: '50px' }}
+                  icon={tab.icon}
+                  component={Link}
+                  to={tab.to}
+                  value={tab.to}
+                />
+              );
+            }
           })}
         </Tabs>
+
+        {/* Dropdown menu for Bảo mật */}
+        <Menu
+          id="bao-mat-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+          transformOrigin={{ horizontal: 'left', vertical: 'top' }}
+        >
+          <MenuItem component={Link} to="/pages/account-settings" onClick={handleClose}>
+            Đổi mật khẩu
+          </MenuItem>
+          <MenuItem component={Link} to="/auth/two-steps" onClick={handleClose}>
+            Bảo mật 2 lớp
+          </MenuItem>
+        </Menu>
       </Box>
     </Box>
   );
