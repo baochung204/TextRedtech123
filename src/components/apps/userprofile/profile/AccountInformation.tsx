@@ -10,7 +10,7 @@ const AccountInformation = () => {
     email: 'nqton301004@gmail.com',
     address: '123 Đường ABC, TP. Hồ Chí Minh',
     gender: 'male',
-    password: "**********"
+    password: '**********',
   });
 
   const handleEditClick = (field: string) => {
@@ -77,8 +77,8 @@ const AccountInformation = () => {
         margin: '0 auto', // Căn giữa trang
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
-        <IconUserCircle /> Thông tin tài khoản
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
+        <IconUserCircle /> <span>Thông tin tài khoản</span>
       </Typography>
       {renderField('username', 'Tên đăng nhập')}
       {renderField('email', 'Email')}
