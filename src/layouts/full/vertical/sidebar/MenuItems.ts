@@ -131,9 +131,9 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Trạng thái affilate',
+    title: 'Trạng thái affiliate',
     icon: IconChartDonut3,
-    href: '/apps/assistant/',
+    href: '/apps/affiliate',
     children: [
       {
         id: uniqueId(),

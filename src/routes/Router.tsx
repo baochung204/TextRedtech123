@@ -84,6 +84,9 @@ const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/Quil
 import FormRequest from 'src/views/forms/FormRequest';
 import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
+import Success from 'src/views/apps/user-profile/Success';
+import Fail from 'src/views/apps/user-profile/Fail';
+import Pending from 'src/views/apps/user-profile/Pending';
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -176,6 +179,9 @@ const Router = [
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
       { path: '/apps/affiliate', element: <Affiliate /> },
+      { path: '/apps/success', element: <Success /> },
+      { path: '/apps/fail', element: <Fail /> },
+      { path: '/apps/pending', element: <Pending /> },
       { path: '/apps/person-affiliate', element: <PersonAffiliate /> },
       { path: '/apps/company-affiliate', element: <CompanyAffiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
