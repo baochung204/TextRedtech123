@@ -20,23 +20,37 @@ const Expence = () => {
     chart: {
       type: 'donut',
       fontFamily: "'Plus Jakarta Sans', sans-serif;",
+
       toolbar: {
         show: false,
       },
       height: 120,
     },
-    labels: ['Profit', 'Revenue', 'Expense'],
+    labels: ["Profit", "Revenue", "Expance"],
     colors: [primary, error, secondary],
     plotOptions: {
       pie: {
+
         donut: {
           size: '70%',
-          background: 'transparent',
+          background: 'transparent'
         },
       },
     },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      show: false,
+    },
+    legend: {
+      show: false,
+    },
+    tooltip: {
+      theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
+      fillSeriesColor: false,
+    },
   };
-
   const seriesexpencechart = [60, 25, 15];
 
   return (
