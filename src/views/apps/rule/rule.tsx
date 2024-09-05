@@ -5,14 +5,10 @@ const rule = () => {
   return (
     <>
       {/* thay */}
-      <Typography
-        variant="h1"
-        align="center"
-      >
+      <Typography variant="h1" align="center">
         Chính sách và điều khoản
       </Typography>
-
-
+      <div>
         <Box
           sx={{
             height: '500px',
@@ -427,7 +423,6 @@ const rule = () => {
           </div>
         </Box>
       </div>
-
     </>
   );
 };
