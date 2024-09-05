@@ -141,12 +141,7 @@ const BuyPoint = () => {
     }
 
   }, [value])
-  // const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const rawValue = e.target.value.replace(/,/g, ''); // Xóa dấu phân cách cũ
-  //   if (!isNaN(Number(rawValue))) { // Kiểm tra nếu là số
-  //     setValue(Number(rawValue).toLocaleString('vi-VN')); // Định dạng và lưu giá trị
-  //   }
-  // };
+
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
       <Breadcrumb title="Quy Đổi Ngân Lượng  " items={BCrumb} />
