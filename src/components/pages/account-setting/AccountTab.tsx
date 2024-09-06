@@ -1,101 +1,105 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { CardContent, Grid, Typography, Box, Button, Stack } from '@mui/material';
+import { CardContent, Grid, Typography, Button, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate để chuyển hướng
 
 // components
 import BlankCard from '../../shared/BlankCard';
 import CustomTextField from '../../forms/theme-elements/CustomTextField';
 import CustomFormLabel from '../../forms/theme-elements/CustomFormLabel';
 
-// images
-import user1 from 'src/assets/images/profile/user-1.jpg';
-
-interface GenderType {
-  value: string;
-  label: string;
-}
-
-// locations
-const locations: GenderType[] = [
-  {
-    value: 'Nam',
-    label: 'Nam',
-  },
-  {
-    value: 'Nữ',
-    label: 'Nữ',
-  },
-];
-
 const AccountTab = () => {
-  const [location, setLocation] = React.useState('Nam');
+  const navigate = useNavigate(); // Khai báo useNavigate
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLocation(event.target.value);
+  // Hàm xử lý khi submit form
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Ngăn việc reload trang khi submit
+    // Xử lý logic đổi mật khẩu tại đây
+    // ...
+
+    // Chuyển hướng sang trang bảo mật 2 lớp
+    navigate('/auth/two-steps'); 
   };
 
   return (
-    <Grid container spacing={3}>
-      {/*  Change Password */}
-      {/* <Grid item xs={12} lg={6}> */}
+    <Grid
+      display={'flex'}
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Grid item xs={12} sm={8} md={6}>
         <BlankCard>
-          <CardContent >
-            <Typography variant="h5" mb={1}>
+          <CardContent
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              p: 4,
+              backgroundColor: '#fff',
+              borderRadius: '10px',
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <Typography variant="h4" mb={2} fontWeight="bold" color="primary.main">
               Đổi mật khẩu
             </Typography>
-            <Typography color="textSecondary" mb={3}>
+            <Typography color="textSecondary" mb={4}>
               Nhập các thông tin bên dưới
             </Typography>
-            <form>
-              <CustomFormLabel
-                sx={{
-                  mt: 0,
-                }}
-                htmlFor="text-cpwd"
-              >
+            <form style={{ width: '100%' }} onSubmit={handleSubmit}> {/* Thêm onSubmit */}
+              <CustomFormLabel sx={{ mt: 0 }} htmlFor="text-cpwd">
                 Mật khẩu hiện tại
               </CustomFormLabel>
               <CustomTextField
                 id="text-cpwd"
-                value="MathewAnderson"
+                placeholder="Nhập mật khẩu hiện tại"
                 variant="outlined"
                 fullWidth
                 type="password"
+                sx={{ mb: 3 }}
               />
-              {/* 2 */}
               <CustomFormLabel htmlFor="text-npwd">Mật khẩu mới</CustomFormLabel>
               <CustomTextField
                 id="text-npwd"
-                value="MathewAnderson"
+                placeholder="Nhập mật khẩu mới"
                 variant="outlined"
                 fullWidth
                 type="password"
+                sx={{ mb: 3 }}
               />
-              {/* 3 */}
               <CustomFormLabel htmlFor="text-conpwd">Xác nhận mật khẩu</CustomFormLabel>
               <CustomTextField
                 id="text-conpwd"
-                value="MathewAnderson"
+                placeholder="Xác nhận mật khẩu mới"
                 variant="outlined"
                 fullWidth
                 type="password"
+                sx={{ mb: 4 }}
               />
-              {/* Submit Button */}
-              <Stack direction="row" spacing={2} sx={{ justifyContent: 'end', mt: 3 }}>
-                <Button size="large" variant="contained" color="primary" type="submit">
+              <Stack direction="row" spacing={2} sx={{ justifyContent: 'center', mt: 3 }}>
+                <Button
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  type="submit" 
+                  sx={{ borderRadius: '30px', px: 4 }}
+                >
                   Lưu
                 </Button>
-                <Button size="large" variant="text" color="error">
+                <Button
+                  size="large"
+                  variant="outlined"
+                  color="error"
+                  sx={{ borderRadius: '30px', px: 4 }}
+                >
                   Hủy
                 </Button>
               </Stack>
             </form>
           </CardContent>
         </BlankCard>
-      {/* </Grid> */}
-      {/* Edit Details */}
-      {/* ... other code ... */}
+      </Grid>
     </Grid>
   );
 };
