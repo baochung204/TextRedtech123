@@ -130,7 +130,6 @@ const Menuitems: MenuitemsType[] = [
     href: '/dashboards/list',
   },
 
-  
   {
     id: uniqueId(),
     title: 'Trạng thái affiliate',
@@ -311,6 +310,12 @@ const Menuitems: MenuitemsType[] = [
     title: 'Chats',
     icon: IconMessage2,
     href: '/apps/chats',
+  },
+  {
+    id: uniqueId(),
+    title: 'Support',
+    icon: IconMessage2,
+    href: '/apps/support',
   },
   {
     id: uniqueId(),

@@ -72,13 +72,13 @@ const ChatMsgSent = () => {
           transformOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <Picker onEmojiClick={onEmojiClick} native />
-          <Box p={2}>Selected: {chosenEmoji ? chosenEmoji.emoji : ''}</Box>
+          <Box p={2}>Đã chọn: {chosenEmoji ? chosenEmoji.emoji : ''}</Box>
         </Popover>
         <InputBase
           id="msg-sent"
           fullWidth
           value={msg}
-          placeholder="Type a Message"
+          placeholder="Nhập câu hỏi tại đây"
           size="small"
           type="text"
           inputProps={{ 'aria-label': 'Type a Message' }}

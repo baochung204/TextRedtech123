@@ -6,16 +6,16 @@ import {
   Divider,
   Avatar,
   ListItem,
-  ListItemText,
   ListItemAvatar,
   IconButton,
   Box,
   Stack,
   Badge,
   useMediaQuery,
-  Theme
+  Theme,
+  ListItemText,
 } from '@mui/material';
-import { IconDotsVertical, IconMenu2, IconPhone, IconVideo } from '@tabler/icons-react';
+import { IconDotsVertical, IconMenu2 } from '@tabler/icons-react';
 import { useSelector } from 'src/store/Store';
 
 import { ChatsType } from 'src/types/apps/chat';
@@ -23,13 +23,12 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import ChatInsideSidebar from './ChatInsideSidebar';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 
-
 interface ChatContentProps {
   toggleChatSidebar: () => void;
 }
 
-  const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
-  const [open, setOpen] = React.useState(true);
+const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
+  const [open, setOpen] = React.useState(false);
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
 
   const chatDetails: ChatsType = useSelector(
@@ -56,16 +55,6 @@ interface ChatContentProps {
               <ListItem key={chatDetails.id} dense disableGutters>
                 <ListItemAvatar>
                   <Badge
-                    color={
-                      chatDetails.status === 'online'
-                        ? 'success'
-                        : chatDetails.status === 'busy'
-                        ? 'error'
-                        : chatDetails.status === 'away'
-                        ? 'warning'
-                        : 'secondary'
-                    }
-                    variant="dot"
                     anchorOrigin={{
                       vertical: 'bottom',
                       horizontal: 'right',
@@ -76,17 +65,17 @@ interface ChatContentProps {
                   </Badge>
                 </ListItemAvatar>
                 <ListItemText
-                  primary={<Typography variant="h5">{chatDetails.name}</Typography>}
-                  secondary={chatDetails.status}
+                  primary={<Typography variant="h5">Trợ lý Redtech</Typography>}
+                  // secondary={chatDetails.status}
                 />
               </ListItem>
               <Stack direction={'row'}>
-                <IconButton aria-label="delete">
+                {/* <IconButton aria-label="delete">
                   <IconPhone stroke={1.5} />
                 </IconButton>
                 <IconButton aria-label="delete">
                   <IconVideo stroke={1.5} />
-                </IconButton>
+                </IconButton> */}
                 <IconButton aria-label="delete" onClick={() => setOpen(!open)}>
                   <IconDotsVertical stroke={1.5} />
                 </IconButton>
