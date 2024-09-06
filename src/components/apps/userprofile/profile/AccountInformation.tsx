@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle } from '@mui/material';
+import { Box, Typography, IconButton, TextField, Select, MenuItem, Alert, AlertTitle } from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
@@ -9,18 +10,31 @@ const AccountInformation = () => {
     username: 'nqtoan2k4',
     email: 'nqton301004@gmail.com',
     address: '123 Đường ABC, TP. Hồ Chí Minh',
-    gender: 'male',
+    gender: 'male', // 'male', 'female', 'other'
     password: '**********',
   });
 
+  const navigate = useNavigate();
+
   const handleEditClick = (field: string) => {
-    setEditing(field);
+    if (field === 'password') {
+      navigate('/pages/account-settings'); // Điều hướng đến trang đổi mật khẩu
+    } else {
+      setEditing(field);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccountInfo({
       ...accountInfo,
       [editing as string]: e.target.value,
+    });
+  };
+
+  const handleGenderChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setAccountInfo({
+      ...accountInfo,
+      gender: e.target.value as string,
     });
   };
 
@@ -42,22 +56,46 @@ const AccountInformation = () => {
         {label}:
       </Typography>
       {editing === field ? (
-        <>
-          <TextField
-            value={accountInfo[field as keyof typeof accountInfo]}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown} // Xử lý sự kiện Enter
-            sx={{ flexGrow: 1, mr: 1 }}
-            size="small"
-          />
-          <IconButton onClick={handleSaveClick}>
-            <IconCheck />
-          </IconButton>
-        </>
+        field === 'gender' ? (
+          <>
+            <Select
+              value={accountInfo.gender}
+              onChange={handleGenderChange}
+              sx={{ flexGrow: 1, mr: 1 }}
+              size="small"
+            >
+              <MenuItem value="male">Nam</MenuItem>
+              <MenuItem value="female">Nữ</MenuItem>
+              <MenuItem value="other">Khác</MenuItem>
+            </Select>
+            <IconButton onClick={handleSaveClick}>
+              <IconCheck />
+            </IconButton>
+          </>
+        ) : (
+          <>
+            <TextField
+              value={accountInfo[field as keyof typeof accountInfo]}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              sx={{ flexGrow: 1, mr: 1 }}
+              size="small"
+            />
+            <IconButton onClick={handleSaveClick}>
+              <IconCheck />
+            </IconButton>
+          </>
+        )
       ) : (
         <>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {accountInfo[field as keyof typeof accountInfo]}
+            {field === 'gender'
+              ? accountInfo.gender === 'male'
+                ? 'Nam'
+                : accountInfo.gender === 'female'
+                ? 'Nữ'
+                : 'Khác'
+              : accountInfo[field as keyof typeof accountInfo]}
           </Typography>
           <IconButton onClick={() => handleEditClick(field)}>
             <IconEdit />

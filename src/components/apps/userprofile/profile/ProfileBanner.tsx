@@ -70,7 +70,7 @@ const ProfileBanner = () => {
               </Box> */}
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Link
-                  to={'/apps/followers'}
+                  to={'/assistant/list'}
                   style={{ display: 'flex', alignItems: 'center', gap: 10 }}
                 >
                   <Typography

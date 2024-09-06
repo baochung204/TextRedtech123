@@ -104,11 +104,11 @@ const AssistantEditor = () => {
         <Grid container spacing={3}>
           {/* Cột 1 */}
           <Grid item xs={12} sm={12} lg={5}>
-            <Box sx={{ height: '80vh', overflowY: 'auto', p: 2 }}>
-              <CustomFormLabel htmlFor="name">Tên</CustomFormLabel>
-              <CustomTextField id="name" placeholder="Enter a user friendly name" variant="outlined" fullWidth />
+            <Paper elevation={1} sx={{ height: '72vh', overflowY: 'auto', p: 2 }}>
+              <CustomFormLabel htmlFor="name" sx={{mt: 0}}>Tên</CustomFormLabel>
+              <CustomTextField id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
-              <CustomTextField id="cname" placeholder="You are a helpful assistant" variant="outlined" fullWidth />
+              <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth />
               <CustomFormLabel htmlFor="name">Công cụ</CustomFormLabel>
               <input
                 accept="*/*"
@@ -163,14 +163,14 @@ const AssistantEditor = () => {
                 <AddIcon fontSize='small' style={{ marginRight: '10px' }} />Functions
               </Button>
               
-            </Box>
+            </Paper>
           </Grid>
           {/* Cột 2 */}
           <Grid item xs={12} sm={12} lg={7}>
-            <Paper elevation={3} sx={{ height: '80vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper elevation={1} sx={{ height: '72vh', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
-              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(80vh - 120px)' }}>
+              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(72vh - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
                     <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>
@@ -219,7 +219,7 @@ const AssistantEditor = () => {
               </Stack>
               <Stack direction="row" spacing={1}>
                 <Button variant="contained" color="secondary">
-                  Add New
+                  Thêm mới
                 </Button>
                 {/* <Button variant="contained" color="success">
                   Add New

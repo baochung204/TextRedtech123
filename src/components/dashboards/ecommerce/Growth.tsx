@@ -72,7 +72,12 @@ const Growth = () => {
         </Box>
 
         <Box mt={3} mb={2}>
-          <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="25px" />
+          <Chart
+            options={optionscolumnchart}
+            series={seriescolumnchart}
+            type="area"
+            height="25px"
+          />
         </Box>
 
         <Typography variant="h4">

@@ -84,7 +84,7 @@ const Header = () => {
           >
             <Typography
               sx={{
-                fontSize: { sx: '14px', sm: '16px' },
+                fontSize: { xs: '12px', sm: '14px', md: '16px', lg: '18px' },
                 fontWeight: 600,
                 color: '#FC2032',
                 alignItems: 'flex-end',
@@ -93,10 +93,17 @@ const Header = () => {
             >
               {a.toLocaleString('vn-VN')}
             </Typography>
-            {/* <Box sx={{ backgroundColor: 'black', w: '40px', h: '40px' }}>
-              <img src={logochicken} alt="" width={30} height={30} style={{ padding: '2px' }} />
-            </Box> */}
-            <img src={logochicken} alt="" width={30} height={30} />
+
+            <Box
+              component="img"
+              src={logochicken}
+              alt=""
+              sx={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: { xs: '20px', sm: '20px', md: '30px' }, // Điều chỉnh kích thước theo từng breakpoint
+              }}
+            />
           </Box>
           <Box sx={{ p: '12px' }}>
             <Link to={'/buy/point'}>
@@ -105,8 +112,8 @@ const Header = () => {
                   backgroundColor: '#FC2032',
                   color: 'white',
                   ':hover': { backgroundColor: '#CA0211' },
-                  fontSize: { xs: '12px', sm: '14px', md: '16px' },
-                  px: { xs: '5px', sm: '10px', md: '20px' },
+                  fontSize: { xs: '12px', sm: '12px', md: '14px' },
+                  px: { xs: '5px', sm: '10px', md: '7px' },
                 }}
               >
                 Nạp Gà
