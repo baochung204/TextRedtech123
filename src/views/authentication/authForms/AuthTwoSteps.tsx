@@ -24,6 +24,17 @@ const AuthTwoSteps = () => {
     }
   };
 
+  const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace' && codes[index] === '') {
+      // Nếu ô hiện tại trống và nhấn Backspace, di chuyển con trỏ về ô trước đó
+      if (index > 0) {
+        inputRefs.current[index - 1]?.focus();
+      }
+    }
+  };
+
+  const isFormValid = codes.every(code => code !== ''); // Kiểm tra tất cả các ô đã được điền
+
   return (
     <Box mt={4}>
       <Stack mb={3}>
@@ -37,12 +48,23 @@ const AuthTwoSteps = () => {
               inputRef={(el: any) => (inputRefs.current[index] = el)}
               variant="outlined"
               fullWidth
+              onKeyDown={(e: any) => handleKeyDown(index, e)} // Xử lý sự kiện khi nhấn phím Backspace
               inputProps={{ maxLength: 1, style: { textAlign: 'center' } }} // Giới hạn 1 ký tự và căn giữa
             />
           ))}
         </Stack>
       </Stack>
-      <Button color="primary" variant="contained" size="large" fullWidth component={Link} to="/">
+
+      {/* Nút xác minh chỉ có thể nhấn khi đủ 6 ký tự */}
+      <Button
+        color="primary"
+        variant="contained"
+        size="large"
+        fullWidth
+        component={Link}
+        to="/"
+        disabled={!isFormValid} // Vô hiệu hóa nút nếu chưa điền đủ mã
+      >
         Xác minh tài khoản của tôi
       </Button>
 
