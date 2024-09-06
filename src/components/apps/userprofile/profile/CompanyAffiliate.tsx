@@ -21,13 +21,13 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';
 
 const steps = [
   'Điều khoản của chúng tôi',
   'Thông tin công ty',
   'Thông tin tài khoản',
-  'Tài liệu xác minh',
-  'Kết thúc',
+  'Hợp đồng kinh doanh',
 ];
 
 const CompanyAffiliate = () => {
@@ -36,12 +36,12 @@ const CompanyAffiliate = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFileName(file.name);
-    }
-  };
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setSelectedFileName(file.name);
+  //   }
+  // };
 
   const handleDocumentChange = (event) => {
     setSelectedDocument(URL.createObjectURL(event.target.files[0]));
@@ -536,11 +536,11 @@ const CompanyAffiliate = () => {
               />
             </Box>
             <Box>
-              <CustomFormLabel htmlFor="companyEmail">Hòm thư công ty</CustomFormLabel>
+              <CustomFormLabel htmlFor="companyEmail">Email công ty</CustomFormLabel>
               <CustomTextField
                 id="companyEmail"
                 variant="outlined"
-                placeholder="Nhập gmail công ty của bạn"
+                placeholder="Nhập email công ty của bạn"
                 fullWidth
               />
             </Box>
@@ -613,12 +613,13 @@ const CompanyAffiliate = () => {
                 </IconButton>
               </Box>
             )}
-            <CustomFormLabel htmlFor="document">Tài liệu xác minh</CustomFormLabel>
+            <CustomFormLabel htmlFor="document">Tải xuống hợp đồng kinh doanh</CustomFormLabel>
             <Typography variant="body2" color="textSecondary" mb={2}>
               <ol>
-                <li>Tải xuống hợp đồng mẫu từ hệ thống.</li>
-                <li>Kiểm tra và xác minh toàn bộ thông tin trên hợp đồng.</li>
-                <li>Tải lên tài liệu xác minh đã được ký tên và đóng dấu tại đây.</li>
+                <li>Tải xuống hợp đồng kinh doanh từ hệ thống.</li>
+                <li>Đọc và xác minh toàn bộ thông tin trên hợp đồng.</li>
+                <li>Kiểm tra kỹ các thông tin vừa xác minh và ký xác nhận.</li>
+                <li>Tải lên hợp đồng kinh doanh đã được ký xác nhận tại đây.</li>
               </ol>
             </Typography>
             <Button variant="contained" component="label" color="primary">
@@ -631,10 +632,11 @@ const CompanyAffiliate = () => {
                 style={{ display: 'none' }}
               />
             </Button>
+            <CustomFormLabel htmlFor="document">Tải lên hợp đồng kinh doanh</CustomFormLabel>
             <Typography variant="body2" color="textSecondary" mb={2}>
               <ol>
                 <li>Kiểm tra lại toàn bộ thông tin của hợp đồng lần nữa.</li>
-                <li>Tải lên tài liệu xác minh đã được ký tên và đóng dấu tại đây.</li>
+                <li>Tải lên chính xác hợp đồng kinh doanh đã được ký tên tại đây.</li>
               </ol>
             </Typography>
             <Button variant="contained" component="label" color="primary">
@@ -654,40 +656,15 @@ const CompanyAffiliate = () => {
             )}
           </Box>
         );
-      case 4:
-        return (
-          <Box pt={3}>
-            <Typography variant="body2" sx={{ mt: 1, fontSize: '15px' }}>
-              <p>Chúng tôi xin chân thành cảm ơn bạn đã tin tưởng và sử dụng Redtech !</p>
-              <p>
-                Việc bạn tham gia cùng chúng tôi không chỉ là một bước khởi đầu mới, mà còn là động
-                lực để chúng tôi không ngừng cải tiến và mang đến những trải nghiệm tốt nhất cho
-                bạn.
-              </p>
-              <p>
-                Trong thời gian tới, bạn sẽ nhận được những thông tin hữu ích, các cập nhật mới nhất
-                và nhiều ưu đãi đặc biệt chỉ dành riêng cho thành viên của chúng tôi. Hãy nhớ kiểm
-                tra hộp thư thường xuyên để không bỏ lỡ nhé!
-              </p>
-              <p>
-                Nếu bạn có bất kỳ câu hỏi hay cần hỗ trợ, đừng ngần ngại liên hệ với chúng tôi. Đội
-                ngũ hỗ trợ của chúng tôi luôn sẵn sàng giúp đỡ bạn.
-              </p>
-              <p>
-                Một lần nữa, cảm ơn bạn đã lựa chọn Redtech. Chúng tôi rất mong được đồng hành cùng
-                bạn trong hành trình phía trước.
-              </p>
-            </Typography>
-          </Box>
-        );
+
       default:
         return null;
     }
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  // const handleReset = () => {
+  //   setActiveStep(0);
+  // };
 
   return (
     <PageContainer>
@@ -713,8 +690,8 @@ const CompanyAffiliate = () => {
               Bạn đã hoàn thành việc đăng ký - chờ chúng tôi phê duyệt trong vòng 24h
             </Alert>
             <Box textAlign="right">
-              <Button onClick={handleReset} variant="contained" color="error">
-                Cài lại
+              <Button component={Link} to="/apps/pending" variant="contained" color="error">
+                Hoàn thành
               </Button>
             </Box>
           </Stack>
@@ -730,6 +707,15 @@ const CompanyAffiliate = () => {
                 sx={{ mr: 1 }}
               >
                 Quay lại
+              </Button>
+              <Button
+                component={Link}
+                color="inherit"
+                variant="contained"
+                to="/user-profile"
+                sx={{ mr: 1 }}
+              >
+                Hủy bỏ
               </Button>
               <Box flex="1 1 auto" />
               {isStepOptional(activeStep) && (
