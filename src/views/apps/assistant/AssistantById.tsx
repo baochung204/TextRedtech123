@@ -44,9 +44,7 @@ import FormInfor from 'src/components/apps/assistant/AssistantById/FormInfor';
                   <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
                     <Sales />
                   </Grid>{' '}
-                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
-                    <FormInfor />
-                  </Grid>{' '}
+                  
                   <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
                     <Customers />
                   </Grid>
@@ -69,6 +67,7 @@ import FormInfor from 'src/components/apps/assistant/AssistantById/FormInfor';
                 <Grid container spacing={1}>
                   <Grid item xs={12} sm={6} lg={12}>
                     <YearlyBreakup />
+                    
                   </Grid>
                   <Grid item xs={12} sm={6} lg={12}>
                     <MonthlyEarnings />
@@ -77,6 +76,8 @@ import FormInfor from 'src/components/apps/assistant/AssistantById/FormInfor';
               </Grid>
               <Grid item xs={12} sm={6} lg={4}>
                 <WeeklyStats />
+              </Grid><Grid item xs={12} sm={6} lg={4}>
+                <FormInfor />
               </Grid>
               <Grid item xs={12} sm={6} lg={4}>
                 <PaymentGateways />
