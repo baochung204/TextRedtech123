@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import {
   Typography,
@@ -36,8 +36,15 @@ import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import ParentCard from 'src/components/shared/ParentCard';
 import BlankCard from '../../../components/shared/BlankCard';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {
+  IconArrowBackUp,
+  IconCheck,
+  IconDotsVertical,
+  IconEdit,
+  IconPlus,
+  IconTrash,
+  IconX,
+} from '@tabler/icons-react';
 import EditIcon from '@mui/icons-material/Edit';
 interface TablePaginationActionsProps {
   count: number;
@@ -218,7 +225,10 @@ const Assistant = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  const nav = useNavigate()
+  const handleInfor = () => {
+    nav('/apps/assistant/:id')
+  }
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
       <ParentCard title="Quản lý Trợ lý">
@@ -228,6 +238,7 @@ const Assistant = () => {
               aria-label="custom pagination table"
               sx={{
                 whiteSpace: 'nowrap',
+                
               }}
             >
               <TableHead>
@@ -249,7 +260,7 @@ const Assistant = () => {
                     <Typography variant="h6">Ngày tạo</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Hoạt động </Typography>
+                    <Typography variant="h6"></Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -258,37 +269,36 @@ const Assistant = () => {
                   ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   : rows
                 ).map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      <Typography variant="subtitle2">{row.id}</Typography>
+                  <TableRow key={index} >
+                    <TableCell onClick={handleInfor}>
+                      <Typography sx={{cursor: "pointer"}} variant="subtitle2">{row.id}</Typography>
                     </TableCell>
-                    <TableCell>
+                    <TableCell onClick={handleInfor}>
                       <Stack direction="row" spacing={2} alignmodel="center">
-                        {/* <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} /> */}
-                        <Typography variant="subtitle2" fontWeight="600">
+                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+                        <Typography sx={{cursor: "pointer"}} variant="subtitle2" fontWeight="600">
                           {row.customer}
                         </Typography>
                       </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Typography color="textSecondary" variant="h6" fontWeight="400">
+                    </TableCell >
+                    <TableCell onClick={handleInfor}>
+                      <Typography sx={{cursor: "pointer"}} color="textSecondary" variant="h6" fontWeight="400">
                         {row.model}
                       </Typography>
                     </TableCell>
 
-                    <TableCell>
-                      <Typography color="textSecondary" variant="h6" fontWeight="400">
+                    <TableCell onClick={handleInfor}>
+                      <Typography sx={{cursor: "pointer"}} color="textSecondary" variant="h6" fontWeight="400">
                         {row.connect}
                       </Typography>
                     </TableCell>
 
-                    <TableCell>
-                      <Typography variant="subtitle2">{row.date}</Typography>
+                    <TableCell onClick={handleInfor}>
+                      <Typography sx={{cursor: "pointer"}} variant="subtitle2">{row.date}</Typography>
                     </TableCell>
-                    <TableCell>
-                      
-                      <EditIcon sx={{marginRight: '10px', cursor: "pointer"}}/>
-                      <DeleteIcon sx={{marginRight: '10px', cursor: "pointer"}}/>
+                    <TableCell sx={{ cursor: "pointer", color:"steelblue"}}>
+                      <IconEdit />
+                      {/* <DeleteIcon sx={{marginRight: '10px', cursor: "pointer"}}/> */}
                     </TableCell>
                   </TableRow>
                 ))}
