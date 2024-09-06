@@ -71,7 +71,7 @@ const AccountSetting = () => {
         <Grid item xs={12}>
           <BlankCard>
             <Box sx={{ maxWidth: { xs: 320, sm: 480 } }}>
-              <Tabs
+              {/* <Tabs
                 value={value}
                 onChange={handleChange}
                 variant="scrollable"
@@ -103,7 +103,7 @@ const AccountSetting = () => {
                   label="Bảo mật"
                   {...a11yProps(3)}
                 />
-              </Tabs>
+              </Tabs> */}
             </Box>
             <Divider />
             <CardContent>
