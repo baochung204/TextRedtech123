@@ -131,33 +131,6 @@ const Menuitems: MenuitemsType[] = [
   },
 
   {
-    id: uniqueId(),
-    title: 'Trạng thái affiliate',
-    icon: IconChartDonut3,
-    href: '/apps/affiliate',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Thành công',
-        icon: IconPoint,
-        href: '/apps/success',
-      },
-      {
-        id: uniqueId(),
-        title: 'Thất bại',
-        icon: IconPoint,
-        href: '/apps/fail',
-      },
-      {
-        id: uniqueId(),
-        title: 'Đang chờ',
-        icon: IconPoint,
-        href: '/apps/pending',
-      },
-    ],
-  },
-
-  {
     navlabel: true,
     subheader: 'Quản trị',
   },
@@ -183,95 +156,12 @@ const Menuitems: MenuitemsType[] = [
     navlabel: true,
     subheader: 'Shop',
   },
+  //router of some task we are done
   {
     id: uniqueId(),
     title: 'Sản phẩm',
     icon: IconPoint,
     href: '/apps/ecommerce/shop',
-  },
-  {
-    navlabel: true,
-    subheader: 'Bài viết',
-  },
-  {
-    id: uniqueId(),
-    title: 'Bài viết',
-    icon: IconPoint,
-    href: '/',
-  },
-
-  {
-    navlabel: true,
-    subheader: 'Apps',
-  },
-
-  {
-    id: uniqueId(),
-    title: 'Modern',
-    icon: IconAperture,
-    href: '/dashboards/modern',
-    chip: 'New',
-    chipColor: 'secondary',
-  },
-  {
-    id: uniqueId(),
-    title: 'eCommerce',
-    icon: IconShoppingCart,
-    href: '/dashboards/ecommerce',
-  },
-
-  {
-    id: uniqueId(),
-    title: 'Landingpage',
-    icon: IconAppWindow,
-    href: '/landingpage',
-  },
-  {
-    navlabel: true,
-    subheader: 'Apps',
-  },
-  {
-    id: uniqueId(),
-    title: 'Contacts',
-    icon: IconPackage,
-    chip: '2',
-    chipColor: 'secondary',
-    href: '/apps/contacts',
-  },
-  {
-    id: uniqueId(),
-    title: 'Modern',
-    icon: IconAperture,
-    href: '/dashboards/modern',
-    chip: 'New',
-    chipColor: 'secondary',
-  },
-  {
-    id: uniqueId(),
-    title: 'eCommerce',
-    icon: IconShoppingCart,
-    href: '/dashboards/ecommerce',
-  },
-
-  {
-    id: uniqueId(),
-    title: 'Blog',
-    icon: IconChartDonut3,
-    href: '/apps/blog/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Posts',
-        icon: IconPoint,
-        href: '/apps/blog/posts',
-      },
-      {
-        id: uniqueId(),
-        title: 'Detail',
-        icon: IconPoint,
-        href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
-      },
-    ],
   },
   {
     id: uniqueId(),
@@ -311,6 +201,103 @@ const Menuitems: MenuitemsType[] = [
     icon: IconMessage2,
     href: '/apps/chats',
   },
+  {
+    id: uniqueId(),
+    title: 'Trạng thái affiliate',
+    icon: IconChartDonut3,
+    href: '/apps/affiliate',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thành công',
+        icon: IconPoint,
+        href: '/apps/success',
+      },
+      {
+        id: uniqueId(),
+        title: 'Thất bại',
+        icon: IconPoint,
+        href: '/apps/fail',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đang chờ',
+        icon: IconPoint,
+        href: '/apps/pending',
+      },
+    ],
+  },
+  {
+    navlabel: true,
+    subheader: 'Bài viết',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bài viết',
+    icon: IconPoint,
+    href: '/',
+  },
+
+  {
+    navlabel: true,
+    subheader: 'Apps',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
+  },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Landingpage',
+    icon: IconAppWindow,
+    href: '/landingpage',
+  },
+  // {
+  //   navlabel: true,
+  //   subheader: 'Apps',
+  // },
+  {
+    id: uniqueId(),
+    title: 'Contacts',
+    icon: IconPackage,
+    chip: '2',
+    chipColor: 'secondary',
+    href: '/apps/contacts',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Blog',
+    icon: IconChartDonut3,
+    href: '/apps/blog/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Posts',
+        icon: IconPoint,
+        href: '/apps/blog/posts',
+      },
+      {
+        id: uniqueId(),
+        title: 'Detail',
+        icon: IconPoint,
+        href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
+      },
+    ],
+  },
+
   {
     id: uniqueId(),
     title: 'Support',
