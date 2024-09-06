@@ -1,17 +1,17 @@
 import mock from '../mock';
 import { sub } from 'date-fns';
 import { Chance } from 'chance';
-import s1 from 'src/assets/images/products/s1.jpg';
-import s2 from 'src/assets/images/products/s2.jpg';
-import s3 from 'src/assets/images/products/s3.jpg';
-import s4 from 'src/assets/images/products/s4.jpg';
-import s5 from 'src/assets/images/products/s5.jpg';
-import s6 from 'src/assets/images/products/s6.jpg';
-import s7 from 'src/assets/images/products/s7.jpg';
-import s8 from 'src/assets/images/products/s8.jpg';
-import s9 from 'src/assets/images/products/s9.jpg';
-import s10 from 'src/assets/images/products/s10.jpg';
-import s11 from 'src/assets/images/products/s11.jpg';
+import s1 from 'src/assets/images/products/s20.jpg';
+import s2 from 'src/assets/images/products/s21.jpg';
+import s3 from 'src/assets/images/products/s22.jpg';
+import s4 from 'src/assets/images/products/s23.jpg';
+import s5 from 'src/assets/images/products/s25.jpg';
+import s6 from 'src/assets/images/products/s24.jpg';
+import s7 from 'src/assets/images/products/s25.jpg';
+import s8 from 'src/assets/images/products/s20.jpg';
+import s9 from 'src/assets/images/products/s21.jpg';
+import s10 from 'src/assets/images/products/s22.jpg';
+import s11 from 'src/assets/images/products/s23.jpg';
 import s12 from 'src/assets/images/products/s12.jpg';
 
 const chance = new Chance();
