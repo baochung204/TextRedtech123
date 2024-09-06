@@ -126,12 +126,12 @@ const AssistantEditor = () => {
                       <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
                     </Button>
                   </Grid>
-                  <Grid item xs={12} sm={6} lg={12}>
+                  {/* <Grid item xs={12} sm={6} lg={12}>
                     <FormControlLabel style={{ width: '70%' }} control={<CustomSwitch />} label="Code interpreter" />
                     <Button variant="contained" color="primary" component="span" style={{ marginBottom: '10px' }}>
                       <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
                     </Button>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </label>
               <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
@@ -145,7 +145,7 @@ const AssistantEditor = () => {
                 <MenuItem value={2}>GPT-4-MINI</MenuItem>
                 <MenuItem value={3}>GPT-4-TURBO</MenuItem>
               </CustomSelect>
-              <CustomFormLabel>Response format</CustomFormLabel>
+              {/* <CustomFormLabel>Response format</CustomFormLabel>
               <CustomSelect
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -155,7 +155,7 @@ const AssistantEditor = () => {
                 <MenuItem value={1}>One</MenuItem>
                 <MenuItem value={2}>Two</MenuItem>
                 <MenuItem value={3}>Three</MenuItem>
-              </CustomSelect>
+              </CustomSelect> */}
               <CustomFormLabel style={{ width: '34%', marginBottom: '10px' }} htmlFor="functions">
                 Functions
               </CustomFormLabel>
