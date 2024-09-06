@@ -298,24 +298,23 @@ const ListAssistant = () => {
             <Stack
               direction="row"
               alignItems="center"
-              mt={2}
-              sx={{ display: 'flex', justifyContent: 'space-between' }}
+              mt={{ xs: 0.5, md: 2 }}
+              sx={{ display: { xs: 'block', sm: 'flex' }, justifyContent: 'space-between' }}
             >
-              <Box>
-                <Typography variant="h3">
+              <Box sx={{}}>
+                <Typography variant="h3" sx={{ fontSize: { xs: '18px', sm: '20px' } }}>
                   Danh sách trợ lý &nbsp;
                   <Chip label="20" color="secondary" size="small" />
                 </Typography>
               </Box>
-
-              <Box sx={{ display: 'flex', width: '50%', gap: 2 }}>
-                <Box
-                  sx={{
-                    ml: { xs: 'auto', sm: 0 },
-                    width: { xs: '50%', sm: '50%' },
-                  }}
-                >
-                  {' '}
+              <Grid
+                container
+                spacing={2}
+                my={{ xs: '2px', sm: 0 }}
+                display={{ sm: 'flex' }}
+                width={{ sm: 600 }}
+              >
+                <Grid item xs={6} sm={6} md={6}>
                   <Autocomplete
                     multiple
                     id="checkboxes-tags-demo"
@@ -330,49 +329,59 @@ const ListAssistant = () => {
                     )}
                     fullWidth
                     renderInput={(params) => (
-                      <CustomTextField {...params} placeholder="Favorites" aria-label="Favorites" />
+                      <CustomTextField
+                        {...params}
+                        placeholder="Lọc xếp hạng"
+                        aria-label="Favorites"
+                      />
                     )}
                     size="small"
+                    sx={{
+                      fontSize: { xs: '10px', sm: '16px' },
+                      width: { xs: '150px' },
+                      ml: 'auto',
+                    }}
                   />
-                </Box>
-                <Box
-                  sx={{
-                    ml: { xs: 'auto', sm: 0 },
-                    width: { xs: '50%', sm: '50%' },
-                  }}
-                >
-                  {' '}
+                </Grid>
+                <Grid item xs={6} sm={6} md={6}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Search Followers"
+                    placeholder="Tìm kiếm trợ lý"
                     size="small"
                     type="search"
                     variant="outlined"
                     inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '12px', sm: '14px', md: '16px' } }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <IconSearch size="14" />
+                          <IconSearch size="12" />
                         </InputAdornment>
                       ),
                     }}
                     fullWidth={true}
                   />
-                </Box>
-              </Box>
+                </Grid>
+              </Grid>
             </Stack>
           </Grid>
           <Grid container mt={2} spacing={2}>
             {dataRank?.map((rank, index) => (
               <Grid item xs={12} sm={12} md={6} key={index}>
-                <Card sx={{ display: 'flex', p: { sm: 2 } }}>
+                <Card
+                  sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    p: { xs: 1, sm: 2 },
+                  }}
+                >
                   <Box
                     sx={{
                       position: 'relative',
                       display: 'inline-block',
+
                       width: { xs: '280px', sm: '380px', md: '420px', lg: '370px' },
-                      height: { xs: '90px', sm: '230px', md: '240px', lg: '220px' },
+                      height: { xs: '260px', sm: '230px', md: '240px', lg: '220px' },
                       px: 2,
                       py: 1,
                     }}
@@ -395,8 +404,8 @@ const ListAssistant = () => {
                         transform: 'translate(-50%, -50%)',
                         borderRadius: '50%',
                         overflow: 'hidden',
-                        width: { xs: '20%', sm: '40%', md: '40%', lg: '40%' },
-                        height: { xs: '20%', sm: '40%', md: '40%', lg: '40%' },
+                        width: { xs: '41%', sm: '40%', md: '40%', lg: '40%' },
+                        height: { xs: '41%', sm: '40%', md: '40%', lg: '40%' },
                       }}
                     >
                       <img
@@ -409,11 +418,11 @@ const ListAssistant = () => {
                         }}
                       />
                     </Box>
-                    <Box sx={{ textAlign: 'center', mt: { md: 2 } }}>
+                    <Box sx={{ textAlign: 'center', mt: { sm: 1, md: 2 } }}>
                       <Typography
                         variant="h6"
                         mb={0.5}
-                        sx={{ fontSize: { xs: '12px', sm: '16px', md: '18px', lg: '18px' } }}
+                        sx={{ fontSize: { xs: '16px', sm: '16px', md: '18px', lg: '18px' } }}
                       >
                         {rank.fullName}
                       </Typography>
@@ -421,13 +430,21 @@ const ListAssistant = () => {
                         variant="body2"
                         color="text.secondary"
                         mb={0.5}
-                        sx={{ fontSize: { xs: '10px', sm: '12px', md: '14px', lg: '14px' } }}
+                        sx={{ fontSize: { xs: '14px', sm: '12px', md: '14px', lg: '14px' } }}
                       >
                         {rank.model}
                       </Typography>
                     </Box>
-                    <Grid container columnSpacing={1} sx={{ mt: { sm: 1.5, md: 2 } }}>
-                      <Grid item xs={12} sm={6}>
+                    <Grid
+                      container
+                      columnSpacing={1}
+                      sx={{
+                        mt: { xs: 1, sm: 1, md: 2 },
+                        mb: { xs: 5 },
+                      }}
+                      justifyContent="space-between"
+                    >
+                      <Grid item xs={6} sm={6} md={6}>
                         <Button
                           variant="contained"
                           color="primary"
@@ -440,7 +457,7 @@ const ListAssistant = () => {
                           Sửa
                         </Button>
                       </Grid>
-                      <Grid item xs={12} sm={6}>
+                      <Grid item xs={6} sm={6} md={6}>
                         <Button
                           variant="contained"
                           color="error"
@@ -456,31 +473,55 @@ const ListAssistant = () => {
                     </Grid>
                   </Box>
 
-                  <Box sx={{ width: '100%', px: 2, py: 1 }}>
+                  <Box sx={{ width: '100%', px: 2, py: 1, mt: { xs: 9.5, sm: 0 } }}>
                     <Box>
-                      <Grid container columnSpacing={2} sx={{ mt: 2 }}>
-                        <Grid item xs={12} sm={6} md={6}>
-                          {/* <Growth /> */}
+                      <Grid container columnSpacing={2} sx={{}}>
+                        <Grid item xs={6} sm={6} md={6}>
                           <DashboardCard>
                             <Box sx={{ p: 0 }}>
+                              {/* Icon and sale percentage */}
                               <Box
                                 bgcolor="secondary.light"
                                 display="flex"
                                 alignItems="center"
                                 justifyContent="center"
                                 sx={{
-                                  width: { md: '30px', lg: '38px' },
-                                  height: { md: '30px ', lg: '38px' },
+                                  width: { xs: '30px', md: '30px', lg: '38px' }, // Kích thước icon responsive
+                                  height: { xs: '30px', md: '30px', lg: '38px' },
                                   p: 0,
                                 }}
                               >
                                 <Avatar
                                   src={icon1}
                                   alt="img"
-                                  sx={{ width: { md: '20px' }, height: { md: '20px ' } }}
+                                  sx={{
+                                    width: { xs: '20px', md: '20px' },
+                                    height: { xs: '20px', md: '20px' },
+                                  }}
                                 />
                               </Box>
-                              <Box mt={3} mb={2}>
+
+                              {/* Chỉ hiển thị phần trăm và chữ Sale khi xs */}
+                              <Typography
+                                variant="h4"
+                                sx={{ display: { xs: 'block', sm: 'block' } }}
+                              >
+                                {rank.sale}%
+                                <span>
+                                  <IconArrowUpRight width={18} color="#39B69A" />
+                                </span>
+                              </Typography>
+
+                              <Typography
+                                variant="subtitle2"
+                                color="textSecondary"
+                                sx={{ display: { xs: 'block', sm: 'block' } }}
+                              >
+                                Sale
+                              </Typography>
+
+                              {/* Chart và các phần tử khác ẩn khi xs */}
+                              <Box mt={3} mb={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
                                 <Chart
                                   options={optionscolumnchart}
                                   series={seriescolumnchart}
@@ -488,44 +529,52 @@ const ListAssistant = () => {
                                   height="25px"
                                 />
                               </Box>
-                              <Typography variant="h4">
-                                {rank.sale}%
-                                <span>
-                                  <IconArrowUpRight width={18} color="#39B69A" />
-                                </span>
-                              </Typography>
-                              <Typography variant="subtitle2" color="textSecondary">
-                                Sale
-                              </Typography>
                             </Box>
                           </DashboardCard>
                         </Grid>
-                        <Grid item xs={12} sm={6} spacing={2}>
-                          <Grid container rowSpacing={'21px'}>
-                            <Grid item xs={12}>
+
+                        <Grid item xs={6} sm={6} spacing={2}>
+                          <Grid container rowSpacing={{ xs: 1.1, sm: 2 }}>
+                            <Grid item xs={12} sm={12}>
                               <Tooltip title="Tổng giá trị hàng hóa" placement="top">
-                                <Button variant="outlined" color="primary" sx={{ width: '100%' }}>
+                                <Button
+                                  variant="outlined"
+                                  color="primary"
+                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                >
                                   GMV: {rank.gmv}
                                 </Button>
                               </Tooltip>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sm={12}>
                               <Tooltip title="Giá trị trung bình trên một đơn hàng" placement="top">
-                                <Button variant="outlined" color="secondary" sx={{ width: '100%' }}>
+                                <Button
+                                  variant="outlined"
+                                  color="secondary"
+                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                >
                                   AOV: {rank.aov}
                                 </Button>
                               </Tooltip>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sm={12}>
                               <Tooltip title="Số lượng khách hàng" placement="top">
-                                <Button variant="outlined" color="error" sx={{ width: '100%' }}>
+                                <Button
+                                  variant="outlined"
+                                  color="error"
+                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                >
                                   CC: {rank.cc}
                                 </Button>
                               </Tooltip>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sm={12}>
                               <Tooltip title="Số lượng đơn hàng" placement="top">
-                                <Button variant="outlined" color="warning" sx={{ width: '100%' }}>
+                                <Button
+                                  variant="outlined"
+                                  color="warning"
+                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                >
                                   OC:{rank.oc}
                                 </Button>
                               </Tooltip>
@@ -538,16 +587,16 @@ const ListAssistant = () => {
                           overflow: 'hidden',
                           zIndex: '1',
                           position: 'relative',
-                          mt: 1,
+                          mt: { xs: 1, sm: 2 },
                         }}
                       >
-                        <Box sx={{ p: { sm: 1, md: 1.7, lg: 2 } }}>
+                        <Box sx={{ p: { xs: 2, sm: 2, md: 1.7, lg: 2 } }}>
                           <Stack spacing={3}>
                             {sells.map((sell: any, i: number) => (
                               <Box>
                                 <Stack
                                   direction="row"
-                                  mb={1}
+                                  mb={2}
                                   justifyContent="space-between"
                                   alignItems="center"
                                 >
