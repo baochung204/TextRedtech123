@@ -1,7 +1,17 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React, { useEffect } from 'react';
-import { CardContent, Typography, Grid, IconButton, Divider, Avatar, Box, Stack, Skeleton } from '@mui/material';
+import {
+  CardContent,
+  Typography,
+  Grid,
+  IconButton,
+  Divider,
+  Avatar,
+  Box,
+  Stack,
+  Skeleton,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import {
   IconBrandFacebook,
@@ -63,7 +73,6 @@ const profileCard: ProfileCard[] = [
 ];
 
 const ProfileCard = () => {
-
   const theme = useTheme();
   const [isLoading, setLoading] = React.useState(true);
 
@@ -71,10 +80,9 @@ const ProfileCard = () => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
-    
+
     return () => clearTimeout(timer);
   }, []);
-
 
   return (
     <Grid container spacing={3}>
@@ -84,9 +92,18 @@ const ProfileCard = () => {
             <CardContent>
               <Stack direction={'column'} gap={2} alignItems="center">
                 {isLoading ? (
-                  <Skeleton variant="rectangular" animation="wave" width="100%" height={160}></Skeleton>
+                  <Skeleton
+                    variant="rectangular"
+                    animation="wave"
+                    width="100%"
+                    height={160}
+                  ></Skeleton>
                 ) : (
-                  <Avatar alt="Remy Sharp" src={card.avatar} sx={{ width: '80px', height: '80px' }} />
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={card.avatar}
+                    sx={{ width: '80px', height: '80px' }}
+                  />
                 )}
                 <Box textAlign={'center'}>
                   <Typography variant="h5">{card.name}</Typography>

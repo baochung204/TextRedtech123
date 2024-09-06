@@ -149,6 +149,8 @@ const HistoryBuyService = Loadable(
 );
 // pay
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
+//list assistant
+const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
 const Router = [
   {
     path: '/',
@@ -248,6 +250,7 @@ const Router = [
       { path: '/buy/service', element: <BuyPointService /> },
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
       { path: '/history/buy-service', element: <HistoryBuyService /> },
+      { path: '/assistant/list', element: <ListAssistant /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },
