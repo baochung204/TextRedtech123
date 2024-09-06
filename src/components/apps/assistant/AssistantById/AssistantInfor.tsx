@@ -85,7 +85,6 @@ const dataRank: Irank[] = [
   {
     id: '0',
     fullName: 'Chatbot Marketing',
-   
     avatar: avt1,
     model: 'GPT-4-TURBOR',
     gmv: 100000,

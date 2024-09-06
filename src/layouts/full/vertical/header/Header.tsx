@@ -84,7 +84,7 @@ const Header = () => {
           >
             <Typography
               sx={{
-                fontSize: { xs: '12px', sm: '14px', md: '16px', lg: '18px' },
+                fontSize: { xs: '12px', sm: '12px', md: '14px', lg: '16px' },
                 fontWeight: 600,
                 color: '#FC2032',
                 alignItems: 'flex-end',
@@ -112,8 +112,8 @@ const Header = () => {
                   backgroundColor: '#FC2032',
                   color: 'white',
                   ':hover': { backgroundColor: '#CA0211' },
-                  fontSize: { xs: '12px', sm: '12px', md: '14px' },
-                  px: { xs: '5px', sm: '10px', md: '7px' },
+                  fontSize: { xs: '12px', sm: '12px', md: '14px', lg: '16px' },
+                  px: { xs: '5px', sm: '10px', md: '7px', lg: '20px' },
                 }}
               >
                 Nạp Gà
