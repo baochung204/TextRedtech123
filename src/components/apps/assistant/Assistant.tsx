@@ -229,6 +229,7 @@ const Assistant = () => {
   const handleInfor = () => {
     nav('/apps/assistant/:id')
   }
+
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
       <ParentCard title="Quản lý Trợ lý">

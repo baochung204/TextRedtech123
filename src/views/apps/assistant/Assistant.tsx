@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 import ProductTableList from 'src/components/apps/assistant/Assistant';
@@ -20,12 +22,16 @@ const BCrumb = [
 ];
 
 const Assistant = () => {
+  const nav = useNavigate()
+  const handleAdd = () => {
+    nav('/apps/assistant/add')
+  }
   return (
     <PageContainer title="Assistant" description="this is Shop List page">
       {/* breadcrumb */}
       <Breadcrumb title="Assistant" items={BCrumb} />
       <Button
-            href='/apps/assistant/add'
+            onClick={handleAdd}
             variant="contained"
             color="primary"
             style={{  marginBottom:'20px' }} // Khoảng cách giữa ParentCard và Button
