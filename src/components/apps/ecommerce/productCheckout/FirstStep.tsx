@@ -16,34 +16,34 @@ const FirstStep = ({ total, Discount }: Props) => {
         <ChildCard>
           <Box p={2}>
             <Typography variant="h5" fontWeight={600} mb={3}>
-              Order Summary
+              Tóm tắt đơn hàng
             </Typography>
-            {/* Sub Total */}
+            {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={3}>
               <Typography variant="h6" fontWeight={400}>
-                Sub Total
+                Tổng cộng
               </Typography>
               <Typography variant="h6">${total}</Typography>
             </Stack>
-            {/* Discount */}
+            {/* Giảm giá */}
             <Stack direction="row" justifyContent="space-between" mb={3}>
               <Typography variant="h6" fontWeight={400}>
-                Discount 5%
+                Giảm giá 5%
               </Typography>
               <Typography variant="h6" color="error">
                 -${Discount}
               </Typography>
             </Stack>
-            {/* Sub Total */}
+            {/* Vận chuyển */}
             <Stack direction="row" justifyContent="space-between" mb={3}>
               <Typography variant="h6" fontWeight={400}>
-                Shipping
+                Vận chuyển
               </Typography>
-              <Typography variant="h6">Free</Typography>
+              <Typography variant="h6">Miễn phí</Typography>
             </Stack>
-            {/* Sub Total */}
+            {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={1}>
-              <Typography variant="h6">Total</Typography>
+              <Typography variant="h6">Tổng cộng</Typography>
               <Typography variant="h5" color="success">
                 ${total - Discount}
               </Typography>

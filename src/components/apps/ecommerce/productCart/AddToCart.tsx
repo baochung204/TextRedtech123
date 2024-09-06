@@ -26,7 +26,7 @@ import { ProductType } from 'src/types/apps/eCommerce';
 const AddToCart = () => {
   const dispatch = useDispatch();
 
-  // Get Products
+  // Lấy sản phẩm từ giỏ hàng
   const Cartproduct: ProductType[] = useSelector((state) => state.ecommerceReducer.cart);
   console.log(Cartproduct);
   const Increase = (productId: number | string) => {
@@ -46,10 +46,10 @@ const AddToCart = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Product</TableCell>
+                    <TableCell>Sản phẩm</TableCell>
 
-                    <TableCell align="left">Quantity</TableCell>
-                    <TableCell align="right">Price</TableCell>
+                    <TableCell align="left">Số lượng</TableCell>
+                    <TableCell align="right">Giá</TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -57,7 +57,7 @@ const AddToCart = () => {
                   {Cartproduct.map((product) => (
                     <TableRow key={product.id}>
                       {/* ------------------------------------------- */}
-                      {/* Product Image & Title */}
+                      {/* Hình ảnh và tiêu đề sản phẩm */}
                       {/* ------------------------------------------- */}
                       <TableCell>
                         <Stack direction="row" alignItems="center" gap={2}>
@@ -111,10 +111,10 @@ const AddToCart = () => {
         <Box textAlign="center" mb={3}>
           <img src={emptyCart} alt="cart" width="200px" />
           <Typography variant="h5" mb={2}>
-            Cart is Empty
+            Giỏ hàng trống
           </Typography>
           <Button component={Link} to="/apps/ecommerce/shop" variant="contained">
-            Go back to Shopping
+            Quay lại mua sắm
           </Button>
         </Box>
       )}

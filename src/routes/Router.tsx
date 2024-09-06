@@ -26,6 +26,7 @@ const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collab
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
+const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
@@ -47,6 +48,9 @@ const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
 
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
+
+//Ai ticket
+const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
 
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
@@ -87,6 +91,7 @@ import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAff
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
+
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -157,6 +162,7 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
+      { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist', element: <CustomerList /> },
@@ -186,6 +192,7 @@ const Router = [
       { path: '/apps/company-affiliate', element: <CompanyAffiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user-profile', element: <UserProfile /> },
+      { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
       { path: '/ui-components/alert', element: <MuiAlert /> },
       { path: '/ui-components/accordion', element: <MuiAccordion /> },

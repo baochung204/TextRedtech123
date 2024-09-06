@@ -1,10 +1,6 @@
 import mock from '../mock';
 import bg1 from 'src/assets/images/blog/blog-img1.jpg';
 import user1 from 'src/assets/images/profile/user-1.jpg';
-import user2 from 'src/assets/images/profile/user-2.jpg';
-import user3 from 'src/assets/images/profile/user-3.jpg';
-import user4 from 'src/assets/images/profile/user-4.jpg';
-import user5 from 'src/assets/images/profile/user-5.jpg';
 import adobe from 'src/assets/images/chat/icon-adobe.svg';
 import chrome from 'src/assets/images/chat/icon-chrome.svg';
 import figma from 'src/assets/images/chat/icon-figma.svg';
@@ -20,8 +16,8 @@ const chance = new Chance();
 const ChatData: ChatsType[] = [
   {
     id: 1,
-    name: 'James Johnson',
-    status: 'online',
+    name: 'Trợ lý Redtech',
+    status: 'offline',
     thumb: user1,
     recent: false,
     excerpt: 'Theme Developer',
@@ -75,9 +71,9 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 2,
-    name: 'Maria Hernandez',
+    name: 'Trợ lý Redtech',
     status: 'away',
-    thumb: user2,
+    thumb: user1,
     recent: true,
     excerpt: 'Doctor',
     messages: [
@@ -129,9 +125,9 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 3,
-    name: 'David Smith',
+    name: 'Trợ lý Redtech',
     status: 'busy',
-    thumb: user3,
+    thumb: user1,
     recent: false,
     excerpt: 'Hacker',
     messages: [
@@ -170,14 +166,13 @@ const ChatData: ChatsType[] = [
         attachment: [],
         id: uniqueId(),
       },
-
     ],
   },
   {
     id: 4,
-    name: 'Maria Rodriguez',
+    name: 'Trợ lý Redtech',
     status: 'offline',
-    thumb: user4,
+    thumb: user1,
     recent: true,
     excerpt: 'Please wait outside of the house',
     messages: [
@@ -228,9 +223,9 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 5,
-    name: 'Robert Smith',
+    name: 'Trợ lý Redtech',
     status: 'online',
-    thumb: user5,
+    thumb: user1,
     recent: true,
     excerpt: 'Front End Developer',
     messages: [
@@ -283,7 +278,7 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 6,
-    name: 'Joseph Sarah',
+    name: 'Trợ lý Redtech',
     status: 'busy',
     thumb: user1,
     recent: false,
@@ -328,9 +323,9 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 7,
-    name: 'Thomas Smith',
+    name: 'Trợ lý Redtech',
     status: 'away',
-    thumb: user2,
+    thumb: user1,
     recent: true,
     excerpt: 'Back End Developer',
     messages: [
@@ -373,9 +368,9 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 8,
-    name: 'David Elizabeth',
+    name: 'Trợ lý Redtech',
     status: 'offline',
-    thumb: user3,
+    thumb: user1,
     recent: false,
     excerpt: 'Theme Developer',
     messages: [
@@ -419,9 +414,9 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 9,
-    name: 'Charles Martha',
+    name: 'Trợ lý Redtech',
     status: 'online',
-    thumb: user4,
+    thumb: user1,
     recent: false,
     excerpt: 'Administrator',
     messages: [
@@ -472,9 +467,9 @@ const ChatData: ChatsType[] = [
   },
   {
     id: 10,
-    name: 'Samuel Eliza',
+    name: 'Trợ lý Redtech',
     status: 'online',
-    thumb: user5,
+    thumb: user1,
     recent: false,
     excerpt: 'Doctor',
     messages: [

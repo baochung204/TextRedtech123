@@ -102,7 +102,7 @@ interface OrderType {
   model: string;
   imgsrc: any;
   customer: string;
-  total: string;
+  connect: string;
   status: string;
   date: string;
 }
@@ -112,8 +112,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     model: 'GPT-3.5',
     imgsrc: img1,
-    customer: 'Sunil Joshi',
-    total: '550,000',
+    customer: 'botHello',
+    connect: 'Facebook',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
   },
@@ -121,8 +121,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     model: 'GPT-4',
     imgsrc: img2,
-    customer: 'John Deo',
-    total: '45,000',
+    customer: 'Chatbot Hola',
+    connect: 'Zalo',
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
   },
@@ -130,8 +130,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     model: 'GPT-4',
     imgsrc: img3,
-    customer: 'Mily Peter',
-    total: '57,000',
+    customer: 'Chatbot CSKH',
+    connect: 'Telegram',
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
   },
@@ -139,8 +139,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
-    customer: 'Andrew McDownland',
-    total: '457,000',
+    customer: 'Chatbot XKLĐ',
+    connect: 'X',
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -149,7 +149,7 @@ const rows: OrderType[] = [
     model: 'GPT-4',
     imgsrc: img5,
     customer: 'Christopher Jamil',
-    total: '120,000',
+    connect: 'Zalo',
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -158,7 +158,7 @@ const rows: OrderType[] = [
     model: 'GPT-4',
     imgsrc: img2,
     customer: 'John Deo',
-    total: '45,000',
+    connect: 'Whatsapp',
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
   },
@@ -167,7 +167,7 @@ const rows: OrderType[] = [
     model: 'GPT-4',
     imgsrc: img3,
     customer: 'Mily Peter',
-    total: '57,000',
+    connect: 'Facebook',
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
   },
@@ -176,7 +176,7 @@ const rows: OrderType[] = [
     model: 'GPT-3',
     imgsrc: img4,
     customer: 'Andrew McDownland',
-    total: '457,000',
+    connect: '457,000',
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -185,7 +185,7 @@ const rows: OrderType[] = [
     model: 'GPT-4',
     imgsrc: img5,
     customer: 'Christopher Jamil',
-    total: '120,000',
+    connect: 'Telegram',
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -194,28 +194,10 @@ const rows: OrderType[] = [
     model: 'GPT-4',
     imgsrc: img1,
     customer: 'Sunil Joshi',
-    total: '550,000',
+    connect: 'Zalo',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
-  },
-  {
-    id: 'ORD - 0124060',
-    model: 'GPT-4',
-    imgsrc: img4,
-    customer: 'Andrew McDownland',
-    total: '457,000',
-    status: 'Completed',
-    date: '10 Jun, 2021 04:12:29',
-  },
-  {
-    id: 'ORD - 0124568',
-    model: 'GPT-4',
-    imgsrc: img5,
-    customer: 'Christopher Jamil',
-    total: '120,000',
-    status: 'Pending',
-    date: '15 Apr, 2021 04:12:50',
-  },
+  }
 ].sort((a, b) => (a.customer < b.customer ? -1 : 1));
 
 
@@ -296,7 +278,7 @@ const Assistant = () => {
 
                     <TableCell>
                       <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.total}
+                        {row.connect}
                       </Typography>
                     </TableCell>
 
