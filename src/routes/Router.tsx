@@ -26,6 +26,7 @@ const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collab
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
+const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
 
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
@@ -84,6 +85,7 @@ const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/Quil
 import FormRequest from 'src/views/forms/FormRequest';
 import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
+const Updating = Loadable(lazy(()=> import('src/views/authentication/Updating'))) ;
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -154,6 +156,7 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
+      { path: '/apps/assistant/:id', element: <AssistantInfor /> },
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist', element: <CustomerList /> },
@@ -252,6 +255,7 @@ const Router = [
       { path: '/auth/two-steps', element: <TwoSteps /> },
       { path: '/auth/two-steps2', element: <TwoSteps2 /> },
       { path: '/auth/maintenance', element: <Maintenance /> },
+      { path: '/auth/updating', element: <Updating /> },
       { path: '/landingpage', element: <Landingpage /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],

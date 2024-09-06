@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
-
+import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
   Typography,
@@ -18,7 +18,12 @@ import {
   IconButton,
   TableContainer,
   Stack,
-  Button
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
 } from '@mui/material';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -47,6 +52,7 @@ interface TablePaginationActionsProps {
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
+  const [open, setOpen] = useState(false);
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -65,7 +71,13 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   const handleLastPageButtonClick = (event: any) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
@@ -102,7 +114,7 @@ interface OrderType {
   model: string;
   imgsrc: any;
   customer: string;
-  total: string;
+  connect: string;
   status: string;
   date: string;
 }
@@ -112,8 +124,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     model: 'GPT-3.5',
     imgsrc: img1,
-    customer: 'Sunil Joshi',
-    total: '550,000',
+    customer: 'ChatAi',
+    connect: 'Facebook',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
   },
@@ -121,8 +133,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     model: 'GPT-4',
     imgsrc: img2,
-    customer: 'John Deo',
-    total: '45,000',
+    customer: 'botSales',
+    connect: 'Zalo',
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
   },
@@ -130,8 +142,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     model: 'GPT-4',
     imgsrc: img3,
-    customer: 'Mily Peter',
-    total: '57,000',
+    customer: 'botMarketing',
+    connect: 'Telegram',
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
   },
@@ -139,8 +151,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
-    customer: 'Andrew McDownland',
-    total: '457,000',
+    customer: 'Chatbot CSKH',
+    connect: 'Messager',
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -148,8 +160,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     model: 'GPT-4',
     imgsrc: img5,
-    customer: 'Christopher Jamil',
-    total: '120,000',
+    customer: 'Chatbot CSKH',
+    connect: 'X',
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -157,8 +169,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     model: 'GPT-4',
     imgsrc: img2,
-    customer: 'John Deo',
-    total: '45,000',
+    customer: 'Chatbot Tư vấn nghề',
+    connect: 'Zalo',
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
   },
@@ -166,8 +178,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     model: 'GPT-4',
     imgsrc: img3,
-    customer: 'Mily Peter',
-    total: '57,000',
+    customer: 'Chatbot Tư vấn XKLĐ',
+    connect: 'Telegram',
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
   },
@@ -175,8 +187,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
-    customer: 'Andrew McDownland',
-    total: '457,000',
+    customer: 'Chatbot CSKH',
+    connect: 'Zalo',
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -184,8 +196,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     model: 'GPT-4',
     imgsrc: img5,
-    customer: 'Christopher Jamil',
-    total: '120,000',
+    customer: 'Chatbot CSKH',
+    connect: 'X',
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -193,8 +205,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     model: 'GPT-4',
     imgsrc: img1,
-    customer: 'Sunil Joshi',
-    total: '550,000',
+    customer: 'Chatbot Tuyển sinh',
+    connect: 'Facebook',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
   },
@@ -202,8 +214,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-4',
     imgsrc: img4,
-    customer: 'Andrew McDownland',
-    total: '457,000',
+    customer: 'Chatbot CSKH',
+    connect: 'Telegram',
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -211,8 +223,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     model: 'GPT-4',
     imgsrc: img5,
-    customer: 'Christopher Jamil',
-    total: '120,000',
+    customer: 'ChatAi CSKH',
+    connect: 'Zalo',
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -240,7 +252,9 @@ const Assistant = () => {
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
       <ParentCard title="Quản lý Trợ lý">
+        
         <BlankCard>
+        
           <TableContainer>
             <Table
               aria-label="custom pagination table"
@@ -296,7 +310,7 @@ const Assistant = () => {
 
                     <TableCell>
                       <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.total}
+                        {row.connect}
                       </Typography>
                     </TableCell>
 
@@ -338,6 +352,7 @@ const Assistant = () => {
           </TableContainer>
         </BlankCard>
       </ParentCard>
+      
     </PageContainer>
   );
 };
