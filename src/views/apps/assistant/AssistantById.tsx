@@ -25,6 +25,7 @@ import {
   import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
   import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
   import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
+import FormInfor from 'src/components/apps/assistant/AssistantById/FormInfor';
 
   const AssistantInfor = () => {
     return (
@@ -42,6 +43,9 @@ import {
                   </Grid>
                   <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
                     <Sales />
+                  </Grid>{' '}
+                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
+                    <FormInfor />
                   </Grid>{' '}
                   <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
                     <Customers />
