@@ -3,20 +3,35 @@ import MenuItem from '@mui/material/MenuItem'
 import DashboardCard from '../../../components/shared/DashboardCard';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import Breadcrumb1 from 'src/layouts/full/shared/breadcrumb/Breadcrumb1';
 import CustomerTable from 'src/components/tables/CustomerTable';
-
-
-
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Dayjs } from 'dayjs';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+const BCrumb = [
+    {
+        to: '/',
+        title: 'Home',
+    },
+    {
+        to: '/apps/blog/posts',
+        title: 'Blog',
+    },
+    {
+        title: 'Blog post',
+    },
+]
 const CustomerList = () => {
     const [month, setMonth] = React.useState('1');
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMonth(event.target.value);
     };
+    const [value, setValue] = React.useState<Dayjs | null>(null)
+    const [value1, setValue1] = React.useState<Dayjs | null>(null)
     return (
         <div>
-            <Breadcrumb1 title='' />
-
+            <Breadcrumb title="Blog Detail" items={BCrumb} />{' '}
             <DashboardCard
                 title="Danh sách khách hàng"
                 action={
@@ -33,25 +48,55 @@ const CustomerList = () => {
                                 {/* <MenuItem value={2}>Đã mua </MenuItem>
                                 <MenuItem value={3}>Chưa mua</MenuItem> */}
                             </CustomSelect>
-                            <CustomTextField
-                                id="date"
-                                type="date"
-                                variant="outlined"
-                                fullWidth
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DatePicker
+                                    value={value}
+                                    onChange={(newValue) => {
+                                        setValue(newValue);
+                                    }}
+                                    renderInput={(props) => (
+                                        <CustomTextField
+                                            {...props}
+                                            fullWidth
+                                            size="small"
+                                            sx={{
+                                                '& .MuiSvgIcon-root': {
+                                                    width: '18px',
+                                                    height: '18px',
+                                                },
+                                                '& .MuiFormHelperText-root': {
+                                                    display: 'none',
+                                                },
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </LocalizationProvider>
                             tới
-                            <CustomTextField
-                                id="date"
-                                type="date"
-                                variant="outlined"
-                                fullWidth
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DatePicker
+                                    value={value1}
+                                    onChange={(newValue) => {
+                                        setValue1(newValue);
+                                    }}
+                                    renderInput={(props) => (
+                                        <CustomTextField
+                                            {...props}
+                                            fullWidth
+                                            size="small"
+                                            sx={{
+                                                '& .MuiSvgIcon-root': {
+                                                    width: '18px',
+                                                    height: '18px',
+                                                },
+                                                '& .MuiFormHelperText-root': {
+                                                    display: 'none',
+                                                },
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </LocalizationProvider>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="50"

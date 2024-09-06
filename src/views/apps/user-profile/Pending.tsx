@@ -1,5 +1,6 @@
 import { Avatar, Box, Grid, styled, Typography } from '@mui/material';
 import userimg from 'src/assets/images/profile/user-1.jpg';
+import loading from 'src/assets/images/certificate/loadingre.png';
 import React from 'react';
 
 const ProfileImage = styled(Box)(() => ({
@@ -38,7 +39,7 @@ const RotatingImage = styled('img')(() => ({
 const Pending = () => {
   return (
     <>
-      <Grid container spacing={2} my={5}>
+      <Grid container spacing={2}>
         {/* Box with the content divided into left and right sections */}
         <Grid item xs={12}>
           <Box
@@ -85,10 +86,7 @@ const Pending = () => {
 
               {/* Pending approval message below */}
               <Grid item xs={12} textAlign="center">
-                <RotatingImage
-                  src="https://media.istockphoto.com/id/1335247217/vector/loading-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=jARr4Alv-d5U3bCa8eixuX2593e1rDiiWnvJLgHCkQM="
-                  alt="Loading"
-                />
+                <RotatingImage src={loading} alt="Loading" />
 
                 {/* Pending Approval Message */}
                 <PendingMessageWrapper

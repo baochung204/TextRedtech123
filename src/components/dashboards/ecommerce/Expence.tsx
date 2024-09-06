@@ -30,7 +30,7 @@ const Expence = () => {
     colors: [primary, error, secondary],
     plotOptions: {
       pie: {
-        
+
         donut: {
           size: '70%',
           background: 'transparent'
@@ -56,7 +56,7 @@ const Expence = () => {
   return (
     <DashboardCard>
       <>
-        <Typography variant="h4">$10,230</Typography>
+        <Typography variant="h4">10tr VNĐ</Typography>
         <Typography variant="subtitle2" color="textSecondary" mb={2}>
           Expense
         </Typography>
@@ -64,7 +64,7 @@ const Expence = () => {
           options={optionsexpencechart}
           series={seriesexpencechart}
           type="donut"
-          height="120"
+          height="113"
         />
       </>
     </DashboardCard>

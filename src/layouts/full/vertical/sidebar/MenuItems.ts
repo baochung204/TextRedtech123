@@ -79,20 +79,27 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
-    title: 'Tiếp thị ',
+    title: 'Affiliate',
     icon: IconPackage,
     href: '/apps/collaborate/',
     children: [
       {
         id: uniqueId(),
-        title: 'Tiếp thị sản phẩm',
+        title: 'Affiliate sản phẩm',
         icon: IconPoint,
         href: '/apps/collaborate/',
       },
       {
+        id: uniqueId(),
         title: 'Danh sách khách hàng',
         icon: IconPoint,
         href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Chính sách và điều khoản',
+        icon: IconAppWindow,
+        href: '/apps/rule',
       },
     ],
   },
@@ -118,22 +125,16 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Thông kê',
+    title: 'Thống kê',
     icon: IconShoppingCart,
     href: '/dashboards/list',
   },
 
   {
     id: uniqueId(),
-    title: 'Chính sách và điều khoản',
-    icon: IconAppWindow,
-    href: '/apps/rule',
-  },
-  {
-    id: uniqueId(),
-    title: 'Trạng thái affilate',
+    title: 'Trạng thái affiliate',
     icon: IconChartDonut3,
-    href: '/apps/assistant/',
+    href: '/apps/affiliate',
     children: [
       {
         id: uniqueId(),
@@ -309,6 +310,12 @@ const Menuitems: MenuitemsType[] = [
     title: 'Chats',
     icon: IconMessage2,
     href: '/apps/chats',
+  },
+  {
+    id: uniqueId(),
+    title: 'Support',
+    icon: IconMessage2,
+    href: '/apps/support',
   },
   {
     id: uniqueId(),

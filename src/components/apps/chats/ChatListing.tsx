@@ -5,7 +5,6 @@ import {
   Avatar,
   List,
   ListItemText,
-  ListItemAvatar,
   TextField,
   Box,
   Alert,
@@ -50,7 +49,7 @@ const ChatListing = () => {
 
     const lastMessage = conversation.messages[conversation.messages.length - 1];
     if (lastMessage) {
-      const sender = lastMessage.senderId === conversation.id ? 'You: ' : '';
+      const sender = lastMessage.senderId === conversation.id ? 'a' : '';
       const message = lastMessage.type === 'image' ? 'Sent a photo' : lastMessage.msg;
       displayText = `${sender}${message}`;
     }
@@ -76,7 +75,7 @@ const ChatListing = () => {
       {/* ------------------------------------------- */}
       <Box display={'flex'} alignItems="center" gap="10px" p={3}>
         <Badge
-          variant="dot"
+          // variant="dot"
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right',
@@ -88,9 +87,8 @@ const ChatListing = () => {
         </Badge>
         <Box>
           <Typography variant="body1" fontWeight={600}>
-            John Deo
+            Nguyễn Đăng Hòa
           </Typography>
-          <Typography variant="body2">Marketing Manager</Typography>
         </Box>
       </Box>
       {/* ------------------------------------------- */}
@@ -99,7 +97,7 @@ const ChatListing = () => {
       <Box px={3} py={1}>
         <TextField
           id="outlined-search"
-          placeholder="Search contacts"
+          placeholder="Tìm kiếm"
           size="small"
           type="search"
           variant="outlined"
@@ -127,7 +125,7 @@ const ChatListing = () => {
             onClick={handleClick}
             color="inherit"
           >
-            Recent Chats <IconChevronDown size="16" />
+            Tin nhắn gần đây <IconChevronDown size="16" />
           </Button>
           <Menu
             id="basic-menu"
@@ -138,9 +136,8 @@ const ChatListing = () => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>Sort By Time</MenuItem>
-            <MenuItem onClick={handleClose}>Sort By Unread</MenuItem>
-            <MenuItem onClick={handleClose}>Mark as all Read</MenuItem>
+            <MenuItem onClick={handleClose}>Thời gian giảm dần</MenuItem>
+            <MenuItem onClick={handleClose}>Thời gian tăng dần</MenuItem>
           </Menu>
         </Box>
         <Scrollbar sx={{ height: { lg: 'calc(100vh - 100px)', md: '100vh' }, maxHeight: '600px' }}>
@@ -157,7 +154,7 @@ const ChatListing = () => {
                 }}
                 selected={activeChat === chat.id}
               >
-                <ListItemAvatar>
+                {/* <ListItemAvatar>
                   <Badge
                     color={
                       chat.status === 'online'
@@ -177,19 +174,15 @@ const ChatListing = () => {
                   >
                     <Avatar alt="Remy Sharp" src={chat.thumb} sx={{ width: 42, height: 42 }} />
                   </Badge>
-                </ListItemAvatar>
+                </ListItemAvatar> */}
                 <ListItemText
-                  primary={
-                    <Typography variant="subtitle2" fontWeight={600} mb={0.5}>
-                      {chat.name}
-                    </Typography>
-                  }
                   secondary={getDetails(chat)}
                   secondaryTypographyProps={{
                     noWrap: true,
                   }}
                   sx={{ my: 0 }}
                 />
+                {/* time in the chat */}
                 <Box sx={{ flexShrink: '0' }} mt={0.5}>
                   <Typography variant="body2">
                     {formatDistanceToNowStrict(new Date(lastActivity(chat)), {
@@ -202,7 +195,7 @@ const ChatListing = () => {
           ) : (
             <Box m={2}>
               <Alert severity="error" variant="filled" sx={{ color: 'white' }}>
-                No Contacts Found!
+                Không tồn tại
               </Alert>
             </Box>
           )}

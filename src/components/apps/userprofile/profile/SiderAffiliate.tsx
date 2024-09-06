@@ -1,8 +1,6 @@
 import React from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-
-const drawerWidth = 240;
 
 const SiderAffiliate = () => {
   return (
@@ -15,7 +13,7 @@ const SiderAffiliate = () => {
     >
       <Box
         sx={{
-          width: drawerWidth,
+          width: 500,
           flexShrink: 0,
           p: 3,
           display: 'flex',
@@ -40,24 +38,30 @@ const SiderAffiliate = () => {
           bạn nhất!
         </Typography>
 
-        <Button
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          component={Link}
-          to="/apps/person-affiliate"
-        >
-          Cá nhân
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          component={Link}
-          to="/apps/company-affiliate"
-        >
-          Doanh nghiệp
-        </Button>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              component={Link}
+              to="/apps/person-affiliate"
+            >
+              Cá nhân
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              component={Link}
+              to="/apps/company-affiliate"
+            >
+              Doanh nghiệp
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

@@ -1,36 +1,36 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import React from 'react';
 import { Grid } from '@mui/material';
+import { useState } from 'react';
 import PageContainer from 'src/components/container/PageContainer';
-
+import { default as AccountInformation } from 'src/components/apps/userprofile/profile/AccountInformation';
+import BusinessInformation from 'src/components/apps/userprofile/profile/BusinessInformation';
+import PersonalInformation from 'src/components/apps/userprofile/profile/PersonalInformation';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
-import IntroCard from 'src/components/apps/userprofile/profile/IntroCard';
-import PhotosCard from 'src/components/apps/userprofile/profile/PhotosCard';
-import Post from 'src/components/apps/userprofile/profile/Post';
+import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
+import ReceiveEmail from 'src/components/apps/userprofile/profile/ReceiveEmail';
 
 const UserProfile = () => {
+  const [selected, setSelected] = useState<string>('personal');
+
+  const handleButtonClick = (buttonName: string) => {
+    setSelected(buttonName);
+  };
+
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
       <Grid container spacing={3}>
         <Grid item sm={12}>
           <ProfileBanner />
         </Grid>
-
-        {/* intro and Photos Card */}
-        <Grid item sm={12} lg={4} xs={12}>
-          <Grid container spacing={3}>
-            <Grid item sm={12}>
-              <IntroCard />
-            </Grid>
-            <Grid item sm={12}>
-              <PhotosCard />
-            </Grid>
+        <Grid container spacing={3} mt={3}>
+          <Grid item sm={12} lg={3} xs={12}>
+            <Sidebar selected={selected} onSelect={handleButtonClick} />
           </Grid>
-        </Grid>
-        {/* Posts Card */}
-        <Grid item sm={12} lg={8} xs={12}>
-          <Post />
+          <Grid item sm={12} lg={9} xs={12}>
+            {selected === 'personal' && <PersonalInformation />}
+            {selected === 'account' && <AccountInformation />}
+            {selected === 'business' && <BusinessInformation />}
+            {selected === 'email' && <ReceiveEmail />}
+          </Grid>
         </Grid>
       </Grid>
     </PageContainer>

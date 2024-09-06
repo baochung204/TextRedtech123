@@ -10,6 +10,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
+  Input,
   styled,
   Typography,
 } from '@mui/material';
@@ -23,7 +24,7 @@ import card_american from '../../assets/images/pay/card_american_express_51cd3f.
 import bank_transfer from '../../assets/images/pay/BankTransfer_facae0.png';
 import giftbox from '../../assets/images/icon.png/gift_9521097.png';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
 import Iconbowtie from 'src/assets/images/logos/iconbowtie.png';
 const BoxStyled = styled(Box)(() => ({
@@ -66,11 +67,81 @@ const IconCoin = () => (
     ></path>
   </svg>
 );
+
+
+interface BuyPointProps {
+  images: string,
+  text1: number | string,
+  text2: number | string,
+
+}
+
+
+
 const BuyPoint = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const onHanldeClickOpenPopup = () => {
     setOpenPopup(!openPopup);
   };
+  const data: BuyPointProps[] = [
+    {
+      images: logochicken,
+      text1: 70,
+      text2: 20100,
+    },
+    {
+      images: logochicken,
+      text1: 350,
+      text2: 100500,
+    },
+    {
+      images: logochicken,
+      text1: 700,
+      text2: 201000,
+    },
+    {
+      images: logochicken,
+      text1: 1400,
+      text2: 402000,
+    },
+    {
+      images: logochicken,
+      text1: 3500,
+      text2: 1055000,
+    },
+    {
+      images: logochicken,
+      text1: 7000,
+      text2: 2010000,
+    },
+    {
+      images: logochicken,
+      text1: 17500,
+      text2: 5025000,
+    },
+    {
+      images: logochicken,
+      text1: 'Tùy chỉnh',
+      text2: 'Hỗ trợ số lượng lớn',
+    },
+  ]
+  const [click, setClick] = useState<boolean>(false);
+  const [value, setValue] = useState<string | null>(null)
+  const [toggle, setToggle] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (value !== null) {
+      const number = parseInt(value, 10);
+      if (!isNaN(number)) {
+        setToggle(number * 287)
+      } else {
+        setToggle(null)
+
+      }
+    }
+
+  }, [value])
+
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
       <Breadcrumb title="Quy Đổi Ngân Lượng  " items={BCrumb} />
@@ -113,396 +184,64 @@ const BuyPoint = () => {
         </Box>
 
         <Grid container spacing={3} textAlign="center" sx={{ pt: 4 }}>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
-              }}
-            >
+          {data.map((items, index) =>
+            <Grid item lg={3} sm={6} xs={12} key={index}>
               <BoxStyled
                 sx={{
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  color: 'primary.main',
                   display: 'flex',
+                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
+                  height: '120px',
+                  gap: '-10px',
+                  boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                 }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
 
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  70
-                </Typography>
+              >
+                <BoxStyled
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '6px',
+                    padding: '0',
+                  }}
+                >
+                  <img src={items.images} alt="" width={30} height={30} />
+                  {typeof (items.text1) === 'string' ?
+                    <> <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                      {!click ?
+                        <div onClick={() => setClick(!click)}>{items.text1}</div>
+                        :
+                        <Input
+                          value={value}
+                          onChange={e => setValue(e.target.value)}
+                          // onChange={handleChange1}
+                          onBlur={value === null ? () => setClick(false) : undefined}
+                          inputProps={{
+                            style: { textAlign: 'center', fontSize: '24px', color: '#5D87FF', fontWeight: '700' }
+                          }}
+                        />
+                      }
+                    </Typography> </> :
+                    <> <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                      {items.text1.toLocaleString('vi-VN')}{' '}
+                    </Typography></>}
+                </BoxStyled>
+                {typeof (items.text1) === 'string' ?
+                  <> <Typography variant="h6" sx={{ paddingTop: '5px' }}>
+                    {toggle === null ? items.text2 : <>{toggle} {''} VNĐ</>}
+
+                  </Typography> </> :
+                  <> <Typography variant="h6" sx={{ paddingTop: '5px' }}>
+                    {items.text2.toLocaleString('vi-VN')}{' '}  VNĐ
+                  </Typography></>}
               </BoxStyled>
-
-              <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫20,100
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                <img
-                  src={Iconbowtie}
-                  alt="Giftbox"
-                  width={60}
-                  height={60}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  350
-                </Typography>
-              </BoxStyled>
-
-              <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫100,500
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                <img
-                  src={Iconbowtie}
-                  alt="Giftbox"
-                  width={60}
-                  height={60}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  700
-                </Typography>
-              </BoxStyled>
-              <Typography variant="h6" sx={{ color: '#16182380', paddingTop: '5px' }}>
-                ₫201,000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                <img
-                  src={Iconbowtie}
-                  alt="Giftbox"
-                  width={60}
-                  height={60}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  1,400
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫402,000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                <img
-                  src={Iconbowtie}
-                  alt="Giftbox"
-                  width={60}
-                  height={60}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  3,500
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫1,0.055,000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                <img
-                  src={Iconbowtie}
-                  alt="Giftbox"
-                  width={60}
-                  height={60}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  7000
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫2.010.000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                <img
-                  src={Iconbowtie}
-                  alt="Giftbox"
-                  width={60}
-                  height={60}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  17,500
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                ₫5.025.000
-              </Typography>
-            </BoxStyled>
-          </Grid>
-          <Grid item lg={3} sm={6} xs={12}>
-            <BoxStyled
-              sx={{
-                backgroundColor: 'white',
-                borderColor: '#EFEFEF',
-                borderWidth: 1,
-                borderStyle: 'solid',
-                color: 'primary.main',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '120px',
-                gap: '-10px',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                position: 'relative',
-              }}
-            >
-              {' '}
-              <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-                <img
-                  src={Iconbowtie}
-                  alt="Giftbox"
-                  width={60}
-                  height={60}
-                  onClick={() => onHanldeClickOpenPopup()}
-                />
-              </Box>
-              <BoxStyled
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '0',
-                }}
-              >
-                <img src={logochicken} alt="" width={30} height={30} />
-
-                <Typography variant="h3" sx={{ color: 'black', fontWeight: 700 }}>
-                  Tùy chỉnh
-                </Typography>
-              </BoxStyled>
-              <Typography
-                variant="h6"
-                sx={{ color: '#16182380', paddingTop: '5px', fontWeight: 700 }}
-              >
-                Hỗ trợ số lượng lớn
-              </Typography>
-            </BoxStyled>
-          </Grid>
+            </Grid>
+          )}
         </Grid>
         <Box
           sx={{

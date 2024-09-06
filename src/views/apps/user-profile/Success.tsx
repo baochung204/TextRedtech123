@@ -1,5 +1,7 @@
 import { Avatar, Box, Grid, styled, Typography } from '@mui/material';
 import userimg from 'src/assets/images/profile/user-1.jpg';
+import certificate from 'src/assets/images/certificate/certificate.png';
+
 import React from 'react';
 
 const ProfileImage = styled(Box)(() => ({
@@ -24,8 +26,7 @@ const SuccessMessageWrapper = styled(Box)(() => ({
 const Success = () => {
   return (
     <>
-      <Grid container spacing={2} my={5}>
-        {/* Box with the content divided into left and right sections */}
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <Box
             sx={{
@@ -36,8 +37,8 @@ const Success = () => {
             }}
           >
             <Grid container spacing={2} alignItems="center" justifyContent="center">
-              {/* Left side (Avatar) */}
-              <Grid item xs={4} sm={3} textAlign="center">
+              {/* Left side (Avatar, User Info, Certificate) */}
+              <Grid item xs={6} sm={6} textAlign="center">
                 <ProfileImage>
                   <Avatar
                     src={userimg}
@@ -50,34 +51,42 @@ const Success = () => {
                     }}
                   />
                 </ProfileImage>
-              </Grid>
 
-              <Grid item xs={8} sm={9} textAlign="left">
+                {/* User Information */}
                 <Typography
                   variant="h4"
                   component="h1"
                   gutterBottom
-                  sx={{ fontWeight: 'bold', color: '#333' }}
+                  sx={{ fontWeight: 'bold', color: '#333', marginTop: '10px' }}
                 >
                   Nguyễn Đăng Hòa
                 </Typography>
+
                 <Typography variant="body1" sx={{ color: '#555', marginBottom: '4px' }}>
                   0981522873
                 </Typography>
-                <Typography variant="body1" sx={{ color: '#555' }}>
+                <Typography variant="body1" sx={{ color: '#555', marginBottom: '20px' }}>
                   hoaace2003@gmail.com
                 </Typography>
-              </Grid>
-
-              {/* Success message below */}
-              <Grid item xs={12} textAlign="center">
+                {/* Success icon */}
                 <img
                   src="https://static.vecteezy.com/system/resources/previews/009/342/746/original/tick-and-cross-clipart-design-illustration-free-png.png"
-                  alt=""
-                  style={{ width: '170px', height: '170px' }}
+                  alt="Success Icon"
+                  style={{ width: '90px', height: '90px', marginBottom: '20px' }}
                 />
+              </Grid>
 
-                {/* Enhanced Success Message */}
+              {/* Center (Success Icon and Message) */}
+              <Grid item xs={6} sm={6} textAlign="center">
+                {/* Certificate */}
+                <img
+                  src={certificate}
+                  alt="Certificate"
+                  style={{ marginTop: '20px', width: '350px', height: '400px' }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                {/* Success Message */}
                 <SuccessMessageWrapper>
                   <Typography
                     variant="h5"

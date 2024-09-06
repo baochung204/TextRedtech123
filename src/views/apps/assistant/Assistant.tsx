@@ -25,6 +25,7 @@ const Assistant = () => {
       {/* breadcrumb */}
       <Breadcrumb title="Assistant" items={BCrumb} />
       <Button
+            href='/apps/assistant/add'
             variant="contained"
             color="primary"
             style={{  marginBottom:'20px' }} // Khoảng cách giữa ParentCard và Button
