@@ -91,7 +91,6 @@ import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAff
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
-const Updating = Loadable(lazy(()=> import('src/views/authentication/Updating')))
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -136,6 +135,7 @@ const TwoSteps = Loadable(lazy(() => import('../views/authentication/auth1/TwoSt
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
+const Updating = Loadable(lazy(()=> import('src/views/authentication/Updating')))
 
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
