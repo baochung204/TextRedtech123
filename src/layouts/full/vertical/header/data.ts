@@ -119,31 +119,31 @@ const profile: ProfileType[] = [
   {
     href: '/user-profile',
     title: 'Quản lý tài khoản',
-    subtitle: 'Account Settings',
+    // subtitle: 'Account Settings',
     icon: icon1,
   },
   {
-    href: '/admin',
+    href: '/pages/account-settings',
     title: 'Đổi mật khẩu',
     // subtitle: 'Account Settings',
     icon: Iconkey,
   },
-  {
-    href: '/auth/forgot-password2',
-    title: 'Đổi mật khẩu',
-    subtitle: 'Messages & Emails',
-    icon: icon2,
-  },
+  // {
+  //   href: '/auth/forgot-password2',
+  //   title: 'Đổi mật khẩu',
+  //   // subtitle: 'Messages & Emails',
+  //   icon: icon2,
+  // },
   {
     href: '/apps/notes',
-    title: 'My Tasks',
-    subtitle: 'To-do and Daily Tasks',
+    title: 'Ticket hỗ trợ',
+    // subtitle: 'To-do and Daily Tasks',
     icon: icon3,
   },
   {
     href: '/forms/form-request',
-    title: 'Yêu cầu tính năng',
-    subtitle: 'To-do and Daily Tasks',
+    title: 'Đề xuất tính năng',
+    // subtitle: 'To-do and Daily Tasks',
     icon: icon3,
   },
 ];
