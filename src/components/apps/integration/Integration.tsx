@@ -13,6 +13,7 @@ import {
   import React, { useState } from 'react';
   import BlankCard from 'src/components/shared/BlankCard';
 
+  
 
   import { IconMapPin, IconSearch } from '@tabler/icons-react';
 
@@ -138,8 +139,6 @@ const rows: Assistant[] = [
   
 const Integration = () => {
   const [value, setValue] = React.useState('1');
-  const [search, setSearch] = React.useState('');
-  const [isConnected, setIsConnected] = useState(false);
 
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
