@@ -132,14 +132,13 @@ const Profile = () => {
             <Box display="flex" justifyContent="space-between">
               <Box>
                 <Typography variant="h5" mb={2}>
-                  SỞ HỮU NGAY <br />
-                  ĐỪNG BỎ LỠ!
+                  GIÚP TRỢ LÝ CỦA BẠN<br/>THÔNG MINH HƠN!
                 </Typography>
                 <Button variant="contained" color="primary">
-                  Mua ngay
+                  Shopping ngay
                 </Button>
               </Box>
-              <img src={unlimitedImg} alt="unlimited" className="signup-bg"></img>
+              <img style={{width:'45%'}} src={unlimitedImg} alt="unlimited" className="signup-bg"></img>
             </Box>
           </Box>
           <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>

@@ -112,7 +112,7 @@ const messages: messageType[] = [
 interface ProfileType {
   href: string;
   title: string;
-  // subtitle:string;
+  subtitle:string;
   icon: any;
 }
 const profile: ProfileType[] = [
@@ -122,12 +122,12 @@ const profile: ProfileType[] = [
     subtitle: 'Account Settings',
     icon: icon1,
   },
-  {
-    href: '/admin',
-    title: 'Đổi mật khẩu',
-    // subtitle: 'Account Settings',
-    icon: Iconkey,
-  },
+  // {
+  //   href: '/admin',
+  //   title: 'Đổi mật khẩu',
+  //   subtitle: 'Account Settings',
+  //   icon: Iconkey,
+  // },
   {
     href: '/auth/forgot-password2',
     title: 'Đổi mật khẩu',
@@ -135,16 +135,16 @@ const profile: ProfileType[] = [
     icon: icon2,
   },
   {
-    href: '/apps/notes',
-    title: 'My Tasks',
+    href: '/apps/chats',
+    title: 'Ticket hỗ trợ',
     subtitle: 'To-do and Daily Tasks',
     icon: icon3,
   },
   {
     href: '/forms/form-request',
-    title: 'Yêu cầu tính năng',
+    title: 'Đề xuất tính năng',
     subtitle: 'To-do and Daily Tasks',
-    icon: icon3,
+    icon: Iconkey,
   },
 ];
 
