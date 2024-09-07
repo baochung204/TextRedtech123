@@ -6,9 +6,13 @@ const BusinessInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
   const [showAlert, setShowAlert] = useState(false); // Trạng thái để hiển thị thông báo
   const [businessInfo, setBusinessInfo] = useState({
-    taxCode: '1234567890',
     companyName: 'Công ty ABC',
-    companyAddress: '456 Đường XYZ, TP. Hồ Chí Minh',
+    taxCode: '1234567890',
+    representative: 'Nguyễn Văn A',
+    position: 'Giám đốc',
+    address: '456 Đường XYZ, TP. Hồ Chí Minh',
+    phone: '0901234567',
+    email: 'contact@company.com',
   });
   
   const handleEditClick = (field: string) => {
@@ -72,15 +76,19 @@ const BusinessInformation = () => {
         borderRadius: 1,
         boxShadow: 3,
         backgroundColor: '#fff',
-        margin: '0 auto', // Căn giữa trang
+        margin: '0 auto',
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
         <IconBriefcase /> <span>Thông tin doanh nghiệp</span>
       </Typography>
-      {renderField('taxCode', 'Mã số thuế')}
       {renderField('companyName', 'Tên công ty')}
-      {renderField('companyAddress', 'Địa chỉ công ty')}
+      {renderField('taxCode', 'Mã số thuế')}
+      {renderField('representative', 'Người đại diện')}
+      {renderField('position', 'Chức vụ')}
+      {renderField('address', 'Địa chỉ công ty')}
+      {renderField('phone', 'Số điện thoại')}
+      {renderField('email', 'Email doanh nghiệp')}
 
       {/* Hiển thị Alert khi có sự thay đổi */}
       {showAlert && (

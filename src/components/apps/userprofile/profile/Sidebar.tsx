@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs, Tab, Stack, Box } from '@mui/material';
-import { AccountCircle, Business, Email, Person } from '@mui/icons-material'; // Import icons nếu cần
+import { AccountCircle, Business, Email, Person, Security } from '@mui/icons-material'; // Import icons nếu cần
+import { IconLock } from '@tabler/icons-react';
 
 interface SidebarProps {
   selected: string | null;
@@ -12,6 +13,8 @@ const SCROLLABLE_TAB = [
   { value: 'account', icon: <AccountCircle />, label: 'Thông tin tài khoản' },
   { value: 'business', icon: <Business />, label: 'Thông tin doanh nghiệp' },
   { value: 'email', icon: <Email />, label: 'Tùy chọn nhận Email' },
+  { value: 'changepassword', icon: <IconLock />, label: 'Đổi mật khẩu' },
+  { value: 'twofactorsecurity', icon: <Security />, label: 'Bảo mật 2 lớp' },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
