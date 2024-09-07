@@ -66,17 +66,100 @@ import {
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
+  // {
+  //   navlabel: true,
+  //   subheader: 'Trang chủ',
+  // },
   {
-    navlabel: true,
-    subheader: 'Trang chủ',
+    id: uniqueId(),
+    title: 'Dashboard',
+    icon: IconAppWindow,
+    href: '/dashboards/list',
   },
   {
     id: uniqueId(),
-    title: 'Trang chủ',
-    icon: IconAppWindow,
-    href: '/landingpage',
+    title: 'Trợ lý',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Tạo Trợ lý',
+        icon: IconPoint,
+        href: '/apps/assistant/add',
+      },
+      {
+        id: uniqueId(),
+        title: 'Quản lý Trợ lý',
+        icon: IconPoint,
+        href: '/apps/assistant',
+      },
+    ],
   },
-
+  {
+    id: uniqueId(),
+    title: 'Tài nguyên',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bán hàng',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Sản phẩm',
+        icon: IconPoint,
+        href: '/apps/ecommerce/shop',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đơn hàng',
+        icon: IconPoint,
+        href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Nhóm sản phẩm',
+        icon: IconPoint,
+        href: '/apps/rule',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Khách hàng',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thêm khách hàng',
+        icon: IconPoint,
+        href: '/apps/collaborate/',
+      },
+      {
+        id: uniqueId(),
+        title: 'Danh sách khách hàng',
+        icon: IconPoint,
+        href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Nhóm khách hàng',
+        icon: IconPoint,
+        href: '/apps/rule',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Cửa hàng',
+    icon: IconShoppingCart,
+    href: '/apps/ecommerce/shop',
+  },
   {
     id: uniqueId(),
     title: 'Affiliate',
@@ -85,7 +168,7 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Affiliate sản phẩm',
+        title: 'Tổng quan',
         icon: IconPoint,
         href: '/apps/collaborate/',
       },
@@ -98,64 +181,37 @@ const Menuitems: MenuitemsType[] = [
       {
         id: uniqueId(),
         title: 'Chính sách và điều khoản',
-        icon: IconAppWindow,
+        icon: IconPoint,
         href: '/apps/rule',
       },
     ],
   },
   {
     id: uniqueId(),
-    title: 'Trợ lý',
-    icon: IconChartDonut3,
-    href: '/apps/assistant/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Quản lý Trợ lý',
-        icon: IconPoint,
-        href: '/apps/assistant',
-      },
-      {
-        id: uniqueId(),
-        title: 'Tạo Trợ lý',
-        icon: IconPoint,
-        href: '/apps/assistant/add',
-      },
-    ],
+    title: 'Tích hợp',
+    icon: IconAppWindow,
+    href: '/landingpage',
   },
   {
     id: uniqueId(),
-    title: 'Thống kê',
-    icon: IconShoppingCart,
-    href: '/dashboards/list',
+    title: 'Ticket hỗ trợ',
+    icon: IconAppWindow,
+    href: '/apps/chats',
   },
+  {
+    id: uniqueId(),
+    title: 'Cập nhật',
+    icon: IconAppWindow,
+    href: '/pages/faq',
+  },
+  // {
+  //   id: uniqueId(),
+  //   title: 'Thống kê',
+  //   icon: IconShoppingCart,
+  //   href: '/dashboards/list',
+  // },
 
-  {
-    id: uniqueId(),
-    title: 'Trạng thái affiliate',
-    icon: IconChartDonut3,
-    href: '/apps/affiliate',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Thành công',
-        icon: IconPoint,
-        href: '/apps/success',
-      },
-      {
-        id: uniqueId(),
-        title: 'Thất bại',
-        icon: IconPoint,
-        href: '/apps/fail',
-      },
-      {
-        id: uniqueId(),
-        title: 'Đang chờ',
-        icon: IconPoint,
-        href: '/apps/pending',
-      },
-    ],
-  },
+ 
 
   {
     navlabel: true,
@@ -188,6 +244,32 @@ const Menuitems: MenuitemsType[] = [
     title: 'Sản phẩm',
     icon: IconPoint,
     href: '/apps/ecommerce/shop',
+  },
+  {
+    id: uniqueId(),
+    title: 'Trạng thái affiliate',
+    icon: IconChartDonut3,
+    href: '/apps/affiliate',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thành công',
+        icon: IconPoint,
+        href: '/apps/success',
+      },
+      {
+        id: uniqueId(),
+        title: 'Thất bại',
+        icon: IconPoint,
+        href: '/apps/fail',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đang chờ',
+        icon: IconPoint,
+        href: '/apps/pending',
+      },
+    ],
   },
   {
     navlabel: true,

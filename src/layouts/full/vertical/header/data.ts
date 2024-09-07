@@ -112,7 +112,7 @@ const messages: messageType[] = [
 interface ProfileType {
   href: string;
   title: string;
-  // subtitle:string;
+  subtitle:string;
   icon: any;
 }
 const profile: ProfileType[] = [

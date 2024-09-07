@@ -22,14 +22,9 @@ import PageContainer from 'src/components/container/PageContainer';
 import CloseIcon from '@mui/icons-material/Close';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import { Link } from 'react-router-dom';
 
-const steps = [
-  'Điều khoản của chúng tôi',
-  'Tài khoản cá nhân',
-  'Thông tin liên hệ',
-  'Tài liệu xác minh',
-  'Kết thúc',
-];
+const steps = ['Điều khoản của chúng tôi', 'Tài khoản cá nhân', 'Xác minh tài khoản'];
 
 const PersonAffiliate = () => {
   const [selectedImage1, setSelectedImage1] = useState(null);
@@ -536,7 +531,7 @@ const PersonAffiliate = () => {
               <CustomFormLabel htmlFor="password">Tên tài khoản</CustomFormLabel>
               <CustomTextField
                 id="password"
-                type="password"
+                type="text"
                 variant="outlined"
                 placeholder="Nhập tên tài khoản của bạn"
                 fullWidth
@@ -555,41 +550,6 @@ const PersonAffiliate = () => {
           </Box>
         );
       case 2:
-        return (
-          <Box>
-            <Box>
-              <CustomFormLabel htmlFor="gmail">Gmail</CustomFormLabel>
-              <CustomTextField
-                id="gmail"
-                type="email"
-                variant="outlined"
-                placeholder="Nhập gmail của bạn"
-                fullWidth
-              />
-            </Box>
-            <Box>
-              <CustomFormLabel htmlFor="phonenumber">Số điện thoại</CustomFormLabel>
-              <CustomTextField
-                id="phonenumber"
-                type="tel"
-                variant="outlined"
-                placeholder="Nhập số điện thoại của bạn"
-                fullWidth
-              />
-            </Box>
-            <Box>
-              <CustomFormLabel htmlFor="address">Địa chỉ</CustomFormLabel>
-              <CustomTextField
-                id="address"
-                type="text"
-                variant="outlined"
-                placeholder="Nhập địa chỉ của bạn"
-                fullWidth
-              />
-            </Box>
-          </Box>
-        );
-      case 3:
         return (
           <Box>
             <Box mb={2}>
@@ -654,32 +614,6 @@ const PersonAffiliate = () => {
             </Box>
           </Box>
         );
-      case 4:
-        return (
-          <Box pt={3}>
-            <Typography variant="body2" sx={{ mt: 1, fontSize: '15px' }}>
-              <p>Chúng tôi xin chân thành cảm ơn bạn đã tin tưởng và sử dụng Redtech !</p>
-              <p>
-                Việc bạn tham gia cùng chúng tôi không chỉ là một bước khởi đầu mới, mà còn là động
-                lực để chúng tôi không ngừng cải tiến và mang đến những trải nghiệm tốt nhất cho
-                bạn.
-              </p>
-              <p>
-                Trong thời gian tới, bạn sẽ nhận được những thông tin hữu ích, các cập nhật mới nhất
-                và nhiều ưu đãi đặc biệt chỉ dành riêng cho thành viên của chúng tôi. Hãy nhớ kiểm
-                tra hộp thư thường xuyên để không bỏ lỡ nhé!
-              </p>
-              <p>
-                Nếu bạn có bất kỳ câu hỏi hay cần hỗ trợ, đừng ngần ngại liên hệ với chúng tôi. Đội
-                ngũ hỗ trợ của chúng tôi luôn sẵn sàng giúp đỡ bạn.
-              </p>
-              <p>
-                Một lần nữa, cảm ơn bạn đã lựa chọn Redtech. Chúng tôi rất mong được đồng hành cùng
-                bạn trong hành trình phía trước.
-              </p>
-            </Typography>
-          </Box>
-        );
       default:
         break;
     }
@@ -720,8 +654,8 @@ const PersonAffiliate = () => {
               </Alert>
 
               <Box textAlign="right">
-                <Button onClick={handleReset} variant="contained" color="error">
-                  Cài lại
+                <Button component={Link} to="/apps/pending" variant="contained" color="error">
+                  Hoàn thành
                 </Button>
               </Box>
             </Stack>
@@ -740,6 +674,16 @@ const PersonAffiliate = () => {
               >
                 Quay lại
               </Button>
+              <Button
+                component={Link}
+                color="inherit"
+                variant="contained"
+                to="/user-profile"
+                sx={{ mr: 1 }}
+              >
+                Hủy bỏ
+              </Button>
+
               <Box flex="1 1 auto" />
               {isStepOptional(activeStep) && (
                 <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
@@ -752,7 +696,7 @@ const PersonAffiliate = () => {
                 variant="contained"
                 color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
               >
-                {activeStep === steps.length - 1 ? 'Kế thúc' : 'Tiếp theo'}
+                {activeStep === steps.length - 1 ? 'Kết thúc' : 'Tiếp theo'}
               </Button>
             </Box>
           </>

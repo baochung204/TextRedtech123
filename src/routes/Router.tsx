@@ -91,7 +91,7 @@ import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAff
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
-
+const Updating = Loadable(lazy(()=> import('src/views/authentication/Updating')))
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -136,6 +136,7 @@ const TwoSteps = Loadable(lazy(() => import('../views/authentication/auth1/TwoSt
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
+
 
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
@@ -263,11 +264,12 @@ const Router = [
       { path: '/auth/login', element: <Login2 /> },
       { path: '/auth/register', element: <Register /> },
       { path: '/auth/register2', element: <Register2 /> },
-      { path: '/auth/forgot-password', element: <ForgotPassword /> },
-      { path: '/auth/forgot-password2', element: <ForgotPassword2 /> },
+      { path: '/auth/forgot-password2', element: <ForgotPassword /> },
+      { path: '/auth/forgot-password', element: <ForgotPassword2 /> },
       { path: '/auth/two-steps', element: <TwoSteps /> },
       { path: '/auth/two-steps2', element: <TwoSteps2 /> },
       { path: '/auth/maintenance', element: <Maintenance /> },
+      { path: '/auth/updating', element: <Updating /> },
       { path: '/landingpage', element: <Landingpage /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],

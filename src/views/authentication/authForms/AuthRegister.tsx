@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { registerType } from 'src/types/auth/auth';
 import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-
+import Logo from 'src/layouts/full/shared/logo/Logo';
 const AuthRegister = ({ subtitle }: registerType) => {
   // const [gender, setGender] = useState('');
   const [username, setUsername] = useState('');
@@ -136,8 +136,11 @@ const AuthRegister = ({ subtitle }: registerType) => {
   return (
     <>
       <Box>
+        <Box mb={6}>
+          <Logo />
+        </Box>
         <Typography variant="h4" fontWeight="600" mb={3}>
-          Đăng ký thành viên Redtech
+          Tạo tài khoản
         </Typography>
         <Grid container spacing={2}>
           {/* First Row: Name */}
