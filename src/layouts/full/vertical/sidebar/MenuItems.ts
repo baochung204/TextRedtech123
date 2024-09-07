@@ -66,17 +66,100 @@ import {
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
-  {
-    navlabel: true,
-    subheader: 'Trang chủ',
-  },
+  // {
+  //   navlabel: true,
+  //   subheader: 'Trang chủ',
+  // },
   {
     id: uniqueId(),
     title: 'Trang chủ',
     icon: IconAppWindow,
     href: '/landingpage',
   },
-
+  {
+    id: uniqueId(),
+    title: 'Trợ lý',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Tạo Trợ lý',
+        icon: IconPoint,
+        href: '/apps/assistant/add',
+      },
+      {
+        id: uniqueId(),
+        title: 'Quản lý Trợ lý',
+        icon: IconPoint,
+        href: '/apps/assistant',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Tài nguyên',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bán hàng',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Sản phẩm',
+        icon: IconPoint,
+        href: '/apps/ecommerce/shop',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đơn hàng',
+        icon: IconPoint,
+        href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Nhóm sản phẩm',
+        icon: IconPoint,
+        href: '/apps/rule',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Khách hàng',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thêm khách hàng',
+        icon: IconPoint,
+        href: '/apps/collaborate/',
+      },
+      {
+        id: uniqueId(),
+        title: 'Danh sách khách hàng',
+        icon: IconPoint,
+        href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Nhóm khách hàng',
+        icon: IconPoint,
+        href: '/apps/rule',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Cửa hàng',
+    icon: IconShoppingCart,
+    href: '/apps/ecommerce/shop',
+  },
   {
     id: uniqueId(),
     title: 'Affiliate',
@@ -85,7 +168,7 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Affiliate sản phẩm',
+        title: 'Tổng quan',
         icon: IconPoint,
         href: '/apps/collaborate/',
       },
@@ -98,36 +181,61 @@ const Menuitems: MenuitemsType[] = [
       {
         id: uniqueId(),
         title: 'Chính sách và điều khoản',
-        icon: IconAppWindow,
+        icon: IconPoint,
         href: '/apps/rule',
       },
     ],
   },
   {
     id: uniqueId(),
-    title: 'Trợ lý',
-    icon: IconChartDonut3,
-    href: '/apps/assistant/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Quản lý Trợ lý',
-        icon: IconPoint,
-        href: '/apps/assistant',
-      },
-      {
-        id: uniqueId(),
-        title: 'Tạo Trợ lý',
-        icon: IconPoint,
-        href: '/apps/assistant/add',
-      },
-    ],
+    title: 'Tích hợp',
+    icon: IconAppWindow,
+    href: '/landingpage',
+  },
+  {
+    id: uniqueId(),
+    title: 'Ticket hỗ trợ',
+    icon: IconAppWindow,
+    href: '/landingpage',
+  },
+  {
+    id: uniqueId(),
+    title: 'Cập nhật',
+    icon: IconAppWindow,
+    href: '/landingpage',
   },
   {
     id: uniqueId(),
     title: 'Thống kê',
     icon: IconShoppingCart,
     href: '/dashboards/list',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Trạng thái affiliate',
+    icon: IconChartDonut3,
+    href: '/apps/affiliate',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thành công',
+        icon: IconPoint,
+        href: '/apps/success',
+      },
+      {
+        id: uniqueId(),
+        title: 'Thất bại',
+        icon: IconPoint,
+        href: '/apps/fail',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đang chờ',
+        icon: IconPoint,
+        href: '/apps/pending',
+      },
+    ],
   },
 
   {
@@ -156,12 +264,95 @@ const Menuitems: MenuitemsType[] = [
     navlabel: true,
     subheader: 'Shop',
   },
-  //router of some task we are done
   {
     id: uniqueId(),
     title: 'Sản phẩm',
     icon: IconPoint,
     href: '/apps/ecommerce/shop',
+  },
+  {
+    navlabel: true,
+    subheader: 'Bài viết',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bài viết',
+    icon: IconPoint,
+    href: '/',
+  },
+
+  {
+    navlabel: true,
+    subheader: 'Apps',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
+  },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Landingpage',
+    icon: IconAppWindow,
+    href: '/landingpage',
+  },
+  {
+    navlabel: true,
+    subheader: 'Apps',
+  },
+  {
+    id: uniqueId(),
+    title: 'Contacts',
+    icon: IconPackage,
+    chip: '2',
+    chipColor: 'secondary',
+    href: '/apps/contacts',
+  },
+  {
+    id: uniqueId(),
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
+  },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Blog',
+    icon: IconChartDonut3,
+    href: '/apps/blog/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Posts',
+        icon: IconPoint,
+        href: '/apps/blog/posts',
+      },
+      {
+        id: uniqueId(),
+        title: 'Detail',
+        icon: IconPoint,
+        href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
+      },
+    ],
   },
   {
     id: uniqueId(),
@@ -201,103 +392,6 @@ const Menuitems: MenuitemsType[] = [
     icon: IconMessage2,
     href: '/apps/chats',
   },
-  {
-    id: uniqueId(),
-    title: 'Trạng thái affiliate',
-    icon: IconChartDonut3,
-    href: '/apps/affiliate',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Thành công',
-        icon: IconPoint,
-        href: '/apps/success',
-      },
-      {
-        id: uniqueId(),
-        title: 'Thất bại',
-        icon: IconPoint,
-        href: '/apps/fail',
-      },
-      {
-        id: uniqueId(),
-        title: 'Đang chờ',
-        icon: IconPoint,
-        href: '/apps/pending',
-      },
-    ],
-  },
-  {
-    navlabel: true,
-    subheader: 'Bài viết',
-  },
-  {
-    id: uniqueId(),
-    title: 'Bài viết',
-    icon: IconPoint,
-    href: '/',
-  },
-
-  {
-    navlabel: true,
-    subheader: 'Apps',
-  },
-
-  {
-    id: uniqueId(),
-    title: 'Modern',
-    icon: IconAperture,
-    href: '/dashboards/modern',
-    chip: 'New',
-    chipColor: 'secondary',
-  },
-  {
-    id: uniqueId(),
-    title: 'eCommerce',
-    icon: IconShoppingCart,
-    href: '/dashboards/ecommerce',
-  },
-
-  {
-    id: uniqueId(),
-    title: 'Landingpage',
-    icon: IconAppWindow,
-    href: '/landingpage',
-  },
-  // {
-  //   navlabel: true,
-  //   subheader: 'Apps',
-  // },
-  {
-    id: uniqueId(),
-    title: 'Contacts',
-    icon: IconPackage,
-    chip: '2',
-    chipColor: 'secondary',
-    href: '/apps/contacts',
-  },
-
-  {
-    id: uniqueId(),
-    title: 'Blog',
-    icon: IconChartDonut3,
-    href: '/apps/blog/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Posts',
-        icon: IconPoint,
-        href: '/apps/blog/posts',
-      },
-      {
-        id: uniqueId(),
-        title: 'Detail',
-        icon: IconPoint,
-        href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
-      },
-    ],
-  },
-
   {
     id: uniqueId(),
     title: 'Support',
