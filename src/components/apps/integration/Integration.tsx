@@ -26,7 +26,7 @@ interface Assistant {
   id: string;
   model: string;
   imgsrc: any;
-  customer: string;
+  name: string;
   connect: string;
   status: string;
   date: string;
@@ -141,11 +141,7 @@ const Integration = () => {
   const [search, setSearch] = React.useState('');
   const [isConnected, setIsConnected] = useState(false);
 
-const handleClick = () => {
-  if (isConnected === false) {
-    setIsConnected(true);
-  }
-};
+
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -184,7 +180,7 @@ const handleClick = () => {
                         <Avatar alt="Remy Sharp" src={profile.imgsrc} />
                         <Box>
                         <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                            {profile.customer}
+                            {profile.name}
                         </Typography>
                         <Typography
                             variant="caption"
