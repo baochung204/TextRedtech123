@@ -72,9 +72,9 @@ const Menuitems: MenuitemsType[] = [
   // },
   {
     id: uniqueId(),
-    title: 'Trang chủ',
+    title: 'Dashboard',
     icon: IconAppWindow,
-    href: '/landingpage',
+    href: '/dashboards/list',
   },
   {
     id: uniqueId(),
