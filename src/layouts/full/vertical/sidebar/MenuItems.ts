@@ -122,7 +122,7 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: 'Nhóm sản phẩm',
+        title: 'Tags',
         icon: IconPoint,
         href: '/apps/rule',
       },
@@ -190,7 +190,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Tích hợp',
     icon: IconAppWindow,
-    href: '/landingpage',
+    href: '/apps/integration',
   },
   {
     id: uniqueId(),
