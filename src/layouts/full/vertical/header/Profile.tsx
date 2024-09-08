@@ -137,7 +137,6 @@ const Profile = () => {
                 </Typography>
                 <Button variant="contained" color="primary">
                   Shopping ngay
-                  Shopping ngay
                 </Button>
               </Box>
               <img style={{width:'45%'}} src={unlimitedImg} alt="unlimited" className="signup-bg"></img>

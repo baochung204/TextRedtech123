@@ -1,8 +1,9 @@
-import { Box, Button, Switch, Typography } from '@mui/material';
+import { Box, Button, Switch, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
 
 const TwoFactorSecurity = () => {
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
+  const theme = useTheme(); // Lấy thông tin theme
 
   const handleToggleTwoFactor = () => {
     setIsTwoFactorEnabled(!isTwoFactorEnabled);
@@ -14,7 +15,8 @@ const TwoFactorSecurity = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#fff',
+        backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#fff', // Màu nền thay đổi theo chế độ
+        color: theme.palette.mode === 'dark' ? '#fff' : '#000', // Màu chữ thay đổi theo chế độ
         margin: '0 auto',
       }}
     >
@@ -26,11 +28,11 @@ const TwoFactorSecurity = () => {
         <Typography variant="h6" fontWeight="500">
           Bản thân khách hàng
         </Typography>
-        <Typography variant="body1" color="textSecondary">
+        <Typography variant="body1" color={theme.palette.mode === 'dark' ? 'gray' : 'textSecondary'}>
           Khách hàng sẽ có thể theo đuổi mục tiêu phát triển của công ty. Về mặt cơ thể, họ rất chăm chỉ trong nhiệm vụ của mình.
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-          <Typography sx={{ flexGrow: 1, fontWeight: "bold" }}>Bảo mật hai lớp:</Typography>
+          <Typography sx={{ flexGrow: 1, fontWeight: 'bold' }}>Bảo mật hai lớp:</Typography>
           <Switch
             checked={isTwoFactorEnabled}
             onChange={handleToggleTwoFactor}
@@ -44,7 +46,7 @@ const TwoFactorSecurity = () => {
           <Typography variant="h6" fontWeight="500">
             Ứng dụng xác thực
           </Typography>
-          <Typography variant="body1" color="textSecondary">
+          <Typography variant="body1" color={theme.palette.mode === 'dark' ? 'gray' : 'textSecondary'}>
             Ứng dụng xác thực của Google
           </Typography>
         </Box>
