@@ -22,14 +22,20 @@ import {
   TextField,
   InputAdornment,
   Paper,
+  Grid,
+  Tab,
+  Stack,
+  Fab,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import CustomCheckbox from '../../forms/theme-elements/CustomCheckbox';
 import CustomSwitch from '../../forms/theme-elements/CustomSwitch';
-import { IconDotsVertical, IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
+import { IconDotsVertical, IconFilter, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
 import { ProductType } from 'src/types/apps/eCommerce';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import Develop from '../integration/Develop';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -316,16 +322,44 @@ const Product = () => {
 
   const theme = useTheme();
   const borderColor = theme.palette.divider;
+  const [value, setValue] = React.useState('1');
 
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
   return (
     <Box>
       <Box>
-        <EnhancedTableToolbar
-          numSelected={selected.length}
-          search={search}
-          handleSearch={(event: any) => handleSearch(event)}
-        />
-        <Paper variant="outlined" sx={{ mx: 2, mt: 1, border: `1px solid ${borderColor}` }}>
+      <Grid container spacing={3}>
+        <Box sx={{ width: '100%', typography: 'body1' }}>
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <TabList onChange={handleChange} aria-label="lab API tabs example">
+              <Tab label="Sản phẩm" value="1" />
+              <Tab label="Tags" value="2" />
+            </TabList>
+          </Box>
+          
+        <TabPanel value="1">
+          {' '}
+            <Box sx={{ display: 'flex', alignItems: 'center', ml: '15px' }}>
+                <Tooltip title="Thêm">
+                    <Fab size="small" color="secondary" aria-label="plus">
+                    <IconPlus width={18} />
+                    </Fab>
+                </Tooltip>
+                
+                <EnhancedTableToolbar
+                    numSelected={selected.length}
+                    search={search}
+                    handleSearch={(event: any) => handleSearch(event)}
+                />
+            </Box>
+
+        
+        
+          <Paper variant="outlined" sx={{ mx: 2, mt: 1, border: `1px solid ${borderColor}` }}>
           <TableContainer>
             <Table
               sx={{ minWidth: 750 }}
@@ -450,11 +484,25 @@ const Product = () => {
           />
         </Paper>
         <Box ml={2}>
-          <FormControlLabel
-            control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
-            label="Dense padding"
-          />
+            <FormControlLabel
+                control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
+                label="Chỉnh lề"
+            />
         </Box>
+        </TabPanel>
+        <TabPanel value="2">
+          <Develop/>
+        </TabPanel>
+        <TabPanel value="3">
+          <Develop/>
+        </TabPanel>
+        <TabPanel value="4">
+          <Develop/>
+        </TabPanel>
+    </TabContext>
+    </Box>
+    </Grid>
+        
       </Box>
     </Box>
   );

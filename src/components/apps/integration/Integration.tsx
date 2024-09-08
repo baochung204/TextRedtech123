@@ -161,9 +161,6 @@ const Integration = () => {
               <Tab label="Telegram" value="3" />
               <Tab label="Viber" value="4" />
             </TabList>
-            <Stack direction="row" alignItems={'center'} mt={2}>
-          
-          </Stack>
           </Box>
           
         <TabPanel value="1">
