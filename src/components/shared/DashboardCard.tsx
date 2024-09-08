@@ -5,8 +5,9 @@ import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
 
 type Props = {
-  searchValue?: string;
-  onSearchChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  searchValue?: string; // Giá trị ô tìm kiếm
+  onSearchChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; // Xử lý thay đổi ô tìm kiếm
+  showSearchBox?: boolean; // Quyết định có hiển thị ô tìm kiếm hay không
   subtitle?: string;
   action?: JSX.Element | any;
   footer?: JSX.Element;
@@ -18,8 +19,9 @@ type Props = {
 };
 
 const DashboardCard = ({
-  searchValue = '',
+  searchValue,
   onSearchChange,
+  showSearchBox = false, // Mặc định không hiển thị ô tìm kiếm
   subtitle,
   children,
   action,
@@ -57,21 +59,22 @@ const DashboardCard = ({
             mb={3}
           >
             <Box>
-              {/* Replaced the title with a search box */}
-              <TextField
-                label="Tìm kiếm"
-                variant="outlined"
-                value={searchValue}
-                onChange={onSearchChange}
-                sx={{ width: '300px', height: '50px' }}
-                fullWidth
-              />
+              {showSearchBox && (
+                <TextField
+                  label="Tìm kiếm tại đây"
+                  variant="outlined"
+                  sx={{ width: '300px', height: '50px' }}
+                  fullWidth
+                  value={searchValue}
+                  onChange={onSearchChange}
+                />
+              )}
 
-              {subtitle ? (
+              {subtitle && (
                 <Typography variant="subtitle2" color="textSecondary">
                   {subtitle}
                 </Typography>
-              ) : null}
+              )}
             </Box>
             {action}
           </Stack>
