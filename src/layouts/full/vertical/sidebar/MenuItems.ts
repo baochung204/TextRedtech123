@@ -186,7 +186,7 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: 'Chính sách và điều khoản',
+        title: 'Thỏa thuận hợp tác',
         icon: IconPoint,
         href: '/apps/rule',
       },
@@ -216,8 +216,6 @@ const Menuitems: MenuitemsType[] = [
   //   icon: IconShoppingCart,
   //   href: '/dashboards/list',
   // },
-
- 
 
   {
     navlabel: true,
