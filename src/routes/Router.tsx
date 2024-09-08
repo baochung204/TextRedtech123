@@ -138,6 +138,7 @@ const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
 const Updating = Loadable(lazy(()=> import('src/views/authentication/Updating')))
 
+
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
 // buypoint

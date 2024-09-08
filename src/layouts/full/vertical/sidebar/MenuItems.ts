@@ -148,6 +148,12 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
+        title: 'Thỏa thuận hợp tác',
+        icon: IconAppWindow,
+        href: '/apps/rule',
+      },
+      {
+        id: uniqueId(),
         title: 'Nhóm khách hàng',
         icon: IconPoint,
         href: '/apps/rule',

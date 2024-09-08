@@ -132,7 +132,8 @@ const Profile = () => {
             <Box display="flex" justifyContent="space-between">
               <Box>
                 <Typography variant="h5" mb={2}>
-                  GIÚP TRỢ LÝ CỦA BẠN<br/>THÔNG MINH HƠN!
+                  Giúp trợ lý của bạn <br />
+                  thông minh hơn
                 </Typography>
                 <Button variant="contained" color="primary">
                   Shopping ngay
