@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Select, MenuItem, Alert, AlertTitle } from '@mui/material';
+import { Box, Typography, IconButton, TextField, Select, MenuItem, Alert, AlertTitle, useTheme } from '@mui/material';
 import { IconUser, IconEdit, IconCheck } from '@tabler/icons-react';
 import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 const PersonalInformation = () => {
+  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
   const [editing, setEditing] = useState<string | null>(null);
   const [showAlert, setShowAlert] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -110,7 +111,8 @@ const PersonalInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#fff',
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', // Thay đổi màu nền cho dark mode
+        color: theme.palette.mode === 'dark' ? '#fff' : '#000', // Màu chữ phù hợp với dark mode
         margin: '0 auto',
       }}
     >

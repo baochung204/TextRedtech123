@@ -53,38 +53,45 @@ const ReceiveEmail = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#fff',
+        backgroundColor: '#2A3447',
         margin: '0 auto', // Căn giữa trang
+        color: 'white', // Màu chữ sáng cho dark mode
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
-        <Email /> <span> Tùy chọn nhận Email</span>
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1} sx={{ color: 'white' }}>
+        <Email /> <span>Tùy chọn nhận Email</span>
       </Typography>
 
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox checked={checked.option1} onChange={handleChange} name="option1" />}
+          control={<Checkbox checked={checked.option1} onChange={handleChange} name="option1" sx={{ color: 'white' }} />}
           label="Chung - Nhận email liên quan đến tài khoản & hệ thống"
+          sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option2} onChange={handleChange} name="option2" />}
+          control={<Checkbox checked={checked.option2} onChange={handleChange} name="option2" sx={{ color: 'white' }} />}
           label="Hóa đơn - nhận email hóa đơn mới, lời nhắc & thông báo quá hạn"
+          sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option3} onChange={handleChange} name="option3" />}
-          label="Tính năng mới - Nnận email cập nhập các tính năng mới"
+          control={<Checkbox checked={checked.option3} onChange={handleChange} name="option3" sx={{ color: 'white' }} />}
+          label="Tính năng mới - Nhận email cập nhật các tính năng mới"
+          sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option4} onChange={handleChange} name="option4" />}
+          control={<Checkbox checked={checked.option4} onChange={handleChange} name="option4" sx={{ color: 'white' }} />}
           label="Affiliate - Nhận email thông báo về chương trình Affiliate"
+          sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option5} onChange={handleChange} name="option5" />}
+          control={<Checkbox checked={checked.option5} onChange={handleChange} name="option5" sx={{ color: 'white' }} />}
           label="Tài liệu - Nhận email tài liệu & hướng dẫn"
+          sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option6} onChange={handleChange} name="option6" />}
+          control={<Checkbox checked={checked.option6} onChange={handleChange} name="option6" sx={{ color: 'white' }} />}
           label="Khuyến mại - Nhận email về các chương trình khuyến mại"
+          sx={{ color: 'white' }}
         />
       </FormGroup>
 
@@ -99,13 +106,13 @@ const ReceiveEmail = () => {
 
       {/* Hiển thị thông báo khi lưu hoặc hủy */}
       {showAlert.success && (
-        <Alert severity="success" sx={{ mt: 3 }}>
+        <Alert severity="success" sx={{ mt: 3, backgroundColor: '#4caf50', color: 'white' }}>
           <AlertTitle>Thành công</AlertTitle>
           Lưu thay đổi thành công!
         </Alert>
       )}
       {showAlert.cancel && (
-        <Alert severity="info" sx={{ mt: 3 }}>
+        <Alert severity="info" sx={{ mt: 3, backgroundColor: '#2196f3', color: 'white' }}>
           <AlertTitle>Hủy thay đổi</AlertTitle>
           Các thay đổi đã được hủy!
         </Alert>

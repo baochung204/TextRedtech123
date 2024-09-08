@@ -37,8 +37,9 @@ const ChangePassword = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#fff',
+        backgroundColor: '#2A3447', // Nền tối cho dark mode
         margin: '0 auto',
+        color: 'white', // Màu chữ sáng cho dark mode
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
@@ -51,7 +52,7 @@ const ChangePassword = () => {
           fullWidth
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
-          sx={{ mb: 2 }}
+          sx={{ mb: 2, input: { color: 'white' }, label: { color: 'white' } }}
         />
         <TextField
           label="Mật khẩu mới"
@@ -59,7 +60,7 @@ const ChangePassword = () => {
           fullWidth
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          sx={{ mb: 2 }}
+          sx={{ mb: 2, input: { color: 'white' }, label: { color: 'white' } }}
         />
         <TextField
           label="Nhập lại mật khẩu mới"
@@ -67,6 +68,7 @@ const ChangePassword = () => {
           fullWidth
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
+          sx={{ input: { color: 'white' }, label: { color: 'white' } }}
         />
       </Box>
       <Box sx={{ mb: 2, display: 'flex', justifyContent: 'flex-start' }}>
@@ -77,7 +79,7 @@ const ChangePassword = () => {
 
       {/* Hiển thị Alert khi có thông báo */}
       {showAlert && (
-        <Alert severity={showAlert.type} sx={{ mt: 3 }}>
+        <Alert severity={showAlert.type} sx={{ mt: 3, backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336', color: 'white' }}>
           <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
           {showAlert.message}
         </Alert>
