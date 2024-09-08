@@ -40,10 +40,15 @@ const ProfileTab = () => {
       icon: <IconHistory size="20" />,
       dropdown: true,
     },
+    // {
+    //   label: 'Trợ lý',
+    //   icon: <IconUserCircle size="20" />,
+    //   to: '/apps/assistant',
+    // },
     {
       label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
-      to: '/apps/assistant',
+      to: '/assistant/list',
     },
     {
       label: 'Ticket',
@@ -109,14 +114,14 @@ const ProfileTab = () => {
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
               minWidth: '200px',
               bgcolor: 'background.paper',
-            }
+            },
           }}
         >
-          <MenuItem 
-            component={Link} 
-            to="/pages/order-history" 
-            onClick={handleClose} 
-            sx={{ 
+          <MenuItem
+            component={Link}
+            to="/pages/order-history"
+            onClick={handleClose}
+            sx={{
               padding: '10px 20px',
               borderRadius: '8px',
               '&:hover': {
@@ -129,11 +134,11 @@ const ProfileTab = () => {
               Lịch sử mua hàng
             </Typography>
           </MenuItem>
-          <MenuItem 
-            component={Link} 
-            to="/history/buy-point" 
-            onClick={handleClose} 
-            sx={{ 
+          <MenuItem
+            component={Link}
+            to="/history/buy-point"
+            onClick={handleClose}
+            sx={{
               padding: '10px 20px',
               borderRadius: '8px',
               '&:hover': {
