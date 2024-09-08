@@ -101,10 +101,18 @@ const ForgotPassword2 = () => {
               alignItems="center"
             >
               <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '500px' }}>
-                <Box display="flex" alignItems="center" justifyContent="center">
+                <Box display="flex" justifyContent="center">
                   <Logo />
                 </Box>
-
+                <Typography
+                  fontWeight="600"
+                  variant="h4"
+                  mb={2}
+                  display="flex"
+                  justifyContent="center"
+                >
+                  Khôi phục mật khẩu
+                </Typography>
                 <Typography
                   color="textSecondary"
                   textAlign="center"

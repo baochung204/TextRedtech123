@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle } from '@mui/material';
-import { IconUserCircle, IconEdit, IconCheck } from '@tabler/icons-react';
+import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button } from '@mui/material';
+import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState(false); // Trạng thái để hiển thị thông báo
+  const [showAlert, setShowAlert] = useState(false);
   const [accountInfo, setAccountInfo] = useState({
-    username: 'nqtoan2k4',
     email: 'nqton301004@gmail.com',
-    address: '123 Đường ABC, TP. Hồ Chí Minh',
-    gender: 'male',
+    phone: '0901234567',
     password: '**********',
   });
 
+  const navigate = useNavigate();
+
   const handleEditClick = (field: string) => {
-    setEditing(field);
+    if (field === 'password') {
+      navigate('/pages/account-settings');
+    } else {
+      setEditing(field);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,8 +31,8 @@ const AccountInformation = () => {
 
   const handleSaveClick = () => {
     setEditing(null);
-    setShowAlert(true); // Hiển thị thông báo thành công
-    setTimeout(() => setShowAlert(false), 3000); // Ẩn thông báo sau 3 giây
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -37,7 +42,7 @@ const AccountInformation = () => {
   };
 
   const renderField = (field: string, label: string) => (
-    <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
         {label}:
       </Typography>
@@ -46,7 +51,7 @@ const AccountInformation = () => {
           <TextField
             value={accountInfo[field as keyof typeof accountInfo]}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown} // Xử lý sự kiện Enter
+            onKeyDown={handleKeyDown}
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
           />
@@ -57,11 +62,13 @@ const AccountInformation = () => {
       ) : (
         <>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {accountInfo[field as keyof typeof accountInfo]}
+            {field === 'password' ? '**********' : accountInfo[field as keyof typeof accountInfo]}
           </Typography>
-          <IconButton onClick={() => handleEditClick(field)}>
-            <IconEdit />
-          </IconButton>
+          {field !== 'password' && (
+            <IconButton onClick={() => handleEditClick(field)}>
+              <IconEdit />
+            </IconButton>
+          )}
         </>
       )}
     </Box>
@@ -74,17 +81,27 @@ const AccountInformation = () => {
         borderRadius: 1,
         boxShadow: 3,
         backgroundColor: '#fff',
-        margin: '0 auto', // Căn giữa trang
+        margin: '0 auto',
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
         <IconUserCircle /> <span>Thông tin tài khoản</span>
       </Typography>
-      {renderField('username', 'Tên đăng nhập')}
       {renderField('email', 'Email')}
-      {renderField('address', 'Địa chỉ')}
-      {renderField('gender', 'Giới tính')}
-      {renderField('password', 'Mật khẩu')}
+      {renderField('phone', 'Số điện thoại')}
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+          Mật khẩu:
+        </Typography>
+        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {accountInfo.password}
+          </Typography>
+          <Button onClick={() => handleEditClick('password')} variant="outlined" color="primary" startIcon={<IconLock />}>
+            Đổi mật khẩu
+          </Button>
+        </Box>
+      </Box>
 
       {/* Hiển thị Alert khi có sự thay đổi */}
       {showAlert && (

@@ -28,7 +28,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
       <Box>
 
         <CustomFormLabel htmlFor="gmail">Tài khoản</CustomFormLabel>
-        <CustomTextField id="gmail" variant="outlined" fullWidth required: true label="Email hoặc số điện thoại" />
+        <CustomTextField id="gmail" variant="outlined" fullWidth required: true label="Email hoặc số điện thoại" sx={{mt:1}} />
         {/* <span style={{ padding: '0 10px' }}>Vui lòng Nhập Email của bạn </span> */}
 
 
@@ -41,7 +41,8 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
           variant="outlined"
           fullWidth
           required: true
-          label="Nhập mật khẩu của bạn"
+          label="Mật khẩu của bạn"
+          sx={{mt:1}} 
         />
         {/* <span style={{ padding: '0 10px' }}>Vui lòng Nhập Email của bạn </span> */}
 
@@ -52,7 +53,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
         </FormGroup>
         <Typography
           component={Link}
-          to="/auth/forgot-password2"
+          to="/auth/forgot-password"
           fontWeight="500"
           sx={{
             textDecoration: 'none',

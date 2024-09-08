@@ -25,74 +25,31 @@ import {
   import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
   import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
   import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
-import FormInfor from 'src/components/apps/assistant/AssistantById/FormInfor';
+  import AssistantInfor from 'src/components/apps/assistant/AssistantById/AssistantInfor';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+  const BCrumb = [
+    {
+      to: '/',
+      title: 'Trang chủ',
+    },
+    {
+      to: '/apps/assistant',
+      title: 'Quản lý Assistant',
+    },
+  ];
 
-  const AssistantInfor = () => {
+  const AssistantById = () => {
     return (
       <div>
-        {' '}
+        {/* <Breadcrumb title="Assistant" items={BCrumb} /> */}
         <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
           <Box mt={3}>
             <Grid container spacing={3}>
               {/* column */}
-              <Grid item xs={12} lg={12}>
-                <Grid container spacing={3}>
-                  {' '}
-                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
-                    <Expence />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
-                    <Sales />
-                  </Grid>{' '}
-                  
-                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
-                    <Customers />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
-                    <Projects />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
-                    <SalesTwo />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={6} lg={4} xl={2}>
-                    <Growth />
-                  </Grid>{' '}
-                </Grid>{' '}
-              </Grid>
-              <Grid item xs={12} lg={8}>
-                <RevenueUpdates />
-              </Grid>
-              {/* column */}
-              <Grid item xs={12} lg={4}>
-                <Grid container spacing={1}>
-                  <Grid item xs={12} sm={6} lg={12}>
-                    <YearlyBreakup />
-                    
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={12}>
-                    <MonthlyEarnings />
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} sm={6} lg={4}>
-                <WeeklyStats />
-              </Grid><Grid item xs={12} sm={6} lg={4}>
-                <FormInfor />
-              </Grid>
-              <Grid item xs={12} sm={6} lg={4}>
-                <PaymentGateways />
-              </Grid>{' '}
-              <Grid item xs={12} sm={6} lg={4}>
-                <SellingProducts />
-              </Grid>
-              {/* <Grid item xs={12} sm={6} lg={12}>
-                {' '}
-                <ItemTable1 />{' '}
-              </Grid>
-              <Grid item xs={12} lg={12}>
-                {' '}
-                <ItemTable2 />{' '}
-              </Grid> */}
+              
+                <AssistantInfor />
+             
+             
             </Grid>
           </Box>
         </PageContainer>
@@ -100,5 +57,5 @@ import FormInfor from 'src/components/apps/assistant/AssistantById/FormInfor';
     );
   };
   
-  export default AssistantInfor;
+  export default AssistantById;
   

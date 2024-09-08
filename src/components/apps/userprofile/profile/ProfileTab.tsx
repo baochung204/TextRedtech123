@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Tab, Tabs, Menu, MenuItem } from '@mui/material';
-import { IconLock, IconUser, IconUserCircle, IconTicket } from '@tabler/icons-react';
+import { Box, Tab, Tabs, Menu, MenuItem, Typography } from '@mui/material';
+import { IconHistory, IconPoint, IconUser } from '@tabler/icons-react'; // Sử dụng các icon phù hợp hơn
 import { Link, useLocation } from 'react-router-dom';
+import { IconUserCircle } from '@tabler/icons-react';
+import { IconTicket } from '@tabler/icons-react';
 
 const ProfileTab = () => {
   const location = useLocation();
@@ -12,7 +14,7 @@ const ProfileTab = () => {
     setValue(newValue);
   };
 
-  const handleBảoMậtClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleLichSuGiaoDichClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -34,14 +36,19 @@ const ProfileTab = () => {
       to: '/user-profile',
     },
     {
-      label: 'Bảo mật',
-      icon: <IconLock size="20" />,
+      label: 'Lịch sử giao dịch',
+      icon: <IconHistory size="20" />,
       dropdown: true,
     },
+    // {
+    //   label: 'Trợ lý',
+    //   icon: <IconUserCircle size="20" />,
+    //   to: '/apps/assistant',
+    // },
     {
       label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
-      to: '/apps/assistant',
+      to: '/assistant/list',
     },
     {
       label: 'Ticket',
@@ -73,7 +80,7 @@ const ProfileTab = () => {
                   label={tab.label}
                   sx={{ minHeight: '50px' }}
                   icon={tab.icon}
-                  onClick={handleBảoMậtClick}
+                  onClick={handleLichSuGiaoDichClick}
                 />
               );
             } else {
@@ -93,20 +100,56 @@ const ProfileTab = () => {
           })}
         </Tabs>
 
-        {/* Dropdown menu for Bảo mật */}
+        {/* Dropdown menu for Lịch sử giao dịch */}
         <Menu
-          id="bao-mat-menu"
+          id="lich-su-giao-dich-menu"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={handleClose}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           transformOrigin={{ horizontal: 'left', vertical: 'top' }}
+          PaperProps={{
+            sx: {
+              borderRadius: '8px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+              minWidth: '200px',
+              bgcolor: 'background.paper',
+            },
+          }}
         >
-          <MenuItem component={Link} to="/pages/account-settings" onClick={handleClose}>
-            Đổi mật khẩu
+          <MenuItem
+            component={Link}
+            to="/pages/order-history"
+            onClick={handleClose}
+            sx={{
+              padding: '10px 20px',
+              borderRadius: '8px',
+              '&:hover': {
+                bgcolor: 'primary.main',
+                color: 'white',
+              },
+            }}
+          >
+            <Typography variant="body1" fontWeight="500">
+              Lịch sử mua hàng
+            </Typography>
           </MenuItem>
-          <MenuItem component={Link} to="/auth/two-steps" onClick={handleClose}>
-            Bảo mật 2 lớp
+          <MenuItem
+            component={Link}
+            to="/history/buy-point"
+            onClick={handleClose}
+            sx={{
+              padding: '10px 20px',
+              borderRadius: '8px',
+              '&:hover': {
+                bgcolor: 'primary.main',
+                color: 'white',
+              },
+            }}
+          >
+            <Typography variant="body1" fontWeight="500">
+              Lịch sử nạp Point
+            </Typography>
           </MenuItem>
         </Menu>
       </Box>

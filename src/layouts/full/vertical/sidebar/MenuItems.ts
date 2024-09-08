@@ -66,26 +66,77 @@ import {
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
-  {
-    navlabel: true,
-    subheader: 'Trang chủ',
-  },
+  // {
+  //   navlabel: true,
+  //   subheader: 'Trang chủ',
+  // },
   {
     id: uniqueId(),
-    title: 'Trang chủ',
+    title: 'Dashboard',
     icon: IconAppWindow,
-    href: '/landingpage',
+    href: '/dashboards/list',
   },
-
   {
     id: uniqueId(),
-    title: 'Affiliate',
+    title: 'Trợ lý',
+    icon: IconChartDonut3,
+    href: '/apps/assistant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Tạo Trợ lý',
+        icon: IconPoint,
+        href: '/apps/assistant/add',
+      },
+      {
+        id: uniqueId(),
+        title: 'Quản lý Trợ lý',
+        icon: IconPoint,
+        href: '/apps/assistant',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Tài nguyên',
+    icon: IconShoppingCart,
+    href: '/dashboards/list',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bán hàng',
     icon: IconPackage,
     href: '/apps/collaborate/',
     children: [
       {
         id: uniqueId(),
-        title: 'Affiliate sản phẩm',
+        title: 'Sản phẩm',
+        icon: IconPoint,
+        href: '/apps/ecommerce/shop',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đơn hàng',
+        icon: IconPoint,
+        href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Tags',
+        icon: IconPoint,
+        href: '/apps/rule',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Khách hàng',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Thêm khách hàng',
         icon: IconPoint,
         href: '/apps/collaborate/',
       },
@@ -101,34 +152,72 @@ const Menuitems: MenuitemsType[] = [
         icon: IconAppWindow,
         href: '/apps/rule',
       },
+      {
+        id: uniqueId(),
+        title: 'Nhóm khách hàng',
+        icon: IconPoint,
+        href: '/apps/rule',
+      },
     ],
   },
   {
     id: uniqueId(),
-    title: 'Trợ lý',
-    icon: IconChartDonut3,
-    href: '/apps/assistant/',
+    title: 'Cửa hàng',
+    icon: IconShoppingCart,
+    href: '/apps/ecommerce/shop',
+  },
+  {
+    id: uniqueId(),
+    title: 'Affiliate',
+    icon: IconPackage,
+    href: '/apps/collaborate/',
     children: [
       {
         id: uniqueId(),
-        title: 'Quản lý Trợ lý',
+        title: 'Tổng quan',
         icon: IconPoint,
-        href: '/apps/assistant',
+        href: '/apps/collaborate/',
       },
       {
         id: uniqueId(),
-        title: 'Tạo Trợ lý',
+        title: 'Danh sách khách hàng',
         icon: IconPoint,
-        href: '/apps/assistant/add',
+        href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Chính sách và điều khoản',
+        icon: IconPoint,
+        href: '/apps/rule',
       },
     ],
   },
   {
     id: uniqueId(),
-    title: 'Thống kê',
-    icon: IconShoppingCart,
-    href: '/dashboards/list',
+    title: 'Tích hợp',
+    icon: IconAppWindow,
+    href: '/apps/integration',
   },
+  {
+    id: uniqueId(),
+    title: 'Ticket hỗ trợ',
+    icon: IconAppWindow,
+    href: '/apps/chats',
+  },
+  {
+    id: uniqueId(),
+    title: 'Cập nhật',
+    icon: IconAppWindow,
+    href: '/pages/faq',
+  },
+  // {
+  //   id: uniqueId(),
+  //   title: 'Thống kê',
+  //   icon: IconShoppingCart,
+  //   href: '/dashboards/list',
+  // },
+
+ 
 
   {
     navlabel: true,
@@ -156,50 +245,11 @@ const Menuitems: MenuitemsType[] = [
     navlabel: true,
     subheader: 'Shop',
   },
-  //router of some task we are done
   {
     id: uniqueId(),
     title: 'Sản phẩm',
     icon: IconPoint,
     href: '/apps/ecommerce/shop',
-  },
-  {
-    id: uniqueId(),
-    title: 'Ecommerce',
-    icon: IconBasket,
-    href: '/apps/ecommerce/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Shop',
-        icon: IconPoint,
-        href: '/apps/ecommerce/shop',
-      },
-      {
-        id: uniqueId(),
-        title: 'Detail',
-        icon: IconPoint,
-        href: '/apps/ecommerce/detail/1',
-      },
-      {
-        id: uniqueId(),
-        title: 'List',
-        icon: IconPoint,
-        href: '/apps/ecommerce/eco-product-list',
-      },
-      {
-        id: uniqueId(),
-        title: 'Checkout',
-        icon: IconPoint,
-        href: '/apps/ecommerce/eco-checkout',
-      },
-    ],
-  },
-  {
-    id: uniqueId(),
-    title: 'Chats',
-    icon: IconMessage2,
-    href: '/apps/chats',
   },
   {
     id: uniqueId(),
@@ -264,10 +314,10 @@ const Menuitems: MenuitemsType[] = [
     icon: IconAppWindow,
     href: '/landingpage',
   },
-  // {
-  //   navlabel: true,
-  //   subheader: 'Apps',
-  // },
+  {
+    navlabel: true,
+    subheader: 'Apps',
+  },
   {
     id: uniqueId(),
     title: 'Contacts',
@@ -275,6 +325,20 @@ const Menuitems: MenuitemsType[] = [
     chip: '2',
     chipColor: 'secondary',
     href: '/apps/contacts',
+  },
+  {
+    id: uniqueId(),
+    title: 'Modern',
+    icon: IconAperture,
+    href: '/dashboards/modern',
+    chip: 'New',
+    chipColor: 'secondary',
+  },
+  {
+    id: uniqueId(),
+    title: 'eCommerce',
+    icon: IconShoppingCart,
+    href: '/dashboards/ecommerce',
   },
 
   {
@@ -297,7 +361,44 @@ const Menuitems: MenuitemsType[] = [
       },
     ],
   },
-
+  {
+    id: uniqueId(),
+    title: 'Ecommerce',
+    icon: IconBasket,
+    href: '/apps/ecommerce/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Shop',
+        icon: IconPoint,
+        href: '/apps/ecommerce/shop',
+      },
+      {
+        id: uniqueId(),
+        title: 'Detail',
+        icon: IconPoint,
+        href: '/apps/ecommerce/detail/1',
+      },
+      {
+        id: uniqueId(),
+        title: 'List',
+        icon: IconPoint,
+        href: '/apps/ecommerce/eco-product-list',
+      },
+      {
+        id: uniqueId(),
+        title: 'Checkout',
+        icon: IconPoint,
+        href: '/apps/ecommerce/eco-checkout',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Chats',
+    icon: IconMessage2,
+    href: '/apps/chats',
+  },
   {
     id: uniqueId(),
     title: 'Support',

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle } from '@mui/material';
+import { Box, Typography, IconButton, TextField, Select, MenuItem, Alert, AlertTitle } from '@mui/material';
 import { IconUser, IconEdit, IconCheck } from '@tabler/icons-react';
+import { DatePicker } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 const PersonalInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState(false); // Trạng thái để hiển thị thông báo
+  const [showAlert, setShowAlert] = useState(false);
   const [userInfo, setUserInfo] = useState({
     name: 'Ngô Quốc Toản',
-    email: 'nqton301004@gmail.com',
-    phone: '0123456789',
+    gender: 'Nam',
+    dob: new Date('2004-10-30'),
     address: '123 Đường ABC, TP. Hồ Chí Minh',
   });
 
@@ -23,10 +26,24 @@ const PersonalInformation = () => {
     });
   };
 
+  const handleGenderChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setUserInfo({
+      ...userInfo,
+      gender: e.target.value as string,
+    });
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    setUserInfo({
+      ...userInfo,
+      dob: date || new Date(),
+    });
+  };
+
   const handleSaveClick = () => {
     setEditing(null);
-    setShowAlert(true); // Hiển thị thông báo thành công
-    setTimeout(() => setShowAlert(false), 3000); // Ẩn thông báo sau 3 giây
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,27 +58,48 @@ const PersonalInformation = () => {
         {label}:
       </Typography>
       {editing === field ? (
-        <>
+        field === 'dob' ? (
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={userInfo.dob}
+              onChange={handleDateChange}
+              renderInput={(params) => <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />}
+            />
+          </LocalizationProvider>
+        ) : field === 'gender' ? (
+          <Select
+            value={userInfo.gender}
+            onChange={handleGenderChange}
+            sx={{ flexGrow: 1, mr: 1 }}
+            size="small"
+          >
+            <MenuItem value="Nam">Nam</MenuItem>
+            <MenuItem value="Nữ">Nữ</MenuItem>
+            <MenuItem value="Khác">Khác</MenuItem>
+          </Select>
+        ) : (
           <TextField
             value={userInfo[field as keyof typeof userInfo]}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown} // Xử lý sự kiện Enter
+            onKeyDown={handleKeyDown}
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
           />
-          <IconButton onClick={handleSaveClick}>
-            <IconCheck />
-          </IconButton>
-        </>
+        )
       ) : (
         <>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {userInfo[field as keyof typeof userInfo]}
+            {field === 'dob' ? userInfo.dob.toLocaleDateString() : userInfo[field as keyof typeof userInfo]}
           </Typography>
           <IconButton onClick={() => handleEditClick(field)}>
             <IconEdit />
           </IconButton>
         </>
+      )}
+      {editing === field && (
+        <IconButton onClick={handleSaveClick}>
+          <IconCheck />
+        </IconButton>
       )}
     </Box>
   );
@@ -73,15 +111,15 @@ const PersonalInformation = () => {
         borderRadius: 1,
         boxShadow: 3,
         backgroundColor: '#fff',
-        margin: '0 auto', // Căn giữa trang
+        margin: '0 auto',
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
         <IconUser /> <span>Thông tin cá nhân</span>
       </Typography>
-      {renderField('name', 'Tên')}
-      {renderField('email', 'Email')}
-      {renderField('phone', 'Số điện thoại')}
+      {renderField('name', 'Họ và tên')}
+      {renderField('gender', 'Giới tính')}
+      {renderField('dob', 'Ngày sinh')}
       {renderField('address', 'Địa chỉ')}
 
       {/* Hiển thị Alert khi có sự thay đổi */}

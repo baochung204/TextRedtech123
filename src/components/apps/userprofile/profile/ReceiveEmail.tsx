@@ -64,27 +64,27 @@ const ReceiveEmail = () => {
       <FormGroup>
         <FormControlLabel
           control={<Checkbox checked={checked.option1} onChange={handleChange} name="option1" />}
-          label="Chung - nhận tất cả các email liên quan đến tài khoản"
+          label="Chung - Nhận email liên quan đến tài khoản & hệ thống"
         />
         <FormControlLabel
           control={<Checkbox checked={checked.option2} onChange={handleChange} name="option2" />}
-          label="Hóa đơn - nhận email hóa đơn mới, lời nhắc, và Thông báo quá hạn"
+          label="Hóa đơn - nhận email hóa đơn mới, lời nhắc & thông báo quá hạn"
         />
         <FormControlLabel
           control={<Checkbox checked={checked.option3} onChange={handleChange} name="option3" />}
-          label="Hỗ trợ - nhận Email tất cả các thông báo và Ticket hỗ trợ"
+          label="Tính năng mới - Nnận email cập nhập các tính năng mới"
         />
         <FormControlLabel
           control={<Checkbox checked={checked.option4} onChange={handleChange} name="option4" />}
-          label="Tên miền - nhận xác nhận đăng ký / chuyển nhượng và thông báo gia hạn"
+          label="Affiliate - Nhận email thông báo về chương trình Affiliate"
         />
         <FormControlLabel
           control={<Checkbox checked={checked.option5} onChange={handleChange} name="option5" />}
-          label="Dịch vụ - nhận Email chào mừng. Tạm ngưng & Thông báo khác "
+          label="Tài liệu - Nhận email tài liệu & hướng dẫn"
         />
         <FormControlLabel
           control={<Checkbox checked={checked.option6} onChange={handleChange} name="option6" />}
-          label="Affiliate - nhận Email thông báo về chương trình Affiliate"
+          label="Khuyến mại - Nhận email về các chương trình khuyến mại"
         />
       </FormGroup>
 
