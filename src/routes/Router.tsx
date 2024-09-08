@@ -28,7 +28,7 @@ const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant'
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
 const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(()=> import('../views/apps/integration/Integration')))
-
+const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
 const Tickets = Loadable(lazy(() => import('../views/apps/tickets/Tickets')));
@@ -168,6 +168,7 @@ const Router = [
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
+      { path: '/apps/sell/product', element: <Product /> },
       
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
