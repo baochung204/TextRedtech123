@@ -17,6 +17,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'src/store/Store';
+import AddIcon from '@mui/icons-material/Add';
 import Scrollbar from '../../custom-scroll/Scrollbar';
 import { SelectChat, fetchChats, SearchChat } from '../../../store/apps/chat/ChatSlice';
 import { ChatsType } from 'src/types/apps/chat';
@@ -85,10 +86,11 @@ const ChatListing = () => {
         >
           <Avatar alt="Remy Sharp" src={user1} sx={{ width: 54, height: 54 }} />
         </Badge>
-        <Box>
+        <Box display={'flex'} width={'100%'} justifyContent={'space-between'}>
           <Typography variant="body1" fontWeight={600}>
             Nguyễn Đăng Hòa
           </Typography>
+          <AddIcon />
         </Box>
       </Box>
       {/* ------------------------------------------- */}

@@ -9,7 +9,6 @@ import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1'
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Banner1 from 'src/components/widgets/banners/Banner1';
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
 
 import Danhsachdh from './dsdh';
@@ -52,7 +51,7 @@ const topcards: cardType[] = [
 
   {
     icon: <FaChartLine size={40} color="#13DEB9" />,
-    title: 'Danh Thu',
+    title: 'Doanh Thu',
     digits: '96 tỉ',
     bgcolor: 'success',
   },
@@ -71,19 +70,6 @@ const CollaboratePost = () => {
     setValue(newValue);
   };
 
-  // const BCrumb = [
-  //   {
-  //     to: '/',
-  //     title: 'Home',
-  //   },
-  //   {
-  //     to: '/apps/blog/posts',
-  //     title: 'Blog',
-  //   },
-  //   {
-  //     title: 'Blog post',
-  //   },
-  // ];
   return (
     <Box>
       {/* <Breadcrumb title="Blog Detail" items={BCrumb} />{' '} */}
@@ -179,10 +165,10 @@ const CollaboratePost = () => {
               display={'flex'}
               justifyContent={'space-between'}
             >
-              <Button variant="contained" color="primary" sx={{ width: '46%' }}>
+              <Button variant="contained" color="primary" sx={{ width: '48%' }}>
                 RÚT TIỀN
               </Button>
-              <Button variant="contained" color="primary" sx={{ width: '46%' }}>
+              <Button variant="contained" color="primary" sx={{ width: '48%' }}>
                 ĐỔI POINT
               </Button>
             </Box>
@@ -204,11 +190,9 @@ const CollaboratePost = () => {
                 padding={'0 ,20px'}
               >
                 <span>
-                  Redtech tiến hành chi trả từ ngày 15-20 hàng tháng cho tất cả tài khoản Affiliate{' '}
-                  <a style={{ color: '#5D87FF' }} href="/apps/rule">
-                    Chính sách{' '}
-                  </a>
-                  . Hạn mức thanh toán tối thiểu là 2.000.000đ
+                  Redtech tiến hành chi trả hoa hồng (tối thiểu từ 2.000.000đ) cho đối tác từ ngày
+                  16-20 hàng tháng.Đối tác doanh nghiệp vui lòng xuất VAT & gửi về RedTech trước
+                  ngày 16 hàng tháng
                 </span>
               </Typography>
             </Box>
@@ -250,7 +234,7 @@ const CollaboratePost = () => {
                 <CustomOutlinedInput
                   id="http"
                   placeholder="http://s"
-                  value="http://Redtech.vn/affiliate/123456"
+                  value="https://redtech.ai.vn?ref=RT1209"
                   fontSize="17px"
                   fullWidth
                 />
@@ -267,7 +251,7 @@ const CollaboratePost = () => {
             </Grid>
           </Box>
 
-          <Box padding="20px 0px">
+          {/* <Box padding="20px 0px">
             <Typography variant="h3" marginTop="20px">
               Tùy chỉnh liên kết Affiliate
             </Typography>
@@ -299,22 +283,21 @@ const CollaboratePost = () => {
                 </Button>
               </Grid>
             </Grid>
-          </Box>
+          </Box> */}
         </Box>
       </Box>
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="Danh sách Đơn Hàng" value="1" />
+              <Tab label="Danh sách đơn hàng" value="1" />
               <Tab label="lịch sử rút tiền" value="2" />
             </TabList>
           </Box>
 
           <TabPanel value="1">
             {' '}
-            <h1>Danh sách Đơn Hàng</h1>
-            <Grid item xs={12} lg={8} style={{ height: 'auto', margin: '30px 0px' }}>
+            <Grid item xs={12} lg={8} style={{ height: 'auto' }}>
               <Danhsachdh />
             </Grid>
           </TabPanel>
@@ -327,9 +310,9 @@ const CollaboratePost = () => {
           </TabPanel>
         </TabContext>
       </Box>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <Banner1 />
-      </Grid>
+      </Grid> */}
     </Box>
   );
 };
