@@ -206,11 +206,10 @@ const Danhsachdh = () => {
   //     data: [30, 25, 35, 20, 30],
   //   },
   // ];
-  const [value, setValue] = React.useState<Dayjs | null>(null)
-  const [value1, setValue1] = React.useState<Dayjs | null>(null)
+  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <DashboardCard
-      title="Thống kê lịch sử"
       action={
         <>
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
@@ -311,7 +310,12 @@ const Danhsachdh = () => {
               </TableCell>{' '}
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
-                  HỌ TÊN
+                  Mã đơn hàng
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  Khách hàng
                 </Typography>
               </TableCell>
               <TableCell>
@@ -324,11 +328,16 @@ const Danhsachdh = () => {
                   NGÀY MUA
                 </Typography>
               </TableCell>{' '}
-              {/* <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    SỐ ĐIỆN THOẠI
-                  </Typography>
-                </TableCell> */}
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  SỐ ĐIỆN THOẠI
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  GIÁ TRỊ ĐƠN HÀNG
+                </Typography>
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
                   GÓI ĐƠN HÀNG
@@ -348,19 +357,20 @@ const Danhsachdh = () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              {' '}
               <TableCell>
                 <Typography color="textSecondary">1</Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
-                <Stack direction="row" spacing={2}>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  #ORD12345
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Stack direction="row" spacing={2} alignItems="center">
                   <Avatar src={img1} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Nguyễn Huy Hoàng
-                    </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Tăng cường tương tác
                     </Typography>
                   </Box>
                 </Stack>
@@ -369,49 +379,71 @@ const Danhsachdh = () => {
                 <Typography variant="subtitle2" fontWeight={400}>
                   hoanghn@gmail.com
                 </Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  16/02/2024 02:00
+                  16/02/2024
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  Chatbot marketing
+                  09742222593
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  10.000 VNĐ
+                  10.000đ
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  Chatbot hỗ trợ chốt đơn
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  3000đ
                 </Typography>
               </TableCell>
             </TableRow>
+
             <TableRow>
-              {' '}
               <TableCell>
                 <Typography color="textSecondary">2</Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
-                <Stack direction="row" spacing={2}>
-                  <Avatar src={img2} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                <Typography variant="subtitle2" fontWeight={600}>
+                  #ORD12346
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar src={img2} variant="rounded" alt={img2} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Lê Thị Hương
                     </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Hỗ trợ khách hàng
-                    </Typography>
                   </Box>
                 </Stack>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  Huongtl@gmail.com
+                  huongtl@gmail.com
                 </Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  30/02/2021 12:00
+                  30/02/2024
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  09011111123
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  12.000đ
                 </Typography>
               </TableCell>
               <TableCell>
@@ -421,57 +453,61 @@ const Danhsachdh = () => {
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  12.001 VNĐ
+                  2000đ
                 </Typography>
               </TableCell>
-            </TableRow>{' '}
+            </TableRow>
+
             <TableRow>
-              {' '}
               <TableCell>
                 <Typography color="textSecondary">3</Typography>
               </TableCell>
               <TableCell>
-                <Stack direction="row" spacing={2}>
-                  <Avatar src={img3} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                <Typography variant="subtitle2" fontWeight={600}>
+                  #ORD12347
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar src={img3} variant="rounded" alt={img3} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Trần Văn Huy
-                    </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Thương mại điện tử
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  huyvt@gmail.com
-                </Typography>
-              </TableCell>{' '}
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={400}>
-                  20/02/2024 13:56
+                  huytv@gmail.com
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  Chatbot thương mại điện tử
+                  20/02/2024
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  11.290 VNĐ
+                  09750000567
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  15.000đ
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  Chatbot marketing
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  1000đ
                 </Typography>
               </TableCell>
             </TableRow>
-            {/* <TableRow>
-                <TableCell colSpan={7}>
-                  <Typography textAlign={'center'} color="textSecondary">
-                    Không có dữ liệu để hiển thị
-                  </Typography>
-                </TableCell>
-              </TableRow> */}
-            {/* 2 */}
           </TableBody>
         </Table>
       </TableContainer>

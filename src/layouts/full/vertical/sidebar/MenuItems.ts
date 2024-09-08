@@ -97,7 +97,7 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: 'Chính sách và điều khoản',
+        title: 'Thỏa thuận hợp tác',
         icon: IconAppWindow,
         href: '/apps/rule',
       },

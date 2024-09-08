@@ -6,7 +6,7 @@ const rule = () => {
     <>
       {/* thay */}
       <Typography variant="h1" align="center">
-        Chính sách và điều khoản
+        Thỏa thuận hợp tác
       </Typography>
       <div>
         <Box
