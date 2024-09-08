@@ -110,9 +110,9 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Sản phẩm',
+        title: 'Menu sản phẩm',
         icon: IconPoint,
-        href: '/apps/ecommerce/shop',
+        href: '/apps/sell/product',
       },
       {
         id: uniqueId(),
@@ -120,12 +120,7 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/apps/customerList',
       },
-      {
-        id: uniqueId(),
-        title: 'Tags',
-        icon: IconPoint,
-        href: '/apps/rule',
-      },
+      
     ],
   },
   {
@@ -145,6 +140,12 @@ const Menuitems: MenuitemsType[] = [
         title: 'Danh sách khách hàng',
         icon: IconPoint,
         href: '/apps/customerList',
+      },
+      {
+        id: uniqueId(),
+        title: 'Thỏa thuận hợp tác',
+        icon: IconAppWindow,
+        href: '/apps/rule',
       },
       {
         id: uniqueId(),

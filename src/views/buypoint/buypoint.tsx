@@ -129,19 +129,26 @@ const BuyPoint = () => {
   const [value, setValue] = useState<string | null>(null)
   const [toggle, setToggle] = useState<number | null>(null)
 
-  useEffect(() => {
-    if (value !== null) {
-      const number = parseInt(value, 10);
-      if (!isNaN(number)) {
-        setToggle(number * 287)
-      } else {
-        setToggle(null)
 
-      }
+  const formatNumber = (num: string) => {
+    return num.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value.replace(/\D/g, '');
+    const number = parseInt(inputValue, 10);
+    if (!isNaN(number)) {
+      setToggle(number * 287)
+    } else {
+      setToggle(null)
+
     }
+    console.log(typeof inputValue);
 
-  }, [value])
+    setValue(formatNumber(inputValue));
+  };
 
+ 
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
       <Breadcrumb title="Quy Đổi Ngân Lượng  " items={BCrumb} />
@@ -218,7 +225,8 @@ const BuyPoint = () => {
                         :
                         <Input
                           value={value}
-                          onChange={e => setValue(e.target.value)}
+                          onChange={handleChange}
+                          // onChange={e => setValue(e.target.value)}
                           // onChange={handleChange1}
                           onBlur={value === null ? () => setClick(false) : undefined}
                           inputProps={{
@@ -233,7 +241,7 @@ const BuyPoint = () => {
                 </BoxStyled>
                 {typeof (items.text1) === 'string' ?
                   <> <Typography variant="h6" sx={{ paddingTop: '5px' }}>
-                    {toggle === null ? items.text2 : <>{toggle} {''} VNĐ</>}
+                    {toggle === null ? items.text2 : <>{toggle.toLocaleString('vi-VN')} {''} VNĐ</>}
 
                   </Typography> </> :
                   <> <Typography variant="h6" sx={{ paddingTop: '5px' }}>

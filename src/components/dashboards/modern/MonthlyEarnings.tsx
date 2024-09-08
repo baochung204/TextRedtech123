@@ -60,7 +60,7 @@ const MonthlyEarnings = () => {
 
   return (
     <DashboardCard
-      title="Hoa hồng được hưởng"
+      title="Hoa hồng"
       action={
         <Fab color="secondary" size="medium">
           <IconCurrencyDollar width={24} />
@@ -72,7 +72,7 @@ const MonthlyEarnings = () => {
     >
       <>
         <Typography variant="h3" fontWeight="700" mt="-20px">
-          6.830.205 VNĐ
+          6.830.205đ
         </Typography>
         <Stack direction="row" spacing={1} my={1} alignItems="center">
           <Avatar sx={{ bgcolor: errorlight, width: 27, height: 27 }}>
@@ -82,7 +82,7 @@ const MonthlyEarnings = () => {
             +9%
           </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            năm 2024
+            cùng kỳ
           </Typography>
         </Stack>
       </>
