@@ -14,7 +14,7 @@ const BusinessInformation = () => {
     phone: '0901234567',
     email: 'contact@company.com',
   });
-  
+
   const handleEditClick = (field: string) => {
     setEditing(field);
   };
@@ -40,7 +40,7 @@ const BusinessInformation = () => {
 
   const renderField = (field: string, label: string) => (
     <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-      <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+      <Typography variant="h6" fontWeight="500" sx={{ width: '150px', color: 'white' }}>
         {label}:
       </Typography>
       {editing === field ? (
@@ -49,19 +49,19 @@ const BusinessInformation = () => {
             value={businessInfo[field as keyof typeof businessInfo]}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown} // Xử lý sự kiện Enter
-            sx={{ flexGrow: 1, mr: 1 }}
+            sx={{ flexGrow: 1, mr: 1, backgroundColor: 'white', color: 'black' }}
             size="small"
           />
-          <IconButton onClick={handleSaveClick}>
+          <IconButton onClick={handleSaveClick} sx={{ color: 'white' }}>
             <IconCheck />
           </IconButton>
         </>
       ) : (
         <>
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+          <Typography variant="body1" sx={{ flexGrow: 1, color: 'white' }}>
             {businessInfo[field as keyof typeof businessInfo]}
           </Typography>
-          <IconButton onClick={() => handleEditClick(field)}>
+          <IconButton onClick={() => handleEditClick(field)} sx={{ color: 'white' }}>
             <IconEdit />
           </IconButton>
         </>
@@ -75,11 +75,12 @@ const BusinessInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#fff',
+        backgroundColor: '#2A3447',
         margin: '0 auto',
+        color: 'white',
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1} sx={{ color: 'white' }}>
         <IconBriefcase /> <span>Thông tin doanh nghiệp</span>
       </Typography>
       {renderField('companyName', 'Tên công ty')}
@@ -92,7 +93,7 @@ const BusinessInformation = () => {
 
       {/* Hiển thị Alert khi có sự thay đổi */}
       {showAlert && (
-        <Alert severity="success" sx={{ mt: 3 }}>
+        <Alert severity="success" sx={{ mt: 3, backgroundColor: '#4caf50', color: 'white' }}>
           <AlertTitle>Success</AlertTitle>
           Cập nhật thành công — <strong>kiểm tra lại thông tin!</strong>
         </Alert>

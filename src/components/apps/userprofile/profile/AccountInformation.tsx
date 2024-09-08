@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button } from '@mui/material';
+import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button, useTheme } from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +12,7 @@ const AccountInformation = () => {
     password: '**********',
   });
 
+  const theme = useTheme();
   const navigate = useNavigate();
 
   const handleEditClick = (field: string) => {
@@ -80,7 +81,8 @@ const AccountInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#fff',
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+        color: theme.palette.mode === 'dark' ? '#fff' : '#000',
         margin: '0 auto',
       }}
     >
