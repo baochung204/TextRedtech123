@@ -159,7 +159,7 @@ const BuyPoint = () => {
                             onChange={handleChange}
                             // onChange={e => setValue(e.target.value)}
                             // onChange={handleChange1}
-                            onBlur={value === null ? () => setClick(false) : undefined}
+                            onBlur={value === '' ? () => setClick(false) : undefined}
                             inputProps={{
                               style: {
                                 textAlign: 'center',
