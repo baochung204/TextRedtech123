@@ -83,6 +83,7 @@ const BuyPoint = () => {
 
     const inputValue = e.target.value.replace(/\D/g, '');
     const number = parseInt(inputValue, 10);
+
     if (!isNaN(number)) {
       setToggle(number * 287);
     } else {
@@ -100,7 +101,11 @@ const BuyPoint = () => {
         <Grid container spacing={7}>
           <Grid item lg={10} sm={6} xs={12} sx={{}}>
             <marquee style={{ backgroundColor: '#FEF3F4', padding: 2 }}>
+<<<<<<< HEAD
               <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 500, fontSize: 16 }}>
+=======
+              <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 400, fontSize: 16 }}>
+>>>>>>> b4c600ab4dd62438bc92ddc2afe3c1432b336864
                 [Quà tặng] Tặng 01 bộ chiến lược AIDA Sales Formula dành cho trợ lý bán hàng - áp
                 dụng từ ngày 01/10-31/12/2024 cho tất các khách hàng lần đầu tiên nạp Point
               </Typography>
@@ -148,7 +153,6 @@ const BuyPoint = () => {
                     padding: '0',
                   }}
                 >
-                  <img src={logoPoint} alt="" width={30} height={30} style={{ borderRadius: 50 }} />
                   {typeof items.text1 === 'string' ? (
                     <>
                       {' '}
@@ -182,6 +186,7 @@ const BuyPoint = () => {
                       </Typography>
                     </>
                   )}
+                  <img src={logoPoint} alt="" width={30} height={30} style={{ borderRadius: 50 }} />
                 </BoxStyled>
                 {typeof items.text1 === 'string' ? (
                   <>
