@@ -5,7 +5,6 @@ import {
   Avatar,
   List,
   ListItemText,
-  ListItemAvatar,
   TextField,
   Box,
   Alert,
@@ -18,13 +17,15 @@ import {
   MenuItem,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'src/store/Store';
+import AddIcon from '@mui/icons-material/Add';
 import Scrollbar from '../../custom-scroll/Scrollbar';
 import { SelectChat, fetchChats, SearchChat } from '../../../store/apps/chat/ChatSlice';
 import { ChatsType } from 'src/types/apps/chat';
 import { last } from 'lodash';
-import { formatDistanceToNowStrict } from 'date-fns';
 import { IconChevronDown, IconSearch } from '@tabler/icons-react';
 import user1 from 'src/assets/images/profile/user-1.jpg';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { vi } from 'date-fns/locale';
 
 const ChatListing = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const ChatListing = () => {
 
     const lastMessage = conversation.messages[conversation.messages.length - 1];
     if (lastMessage) {
-      const sender = lastMessage.senderId === conversation.id ? 'You: ' : '';
+      const sender = lastMessage.senderId === conversation.id ? 'a' : '';
       const message = lastMessage.type === 'image' ? 'Sent a photo' : lastMessage.msg;
       displayText = `${sender}${message}`;
     }
@@ -76,7 +77,7 @@ const ChatListing = () => {
       {/* ------------------------------------------- */}
       <Box display={'flex'} alignItems="center" gap="10px" p={3}>
         <Badge
-          variant="dot"
+          // variant="dot"
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right',
@@ -86,11 +87,11 @@ const ChatListing = () => {
         >
           <Avatar alt="Remy Sharp" src={user1} sx={{ width: 54, height: 54 }} />
         </Badge>
-        <Box>
+        <Box display={'flex'} width={'100%'} justifyContent={'space-between'}>
           <Typography variant="body1" fontWeight={600}>
-            John Deo
+            Nguyễn Đăng Hòa
           </Typography>
-          <Typography variant="body2">Marketing Manager</Typography>
+          <AddIcon />
         </Box>
       </Box>
       {/* ------------------------------------------- */}
@@ -99,7 +100,7 @@ const ChatListing = () => {
       <Box px={3} py={1}>
         <TextField
           id="outlined-search"
-          placeholder="Search contacts"
+          placeholder="Tìm kiếm"
           size="small"
           type="search"
           variant="outlined"
@@ -127,7 +128,7 @@ const ChatListing = () => {
             onClick={handleClick}
             color="inherit"
           >
-            Recent Chats <IconChevronDown size="16" />
+            Tin nhắn gần đây <IconChevronDown size="16" />
           </Button>
           <Menu
             id="basic-menu"
@@ -138,9 +139,8 @@ const ChatListing = () => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>Sort By Time</MenuItem>
-            <MenuItem onClick={handleClose}>Sort By Unread</MenuItem>
-            <MenuItem onClick={handleClose}>Mark as all Read</MenuItem>
+            <MenuItem onClick={handleClose}>Thời gian giảm dần</MenuItem>
+            <MenuItem onClick={handleClose}>Thời gian tăng dần</MenuItem>
           </Menu>
         </Box>
         <Scrollbar sx={{ height: { lg: 'calc(100vh - 100px)', md: '100vh' }, maxHeight: '600px' }}>
@@ -157,7 +157,7 @@ const ChatListing = () => {
                 }}
                 selected={activeChat === chat.id}
               >
-                <ListItemAvatar>
+                {/* <ListItemAvatar>
                   <Badge
                     color={
                       chat.status === 'online'
@@ -177,11 +177,11 @@ const ChatListing = () => {
                   >
                     <Avatar alt="Remy Sharp" src={chat.thumb} sx={{ width: 42, height: 42 }} />
                   </Badge>
-                </ListItemAvatar>
+                </ListItemAvatar> */}
                 <ListItemText
                   primary={
                     <Typography variant="subtitle2" fontWeight={600} mb={0.5}>
-                      {chat.name}
+                      #TK006100{chat.id}
                     </Typography>
                   }
                   secondary={getDetails(chat)}
@@ -190,10 +190,12 @@ const ChatListing = () => {
                   }}
                   sx={{ my: 0 }}
                 />
+                {/* time in the chat */}
                 <Box sx={{ flexShrink: '0' }} mt={0.5}>
                   <Typography variant="body2">
                     {formatDistanceToNowStrict(new Date(lastActivity(chat)), {
-                      addSuffix: false,
+                      addSuffix: true,
+                      locale: vi, // Use Vietnamese locale
                     })}
                   </Typography>
                 </Box>
@@ -202,7 +204,7 @@ const ChatListing = () => {
           ) : (
             <Box m={2}>
               <Alert severity="error" variant="filled" sx={{ color: 'white' }}>
-                No Contacts Found!
+                Không tồn tại
               </Alert>
             </Box>
           )}

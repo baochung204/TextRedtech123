@@ -1,10 +1,9 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Box, Button, FormHelperText, MenuItem, Stack, Grid } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import CustomTextField from '../theme-elements/CustomTextField';
 import CustomFormLabel from '../theme-elements/CustomFormLabel';
-import CustomSelect from '../theme-elements/CustomSelect';
 
 const validationSchema = yup.object({
   username: yup
@@ -12,10 +11,7 @@ const validationSchema = yup.object({
     .min(2, 'Ít nhất 2 ký tự')
     .max(50, 'Nhiều nhất 50 ký tự')
     .required('Không được bỏ trống tên'),
-  email: yup
-    .string()
-    .email('Email không đúng định dạng')
-    .required('Không được bỏ trống email'),
+  email: yup.string().email('Email không đúng định dạng').required('Không được bỏ trống email'),
   phone: yup
     .string()
     .matches(/^[0-9]+$/, 'Số điện thoại chỉ được chứa chữ số')
@@ -23,10 +19,7 @@ const validationSchema = yup.object({
     .max(15, 'Số điện thoại không được dài quá 15 chữ số')
     .required('Không được bỏ trống số điện thoại'),
   feature: yup.number().required('Vui lòng chọn tính năng'),
-  description: yup
-    .string()
-    .max(500, 'Mô tả không được quá 500 ký tự')
-    .notRequired(),
+  description: yup.string().max(500, 'Mô tả không được quá 500 ký tự').notRequired(),
 });
 
 const FVReques = () => {
@@ -47,7 +40,7 @@ const FVReques = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12}>
           <Box>
             <CustomFormLabel htmlFor="username">Họ và Tên</CustomFormLabel>
             <CustomTextField
@@ -63,7 +56,7 @@ const FVReques = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12}>
           <Box>
             <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
             <CustomTextField
@@ -80,7 +73,7 @@ const FVReques = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12}>
           <Box>
             <CustomFormLabel htmlFor="phone">Số điện thoại</CustomFormLabel>
             <CustomTextField
@@ -97,33 +90,9 @@ const FVReques = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-          <Box>
-            <CustomFormLabel htmlFor="feature">Tính năng</CustomFormLabel>
-            <CustomSelect
-              id="feature"
-              name="feature"
-              value={formik.values.feature}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              fullWidth
-            >
-              <MenuItem value="">
-                <em>Chọn tính năng cần góp ý?</em>
-              </MenuItem>
-              <MenuItem value={10}>AI</MenuItem>
-              <MenuItem value={20}>ChatBox</MenuItem>
-              <MenuItem value={30}>Mua bán</MenuItem>
-            </CustomSelect>
-            {formik.touched.feature && formik.errors.feature && (
-              <FormHelperText error>{formik.errors.feature}</FormHelperText>
-            )}
-          </Box>
-        </Grid>
-
         <Grid item xs={12}>
           <Box>
-            <CustomFormLabel htmlFor="description">Gửi cho chúng tôi thông tin phần bạn muốn góp ý?</CustomFormLabel>
+            <CustomFormLabel htmlFor="description">Nội dung đề xuất của bạn</CustomFormLabel>
             <CustomTextField
               fullWidth
               rows={4}
@@ -139,7 +108,7 @@ const FVReques = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} textAlign="right">
+        <Grid item xs={12} textAlign="center">
           <Button variant="contained" type="submit">
             Gửi cho chúng tôi
           </Button>

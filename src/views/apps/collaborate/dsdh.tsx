@@ -19,11 +19,14 @@ import React from 'react';
 import { Props } from 'react-apexcharts';
 // import CustomSelect from '../../forms/theme-elements/CustomSelect';
 // import DashboardCard from '../../shared/DashboardCard';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Dayjs } from 'dayjs';
 
 import img1 from 'src/assets/images/products/s6.jpg';
 import img2 from 'src/assets/images/products/s5.jpg';
 import img3 from 'src/assets/images/products/s7.jpg';
-
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from './../../../components/forms/theme-elements/CustomSelect';
 import DashboardCard from './../../../components/shared/DashboardCard';
@@ -38,175 +41,176 @@ const Danhsachdh = () => {
 
   // chart color
   const theme = useTheme();
-  const primary = theme.palette.primary.main;
-  const grey = theme.palette.grey[300];
-  const primarylight = theme.palette.primary.light;
-  const greylight = theme.palette.grey[100];
+  // const primary = theme.palette.primary.main;
+  // const grey = theme.palette.grey[300];
+  // const primarylight = theme.palette.primary.light;
+  // const greylight = theme.palette.grey[100];
 
   //   // chart 1
-  const optionsrow1chart: Props = {
-    chart: {
-      type: 'area',
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
-      foreColor: '#adb0bb',
-      toolbar: {
-        show: false,
-      },
-      height: 35,
-      width: 100,
-      sparkline: {
-        enabled: true,
-      },
-      group: 'sparklines',
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
-    },
-    fill: {
-      colors: [primarylight],
-      type: 'solid',
-      opacity: 0.05,
-    },
-    markers: {
-      size: 0,
-    },
-    tooltip: {
-      enabled: false,
-    },
-  };
-  const seriesrow1chart = [
-    {
-      name: 'Customers',
-      color: primary,
-      data: [30, 25, 35, 20, 30],
-    },
-  ];
-  let data = '0974943593';
+  // const optionsrow1chart: Props = {
+  //   chart: {
+  //     type: 'area',
+  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
+  //     foreColor: '#adb0bb',
+  //     toolbar: {
+  //       show: false,
+  //     },
+  //     height: 35,
+  //     width: 100,
+  //     sparkline: {
+  //       enabled: true,
+  //     },
+  //     group: 'sparklines',
+  //   },
+  //   stroke: {
+  //     curve: 'smooth',
+  //     width: 2,
+  //   },
+  //   fill: {
+  //     colors: [primarylight],
+  //     type: 'solid',
+  //     opacity: 0.05,
+  //   },
+  //   markers: {
+  //     size: 0,
+  //   },
+  //   tooltip: {
+  //     enabled: false,
+  //   },
+  // };
+  // const seriesrow1chart = [
+  //   {
+  //     name: 'Customers',
+  //     color: primary,
+  //     data: [30, 25, 35, 20, 30],
+  //   },
+  // ];
+  const data = '0974943593';
   const phone = data.slice(0, 3) + '####' + data.slice(7, 10);
   console.log(phone);
   // chart 2
-  const optionsrow2chart: Props = {
-    chart: {
-      type: 'area',
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
-      foreColor: '#adb0bb',
-      toolbar: {
-        show: false,
-      },
-      height: 35,
-      width: 100,
-      sparkline: {
-        enabled: true,
-      },
-      group: 'sparklines',
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
-    },
-    fill: {
-      colors: [greylight],
-      type: 'solid',
-      opacity: 0.05,
-    },
-    markers: {
-      size: 0,
-    },
-    tooltip: {
-      enabled: false,
-    },
-  };
-  const seriesrow2chart = [
-    {
-      name: 'Customers',
-      color: grey,
-      data: [30, 25, 35, 20, 30],
-    },
-  ];
+  // const optionsrow2chart: Props = {
+  //   chart: {
+  //     type: 'area',
+  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
+  //     foreColor: '#adb0bb',
+  //     toolbar: {
+  //       show: false,
+  //     },
+  //     height: 35,
+  //     width: 100,
+  //     sparkline: {
+  //       enabled: true,
+  //     },
+  //     group: 'sparklines',
+  //   },
+  //   stroke: {
+  //     curve: 'smooth',
+  //     width: 2,
+  //   },
+  //   fill: {
+  //     colors: [greylight],
+  //     type: 'solid',
+  //     opacity: 0.05,
+  //   },
+  //   markers: {
+  //     size: 0,
+  //   },
+  //   tooltip: {
+  //     enabled: false,
+  //   },
+  // };
+  // const seriesrow2chart = [
+  //   {
+  //     name: 'Customers',
+  //     color: grey,
+  //     data: [30, 25, 35, 20, 30],
+  //   },
+  // ];
 
-  // chart 3
-  const optionsrow3chart: Props = {
-    chart: {
-      type: 'area',
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
-      foreColor: '#adb0bb',
-      toolbar: {
-        show: false,
-      },
-      height: 35,
-      width: 100,
-      sparkline: {
-        enabled: true,
-      },
-      group: 'sparklines',
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
-    },
-    fill: {
-      colors: [primarylight],
-      type: 'solid',
-      opacity: 0.05,
-    },
-    markers: {
-      size: 0,
-    },
-    tooltip: {
-      enabled: false,
-    },
-  };
-  const seriesrow3chart = [
-    {
-      name: 'Customers',
-      color: primary,
-      data: [30, 25, 35, 20, 30],
-    },
-  ];
+  // // chart 3
+  // const optionsrow3chart: Props = {
+  //   chart: {
+  //     type: 'area',
+  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
+  //     foreColor: '#adb0bb',
+  //     toolbar: {
+  //       show: false,
+  //     },
+  //     height: 35,
+  //     width: 100,
+  //     sparkline: {
+  //       enabled: true,
+  //     },
+  //     group: 'sparklines',
+  //   },
+  //   stroke: {
+  //     curve: 'smooth',
+  //     width: 2,
+  //   },
+  //   fill: {
+  //     colors: [primarylight],
+  //     type: 'solid',
+  //     opacity: 0.05,
+  //   },
+  //   markers: {
+  //     size: 0,
+  //   },
+  //   tooltip: {
+  //     enabled: false,
+  //   },
+  // };
+  // const seriesrow3chart = [
+  //   {
+  //     name: 'Customers',
+  //     color: primary,
+  //     data: [30, 25, 35, 20, 30],
+  //   },
+  // ];
 
-  // chart 4
-  const optionsrow4chart: Props = {
-    chart: {
-      type: 'area',
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
-      foreColor: '#adb0bb',
-      toolbar: {
-        show: false,
-      },
-      height: 35,
-      width: 100,
-      sparkline: {
-        enabled: true,
-      },
-      group: 'sparklines',
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
-    },
-    fill: {
-      colors: [greylight],
-      type: 'solid',
-      opacity: 0.05,
-    },
-    markers: {
-      size: 0,
-    },
-    tooltip: {
-      enabled: false,
-    },
-  };
-  const seriesrow4chart = [
-    {
-      color: grey,
-      data: [30, 25, 35, 20, 30],
-    },
-  ];
-
+  // // chart 4
+  // const optionsrow4chart: Props = {
+  //   chart: {
+  //     type: 'area',
+  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
+  //     foreColor: '#adb0bb',
+  //     toolbar: {
+  //       show: false,
+  //     },
+  //     height: 35,
+  //     width: 100,
+  //     sparkline: {
+  //       enabled: true,
+  //     },
+  //     group: 'sparklines',
+  //   },
+  //   stroke: {
+  //     curve: 'smooth',
+  //     width: 2,
+  //   },
+  //   fill: {
+  //     colors: [greylight],
+  //     type: 'solid',
+  //     opacity: 0.05,
+  //   },
+  //   markers: {
+  //     size: 0,
+  //   },
+  //   tooltip: {
+  //     enabled: false,
+  //   },
+  // };
+  // const seriesrow4chart = [
+  //   {
+  //     color: grey,
+  //     data: [30, 25, 35, 20, 30],
+  //   },
+  // ];
+  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <DashboardCard
-      title="Thống kê lịch sử"
+      showSearchBox={true}
       action={
         <>
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
@@ -221,25 +225,55 @@ const Danhsachdh = () => {
               <MenuItem value={2}>Đã mua </MenuItem>
               <MenuItem value={3}>Chưa mua</MenuItem>
             </CustomSelect>
-            <CustomTextField
-              id="date"
-              type="date"
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                value={value}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+                renderInput={(props) => (
+                  <CustomTextField
+                    {...props}
+                    fullWidth
+                    size="small"
+                    sx={{
+                      '& .MuiSvgIcon-root': {
+                        width: '18px',
+                        height: '18px',
+                      },
+                      '& .MuiFormHelperText-root': {
+                        display: 'none',
+                      },
+                    }}
+                  />
+                )}
+              />
+            </LocalizationProvider>
             tới
-            <CustomTextField
-              id="date"
-              type="date"
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                value={value1}
+                onChange={(newValue) => {
+                  setValue1(newValue);
+                }}
+                renderInput={(props) => (
+                  <CustomTextField
+                    {...props}
+                    fullWidth
+                    size="small"
+                    sx={{
+                      '& .MuiSvgIcon-root': {
+                        width: '18px',
+                        height: '18px',
+                      },
+                      '& .MuiFormHelperText-root': {
+                        display: 'none',
+                      },
+                    }}
+                  />
+                )}
+              />
+            </LocalizationProvider>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="50"
@@ -277,7 +311,12 @@ const Danhsachdh = () => {
               </TableCell>{' '}
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
-                  HỌ TÊN
+                  Mã đơn hàng
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  Khách hàng
                 </Typography>
               </TableCell>
               <TableCell>
@@ -290,11 +329,16 @@ const Danhsachdh = () => {
                   NGÀY MUA
                 </Typography>
               </TableCell>{' '}
-              {/* <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    SỐ ĐIỆN THOẠI
-                  </Typography>
-                </TableCell> */}
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  SỐ ĐIỆN THOẠI
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  GIÁ TRỊ ĐƠN HÀNG
+                </Typography>
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
                   GÓI ĐƠN HÀNG
@@ -314,19 +358,20 @@ const Danhsachdh = () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              {' '}
               <TableCell>
                 <Typography color="textSecondary">1</Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
-                <Stack direction="row" spacing={2}>
+                <Typography variant="subtitle2" fontWeight={600}>
+                  #ORD12345
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Stack direction="row" spacing={2} alignItems="center">
                   <Avatar src={img1} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Nguyễn Huy Hoàng
-                    </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Tăng cường tương tác
                     </Typography>
                   </Box>
                 </Stack>
@@ -335,49 +380,71 @@ const Danhsachdh = () => {
                 <Typography variant="subtitle2" fontWeight={400}>
                   hoanghn@gmail.com
                 </Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  16/02/2024 02:00
+                  16/02/2024
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  Chatbot marketing
+                  09742222593
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  10.000 VNĐ
+                  10.000đ
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  Chatbot hỗ trợ chốt đơn
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  3000đ
                 </Typography>
               </TableCell>
             </TableRow>
+
             <TableRow>
-              {' '}
               <TableCell>
                 <Typography color="textSecondary">2</Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
-                <Stack direction="row" spacing={2}>
-                  <Avatar src={img2} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                <Typography variant="subtitle2" fontWeight={600}>
+                  #ORD12346
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar src={img2} variant="rounded" alt={img2} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Lê Thị Hương
                     </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Hỗ trợ khách hàng
-                    </Typography>
                   </Box>
                 </Stack>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  Huongtl@gmail.com
+                  huongtl@gmail.com
                 </Typography>
-              </TableCell>{' '}
+              </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  30/02/2021 12:00
+                  30/02/2024
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  09011111123
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  12.000đ
                 </Typography>
               </TableCell>
               <TableCell>
@@ -387,57 +454,61 @@ const Danhsachdh = () => {
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  12.001 VNĐ
+                  2000đ
                 </Typography>
               </TableCell>
-            </TableRow>{' '}
+            </TableRow>
+
             <TableRow>
-              {' '}
               <TableCell>
                 <Typography color="textSecondary">3</Typography>
               </TableCell>
               <TableCell>
-                <Stack direction="row" spacing={2}>
-                  <Avatar src={img3} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                <Typography variant="subtitle2" fontWeight={600}>
+                  #ORD12347
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar src={img3} variant="rounded" alt={img3} sx={{ width: 48, height: 48 }} />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Trần Văn Huy
-                    </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      Thương mại điện tử
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  huyvt@gmail.com
-                </Typography>
-              </TableCell>{' '}
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={400}>
-                  20/02/2024 13:56
+                  huytv@gmail.com
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  Chatbot thương mại điện tử
+                  20/02/2024
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={400}>
-                  11.290 VNĐ
+                  09750000567
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  15.000đ
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  Chatbot marketing
+                </Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="subtitle2" fontWeight={400}>
+                  1000đ
                 </Typography>
               </TableCell>
             </TableRow>
-            {/* <TableRow>
-                <TableCell colSpan={7}>
-                  <Typography textAlign={'center'} color="textSecondary">
-                    Không có dữ liệu để hiển thị
-                  </Typography>
-                </TableCell>
-              </TableRow> */}
-            {/* 2 */}
           </TableBody>
         </Table>
       </TableContainer>

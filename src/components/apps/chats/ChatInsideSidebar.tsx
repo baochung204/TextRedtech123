@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React from 'react';
 import {
   Box,
@@ -16,6 +14,7 @@ import {
 import { ChatsType } from 'src/types/apps/chat';
 import { uniq, flatten } from 'lodash';
 import { IconDownload } from '@tabler/icons-react';
+import StarIcon from '@mui/icons-material/Star';
 
 interface chatType {
   isInSidebar?: boolean;
@@ -23,6 +22,12 @@ interface chatType {
 }
 
 const drawerWidth = 320;
+
+// Thêm dữ liệu mẫu cho phần đánh giá
+const reviews = [
+  { id: 1, reviewer: 'John Doe', rating: 5, comment: 'Sản phẩm tuyệt vời!' },
+  { id: 2, reviewer: 'Jane Smith', rating: 4, comment: 'Tốt nhưng cần cải thiện.' },
+];
 
 const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
@@ -58,8 +63,9 @@ const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
           }}
           p={3}
         >
-          <Typography variant="h6" mb={2}>
-            Media ({totalMedia})
+          {/* Phần Ảnh */}
+          {/* <Typography variant="h6" mb={2}>
+            Ảnh ({totalMedia})
           </Typography>
           <Grid container spacing={2}>
             {chat?.messages.map((c) => {
@@ -79,12 +85,12 @@ const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
               );
             })}
             <Grid item xs={12} lg={12}>
-              {totalMedia === 0 ? <Alert severity="error">No Media Found!</Alert> : null}
+              {totalMedia === 0 ? <Alert severity="error">Không có tệp nào</Alert> : null}
             </Grid>
-          </Grid>
-
-          <Typography variant="h6" mt={5} mb={2}>
-            Attachments ({totalAttachment})
+          </Grid> */}
+          {/* Phần Tệp đính kèm */}
+          {/* <Typography variant="h6" mt={5} mb={2}>
+            Tệp đính kèm ({totalAttachment})
           </Typography>
           <Box>
             {chat?.messages.map((c, index) => {
@@ -125,7 +131,37 @@ const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
                 </Stack>
               );
             })}
-            {totalAttachment === 0 ? <Alert severity="error">No Attachment Found!</Alert> : null}
+            {totalAttachment === 0 ? <Alert severity="error">Không có tệp đính kèm!</Alert> : null}
+          </Box> */}
+          {/* Phần rating start */}
+          <Typography variant="h6" mt={5} mb={2}>
+            Bạn đánh giá thế nào về lần hỗ trợ lần này?
+          </Typography>
+          <StarIcon sx={{ color: 'gold' }} />
+          <StarIcon sx={{ color: 'gold' }} />
+          <StarIcon sx={{ color: 'gold' }} />
+          <StarIcon sx={{ color: 'gold' }} />
+          <StarIcon sx={{ color: 'gold' }} />
+          {/* Phần Đánh giá */}
+          <Typography variant="h6" mt={5} mb={2}>
+            Đánh giá ({reviews.length})
+          </Typography>
+          <Box>
+            {reviews.length === 0 ? (
+              <Alert severity="error">Không có đánh giá nào!</Alert>
+            ) : (
+              reviews.map((review) => (
+                <Box key={review.id} mb={2} p={2} sx={{ backgroundColor: 'grey.100' }}>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    {review.reviewer}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Đánh giá: {review.rating} ⭐
+                  </Typography>
+                  <Typography variant="body1">{review.comment}</Typography>
+                </Box>
+              ))
+            )}
           </Box>
         </Box>
       ) : null}

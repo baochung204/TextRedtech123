@@ -26,8 +26,14 @@ const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collab
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
+<<<<<<< HEAD
 const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
 
+=======
+const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
+const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
+const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
 const Tickets = Loadable(lazy(() => import('../views/apps/tickets/Tickets')));
@@ -37,9 +43,13 @@ const EcomProductList = Loadable(lazy(() => import('../views/apps/eCommerce/Ecom
 const EcomProductCheckout = Loadable(
   lazy(() => import('../views/apps/eCommerce/EcommerceCheckout')),
 );
+const Detailpoint = Loadable(lazy(() => import('../views/apps/collaborate/point/detailpoint')));
 const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
 const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
+const Purchasehistory = Loadable(lazy(() => import('../views/apps/history/purchase-history')));
+const Pointhistory = Loadable(lazy(() => import('../views/apps/history/point-history')));
+
 const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followers')));
 const Friends = Loadable(lazy(() => import('../views/apps/user-profile/Friends')));
 
@@ -48,6 +58,12 @@ const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
 
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
+
+//Ai ticket
+const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
+
+//update page
+const Update = Loadable(lazy(() => import('../views/apps/update/update')));
 
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
@@ -85,7 +101,16 @@ const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/Quil
 import FormRequest from 'src/views/forms/FormRequest';
 import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
+<<<<<<< HEAD
 const Updating = Loadable(lazy(()=> import('src/views/authentication/Updating'))) ;
+=======
+import Success from 'src/views/apps/user-profile/Success';
+import Fail from 'src/views/apps/user-profile/Fail';
+import Pending from 'src/views/apps/user-profile/Pending';
+import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
+import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
+
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -130,6 +155,7 @@ const TwoSteps = Loadable(lazy(() => import('../views/authentication/auth1/TwoSt
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
+const Updating = Loadable(lazy(() => import('src/views/authentication/Updating')));
 
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
@@ -143,6 +169,8 @@ const HistoryBuyService = Loadable(
 );
 // pay
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
+//list assistant
+const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
 const Router = [
   {
     path: '/',
@@ -156,10 +184,17 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
+<<<<<<< HEAD
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
+=======
+      { path: '/apps/assistant/:id', element: <AssistantById /> },
+      { path: '/apps/integration', element: <Integration /> },
+      { path: '/apps/sell/product', element: <Product /> },
+
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
-      { path: '/apps/customerlist', element: <CustomerList /> },
+      { path: '/apps/customerlist', element: <CustomerList2 /> },
       { path: '/apps/rule', element: <Rule /> },
       // { path: '/admin', element: <Blog /> },
       { path: '/admin/dashborard', element: <Admin /> },
@@ -172,17 +207,28 @@ const Router = [
       { path: '/apps/email', element: <Email /> },
       { path: '/apps/notes', element: <Notes /> },
       { path: '/apps/tickets', element: <Tickets /> },
+      { path: '/apps/update', element: <Update /> },
       { path: '/apps/ecommerce/shop', element: <Ecommerce /> },
       { path: '/apps/ecommerce/eco-product-list', element: <EcomProductList /> },
       { path: '/apps/ecommerce/eco-checkout', element: <EcomProductCheckout /> },
+      { path: '/apps/point/detaipoint/:id', element: <Detailpoint /> },
+
       { path: '/apps/ecommerce/detail/:id', element: <EcommerceDetail /> },
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
       { path: '/apps/affiliate', element: <Affiliate /> },
+      { path: '/apps/success', element: <Success /> },
+      { path: '/apps/fail', element: <Fail /> },
+      { path: '/apps/pending', element: <Pending /> },
       { path: '/apps/person-affiliate', element: <PersonAffiliate /> },
       { path: '/apps/company-affiliate', element: <CompanyAffiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user-profile', element: <UserProfile /> },
+      { path: '/pointhistory', element: <Pointhistory /> },
+
+      { path: '/purchasehistory', element: <Purchasehistory /> },
+
+      { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
       { path: '/ui-components/alert', element: <MuiAlert /> },
       { path: '/ui-components/accordion', element: <MuiAccordion /> },
@@ -238,6 +284,7 @@ const Router = [
       { path: '/buy/service', element: <BuyPointService /> },
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
       { path: '/history/buy-service', element: <HistoryBuyService /> },
+      { path: '/assistant/list', element: <ListAssistant /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },
@@ -250,8 +297,9 @@ const Router = [
       { path: '/auth/login', element: <Login2 /> },
       { path: '/auth/register', element: <Register /> },
       { path: '/auth/register2', element: <Register2 /> },
-      { path: '/auth/forgot-password', element: <ForgotPassword /> },
-      { path: '/auth/forgot-password2', element: <ForgotPassword2 /> },
+      { path: '/auth/forgot-password2', element: <ForgotPassword /> },
+      { path: '/auth/forgot-password', element: <ForgotPassword2 /> },
+      { path: 'user-profile/changepassword', element: <ChangePassword /> },
       { path: '/auth/two-steps', element: <TwoSteps /> },
       { path: '/auth/two-steps2', element: <TwoSteps2 /> },
       { path: '/auth/maintenance', element: <Maintenance /> },

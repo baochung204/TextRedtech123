@@ -1,24 +1,24 @@
 import mock from '../mock';
 import { sub } from 'date-fns';
 import { Chance } from 'chance';
-import s1 from 'src/assets/images/products/s1.jpg';
-import s2 from 'src/assets/images/products/s2.jpg';
-import s3 from 'src/assets/images/products/s3.jpg';
-import s4 from 'src/assets/images/products/s4.jpg';
-import s5 from 'src/assets/images/products/s5.jpg';
-import s6 from 'src/assets/images/products/s6.jpg';
-import s7 from 'src/assets/images/products/s7.jpg';
-import s8 from 'src/assets/images/products/s8.jpg';
-import s9 from 'src/assets/images/products/s9.jpg';
-import s10 from 'src/assets/images/products/s10.jpg';
-import s11 from 'src/assets/images/products/s11.jpg';
+import s1 from 'src/assets/images/products/s20.jpg';
+import s2 from 'src/assets/images/products/s21.jpg';
+import s3 from 'src/assets/images/products/s22.jpg';
+import s4 from 'src/assets/images/products/s23.jpg';
+import s5 from 'src/assets/images/products/s25.jpg';
+import s6 from 'src/assets/images/products/s24.jpg';
+import s7 from 'src/assets/images/products/s25.jpg';
+import s8 from 'src/assets/images/products/s20.jpg';
+import s9 from 'src/assets/images/products/s21.jpg';
+import s10 from 'src/assets/images/products/s22.jpg';
+import s11 from 'src/assets/images/products/s23.jpg';
 import s12 from 'src/assets/images/products/s12.jpg';
 
 const chance = new Chance();
 
 const ProductsData = [
   {
-    title: 'How Innovation Works',
+    title: 'MediGPT',
     price: 275,
     discount: 25,
     related: false,
@@ -35,7 +35,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Psalms Book for Growth',
+    title: 'EduGPT',
     price: 89,
     discount: 10,
     related: true,
@@ -52,7 +52,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'The Psychology of Money',
+    title: 'FinGPT',
     price: 125,
     discount: 12,
     related: false,
@@ -69,7 +69,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Boat Headphone',
+    title: 'CodeGPT',
     price: 50,
     discount: 15,
     related: true,
@@ -86,7 +86,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'MacBook Air Pro',
+    title: 'LegalGPT',
     price: 650,
     discount: 250,
     related: true,
@@ -103,7 +103,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Gaming Console',
+    title: 'GPT-2.0',
     price: 25,
     discount: 6,
     related: true,
@@ -120,7 +120,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Red Valvet Dress',
+    title: 'GPT-2.0',
     price: 150,
     discount: 50,
     related: false,
@@ -137,7 +137,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Shoes for Girls',
+    title: 'GPT-2',
     price: 300,
     discount: 80,
     related: false,
@@ -154,7 +154,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Short & Sweet Purse',
+    title: ' GPT-2 for Kids',
     price: 175,
     discount: 25,
     related: false,
@@ -171,7 +171,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Toy Dino for Fun',
+    title: 'GPT-5',
     price: 210,
     discount: 40,
     related: false,
@@ -188,7 +188,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Cute Soft Teddybear',
+    title: 'GPT-3',
     price: 285,
     discount: 60,
     related: false,
@@ -205,7 +205,7 @@ const ProductsData = [
     description: chance.paragraph({ sentences: 2 }),
   },
   {
-    title: 'Little Angel Toy',
+    title: 'GPT-3 for Kids',
     price: 5,
     discount: 5,
     related: false,

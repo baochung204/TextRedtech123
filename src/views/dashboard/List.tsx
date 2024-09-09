@@ -11,7 +11,15 @@ import {
   Typography,
 } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
+import React from 'react';
+import Chart from 'react-apexcharts';
+import { useTheme } from '@mui/material/styles';
 
+import DashboardCard from '../../shared/DashboardCard';
+import { Props } from 'react-apexcharts';
+import { IconArrowUpRight } from '@tabler/icons-react';
+
+import icon1 from 'src/assets/images/svgs/icon-bars.svg';
 import Expence from 'src/components/dashboards/ecommerce/Expence';
 import Growth from 'src/components/dashboards/ecommerce/Growth';
 import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
@@ -33,10 +41,13 @@ import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
 import { IconPlayerPlay, IconPlayerSkipBack } from '@tabler/icons-react';
 import { IconPlayerSkipForward } from '@tabler/icons-react';
 import img1 from 'src/assets/images/blog/blog-img5.jpg';
+
 const List = () => {
+  
   return (
     <div>
       {' '}
+      
       <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
         <Box mt={3}>
           <Grid container spacing={3}>

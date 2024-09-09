@@ -30,12 +30,11 @@ const SiderAffiliate = () => {
           align="center"
           sx={{
             mb: 2, // Adds some margin below the text
-            textAlign: 'justify', // Justifies text so that it starts and ends at the same point
+            textAlign: 'center', // Justifies text so that it starts and ends at the same point
             width: '100%', // Ensures the text takes up the full width of the box
           }}
         >
-          Bạn muốn kiếm thêm thu nhập từ việc giới thiệu sản phẩm? Hãy chọn phương thức phù hợp với
-          bạn nhất!
+          Bạn muốn đăng ký đối tác Affiliate với vai trò cá nhân hay doanh nghiệp?
         </Typography>
 
         <Grid container spacing={2}>

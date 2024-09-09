@@ -22,6 +22,8 @@ import { AppState } from 'src/store/Store';
 import Navigation from './Navigation';
 import MobileRightSidebar from './MobileRightSidebar';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+
 import { Link } from 'react-router-dom';
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -84,19 +86,27 @@ const Header = () => {
           >
             <Typography
               sx={{
-                fontSize: { sx: '14px', sm: '16px' },
+                fontSize: { xs: '12px', sm: '12px', md: '14px', lg: '16px' },
                 fontWeight: 600,
                 color: '#FC2032',
                 alignItems: 'flex-end',
                 position: 'relative',
               }}
             >
-              {a.toLocaleString('vn-VN')}
+              70.000
             </Typography>
-            {/* <Box sx={{ backgroundColor: 'black', w: '40px', h: '40px' }}>
-              <img src={logochicken} alt="" width={30} height={30} style={{ padding: '2px' }} />
-            </Box> */}
-            <img src={logochicken} alt="" width={30} height={30} />
+
+            <Box
+              component="img"
+              src={logoPoint}
+              alt=""
+              sx={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: { xs: '20px', sm: '20px', md: '30px' },
+                p: '2px',
+              }}
+            />
           </Box>
           <Box sx={{ p: '12px' }}>
             <Link to={'/buy/point'}>
@@ -105,11 +115,11 @@ const Header = () => {
                   backgroundColor: '#FC2032',
                   color: 'white',
                   ':hover': { backgroundColor: '#CA0211' },
-                  fontSize: { xs: '12px', sm: '14px', md: '16px' },
-                  px: { xs: '5px', sm: '10px', md: '20px' },
+                  fontSize: { xs: '12px', sm: '12px', md: '14px', lg: '16px' },
+                  px: { xs: '5px', sm: '10px', md: '7px', lg: '20px' },
                 }}
               >
-                Nạp Gà
+                Nạp R-Point
               </Button>
             </Link>
           </Box>

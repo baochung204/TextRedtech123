@@ -68,9 +68,9 @@ const ProfileBanner = () => {
                   Số point
                 </Typography>
               </Box> */}
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Link
-                  to={'/apps/followers'}
+                  to={'/assistant/list'}
                   style={{ display: 'flex', alignItems: 'center', gap: 10 }}
                 >
                   <Typography
@@ -89,7 +89,7 @@ const ProfileBanner = () => {
                     Trợ lý
                   </Typography>
                 </Link>
-              </Box>
+              </Box> */}
             </Stack>
           </Grid>
           {/* about profile */}

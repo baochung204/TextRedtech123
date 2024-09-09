@@ -82,12 +82,12 @@ const Sales = () => {
   return (
     <DashboardCard>
       <>
-        <Typography variant="h4">20.000.000 VNĐ</Typography>
+        <Typography variant="h4">20tr VNĐ</Typography>
         <Typography variant="subtitle2" color="textSecondary" mb={3}>
           Sales
         </Typography>
         <Box className="rounded-bars">
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="90px" />
+        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="83px" />
         </Box>
       </>
     </DashboardCard>

@@ -1,6 +1,7 @@
 import { Avatar, Box, Grid, styled, Typography } from '@mui/material';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import certificate from 'src/assets/images/certificate/certificate.png';
+
 import React from 'react';
 
 const ProfileImage = styled(Box)(() => ({

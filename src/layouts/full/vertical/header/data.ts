@@ -1,27 +1,19 @@
-import { Iconticket } from 'src/assets/images/iconHeadrProfile/ticket.png';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
-
 import icon1 from 'src/assets/images/svgs/icon-account.svg';
 import icon2 from 'src/assets/images/svgs/icon-inbox.svg';
 import icon3 from 'src/assets/images/svgs/icon-tasks.svg';
-
-import ddIcon1 from 'src/assets/images/svgs/icon-dd-chat.svg';
+import Iconkey from 'src/assets/images/iconHeadrProfile/key.png';
+import ddIcon8 from 'src/assets/images/svgs/icon-dd-application.svg';
 import ddIcon2 from 'src/assets/images/svgs/icon-dd-cart.svg';
-import ddIcon3 from 'src/assets/images/svgs/icon-dd-invoice.svg';
+import ddIcon1 from 'src/assets/images/svgs/icon-dd-chat.svg';
 import ddIcon4 from 'src/assets/images/svgs/icon-dd-date.svg';
-import ddIcon5 from 'src/assets/images/svgs/icon-dd-mobile.svg';
+import ddIcon3 from 'src/assets/images/svgs/icon-dd-invoice.svg';
 import ddIcon6 from 'src/assets/images/svgs/icon-dd-lifebuoy.svg';
 import ddIcon7 from 'src/assets/images/svgs/icon-dd-message-box.svg';
-import ddIcon8 from 'src/assets/images/svgs/icon-dd-application.svg';
-import Iconuser from 'src/assets/images/iconHeadrProfile/user-profile.png';
-import Iconseting from 'src/assets/images/iconHeadrProfile/seting.png';
-import Iconwrite from 'src/assets/images/iconHeadrProfile/write.png';
-import Iconkey from 'src/assets/images/iconHeadrProfile/key.png';
-import Iconhistory from 'src/assets/images/iconHeadrProfile/history.png';
-import Iconticket from 'src/assets/images/iconHeadrProfile/ticket1.png';
+import ddIcon5 from 'src/assets/images/svgs/icon-dd-mobile.svg';
 // Notifications dropdown
 
 interface notificationType {
@@ -120,38 +112,38 @@ const messages: messageType[] = [
 interface ProfileType {
   href: string;
   title: string;
-  // subtitle:string;
+  subtitle:string;
   icon: any;
 }
 const profile: ProfileType[] = [
   {
     href: '/user-profile',
     title: 'Quản lý tài khoản',
-    subtitle: 'Account Settings',
+    // subtitle: 'Account Settings',
     icon: icon1,
   },
   {
-    href: '/admin',
+    href: '/pages/account-settings',
     title: 'Đổi mật khẩu',
     // subtitle: 'Account Settings',
     icon: Iconkey,
   },
-  {
-    href: '/auth/forgot-password2',
-    title: 'Đổi mật khẩu',
-    subtitle: 'Messages & Emails',
-    icon: icon2,
-  },
+  // {
+  //   href: '/auth/forgot-password2',
+  //   title: 'Đổi mật khẩu',
+  //   // subtitle: 'Messages & Emails',
+  //   icon: icon2,
+  // },
   {
     href: '/apps/notes',
-    title: 'My Tasks',
-    subtitle: 'To-do and Daily Tasks',
+    title: 'Ticket hỗ trợ',
+    // subtitle: 'To-do and Daily Tasks',
     icon: icon3,
   },
   {
     href: '/forms/form-request',
-    title: 'Yêu cầu tính năng',
-    subtitle: 'To-do and Daily Tasks',
+    title: 'Đề xuất tính năng',
+    // subtitle: 'To-do and Daily Tasks',
     icon: icon3,
   },
 ];
@@ -256,4 +248,4 @@ const pageLinks: LinkType[] = [
   },
 ];
 
-export { notifications, messages, profile, pageLinks, appsLink };
+export { appsLink, messages, notifications, pageLinks, profile };

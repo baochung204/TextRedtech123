@@ -14,7 +14,6 @@ import {
 } from '@mui/material';
 import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts, addToCart } from '../../../../store/apps/eCommerce/ECommerceSlice';
-import { IconMinus, IconPlus } from '@tabler/icons-react';
 import AlertCart from '../productCart/AlertCart';
 import { ProductType } from 'src/types/apps/eCommerce';
 
@@ -29,10 +28,12 @@ const ProductDetail = () => {
   }, [dispatch]);
 
   // Get Products
-  const product: ProductType = useSelector((state) => state.ecommerceReducer.products[Number(id) - 1]);
+  const product: ProductType = useSelector(
+    (state) => state.ecommerceReducer.products[Number(id) - 1],
+  );
 
   // Set qty
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(500);
 
   // For alert when added something to cart
   const [cartalert, setCartalert] = useState(false);
@@ -49,9 +50,11 @@ const ProductDetail = () => {
   };
 
   // Convert USD to VND
-  const convertToVND = (amount: number, rate: number = 24000) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount * rate);
-  };
+  // const convertToVND = (amount: number, rate: number = 24000) => {
+  //   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+  //     amount * rate,
+  //   );
+  // };
 
   return (
     <Box p={2}>
@@ -59,17 +62,15 @@ const ProductDetail = () => {
         <>
           <Box display="flex" alignItems="center">
             {/* Badge and category */}
-            <Chip label="In Stock" color="success" size="small" />
-            <Typography color="textSecondary" variant="caption" ml={1} textTransform="capitalize">
-              {product.category}
-            </Typography>
+            <Chip label="Còn hàng" color="success" size="small" />
           </Box>
           {/* Title and description */}
           <Typography fontWeight="600" variant="h4" mt={1}>
             {product.title}
           </Typography>
           <Typography variant="subtitle2" mt={1} color={theme.palette.text.secondary}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ex arcu, tincidunt bibendum felis.
+            Superintelligent AI: Là AI thông minh hơn con người trong mọi lĩnh vực. Đây là một khái
+            niệm tương lai.
           </Typography>
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
@@ -78,32 +79,33 @@ const ProductDetail = () => {
               color={theme.palette.text.secondary}
               sx={{ textDecoration: 'line-through' }}
             >
-              {convertToVND(product.salesPrice)}
+              {/* {convertToVND(product.salesPrice)} */}
             </Box>{' '}
-            {convertToVND(product.price)}
+            {/* {convertToVND()} */}
+            {product.price} point
           </Typography>
           {/* Ratings */}
           <Stack direction={'row'} alignItems="center" gap="10px" mt={2} pb={3}>
             <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
             <Link to="/" color="inherit">
-              (236 reviews)
+              (236 đánh giá)
             </Link>
           </Stack>
           <Divider />
           {/* Qty */}
           <Stack direction="row" alignItems="center" pb={5}>
             <Typography variant="h6" mt={4} mr={4}>
-              Số lượng:
+              Dung lượng
             </Typography>
             <Box mt={4}>
               <ButtonGroup size="small" color="secondary" aria-label="small button group">
-                <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
+                {/* <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
                   <IconMinus size="1.1rem" />
-                </Button>
-                <Button key="two">{count}</Button>
-                <Button key="three" onClick={() => setCount(count + 1)}>
+                </Button> */}
+                <Button key="two">{count} MB</Button>
+                {/* <Button key="three" onClick={() => setCount(count + 1)}>
                   <IconPlus size="1.1rem" />
-                </Button>
+                </Button> */}
               </ButtonGroup>
             </Box>
           </Stack>
@@ -129,23 +131,18 @@ const ProductDetail = () => {
                 size="large"
                 fullWidth
                 variant="contained"
+                sx={{ width: '200px' }}
                 onClick={() => dispatch(addToCart(product)) && handleClick()}
               >
-                Thêm giỏ hàng
+                Thêm vào giỏ hàng
               </Button>
             </Grid>
           </Grid>
-          <Typography color="textSecondary" variant="body1" mt={4} mb={3}>
-            Gửi đi trong vòng 2-3 tuần
-          </Typography>
-          <Link to="/" color="inherit">
-            Tại sao thời gian giao hàng lại lâu hơn?
-          </Link>
           {/* Alert When click on add to cart */}
           <AlertCart handleClose={handleClose} openCartAlert={cartalert} />
         </>
       ) : (
-        'No product'
+        'Không có sản phẩm'
       )}
     </Box>
   );

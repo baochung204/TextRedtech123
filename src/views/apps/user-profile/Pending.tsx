@@ -1,6 +1,8 @@
-import { Avatar, Box, Grid, styled, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, styled, Typography } from '@mui/material';
 import userimg from 'src/assets/images/profile/user-1.jpg';
+import loading from 'src/assets/images/certificate/loadingre.png';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProfileImage = styled(Box)(() => ({
   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -38,7 +40,6 @@ const RotatingImage = styled('img')(() => ({
 const Pending = () => {
   return (
     <>
-
       <Grid container spacing={2}>
         {/* Box with the content divided into left and right sections */}
         <Grid item xs={12}>
@@ -86,10 +87,18 @@ const Pending = () => {
 
               {/* Pending approval message below */}
               <Grid item xs={12} textAlign="center">
-                <RotatingImage
-                  src="https://media.istockphoto.com/id/1335247217/vector/loading-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=jARr4Alv-d5U3bCa8eixuX2593e1rDiiWnvJLgHCkQM="
-                  alt="Loading"
-                />
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontSize: '30px',
+                    fontWeight: 'bold',
+                    color: '#ffc107',
+                    marginBottom: '10px',
+                  }}
+                >
+                  Hoàn tất đăng ký
+                </Typography>
+                <RotatingImage src={loading} alt="Loading" />
 
                 {/* Pending Approval Message */}
                 <PendingMessageWrapper
@@ -97,23 +106,40 @@ const Pending = () => {
                     marginTop: '30px',
                   }}
                 >
-                  <Typography
-                    variant="h5"
+                  <Box
                     sx={{
-                      fontWeight: 'bold',
-                      color: '#ffc107',
-                      marginBottom: '10px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
                     }}
                   >
-                    Đăng ký của bạn đang chờ được duyệt
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#555', marginBottom: '6px' }}>
-                    Cảm ơn bạn đã đăng ký trở thành đối tác affiliate. Thông tin của bạn đang được
-                    xem xét.
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#555' }}>
-                    Bạn sẽ nhận được thông báo sau khi tài khoản của bạn được phê duyệt.
-                  </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontSize: '15px',
+                        color: '#555',
+                        marginBottom: '6px',
+                        maxWidth: '600px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      Chúng tôi đang xem xét hồ sơ đăng ký đối tác của bạn. Thông thường, hồ sơ của
+                      bạn sẽ được duyệt trong vòng 1 - 3 ngày làm việc kể từ ngày hoàn tất đăng ký.
+                      Vui lòng chờ đợi cho đến khi có kết quả. Chúng tôi sẽ gửi thông báo qua email,
+                      hoặc bạn có thể kiểm tra trạng thái đối tác ở trang tổng quan Affiliate của
+                      mình
+                    </Typography>
+                  </Box>
+
+                  <Button
+                    component={Link}
+                    variant="contained"
+                    color="warning"
+                    to="/apps/affiliate"
+                    sx={{ marginTop: '10px' }}
+                  >
+                    Đi tới trang Affiliate
+                  </Button>
                 </PendingMessageWrapper>
               </Grid>
             </Grid>

@@ -1,15 +1,109 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
-import { IconUser } from '@tabler/icons-react'; // Bạn có thể thay thế với biểu tượng phù hợp
+import React, { useState } from 'react';
+import { Box, Typography, IconButton, TextField, Select, MenuItem, Alert, AlertTitle, useTheme } from '@mui/material';
+import { IconUser, IconEdit, IconCheck } from '@tabler/icons-react';
+import { DatePicker } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 const PersonalInformation = () => {
-  // Dữ liệu giả lập cho thông tin cá nhân
-  const userInfo = {
+  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
+  const [editing, setEditing] = useState<string | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [userInfo, setUserInfo] = useState({
     name: 'Ngô Quốc Toản',
-    email: 'nqton301004@gmail.com',
-    phone: '0123456789',
-    address: '123 Đường ABC, TP. Hồ Chí Minh'
+    gender: 'Nam',
+    dob: new Date('2004-10-30'),
+    address: '123 Đường ABC, TP. Hồ Chí Minh',
+  });
+
+  const handleEditClick = (field: string) => {
+    setEditing(field);
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({
+      ...userInfo,
+      [editing as string]: e.target.value,
+    });
+  };
+
+  const handleGenderChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setUserInfo({
+      ...userInfo,
+      gender: e.target.value as string,
+    });
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    setUserInfo({
+      ...userInfo,
+      dob: date || new Date(),
+    });
+  };
+
+  const handleSaveClick = () => {
+    setEditing(null);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSaveClick();
+    }
+  };
+
+  const renderField = (field: string, label: string) => (
+    <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+      <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+        {label}:
+      </Typography>
+      {editing === field ? (
+        field === 'dob' ? (
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={userInfo.dob}
+              onChange={handleDateChange}
+              renderInput={(params) => <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />}
+            />
+          </LocalizationProvider>
+        ) : field === 'gender' ? (
+          <Select
+            value={userInfo.gender}
+            onChange={handleGenderChange}
+            sx={{ flexGrow: 1, mr: 1 }}
+            size="small"
+          >
+            <MenuItem value="Nam">Nam</MenuItem>
+            <MenuItem value="Nữ">Nữ</MenuItem>
+            <MenuItem value="Khác">Khác</MenuItem>
+          </Select>
+        ) : (
+          <TextField
+            value={userInfo[field as keyof typeof userInfo]}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            sx={{ flexGrow: 1, mr: 1 }}
+            size="small"
+          />
+        )
+      ) : (
+        <>
+          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {field === 'dob' ? userInfo.dob.toLocaleDateString() : userInfo[field as keyof typeof userInfo]}
+          </Typography>
+          <IconButton onClick={() => handleEditClick(field)}>
+            <IconEdit />
+          </IconButton>
+        </>
+      )}
+      {editing === field && (
+        <IconButton onClick={handleSaveClick}>
+          <IconCheck />
+        </IconButton>
+      )}
+    </Box>
+  );
 
   return (
     <Box
@@ -17,28 +111,26 @@ const PersonalInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#fff',
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', // Thay đổi màu nền cho dark mode
+        color: theme.palette.mode === 'dark' ? '#fff' : '#000', // Màu chữ phù hợp với dark mode
+        margin: '0 auto',
       }}
     >
-      <Typography variant="h4" fontWeight="600" gutterBottom>
-        <IconUser /> Thông tin cá nhân
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
+        <IconUser /> <span>Thông tin cá nhân</span>
       </Typography>
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="h6" fontWeight="500">Tên:</Typography>
-        <Typography variant="body1">{userInfo.name}</Typography>
-      </Box>
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="h6" fontWeight="500">Email:</Typography>
-        <Typography variant="body1">{userInfo.email}</Typography>
-      </Box>
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="h6" fontWeight="500">Số điện thoại:</Typography>
-        <Typography variant="body1">{userInfo.phone}</Typography>
-      </Box>
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="h6" fontWeight="500">Địa chỉ:</Typography>
-        <Typography variant="body1">{userInfo.address}</Typography>
-      </Box>
+      {renderField('name', 'Họ và tên')}
+      {renderField('gender', 'Giới tính')}
+      {renderField('dob', 'Ngày sinh')}
+      {renderField('address', 'Địa chỉ')}
+
+      {/* Hiển thị Alert khi có sự thay đổi */}
+      {showAlert && (
+        <Alert severity="success" sx={{ mt: 3 }}>
+          <AlertTitle>Success</AlertTitle>
+          Cập nhật thành công — <strong>kiểm tra lại thông tin!</strong>
+        </Alert>
+      )}
     </Box>
   );
 };

@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React from 'react';
 import {
   Box,
@@ -26,7 +24,7 @@ import { ProductType } from 'src/types/apps/eCommerce';
 const AddToCart = () => {
   const dispatch = useDispatch();
 
-  // Get Products
+  // Lấy sản phẩm từ giỏ hàng
   const Cartproduct: ProductType[] = useSelector((state) => state.ecommerceReducer.cart);
   console.log(Cartproduct);
   const Increase = (productId: number | string) => {
@@ -46,10 +44,11 @@ const AddToCart = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Product</TableCell>
-
-                    <TableCell align="left">Quantity</TableCell>
-                    <TableCell align="right">Price</TableCell>
+                    <TableCell align="center">Sản phẩm</TableCell>
+                    <TableCell align="center">Số lượng</TableCell>
+                    <TableCell align="center">Giá niêm yết</TableCell>
+                    <TableCell align="center">Khuyến mại</TableCell>
+                    <TableCell align="center">Giá sau giảm</TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -57,9 +56,9 @@ const AddToCart = () => {
                   {Cartproduct.map((product) => (
                     <TableRow key={product.id}>
                       {/* ------------------------------------------- */}
-                      {/* Product Image & Title */}
+                      {/* Hình ảnh và tiêu đề sản phẩm */}
                       {/* ------------------------------------------- */}
-                      <TableCell>
+                      <TableCell align="center">
                         <Stack direction="row" alignItems="center" gap={2}>
                           <Avatar
                             src={product.photo}
@@ -86,7 +85,7 @@ const AddToCart = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell>
+                      <TableCell align="center">
                         <ButtonGroup size="small" color="success" aria-label="small button group">
                           <Button onClick={() => Decrease(product.id)} disabled={product.qty < 2}>
                             <IconMinus stroke={1.5} size="0.8rem" />
@@ -97,8 +96,23 @@ const AddToCart = () => {
                           </Button>
                         </ButtonGroup>
                       </TableCell>
-                      <TableCell align="right">
+
+                      <TableCell align="center">
                         <Typography variant="h6">${product.price * product.qty}</Typography>
+                      </TableCell>
+
+                      <TableCell align="center">
+                        <Typography variant="h6">
+                          ${product.salesPrice * product.qty - product.price * product.qty}
+                        </Typography>
+                      </TableCell>
+
+                      <TableCell align="center">
+                        <Typography variant="h6">
+                          $
+                          {product.price * product.qty -
+                            (product.salesPrice * product.qty - product.price * product.qty)}
+                        </Typography>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -111,10 +125,10 @@ const AddToCart = () => {
         <Box textAlign="center" mb={3}>
           <img src={emptyCart} alt="cart" width="200px" />
           <Typography variant="h5" mb={2}>
-            Cart is Empty
+            Giỏ hàng trống
           </Typography>
           <Button component={Link} to="/apps/ecommerce/shop" variant="contained">
-            Go back to Shopping
+            Quay lại mua sắm
           </Button>
         </Box>
       )}

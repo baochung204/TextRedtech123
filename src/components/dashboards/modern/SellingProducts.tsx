@@ -97,7 +97,7 @@ const SellingProducts = () => {
           </Grid>
         </Box>
       </CardContent>
-      <Paper sx={{ overflow: 'hidden', zIndex: '1', position: 'relative', marginX: '10px' }}>
+      <Paper sx={{ overflow: 'hidden', zIndex: '1', position: 'relative', marginX: '25px' }}>
         <Box p={3}>
           <Stack spacing={3}>
             {sells.map((sell: any, i: number) => (
