@@ -60,6 +60,7 @@ const BuyPoint = () => {
     { id: '8', text1: 'Tùy chỉnh', text2: 'Hỗ trợ số lượng lớn' },
   ];
   const [clickedId, setClickedId] = useState<string | null>(null);
+  const [totalPrice, setTotalPrice] = useState<number | string>(0);
 
   const [click, setClick] = useState<boolean>(false);
   const [value, setValue] = useState<string | null>(null);
@@ -67,6 +68,10 @@ const BuyPoint = () => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);
   const onHandleOpenPopup = () => {
     setOpenPopup(!openPopup);
+  };
+  const handlePackageClick = (items: BuyPointProps) => {
+    setClickedId(items.id);
+    setTotalPrice(items.text2);
   };
 
   const formatNumber = (num: string) => {
@@ -119,7 +124,7 @@ const BuyPoint = () => {
             <Grid item lg={3} sm={6} xs={12} key={index}>
               <BoxStyled
                 key={index}
-                onClick={() => setClickedId(items.id)}
+                onClick={() => handlePackageClick(items)}
                 sx={{
                   borderWidth: 1,
                   border: `2px solid ${clickedId === items.id ? '#ff0000' : 'none'}`,
@@ -265,7 +270,12 @@ const BuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              1,055,000₫
+              {typeof totalPrice === 'number' ? (
+                totalPrice.toLocaleString('vi-VN')
+              ) : (
+                <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
+              )}
+              ₫
             </Typography>
           </Box>
           <Box
