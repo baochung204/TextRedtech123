@@ -23,9 +23,10 @@ const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
 const BlogDetail = Loadable(lazy(() => import('../views/apps/blog/BlogPost')));
 const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')));
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
-const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
+// const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
+const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
 const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
@@ -58,7 +59,7 @@ const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affilia
 const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
 
 //update page
-const Update = Loadable(lazy(() => import('../views/apps/update/update')));
+// const Update = Loadable(lazy(() => import('../views/apps/update/update')));
 
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
@@ -101,6 +102,7 @@ import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
+import Update from 'src/views/apps/update/Update';
 
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
@@ -146,7 +148,7 @@ const TwoSteps = Loadable(lazy(() => import('../views/authentication/auth1/TwoSt
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
-const Updating = Loadable(lazy(() => import('src/views/authentication/Updating')));
+const Updating = Loadable(lazy(() => import('../views/authentication/Updating')));
 
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
@@ -175,10 +177,12 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
+      { path: '/apps/assistant/:id', element: <AssistantInfor /> },
       { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
       { path: '/apps/sell/order', element: <CustomerList /> },
+
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist', element: <CustomerList2 /> },

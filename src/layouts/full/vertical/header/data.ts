@@ -110,20 +110,23 @@ const messages: messageType[] = [
 // Profile dropdown
 //
 interface ProfileType {
+  id: number
   href: string;
   title: string;
-  subtitle:string;
-  icon: any;
+  // subtitle:string;
+  icon: string;
 }
 const profile: ProfileType[] = [
   {
+    id: 1,
     href: '/user-profile',
     title: 'Quản lý tài khoản',
     // subtitle: 'Account Settings',
     icon: icon1,
   },
   {
-    href: '/pages/account-settings',
+    id: 2,
+    href: '/user-profile',
     title: 'Đổi mật khẩu',
     // subtitle: 'Account Settings',
     icon: Iconkey,
@@ -135,12 +138,14 @@ const profile: ProfileType[] = [
   //   icon: icon2,
   // },
   {
+    id: 3,
     href: '/apps/notes',
     title: 'Ticket hỗ trợ',
     // subtitle: 'To-do and Daily Tasks',
     icon: icon3,
   },
   {
+    id: 4,
     href: '/forms/form-request',
     title: 'Đề xuất tính năng',
     // subtitle: 'To-do and Daily Tasks',

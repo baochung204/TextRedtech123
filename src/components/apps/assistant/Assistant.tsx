@@ -1,7 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
+<<<<<<< HEAD
+import { useState } from 'react';
+=======
 import { useNavigate } from 'react-router-dom';
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
 import { useTheme } from '@mui/material/styles';
 import {
   Typography,
@@ -18,7 +22,12 @@ import {
   IconButton,
   TableContainer,
   Stack,
-  Button
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
 } from '@mui/material';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -54,6 +63,7 @@ interface TablePaginationActionsProps {
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
+  const [open, setOpen] = useState(false);
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -72,7 +82,13 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   const handleLastPageButtonClick = (event: any) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
@@ -119,7 +135,11 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     model: 'GPT-3.5',
     imgsrc: img1,
+<<<<<<< HEAD
+    customer: 'ChatAi',
+=======
     customer: 'botHello',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     connect: 'Facebook',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
@@ -128,7 +148,11 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     model: 'GPT-4',
     imgsrc: img2,
+<<<<<<< HEAD
+    customer: 'botSales',
+=======
     customer: 'Chatbot Hola',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     connect: 'Zalo',
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
@@ -137,7 +161,11 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     model: 'GPT-4',
     imgsrc: img3,
+<<<<<<< HEAD
+    customer: 'botMarketing',
+=======
     customer: 'Chatbot CSKH',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     connect: 'Telegram',
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
@@ -146,8 +174,13 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
+<<<<<<< HEAD
+    customer: 'Chatbot CSKH',
+    connect: 'Messager',
+=======
     customer: 'Chatbot XKLĐ',
     connect: 'X',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -155,8 +188,13 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     model: 'GPT-4',
     imgsrc: img5,
+<<<<<<< HEAD
+    customer: 'Chatbot CSKH',
+    connect: 'X',
+=======
     customer: 'Christopher Jamil',
     connect: 'Zalo',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -164,8 +202,13 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     model: 'GPT-4',
     imgsrc: img2,
+<<<<<<< HEAD
+    customer: 'Chatbot Tư vấn nghề',
+    connect: 'Zalo',
+=======
     customer: 'John Deo',
     connect: 'Whatsapp',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
   },
@@ -173,8 +216,13 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     model: 'GPT-4',
     imgsrc: img3,
+<<<<<<< HEAD
+    customer: 'Chatbot Tư vấn XKLĐ',
+    connect: 'Telegram',
+=======
     customer: 'Mily Peter',
     connect: 'Facebook',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
   },
@@ -182,8 +230,13 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
+<<<<<<< HEAD
+    customer: 'Chatbot CSKH',
+    connect: 'Zalo',
+=======
     customer: 'Andrew McDownland',
     connect: '457,000',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -191,8 +244,13 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     model: 'GPT-4',
     imgsrc: img5,
+<<<<<<< HEAD
+    customer: 'Chatbot CSKH',
+    connect: 'X',
+=======
     customer: 'Christopher Jamil',
     connect: 'Telegram',
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -200,11 +258,37 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     model: 'GPT-4',
     imgsrc: img1,
+<<<<<<< HEAD
+    customer: 'Chatbot Tuyển sinh',
+    connect: 'Facebook',
+    status: 'Completed',
+    date: '10 Jun, 2021 09:51:40',
+  },
+  {
+    id: 'ORD - 0124060',
+    model: 'GPT-4',
+    imgsrc: img4,
+    customer: 'Chatbot CSKH',
+    connect: 'Telegram',
+    status: 'Completed',
+    date: '10 Jun, 2021 04:12:29',
+  },
+  {
+    id: 'ORD - 0124568',
+    model: 'GPT-4',
+    imgsrc: img5,
+    customer: 'ChatAi CSKH',
+    connect: 'Zalo',
+    status: 'Pending',
+    date: '15 Apr, 2021 04:12:50',
+  },
+=======
     customer: 'Sunil Joshi',
     connect: 'Zalo',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
   }
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
 ].sort((a, b) => (a.customer < b.customer ? -1 : 1));
 
 
@@ -233,7 +317,9 @@ const Assistant = () => {
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
       <ParentCard title="Quản lý Trợ lý">
+        
         <BlankCard>
+        
           <TableContainer>
             <Table
               aria-label="custom pagination table"
@@ -288,8 +374,13 @@ const Assistant = () => {
                       </Typography>
                     </TableCell>
 
+<<<<<<< HEAD
+                    <TableCell>
+                      <Typography color="textSecondary" variant="h6" fontWeight="400">
+=======
                     <TableCell onClick={handleInfor}>
                       <Typography sx={{cursor: "pointer"}} color="textSecondary" variant="h6" fontWeight="400">
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
                         {row.connect}
                       </Typography>
                     </TableCell>
@@ -331,6 +422,7 @@ const Assistant = () => {
           </TableContainer>
         </BlankCard>
       </ParentCard>
+      
     </PageContainer>
   );
 };

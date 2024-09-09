@@ -8,7 +8,7 @@ import { sum } from 'lodash';
 import { IconShoppingCart, IconX } from '@tabler/icons-react';
 import { Box, Typography, Badge, IconButton, Button, Stack, Popover } from '@mui/material';
 import { useSelector } from 'src/store/Store';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import CartItems from './CartItem';
 import { AppState } from 'src/store/Store';
 
@@ -61,12 +61,17 @@ const Cart = () => {
         }}
         onMouseEnter={handleClick}  
       >
-        <Badge
-          color="warning"
-          badgeContent={bcount}
+        <Button
+          size="large"
+          color="inherit"
         >
-          <IconShoppingCart size="21" stroke="1.5" />
-        </Badge>
+          <Badge
+            color="warning"
+            badgeContent={bcount}
+          >
+            <IconShoppingCart size="21" stroke="1.5" />
+          </Badge>
+        </Button>
       </IconButton>
 
       <Popover
@@ -92,7 +97,6 @@ const Cart = () => {
       >
         <Box
           onMouseLeave={handlePopoverMouseLeave}
-
         >
           <Box
             className='test'

@@ -2,7 +2,8 @@ import React from 'react';
 import { Tabs, Tab, Stack, Box } from '@mui/material';
 import { AccountCircle, Business, Email, Person, Security } from '@mui/icons-material'; // Import icons nếu cần
 import { IconLock } from '@tabler/icons-react';
-
+import { dispatch } from 'src/store/Store';
+import { setSelected } from 'src/store/RouterSlice';
 interface SidebarProps {
   selected: string | null;
   onSelect: (buttonName: string) => void;
@@ -19,7 +20,7 @@ const SCROLLABLE_TAB = [
 
 const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    onSelect(newValue);
+    dispatch(setSelected(newValue))
   };
 
   return (
