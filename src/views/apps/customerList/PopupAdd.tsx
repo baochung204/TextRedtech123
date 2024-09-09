@@ -1,185 +1,217 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { Box, Button, Stack, MenuItem, Typography } from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Box, FormControlLabel, Button, Grid, MenuItem, FormControl, Alert } from '@mui/material';
+import ParentCard from 'src/components/shared/ParentCard';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomRadio from 'src/components/forms/theme-elements/CustomRadio';
 
-const validationSchema = yup.object({
-  customerId: yup.string().required('ID khách hàng là bắt buộc'),
-  assistant: yup.string().required('Trợ lý là bắt buộc'),
-  channel: yup.string().required('Kênh là bắt buộc'),
-  tags: yup.string().required('Tags là bắt buộc'),
-  customerName: yup.string().required('Tên khách hàng là bắt buộc'),
-  totalSpent: yup.number().required('Tổng chi tiêu là bắt buộc').min(0, 'Tổng chi tiêu không hợp lệ'),
-  phone: yup.string().required('Số điện thoại là bắt buộc').matches(/^[0-9]+$/, 'Số điện thoại không hợp lệ'),
-  address: yup.string().required('Địa chỉ là bắt buộc'),
-});
+interface currencyType {
+  value: string;
+  label: string;
+}
+
+const currencies: currencyType[] = [
+  { value: 'female', label: 'Female' },
+  { value: 'male', label: 'Male' },
+  { value: 'other', label: 'Other' },
+];
+
+const countries: currencyType[] = [
+  { value: 'india', label: 'India' },
+  { value: 'uk', label: 'United Kingdom' },
+  { value: 'srilanka', label: 'Srilanka' },
+];
 
 const PopupAdd = () => {
-  const formik = useFormik({
-    initialValues: {
-      customerId: '',
-      createdAt: null,
-      assistant: '',
-      channel: '',
-      tags: '',
-      customerName: '',
-      totalSpent: '',
-      phone: '',
-      address: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+  const [currency, setCurrency] = React.useState('');
+  const [selectedValue, setSelectedValue] = React.useState('');
+  const [country, setCountry] = React.useState('');
+
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrency(event.target.value);
+  };
+
+  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const handleChange4 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCountry(event.target.value);
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <Stack spacing={2}>
-        {/* ID Khách hàng */}
-        <Box>
-          <CustomFormLabel>ID Khách hàng</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="customerId"
-            name="customerId"
-            value={formik.values.customerId}
-            onChange={formik.handleChange}
-            error={formik.touched.customerId && Boolean(formik.errors.customerId)}
-            helperText={formik.touched.customerId && formik.errors.customerId}
-          />
-        </Box>
+    <div>
+      <ParentCard
+        title=""
+        footer={
+          <>
+            <Button
+              variant="contained"
+              color="error"
+              sx={{ mr: 1, fontSize: '1.1rem', padding: '8px 16px' }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ fontSize: '1.1rem', padding: '8px 16px' }}
+            >
+              Submit
+            </Button>
+          </>
+        }
+      >
+        <>
+          <Alert severity="info" sx={{ fontSize: '1.2rem', mb: 2 }}>Thông tin cá nhân</Alert>
+          <form>
+            <Grid container spacing={3} mb={3}>
+              <Grid item lg={6} md={12} sm={12}>
+                <CustomFormLabel htmlFor="fname-text" sx={{ fontSize: '1.1rem' }}>
+                  First Name
+                </CustomFormLabel>
+                <CustomTextField
+                  id="fname-text"
+                  variant="outlined"
+                  fullWidth
+                  sx={{ fontSize: '1rem' }}
+                />
+                <CustomFormLabel htmlFor="standard-select-currency" sx={{ fontSize: '1.1rem' }}>
+                  Select Gender
+                </CustomFormLabel>
+                <CustomSelect
+                  id="standard-select-currency"
+                  value={currency}
+                  onChange={handleChange2}
+                  fullWidth
+                  variant="outlined"
+                  sx={{ fontSize: '1rem' }}
+                >
+                  {currencies.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </CustomSelect>
+                <CustomFormLabel sx={{ fontSize: '1.1rem' }}>Membership</CustomFormLabel>
 
-        {/* Ngày tạo */}
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            label="Ngày tạo"
-            value={formik.values.createdAt}
-            onChange={(newDate) => formik.setFieldValue('createdAt', newDate)}
-            renderInput={(params) => (
+                <FormControl sx={{ width: '100%' }}>
+                  <Box>
+                    <FormControlLabel
+                      checked={selectedValue === 'a'}
+                      onChange={handleChange3}
+                      value="a"
+                      label="Free"
+                      name="radio-button-demo"
+                      control={<CustomRadio />}
+                      sx={{ fontSize: '1rem' }}
+                    />
+                    <FormControlLabel
+                      checked={selectedValue === 'b'}
+                      onChange={handleChange3}
+                      value="b"
+                      label="Paid"
+                      control={<CustomRadio />}
+                      name="radio-button-demo"
+                      sx={{ fontSize: '1rem' }}
+                    />
+                  </Box>
+                </FormControl>
+              </Grid>
+              <Grid item lg={6} md={12} sm={12}>
+                <CustomFormLabel htmlFor="lname-text" sx={{ fontSize: '1.1rem' }}>
+                  Last Name
+                </CustomFormLabel>
+                <CustomTextField
+                  id="lname-text"
+                  variant="outlined"
+                  fullWidth
+                  sx={{ fontSize: '1rem' }}
+                />
+                <CustomFormLabel htmlFor="date" sx={{ fontSize: '1.1rem' }}>
+                  Date of Birth
+                </CustomFormLabel>
+                <CustomTextField
+                  id="date"
+                  type="date"
+                  variant="outlined"
+                  fullWidth
+                  InputLabelProps={{ shrink: true }}
+                  sx={{ fontSize: '1rem' }}
+                />
+              </Grid>
+            </Grid>
+          </form>
+          <Alert severity="info" sx={{ fontSize: '1.2rem', mb: 2 }}>Địa chỉ</Alert>
+          <Grid container spacing={3} mb={3} mt={1}>
+            <Grid item lg={12} md={12} sm={12} xs={12}>
+              <CustomFormLabel htmlFor="street-text" sx={{ fontSize: '1.1rem' }}>
+                Street
+              </CustomFormLabel>
               <CustomTextField
+                id="street-text"
+                variant="outlined"
                 fullWidth
-                {...params}
-                error={formik.touched.createdAt && Boolean(formik.errors.createdAt)}
+                sx={{ fontSize: '1rem' }}
               />
-            )}
-          />
-        </LocalizationProvider>
-
-        {/* Trợ lý */}
-        <Box>
-          <CustomFormLabel>Trợ lý</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="assistant"
-            name="assistant"
-            value={formik.values.assistant}
-            onChange={formik.handleChange}
-            error={formik.touched.assistant && Boolean(formik.errors.assistant)}
-            helperText={formik.touched.assistant && formik.errors.assistant}
-          />
-        </Box>
-
-        {/* Kênh (MKT) */}
-        <Box>
-          <CustomFormLabel>Kênh (MKT)</CustomFormLabel>
-          <CustomSelect
-            fullWidth
-            id="channel"
-            name="channel"
-            value={formik.values.channel}
-            onChange={formik.handleChange}
-            error={formik.touched.channel && Boolean(formik.errors.channel)}
-            helperText={formik.touched.channel && formik.errors.channel}
-          >
-            <MenuItem value="Facebook">Facebook</MenuItem>
-            <MenuItem value="Google">Google</MenuItem>
-            <MenuItem value="Email">Email</MenuItem>
-          </CustomSelect>
-        </Box>
-
-        {/* Tags */}
-        <Box>
-          <CustomFormLabel>Tags</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="tags"
-            name="tags"
-            value={formik.values.tags}
-            onChange={formik.handleChange}
-            error={formik.touched.tags && Boolean(formik.errors.tags)}
-            helperText={formik.touched.tags && formik.errors.tags}
-          />
-        </Box>
-
-        {/* Tên khách hàng */}
-        <Box>
-          <CustomFormLabel>Tên khách hàng</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="customerName"
-            name="customerName"
-            value={formik.values.customerName}
-            onChange={formik.handleChange}
-            error={formik.touched.customerName && Boolean(formik.errors.customerName)}
-            helperText={formik.touched.customerName && formik.errors.customerName}
-          />
-        </Box>
-
-        {/* Tổng chi tiêu */}
-        <Box>
-          <CustomFormLabel>Tổng chi tiêu</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="totalSpent"
-            name="totalSpent"
-            value={formik.values.totalSpent}
-            onChange={formik.handleChange}
-            error={formik.touched.totalSpent && Boolean(formik.errors.totalSpent)}
-            helperText={formik.touched.totalSpent && formik.errors.totalSpent}
-          />
-        </Box>
-
-        {/* Số điện thoại */}
-        <Box>
-          <CustomFormLabel>Số điện thoại</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="phone"
-            name="phone"
-            value={formik.values.phone}
-            onChange={formik.handleChange}
-            error={formik.touched.phone && Boolean(formik.errors.phone)}
-            helperText={formik.touched.phone && formik.errors.phone}
-          />
-        </Box>
-
-        {/* Địa chỉ */}
-        <Box mb={3}>
-          <CustomFormLabel>Địa chỉ</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="address"
-            name="address"
-            value={formik.values.address}
-            onChange={formik.handleChange}
-            error={formik.touched.address && Boolean(formik.errors.address)}
-            helperText={formik.touched.address && formik.errors.address}
-          />
-        </Box>
-
-        {/* Nút Submit */}
-        <Button color="primary" variant="contained" type="submit">
-          Thêm khách hàng
-        </Button>
-      </Stack>
-    </form>
+            </Grid>
+            <Grid item lg={6} md={12} sm={12} xs={12}>
+              <CustomFormLabel htmlFor="city-text" sx={{ fontSize: '1.1rem' }}>
+                City
+              </CustomFormLabel>
+              <CustomTextField
+                id="city-text"
+                variant="outlined"
+                fullWidth
+                sx={{ fontSize: '1rem' }}
+              />
+            </Grid>
+            <Grid item lg={6} md={12} sm={12} xs={12}>
+              <CustomFormLabel htmlFor="state-text" sx={{ fontSize: '1.1rem' }}>
+                State
+              </CustomFormLabel>
+              <CustomTextField
+                id="state-text"
+                variant="outlined"
+                fullWidth
+                sx={{ fontSize: '1rem' }}
+              />
+            </Grid>
+            <Grid item lg={6} md={12} sm={12} xs={12}>
+              <CustomFormLabel htmlFor="post-text" sx={{ fontSize: '1.1rem' }}>
+                Post Code
+              </CustomFormLabel>
+              <CustomTextField
+                id="post-text"
+                variant="outlined"
+                fullWidth
+                sx={{ fontSize: '1rem' }}
+              />
+            </Grid>
+            <Grid item lg={6} md={12} sm={12} xs={12}>
+              <CustomFormLabel htmlFor="country-text" sx={{ fontSize: '1.1rem' }}>
+                Country
+              </CustomFormLabel>
+              <CustomSelect
+                id="country-select"
+                value={country}
+                onChange={handleChange4}
+                fullWidth
+                variant="outlined"
+                sx={{ fontSize: '1rem' }}
+              >
+                {countries.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
+            </Grid>
+          </Grid>
+        </>
+      </ParentCard>
+    </div>
   );
 };
 

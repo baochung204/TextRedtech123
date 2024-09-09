@@ -74,7 +74,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Dashboard',
     icon: IconAppWindow,
-    href: '/dashboards/list',
+    href: '/dashboards/modern',
   },
   {
     id: uniqueId(),

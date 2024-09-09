@@ -179,6 +179,7 @@ const Router = [
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
       { path: '/apps/sell/order', element: <CustomerList /> },
+
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist', element: <CustomerList2 /> },

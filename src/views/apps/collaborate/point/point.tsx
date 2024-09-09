@@ -7,6 +7,7 @@ import React from 'react';
 import { Box, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
+
 const BCrumb = [
   {
     to: '/',
@@ -56,7 +57,8 @@ import { TransitionProps } from '@mui/material/transitions';
 import Slide from '@mui/material/Slide';
 import Detailpoin from './detailpoint';
 import TransitionDialog from 'src/components/material-ui/dialog/TransitionDialog';
-import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
+import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
+
 
 // const BCrumb = [
 //   {
@@ -113,7 +115,7 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
 
 interface HeadCell {
   disablePadding: boolean;
-  id: any;
+  id: string;
   label: string;
   numeric: boolean;
 }
@@ -457,10 +459,8 @@ const Lspoin = () => {
                         hover
                         onClick={(event) => handleClick(event, row.name)}
                         role="checkbox"
-                        // aria-checked={isItemSelected}
                         tabIndex={-1}
                         key={row.id}
-                        // selected={isItemSelected}
                       >
                         <TableCell style={{ width: '10%' }}>
                           <Stack spacing={2} direction="row">
@@ -517,10 +517,8 @@ const Lspoin = () => {
                         </TableCell>
                         <TableCell style={{ width: '18%' }}>
                           <Stack>
-                            {/* <Link to={'/apps/point/detaipoint/1'}> */}
 
-                            <Afletpoint row={row}></Afletpoint>
-                            {/* </Link> */}
+                            <Afletpoint1 row={row}></Afletpoint1>
                           </Stack>
                         </TableCell>
                       </TableRow>
