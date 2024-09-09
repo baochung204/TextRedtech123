@@ -26,8 +26,7 @@ const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collab
 // const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
-// const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
-
+const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
 const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
@@ -98,7 +97,6 @@ const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/Quil
 import FormRequest from 'src/views/forms/FormRequest';
 import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
-
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
@@ -179,6 +177,7 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
+      { path: '/apps/assistant/:id', element: <AssistantInfor /> },
       { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
