@@ -118,7 +118,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Đơn hàng',
         icon: IconPoint,
-        href: '/apps/customerList',
+        href: '/apps/sell/order',
       },
       
     ],
