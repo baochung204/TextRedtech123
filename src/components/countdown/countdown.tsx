@@ -34,16 +34,13 @@ const Countdown = ({ initialSeconds }: { initialSeconds: number }) => {
       justifyContent="center"
       alignItems="center"
       height={100}
-      sx={{ textAlign: 'center' }} // Đảm bảo nội dung được căn giữa
+      sx={{ textAlign: 'center' }}
     >
       <Box display="flex" flexDirection="column" alignItems="center">
         <Typography sx={{ color: '#FC2032' }}>Khuyến mãi còn lại</Typography>
       </Box>
 
-      {/* Căn giữa thời gian */}
       <Grid container spacing={1} sx={{ width: 'auto', justifyContent: 'center' }}>
-        {' '}
-        {/* Thêm justifyContent */}
         <Grid item>
           <Typography variant="h3" sx={{ fontSize: '25px', fontWeight: 'bold' }}>
             {time.minutes}

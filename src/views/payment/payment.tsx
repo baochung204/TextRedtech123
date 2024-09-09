@@ -82,7 +82,7 @@ const PayMentPonit = () => {
       price: 1055000,
       discount: 1023900,
       sale: 80,
-      timeFlash: 400,
+      timeFlash: 180,
     },
     {
       id: 6,
@@ -91,7 +91,7 @@ const PayMentPonit = () => {
       price: 2010000,
       discount: 1995002,
       sale: 80,
-      timeFlash: 600,
+      timeFlash: 180,
     },
     {
       id: 7,
@@ -100,7 +100,7 @@ const PayMentPonit = () => {
       price: 5025000,
       discount: 3935000,
       sale: 80,
-      timeFlash: 800,
+      timeFlash: 180,
     },
   ];
 
