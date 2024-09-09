@@ -81,8 +81,8 @@ const AccountInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
-        color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+        // backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+        // color: theme.palette.mode === 'dark' ? '#fff' : '#000',
         margin: '0 auto',
       }}
     >

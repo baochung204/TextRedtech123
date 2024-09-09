@@ -9,12 +9,16 @@ import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
 import ReceiveEmail from 'src/components/apps/userprofile/profile/ReceiveEmail';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import TwoFactorSecurity from 'src/components/apps/userprofile/profile/TwoFactorSecurity';
-  
-const UserProfile = () => {
-  const [selected, setSelected] = useState<string>('personal');
+import { setSelected } from 'src/store/RouterSlice';
+import { useSelector } from 'src/store/Store';
 
+
+
+const UserProfile = () => {
+  // const [selected, setSelected] = useState<string>('personal');
+  const selecteds = useSelector((state) => state.selectReducer.selecteds) 
   const handleButtonClick = (buttonName: string) => {
-    setSelected(buttonName);
+    setSelected(buttonName)
   };
 
   return (
@@ -25,15 +29,15 @@ const UserProfile = () => {
         </Grid>
         <Grid container spacing={3} mt={3}>
           <Grid item sm={12} lg={3} xs={12}>
-            <Sidebar selected={selected} onSelect={handleButtonClick} />
+            <Sidebar selected={selecteds} onSelect={handleButtonClick} />
           </Grid>
           <Grid item sm={12} lg={9} xs={12}>
-            {selected === 'personal' && <PersonalInformation />}
-            {selected === 'account' && <AccountInformation />}
-            {selected === 'business' && <BusinessInformation />}
-            {selected === 'email' && <ReceiveEmail />}
-            {selected === 'changepassword' && <ChangePassword />}
-            {selected === 'twofactorsecurity' && <TwoFactorSecurity />}
+            {selecteds === 'personal' && <PersonalInformation />}
+            {selecteds === 'account' && <AccountInformation />}
+            {selecteds === 'business' && <BusinessInformation />}
+            {selecteds === 'email' && <ReceiveEmail />}
+            {selecteds === 'changepassword' && <ChangePassword />}
+            {selecteds === 'twofactorsecurity' && <TwoFactorSecurity />}
           </Grid>
         </Grid>
       </Grid>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle, useTheme } from '@mui/material';
+import { Box, Typography, IconButton, TextField, Alert, AlertTitle } from '@mui/material';
 import { IconBriefcase, IconEdit, IconCheck } from '@tabler/icons-react';
 
 const BusinessInformation = () => {
-  const theme = useTheme(); // Lấy theme từ MUI
   const [editing, setEditing] = useState<string | null>(null);
   const [showAlert, setShowAlert] = useState(false); // Trạng thái để hiển thị thông báo
   const [businessInfo, setBusinessInfo] = useState({
@@ -41,7 +40,7 @@ const BusinessInformation = () => {
 
   const renderField = (field: string, label: string) => (
     <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-      <Typography variant="h6" fontWeight="500" sx={{ width: '150px', color: theme.palette.text.primary }}>
+      <Typography variant="h6" fontWeight="500" sx={{ width: '150px', }}>
         {label}:
       </Typography>
       {editing === field ? (
@@ -50,19 +49,19 @@ const BusinessInformation = () => {
             value={businessInfo[field as keyof typeof businessInfo]}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown} // Xử lý sự kiện Enter
-            sx={{ flexGrow: 1, mr: 1, backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary }}
+            // sx={{ flexGrow: 1, mr: 1, backgroundColor: 'white', color: 'black' }}
             size="small"
           />
-          <IconButton onClick={handleSaveClick} sx={{ color: theme.palette.primary.main }}>
+          <IconButton onClick={handleSaveClick} sx={{ }}>
             <IconCheck />
           </IconButton>
         </>
       ) : (
         <>
-          <Typography variant="body1" sx={{ flexGrow: 1, color: theme.palette.text.primary }}>
+          <Typography variant="body1" sx={{ flexGrow: 1, }}>
             {businessInfo[field as keyof typeof businessInfo]}
           </Typography>
-          <IconButton onClick={() => handleEditClick(field)} sx={{ color: theme.palette.primary.main }}>
+          <IconButton onClick={() => handleEditClick(field)} sx={{  }}>
             <IconEdit />
           </IconButton>
         </>
@@ -76,12 +75,12 @@ const BusinessInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : theme.palette.background.paper,
-        color: theme.palette.text.primary,
+        // backgroundColor: '#2A3447',
         margin: '0 auto',
+        // color: 'white',
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1} sx={{ color: theme.palette.text.primary }}>
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1} sx={{ color: 'white' }}>
         <IconBriefcase /> <span>Thông tin doanh nghiệp</span>
       </Typography>
       {renderField('companyName', 'Tên công ty')}
@@ -95,7 +94,7 @@ const BusinessInformation = () => {
       {/* Hiển thị Alert khi có sự thay đổi */}
       {showAlert && (
         <Alert severity="success" sx={{ mt: 3, backgroundColor: '#4caf50', color: 'white' }}>
-          <AlertTitle>Thành công</AlertTitle>
+          <AlertTitle>Success</AlertTitle>
           Cập nhật thành công — <strong>kiểm tra lại thông tin!</strong>
         </Alert>
       )}
