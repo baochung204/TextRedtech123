@@ -22,6 +22,8 @@ import { AppState } from 'src/store/Store';
 import Navigation from './Navigation';
 import MobileRightSidebar from './MobileRightSidebar';
 import logochicken from 'src/assets/images/logos/logo chicken.png';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+
 import { Link } from 'react-router-dom';
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -91,17 +93,18 @@ const Header = () => {
                 position: 'relative',
               }}
             >
-              {a.toLocaleString('vn-VN')}
+              70.000
             </Typography>
 
             <Box
               component="img"
-              src={logochicken}
+              src={logoPoint}
               alt=""
               sx={{
                 width: '100%',
                 height: 'auto',
-                maxWidth: { xs: '20px', sm: '20px', md: '30px' }, // Điều chỉnh kích thước theo từng breakpoint
+                maxWidth: { xs: '20px', sm: '20px', md: '30px' },
+                p: '2px',
               }}
             />
           </Box>
@@ -116,7 +119,7 @@ const Header = () => {
                   px: { xs: '5px', sm: '10px', md: '7px', lg: '20px' },
                 }}
               >
-                Nạp Gà
+                Nạp R-Point
               </Button>
             </Link>
           </Box>

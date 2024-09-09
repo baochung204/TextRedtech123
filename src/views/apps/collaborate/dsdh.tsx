@@ -222,8 +222,8 @@ const Danhsachdh = () => {
               onChange={handleChange}
             >
               <MenuItem value={1}>Tất cả</MenuItem>
-              {/* <MenuItem value={2}>Đã mua </MenuItem>
-                                <MenuItem value={3}>Chưa mua</MenuItem> */}
+              <MenuItem value={2}>Đã mua </MenuItem>
+              <MenuItem value={3}>Chưa mua</MenuItem>
             </CustomSelect>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker

@@ -21,7 +21,7 @@ const BCrumb = [
   { title: 'Blog post' },
 ];
 
-const CustomerList = () => {
+const CustomerList2 = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   const [filterColumn, setFilterColumn] = React.useState('');
@@ -170,4 +170,4 @@ const CustomerList = () => {
   );
 };
 
-export default CustomerList;
+export default CustomerList2;

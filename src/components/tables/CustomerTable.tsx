@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import {
   TableRow,
   TableHead,
@@ -11,107 +10,215 @@ import {
   Avatar,
   Box,
   Stack,
+  TablePagination,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Paper,
+  FormControlLabel,
 } from '@mui/material';
 import { DataRowCustomerTable } from './tableData';
-import img1 from 'src/assets/images/products/s11.jpg';
+import CustomSwitch from '../forms/theme-elements/CustomSwitch';
+
 const CustomerTable = () => {
+  // State quản lý phân trang và số lượng hàng trên mỗi trang
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [dense, setDense] = React.useState(false);
+  // Hàm xử lý thay đổi trang
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    setPage(newPage);
+  };
+
+  // Hàm xử lý thay đổi số lượng hàng trên mỗi trang
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setRowsPerPage(parseInt(event.target.value as string, 10));
+    setPage(0);
+  };
+
+  // Cắt dữ liệu để hiển thị theo trang
+  const paginatedRows = DataRowCustomerTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDense(event.target.checked);
+  };
   return (
-    <TableContainer>
+    <TableContainer component={Paper} sx={{ padding: 2 }}>
       <Table
-        aria-label="simple table"
+        aria-label="customer table"
+        size="small" // Thay đổi kích thước của bảng để giảm padding
         sx={{
           whiteSpace: 'nowrap',
         }}
       >
         <TableHead>
           <TableRow>
-            <TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}> {/* Tùy chỉnh padding */}
               <Typography variant="subtitle2" fontWeight={600}>
-                STT
+                Id Đơn Hàng
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
               <Typography variant="subtitle2" fontWeight={600}>
-                Họ Tên
+                Ngày Tạo
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
+              <Typography variant="subtitle2" fontWeight={600}>
+                Trợ Lý
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
+              <Typography variant="subtitle2" fontWeight={600}>
+                Giá Trị Đơn Hàng
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
+              <Typography variant="subtitle2" fontWeight={600}>
+                Kênh (MTK)
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
+              <Typography variant="subtitle2" fontWeight={600}>
+                Tên Khách Hàng
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
+              <Typography variant="subtitle2" fontWeight={600}>
+                SĐT
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
+              <Typography variant="subtitle2" fontWeight={600}>
+                Địa Chỉ
+              </Typography>
+            </TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
               <Typography variant="subtitle2" fontWeight={600}>
                 Email
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
               <Typography variant="subtitle2" fontWeight={600}>
-                Số Điện Thoại
+                Thông Tin Đơn Hàng
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell sx={{ padding: '8px 16px' }}>
               <Typography variant="subtitle2" fontWeight={600}>
-                Ngày Đăng Ký
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Typography variant="subtitle2" fontWeight={600}>
-                Loại khách hàng
+                Ghi Chú
               </Typography>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {DataRowCustomerTable.map((row) => (
-            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={400}>
+          {paginatedRows.map((row) => (
+            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
                   {row.id}
                 </Typography>
               </TableCell>
-              <TableCell className="flex">
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.createdAt}
+                </Typography>
+              </TableCell>
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.assistant}
+                </Typography>
+              </TableCell>
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.orderValue}
+                </Typography>
+              </TableCell>
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.channel}
+                </Typography>
+              </TableCell>
+              <TableCell sx={{ padding: '8px 16px' }}>
                 <Stack direction="row" spacing={2}>
                   <Avatar
-                    src={row.image}
+                    src={row.imgsrc}
                     variant="rounded"
-                    alt={img1}
+                    alt={row.name}
                     sx={{ width: 48, height: 48 }}
                   />
                   <Box>
-                    <Typography variant="subtitle2" fontWeight={500}>
+                    <Typography variant="body2" fontWeight={500}>
                       {row.name}
-                    </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                      {row.electronics}
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={400}>
-                  {row.email}
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={400}>
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
                   {row.phone}
                 </Typography>
               </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={400}>
-                  {row.registrationDate}
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.address}
                 </Typography>
               </TableCell>
-              <TableCell>
-                <Typography
-                  variant="subtitle2"
-                  fontWeight={400}
-                  style={{ color: row.totalExpenses === 'Miễn phí' ? 'green' : 'red' }}
-                >
-                  {row.totalExpenses}
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.email}
+                </Typography>
+              </TableCell>
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.orderInfo}
+                </Typography>
+              </TableCell>
+              <TableCell sx={{ padding: '8px 16px' }}>
+                <Typography variant="body2">
+                  {row.note}
                 </Typography>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 2 }}>
+        <FormControl>
+          <InputLabel id="rows-per-page-label">Hàng trên mỗi trang</InputLabel>
+          <Select
+            labelId="rows-per-page-label"
+            id="rows-per-page"
+            value={rowsPerPage}
+            onChange={handleChangeRowsPerPage}
+            sx={{ width: 120 }}
+          >
+            {[5, 10, 25].map((rows) => (
+              <MenuItem key={rows} value={rows}>
+                {rows}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={DataRowCustomerTable.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Box>
+      <Box ml={2}>
+          <FormControlLabel
+            control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
+            label="Dense padding"
+          />
+        </Box>
     </TableContainer>
+    
   );
 };
 
