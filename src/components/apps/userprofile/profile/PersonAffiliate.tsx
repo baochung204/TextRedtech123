@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React, { useState } from 'react';
 import {
   Box,
@@ -38,26 +36,39 @@ const PersonAffiliate = () => {
   const [selectedImage1, setSelectedImage1] = useState(null);
   const [selectedImage2, setSelectedImage2] = useState(null);
 
-  const handleImage1Change = (event) => {
+  const [activeStep, setActiveStep] = useState(0);
+  const [skipped, setSkipped] = useState(new Set());
+
+  const [formData, setFormData] = useState({
+    agreeTerms: false,
+    bankNumber: '',
+    accountName: '',
+    bank: '',
+    frontImage: null,
+    backImage: null,
+  });
+
+  const isStepSkipped = (step: any) => skipped.has(step);
+
+  const handleImage1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, frontImage: event.target.files[0] });
     setSelectedImage1(URL.createObjectURL(event.target.files[0]));
   };
 
-  const handleImage2Change = (event) => {
+  const handleImage2Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, backImage: event.target.files[0] });
     setSelectedImage2(URL.createObjectURL(event.target.files[0]));
   };
+
   const handleRemoveImage1 = () => {
+    setFormData({ ...formData, frontImage: null });
     setSelectedImage1(null);
   };
 
   const handleRemoveImage2 = () => {
+    setFormData({ ...formData, backImage: null });
     setSelectedImage2(null);
   };
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
-
-  const isStepOptional = (step: any) => step === 1;
-
-  const isStepSkipped = (step: any) => skipped.has(step);
 
   const handleNext = () => {
     let newSkipped = skipped;
@@ -74,24 +85,28 @@ const PersonAffiliate = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-
-      return newSkipped;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value, checked } = e.target;
+    setFormData({
+      ...formData,
+      [id]: e.target.type === 'checkbox' ? checked : value,
     });
   };
 
-  // eslint-disable-next-line consistent-return
-  const handleSteps = (step: any) => {
+  const validateStep = (step: number) => {
+    switch (step) {
+      case 0:
+        return formData.agreeTerms;
+      case 1:
+        return formData.bankNumber && formData.accountName && formData.bank;
+      case 2:
+        return formData.frontImage && formData.backImage;
+      default:
+        return true;
+    }
+  };
+
+  const handleSteps = (step: number) => {
     switch (step) {
       case 0:
         return (
@@ -529,7 +544,9 @@ const PersonAffiliate = () => {
               </ol>
             </Box>
             <Checkbox
-              defaultChecked
+              id="agreeTerms"
+              checked={formData.agreeTerms}
+              onChange={handleChange}
               color="primary"
               inputProps={{ 'aria-label': 'checkbox with default color' }}
             />
@@ -539,41 +556,45 @@ const PersonAffiliate = () => {
       case 1:
         return (
           <Box>
-            <Box>
-              <CustomFormLabel htmlFor="banknumber">Số tài khoản</CustomFormLabel>
-              <CustomTextField
-                id="banknumber"
-                variant="outlined"
-                placeholder="Nhập số tài khoản của bạn"
-                fullWidth
-              />
-            </Box>
-            <Box>
-              <CustomFormLabel htmlFor="password">Tên tài khoản</CustomFormLabel>
-              <CustomTextField
-                id="password"
-                type="text"
-                variant="outlined"
-                placeholder="Nhập tên tài khoản của bạn"
-                fullWidth
-              />
-            </Box>
-            <Box>
-              <CustomFormLabel htmlFor="gender">Chọn ngân hàng</CustomFormLabel>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Chọn ngân hàng</InputLabel>
-                <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Gender">
-                  <MenuItem value="mb">Mb bank</MenuItem>
-                  <MenuItem value="tp">TP bank</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+            <CustomFormLabel htmlFor="bankNumber">Số tài khoản</CustomFormLabel>
+            <CustomTextField
+              id="bankNumber"
+              variant="outlined"
+              placeholder="Nhập số tài khoản của bạn"
+              fullWidth
+              value={formData.bankNumber}
+              onChange={handleChange}
+            />
+            <CustomFormLabel htmlFor="accountName">Tên tài khoản</CustomFormLabel>
+            <CustomTextField
+              id="accountName"
+              type="text"
+              variant="outlined"
+              placeholder="Nhập tên tài khoản của bạn"
+              fullWidth
+              value={formData.accountName}
+              onChange={handleChange}
+            />
+            <CustomFormLabel htmlFor="bank">Chọn ngân hàng</CustomFormLabel>
+            <FormControl fullWidth>
+              <InputLabel id="bank-select-label">Chọn ngân hàng</InputLabel>
+              <Select
+                labelId="bank-select-label"
+                id="bank"
+                value={formData.bank}
+                onChange={(e) => setFormData({ ...formData, bank: e.target.value })} // Add this line to handle the Select change
+              >
+                <MenuItem value="mb">Mb bank</MenuItem>
+                <MenuItem value="tp">TP bank</MenuItem>
+              </Select>
+            </FormControl>
           </Box>
         );
+
       case 2:
         return (
           <Grid container spacing={2}>
-            {/* Left Side - Instructions */}
+            {/* Instructions and Form */}
             <Grid item xs={12} md={6}>
               <CustomFormLabel sx={{ marginTop: '25px' }} htmlFor="image1">
                 Hướng dẫn
@@ -595,8 +616,8 @@ const PersonAffiliate = () => {
                 </Typography>
               </Box>
 
-              <Divider />
-
+              {/* Similar Instructions */}
+              <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
               {/* Image Icons with Descriptions */}
               <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
                 <Box sx={{ textAlign: 'center' }}>
@@ -620,96 +641,75 @@ const PersonAffiliate = () => {
                   <Typography>Tốt</Typography>
                 </Box>
               </Box>
-
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
-
-              <Box sx={{ display: 'flex' }}>
-                <SecurityIcon sx={{ marginRight: '8px' }} />
-                <Typography>Hình ảnh được bảo mật tuyệt đối, chỉ sử dụng để ký tài liệu</Typography>
-              </Box>
             </Grid>
 
-            {/* Right Side - Form */}
             <Grid item xs={12} md={6}>
+              {/* Image Uploads */}
               <Box>
-                {/* First Image */}
-                <Box mb={2}>
-                  {selectedImage1 && (
-                    <Box mb={2} position="relative">
-                      <Typography variant="subtitle1">Mặt trước căn cước công dân:</Typography>
-                      <img
-                        src={selectedImage1}
-                        alt="Selected 1"
-                        style={{
-                          width: '100%',
-                          maxWidth: '150px',
-                          maxHeight: '150px',
-                          objectFit: 'contain',
-                        }}
-                      />
-                      <IconButton
-                        size="small"
-                        onClick={handleRemoveImage1}
-                        sx={{ position: 'absolute', top: 0, right: 0 }}
-                      >
-                        <CloseIcon />
-                      </IconButton>
-                    </Box>
-                  )}
-                  <CustomFormLabel htmlFor="image1">Mặt trước căn cước công dân</CustomFormLabel>
-                  <Button variant="contained" component="label" color="primary">
-                    Tải tệp lên
-                    <Input
-                      id="image1"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImage1Change}
-                      style={{ display: 'none' }}
+                {selectedImage1 && (
+                  <Box mb={2} position="relative">
+                    <Typography variant="subtitle1">Mặt trước căn cước công dân:</Typography>
+                    <img
+                      src={selectedImage1}
+                      alt="Selected 1"
+                      style={{ width: '100%', maxWidth: '150px', objectFit: 'contain' }}
                     />
-                  </Button>
-                </Box>
+                    <IconButton
+                      size="small"
+                      onClick={handleRemoveImage1}
+                      sx={{ position: 'absolute', top: 0, right: 0 }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                  </Box>
+                )}
+                <CustomFormLabel htmlFor="frontImage">Mặt trước căn cước công dân</CustomFormLabel>
+                <Button variant="contained" component="label" color="primary">
+                  Tải tệp lên
+                  <Input
+                    id="frontImage"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImage1Change}
+                    style={{ display: 'none' }}
+                  />
+                </Button>
+              </Box>
 
-                {/* Second Image */}
-                <Box mb={2}>
-                  {selectedImage2 && (
-                    <Box mb={2} position="relative">
-                      <Typography variant="subtitle1">Mặt sau căn cước công dân:</Typography>
-                      <img
-                        src={selectedImage2}
-                        alt="Selected 2"
-                        style={{
-                          width: '100%',
-                          maxWidth: '150px',
-                          maxHeight: '150px',
-                          objectFit: 'contain',
-                        }}
-                      />
-                      <IconButton
-                        size="small"
-                        onClick={handleRemoveImage2}
-                        sx={{ position: 'absolute', top: 0, right: 0 }}
-                      >
-                        <CloseIcon />
-                      </IconButton>
-                    </Box>
-                  )}
-                  <CustomFormLabel htmlFor="image2">Mặt sau căn cước công dân</CustomFormLabel>
-                  <Button variant="contained" component="label" color="primary">
-                    Tải tệp lên
-                    <Input
-                      id="image2"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImage2Change}
-                      style={{ display: 'none' }}
+              <Box>
+                {selectedImage2 && (
+                  <Box mb={2} position="relative">
+                    <Typography variant="subtitle1">Mặt sau căn cước công dân:</Typography>
+                    <img
+                      src={selectedImage2}
+                      alt="Selected 2"
+                      style={{ width: '100%', maxWidth: '150px', objectFit: 'contain' }}
                     />
-                  </Button>
-                </Box>
+                    <IconButton
+                      size="small"
+                      onClick={handleRemoveImage2}
+                      sx={{ position: 'absolute', top: 0, right: 0 }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                  </Box>
+                )}
+                <CustomFormLabel htmlFor="backImage">Mặt sau căn cước công dân</CustomFormLabel>
+                <Button variant="contained" component="label" color="primary">
+                  Tải tệp lên
+                  <Input
+                    id="backImage"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImage2Change}
+                    style={{ display: 'none' }}
+                  />
+                </Button>
               </Box>
             </Grid>
           </Grid>
         );
-
       default:
         break;
     }
@@ -717,6 +717,14 @@ const PersonAffiliate = () => {
 
   const handleReset = () => {
     setActiveStep(0);
+    setFormData({
+      agreeTerms: false,
+      bankNumber: '',
+      accountName: '',
+      bank: '',
+      frontImage: null,
+      backImage: null,
+    });
   };
 
   return (
@@ -725,19 +733,13 @@ const PersonAffiliate = () => {
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const stepProps: { completed?: boolean } = {};
-            const labelProps: {
-              optional?: React.ReactNode;
-            } = {};
-            // if (isStepOptional(index)) {
-            //   labelProps.optional = <Typography variant="caption">Optional</Typography>;
-            // }
             if (isStepSkipped(index)) {
               stepProps.completed = false;
             }
 
             return (
               <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
+                <StepLabel>{label}</StepLabel>
               </Step>
             );
           })}
@@ -781,16 +783,11 @@ const PersonAffiliate = () => {
               </Button>
 
               <Box flex="1 1 auto" />
-              {/* {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                  Bỏ qua
-                </Button>
-              )} */}
-
               <Button
                 onClick={handleNext}
                 variant="contained"
                 color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
+                disabled={!validateStep(activeStep)} // Disable the Next or Finish button based on validation
               >
                 {activeStep === steps.length - 1 ? 'Hoàn tất đăng ký' : 'Tiếp tục'}
               </Button>
