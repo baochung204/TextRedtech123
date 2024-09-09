@@ -36,11 +36,11 @@ const HorizontalStepper = ({ children, steps, activeStep, handleReset, finalStep
           <Box>{finalStep}</Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button variant="contained" color="success" component={Link} to="/apps/ecommerce/shop">
-              Continue Shopping
+              Tiếp tục mua sắm
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button variant="contained">Download Receipt</Button>
-            <Button onClick={handleReset}>Reset</Button>
+            <Button variant="contained">Tải hóa đơn</Button>
+            <Button onClick={handleReset}>Cài lại</Button>
           </Box>
         </React.Fragment>
       ) : (

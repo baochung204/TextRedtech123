@@ -22,9 +22,10 @@ import Scrollbar from '../../custom-scroll/Scrollbar';
 import { SelectChat, fetchChats, SearchChat } from '../../../store/apps/chat/ChatSlice';
 import { ChatsType } from 'src/types/apps/chat';
 import { last } from 'lodash';
-import { formatDistanceToNowStrict } from 'date-fns';
 import { IconChevronDown, IconSearch } from '@tabler/icons-react';
 import user1 from 'src/assets/images/profile/user-1.jpg';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { vi } from 'date-fns/locale';
 
 const ChatListing = () => {
   const dispatch = useDispatch();
@@ -178,6 +179,11 @@ const ChatListing = () => {
                   </Badge>
                 </ListItemAvatar> */}
                 <ListItemText
+                  primary={
+                    <Typography variant="subtitle2" fontWeight={600} mb={0.5}>
+                      #TK006100{chat.id}
+                    </Typography>
+                  }
                   secondary={getDetails(chat)}
                   secondaryTypographyProps={{
                     noWrap: true,
@@ -188,7 +194,8 @@ const ChatListing = () => {
                 <Box sx={{ flexShrink: '0' }} mt={0.5}>
                   <Typography variant="body2">
                     {formatDistanceToNowStrict(new Date(lastActivity(chat)), {
-                      addSuffix: false,
+                      addSuffix: true,
+                      locale: vi, // Use Vietnamese locale
                     })}
                   </Typography>
                 </Box>
