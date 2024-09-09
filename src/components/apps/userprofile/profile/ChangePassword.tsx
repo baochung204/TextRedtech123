@@ -37,9 +37,9 @@ const ChangePassword = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#2A3447', // Nền tối cho dark mode
+        // backgroundColor: '#2A3447', // Nền tối cho dark mode
         margin: '0 auto',
-        color: 'white', // Màu chữ sáng cho dark mode
+        // color: 'white', // Màu chữ sáng cho dark mode
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>

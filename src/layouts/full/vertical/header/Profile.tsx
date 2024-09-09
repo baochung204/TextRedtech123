@@ -9,6 +9,9 @@ import { IconMail } from '@tabler/icons-react';
 
 import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
+import { setSelected } from 'src/store/RouterSlice';
+import { dispatch } from 'src/store/Store';
+
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -17,6 +20,11 @@ const Profile = () => {
   };
   const handleClose2 = () => {
     setAnchorEl2(null);
+  };
+  const handleButtonClick = (id: number) => {
+    if (id == 2) {
+      dispatch(setSelected('changepassword'))
+    }
   };
 
   return (
@@ -83,9 +91,9 @@ const Profile = () => {
         </Stack>
         <Divider />
         {dropdownData.profile.map((profile) => (
-          <Box key={profile.title}>
+          <Box key={profile.id}>
             <Box sx={{ pt: 2, px: 0 }} className="hover-text-primary">
-              <Link to={profile.href}>
+              <Link to={profile.href} onClick={() => handleButtonClick(profile.id)}>
                 <Stack direction="row" spacing={2}>
                   <Box
                     width="30px"
@@ -139,7 +147,7 @@ const Profile = () => {
                   Shopping ngay
                 </Button>
               </Box>
-              <img style={{width:'45%'}} src={unlimitedImg} alt="unlimited" className="signup-bg"></img>
+              <img style={{ width: '45%' }} src={unlimitedImg} alt="unlimited" className="signup-bg"></img>
             </Box>
           </Box>
           <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>
