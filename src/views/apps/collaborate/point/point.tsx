@@ -7,6 +7,7 @@ import React from 'react';
 import { Box, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
+
 const BCrumb = [
   {
     to: '/',
@@ -56,7 +57,8 @@ import { TransitionProps } from '@mui/material/transitions';
 import Slide from '@mui/material/Slide';
 import Detailpoin from './detailpoint';
 import TransitionDialog from 'src/components/material-ui/dialog/TransitionDialog';
-import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
+import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
+
 
 // const BCrumb = [
 //   {
@@ -516,7 +518,7 @@ const Lspoin = () => {
                         <TableCell style={{ width: '18%' }}>
                           <Stack>
 
-                            <Afletpoint row={row}></Afletpoint>
+                            <Afletpoint1 row={row}></Afletpoint1>
                           </Stack>
                         </TableCell>
                       </TableRow>
