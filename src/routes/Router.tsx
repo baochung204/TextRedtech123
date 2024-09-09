@@ -38,6 +38,7 @@ const EcomProductList = Loadable(lazy(() => import('../views/apps/eCommerce/Ecom
 const EcomProductCheckout = Loadable(
   lazy(() => import('../views/apps/eCommerce/EcommerceCheckout')),
 );
+const Detailpoint = Loadable(lazy(() => import('../views/apps/collaborate/point/detailpoint')));
 const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
 const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
@@ -194,6 +195,8 @@ const Router = [
       { path: '/apps/ecommerce/shop', element: <Ecommerce /> },
       { path: '/apps/ecommerce/eco-product-list', element: <EcomProductList /> },
       { path: '/apps/ecommerce/eco-checkout', element: <EcomProductCheckout /> },
+      { path: '/apps/point/detaipoint/:id', element: <Detailpoint /> },
+
       { path: '/apps/ecommerce/detail/:id', element: <EcommerceDetail /> },
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },

@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { useState } from 'react';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
 import PageContainer from 'src/components/container/PageContainer';
-import Lspoin from '../collaborate/poin/poin';
+import Lspoin from '../collaborate/point/point';
 
 const Pointhistory = () => {
   const [selected, setSelected] = useState<string>('personal');

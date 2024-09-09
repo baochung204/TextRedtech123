@@ -37,6 +37,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import Searchtable from 'src/components/apps/search/search';
 import SearchInput from 'src/components/apps/search/search';
 import pointimg from 'src/assets/images/icon.png/point.png';
+import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
 
 // const BCrumb = [
 //   {
@@ -465,7 +466,7 @@ const Paymenthistory = () => {
 
                         <TableCell>
                           <Stack spacing={2} direction="row">
-                            <Box>{getdetailTextAndColor(row.invoice)}</Box>
+                            <Afletpoint row={row}></Afletpoint>
                           </Stack>
                         </TableCell>
                       </TableRow>
@@ -601,6 +602,7 @@ const Paymenthistory = () => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage="Số hàng trên trang"
           />
         </Box>
       </BlankCard>

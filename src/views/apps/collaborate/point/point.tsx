@@ -1,9 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import React from 'react';
+import { Box, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
+const BCrumb = [
+  {
+    to: '/',
+    title: 'Home',
+  },
+  {
+    title: 'Checkout',
+  },
+];
 import {
-  Box,
   Button,
+  Dialog,
+  DialogActions,
   Grid,
   Stack,
   Table,
@@ -18,7 +34,6 @@ import {
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { format } from 'date-fns';
-import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
 import { EnTableType } from 'src/components/tables/tableData';
@@ -34,10 +49,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Searchtable from 'src/components/apps/search/search';
 import SearchInput from 'src/components/apps/search/search';
 import pointimg from 'src/assets/images/icon.png/point.png';
-import { welcomeImg } from 'src/assets/images/backgrounds/welcome-bg.svg';
+import ChildCard from 'src/components/shared/ChildCard';
+import { TransitionProps } from '@mui/material/transitions';
+import Slide from '@mui/material/Slide';
+import Detailpoin from './detailpoint';
+import TransitionDialog from 'src/components/material-ui/dialog/TransitionDialog';
+import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
 
 // const BCrumb = [
 //   {
@@ -47,7 +66,14 @@ import { welcomeImg } from 'src/assets/images/backgrounds/welcome-bg.svg';
 //   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
 //   { title: 'Lịch sử quy đổi ' },
 // ];
-
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -306,6 +332,15 @@ const Lspoin = () => {
   };
   const [value, setValue] = React.useState<Dayjs | null>(null);
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
@@ -481,8 +516,11 @@ const Lspoin = () => {
                           </Stack>
                         </TableCell>
                         <TableCell style={{ width: '18%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>{getdetailTextAndColor(row.invoice)}</Box>
+                          <Stack>
+                            {/* <Link to={'/apps/point/detaipoint/1'}> */}
+
+                            <Afletpoint row={row}></Afletpoint>
+                            {/* </Link> */}
                           </Stack>
                         </TableCell>
                       </TableRow>
@@ -618,6 +656,7 @@ const Lspoin = () => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage="Số hàng trên trang"
           />
         </Box>
       </BlankCard>
