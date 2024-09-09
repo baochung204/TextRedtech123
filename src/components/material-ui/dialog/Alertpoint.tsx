@@ -19,6 +19,7 @@ import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
 import ChildCard from 'src/components/shared/ChildCard';
+import Content from 'src/views/apps/collaborate/paymenthistory.tsx/content';
 const BCrumb = [
   {
     to: '/',
@@ -53,7 +54,7 @@ const Afletpoint = ({ row }: any) => {
   return (
     <>
       {row.status == 1 ? (
-        <Button variant="contained" color="success" width="50%" onClick={handleClickOpen}>
+        <Button variant="contained" color="success" onClick={handleClickOpen}>
           Chi tiết
         </Button>
       ) : (
@@ -70,20 +71,12 @@ const Afletpoint = ({ row }: any) => {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            {/* breadcrumb */}
 
-            {/* ------------------------------------------- */}
-            {/* Right part */}
-            {/* ------------------------------------------- */}
-
-            {/* <ProductChecout /> */}
+            <Content />
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button color="error" onClick={handleClose}>
-            Disagree
-          </Button>
-          <Button onClick={handleClose}>Agree</Button>
+        <DialogActions sx={{ mr: 3, my: 2 }}>
+          <Button onClick={handleClose}>Tiếp tục</Button>
         </DialogActions>
       </Dialog>
     </>

@@ -30,15 +30,19 @@ const Assistant = () => {
     <PageContainer title="Assistant" description="this is Shop List page">
       {/* breadcrumb */}
       <Breadcrumb title="Assistant" items={BCrumb} />
+<<<<<<< HEAD
+        <Button
+=======
       <Button
             onClick={handleAdd}
+>>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
             variant="contained"
             color="primary"
             style={{  marginBottom:'20px' }} // Khoảng cách giữa ParentCard và Button
           >
             <AddIcon fontSize="small" style={{ marginRight: '8px' }} />
             Thêm mới
-          </Button>
+        </Button>
       <BlankCard>
         {/* ------------------------------------------- */}
         {/* Left part */}

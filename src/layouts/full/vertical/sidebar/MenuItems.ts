@@ -118,9 +118,8 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Đơn hàng',
         icon: IconPoint,
-        href: '/apps/customerList',
+        href: '/apps/sell/order',
       },
-      
     ],
   },
   {
@@ -267,6 +266,26 @@ const Menuitems: MenuitemsType[] = [
         title: 'Đang chờ',
         icon: IconPoint,
         href: '/apps/pending',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Blog',
+    icon: IconChartDonut3,
+    href: '/apps/blog/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Posts',
+        icon: IconPoint,
+        href: '/apps/blog/posts',
+      },
+      {
+        id: uniqueId(),
+        title: 'Detail',
+        icon: IconPoint,
+        href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
       },
     ],
   },

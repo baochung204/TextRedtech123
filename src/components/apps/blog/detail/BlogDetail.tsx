@@ -2,6 +2,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React, { useEffect } from 'react';
+import User1 from 'src/assets/images/profile/user-1.jpg';
+import User2 from 'src/assets/images/profile/user-2.jpg';
+import User3 from 'src/assets/images/profile/user-5.jpg';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import { useLocation } from 'react-router-dom';
 import {
@@ -27,6 +30,7 @@ import { addComment } from 'src/store/apps/blog/BlogSlice';
 import BlankCard from '../../../shared/BlankCard';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import type { BlogPostType, BlogType } from 'src/types/apps/blog';
+import { IconMoodHappy } from '@tabler/icons-react';
 
 const BlogDetail = () => {
   const dispatch = useDispatch();
@@ -38,19 +42,19 @@ const BlogDetail = () => {
     dispatch(fetchBlogPost(getTitle));
   }, [dispatch]);
 
-  // Get post
+  // Lấy bài viết
   const post: BlogPostType | any = useSelector((state: AppState) => state.blogReducer.selectedPost);
   const BCrumb = [
     {
       to: '/',
-      title: 'Home',
+      title: 'Trang chủ',
     },
     {
       to: '/apps/blog/posts',
       title: 'Blog',
     },
     {
-      title: 'Blog post',
+      title: 'Bài viết',
     },
   ];
 
@@ -85,7 +89,7 @@ const BlogDetail = () => {
 
   return (
     <Box>
-      <Breadcrumb title="Blog Detail" items={BCrumb} />
+      {/* <Breadcrumb title="Chi tiết Blog" items={BCrumb} /> */}
       <BlankCard>
         <>
           {isLoading ? (
@@ -108,11 +112,11 @@ const BlogDetail = () => {
               </Tooltip>
               <Chip
                 sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                label="2 min Read"
+                label="2,203 Lượt xem"
                 size="small"
               ></Chip>
             </Stack>
-            <Chip label={post?.category} size="small" sx={{ marginTop: 2 }}></Chip>
+            <Chip label={post?.author.name} size="small" sx={{ marginTop: 2 }}></Chip>
             <Box my={3}>
               <Typography
                 gutterBottom
@@ -121,77 +125,79 @@ const BlogDetail = () => {
                 color="inherit"
                 sx={{ textDecoration: 'none' }}
               >
-                {post?.title}
+                Khám Phá Tiềm Năng Của ChatGPT Trong Cuộc Sống Và Công Việc
               </Typography>
             </Box>
             <Stack direction="row" gap={3} alignItems="center">
-              <Stack direction="row" gap={1} alignItems="center">
-                <IconEye size="18" /> {post?.view}
-              </Stack>
-              <Stack direction="row" gap={1} alignItems="center">
-                <IconMessage2 size="18" /> {post?.comments.length}
+              <Stack direction="row" gap={1} alignItems="center" mx={'20px'}>
+                <Chip
+                  label="Trí Tuệ Nhân Tạo"
+                  color="success"
+                  // onDelete={handleDelete}
+                />
+                <Chip label="Ứng Dụng Chat GPT" color="warning" />
+                <Chip
+                  label="Giao Tiếp AI"
+                  color="warning"
+                  // onDelete={handleDelete}
+                />
+                <Chip label="Trợ Lý Ảo" color="error" />
               </Stack>
 
               <Stack direction="row" ml="auto" alignItems="center">
-                <IconPoint size="16" />
-                <small>{post ? <>{format(new Date(post.createdAt), 'E, MMM d')}</> : ''}</small>
+                <small>T4,06/09/2024 </small>
               </Stack>
             </Stack>
           </CardContent>
           <Divider />
           <CardContent>
-            <Typography variant="h2">Title of the paragraph</Typography>
+            <Typography variant="h2">Chatbot: Công Cụ Đột Phá Trong Thời Đại Số</Typography>
             <p>
-              But you cannot figure out what it is or what it can do. MTA web directory is the
-              simplest way in which one can bid on a link, or a few links if they wish to do so. The
-              link directory on MTA displays all of the links it currently has, and does so in
-              alphabetical order, which makes it much easier for someone to find what they are
-              looking for if it is something specific and they do not want to go through all the
-              other sites and links as well. It allows you to start your bid at the bottom and
-              slowly work your way to the top of the list.
+              Chatbot là chương trình máy tính được thiết kế để giao tiếp với con người qua tin nhắn
+              hoặc giọng nói. Chúng sử dụng trí tuệ nhân tạo (AI) để hiểu ngôn ngữ tự nhiên và đưa
+              ra phản hồi chính xác theo ngữ cảnh. Từ việc trả lời câu hỏi đơn giản đến hỗ trợ thực
+              hiện các giao dịch, chatbot có thể hoạt động 24/7 mà không cần nghỉ.
             </p>
             <p>
-              Gigure out what it is or what it can do. MTA web directory is the simplest way in
-              which one can bid on a link, or a few links if they wish to do so. The link directory
-              on MTA displays all of the links it currently has, and does so in alphabetical order,
-              which makes it much easier for someone to find what they are looking for if it is
-              something specific and they do not want to go through all the other sites and links as
-              well. It allows you to start your bid at the bottom and slowly work your way to the
-              top of the
+              Tương lai của Chatbot Với sự phát triển không ngừng của công nghệ AI, chatbot ngày
+              càng trở nên thông minh hơn. Trong tương lai, chatbot sẽ có khả năng hiểu và phản hồi
+              như con người, đồng thời được tích hợp vào nhiều nền tảng và ứng dụng hơn. Điều này sẽ
+              giúp doanh nghiệp tối ưu hóa quy trình vận hành, tăng cường tương tác khách hàng và
+              tạo ra nhiều giá trị hơn.
             </p>
-            <Typography fontWeight={600}>This is strong text.</Typography>
-            <Typography fontStyle="italic">This is italic text.</Typography>
+            <Typography fontWeight={600}>Trợ lý ảo Redtech</Typography>
+            <Typography fontStyle="italic">Trợ lý ảo Redtech</Typography>
             <Box my={4}>
               <Divider />
             </Box>
-            <Typography variant="h3">Unorder list.</Typography>
+            <Typography variant="h3">Danh sách không thứ tự.</Typography>
             <ul>
-              <li>Gigure out what it is or</li>
-              <li>The links it currently</li>
-              <li>It allows you to start your bid</li>
-              <li>Gigure out what it is or</li>
-              <li>The links it currently</li>
-              <li>It allows you to start your bid</li>
+              <li>Tìm hiểu nó là gì hoặc</li>
+              <li>Các liên kết hiện tại của nó</li>
+              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
+              <li>Tìm hiểu nó là gì hoặc</li>
+              <li>Các liên kết hiện tại của nó</li>
+              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
             </ul>
             <Box my={4}>
               <Divider />
             </Box>
-            <Typography variant="h3">Order list.</Typography>
+            <Typography variant="h3">Danh sách có thứ tự.</Typography>
             <ol>
-              <li>Gigure out what it is or</li>
-              <li>The links it currently</li>
-              <li>It allows you to start your bid</li>
-              <li>Gigure out what it is or</li>
-              <li>The links it currently</li>
-              <li>It allows you to start your bid</li>
+              <li>Tìm hiểu nó là gì hoặc</li>
+              <li>Các liên kết hiện tại của nó</li>
+              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
+              <li>Tìm hiểu nó là gì hoặc</li>
+              <li>Các liên kết hiện tại của nó</li>
+              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
             </ol>
             <Box my={4}>
               <Divider />
             </Box>
-            <Typography variant="h3">Quotes</Typography>
+            <Typography variant="h3">Trích dẫn</Typography>
             <Box p={2} bgcolor="grey[100]" mt={2}>
               <Typography variant="h6">
-                <IconQuote /> Life is short, Smile while you still have teeth!
+                <IconQuote /> Cuộc sống ngắn ngủi, Hãy cười khi bạn vẫn còn răng!
               </Typography>
             </Box>
           </CardContent>
@@ -200,7 +206,7 @@ const BlogDetail = () => {
       <BlankCard sx={{ mt: 3, p: 0 }}>
         <CardContent>
           <Typography variant="h4" fontWeight={600}>
-            Post Comments
+            Bình luận bài viết
           </Typography>
           <br />
           <TextField
@@ -213,12 +219,12 @@ const BlogDetail = () => {
           <br />
           <br />
           <Button color="primary" variant="contained" onClick={() => onSubmit(post.id, replyTxt)}>
-            Post Comment
+            Đăng bình luận
           </Button>
 
           <Stack direction="row" gap={2} alignItems="center" mb={3} mt={5}>
             <Typography variant="h4" fontWeight={600}>
-              Comments
+              Bình luận
             </Typography>
             <Box px={1.5} py={1} color="primary.main" bgcolor={'primary.light'}>
               <Typography variant="h6" fontWeight={600}>

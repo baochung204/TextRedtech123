@@ -38,6 +38,7 @@ import Searchtable from 'src/components/apps/search/search';
 import SearchInput from 'src/components/apps/search/search';
 import pointimg from 'src/assets/images/icon.png/point.png';
 import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
+import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
 // const BCrumb = [
 //   {
@@ -449,7 +450,7 @@ const Paymenthistory = () => {
                                 gap={'5px'}
                                 alignItems={'center'}
                               >
-                                {row.point} <img src={pointimg} alt="" width={'25px'} />
+                                {row.point} <img src={pointimg} alt="" width={'20px'} />
                               </Typography>
                             </Box>
                           </Stack>
