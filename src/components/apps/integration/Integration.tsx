@@ -7,14 +7,17 @@ import {
     Button,
     Typography,
     Tab,
+    Tooltip,
+    Fab,
   } from '@mui/material';
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import React, { useState } from 'react';
   import BlankCard from 'src/components/shared/BlankCard';
 
+  
 
-  import { IconMapPin, IconSearch } from '@tabler/icons-react';
+  import { IconMapPin, IconPlus, IconSearch } from '@tabler/icons-react';
 
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import img1 from 'src/assets/images/profile/user-1.jpg';
@@ -22,11 +25,13 @@ import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
+import Updating from 'src/views/authentication/Updating';
+import Develop from './Develop';
 interface Assistant {
   id: string;
   model: string;
   imgsrc: any;
-  customer: string;
+  name: string;
   connect: string;
   status: string;
   date: string;
@@ -138,21 +143,11 @@ const rows: Assistant[] = [
   
 const Integration = () => {
   const [value, setValue] = React.useState('1');
-  const [search, setSearch] = React.useState('');
-  const [isConnected, setIsConnected] = useState(false);
 
-const handleClick = () => {
-  if (isConnected === false) {
-    setIsConnected(true);
-  }
-};
+
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-
-
- 
-  
   
     return (
       <>
@@ -163,66 +158,75 @@ const handleClick = () => {
             <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab label="Facebook" value="1" />
               <Tab label="Zalo" value="2" />
+              <Tab label="Telegram" value="3" />
+              <Tab label="Viber" value="4" />
             </TabList>
-            <Stack direction="row" alignItems={'center'} mt={2}>
-          
-          </Stack>
           </Box>
-
+          
         <TabPanel value="1">
-                {' '}
-                <Grid container spacing={3}>
-            <Grid item sm={12} lg={12}>
-            
-            </Grid>
-            {rows.map((profile) => {
-            return (
-                <Grid item xs={12} lg={4} key={profile.id}>
-                <BlankCard>
-                    <CardContent>
-                    <Stack direction={'row'} gap={2} alignItems="center">
-                        <Avatar alt="Remy Sharp" src={profile.imgsrc} />
-                        <Box>
-                        <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                            {profile.customer}
-                        </Typography>
-                        <Typography
-                            variant="caption"
-                            sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
-                        >
-                            <IconMapPin size="14" />
-                            {profile.id}
-                        </Typography>
-                        </Box>
-                        <Box ml="auto">
-                          
-                        {profile.isConnected ? (
-                            <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            >
-                            Đã kết nối
-                            </Button>
-                        ) : (
-                            <Button
-                            variant="outlined"
-                            color="primary"
-                            size="small"
-                            >
-                            Kết nối
-                            </Button>
-                        )}
-                        </Box>
-                    </Stack>
-                    </CardContent>
-                </BlankCard>
-                </Grid>
-            );
-            })}
+          {' '}
+          <Tooltip title="Add" sx={{mb:'15px'}}>
+            <Fab size="medium" color="secondary" aria-label="plus">
+              <IconPlus width={20} />
+            </Fab>
+          </Tooltip>
+          <Grid container spacing={3}>
+          {rows.map((profile) => {
+          return (
+              <Grid item xs={12} lg={4} key={profile.id}>
+              <BlankCard>
+                  <CardContent>
+                  <Stack direction={'row'} gap={2} alignItems="center">
+                      <Avatar alt="Remy Sharp" src={profile.imgsrc} />
+                      <Box>
+                      <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
+                          {profile.name}
+                      </Typography>
+                      <Typography
+                          variant="caption"
+                          sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                      >
+                          <IconMapPin size="14" />
+                          {profile.id}
+                      </Typography>
+                      </Box>
+                      <Box ml="auto">
+                        
+                      {profile.isConnected ? (
+                          <Button
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                          >
+                          Đã kết nối
+                          </Button>
+                      ) : (
+                          <Button
+                          variant="outlined"
+                          color="primary"
+                          size="small"
+                          >
+                          Kết nối
+                          </Button>
+                      )}
+                      </Box>
+                  </Stack>
+                  </CardContent>
+              </BlankCard>
+              </Grid>
+          );
+          })}
         </Grid>
         </TabPanel>
-          
+        <TabPanel value="2">
+          <Develop/>
+        </TabPanel>
+        <TabPanel value="3">
+          <Develop/>
+        </TabPanel>
+        <TabPanel value="4">
+          <Develop/>
+        </TabPanel>
     </TabContext>
     </Box>
     </Grid>

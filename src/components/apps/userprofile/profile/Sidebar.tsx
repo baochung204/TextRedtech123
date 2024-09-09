@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
         borderRight: '1px solid #e0e0e0',
         padding: 2,
         minWidth: 240,
-        textAlign: 'left', // Căn tất cả nội dung bên trái
+        textAlign: 'left',
       }}
     >
       {SCROLLABLE_TAB.map((tab) => (
@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
                 gap: 1,
                 justifyContent: 'flex-start',
                 textAlign: 'left',
-                paddingLeft: 0, // Loại bỏ padding bên trái nếu có
+                paddingLeft: 0, 
                 fontWeight: 'bold',
               }}
             >
@@ -57,16 +57,16 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
           }
           value={tab.value}
           sx={{
-            minHeight: 72, // Chiều cao tối thiểu cho mỗi tab
-            justifyContent: 'center', // Căn trái toàn bộ nội dung tab
+            minHeight: 72, 
+            justifyContent: 'center', 
             alignItems: 'flex-start',
-            paddingLeft: 1, // Loại bỏ padding bên trái của tab
+            paddingLeft: 1, 
             '&.Mui-selected': {
               color: 'primary.main',
               backgroundColor: 'action.hover',
             },
             '& .MuiTab-wrapper': {
-              justifyContent: 'flex-start', // Căn trái nội dung icon và label
+              justifyContent: 'flex-start', 
             },
           }}
         />
