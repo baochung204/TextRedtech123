@@ -97,7 +97,7 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 7, hours: 3, minutes: 20 }),
     view: random(9999),
     share: random(9999),
-    category: 'Lifestyle',
+    category: 'Nguyễn Văn Huy',
     featured: false,
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
@@ -119,7 +119,7 @@ const BlogPost: BlogPostType[] = [
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
       avatar: user3,
-      name: chance.name(),
+      name: 'Lê Thị Huyền Trang',
     },
     comments: BlogComment,
   },
@@ -136,7 +136,7 @@ const BlogPost: BlogPostType[] = [
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
       avatar: user4,
-      name: chance.name(),
+      name: 'Nguyễn Ngọc Huy',
     },
     comments: BlogComment,
   },
@@ -148,12 +148,12 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 4, hours: 6, minutes: 20 }),
     view: random(9999),
     share: random(9999),
-    category: 'Lifestyle',
+    category: 'Nguyễn Văn Huy',
     featured: false,
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
       avatar: user5,
-      name: chance.name(),
+      name: 'Nguyễn Văn Huy',
     },
     comments: BlogComment,
   },
@@ -204,7 +204,7 @@ const BlogPost: BlogPostType[] = [
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
       avatar: user3,
-      name: chance.name(),
+      name: 'Lý Tô Thị Hà',
     },
     comments: BlogComment,
   },
