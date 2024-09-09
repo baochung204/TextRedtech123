@@ -27,7 +27,6 @@ const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collab
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
 const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
-
 const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
@@ -149,7 +148,7 @@ const TwoSteps = Loadable(lazy(() => import('../views/authentication/auth1/TwoSt
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
-const Updating = Loadable(lazy(() => import('src/views/authentication/Updating')));
+const Updating = Loadable(lazy(() => import('../views/authentication/Updating')));
 
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));

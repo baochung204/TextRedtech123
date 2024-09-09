@@ -33,6 +33,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { IconEdit } from '@tabler/icons-react';
 import DateTime from '../assistant/AssistantEditor/DateTime'
 import Checkboxes from './AssistantEditor/Checkboxes';
+import QuillEditor from './AssistantEditor/QuillEditor';
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
 
@@ -77,16 +78,22 @@ const AssistantEditor = () => {
   const [language, setLanguage] = React.useState('1');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
+  const [fileSearchName, setFileSearchName] = useState('');
+  const [fileFunctionsName, setFileFunctionsName] = useState('');
   const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCountry(event.target.value as string); // Cập nhật state khi chọn
   };
   const handleChangeLanguage = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCountry(event.target.value as string); // Cập nhật state khi chọn
   };
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      console.log('File đã chọn:', file.name);
+  const handleFileSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFileSearchName(event.target.files[0].name); // Cập nhật tên file
+    }
+  };
+  const handleFileFunctions = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFileFunctionsName(event.target.files[0].name); // Cập nhật tên file
     }
   };
 
@@ -120,7 +127,7 @@ const AssistantEditor = () => {
 
   return (
     <PageContainer title="Tạo Assistant" description="this is Custom Form page">
-      <ParentCard title="Playground">
+      <Box sx={{m:3}}>
         <Grid container spacing={3}>
           {/* Cột 1 */}
           <Grid item xs={12} sm={12} lg={4}>
@@ -181,8 +188,6 @@ const AssistantEditor = () => {
               
               <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>Chuyên môn</CustomFormLabel>
               <Checkboxes />
-              
-              
 
               
               <Grid container item xs={12} sm={12} lg={12} spacing={2}>
@@ -206,7 +211,7 @@ const AssistantEditor = () => {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={language}
-                    onChange={handleAvatarChange}
+                    onChange={handleChangeLanguage}
                     fullWidth
                   >
                     <MenuItem value={1}>Việt Nam</MenuItem>
@@ -217,8 +222,8 @@ const AssistantEditor = () => {
             </Box>
           </Grid>
           {/* Cột 2 */}
-          <Grid item xs={12} sm={12} lg={4}>
-            <Paper elevation={3} sx={{ height: '72vh', overflowY: 'auto', p: 2 }}>
+          <Grid item xs={12} sm={12} lg={4} >
+            <Paper elevation={3} sx={{ height: '45vh', overflowY: 'auto', px:2 }}>
               <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
                 <CustomSelect
                   labelId="demo-simple-select-label"
@@ -231,7 +236,10 @@ const AssistantEditor = () => {
                   <MenuItem value={3}>GPT-4-TURBO</MenuItem>
               </CustomSelect>
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
-              <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth />
+              {/* <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth /> */}
+              <QuillEditor/>
+            </Paper>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
               {/* tri thức */}
               <input
                 accept="*/*"
@@ -239,20 +247,36 @@ const AssistantEditor = () => {
                 id="contained-button-file"
                 multiple
                 type="file"
-                onChange={handleFileChange}
+                onChange={handleFileSearch} // Bắt sự kiện khi file được chọn
               />
               <label htmlFor="contained-button-file">
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6} lg={6}>
-                    <CustomFormLabel htmlFor="name">Tri thức</CustomFormLabel>
+                  <Grid item xs={12} sm={6} lg={8.4}>
+                    <Box fontWeight={600}>Tri thức</Box>
                   </Grid>
-                  <Grid item xs={12} sm={6} lg={6}>
-                    <Button variant="contained" color="primary" component="span" style={{ marginBottom: '10px', marginTop: '10px' }}>
+                  <Grid item xs={12} sm={6} lg={3.6}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                      style={{ marginBottom: '10px' }}
+                    >
                       <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
                     </Button>
                   </Grid>
                 </Grid>
               </label>
+
+              {fileSearchName && ( // Hiển thị tên file nếu có
+                <Grid container spacing={2} style={{ marginTop: '0px' }}>
+                  <Grid item xs={12}>
+                    {`${fileSearchName}`}
+                  </Grid>
+                </Grid>
+              )}
+              
+            </Paper>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
               {/* Functions */}
               <input
                 accept="*/*"
@@ -260,22 +284,34 @@ const AssistantEditor = () => {
                 id="contained-button-file"
                 multiple
                 type="file"
-                onChange={handleFileChange}
+                onChange={handleFileFunctions} // Bắt sự kiện khi file được chọn
               />
               <label htmlFor="contained-button-file">
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6} lg={6}>
-                    <CustomFormLabel htmlFor="name">Functions</CustomFormLabel>
+                  <Grid item xs={12} sm={6} lg={8.4}>
+                    <Box fontWeight={600}>Functions</Box>
                   </Grid>
-                  <Grid item xs={12} sm={6} lg={6}>
-                    <Button variant="contained" color="primary" component="span" style={{ marginBottom: '10px', marginTop: '10px' }}>
+                  <Grid item xs={12} sm={6} lg={3.6}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                      style={{ marginBottom: '10px' }}
+                    >
                       <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
                     </Button>
                   </Grid>
                 </Grid>
               </label>
+
+              {fileFunctionsName && ( // Hiển thị tên file nếu có
+                <Grid container spacing={2} style={{ marginTop: '0px' }}>
+                  <Grid item xs={12}>
+                    {`${fileFunctionsName}`}
+                  </Grid>
+                </Grid>
+              )}
              
-              
             </Paper>
           </Grid>
           {/* Cột 3 */}
@@ -333,7 +369,7 @@ const AssistantEditor = () => {
             </Stack>
           </Grid>
         </Grid>
-      </ParentCard>
+      </Box>
     </PageContainer>
   );
 };
