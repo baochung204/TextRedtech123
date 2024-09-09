@@ -21,7 +21,7 @@ const BCrumb = [
   { title: 'Blog post' },
 ];
 
-const CustomerList = () => {
+const CustomerList2 = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   const [filterColumn, setFilterColumn] = React.useState('');
@@ -153,8 +153,8 @@ const CustomerList = () => {
       {/* Bảng khách hàng */}
       <CustomerTable />
       {/* Popup Thêm đơn hàng */}
-      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
-        <DialogTitle>Thêm Đơn Hàng</DialogTitle>
+      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="sm">
+        <DialogTitle>Thêm khách hàng</DialogTitle>
         <DialogContent>
           <PopupAdd /> {/* Gọi component PopupAdd */}
         </DialogContent>
@@ -170,4 +170,4 @@ const CustomerList = () => {
   );
 };
 
-export default CustomerList;
+export default CustomerList2;

@@ -31,7 +31,9 @@ import CustomDisabledButton from 'src/components/forms/theme-elements/CustomDisa
 import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
 import PersonIcon from '@mui/icons-material/Person';
 import { IconEdit } from '@tabler/icons-react';
-
+import DateTime from '../assistant/AssistantEditor/DateTime'
+import Checkboxes from './AssistantEditor/Checkboxes';
+import QuillEditor from './AssistantEditor/QuillEditor';
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
 
@@ -72,13 +74,26 @@ interface Message {
 
 const AssistantEditor = () => {
   const [age, setAge] = React.useState('1');
+  const [country, setCountry] = React.useState('1');
+  const [language, setLanguage] = React.useState('1');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      console.log('File đã chọn:', file.name);
+  const [fileSearchName, setFileSearchName] = useState('');
+  const [fileFunctionsName, setFileFunctionsName] = useState('');
+  const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setCountry(event.target.value as string); // Cập nhật state khi chọn
+  };
+  const handleChangeLanguage = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setCountry(event.target.value as string); // Cập nhật state khi chọn
+  };
+  const handleFileSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFileSearchName(event.target.files[0].name); // Cập nhật tên file
+    }
+  };
+  const handleFileFunctions = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFileFunctionsName(event.target.files[0].name); // Cập nhật tên file
     }
   };
 
@@ -112,10 +127,10 @@ const AssistantEditor = () => {
 
   return (
     <PageContainer title="Tạo Assistant" description="this is Custom Form page">
-      <ParentCard title="Playground">
+      <Box sx={{m:3}}>
         <Grid container spacing={3}>
           {/* Cột 1 */}
-          <Grid item xs={12} sm={12} lg={3}>
+          <Grid item xs={12} sm={12} lg={4}>
           <Box >
               {/* Circular Avatar Placeholder */}
               <Box sx={{ textAlign: 'center', mt: { md: 2 }, mb:'20px' }}>
@@ -146,56 +161,157 @@ const AssistantEditor = () => {
                   onChange={handleAvatarChange}
                 />
               </Box>
+                    
               <CustomFormLabel htmlFor="name" sx={{mt: 0}}>Tên</CustomFormLabel>
-              <CustomTextField id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
+              <CustomTextField size="small" id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
+              <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+                <Grid item xs={12} sm={6} lg={6}>
+                  <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>Ngày sinh</CustomFormLabel>
+                  <DateTime />
+                </Grid>
+                <Grid item xs={12} sm={6} lg={6}>
+                  <CustomFormLabel sx={{ mt: 2 }}  htmlFor="demo-simple-select">Trình độ học vẫn</CustomFormLabel>
+                  <CustomSelect
+                    size="small"
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    fullWidth
+                  >
+                    <MenuItem value={1}>Tốt nghiệp cấp 3</MenuItem>
+                    <MenuItem value={2}>Đại học</MenuItem>
+                    <MenuItem value={3}>Trên đại học</MenuItem>
+                  </CustomSelect>
+                </Grid>
+              </Grid>
 
+              
+              <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>Chuyên môn</CustomFormLabel>
+              <Checkboxes />
+
+              
+              <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+                <Grid item xs={12} sm={6} lg={6}>
+                  <CustomFormLabel htmlFor="demo-simple-select">Quốc gia</CustomFormLabel>
+                  <CustomSelect
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={country}
+                    onChange={handleChangeCountry}
+                    fullWidth
+                  >
+                    <MenuItem value={1}>Việt Nam</MenuItem>
+                    <MenuItem value={2}>Trung Quốc</MenuItem>
+                    <MenuItem value={3}>Nhật</MenuItem>
+                  </CustomSelect>
+                </Grid>
+                <Grid item xs={12} sm={6} lg={6}>
+                  <CustomFormLabel htmlFor="demo-simple-select">Ngôn ngữ</CustomFormLabel>
+                  <CustomSelect
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={language}
+                    onChange={handleChangeLanguage}
+                    fullWidth
+                  >
+                    <MenuItem value={1}>Việt Nam</MenuItem>
+                    <MenuItem value={2}>Anh</MenuItem>
+                  </CustomSelect>
+                </Grid>
+              </Grid>
             </Box>
           </Grid>
           {/* Cột 2 */}
-          <Grid item xs={12} sm={12} lg={5}>
-            <Paper elevation={3} sx={{ height: '72vh', overflowY: 'auto', p: 2 }}>
-
+          <Grid item xs={12} sm={12} lg={4} >
+            <Paper elevation={3} sx={{ height: '45vh', overflowY: 'auto', px:2 }}>
+              <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
+                <CustomSelect
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  fullWidth
+                >
+                  <MenuItem value={1}>GPT-3.5-TURBO</MenuItem>
+                  <MenuItem value={2}>GPT-4-MINI</MenuItem>
+                  <MenuItem value={3}>GPT-4-TURBO</MenuItem>
+              </CustomSelect>
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
-              <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth />
-              <CustomFormLabel htmlFor="name">Công cụ</CustomFormLabel>
+              {/* <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth /> */}
+              <QuillEditor/>
+            </Paper>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
+              {/* tri thức */}
               <input
                 accept="*/*"
                 style={{ display: 'none' }}
                 id="contained-button-file"
                 multiple
                 type="file"
-                onChange={handleFileChange}
+                onChange={handleFileSearch} // Bắt sự kiện khi file được chọn
               />
               <label htmlFor="contained-button-file">
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6} lg={12}>
-                    <FormControlLabel style={{ width: '70%' }} control={<CustomSwitch />} label="File search" />
-                    <Button variant="contained" color="primary" component="span" style={{ marginBottom: '10px', marginTop: '10px' }}>
+                  <Grid item xs={12} sm={6} lg={8.4}>
+                    <Box fontWeight={600}>Tri thức</Box>
+                  </Grid>
+                  <Grid item xs={12} sm={6} lg={3.6}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                      style={{ marginBottom: '10px' }}
+                    >
                       <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
                     </Button>
                   </Grid>
-                  
                 </Grid>
               </label>
-              <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
-              <CustomSelect
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                fullWidth
-              >
-                <MenuItem value={1}>GPT-3.5-TURBO</MenuItem>
-                <MenuItem value={2}>GPT-4-MINI</MenuItem>
-                <MenuItem value={3}>GPT-4-TURBO</MenuItem>
-              </CustomSelect>
+
+              {fileSearchName && ( // Hiển thị tên file nếu có
+                <Grid container spacing={2} style={{ marginTop: '0px' }}>
+                  <Grid item xs={12}>
+                    {`${fileSearchName}`}
+                  </Grid>
+                </Grid>
+              )}
               
-              <CustomFormLabel style={{ width: '34%', marginBottom: '10px' }} htmlFor="functions">
-                Functions
-              </CustomFormLabel>
-              <Button variant="contained" color="primary" component="span" style={{ marginBottom: '10px' }}>
-                <AddIcon fontSize='small' style={{ marginRight: '10px' }} />Functions
-              </Button>
-              
+            </Paper>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
+              {/* Functions */}
+              <input
+                accept="*/*"
+                style={{ display: 'none' }}
+                id="contained-button-file"
+                multiple
+                type="file"
+                onChange={handleFileFunctions} // Bắt sự kiện khi file được chọn
+              />
+              <label htmlFor="contained-button-file">
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6} lg={8.4}>
+                    <Box fontWeight={600}>Functions</Box>
+                  </Grid>
+                  <Grid item xs={12} sm={6} lg={3.6}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                      style={{ marginBottom: '10px' }}
+                    >
+                      <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
+                    </Button>
+                  </Grid>
+                </Grid>
+              </label>
+
+              {fileFunctionsName && ( // Hiển thị tên file nếu có
+                <Grid container spacing={2} style={{ marginTop: '0px' }}>
+                  <Grid item xs={12}>
+                    {`${fileFunctionsName}`}
+                  </Grid>
+                </Grid>
+              )}
+             
             </Paper>
           </Grid>
           {/* Cột 3 */}
@@ -253,7 +369,7 @@ const AssistantEditor = () => {
             </Stack>
           </Grid>
         </Grid>
-      </ParentCard>
+      </Box>
     </PageContainer>
   );
 };
