@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, Alert, AlertTitle } from '@mui/material';
+import { Box, Typography, TextField, Button, Alert, AlertTitle, useTheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
+  const theme = useTheme(); // Lấy theme từ MUI
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -13,6 +14,12 @@ const ChangePassword = () => {
   const handleSubmit = () => {
     if (newPassword !== confirmNewPassword) {
       setShowAlert({ message: 'Mật khẩu mới và xác nhận mật khẩu không khớp.', type: 'error' });
+      return;
+    }
+
+    // Kiểm tra độ mạnh của mật khẩu mới nếu cần
+    if (newPassword.length < 6) {
+      setShowAlert({ message: 'Mật khẩu mới phải có ít nhất 6 ký tự.', type: 'error' });
       return;
     }
 
@@ -37,9 +44,9 @@ const ChangePassword = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#2A3447', // Nền tối cho dark mode
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : theme.palette.background.paper, // Nền tối cho dark mode
         margin: '0 auto',
-        color: 'white', // Màu chữ sáng cho dark mode
+        color: theme.palette.text.primary, // Màu chữ sáng cho dark mode
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
@@ -52,7 +59,11 @@ const ChangePassword = () => {
           fullWidth
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
-          sx={{ mb: 2, input: { color: 'white' }, label: { color: 'white' } }}
+          sx={{
+            mb: 2,
+            input: { color: theme.palette.text.primary },
+            label: { color: theme.palette.text.primary },
+          }}
         />
         <TextField
           label="Mật khẩu mới"
@@ -60,7 +71,11 @@ const ChangePassword = () => {
           fullWidth
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          sx={{ mb: 2, input: { color: 'white' }, label: { color: 'white' } }}
+          sx={{
+            mb: 2,
+            input: { color: theme.palette.text.primary },
+            label: { color: theme.palette.text.primary },
+          }}
         />
         <TextField
           label="Nhập lại mật khẩu mới"
@@ -68,7 +83,10 @@ const ChangePassword = () => {
           fullWidth
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
-          sx={{ input: { color: 'white' }, label: { color: 'white' } }}
+          sx={{
+            input: { color: theme.palette.text.primary },
+            label: { color: theme.palette.text.primary },
+          }}
         />
       </Box>
       <Box sx={{ mb: 2, display: 'flex', justifyContent: 'flex-start' }}>
@@ -79,7 +97,7 @@ const ChangePassword = () => {
 
       {/* Hiển thị Alert khi có thông báo */}
       {showAlert && (
-        <Alert severity={showAlert.type} sx={{ mt: 3, backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336', color: 'white' }}>
+        <Alert severity={showAlert.type} sx={{ mt: 3, backgroundColor: showAlert.type === 'success' ? theme.palette.success.main : theme.palette.error.main, color: 'white' }}>
           <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
           {showAlert.message}
         </Alert>

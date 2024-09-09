@@ -79,6 +79,8 @@ const BuyPoint = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(typeof e.target.value);
+
     const inputValue = e.target.value.replace(/\D/g, '');
     const number = parseInt(inputValue, 10);
 
