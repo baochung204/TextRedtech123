@@ -119,7 +119,7 @@ const ProfileTab = () => {
         >
           <MenuItem
             component={Link}
-            to="/pages/order-history"
+            to="/purchasehistory"
             onClick={handleClose}
             sx={{
               padding: '10px 20px',
@@ -136,7 +136,7 @@ const ProfileTab = () => {
           </MenuItem>
           <MenuItem
             component={Link}
-            to="/history/buy-point"
+            to="/pointhistory"
             onClick={handleClose}
             sx={{
               padding: '10px 20px',

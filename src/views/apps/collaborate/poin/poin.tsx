@@ -4,6 +4,7 @@
 import {
   Box,
   Button,
+  Grid,
   Stack,
   Table,
   TableBody,
@@ -20,9 +21,23 @@ import { format } from 'date-fns';
 import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
-import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
-import { tabledh } from 'src/components/tables/tabledh';
+import { EnTableType } from 'src/components/tables/tableData';
+import { tablepoin } from 'src/components/tables/tablepoin';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { Dayjs } from 'dayjs';
+// import CustomSelect from '../../forms/theme-elements/CustomSelect';
+// import DashboardCard from '../../shared/DashboardCard';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import Searchtable from 'src/components/apps/search/search';
+import SearchInput from 'src/components/apps/search/search';
+import pointimg from 'src/assets/images/icon.png/point.png';
+import { welcomeImg } from 'src/assets/images/backgrounds/welcome-bg.svg';
 
 // const BCrumb = [
 //   {
@@ -43,7 +58,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
   return 0;
 }
-const rows: EnTableType[] = tabledh;
+const rows: EnTableType[] = tablepoin;
 
 type Order = 'asc' | 'desc';
 
@@ -78,28 +93,28 @@ interface HeadCell {
 }
 const headCells: HeadCell[] = [
   {
-    id: 'createdAt',
+    id: 'MHD',
     numeric: false,
     disablePadding: false,
-    label: 'Thời gian tạo',
+    label: 'ID',
   },
   {
-    id: 'completedAt',
+    id: 'date',
     numeric: false,
     disablePadding: false,
-    label: 'Thời gian hoàn tất',
+    label: 'Ngày nạp',
   },
   {
-    id: 'requestId',
+    id: 'point',
     numeric: false,
     disablePadding: false,
-    label: 'ID Yêu cầu',
+    label: 'Số Point',
   },
   {
     id: 'amount',
     numeric: false,
     disablePadding: false,
-    label: 'Số tiền',
+    label: 'Số Tiền',
   },
   {
     id: 'status',
@@ -112,6 +127,12 @@ const headCells: HeadCell[] = [
     numeric: false,
     disablePadding: false,
     label: 'Hóa đơn',
+  },
+  {
+    id: 'detail',
+    numeric: false,
+    disablePadding: false,
+    label: 'Chi tiết',
   },
 ];
 
@@ -128,7 +149,7 @@ const getStatusTextAndColor = (status: any) => {
     case 1:
       return (
         <Typography color="#13DEB9" variant="subtitle2">
-          Thanh toán
+          Đã thanh toán
         </Typography>
       );
     case 2:
@@ -140,7 +161,7 @@ const getStatusTextAndColor = (status: any) => {
     case 3:
       return (
         <Typography color="#f44336" variant="subtitle2">
-          Chưa thanh toán
+          Không thành công
         </Typography>
       );
     default:
@@ -154,7 +175,19 @@ const getInvoiceTextAndColor = (status: any) => {
     case 2:
       return <Typography color="#ff9800">Chờ xử lý</Typography>;
     case 3:
-      return <Typography color="#f44336"> Chưa thanh toán</Typography>;
+      return <Typography color="#f44336"> Không thành công</Typography>;
+    default:
+      return;
+  }
+};
+const getdetailTextAndColor = (status: any) => {
+  switch (status) {
+    case 1:
+      return <Button color="success">Xem</Button>;
+    case 2:
+      return <Typography color="#ff9800"></Typography>;
+    case 3:
+      return <Typography color="#f44336"> </Typography>;
     default:
       return;
   }
@@ -201,7 +234,7 @@ interface EnhancedTableToolbarProps {
   numSelected: number;
 }
 
-const HistoryMoney = () => {
+const Lspoin = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -266,11 +299,101 @@ const HistoryMoney = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const [month, setMonth] = React.useState('1');
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
+  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
+      <Grid
+        item
+        xs={12}
+        lg={10}
+        display={{ md: 'flex', xs: 'block' }}
+        style={{
+          gap: '12px',
+          alignItems: 'center',
 
+          margin: '10px 5%',
+        }}
+      >
+        {' '}
+        <Grid item xs={12} lg={7} style={{}}>
+          <SearchInput />
+        </Grid>
+        <Grid item xs={12} lg={12} display={'flex'} alignItems={'center'} gap="10px">
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          tới
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value1}
+              onChange={(newValue) => {
+                setValue1(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            cursor="pointer"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+            <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+          </svg>
+        </Grid>
+      </Grid>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
           <TableContainer>
@@ -304,51 +427,62 @@ const HistoryMoney = () => {
                         key={row.id}
                         // selected={isItemSelected}
                       >
-                        <TableCell>
+                        <TableCell style={{ width: '10%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.createdAt), 'MM/dd/yyyy HH:mm:ss')}
+                                {row.MHD}
                               </Typography>
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{ width: '12%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.completedAt), 'MM/dd/yyyy HH:mm:ss')}
+                                {format(new Date(row.createdAt), 'MM/dd/yyyy')}
                               </Typography>
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{ width: '15%' }}>
+                          <Stack spacing={2} direction="row">
+                            <Box>
+                              <Typography
+                                color="textSecondary"
+                                variant="subtitle2"
+                                display={'flex'}
+                                gap={'5px'}
+                                alignItems={'center'}
+                              >
+                                {row.point} <img src={pointimg} alt="" width={'25px'} />
+                              </Typography>
+                            </Box>
+                          </Stack>
+                        </TableCell>
+                        <TableCell style={{ width: '15%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {row.requestId}
+                                {row.amount.toLocaleString()} đ
                               </Typography>
                             </Box>
                           </Stack>
                         </TableCell>
 
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
+                        <TableCell style={{ width: '18%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>{getStatusTextAndColor(row.status)}</Box>
                           </Stack>
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{ width: '18%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>{getInvoiceTextAndColor(row.invoice)}</Box>
+                          </Stack>
+                        </TableCell>
+                        <TableCell style={{ width: '18%' }}>
+                          <Stack spacing={2} direction="row">
+                            <Box>{getdetailTextAndColor(row.invoice)}</Box>
                           </Stack>
                         </TableCell>
                       </TableRow>
@@ -365,115 +499,115 @@ const HistoryMoney = () => {
                 )}
               </TableBody>
               {/* <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
-                    const isItemSelected = isSelected(row.name);
-                    const labelId = `enhanced-table-checkbox-${index}`;
-
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        selected={isItemSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <CustomCheckbox
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Avatar
-                              alt="text"
-                              src={row.imgsrc}
-                              sx={{
-                                width: '35px',
-                                height: '35px',
+                  {stableSort(rows, getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row: any, index) => {
+                      const isItemSelected = isSelected(row.name);
+                      const labelId = `enhanced-table-checkbox-${index}`;
+  
+                      return (
+                        <TableRow
+                          hover
+                          onClick={(event) => handleClick(event, row.name)}
+                          role="checkbox"
+                          aria-checked={isItemSelected}
+                          tabIndex={-1}
+                          key={row.id}
+                          selected={isItemSelected}
+                        >
+                          <TableCell padding="checkbox">
+                            <CustomCheckbox
+                              checked={isItemSelected}
+                              inputProps={{
+                                'aria-labelledby': labelId,
                               }}
                             />
-                            <Box>
-                              <Typography variant="h6" fontWeight="600">
-                                {row.name}
-                              </Typography>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.email}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
-                            {row.pname}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Stack direction="row">
-                            <AvatarGroup>
-                              {row.teams.map((team: any) => (
-                                <Avatar
-                                  key={team.id}
-                                  sx={{
-                                    width: '35px',
-                                    height: '35px',
-                                    bgcolor: team.color,
-                                  }}
-                                >
-                                  {team.text}
-                                </Avatar>
-                              ))}
-                            </AvatarGroup>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={1} direction="row" alignItems="center">
-                            <Badge
-                              color={
-                                row.status === 'Active'
-                                  ? 'success'
-                                  : row.status === 'Pending'
-                                  ? 'warning'
-                                  : row.status === 'Completed'
-                                  ? 'primary'
-                                  : row.status === 'Cancel'
-                                  ? 'error'
-                                  : 'secondary'
-                              }
-                              variant="dot"
-                            ></Badge>
-                            <Typography color="textSecondary" variant="body1">
-                              {row.status}
+                          </TableCell>
+                          <TableCell>
+                            <Stack spacing={2} direction="row">
+                              <Avatar
+                                alt="text"
+                                src={row.imgsrc}
+                                sx={{
+                                  width: '35px',
+                                  height: '35px',
+                                }}
+                              />
+                              <Box>
+                                <Typography variant="h6" fontWeight="600">
+                                  {row.name}
+                                </Typography>
+                                <Typography color="textSecondary" variant="subtitle2">
+                                  {row.email}
+                                </Typography>
+                              </Box>
+                            </Stack>
+                          </TableCell>
+                          <TableCell>
+                            <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
+                              {row.pname}
                             </Typography>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="body1">
-                            {row.weeks}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="h6">${row.budget}k</Typography>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody> */}
+                          </TableCell>
+                          <TableCell>
+                            <Stack direction="row">
+                              <AvatarGroup>
+                                {row.teams.map((team: any) => (
+                                  <Avatar
+                                    key={team.id}
+                                    sx={{
+                                      width: '35px',
+                                      height: '35px',
+                                      bgcolor: team.color,
+                                    }}
+                                  >
+                                    {team.text}
+                                  </Avatar>
+                                ))}
+                              </AvatarGroup>
+                            </Stack>
+                          </TableCell>
+                          <TableCell>
+                            <Stack spacing={1} direction="row" alignItems="center">
+                              <Badge
+                                color={
+                                  row.status === 'Active'
+                                    ? 'success'
+                                    : row.status === 'Pending'
+                                    ? 'warning'
+                                    : row.status === 'Completed'
+                                    ? 'primary'
+                                    : row.status === 'Cancel'
+                                    ? 'error'
+                                    : 'secondary'
+                                }
+                                variant="dot"
+                              ></Badge>
+                              <Typography color="textSecondary" variant="body1">
+                                {row.status}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell>
+                            <Typography color="textSecondary" variant="body1">
+                              {row.weeks}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="h6">${row.budget}k</Typography>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  {emptyRows > 0 && (
+                    <TableRow
+                      style={{
+                        height: (dense ? 33 : 53) * emptyRows,
+                      }}
+                    >
+                      <TableCell colSpan={6} />
+                    </TableRow>
+                  )}
+                </TableBody> */}
             </Table>
           </TableContainer>
           <TablePagination
@@ -491,4 +625,4 @@ const HistoryMoney = () => {
   );
 };
 
-export default HistoryMoney;
+export default Lspoin;
