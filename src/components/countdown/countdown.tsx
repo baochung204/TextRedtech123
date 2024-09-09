@@ -35,34 +35,36 @@ const Countdown = ({ initialSeconds }: { initialSeconds: number }) => {
       alignItems="center"
       height={100}
       sx={{ textAlign: 'center' }}
+      bgcolor={'error.light'}
     >
       <Box display="flex" flexDirection="column" alignItems="center">
-        <Typography sx={{ color: '#FC2032' }}>Khuyến mãi còn lại</Typography>
+        <Typography color={'error'}>Khuyến mãi còn lại</Typography>
       </Box>
-
-      <Grid container spacing={1} sx={{ width: 'auto', justifyContent: 'center' }}>
-        <Grid item>
-          <Typography variant="h3" sx={{ fontSize: '25px', fontWeight: 'bold' }}>
-            {time.minutes}
-          </Typography>
-          <Typography variant="subtitle1" sx={{ fontSize: '12px' }}>
-            Phút
-          </Typography>
+      <Box>
+        <Grid container spacing={1} sx={{ width: 'auto', justifyContent: 'center' }}>
+          <Grid item>
+            <Typography variant="h3" sx={{ fontSize: '25px', fontWeight: 'bold' }}>
+              {time.minutes}
+            </Typography>
+            <Typography variant="subtitle1" sx={{ fontSize: '12px' }}>
+              Phút
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="h3" sx={{ fontSize: '25px', fontWeight: 'bold' }}>
+              :
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="h3" sx={{ fontSize: '25px', fontWeight: 'bold' }}>
+              {time.seconds}
+            </Typography>
+            <Typography variant="subtitle1" sx={{ fontSize: '12px' }}>
+              Giây
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant="h3" sx={{ fontSize: '25px', fontWeight: 'bold' }}>
-            :
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="h3" sx={{ fontSize: '25px', fontWeight: 'bold' }}>
-            {time.seconds}
-          </Typography>
-          <Typography variant="subtitle1" sx={{ fontSize: '12px' }}>
-            Giây
-          </Typography>
-        </Grid>
-      </Grid>
+      </Box>
     </Box>
   );
 };
