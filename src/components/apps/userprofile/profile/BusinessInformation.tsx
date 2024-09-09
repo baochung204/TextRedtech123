@@ -40,7 +40,7 @@ const BusinessInformation = () => {
 
   const renderField = (field: string, label: string) => (
     <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-      <Typography variant="h6" fontWeight="500" sx={{ width: '150px', color: 'white' }}>
+      <Typography variant="h6" fontWeight="500" sx={{ width: '150px', }}>
         {label}:
       </Typography>
       {editing === field ? (
@@ -49,19 +49,19 @@ const BusinessInformation = () => {
             value={businessInfo[field as keyof typeof businessInfo]}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown} // Xử lý sự kiện Enter
-            sx={{ flexGrow: 1, mr: 1, backgroundColor: 'white', color: 'black' }}
+            // sx={{ flexGrow: 1, mr: 1, backgroundColor: 'white', color: 'black' }}
             size="small"
           />
-          <IconButton onClick={handleSaveClick} sx={{ color: 'white' }}>
+          <IconButton onClick={handleSaveClick} sx={{ }}>
             <IconCheck />
           </IconButton>
         </>
       ) : (
         <>
-          <Typography variant="body1" sx={{ flexGrow: 1, color: 'white' }}>
+          <Typography variant="body1" sx={{ flexGrow: 1, }}>
             {businessInfo[field as keyof typeof businessInfo]}
           </Typography>
-          <IconButton onClick={() => handleEditClick(field)} sx={{ color: 'white' }}>
+          <IconButton onClick={() => handleEditClick(field)} sx={{  }}>
             <IconEdit />
           </IconButton>
         </>
@@ -75,9 +75,9 @@ const BusinessInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: '#2A3447',
+        // backgroundColor: '#2A3447',
         margin: '0 auto',
-        color: 'white',
+        // color: 'white',
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1} sx={{ color: 'white' }}>
