@@ -8,8 +8,9 @@ import java from 'src/assets/images/chat/icon-javascript.svg';
 import zip from 'src/assets/images/chat/icon-zip-folder.svg';
 import { Chance } from 'chance';
 import type { ChatsType } from 'src/types/apps/chat';
-import { sub } from 'date-fns';
 import { uniqueId } from 'lodash';
+import { formatDistanceToNow, sub } from 'date-fns';
+import { vi } from 'date-fns/locale';
 
 const chance = new Chance();
 
@@ -23,7 +24,8 @@ const ChatData: ChatsType[] = [
     excerpt: 'Theme Developer',
     messages: [
       {
-        createdAt: sub(new Date(), { hours: 1 }),
+        // createdAt: formatDistanceToNow(sub(new Date(), { hours: 1 }), { locale: vi }),
+        createdAt: sub(new Date(), { minutes: 30 }),
         msg: chance.sentence({ words: 5 }),
         senderId: 1,
         type: 'text',

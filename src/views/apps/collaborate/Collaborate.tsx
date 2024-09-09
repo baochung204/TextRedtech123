@@ -303,8 +303,7 @@ const CollaboratePost = () => {
           </TabPanel>
           <TabPanel value="2">
             {' '}
-            <h1>Lịch sử rút tiền</h1>
-            <Grid item xs={12} lg={8} style={{ height: 'auto', margin: '30px 0px' }}>
+            <Grid item xs={12} lg={8} style={{ height: 'auto', marginBottom: '30px' }}>
               <HistoryMoney />
             </Grid>
           </TabPanel>

@@ -210,6 +210,7 @@ const Danhsachdh = () => {
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <DashboardCard
+      showSearchBox={true}
       action={
         <>
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>

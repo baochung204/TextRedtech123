@@ -27,6 +27,7 @@ import AlertCart from '../productCart/AlertCart';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
 import BlankCard from '../../../shared/BlankCard';
 import { ProductType } from 'src/types/apps/eCommerce';
+import ProductSelect from './ProductSelect';
 
 interface Props {
   onClick: (event: React.SyntheticEvent | Event) => void;
@@ -129,7 +130,9 @@ const ProductList = ({ onClick }: Props) => {
 
   // Convert to VND
   const convertToVND = (amount: number, rate: number = 24000) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount * rate);
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+      amount * rate,
+    );
   };
 
   return (
@@ -144,7 +147,13 @@ const ProductList = ({ onClick }: Props) => {
           </Fab>
         )}
         <Box>
-          <ProductSearch />
+          <Stack direction="row" spacing={2} alignItems="center">
+            {/* ProductSelect (Sort dropdown) */}
+            <ProductSelect />
+
+            {/* Search Box */}
+            <ProductSearch />
+          </Stack>
         </Box>
       </Stack>
 
@@ -152,7 +161,16 @@ const ProductList = ({ onClick }: Props) => {
       <Grid container spacing={3}>
         {getProducts.length > 0 ? (
           getProducts.map((product) => (
-            <Grid item xs={12} lg={4} md={4} sm={6} display="flex" alignItems="stretch" key={product.id}>
+            <Grid
+              item
+              xs={12}
+              lg={4}
+              md={4}
+              sm={6}
+              display="flex"
+              alignItems="stretch"
+              key={product.id}
+            >
               {isLoading ? (
                 <Skeleton
                   variant="rectangular"
@@ -179,12 +197,16 @@ const ProductList = ({ onClick }: Props) => {
                     <Typography variant="h6">{product.title}</Typography>
                     <Stack direction="column" spacing={1} mt={1}>
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
-                        <Typography variant="h6">{convertToVND(product.price)}</Typography>
-                        <Typography color="textSecondary" ml={1} sx={{ textDecoration: 'line-through' }}>
-                          {convertToVND(product.salesPrice)}
+                        <Typography variant="h6">{product.price} point</Typography>
+                        <Typography
+                          color="textSecondary"
+                          ml={1}
+                          sx={{ textDecoration: 'line-through' }}
+                        >
+                          {product.salesPrice} point
                         </Typography>
                       </Stack>
-                      <Rating name="read-only" size="small" value={product.rating} readOnly />
+                      <Typography sx={{ fontWeight: 'bold' }}>{product.category}</Typography>
                     </Stack>
                   </CardContent>
                 </BlankCard>
@@ -196,12 +218,12 @@ const ProductList = ({ onClick }: Props) => {
           <Grid item xs={12}>
             <Box textAlign="center" mt={6}>
               <img src={emptyCart} alt="cart" width="200px" />
-              <Typography variant="h2">No Products Found</Typography>
+              <Typography variant="h2">Không tìm thấy</Typography>
               <Typography variant="h6" mb={3}>
-                The product you are searching is no longer available.
+                Sản phẩm bạn tìm kiếm không tồn tại
               </Typography>
               <Button variant="contained" onClick={() => dispatch(filterReset())}>
-                Try Again
+                Thử lại
               </Button>
             </Box>
           </Grid>

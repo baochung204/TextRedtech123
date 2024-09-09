@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'src/store/Store';
 import { IconButton, InputBase, Box, Popover } from '@mui/material';
 import Picker from 'emoji-picker-react';
-import { IconMoodSmile, IconPaperclip, IconPhoto, IconSend } from '@tabler/icons-react';
+import { IconMoodSmile, IconPhoto, IconSend } from '@tabler/icons-react';
 import { sendMsg } from 'src/store/apps/chat/ChatSlice';
 
 const ChatMsgSent = () => {
@@ -84,6 +84,9 @@ const ChatMsgSent = () => {
           inputProps={{ 'aria-label': 'Type a Message' }}
           onChange={handleChatMsgChange.bind(null)}
         />
+        <IconButton aria-label="delete">
+          <IconPhoto stroke={1.5} size="20" />
+        </IconButton>
         <IconButton
           aria-label="delete"
           onClick={() => {
@@ -95,12 +98,10 @@ const ChatMsgSent = () => {
         >
           <IconSend stroke={1.5} size="20" />
         </IconButton>
-        <IconButton aria-label="delete">
-          <IconPhoto stroke={1.5} size="20" />
-        </IconButton>
-        <IconButton aria-label="delete">
+
+        {/* <IconButton aria-label="delete">
           <IconPaperclip stroke={1.5} size="20" />
-        </IconButton>
+        </IconButton> */}
       </form>
     </Box>
   );

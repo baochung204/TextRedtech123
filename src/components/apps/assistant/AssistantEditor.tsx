@@ -15,6 +15,8 @@ import {
   InputBase,
   IconButton,
   FormControlLabel,
+  TextField,
+  Avatar,
 } from '@mui/material';
 import { SliderThumb } from '@mui/material/Slider';
 import AddIcon from '@mui/icons-material/Add';
@@ -27,6 +29,8 @@ import PageContainer from 'src/components/container/PageContainer';
 import ParentCard from 'src/components/shared/ParentCard';
 import CustomDisabledButton from 'src/components/forms/theme-elements/CustomDisabledButton';
 import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
+import PersonIcon from '@mui/icons-material/Person';
+import { IconEdit } from '@tabler/icons-react';
 
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
@@ -97,16 +101,60 @@ const AssistantEditor = () => {
       handleSendMessage();
     }
   };
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setAvatarPreview(URL.createObjectURL(file));
+    }
+  };
 
   return (
     <PageContainer title="Tạo Assistant" description="this is Custom Form page">
       <ParentCard title="Playground">
         <Grid container spacing={3}>
           {/* Cột 1 */}
-          <Grid item xs={12} sm={12} lg={5}>
-            <Paper elevation={1} sx={{ height: '72vh', overflowY: 'auto', p: 2 }}>
+          <Grid item xs={12} sm={12} lg={3}>
+          <Box >
+              {/* Circular Avatar Placeholder */}
+              <Box sx={{ textAlign: 'center', mt: { md: 2 }, mb:'20px' }}>
+                <label htmlFor="avatar-upload">
+                  <Avatar
+                    src={avatarPreview || ''}
+                    alt="avatar preview"
+                    sx={{
+                      width: { xs: 80, sm: 100, md: 120, lg: 150 },
+                      height: { xs: 80, sm: 100, md: 120, lg: 150 },
+                      margin: 'auto',
+                      fontSize: 50,
+                      backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
+                      border: '2px dashed #ccc',
+                      color: '#9e9e9e',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {!avatarPreview && <PersonIcon fontSize="inherit" />}
+                  </Avatar>
+                </label>
+                {/* Hidden file input */}
+                <input
+                  id="avatar-upload"
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handleAvatarChange}
+                />
+              </Box>
               <CustomFormLabel htmlFor="name" sx={{mt: 0}}>Tên</CustomFormLabel>
               <CustomTextField id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
+
+            </Box>
+          </Grid>
+          {/* Cột 2 */}
+          <Grid item xs={12} sm={12} lg={5}>
+            <Paper elevation={3} sx={{ height: '72vh', overflowY: 'auto', p: 2 }}>
+
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
               <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth />
               <CustomFormLabel htmlFor="name">Công cụ</CustomFormLabel>
@@ -126,12 +174,7 @@ const AssistantEditor = () => {
                       <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
                     </Button>
                   </Grid>
-                  {/* <Grid item xs={12} sm={6} lg={12}>
-                    <FormControlLabel style={{ width: '70%' }} control={<CustomSwitch />} label="Code interpreter" />
-                    <Button variant="contained" color="primary" component="span" style={{ marginBottom: '10px' }}>
-                      <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
-                    </Button>
-                  </Grid> */}
+                  
                 </Grid>
               </label>
               <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
@@ -145,17 +188,7 @@ const AssistantEditor = () => {
                 <MenuItem value={2}>GPT-4-MINI</MenuItem>
                 <MenuItem value={3}>GPT-4-TURBO</MenuItem>
               </CustomSelect>
-              {/* <CustomFormLabel>Response format</CustomFormLabel>
-              <CustomSelect
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                fullWidth
-              >
-                <MenuItem value={1}>One</MenuItem>
-                <MenuItem value={2}>Two</MenuItem>
-                <MenuItem value={3}>Three</MenuItem>
-              </CustomSelect> */}
+              
               <CustomFormLabel style={{ width: '34%', marginBottom: '10px' }} htmlFor="functions">
                 Functions
               </CustomFormLabel>
@@ -165,9 +198,9 @@ const AssistantEditor = () => {
               
             </Paper>
           </Grid>
-          {/* Cột 2 */}
-          <Grid item xs={12} sm={12} lg={7}>
-            <Paper elevation={1} sx={{ height: '72vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+          {/* Cột 3 */}
+          <Grid item xs={12} sm={12} lg={4}>
+            <Paper elevation={3} sx={{ height: '72vh', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
               <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(72vh - 120px)' }}>
@@ -209,21 +242,13 @@ const AssistantEditor = () => {
               mt={2}
             >
               <Stack spacing={1} direction="row">
-                {/* <Button variant="contained" color="primary">
-                  Add New
-                </Button>
-                <CustomDisabledButton variant="contained" disabled>
-                  Add New
-                </CustomDisabledButton>
-                <CustomOutlinedButton variant="outlined">Add New</CustomOutlinedButton> */}
+                
               </Stack>
               <Stack direction="row" spacing={1}>
                 <Button variant="contained" color="secondary">
                   Thêm mới
                 </Button>
-                {/* <Button variant="contained" color="success">
-                  Add New
-                </Button> */}
+               
               </Stack>
             </Stack>
           </Grid>

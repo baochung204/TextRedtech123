@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Box, Tab, Tabs, Menu, MenuItem, Typography } from '@mui/material';
-import { IconHistory, IconPoint, IconUser } from '@tabler/icons-react'; // Sử dụng các icon phù hợp hơn
+import { IconHistory, IconPoint, IconUser } from '@tabler/icons-react'; // Thêm icon phù hợp
 import { Link, useLocation } from 'react-router-dom';
 import { IconUserCircle } from '@tabler/icons-react';
 import { IconTicket } from '@tabler/icons-react';
+import { IconShoppingCart, IconCoin } from '@tabler/icons-react'; // Import thêm icon cho menu con
 
 const ProfileTab = () => {
   const location = useLocation();
@@ -40,11 +41,6 @@ const ProfileTab = () => {
       icon: <IconHistory size="20" />,
       dropdown: true,
     },
-    // {
-    //   label: 'Trợ lý',
-    //   icon: <IconUserCircle size="20" />,
-    //   to: '/apps/assistant',
-    // },
     {
       label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
@@ -130,6 +126,7 @@ const ProfileTab = () => {
               },
             }}
           >
+            <IconShoppingCart size="20" style={{ marginRight: '8px' }} /> {/* Thêm icon giỏ hàng */}
             <Typography variant="body1" fontWeight="500">
               Lịch sử mua hàng
             </Typography>
@@ -147,6 +144,7 @@ const ProfileTab = () => {
               },
             }}
           >
+            <IconCoin size="20" style={{ marginRight: '8px' }} /> {/* Thêm icon đồng tiền */}
             <Typography variant="body1" fontWeight="500">
               Lịch sử nạp Point
             </Typography>

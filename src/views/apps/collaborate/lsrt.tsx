@@ -78,23 +78,24 @@ interface HeadCell {
 }
 const headCells: HeadCell[] = [
   {
+    id: 'requestId',
+    numeric: false,
+    disablePadding: false,
+    label: 'ID thanh toán',
+  },
+  {
     id: 'createdAt',
     numeric: false,
     disablePadding: false,
-    label: 'Thời gian tạo',
+    label: 'Ngày yêu cầu',
   },
   {
     id: 'completedAt',
     numeric: false,
     disablePadding: false,
-    label: 'Thời gian hoàn tất',
+    label: 'Ngày hoàn tất',
   },
-  {
-    id: 'requestId',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID Yêu cầu',
-  },
+
   {
     id: 'amount',
     numeric: false,
@@ -111,7 +112,7 @@ const headCells: HeadCell[] = [
     id: 'invoice',
     numeric: false,
     disablePadding: false,
-    label: 'Hóa đơn',
+    label: 'Tải hóa đơn',
   },
 ];
 
@@ -308,6 +309,15 @@ const HistoryMoney = () => {
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
+                                {row.requestId}
+                              </Typography>
+                            </Box>
+                          </Stack>
+                        </TableCell>
+                        <TableCell>
+                          <Stack spacing={2} direction="row">
+                            <Box>
+                              <Typography color="textSecondary" variant="subtitle2">
                                 {format(new Date(row.createdAt), 'MM/dd/yyyy HH:mm:ss')}
                               </Typography>
                             </Box>
@@ -322,33 +332,31 @@ const HistoryMoney = () => {
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.requestId}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
 
                         <TableCell>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount}
+                                {row.amount} đ
                               </Typography>
                             </Box>
                           </Stack>
                         </TableCell>
                         <TableCell>
                           <Stack spacing={2} direction="row">
-                            <Box>{getStatusTextAndColor(row.status)}</Box>
+                            <Box
+                              sx={{
+                                color: row.status ? '#13DEB9' : '#ff9800',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              {row.status ? 'Đã thanh toán' : 'Chờ xử lý'}
+                            </Box>
                           </Stack>
                         </TableCell>
                         <TableCell>
                           <Stack spacing={2} direction="row">
-                            <Box>{getInvoiceTextAndColor(row.invoice)}</Box>
+                            <Button color="success">Tải về</Button>
                           </Stack>
                         </TableCell>
                       </TableRow>

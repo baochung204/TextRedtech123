@@ -56,6 +56,9 @@ const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affilia
 //Ai ticket
 const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
 
+//update page
+const Update = Loadable(lazy(() => import('../views/apps/update/update')));
+
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
 const MuiAccordion = Loadable(lazy(() => import('../views/ui-components/MuiAccordion')));
@@ -95,6 +98,7 @@ import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAff
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
+
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -186,6 +190,7 @@ const Router = [
       { path: '/apps/email', element: <Email /> },
       { path: '/apps/notes', element: <Notes /> },
       { path: '/apps/tickets', element: <Tickets /> },
+      { path: '/apps/update', element: <Update /> },
       { path: '/apps/ecommerce/shop', element: <Ecommerce /> },
       { path: '/apps/ecommerce/eco-product-list', element: <EcomProductList /> },
       { path: '/apps/ecommerce/eco-checkout', element: <EcomProductCheckout /> },

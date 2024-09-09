@@ -1,5 +1,6 @@
 import { Box, Button, Switch, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
+import WarningIcon from '@mui/icons-material/Warning'; // Thêm icon Warning
 
 const TwoFactorSecurity = () => {
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
@@ -15,30 +16,37 @@ const TwoFactorSecurity = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#fff', // Màu nền thay đổi theo chế độ
-        color: theme.palette.mode === 'dark' ? '#fff' : '#000', // Màu chữ thay đổi theo chế độ
-        margin: '0 auto',
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', 
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
         Bảo Mật Hai Lớp
       </Typography>
 
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h6" fontWeight="500">
-          Bản thân khách hàng
+      <Box
+        sx={{
+        //   mb: 4,
+          padding: 2,
+          backgroundColor: '#E3F2FD', 
+          borderRadius: 1,
+          color: '#1976D2',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <WarningIcon sx={{ mr: 2 }} />
+        <Typography variant="body1">
+          Chúng tôi khuyên bạn nên bật xác thực hai yếu tố để cung cấp thêm một lớp bảo mật cho tài khoản của bạn.
         </Typography>
-        <Typography variant="body1" color={theme.palette.mode === 'dark' ? 'gray' : 'textSecondary'}>
-          Khách hàng sẽ có thể theo đuổi mục tiêu phát triển của công ty. Về mặt cơ thể, họ rất chăm chỉ trong nhiệm vụ của mình.
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-          <Typography sx={{ flexGrow: 1, fontWeight: 'bold' }}>Bảo mật hai lớp:</Typography>
-          <Switch
-            checked={isTwoFactorEnabled}
-            onChange={handleToggleTwoFactor}
-            color="primary"
-          />
-        </Box>
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+        <Typography sx={{ flexGrow: 1, fontWeight: 'bold', fontSize: 17 }}>Bảo mật hai lớp:</Typography>
+        <Switch
+          checked={isTwoFactorEnabled}
+          onChange={handleToggleTwoFactor}
+          color="primary"
+        />
       </Box>
 
       <Box sx={{ mb: 4, display: 'flex', alignItems: 'center' }}>
