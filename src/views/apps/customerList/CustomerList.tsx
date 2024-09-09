@@ -7,145 +7,165 @@ import CustomerTable from 'src/components/tables/CustomerTable';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Dayjs } from 'dayjs';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import { FaPlus } from 'react-icons/fa'; // Import Plus Icon from react-icons
-// import AddIcon from '@mui/icons-material/Add'; // Alternatively, you can use Material UI icon
+import Tooltip from '@mui/material/Tooltip';
+import Fab from '@mui/material/Fab';
+import { FaPlus, FaSearch } from 'react-icons/fa';
+import { Grid, Box, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions, Button, FormControlLabel } from '@mui/material';
+import PopupAdd from './PopupAdd';
+import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 
 const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    to: '/apps/blog/posts',
-    title: 'Blog',
-  },
-  {
-    title: 'Blog post',
-  },
+  { to: '/', title: 'Home' },
+  { to: '/apps/blog/posts', title: 'Blog' },
+  { title: 'Blog post' },
 ];
+
 const CustomerList = () => {
-  const [month, setMonth] = React.useState('1');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
+  const [filterColumn, setFilterColumn] = React.useState('');
+  const [searchText, setSearchText] = React.useState('');
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  
+  // Function mở popup
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
   };
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
+
+  // Function đóng popup
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+  
+
   return (
-    <div>
+    <div className="customer-list-container" style={{ padding: '20px' }}>
+      {/* Breadcrumb */}
       <Breadcrumb title="Blog Detail" items={BCrumb} />
-      <DashboardCard
-        showSearchBox={true}
-        action={
-          <>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <CustomSelect
-                labelId="month-dd"
-                id="month-dd"
-                size="small"
-                value={month}
-                onChange={handleChange}
-              >
-                <MenuItem value={1}>Sửa đổi cột</MenuItem>
-              </CustomSelect>
-              <CustomSelect
-                labelId="month-dd"
-                id="month-dd"
-                size="small"
-                value={month}
-                onChange={handleChange}
-              >
-                <MenuItem value={1}>Tất cả</MenuItem>
-              </CustomSelect>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="50"
-                cursor="pointer"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-              </svg>
-              {/* Button to add new order */}
-              <button
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '16px 16px',
-                  backgroundColor: '#1976d2',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '50%',
-                  cursor: 'pointer',
-                }}
-              >
-                <FaPlus />
-              </button>
-            </div>
-          </>
-        }
+
+      {/* Action Buttons and Filters */}
+      <Box
+        className="actions-and-filters"
+        sx={{
+          marginBottom: '20px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
       >
-        <CustomerTable />
-      </DashboardCard>
+        {/* Nút tạo đơn hàng và thanh tìm kiếm */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Tooltip title="Tạo đơn hàng">
+            <Fab color="primary" aria-label="add" sx={{ marginRight: '30px' }} onClick={handleOpenPopup}>
+              <FaPlus />
+            </Fab>
+          </Tooltip>  
+
+          {/* Thanh tìm kiếm với icon */}
+          <CustomTextField
+            label="Tìm kiếm"
+            variant="outlined"
+            value={searchText}
+            onChange={(e: any) => setSearchText(e.target.value)}
+            sx={{ 
+              width: '300px',
+              borderRadius: '20px',
+              marginRight: '40px',
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '10px',
+                backgroundColor: '#fff',
+                '&:hover fieldset': {
+                  borderColor: '#3f51b5',
+                },
+              },
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <FaSearch color="#9e9e9e" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          
+          {/* Bộ lọc cột */}
+          <CustomSelect
+            labelId="column-filter"
+            id="column-filter"
+            size="small"
+            sx={{ marginRight: '30px' }}
+          >
+            <MenuItem value={1}>Sửa đổi cột</MenuItem>
+          </CustomSelect>
+
+          {/* Bộ lọc cọc */}
+          <CustomSelect
+            labelId="column-sort"
+            id="column-sort"
+            size="small"
+            sx={{ marginRight: '20px' }}
+          >
+            <MenuItem value={1}>Bộ cọc</MenuItem>
+          </CustomSelect>
+        </Box>
+
+        {/* Time Filter and Refresh Icon */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              label="Từ ngày"
+              value={selectedStartDate}
+              onChange={(newDate) => setSelectedStartDate(newDate)}
+              renderInput={(params) => <CustomTextField {...params} sx={{ marginRight: '10px' }} />}
+            />
+
+            <DatePicker
+              label="Đến ngày"
+              value={selectedEndDate}
+              onChange={(newDate) => setSelectedEndDate(newDate)}
+              renderInput={(params) => <CustomTextField {...params} sx={{ marginRight: '10px' }} />}
+            />
+          </LocalizationProvider>
+
+          {/* Icon Refresh */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            cursor="pointer"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="icon icon-tabler icons-tabler-outline icon-tabler-refresh"
+            style={{ marginLeft: '10px' }}
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+            <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+          </svg>
+        </Box>
+      </Box>
+
+      {/* Bảng khách hàng */}
+      <CustomerTable />
+      {/* Popup Thêm đơn hàng */}
+      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="sm">
+        <DialogTitle>Thêm Đơn Hàng</DialogTitle>
+        <DialogContent>
+          <PopupAdd /> {/* Gọi component PopupAdd */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup}>Hủy</Button>
+          <Button onClick={handleClosePopup} variant="contained" color="primary">
+            Xác nhận
+          </Button>
+        </DialogActions>
+      </Dialog>
+      
     </div>
   );
 };

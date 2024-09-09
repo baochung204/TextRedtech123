@@ -16,14 +16,16 @@ import {
   FormControl,
   InputLabel,
   Paper,
+  FormControlLabel,
 } from '@mui/material';
 import { DataRowCustomerTable } from './tableData';
+import CustomSwitch from '../forms/theme-elements/CustomSwitch';
 
 const CustomerTable = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
+  const [dense, setDense] = React.useState(false);
   // Hàm xử lý thay đổi trang
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -37,7 +39,9 @@ const CustomerTable = () => {
 
   // Cắt dữ liệu để hiển thị theo trang
   const paginatedRows = DataRowCustomerTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-
+  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDense(event.target.checked);
+  };
   return (
     <TableContainer component={Paper} sx={{ padding: 2 }}>
       <Table
@@ -207,7 +211,14 @@ const CustomerTable = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Box>
+      <Box ml={2}>
+          <FormControlLabel
+            control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
+            label="Dense padding"
+          />
+        </Box>
     </TableContainer>
+    
   );
 };
 
