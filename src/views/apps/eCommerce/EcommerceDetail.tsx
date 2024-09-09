@@ -28,7 +28,7 @@ const EcommerceDetail = () => {
   return (
     <PageContainer title="Shop List" description="this is Shop List page">
       {/* breadcrumb */}
-      <Breadcrumb title="Product Detail" items={BCrumb} />
+
       <Grid container spacing={3} sx={{ maxWidth: { lg: '1055px', xl: '1200px' } }}>
         <Grid item xs={12} sm={12} lg={12}>
           <ChildCard>

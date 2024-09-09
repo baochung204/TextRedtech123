@@ -14,7 +14,6 @@ import {
 } from '@mui/material';
 import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts, addToCart } from '../../../../store/apps/eCommerce/ECommerceSlice';
-import { IconMinus, IconPlus } from '@tabler/icons-react';
 import AlertCart from '../productCart/AlertCart';
 import { ProductType } from 'src/types/apps/eCommerce';
 
@@ -51,11 +50,11 @@ const ProductDetail = () => {
   };
 
   // Convert USD to VND
-  const convertToVND = (amount: number, rate: number = 24000) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
-      amount * rate,
-    );
-  };
+  // const convertToVND = (amount: number, rate: number = 24000) => {
+  //   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+  //     amount * rate,
+  //   );
+  // };
 
   return (
     <Box p={2}>
@@ -64,9 +63,6 @@ const ProductDetail = () => {
           <Box display="flex" alignItems="center">
             {/* Badge and category */}
             <Chip label="Còn hàng" color="success" size="small" />
-            <Typography color="textSecondary" variant="caption" ml={1} textTransform="capitalize">
-              {product.category}
-            </Typography>
           </Box>
           {/* Title and description */}
           <Typography fontWeight="600" variant="h4" mt={1}>
@@ -83,9 +79,10 @@ const ProductDetail = () => {
               color={theme.palette.text.secondary}
               sx={{ textDecoration: 'line-through' }}
             >
-              {convertToVND(product.salesPrice)}
+              {/* {convertToVND(product.salesPrice)} */}
             </Box>{' '}
-            {convertToVND(product.price)}
+            {/* {convertToVND()} */}
+            {product.price} point
           </Typography>
           {/* Ratings */}
           <Stack direction={'row'} alignItems="center" gap="10px" mt={2} pb={3}>
@@ -134,18 +131,13 @@ const ProductDetail = () => {
                 size="large"
                 fullWidth
                 variant="contained"
+                sx={{ width: '200px' }}
                 onClick={() => dispatch(addToCart(product)) && handleClick()}
               >
                 Thêm vào giỏ hàng
               </Button>
             </Grid>
           </Grid>
-          <Typography color="textSecondary" variant="body1" mt={4} mb={3}>
-            Giao hàng trong vòng 2-3 tuần
-          </Typography>
-          <Link to="/" color="inherit">
-            Tại sao thời gian giao hàng lại lâu hơn?
-          </Link>
           {/* Alert When click on add to cart */}
           <AlertCart handleClose={handleClose} openCartAlert={cartalert} />
         </>
