@@ -95,11 +95,8 @@ import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAff
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
-<<<<<<< HEAD
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
-=======
 
->>>>>>> 0be4700277ab1c102d22f235545c840cabd9ea39
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
