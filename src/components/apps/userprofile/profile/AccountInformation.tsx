@@ -17,7 +17,7 @@ const AccountInformation = () => {
 
   const handleEditClick = (field: string) => {
     if (field === 'password') {
-      navigate('/pages/account-settings');
+      navigate('/user-profile/changepassword');
     } else {
       setEditing(field);
     }
