@@ -181,7 +181,7 @@ const Menuitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: 'Chính sách và điều khoản',
+        title: 'Thỏa thuận hợp tác',
         icon: IconPoint,
         href: '/apps/rule',
       },
@@ -201,19 +201,17 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Cập nhật',
+    title: 'FAQ',
     icon: IconAppWindow,
     href: '/pages/faq',
   },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Thống kê',
-  //   icon: IconShoppingCart,
-  //   href: '/dashboards/list',
-  // },
 
- 
-
+  {
+    id: uniqueId(),
+    title: 'Cập nhật',
+    icon: IconAppWindow,
+    href: '/apps/update',
+  },
   {
     navlabel: true,
     subheader: 'Quản trị',

@@ -7,63 +7,39 @@ import {
   ListItemButton,
   List,
   Divider,
-  FormGroup,
   ListItemIcon,
-  FormControlLabel,
-  Radio,
   Typography,
-  Box,
-  Avatar,
-  Button,
-  Stack
 } from '@mui/material';
-import {
-  filterProducts,
-  sortByProducts,
-  sortByGender,
-  sortByColor,
-  sortByPrice,
-  filterReset,
-} from 'src/store/apps/eCommerce/ECommerceSlice';
-import {
-  IconHanger,
-  IconCircles,
-  IconNotebook,
-  IconMoodSmile,
-  IconDeviceLaptop,
-  IconSortAscending2,
-  IconSortDescending2,
-  IconAd2,
-  IconCheck
-} from '@tabler/icons-react';
+import { filterProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import { IconHanger, IconCircles, IconNotebook, IconMoodSmile } from '@tabler/icons-react';
 import { ProductFiterType } from 'src/types/apps/eCommerce';
 
 const ProductFilter = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.ecommerceReducer.products);
+  // const products = useSelector((state) => state.ecommerceReducer.products);
   const active = useSelector((state) => state.ecommerceReducer.filters);
-  const checkactive = useSelector((state) => state.ecommerceReducer.sortBy);
+
   const customizer = useSelector((state) => state.customizer);
   const br = `${customizer.borderRadius}px`;
 
-  const getUniqueData = (data: string[], attr: any) => {
-    let newVal = data.map((curElem) => {
-      return curElem[attr];
-    });
-    if (attr === 'colors') {
-      newVal = newVal.flat();
-    }
+  // const getUniqueData = (data: string[], attr: any) => {
+  //   let newVal = data.map((curElem) => {
+  //     return curElem[attr];
+  //   });
+  //   if (attr === 'colors') {
+  //     newVal = newVal.flat();
+  //   }
 
-    return (newVal = ['All', ...Array.from(new Set(newVal))]);
-  };
+  //   return (newVal = ['All', ...Array.from(new Set(newVal))]);
+  // };
 
-  const filterbyGender = getUniqueData(products, 'gender');
-  const filterbyColors = getUniqueData(products, 'colors');
+  // const filterbyGender = getUniqueData(products, 'gender');
+  // const filterbyColors = getUniqueData(products, 'colors');
 
   const filterCategory: ProductFiterType[] = [
     {
       id: 1,
-      filterbyTitle: 'Lọc theo danh mục',
+      filterbyTitle: 'Danh mục',
     },
     {
       id: 2,
@@ -100,50 +76,45 @@ const ProductFilter = () => {
       devider: true,
     },
   ];
-  const filterbySort = [
-    { id: 1, value: 'newest', label: 'Mới nhất', icon: IconAd2 },
-    { id: 2, value: 'priceDesc', label: 'Giá: Cao-Thấp', icon: IconSortAscending2 },
-    { id: 3, value: 'priceAsc', label: 'Giá: Thấp-Cao', icon: IconSortDescending2 },
-    { id: 4, value: 'discount', label: 'Giảm giá', icon: IconAd2 },
-  ];
-  const filterbyPrice = [
-    {
-      id: 0,
-      label: 'All',
-      value: 'All',
-    },
-    {
-      id: 1,
-      label: '0-50.000 VNĐ',
-      value: '0-50.000',
-    },
-    {
-      id: 3,
-      label: '50.000-100.000 VNĐ',
-      value: '50-100',
-    },
-    {
-      id: 4,
-      label: '100.000-200.000 VNĐ',
-      value: '100-200',
-    },
-    {
-      id: 5,
-      label: 'Over 200.000 VNĐ',
-      value: '200-99999',
-    },
-  ];
 
-  const handlerGenderFilter = (value: React.ChangeEvent<HTMLInputElement>) => {
-    if (value.target.checked) {
-      dispatch(sortByGender({ gender: value.target.value }));
-    }
-  };
-  const handlerPriceFilter = (value: React.ChangeEvent<HTMLInputElement>) => {
-    if (value.target.checked) {
-      dispatch(sortByPrice({ price: value.target.value }));
-    }
-  };
+  // const filterbyPrice = [
+  //   {
+  //     id: 0,
+  //     label: 'All',
+  //     value: 'All',
+  //   },
+  //   {
+  //     id: 1,
+  //     label: '0-50.000 VNĐ',
+  //     value: '0-50.000',
+  //   },
+  //   {
+  //     id: 3,
+  //     label: '50.000-100.000 VNĐ',
+  //     value: '50-100',
+  //   },
+  //   {
+  //     id: 4,
+  //     label: '100.000-200.000 VNĐ',
+  //     value: '100-200',
+  //   },
+  //   {
+  //     id: 5,
+  //     label: 'Over 200.000 VNĐ',
+  //     value: '200-99999',
+  //   },
+  // ];
+
+  // const handlerGenderFilter = (value: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (value.target.checked) {
+  //     dispatch(sortByGender({ gender: value.target.value }));
+  //   }
+  // };
+  // const handlerPriceFilter = (value: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (value.target.checked) {
+  //     dispatch(sortByPrice({ price: value.target.value }));
+  //   }
+  // };
 
   return (
     <>
@@ -179,25 +150,7 @@ const ProductFilter = () => {
         {/* ------------------------------------------- */}
         {/* Sort by */}
         {/* ------------------------------------------- */}
-        <Typography variant="subtitle2" fontWeight={600} px={3} mt={3} pb={2}>
-        Sắp xếp theo
-        </Typography>
-        {filterbySort.map((filter) => {
-          return (
-            <ListItemButton
-              sx={{ mb: 1, mx: 3, borderRadius: br }}
-              selected={checkactive === `${filter.value}`}
-              onClick={() => dispatch(sortByProducts(`${filter.value}`))}
-              key={filter.id + filter.label + filter.value}
-            >
-              <ListItemIcon sx={{ minWidth: '30px' }}>
-                <filter.icon stroke="1.5" size={19} />
-              </ListItemIcon>
-              <ListItemText>{filter.label}</ListItemText>
-            </ListItemButton>
-          );
-        })}
-        <Divider></Divider>
+
         {/* ------------------------------------------- */}
         {/* Filter By Gender */}
         {/* ------------------------------------------- */}
@@ -222,12 +175,11 @@ const ProductFilter = () => {
             ))}
           </FormGroup>
         </Box> */}
-        <Divider></Divider>
         {/* ------------------------------------------- */}
         {/* Filter By Pricing */}
         {/* ------------------------------------------- */}
-        <Typography variant="h6" px={3} mt={3} pb={2}>
-        Theo giá cả
+        {/* <Typography variant="h6" px={3} mt={3} pb={2}>
+          Theo giá cả
         </Typography>
         <Box p={3} pt={0}>
           <FormGroup>
@@ -245,8 +197,7 @@ const ProductFilter = () => {
               />
             ))}
           </FormGroup>
-        </Box>
-        <Divider></Divider>
+        </Box> */}
         {/* <Typography variant="h6" px={3} mt={3} pb={2}>
           By Colors
         </Typography> */}
@@ -282,15 +233,14 @@ const ProductFilter = () => {
             })}
           </Stack>
         </Box> */}
-        <Divider></Divider>
         {/* ------------------------------------------- */}
         {/* Reset */}
         {/* ------------------------------------------- */}
-        <Box p={3}>
+        {/* <Box p={3}>
           <Button variant="contained" onClick={() => dispatch(filterReset())} fullWidth>
-          Đặt lại bộ lọc
+            Đặt lại bộ lọc
           </Button>
-        </Box>
+        </Box> */}
       </List>
     </>
   );

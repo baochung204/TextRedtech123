@@ -19,9 +19,10 @@ import { IconDotsVertical, IconMenu2 } from '@tabler/icons-react';
 import { useSelector } from 'src/store/Store';
 
 import { ChatsType } from 'src/types/apps/chat';
-import { formatDistanceToNowStrict } from 'date-fns';
 import ChatInsideSidebar from './ChatInsideSidebar';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { vi } from 'date-fns/locale';
 
 interface ChatContentProps {
   toggleChatSidebar: () => void;
@@ -70,12 +71,6 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                 />
               </ListItem>
               <Stack direction={'row'}>
-                {/* <IconButton aria-label="delete">
-                  <IconPhone stroke={1.5} />
-                </IconButton>
-                <IconButton aria-label="delete">
-                  <IconVideo stroke={1.5} />
-                </IconButton> */}
                 <IconButton aria-label="delete" onClick={() => setOpen(!open)}>
                   <IconDotsVertical stroke={1.5} />
                 </IconButton>
@@ -113,11 +108,12 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                                   <Typography variant="body2" color="grey.400" mb={1}>
                                     {chatDetails.name},{' '}
                                     {formatDistanceToNowStrict(new Date(chat.createdAt), {
-                                      addSuffix: false,
+                                      addSuffix: true,
+                                      locale: vi, // Use Vietnamese locale
                                     })}{' '}
-                                    ago
                                   </Typography>
                                 ) : null}
+
                                 {chat.type === 'text' ? (
                                   <Box
                                     mb={2}
@@ -131,6 +127,7 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                                     {chat.msg}
                                   </Box>
                                 ) : null}
+
                                 {chat.type === 'image' ? (
                                   <Box mb={1} sx={{ overflow: 'hidden', lineHeight: '0px' }}>
                                     <img src={chat.msg} alt="attach" width="150" />
@@ -149,7 +146,7 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                             <Box alignItems="flex-end" display="flex" flexDirection={'column'}>
                               {chat.createdAt ? (
                                 <Typography variant="body2" color="grey.400" mb={1}>
-                                  ago
+                                  trước
                                 </Typography>
                               ) : null}
                               {chat.type === 'text' ? (

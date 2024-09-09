@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React from 'react';
 import {
   Box,
@@ -46,10 +44,11 @@ const AddToCart = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Sản phẩm</TableCell>
-
-                    <TableCell align="left">Số lượng</TableCell>
-                    <TableCell align="right">Giá</TableCell>
+                    <TableCell align="center">Sản phẩm</TableCell>
+                    <TableCell align="center">Số lượng</TableCell>
+                    <TableCell align="center">Giá niêm yết</TableCell>
+                    <TableCell align="center">Khuyến mại</TableCell>
+                    <TableCell align="center">Giá sau giảm</TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -59,7 +58,7 @@ const AddToCart = () => {
                       {/* ------------------------------------------- */}
                       {/* Hình ảnh và tiêu đề sản phẩm */}
                       {/* ------------------------------------------- */}
-                      <TableCell>
+                      <TableCell align="center">
                         <Stack direction="row" alignItems="center" gap={2}>
                           <Avatar
                             src={product.photo}
@@ -86,7 +85,7 @@ const AddToCart = () => {
                         </Stack>
                       </TableCell>
 
-                      <TableCell>
+                      <TableCell align="center">
                         <ButtonGroup size="small" color="success" aria-label="small button group">
                           <Button onClick={() => Decrease(product.id)} disabled={product.qty < 2}>
                             <IconMinus stroke={1.5} size="0.8rem" />
@@ -97,8 +96,23 @@ const AddToCart = () => {
                           </Button>
                         </ButtonGroup>
                       </TableCell>
-                      <TableCell align="right">
+
+                      <TableCell align="center">
                         <Typography variant="h6">${product.price * product.qty}</Typography>
+                      </TableCell>
+
+                      <TableCell align="center">
+                        <Typography variant="h6">
+                          ${product.salesPrice * product.qty - product.price * product.qty}
+                        </Typography>
+                      </TableCell>
+
+                      <TableCell align="center">
+                        <Typography variant="h6">
+                          $
+                          {product.price * product.qty -
+                            (product.salesPrice * product.qty - product.price * product.qty)}
+                        </Typography>
                       </TableCell>
                     </TableRow>
                   ))}
