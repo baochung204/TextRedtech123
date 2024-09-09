@@ -23,17 +23,14 @@ const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
 const BlogDetail = Loadable(lazy(() => import('../views/apps/blog/BlogPost')));
 const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')));
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
-const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
+// const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
-<<<<<<< HEAD
 const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
 
-=======
 const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
 const Notes = Loadable(lazy(() => import('../views/apps/notes/Notes')));
 const Tickets = Loadable(lazy(() => import('../views/apps/tickets/Tickets')));
@@ -63,7 +60,7 @@ const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affilia
 const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
 
 //update page
-const Update = Loadable(lazy(() => import('../views/apps/update/update')));
+// const Update = Loadable(lazy(() => import('../views/apps/update/update')));
 
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
@@ -101,16 +98,13 @@ const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/Quil
 import FormRequest from 'src/views/forms/FormRequest';
 import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
-<<<<<<< HEAD
-const Updating = Loadable(lazy(()=> import('src/views/authentication/Updating'))) ;
-=======
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
+import Update from 'src/views/apps/update/Update';
 
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -184,14 +178,11 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
-<<<<<<< HEAD
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
-=======
       { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
 
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist', element: <CustomerList2 /> },
