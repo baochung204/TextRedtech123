@@ -9,7 +9,7 @@ import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
 import ReceiveEmail from 'src/components/apps/userprofile/profile/ReceiveEmail';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import TwoFactorSecurity from 'src/components/apps/userprofile/profile/TwoFactorSecurity';
-
+  
 const UserProfile = () => {
   const [selected, setSelected] = useState<string>('personal');
 

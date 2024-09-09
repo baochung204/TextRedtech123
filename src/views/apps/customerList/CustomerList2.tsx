@@ -154,7 +154,7 @@ const CustomerList2 = () => {
       <CustomerTable />
       {/* Popup Thêm đơn hàng */}
       <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="sm">
-        <DialogTitle>Thêm Đơn Hàng</DialogTitle>
+        <DialogTitle>Thêm khách hàng</DialogTitle>
         <DialogContent>
           <PopupAdd /> {/* Gọi component PopupAdd */}
         </DialogContent>
