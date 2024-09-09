@@ -92,8 +92,6 @@ const BuyPoint = () => {
     setValue(formatNumber(inputValue));
   };
 
-
-
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
       <Breadcrumb title="Quy Đổi R-Point  " items={BCrumb} />
@@ -101,12 +99,12 @@ const BuyPoint = () => {
         {/* <Button onClick={() => onHandleOpenPopup()}>click</Button> */}
         <Grid container spacing={7}>
           <Grid item lg={10} sm={6} xs={12} sx={{}}>
-            <manchrquee style={{ backgroundColor: '#FEF3F4', padding: 2 }}>
+            <marquee style={{ backgroundColor: '#FEF3F4', padding: 2 }}>
               <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 500, fontSize: 16 }}>
                 [Quà tặng] Tặng 01 bộ chiến lược AIDA Sales Formula dành cho trợ lý bán hàng - áp
                 dụng từ ngày 01/10-31/12/2024 cho tất các khách hàng lần đầu tiên nạp Point
               </Typography>
-            </manchrquee>
+            </marquee>
           </Grid>
           <Grid item lg={2} sm={6} xs={12}>
             <Link
@@ -172,7 +170,6 @@ const BuyPoint = () => {
                                 fontWeight: '700',
                               },
                             }}
-
                           />
                         )}
                       </Typography>{' '}
