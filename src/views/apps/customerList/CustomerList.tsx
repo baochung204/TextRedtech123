@@ -9,6 +9,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Dayjs } from 'dayjs';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import { FaPlus } from 'react-icons/fa'; // Import Plus Icon from react-icons
+// import AddIcon from '@mui/icons-material/Add'; // Alternatively, you can use Material UI icon
+
 const BCrumb = [
   {
     to: '/',
@@ -31,13 +34,21 @@ const CustomerList = () => {
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <div>
-      <Breadcrumb title="Blog Detail" items={BCrumb} />{' '}
+      <Breadcrumb title="Blog Detail" items={BCrumb} />
       <DashboardCard
         showSearchBox={true}
-        // title="Danh sách khách hàng"
         action={
           <>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <CustomSelect
+                labelId="month-dd"
+                id="month-dd"
+                size="small"
+                value={month}
+                onChange={handleChange}
+              >
+                <MenuItem value={1}>Sửa đổi cột</MenuItem>
+              </CustomSelect>
               <CustomSelect
                 labelId="month-dd"
                 id="month-dd"
@@ -46,8 +57,6 @@ const CustomerList = () => {
                 onChange={handleChange}
               >
                 <MenuItem value={1}>Tất cả</MenuItem>
-                {/* <MenuItem value={2}>Đã mua </MenuItem>
-                                <MenuItem value={3}>Chưa mua</MenuItem> */}
               </CustomSelect>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -115,6 +124,22 @@ const CustomerList = () => {
                 <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
                 <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
               </svg>
+              {/* Button to add new order */}
+              <button
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '16px 16px',
+                  backgroundColor: '#1976d2',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '50%',
+                  cursor: 'pointer',
+                }}
+              >
+                <FaPlus />
+              </button>
             </div>
           </>
         }

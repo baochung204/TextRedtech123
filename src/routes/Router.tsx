@@ -92,6 +92,7 @@ import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAff
 import Success from 'src/views/apps/user-profile/Success';
 import Fail from 'src/views/apps/user-profile/Fail';
 import Pending from 'src/views/apps/user-profile/Pending';
+import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -270,6 +271,7 @@ const Router = [
       { path: '/auth/register2', element: <Register2 /> },
       { path: '/auth/forgot-password2', element: <ForgotPassword /> },
       { path: '/auth/forgot-password', element: <ForgotPassword2 /> },
+      { path: 'user-profile/changepassword', element: <ChangePassword /> },
       { path: '/auth/two-steps', element: <TwoSteps /> },
       { path: '/auth/two-steps2', element: <TwoSteps2 /> },
       { path: '/auth/maintenance', element: <Maintenance /> },
