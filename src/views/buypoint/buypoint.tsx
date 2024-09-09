@@ -25,6 +25,9 @@ import logoACB from 'src/assets/images/logoPay/acb.png';
 import logoJCB from 'src/assets/images/logoPay/JCB.png';
 import logoMB from 'src/assets/images/logoPay/Mb.jpg';
 import logoTCB from 'src/assets/images/logoPay/TCB.jpg';
+import { useTheme } from '@mui/material';
+import { keyframes } from '@mui/system';
+
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -41,6 +44,14 @@ const BCrumb = [
   },
   { to: '/buy/point', title: 'Đổi R-Point' },
 ];
+const marqueeAnimation = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+`;
 
 interface BuyPointProps {
   id: string;
@@ -49,6 +60,7 @@ interface BuyPointProps {
 }
 
 const BuyPoint = () => {
+  const theme = useTheme();
   const data: BuyPointProps[] = [
     { id: '1', text1: 70, text2: 20100 },
     { id: '2', text1: 350, text2: 100500 },
@@ -100,12 +112,34 @@ const BuyPoint = () => {
         {/* <Button onClick={() => onHandleOpenPopup()}>click</Button> */}
         <Grid container spacing={7}>
           <Grid item lg={10} sm={6} xs={12} sx={{}}>
-            <marquee style={{ backgroundColor: '#FEF3F4', padding: 2 }}>
-              <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 400, fontSize: 16 }}>
-                [Quà tặng] Tặng 01 bộ chiến lược AIDA Sales Formula dành cho trợ lý bán hàng - áp
-                dụng từ ngày 01/10-31/12/2024 cho tất các khách hàng lần đầu tiên nạp Point
-              </Typography>
-            </marquee>
+            <Box
+              sx={{
+                backgroundColor: theme.palette.mode === 'dark' ? '#404759' : '#FEF3F4', // Sử dụng màu nền tùy theo chế độ
+                padding: 0.3,
+                overflow: 'hidden', // Đảm bảo không có văn bản hiển thị ngoài vùng cuộn
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'inline-block',
+                  whiteSpace: 'nowrap',
+                  animation: `${marqueeAnimation} 20s linear infinite`,
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    color: theme.palette.mode === 'dark' ? '#FD6A76' : '#FC2032',
+                    fontWeight: 400,
+                    fontSize: 16,
+                  }}
+                >
+                  [Quà tặng] Tặng 01 bộ chiến lược AIDA Sales Formula dành cho trợ lý bán hàng - áp
+                  dụng từ ngày 01/10-31/12/2024 cho tất các khách hàng lần đầu tiên nạp Point
+                </Typography>
+              </Box>
+            </Box>
           </Grid>
           <Grid item lg={2} sm={6} xs={12}>
             <Link
@@ -138,6 +172,7 @@ const BuyPoint = () => {
                   height: '120px',
                   gap: '-10px',
                   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
+                  backgroundColor: theme.palette.mode === 'dark' ? '#303C50' : '', // Sử dụng màu nền tùy theo chế độ
                 }}
               >
                 <BoxStyled
@@ -177,7 +212,7 @@ const BuyPoint = () => {
                   ) : (
                     <>
                       {' '}
-                      <Typography variant="h3" sx={{ fontWeight: 700, color: '#161823' }}>
+                      <Typography variant="h3" sx={{ fontWeight: 700 }}>
                         {items.text1.toLocaleString('vi-VN')}{' '}
                       </Typography>
                     </>
@@ -186,15 +221,25 @@ const BuyPoint = () => {
                 </BoxStyled>
                 {typeof items.text1 === 'string' ? (
                   <>
-                    {' '}
-                    <Typography variant="h6" sx={{ paddingTop: '5px', color: '#16182380' }}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        paddingTop: '5px',
+                        color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
+                      }}
+                    >
                       {toggle === null ? items.text2 : <>{toggle.toLocaleString('vi-VN')} ₫</>}
                     </Typography>{' '}
                   </>
                 ) : (
                   <>
-                    {' '}
-                    <Typography variant="h6" sx={{ paddingTop: '5px', color: '#16182380' }}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        paddingTop: '5px',
+                        color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
+                      }}
+                    >
                       {items.text2.toLocaleString('vi-VN')} ₫
                     </Typography>
                   </>
@@ -211,9 +256,7 @@ const BuyPoint = () => {
             mt: { xs: 1, sm: 5, md: 5 },
           }}
         >
-          <Typography sx={{ fontWeight: 600, fontSize: 16, color: 'black' }}>
-            Phương thức thanh toán :
-          </Typography>
+          <Typography sx={{ fontWeight: 600, fontSize: 16 }}>Phương thức thanh toán :</Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
             <ul
               style={{
@@ -269,7 +312,7 @@ const BuyPoint = () => {
               xs: { alignContent: 'center' },
             }}
           >
-            <Typography variant="h3" sx={{ color: 'black', fontWeight: 600, fontSize: 18 }}>
+            <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 18 }}>
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
