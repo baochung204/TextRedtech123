@@ -359,7 +359,10 @@ const AssistantEditor = () => {
                         </Fab>
                     </Tooltip>
                     </Grid>
-                    <Strategy/>
+                    <Grid item xs={12} sm={6} lg={12}>
+                      <Strategy/>
+
+                    </Grid>
               </Grid>
               
             </Paper>
