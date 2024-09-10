@@ -104,12 +104,12 @@ const WeeklyStats: React.FC = () => {
   return (
     <DashboardCard title="Thống kê hàng tuần" subtitle="Doanh số trung bình">
       <>
-        <Stack mt={4}>
+        <Stack my={'20px'}>
           <Chart
             options={optionscolumnchart}
             series={seriescolumnchart}
             type="area"
-            height="130px"
+            height="140px"
           />
         </Stack>
         <Stack spacing={3} mt={0}>

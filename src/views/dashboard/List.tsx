@@ -23,11 +23,9 @@ import ItemTable1 from './table/itemTable1';
 import ItemTable2 from './table/itemTable2';
 
 const List = () => {
-  
   return (
     <div>
       {' '}
-      
       <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
         <Box mt={3}>
           <Grid container spacing={3}>

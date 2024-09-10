@@ -17,6 +17,8 @@ import {
   FormControlLabel,
   TextField,
   Avatar,
+  Tooltip,
+  Fab,
 } from '@mui/material';
 import { SliderThumb } from '@mui/material/Slider';
 import AddIcon from '@mui/icons-material/Add';
@@ -33,7 +35,11 @@ import PersonIcon from '@mui/icons-material/Person';
 import { IconEdit } from '@tabler/icons-react';
 import DateTime from './DateTime'
 import Checkboxes from './Tags';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import QuillEditor from './QuillEditor';
+import { IconPlus } from '@tabler/icons-react';
+import Integration from './Integration';
+import Strategy from './Strategy';
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
 
@@ -229,6 +235,24 @@ const AssistantEditor = () => {
                 </Grid>
               </Grid>
             </Box>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
+              <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} lg={10}>
+                    <Box display="flex" alignItems="center">
+                      <FacebookIcon fontSize='large' color="info" />
+                      <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
+                    </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={2}>
+                      <Tooltip title="Thêm">
+                        <Fab size="small" color="secondary" aria-label="plus">
+                          <IconPlus width={18} />
+                        </Fab>
+                    </Tooltip>
+                    </Grid>
+              </Grid>
+              <Integration/>
+            </Paper>
           </Grid>
           {/* Cột 2 */}
           <Grid item xs={12} sm={12} lg={4} >
@@ -323,13 +347,32 @@ const AssistantEditor = () => {
               )}
              
             </Paper>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
+              <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} lg={10}>
+                      <Box fontWeight={600}>Chiến lược</Box>
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={2}>
+                      <Tooltip title="Thêm">
+                        <Fab size="small" color="secondary" aria-label="plus">
+                          <IconPlus width={18} />
+                        </Fab>
+                    </Tooltip>
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={12}>
+                      <Strategy/>
+
+                    </Grid>
+              </Grid>
+              
+            </Paper>
           </Grid>
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
-            <Paper elevation={3} sx={{ height: '74vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper elevation={3} sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
-              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(74vh - 120px)' }}>
+              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(110vh - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
                     <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>

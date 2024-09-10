@@ -16,6 +16,12 @@ import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
 import WeeklyStats from 'src/components/dashboards/modern/WeeklyStats';
 import TopPerformers from 'src/components/dashboards/modern/TopPerformers';
 import Welcome from 'src/layouts/full/shared/welcome/Welcome';
+import GredientChart from '../charts/GredientChart';
+import PieCharts from '../charts/PieCharts';
+import GerChart from '../charts/Gerchart';
+import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
+import Affiliatedetail from '../charts/affiliatedetail';
+import Affilatechart from '../charts/Affilatechart';
 
 const Modern = () => {
   return (
@@ -27,11 +33,17 @@ const Modern = () => {
             <TopCards />
           </Grid>
           {/* column */}
-          <Grid item xs={12} lg={8}>
+          {/* <Grid item xs={12} lg={8}>
             <RevenueUpdates />
+          </Grid> */}
+          <Grid item xs={12} lg={8}>
+            <GerChart />
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <PieCharts />
           </Grid>
           {/* column */}
-          <Grid item xs={12} lg={4}>
+          {/* <Grid item xs={12} lg={4}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6} lg={12}>
                 <YearlyBreakup />
@@ -40,13 +52,16 @@ const Modern = () => {
                 <MonthlyEarnings />
               </Grid>
             </Grid>
-          </Grid>
-          {/* column */}
+          </Grid> */}
+          {/* column */}{' '}
           <Grid item xs={12} lg={4}>
-            <EmployeeSalary />
+            <SellingProducts />
           </Grid>
-          {/* column */}
           <Grid item xs={12} lg={4}>
+            <PaymentGateways />
+          </Grid>{' '}
+          {/* column */}
+          {/* <Grid item xs={12} lg={4}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
                 <Customers />
@@ -58,19 +73,22 @@ const Modern = () => {
                 <Social />
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
           {/* column */}
-          <Grid item xs={12} lg={4}>
-            <SellingProducts />
-          </Grid>
           {/* column */}
           <Grid item xs={12} lg={4}>
             <WeeklyStats />
           </Grid>
-          {/* column */}
           <Grid item xs={12} lg={8}>
-            <TopPerformers />
+            <Affiliatedetail />
           </Grid>
+          <Grid item xs={12} lg={4}>
+            <Affilatechart />
+          </Grid>
+          {/* column */}
+          {/* <Grid item xs={12} lg={8}>
+            <TopPerformers />
+          </Grid> */}
         </Grid>
         {/* column */}
         <Welcome />
