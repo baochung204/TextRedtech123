@@ -62,13 +62,13 @@ interface BuyPointProps {
 const BuyPoint = () => {
   const theme = useTheme();
   const data: BuyPointProps[] = [
-    { id: '1', text1: 70, text2: 20100 },
-    { id: '2', text1: 350, text2: 100500 },
-    { id: '3', text1: 700, text2: 201000 },
-    { id: '4', text1: 1400, text2: 402000 },
-    { id: '5', text1: 3500, text2: 1055000 },
-    { id: '6', text1: 7000, text2: 2010000 },
-    { id: '7', text1: 17500, text2: 5025000 },
+    { id: '1', text1: 70, text2: 21000 },
+    { id: '2', text1: 350, text2: 105000 },
+    { id: '3', text1: 700, text2: 210000 },
+    { id: '4', text1: 1400, text2: 420000 },
+    { id: '5', text1: 3500, text2: 1050000 },
+    { id: '6', text1: 7000, text2: 2100000 },
+    { id: '7', text1: 17500, text2: 5250000 },
     { id: '8', text1: 'Tùy chỉnh', text2: 'Hỗ trợ số lượng lớn' },
   ];
   const [clickedId, setClickedId] = useState<string | null>(null);
@@ -97,7 +97,7 @@ const BuyPoint = () => {
     const number = parseInt(inputValue, 10);
 
     if (!isNaN(number)) {
-      setToggle(number * 287);
+      setToggle(number * 300);
     } else {
       setToggle(null);
     }
@@ -198,6 +198,7 @@ const BuyPoint = () => {
                             // onChange={handleChange1}
                             onBlur={value === '' ? () => setClick(false) : undefined}
                             inputProps={{
+                              maxLength: 11,
                               style: {
                                 textAlign: 'center',
                                 fontSize: '24px',

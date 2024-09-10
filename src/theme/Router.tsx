@@ -12,8 +12,6 @@ const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')))
 const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
 const List = Loadable(lazy(() => import('../views/dashboard/List')));
-const Resources = Loadable(lazy(() => import('../views/dashboard/Resources')));
-// import Resources from 'src/views/dashboard/Resources';
 
 //  admin
 const Admin = Loadable(lazy(() => import('../views/apps/admin/dashboard/dashboard')));
@@ -106,6 +104,7 @@ import Pending from 'src/views/apps/user-profile/Pending';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import Update from 'src/views/apps/update/Update';
+import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
 
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
@@ -182,14 +181,13 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/list-assistant', element: <Assistant /> },
 
-      { path: '/dashboards/resources', exact: true, element: <Resources /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
       // { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
-      { path: '/apps/sell/order', element: <CustomerList /> },
+      { path: '/apps/sell/order', element: <CustomerListOrder /> },
 
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },

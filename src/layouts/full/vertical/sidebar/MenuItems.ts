@@ -105,12 +105,6 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Tài nguyên',
-    icon: IconBrandOpenSource,
-    href: '/dashboards/resources',
-  },
-  {
-    id: uniqueId(),
     title: 'Bán hàng',
     icon: IconPackage,
     href: '/apps/collaborate/',
@@ -137,12 +131,6 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Thêm khách hàng',
-        icon: IconPoint,
-        href: '/apps/collaborate/',
-      },
-      {
-        id: uniqueId(),
         title: 'Danh sách khách hàng',
         icon: IconPoint,
         href: '/apps/customerList2',
@@ -153,7 +141,6 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/apps/contract-client',
       },
-     
     ],
   },
   {

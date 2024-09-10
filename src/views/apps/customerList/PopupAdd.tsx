@@ -1,9 +1,8 @@
+import { Box, Checkbox, Grid, ListItemText, MenuItem, Typography } from '@mui/material';
 import React from 'react';
-import { Box, Button, Grid, MenuItem, Checkbox, ListItemText, Typography } from '@mui/material';
-import ParentCard from 'src/components/shared/ParentCard';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
 interface CurrencyType {
   value: string;
@@ -66,8 +65,6 @@ const PopupAdd = () => {
       instagramUrl,
       assistant
     });
-
-    // Thực hiện gọi API hoặc xử lý khác tại đây
   };
 
   return (
