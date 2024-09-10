@@ -8,7 +8,6 @@ import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
 import ParentCard from '../../components/shared/ParentCard';
 import { Props } from 'react-apexcharts';
 
-
 const BCrumb = [
   {
     to: '/',
@@ -20,11 +19,10 @@ const BCrumb = [
 ];
 
 const GredientChart = () => {
-
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
-  
+
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -113,19 +111,20 @@ const GredientChart = () => {
   ];
 
   return (
-    <PageContainer title="Gredient Chart" description="this is innerpage">
-      {/* breadcrumb */}
-      <Breadcrumb title="Gradient Chart" items={BCrumb} />
-      {/* end breadcrumb */}
-      <ParentCard title='Gradient Chart'>
-        <Chart
-          options={optionsgredientchart}
-          series={seriesgredientchart}
-          type="line"
-          height="300px"
-        />
-      </ParentCard>
-    </PageContainer>
+    // <PageContainer title="Gredient Chart" description="this is innerpage">
+    //   {/* breadcrumb */}
+    //   <Breadcrumb title="Gradient Chart" items={BCrumb} />
+    //   {/* end breadcrumb */}
+
+    // </PageContainer>
+    <ParentCard title="Gradient Chart">
+      <Chart
+        options={optionsgredientchart}
+        series={seriesgredientchart}
+        type="line"
+        height="300px"
+      />
+    </ParentCard>
   );
 };
 

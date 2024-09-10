@@ -28,8 +28,8 @@ const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collab
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
-const AssistantInfor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantInfor')));
-const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
+const AssistantInfor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantById')));
+// const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
@@ -42,7 +42,8 @@ const EcomProductCheckout = Loadable(
   lazy(() => import('../views/apps/eCommerce/EcommerceCheckout')),
 );
 const Detailpoint = Loadable(lazy(() => import('../views/apps/collaborate/point/detailpoint')));
-const Rule = Loadable(lazy(() => import('../views/apps/rule/rule')));
+const Aff = Loadable(lazy(() => import('../views/apps/contract/Affiliate')));
+const Client = Loadable(lazy(() => import('../views/apps/contract/Client')));
 const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Purchasehistory = Loadable(lazy(() => import('../views/apps/history/purchase-history')));
@@ -120,6 +121,8 @@ const AreaChart = Loadable(lazy(() => import('../views/charts/AreaChart')));
 const CandlestickChart = Loadable(lazy(() => import('../views/charts/CandlestickChart')));
 const ColumnChart = Loadable(lazy(() => import('../views/charts/ColumnChart')));
 const DoughnutChart = Loadable(lazy(() => import('../views/charts/DoughnutChart')));
+const PieCharts = Loadable(lazy(() => import('../views/charts/PieCharts')));
+
 const GredientChart = Loadable(lazy(() => import('../views/charts/GredientChart')));
 const RadialbarChart = Loadable(lazy(() => import('../views/charts/RadialbarChart')));
 const LineChart = Loadable(lazy(() => import('../views/charts/LineChart')));
@@ -177,11 +180,13 @@ const Router = [
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
+      { path: '/apps/list-assistant', element: <Assistant /> },
+
       { path: '/dashboards/resources', exact: true, element: <Resources /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
-      { path: '/apps/assistant/:id', element: <AssistantById /> },
+      // { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
       { path: '/apps/sell/order', element: <CustomerList /> },
@@ -190,7 +195,8 @@ const Router = [
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist2', element: <CustomerList2 /> },
       { path: '/apps/customerlist', element: <CustomerList /> },
-      { path: '/apps/rule', element: <Rule /> },
+      { path: '/apps/contract-client', element: <Client /> },
+      { path: '/apps/contract-affiliate', element: <Aff /> },
       // { path: '/admin', element: <Blog /> },
       { path: '/admin/dashborard', element: <Admin /> },
       { path: '/admin/products', element: <Adminproducts /> },
@@ -270,6 +276,8 @@ const Router = [
       { path: '/charts/candlestick-chart', element: <CandlestickChart /> },
       { path: '/charts/column-chart', element: <ColumnChart /> },
       { path: '/charts/doughnut-pie-chart', element: <DoughnutChart /> },
+      { path: '/charts/pieCharts', element: <PieCharts /> },
+
       { path: '/charts/radialbar-chart', element: <RadialbarChart /> },
       { path: '/widgets/cards', element: <WidgetCards /> },
       { path: '/widgets/banners', element: <WidgetBanners /> },

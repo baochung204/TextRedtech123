@@ -66,6 +66,7 @@
       },
     ];
 
+
     return (
       <DashboardCard title="Cổng thanh toán" subtitle="Nền tảng kiếm thu nhập">
         <>
@@ -97,6 +98,7 @@
                 {stat.price < 400 ? (
                   <Typography variant="subtitle2" color="textSecondary" fontWeight="600">
                     -{stat.price}tr
+
                   </Typography>
                 ) : (
                   <Typography variant="subtitle2" fontWeight="600">

@@ -9,6 +9,7 @@ type Props = {
   onSearchChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; // Xử lý thay đổi ô tìm kiếm
   showSearchBox?: boolean; // Quyết định có hiển thị ô tìm kiếm hay không
   subtitle?: string;
+
   action?: JSX.Element | any;
   footer?: JSX.Element;
   cardheading?: string | JSX.Element;
