@@ -7,7 +7,7 @@ import DataTable4 from '../DataTable/TableTab4';
 const Tab4 = () => {
   return (
     <Box>
-      <Box display="flex" justifyContent="flex-end">
+      {/* <Box display="flex" justifyContent="flex-end">
         <IconButton color="primary" aria-label="add to shopping cart">
           <AddCircleIcon
             sx={{
@@ -15,7 +15,7 @@ const Tab4 = () => {
             }}
           />
         </IconButton>
-      </Box>
+      </Box> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
