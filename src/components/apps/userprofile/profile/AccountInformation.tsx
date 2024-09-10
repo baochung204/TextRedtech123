@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button, useTheme } from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
+import { setSelected } from 'src/store/RouterSlice';
+import { dispatch, useDispatch } from 'src/store/Store';
+
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
@@ -14,10 +17,17 @@ const AccountInformation = () => {
 
   const theme = useTheme();
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Khởi tạo dispatch
+
+  const handleButtonClick = (id: number) => {
+    if (id === 2) {
+      dispatch(setSelected('changepassword')); // Dispatch action để điều hướng
+    }
+  };
 
   const handleEditClick = (field: string) => {
     if (field === 'password') {
-      navigate('/user-profile/changepassword');
+      handleButtonClick(2); // Gọi handleButtonClick khi người dùng click đổi mật khẩu
     } else {
       setEditing(field);
     }
@@ -81,8 +91,6 @@ const AccountInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        // backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
-        // color: theme.palette.mode === 'dark' ? '#fff' : '#000',
         margin: '0 auto',
       }}
     >
