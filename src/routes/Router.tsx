@@ -185,7 +185,8 @@ const Router = [
 
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
-      { path: '/apps/customerlist', element: <CustomerList2 /> },
+      { path: '/apps/customerlist2', element: <CustomerList2 /> },
+      { path: '/apps/customerlist', element: <CustomerList /> },
       { path: '/apps/rule', element: <Rule /> },
       // { path: '/admin', element: <Blog /> },
       { path: '/admin/dashborard', element: <Admin /> },
