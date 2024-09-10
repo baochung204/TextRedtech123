@@ -8,11 +8,12 @@ import { AppState } from 'src/store/Store';
 
 type Props = {
   title: string;
+  description: string;
   footer?: string | JSX.Element;
   children: JSX.Element;
 };
 
-const ParentCard = ({ title, children, footer }: Props) => {
+const ParentCard = ({ title, children, footer, description }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
@@ -20,14 +21,21 @@ const ParentCard = ({ title, children, footer }: Props) => {
 
   return (
     <Card
-      sx={{ padding: 0, border: !customizer.isCardShadow ? `1px solid ${borderColor}` : 'none' }}
+      sx={{
+        height: '100%',
+        padding: 0,
+        border: !customizer.isCardShadow ? `1px solid ${borderColor}` : 'none',
+      }}
       elevation={customizer.isCardShadow ? 9 : 0}
       variant={!customizer.isCardShadow ? 'outlined' : undefined}
     >
-      <CardHeader title={title} />
-      <Divider />
-
-      <CardContent>{children}</CardContent>
+      {/* <CardHeader title={title} sx={{ display: 'flex', justifyContent: 'center' }} />
+      {description ? <CardContent>{description}</CardContent> : ''} */}
+      <Box sx={{ textAlign: 'center', marginY: '30px' }}>
+        {' '}
+        <h2>Nguồn khách hàng </h2>
+      </Box>
+      <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (
         <>
           <Divider />

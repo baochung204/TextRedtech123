@@ -450,7 +450,7 @@ const Paymenthistory = () => {
                                 gap={'5px'}
                                 alignItems={'center'}
                               >
-                                {row.point} <img src={pointimg} alt="" width={'25px'} />
+                                {row.point} <img src={pointimg} alt="" width={'20px'} />
                               </Typography>
                             </Box>
                           </Stack>
@@ -459,7 +459,7 @@ const Paymenthistory = () => {
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount.toLocaleString()} đ
+                                {getStatusTextAndColor(row.status)}
                               </Typography>
                             </Box>
                           </Stack>

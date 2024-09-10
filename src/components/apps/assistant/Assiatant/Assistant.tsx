@@ -1,13 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import {
   Typography,
   TableHead,
   Avatar,
-  Chip,
   Box,
   Table,
   TableBody,
@@ -18,7 +18,6 @@ import {
   IconButton,
   TableContainer,
   Stack,
-  Button
 } from '@mui/material';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -26,7 +25,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 
 import img1 from 'src/assets/images/profile/user-1.jpg';
@@ -35,17 +33,8 @@ import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import ParentCard from 'src/components/shared/ParentCard';
-import BlankCard from '../../../components/shared/BlankCard';
-import {
-  IconArrowBackUp,
-  IconCheck,
-  IconDotsVertical,
-  IconEdit,
-  IconPlus,
-  IconTrash,
-  IconX,
-} from '@tabler/icons-react';
-import EditIcon from '@mui/icons-material/Edit';
+import BlankCard from '../../../shared/BlankCard';
+import { IconEdit } from '@tabler/icons-react';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -102,7 +91,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     </Box>
   );
 }
-
 
 interface OrderType {
   id: string;
@@ -204,10 +192,8 @@ const rows: OrderType[] = [
     connect: 'Zalo',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
-  }
+  },
 ].sort((a, b) => (a.customer < b.customer ? -1 : 1));
-
-
 
 const Assistant = () => {
   const [page, setPage] = React.useState(0);
@@ -225,10 +211,10 @@ const Assistant = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const nav = useNavigate()
+  const nav = useNavigate();
   const handleInfor = () => {
-    nav('/apps/assistant/:id')
-  }
+    nav('/apps/assistant/:id');
+  };
 
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
@@ -239,7 +225,6 @@ const Assistant = () => {
               aria-label="custom pagination table"
               sx={{
                 whiteSpace: 'nowrap',
-                
               }}
             >
               <TableHead>
@@ -270,34 +255,55 @@ const Assistant = () => {
                   ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   : rows
                 ).map((row, index) => (
-                  <TableRow key={index} >
+                  <TableRow key={index}>
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} variant="subtitle2">{row.id}</Typography>
+                      <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
+                        {row.id}
+                      </Typography>
                     </TableCell>
                     <TableCell onClick={handleInfor}>
                       <Stack direction="row" spacing={2} alignmodel="center">
                         <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                        <Typography sx={{cursor: "pointer"}} variant="subtitle2" fontWeight="600">
-                          {row.customer}
-                        </Typography>
+
+                        <Link to={'/apps/assistant/:id'}>
+                          <Typography
+                            sx={{ cursor: 'pointer' }}
+                            variant="subtitle2"
+                            fontWeight="600"
+                          >
+                            {row.customer}
+                          </Typography>
+                        </Link>
                       </Stack>
-                    </TableCell >
+                    </TableCell>
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} color="textSecondary" variant="h6" fontWeight="400">
+                      <Typography
+                        sx={{ cursor: 'pointer' }}
+                        color="textSecondary"
+                        variant="h6"
+                        fontWeight="400"
+                      >
                         {row.model}
                       </Typography>
                     </TableCell>
 
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} color="textSecondary" variant="h6" fontWeight="400">
+                      <Typography
+                        sx={{ cursor: 'pointer' }}
+                        color="textSecondary"
+                        variant="h6"
+                        fontWeight="400"
+                      >
                         {row.connect}
                       </Typography>
                     </TableCell>
 
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} variant="subtitle2">{row.date}</Typography>
+                      <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
+                        {row.date}
+                      </Typography>
                     </TableCell>
-                    <TableCell sx={{ cursor: "pointer", color:"steelblue"}}>
+                    <TableCell sx={{ cursor: 'pointer', color: 'steelblue' }}>
                       <IconEdit />
                       {/* <DeleteIcon sx={{marginRight: '10px', cursor: "pointer"}}/> */}
                     </TableCell>

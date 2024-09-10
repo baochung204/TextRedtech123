@@ -2,9 +2,7 @@
 // @ts-ignore
 
 import React, { useState } from 'react';
-import { Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
-
 import {
   Box,
   Drawer,
@@ -17,14 +15,10 @@ import {
   styled,
   TextField,
   FormControl,
-  Radio,
-  RadioGroup,
   Card,
-  CardMedia,
   CardContent,
-  Tooltip,
 } from '@mui/material';
-import sale from 'src/assets/images/icon.png/sale.png';
+
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 import AppCard from 'src/components/shared/AppCard';
@@ -34,18 +28,10 @@ import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
-// import Iconbank from 'src/assets/images/logoPay/bank.svg';
-// import Iconmomo from 'src/assets/images/logoPay/momo.svg';
-// import Iconpaypal from 'src/assets/images/logoPay/paypal.svg';
-// import Iconvnpay from 'src/assets/images/logoPay/vnpay.svg';
-// import Iconzalopay from 'src/assets/images/logoPay/zalopay.svg';
-// import Iconshopeepay from 'src/assets/images/logoPay/shopeepay.svg';
-// import { title } from 'process';
+
+import Countdown from 'src/components/countdown/countdown';
 
 const CustomInput = styled((props: any) => <TextField {...props} />)(({ theme }) => ({
-  '& .MuiOutlinedInput-root': {
-    borderRadius: '50px',
-  },
   '& .MuiOutlinedInput-input::-webkit-input-placeholder': {
     color: theme.palette.text.secondary,
     opacity: '0.8',
@@ -81,8 +67,8 @@ const PayMentPonit = () => {
       title: 'Chatbot marketing',
       price: 1055000,
       discount: 1023900,
-
-      reward: 'Thưởng 10%',
+      sale: 80,
+      timeFlash: 180,
     },
     {
       id: 6,
@@ -90,8 +76,8 @@ const PayMentPonit = () => {
       title: 'Chatbot hỗ trợ khách hàng',
       price: 2010000,
       discount: 1995002,
-
-      reward: 'Thưởng 15%',
+      sale: 80,
+      timeFlash: 180,
     },
     {
       id: 7,
@@ -99,14 +85,13 @@ const PayMentPonit = () => {
       title: 'Chatbot thương mại điện tử',
       price: 5025000,
       discount: 3935000,
-      reward: 'Thưởng 20%',
+      sale: 80,
+      timeFlash: 180,
     },
   ];
 
   const handleSelectPackage = (pkg: any) => {
     setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
-    console.log(`Đã chọn gói ${pkg.amount}`);
-    // Thêm logic xử lý khi khách hàng chọn gói.
   };
   return (
     <PageContainer title="Email App" description="this is email page">
@@ -114,8 +99,6 @@ const PayMentPonit = () => {
         <img src={emailIcon} alt={emailIcon} width={'165px'} />
       </Breadcrumb>
       <Box sx={{ display: { xs: 'block', md: 'block', lg: 'flex' }, gap: 2 }}>
-       
-        {' '}
         <AppCard>
           <Drawer
             anchor="right"
@@ -134,27 +117,27 @@ const PayMentPonit = () => {
                 </Box>
                 <Box>
                   <Grid container sx={{ mt: 2 }}>
-                    <Grid item lg={4} xs={12}>
+                    <Grid item lg={5} xs={12}>
                       <Typography variant="body2" color="text.secondary">
                         Họ Và Tên
                       </Typography>
-                      <Typography variant="subtitle1" mb={0.5} fontWeight={600}>
+                      <Typography variant="subtitle1" my={0.5} fontWeight={600}>
                         Nguyễn Văn Bình
                       </Typography>
                     </Grid>
-                    <Grid item lg={4} xs={12}>
+                    <Grid item lg={5} xs={12}>
                       <Typography variant="body2" color="text.secondary">
                         Email
                       </Typography>
-                      <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
+                      <Typography variant="subtitle1" fontWeight={600} my={0.5}>
                         binhvn.reman@gmail.com
                       </Typography>
                     </Grid>
-                    <Grid item lg={4} xs={12}>
+                    <Grid item lg={2} xs={12}>
                       <Typography variant="body2" color="text.secondary">
                         Số Điện Thoại
                       </Typography>
-                      <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
+                      <Typography variant="subtitle1" fontWeight={600} my={0.5}>
                         0123456789
                       </Typography>
                     </Grid>
@@ -168,15 +151,17 @@ const PayMentPonit = () => {
                 <Box sx={{ mt: 2 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
-                      Gói
+                      Gói sản phẩm
                     </Typography>
-                    <Typography>Tiêu chuẩn - Tháng (300.000 ký tự)</Typography>
+                    <Typography>
+                      Gói 5000 R-Point + Tặng 50MB dung lượng file lưu trữ Files
+                    </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
-                      Giá gói
+                      Giá niêm yết
                     </Typography>
-                    <Typography>1,055,000 đ</Typography>
+                    <Typography>1,055,000₫</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -202,39 +187,35 @@ const PayMentPonit = () => {
                     </Typography>
                   </AccordionSummary>
 
-                  <AccordionDetails
-                    sx={{
-                      border: 'none',
-                      boxShadow: 'none',
-                      display: 'flex',
-                      gap: 2,
-                      px: 0,
-                    }}
-                  >
-                    <CustomInput
-                      id="ordinary-outlined-password-input"
-                      type="text"
-                      autoComplete="current-password"
-                      variant="outlined"
-                      fullWidth
-                      placeholder="Nhập mã khuyến mãi"
-                      sx={{
-                        px: 0,
-                        width: '80%',
-                      }}
-                    />
-
-                    <Box>
-                      <Button
-                        color="primary"
-                        variant="contained"
-                        sx={{ width: 'auto', borderRadius: '50px', py: 1 }}
-                      >
-                        Áp dụng
-                      </Button>
-                    </Box>
+                  <AccordionDetails>
+                    <Grid container spacing={3}>
+                      <Grid item xs={3} lg={9}>
+                        <CustomInput
+                          id="ordinary-outlined-password-input"
+                          type="text"
+                          autoComplete="current-password"
+                          variant="outlined"
+                          fullWidth
+                          placeholder="Nhập mã khuyến mãi"
+                          sx={{
+                            width: '100%',
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={3} lg={3}>
+                        <Box>
+                          <Button
+                            color="primary"
+                            variant="contained"
+                            sx={{ width: '100%', py: 1.3 }}
+                          >
+                            Áp dụng
+                          </Button>
+                        </Box>
+                      </Grid>
+                    </Grid>
                   </AccordionDetails>
-                  <Box
+                  {/* <Box
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
@@ -249,7 +230,7 @@ const PayMentPonit = () => {
                       }}
                     >
                       <Typography sx={{ fontWeight: 600, px: 2, fontSize: 16, py: 2 }}>
-                        Giảm 900.000 đ
+                        KM025K2J - Giảm 15%
                       </Typography>
                       <Button
                         variant="outlined"
@@ -273,7 +254,7 @@ const PayMentPonit = () => {
                       }}
                     >
                       <Typography sx={{ fontWeight: 600, px: 2, fontSize: 16, py: 2 }}>
-                        Giảm 800.000 đ
+                        CN850KDWQ-Giảm 200.000₫
                       </Typography>
                       <Button
                         variant="outlined"
@@ -290,7 +271,62 @@ const PayMentPonit = () => {
                         Áp dụng
                       </Button>
                     </Box>
-                  </Box>
+                  </Box> */}
+                  <Grid container spacing={3} px={2}>
+                    <Grid item lg={6}>
+                      <Box
+                        sx={{
+                          border: '2px solid #FFD60A',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography sx={{ fontWeight: 600, px: 2, fontSize: 16, py: 2 }}>
+                          KM025K2J - Giảm 15%
+                        </Typography>
+                        <Button
+                          variant="outlined"
+                          color="warning"
+                          sx={{ height: '35px', my: 'auto', mr: 2 }}
+                        >
+                          Bỏ chọn
+                        </Button>
+                      </Box>
+                    </Grid>
+                    <Grid item lg={6}>
+                      <Box
+                        sx={{
+                          border: '2px solid #E0E0E0',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          position: 'relative',
+
+                          '&:hover button': {
+                            opacity: 1,
+                            visibility: 'visible',
+                          },
+                        }}
+                      >
+                        <Typography sx={{ fontWeight: 600, px: 2, fontSize: 16, py: 2 }}>
+                          CN850KDWQ-Giảm 200.000₫
+                        </Typography>
+                        <Button
+                          variant="outlined"
+                          color="warning"
+                          sx={{
+                            height: '35px',
+                            my: 'auto',
+                            mr: 2,
+                            opacity: 0,
+                            visibility: 'hidden',
+                            transition: 'opacity 0.3s ease, visibility 0.3s ease',
+                          }}
+                        >
+                          Áp dụng
+                        </Button>
+                      </Box>
+                    </Grid>
+                  </Grid>
                 </Accordion>
                 <Accordion
                   sx={{
@@ -308,7 +344,7 @@ const PayMentPonit = () => {
                     }}
                   >
                     <Typography variant="body2" sx={{ fontSize: 16, fontWeight: 500 }}>
-                      Gợi ý thêm
+                      Flash-sale
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails
@@ -316,8 +352,8 @@ const PayMentPonit = () => {
                       border: 'none',
                       boxShadow: 'none',
                       display: 'flex',
-                      flexDirection: 'column', // Đặt các phần tử theo chiều dọc
-                      gap: 2,
+                      flexDirection: 'column',
+
                       px: 0,
                     }}
                   >
@@ -343,10 +379,13 @@ const PayMentPonit = () => {
                           >
                             <CardContent
                               sx={{
-                                // position: 'relative',
+                                p: 2,
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'end',
+                                '&:last-child': {
+                                  pb: 2,
+                                },
                               }}
                             >
                               <div style={{ display: 'flex', gap: '20px' }}>
@@ -354,26 +393,22 @@ const PayMentPonit = () => {
                                   <img
                                     src={pkg.img}
                                     alt={''}
-                                    width="100"
+                                    width="120"
                                     style={{ borderRadius: '10px' }}
                                   />
                                 </Typography>
                                 <div>
-                                  <Tooltip title={pkg.reward} arrow>
-                                    <Typography
-                                      variant="h6"
-                                      sx={{
-                                        fontWeight: 'bold',
-                                        mb: 1,
+                                  <Typography
+                                    variant="h6"
+                                    sx={{
+                                      fontWeight: 'bold',
+                                      mb: 1,
+                                    }}
+                                  >
+                                    {pkg.title}
+                                  </Typography>
 
-                                        // display: 'flex',
-                                        // alignItems: 'center',
-                                      }}
-                                    >
-                                      {pkg.title}
-                                    </Typography>
-                                  </Tooltip>
-                                  <div style={{ display: 'flex', gap: '10px' }}>
+                                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                                     {' '}
                                     <Typography
                                       sx={{
@@ -383,33 +418,49 @@ const PayMentPonit = () => {
                                         fontSize: '14px',
                                       }}
                                     >
-                                      {pkg.discount.toLocaleString()} đ
+                                      {pkg.discount.toLocaleString()} ₫
                                     </Typography>
                                     <Typography sx={{ color: '#888', mb: 1 }}>
-                                      <del> {pkg.price.toLocaleString()} đ</del>
+                                      <del> {pkg.price.toLocaleString()} ₫</del>
                                     </Typography>{' '}
                                   </div>
+                                  <Box>
+                                    <Button
+                                      variant={'outlined'}
+                                      color="warning"
+                                      sx={{
+                                        display: { xs: 'none', md: 'block' },
+                                        backgroundImage: 'none',
+                                        ':hover': { backgroundColor: 'none' },
+                                        mt: 3.4,
+                                      }}
+                                    >
+                                      {pkg.sale}%
+                                    </Button>
+                                  </Box>
                                 </div>
                               </div>
-
-                              <Button
-                                variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
-                                color="warning"
-                                sx={{
-                                  display: { xs: 'none', md: 'block' },
-                                  marginBottom: '10px',
-                                  backgroundImage:
-                                    selectedPackage === pkg.id
-                                      ? 'linear-gradient(45deg, #ff6f61, #ff9a76)'
-                                      : 'none',
-                                  borderColor:
-                                    selectedPackage === pkg.id ? 'transparent' : '#FFD60A',
-                                }}
-                              >
-                                {selectedPackage === pkg.id ? 'Đã chọn' : 'Chọn Mua'}
-                              </Button>
+                              <Box>
+                                <Countdown initialSeconds={pkg.timeFlash} />
+                                <Button
+                                  variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
+                                  color="warning"
+                                  sx={{
+                                    display: { xs: 'none', md: 'block' },
+                                    width: '123.86px',
+                                    backgroundImage:
+                                      selectedPackage === pkg.id
+                                        ? 'linear-gradient(45deg, #ff6f61, #ff9a76)'
+                                        : 'none',
+                                    borderColor:
+                                      selectedPackage === pkg.id ? 'transparent' : '#FFD60A',
+                                  }}
+                                >
+                                  {selectedPackage === pkg.id ? 'Đã chọn' : 'Chọn Mua'}
+                                </Button>
+                              </Box>
                             </CardContent>
-                            <Box
+                            {/* <Box
                               style={{
                                 position: 'absolute',
                                 top: '-15px',
@@ -422,7 +473,7 @@ const PayMentPonit = () => {
                               sx={{ right: { xs: '-15px', md: '45px' } }}
                             >
                               <img src={sale} alt="" style={{ width: '70px' }} />
-                            </Box>
+                            </Box> */}
                           </Card>
                         </Grid>
                       ))}
@@ -431,7 +482,7 @@ const PayMentPonit = () => {
                   <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="h5">Tổng giá gói : </Typography>
                     <Typography variant="h5" sx={{ paddingX: '3px' }}>
-                      1.023.900 đ
+                      1.023.900₫
                     </Typography>
                   </Box>{' '}
                 </Accordion>
@@ -447,10 +498,10 @@ const PayMentPonit = () => {
                     }}
                   >
                     <Typography variant="h6" fontWeight={600} sx={{ display: 'flex' }}>
-                      Giá gốc :
+                      Giá niêm yết
                     </Typography>
-                    <Typography variant="h6" sx={{ paddingX: '3px' }}>
-                      2,078,900 đ
+                    <Typography variant="h6" fontWeight={700} sx={{ paddingX: '3px' }}>
+                      2,078,900₫
                     </Typography>
                   </Box>{' '}
                   <Box
@@ -462,10 +513,10 @@ const PayMentPonit = () => {
                     }}
                   >
                     <Typography variant="subtitle1" fontWeight={600}>
-                      Tiết kiệm :{' '}
+                      Khuyến mại
                     </Typography>
                     <Typography variant="subtitle1" fontWeight={600} sx={{ paddingX: '3px' }}>
-                      - 531,030 đ
+                      - 531,030₫
                     </Typography>
                   </Box>{' '}
                   <Box
@@ -480,7 +531,7 @@ const PayMentPonit = () => {
                       Tổng tiền trước VAT :{' '}
                     </Typography>
                     <Typography variant="subtitle1" fontWeight={600} sx={{ paddingX: '3px' }}>
-                      1,547,870 đ
+                      1,547,870₫
                     </Typography>
                   </Box>
                   <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
@@ -488,14 +539,14 @@ const PayMentPonit = () => {
                       VAT (10%) :{' '}
                     </Typography>
                     <Typography variant="subtitle1" fontWeight={600} sx={{ paddingX: '3px' }}>
-                      154,787 đ
+                      154,787₫
                     </Typography>
                   </Box>{' '}
                 </Box>
                 <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
                   <Typography variant="h4">Tổng cộng </Typography>
-                  <Typography variant="h4" fontWeight={'bold'}>
-                    1,702,657 đ
+                  <Typography variant="h4" fontWeight={'bold'} sx={{ color: '#FC3242' }}>
+                    1,702,657₫
                   </Typography>
                 </Box>
 
@@ -589,487 +640,29 @@ const PayMentPonit = () => {
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                   <Button
+                    variant="contained"
+                    disableElevation
                     sx={{
-                      fontSize: 18,
-                      px: 4,
+                      px: 7,
                       py: 1,
-                      color: 'white',
-                      fontWeight: 600,
-                      backgroundColor: 'red',
+                      backgroundColor: '#FC2032',
+                      fontWeight: 700,
+                      fontSize: 18,
                       ':hover': {
-                        backgroundColor: '#DC143C ',
+                        backgroundColor: '#F22A51',
                       },
                     }}
-                    onClick={() => {}}
                   >
-                    Thanh Toán{' '}
+                    Thanh toán
                   </Button>
                 </Box>
               </Box>
             </Box>
           </Drawer>
-        </AppCard>{' '}
+        </AppCard>
       </Box>
     </PageContainer>
   );
 };
 
 export default PayMentPonit;
-{/* <Box>
-          <AppCard>
-            <Drawer
-              anchor="right"
-              variant="permanent"
-              sx={{
-                zIndex: 0,
-                flex: '1 1 auto',
-                [`& .MuiDrawer-paper`]: { position: 'relative' },
-              }}
-            >
-              <Box sx={{ p: 3 }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  <Box alignItems="center">
-                    <Typography variant="h4">Tiêu chuẩn</Typography>
-                  </Box>
-                  <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="female"
-                    name="radio-buttons-group"
-                  >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        borderBottom: '1px solid #F2F6FA',
-                        borderRadius: 0,
-                        py: 2,
-                      }}
-                    >
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                        <Radio
-                          color="default"
-                          value="top"
-                          inputProps={{ 'aria-label': 'checkbox with default color' }}
-                          sx={{ width: '10px', height: '10px' }}
-                        />
-                        <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo tháng</Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'end',
-                          alignItems: 'end',
-                        }}
-                      >
-                        <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.000 đ</Typography>
-                      </Box>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        borderBottom: '1px solid #F2F6FA',
-                        borderRadius: 0,
-                        py: 2,
-                      }}
-                    >
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                        <Radio
-                          value="body"
-                          color="default"
-                          inputProps={{ 'aria-label': 'checkbox with default color' }}
-                          sx={{ width: '10px', height: '10px' }}
-                        />
-                        <Box>
-                          <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo quý</Typography>
-                          <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                            Tiết kiệm 77.000 đ{' '}
-                          </Typography>
-                        </Box>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'end',
-                          alignItems: 'end',
-                        }}
-                      >
-                        <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.999 đ</Typography>
-                        <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                          520.000 đ/quý
-                        </Typography>
-                      </Box>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        borderBottom: '1px solid #F2F6FA',
-                        borderRadius: 0,
-                        py: 2,
-                      }}
-                    >
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                        <Radio
-                          value="end"
-                          color="default"
-                          inputProps={{ 'aria-label': 'checkbox with default color' }}
-                          sx={{ width: '10px', height: '10px' }}
-                        />
-                        <Box>
-                          <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Theo năm</Typography>
-                          <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                            Tiết kiệm 489.000 đ{' '}
-                          </Typography>
-                        </Box>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'end',
-                          alignItems: 'end',
-                        }}
-                      >
-                        <Typography sx={{ fontSize: 16, fontWeight: 400 }}>199.999 đ</Typography>
-                        <Typography sx={{ fontSize: 12, fontWeight: 500, color: '#3C3C43A3' }}>
-                          1.899.000 đ/năm
-                        </Typography>
-                      </Box>
-                    </Box>{' '}
-                  </RadioGroup>
-                </Box>
-
-                <Box sx={{ py: 3 }}>
-                  <Box alignItems="center">
-                    <Typography variant="h4">Chọn phương thức thanh toán</Typography>
-                  </Box>
-                  <Box>
-                    <Grid
-                      container
-                      textAlign="center"
-                      sx={{ pt: 4, gap: '10px' }}
-                      display={'flex'}
-                      justifyContent={'center'}
-                    >
-                      <Grid sx={{}}>
-                        <Box
-                          sx={{
-                            ...(onClick
-                              ? {
-                                  backgroundColor: 'white',
-                                  borderColor: 'yellow',
-                                }
-                              : {
-                                  backgroundColor: '#F4F5F7',
-                                  borderColor: '#EFEFEF',
-                                  ':hover': {
-                                    backgroundColor: '#E9E9E9',
-                                  },
-                                }),
-
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                            color: 'primary.main',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '155px',
-                            height: '90px',
-                            gap: '-10px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                          }}
-                          onClick={onHandleClick}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '6px',
-                              padding: '0',
-                            }}
-                          >
-                            <img
-                              src={Iconbank}
-                              alt=""
-                              width={35}
-                              height={35}
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </Box>
-                          <Typography
-                            sx={{
-                              color: 'black',
-                              paddingTop: '5px',
-                              fontWeight: 600,
-                              fontSize: 14,
-                            }}
-                          >
-                            Chuyển khoản
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      <Grid sx={{}}>
-                        <Box
-                          sx={{
-                            backgroundColor: '#F4F5F7',
-                            borderColor: '#EFEFEF',
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                            color: 'primary.main',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '155px',
-                            height: '90px',
-                            gap: '-10px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                            ':hover': {
-                              backgroundColor: '#E9E9E9',
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '6px',
-                              padding: '0',
-                            }}
-                          >
-                            <img
-                              src={Iconmomo}
-                              alt=""
-                              width={35}
-                              height={35}
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </Box>
-                          <Typography
-                            sx={{
-                              color: 'black',
-                              paddingTop: '5px',
-                              fontWeight: 600,
-                              fontSize: 14,
-                            }}
-                          >
-                            Chuyển khoản
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      <Grid sx={{}}>
-                        <Box
-                          sx={{
-                            backgroundColor: '#F4F5F7',
-                            borderColor: '#EFEFEF',
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                            color: 'primary.main',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '155px',
-                            height: '90px',
-                            gap: '-10px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                            ':hover': {
-                              backgroundColor: '#E9E9E9',
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '6px',
-                              padding: '0',
-                            }}
-                          >
-                            <img
-                              src={Iconzalopay}
-                              alt=""
-                              width={35}
-                              height={35}
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </Box>
-                          <Typography
-                            sx={{
-                              color: 'black',
-                              paddingTop: '5px',
-                              fontWeight: 600,
-                              fontSize: 14,
-                            }}
-                          >
-                            Chuyển khoản
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      <Grid sx={{}}>
-                        <Box
-                          sx={{
-                            backgroundColor: '#F4F5F7',
-                            borderColor: '#EFEFEF',
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                            color: 'primary.main',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '155px',
-                            height: '90px',
-                            gap: '-10px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                            ':hover': {
-                              backgroundColor: '#E9E9E9',
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '6px',
-                              padding: '0',
-                            }}
-                          >
-                            <img
-                              src={Iconpaypal}
-                              alt=""
-                              width={35}
-                              height={35}
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </Box>
-                          <Typography
-                            sx={{
-                              color: 'black',
-                              paddingTop: '5px',
-                              fontWeight: 600,
-                              fontSize: 14,
-                            }}
-                          >
-                            Chuyển khoản
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      <Grid sx={{}}>
-                        <Box
-                          sx={{
-                            backgroundColor: '#F4F5F7',
-                            borderColor: '#EFEFEF',
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                            color: 'primary.main',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '155px',
-                            height: '90px',
-                            gap: '-10px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                            ':hover': {
-                              backgroundColor: '#E9E9E9',
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '6px',
-                              padding: '0',
-                            }}
-                          >
-                            <img
-                              src={Iconvnpay}
-                              alt=""
-                              width={35}
-                              height={35}
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </Box>
-                          <Typography
-                            sx={{
-                              color: 'black',
-                              paddingTop: '5px',
-                              fontWeight: 600,
-                              fontSize: 14,
-                            }}
-                          >
-                            Chuyển khoản
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      <Grid sx={{}}>
-                        <Box
-                          sx={{
-                            backgroundColor: '#F4F5F7',
-                            borderColor: '#EFEFEF',
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                            color: 'primary.main',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '155px',
-                            height: '90px',
-                            gap: '-10px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                            ':hover': {
-                              backgroundColor: '#E9E9E9',
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '6px',
-                              padding: '0',
-                            }}
-                          >
-                            <img
-                              src={Iconshopeepay}
-                              alt=""
-                              width={35}
-                              height={35}
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </Box>
-                          <Typography
-                            sx={{
-                              color: 'black',
-                              paddingTop: '5px',
-                              fontWeight: 600,
-                              fontSize: 14,
-                            }}
-                          >
-                            Chuyển khoản
-                          </Typography>
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </Box>
-              </Box>
-            </Drawer>
-          </AppCard>
-        </Box> */}

@@ -16,7 +16,7 @@ import {
   Grid,
   Tooltip,
   Box,
-  Skeleton
+  Skeleton,
 } from '@mui/material';
 import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
@@ -43,7 +43,7 @@ const BlogCard = ({ post }: Btype) => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -71,16 +71,13 @@ const BlogCard = ({ post }: Btype) => {
             </Typography>
             <CardContent>
               <Stack direction="row" sx={{ marginTop: '-45px' }}>
-                <Tooltip title={author?.name} placement="top">
-                  <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
-                </Tooltip>
                 <Chip
                   sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                  label="2 min Read"
+                  label={`${view} lượt xem`}
                   size="small"
                 ></Chip>
               </Stack>
-              <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
+
               <Box my={3}>
                 <Typography
                   gutterBottom
@@ -94,19 +91,26 @@ const BlogCard = ({ post }: Btype) => {
                   {title}
                 </Typography>
               </Box>
-              <Stack direction="row" gap={3} alignItems="center">
-                <Stack direction="row" gap={1} alignItems="center">
-                  <IconEye size="18" /> {view}
-                </Stack>
-                <Stack direction="row" gap={1} alignItems="center">
-                  <IconMessage2 size="18" /> {comments?.length}
-                </Stack>
+              <Chip label={category} size="small" sx={{ marginLeft: 'auto', marginTop: 0 }} />
+              <Box sx={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
+                <Tooltip title={author?.name} placement="top">
+                  <Avatar aria-label="recipe" src={author?.avatar} />
+                </Tooltip>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginLeft: '10px',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography variant="body2">Nguyễn Mạnh Cường</Typography>
+                </Box>
 
                 <Stack direction="row" ml="auto" alignItems="center">
-                  <IconPoint size="16" />
-                  <small>{format(new Date(createdAt), 'E, MMM d')}</small>
+                  <small>09-09-2024</small>
                 </Stack>
-              </Stack>
+              </Box>
             </CardContent>
           </>
         </BlankCard>

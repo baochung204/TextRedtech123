@@ -63,6 +63,7 @@ import {
   IconBoxAlignLeft,
   IconBorderStyle2,
   IconAppWindow,
+  IconBrandOpenSource,
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
@@ -74,7 +75,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Dashboard',
     icon: IconAppWindow,
-    href: '/dashboards/list',
+    href: '/dashboards/modern',
   },
   {
     id: uniqueId(),
@@ -92,7 +93,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Quản lý Trợ lý',
         icon: IconPoint,
-        href: '/apps/assistant',
+        href: '/apps/list-assistant',
       },
     ],
   },
@@ -118,9 +119,8 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Đơn hàng',
         icon: IconPoint,
-        href: '/apps/customerList',
+        href: '/apps/sell/order',
       },
-      
     ],
   },
   {
@@ -139,19 +139,13 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Danh sách khách hàng',
         icon: IconPoint,
-        href: '/apps/customerList',
+        href: '/apps/customerList2',
       },
       {
         id: uniqueId(),
         title: 'Thỏa thuận hợp tác',
-        icon: IconAppWindow,
-        href: '/apps/rule',
-      },
-      {
-        id: uniqueId(),
-        title: 'Nhóm khách hàng',
         icon: IconPoint,
-        href: '/apps/rule',
+        href: '/apps/contract-client',
       },
     ],
   },
@@ -183,7 +177,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Thỏa thuận hợp tác',
         icon: IconPoint,
-        href: '/apps/rule',
+        href: '/apps/contract-affiliate',
       },
     ],
   },
@@ -267,6 +261,26 @@ const Menuitems: MenuitemsType[] = [
         title: 'Đang chờ',
         icon: IconPoint,
         href: '/apps/pending',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Blog',
+    icon: IconChartDonut3,
+    href: '/apps/blog/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Posts',
+        icon: IconPoint,
+        href: '/apps/blog/posts',
+      },
+      {
+        id: uniqueId(),
+        title: 'Detail',
+        icon: IconPoint,
+        href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
       },
     ],
   },

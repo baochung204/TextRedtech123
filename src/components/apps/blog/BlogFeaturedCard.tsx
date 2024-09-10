@@ -14,7 +14,7 @@ import {
   Box,
   alpha,
   styled,
-  Skeleton
+  Skeleton,
 } from '@mui/material';
 import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
 import { format } from 'date-fns';
@@ -68,7 +68,7 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -115,15 +115,13 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                   >
                     <Box>
                       <Stack direction="row">
-                        <Tooltip title={author?.name} placement="top">
-                          <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
-                        </Tooltip>
                         <Chip
                           sx={{ marginLeft: 'auto' }}
-                          label={category}
+                          label={view}
                           size="small"
                           color="primary"
-                        ></Chip>
+                          icon={<IconEye />} // Adding the icon here
+                        />
                       </Stack>
                     </Box>
                     <Box>
@@ -141,16 +139,30 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                         </Typography>
                       </Box>
                       <Stack direction="row" gap={3} alignItems="center">
-                        <Stack direction="row" gap={1} alignItems="center">
+                        <Tooltip title={author?.name} placement="top">
+                          <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
+                        </Tooltip>
+                        <Box>
+                          <Stack direction="column" gap={1} alignItems="flex-start">
+                            <Stack direction="row" gap={1} alignItems="center">
+                              Nguyễn Đăng Hòa
+                            </Stack>
+                            <Stack direction="row" alignItems="center">
+                              <Chip label={category} size="small" color="primary" />
+                            </Stack>
+                          </Stack>
+                        </Box>
+
+                        {/* <Stack direction="row" gap={1} alignItems="center">
                           <IconEye size="18" /> {view}
                         </Stack>
                         <Stack direction="row" gap={1} alignItems="center">
                           <IconMessage2 size="18" /> {comments?.length}
-                        </Stack>
+                        </Stack> */}
 
                         <Stack direction="row" ml="auto" alignItems="center">
-                          <IconPoint size="16" />
-                          <small>{format(new Date(createdAt), 'E, MMM d')}</small>
+                          {/* <small>{format(new Date(createdAt), 'E, MMM d')}</small> */}
+                          09-09-2024
                         </Stack>
                       </Stack>
                     </Box>

@@ -293,7 +293,7 @@ const ProductTableList = () => {
 
     setSelected(newSelected);
   };
-  
+
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const handleChangePage = (event: unknown, newPage: number) => {

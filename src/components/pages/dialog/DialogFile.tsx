@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 interface PropsDialog {
+    value: string,
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -27,7 +28,7 @@ const VisuallyHiddenInput = styled('input')({
     whiteSpace: 'nowrap',
     width: 1,
 });
-const DialogFile: React.FC<PropsDialog> = ({ open, setOpen }) => {
+const DialogFile: React.FC<PropsDialog> = ({value, open, setOpen }) => {
 
     const handleClose = () => {
         setOpen(false);
@@ -45,7 +46,7 @@ const DialogFile: React.FC<PropsDialog> = ({ open, setOpen }) => {
             <Dialog
                 fullWidth={true}
                 maxWidth='sm'
-                open={open}
+                open={value === '3' && open ? true : false}
                 onClose={handleClose}
             >
                 <DialogTitle>Thêm File</DialogTitle>

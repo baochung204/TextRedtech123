@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box, Menu, Avatar, Typography, Divider, Button, IconButton, Stack } from '@mui/material';
 import * as dropdownData from './data';
 
@@ -15,6 +15,12 @@ import { dispatch } from 'src/store/Store';
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
+  const navigate = useNavigate();
+
+  const handleButtonClick2 = () => {
+    navigate('/apps/ecommerce/shop'); // Điều hướng đến trang '/shopping'
+  };
+
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
   };
@@ -143,7 +149,7 @@ const Profile = () => {
                   Giúp trợ lý của bạn <br />
                   thông minh hơn
                 </Typography>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={handleButtonClick2}>
                   Shopping ngay
                 </Button>
               </Box>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button } from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
-// import { useNavigate } from 'react-router-dom';
-import { dispatch } from 'src/store/Store';
 import { setSelected } from 'src/store/RouterSlice';
+import { dispatch } from 'src/store/Store';
 
 
 const AccountInformation = () => {
@@ -15,13 +14,16 @@ const AccountInformation = () => {
     password: '**********',
   });
 
-  // const theme = useTheme();
-  // const navigate = useNavigate();
+
+  const handleButtonClick = (id: number) => {
+    if (id === 2) {
+      dispatch(setSelected('changepassword'));
+    }
+  };
 
   const handleEditClick = (field: string) => {
     if (field === 'password') {
-      // navigate('/pages/account-settings');
-      dispatch(setSelected('changepassword'))
+      handleButtonClick(2);
     } else {
       setEditing(field);
     }
@@ -85,8 +87,6 @@ const AccountInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        // backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
-        // color: theme.palette.mode === 'dark' ? '#fff' : '#000',
         margin: '0 auto',
       }}
     >
