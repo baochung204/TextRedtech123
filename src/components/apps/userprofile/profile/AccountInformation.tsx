@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button } from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
 <<<<<<< HEAD
+import { setSelected } from 'src/store/RouterSlice';
+import { dispatch } from 'src/store/Store';
+=======
+<<<<<<< HEAD
 // import { useNavigate } from 'react-router-dom';
 import { dispatch } from 'src/store/Store';
 import { setSelected } from 'src/store/RouterSlice';
@@ -9,6 +13,7 @@ import { setSelected } from 'src/store/RouterSlice';
 import { useNavigate } from 'react-router-dom';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch, useDispatch } from 'src/store/Store';
+>>>>>>> main
 >>>>>>> main
 
 
@@ -21,6 +26,8 @@ const AccountInformation = () => {
     password: '**********',
   });
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
   // const theme = useTheme();
   // const navigate = useNavigate();
@@ -37,16 +44,21 @@ const AccountInformation = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const dispatch = useDispatch(); // Khởi tạo dispatch
+>>>>>>> main
 
   const handleButtonClick = (id: number) => {
     if (id === 2) {
-      dispatch(setSelected('changepassword')); // Dispatch action để điều hướng
+      dispatch(setSelected('changepassword'));
     }
   };
 
   const handleEditClick = (field: string) => {
     if (field === 'password') {
+<<<<<<< HEAD
+      handleButtonClick(2);
+=======
       handleButtonClick(2); // Gọi handleButtonClick khi người dùng click đổi mật khẩu
+>>>>>>> main
 >>>>>>> main
     } else {
       setEditing(field);
