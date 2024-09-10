@@ -12,8 +12,6 @@ const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')))
 const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
 const List = Loadable(lazy(() => import('../views/dashboard/List')));
-const Resources = Loadable(lazy(() => import('../views/dashboard/Resources')));
-// import Resources from 'src/views/dashboard/Resources';
 
 //  admin
 const Admin = Loadable(lazy(() => import('../views/apps/admin/dashboard/dashboard')));
@@ -182,7 +180,6 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/list-assistant', element: <Assistant /> },
 
-      { path: '/dashboards/resources', exact: true, element: <Resources /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
