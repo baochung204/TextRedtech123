@@ -10,7 +10,7 @@ const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#FFBB33', '#33FFBB'
 
 const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
-const Checkboxes = () => {
+const Tags = () => {
   const [tags, setTags] = useState([{ title: 'Forrest Gump', color: getRandomColor() }]); // Tag mặc định với màu ngẫu nhiên
   
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -57,4 +57,4 @@ const Checkboxes = () => {
   );
 };
 
-export default Checkboxes;
+export default Tags;

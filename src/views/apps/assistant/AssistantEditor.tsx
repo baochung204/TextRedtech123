@@ -5,7 +5,7 @@ import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 
 import BlankCard from 'src/components/shared/BlankCard';
-import Assistant_Add from 'src/components/apps/assistant/AssistantEditor';
+import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/AssistantEditor';
 
 const BCrumb = [
   {
