@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
-import ProductTableList from 'src/components/apps/assistant/Assistant';
+import ProductTableList from 'src/components/apps/assistant/Assiatant/Assistant';
 import BlankCard from 'src/components/shared/BlankCard';
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';

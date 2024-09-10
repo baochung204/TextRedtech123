@@ -19,7 +19,8 @@ const BCrumb = [
   },
 ];
 
-const DoughnutChart = () => {
+const DoughnutChart2 = () => {
+
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -91,10 +92,10 @@ const DoughnutChart = () => {
   const seriespiechart = [45, 15, 27, 18, 35];
 
   return (
-    <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-      {/* breadcrumb */}
-      <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-      {/* end breadcrumb */}
+    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
+    //   {/* breadcrumb */}
+    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
+    //   {/* end breadcrumb */}
       <Grid container spacing={3}>
         <Grid item lg={6} md={12} xs={12}>
           <ParentCard title="Doughnut Charts">
@@ -106,14 +107,9 @@ const DoughnutChart = () => {
             />
           </ParentCard>
         </Grid>
-        <Grid item lg={6} md={12} xs={12}>
-          <ParentCard title="Pie Charts">
-            <Chart options={optionspiechart} series={seriespiechart} type="pie" height="300px" />
-          </ParentCard>
-        </Grid>
       </Grid>
-    </PageContainer>
+    // </PageContainer>
   );
 };
 
-export default DoughnutChart;
+export default DoughnutChart2;

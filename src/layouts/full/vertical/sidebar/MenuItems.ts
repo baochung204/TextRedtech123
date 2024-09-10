@@ -63,6 +63,7 @@ import {
   IconBoxAlignLeft,
   IconBorderStyle2,
   IconAppWindow,
+  IconBrandOpenSource,
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
@@ -92,7 +93,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Quản lý Trợ lý',
         icon: IconPoint,
-        href: '/apps/assistant',
+        href: '/apps/list-assistant',
       },
     ],
   },
@@ -101,6 +102,12 @@ const Menuitems: MenuitemsType[] = [
     title: 'Tài nguyên',
     icon: IconShoppingCart,
     href: '/dashboards/list',
+  },
+  {
+    id: uniqueId(),
+    title: 'Tài nguyên',
+    icon: IconBrandOpenSource,
+    href: '/dashboards/resources',
   },
   {
     id: uniqueId(),
@@ -138,20 +145,15 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Danh sách khách hàng',
         icon: IconPoint,
-        href: '/apps/customerList',
+        href: '/apps/customerList2',
       },
       {
         id: uniqueId(),
         title: 'Thỏa thuận hợp tác',
-        icon: IconAppWindow,
-        href: '/apps/rule',
-      },
-      {
-        id: uniqueId(),
-        title: 'Nhóm khách hàng',
         icon: IconPoint,
-        href: '/apps/rule',
+        href: '/apps/contract-client',
       },
+     
     ],
   },
   {
@@ -182,7 +184,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Thỏa thuận hợp tác',
         icon: IconPoint,
-        href: '/apps/rule',
+        href: '/apps/contract-affiliate',
       },
     ],
   },

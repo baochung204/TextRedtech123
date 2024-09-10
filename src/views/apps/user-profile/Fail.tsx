@@ -3,6 +3,7 @@ import userimg from 'src/assets/images/profile/user-1.jpg';
 import React from 'react';
 import fail from 'src/assets/images/certificate/failre.png';
 import { Link } from 'react-router-dom'; // Import useNavigate for navigation
+import { useTheme } from '@emotion/react';
 
 const ProfileImage = styled(Box)(() => ({
   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -15,15 +16,18 @@ const ProfileImage = styled(Box)(() => ({
   margin: '0 auto',
 }));
 
-const FailMessageWrapper = styled(Box)(() => ({
-  backgroundColor: '#fff4f4',
+const FailMessageWrapper = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#4e2828' : '#fff4f4',
   padding: '20px',
   borderRadius: '8px',
-  border: '2px solid #f44336',
+  border: `2px solid ${theme.palette.error.main}`,
   marginTop: '20px',
 }));
 
 const Fail = () => {
+  const theme = useTheme(); // Get theme to check dark/light mode
+  const isDarkMode = theme.palette.mode === 'dark';
+
   return (
     <>
       <Grid container spacing={2}>
@@ -32,9 +36,10 @@ const Fail = () => {
           <Box
             sx={{
               textAlign: 'center',
-              border: '2px solid #ddd',
+              border: `2px solid ${isDarkMode ? '#444' : '#ddd'}`,
               borderRadius: '10px',
               padding: '20px',
+              color: isDarkMode ? '#fff' : '#000',
             }}
           >
             <Grid container spacing={2} alignItems="center" justifyContent="center">
@@ -59,16 +64,14 @@ const Fail = () => {
                   variant="h4"
                   component="h1"
                   gutterBottom
-                  sx={{ fontWeight: 'bold', color: '#333' }}
+                  sx={{ fontWeight: 'bold', color: isDarkMode ? '#ddd' : '#333' }}
                 >
                   Nguyễn Đăng Hòa
                 </Typography>
-                <Typography variant="body1" sx={{ color: '#555', marginBottom: '4px' }}>
+                <Typography variant="body1" sx={{ marginBottom: '4px' }}>
                   0981522873
                 </Typography>
-                <Typography variant="body1" sx={{ color: '#555' }}>
-                  hoaace2003@gmail.com
-                </Typography>
+                <Typography variant="body1">hoaace2003@gmail.com</Typography>
               </Grid>
 
               {/* Failure message below */}
@@ -76,21 +79,24 @@ const Fail = () => {
                 <img src={fail} alt="Error Image" style={{ width: '200px', height: '170px' }} />
 
                 {/* Failure Message */}
-                <FailMessageWrapper>
+                <FailMessageWrapper theme={theme}>
                   <Typography
                     variant="h5"
                     sx={{
                       fontWeight: 'bold',
-                      color: '#f44336',
+                      color: theme.palette.error.main,
                       marginBottom: '10px',
                     }}
                   >
                     Thông tin của bạn chưa đủ điều kiện đăng ký
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#555', marginBottom: '6px' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: isDarkMode ? '#ccc' : '#555', marginBottom: '6px' }}
+                  >
                     Vui lòng kiểm tra lại thông tin và thử lại sau!
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#555' }}>
+                  <Typography variant="body2" sx={{ color: isDarkMode ? '#ccc' : '#555' }}>
                     Nếu bạn cần hỗ trợ, hãy liên hệ với chúng tôi qua email hoặc số điện thoại.
                   </Typography>
 
