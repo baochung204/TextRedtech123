@@ -1,4 +1,14 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, InputAdornment } from '@mui/material';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  InputAdornment,
+  TextField,
+  Typography,
+} from '@mui/material';
 import Fab from '@mui/material/Fab';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
@@ -12,6 +22,7 @@ import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import PopupAdd from './PopupAdd';
+import { IconSearch } from '@tabler/icons-react';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -25,7 +36,7 @@ const CustomerList2 = () => {
   const [filterColumn, setFilterColumn] = React.useState('');
   const [searchText, setSearchText] = React.useState('');
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  
+
   // Function mở popup
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -35,7 +46,6 @@ const CustomerList2 = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  
 
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>
@@ -55,20 +65,21 @@ const CustomerList2 = () => {
         {/* Nút tạo đơn hàng và thanh tìm kiếm */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title="Tạo đơn hàng">
-            <Fab color="primary" aria-label="add" sx={{ marginRight: '30px' }} onClick={handleOpenPopup}>
+            <Fab
+              color="primary"
+              aria-label="add"
+              size="small" // Set the size to "small"
+              sx={{ marginRight: '30px' }}
+              onClick={handleOpenPopup}
+            >
               <FaPlus />
             </Fab>
-          </Tooltip>  
+          </Tooltip>
 
           {/* Thanh tìm kiếm với icon */}
-          <CustomTextField
-            label="Tìm kiếm"
-            variant="outlined"
-            value={searchText}
-            onChange={(e: any) => setSearchText(e.target.value)}
-            sx={{ 
-              width: '300px',
-              borderRadius: '20px',
+          <TextField
+            sx={{
+              width: '200px',
               marginRight: '40px',
               '& .MuiOutlinedInput-root': {
                 borderRadius: '10px',
@@ -81,27 +92,29 @@ const CustomerList2 = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <FaSearch color="#9e9e9e" />
+                  <IconSearch size="1.1rem" />
                 </InputAdornment>
               ),
             }}
+            placeholder="Tìm kiếm"
+            size="small"
           />
-          
-          {/* Bộ lọc cột */}
+
           <CustomSelect
             labelId="column-filter"
             id="column-filter"
             size="small"
+            value={1} // Setting the first value as default
             sx={{ marginRight: '30px' }}
           >
             <MenuItem value={1}>Sửa đổi cột</MenuItem>
           </CustomSelect>
 
-          {/* Bộ lọc cọc */}
           <CustomSelect
             labelId="column-sort"
             id="column-sort"
             size="small"
+            value={1} // Setting the first value as default
             sx={{ marginRight: '20px' }}
           >
             <MenuItem value={1}>Bộ cọc</MenuItem>
@@ -112,14 +125,12 @@ const CustomerList2 = () => {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              label="Từ ngày"
               value={selectedStartDate}
               onChange={(newDate) => setSelectedStartDate(newDate)}
               renderInput={(params) => <CustomTextField {...params} sx={{ marginRight: '10px' }} />}
             />
-
+            <Typography sx={{ marginRight: '10px' }}>tới</Typography>
             <DatePicker
-              label="Đến ngày"
               value={selectedEndDate}
               onChange={(newDate) => setSelectedEndDate(newDate)}
               renderInput={(params) => <CustomTextField {...params} sx={{ marginRight: '10px' }} />}
@@ -129,8 +140,8 @@ const CustomerList2 = () => {
           {/* Icon Refresh */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
+            width="20" // Adjust the width to make the icon smaller
+            height="20" // Adjust the height to make the icon smaller
             cursor="pointer"
             viewBox="0 0 24 24"
             fill="none"
@@ -152,7 +163,7 @@ const CustomerList2 = () => {
       <CustomerTable2 />
       {/* Popup Thêm đơn hàng */}
       <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
-        <DialogTitle padding={"10px"}>Thêm khách hàng</DialogTitle>
+        <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
         <DialogContent>
           <PopupAdd /> {/* Gọi component PopupAdd */}
         </DialogContent>
@@ -163,7 +174,6 @@ const CustomerList2 = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      
     </div>
   );
 };
