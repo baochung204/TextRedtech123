@@ -5,7 +5,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
   InputAdornment,
+  Tab,
   TextField,
   Typography,
 } from '@mui/material';
@@ -23,6 +25,8 @@ import CustomSelect from '../../../components/forms/theme-elements/CustomSelect'
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import PopupAdd from './PopupAdd';
 import { IconSearch } from '@tabler/icons-react';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import Tags from 'src/components/apps/sell/tags';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -36,6 +40,7 @@ const CustomerList2 = () => {
   const [filterColumn, setFilterColumn] = React.useState('');
   const [searchText, setSearchText] = React.useState('');
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [value, setValue] = React.useState('1');
 
   // Function mở popup
   const handleOpenPopup = () => {
@@ -46,13 +51,27 @@ const CustomerList2 = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
 
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>
       {/* Breadcrumb */}
       <Breadcrumb title="Blog Detail" items={BCrumb} />
-
-      {/* Action Buttons and Filters */}
+      <Grid container spacing={3}>
+        <Box sx={{ width: '100%', typography: 'body1' }}>
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <TabList onChange={handleChange} aria-label="lab API tabs example">
+              <Tab label="Khách hàng" value="1" />
+              <Tab label="Tags" value="2" />
+            </TabList>
+          </Box>
+          
+        <TabPanel value="1">
+          {' '}
+            {/* Action Buttons and Filters */}
       <Box
         className="actions-and-filters"
         sx={{
@@ -62,6 +81,7 @@ const CustomerList2 = () => {
           alignItems: 'center',
         }}
       >
+        
         {/* Nút tạo đơn hàng và thanh tìm kiếm */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title="Tạo đơn hàng">
@@ -158,9 +178,20 @@ const CustomerList2 = () => {
           </svg>
         </Box>
       </Box>
+      <CustomerTable2 />
+
+        </TabPanel>
+        <TabPanel value="2">
+          <Tags/>
+        </TabPanel>
+        
+    </TabContext>
+        </Box>
+      </Grid>
+      
+      
 
       {/* Bảng khách hàng */}
-      <CustomerTable2 />
       {/* Popup Thêm đơn hàng */}
       <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
         <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
