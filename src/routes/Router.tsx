@@ -26,8 +26,8 @@ const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collab
 // const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
-const AssistantInfor = Loadable(lazy(()=> import('src/views/apps/assistant/AssistantInfor'))) ;
-const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
+const AssistantInfor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantById')));
+// const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
@@ -172,18 +172,16 @@ const Router = [
     children: [
       { path: '/', element: <Navigate to="dashboards/list" /> },
       { path: '/admin', element: <Navigate to="/admin/dashborard" /> },
-
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
-      { path: '/apps/assistant/:id', element: <AssistantById /> },
+      // { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
       { path: '/apps/sell/order', element: <CustomerList /> },
-
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist', element: <CustomerList2 /> },
@@ -192,7 +190,6 @@ const Router = [
       { path: '/admin/dashborard', element: <Admin /> },
       { path: '/admin/products', element: <Adminproducts /> },
       { path: '/admin/user', element: <Adminuser /> },
-
       { path: '/apps/blog/posts', element: <Blog /> },
       { path: '/apps/blog/detail/:id', element: <BlogDetail /> },
       { path: '/apps/chats', element: <Chats /> },
@@ -204,7 +201,6 @@ const Router = [
       { path: '/apps/ecommerce/eco-product-list', element: <EcomProductList /> },
       { path: '/apps/ecommerce/eco-checkout', element: <EcomProductCheckout /> },
       { path: '/apps/point/detaipoint/:id', element: <Detailpoint /> },
-
       { path: '/apps/ecommerce/detail/:id', element: <EcommerceDetail /> },
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
@@ -217,9 +213,7 @@ const Router = [
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user-profile', element: <UserProfile /> },
       { path: '/pointhistory', element: <Pointhistory /> },
-
       { path: '/purchasehistory', element: <Purchasehistory /> },
-
       { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
       { path: '/ui-components/alert', element: <MuiAlert /> },
