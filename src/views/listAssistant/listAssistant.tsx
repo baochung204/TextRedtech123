@@ -27,7 +27,6 @@ import rank1 from 'src/assets/images/rank/rank1.png';
 import rank2 from 'src/assets/images/rank/rank2.png';
 import rank3 from 'src/assets/images/rank/rank3.png';
 import rank4 from 'src/assets/images/rank/rank4.png';
-import rank5 from 'src/assets/images/rank/rank5.png';
 import rank6 from 'src/assets/images/rank/rank6.png';
 import rank7 from 'src/assets/images/rank/rank7.png';
 import rank8 from 'src/assets/images/rank/rank8.png';
@@ -37,7 +36,6 @@ import avt1 from 'src/assets/images/profile/user-1.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
 import avt3 from 'src/assets/images/profile/user-3.jpg';
 import avt4 from 'src/assets/images/profile/user-4.jpg';
-import avt5 from 'src/assets/images/profile/user-5.jpg';
 import avt6 from 'src/assets/images/profile/user-6.jpg';
 import avt7 from 'src/assets/images/profile/user-7.jpg';
 import avt8 from 'src/assets/images/profile/user-8.jpg';
@@ -55,7 +53,6 @@ import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 
 interface sellsData {
   product: string;
-  price: string;
   percent: number;
   color: string;
 }
@@ -63,7 +60,6 @@ interface sellsData {
 const sells: sellsData[] = [
   {
     product: 'Kinh nghiệm',
-    total: '23,568',
     percent: 90,
     color: 'secondary',
   },
@@ -276,9 +272,6 @@ const ListAssistant = () => {
     },
   ];
 
-  const secondarylight = theme.palette.secondary.light;
-  const primarylight = theme.palette.primary.light;
-  const primary = theme.palette.primary.main;
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -592,7 +585,7 @@ const ListAssistant = () => {
                       >
                         <Box sx={{ p: { xs: 2, sm: 2, md: 1.7, lg: 2 } }}>
                           <Stack spacing={3}>
-                            {sells.map((sell: any, i: number) => (
+                            {sells.map((sell: any) => (
                               <Box>
                                 <Stack
                                   direction="row"

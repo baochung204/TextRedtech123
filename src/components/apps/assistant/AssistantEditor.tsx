@@ -3,8 +3,6 @@ import {
   Grid,
   Box,
   Typography,
-  FormControl,
-  MenuItem,
   Button,
   Stack,
   Paper,
@@ -14,8 +12,7 @@ import {
   ListItemText,
   InputBase,
   IconButton,
-  FormControlLabel,
-  TextField,
+  MenuItem,
   Avatar,
 } from '@mui/material';
 import { SliderThumb } from '@mui/material/Slider';
@@ -23,15 +20,10 @@ import AddIcon from '@mui/icons-material/Add';
 import SendIcon from '@mui/icons-material/Send';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import PageContainer from 'src/components/container/PageContainer';
-import ParentCard from 'src/components/shared/ParentCard';
-import CustomDisabledButton from 'src/components/forms/theme-elements/CustomDisabledButton';
-import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
 import PersonIcon from '@mui/icons-material/Person';
-import { IconEdit } from '@tabler/icons-react';
-import DateTime from '../assistant/AssistantEditor/DateTime'
+import DateTime from '../assistant/AssistantEditor/DateTime';
 import Checkboxes from './AssistantEditor/Checkboxes';
 import QuillEditor from './AssistantEditor/QuillEditor';
 function CustomThumbComponent(props: SliderValueLabelProps) {
@@ -102,7 +94,10 @@ const AssistantEditor = () => {
       setMessages([...messages, { text: inputValue, sender: 'user' }]);
       setInputValue('');
       setTimeout(() => {
-        setMessages(prevMessages => [...prevMessages, { text: 'Đây là phản hồi từ bot.', sender: 'bot' }]);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: 'Đây là phản hồi từ bot.', sender: 'bot' },
+        ]);
       }, 1000);
     }
   };
@@ -127,13 +122,13 @@ const AssistantEditor = () => {
 
   return (
     <PageContainer title="Tạo Assistant" description="this is Custom Form page">
-      <Box sx={{m:3}}>
+      <Box sx={{ m: 3 }}>
         <Grid container spacing={3}>
           {/* Cột 1 */}
           <Grid item xs={12} sm={12} lg={4}>
-          <Box >
+            <Box>
               {/* Circular Avatar Placeholder */}
-              <Box sx={{ textAlign: 'center', mt: { md: 2 }, mb:'20px' }}>
+              <Box sx={{ textAlign: 'center', mt: { md: 2 }, mb: '20px' }}>
                 <label htmlFor="avatar-upload">
                   <Avatar
                     src={avatarPreview || ''}
@@ -161,16 +156,28 @@ const AssistantEditor = () => {
                   onChange={handleAvatarChange}
                 />
               </Box>
-                    
-              <CustomFormLabel htmlFor="name" sx={{mt: 0}}>Tên</CustomFormLabel>
-              <CustomTextField size="small" id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
+
+              <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>
+                Tên
+              </CustomFormLabel>
+              <CustomTextField
+                size="small"
+                id="name"
+                placeholder="Nhập tên trợ lý mong muốn "
+                variant="outlined"
+                fullWidth
+              />
               <Grid container item xs={12} sm={12} lg={12} spacing={2}>
                 <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>Ngày sinh</CustomFormLabel>
+                  <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>
+                    Ngày sinh
+                  </CustomFormLabel>
                   <DateTime />
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel sx={{ mt: 2 }}  htmlFor="demo-simple-select">Trình độ học vẫn</CustomFormLabel>
+                  <CustomFormLabel sx={{ mt: 2 }} htmlFor="demo-simple-select">
+                    Trình độ học vẫn
+                  </CustomFormLabel>
                   <CustomSelect
                     size="small"
                     labelId="demo-simple-select-label"
@@ -185,11 +192,11 @@ const AssistantEditor = () => {
                 </Grid>
               </Grid>
 
-              
-              <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>Chuyên môn</CustomFormLabel>
+              <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>
+                Chuyên môn
+              </CustomFormLabel>
               <Checkboxes />
 
-              
               <Grid container item xs={12} sm={12} lg={12} spacing={2}>
                 <Grid item xs={12} sm={6} lg={6}>
                   <CustomFormLabel htmlFor="demo-simple-select">Quốc gia</CustomFormLabel>
@@ -222,24 +229,24 @@ const AssistantEditor = () => {
             </Box>
           </Grid>
           {/* Cột 2 */}
-          <Grid item xs={12} sm={12} lg={4} >
-            <Paper elevation={3} sx={{ height: '45vh', overflowY: 'auto', px:2 }}>
+          <Grid item xs={12} sm={12} lg={4}>
+            <Paper elevation={3} sx={{ height: '45vh', overflowY: 'auto', px: 2 }}>
               <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
-                <CustomSelect
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={age}
-                  fullWidth
-                >
-                  <MenuItem value={1}>GPT-3.5-TURBO</MenuItem>
-                  <MenuItem value={2}>GPT-4-MINI</MenuItem>
-                  <MenuItem value={3}>GPT-4-TURBO</MenuItem>
+              <CustomSelect
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={age}
+                fullWidth
+              >
+                <MenuItem value={1}>GPT-3.5-TURBO</MenuItem>
+                <MenuItem value={2}>GPT-4-MINI</MenuItem>
+                <MenuItem value={3}>GPT-4-TURBO</MenuItem>
               </CustomSelect>
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
               {/* <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth /> */}
-              <QuillEditor/>
+              <QuillEditor />
             </Paper>
-            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
+            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
               {/* tri thức */}
               <input
                 accept="*/*"
@@ -261,7 +268,8 @@ const AssistantEditor = () => {
                       component="span"
                       style={{ marginBottom: '10px' }}
                     >
-                      <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
+                      <AddIcon fontSize="small" style={{ marginRight: '10px' }} />
+                      File
                     </Button>
                   </Grid>
                 </Grid>
@@ -274,9 +282,8 @@ const AssistantEditor = () => {
                   </Grid>
                 </Grid>
               )}
-              
             </Paper>
-            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
+            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
               {/* Functions */}
               <input
                 accept="*/*"
@@ -298,7 +305,8 @@ const AssistantEditor = () => {
                       component="span"
                       style={{ marginBottom: '10px' }}
                     >
-                      <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
+                      <AddIcon fontSize="small" style={{ marginRight: '10px' }} />
+                      File
                     </Button>
                   </Grid>
                 </Grid>
@@ -311,18 +319,26 @@ const AssistantEditor = () => {
                   </Grid>
                 </Grid>
               )}
-             
             </Paper>
           </Grid>
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
-            <Paper elevation={3} sx={{ height: '72vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper
+              elevation={3}
+              sx={{ height: '72vh', display: 'flex', flexDirection: 'column', p: 2 }}
+            >
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
               <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(72vh - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
-                    <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>
+                    <ListItem
+                      key={index}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
+                      }}
+                    >
                       <ListItemText
                         primary={message.text}
                         sx={{
@@ -330,7 +346,7 @@ const AssistantEditor = () => {
                           color: message.sender === 'user' ? '#fff' : '#000',
                           borderRadius: '10px',
                           p: 1,
-                          maxWidth: '80%'
+                          maxWidth: '80%',
                         }}
                       />
                     </ListItem>
@@ -357,14 +373,11 @@ const AssistantEditor = () => {
               justifyContent="space-between"
               mt={2}
             >
-              <Stack spacing={1} direction="row">
-                
-              </Stack>
+              <Stack spacing={1} direction="row"></Stack>
               <Stack direction="row" spacing={1}>
                 <Button variant="contained" color="secondary">
                   Thêm mới
                 </Button>
-               
               </Stack>
             </Stack>
           </Grid>
