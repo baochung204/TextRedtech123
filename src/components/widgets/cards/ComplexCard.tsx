@@ -12,7 +12,7 @@ import {
   Tooltip,
   Chip,
   Box,
-  Skeleton
+  Skeleton,
 } from '@mui/material';
 import { IconMessage2, IconEye, IconPoint } from '@tabler/icons-react';
 import user1 from 'src/assets/images/profile/user-1.jpg';
@@ -44,7 +44,7 @@ const complexCard: cardType[] = [
     name: 'Georgeanna Ramero',
     view: '9,125',
     comments: '3',
-    time: 'Mon, Dec 19',
+    time: '09-09-2024',
   },
   {
     avatar: user2,
@@ -54,7 +54,7 @@ const complexCard: cardType[] = [
     name: 'Georgeanna Ramero',
     view: '4,150',
     comments: '38',
-    time: 'Sun, Dec 18',
+    time: '09-09-2024',
   },
   {
     avatar: user3,
@@ -64,7 +64,7 @@ const complexCard: cardType[] = [
     name: 'Georgeanna Ramero',
     view: '9,480',
     comments: '12',
-    time: 'Sat, Dec 17',
+    time: '09-09-2024',
   },
 ];
 
@@ -87,7 +87,12 @@ const ComplexCard = () => {
             <>
               <Typography component={Link} to="/">
                 {isLoading ? (
-                  <Skeleton variant="rectangular" animation="wave" width="100%" height={240}></Skeleton>
+                  <Skeleton
+                    variant="rectangular"
+                    animation="wave"
+                    width="100%"
+                    height={240}
+                  ></Skeleton>
                 ) : (
                   <CardMedia
                     component="img"

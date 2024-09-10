@@ -1,186 +1,353 @@
-import React from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { Box, Button, Stack, MenuItem, Typography } from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import React, { useState } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TablePagination,
+  Paper,
+  Typography,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Tooltip,
+  Toolbar,
+  Box,
+} from '@mui/material';
+import { IconSearch, IconTrash, IconDotsVertical } from '@tabler/icons-react';
+import { format } from 'date-fns';
 
-const validationSchema = yup.object({
-  customerId: yup.string().required('ID khách hàng là bắt buộc'),
-  assistant: yup.string().required('Trợ lý là bắt buộc'),
-  channel: yup.string().required('Kênh là bắt buộc'),
-  tags: yup.string().required('Tags là bắt buộc'),
-  customerName: yup.string().required('Tên khách hàng là bắt buộc'),
-  totalSpent: yup.number().required('Tổng chi tiêu là bắt buộc').min(0, 'Tổng chi tiêu không hợp lệ'),
-  phone: yup.string().required('Số điện thoại là bắt buộc').matches(/^[0-9]+$/, 'Số điện thoại không hợp lệ'),
-  address: yup.string().required('Địa chỉ là bắt buộc'),
-});
+// Sample data
+const orders = [
+  {
+    id: '001',
+    createdAt: '2024-09-01',
+    assistant: 'John Doe',
+    orderValue: '$200',
+    channel: 'Facebook',
+    customerName: 'Ngô Quốc Toản',
+    phone: '123456789',
+    address: '123 Main St',
+    email: 'example@example.com',
+    orderInfo: 'Product X, Product Y',
+    notes: 'Urgent delivery',
+  },
+  // Additional orders
+  // ...
+];
 
-const PopupAdd2 = () => {
-  const formik = useFormik({
-    initialValues: {
-      customerId: '',
-      createdAt: null,
-      assistant: '',
-      channel: '',
-      tags: '',
-      customerName: '',
-      totalSpent: '',
-      phone: '',
-      address: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+type Order = 'asc' | 'desc';
+
+function getComparator<Key extends keyof any>(
+  order: Order,
+  orderBy: Key
+): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
   });
+  return stabilizedThis.map((el) => el[0]);
+}
+
+interface HeadCell {
+  disablePadding: boolean;
+  id: string;
+  label: string;
+  numeric: boolean;
+}
+
+const headCells: readonly HeadCell[] = [
+  { id: 'id', numeric: false, disablePadding: false, label: 'Order ID' },
+  { id: 'createdAt', numeric: false, disablePadding: false, label: 'Date' },
+  { id: 'assistant', numeric: false, disablePadding: false, label: 'Assistant' },
+  { id: 'orderValue', numeric: false, disablePadding: false, label: 'Order Value' },
+  { id: 'channel', numeric: false, disablePadding: false, label: 'Channel' },
+  { id: 'customerName', numeric: false, disablePadding: false, label: 'Customer Name' },
+  { id: 'phone', numeric: false, disablePadding: false, label: 'Phone' },
+  { id: 'address', numeric: false, disablePadding: false, label: 'Address' },
+  { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
+  { id: 'orderInfo', numeric: false, disablePadding: false, label: 'Order Info' },
+  { id: 'notes', numeric: false, disablePadding: false, label: 'Notes' },
+  { id: 'action', numeric: false, disablePadding: false, label: 'Action' },
+];
+
+interface EnhancedTableProps {
+  numSelected: number;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: any) => void;
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  order: Order;
+  orderBy: string;
+  rowCount: number;
+}
+
+function EnhancedTableHead(props: EnhancedTableProps) {
+  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const createSortHandler = (property: any) => (event: React.MouseEvent<unknown>) => {
+    onRequestSort(event, property);
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <Stack spacing={2}>
-        {/* ID Khách hàng */}
-        <Box>
-          <CustomFormLabel>ID Khách hàng</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="customerId"
-            name="customerId"
-            value={formik.values.customerId}
-            onChange={formik.handleChange}
-            error={formik.touched.customerId && Boolean(formik.errors.customerId)}
-            helperText={formik.touched.customerId && formik.errors.customerId}
+    <TableHead>
+      <TableRow>
+        <TableCell padding="checkbox">
+          <input
+            type="checkbox"
+            checked={rowCount > 0 && numSelected === rowCount}
+            onChange={onSelectAllClick}
           />
-        </Box>
-
-        {/* Ngày tạo */}
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            label="Ngày tạo"
-            value={formik.values.createdAt}
-            onChange={(newDate) => formik.setFieldValue('createdAt', newDate)}
-            renderInput={(params) => (
-              <CustomTextField
-                fullWidth
-                {...params}
-                error={formik.touched.createdAt && Boolean(formik.errors.createdAt)}
-              />
-            )}
-          />
-        </LocalizationProvider>
-
-        {/* Trợ lý */}
-        <Box>
-          <CustomFormLabel>Trợ lý</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="assistant"
-            name="assistant"
-            value={formik.values.assistant}
-            onChange={formik.handleChange}
-            error={formik.touched.assistant && Boolean(formik.errors.assistant)}
-            helperText={formik.touched.assistant && formik.errors.assistant}
-          />
-        </Box>
-
-        {/* Kênh (MKT) */}
-        <Box>
-          <CustomFormLabel>Kênh (MKT)</CustomFormLabel>
-          <CustomSelect
-            fullWidth
-            id="channel"
-            name="channel"
-            value={formik.values.channel}
-            onChange={formik.handleChange}
-            error={formik.touched.channel && Boolean(formik.errors.channel)}
-            helperText={formik.touched.channel && formik.errors.channel}
+        </TableCell>
+        {headCells.map((headCell) => (
+          <TableCell
+            key={headCell.id}
+            align={headCell.numeric ? 'right' : 'left'}
+            padding={headCell.disablePadding ? 'none' : 'normal'}
+            sortDirection={orderBy === headCell.id ? order : false}
           >
-            <MenuItem value="Facebook">Facebook</MenuItem>
-            <MenuItem value="Google">Google</MenuItem>
-            <MenuItem value="Email">Email</MenuItem>
-          </CustomSelect>
-        </Box>
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
+            >
+              {headCell.label}
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={{ visibility: 'hidden' }}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+}
 
-        {/* Tags */}
-        <Box>
-          <CustomFormLabel>Tags</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="tags"
-            name="tags"
-            value={formik.values.tags}
-            onChange={formik.handleChange}
-            error={formik.touched.tags && Boolean(formik.errors.tags)}
-            helperText={formik.touched.tags && formik.errors.tags}
-          />
-        </Box>
+interface EnhancedTableToolbarProps {
+  numSelected: number;
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  search: string;
+}
 
-        {/* Tên khách hàng */}
-        <Box>
-          <CustomFormLabel>Tên khách hàng</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="customerName"
-            name="customerName"
-            value={formik.values.customerName}
-            onChange={formik.handleChange}
-            error={formik.touched.customerName && Boolean(formik.errors.customerName)}
-            helperText={formik.touched.customerName && formik.errors.customerName}
-          />
-        </Box>
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+  const { numSelected, handleSearch, search } = props;
 
-        {/* Tổng chi tiêu */}
-        <Box>
-          <CustomFormLabel>Tổng chi tiêu</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="totalSpent"
-            name="totalSpent"
-            value={formik.values.totalSpent}
-            onChange={formik.handleChange}
-            error={formik.touched.totalSpent && Boolean(formik.errors.totalSpent)}
-            helperText={formik.touched.totalSpent && formik.errors.totalSpent}
-          />
-        </Box>
+  return (
+    <Toolbar
+      sx={{
+        pl: { sm: 2 },
+        pr: { xs: 1, sm: 1 },
+        ...(numSelected > 0 && {
+          bgcolor: (theme) =>
+            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+        }),
+      }}
+    >
+      <Box sx={{ flex: '1 1 100%' }}>
+        <TextField
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <IconSearch size="1.1rem" />
+              </InputAdornment>
+            ),
+          }}
+          placeholder="Search Orders"
+          size="small"
+          onChange={handleSearch}
+          value={search}
+        />
+      </Box>
 
-        {/* Số điện thoại */}
-        <Box>
-          <CustomFormLabel>Số điện thoại</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="phone"
-            name="phone"
-            value={formik.values.phone}
-            onChange={formik.handleChange}
-            error={formik.touched.phone && Boolean(formik.errors.phone)}
-            helperText={formik.touched.phone && formik.errors.phone}
-          />
-        </Box>
-
-        {/* Địa chỉ */}
-        <Box mb={3}>
-          <CustomFormLabel>Địa chỉ</CustomFormLabel>
-          <CustomTextField
-            fullWidth
-            id="address"
-            name="address"
-            value={formik.values.address}
-            onChange={formik.handleChange}
-            error={formik.touched.address && Boolean(formik.errors.address)}
-            helperText={formik.touched.address && formik.errors.address}
-          />
-        </Box>
-
-        {/* Nút Submit */}
-        <Button color="primary" variant="contained" type="submit">
-          Thêm khách hàng
-        </Button>
-      </Stack>
-    </form>
+      {numSelected > 0 ? (
+        <Tooltip title="Delete">
+          <IconButton>
+            <IconTrash width="18" />
+          </IconButton>
+        </Tooltip>
+      ) : null}
+    </Toolbar>
   );
 };
 
-export default PopupAdd2;
+const OrderTableList = () => {
+  const [order, setOrder] = useState<Order>('asc');
+  const [orderBy, setOrderBy] = useState<any>('id');
+  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [search, setSearch] = useState('');
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const filteredRows = orders.filter((row) =>
+      row.customerName.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    setSearch(event.target.value);
+    setRows(filteredRows);
+  };
+
+  const handleRequestSort = (event: React.MouseEvent<unknown>, property: any) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelecteds = orders.map((n) => n.id);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected: readonly string[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, id);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDense(event.target.checked);
+  };
+
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+  return (
+    <Paper>
+      <EnhancedTableToolbar
+        numSelected={selected.length}
+        handleSearch={handleSearch}
+        search={search}
+      />
+      <TableContainer>
+        <Table
+          sx={{ minWidth: 750 }}
+          size={dense ? 'small' : 'medium'}
+        >
+          <EnhancedTableHead
+            numSelected={selected.length}
+            order={order}
+            orderBy={orderBy}
+            onSelectAllClick={handleSelectAllClick}
+            onRequestSort={handleRequestSort}
+            rowCount={rows.length}
+          />
+          <TableBody>
+            {stableSort(rows, getComparator(order, orderBy))
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                const isItemSelected = selected.indexOf(row.id) !== -1;
+                return (
+                  <TableRow
+                    hover
+                    onClick={(event) => handleClick(event, row.id)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.id}
+                    selected={isItemSelected}
+                  >
+                    <TableCell padding="checkbox">
+                      <input
+                        type="checkbox"
+                        checked={isItemSelected}
+                        onChange={(event) => handleClick(event, row.id)}
+                      />
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.id}
+                    </TableCell>
+                    <TableCell>
+                      {format(new Date(row.createdAt), 'yyyy-MM-dd')}
+                    </TableCell>
+                    <TableCell>{row.assistant}</TableCell>
+                    <TableCell>{row.orderValue}</TableCell>
+                    <TableCell>{row.channel}</TableCell>
+                    <TableCell>{row.customerName}</TableCell>
+                    <TableCell>{row.phone}</TableCell>
+                    <TableCell>{row.address}</TableCell>
+                    <TableCell>{row.email}</TableCell>
+                    <TableCell>{row.orderInfo}</TableCell>
+                    <TableCell>{row.notes}</TableCell>
+                    <TableCell>
+                      <Tooltip title="More options">
+                        <IconButton>
+                          <IconDotsVertical width="18" />
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            {emptyRows > 0 && (
+              <TableRow
+                style={{
+                  height: (dense ? 33 : 53) * emptyRows,
+                }}
+              >
+                <TableCell colSpan={headCells.length} />
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
+  );
+};
+
+export default OrderTableList;

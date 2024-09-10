@@ -17,6 +17,8 @@ import {
   FormControlLabel,
   TextField,
   Avatar,
+  Tooltip,
+  Fab,
 } from '@mui/material';
 import { SliderThumb } from '@mui/material/Slider';
 import AddIcon from '@mui/icons-material/Add';
@@ -31,9 +33,13 @@ import CustomDisabledButton from 'src/components/forms/theme-elements/CustomDisa
 import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
 import PersonIcon from '@mui/icons-material/Person';
 import { IconEdit } from '@tabler/icons-react';
-import DateTime from '../assistant/AssistantEditor/DateTime'
-import Checkboxes from './AssistantEditor/Checkboxes';
-import QuillEditor from './AssistantEditor/QuillEditor';
+import DateTime from './DateTime'
+import Checkboxes from './Tags';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import QuillEditor from './QuillEditor';
+import { IconPlus } from '@tabler/icons-react';
+import Integration from './Integration';
+import Strategy from './Strategy';
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
 
@@ -73,18 +79,28 @@ interface Message {
 }
 
 const AssistantEditor = () => {
-  const [age, setAge] = React.useState('1');
-  const [country, setCountry] = React.useState('1');
-  const [language, setLanguage] = React.useState('1');
+
+  const [country, setCountry] = useState('1');
+  const [language, setLanguage] = useState('1');
+  const [model, setModel] = useState('1');
+  const [level, setLevel] = useState('1');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [fileSearchName, setFileSearchName] = useState('');
   const [fileFunctionsName, setFileFunctionsName] = useState('');
+  
+
   const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCountry(event.target.value as string); // Cập nhật state khi chọn
   };
   const handleChangeLanguage = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setCountry(event.target.value as string); // Cập nhật state khi chọn
+    setLanguage(event.target.value as string); // Cập nhật state khi chọn
+  };
+  const handleModel = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setModel(event.target.value as string); // Cập nhật state khi chọn
+  };
+  const handleLevel = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setLevel(event.target.value as string); // Cập nhật state khi chọn
   };
   const handleFileSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -96,6 +112,7 @@ const AssistantEditor = () => {
       setFileFunctionsName(event.target.files[0].name); // Cập nhật tên file
     }
   };
+
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
@@ -131,9 +148,9 @@ const AssistantEditor = () => {
         <Grid container spacing={3}>
           {/* Cột 1 */}
           <Grid item xs={12} sm={12} lg={4}>
-          <Box >
+          <Box sx={{height:'72vh'}}>
               {/* Circular Avatar Placeholder */}
-              <Box sx={{ textAlign: 'center', mt: { md: 2 }, mb:'20px' }}>
+              <Box sx={{maxHeight: 'calc(72vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb:'20px' }}>
                 <label htmlFor="avatar-upload">
                   <Avatar
                     src={avatarPreview || ''}
@@ -166,16 +183,17 @@ const AssistantEditor = () => {
               <CustomTextField size="small" id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
               <Grid container item xs={12} sm={12} lg={12} spacing={2}>
                 <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>Ngày sinh</CustomFormLabel>
+                  <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Ngày sinh</CustomFormLabel>
                   <DateTime />
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel sx={{ mt: 2 }}  htmlFor="demo-simple-select">Trình độ học vẫn</CustomFormLabel>
+                  <CustomFormLabel sx={{ mt: 3 }}  htmlFor="demo-simple-select">Trình độ học vẫn</CustomFormLabel>
                   <CustomSelect
                     size="small"
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={age}
+                    value={level}
+                    onChange={handleLevel}
                     fullWidth
                   >
                     <MenuItem value={1}>Tốt nghiệp cấp 3</MenuItem>
@@ -184,11 +202,8 @@ const AssistantEditor = () => {
                   </CustomSelect>
                 </Grid>
               </Grid>
-
-              
-              <CustomFormLabel htmlFor="name" sx={{ mt: 2 }}>Chuyên môn</CustomFormLabel>
+              <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Chuyên môn</CustomFormLabel>
               <Checkboxes />
-
               
               <Grid container item xs={12} sm={12} lg={12} spacing={2}>
                 <Grid item xs={12} sm={6} lg={6}>
@@ -220,15 +235,34 @@ const AssistantEditor = () => {
                 </Grid>
               </Grid>
             </Box>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
+              <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} lg={10}>
+                    <Box display="flex" alignItems="center">
+                      <FacebookIcon fontSize='large' color="info" />
+                      <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
+                    </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={2}>
+                      <Tooltip title="Thêm">
+                        <Fab size="small" color="secondary" aria-label="plus">
+                          <IconPlus width={18} />
+                        </Fab>
+                    </Tooltip>
+                    </Grid>
+              </Grid>
+              <Integration/>
+            </Paper>
           </Grid>
           {/* Cột 2 */}
           <Grid item xs={12} sm={12} lg={4} >
-            <Paper elevation={3} sx={{ height: '45vh', overflowY: 'auto', px:2 }}>
+            <Paper elevation={3} sx={{ height: '40vh', overflowY: 'auto', px:2 }}>
               <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
                 <CustomSelect
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={age}
+                  value={model}
+                  onChange={handleModel}
                   fullWidth
                 >
                   <MenuItem value={1}>GPT-3.5-TURBO</MenuItem>
@@ -236,8 +270,8 @@ const AssistantEditor = () => {
                   <MenuItem value={3}>GPT-4-TURBO</MenuItem>
               </CustomSelect>
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
-              {/* <CustomTextField id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth /> */}
-              <QuillEditor/>
+              <TextField minRows={3} multiline  id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth />
+              {/* <QuillEditor/> */}
             </Paper>
             <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
               {/* tri thức */}
@@ -281,12 +315,12 @@ const AssistantEditor = () => {
               <input
                 accept="*/*"
                 style={{ display: 'none' }}
-                id="contained-button-file"
+                id="contained-button-fileFunctions"
                 multiple
                 type="file"
                 onChange={handleFileFunctions} // Bắt sự kiện khi file được chọn
               />
-              <label htmlFor="contained-button-file">
+              <label htmlFor="contained-button-fileFunctions">
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6} lg={8.4}>
                     <Box fontWeight={600}>Functions</Box>
@@ -313,13 +347,32 @@ const AssistantEditor = () => {
               )}
              
             </Paper>
+            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
+              <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} lg={10}>
+                      <Box fontWeight={600}>Chiến lược</Box>
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={2}>
+                      <Tooltip title="Thêm">
+                        <Fab size="small" color="secondary" aria-label="plus">
+                          <IconPlus width={18} />
+                        </Fab>
+                    </Tooltip>
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={12}>
+                      <Strategy/>
+
+                    </Grid>
+              </Grid>
+              
+            </Paper>
           </Grid>
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
-            <Paper elevation={3} sx={{ height: '72vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper elevation={3} sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
-              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(72vh - 120px)' }}>
+              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(110vh - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
                     <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>

@@ -13,7 +13,7 @@ type Props = {
   children: JSX.Element;
 };
 
-const ParentCard = ({ title, children, footer, description }: Props) => {
+const Affilatec = ({ title, children, footer, description }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
@@ -33,7 +33,7 @@ const ParentCard = ({ title, children, footer, description }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
-        <h2>Nguồn khách hàng </h2>
+        <h2>Tỉ trọng chi phí /doanh thu </h2>
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (
@@ -48,4 +48,4 @@ const ParentCard = ({ title, children, footer, description }: Props) => {
   );
 };
 
-export default ParentCard;
+export default Affilatec;

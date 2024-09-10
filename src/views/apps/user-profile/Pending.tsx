@@ -3,6 +3,7 @@ import userimg from 'src/assets/images/profile/user-1.jpg';
 import loading from 'src/assets/images/certificate/loadingre.png';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
 
 const ProfileImage = styled(Box)(() => ({
   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -15,11 +16,11 @@ const ProfileImage = styled(Box)(() => ({
   margin: '0 auto',
 }));
 
-const PendingMessageWrapper = styled(Box)(() => ({
-  backgroundColor: '#fffbea',
+const PendingMessageWrapper = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#5c4830' : '#fffbea',
   padding: '20px',
   borderRadius: '8px',
-  border: '2px solid #ffc107',
+  border: `2px solid ${theme.palette.warning.main}`,
   marginTop: '20px',
 }));
 
@@ -38,6 +39,9 @@ const RotatingImage = styled('img')(() => ({
 }));
 
 const Pending = () => {
+  const theme = useTheme(); // Get theme to check dark/light mode
+  const isDarkMode = theme.palette.mode === 'dark';
+
   return (
     <>
       <Grid container spacing={2}>
@@ -46,9 +50,10 @@ const Pending = () => {
           <Box
             sx={{
               textAlign: 'center',
-              border: '2px solid #ddd',
+              border: `2px solid ${isDarkMode ? '#555' : '#ddd'}`,
               borderRadius: '10px',
               padding: '20px',
+              color: isDarkMode ? '#fff' : '#000',
             }}
           >
             <Grid container spacing={2} alignItems="center" justifyContent="center">
@@ -73,14 +78,17 @@ const Pending = () => {
                   variant="h4"
                   component="h1"
                   gutterBottom
-                  sx={{ fontWeight: 'bold', color: '#333' }}
+                  sx={{ fontWeight: 'bold', color: isDarkMode ? 'white' : '#333' }}
                 >
                   Nguyễn Đăng Hòa
                 </Typography>
-                <Typography variant="body1" sx={{ color: '#555', marginBottom: '4px' }}>
+                <Typography
+                  variant="body1"
+                  sx={{ color: isDarkMode ? 'white' : '#555', marginBottom: '4px' }}
+                >
                   0981522873
                 </Typography>
-                <Typography variant="body1" sx={{ color: '#555' }}>
+                <Typography variant="body1" sx={{ color: isDarkMode ? 'white' : '#555' }}>
                   hoaace2003@gmail.com
                 </Typography>
               </Grid>
@@ -92,7 +100,7 @@ const Pending = () => {
                   sx={{
                     fontSize: '30px',
                     fontWeight: 'bold',
-                    color: '#ffc107',
+                    color: theme.palette.warning.main,
                     marginBottom: '10px',
                   }}
                 >
@@ -101,11 +109,7 @@ const Pending = () => {
                 <RotatingImage src={loading} alt="Loading" />
 
                 {/* Pending Approval Message */}
-                <PendingMessageWrapper
-                  sx={{
-                    marginTop: '30px',
-                  }}
-                >
+                <PendingMessageWrapper theme={theme}>
                   <Box
                     sx={{
                       display: 'flex',
@@ -117,7 +121,7 @@ const Pending = () => {
                       variant="body2"
                       sx={{
                         fontSize: '15px',
-                        color: '#555',
+                        color: isDarkMode ? '#ccc' : '#555',
                         marginBottom: '6px',
                         maxWidth: '600px',
                         textAlign: 'center',
@@ -127,7 +131,7 @@ const Pending = () => {
                       bạn sẽ được duyệt trong vòng 1 - 3 ngày làm việc kể từ ngày hoàn tất đăng ký.
                       Vui lòng chờ đợi cho đến khi có kết quả. Chúng tôi sẽ gửi thông báo qua email,
                       hoặc bạn có thể kiểm tra trạng thái đối tác ở trang tổng quan Affiliate của
-                      mình
+                      mình.
                     </Typography>
                   </Box>
 

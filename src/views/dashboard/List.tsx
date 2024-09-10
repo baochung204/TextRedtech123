@@ -2,52 +2,30 @@
 // @ts-ignore
 import {
   Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
+  Grid
 } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
-import React from 'react';
-import Chart from 'react-apexcharts';
-import { useTheme } from '@mui/material/styles';
 
-import DashboardCard from '../../shared/DashboardCard';
-import { Props } from 'react-apexcharts';
-import { IconArrowUpRight } from '@tabler/icons-react';
 
-import icon1 from 'src/assets/images/svgs/icon-bars.svg';
 import Expence from 'src/components/dashboards/ecommerce/Expence';
 import Growth from 'src/components/dashboards/ecommerce/Growth';
 import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
-import RecentTransactions from 'src/components/dashboards/ecommerce/RecentTransactions';
 import RevenueUpdates from 'src/components/dashboards/ecommerce/RevenueUpdates';
 import Sales from 'src/components/dashboards/ecommerce/Sales';
-import SalesOverview from 'src/components/dashboards/ecommerce/SalesOverview';
 import SalesTwo from 'src/components/dashboards/ecommerce/SalesTwo';
-import YearlySales from 'src/components/dashboards/ecommerce/YearlySales';
-import Social from 'src/components/dashboards/modern/Social';
+import Customers from 'src/components/dashboards/modern/Customers';
+import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
+import Projects from 'src/components/dashboards/modern/Projects';
+import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
 import WeeklyStats from 'src/components/dashboards/modern/WeeklyStats';
+import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
 import ItemTable1 from './table/itemTable1';
 import ItemTable2 from './table/itemTable2';
-import Customers from 'src/components/dashboards/modern/Customers';
-import Projects from 'src/components/dashboards/modern/Projects';
-import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
-import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
-import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
-import { IconPlayerPlay, IconPlayerSkipBack } from '@tabler/icons-react';
-import { IconPlayerSkipForward } from '@tabler/icons-react';
-import img1 from 'src/assets/images/blog/blog-img5.jpg';
 
 const List = () => {
-  
   return (
     <div>
       {' '}
-      
       <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
         <Box mt={3}>
           <Grid container spacing={3}>

@@ -1,216 +1,316 @@
+import { Box, Checkbox, Grid, ListItemText, MenuItem, Typography } from '@mui/material';
 import React from 'react';
-import { Box, FormControlLabel, Button, Grid, MenuItem, FormControl, Alert } from '@mui/material';
-import ParentCard from 'src/components/shared/ParentCard';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import CustomRadio from 'src/components/forms/theme-elements/CustomRadio';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-interface currencyType {
+interface CurrencyType {
   value: string;
   label: string;
 }
 
-const currencies: currencyType[] = [
-  { value: 'female', label: 'Female' },
-  { value: 'male', label: 'Male' },
+const currencies: CurrencyType[] = [
+  { value: 'female', label: 'Nữ' },
+  { value: 'male', label: 'Nam' },
+  { value: 'other', label: 'Khác' },
+];
+
+const channels: CurrencyType[] = [
+  { value: 'mkt', label: 'MKT' },
+  { value: 'zl', label: 'Zalo' },
+  { value: 'fb', label: 'Facebook' },
+  { value: 'inst', label: 'Instagram' },
   { value: 'other', label: 'Other' },
 ];
 
-const countries: currencyType[] = [
-  { value: 'india', label: 'India' },
-  { value: 'uk', label: 'United Kingdom' },
-  { value: 'srilanka', label: 'Srilanka' },
-];
-
 const PopupAdd = () => {
-  const [currency, setCurrency] = React.useState('');
-  const [selectedValue, setSelectedValue] = React.useState('');
-  const [country, setCountry] = React.useState('');
+  const [gender, setGender] = React.useState('');
+  const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+  const [tags, setTags] = React.useState('');
+  const [companyName, setCompanyName] = React.useState('');
+  const [companyAddress, setCompanyAddress] = React.useState('');
+  const [companyEmail, setCompanyEmail] = React.useState('');
+  const [companyPhone, setCompanyPhone] = React.useState('');
+  const [companyWebsite, setCompanyWebsite] = React.useState('');
+  const [facebookUrl, setFacebookUrl] = React.useState('');
+  const [zaloUrl, setZaloUrl] = React.useState('');
+  const [instagramUrl, setInstagramUrl] = React.useState('');
+  const [assistant, setAssistant] = React.useState('');
 
-  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrency(event.target.value);
+  const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setGender(event.target.value as string);
   };
 
-  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
+  const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectedChannels(event.target.value as string[]);
   };
 
-  const handleChange4 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCountry(event.target.value);
+  const handleChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setter(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Xử lý gửi dữ liệu
+    console.log({
+      gender,
+      channels: selectedChannels,
+      tags,
+      companyName,
+      companyAddress,
+      companyEmail,
+      companyPhone,
+      companyWebsite,
+      facebookUrl,
+      zaloUrl,
+      instagramUrl,
+      assistant
+    });
   };
 
   return (
     <div>
-      <ParentCard
-        title=""
-        footer={
-          <>
-            <Button
-              variant="contained"
-              color="error"
-              sx={{ mr: 1, fontSize: '1.1rem', padding: '8px 16px' }}
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ fontSize: '1.1rem', padding: '8px 16px' }}
-            >
-              Submit
-            </Button>
-          </>
-        }
-      >
-        <>
-          <Alert severity="info" sx={{ fontSize: '1.2rem', mb: 2 }}>Thông tin cá nhân</Alert>
-          <form>
-            <Grid container spacing={3} mb={3}>
-              <Grid item lg={6} md={12} sm={12}>
-                <CustomFormLabel htmlFor="fname-text" sx={{ fontSize: '1.1rem' }}>
-                  First Name
-                </CustomFormLabel>
-                <CustomTextField
-                  id="fname-text"
-                  variant="outlined"
-                  fullWidth
-                  sx={{ fontSize: '1rem' }}
-                />
-                <CustomFormLabel htmlFor="standard-select-currency" sx={{ fontSize: '1.1rem' }}>
-                  Select Gender
-                </CustomFormLabel>
-                <CustomSelect
-                  id="standard-select-currency"
-                  value={currency}
-                  onChange={handleChange2}
-                  fullWidth
-                  variant="outlined"
-                  sx={{ fontSize: '1rem' }}
-                >
-                  {currencies.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </CustomSelect>
-                <CustomFormLabel sx={{ fontSize: '1.1rem' }}>Membership</CustomFormLabel>
-
-                <FormControl sx={{ width: '100%' }}>
-                  <Box>
-                    <FormControlLabel
-                      checked={selectedValue === 'a'}
-                      onChange={handleChange3}
-                      value="a"
-                      label="Free"
-                      name="radio-button-demo"
-                      control={<CustomRadio />}
-                      sx={{ fontSize: '1rem' }}
-                    />
-                    <FormControlLabel
-                      checked={selectedValue === 'b'}
-                      onChange={handleChange3}
-                      value="b"
-                      label="Paid"
-                      control={<CustomRadio />}
-                      name="radio-button-demo"
-                      sx={{ fontSize: '1rem' }}
-                    />
-                  </Box>
-                </FormControl>
-              </Grid>
-              <Grid item lg={6} md={12} sm={12}>
-                <CustomFormLabel htmlFor="lname-text" sx={{ fontSize: '1.1rem' }}>
-                  Last Name
-                </CustomFormLabel>
-                <CustomTextField
-                  id="lname-text"
-                  variant="outlined"
-                  fullWidth
-                  sx={{ fontSize: '1rem' }}
-                />
-                <CustomFormLabel htmlFor="date" sx={{ fontSize: '1.1rem' }}>
-                  Date of Birth
-                </CustomFormLabel>
-                <CustomTextField
-                  id="date"
-                  type="date"
-                  variant="outlined"
-                  fullWidth
-                  InputLabelProps={{ shrink: true }}
-                  sx={{ fontSize: '1rem' }}
-                />
-              </Grid>
-            </Grid>
-          </form>
-          <Alert severity="info" sx={{ fontSize: '1.2rem', mb: 2 }}>Địa chỉ</Alert>
-          <Grid container spacing={3} mb={3} mt={1}>
-            <Grid item lg={12} md={12} sm={12} xs={12}>
-              <CustomFormLabel htmlFor="street-text" sx={{ fontSize: '1.1rem' }}>
-                Street
+      
+        {/* Thông tin cá nhân */}
+        <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
+          <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+            Thông tin cá nhân
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item lg={6} md={12}>
+              <CustomFormLabel htmlFor="name-text">
+                Tên khách hàng
               </CustomFormLabel>
               <CustomTextField
-                id="street-text"
+                id="name-text"
                 variant="outlined"
                 fullWidth
-                sx={{ fontSize: '1rem' }}
+                value={tags}
+                onChange={handleChange(setTags)}
               />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel htmlFor="city-text" sx={{ fontSize: '1.1rem' }}>
-                City
+              <CustomFormLabel htmlFor="phone-text">
+                SĐT
               </CustomFormLabel>
               <CustomTextField
-                id="city-text"
+                id="phone-text"
                 variant="outlined"
                 fullWidth
-                sx={{ fontSize: '1rem' }}
+                value={companyPhone}
+                onChange={handleChange(setCompanyPhone)}
               />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel htmlFor="state-text" sx={{ fontSize: '1.1rem' }}>
-                State
-              </CustomFormLabel>
-              <CustomTextField
-                id="state-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel htmlFor="post-text" sx={{ fontSize: '1.1rem' }}>
-                Post Code
-              </CustomFormLabel>
-              <CustomTextField
-                id="post-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel htmlFor="country-text" sx={{ fontSize: '1.1rem' }}>
-                Country
+              <CustomFormLabel htmlFor="gender-select">
+                Giới tính
               </CustomFormLabel>
               <CustomSelect
-                id="country-select"
-                value={country}
-                onChange={handleChange4}
+                id="gender-select"
+                value={gender}
+                onChange={handleGenderChange}
                 fullWidth
                 variant="outlined"
-                sx={{ fontSize: '1rem' }}
               >
-                {countries.map((option) => (
+                {currencies.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
                     {option.label}
                   </MenuItem>
                 ))}
               </CustomSelect>
             </Grid>
+            <Grid item lg={6} md={12}>
+              <CustomFormLabel htmlFor="email-text">
+                Email
+              </CustomFormLabel>
+              <CustomTextField
+                id="email-text"
+                type="email"
+                variant="outlined"
+                fullWidth
+                value={companyEmail}
+                onChange={handleChange(setCompanyEmail)}
+              />
+              <CustomFormLabel htmlFor="dob-text">
+                Ngày sinh
+              </CustomFormLabel>
+              <CustomTextField
+                id="dob-text"
+                type="date"
+                variant="outlined"
+                fullWidth
+                InputLabelProps={{ shrink: true }}
+              />
+              <CustomFormLabel htmlFor="notes-text">
+                Ghi chú
+              </CustomFormLabel>
+              <CustomTextField
+                id="notes-text"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={3}
+                value={tags}
+                onChange={handleChange(setTags)}
+              />
+            </Grid>
           </Grid>
-        </>
-      </ParentCard>
+        </Box>
+
+        {/* Thông tin trợ lý và kênh */}
+        <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
+          <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+            Trợ lý và kênh
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item lg={6} md={12}>
+              <CustomFormLabel htmlFor="assistant-text">
+                Trợ lý
+              </CustomFormLabel>
+              <CustomTextField
+                id="assistant-text"
+                variant="outlined"
+                fullWidth
+                value={assistant}
+                onChange={handleChange(setAssistant)}
+              />
+              <CustomFormLabel htmlFor="tags-text">
+                Tags
+              </CustomFormLabel>
+              <CustomTextField
+                id="tags-text"
+                variant="outlined"
+                fullWidth
+                value={tags}
+                onChange={handleChange(setTags)}
+              />
+            </Grid>
+            <Grid item lg={6} md={12}>
+              <CustomFormLabel htmlFor="channel-select">
+                Kênh
+              </CustomFormLabel>
+              <CustomSelect
+                id="channel-select"
+                multiple
+                value={selectedChannels}
+                onChange={handleChannelChange}
+                renderValue={(selected: any) => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value: any) => (
+                      <Box key={value} sx={{ display: 'flex', alignItems: 'center', border: '1px solid', borderRadius: '4px', padding: '2px 6px' }}>
+                        {channels.find(channel => channel.value === value)?.label}
+                      </Box>
+                    ))}
+                  </Box>
+                )}
+                fullWidth
+                variant="outlined"
+              >
+                {channels.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    <Checkbox checked={selectedChannels.indexOf(option.value) > -1} />
+                    <ListItemText primary={option.label} />
+                  </MenuItem>
+                ))}
+              </CustomSelect>
+            </Grid>
+          </Grid>
+        </Box>
+        {/* thongtindoangnghiep */}
+        <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
+          <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+            Thông tin doanh nghiệp
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item lg={6} md={12} xs={12}>
+              <CustomFormLabel htmlFor="company-name-text">Tên công ty</CustomFormLabel>
+              <CustomTextField
+                id="company-name-text"
+                variant="outlined"
+                fullWidth
+                value={companyName}
+                onChange={handleChange(setCompanyName)}
+              />
+            </Grid>
+            <Grid item lg={6} md={12} xs={12}>
+              <CustomFormLabel htmlFor="company-address-text">Địa chỉ công ty</CustomFormLabel>
+              <CustomTextField
+                id="company-address-text"
+                variant="outlined"
+                fullWidth
+                value={companyAddress}
+                onChange={handleChange(setCompanyAddress)}
+              />
+            </Grid>
+            <Grid item lg={6} md={12} xs={12}>
+              <CustomFormLabel htmlFor="company-phone-text">Số điện thoại công ty</CustomFormLabel>
+              <CustomTextField
+                id="company-phone-text"
+                variant="outlined"
+                fullWidth
+                value={companyPhone}
+                onChange={handleChange(setCompanyPhone)}
+              />
+            </Grid>
+            <Grid item lg={6} md={12} xs={12}>
+              <CustomFormLabel htmlFor="company-email-text">Email công ty</CustomFormLabel>
+              <CustomTextField
+                id="company-email-text"
+                type="email"
+                variant="outlined"
+                fullWidth
+                value={companyEmail}
+                onChange={handleChange(setCompanyEmail)}
+              />
+            </Grid>
+            <Grid item lg={6} md={12} xs={12}>
+              <CustomFormLabel htmlFor="company-website-text">Website công ty</CustomFormLabel>
+              <CustomTextField
+                id="company-website-text"
+                variant="outlined"
+                fullWidth
+                value={companyWebsite}
+                onChange={handleChange(setCompanyWebsite)}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+
+        {/* Thông tin mạng xã hội */}
+        <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
+          <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+            Thông tin mạng xã hội
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item lg={6} md={12}>
+              <CustomFormLabel htmlFor="facebook-url-text">
+                Facebook URL
+              </CustomFormLabel>
+              <CustomTextField
+                id="facebook-url-text"
+                variant="outlined"
+                fullWidth
+                value={facebookUrl}
+                onChange={handleChange(setFacebookUrl)}
+              />
+              <CustomFormLabel htmlFor="zalo-url-text">
+                Zalo URL
+              </CustomFormLabel>
+              <CustomTextField
+                id="zalo-url-text"
+                variant="outlined"
+                fullWidth
+                value={zaloUrl}
+                onChange={handleChange(setZaloUrl)}
+              />
+              <CustomFormLabel htmlFor="instagram-url-text">
+                Instagram URL
+              </CustomFormLabel>
+              <CustomTextField
+                id="instagram-url-text"
+                variant="outlined"
+                fullWidth
+                value={instagramUrl}
+                onChange={handleChange(setInstagramUrl)}
+              />
+            </Grid>
+          </Grid>
+        </Box>
     </div>
   );
 };

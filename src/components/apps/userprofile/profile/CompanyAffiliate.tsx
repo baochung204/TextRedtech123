@@ -22,6 +22,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 
 import { Link } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
 
 const steps = [
   'Thỏa thuận hợp tác',
@@ -30,38 +31,42 @@ const steps = [
   'Ký hợp đồng',
 ];
 
-const handleFileChange = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    console.log('Selected file:', file);
-  }
-};
-
 const CompanyAffiliate = () => {
-  const [selectedFileName, setSelectedFileName] = useState('');
-  const [selectedDocument, setSelectedDocument] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
 
-  const [fileName, setFileName] = useState('');
+  // State to hold form data
+  const [formData, setFormData] = useState({
+    agreeTerms: false,
+    companyName: '',
+    taxCode: '',
+    companyEmail: '',
+    accountNumber: '',
+    accountName: '',
+    bank: '',
+    branch: '',
+    fileName: '',
+  });
+
+  const [selectedDocument, setSelectedDocument] = useState(null);
+  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
+  const isDarkMode = theme.palette.mode === 'dark';
+
+  // Handlers to manage form data
+  const handleChange = (e) => {
+    const { id, value, checked, type } = e.target;
+    setFormData({
+      ...formData,
+      [id]: type === 'checkbox' ? checked : value,
+    });
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setFileName(file.name); // Update state with file name
+      setFormData({ ...formData, fileName: file.name });
     }
   };
-
-  const handleDocumentChange = (event) => {
-    setSelectedDocument(URL.createObjectURL(event.target.files[0]));
-  };
-
-  const handleRemoveDocument = () => {
-    setSelectedDocument(null);
-    setSelectedFileName('');
-  };
-
-  const isStepOptional = (step) => step === 1;
 
   const isStepSkipped = (step) => skipped.has(step);
 
@@ -79,16 +84,28 @@ const CompanyAffiliate = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      throw new Error("You can't skip a step that isn't optional.");
+  // Validation logic for each step
+  const validateStep = (step) => {
+    switch (step) {
+      case 0:
+        return formData.agreeTerms;
+      case 1:
+        return (
+          formData.companyName !== '' &&
+          formData.taxCode !== '' &&
+          formData.companyEmail !== '' &&
+          formData.accountNumber !== '' &&
+          formData.accountName !== '' &&
+          formData.bank !== '' &&
+          formData.branch !== ''
+        );
+      case 2:
+        return formData.fileName !== '';
+      case 3:
+        return true; // No validation for step 3
+      default:
+        return false;
     }
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
   };
 
   const handleSteps = (step) => {
@@ -386,12 +403,7 @@ const CompanyAffiliate = () => {
               <h4>ĐIỀU 6. ĐỐI SOÁT VÀ THANH TOÁN</h4>
               <h3>1. Đối với Đối tác là Cá nhân</h3>
               <h4>1.1. Đối soát</h4>
-              <p>
-                Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang{' '}
-                {/* <a href="http://cpo.adflex.vn" target="_blank" style="color: #ffffff;">
-                http://cpo.adflex.vn
-              </a> */}
-              </p>
+              <p>Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang </p>
               <p>
                 Thông qua Tài khoản ngân hàng đã đăng ký, Đối tác trực tiếp theo dõi số lượng được
                 ghi nhận trên tất cả các hình thức quảng cáo.
@@ -428,12 +440,8 @@ const CompanyAffiliate = () => {
               <h3>2. Đối với Đối tác là Tổ chức/Doanh nghiệp</h3>
               <h4>2.1. Đối soát</h4>
               <p>
-                Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang{' '}
-                {/* <a href="http://cpo.adflex.vn" target="_blank" style="color: #ffffff;">
-                http://cpo.adflex.vn
-              </a>{' '} */}
-                và thanh toán theo Net 7* đối với hình thức CPO. Các hình thức khác, Redtech sẽ
-                thanh toán theo tháng.
+                Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang và thanh toán theo
+                Net 7* đối với hình thức CPO. Các hình thức khác, Redtech sẽ thanh toán theo tháng.
               </p>
               <p>
                 Nếu Đối tác không có nhu cầu nhận thanh toán hàng tuần, Redtech sẽ linh hoạt để đảm
@@ -529,7 +537,9 @@ const CompanyAffiliate = () => {
               </ol>
             </Box>
             <Checkbox
-              defaultChecked
+              id="agreeTerms"
+              checked={formData.agreeTerms}
+              onChange={handleChange}
               color="primary"
               inputProps={{ 'aria-label': 'checkbox with default color' }}
             />
@@ -541,11 +551,10 @@ const CompanyAffiliate = () => {
           <Box>
             <Alert severity="warning" sx={{ marginTop: '30px' }}>
               Chú ý: Nội dung đối tác điền dưới đây sẽ được sử dụng làm thông tin trong hợp đồng hợp
-              tác và thanh toán hoa hồng.Đối tác vui lòng điền chính xác thông tin doanh nghiệp &
-              Thông tin tài khoản trước khi chuyển qua bước tiếp theo.Trân trọng!
+              tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp &
+              Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
             </Alert>
             <Grid container spacing={3}>
-              {/* Hàng 1: Tên công ty và Mã số thuế */}
               <Grid item xs={6}>
                 <CustomFormLabel htmlFor="companyName">Tên công ty</CustomFormLabel>
                 <CustomTextField
@@ -553,6 +562,8 @@ const CompanyAffiliate = () => {
                   variant="outlined"
                   placeholder="Nhập tên của công ty"
                   fullWidth
+                  value={formData.companyName}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -562,10 +573,10 @@ const CompanyAffiliate = () => {
                   variant="outlined"
                   placeholder="Mã số thuế của công ty"
                   fullWidth
+                  value={formData.taxCode}
+                  onChange={handleChange}
                 />
               </Grid>
-
-              {/* Hàng 2: Email công ty và Số tài khoản */}
               <Grid item xs={6}>
                 <CustomFormLabel htmlFor="companyEmail">Email công ty</CustomFormLabel>
                 <CustomTextField
@@ -573,6 +584,8 @@ const CompanyAffiliate = () => {
                   variant="outlined"
                   placeholder="Nhập email công ty của bạn"
                   fullWidth
+                  value={formData.companyEmail}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -582,10 +595,10 @@ const CompanyAffiliate = () => {
                   variant="outlined"
                   placeholder="Nhập số tài khoản của bạn"
                   fullWidth
+                  value={formData.accountNumber}
+                  onChange={handleChange}
                 />
               </Grid>
-
-              {/* Hàng 3: Tên tài khoản và Ngân hàng */}
               <Grid item xs={12}>
                 <CustomFormLabel htmlFor="accountName">Tên tài khoản</CustomFormLabel>
                 <CustomTextField
@@ -593,28 +606,34 @@ const CompanyAffiliate = () => {
                   variant="outlined"
                   placeholder="Nhập tên tài khoản của bạn"
                   fullWidth
+                  value={formData.accountName}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={6}>
-                <CustomFormLabel htmlFor="accountName">Ngân hàng</CustomFormLabel>
+                <CustomFormLabel htmlFor="bank">Ngân hàng</CustomFormLabel>
                 <FormControl fullWidth>
                   <InputLabel id="bank-select-label">Chọn ngân hàng</InputLabel>
-                  <Select labelId="bank-select-label" id="bank-select" label="Chọn ngân hàng">
+                  <Select
+                    labelId="bank-select-label"
+                    id="bank"
+                    value={formData.bank}
+                    onChange={(e) => setFormData({ ...formData, bank: e.target.value })}
+                  >
                     <MenuItem value="mb">Mb bank</MenuItem>
                     <MenuItem value="tp">TP bank</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
-
-              {/* Hàng 4: Chi nhánh ngân hàng */}
               <Grid item xs={6}>
-                <CustomFormLabel htmlFor="accountName">Chi nhánh ngân hàng</CustomFormLabel>
+                <CustomFormLabel htmlFor="branch">Chi nhánh ngân hàng</CustomFormLabel>
                 <FormControl fullWidth>
-                  <InputLabel id="branch-select-label">Chi nhánh ngân hàng</InputLabel>
+                  <InputLabel id="branch-select-label">Chọn chi nhánh</InputLabel>
                   <Select
                     labelId="branch-select-label"
-                    id="branch-select"
-                    label="Chi nhánh ngân hàng"
+                    id="branch"
+                    value={formData.branch}
+                    onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
                   >
                     <MenuItem value="hanoi">Hà Nội</MenuItem>
                     <MenuItem value="hochiminh">Hồ Chí Minh</MenuItem>
@@ -624,7 +643,6 @@ const CompanyAffiliate = () => {
             </Grid>
           </Box>
         );
-
       case 2:
         return (
           <Container sx={{ marginTop: '30px' }}>
@@ -636,36 +654,29 @@ const CompanyAffiliate = () => {
                 textAlign: 'center',
               }}
             >
-              <Box
-                sx={{ marginTop: '10px', maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}
-              >
-                <Typography>
-                  Vui lòng tải lên giấy phép đăng ký kinh doanh để tiến hành xác minh doanh nghiệp
-                  của bạn trước khi ký hợp đồng.File đăng ký kinh doanh hợp lệ ở định dạng pdf, nếu
-                  file đăng ký kinh doanh đang ở định dạng file khác, hãy chuyển sang pdf trước khi
-                  xác minh
-                </Typography>
-                <Box sx={{ marginTop: '30px', marginBottom: '20px' }}>
-                  <Typography>Tiến hành xác minh doanh nghiệp</Typography>
-                </Box>
-              </Box>
-              <Input
-                type="file"
-                onChange={handleFileChange}
-                sx={{ display: 'none' }} // Hide the input
-                id="file-upload"
-              />
-              <label htmlFor="file-upload">
-                <Button variant="contained" color="primary" component="span">
-                  Tải lên
-                </Button>
-              </label>
+              <Typography>
+                Vui lòng tải lên giấy phép đăng ký kinh doanh để tiến hành xác minh doanh nghiệp của
+                bạn trước khi ký hợp đồng. File hợp lệ là pdf.
+              </Typography>
+              <Box sx={{ marginTop: '30px' }}>
+                <Input
+                  type="file"
+                  onChange={handleFileChange}
+                  sx={{ display: 'none' }} // Hide the input
+                  id="file-upload"
+                />
+                <label htmlFor="file-upload">
+                  <Button variant="contained" color="primary" component="span">
+                    Tải lên
+                  </Button>
+                </label>
 
-              {fileName && ( // Conditionally render the file name if a file is uploaded
-                <Typography variant="body2" sx={{ marginTop: '10px', color: '#555' }}>
-                  File đã tải lên: {fileName}
-                </Typography>
-              )}
+                {formData.fileName && ( // Conditionally render the file name if a file is uploaded
+                  <Typography variant="body2" sx={{ marginTop: '10px', color: '#555' }}>
+                    File đã tải lên: {formData.fileName}
+                  </Typography>
+                )}
+              </Box>
             </Box>
           </Container>
         );
@@ -687,29 +698,42 @@ const CompanyAffiliate = () => {
                     height="315"
                     src="https://www.youtube.com/embed/iCRV5g-u_M0?si=fM5Z3KQsaL5uv_PA"
                     title="YouTube video player"
-                    // frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    // referrerpolicy="strict-origin-when-cross-origin"
-                    // allowfullscreen
                   ></iframe>
                 </Box>
               </Grid>
               <Grid item xs={6}>
                 <Box
                   sx={{
-                    border: '1px solid #ccc',
+                    border: `1px solid ${isDarkMode ? '#444' : '#ccc'}`, // Dark mode border
                     padding: '24px',
-                    borderRadius: '8px', // Rounded corners
-                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Subtle shadow for elevation
-                    backgroundColor: '#fafafa', // Light background
+                    borderRadius: '8px',
+                    boxShadow: isDarkMode
+                      ? '0px 4px 12px rgba(0, 0, 0, 0.7)' // Darker shadow in dark mode
+                      : '0px 4px 12px rgba(0, 0, 0, 0.1)', // Lighter shadow in light mode
+                    backgroundColor: isDarkMode ? theme.palette.background.paper : '#fafafa', // Background color based on mode
                     height: '100%',
+                    color: isDarkMode ? theme.palette.text.primary : 'black', // Change text color based on dark mode
                   }}
                 >
-                  <Typography sx={{ fontWeight: 'bold', fontSize: '25px', marginBottom: '20px' }}>
+                  <Typography
+                    sx={{
+                      fontWeight: 'bold',
+                      fontSize: '25px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.primary : '#333', // Adjust text color
+                    }}
+                  >
                     Hướng dẫn ký hợp đồng
                   </Typography>
 
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555', // Adjust text color based on mode
+                    }}
+                  >
                     Bước 1: Tải xuống hợp đồng có chứa thông tin của đối tác.
                   </Typography>
 
@@ -727,15 +751,33 @@ const CompanyAffiliate = () => {
                     </Button>
                   </Box>
 
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555',
+                    }}
+                  >
                     Bước 2: Kiểm tra & xác minh toàn bộ thông tin trong hợp đồng.
                   </Typography>
 
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555',
+                    }}
+                  >
                     Bước 3: Tiến hành ký hợp đồng như video hướng dẫn bên trái.
                   </Typography>
 
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555',
+                    }}
+                  >
                     Bước 4: Tải file hợp đồng đã ký lên.
                   </Typography>
 
@@ -757,15 +799,10 @@ const CompanyAffiliate = () => {
             </Grid>
           </Box>
         );
-
       default:
         return null;
     }
   };
-
-  // const handleReset = () => {
-  //   setActiveStep(0);
-  // };
 
   return (
     <PageContainer>
@@ -777,7 +814,6 @@ const CompanyAffiliate = () => {
             if (isStepSkipped(index)) {
               stepProps.completed = false;
             }
-
             return (
               <Step key={label} {...stepProps}>
                 <StepLabel {...labelProps}>{label}</StepLabel>
@@ -819,15 +855,11 @@ const CompanyAffiliate = () => {
                 Hủy bỏ
               </Button>
               <Box flex="1 1 auto" />
-              {/* {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                  Bỏ qua
-                </Button>
-              )} */}
               <Button
                 onClick={handleNext}
                 variant="contained"
                 color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
+                disabled={!validateStep(activeStep)} // Disable button if validation fails
               >
                 {activeStep === steps.length - 1 ? 'Kết thúc' : 'Tiếp tục'}
               </Button>
