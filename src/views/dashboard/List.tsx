@@ -43,11 +43,9 @@ import { IconPlayerSkipForward } from '@tabler/icons-react';
 import img1 from 'src/assets/images/blog/blog-img5.jpg';
 
 const List = () => {
-  
   return (
     <div>
       {' '}
-      
       <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
         <Box mt={3}>
           <Grid container spacing={3}>

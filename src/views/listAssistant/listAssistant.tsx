@@ -527,7 +527,7 @@ const ListAssistant = () => {
                         </Grid>
 
                         <Grid item xs={6} sm={6} spacing={2}>
-                          <Grid container rowSpacing={{ xs: 1.1, sm: 2 }}>
+                          <Grid container rowSpacing={{ xs: 1.1, sm: 3.4 }}>
                             <Grid item xs={12} sm={12}>
                               <Tooltip title="Tổng giá trị hàng hóa" placement="top">
                                 <Button
