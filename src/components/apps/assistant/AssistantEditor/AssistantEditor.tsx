@@ -32,7 +32,7 @@ import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutl
 import PersonIcon from '@mui/icons-material/Person';
 import { IconEdit } from '@tabler/icons-react';
 import DateTime from './DateTime'
-import Checkboxes from './Checkboxes';
+import Checkboxes from './Tags';
 import QuillEditor from './QuillEditor';
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
