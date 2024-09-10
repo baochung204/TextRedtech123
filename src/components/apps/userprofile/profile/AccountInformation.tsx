@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button, useTheme } from '@mui/material';
+import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button } from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { dispatch } from 'src/store/Store';
+import { setSelected } from 'src/store/RouterSlice';
+
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
@@ -12,12 +15,13 @@ const AccountInformation = () => {
     password: '**********',
   });
 
-  const theme = useTheme();
-  const navigate = useNavigate();
+  // const theme = useTheme();
+  // const navigate = useNavigate();
 
   const handleEditClick = (field: string) => {
     if (field === 'password') {
-      navigate('/pages/account-settings');
+      // navigate('/pages/account-settings');
+      dispatch(setSelected('changepassword'))
     } else {
       setEditing(field);
     }
