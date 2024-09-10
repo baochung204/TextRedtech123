@@ -11,9 +11,15 @@ import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import Tooltip from '@mui/material/Tooltip';
 import Fab from '@mui/material/Fab';
 import { FaPlus, FaSearch } from 'react-icons/fa';
-import { Grid, Box, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions, Button, FormControlLabel } from '@mui/material';
+import { Grid, Box, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions, Button, Slide } from '@mui/material';
 import PopupAdd from './PopupAdd';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
+import PopupAdd2 from './PopupAdd2';
+
+// Tạo Transition component để sử dụng hiệu ứng slide từ dưới lên
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -37,7 +43,6 @@ const CustomerList = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  
 
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>
@@ -153,10 +158,17 @@ const CustomerList = () => {
       {/* Bảng khách hàng */}
       <CustomerTable />
       {/* Popup Thêm đơn hàng */}
-      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
+      <Dialog
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        fullWidth
+        maxWidth="lg"
+        TransitionComponent={Transition} // Thêm dòng này để sử dụng hiệu ứng slide
+        keepMounted
+      >
         <DialogTitle>Thêm Đơn Hàng</DialogTitle>
         <DialogContent>
-          <PopupAdd /> {/* Gọi component PopupAdd */}
+          <PopupAdd2 /> {/* Gọi component PopupAdd */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>

@@ -103,6 +103,7 @@ import Pending from 'src/views/apps/user-profile/Pending';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import Update from 'src/views/apps/update/Update';
+import CustomerList from 'src/views/apps/customerList/CustomerList';
 
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
