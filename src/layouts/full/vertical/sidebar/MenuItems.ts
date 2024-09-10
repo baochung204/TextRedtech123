@@ -63,6 +63,7 @@ import {
   IconBoxAlignLeft,
   IconBorderStyle2,
   IconAppWindow,
+  IconBrandOpenSource,
 } from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
@@ -101,6 +102,12 @@ const Menuitems: MenuitemsType[] = [
     title: 'Tài nguyên',
     icon: IconShoppingCart,
     href: '/dashboards/list',
+  },
+  {
+    id: uniqueId(),
+    title: 'Tài nguyên',
+    icon: IconBrandOpenSource,
+    href: '/dashboards/resources',
   },
   {
     id: uniqueId(),
