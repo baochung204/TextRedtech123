@@ -26,6 +26,8 @@ import {
   Tab,
   Stack,
   Fab,
+  Button,
+  MenuItem,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { useSelector, useDispatch } from 'src/store/Store';
@@ -37,6 +39,7 @@ import { ProductType } from 'src/types/apps/eCommerce';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Develop from '../integration/Develop';
 import Tags from './tags';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -356,8 +359,19 @@ const Product = () => {
                     search={search}
                     handleSearch={(event: any) => handleSearch(event)}
                 />
+                <Button sx={{ml: '540px'}}>
+                  Sửa đổi cột
+                </Button>
+                <CustomSelect
+              labelId="column-filter"
+              id="column-filter"
+              size="small"
+              value={1} // Setting the first value as default
+              sx={{ marginRight: '20px', ml: '30px' }}
+            >
+              <MenuItem value={1}>Sắp xếp</MenuItem>
+            </CustomSelect>
             </Box>
-
         
         
           <Paper variant="outlined" sx={{ mx: 2, mt: 1, border: `1px solid ${borderColor}` }}>
