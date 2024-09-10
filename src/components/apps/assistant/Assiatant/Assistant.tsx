@@ -1,17 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
-<<<<<<< HEAD
 import { useState } from 'react';
-=======
-import { useNavigate } from 'react-router-dom';
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import {
   Typography,
   TableHead,
   Avatar,
-  Chip,
   Box,
   Table,
   TableBody,
@@ -22,12 +18,6 @@ import {
   IconButton,
   TableContainer,
   Stack,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions
 } from '@mui/material';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -35,7 +25,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 
 import img1 from 'src/assets/images/profile/user-1.jpg';
@@ -44,17 +33,8 @@ import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import ParentCard from 'src/components/shared/ParentCard';
-import BlankCard from '../../../components/shared/BlankCard';
-import {
-  IconArrowBackUp,
-  IconCheck,
-  IconDotsVertical,
-  IconEdit,
-  IconPlus,
-  IconTrash,
-  IconX,
-} from '@tabler/icons-react';
-import EditIcon from '@mui/icons-material/Edit';
+import BlankCard from '../../../shared/BlankCard';
+import { IconEdit } from '@tabler/icons-react';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -63,7 +43,6 @@ interface TablePaginationActionsProps {
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
-  const [open, setOpen] = useState(false);
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -82,13 +61,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   const handleLastPageButtonClick = (event: any) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
@@ -119,7 +92,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-
 interface OrderType {
   id: string;
   model: string;
@@ -135,11 +107,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     model: 'GPT-3.5',
     imgsrc: img1,
-<<<<<<< HEAD
-    customer: 'ChatAi',
-=======
     customer: 'botHello',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     connect: 'Facebook',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
@@ -148,11 +116,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     model: 'GPT-4',
     imgsrc: img2,
-<<<<<<< HEAD
-    customer: 'botSales',
-=======
     customer: 'Chatbot Hola',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     connect: 'Zalo',
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
@@ -161,11 +125,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     model: 'GPT-4',
     imgsrc: img3,
-<<<<<<< HEAD
-    customer: 'botMarketing',
-=======
     customer: 'Chatbot CSKH',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     connect: 'Telegram',
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
@@ -174,13 +134,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
-<<<<<<< HEAD
-    customer: 'Chatbot CSKH',
-    connect: 'Messager',
-=======
     customer: 'Chatbot XKLĐ',
     connect: 'X',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -188,13 +143,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     model: 'GPT-4',
     imgsrc: img5,
-<<<<<<< HEAD
-    customer: 'Chatbot CSKH',
-    connect: 'X',
-=======
     customer: 'Christopher Jamil',
     connect: 'Zalo',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -202,13 +152,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     model: 'GPT-4',
     imgsrc: img2,
-<<<<<<< HEAD
-    customer: 'Chatbot Tư vấn nghề',
-    connect: 'Zalo',
-=======
     customer: 'John Deo',
     connect: 'Whatsapp',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Pending',
     date: '10 Jun, 2021 07:46:00',
   },
@@ -216,13 +161,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     model: 'GPT-4',
     imgsrc: img3,
-<<<<<<< HEAD
-    customer: 'Chatbot Tư vấn XKLĐ',
-    connect: 'Telegram',
-=======
     customer: 'Mily Peter',
     connect: 'Facebook',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Cancel',
     date: '10 Jun, 2021 04:19:38',
   },
@@ -230,13 +170,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
-<<<<<<< HEAD
-    customer: 'Chatbot CSKH',
-    connect: 'Zalo',
-=======
     customer: 'Andrew McDownland',
     connect: '457,000',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
   },
@@ -244,13 +179,8 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     model: 'GPT-4',
     imgsrc: img5,
-<<<<<<< HEAD
-    customer: 'Chatbot CSKH',
-    connect: 'X',
-=======
     customer: 'Christopher Jamil',
     connect: 'Telegram',
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
     status: 'Pending',
     date: '15 Apr, 2021 04:12:50',
   },
@@ -258,40 +188,12 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     model: 'GPT-4',
     imgsrc: img1,
-<<<<<<< HEAD
-    customer: 'Chatbot Tuyển sinh',
-    connect: 'Facebook',
-    status: 'Completed',
-    date: '10 Jun, 2021 09:51:40',
-  },
-  {
-    id: 'ORD - 0124060',
-    model: 'GPT-4',
-    imgsrc: img4,
-    customer: 'Chatbot CSKH',
-    connect: 'Telegram',
-    status: 'Completed',
-    date: '10 Jun, 2021 04:12:29',
-  },
-  {
-    id: 'ORD - 0124568',
-    model: 'GPT-4',
-    imgsrc: img5,
-    customer: 'ChatAi CSKH',
-    connect: 'Zalo',
-    status: 'Pending',
-    date: '15 Apr, 2021 04:12:50',
-  },
-=======
     customer: 'Sunil Joshi',
     connect: 'Zalo',
     status: 'Completed',
     date: '10 Jun, 2021 09:51:40',
-  }
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
+  },
 ].sort((a, b) => (a.customer < b.customer ? -1 : 1));
-
-
 
 const Assistant = () => {
   const [page, setPage] = React.useState(0);
@@ -309,23 +211,20 @@ const Assistant = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const nav = useNavigate()
+  const nav = useNavigate();
   const handleInfor = () => {
-    nav('/apps/assistant/:id')
-  }
+    nav('/apps/assistant/:id');
+  };
 
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
       <ParentCard title="Quản lý Trợ lý">
-        
         <BlankCard>
-        
           <TableContainer>
             <Table
               aria-label="custom pagination table"
               sx={{
                 whiteSpace: 'nowrap',
-                
               }}
             >
               <TableHead>
@@ -356,39 +255,55 @@ const Assistant = () => {
                   ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   : rows
                 ).map((row, index) => (
-                  <TableRow key={index} >
+                  <TableRow key={index}>
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} variant="subtitle2">{row.id}</Typography>
+                      <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
+                        {row.id}
+                      </Typography>
                     </TableCell>
                     <TableCell onClick={handleInfor}>
                       <Stack direction="row" spacing={2} alignmodel="center">
                         <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                        <Typography sx={{cursor: "pointer"}} variant="subtitle2" fontWeight="600">
-                          {row.customer}
-                        </Typography>
+
+                        <Link to={'/apps/assistant/:id'}>
+                          <Typography
+                            sx={{ cursor: 'pointer' }}
+                            variant="subtitle2"
+                            fontWeight="600"
+                          >
+                            {row.customer}
+                          </Typography>
+                        </Link>
                       </Stack>
-                    </TableCell >
+                    </TableCell>
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} color="textSecondary" variant="h6" fontWeight="400">
+                      <Typography
+                        sx={{ cursor: 'pointer' }}
+                        color="textSecondary"
+                        variant="h6"
+                        fontWeight="400"
+                      >
                         {row.model}
                       </Typography>
                     </TableCell>
 
-<<<<<<< HEAD
-                    <TableCell>
-                      <Typography color="textSecondary" variant="h6" fontWeight="400">
-=======
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} color="textSecondary" variant="h6" fontWeight="400">
->>>>>>> 32034592a54abdddab6605aec6d6520fdea68aa0
+                      <Typography
+                        sx={{ cursor: 'pointer' }}
+                        color="textSecondary"
+                        variant="h6"
+                        fontWeight="400"
+                      >
                         {row.connect}
                       </Typography>
                     </TableCell>
 
                     <TableCell onClick={handleInfor}>
-                      <Typography sx={{cursor: "pointer"}} variant="subtitle2">{row.date}</Typography>
+                      <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
+                        {row.date}
+                      </Typography>
                     </TableCell>
-                    <TableCell sx={{ cursor: "pointer", color:"steelblue"}}>
+                    <TableCell sx={{ cursor: 'pointer', color: 'steelblue' }}>
                       <IconEdit />
                       {/* <DeleteIcon sx={{marginRight: '10px', cursor: "pointer"}}/> */}
                     </TableCell>
@@ -422,7 +337,6 @@ const Assistant = () => {
           </TableContainer>
         </BlankCard>
       </ParentCard>
-      
     </PageContainer>
   );
 };

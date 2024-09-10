@@ -186,7 +186,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: false,
-    label: 'Health',
+    label: 'Sức khỏe',
     attchments: [],
   },
   {
@@ -208,7 +208,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: false,
-    label: 'Social',
+    label: 'Xã hội',
     attchments: [],
   },
   {
@@ -230,7 +230,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: true,
     trash: false,
-    label: 'Social',
+    label: 'Xã hội',
     attchments: [],
   },
   {
@@ -252,7 +252,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: true,
-    label: 'Promotional',
+    label: 'Tiềm năng',
     attchments: [],
   },
   {
@@ -274,7 +274,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: false,
-    label: 'Health',
+    label: 'Sức khỏe',
     attchments: [],
   },
   {
@@ -296,7 +296,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: false,
-    label: 'Promotional',
+    label: 'Học vấn',
     attchments: [],
   },
   {
@@ -318,7 +318,7 @@ const EmailData: EmailType[] = [
     draft: true,
     spam: false,
     trash: true,
-    label: 'Social',
+    label: 'Con người',
     attchments: [],
   },
   {
@@ -340,7 +340,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: false,
-    label: 'Health',
+    label: 'Sức khỏe',
     attchments: [],
   },
   {
@@ -362,7 +362,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: true,
-    label: 'Social',
+    label: 'Xã hội',
     attchments: [],
   },
   {
@@ -384,7 +384,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: true,
-    label: 'Promotional',
+    label: 'Con người',
     attchments: [],
   },
   {
@@ -406,7 +406,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: true,
-    label: 'Social',
+    label: 'Xã hội',
     attchments: [],
   },
   {
@@ -428,7 +428,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: true,
     trash: false,
-    label: 'Health',
+    label: 'Sức khỏe',
     attchments: [],
   },
   {
@@ -450,7 +450,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: false,
-    label: 'Promotional',
+    label: 'Sức khỏe',
     attchments: [],
   },
   {
@@ -472,7 +472,7 @@ const EmailData: EmailType[] = [
     draft: true,
     spam: false,
     trash: false,
-    label: 'Health',
+    label: 'Sức khỏe',
     attchments: [],
   },
   {
@@ -494,7 +494,7 @@ const EmailData: EmailType[] = [
     draft: false,
     spam: false,
     trash: false,
-    label: 'Social',
+    label: 'Con người',
     attchments: [],
   },
 ];

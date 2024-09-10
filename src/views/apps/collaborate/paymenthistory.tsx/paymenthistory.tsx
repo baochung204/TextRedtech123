@@ -459,7 +459,7 @@ const Paymenthistory = () => {
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount.toLocaleString()} đ
+                                {getStatusTextAndColor(row.status)}
                               </Typography>
                             </Box>
                           </Stack>

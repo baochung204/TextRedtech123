@@ -10,6 +10,7 @@ import { IconGridDots } from '@tabler/icons-react';
 type Props = {
   title: string;
   subtitle: string;
+  action: any;
   dataLabel1: string;
   dataItem1: string;
   dataLabel2: string;
@@ -20,6 +21,7 @@ type Props = {
 const DashboardWidgetCard = ({
   title,
   subtitle,
+  action,
   children,
   dataLabel1,
   dataItem1,
@@ -105,7 +107,7 @@ const DashboardWidgetCard = ({
                 {dataLabel2}
               </Typography>
               <Typography variant="h6" fontWeight="600">
-                {dataItem2}
+                {dataItem2} {action}
               </Typography>
             </Box>
           </Stack>

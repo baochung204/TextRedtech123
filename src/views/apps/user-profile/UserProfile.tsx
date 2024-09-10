@@ -12,13 +12,11 @@ import TwoFactorSecurity from 'src/components/apps/userprofile/profile/TwoFactor
 import { setSelected } from 'src/store/RouterSlice';
 import { useSelector } from 'src/store/Store';
 
-
-
 const UserProfile = () => {
   // const [selected, setSelected] = useState<string>('personal');
-  const selecteds = useSelector((state) => state.selectReducer.selecteds) 
+  const selecteds = useSelector((state) => state.selectReducer.selecteds);
   const handleButtonClick = (buttonName: string) => {
-    setSelected(buttonName)
+    setSelected(buttonName);
   };
 
   return (

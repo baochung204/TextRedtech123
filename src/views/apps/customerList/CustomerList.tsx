@@ -11,9 +11,25 @@ import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import Tooltip from '@mui/material/Tooltip';
 import Fab from '@mui/material/Fab';
 import { FaPlus, FaSearch } from 'react-icons/fa';
-import { Grid, Box, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions, Button, FormControlLabel } from '@mui/material';
+import {
+  Grid,
+  Box,
+  InputAdornment,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  Slide,
+} from '@mui/material';
 import PopupAdd from './PopupAdd';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
+import PopupAdd2 from './PopupAdd2';
+
+// Tạo Transition component để sử dụng hiệu ứng slide từ dưới lên
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -24,10 +40,10 @@ const BCrumb = [
 const CustomerList = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  const [filterColumn, setFilterColumn] = React.useState('');
+  // const [filterColumn, setFilterColumn] = React.useState('');
   const [searchText, setSearchText] = React.useState('');
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  
+
   // Function mở popup
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -37,7 +53,6 @@ const CustomerList = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  
 
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>
@@ -57,10 +72,15 @@ const CustomerList = () => {
         {/* Nút tạo đơn hàng và thanh tìm kiếm */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title="Tạo đơn hàng">
-            <Fab color="primary" aria-label="add" sx={{ marginRight: '30px' }} onClick={handleOpenPopup}>
+            <Fab
+              color="primary"
+              aria-label="add"
+              sx={{ marginRight: '30px' }}
+              onClick={handleOpenPopup}
+            >
               <FaPlus />
             </Fab>
-          </Tooltip>  
+          </Tooltip>
 
           {/* Thanh tìm kiếm với icon */}
           <CustomTextField
@@ -68,7 +88,7 @@ const CustomerList = () => {
             variant="outlined"
             value={searchText}
             onChange={(e: any) => setSearchText(e.target.value)}
-            sx={{ 
+            sx={{
               width: '300px',
               borderRadius: '20px',
               marginRight: '40px',
@@ -88,7 +108,7 @@ const CustomerList = () => {
               ),
             }}
           />
-          
+
           {/* Bộ lọc cột */}
           <CustomSelect
             labelId="column-filter"
@@ -153,10 +173,17 @@ const CustomerList = () => {
       {/* Bảng khách hàng */}
       <CustomerTable />
       {/* Popup Thêm đơn hàng */}
-      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
+      <Dialog
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        fullWidth
+        maxWidth="lg"
+        TransitionComponent={Transition} // Thêm dòng này để sử dụng hiệu ứng slide
+        keepMounted
+      >
         <DialogTitle>Thêm Đơn Hàng</DialogTitle>
         <DialogContent>
-          <PopupAdd /> {/* Gọi component PopupAdd */}
+          <PopupAdd2 /> {/* Gọi component PopupAdd */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
@@ -165,7 +192,6 @@ const CustomerList = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      
     </div>
   );
 };
