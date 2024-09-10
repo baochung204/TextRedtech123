@@ -22,6 +22,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 
 import { Link } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
 
 const steps = [
   'Thỏa thuận hợp tác',
@@ -48,6 +49,8 @@ const CompanyAffiliate = () => {
   });
 
   const [selectedDocument, setSelectedDocument] = useState(null);
+  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
+  const isDarkMode = theme.palette.mode === 'dark';
 
   // Handlers to manage form data
   const handleChange = (e) => {
@@ -400,12 +403,7 @@ const CompanyAffiliate = () => {
               <h4>ĐIỀU 6. ĐỐI SOÁT VÀ THANH TOÁN</h4>
               <h3>1. Đối với Đối tác là Cá nhân</h3>
               <h4>1.1. Đối soát</h4>
-              <p>
-                Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang{' '}
-                {/* <a href="http://cpo.adflex.vn" target="_blank" style="color: #ffffff;">
-                http://cpo.adflex.vn
-              </a> */}
-              </p>
+              <p>Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang </p>
               <p>
                 Thông qua Tài khoản ngân hàng đã đăng ký, Đối tác trực tiếp theo dõi số lượng được
                 ghi nhận trên tất cả các hình thức quảng cáo.
@@ -442,12 +440,8 @@ const CompanyAffiliate = () => {
               <h3>2. Đối với Đối tác là Tổ chức/Doanh nghiệp</h3>
               <h4>2.1. Đối soát</h4>
               <p>
-                Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang{' '}
-                {/* <a href="http://cpo.adflex.vn" target="_blank" style="color: #ffffff;">
-                http://cpo.adflex.vn
-              </a>{' '} */}
-                và thanh toán theo Net 7* đối với hình thức CPO. Các hình thức khác, Redtech sẽ
-                thanh toán theo tháng.
+                Redtech cung cấp hệ thống báo cáo online cho Đối tác trên trang và thanh toán theo
+                Net 7* đối với hình thức CPO. Các hình thức khác, Redtech sẽ thanh toán theo tháng.
               </p>
               <p>
                 Nếu Đối tác không có nhu cầu nhận thanh toán hàng tuần, Redtech sẽ linh hoạt để đảm
@@ -711,20 +705,38 @@ const CompanyAffiliate = () => {
               <Grid item xs={6}>
                 <Box
                   sx={{
-                    border: '1px solid #ccc',
+                    border: `1px solid ${isDarkMode ? '#444' : '#ccc'}`, // Dark mode border
                     padding: '24px',
                     borderRadius: '8px',
-                    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-                    backgroundColor: '#fafafa',
+                    boxShadow: isDarkMode
+                      ? '0px 4px 12px rgba(0, 0, 0, 0.7)' // Darker shadow in dark mode
+                      : '0px 4px 12px rgba(0, 0, 0, 0.1)', // Lighter shadow in light mode
+                    backgroundColor: isDarkMode ? theme.palette.background.paper : '#fafafa', // Background color based on mode
                     height: '100%',
+                    color: isDarkMode ? theme.palette.text.primary : 'black', // Change text color based on dark mode
                   }}
                 >
-                  <Typography sx={{ fontWeight: 'bold', fontSize: '25px', marginBottom: '20px' }}>
+                  <Typography
+                    sx={{
+                      fontWeight: 'bold',
+                      fontSize: '25px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.primary : '#333', // Adjust text color
+                    }}
+                  >
                     Hướng dẫn ký hợp đồng
                   </Typography>
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555', // Adjust text color based on mode
+                    }}
+                  >
                     Bước 1: Tải xuống hợp đồng có chứa thông tin của đối tác.
                   </Typography>
+
                   <Box sx={{ textAlign: 'center', marginBottom: '20px' }}>
                     <Button
                       variant="contained"
@@ -738,15 +750,37 @@ const CompanyAffiliate = () => {
                       Tải xuống
                     </Button>
                   </Box>
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555',
+                    }}
+                  >
                     Bước 2: Kiểm tra & xác minh toàn bộ thông tin trong hợp đồng.
                   </Typography>
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555',
+                    }}
+                  >
                     Bước 3: Tiến hành ký hợp đồng như video hướng dẫn bên trái.
                   </Typography>
-                  <Typography sx={{ fontSize: '16px', marginBottom: '20px', color: '#555' }}>
+
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      marginBottom: '20px',
+                      color: isDarkMode ? theme.palette.text.secondary : '#555',
+                    }}
+                  >
                     Bước 4: Tải file hợp đồng đã ký lên.
                   </Typography>
+
                   <Box sx={{ textAlign: 'center' }}>
                     <Button
                       variant="contained"
