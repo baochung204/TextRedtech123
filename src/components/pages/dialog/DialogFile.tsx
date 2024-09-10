@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
@@ -28,7 +28,7 @@ const VisuallyHiddenInput = styled('input')({
     whiteSpace: 'nowrap',
     width: 1,
 });
-const DialogFile: React.FC<PropsDialog> = ({value, open, setOpen }) => {
+const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
     const handleClose = () => {
         setOpen(false);
@@ -49,7 +49,20 @@ const DialogFile: React.FC<PropsDialog> = ({value, open, setOpen }) => {
                 open={value === '3' && open ? true : false}
                 onClose={handleClose}
             >
-                <DialogTitle>Thêm File</DialogTitle>
+                <DialogTitle sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                    <Box sx={{
+                        borderBottom: '1px solid #E6EAEF',
+                        paddingX: 25,
+                        paddingBottom: 2
+                    }}>
+                        <Typography fontWeight={600} variant='h3'>
+                            Thêm File
+                        </Typography>
+                    </Box>
+                </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         <Grid container xs={12} spacing={2}>
@@ -115,8 +128,8 @@ const DialogFile: React.FC<PropsDialog> = ({value, open, setOpen }) => {
                     <Button variant='contained' onClick={handleClose}>Thêm</Button>
                     <Button onClick={handleClose}>Đóng</Button>
                 </DialogActions>
-                
-            </Dialog>
+
+            </Dialog >
         </>
     );
 }
