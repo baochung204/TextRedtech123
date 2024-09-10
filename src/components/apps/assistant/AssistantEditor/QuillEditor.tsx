@@ -22,6 +22,7 @@ const QuillEditor = () => {
           variant="outlined"
         >
           <ReactQuill
+          
             value={text}
             onChange={(value) => {
               setText(value);
