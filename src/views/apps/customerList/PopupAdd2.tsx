@@ -1,304 +1,353 @@
-import React from 'react';
-import { Box, Button, Grid, MenuItem, FormControl, Alert, Select, Checkbox, ListItemText } from '@mui/material';
-import ParentCard from 'src/components/shared/ParentCard';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomSelect from './../../../components/forms/theme-elements/CustomSelect';
+import React, { useState } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TablePagination,
+  Paper,
+  Typography,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Tooltip,
+  Toolbar,
+  Box,
+} from '@mui/material';
+import { IconSearch, IconTrash, IconDotsVertical } from '@tabler/icons-react';
+import { format } from 'date-fns';
 
-interface currencyType {
-  value: string;
-  label: string;
-}
-
-const currencies: currencyType[] = [
-  { value: 'facebook', label: 'Facebook' },
-  { value: 'zalo', label: 'Zalo' },
-  { value: 'instagram', label: 'Instagram' },
-  { value: 'other', label: 'Other' },
+// Sample data
+const orders = [
+  {
+    id: '001',
+    createdAt: '2024-09-01',
+    assistant: 'John Doe',
+    orderValue: '$200',
+    channel: 'Facebook',
+    customerName: 'Ngô Quốc Toản',
+    phone: '123456789',
+    address: '123 Main St',
+    email: 'example@example.com',
+    orderInfo: 'Product X, Product Y',
+    notes: 'Urgent delivery',
+  },
+  // Additional orders
+  // ...
 ];
 
-const PopupAdd2 = () => {
-  const [gender, setGender] = React.useState('');
-  const [channel, setChannel] = React.useState<string[]>([]);
-  const [tags, setTags] = React.useState('');
-  const [companyName, setCompanyName] = React.useState('');
-  const [companyAddress, setCompanyAddress] = React.useState('');
-  const [companyEmail, setCompanyEmail] = React.useState('');
-  const [companyPhone, setCompanyPhone] = React.useState('');
-  const [companyWebsite, setCompanyWebsite] = React.useState('');
-  const [facebookUrl, setFacebookUrl] = React.useState('');
-  const [zaloUrl, setZaloUrl] = React.useState('');
-  const [instagramUrl, setInstagramUrl] = React.useState('');
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
 
-  const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGender(event.target.value);
-  };
+type Order = 'asc' | 'desc';
 
-  const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setChannel(event.target.value as string[]);
-  };
+function getComparator<Key extends keyof any>(
+  order: Order,
+  orderBy: Key
+): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
 
-  const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTags(event.target.value);
-  };
+function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
 
-  const handleCompanyNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCompanyName(event.target.value);
-  };
+interface HeadCell {
+  disablePadding: boolean;
+  id: string;
+  label: string;
+  numeric: boolean;
+}
 
-  const handleCompanyAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCompanyAddress(event.target.value);
-  };
+const headCells: readonly HeadCell[] = [
+  { id: 'id', numeric: false, disablePadding: false, label: 'Order ID' },
+  { id: 'createdAt', numeric: false, disablePadding: false, label: 'Date' },
+  { id: 'assistant', numeric: false, disablePadding: false, label: 'Assistant' },
+  { id: 'orderValue', numeric: false, disablePadding: false, label: 'Order Value' },
+  { id: 'channel', numeric: false, disablePadding: false, label: 'Channel' },
+  { id: 'customerName', numeric: false, disablePadding: false, label: 'Customer Name' },
+  { id: 'phone', numeric: false, disablePadding: false, label: 'Phone' },
+  { id: 'address', numeric: false, disablePadding: false, label: 'Address' },
+  { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
+  { id: 'orderInfo', numeric: false, disablePadding: false, label: 'Order Info' },
+  { id: 'notes', numeric: false, disablePadding: false, label: 'Notes' },
+  { id: 'action', numeric: false, disablePadding: false, label: 'Action' },
+];
 
-  const handleCompanyEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCompanyEmail(event.target.value);
-  };
+interface EnhancedTableProps {
+  numSelected: number;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: any) => void;
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  order: Order;
+  orderBy: string;
+  rowCount: number;
+}
 
-  const handleCompanyPhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCompanyPhone(event.target.value);
-  };
-
-  const handleCompanyWebsiteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCompanyWebsite(event.target.value);
-  };
-
-  const handleFacebookUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFacebookUrl(event.target.value);
-  };
-
-  const handleZaloUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setZaloUrl(event.target.value);
-  };
-
-  const handleInstagramUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInstagramUrl(event.target.value);
+function EnhancedTableHead(props: EnhancedTableProps) {
+  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const createSortHandler = (property: any) => (event: React.MouseEvent<unknown>) => {
+    onRequestSort(event, property);
   };
 
   return (
-    <div>
-      <ParentCard
-        title=""
-        footer={
-          <>
-            <Button
-              variant="contained"
-              color="error"
-              sx={{ mr: 1, fontSize: '1.1rem', padding: '8px 16px' }}
+    <TableHead>
+      <TableRow>
+        <TableCell padding="checkbox">
+          <input
+            type="checkbox"
+            checked={rowCount > 0 && numSelected === rowCount}
+            onChange={onSelectAllClick}
+          />
+        </TableCell>
+        {headCells.map((headCell) => (
+          <TableCell
+            key={headCell.id}
+            align={headCell.numeric ? 'right' : 'left'}
+            padding={headCell.disablePadding ? 'none' : 'normal'}
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
             >
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ fontSize: '1.1rem', padding: '8px 16px' }}
-            >
-              Submit
-            </Button>
-          </>
-        }
-      >
-        {/* Thông tin cá nhân */}
-        <Alert severity="info" sx={{ fontSize: '1.2rem', mb: 2 }}>Thông tin cá nhân</Alert>
-        <form>
-          <Grid container spacing={3} mb={3}>
-            <Grid item lg={6} md={12} sm={12}>
-              <CustomFormLabel htmlFor="name-text" sx={{ fontSize: '1.1rem' }}>
-                Tên khách hàng
-              </CustomFormLabel>
-              <CustomTextField
-                id="name-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="phone-text" sx={{ fontSize: '1.1rem' }}>
-                SĐT
-              </CustomFormLabel>
-              <CustomTextField
-                id="phone-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="email-text" sx={{ fontSize: '1.1rem' }}>
-                Email
-              </CustomFormLabel>
-              <CustomTextField
-                id="email-text"
-                type="email"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="gender-select" sx={{ fontSize: '1.1rem' }}>
-                Giới tính
-              </CustomFormLabel>
-              <CustomSelect
-                id="gender-select"
-                value={gender}
-                onChange={handleGenderChange}
-                fullWidth
-                variant="outlined"
-                sx={{ fontSize: '1rem' }}
-              >
-                {currencies.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </CustomSelect>
-              <CustomFormLabel htmlFor="dob-text" sx={{ fontSize: '1.1rem' }}>
-                Ngày sinh
-              </CustomFormLabel>
-              <CustomTextField
-                id="dob-text"
-                type="date"
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="notes-text" sx={{ fontSize: '1.1rem' }}>
-                Ghi chú
-              </CustomFormLabel>
-              <CustomTextField
-                id="notes-text"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={3}
-                sx={{ fontSize: '1rem' }}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12}>
-              <CustomFormLabel htmlFor="assistant-text" sx={{ fontSize: '1.1rem' }}>
-                Trợ lý
-              </CustomFormLabel>
-              <CustomTextField
-                id="assistant-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="channel-select" sx={{ fontSize: '1.1rem' }}>
-                Kênh (MKT)
-              </CustomFormLabel>
-              <FormControl fullWidth variant="outlined" sx={{ fontSize: '1rem' }}>
-                <Select
-                  id="channel-select"
-                  multiple
-                  value={channel}
-                  onChange={handleChannelChange}
-                  renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      {selected.map((value) => (
-                        <Box key={value}>{currencies.find(c => c.value === value)?.label}</Box>
-                      ))}
-                    </Box>
-                  )}
-                >
-                  {currencies.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      <Checkbox checked={channel.indexOf(option.value) > -1} />
-                      <ListItemText primary={option.label} />
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <CustomFormLabel htmlFor="tags-text" sx={{ fontSize: '1.1rem' }}>
-                Tags
-              </CustomFormLabel>
-              <CustomTextField
-                id="tags-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="company-name-text" sx={{ fontSize: '1.1rem' }}>
-                Tên công ty
-              </CustomFormLabel>
-              <CustomTextField
-                id="company-name-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="company-address-text" sx={{ fontSize: '1.1rem' }}>
-                Địa chỉ công ty
-              </CustomFormLabel>
-              <CustomTextField
-                id="company-address-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="company-email-text" sx={{ fontSize: '1.1rem' }}>
-                Email công ty
-              </CustomFormLabel>
-              <CustomTextField
-                id="company-email-text"
-                type="email"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="company-phone-text" sx={{ fontSize: '1.1rem' }}>
-                Số điện thoại công ty
-              </CustomFormLabel>
-              <CustomTextField
-                id="company-phone-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="company-website-text" sx={{ fontSize: '1.1rem' }}>
-                Website công ty
-              </CustomFormLabel>
-              <CustomTextField
-                id="company-website-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-              />
-              <CustomFormLabel htmlFor="facebook-url-text" sx={{ fontSize: '1.1rem' }}>
-                Facebook URL
-              </CustomFormLabel>
-              <CustomTextField
-                id="facebook-url-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-                value={facebookUrl}
-                onChange={handleFacebookUrlChange}
-              />
-              <CustomFormLabel htmlFor="zalo-url-text" sx={{ fontSize: '1.1rem' }}>
-                Zalo URL
-              </CustomFormLabel>
-              <CustomTextField
-                id="zalo-url-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-                value={zaloUrl}
-                onChange={handleZaloUrlChange}
-              />
-              <CustomFormLabel htmlFor="instagram-url-text" sx={{ fontSize: '1.1rem' }}>
-                Instagram URL
-              </CustomFormLabel>
-              <CustomTextField
-                id="instagram-url-text"
-                variant="outlined"
-                fullWidth
-                sx={{ fontSize: '1rem' }}
-                value={instagramUrl}
-                onChange={handleInstagramUrlChange}
-              />
-            </Grid>
-          </Grid>
-        </form>
-      </ParentCard>
-    </div>
+              {headCell.label}
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={{ visibility: 'hidden' }}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+}
+
+interface EnhancedTableToolbarProps {
+  numSelected: number;
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  search: string;
+}
+
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+  const { numSelected, handleSearch, search } = props;
+
+  return (
+    <Toolbar
+      sx={{
+        pl: { sm: 2 },
+        pr: { xs: 1, sm: 1 },
+        ...(numSelected > 0 && {
+          bgcolor: (theme) =>
+            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+        }),
+      }}
+    >
+      <Box sx={{ flex: '1 1 100%' }}>
+        <TextField
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <IconSearch size="1.1rem" />
+              </InputAdornment>
+            ),
+          }}
+          placeholder="Search Orders"
+          size="small"
+          onChange={handleSearch}
+          value={search}
+        />
+      </Box>
+
+      {numSelected > 0 ? (
+        <Tooltip title="Delete">
+          <IconButton>
+            <IconTrash width="18" />
+          </IconButton>
+        </Tooltip>
+      ) : null}
+    </Toolbar>
   );
 };
 
-export default PopupAdd2;
+const OrderTableList = () => {
+  const [order, setOrder] = useState<Order>('asc');
+  const [orderBy, setOrderBy] = useState<any>('id');
+  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [search, setSearch] = useState('');
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const filteredRows = orders.filter((row) =>
+      row.customerName.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    setSearch(event.target.value);
+    setRows(filteredRows);
+  };
+
+  const handleRequestSort = (event: React.MouseEvent<unknown>, property: any) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelecteds = orders.map((n) => n.id);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected: readonly string[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, id);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDense(event.target.checked);
+  };
+
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+  return (
+    <Paper>
+      <EnhancedTableToolbar
+        numSelected={selected.length}
+        handleSearch={handleSearch}
+        search={search}
+      />
+      <TableContainer>
+        <Table
+          sx={{ minWidth: 750 }}
+          size={dense ? 'small' : 'medium'}
+        >
+          <EnhancedTableHead
+            numSelected={selected.length}
+            order={order}
+            orderBy={orderBy}
+            onSelectAllClick={handleSelectAllClick}
+            onRequestSort={handleRequestSort}
+            rowCount={rows.length}
+          />
+          <TableBody>
+            {stableSort(rows, getComparator(order, orderBy))
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                const isItemSelected = selected.indexOf(row.id) !== -1;
+                return (
+                  <TableRow
+                    hover
+                    onClick={(event) => handleClick(event, row.id)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.id}
+                    selected={isItemSelected}
+                  >
+                    <TableCell padding="checkbox">
+                      <input
+                        type="checkbox"
+                        checked={isItemSelected}
+                        onChange={(event) => handleClick(event, row.id)}
+                      />
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.id}
+                    </TableCell>
+                    <TableCell>
+                      {format(new Date(row.createdAt), 'yyyy-MM-dd')}
+                    </TableCell>
+                    <TableCell>{row.assistant}</TableCell>
+                    <TableCell>{row.orderValue}</TableCell>
+                    <TableCell>{row.channel}</TableCell>
+                    <TableCell>{row.customerName}</TableCell>
+                    <TableCell>{row.phone}</TableCell>
+                    <TableCell>{row.address}</TableCell>
+                    <TableCell>{row.email}</TableCell>
+                    <TableCell>{row.orderInfo}</TableCell>
+                    <TableCell>{row.notes}</TableCell>
+                    <TableCell>
+                      <Tooltip title="More options">
+                        <IconButton>
+                          <IconDotsVertical width="18" />
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            {emptyRows > 0 && (
+              <TableRow
+                style={{
+                  height: (dense ? 33 : 53) * emptyRows,
+                }}
+              >
+                <TableCell colSpan={headCells.length} />
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
+  );
+};
+
+export default OrderTableList;
