@@ -109,7 +109,20 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                 open={value === '5' && open}
                 onClose={handleClose}
             >
-                <DialogTitle>Thêm Ảnh</DialogTitle>
+                <DialogTitle sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                    <Box sx={{
+                        borderBottom: '1px solid #E6EAEF',
+                        paddingX: 25,
+                        paddingBottom: 2
+                    }}>
+                        <Typography fontWeight={600} variant='h3'>
+                            Thêm Ảnh
+                        </Typography>
+                    </Box>
+                </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         <Grid container direction="column">

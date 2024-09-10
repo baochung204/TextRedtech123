@@ -59,12 +59,25 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 open={value === '6' && open}
                 onClose={handleClose}
             >
-                <DialogTitle>Thêm Ảnh</DialogTitle>
+                <DialogTitle sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                    <Box sx={{
+                        borderBottom: '1px solid #E6EAEF',
+                        paddingX: 25,
+                        paddingBottom: 2
+                    }}>
+                        <Typography fontWeight={600} variant='h3'>
+                            Thêm URL
+                        </Typography>
+                    </Box>
+                </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         <Grid container direction="column">
 
-                            <Grid item sm={12}>
+                            <Grid item sm={12}>0
                                 <Grid container direction="column" sx={{ justifyContent: 'center' }} sm={12}>
                                     <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2, width: '100%', pb: '8%' }}>
                                         <Box component="form" width={400}>
