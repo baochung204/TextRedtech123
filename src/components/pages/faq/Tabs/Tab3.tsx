@@ -1,12 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import DataTable3 from '../DataTable/TableTab3'
-<<<<<<< HEAD
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Stack, Avatar, Box, Typography } from '@mui/material';
-=======
-import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Stack, Avatar, Box, Typography } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
->>>>>>> main
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Typography } from '@mui/material';
 import DialogFile from '../../dialog/DialogFile';
 
 interface PropsTab3 {
@@ -15,35 +10,11 @@ interface PropsTab3 {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-<<<<<<< HEAD
 const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
   return (
     <>
       <Box>
 
-=======
-const Tab3 = () => {
-
-
-  const [open, setOpen] = useState<boolean>(false);
-
-  return (
-    <>
-      <Box>
-        <Box display="flex" justifyContent="flex-end">
-          <IconButton
-            color="primary"
-            aria-label="Add to cart"
-            onClick={() => setOpen(true)}
-          >
-            <AddCircleIcon
-              sx={{
-                fontSize: 30
-              }}
-            />
-          </IconButton>
-        </Box>
->>>>>>> main
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -92,11 +63,7 @@ const Tab3 = () => {
                     </Typography>
                   </TableCell>
                   <TableCell component="th" scope="row">
-<<<<<<< HEAD
                     {/* <Stack direction="row" spacing={2}>
-=======
-                    <Stack direction="row" spacing={2}>
->>>>>>> main
                       <Avatar src={items.images} variant="rounded" alt={items.images} sx={{ width: 48, height: 48 }} />
                       <Box>
                         <Typography variant='subtitle2' fontWeight={500}>
@@ -106,14 +73,10 @@ const Tab3 = () => {
                           {items.election}
                         </Typography>
                       </Box>
-<<<<<<< HEAD
                     </Stack> */}
                     <Typography variant='subtitle2' fontWeight={400}>
                       {items.idCode}
                     </Typography>
-=======
-                    </Stack>
->>>>>>> main
                   </TableCell>
 
                   <TableCell >
@@ -146,11 +109,7 @@ const Tab3 = () => {
           </Table>
         </TableContainer>
       </Box>
-<<<<<<< HEAD
       <DialogFile open={open} setOpen={setOpen} value={value} />
-=======
-      <DialogFile open={open} setOpen={setOpen} />
->>>>>>> main
     </>
   )
 }

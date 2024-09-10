@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,15 +7,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography } from '@mui/material';
+import { Typography, Box, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-
+import DataTable5 from '../faq/DataTable/TableTab5';
 
 interface PropsDialog {
-    open: boolean,
+    open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setSelectedItemId1: React.Dispatch<React.SetStateAction<string | null>>;
+    value: string;
+    selectedItemId1: string | null;
 }
+
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -27,141 +30,178 @@ const VisuallyHiddenInput = styled('input')({
     whiteSpace: 'nowrap',
     width: 1,
 });
-const DialogImage: React.FC<PropsDialog> = ({ open, setOpen }) => {
 
+const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItemId1, setSelectedItemId1 }) => {
+    const [fileUrl, setFileUrl] = React.useState<string | undefined>('');
+    const [formData, setFormData] = React.useState({
+        name: '',
+        title: '',
+        moTa: '',
+    });
 
+    useEffect(() => {
+        if (selectedItemId1 !== null) {
+            const item = DataTable5.find(item => item.id === selectedItemId1);
+            if (item) {
+                setFileUrl(item.images);
+                setFormData({
+                    name: item.imgName,
+                    title: '',
+                    moTa: '',
+                });
+            }
+        } else {
+            setFileUrl('');
+            setFormData({
+                name: '',
+                title: '',
+                moTa: '',
+            });
+        }
+    }, [selectedItemId1]);
 
-    const [name, setName] = React.useState<string | null>(null);
-    const [fileUrl, setFileUrl] = React.useState<string | null>(null);
-
-    const hanldeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-        console.log(event.target.files);
-
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files !== null) {
             const file = event.target.files[0];
-            setName(file.name);
+            setFormData({
+                ...formData,
+                name: file.name,
+            });
             setFileUrl(URL.createObjectURL(file));
         }
+    };
 
-    }
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
     const handleClose = () => {
         setOpen(false);
-        setName(null)
-        setFileUrl(null)
+        resetForm();
+        setSelectedItemId1(null);
     };
+
+    const handleSubmit = () => {
+        console.log('Tên file:', formData.name);
+        console.log('Tiêu đề:', formData.title);
+        console.log('Mô tả:', formData.moTa);
+        handleClose();
+    };
+
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            title: '',
+            moTa: '',
+        });
+        setFileUrl('');
+    };
+
     return (
         <>
             <Dialog
                 fullWidth={true}
-                maxWidth='md'
-                open={open}
+                maxWidth="sm"
+                open={value === '5' && open}
                 onClose={handleClose}
             >
                 <DialogTitle>Thêm Ảnh</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <Grid container xs={12} spacing={2}>
-                            <Grid item xs={12}>
-                                <Grid
-                                    container
-                                    // direction="column"
-                                    sx={{
-                                        justifyContent: "center",
-                                    }}
-                                >
-                                    <Grid item xs={4}
-                                        sx={{
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        <Button
-                                            component="label"
-                                            role={undefined}
-                                            variant="contained"
-                                            tabIndex={-1}
-                                            startIcon={<CloudUploadIcon />}
-                                            fullWidth
-                                        >
-                                            Tải ảnh lên
-                                            <VisuallyHiddenInput
-                                                type="file"
-                                                onChange={hanldeChange}
-                                                accept=".png, .jpg, .svg"
-                                            />
-                                        </Button>
-                                        <Typography sx={{ fontSize: 12, fontWeight: 400, pt: 1, pb: 2 }}>
-                                            Hỗ trợ: .png, .jpg, .svg
-                                        </Typography>
-
-                                        {fileUrl &&
-                                            <Grid
-                                                container
-                                                direction='column'
-                                                sx={{
-
-                                                    justifyContent: 'center'
-                                                }}
+                        <Grid container direction="column">
+                            {selectedItemId1 === null &&
+                                <Grid item sm={12}>
+                                    <Grid container direction="column" sx={{ justifyContent: 'center' }} sm={12}>
+                                        <Grid item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} sm={12}>
+                                            <Button
+                                                component="label"
+                                                variant="contained"
+                                                startIcon={<CloudUploadIcon />}
                                             >
-
-                                                <Grid item
-                                                    sx={{
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center'
-                                                    }}
-                                                >
-                                                    <img src={fileUrl} alt='' width={300} />
-                                                </Grid>
-
-                                                <Grid item
-                                                    sx={{
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center'
-                                                    }}
-                                                >
-                                                    <AttachFileIcon
-                                                        sx={{ fontSize: 20 }}
-                                                    />
-                                                    <Typography >
-                                                        {name}
-                                                    </Typography>
-                                                </Grid>
-
-
-                                            </Grid>
-
-                                        }
-                                    </Grid>
-                                    {fileUrl !== null &&
-                                        <Grid
-                                            item
-                                            sx={{
-                                                display: 'flex',
-                                                alignItems: 'center'
-                                            }}
-                                            xs={8}
-                                        >
-
+                                                Tải ảnh lên
+                                                <VisuallyHiddenInput
+                                                    type="file"
+                                                    onChange={handleChange}
+                                                    accept=".png, .jpg, .svg"
+                                                />
+                                            </Button>
                                         </Grid>
-                                    }
+                                        <Grid item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} sm={12}>
+                                            <Typography sx={{ fontSize: 12, fontWeight: 400, pt: 1, pb: 2 }}>
+                                                Hỗ trợ: .png, .jpg, .svg
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>}
+                            {(fileUrl !== '' || selectedItemId1 !== null) && (
+                                <Grid item sm={12}>
+                                    <Grid container direction="column" sx={{ justifyContent: 'center' }} sm={12}>
+                                        <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <img src={fileUrl} alt="" width={300} />
+                                        </Grid>
+
+                                        <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2, width: '100%', pb: '8%' }}>
+                                            <Box component="form" width={400}>
+                                                <Typography fontWeight={600}>Tên file</Typography>
+                                                <TextField
+                                                    name="name"
+                                                    value={formData.name}
+                                                    onChange={handleInputChange}
+                                                    fullWidth
+                                                    margin="normal"
+                                                />
+                                                <Typography fontWeight={600}>Tiêu đề</Typography>
+                                                <TextField
+                                                    name="title"
+                                                    value={formData.title}
+                                                    onChange={handleInputChange}
+                                                    fullWidth
+                                                    margin="normal"
+                                                />
+                                                <Typography fontWeight={600}>Mô tả</Typography>
+                                                <TextField
+                                                    name="moTa"
+                                                    value={formData.moTa}
+                                                    onChange={handleInputChange}
+                                                    fullWidth
+                                                    margin="none"
+                                                    minRows={3}
+                                                    multiline
+                                                    sx={{
+                                                        '& .MuiInputBase-input': {
+                                                            padding: 0,
+                                                        },
+                                                        '& .MuiInputBase-root': {
+                                                            padding: '12px 14px',
+                                                        },
+                                                    }}
+                                                />
+                                            </Box>
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
+                            )}
                         </Grid>
-
                     </DialogContentText>
-
                 </DialogContent>
+
                 <DialogActions>
-                    <Button variant='contained' onClick={handleClose}>Thêm</Button>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={handleSubmit}
+                    >
+                        {selectedItemId1 === null ? 'Thêm' : 'Sửa'}
+                    </Button>
                     <Button onClick={handleClose}>Đóng</Button>
                 </DialogActions>
-
             </Dialog>
         </>
-    )
-}
+    );
+};
 
-export default DialogImage
+export default DialogImage;

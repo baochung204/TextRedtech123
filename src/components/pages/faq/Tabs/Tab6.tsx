@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Stack, Avatar, Box, Typography } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Typography } from '@mui/material';
 import DataRow from '../DataTable/TableTab6';
 import DialogURL from "../../dialog/DIalogURL";
 
