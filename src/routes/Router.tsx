@@ -119,6 +119,8 @@ const AreaChart = Loadable(lazy(() => import('../views/charts/AreaChart')));
 const CandlestickChart = Loadable(lazy(() => import('../views/charts/CandlestickChart')));
 const ColumnChart = Loadable(lazy(() => import('../views/charts/ColumnChart')));
 const DoughnutChart = Loadable(lazy(() => import('../views/charts/DoughnutChart')));
+const PieCharts = Loadable(lazy(() => import('../views/charts/PieCharts')));
+
 const GredientChart = Loadable(lazy(() => import('../views/charts/GredientChart')));
 const RadialbarChart = Loadable(lazy(() => import('../views/charts/RadialbarChart')));
 const LineChart = Loadable(lazy(() => import('../views/charts/LineChart')));
@@ -261,6 +263,8 @@ const Router = [
       { path: '/charts/candlestick-chart', element: <CandlestickChart /> },
       { path: '/charts/column-chart', element: <ColumnChart /> },
       { path: '/charts/doughnut-pie-chart', element: <DoughnutChart /> },
+      { path: '/charts/pieCharts', element: <PieCharts /> },
+
       { path: '/charts/radialbar-chart', element: <RadialbarChart /> },
       { path: '/widgets/cards', element: <WidgetCards /> },
       { path: '/widgets/banners', element: <WidgetBanners /> },

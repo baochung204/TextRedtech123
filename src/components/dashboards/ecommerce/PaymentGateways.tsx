@@ -69,7 +69,7 @@ const PaymentGateways: React.FC = () => {
   return (
     <DashboardCard title="Cổng thanh toán" subtitle="Nền tảng kiếm thu nhập">
       <>
-        <Stack spacing={3} mt={5}>
+        <Stack spacing={3} my={'30px'}>
           {stats.map((stat, i) => (
             <Stack
               direction="row"
