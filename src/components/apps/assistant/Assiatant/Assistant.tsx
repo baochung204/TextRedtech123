@@ -33,7 +33,7 @@ import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import ParentCard from 'src/components/shared/ParentCard';
-import BlankCard from '../../../components/shared/BlankCard';
+import BlankCard from '../../../shared/BlankCard';
 import { IconEdit } from '@tabler/icons-react';
 interface TablePaginationActionsProps {
   count: number;
