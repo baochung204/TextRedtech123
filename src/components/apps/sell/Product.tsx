@@ -36,6 +36,7 @@ import { IconDotsVertical, IconFilter, IconPlus, IconSearch, IconTrash } from '@
 import { ProductType } from 'src/types/apps/eCommerce';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Develop from '../integration/Develop';
+import Tags from './tags';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -491,14 +492,9 @@ const Product = () => {
         </Box>
         </TabPanel>
         <TabPanel value="2">
-          <Develop/>
+          <Tags/>
         </TabPanel>
-        <TabPanel value="3">
-          <Develop/>
-        </TabPanel>
-        <TabPanel value="4">
-          <Develop/>
-        </TabPanel>
+        
     </TabContext>
     </Box>
     </Grid>
