@@ -1,7 +1,7 @@
 import { Box, Skeleton, CardMedia, Grid, IconButton, Typography, Stack, Menu, MenuItem } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import DataTable5 from '../DataTable/TableTab5';
-import DialogImage from '../../dialog/DialogImage';
+import DialogImage from '../dialog/DialogImage';
 import BlankCard from 'src/components/shared/BlankCard';
 import { format } from 'date-fns';
 import { IconDotsVertical } from '@tabler/icons-react';
@@ -47,14 +47,14 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
     console.log(`Xóa item với id: ${id}`);
     handleClose();
   };
-console.log('e',selectedItemId1);
+  console.log('e', selectedItemId1);
 
   return (
     <>
       <Box>
         <Grid container spacing={2}>
           {DataTable5.map((items) => (
-            <Grid item xs={12} lg={4} key={items.id}>
+            <Grid item xs={12} sm={6} md={4} lg={3} key={items.id}>
               <BlankCard className="hoverCard">
                 {isLoading ? (
                   <>
@@ -66,9 +66,40 @@ console.log('e',selectedItemId1);
                     ></Skeleton>
                   </>
                 ) : (
-                  <CardMedia component={'img'} height="220" alt="Remy Sharp" src={items.images} />
+                    <>
+                      <CardMedia component={'img'} height="220" alt="Remy Sharp" src={items.images} />
+                      <Box p={3}>
+                        <Stack direction="row" gap={1}>
+                          <Box>
+                            <Typography variant="h6">{items.imgName}</Typography>
+                            <Typography variant="caption">
+                              {format(new Date(items.createDate), 'E, MMM d, yyyy')}
+                            </Typography>
+                          </Box>
+                          <Box ml={'auto'}>
+                            <IconButton
+                              onClick={(event) => handleClick(event, items.id)}
+                            >
+                              <IconDotsVertical size="16" />
+                            </IconButton>
+                            <Menu
+                              id="basic-menu"
+                              anchorEl={anchorEl}
+                              open={selectedItemId === items.id}
+                              onClose={handleClose}
+                              MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                              }}
+                            >
+                              <MenuItem onClick={() => handleEdit(items.id)}>Chỉnh sửa</MenuItem>
+                              <MenuItem onClick={() => handleDelete(items.id)}>Xóa</MenuItem>
+                            </Menu>
+                          </Box>
+                        </Stack>
+                      </Box>
+                    </>
                 )}
-                <Box p={3}>
+                {/* <Box p={3}>
                   <Stack direction="row" gap={1}>
                     <Box>
                       <Typography variant="h6">{items.imgName}</Typography>
@@ -96,7 +127,7 @@ console.log('e',selectedItemId1);
                       </Menu>
                     </Box>
                   </Stack>
-                </Box>
+                </Box> */}
               </BlankCard>
             </Grid>
           ))}
