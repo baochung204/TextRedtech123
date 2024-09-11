@@ -4,10 +4,14 @@ import { useSelector } from 'src/store/Store';
 import { ThemeSettings } from './theme/Theme';
 import RTL from './layouts/full/shared/customizer/RTL';
 import ScrollToTop from './components/shared/ScrollToTop';
+<<<<<<< HEAD
+import Router from './routers/Router';
+=======
 
 import Router from './routers/Router';
 
 
+>>>>>>> f17ad95c9ff41a802663b5ba120542b2bd0c0313
 import { AppState } from './store/Store';
 
 function App() {

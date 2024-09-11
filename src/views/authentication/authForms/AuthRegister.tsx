@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Checkbox, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,6 +6,8 @@ import { registerType } from 'src/types/auth/auth';
 import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import Logo from 'src/layouts/full/shared/logo/Logo';
+import React from 'react';
+import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 const AuthRegister = ({ subtitle }: registerType) => {
   // const [gender, setGender] = useState('');
   const [username, setUsername] = useState('');
@@ -13,6 +15,7 @@ const AuthRegister = ({ subtitle }: registerType) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
   interface Errors {
     username?: string;
     email?: string;
@@ -20,7 +23,11 @@ const AuthRegister = ({ subtitle }: registerType) => {
     password?: string;
     confirmPassword?: string; // Add confirmPassword property
   }
+  const [checked, setChecked] = React.useState(true);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
   const [errors, setErrors] = useState<Errors>({});
 
   const validateUsername = (username: string) => {
@@ -166,7 +173,7 @@ const AuthRegister = ({ subtitle }: registerType) => {
           {/* Second Row: Email */}
           <Grid container item xs={12} spacing={2} alignItems="center">
             <Grid item xs={4}>
-              <CustomFormLabel htmlFor="email">Gmail</CustomFormLabel>
+              <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
             </Grid>
             <Grid item xs={8}>
               <CustomTextField
@@ -235,6 +242,45 @@ const AuthRegister = ({ subtitle }: registerType) => {
                 helperText={errors.confirmPassword}
                 label="Nhập lại mật khẩu của bạn"
               />
+            </Grid>
+          </Grid>
+          <Grid container item xs={12} spacing={2} alignItems="center">
+            <Grid item xs={1} display={'flex'}>
+              {' '}
+              <CustomCheckbox
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+              {/* <Checkbox
+                defaultChecked
+                sx={{
+                  color: (theme) => theme.palette.success.main,
+                  '&.Mui-checked': {
+                    color: (theme) => theme.palette.success.main,
+                  },
+                }}
+              /> */}
+              {/* <Typography color="textSecondary" fontWeight={600}>
+                Cá nhân
+              </Typography> */}
+            </Grid>
+            <Grid item xs={9}>
+              {/* <Checkbox
+                defaultChecked
+                sx={{
+                  color: (theme) => theme.palette.warning.main,
+                  '&.Mui-checked': {
+                    color: (theme) => theme.palette.warning.main,
+                  },
+                }}
+              />
+              <Typography color="textSecondary" fontWeight={600}>
+                Doanh thu
+              </Typography> */}
+              <Typography color="textSecondary" fontWeight={600}>
+                Tôi muốn đăng ký tài khoản doanh nghiệp
+              </Typography>
             </Grid>
           </Grid>
           {/* Fifth Row: Gender */}

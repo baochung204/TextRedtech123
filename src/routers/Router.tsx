@@ -294,8 +294,13 @@ const Router = [
     element: <BlankLayout />,
     children: [
       { path: '/auth/404', element: <Error /> },
+<<<<<<< HEAD
+      { path: '/auth/login', element: <Login /> },
+      { path: '/auth/login2', element: <Login2 /> },
+=======
       { path: '/auth/login2', element: <Login /> },
       { path: '/auth/login', element: <Login2 /> },
+>>>>>>> f17ad95c9ff41a802663b5ba120542b2bd0c0313
       { path: '/auth/register', element: <Register /> },
       { path: '/auth/register2', element: <Register2 /> },
       { path: '/auth/forgot-password2', element: <ForgotPassword /> },
