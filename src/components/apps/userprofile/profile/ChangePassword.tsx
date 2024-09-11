@@ -1,34 +1,46 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, Alert, AlertTitle, useTheme } from '@mui/material';
+import { Box, Typography, TextField, Button, Alert, AlertTitle, IconButton, InputAdornment, useTheme } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State để mở/tắt mật khẩu
   const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
-  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
+  const [passwordMatchError, setPasswordMatchError] = useState(false); // State để hiển thị lỗi khớp mật khẩu
+  const theme = useTheme();
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (newPassword !== confirmNewPassword) {
+      setPasswordMatchError(true);
       setShowAlert({ message: 'Mật khẩu mới và xác nhận mật khẩu không khớp.', type: 'error' });
       return;
     }
 
-    // Giả sử bạn sẽ gửi yêu cầu đổi mật khẩu đến server ở đây
-    // Thay thế bằng logic thực tế của bạn
     setShowAlert({ message: 'Đổi mật khẩu thành công!', type: 'success' });
 
-    // Ẩn thông báo sau 3 giây
     setTimeout(() => setShowAlert(null), 3000);
 
     setCurrentPassword('');
     setNewPassword('');
     setConfirmNewPassword('');
-    
-    // Nếu cần điều hướng sau khi thành công
-    // navigate('/some-page');
+    setPasswordMatchError(false);
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword); // Đổi trạng thái hiển thị mật khẩu
+  };
+
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmNewPassword(e.target.value);
+    if (newPassword !== e.target.value) {
+      setPasswordMatchError(true);
+    } else {
+      setPasswordMatchError(false);
+    }
   };
 
   return (
@@ -37,8 +49,8 @@ const ChangePassword = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', // Thay đổi màu nền cho dark mode
-        color: theme.palette.mode === 'dark' ? '#fff' : '#000', // Màu chữ phù hợp với dark mode
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+        color: theme.palette.mode === 'dark' ? '#fff' : '#000',
         margin: '0 auto',
       }}
     >
@@ -48,37 +60,66 @@ const ChangePassword = () => {
       <Box sx={{ mb: 2 }}>
         <TextField
           label="Mật khẩu hiện tại"
-          type="password"
+          type={showPassword ? 'text' : 'password'} // Hiển thị hoặc ẩn mật khẩu
           fullWidth
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
-          sx={{ 
-            mb: 2, 
-            input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }, 
-            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' } // Màu nhãn thay đổi theo chế độ
+          sx={{
+            mb: 2,
+            input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
+            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleTogglePasswordVisibility}>
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
           }}
         />
         <TextField
           label="Mật khẩu mới"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           fullWidth
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
-          sx={{ 
-            mb: 2, 
-            input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }, 
-            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' } 
+          sx={{
+            mb: 2,
+            input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
+            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleTogglePasswordVisibility}>
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
           }}
         />
         <TextField
           label="Nhập lại mật khẩu mới"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           fullWidth
           value={confirmNewPassword}
-          onChange={(e) => setConfirmNewPassword(e.target.value)}
-          sx={{ 
-            input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }, 
-            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' } 
+          onChange={handleConfirmPasswordChange}
+          error={passwordMatchError} // Đặt lỗi nếu mật khẩu không khớp
+          helperText={passwordMatchError ? 'Mật khẩu không khớp' : ''}
+          sx={{
+            input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
+            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleTogglePasswordVisibility}>
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
           }}
         />
       </Box>
@@ -88,13 +129,27 @@ const ChangePassword = () => {
         </Button>
       </Box>
 
-      {/* Hiển thị Alert khi có thông báo */}
       {showAlert && (
-        <Alert severity={showAlert.type} sx={{ mt: 3, backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336', color: 'white' }}>
+        <Alert
+          severity={showAlert.type}
+          sx={{
+            position: 'fixed',
+            top: 16,
+            right: 16,
+            zIndex: theme.zIndex.snackbar,
+            backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
+            color: 'white',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
+            borderRadius: 1, 
+            padding: 2, 
+            width: 300, 
+          }}
+        >
           <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
           {showAlert.message}
         </Alert>
       )}
+
     </Box>
   );
 };
