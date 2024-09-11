@@ -590,7 +590,6 @@ const PersonAffiliate = () => {
             </FormControl>
           </Box>
         );
-
       case 2:
         return (
           <Grid container spacing={2}>
