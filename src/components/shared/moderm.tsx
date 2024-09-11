@@ -29,9 +29,12 @@ const Modarm = ({ title, children, footer, description }: Props) => {
       elevation={customizer.isCardShadow ? 9 : 0}
       variant={!customizer.isCardShadow ? 'outlined' : undefined}
     >
-      <CardHeader title={title} sx={{ display: 'flex', justifyContent: 'center' }} />
-      {description ? <CardContent>{description}</CardContent> : ''}
-      <Box sx={{ textAlign: 'center', marginY: '30px' }}> {/* <h2>Nguồn khách hàng </h2> */}</Box>
+      {/* <CardHeader title={title} sx={{ display: 'flex', justifyContent: 'center' }} />
+      {description ? <CardContent>{description}</CardContent> : ''} */}
+      <Box sx={{ textAlign: 'center', marginY: '30px' }}>
+        {' '}
+        <h2>Nguồn khách hàng </h2>
+      </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (
         <>

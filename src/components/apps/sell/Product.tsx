@@ -1,176 +1,228 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
-import { alpha, useTheme } from '@mui/material/styles';
-import { format } from 'date-fns';
+
+import { useTheme } from '@mui/material/styles';
 import {
+  Typography,
+  TableHead,
+  Avatar,
+  Chip,
   Box,
   Table,
   TableBody,
   TableCell,
-  TableContainer,
-  TableHead,
   TablePagination,
   TableRow,
-  TableSortLabel,
-  Toolbar,
+  TableFooter,
   IconButton,
-  Tooltip,
-  FormControlLabel,
-  Typography,
-  Avatar,
-  TextField,
-  InputAdornment,
-  Paper,
-  Grid,
-  Tab,
+  TableContainer,
   Stack,
-  Fab,
-  Button,
   MenuItem,
+  Button,
+  Tooltip,
+  Fab,
+  Toolbar,
+  TextField,
+  InputAdornment
 } from '@mui/material';
-import { visuallyHidden } from '@mui/utils';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import CustomCheckbox from '../../forms/theme-elements/CustomCheckbox';
-import CustomSwitch from '../../forms/theme-elements/CustomSwitch';
-import { IconDotsVertical, IconFilter, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
-import { ProductType } from 'src/types/apps/eCommerce';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import Develop from '../integration/Develop';
-import Tags from './tags';
+
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
+
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import PageContainer from 'src/components/container/PageContainer';
+
+import img1 from 'src/assets/images/profile/user-1.jpg';
+import img2 from 'src/assets/images/profile/user-2.jpg';
+import img3 from 'src/assets/images/profile/user-3.jpg';
+import img4 from 'src/assets/images/profile/user-4.jpg';
+import img5 from 'src/assets/images/profile/user-5.jpg';
+import ParentCard from 'src/components/shared/ParentCard';
+import BlankCard from '../../../components/shared/BlankCard';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-
-  return 0;
+import { IconFilter, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
+import ADDDialog from './AddDialog';
+interface TablePaginationActionsProps {
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
 }
 
-type Order = 'asc' | 'desc';
+function TablePaginationActions(props: TablePaginationActionsProps) {
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onPageChange } = props;
 
-function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key,
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
+  const handleFirstPageButtonClick = (event: any) => {
+    onPageChange(event, 0);
+  };
 
-function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
+  const handleBackButtonClick = (event: any) => {
+    onPageChange(event, page - 1);
+  };
 
-    return a[1] - b[1];
-  });
+  const handleNextButtonClick = (event: any) => {
+    onPageChange(event, page + 1);
+  };
 
-  return stabilizedThis.map((el) => el[0]);
-}
-
-interface HeadCell {
-  disablePadding: boolean;
-  id: string;
-  label: string;
-  numeric: boolean;
-}
-
-const headCells: readonly HeadCell[] = [
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: false,
-    label: 'Products',
-  },
-  {
-    id: 'pname',
-    numeric: false,
-    disablePadding: false,
-    label: 'Date',
-  },
-
-  {
-    id: 'status',
-    numeric: false,
-    disablePadding: false,
-    label: 'Status',
-  },
-  {
-    id: 'price',
-    numeric: false,
-    disablePadding: false,
-    label: 'Price',
-  },
-  {
-    id: 'action',
-    numeric: false,
-    disablePadding: false,
-    label: 'Action',
-  },
-];
-
-interface EnhancedTableProps {
-  numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: any) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
-  orderBy: string;
-  rowCount: number;
-}
-
-function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-  const createSortHandler = (property: any) => (event: React.MouseEvent<unknown>) => {
-    onRequestSort(event, property);
+  const handleLastPageButtonClick = (event: any) => {
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
   return (
-    <TableHead>
-      <TableRow>
-        <TableCell padding="checkbox">
-          <CustomCheckbox
-            color="primary"
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
-          />
-        </TableCell>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
+    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+      </IconButton>
+      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
+        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+      </IconButton>
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
+        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+      </IconButton>
+    </Box>
   );
 }
+
+
+interface OrderType {
+  id: string;
+  items: string;
+  imgsrc: any;
+  name: string;
+  total: string;
+  tags: string;
+  totalSales: string;
+}
+
+const rows: OrderType[] = [
+  {
+    id: 'ORD - 0120145',
+    items: '5',
+    imgsrc: img1,
+    name: 'Sunil Joshi',
+    total: '550,000',
+    tags: 'đồ chơi',
+    totalSales: '500,000',
+  },
+  {
+    id: 'ORD - 0120146',
+    items: '1',
+    imgsrc: img2,
+    name: 'John Deo',
+    total: '45,000',
+    tags: 'quần áo',
+    totalSales: '40,000',
+  },
+  {
+    id: 'ORD - 0120460',
+    items: '3',
+    imgsrc: img3,
+    name: 'Mily Peter',
+    total: '57,000',
+    tags: 'phụ kiện',
+    totalSales: '50,000',
+  },
+  {
+    id: 'ORD - 0124060',
+    items: '11',
+    imgsrc: img4,
+    name: 'Andrew McDownland',
+    total: '457,000',
+    tags: 'di động',
+    totalSales: '450,000',
+  },
+  {
+    id: 'ORD - 0124568',
+    items: '4',
+    imgsrc: img5,
+    name: 'Christopher Jamil',
+    total: '120,000',
+    tags: 'đời sống',
+    totalSales: '110,000',
+  },
+  {
+    id: 'ORD - 0120146',
+    items: '1',
+    imgsrc: img2,
+    name: 'John Deo',
+    total: '45,000',
+    tags: 'điện tử',
+    totalSales: '40,000',
+  },
+  {
+    id: 'ORD - 0120460',
+    items: '3',
+    imgsrc: img3,
+    name: 'Mily Peter',
+    total: '57,000',
+    tags: 'điện tử',
+    totalSales: '50,000',
+  },
+  {
+    id: 'ORD - 0124060',
+    items: '11',
+    imgsrc: img4,
+    name: 'Andrew McDownland',
+    total: '457,000',
+    tags: 'điện tử',
+    totalSales: '450,000',
+  },
+  {
+    id: 'ORD - 0124568',
+    items: '4',
+    imgsrc: img5,
+    name: 'Christopher Jamil',
+    total: '120,000',
+    tags: 'điện tử',
+    totalSales: '110,000',
+  },
+  {
+    id: 'ORD - 0120145',
+    items: '5',
+    imgsrc: img1,
+    name: 'Sunil Joshi',
+    total: '550,000',
+    tags: 'thể thao',
+    totalSales: '530,000',
+  },
+  {
+    id: 'ORD - 0124060',
+    items: '11',
+    imgsrc: img4,
+    name: 'Andrew McDownland',
+    total: '457,000',
+    tags: 'thể thao',
+    totalSales: '450,000',
+  },
+  {
+    id: 'ORD - 0124568',
+    items: '4',
+    imgsrc: img5,
+    name: 'Christopher Jamil',
+    total: '120,000',
+    tags: 'thể thao',
+    totalSales: '100,000',
+  },
+].sort((a, b) => (a.name < b.name ? -1 : 1));
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
@@ -230,31 +282,22 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     </Toolbar>
   );
 };
+const BCrumb = [
+  {
+    to: '/',
+    title: 'Home',
+  },
+  {
+    title: 'Pagination Table',
+  },
+];
 
-const Product = () => {
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<any>('calories');
-  const [selected, setSelected] = React.useState<readonly string[]>([]);
+const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const dispatch = useDispatch();
-
-  //Fetch Products
-  React.useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
-  const getProducts: ProductType[] = useSelector((state) => state.ecommerceReducer.products);
-
-  const [rows, setRows] = React.useState<any>(getProducts);
+  const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [search, setSearch] = React.useState('');
-
-  React.useEffect(() => {
-    setRows(getProducts);
-  }, [getProducts]);
-
+  
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredRows: ProductType[] = getProducts.filter((row) => {
       return row.title.toLowerCase().includes(event.target.value);
@@ -262,260 +305,169 @@ const Product = () => {
     setSearch(event.target.value);
     setRows(filteredRows);
   };
-
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const handleRequestSort = (event: React.MouseEvent<unknown>, property: any) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
-  // This is for select all the row
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n: any) => n.title);
-      setSelected(newSelecteds);
-
-      return;
-    }
-    setSelected([]);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    setSelected(newSelected);
-  };
-  
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (event: any, newPage: any) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (event: any) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const theme = useTheme();
-  const borderColor = theme.palette.divider;
-  const [value, setValue] = React.useState('1');
-
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
   return (
-    <Box>
-      <Box>
-      <Grid container spacing={3}>
-        <Box sx={{ width: '100%', typography: 'body1' }}>
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="Sản phẩm" value="1" />
-              <Tab label="Tags" value="2" />
-            </TabList>
-          </Box>
-          
-        <TabPanel value="1">
-          {' '}
-            <Box sx={{ display: 'flex', alignItems: 'center', ml: '15px' }}>
-                <Tooltip title="Thêm">
-                    <Fab size="small" color="secondary" aria-label="plus">
-                    <IconPlus width={18} />
-                    </Fab>
-                </Tooltip>
-                
-                <EnhancedTableToolbar
-                    numSelected={selected.length}
-                    search={search}
-                    handleSearch={(event: any) => handleSearch(event)}
-                />
-                <Button sx={{ml: '540px'}}>
-                  Sửa đổi cột
-                </Button>
-                <CustomSelect
-              labelId="column-filter"
-              id="column-filter"
-              size="small"
-              value={1} // Setting the first value as default
-              sx={{ marginRight: '20px', ml: '30px' }}
-            >
-              <MenuItem value={1}>Sắp xếp</MenuItem>
-            </CustomSelect>
-            </Box>
+
+    <PageContainer title="Pagination Table" description="this is Pagination Table page">
+      {/* breadcrumb */}
+      <Breadcrumb title="Pagination Table" items={BCrumb} />
+      {/* end breadcrumb */}
+      
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* Phần bên trái */}
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <ADDDialog/>
+
         
-        
-          <Paper variant="outlined" sx={{ mx: 2, mt: 1, border: `1px solid ${borderColor}` }}>
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          search={search}
+          handleSearch={(event: any) => handleSearch(event)}
+        />
+      </Box>
+
+      {/* Phần bên phải */}
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Button>
+          Sửa đổi cột
+        </Button>
+
+        <CustomSelect
+          labelId="column-filter"
+          id="column-filter"
+          size="small"
+          value={1} // Setting the first value as default
+          sx={{ marginLeft: '20px' }}
+        >
+          <MenuItem value={1}>Sắp xếp</MenuItem>
+        </CustomSelect>
+      </Box>
+    </Box>
+
+        <BlankCard>
           <TableContainer>
             <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
+              aria-label="custom pagination table"
+              sx={{
+                whiteSpace: 'nowrap',
+              }}
             >
-              <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-              />
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    <Typography variant="h6">ID</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="h6">Ảnh</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="h6">Tên sản phẩm</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="h6">Giá niêm yết</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="h6">Giá khuyến mãi</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="h6">Tags</Typography>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
               <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
-                    const isItemSelected = isSelected(row.title);
-                    const labelId = `enhanced-table-checkbox-${index}`;
+                {(rowsPerPage > 0
+                  ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  : rows
+                ).map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <Typography variant="subtitle2">{row.id}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Stack direction="row" spacing={2} alignItems="center">
+                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+                        
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                        <Typography variant="subtitle2" fontWeight="600">
+                          {row.name}
+                        </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        color={
+                          row.tags === 'di động'
+                            ? 'success'
+                            : row.tags === 'điện tử'
+                              ? 'warning'
+                              : row.tags === 'đời sống'
+                                ? 'error'
+                                : 'secondary'
+                        }
+                        sx={{
+                          borderRadius: '6px',
+                        }}
+                        size="small"
+                        label={row.tags}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Typography color="textSecondary" variant="h6" fontWeight="400">
+                        ${row.total}
+                      </Typography>
+                    </TableCell>
 
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.title)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.title}
-                        selected={isItemSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <CustomCheckbox
-                            color="primary"
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
+                    <TableCell>
+                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                        ${row.totalSales}
+                      </Typography>
+                    </TableCell>
 
-                        <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Avatar src={row.photo} alt="product" sx={{ width: 56, height: 56 }} />
-                            <Box
-                              sx={{
-                                ml: 2,
-                              }}
-                            >
-                              <Typography variant="h6" fontWeight="600">
-                                {row.title}
-                              </Typography>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.category}
-                              </Typography>
-                            </Box>
-                          </Box>
-                        </TableCell>
-                        <TableCell>
-                          <Typography>{format(new Date(row.created), 'E, MMM d yyyy')}</Typography>
-                        </TableCell>
+                  </TableRow>
+                ))}
 
-                        <TableCell>
-                          <Box display="flex" alignItems="center">
-                            <Box
-                              sx={{
-                                backgroundColor: row.stock
-                                  ? (theme) => theme.palette.success.main
-                                  : (theme) => theme.palette.error.main,
-                                borderRadius: '100%',
-                                height: '10px',
-                                width: '10px',
-                              }}
-                            />
-                            <Typography
-                              color="textSecondary"
-                              variant="subtitle2"
-                              sx={{
-                                ml: 1,
-                              }}
-                            >
-                              {row.stock ? 'InStock' : 'Out of Stock'}
-                            </Typography>
-                          </Box>
-                        </TableCell>
-
-                        <TableCell>
-                          <Typography fontWeight={600} variant="h6">
-                            ${row.price}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Tooltip title="Edit">
-                            <IconButton size="small">
-                              <IconDotsVertical size="1.1rem" />
-                            </IconButton>
-                          </Tooltip>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
                 {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
+                  <TableRow style={{ height: 53 * emptyRows }}>
                     <TableCell colSpan={6} />
                   </TableRow>
                 )}
               </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                    colSpan={6}
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    SelectProps={{
+                      native: true,
+                    }}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    ActionsComponent={TablePaginationActions}
+                  />
+                </TableRow>
+              </TableFooter>
             </Table>
           </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
-        <Box ml={2}>
-            <FormControlLabel
-                control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
-                label="Chỉnh lề"
-            />
-        </Box>
-        </TabPanel>
-        <TabPanel value="2">
-          <Tags/>
-        </TabPanel>
-        
-    </TabContext>
-    </Box>
-    </Grid>
-        
-      </Box>
-    </Box>
+        </BlankCard>
+    
+    </PageContainer>
   );
 };
 
-export default Product;
+export default PaginationTable;

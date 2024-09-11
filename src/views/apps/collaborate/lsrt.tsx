@@ -4,6 +4,7 @@
 import {
   Box,
   Button,
+  MenuItem,
   Stack,
   Table,
   TableBody,
@@ -16,9 +17,12 @@ import {
   Typography,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { format } from 'date-fns';
 import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import { tabledh } from 'src/components/tables/tabledh';
@@ -32,6 +36,8 @@ import { tabledh } from 'src/components/tables/tabledh';
 //   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
 //   { title: 'Lịch sử quy đổi ' },
 // ];
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useTheme } from '@emotion/react';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -267,11 +273,109 @@ const HistoryMoney = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const [month, setMonth] = React.useState('1');
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
+
+  // chart color
+  const theme = useTheme();
+  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
-
+      <Box
+        style={{
+          display: 'flex',
+          gap: '12px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          margin: '0px 0px 10px 0px',
+        }}
+      >
+        <CustomSelect
+          labelId="month-dd"
+          id="month-dd"
+          size="small"
+          value={month}
+          onChange={handleChange}
+        >
+          <MenuItem value={1}>Tất cả</MenuItem>
+          <MenuItem value={2}>Khách hàng </MenuItem>
+          <MenuItem value={3}>Đơn Hàng </MenuItem>
+        </CustomSelect>
+        <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
+          {' '}
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          tới
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value1}
+              onChange={(newValue) => {
+                setValue1(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            cursor="pointer"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+            <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+          </svg>
+        </Box>
+      </Box>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
           <TableContainer>
@@ -492,6 +596,7 @@ const HistoryMoney = () => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage="Hàng trên mỗi trang"
           />
         </Box>
       </BlankCard>

@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
+import React, { useState } from 'react';
 import { sum } from 'lodash';
-import { Box, Stack, Button } from '@mui/material';
+import { Box, Stack, Button, Alert } from '@mui/material';
 import AddToCart from '../productCart/AddToCart';
 
 import { IconArrowBack } from '@tabler/icons-react';
@@ -13,14 +13,17 @@ import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
 import FinalStep from './FinalStep';
 import { ProductType } from 'src/types/apps/eCommerce';
-
+import { Link } from 'react-router-dom';
+import AlertCart from '../productCart/AlertCart';
+import Snackbar from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
+function SlideTransition(props) {
+  return <Slide {...props} direction="left" />;
+}
 const ProductChecout = () => {
   const checkout = useSelector((state) => state.ecommerceReducer.cart);
-  const steps = ['Giỏ hàng', 'Thanh toán & địa chỉ', 'Payment'];
+  const steps = [''];
   const [activeStep, setActiveStep] = React.useState(0);
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -31,81 +34,32 @@ const ProductChecout = () => {
 
   const total = sum(checkout.map((product: ProductType) => product.price * product.qty));
   const Discount = Math.round(total * (5 / 100));
+  const [open, setOpen] = useState(false);
 
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 1000);
+  };
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   return (
     <Box>
-      <HorizontalStepper
-        steps={steps}
-        handleReset={handleReset}
-        activeStep={activeStep}
-        finalStep={<FinalStep />}
-      >
+      <>
+        {' '}
+        <Box my={3}>
+          <AddToCart />{' '}
+        </Box>
         {/* ------------------------------------------- */}
-        {/* Bước 1 */}
+        {/* Tổng giỏ hàng */}
         {/* ------------------------------------------- */}
-        {activeStep === 0 ? (
-          <>
-            <Box my={3}>
-              <AddToCart />
-            </Box>
-            {checkout.length > 0 ? (
-              <>
-                {/* ------------------------------------------- */}
-                {/* Tổng giỏ hàng */}
-                {/* ------------------------------------------- */}
-                <FirstStep total={total} Discount={Discount} />
-                <Stack direction={'row'} justifyContent="space-between">
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                  >
-                    Quay lại
-                  </Button>
-                  <Button variant="contained" onClick={handleNext}>
-                    Thanh toán
-                  </Button>
-                </Stack>
-              </>
-            ) : (
-              ''
-            )}
-          </>
-        ) : activeStep === 1 ? (
-          <>
-            {/* ------------------------------------------- */}
-            {/* Bước 2 */}
-            {/* ------------------------------------------- */}
-            <SecondStep nexStep={handleNext} />
-            <FirstStep total={total} Discount={Discount} />
-            <Stack direction={'row'} justifyContent="space-between">
-              <Button color="inherit" disabled={activeStep !== 1} onClick={handleBack}>
-                Quay lại
-              </Button>
-              <Button color="inherit" variant="outlined">
-                Chọn địa chỉ để tiếp tục
-              </Button>
-            </Stack>
-          </>
-        ) : (
-          <>
-            {/* ------------------------------------------- */}
-            {/* Bước 3 */}
-            {/* ------------------------------------------- */}
-            <ThirdStep />
-            <FirstStep total={total} Discount={Discount} />
-            <Stack direction={'row'} justifyContent="space-between">
-              <Button color="inherit" disabled={activeStep === 0} onClick={handleBack}>
-                <IconArrowBack /> Quay lại
-              </Button>
-              <Button onClick={handleNext} size="large" variant="contained">
-                Hoàn tất đơn hàng
-              </Button>
-            </Stack>
-          </>
-        )}
-      </HorizontalStepper>
+      </>
     </Box>
   );
 };

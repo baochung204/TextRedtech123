@@ -1,6 +1,12 @@
 interface TableDH {
   id: string;
   amount: number;
+  username: string;
+  email: string;
+  phone: string;
+  title: string;
+  money: number;
+  MHD: string;
   requestId: string;
   createdAt: Date;
   completedAt: Date;
@@ -11,7 +17,13 @@ interface TableDH {
 const tabledh: TableDH[] = [
   {
     id: '1',
+    MHD: '#ORD12345',
     amount: 1000000,
+    username: 'Nguyen Van A',
+    email: 'nguyenvana@example.com',
+    phone: '01234567890',
+    title: 'Chatbot hỗ trợ khách hàng',
+    money: 300000,
     requestId: '1000003537254534',
     createdAt: new Date('2024-07-18T18:47:28'),
     completedAt: new Date('2024-07-18T18:47:36'),
@@ -20,7 +32,13 @@ const tabledh: TableDH[] = [
   },
   {
     id: '2',
+    MHD: '#ORD12325',
     amount: 2000000,
+    username: 'Nguyen Van B',
+    email: 'nguyenvanb@example.com',
+    phone: '0987654321',
+    title: 'Chatbot hỗ trợ bán hàng',
+    money: 60000,
     requestId: '1000002672542535',
     createdAt: new Date('2024-07-19T10:15:12'),
     completedAt: new Date('2024-07-19T10:20:30'),
@@ -29,16 +47,28 @@ const tabledh: TableDH[] = [
   },
   {
     id: '3',
+    MHD: '#ORD12335',
     amount: 5000000,
+    username: 'Nguyen Van C',
+    email: 'nguyenvanc@example.com',
+    phone: '01122334455',
+    title: 'Chatbot hỗ trợ tư vấn',
+    money: 100000,
     requestId: '1000002362564366',
     createdAt: new Date('2024-07-20T14:35:48'),
     completedAt: new Date('2024-07-20T14:40:20'),
-    status: false, // Converted from 3 to false
+    status: false,
     invoice: 3,
   },
   {
     id: '4',
+    MHD: '#ORD12355',
     amount: 6000000,
+    username: 'Nguyen Van D',
+    email: 'nguyenvand@example.com',
+    phone: '02233445566',
+    title: 'Chatbot hỗ trợ chăm sóc khách hàng',
+    money: 100000,
     requestId: '10000034539151068',
     createdAt: new Date('2024-07-21T16:00:00'),
     completedAt: new Date('2024-07-21T16:05:10'),
@@ -47,7 +77,13 @@ const tabledh: TableDH[] = [
   },
   {
     id: '5',
+    MHD: '#ORD12375',
     amount: 90000000,
+    username: 'Nguyen Van E',
+    email: 'nguyenvane@example.com',
+    phone: '03344556677',
+    title: 'Chatbot hỗ trợ đặt hàng',
+    money: 2000000,
     requestId: '10000034539151069',
     createdAt: new Date('2024-07-22T09:45:22'),
     completedAt: new Date('2024-07-22T09:50:58'),
@@ -56,7 +92,13 @@ const tabledh: TableDH[] = [
   },
   {
     id: '6',
+    MHD: '#ORD12305',
     amount: 45000000,
+    username: 'Nguyen Van F',
+    email: 'nguyenvanf@example.com',
+    phone: '04455667788',
+    title: 'Chatbot hỗ trợ thanh toán',
+    money: 1300000,
     requestId: '1000003468272345',
     createdAt: new Date('2024-07-23T11:11:11'),
     completedAt: new Date('2024-07-23T11:15:45'),
@@ -65,7 +107,13 @@ const tabledh: TableDH[] = [
   },
   {
     id: '7',
+    MHD: '#ORD12395',
     amount: 3200000,
+    username: 'user7',
+    email: 'user7@example.com',
+    phone: '05566778899',
+    title: 'Chatbot hỗ trợ kỹ thuật',
+    money: 90000,
     requestId: '1000003457254688',
     createdAt: new Date('2024-07-24T13:30:10'),
     completedAt: new Date('2024-07-24T13:35:50'),
@@ -74,7 +122,13 @@ const tabledh: TableDH[] = [
   },
   {
     id: '10',
+    MHD: '#ORD12435',
     amount: 75000000,
+    username: 'user10',
+    email: 'user10@example.com',
+    phone: '06677889900',
+    title: 'Chatbot hỗ trợ giao hàng',
+    money: 2500000,
     requestId: '100000086904503',
     createdAt: new Date('2024-07-27T18:00:00'),
     completedAt: new Date('2024-07-27T18:05:15'),

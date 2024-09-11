@@ -129,7 +129,7 @@ const Cart = () => {
                   variant="contained"
                   color="primary"
                 >
-                  Thanh Toán
+                  Giỏ hàng của bạn
                 </Button>
               </>
             ) : (
