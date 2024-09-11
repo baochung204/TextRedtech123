@@ -48,7 +48,7 @@ const CompanyAffiliate = () => {
     fileName: '',
   });
 
-  const [selectedDocument, setSelectedDocument] = useState(null);
+  // const [selectedDocument, setSelectedDocument] = useState(null);
   const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
   const isDarkMode = theme.palette.mode === 'dark';
 
@@ -115,10 +115,10 @@ const CompanyAffiliate = () => {
           <>
             <Box
               sx={{
-                height: '500px', // Set the height to a fixed value or percentage
-                overflowY: 'scroll', // Enable vertical scrolling
-                padding: '16px', // Optional: add some padding inside the bo
-                borderRadius: '8px', // Optional: border radius for rounded corners
+                height: '500px', 
+                overflowY: 'scroll', 
+                padding: '16px', 
+                borderRadius: '8px', 
               }}
             >
               <h3>MỤC I. ĐỐI TÁC</h3>
