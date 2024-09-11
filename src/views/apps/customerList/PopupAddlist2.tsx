@@ -23,7 +23,7 @@ const channels: CurrencyType[] = [
   { value: 'other', label: 'Other' },
 ];
 
-const PopupAdd = () => {
+const PopupAddList2 = () => {
   const [gender, setGender] = React.useState('');
   const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
   const [tags, setTags] = React.useState('');
@@ -301,4 +301,4 @@ const PopupAdd = () => {
   );
 };
 
-export default PopupAdd;
+export default PopupAddList2;

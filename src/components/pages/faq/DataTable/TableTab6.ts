@@ -12,6 +12,12 @@ interface RowProps {
     url: string;
     fullName: string;
     electron: string;
+    idCode: string
+}
+
+const generateIdCode = () => {
+    const randomNumber = Math.floor(Math.random() * 1000000); // Random number between 0 and 999999
+    return `#${randomNumber.toString().padStart(6, '0')}`; // Pad with leading zeros if necessary
 }
 
 const DataRow: RowProps[] = [
@@ -22,7 +28,8 @@ const DataRow: RowProps[] = [
         descriptionurl: 'Discover the beauty of nature with this stunning landscape.',
         url: 'https://example.com/landscape',
         fullName: 'John Doe',
-        electron: 'Electron enthusiast'
+        electron: 'Electron enthusiast',
+        idCode: generateIdCode()
     },
     {
         images: img2,
@@ -31,7 +38,8 @@ const DataRow: RowProps[] = [
         descriptionurl: 'Explore the vibrant city lights and nightlife.',
         url: 'https://example.com/city-night',
         fullName: 'Jane Smith',
-        electron: 'Electron engineer'
+        electron: 'Electron engineer',
+        idCode: generateIdCode()
     },
     {
         images: img3,
@@ -40,7 +48,8 @@ const DataRow: RowProps[] = [
         descriptionurl: 'Get ready for an adventure in the mountains.',
         url: 'https://example.com/mountain-adventures',
         fullName: 'Michael Johnson',
-        electron: 'Electron developer'
+        electron: 'Electron developer',
+        idCode: generateIdCode()
     },
     {
         images: img4,
@@ -49,7 +58,8 @@ const DataRow: RowProps[] = [
         descriptionurl: 'Relax on the warm sands of a tropical paradise.',
         url: 'https://example.com/tropical-beach',
         fullName: 'Emily Davis',
-        electron: 'Electron architect'
+        electron: 'Electron architect',
+        idCode: generateIdCode()
     },
     {
         images: img5,
@@ -58,7 +68,8 @@ const DataRow: RowProps[] = [
         descriptionurl: 'Step back in time with a visit to this historic castle.',
         url: 'https://example.com/historic-castle',
         fullName: 'William Brown',
-        electron: 'Electron expert'
+        electron: 'Electron expert',
+        idCode: generateIdCode()
     }
 ];
 
