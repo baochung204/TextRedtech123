@@ -110,7 +110,7 @@ const messages: messageType[] = [
 // Profile dropdown
 //
 interface ProfileType {
-  id: number
+  id: number;
   href: string;
   title: string;
   // subtitle:string;
