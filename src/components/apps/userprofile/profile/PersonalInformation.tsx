@@ -8,7 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 const PersonalInformation = () => {
   const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [userInfo, setUserInfo] = useState({
     name: 'Ngô Quốc Toản',
     gender: 'Nam',
@@ -43,8 +43,8 @@ const PersonalInformation = () => {
 
   const handleSaveClick = () => {
     setEditing(null);
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 3000);
+    setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công!' });
+    setTimeout(() => setShowAlert(null), 3000);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -111,8 +111,8 @@ const PersonalInformation = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', // Thay đổi màu nền cho dark mode
-        color: theme.palette.mode === 'dark' ? '#fff' : '#000', // Màu chữ phù hợp với dark mode
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+        color: theme.palette.mode === 'dark' ? '#fff' : '#000',
         margin: '0 auto',
       }}
     >
@@ -126,9 +126,23 @@ const PersonalInformation = () => {
 
       {/* Hiển thị Alert khi có sự thay đổi */}
       {showAlert && (
-        <Alert severity="success" sx={{ mt: 3 }}>
-          <AlertTitle>Success</AlertTitle>
-          Cập nhật thành công — <strong>kiểm tra lại thông tin!</strong>
+        <Alert
+          severity={showAlert.type}
+          sx={{
+            position: 'fixed',
+            top: 16,
+            right: 16,
+            zIndex: theme.zIndex.snackbar,
+            backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
+            color: 'white',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: 1,
+            padding: 2,
+            width: 300,
+          }}
+        >
+          <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
+          {showAlert.message}
         </Alert>
       )}
     </Box>

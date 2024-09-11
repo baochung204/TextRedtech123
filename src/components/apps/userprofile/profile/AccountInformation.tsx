@@ -4,51 +4,57 @@ import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-rea
 import { useNavigate } from 'react-router-dom';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch, useDispatch } from 'src/store/Store';
-
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState(false);
-  const [accountInfo, setAccountInfo] = useState({
-    email: 'nqton301004@gmail.com',
-    phone: '0901234567',
-    password: '**********',
+  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  // Validation schema
+  const validationSchema = yup.object({
+    email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
+    phone: yup
+      .string()
+      .matches(/^0\d{9}$/, 'Số điện thoại không hợp lệ, phải có 10 chữ số và bắt đầu bằng 0')
+      .required('Vui lòng nhập số điện thoại'),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: 'nqton301004@gmail.com',
+      phone: '0901234567',
+      password: '**********',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      setEditing(null);
+      setShowAlert({ message: 'Cập nhật thông tin thành công!', type: 'success' });
+      setTimeout(() => setShowAlert(null), 3000);
+    },
   });
 
   const theme = useTheme();
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Khởi tạo dispatch
+  const dispatch = useDispatch();
 
   const handleButtonClick = (id: number) => {
     if (id === 2) {
-      dispatch(setSelected('changepassword')); // Dispatch action để điều hướng
+      dispatch(setSelected('changepassword'));
     }
   };
 
   const handleEditClick = (field: string) => {
     if (field === 'password') {
-      handleButtonClick(2); // Gọi handleButtonClick khi người dùng click đổi mật khẩu
+      handleButtonClick(2);
     } else {
       setEditing(field);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAccountInfo({
-      ...accountInfo,
-      [editing as string]: e.target.value,
-    });
-  };
-
-  const handleSaveClick = () => {
-    setEditing(null);
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 3000);
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSaveClick();
+      formik.handleSubmit();
     }
   };
 
@@ -60,20 +66,24 @@ const AccountInformation = () => {
       {editing === field ? (
         <>
           <TextField
-            value={accountInfo[field as keyof typeof accountInfo]}
-            onChange={handleInputChange}
+            name={field}
+            value={formik.values[field as keyof typeof formik.values]}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched[field as keyof typeof formik.touched] && Boolean(formik.errors[field as keyof typeof formik.errors])}
+            helperText={formik.touched[field as keyof typeof formik.touched] && formik.errors[field as keyof typeof formik.errors]}
             onKeyDown={handleKeyDown}
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
           />
-          <IconButton onClick={handleSaveClick}>
+          <IconButton onClick={formik.handleSubmit}>
             <IconCheck />
           </IconButton>
         </>
       ) : (
         <>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {field === 'password' ? '**********' : accountInfo[field as keyof typeof accountInfo]}
+            {field === 'password' ? '**********' : formik.values[field as keyof typeof formik.values]}
           </Typography>
           {field !== 'password' && (
             <IconButton onClick={() => handleEditClick(field)}>
@@ -105,7 +115,7 @@ const AccountInformation = () => {
         </Typography>
         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {accountInfo.password}
+            {formik.values.password}
           </Typography>
           <Button onClick={() => handleEditClick('password')} variant="outlined" color="primary" startIcon={<IconLock />}>
             Đổi mật khẩu
@@ -113,11 +123,24 @@ const AccountInformation = () => {
         </Box>
       </Box>
 
-      {/* Hiển thị Alert khi có sự thay đổi */}
       {showAlert && (
-        <Alert severity="success" sx={{ mt: 3 }}>
-          <AlertTitle>Success</AlertTitle>
-          Cập nhật thành công — <strong>kiểm tra lại thông tin!</strong>
+        <Alert
+          severity={showAlert.type}
+          sx={{
+            position: 'fixed',
+            top: 16,
+            right: 16,
+            zIndex: theme.zIndex.snackbar,
+            backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
+            color: 'white',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
+            borderRadius: 1, 
+            padding: 2, 
+            width: 300,
+          }}
+        >
+          <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
+          {showAlert.message}
         </Alert>
       )}
     </Box>

@@ -8,6 +8,7 @@ import {
   Button,
   Alert,
   AlertTitle,
+  useTheme,
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -36,16 +37,18 @@ const ReceiveEmail = () => {
   };
 
   const handleSave = () => {
-    setSavedState(checked); // Lưu trạng thái hiện tại
+    setSavedState(checked); // Save the current state
     setShowAlert({ success: true, cancel: false });
-    setTimeout(() => setShowAlert({ success: false, cancel: false }), 3000); // Ẩn thông báo sau 3 giây
+    setTimeout(() => setShowAlert({ success: false, cancel: false }), 3000); // Hide alert after 3 seconds
   };
 
   const handleCancel = () => {
-    setChecked(savedState); // Khôi phục trạng thái trước đó
+    setChecked(savedState); // Restore the previous state
     setShowAlert({ success: false, cancel: true });
-    setTimeout(() => setShowAlert({ success: false, cancel: false }), 3000); // Ẩn thông báo sau 3 giây
+    setTimeout(() => setShowAlert({ success: false, cancel: false }), 3000); // Hide alert after 3 seconds
   };
+
+  const theme = useTheme();
 
   return (
     <Box
@@ -53,45 +56,37 @@ const ReceiveEmail = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        // backgroundColor: '#2A3447',
-        margin: '0 auto', // Căn giữa trang
-        // color: 'white', // Màu chữ sáng cho dark mode
+        margin: '0 auto',
       }}
     >
-      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1} sx={{  }}>
+      <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
         <Email /> <span>Tùy chọn nhận Email</span>
       </Typography>
 
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox checked={checked.option1} onChange={handleChange} name="option1" sx={{  }} />}
+          control={<Checkbox checked={checked.option1} onChange={handleChange} name="option1" />}
           label="Chung - Nhận email liên quan đến tài khoản & hệ thống"
-          // sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option2} onChange={handleChange} name="option2" sx={{  }} />}
+          control={<Checkbox checked={checked.option2} onChange={handleChange} name="option2" />}
           label="Hóa đơn - nhận email hóa đơn mới, lời nhắc & thông báo quá hạn"
-          // sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option3} onChange={handleChange} name="option3" sx={{ }} />}
+          control={<Checkbox checked={checked.option3} onChange={handleChange} name="option3" />}
           label="Tính năng mới - Nhận email cập nhật các tính năng mới"
-          // sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option4} onChange={handleChange} name="option4" sx={{  }} />}
+          control={<Checkbox checked={checked.option4} onChange={handleChange} name="option4" />}
           label="Affiliate - Nhận email thông báo về chương trình Affiliate"
-          // sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option5} onChange={handleChange} name="option5" sx={{  }} />}
+          control={<Checkbox checked={checked.option5} onChange={handleChange} name="option5" />}
           label="Tài liệu - Nhận email tài liệu & hướng dẫn"
-          // sx={{ color: 'white' }}
         />
         <FormControlLabel
-          control={<Checkbox checked={checked.option6} onChange={handleChange} name="option6" sx={{ }} />}
+          control={<Checkbox checked={checked.option6} onChange={handleChange} name="option6" />}
           label="Khuyến mại - Nhận email về các chương trình khuyến mại"
-          // sx={{ color: 'white' }}
         />
       </FormGroup>
 
@@ -104,17 +99,45 @@ const ReceiveEmail = () => {
         </Button>
       </Box>
 
-      {/* Hiển thị thông báo khi lưu hoặc hủy */}
+      {/* Display alerts for success and cancellation */}
       {showAlert.success && (
-        <Alert severity="success" sx={{ mt: 3, backgroundColor: '#4caf50', }}>
+        <Alert
+          severity="success"
+          sx={{
+            position: 'fixed',
+            top: 16,
+            right: 16,
+            zIndex: theme.zIndex.snackbar,
+            backgroundColor: '#4caf50',
+            color: 'white',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: 1,
+            padding: 2,
+            width: 300,
+          }}
+        >
           <AlertTitle>Thành công</AlertTitle>
           Lưu thay đổi thành công!
         </Alert>
       )}
       {showAlert.cancel && (
-        <Alert severity="info" sx={{ mt: 3, backgroundColor: '#2196f3',  }}>
-          <AlertTitle>Hủy thay đổi</AlertTitle>
-          Các thay đổi đã được hủy!
+        <Alert
+          severity="info"
+          sx={{
+            position: 'fixed',
+            top: 16,
+            right: 16,
+            zIndex: theme.zIndex.snackbar,
+            backgroundColor: '#2196f3',
+            color: 'white',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: 1,
+            padding: 2,
+            width: 300,
+          }}
+        >
+          <AlertTitle>Hủy bỏ</AlertTitle>
+          Đã hủy thay đổi!
         </Alert>
       )}
     </Box>
