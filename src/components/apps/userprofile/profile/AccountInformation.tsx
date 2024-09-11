@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button } from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
-<<<<<<< HEAD
-// import { useNavigate } from 'react-router-dom';
-import { dispatch } from 'src/store/Store';
-import { setSelected } from 'src/store/RouterSlice';
-=======
+
 import { useNavigate } from 'react-router-dom';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch, useDispatch } from 'src/store/Store';
->>>>>>> main
-
+import { useTheme } from '@emotion/react';
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
@@ -21,19 +16,6 @@ const AccountInformation = () => {
     password: '**********',
   });
 
-<<<<<<< HEAD
-  // const theme = useTheme();
-  // const navigate = useNavigate();
-
-  const handleEditClick = (field: string) => {
-    if (field === 'password') {
-<<<<<<< HEAD
-      navigate('/user-profile/changepassword');
-=======
-      // navigate('/pages/account-settings');
-      dispatch(setSelected('changepassword'))
->>>>>>> e0eadcb (quan)
-=======
   const theme = useTheme();
   const navigate = useNavigate();
   const dispatch = useDispatch(); // Khởi tạo dispatch
@@ -47,7 +29,6 @@ const AccountInformation = () => {
   const handleEditClick = (field: string) => {
     if (field === 'password') {
       handleButtonClick(2); // Gọi handleButtonClick khi người dùng click đổi mật khẩu
->>>>>>> main
     } else {
       setEditing(field);
     }
@@ -127,7 +108,12 @@ const AccountInformation = () => {
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
             {accountInfo.password}
           </Typography>
-          <Button onClick={() => handleEditClick('password')} variant="outlined" color="primary" startIcon={<IconLock />}>
+          <Button
+            onClick={() => handleEditClick('password')}
+            variant="outlined"
+            color="primary"
+            startIcon={<IconLock />}
+          >
             Đổi mật khẩu
           </Button>
         </Box>

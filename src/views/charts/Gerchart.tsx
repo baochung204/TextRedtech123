@@ -153,7 +153,7 @@ const GerChart = () => {
 
     // </PageContainer>
     <DashboardCard sx={{ pt: 0 }}>
-      <Box sx={{ marginTop: '-15px' }}>
+      <Box sx={{ marginTop: '0px' }}>
         <Typography variant="h4">Báo cáo công việc</Typography>
         <Typography variant="subtitle2" color="textSecondary" mb={2}>
           kinh doanh
@@ -173,9 +173,9 @@ const GerChart = () => {
             value={month}
             onChange={handleChange}
           >
-            <MenuItem value={1}>Tất cả</MenuItem>
+            <MenuItem value={1}>Danh thu</MenuItem>
             <MenuItem value={2}>Khách hàng </MenuItem>
-            <MenuItem value={3}>Dơn Hàng </MenuItem>
+            <MenuItem value={3}>Đơn Hàng </MenuItem>
           </CustomSelect>
           <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
             {' '}

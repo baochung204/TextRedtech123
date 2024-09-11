@@ -173,8 +173,9 @@ const Affiliatedetail = () => {
             value={month}
             onChange={handleChange}
           >
-            <MenuItem value={1}>Tất cả</MenuItem>
-            <MenuItem value={2}>Khách hàng </MenuItem>
+            {' '}
+            <MenuItem value={1}>Khách hàng </MenuItem>
+            <MenuItem value={2}>Doanh thu</MenuItem>
             <MenuItem value={3}>Dơn Hàng </MenuItem>
           </CustomSelect>
           <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">

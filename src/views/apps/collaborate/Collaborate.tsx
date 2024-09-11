@@ -168,7 +168,7 @@ const CollaboratePost = () => {
               <Button variant="contained" color="primary" sx={{ width: '48%' }}>
                 RÚT TIỀN
               </Button>
-              <Button variant="contained" color="primary" sx={{ width: '48%' }}>
+              <Button variant="contained" color="error" sx={{ width: '48%' }}>
                 ĐỔI POINT
               </Button>
             </Box>

@@ -1,14 +1,12 @@
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-
 
 import React, { useState } from 'react';
 import { sum } from 'lodash';
 import { IconShoppingCart, IconX } from '@tabler/icons-react';
 import { Box, Typography, Badge, IconButton, Button, Stack, Popover } from '@mui/material';
 import { useSelector } from 'src/store/Store';
-import { Link  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CartItems from './CartItem';
 import { AppState } from 'src/store/Store';
 
@@ -45,30 +43,20 @@ const Cart = () => {
   );
 
   return (
-    <Box
-      onMouseLeave={handlePopoverMouseLeave}
-    >
-      
+    <Box onMouseLeave={handlePopoverMouseLeave}>
       <IconButton
         size="large"
         color="inherit"
-
         sx={{
           color: 'text.secondary',
           ...(open && {
             color: 'primary.main',
           }),
         }}
-        onMouseEnter={handleClick}  
+        onMouseEnter={handleClick}
       >
-        <Button
-          size="large"
-          color="inherit"
-        >
-          <Badge
-            color="warning"
-            badgeContent={bcount}
-          >
+        <Button size="large" color="inherit">
+          <Badge color="warning" badgeContent={bcount}>
             <IconShoppingCart size="21" stroke="1.5" />
           </Badge>
         </Button>
@@ -95,11 +83,9 @@ const Cart = () => {
           },
         }}
       >
-        <Box
-          onMouseLeave={handlePopoverMouseLeave}
-        >
+        <Box onMouseLeave={handlePopoverMouseLeave}>
           <Box
-            className='test'
+            className="test"
             display="flex"
             alignItems="center"
             p={3}
@@ -125,7 +111,7 @@ const Cart = () => {
 
           {cartContent}
 
-          <Box px={3} mt={2} >
+          <Box px={3} mt={2}>
             {Cartproduct.length > 0 ? (
               <>
                 <Stack direction="row" justifyContent="space-between" mb={3}>
@@ -157,4 +143,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
