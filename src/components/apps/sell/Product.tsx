@@ -319,6 +319,7 @@ const PaginationTable = () => {
   };
 
   return (
+
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
       {/* breadcrumb */}
       <Breadcrumb title="Pagination Table" items={BCrumb} />
@@ -328,6 +329,7 @@ const PaginationTable = () => {
       {/* Phần bên trái */}
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <ADDDialog/>
+
         
         <EnhancedTableToolbar
           numSelected={selected.length}

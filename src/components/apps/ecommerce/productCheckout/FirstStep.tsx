@@ -23,7 +23,7 @@ const FirstStep = ({ total, Discount }: Props) => {
               <Typography variant="h6" fontWeight={400}>
                 Giá trị đơn hàng
               </Typography>
-              <Typography variant="h6">{total} đ</Typography>
+              <Typography variant="h6">{total.toLocaleString('vn-VN')} point</Typography>
             </Stack>
             {/* Giảm giá */}
             <Stack direction="row" justifyContent="space-between" mb={3}>
@@ -31,21 +31,16 @@ const FirstStep = ({ total, Discount }: Props) => {
                 Khuyến mãi
               </Typography>
               <Typography variant="h6" color="error">
-                -{Discount} đ
+                -{Discount.toLocaleString('vn-VN')} point
               </Typography>
             </Stack>
             {/* Vận chuyển */}
-            <Stack direction="row" justifyContent="space-between" mb={3}>
-              <Typography variant="h6" fontWeight={400}>
-                Vận chuyển
-              </Typography>
-              <Typography variant="h6">Miễn phí</Typography>
-            </Stack>
+
             {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={1}>
               <Typography variant="h6">Tổng thanh toán</Typography>
               <Typography variant="h5" color="success">
-                {total - Discount} đ
+                {(total - Discount).toLocaleString('vn-VN')} point
               </Typography>
             </Stack>
           </Box>

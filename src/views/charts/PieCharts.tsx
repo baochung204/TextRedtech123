@@ -8,6 +8,7 @@ import PageContainer from '../../components/container/PageContainer';
 import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
 import ParentCard from '../../components/shared/ParentCard';
 import { Props } from 'react-apexcharts';
+import Modarm from 'src/components/shared/moderm';
 
 const BCrumb = [
   {
@@ -71,9 +72,9 @@ const PieCharts = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <ParentCard title="Nguồn khách hàng " description="">
+    <Modarm title="Nguồn khách hàng " description="">
       <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
-    </ParentCard>
+    </Modarm>
   );
 };
 
