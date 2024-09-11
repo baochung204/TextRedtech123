@@ -379,7 +379,16 @@ const ListAssistant = () => {
                       py: 1,
                     }}
                   >
-                    
+                    <img
+                      src={rank.rankImage}
+                      alt=""
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 99,
+                        position: 'relative',
+                      }}
+                    />
                     <Box
                       sx={{
                         position: 'absolute',

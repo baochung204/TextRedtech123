@@ -131,12 +131,6 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Thêm khách hàng',
-        icon: IconPoint,
-        href: '/apps/collaborate/',
-      },
-      {
-        id: uniqueId(),
         title: 'Danh sách khách hàng',
         icon: IconPoint,
         href: '/apps/customerList2',
