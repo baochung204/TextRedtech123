@@ -23,12 +23,12 @@ const AssistantEditor = () => {
     <PageContainer title="Tạo Assistant" description="this is Shop List page">
       {/* breadcrumb */}
       <Breadcrumb title="Tạo Assistant" items={BCrumb} />
-      <BlankCard>
+      {/* <BlankCard> */}
         {/* ------------------------------------------- */}
         {/* Left part */}
         {/* ------------------------------------------- */}
         <Assistant_Add/>
-      </BlankCard>
+      {/* </BlankCard> */}
     </PageContainer>
   );
 };

@@ -73,7 +73,8 @@ const BlogCard = ({ post }: Btype) => {
               <Stack direction="row" sx={{ marginTop: '-45px' }}>
                 <Chip
                   sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                  label={`${view} lượt xem`}
+                  icon={<IconEye sx={{ fontSize: '24px' }} />}
+                  label={`${view}`}
                   size="small"
                 ></Chip>
               </Stack>

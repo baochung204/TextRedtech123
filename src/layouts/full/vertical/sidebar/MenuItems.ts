@@ -101,7 +101,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Tài nguyên',
     icon: IconShoppingCart,
-    href: '/dashboards/list',
+    href: '/pages/faq',
   },
   {
     id: uniqueId(),

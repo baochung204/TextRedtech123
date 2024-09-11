@@ -4,7 +4,6 @@ import { useSelector } from 'src/store/Store';
 import { ThemeSettings } from './theme/Theme';
 import RTL from './layouts/full/shared/customizer/RTL';
 import ScrollToTop from './components/shared/ScrollToTop';
-
 import Router from './routers/Router';
 import { AppState } from './store/Store';
 
@@ -18,7 +17,6 @@ function App() {
       <RTL direction={customizer.activeDir}>
         <CssBaseline />
         <ScrollToTop>{routing}</ScrollToTop>
-        {/* abc */}
       </RTL>
     </ThemeProvider>
   );
