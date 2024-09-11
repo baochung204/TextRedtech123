@@ -70,7 +70,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/apps/ecommerce/shop"
+        to="/auth/updating"
         component={Link}
       >
         Khóa học
@@ -79,7 +79,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/apps/rule"
+        to="/auth/updating"
         component={Link}
       >
         Tài liệu
@@ -88,7 +88,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/apps/email"
+        to="/auth/updating"
         component={Link}
       >
         Cộng đồng
@@ -97,7 +97,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/landingpage"
+        to="/auth/updating"
         component={Link}
       >
         Sự kiện

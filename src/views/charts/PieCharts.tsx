@@ -8,6 +8,7 @@ import PageContainer from '../../components/container/PageContainer';
 import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
 import ParentCard from '../../components/shared/ParentCard';
 import { Props } from 'react-apexcharts';
+import Modarm from 'src/components/shared/moderm';
 
 const BCrumb = [
   {
@@ -55,40 +56,10 @@ const PieCharts = () => {
       theme: 'dark',
       fillSeriesColor: false,
     },
+    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
   };
-  const seriesdoughnutchart = [45, 15, 27, 18, 35];
 
-  // 2
-  const optionspiechart: Props = {
-    chart: {
-      id: 'pie-chart',
-      fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
-      toolbar: {
-        show: false,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    plotOptions: {
-      pie: {
-        donut: {
-          size: '70px',
-        },
-      },
-    },
-    legend: {
-      show: true,
-      position: 'bottom',
-      width: '50px',
-    },
-    colors: [primary, primarylight, secondary, secondarylight, warning],
-    tooltip: {
-      fillSeriesColor: false,
-    },
-  };
-  const seriespiechart = [45, 15, 27, 18, 35];
+  const seriespiechart = [45, 65, 27, 18, 35];
 
   return (
     // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
@@ -101,14 +72,9 @@ const PieCharts = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <ParentCard title="Nguồn khách hàng ">
-      <Chart
-        options={optionsdoughnutchart}
-        series={seriesdoughnutchart}
-        type="donut"
-        height="300px"
-      />
-    </ParentCard>
+    <Modarm title="Nguồn khách hàng " description="">
+      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
+    </Modarm>
   );
 };
 

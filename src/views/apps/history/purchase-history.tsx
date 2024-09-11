@@ -18,7 +18,7 @@ const Purchasehistory = () => {
         <Grid item sm={12}>
           <ProfileBanner />
         </Grid>
-        <Grid item xs={12} lg={9} style={{ height: 'auto' }}>
+        <Grid item xs={12} lg={12} style={{ height: 'auto', margin: '0px auto' }}>
           <Paymenthistory />
         </Grid>
       </Grid>

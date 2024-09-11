@@ -23,13 +23,19 @@ import {
   Slide,
 } from '@mui/material';
 import PopupAdd from './PopupAdd';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
-import PopupAdd2 from './PopupAdd2';
+// import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
+// import PopupAdd2 from './PopupAdd2';
 
 // Tạo Transition component để sử dụng hiệu ứng slide từ dưới lên
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement }>(
+  function Transition(props, ref) {
+    return (
+      <Slide direction="up" ref={ref} {...props}>
+        {props.children}
+      </Slide>
+    );
+  },
+);
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -183,7 +189,7 @@ const CustomerList = () => {
       >
         <DialogTitle>Thêm Đơn Hàng</DialogTitle>
         <DialogContent>
-          <PopupAdd2 /> {/* Gọi component PopupAdd */}
+          <PopupAdd /> {/* Gọi component PopupAdd */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>

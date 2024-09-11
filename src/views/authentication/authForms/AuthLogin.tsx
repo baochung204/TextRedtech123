@@ -27,8 +27,8 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => (
     <Stack>
       <Box>
 
-        <CustomFormLabel htmlFor="gmail">Tài khoản</CustomFormLabel>
-        <CustomTextField id="gmail" variant="outlined" fullWidth required: true label="Email hoặc số điện thoại" sx={{mt:1}} />
+        <CustomFormLabel htmlFor="email">Tài khoản</CustomFormLabel>
+        <CustomTextField id="email" variant="outlined" fullWidth required: true label="Email hoặc số điện thoại" sx={{mt:1}} />
         {/* <span style={{ padding: '0 10px' }}>Vui lòng Nhập Email của bạn </span> */}
 
 

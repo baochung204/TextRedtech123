@@ -9,13 +9,14 @@ import {
   Button,
   Typography,
 } from '@mui/material';
-
+import { Link as RouterLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'src/store/Store';
 import { toggleSidebar, toggleMobileSidebar } from 'src/store/customizer/CustomizerSlice';
 import { IconMenu2 } from '@tabler/icons-react';
 import Notifications from './Notification';
 import Profile from './Profile';
 import Cart from './Cart';
+import { SxProps } from '@mui/system';
 import Search from './Search';
 import Language from './Language';
 import { AppState } from 'src/store/Store';
@@ -127,7 +128,10 @@ const Header = () => {
           {/* ------------------------------------------- */}
           {/* Ecommerce Dropdown */}
           {/* ------------------------------------------- */}
-          <Cart />
+          <Box component={RouterLink} to="/apps/ecommerce/eco-checkout" sx={{ cursor: 'pointer' }}>
+            <Cart />
+          </Box>
+
           {/* ------------------------------------------- */}
           {/* End Ecommerce Dropdown */}
           {/* ------------------------------------------- */}

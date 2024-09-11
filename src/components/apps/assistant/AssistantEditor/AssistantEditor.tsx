@@ -32,7 +32,7 @@ import ParentCard from 'src/components/shared/ParentCard';
 import CustomDisabledButton from 'src/components/forms/theme-elements/CustomDisabledButton';
 import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
 import PersonIcon from '@mui/icons-material/Person';
-import { IconEdit } from '@tabler/icons-react';
+import { IconEdit, IconSend } from '@tabler/icons-react';
 import DateTime from './DateTime'
 import Checkboxes from './Tags';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -40,6 +40,9 @@ import QuillEditor from './QuillEditor';
 import { IconPlus } from '@tabler/icons-react';
 import Integration from './Integration';
 import Strategy from './Strategy';
+import StrategyDialog from './strategyDialog';
+import SimpleDialog from './searchDialog';
+import FunctionsDialog from './functionsDialog';
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
 
@@ -144,11 +147,30 @@ const AssistantEditor = () => {
 
   return (
     <PageContainer title="Tạo Assistant" description="this is Custom Form page">
-      <Box sx={{m:3}}>
+      <Box>
+      <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={2}
+              justifyContent="space-between"
+              mt={2}
+              mb={2}
+            >
+              <Stack spacing={1} direction="row">
+                
+              </Stack>
+              <Stack direction="row" spacing={1}>
+                <Button variant="contained" color="secondary">
+                  Thêm mới
+                </Button>
+               
+              </Stack>
+            </Stack>
         <Grid container spacing={3}>
           {/* Cột 1 */}
+          
           <Grid item xs={12} sm={12} lg={4}>
-          <Box sx={{height:'72vh'}}>
+          <Paper elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}>
+          <Box sx={{height:'100%'}}>
               {/* Circular Avatar Placeholder */}
               <Box sx={{maxHeight: 'calc(72vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb:'20px' }}>
                 <label htmlFor="avatar-upload">
@@ -234,8 +256,8 @@ const AssistantEditor = () => {
                   </CustomSelect>
                 </Grid>
               </Grid>
-            </Box>
-            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
+
+              <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
               <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} lg={10}>
                     <Box display="flex" alignItems="center">
@@ -253,11 +275,16 @@ const AssistantEditor = () => {
               </Grid>
               <Integration/>
             </Paper>
+            </Box>
+            
+            
+            
+          </Paper>
           </Grid>
           {/* Cột 2 */}
           <Grid item xs={12} sm={12} lg={4} >
-            <Paper elevation={3} sx={{ height: '40vh', overflowY: 'auto', px:2 }}>
-              <CustomFormLabel htmlFor="demo-simple-select">Model</CustomFormLabel>
+            <Paper elevation={3} sx={{ height: '46vh', overflowY: 'auto', px:2 }}>
+              <Box fontWeight={600} mt={2} mb={1}  htmlFor="demo-simple-select">Model</Box>
                 <CustomSelect
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -270,82 +297,32 @@ const AssistantEditor = () => {
                   <MenuItem value={3}>GPT-4-TURBO</MenuItem>
               </CustomSelect>
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
-              <TextField minRows={3} multiline  id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth />
-              {/* <QuillEditor/> */}
+              {/* <TextField minRows={3} multiline  id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth /> */}
+              <QuillEditor/>
             </Paper>
+            {/* tri thức */}
             <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
-              {/* tri thức */}
-              <input
-                accept="*/*"
-                style={{ display: 'none' }}
-                id="contained-button-file"
-                multiple
-                type="file"
-                onChange={handleFileSearch} // Bắt sự kiện khi file được chọn
-              />
-              <label htmlFor="contained-button-file">
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6} lg={8.4}>
                     <Box fontWeight={600}>Tri thức</Box>
                   </Grid>
                   <Grid item xs={12} sm={6} lg={3.6}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      component="span"
-                      style={{ marginBottom: '10px' }}
-                    >
-                      <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
-                    </Button>
+                    <SimpleDialog/>
                   </Grid>
                 </Grid>
-              </label>
-
-              {fileSearchName && ( // Hiển thị tên file nếu có
-                <Grid container spacing={2} style={{ marginTop: '0px' }}>
-                  <Grid item xs={12}>
-                    {`${fileSearchName}`}
-                  </Grid>
-                </Grid>
-              )}
+              
               
             </Paper>
+            {/* Functions */}
             <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
-              {/* Functions */}
-              <input
-                accept="*/*"
-                style={{ display: 'none' }}
-                id="contained-button-fileFunctions"
-                multiple
-                type="file"
-                onChange={handleFileFunctions} // Bắt sự kiện khi file được chọn
-              />
-              <label htmlFor="contained-button-fileFunctions">
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6} lg={8.4}>
                     <Box fontWeight={600}>Functions</Box>
                   </Grid>
                   <Grid item xs={12} sm={6} lg={3.6}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      component="span"
-                      style={{ marginBottom: '10px' }}
-                    >
-                      <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
-                    </Button>
+                    <FunctionsDialog/>
                   </Grid>
                 </Grid>
-              </label>
-
-              {fileFunctionsName && ( // Hiển thị tên file nếu có
-                <Grid container spacing={2} style={{ marginTop: '0px' }}>
-                  <Grid item xs={12}>
-                    {`${fileFunctionsName}`}
-                  </Grid>
-                </Grid>
-              )}
-             
             </Paper>
             <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
               <Grid container spacing={2}>
@@ -353,15 +330,10 @@ const AssistantEditor = () => {
                       <Box fontWeight={600}>Chiến lược</Box>
                     </Grid>
                     <Grid item xs={12} sm={6} lg={2}>
-                      <Tooltip title="Thêm">
-                        <Fab size="small" color="secondary" aria-label="plus">
-                          <IconPlus width={18} />
-                        </Fab>
-                    </Tooltip>
+                      <StrategyDialog/>
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
-                      <Strategy/>
-
+                      {/* <Strategy/> */}
                     </Grid>
               </Grid>
               
@@ -369,6 +341,7 @@ const AssistantEditor = () => {
           </Grid>
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
+            
             <Paper elevation={3} sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
@@ -392,34 +365,24 @@ const AssistantEditor = () => {
               </Box>
               <Divider sx={{ my: 2 }} />
               <Box sx={{ display: 'flex' }}>
+               
                 <InputBase
-                  placeholder="Type a message..."
+                  id="msg-sent"
+                  fullWidth
                   value={inputValue}
+                  placeholder="Nhập câu hỏi tại đây"
+                  size="small"
+                  type="text"
+                  inputProps={{ 'aria-label': 'Type a Message' }}
                   onChange={handleInputChange}
                   onKeyPress={handleKeyPress}
-                  sx={{ flex: 1, px: 2, border: '1px solid #ccc', borderRadius: '4px' }}
                 />
                 <IconButton color="primary" onClick={handleSendMessage}>
-                  <SendIcon />
+                  <IconSend stroke={1.5} size="20" />
                 </IconButton>
               </Box>
             </Paper>
-            <Stack
-              direction={{ xs: 'column', sm: 'row' }}
-              spacing={2}
-              justifyContent="space-between"
-              mt={2}
-            >
-              <Stack spacing={1} direction="row">
-                
-              </Stack>
-              <Stack direction="row" spacing={1}>
-                <Button variant="contained" color="secondary">
-                  Thêm mới
-                </Button>
-               
-              </Stack>
-            </Stack>
+            
           </Grid>
         </Grid>
       </Box>

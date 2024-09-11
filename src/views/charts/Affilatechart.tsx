@@ -51,13 +51,14 @@ const Affilatechart = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, primarylight, secondary, secondarylight, warning],
+    colors: [primary, warning, primarylight, secondary, secondarylight],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
+    labels: ['Chi phí', 'Doanh thu'],
   };
-  const seriesdoughnutchart = [45, 15, 27, 18, 35];
+  const seriesdoughnutchart = [65, 35];
 
   // 2
   const optionspiechart: Props = {
