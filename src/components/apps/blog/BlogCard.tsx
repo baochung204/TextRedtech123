@@ -92,7 +92,14 @@ const BlogCard = ({ post }: Btype) => {
                 </Typography>
               </Box>
               <Chip label={category} size="small" sx={{ marginLeft: 'auto', marginTop: 0 }} />
-              <Box sx={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  display: 'flex',
+                  alignItems: 'center',
+                  bottom: 0,
+                  py: 2
+                }}>
                 <Tooltip title={author?.name} placement="top">
                   <Avatar aria-label="recipe" src={author?.avatar} />
                 </Tooltip>
