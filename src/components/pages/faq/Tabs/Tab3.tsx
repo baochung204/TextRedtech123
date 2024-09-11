@@ -2,7 +2,7 @@ import React from 'react'
 
 import DataTable3 from '../DataTable/TableTab3'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Typography } from '@mui/material';
-import DialogFile from '../../dialog/DialogFile';
+import DialogFile from '../dialog/DialogFile';
 
 interface PropsTab3 {
   value: string,
