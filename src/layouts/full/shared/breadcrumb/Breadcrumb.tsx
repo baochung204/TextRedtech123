@@ -20,7 +20,7 @@ const Breadcrumb = ({children }: BreadCrumbType) => (
       marginBottom: '30px',
       position: 'relative',
       overflow: 'hidden',
-      justifyContent: 'center',  // Center the content
+      justifyContent: 'center', 
       alignItems: 'center',
     }}
   > 
