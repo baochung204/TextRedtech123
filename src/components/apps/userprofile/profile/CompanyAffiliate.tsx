@@ -43,12 +43,11 @@ const CompanyAffiliate = () => {
     companyEmail: '',
     accountNumber: '',
     accountName: '',
-    bank: '',
-    branch: '',
+    bank: 1,
+    branch: 1,
     fileName: '',
   });
 
-  const [selectedDocument, setSelectedDocument] = useState(null);
   const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
   const isDarkMode = theme.palette.mode === 'dark';
 
@@ -549,98 +548,158 @@ const CompanyAffiliate = () => {
       case 1:
         return (
           <Box>
-            <Alert severity="warning" sx={{ marginTop: '30px' }}>
+            <Alert severity="warning" sx={{ marginTop: '30px', fontWeight: 'bold' }}>
               Chú ý: Nội dung đối tác điền dưới đây sẽ được sử dụng làm thông tin trong hợp đồng hợp
               tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp &
-              Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
+              Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng !
             </Alert>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <CustomFormLabel htmlFor="companyName">Tên công ty</CustomFormLabel>
-                <CustomTextField
-                  id="companyName"
-                  variant="outlined"
-                  placeholder="Nhập tên của công ty"
-                  fullWidth
-                  value={formData.companyName}
-                  onChange={handleChange}
-                />
+            <Box
+              sx={{
+                width: '100%',
+                border: '2px solid #ccc',
+                display: 'flex',
+                flexDirection: 'column', // Aligns the rows vertically
+                margin: '20px 0',
+                padding: '10px 20px 50px 20px',
+              }}
+            >
+              <Typography variant={'h5'} style={{ padding: '10px 0' }}>
+                Thông tin làm hợp đồng
+              </Typography>
+              <Grid container spacing={3}>
+                {/* First row */}
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="companyName">Tên công ty</CustomFormLabel>
+                  <CustomTextField
+                    id="companyName"
+                    variant="outlined"
+                    placeholder="Nhập tên của công ty"
+                    fullWidth
+                    value={formData.companyName}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="taxCode">Mã số thuế</CustomFormLabel>
+                  <CustomTextField
+                    id="taxCode"
+                    variant="outlined"
+                    placeholder="Mã số thuế của công ty"
+                    fullWidth
+                    value={formData.taxCode}
+                    onChange={handleChange}
+                  />
+                </Grid>
+
+                {/* Second row */}
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="companyEmail">Email công ty</CustomFormLabel>
+                  <CustomTextField
+                    id="companyEmail"
+                    variant="outlined"
+                    placeholder="Nhập email công ty của bạn"
+                    fullWidth
+                    value={formData.companyEmail}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="address">Địa chỉ công ty</CustomFormLabel>
+                  <CustomTextField
+                    id="address"
+                    variant="outlined"
+                    placeholder="Nhập đại chỉ của công ty"
+                    fullWidth
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <CustomFormLabel htmlFor="taxCode">Mã số thuế</CustomFormLabel>
-                <CustomTextField
-                  id="taxCode"
-                  variant="outlined"
-                  placeholder="Mã số thuế của công ty"
-                  fullWidth
-                  value={formData.taxCode}
-                  onChange={handleChange}
-                />
+            </Box>
+
+            <Box
+              sx={{
+                width: '100%',
+                border: '2px solid #ccc',
+                display: 'flex',
+                flexDirection: 'column', // Aligns the rows vertically
+                margin: '20px 0',
+                padding: '10px 20px 50px 20px',
+              }}
+            >
+              <Typography variant={'h5'} style={{ padding: '10px 0' }}>
+                Thông tin tài khoản
+              </Typography>
+              <Grid container spacing={3}>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="presentPeople">Người đại diện</CustomFormLabel>
+                  <CustomTextField
+                    id="presentPeople"
+                    variant="outlined"
+                    placeholder="Nhập tên người đại diện của bạn"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="position">Chức vụ</CustomFormLabel>
+                  <CustomTextField
+                    id="position"
+                    variant="outlined"
+                    placeholder="Nhập tên chức vụ của người đại diện"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="accountName">Chủ tài khoản</CustomFormLabel>
+                  <CustomTextField
+                    id="accountName"
+                    variant="outlined"
+                    placeholder="Nhập tên tài khoản của bạn"
+                    fullWidth
+                    value={formData.accountName}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="accountNumber">Số tài khoản</CustomFormLabel>
+                  <CustomTextField
+                    id="accountNumber"
+                    variant="outlined"
+                    placeholder="Nhập số tài khoản của bạn"
+                    fullWidth
+                    value={formData.accountNumber}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="bank">Ngân hàng</CustomFormLabel>
+                  <FormControl fullWidth>
+                    <Select
+                      placeholder="Chọn ngân hàng"
+                      labelId="bank-select-label"
+                      id="bank"
+                      value={formData.bank}
+                      onChange={(e) => setFormData({ ...formData, bank: e.target.value })}
+                    >
+                      <MenuItem value={1}>Mb bank</MenuItem>
+                      <MenuItem value={2}>TP bank</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="branch">Chi nhánh ngân hàng</CustomFormLabel>
+                  <FormControl fullWidth>
+                    <Select
+                      labelId="branch-select-label"
+                      id="branch"
+                      value={formData.branch}
+                      onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
+                    >
+                      <MenuItem value={1}>Hà Nội</MenuItem>
+                      <MenuItem value={2}>Hồ Chí Minh</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <CustomFormLabel htmlFor="companyEmail">Email công ty</CustomFormLabel>
-                <CustomTextField
-                  id="companyEmail"
-                  variant="outlined"
-                  placeholder="Nhập email công ty của bạn"
-                  fullWidth
-                  value={formData.companyEmail}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <CustomFormLabel htmlFor="accountNumber">Số tài khoản</CustomFormLabel>
-                <CustomTextField
-                  id="accountNumber"
-                  variant="outlined"
-                  placeholder="Nhập số tài khoản của bạn"
-                  fullWidth
-                  value={formData.accountNumber}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <CustomFormLabel htmlFor="accountName">Tên tài khoản</CustomFormLabel>
-                <CustomTextField
-                  id="accountName"
-                  variant="outlined"
-                  placeholder="Nhập tên tài khoản của bạn"
-                  fullWidth
-                  value={formData.accountName}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <CustomFormLabel htmlFor="bank">Ngân hàng</CustomFormLabel>
-                <FormControl fullWidth>
-                  <InputLabel id="bank-select-label">Chọn ngân hàng</InputLabel>
-                  <Select
-                    labelId="bank-select-label"
-                    id="bank"
-                    value={formData.bank}
-                    onChange={(e) => setFormData({ ...formData, bank: e.target.value })}
-                  >
-                    <MenuItem value="mb">Mb bank</MenuItem>
-                    <MenuItem value="tp">TP bank</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
-                <CustomFormLabel htmlFor="branch">Chi nhánh ngân hàng</CustomFormLabel>
-                <FormControl fullWidth>
-                  <InputLabel id="branch-select-label">Chọn chi nhánh</InputLabel>
-                  <Select
-                    labelId="branch-select-label"
-                    id="branch"
-                    value={formData.branch}
-                    onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
-                  >
-                    <MenuItem value="hanoi">Hà Nội</MenuItem>
-                    <MenuItem value="hochiminh">Hồ Chí Minh</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
+            </Box>
           </Box>
         );
       case 2:
@@ -654,10 +713,12 @@ const CompanyAffiliate = () => {
                 textAlign: 'center',
               }}
             >
-              <Typography>
-                Vui lòng tải lên giấy phép đăng ký kinh doanh để tiến hành xác minh doanh nghiệp của
-                bạn trước khi ký hợp đồng. File hợp lệ là pdf.
-              </Typography>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Typography sx={{ maxWidth: '500px' }}>
+                  Vui lòng tải lên giấy phép đăng ký kinh doanh để tiến hành xác minh doanh nghiệp
+                  của bạn trước khi ký hợp đồng. File hợp lệ là pdf.
+                </Typography>
+              </Box>
               <Box sx={{ marginTop: '30px' }}>
                 <Input
                   type="file"
@@ -687,18 +748,26 @@ const CompanyAffiliate = () => {
               <Grid item xs={6}>
                 <Box
                   sx={{
-                    border: '1px solid #ccc',
-                    padding: '16px',
-                    textAlign: 'center',
+                    position: 'relative',
+                    width: '100%', // This will allow the iframe to take the full width of the parent container
                     height: '100%',
+                    paddingTop: '56.25%', // This sets the aspect ratio to 16:9 (height/width = 9/16 = 56.25%)
+                    border: '1px solid #ccc',
+                    overflow: 'hidden',
                   }}
                 >
                   <iframe
-                    width="100%"
-                    height="315"
                     src="https://www.youtube.com/embed/iCRV5g-u_M0?si=fM5Z3KQsaL5uv_PA"
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 0,
+                    }}
                   ></iframe>
                 </Box>
               </Grid>
@@ -707,7 +776,7 @@ const CompanyAffiliate = () => {
                   sx={{
                     border: `1px solid ${isDarkMode ? '#444' : '#ccc'}`, // Dark mode border
                     padding: '24px',
-                    borderRadius: '8px',
+                    borderRadius: '5px',
                     boxShadow: isDarkMode
                       ? '0px 4px 12px rgba(0, 0, 0, 0.7)' // Darker shadow in dark mode
                       : '0px 4px 12px rgba(0, 0, 0, 0.1)', // Lighter shadow in light mode
@@ -821,27 +890,19 @@ const CompanyAffiliate = () => {
             );
           })}
         </Stepper>
-        {activeStep === steps.length ? (
-          <Stack spacing={2} mt={3}>
-            <Alert severity="success">
-              Bạn đã hoàn thành việc đăng ký - chờ chúng tôi phê duyệt trong vòng 24h
-            </Alert>
-            <Box textAlign="right">
-              <Button component={Link} to="/apps/pending" variant="contained" color="error">
-                Hoàn thành
-              </Button>
-            </Box>
-          </Stack>
-        ) : (
-          <Box>
-            {handleSteps(activeStep)}
-            <Box display="flex" flexDirection="row" mt={3}>
+        {activeStep === steps.length - 1 ? (
+          // Final Step
+          <>
+            <Box sx={{ mt: 2 }}>{handleSteps(activeStep)}</Box>
+
+            <Box display="flex" flexDirection="row" mt={2}>
               <Button
                 color="inherit"
                 variant="contained"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 sx={{ mr: 1 }}
+                size="small"
               >
                 Quay lại
               </Button>
@@ -851,20 +912,64 @@ const CompanyAffiliate = () => {
                 variant="contained"
                 to="/user-profile"
                 sx={{ mr: 1 }}
+                size="small"
               >
                 Hủy bỏ
               </Button>
+
               <Box flex="1 1 auto" />
               <Button
                 onClick={handleNext}
                 variant="contained"
-                color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
-                disabled={!validateStep(activeStep)} // Disable button if validation fails
+                color="success"
+                disabled={!validateStep(activeStep)}
+                size="small"
+                component={Link}
+                to="/apps/pending"
               >
-                {activeStep === steps.length - 1 ? 'Kết thúc' : 'Tiếp tục'}
+                Hoàn tất đăng ký
               </Button>
             </Box>
-          </Box>
+          </>
+        ) : (
+          // Normal Steps
+          <>
+            <Box sx={{ mt: 2 }}>{handleSteps(activeStep)}</Box>
+
+            <Box display="flex" flexDirection="row" mt={2}>
+              <Button
+                color="inherit"
+                variant="contained"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+                size="small"
+              >
+                Quay lại
+              </Button>
+              <Button
+                component={Link}
+                color="inherit"
+                variant="contained"
+                to="/user-profile"
+                sx={{ mr: 1 }}
+                size="small"
+              >
+                Hủy bỏ
+              </Button>
+
+              <Box flex="1 1 auto" />
+              <Button
+                onClick={handleNext}
+                variant="contained"
+                color="secondary"
+                disabled={!validateStep(activeStep)}
+                size="small"
+              >
+                Tiếp tục
+              </Button>
+            </Box>
+          </>
         )}
       </Box>
     </PageContainer>
