@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Typography,
   Grid,
@@ -16,12 +16,16 @@ import {
   Button,
   Avatar,
   Autocomplete,
+  FormControlLabel,
+  SvgIcon,
+  Switch,
+  Input,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 import PageContainer from 'src/components/container/PageContainer';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
-import { IconSearch } from '@tabler/icons-react';
+import { IconBalloon, IconDetails, IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
 // import BlankCard from '../../shared/BlankCard';
 import rank1 from 'src/assets/images/rank/rank1.png';
 import rank2 from 'src/assets/images/rank/rank2.png';
@@ -41,8 +45,7 @@ import avt7 from 'src/assets/images/profile/user-7.jpg';
 import avt8 from 'src/assets/images/profile/user-8.jpg';
 import avt9 from 'src/assets/images/profile/user-9.jpg';
 import avt10 from 'src/assets/images/profile/user-10.jpg';
-import Chart from 'react-apexcharts';
-
+// import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { Props } from 'react-apexcharts';
 import { IconArrowUpRight } from '@tabler/icons-react';
 
@@ -50,7 +53,9 @@ import icon1 from 'src/assets/images/svgs/icon-bars.svg';
 import DashboardCard from 'src/components/shared/DashboardCard';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-
+import Chart from 'react-apexcharts';
+import { IconTable } from '@tabler/icons-react';
+import { useMediaQuery } from '@mui/material';
 interface sellsData {
   product: string;
   percent: number;
@@ -279,6 +284,19 @@ const ListAssistant = () => {
 
     return () => clearTimeout(timer);
   }, []);
+  const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
+
+  const onHandleCheckOnOrOff = (rank: Irank) => {
+    setCheckedRanks((prevChecked) =>
+      prevChecked.includes(rank.id)
+        ? prevChecked.filter((id) => id !== rank.id)
+        : [...prevChecked, rank.id],
+    );
+  };
+  const isXs = useMediaQuery((theme) => theme.breakpoints.down('xs'));
+  const isSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
 
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
@@ -366,25 +384,28 @@ const ListAssistant = () => {
                     display: 'flex',
                     flexDirection: { xs: 'column', sm: 'row' },
                     p: { xs: 1, sm: 2 },
+                    justifyContent: { xs: 'center' },
+                    alignItems: { xs: 'center' },
                   }}
                 >
                   <Box
                     sx={{
                       position: 'relative',
                       display: 'inline-block',
-
-                      width: { xs: '280px', sm: '380px', md: '420px', lg: '370px' },
-                      height: { xs: '260px', sm: '230px', md: '240px', lg: '220px' },
+                      width: { xs: '280px', sm: '370px', md: '420px', lg: '400px' },
+                      height: { xs: '260px', sm: '230px', md: '212px', lg: '220px' },
                       px: 2,
                       py: 1,
                     }}
                   >
-                    <img
+                    <Box
+                      component="img"
                       src={rank.rankImage}
                       alt=""
-                      style={{
+                      sx={{
                         width: '100%',
                         height: '100%',
+                        marginTop: { sm: '-70px', md: '-50px', lg: '-50px' },
                         zIndex: 99,
                         position: 'relative',
                       }}
@@ -392,13 +413,13 @@ const ListAssistant = () => {
                     <Box
                       sx={{
                         position: 'absolute',
-                        top: '47%',
+                        top: { xs: '48%', sm: '17%', md: '23%', lg: '25%' },
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
                         borderRadius: '50%',
                         overflow: 'hidden',
-                        width: { xs: '41%', sm: '40%', md: '40%', lg: '40%' },
-                        height: { xs: '41%', sm: '40%', md: '40%', lg: '40%' },
+                        width: { xs: '41%', sm: '40%', md: '42%', lg: '40%' },
+                        height: { xs: '41%', sm: '40%', md: '42%', lg: '40%' },
                       }}
                     >
                       <img
@@ -411,11 +432,11 @@ const ListAssistant = () => {
                         }}
                       />
                     </Box>
-                    <Box sx={{ textAlign: 'center', mt: { sm: 1, md: 2 } }}>
+                    <Box sx={{ textAlign: 'center', mt: { xs: 1, sm: 2, md: 0.2, lg: '1%' } }}>
                       <Typography
                         variant="h6"
                         mb={0.5}
-                        sx={{ fontSize: { xs: '16px', sm: '16px', md: '18px', lg: '18px' } }}
+                        sx={{ fontSize: { xs: '20px', sm: '18px', md: '16px', lg: '18px' } }}
                       >
                         {rank.fullName}
                       </Typography>
@@ -423,65 +444,78 @@ const ListAssistant = () => {
                         variant="body2"
                         color="text.secondary"
                         mb={0.5}
-                        sx={{ fontSize: { xs: '14px', sm: '12px', md: '14px', lg: '14px' } }}
+                        sx={{
+                          fontSize: { xs: '14px', sm: '14px', md: '12px', lg: '14px' },
+                          mt: { xs: 1, sm: 1, md: 0.5, lg: 1 },
+                        }}
                       >
                         {rank.model}
                       </Typography>
                     </Box>
                     <Grid
                       container
-                      columnSpacing={1}
-                      sx={{
-                        mt: { xs: 1, sm: 1, md: 2 },
-                        mb: { xs: 5 },
+                      columnSpacing={{
+                        xs: -1,
+                        sm: 2,
+                        md: 5,
+                        lg: 1,
                       }}
-                      justifyContent="space-between"
+                      sx={{
+                        mt: { xs: 1, sm: 1.7, md: 0.5, lg: 1 },
+                        mb: { xs: 5 },
+                        ml: { xs: 1.8, sm: -2, md: -7, lg: 0 },
+                      }}
                     >
-                      <Grid item xs={6} sm={6} md={6}>
+                      <Grid item xs={4}>
                         <Button
-                          variant="contained"
-                          color="primary"
+                          onClick={() => onHandleCheckOnOrOff(rank)}
                           sx={{
-                            width: '100%',
-                            fontSize: { xs: '10px', sm: '12px', md: '14px' },
-                            px: { xs: '5px', sm: '8px', md: '12px' },
+                            backgroundColor: checkedRanks.includes(rank.id) ? '#AE00FF' : '#BDBDBD',
+                            display: 'flex',
+                            alignItems: 'center',
+                            height: '100%',
+                            justifyContent: 'center',
+                            ':hover': {
+                              backgroundColor: checkedRanks.includes(rank.id)
+                                ? '#AE00FF'
+                                : '#BDBDBD',
+                              boxShadow: 'none',
+                            },
+                            boxShadow: 'none',
                           }}
                         >
-                          Sửa
+                          <IconPower color="white" />
                         </Button>
                       </Grid>
-                      <Grid item xs={6} sm={6} md={6}>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          sx={{
-                            width: '100%',
-                            fontSize: { xs: '10px', sm: '12px', md: '14px' },
-                            px: { xs: '5px', sm: '8px', md: '12px' },
-                          }}
-                        >
-                          Chi tiết
+
+                      <Grid item xs={4}>
+                        <Button variant="contained" color="primary">
+                          <IconEdit color="white" />
+                        </Button>
+                      </Grid>
+
+                      <Grid item xs={4}>
+                        <Button variant="contained" color="error">
+                          <IconTable fontSize={20} />
                         </Button>
                       </Grid>
                     </Grid>
                   </Box>
 
-                  <Box sx={{ width: '100%', px: 2, py: 1, mt: { xs: 9.5, sm: 0 } }}>
+                  <Box sx={{ width: '100%', px: 2, py: 1, mt: { xs: 12, sm: 0 } }}>
                     <Box>
                       <Grid container columnSpacing={2} sx={{}}>
                         <Grid item xs={6} sm={6} md={6}>
                           <DashboardCard>
-                            <Box sx={{ p: 0 }}>
-                              {/* Icon and sale percentage */}
+                            <Box sx={{ pb: 0 }}>
                               <Box
                                 bgcolor="secondary.light"
                                 display="flex"
                                 alignItems="center"
                                 justifyContent="center"
                                 sx={{
-                                  width: { xs: '30px', md: '30px', lg: '38px' }, // Kích thước icon responsive
-                                  height: { xs: '30px', md: '30px', lg: '38px' },
-                                  p: 0,
+                                  width: { xs: '30px', sm: '30px', md: '25px', lg: '40px' },
+                                  height: { xs: '30px', sm: '30px', md: '25px', lg: '40px' },
                                 }}
                               >
                                 <Avatar
@@ -494,10 +528,12 @@ const ListAssistant = () => {
                                 />
                               </Box>
 
-                              {/* Chỉ hiển thị phần trăm và chữ Sale khi xs */}
                               <Typography
                                 variant="h4"
-                                sx={{ display: { xs: 'block', sm: 'block' } }}
+                                sx={{
+                                  display: { xs: 'block', sm: 'flex' },
+                                  fontSize: { md: 18, lg: 21 },
+                                }}
                               >
                                 {rank.sale}%
                                 <span>
@@ -510,11 +546,14 @@ const ListAssistant = () => {
                                 color="textSecondary"
                                 sx={{ display: { xs: 'block', sm: 'block' } }}
                               >
-                                Sale
+                                CRB
                               </Typography>
-
-                              {/* Chart và các phần tử khác ẩn khi xs */}
-                              <Box mt={3} mb={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
+                              <Box
+                                sx={{
+                                  display: { xs: 'block', sm: 'block' },
+                                  mt: { xs: 0.7, sm: 4, md: 1.4, lg: 3 },
+                                }}
+                              >
                                 <Chart
                                   options={optionscolumnchart}
                                   series={seriescolumnchart}
@@ -524,16 +563,55 @@ const ListAssistant = () => {
                               </Box>
                             </Box>
                           </DashboardCard>
+
+                          {/* <Grid item sm={12} mt={2}>
+                            <Box
+                              onClick={() => onHandleCheckOnOrOff(rank)}
+                              sx={{
+                                width: '100%',
+                                height: '34px',
+                                backgroundColor: checkedRanks.includes(rank.id)
+                                  ? '#AE00FF'
+                                  : '#454545',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: 'white',
+                                fontSize: '16px',
+                                px: 2,
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <Box
+                                sx={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: 1,
+                                  flexWrap: 'wrap',
+                                  textAlign: 'center',
+                                }}
+                              >
+                                <Typography variant="body2" noWrap>
+                                  Hoạt động
+                                </Typography>
+                                <IconPower size="20" color="white" />
+                              </Box>
+                            </Box>
+                          </Grid> */}
                         </Grid>
 
                         <Grid item xs={6} sm={6} spacing={2}>
-                          <Grid container rowSpacing={{ xs: 1.1, sm: 3.4 }}>
+                          <Grid container rowSpacing={{ xs: 1.1, sm: 1.7 }}>
                             <Grid item xs={12} sm={12}>
                               <Tooltip title="Tổng giá trị hàng hóa" placement="top">
                                 <Button
                                   variant="outlined"
                                   color="primary"
-                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                  sx={{
+                                    width: '100%',
+                                    fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                    px: { md: '10px', lg: '15px' },
+                                  }}
                                 >
                                   GMV: {rank.gmv}
                                 </Button>
@@ -544,7 +622,11 @@ const ListAssistant = () => {
                                 <Button
                                   variant="outlined"
                                   color="secondary"
-                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                  sx={{
+                                    width: '100%',
+                                    fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                    px: { md: '10px', lg: '15px' },
+                                  }}
                                 >
                                   AOV: {rank.aov}
                                 </Button>
@@ -555,7 +637,11 @@ const ListAssistant = () => {
                                 <Button
                                   variant="outlined"
                                   color="error"
-                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                  sx={{
+                                    width: '100%',
+                                    fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                    px: { md: '10px', lg: '15px' },
+                                  }}
                                 >
                                   CC: {rank.cc}
                                 </Button>
@@ -566,7 +652,11 @@ const ListAssistant = () => {
                                 <Button
                                   variant="outlined"
                                   color="warning"
-                                  sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+                                  sx={{
+                                    width: '100%',
+                                    fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                    px: { md: '10px', lg: '5px' },
+                                  }}
                                 >
                                   OC:{rank.oc}
                                 </Button>
@@ -580,18 +670,20 @@ const ListAssistant = () => {
                           overflow: 'hidden',
                           zIndex: '1',
                           position: 'relative',
-                          mt: { xs: 1, sm: 2 },
+                          mt: { xs: 1, sm: 3.3, md: 3, lg: 3.3 },
                         }}
                       >
-                        <Box sx={{ p: { xs: 2, sm: 2, md: 1.7, lg: 2 } }}>
+                        <Box sx={{ p: { xs: 2, sm: 2.5, md: 1.7, lg: 2 } }}>
                           <Stack spacing={3}>
                             {sells.map((sell: any) => (
                               <Box>
                                 <Stack
                                   direction="row"
-                                  mb={2}
                                   justifyContent="space-between"
                                   alignItems="center"
+                                  sx={{
+                                    mb: { sm: 3, md: 3.5, lg: 2 },
+                                  }}
                                 >
                                   <Box>
                                     <Typography variant="h6">Kinh nghiệm</Typography>
