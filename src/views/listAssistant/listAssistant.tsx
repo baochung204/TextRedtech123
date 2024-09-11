@@ -563,41 +563,6 @@ const ListAssistant = () => {
                               </Box>
                             </Box>
                           </DashboardCard>
-
-                          {/* <Grid item sm={12} mt={2}>
-                            <Box
-                              onClick={() => onHandleCheckOnOrOff(rank)}
-                              sx={{
-                                width: '100%',
-                                height: '34px',
-                                backgroundColor: checkedRanks.includes(rank.id)
-                                  ? '#AE00FF'
-                                  : '#454545',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: 'white',
-                                fontSize: '16px',
-                                px: 2,
-                                boxSizing: 'border-box',
-                              }}
-                            >
-                              <Box
-                                sx={{
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: 1,
-                                  flexWrap: 'wrap',
-                                  textAlign: 'center',
-                                }}
-                              >
-                                <Typography variant="body2" noWrap>
-                                  Hoạt động
-                                </Typography>
-                                <IconPower size="20" color="white" />
-                              </Box>
-                            </Box>
-                          </Grid> */}
                         </Grid>
 
                         <Grid item xs={6} sm={6} spacing={2}>
