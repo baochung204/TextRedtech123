@@ -23,8 +23,8 @@ const Register = () => (
         item
         xs={12}
         sm={12}
-        lg={7}
-        xl={8}
+        lg={6}
+        xl={7}
         sx={{
           position: 'relative',
           '&:before': {
@@ -66,13 +66,13 @@ const Register = () => (
         item
         xs={12}
         sm={12}
-        lg={5}
-        xl={4}
+        lg={6}
+        xl={5}
         display="flex"
         justifyContent="center"
         alignItems="center"
       >
-        <Box px={4} mr={10}>
+        <Box px={4} mr={{ xl: 15, sx: 0 }}>
           <AuthRegister
             title="Welcome to Modernize"
             subtext={

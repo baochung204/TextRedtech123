@@ -2,9 +2,14 @@ import { Avatar, Box, Button, CardContent, Grid, Stack, Typography } from "@mui/
 import { IconMapPin } from "@tabler/icons-react"
 import BlankCard from "src/components/shared/BlankCard"
 import img1 from 'src/assets/images/profile/user-1.jpg';
+import { useState } from "react";
 
 
 const Integration = () => {
+    const [connect,setConnect] = useState();
+    const handleConnection = () => {
+        setConnect((prevConnect) => !prevConnect); 
+    }
     return (
         <Grid item xs={12} lg={12} mt={2}>
               <BlankCard>
@@ -24,14 +29,15 @@ const Integration = () => {
                       </Typography>
                       </Box>
                       <Box ml="auto">
-                        <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        >
-                        Đã kết nối
-                        </Button>
-                      </Box>
+                            <Button
+                                variant={connect ? "contained" : "outlined"}
+                                color="primary"
+                                size="small"
+                                onClick={handleConnection}
+                            >
+                                {connect ? 'Đã kết nối' : 'Kết nối'}
+                            </Button>
+                        </Box>
                   </Stack>
                   </CardContent>
               </BlankCard>

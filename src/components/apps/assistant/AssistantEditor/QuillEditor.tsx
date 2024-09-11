@@ -18,16 +18,19 @@ const QuillEditor = () => {
   return (
     
         <Paper
-          sx={{ border: `1px solid ${borderColor}` }}
+          sx={{ border: `0px solid ${borderColor}` }}
           variant="outlined"
         >
           <ReactQuill
-          
+            
             value={text}
             onChange={(value) => {
               setText(value);
             }}
-            placeholder="Type here..."
+            placeholder="Nhập vào đây..."
+            style={{
+              height: '100px',
+            }}
           />
         </Paper>
      

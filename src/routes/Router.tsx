@@ -104,7 +104,6 @@ import Pending from 'src/views/apps/user-profile/Pending';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import Update from 'src/views/apps/update/Update';
-import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
 
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
@@ -187,7 +186,7 @@ const Router = [
       // { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
-      { path: '/apps/sell/order', element: <CustomerListOrder /> },
+      { path: '/apps/sell/order', element: <CustomerList /> },
 
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
