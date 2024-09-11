@@ -49,7 +49,7 @@ const ProfileTab = () => {
     {
       label: 'Ticket',
       icon: <IconTicket size="20" />,
-      to: '/apps/gallery',
+      to: '/apps/chats',
     },
   ];
 

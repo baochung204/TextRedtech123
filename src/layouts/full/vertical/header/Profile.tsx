@@ -12,7 +12,6 @@ import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch } from 'src/store/Store';
 
-
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
   const navigate = useNavigate();
@@ -29,7 +28,7 @@ const Profile = () => {
   };
   const handleButtonClick = (id: number) => {
     if (id == 2) {
-      dispatch(setSelected('changepassword'))
+      dispatch(setSelected('changepassword'));
     }
   };
 
@@ -81,7 +80,7 @@ const Profile = () => {
           <Avatar src={ProfileImg} alt={ProfileImg} sx={{ width: 80, height: 80 }} />
           <Box>
             <Typography variant="subtitle1" color="textPrimary" fontWeight={600}>
-              Nguyễn Văn A
+              Nguyễn Đăng Hòa
             </Typography>
             <Typography
               variant="subtitle2"
@@ -91,7 +90,7 @@ const Profile = () => {
               sx={{ gap: '2px' }}
             >
               <IconMail width={15} height={15} />
-              nguyenvana123@gmail.com
+              hoaace2003@gmail.com
             </Typography>
           </Box>
         </Stack>
@@ -153,7 +152,12 @@ const Profile = () => {
                   Shopping ngay
                 </Button>
               </Box>
-              <img style={{ width: '45%' }} src={unlimitedImg} alt="unlimited" className="signup-bg"></img>
+              <img
+                style={{ width: '45%' }}
+                src={unlimitedImg}
+                alt="unlimited"
+                className="signup-bg"
+              ></img>
             </Box>
           </Box>
           <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>

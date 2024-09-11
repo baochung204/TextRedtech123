@@ -59,7 +59,6 @@ import Detailpoin from './detailpoint';
 import TransitionDialog from 'src/components/material-ui/dialog/TransitionDialog';
 import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
-
 // const BCrumb = [
 //   {
 //     to: '/',
@@ -343,92 +342,69 @@ const Lspoin = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
       <Grid
         item
         xs={12}
-        lg={10}
+        lg={12}
         display={{ md: 'flex', xs: 'block' }}
         style={{
           gap: '12px',
           alignItems: 'center',
-
-          margin: '10px 5%',
+          justifyContent: 'space-between',
+          margin: '10px 0',
         }}
       >
         {' '}
-        <Grid item xs={12} lg={7} style={{}}>
+        <Grid item xs={8} md={4} lg={3} style={{}} my={1}>
           <SearchInput />
         </Grid>
-        <Grid item xs={12} lg={12} display={'flex'} alignItems={'center'} gap="10px">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-          tới
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value1}
-              onChange={(newValue) => {
-                setValue1(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="50"
-            cursor="pointer"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-            <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-          </svg>
+        <Grid item xs={12} lg={5.5} display={'flex'} alignItems={'center'} gap="10px">
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="Từ ngày"
+                value={selectedStartDate}
+                onChange={(newDate) => setSelectedStartDate(newDate)}
+                renderInput={(params) => (
+                  <CustomTextField {...params} sx={{ marginRight: '10px' }} />
+                )}
+              />
+
+              <DatePicker
+                label="Đến ngày"
+                value={selectedEndDate}
+                onChange={(newDate) => setSelectedEndDate(newDate)}
+                renderInput={(params) => (
+                  <CustomTextField {...params} sx={{ marginRight: '10px' }} />
+                )}
+              />
+            </LocalizationProvider>
+
+            {/* Icon Refresh */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              cursor="pointer"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-refresh"
+              style={{ marginLeft: '10px' }}
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+              <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+            </svg>
+          </Box>
         </Grid>
       </Grid>
       <BlankCard>
@@ -517,7 +493,6 @@ const Lspoin = () => {
                         </TableCell>
                         <TableCell style={{ width: '18%' }}>
                           <Stack>
-
                             <Afletpoint1 row={row}></Afletpoint1>
                           </Stack>
                         </TableCell>

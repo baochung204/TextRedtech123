@@ -38,7 +38,10 @@ const CustomerTable = () => {
   };
 
   // Cắt dữ liệu để hiển thị theo trang
-  const paginatedRows = DataRowCustomerTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const paginatedRows = DataRowCustomerTable.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
   const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);
   };
@@ -53,7 +56,9 @@ const CustomerTable = () => {
       >
         <TableHead>
           <TableRow>
-            <TableCell sx={{ padding: '8px 16px' }}> {/* Tùy chỉnh padding */}
+            <TableCell sx={{ padding: '8px 16px' }}>
+              {' '}
+              {/* Tùy chỉnh padding */}
               <Typography variant="subtitle2" fontWeight={600}>
                 Id Đơn Hàng
               </Typography>
@@ -114,29 +119,19 @@ const CustomerTable = () => {
           {paginatedRows.map((row) => (
             <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.id}
-                </Typography>
+                <Typography variant="body2">{row.id}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.createdAt}
-                </Typography>
+                <Typography variant="body2">{row.createdAt}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.assistant}
-                </Typography>
+                <Typography variant="body2">{row.assistant}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.orderValue}
-                </Typography>
+                <Typography variant="body2">{row.orderValue}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.channel}
-                </Typography>
+                <Typography variant="body2">{row.channel}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
                 <Stack direction="row" spacing={2}>
@@ -154,36 +149,28 @@ const CustomerTable = () => {
                 </Stack>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.phone}
-                </Typography>
+                <Typography variant="body2">{row.phone}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.address}
-                </Typography>
+                <Typography variant="body2">{row.address}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.email}
-                </Typography>
+                <Typography variant="body2">{row.email}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.orderInfo}
-                </Typography>
+                <Typography variant="body2">{row.orderInfo}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px' }}>
-                <Typography variant="body2">
-                  {row.note}
-                </Typography>
+                <Typography variant="body2">{row.note}</Typography>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
 
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 2 }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 2 }}
+      >
         <FormControl>
           <InputLabel id="rows-per-page-label">Hàng trên mỗi trang</InputLabel>
           <Select
@@ -212,13 +199,12 @@ const CustomerTable = () => {
         />
       </Box>
       <Box ml={2}>
-          <FormControlLabel
-            control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
-            label="Dense padding"
-          />
-        </Box>
+        <FormControlLabel
+          control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
+          label="Dense padding"
+        />
+      </Box>
     </TableContainer>
-    
   );
 };
 

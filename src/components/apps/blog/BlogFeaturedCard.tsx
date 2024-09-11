@@ -16,8 +16,8 @@ import {
   styled,
   Skeleton,
 } from '@mui/material';
-import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
-import { format } from 'date-fns';
+import { IconEye } from '@tabler/icons-react';
+
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from 'src/types/apps/blog';
@@ -116,7 +116,7 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                     <Box>
                       <Stack direction="row">
                         <Chip
-                          sx={{ marginLeft: 'auto' }}
+                          sx={{ marginLeft: 'auto', backgroundColor: 'black' }}
                           label={view}
                           size="small"
                           color="primary"
@@ -152,13 +152,6 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                             </Stack>
                           </Stack>
                         </Box>
-
-                        {/* <Stack direction="row" gap={1} alignItems="center">
-                          <IconEye size="18" /> {view}
-                        </Stack>
-                        <Stack direction="row" gap={1} alignItems="center">
-                          <IconMessage2 size="18" /> {comments?.length}
-                        </Stack> */}
 
                         <Stack direction="row" ml="auto" alignItems="center">
                           {/* <small>{format(new Date(createdAt), 'E, MMM d')}</small> */}
