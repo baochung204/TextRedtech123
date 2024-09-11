@@ -1,27 +1,70 @@
-import React from 'react';
 import {
-  Box,
-  Typography,
   Avatar,
-  Stack,
-  ButtonGroup,
+  Box,
   Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
   Table,
+  TableBody,
+  TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TableCell,
-  TableBody,
-  IconButton,
+  Typography,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { IconMinus, IconPlus, IconTrash } from '@tabler/icons-react';
-import { useSelector, useDispatch } from 'src/store/Store';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
-import { increment, deleteCart, decrement } from '../../../../store/apps/eCommerce/ECommerceSlice';
+import { useDispatch, useSelector } from 'src/store/Store';
 import { ProductType } from 'src/types/apps/eCommerce';
+import { decrement, deleteCart, increment } from '../../../../store/apps/eCommerce/ECommerceSlice';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { Alert } from '@mui/material';
+import { sum } from 'lodash';
+import { useState } from 'react';
+
+import Slide from '@mui/material/Slide';
+import Snackbar from '@mui/material/Snackbar';
+import FirstStep from '../productCheckout/FirstStep';
+
+function SlideTransition(props: any) {
+  return <Slide {...props} direction="left" />;
+}
 
 const AddToCart = () => {
+  const checkout = useSelector((state) => state.ecommerceReducer.cart);
+  const steps = [''];
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  const total = sum(checkout.map((product: ProductType) => product.price * product.qty));
+  const Discount = Math.round(total * (5 / 100));
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => {
+      navigate('/apps/ecommerce/shop');
+    }, 2000);
+  };
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   const dispatch = useDispatch();
 
   // Lấy sản phẩm từ giỏ hàng
@@ -44,11 +87,21 @@ const AddToCart = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center">Sản phẩm</TableCell>
-                    <TableCell align="center">Số lượng</TableCell>
-                    <TableCell align="center">Giá niêm yết</TableCell>
-                    <TableCell align="center">Khuyến mại</TableCell>
-                    <TableCell align="center">Giá sau giảm</TableCell>
+                    <TableCell align="center">
+                      <Typography variant="h6">Sản phẩm</Typography>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Typography variant="h6">Số lượng</Typography>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Typography variant="h6">Giá niêm yết</Typography>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Typography variant="h6">Khuyến mãi</Typography>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Typography variant="h6">Giá sau giảm</Typography>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -98,20 +151,29 @@ const AddToCart = () => {
                       </TableCell>
 
                       <TableCell align="center">
-                        <Typography variant="h6">${product.price * product.qty}</Typography>
-                      </TableCell>
-
-                      <TableCell align="center">
                         <Typography variant="h6">
-                          ${product.salesPrice * product.qty - product.price * product.qty}
+                          {' '}
+                          {(product.price * product.qty).toLocaleString('vn-VN')} point
                         </Typography>
                       </TableCell>
 
                       <TableCell align="center">
                         <Typography variant="h6">
-                          $
-                          {product.price * product.qty -
-                            (product.salesPrice * product.qty - product.price * product.qty)}
+                          {(
+                            product.salesPrice * product.qty -
+                            product.price * product.qty
+                          ).toLocaleString('vn-VN')}{' '}
+                          point
+                        </Typography>
+                      </TableCell>
+
+                      <TableCell align="center">
+                        <Typography variant="h6">
+                          {(
+                            product.price * product.qty -
+                            (product.salesPrice * product.qty - product.price * product.qty)
+                          ).toLocaleString('vn-VN')}
+                          point
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -119,6 +181,29 @@ const AddToCart = () => {
                 </TableBody>
               </Table>
             </TableContainer>
+            <FirstStep total={total} Discount={Discount} />
+            <Stack direction={'row'} justifyContent="space-between">
+              <Link to={'/apps/ecommerce/shop'}>
+                <Button color="secondary" variant="contained">
+                  Quay lại
+                </Button>
+              </Link>
+
+              <Button variant="contained" onClick={handleClick}>
+                Thanh toán
+              </Button>
+            </Stack>
+            <Snackbar
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+              TransitionComponent={SlideTransition}
+            >
+              <Alert onClose={handleClose} severity={'success'} variant="filled">
+                Thanh toán thành công
+              </Alert>
+            </Snackbar>{' '}
           </Box>
         </>
       ) : (
