@@ -29,7 +29,7 @@ const ExAlert = () => {
       {/* end breadcrumb */}
       {/* ------------------------- row 1 ------------------------- */}
 
-      <ParentCard title="Alert">
+      <ParentCard title="Alert" description="">
         <Grid container spacing={3}>
           {/* --------------------------------------------------------------------------------- */}
           {/* Basic Alert */}
