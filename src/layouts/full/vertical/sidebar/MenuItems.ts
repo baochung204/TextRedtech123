@@ -101,7 +101,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Tài nguyên',
     icon: IconShoppingCart,
-    href: '/dashboards/list',
+    href: '/pages/faq',
   },
   {
     id: uniqueId(),
@@ -111,7 +111,7 @@ const Menuitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Menu sản phẩm',
+        title: 'Sản phẩm',
         icon: IconPoint,
         href: '/apps/sell/product',
       },

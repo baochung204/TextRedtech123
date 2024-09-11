@@ -17,7 +17,7 @@ const Pointhistory = () => {
         <Grid item sm={12}>
           <ProfileBanner />
         </Grid>
-        <Grid item xs={12} lg={11} style={{ height: 'auto' }}>
+        <Grid item xs={12} lg={12} style={{ height: 'auto' }}>
           <Lspoin />
         </Grid>
       </Grid>

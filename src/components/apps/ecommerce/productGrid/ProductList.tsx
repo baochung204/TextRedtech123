@@ -13,6 +13,7 @@ import {
   Button,
   Theme,
   Skeleton,
+  Chip,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'src/store/Store';
@@ -206,7 +207,22 @@ const ProductList = ({ onClick }: Props) => {
                           {product.salesPrice} point
                         </Typography>
                       </Stack>
-                      <Typography sx={{ fontWeight: 'bold' }}>{product.category}</Typography>
+                      {product.category.map((category, index) => (
+                        <Chip
+                          key={index} // Use a unique key if possible
+                          sx={{
+                            backgroundColor: '#13DEB9',
+                            width: '100px', // Set the width here
+                            textAlign: 'center', // Optional: Center text if needed
+                            overflow: 'hidden', // Optional: Handle text overflow
+                            whiteSpace: 'nowrap', // Optional: Prevent text wrapping
+                            color: 'white',
+                          }}
+                          label={category}
+                          size="small"
+                        />
+                      ))}
+                      <Typography sx={{ fontWeight: 'bold' }}></Typography>
                     </Stack>
                   </CardContent>
                 </BlankCard>
