@@ -110,7 +110,7 @@ const messages: messageType[] = [
 // Profile dropdown
 //
 interface ProfileType {
-  id: number
+  id: number;
   href: string;
   title: string;
   // subtitle:string;
@@ -139,7 +139,7 @@ const profile: ProfileType[] = [
   // },
   {
     id: 3,
-    href: '/apps/notes',
+    href: '/apps/chats',
     title: 'Ticket hỗ trợ',
     // subtitle: 'To-do and Daily Tasks',
     icon: icon3,
