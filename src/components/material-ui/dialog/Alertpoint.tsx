@@ -20,6 +20,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
 import ChildCard from 'src/components/shared/ChildCard';
 import Content from 'src/views/apps/collaborate/paymenthistory.tsx/content';
+import CloseIcon from '@mui/icons-material/Close';
 const BCrumb = [
   {
     to: '/',
@@ -69,15 +70,30 @@ const Afletpoint = ({ row }: any) => {
         fullWidth={fullWidth}
         maxWidth={maxWidth}
       >
+        {' '}
+        <DialogActions style={{ padding: '0' }}>
+          <a
+            onClick={handleClose}
+            style={{
+              background: 'rgb(252, 32, 50)',
+              color: 'white',
+              width: '40px',
+              height: '30px',
+              borderBottomLeftRadius: '10px',
+              textAlign: 'center',
+              paddingTop: '2px',
+              cursor: 'pointer',
+            }}
+          >
+            <CloseIcon />
+          </a>
+        </DialogActions>
         <DialogContent>
+          {' '}
           <DialogContentText id="alert-dialog-slide-description">
-
             <Content />
           </DialogContentText>
         </DialogContent>
-        <DialogActions sx={{ mr: 3, my: 2 }}>
-          <Button onClick={handleClose}>Tiếp tục</Button>
-        </DialogActions>
       </Dialog>
     </>
   );
