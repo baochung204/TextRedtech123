@@ -187,12 +187,12 @@ const Menuitems: MenuitemsType[] = [
     icon: IconAppWindow,
     href: '/apps/chats',
   },
-  {
-    id: uniqueId(),
-    title: 'FAQ',
-    icon: IconAppWindow,
-    href: '/pages/faq',
-  },
+  // {
+  //   id: uniqueId(),
+  //   title: 'FAQ',
+  //   icon: IconAppWindow,
+  //   href: '/pages/faq',
+  // },
 
   {
     id: uniqueId(),
