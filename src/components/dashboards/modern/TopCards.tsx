@@ -17,37 +17,37 @@ interface cardType {
 const topcards: cardType[] = [
   {
     icon: icon2,
-    title: 'Employees',
+    title: 'Trợ lý',
     digits: '96',
     bgcolor: 'primary',
   },
   {
     icon: icon3,
-    title: 'Clients',
+    title: 'Khách hàng',
     digits: '3,650',
     bgcolor: 'warning',
   },
   {
     icon: icon4,
-    title: 'Projects',
+    title: 'Đơn hàng',
     digits: '356',
     bgcolor: 'secondary',
   },
   {
     icon: icon5,
-    title: 'Events',
+    title: 'AOV',
     digits: '696',
     bgcolor: 'error',
   },
   {
     icon: icon6,
-    title: 'Payroll',
-    digits: '$96k',
+    title: 'GMV',
+    digits: '96',
     bgcolor: 'success',
   },
   {
     icon: icon1,
-    title: 'Reports',
+    title: 'CVR',
     digits: '59',
     bgcolor: 'info',
   },
@@ -71,6 +71,13 @@ const TopCards = () => {
               </Typography>
               <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
                 {topcard.digits}
+                {topcard.title == 'AOV'
+                  ? 'k'
+                  : topcard.title == 'GMV'
+                  ? 'M'
+                  : topcard.title == 'CVR'
+                  ? '%'
+                  : ''}
               </Typography>
             </CardContent>
           </Box>
