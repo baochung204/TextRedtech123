@@ -61,21 +61,6 @@ const Modern = () => {
             <PaymentGateways />
           </Grid>{' '}
           {/* column */}
-          {/* <Grid item xs={12} lg={4}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <Customers />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Projects />
-              </Grid>
-              <Grid item xs={12}>
-                <Social />
-              </Grid>
-            </Grid>
-          </Grid> */}
-          {/* column */}
-          {/* column */}
           <Grid item xs={12} lg={4}>
             <WeeklyStats />
           </Grid>

@@ -9,7 +9,7 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Typography, Box, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import DataTable5 from '../faq/DataTable/TableTab5';
+import DataTable5 from '../DataTable/TableTab5';
 
 interface PropsDialog {
     open: boolean;

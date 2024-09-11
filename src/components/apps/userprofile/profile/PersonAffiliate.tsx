@@ -6,10 +6,7 @@ import {
   StepLabel,
   Button,
   Typography,
-  Alert,
-  Stack,
   FormControl,
-  InputLabel,
   Select,
   MenuItem,
   Input,
@@ -24,10 +21,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SecurityIcon from '@mui/icons-material/Security';
-import Authencate from 'src/assets/images/authenticate/không bị cắt-1.png';
-import Authencate1 from 'src/assets/images/authenticate/không bị cắt.png';
-import Authencate2 from 'src/assets/images/authenticate/mờ.png';
-import Authencate3 from 'src/assets/images/authenticate/tốt.png';
+import Authenticate from 'src/assets/images/authenticate/authenticate.png';
 import { Link } from 'react-router-dom';
 
 const steps = ['Thỏa thuận hợp tác', 'Tài khoản cá nhân', 'Xác minh tài khoản'];
@@ -43,7 +37,8 @@ const PersonAffiliate = () => {
     agreeTerms: false,
     bankNumber: '',
     accountName: '',
-    bank: '',
+    bank: 1,
+    branch: 1,
     frontImage: null,
     backImage: null,
   });
@@ -565,7 +560,7 @@ const PersonAffiliate = () => {
               value={formData.bankNumber}
               onChange={handleChange}
             />
-            <CustomFormLabel htmlFor="accountName">Tên tài khoản</CustomFormLabel>
+            <CustomFormLabel htmlFor="accountName">Chủ tài khoản</CustomFormLabel>
             <CustomTextField
               id="accountName"
               type="text"
@@ -575,22 +570,39 @@ const PersonAffiliate = () => {
               value={formData.accountName}
               onChange={handleChange}
             />
-            <CustomFormLabel htmlFor="bank">Chọn ngân hàng</CustomFormLabel>
-            <FormControl fullWidth>
-              <InputLabel id="bank-select-label">Chọn ngân hàng</InputLabel>
-              <Select
-                labelId="bank-select-label"
-                id="bank"
-                value={formData.bank}
-                onChange={(e) => setFormData({ ...formData, bank: e.target.value })} // Add this line to handle the Select change
-              >
-                <MenuItem value="mb">Mb bank</MenuItem>
-                <MenuItem value="tp">TP bank</MenuItem>
-              </Select>
-            </FormControl>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <CustomFormLabel htmlFor="bank">Ngân hàng</CustomFormLabel>
+                <FormControl fullWidth>
+                  <Select
+                    placeholder="Chọn ngân hàng"
+                    labelId="bank-select-label"
+                    id="bank"
+                    value={formData.bank}
+                    onChange={(e) => setFormData({ ...formData, bank: e.target.value })}
+                  >
+                    <MenuItem value={1}>Mb bank</MenuItem>
+                    <MenuItem value={2}>TP bank</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <CustomFormLabel htmlFor="branch">Chi nhánh ngân hàng</CustomFormLabel>
+                <FormControl fullWidth>
+                  <Select
+                    labelId="branch-select-label"
+                    id="branch"
+                    value={formData.branch}
+                    onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
+                  >
+                    <MenuItem value={1}>Hà Nội</MenuItem>
+                    <MenuItem value={2}>Hồ Chí Minh</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
           </Box>
         );
-
       case 2:
         return (
           <Grid container spacing={2}>
@@ -619,29 +631,26 @@ const PersonAffiliate = () => {
               {/* Similar Instructions */}
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
               {/* Image Icons with Descriptions */}
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                <Box sx={{ textAlign: 'center' }}>
-                  <img src={Authencate2} alt="Mờ" style={{ width: '120px', height: '120px' }} />
-                  <Typography>Mờ</Typography>
-                </Box>
-                <Box sx={{ textAlign: 'center' }}>
-                  <img src={Authencate1} alt="Bị cắt" style={{ width: '120px', height: '120px' }} />
-                  <Typography>Bị cắt</Typography>
-                </Box>
-                <Box sx={{ textAlign: 'center' }}>
-                  <img
-                    src={Authencate}
-                    alt="Không bị cắt"
-                    style={{ width: '120px', height: '120px' }}
-                  />
-                  <Typography>Thiếu thông tin</Typography>
-                </Box>
-                <Box sx={{ textAlign: 'center' }}>
-                  <img src={Authencate3} alt="Tốt" style={{ width: '120px', height: '120px' }} />
-                  <Typography>Tốt</Typography>
-                </Box>
+              <Box>
+                <img
+                  style={{
+                    width: '500px',
+                    height: 'auto',
+                    objectFit: 'contain', // Maintains aspect ratio and ensures the entire image is visible
+                  }}
+                  src={Authenticate}
+                  alt="Authenticate"
+                />
               </Box>
+
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
+
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <SecurityIcon sx={{ fontSize: '32px', mr: 1 }} />
+                <Typography variant="h6">
+                  Hình ảnh được bảo mật tuyệt đối, chỉ sử dụng để đăng ký affiliate
+                </Typography>
+              </Box>
             </Grid>
 
             <Grid item xs={12} md={6}>
@@ -653,7 +662,7 @@ const PersonAffiliate = () => {
                     <img
                       src={selectedImage1}
                       alt="Selected 1"
-                      style={{ width: '100%', maxWidth: '150px', objectFit: 'contain' }}
+                      style={{ width: '100%', maxWidth: '100px', objectFit: 'contain' }}
                     />
                     <IconButton
                       size="small"
@@ -684,7 +693,7 @@ const PersonAffiliate = () => {
                     <img
                       src={selectedImage2}
                       alt="Selected 2"
-                      style={{ width: '100%', maxWidth: '150px', objectFit: 'contain' }}
+                      style={{ width: '100%', maxWidth: '100px', objectFit: 'contain' }}
                     />
                     <IconButton
                       size="small"
@@ -715,22 +724,10 @@ const PersonAffiliate = () => {
     }
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-    setFormData({
-      agreeTerms: false,
-      bankNumber: '',
-      accountName: '',
-      bank: '',
-      frontImage: null,
-      backImage: null,
-    });
-  };
-
   return (
     <PageContainer>
-      <Box mt={4}>
-        <Stepper activeStep={activeStep}>
+      <Box mt={2} sx={{ maxWidth: '1100px', margin: '0 auto' }}>
+        <Stepper activeStep={activeStep} sx={{ padding: '0 8px', gap: '8px' }}>
           {steps.map((label, index) => {
             const stepProps: { completed?: boolean } = {};
             if (isStepSkipped(index)) {
@@ -744,31 +741,19 @@ const PersonAffiliate = () => {
             );
           })}
         </Stepper>
-        {activeStep === steps.length ? (
+        {activeStep === steps.length - 1 ? (
+          // Final Step
           <>
-            <Stack spacing={2} mt={3}>
-              <Alert severity="success">
-                Bạn đã hoàn thành việc đăng ký - chờ chúng tôi phê duyệt trong vòng 24h
-              </Alert>
+            <Box sx={{ mt: 2 }}>{handleSteps(activeStep)}</Box>
 
-              <Box textAlign="right">
-                <Button component={Link} to="/apps/pending" variant="contained" color="error">
-                  Hoàn thành
-                </Button>
-              </Box>
-            </Stack>
-          </>
-        ) : (
-          <>
-            <Box>{handleSteps(activeStep)}</Box>
-
-            <Box display="flex" flexDirection="row" mt={3}>
+            <Box display="flex" flexDirection="row" mt={2}>
               <Button
                 color="inherit"
                 variant="contained"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 sx={{ mr: 1 }}
+                size="small"
               >
                 Quay lại
               </Button>
@@ -778,6 +763,7 @@ const PersonAffiliate = () => {
                 variant="contained"
                 to="/user-profile"
                 sx={{ mr: 1 }}
+                size="small"
               >
                 Hủy bỏ
               </Button>
@@ -786,10 +772,52 @@ const PersonAffiliate = () => {
               <Button
                 onClick={handleNext}
                 variant="contained"
-                color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
-                disabled={!validateStep(activeStep)} // Disable the Next or Finish button based on validation
+                color="success"
+                disabled={!validateStep(activeStep)}
+                size="small"
+                component={Link}
+                to="/apps/pending"
               >
-                {activeStep === steps.length - 1 ? 'Hoàn tất đăng ký' : 'Tiếp tục'}
+                Hoàn tất đăng ký
+              </Button>
+            </Box>
+          </>
+        ) : (
+          // Normal Steps
+          <>
+            <Box sx={{ mt: 2 }}>{handleSteps(activeStep)}</Box>
+
+            <Box display="flex" flexDirection="row" mt={2}>
+              <Button
+                color="inherit"
+                variant="contained"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+                size="small"
+              >
+                Quay lại
+              </Button>
+              <Button
+                component={Link}
+                color="inherit"
+                variant="contained"
+                to="/user-profile"
+                sx={{ mr: 1 }}
+                size="small"
+              >
+                Hủy bỏ
+              </Button>
+
+              <Box flex="1 1 auto" />
+              <Button
+                onClick={handleNext}
+                variant="contained"
+                color="secondary"
+                disabled={!validateStep(activeStep)}
+                size="small"
+              >
+                Tiếp tục
               </Button>
             </Box>
           </>

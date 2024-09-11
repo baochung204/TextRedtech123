@@ -139,7 +139,7 @@ const Pending = () => {
                     component={Link}
                     variant="contained"
                     color="warning"
-                    to="/apps/affiliate"
+                    to="/apps/collaborate"
                     sx={{ marginTop: '10px' }}
                   >
                     Đi tới trang Affiliate

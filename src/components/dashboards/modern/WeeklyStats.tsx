@@ -10,7 +10,7 @@ import { Props } from 'react-apexcharts';
 
 interface Stat {
   title: string;
-  subtitle: string;
+  level: number;
   percent: string;
   color: string;
   lightcolor: string;
@@ -76,24 +76,24 @@ const WeeklyStats: React.FC = () => {
 
   const stats: Stat[] = [
     {
-      title: 'Top Sales',
-      subtitle: 'Johnathan Doe',
+      title: 'Trợ lý 1',
+      level: 9,
       percent: '68',
       color: primary,
       lightcolor: primarylight,
       icon: <IconGridDots width={18} />,
     },
     {
-      title: 'Best Seller',
-      subtitle: 'Hàng bán chạy nhất',
+      title: 'Trợ lý 4.0',
+      level: 2,
       percent: '45',
       color: secondary,
       lightcolor: secondarylight,
       icon: <IconGridDots width={18} />,
     },
     {
-      title: 'Most Commented',
-      subtitle: 'Hàng được bình luận nhiều nhất',
+      title: 'Credit Card',
+      level: 1,
       percent: '14',
       color: error,
       lightcolor: errorlight,
@@ -102,17 +102,17 @@ const WeeklyStats: React.FC = () => {
   ];
 
   return (
-    <DashboardCard title="Thống kê hàng tuần" subtitle="Doanh số trung bình">
+    <DashboardCard title="Doanh thu cao nhất " subtitle="Top trợ lý có">
       <>
         <Stack my={'20px'}>
           <Chart
             options={optionscolumnchart}
             series={seriescolumnchart}
             type="area"
-            height="140px"
+            height="170px"
           />
         </Stack>
-        <Stack spacing={3} mt={0}>
+        <Stack spacing={3} my={'25px'}>
           {stats.map((stat, i) => (
             <Stack
               direction="row"
@@ -133,7 +133,7 @@ const WeeklyStats: React.FC = () => {
                     {stat.title}
                   </Typography>
                   <Typography variant="subtitle2" color="textSecondary">
-                    {stat.subtitle}
+                    Level{stat.level}
                   </Typography>
                 </Box>
               </Stack>
@@ -147,7 +147,7 @@ const WeeklyStats: React.FC = () => {
                 }}
               >
                 <Typography variant="subtitle2" fontWeight="600">
-                  +{stat.percent}
+                  {stat.percent}M
                 </Typography>
               </Avatar>
             </Stack>
