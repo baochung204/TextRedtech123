@@ -363,12 +363,12 @@ const Product = () => {
                   Sửa đổi cột
                 </Button>
                 <CustomSelect
-              labelId="column-filter"
-              id="column-filter"
-              size="small"
-              value={1} // Setting the first value as default
-              sx={{ marginRight: '20px', ml: '30px' }}
-            >
+                  labelId="column-filter"
+                  id="column-filter"
+                  size="small"
+                  value={1} // Setting the first value as default
+                  sx={{ marginRight: '20px', ml: '30px' }}
+                >
               <MenuItem value={1}>Sắp xếp</MenuItem>
             </CustomSelect>
             </Box>
