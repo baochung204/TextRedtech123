@@ -1,11 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import Chart from 'react-apexcharts';
-import icon1 from 'src/assets/images/svgs/icon-bars.svg';
-import icon1Img from 'src/assets/images/svgs/icon-master-card-2.svg';
+
 import rank9 from 'src/assets/images/rank/rank9.png';
 import avt9 from 'src/assets/images/profile/user-9.jpg';
+import Chart from 'react-apexcharts';
 
 import { useTheme } from '@mui/material/styles';
 import {
@@ -18,13 +17,72 @@ import {
   Paper,
   LinearProgress,
   Avatar,
+  Card,
+  Divider,
+  Tooltip,
 } from '@mui/material';
 import { Props } from 'react-apexcharts';
-import BlankCard from 'src/components/shared/BlankCard';
 import { styled } from '@mui/system';
 import bot from 'src/assets/images/backgrounds/bot.svg';
+import { IconArrowUpRight, IconGridDots } from '@tabler/icons-react';
+import PageContainer from 'src/components/container/PageContainer';
+import welcomeImg from 'src/assets/images/backgrounds/welcome-bg.svg';
+import userImg from 'src/assets/images/profile/user-1.jpg';
+import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
+import icon3 from 'src/assets/images/svgs/icon-briefcase.svg';
+import icon4 from 'src/assets/images/svgs/icon-mailbox.svg';
+import icon5 from 'src/assets/images/svgs/icon-favorites.svg';
+import ParentCard from 'src/components/shared/ParentCard';
 import DashboardCard from 'src/components/shared/DashboardCard';
-import { IconArrowUpLeft, IconArrowUpRight } from '@tabler/icons-react';
+import pck3 from 'src/assets/images/backgrounds/gold.png';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+
+interface cardType {
+  icon: string;
+  title: string;
+  digits: string;
+  bgcolor: string;
+}
+
+const topcards: cardType[] = [
+  {
+    icon: icon2,
+    title: 'Khách hàng',
+    digits: '2,696',
+    bgcolor: 'primary',
+  },
+  {
+    icon: icon3,
+    title: 'Đơn hàng',
+    digits: '650',
+    bgcolor: 'warning',
+  },
+  {
+    icon: icon4,
+    title: 'GMV',
+    digits: '112M',
+    bgcolor: 'secondary',
+  },
+  {
+    icon: icon5,
+    title: 'AOV',
+    digits: '251K',
+    bgcolor: 'error',
+  },
+  {
+    icon: icon5,
+    title: 'AOV',
+    digits: '251K',
+    bgcolor: 'error',
+  },
+  {
+    icon: icon5,
+    title: 'AOV',
+    digits: '251K',
+    bgcolor: 'error',
+  },
+];
 
 interface sellsData {
   product: string;
@@ -39,7 +97,7 @@ const sells: sellsData[] = [
   },
 ];
 const BoxStyled = styled(Box)(() => ({
-  padding: '30px',
+  padding: '22px',
   transition: '0.1s ease-in',
   cursor: 'pointer',
   color: 'inherit',
@@ -65,520 +123,350 @@ const AssistantInfor = () => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
-  const secondary = theme.palette.secondary.main;
-  const textColor = theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.8)' : '#2A3547';
-  const successlight = theme.palette.success.light;
   const primarylight = theme.palette.primary.light;
+  const secondary = theme.palette.secondary.main;
+  const secondarylight = theme.palette.secondary.light;
+  const warning = theme.palette.warning.main;
 
-  const optionscolumn3chart: Props = {
+  // 1
+  const optionsdoughnutchart: Props = {
     chart: {
-      type: 'donut',
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
-
-      toolbar: {
-        show: false,
-      },
-      height: 220,
+      id: 'donut-chart',
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      foreColor: '#adb0bb',
     },
-    labels: ['Dung lương còn lại', 'Dung lương đã dùng'],
-    colors: [primary, secondary],
+    dataLabels: {
+      enabled: false,
+    },
     plotOptions: {
       pie: {
-        startAngle: 0,
-        endAngle: 360,
         donut: {
-          size: '89%',
-          background: 'transparent',
-
-          labels: {
-            show: true,
-            name: {
-              show: true,
-              offsetY: 7,
-            },
-            value: {
-              show: false,
-            },
-            total: {
-              show: true,
-              color: textColor,
-              fontSize: '20px',
-              fontWeight: '600',
-              label: '950 MB',
-            },
-          },
+          size: '70px',
         },
       },
     },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      show: false,
-    },
     legend: {
-      show: false,
+      show: true,
+      position: 'bottom',
+      width: '50px',
     },
-    tooltip: {
-      theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
-      fillSeriesColor: false,
-    },
-  };
-  const optionscolumnchart: Props = {
-    chart: {
-      type: 'bar',
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
-      foreColor: '#adb0bb',
-      toolbar: {
-        show: false,
-      },
-      height: 90,
-      width: '100%',
-      stacked: true,
-      stackType: '100%',
-      sparkline: {
-        enabled: true,
-      },
-    },
-    colors: [primary, secondary, '#EAEFF4'],
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: '50%',
-        borderRadius: [3],
-        borderRadiusApplication: 'around',
-        borderRadiusWhenStacked: 'around',
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      show: false,
-      width: 1,
-      colors: ['rgba(0,0,0,0.01)'],
-    },
-    fill: {
-      opacity: 1,
-    },
-    tooltip: {
-      theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
-      fillSeriesColor: false,
-      x: {
-        show: false,
-      },
-    },
-    responsive: [{ breakpoint: 1025, options: { chart: { height: 150, width: 250 } } }],
-  };
-  const seriescolumnchart = [
-    {
-      color: primary,
-      name: '',
-      data: [25, 35, 20, 25, 40, 25],
-    },
-    {
-      color: secondary,
-      name: '',
-      data: [35, 40, 20, 35, 40, 35],
-    },
-    {
-      color: '#EAEFF4',
-      name: '',
-      data: [40, 25, 60, 40, 20, 40],
-    },
-  ];
-  const seriescolumn3chart = [650, 950];
-
-  const optionscolumnchartSale: Props = {
-    chart: {
-      type: 'area',
-      height: 25,
-      fontFamily: `inherit`,
-      foreColor: '#a1aab2',
-      toolbar: {
-        show: false,
-      },
-      sparkline: {
-        enabled: true,
-      },
-      group: 'sparklines',
-    },
-    colors: [secondary],
-    stroke: {
-      curve: 'straight',
-      width: 2,
-    },
-    fill: {
-      type: 'solid',
-      opacity: 0.05,
-    },
-    markers: {
-      size: 0,
-    },
+    colors: [primary, primarylight, secondary, secondarylight, warning],
     tooltip: {
       theme: 'dark',
-      x: {
-        show: false,
-      },
+      fillSeriesColor: false,
     },
+    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
   };
-  const seriescolumnchartSale = [
-    {
-      name: '',
-      data: [0, 10, 10, 10, 35, 45, 30, 30, 30, 50, 52, 30, 25, 45, 50, 80, 60, 65],
-    },
-  ];
-  const optionscolumnchartTotal: Props = {
-    chart: {
-      type: 'area',
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
-      foreColor: '#adb0bb',
-      toolbar: {
-        show: false,
-      },
-      height: 70,
-      sparkline: {
-        enabled: true,
-      },
-      group: 'sparklines',
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
-    },
-    fill: {
-      colors: [primarylight],
-      type: 'solid',
-      opacity: 0.05,
-    },
-    markers: {
-      size: 0,
-    },
-    tooltip: {
-      theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
-      x: {
-        show: false,
-      },
-    },
-  };
-  const seriescolumnchartTotal = [
-    {
-      name: '',
-      color: primary,
-      data: [25, 66, 20, 40, 12, 58, 20],
-    },
-  ];
+
+  const seriespiechart = [45, 65, 27, 18, 35];
+
   return (
-    <Grid container spacing={3} mt={2}>
-      {/* 1 */}
-      <Grid item xs={12} sm={4}>
-        <BoxStyled>
-          <Box
-            sx={{
-              position: 'relative',
-              display: 'inline-block',
-
-              width: '100%',
-              height: '100%',
-              px: 2,
-              py: 1,
-            }}
-          >
-            <img
-              src={rank9}
-              alt=""
-              style={{
-                width: '100%',
-                height: '100%',
-                zIndex: 99,
-                position: 'relative',
-              }}
-            />
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '45%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                width: { xs: '41%', sm: '40%', md: '40%', lg: '42%' },
-                height: { xs: '41%', sm: '40%', md: '40%', lg: '42%' },
-              }}
+    <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
+      <Box mt={3}>
+        <Grid container spacing={3}>
+          {/* column */}
+          <Grid item xs={12} lg={8}>
+            <Card
+              elevation={0}
+              sx={{ backgroundColor: (theme) => theme.palette.primary.light, py: 0 }}
             >
-              <img
-                src={avt9}
-                alt=""
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            </Box>
-          </Box>
-          <Box sx={{ textAlign: 'center', mt: { sm: 1, md: 2 } }}>
-            <Typography
-              variant="h6"
-              mb={1}
-              sx={{ fontSize: { xs: '16px', sm: '16px', md: '18px', lg: '20px' } }}
-            >
-              {inforBot.name}
-            </Typography>
-            <Chip label={inforBot.model} color="warning" sx={{ my: 1 }} />
-          </Box>
-
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
-            <Grid item>
-              <Typography variant="h6" sx={{ display: 'flex', gap: 1 }}>
-                Ngày tạo :{' '}
-                <Typography color="textSecondary" variant="h6" fontWeight="400">
-                  {inforBot.date}
-                </Typography>
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="h6" sx={{ display: 'flex', gap: 1 }}>
-                Tuổi :{' '}
-                <Typography color="textSecondary" variant="h6" fontWeight="400">
-                  18
-                </Typography>
-              </Typography>
-            </Grid>
-          </Box>
-
-          <Paper
-            sx={{
-              overflow: 'hidden',
-              zIndex: '1',
-              position: 'relative',
-              mt: { xs: 1, sm: 2 },
-            }}
-          >
-            <Box sx={{ p: { xs: 2, sm: 2, md: 1.7, lg: 2 } }}>
-              <Stack spacing={3}>
-                {sells.map((sell: any) => (
-                  <Box>
-                    <Stack
-                      direction="row"
-                      mb={2}
-                      justifyContent="space-between"
-                      alignItems="center"
-                    >
-                      <Box>
-                        <Typography variant="h6">Kinh nghiệm</Typography>
-                        <Typography variant="subtitle2" color="textSecondary">
-                          {sell.total}
+              <CardContent sx={{ py: 4, px: 2 }}>
+                <Grid container justifyContent="space-between">
+                  <Grid item sm={6} display="flex" alignItems="center">
+                    <Box>
+                      <Box
+                        gap="16px"
+                        mb={5}
+                        sx={{
+                          display: {
+                            xs: 'block',
+                            sm: 'flex',
+                          },
+                          alignItems: 'center',
+                        }}
+                      >
+                        <Avatar src={userImg} alt="img" sx={{ width: 40, height: 40 }} />
+                        <Typography variant="h5" whiteSpace="nowrap">
+                          Chào mừng bạn đến với trang hồ sơ trợ lý !
                         </Typography>
                       </Box>
-                      <Chip
-                        sx={{
-                          backgroundColor: 'primary',
-                          color: 'primary',
-                          borderRadius: '4px',
-                          width: 55,
-                          height: 24,
-                        }}
-                        label={sell.percent + '%'}
-                      />
-                    </Stack>
-                    <LinearProgress value={sell.percent} variant="determinate" color="primary" />
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          </Paper>
-        </BoxStyled>
-      </Grid>
-      {/* 2 */}
-      <Grid item xs={12} sm={4}>
-        <Grid container rowSpacing={3}>
-          <Grid item sm={12}>
-            <BlankCard>
-              <CardContent sx={{ p: '30px' }}>
-                <Box>
-                  <Chart
-                    options={optionscolumn3chart}
-                    series={seriescolumn3chart}
-                    type="donut"
-                    height="220px"
-                  />
-                </Box>
-                <Box mt={4}>
-                  <Typography variant="h6" fontWeight={400} mb={1}>
-                    Dung lượng
-                  </Typography>
-                  <Stack direction="row" spacing={2} justifyContent="space-between">
-                    <Typography variant="h4">1500 MB</Typography>
-                    {/* <Typography variant="subtitle1" color="success.main">
-                  +2.5%
-                </Typography> */}
-                  </Stack>
-                </Box>
+
+                      <Stack
+                        spacing={2}
+                        direction="row"
+                        divider={<Divider orientation="vertical" flexItem />}
+                      >
+                        <Box>
+                          <Typography variant="h2" whiteSpace="nowrap">
+                            35%
+                            <span>
+                              <IconArrowUpRight width={18} color="#39B69A" />
+                            </span>
+                          </Typography>
+                          <Typography variant="subtitle1" whiteSpace="nowrap">
+                            CRB
+                          </Typography>
+                        </Box>
+                      </Stack>
+                    </Box>
+                  </Grid>
+                  <Grid item sm={6}>
+                    <Box mb="-51px">
+                      <img src={welcomeImg} alt={welcomeImg} width={'340px'} />
+                    </Box>
+                  </Grid>
+                </Grid>
               </CardContent>
-            </BlankCard>
+            </Card>
           </Grid>
-          <Grid item sm={12}>
-            <DashboardCard
-              title="Doanh thu trung bình"
-              footer={
-                <Chart
-                  options={optionscolumnchartTotal}
-                  series={seriescolumnchartTotal}
-                  type="area"
-                  height="85px"
-                />
-              }
-            >
-              <>
-                <Stack direction="row" spacing={1} alignItems="center" mb={3}>
-                  <Typography variant="h3" fontWeight="700">
-                    $6,820
-                  </Typography>
-                  <Stack direction="row" spacing={1} mt={1} mb={2} alignItems="center">
-                    <Avatar sx={{ bgcolor: successlight, width: 20, height: 20 }}>
-                      <IconArrowUpLeft width={18} color="#13DEB9" />
-                    </Avatar>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      +9%
+
+          {/* column */}
+          <Grid item xs={12} lg={4}>
+            <Grid item xs={12}>
+              <DashboardCard title="Chiến lược của trợ lý">
+                <Box
+                  sx={{
+                    display: 'flex',
+                    height: '100%',
+                    mt: '-6px',
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={pck3}
+                    alt="Hoa hồng"
+                    sx={{
+                      maxWidth: '40%',
+                      height: 'auto',
+                    }}
+                  />
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="h6" fontWeight={500}>
+                      Chiến lược Tích Hợp Dịch Vụ Bên Thứ Ba
                     </Typography>
+                  </Box>
+                </Box>
+              </DashboardCard>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <BoxStyled sx={{ textAlign: 'center' }}>
+              <Box
+                sx={{
+                  position: 'relative',
+                  display: 'inline-block',
+                  width: '80%',
+                  height: '80%',
+                  px: 2,
+                }}
+              >
+                <img
+                  src={rank9}
+                  alt=""
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 99,
+                    position: 'relative',
+                  }}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '45.5%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                    width: { xs: '41%', sm: '40%', md: '40%', lg: '41%' },
+                    height: { xs: '41%', sm: '40%', md: '40%', lg: '41%' },
+                  }}
+                >
+                  <img
+                    src={avt9}
+                    alt=""
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </Box>
+              </Box>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography
+                  variant="h6"
+                  mb={1}
+                  sx={{ fontSize: { xs: '16px', sm: '16px', md: '18px', lg: '18px' }, mt: 3 }}
+                >
+                  {inforBot.name}
+                </Typography>
+                <Tooltip title="Model" placement="top">
+                  <Chip label={inforBot.model} color="warning" sx={{ my: 1 }} />
+                </Tooltip>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+
+                  mt: 1.5,
+                }}
+              >
+                <Grid item>
+                  <Typography variant="h6" sx={{ display: 'flex', gap: 1 }}>
+                    Token huấn luyện :
+                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                      1.604.142
+                    </Typography>
+                  </Typography>
+                </Grid>
+              </Box>
+              <Paper
+                sx={{
+                  overflow: 'hidden',
+                  zIndex: '1',
+                  position: 'relative',
+                  mt: { xs: 1, sm: 3 },
+                }}
+              >
+                <Box
+                  sx={{
+                    p: { xs: 2, sm: 2, md: 1.7, lg: 2 },
+                    boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
+                  }}
+                >
+                  <Stack spacing={3}>
+                    {sells.map((sell: any) => (
+                      <Box>
+                        <Stack
+                          direction="row"
+                          mb={2}
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Box>
+                            <Typography variant="h6">Kinh nghiệm</Typography>
+                            <Typography variant="subtitle2" color="textSecondary">
+                              {sell.total}
+                            </Typography>
+                          </Box>
+                          <Chip
+                            sx={{
+                              backgroundColor: 'primary',
+                              color: 'primary',
+                              borderRadius: '4px',
+                              width: 55,
+                              height: 24,
+                            }}
+                            label={sell.percent + '%'}
+                          />
+                        </Stack>
+                        <LinearProgress
+                          value={sell.percent}
+                          variant="determinate"
+                          color="primary"
+                        />
+                      </Box>
+                    ))}
                   </Stack>
-                </Stack>
-              </>
+                </Box>
+              </Paper>
+            </BoxStyled>
+          </Grid>
+          <Grid item xs={12} sm={6} lg={4}>
+            <DashboardCard title="Thông tin trợ lý">
+              <Grid container spacing={1.8}>
+                {[
+                  { label: 'Ngày sinh', value: '11/08/2024' },
+                  { label: 'Giới tính', value: 'Nữ' },
+                  { label: 'Vị trí nghề nghiệp', value: 'Quản lý' },
+                  { label: 'Trình độ học vấn', value: 'Đại học' },
+                  { label: 'Tính cách', value: 'Hướng nội' },
+                  { label: 'Quốc gia', value: 'Việt Nam' },
+                  { label: 'Ngôn ngữ', value: 'Tiếng Việt' },
+                ].map((item, index) => (
+                  <React.Fragment key={index}>
+                    <Grid item xs={12} sm={5} display="flex" alignItems="center">
+                      <CustomFormLabel
+                        htmlFor={`field-${index}`}
+                        sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                      >
+                        {item.label}
+                      </CustomFormLabel>
+                    </Grid>
+                    <Grid item xs={12} sm={7}>
+                      <Typography>{item.value}</Typography>
+                    </Grid>
+                  </React.Fragment>
+                ))}
+              </Grid>
             </DashboardCard>
           </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <Grid container spacing={3}>
+              {topcards.map((topcard, i) => (
+                <Grid item xs={12} sm={4} lg={6} key={i}>
+                  <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
+                    <CardContent sx={{}}>
+                      <img src={topcard.icon} alt={topcard.icon} width="50" />
+                      <Typography
+                        color={topcard.bgcolor + '.main'}
+                        mt={1}
+                        variant="subtitle1"
+                        fontWeight={600}
+                      >
+                        {topcard.title}
+                      </Typography>
+                      <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+                        {topcard.digits}
+                        {topcard.title == 'AOV'
+                          ? 'k'
+                          : topcard.title == 'GMV'
+                          ? 'M'
+                          : topcard.title == 'CVR'
+                          ? '%'
+                          : ''}
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+          {/* column */}
+          <Grid item xs={12} sm={6} lg={4}>
+            <ParentCard title="Nguồn khách hàng " description="">
+              <Chart
+                options={optionsdoughnutchart}
+                series={seriespiechart}
+                type="donut"
+                height="300px"
+              />
+            </ParentCard>
+          </Grid>
+          {/* column */}
+          {/* <Grid item xs={12} lg={4}>
+            <YearlySales />
+          </Grid> */}
+          {/* column */}
+          {/* <Grid item xs={12} lg={4}>
+            <PaymentGateways />
+          </Grid> */}
+          {/* column */}
+
+          {/* <Grid item xs={12} lg={4}>
+            <RecentTransactions />
+          </Grid> */}
+          {/* column */}
+
+          {/* <Grid item xs={12} lg={8}>
+            <ProductPerformances />
+          </Grid> */}
         </Grid>
-      </Grid>
-      {/* 3 */}
-      <Grid item xs={12} lg={4}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            {/* <Expence /> */}
-            <DashboardCard>
-              <>
-                <Typography variant="h4">20tr VNĐ</Typography>
-                <Typography variant="subtitle2" color="textSecondary" mb={3}>
-                  Doanh Thu Hôm Nay
-                </Typography>
-                <Box className="rounded-bars">
-                  <Chart
-                    options={optionscolumnchart}
-                    series={seriescolumnchart}
-                    type="bar"
-                    height="83px"
-                  />
-                </Box>
-              </>
-            </DashboardCard>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <DashboardCard>
-              <>
-                <Box
-                  width={38}
-                  height={38}
-                  bgcolor="secondary.light"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Avatar src={icon1} alt="img" sx={{ width: 25, height: 25 }} />
-                </Box>
-
-                <Box mt={3} mb={2}>
-                  <Chart
-                    options={optionscolumnchartSale}
-                    series={seriescolumnchartSale}
-                    type="area"
-                    height="25px"
-                  />
-                </Box>
-
-                <Typography variant="h4">
-                  24%
-                  <span>
-                    <IconArrowUpRight width={18} color="#39B69A" />
-                  </span>
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  Sale
-                </Typography>
-              </>
-            </DashboardCard>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <DashboardCard>
-              <>
-                <Box
-                  width={38}
-                  height={38}
-                  bgcolor="secondary.light"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Avatar src={icon1} alt="img" sx={{ width: 25, height: 25 }} />
-                </Box>
-
-                <Box mt={3} mb={2}>
-                  <Chart
-                    options={optionscolumnchartSale}
-                    series={seriescolumnchartSale}
-                    type="area"
-                    height="25px"
-                  />
-                </Box>
-
-                <Typography variant="h4">
-                  24%
-                  <span>
-                    <IconArrowUpRight width={18} color="#39B69A" />
-                  </span>
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  Sale
-                </Typography>
-              </>
-            </DashboardCard>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <DashboardCard>
-              <>
-                <Box
-                  width={38}
-                  height={38}
-                  bgcolor="secondary.light"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Avatar src={icon1} alt="img" sx={{ width: 25, height: 25 }} />
-                </Box>
-
-                <Box mt={3} mb={2}>
-                  <Chart
-                    options={optionscolumnchartSale}
-                    series={seriescolumnchartSale}
-                    type="area"
-                    height="25px"
-                  />
-                </Box>
-
-                <Typography variant="h4">
-                  24%
-                  <span>
-                    <IconArrowUpRight width={18} color="#39B69A" />
-                  </span>
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  Sale
-                </Typography>
-              </>
-            </DashboardCard>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
+      </Box>
+    </PageContainer>
   );
 };
 
