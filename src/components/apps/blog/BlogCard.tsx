@@ -69,12 +69,11 @@ const BlogCard = ({ post }: Btype) => {
             >
               <CardMedia component="img" height="240" image={coverImg} alt="green iguana" />
             </Typography>
-            <CardContent style={{ position: 'relative', marginBottom: 10 }}>
+            <CardContent>
               <Stack direction="row" sx={{ marginTop: '-45px' }}>
                 <Chip
                   sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                  icon={<IconEye sx={{ fontSize: '24px' }} />}
-                  label={`${view}`}
+                  label={`${view} lượt xem`}
                   size="small"
                 ></Chip>
               </Stack>
@@ -92,26 +91,15 @@ const BlogCard = ({ post }: Btype) => {
                   {title}
                 </Typography>
               </Box>
-              <Chip
-                label={category}
-                size="small"
-                sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 5 }}
-              />
+              <Chip label={category} size="small" sx={{ marginLeft: 'auto', marginTop: 0 }} />
               <Box
-                style={{
-                  position: 'fixed',
-                  bottom: 0,
-                  left: 0,
-                  width: '100%',
-                  textAlign: 'center',
-                  backgroundColor: 'rgba(0, 0, 0, 0.6)' /* Nền mờ tối */,
-                  color: 'white',
-                  padding: '10px 20px',
-                  fontSize: '16px',
+                sx={{
+                  position: 'absolute',
                   display: 'flex',
                   alignItems: 'center',
-                }}
-              >
+                  bottom: 0,
+                  py: 2
+                }}>
                 <Tooltip title={author?.name} placement="top">
                   <Avatar aria-label="recipe" src={author?.avatar} />
                 </Tooltip>
