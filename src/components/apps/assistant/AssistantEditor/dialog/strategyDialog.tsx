@@ -1,12 +1,10 @@
-import { Avatar, Box, Button, CardContent, Checkbox, Dialog, DialogTitle, Fab, FormControlLabel, Grid, List, ListItem, ListItemText, Stack, Tooltip, Typography } from "@mui/material";
-import starBg from 'src/assets/images/backgrounds/gold.png';
-import BlankCard from '../AssistantEditor/BlankCard';
-import { IconPlus } from "@tabler/icons-react";
-import React, { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
-import rank1 from '../../../../assets/images/rank/rank1.png';
-import rank2 from '../../../../assets/images/rank/rank2.png';
-import rank3 from '../../../../assets/images/rank/rank3.png';
+import { Box, CardContent, Dialog, DialogTitle, Fab, List, Tooltip, Typography } from "@mui/material";
+import { IconPlus } from "@tabler/icons-react";
+import { useState } from "react";
+import rank1 from 'src/assets/images/rank/rank1.png';
+import rank2 from 'src/assets/images/rank/rank2.png';
+import rank3 from 'src/assets/images/rank/rank3.png';
 
 interface Ranks {
     rankName: string;
