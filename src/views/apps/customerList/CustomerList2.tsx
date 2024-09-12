@@ -18,22 +18,26 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import * as React from 'react';
-import { FaPlus, FaSearch } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-
-import { IconSearch } from '@tabler/icons-react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { IconSearch } from '@tabler/icons-react';
 import Tags from 'src/components/apps/sell/tags';
 import PopupAddList2 from './PopupAddlist2';
+import { Slide } from '@mui/material';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
   { to: '/apps/blog/posts', title: 'Blog' },
   { title: 'Blog post' },
 ];
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const CustomerList2 = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
@@ -52,6 +56,7 @@ const CustomerList2 = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+  
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -71,7 +76,6 @@ const CustomerList2 = () => {
             </Box>
 
             <TabPanel value="1">
-              {' '}
               {/* Action Buttons and Filters */}
               <Box
                 className="actions-and-filters"
@@ -191,9 +195,15 @@ const CustomerList2 = () => {
         </Box>
       </Grid>
 
-      {/* Bảng khách hàng */}
-      {/* Popup Thêm đơn hàng */}
-      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
+      {/* Popup Thêm khách hàng */}
+      <Dialog
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        fullWidth
+        maxWidth="lg"
+        TransitionComponent={Transition}
+        keepMounted
+      >
         <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
         <DialogContent>
           <PopupAddList2 /> {/* Gọi component PopupAdd */}
