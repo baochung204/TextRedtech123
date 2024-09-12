@@ -24,7 +24,7 @@ import {
   Fab,
   Toolbar,
   TextField,
-  InputAdornment
+  InputAdornment,
 } from '@mui/material';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -101,7 +101,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
     </Box>
   );
 }
-
 
 interface OrderType {
   id: string;
@@ -258,7 +257,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 </InputAdornment>
               ),
             }}
-            placeholder="Search Product"
+            placeholder="Tìm kiếm ..."
             size="small"
             onChange={handleSearch}
             value={search}
@@ -297,7 +296,7 @@ const PaginationTable = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [search, setSearch] = React.useState('');
-  
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredRows: ProductType[] = getProducts.filter((row) => {
       return row.title.toLowerCase().includes(event.target.value);
@@ -319,153 +318,146 @@ const PaginationTable = () => {
   };
 
   return (
-
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
       {/* breadcrumb */}
       <Breadcrumb title="Pagination Table" items={BCrumb} />
       {/* end breadcrumb */}
-      
+
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      {/* Phần bên trái */}
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <ADDDialog/>
+        {/* Phần bên trái */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <ADDDialog />
 
-        
-        <EnhancedTableToolbar
-          numSelected={selected.length}
-          search={search}
-          handleSearch={(event: any) => handleSearch(event)}
-        />
+          <EnhancedTableToolbar
+            numSelected={selected.length}
+            search={search}
+            handleSearch={(event: any) => handleSearch(event)}
+          />
+        </Box>
+
+        {/* Phần bên phải */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Button>Sửa đổi cột</Button>
+
+          <CustomSelect
+            labelId="column-filter"
+            id="column-filter"
+            size="small"
+            value={1} // Setting the first value as default
+            sx={{ marginLeft: '20px' }}
+          >
+            <MenuItem value={1}>Sắp xếp</MenuItem>
+          </CustomSelect>
+        </Box>
       </Box>
 
-      {/* Phần bên phải */}
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Button>
-          Sửa đổi cột
-        </Button>
-
-        <CustomSelect
-          labelId="column-filter"
-          id="column-filter"
-          size="small"
-          value={1} // Setting the first value as default
-          sx={{ marginLeft: '20px' }}
-        >
-          <MenuItem value={1}>Sắp xếp</MenuItem>
-        </CustomSelect>
-      </Box>
-    </Box>
-
-        <BlankCard>
-          <TableContainer>
-            <Table
-              aria-label="custom pagination table"
-              sx={{
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <TableHead>
-                <TableRow>
+      <BlankCard>
+        <TableContainer>
+          <Table
+            aria-label="custom pagination table"
+            sx={{
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Typography variant="h6">ID</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Ảnh</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Tên sản phẩm</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Giá niêm yết</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Giá khuyến mãi</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Tags</Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : rows
+              ).map((row, index) => (
+                <TableRow key={index}>
                   <TableCell>
-                    <Typography variant="h6">ID</Typography>
+                    <Typography variant="subtitle2">{row.id}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Ảnh</Typography>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+                    </Stack>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Tên sản phẩm</Typography>
+                    <Typography variant="subtitle2" fontWeight="600">
+                      {row.name}
+                    </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Giá niêm yết</Typography>
+                    <Chip
+                      color={
+                        row.tags === 'di động'
+                          ? 'success'
+                          : row.tags === 'điện tử'
+                          ? 'warning'
+                          : row.tags === 'đời sống'
+                          ? 'error'
+                          : 'secondary'
+                      }
+                      sx={{
+                        borderRadius: '6px',
+                      }}
+                      size="small"
+                      label={row.tags}
+                    />
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Giá khuyến mãi</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="h6">Tags</Typography>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : rows
-                ).map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      <Typography variant="subtitle2">{row.id}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                        
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                        <Typography variant="subtitle2" fontWeight="600">
-                          {row.name}
-                        </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        color={
-                          row.tags === 'di động'
-                            ? 'success'
-                            : row.tags === 'điện tử'
-                              ? 'warning'
-                              : row.tags === 'đời sống'
-                                ? 'error'
-                                : 'secondary'
-                        }
-                        sx={{
-                          borderRadius: '6px',
-                        }}
-                        size="small"
-                        label={row.tags}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.total}
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell>
                     <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.totalSales}
-                      </Typography>
-                    </TableCell>
+                      ${row.total}
+                    </Typography>
+                  </TableCell>
 
-                  </TableRow>
-                ))}
-
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                    colSpan={6}
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
+                  <TableCell>
+                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                      ${row.totalSales}
+                    </Typography>
+                  </TableCell>
                 </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
-        </BlankCard>
-    
+              ))}
+
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                  colSpan={6}
+                  count={rows.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    native: true,
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </BlankCard>
     </PageContainer>
   );
 };

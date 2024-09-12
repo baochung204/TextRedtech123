@@ -99,7 +99,7 @@ const Affiliatedetail = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: [primary],
+        gradientToColors: ['#6dd5fa'],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
@@ -110,7 +110,7 @@ const Affiliatedetail = () => {
     markers: {
       size: 4,
       opacity: 0.9,
-      colors: [primary],
+      colors: ['#FFA41B'],
       strokeColor: '#fff',
       strokeWidth: 2,
 
@@ -132,7 +132,7 @@ const Affiliatedetail = () => {
   const seriesgredientchart: any = [
     {
       name: 'Likes',
-      data: [4, 3, 10, 9, 35, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5],
+      data: [4, 3, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
   const [month, setMonth] = React.useState('1');
@@ -163,21 +163,9 @@ const Affiliatedetail = () => {
             display: 'flex',
             gap: '12px',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'end',
           }}
         >
-          <CustomSelect
-            labelId="month-dd"
-            id="month-dd"
-            size="small"
-            value={month}
-            onChange={handleChange}
-          >
-            {' '}
-            <MenuItem value={1}>Khách hàng </MenuItem>
-            <MenuItem value={2}>Doanh thu</MenuItem>
-            <MenuItem value={3}>Dơn Hàng </MenuItem>
-          </CustomSelect>
           <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
             {' '}
             <LocalizationProvider dateAdapter={AdapterDateFns}>
