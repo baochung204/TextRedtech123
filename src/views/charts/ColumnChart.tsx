@@ -19,7 +19,6 @@ const BCrumb = [
 ];
 
 const ColumnChart = () => {
-
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -99,13 +98,8 @@ const ColumnChart = () => {
       {/* breadcrumb */}
       <Breadcrumb title="Column Chart" items={BCrumb} />
       {/* end breadcrumb */}
-      <ParentCard title='Column Chart'>
-        <Chart
-          options={optionscolumnchart}
-          series={seriescolumnchart}
-          type="bar"
-          height="300px"
-        />
+      <ParentCard title="Column Chart" description={''}>
+        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="300px" />
       </ParentCard>
     </PageContainer>
   );

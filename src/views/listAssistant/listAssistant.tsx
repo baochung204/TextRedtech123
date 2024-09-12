@@ -1,36 +1,26 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect, useState } from 'react';
 import {
-  Typography,
-  Grid,
+  Autocomplete,
+  Avatar,
   Box,
-  Stack,
-  Chip,
-  TextField,
-  InputAdornment,
+  Button,
   Card,
+  Chip,
+  Grid,
+  InputAdornment,
   LinearProgress,
   Paper,
+  Stack,
+  TextField,
   Tooltip,
-  Button,
-  Avatar,
-  Autocomplete,
+  Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import PageContainer from 'src/components/container/PageContainer';
-import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
 import { IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
-import rank1 from 'src/assets/images/rank/rank1.png';
-import rank2 from 'src/assets/images/rank/rank2.png';
-import rank3 from 'src/assets/images/rank/rank3.png';
-import rank4 from 'src/assets/images/rank/rank4.png';
-import rank6 from 'src/assets/images/rank/rank6.png';
-import rank7 from 'src/assets/images/rank/rank7.png';
-import rank8 from 'src/assets/images/rank/rank8.png';
-import rank9 from 'src/assets/images/rank/rank9.png';
-import rank10 from 'src/assets/images/rank/rank10.png';
+import React, { useEffect, useState } from 'react';
 import avt1 from 'src/assets/images/profile/user-1.jpg';
+import avt10 from 'src/assets/images/profile/user-10.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
 import avt3 from 'src/assets/images/profile/user-3.jpg';
 import avt4 from 'src/assets/images/profile/user-4.jpg';
@@ -38,18 +28,28 @@ import avt6 from 'src/assets/images/profile/user-6.jpg';
 import avt7 from 'src/assets/images/profile/user-7.jpg';
 import avt8 from 'src/assets/images/profile/user-8.jpg';
 import avt9 from 'src/assets/images/profile/user-9.jpg';
-import avt10 from 'src/assets/images/profile/user-10.jpg';
+import rank1 from 'src/assets/images/rank/rank1.png';
+import rank10 from 'src/assets/images/rank/rank10.png';
+import rank2 from 'src/assets/images/rank/rank2.png';
+import rank3 from 'src/assets/images/rank/rank3.png';
+import rank4 from 'src/assets/images/rank/rank4.png';
+import rank6 from 'src/assets/images/rank/rank6.png';
+import rank7 from 'src/assets/images/rank/rank7.png';
+import rank8 from 'src/assets/images/rank/rank8.png';
+import rank9 from 'src/assets/images/rank/rank9.png';
+import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
+import PageContainer from 'src/components/container/PageContainer';
 // import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { Props } from 'react-apexcharts';
 import { IconArrowUpRight } from '@tabler/icons-react';
+import { Props } from 'react-apexcharts';
 
-import icon1 from 'src/assets/images/svgs/icon-bars.svg';
-import DashboardCard from 'src/components/shared/DashboardCard';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import Chart from 'react-apexcharts';
-import { IconTable } from '@tabler/icons-react';
 import { useMediaQuery } from '@mui/material';
+import { IconTable } from '@tabler/icons-react';
+import Chart from 'react-apexcharts';
+import icon1 from 'src/assets/images/svgs/icon-bars.svg';
+import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DashboardCard from 'src/components/shared/DashboardCard';
 interface sellsData {
   product: string;
   percent: number;
@@ -287,8 +287,6 @@ const ListAssistant = () => {
         : [...prevChecked, rank.id],
     );
   };
-  const isXs = useMediaQuery((theme) => theme.breakpoints.down('xs'));
-  const isSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   // const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
 

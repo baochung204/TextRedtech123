@@ -9,7 +9,6 @@ import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
 import ParentCard from '../../components/shared/ParentCard';
 import { Props } from 'react-apexcharts';
 
-
 const BCrumb = [
   {
     to: '/',
@@ -21,13 +20,12 @@ const BCrumb = [
 ];
 
 const RadialbarChart = () => {
-  
-   // chart color
-   const theme = useTheme();
-   const primary = theme.palette.primary.main;
-   const secondary = theme.palette.secondary.main;
-   const success = theme.palette.success.main;
-   const warning = theme.palette.warning.main;
+  // chart color
+  const theme = useTheme();
+  const primary = theme.palette.primary.main;
+  const secondary = theme.palette.secondary.main;
+  const success = theme.palette.success.main;
+  const warning = theme.palette.warning.main;
 
   const optionsradialchart: Props = {
     chart: {
@@ -93,7 +91,7 @@ const RadialbarChart = () => {
       {/* end breadcrumb */}
       <Grid container spacing={3}>
         <Grid item lg={6} md={12} xs={12}>
-          <ParentCard title="Radialbar Charts">
+          <ParentCard title="Radialbar Charts" description={''}>
             <Chart
               options={optionsradialchart}
               series={seriesradialchart}
@@ -103,7 +101,7 @@ const RadialbarChart = () => {
           </ParentCard>
         </Grid>
         <Grid item lg={6} md={12} xs={12}>
-          <ParentCard title="Radar Charts">
+          <ParentCard title="Radar Charts" description={''}>
             <Chart
               options={optionsradarchart}
               series={seriesradarchart}

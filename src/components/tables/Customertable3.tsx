@@ -27,13 +27,16 @@ const CustomerTable3 = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dense, setDense] = React.useState(false);
   // Hàm xử lý thay đổi trang
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
     setPage(newPage);
   };
 
   // Hàm xử lý thay đổi số lượng hàng trên mỗi trang
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setRowsPerPage(parseInt(event.target.value as string, 10));
+  const handleChangeRowsPerPage = (event: any) => {
+    setRowsPerPage(event.target.value as number);
     setPage(0);
   };
 
@@ -110,7 +113,7 @@ const CustomerTable3 = () => {
             {paginatedRows.map((row) => (
               <TableRow>
                 <TableCell>
-                  <Typography color="textSecondary">1</Typography>
+                  <Typography color="textSecondary">{row.id}</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>

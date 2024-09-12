@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
 import {
+  Box,
+  IconButton,
+  InputAdornment,
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
   TablePagination,
-  Paper,
-  Typography,
+  TableRow,
+  TableSortLabel,
   TextField,
-  InputAdornment,
-  IconButton,
-  Tooltip,
   Toolbar,
-  Box,
+  Tooltip,
 } from '@mui/material';
-import { IconSearch, IconTrash, IconDotsVertical } from '@tabler/icons-react';
+import { IconDotsVertical, IconSearch, IconTrash } from '@tabler/icons-react';
 import { format } from 'date-fns';
+import React, { useState } from 'react';
 
 // Sample data
 const orders = [
@@ -52,7 +52,7 @@ type Order = 'asc' | 'desc';
 
 function getComparator<Key extends keyof any>(
   order: Order,
-  orderBy: Key
+  orderBy: Key,
 ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
@@ -158,10 +158,10 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
+        // ...(numSelected > 0 && {
+        //   bgcolor: (theme) =>
+        //     alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+        // }),
       }}
     >
       <Box sx={{ flex: '1 1 100%' }}>
@@ -196,19 +196,21 @@ const OrderTableList = () => {
   const [orderBy, setOrderBy] = useState<any>('id');
   const [selected, setSelected] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
-  const [dense, setDense] = useState(false);
+  // const [dense, setDense] = useState(false);
+  const [dense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [search, setSearch] = useState('');
+  const [rows, setRows] = useState(orders);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredRows = orders.filter((row) =>
-      row.customerName.toLowerCase().includes(event.target.value.toLowerCase())
+      row.customerName.toLowerCase().includes(event.target.value.toLowerCase()),
     );
     setSearch(event.target.value);
     setRows(filteredRows);
   };
 
-  const handleRequestSort = (event: React.MouseEvent<unknown>, property: any) => {
+  const handleRequestSort = (_event: React.MouseEvent<unknown>, property: any) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
@@ -223,7 +225,7 @@ const OrderTableList = () => {
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
+  const handleClick = (_event: React.MouseEvent<unknown>, id: string) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly string[] = [];
 
@@ -236,24 +238,40 @@ const OrderTableList = () => {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
 
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleCheckboxChange = (_event: React.ChangeEvent<HTMLInputElement>, id: string) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected: readonly string[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, id);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
+    }
+
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
-
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
   };
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -266,10 +284,7 @@ const OrderTableList = () => {
         search={search}
       />
       <TableContainer>
-        <Table
-          sx={{ minWidth: 750 }}
-          size={dense ? 'small' : 'medium'}
-        >
+        <Table sx={{ minWidth: 750 }} size={dense ? 'small' : 'medium'}>
           <EnhancedTableHead
             numSelected={selected.length}
             order={order}
@@ -297,15 +312,13 @@ const OrderTableList = () => {
                       <input
                         type="checkbox"
                         checked={isItemSelected}
-                        onChange={(event) => handleClick(event, row.id)}
+                        onChange={(event) => handleCheckboxChange(event, row.id)}
                       />
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {row.id}
                     </TableCell>
-                    <TableCell>
-                      {format(new Date(row.createdAt), 'yyyy-MM-dd')}
-                    </TableCell>
+                    <TableCell>{format(new Date(row.createdAt), 'yyyy-MM-dd')}</TableCell>
                     <TableCell>{row.assistant}</TableCell>
                     <TableCell>{row.orderValue}</TableCell>
                     <TableCell>{row.channel}</TableCell>

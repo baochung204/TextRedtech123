@@ -1,33 +1,32 @@
-import React, { useEffect } from 'react';
-import { filter, orderBy } from 'lodash';
 import {
   Box,
-  Grid,
-  Stack,
-  CardContent,
-  useMediaQuery,
-  Typography,
-  Rating,
-  Fab,
-  Tooltip,
   Button,
-  Theme,
-  Skeleton,
+  CardContent,
   Chip,
+  Fab,
+  Grid,
+  Skeleton,
+  Stack,
+  Theme,
+  Tooltip,
+  Typography,
+  useMediaQuery,
 } from '@mui/material';
+import { IconBasket, IconMenu2 } from '@tabler/icons-react';
+import { filter, orderBy } from 'lodash';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'src/store/Store';
+import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { ProductType } from 'src/types/apps/eCommerce';
 import {
-  fetchProducts,
   addToCart,
+  fetchProducts,
   filterReset,
 } from '../../../../store/apps/eCommerce/ECommerceSlice';
-import ProductSearch from './ProductSearch';
-import { IconBasket, IconMenu2 } from '@tabler/icons-react';
-import AlertCart from '../productCart/AlertCart';
-import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
 import BlankCard from '../../../shared/BlankCard';
-import { ProductType } from 'src/types/apps/eCommerce';
+import AlertCart from '../productCart/AlertCart';
+import ProductSearch from './ProductSearch';
 import ProductSelect from './ProductSelect';
 
 interface Props {
@@ -128,13 +127,6 @@ const ProductList = ({ onClick }: Props) => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Convert to VND
-  const convertToVND = (amount: number, rate: number = 24000) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
-      amount * rate,
-    );
-  };
 
   return (
     <Box>

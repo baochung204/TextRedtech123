@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button, useTheme } from '@mui/material';
-import { IconBriefcase, IconEdit, IconCheck } from '@tabler/icons-react';
+import { Alert, AlertTitle, Box, IconButton, TextField, Typography, useTheme } from '@mui/material';
+import { IconBriefcase, IconCheck, IconEdit } from '@tabler/icons-react';
 import { useFormik } from 'formik';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 
 const BusinessInformation = () => {
@@ -31,11 +31,9 @@ const BusinessInformation = () => {
       phone: Yup.string()
         .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ')
         .required('Số điện thoại là bắt buộc'),
-      email: Yup.string()
-        .email('Email không hợp lệ')
-        .required('Email doanh nghiệp là bắt buộc'),
+      email: Yup.string().email('Email không hợp lệ').required('Email doanh nghiệp là bắt buộc'),
     }),
-    onSubmit: (values) => {
+    onSubmit: () => {
       setEditing(null);
       setAlert({ type: 'success', message: 'Thông tin đã được cập nhật!' });
       setTimeout(() => setAlert(null), 3000);
@@ -66,13 +64,19 @@ const BusinessInformation = () => {
             value={formik.values[field as keyof typeof formik.values]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched[field as keyof typeof formik.values] && Boolean(formik.errors[field as keyof typeof formik.errors])}
-            helperText={formik.touched[field as keyof typeof formik.values] && formik.errors[field as keyof typeof formik.errors]}
+            error={
+              formik.touched[field as keyof typeof formik.values] &&
+              Boolean(formik.errors[field as keyof typeof formik.errors])
+            }
+            helperText={
+              formik.touched[field as keyof typeof formik.values] &&
+              formik.errors[field as keyof typeof formik.errors]
+            }
             onKeyDown={handleKeyDown}
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
           />
-          <IconButton onClick={formik.handleSubmit}>
+          <IconButton onClick={() => formik.handleSubmit()}>
             <IconCheck />
           </IconButton>
         </>
@@ -113,10 +117,10 @@ const BusinessInformation = () => {
             zIndex: theme.zIndex.snackbar,
             backgroundColor: alert.type === 'success' ? '#4caf50' : '#f44336',
             color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
-            borderRadius: 1, 
-            padding: 2, 
-            width: 300, 
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: 1,
+            padding: 2,
+            width: 300,
           }}
         >
           <AlertTitle>{alert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>

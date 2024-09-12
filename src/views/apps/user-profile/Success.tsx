@@ -1,8 +1,7 @@
-import { Avatar, Box, Grid, styled, Typography } from '@mui/material';
-import userimg from 'src/assets/images/profile/user-1.jpg';
-import certificate from 'src/assets/images/certificate/certificate.png';
-import React from 'react';
 import { useTheme } from '@emotion/react';
+import { Avatar, Box, Grid, styled, Typography } from '@mui/material';
+import certificate from 'src/assets/images/certificate/certificate.png';
+import userimg from 'src/assets/images/profile/user-1.jpg';
 
 const ProfileImage = styled(Box)(() => ({
   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -98,7 +97,7 @@ const Success = () => {
 
               <Grid item xs={12} sm={12}>
                 {/* Success Message */}
-                <SuccessMessageWrapper theme={theme}>
+                <SuccessMessageWrapper>
                   <Typography
                     variant="h5"
                     sx={{

@@ -28,11 +28,10 @@ const SalesOverview = () => {
       },
       height: 275,
     },
-    labels: ["Profit", "Revenue", "Expance"],
+    labels: ['Profit', 'Revenue', 'Expance'],
     colors: [primary, primarylight, secondary],
     plotOptions: {
       pie: {
-        
         donut: {
           size: '89%',
           background: 'transparent',
@@ -71,10 +70,10 @@ const SalesOverview = () => {
       fillSeriesColor: false,
     },
   };
-  const seriescolumnchart = [55, 55, 55];
+  const seriescolumnchart = [1];
 
   return (
-    <DashboardCard title="Sales Overview" subtitle="Every month">
+    <DashboardCard title="Vòng quay " subtitle="Every month">
       <>
         <Box mt={3}>
           <Chart

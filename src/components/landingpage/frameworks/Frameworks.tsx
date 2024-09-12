@@ -35,7 +35,7 @@ const images = [
   },
 ];
 
-const SliderBox = styled(Box)(({ theme }) => ({
+const SliderBox = styled(Box)(() => ({
   width: '50%',
   height: '300px',
   backgroundSize: 'cover',
@@ -81,7 +81,7 @@ const Subtitle = styled(Typography)<{ visible: boolean }>(({ theme, visible }) =
   marginTop: visible ? '10px' : '0', // Add margin-top to push elements down
 }));
 
-const StyledListItem = styled(Box)(({ theme }) => ({
+const StyledListItem = styled(Box)(({}) => ({
   position: 'relative',
   padding: '10px 0',
   minHeight: '40px', // Ensure minimum height to accommodate subtitle
@@ -117,7 +117,6 @@ const Frameworks = () => {
           <FrameworksTitle />
         </Box>
 
-
         <Stack direction="row" spacing={2} alignItems="center">
           <SliderBox style={{ backgroundImage: `url(${currentImage})` }} />
           <Stack spacing={2}>
@@ -130,9 +129,7 @@ const Frameworks = () => {
                 >
                   {image.title}
                 </StyledTypography>
-                <Subtitle visible={index === currentImageIndex}>
-                  {image.subtitle}
-                </Subtitle>
+                <Subtitle visible={index === currentImageIndex}>{image.subtitle}</Subtitle>
               </StyledListItem>
             ))}
           </Stack>

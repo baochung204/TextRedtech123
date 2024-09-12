@@ -1,36 +1,28 @@
-import React, { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
   Button,
+  Card,
+  CardContent,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogContentText,
-  DialogActions,
-  Box,
+  Grid,
   styled,
   TextField,
-  Typography,
-  FormControl,
-  Grid,
-  AccordionDetails,
-  Card,
-  Accordion,
-  CardContent,
   Tooltip,
-  AccordionSummary,
-  Drawer,
+  Typography,
 } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import sale from 'src/assets/images/icon.png/sale.png';
-import AppCard from 'src/components/shared/AppCard';
 import { IconChevronDown } from '@tabler/icons-react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
-import { mainDemo } from 'src/assets/images/landingpage/demos/demo-main.jpg';
-import CloseIcon from '@mui/icons-material/Close';
+import sale from 'src/assets/images/icon.png/sale.png';
 
 const packages = [
   {
@@ -90,15 +82,15 @@ const Afletpoint1 = ({ row }: any) => {
   const fullWidth = true;
   const maxWidth = 'lg';
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [checked, setChecked] = React.useState(false);
+  // const [checked, setChecked] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleCheckboxChange = () => {
-    setChecked(!checked);
-  };
+  // const handleCheckboxChange = () => {
+  //   setChecked(!checked);
+  // };
 
   const handleClose = () => {
     setOpen(false);

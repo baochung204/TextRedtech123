@@ -1,28 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Chart from 'react-apexcharts';
-import { useTheme } from '@mui/material/styles';
 
 import { Props } from 'react-apexcharts';
 
-import { Dayjs } from 'dayjs';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { Box, MenuItem, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Dayjs } from 'dayjs';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Gradient Chart',
-  },
-];
 const monthsInVietnamese = [
   'Tháng 1',
   'Tháng 2',
@@ -38,10 +28,6 @@ const monthsInVietnamese = [
   'Tháng 12',
 ];
 const Affiliatedetail = () => {
-  // chart color
-  const theme = useTheme();
-  const primary = theme.palette.primary.main;
-
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -99,7 +85,7 @@ const Affiliatedetail = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: [primary],
+        gradientToColors: ['#6dd5fa'],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
@@ -110,7 +96,7 @@ const Affiliatedetail = () => {
     markers: {
       size: 4,
       opacity: 0.9,
-      colors: [primary],
+      colors: ['#FFA41B'],
       strokeColor: '#fff',
       strokeWidth: 2,
 
@@ -132,14 +118,10 @@ const Affiliatedetail = () => {
   const seriesgredientchart: any = [
     {
       name: 'Likes',
-      data: [4, 3, 10, 9, 35, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5],
+      data: [4, 3, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
   const [month, setMonth] = React.useState('1');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
 
   // chart color
 
@@ -163,21 +145,9 @@ const Affiliatedetail = () => {
             display: 'flex',
             gap: '12px',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'end',
           }}
         >
-          <CustomSelect
-            labelId="month-dd"
-            id="month-dd"
-            size="small"
-            value={month}
-            onChange={handleChange}
-          >
-            {' '}
-            <MenuItem value={1}>Khách hàng </MenuItem>
-            <MenuItem value={2}>Doanh thu</MenuItem>
-            <MenuItem value={3}>Dơn Hàng </MenuItem>
-          </CustomSelect>
           <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
             {' '}
             <LocalizationProvider dateAdapter={AdapterDateFns}>

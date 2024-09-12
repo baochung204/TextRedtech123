@@ -16,7 +16,11 @@ import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'; // Import 
 import { DataRowCustomerTable } from './tableData';
 import CustomSwitch from '../forms/theme-elements/CustomSwitch';
 
-const icons = [<FaFacebook color="#1877F2" size={20} />, <FaWhatsapp color="#25D366" size={20} />, <FaInstagram color="#C13584" size={20} />]; // Danh sách các icon
+const icons = [
+  <FaFacebook color="#1877F2" size={20} />,
+  <FaWhatsapp color="#25D366" size={20} />,
+  <FaInstagram color="#C13584" size={20} />,
+]; // Danh sách các icon
 
 const CustomerTable2 = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
@@ -25,7 +29,10 @@ const CustomerTable2 = () => {
   const [dense, setDense] = React.useState(false);
 
   // Hàm xử lý thay đổi trang
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
     setPage(newPage);
   };
 
@@ -36,7 +43,10 @@ const CustomerTable2 = () => {
   };
 
   // Cắt dữ liệu để hiển thị theo trang
-  const paginatedRows = DataRowCustomerTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const paginatedRows = DataRowCustomerTable.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
 
   // Hàm xử lý thay đổi chế độ padding dày
   const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,19 +115,13 @@ const CustomerTable2 = () => {
           {paginatedRows.map((row, index) => (
             <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
-                <Typography variant="body2">
-                  {row.id}
-                </Typography>
+                <Typography variant="body2">{row.id}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
-                <Typography variant="body2">
-                  {row.createdAt}
-                </Typography>
+                <Typography variant="body2">{row.createdAt}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
-                <Typography variant="body2">
-                  {row.assistant}
-                </Typography>
+                <Typography variant="body2">{row.assistant}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -126,9 +130,7 @@ const CustomerTable2 = () => {
                 </Box>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
-                <Typography variant="body2">
-                  {/* Cột Tags đang trống */}
-                </Typography>
+                <Typography variant="body2">{/* Cột Tags đang trống */}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
                 <Typography variant="body2" fontWeight={500}>
@@ -136,19 +138,13 @@ const CustomerTable2 = () => {
                 </Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
-                <Typography variant="body2">
-                  {row.orderValue}
-                </Typography>
+                <Typography variant="body2">{row.orderValue}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
-                <Typography variant="body2">
-                  {row.phone}
-                </Typography>
+                <Typography variant="body2">{row.phone}</Typography>
               </TableCell>
               <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>
-                <Typography variant="body2">
-                  {row.address}
-                </Typography>
+                <Typography variant="body2">{row.address}</Typography>
               </TableCell>
             </TableRow>
           ))}

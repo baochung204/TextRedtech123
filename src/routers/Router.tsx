@@ -173,7 +173,7 @@ const Router = [
     path: '/',
     element: <FullLayout />,
     children: [
-      { path: '/', element: <Navigate to="dashboards/list" /> },
+      { path: '/', element: <Navigate to="/dashboards/modern" /> },
       { path: '/admin', element: <Navigate to="/admin/dashborard" /> },
 
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },

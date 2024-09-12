@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Box,
@@ -33,7 +33,8 @@ const ProductDetail = () => {
   );
 
   // Set qty
-  const [count, setCount] = useState(500);
+  // const [count, setCount] = useState(500);
+  const count = 500;
 
   // For alert when added something to cart
   const [cartalert, setCartalert] = useState(false);
