@@ -20,8 +20,8 @@ import PageContainer from 'src/components/container/PageContainer';
 import CloseIcon from '@mui/icons-material/Close';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SecurityIcon from '@mui/icons-material/Security';
+// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+// import SecurityIcon from '@mui/icons-material/Security';
 import Authenticate from 'src/assets/images/authenticate/authenticate.png';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -560,19 +560,19 @@ const PersonAffiliate = () => {
                   này cho phù hợp với tình hình kinh doanh và quy định của pháp luật hiện hành.
                 </li>
               </ol>
+              <Checkbox
+                id="agreeTerms"
+                name="agreeTerms"
+                checked={formik.values.agreeTerms}
+                onChange={formik.handleChange}
+                color="primary"
+                inputProps={{ 'aria-label': 'checkbox with default color' }}
+              />
+              <span>Đồng ý với các điều khoản của chúng tôi</span>
+              {formik.errors.agreeTerms ? (
+                <Typography color="error">{formik.errors.agreeTerms}</Typography>
+              ) : null}
             </Box>
-            <Checkbox
-              id="agreeTerms"
-              name="agreeTerms"
-              checked={formik.values.agreeTerms}
-              onChange={formik.handleChange}
-              color="primary"
-              inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
-            <span>Đồng ý với các điều khoản của chúng tôi</span>
-            {formik.errors.agreeTerms ? (
-              <Typography color="error">{formik.errors.agreeTerms}</Typography>
-            ) : null}
           </>
         );
       case 1:
@@ -648,22 +648,6 @@ const PersonAffiliate = () => {
               <CustomFormLabel sx={{ marginTop: '25px' }} htmlFor="image1">
                 Hướng dẫn
               </CustomFormLabel>
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>Chụp đủ mặt trước và mặt sau</Typography>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>Chụp rõ nét không bị mất góc</Typography>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>
-                  Chụp hình ảnh giấy tờ còn hạn, hình gốc, không scan hay photocopy
-                </Typography>
-              </Box>
               {/* Display instructions here */}
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
               <Box>
@@ -678,12 +662,6 @@ const PersonAffiliate = () => {
                 />
               </Box>
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <SecurityIcon sx={{ fontSize: '32px', mr: 1 }} />
-                <Typography variant="h6">
-                  Hình ảnh được bảo mật tuyệt đối, chỉ sử dụng để đăng ký affiliate
-                </Typography>
-              </Box>
             </Grid>
 
             <Grid item xs={12} md={6}>
