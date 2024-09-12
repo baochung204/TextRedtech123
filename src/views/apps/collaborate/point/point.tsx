@@ -4,23 +4,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { Box, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
+import { Box } from '@mui/material';
 
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Checkout',
-  },
-];
 import {
   Button,
-  Dialog,
-  DialogActions,
   Grid,
   Stack,
   Table,
@@ -52,11 +39,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import SearchInput from 'src/components/apps/search/search';
 import pointimg from 'src/assets/images/icon.png/point.png';
-import ChildCard from 'src/components/shared/ChildCard';
-import { TransitionProps } from '@mui/material/transitions';
-import Slide from '@mui/material/Slide';
-import Detailpoin from './detailpoint';
-import TransitionDialog from 'src/components/material-ui/dialog/TransitionDialog';
+
 import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
 // const BCrumb = [
@@ -67,14 +50,14 @@ import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 //   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
 //   { title: 'Lịch sử quy đổi ' },
 // ];
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+// const Transition = React.forwardRef(function Transition(
+//   props: TransitionProps & {
+//     children: React.ReactElement;
+//   },
+//   ref: React.Ref<unknown>,
+// ) {
+//   return <Slide direction="up" ref={ref} {...props} />;
+// });
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -221,7 +204,7 @@ const getdetailTextAndColor = (status: any) => {
 };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -239,7 +222,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              onClick={createSortHandler(headCell.id as string)}
             >
               <Typography variant="subtitle1" fontWeight="700">
                 {headCell.label}
@@ -257,13 +240,9 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
-
 const Lspoin = () => {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<any>('calories');
+  const [orderBy, setOrderBy] = React.useState<string>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -318,30 +297,23 @@ const Lspoin = () => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  const [month, setMonth] = React.useState('1');
+  // const [month, setMonth] = React.useState('1');
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
+  // const [value, setValue] = React.useState<Dayjs | null>(null);
+  // const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
-  const [open, setOpen] = React.useState(false);
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
@@ -426,7 +398,7 @@ const Lspoin = () => {
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
+                  .map((row: any) => {
                     // const isItemSelected = isSelected(row.name);
                     // const labelId = `enhanced-table-checkbox-${index}`;
 

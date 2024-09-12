@@ -1,6 +1,5 @@
 import { Grid } from '@mui/material';
 import ProductCarousel from 'src/components/apps/ecommerce/productDetail/ProductCarousel';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 import ProductDetail from 'src/components/apps/ecommerce/productDetail/ProductDetail';
 import ProductDesc from 'src/components/apps/ecommerce/productDetail/ProductDesc';
@@ -9,20 +8,6 @@ import ChildCard from 'src/components/shared/ChildCard';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Shop',
-    to: '/apps/ecommerce',
-  },
-  {
-    title: 'detail',
-  },
-];
 
 const EcommerceDetail = () => {
   return (
