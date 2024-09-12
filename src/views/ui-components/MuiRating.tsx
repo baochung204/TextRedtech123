@@ -97,7 +97,7 @@ const MuiRating = () => {
       <Breadcrumb title="Rating" items={BCrumb} />
       {/* end breadcrumb */}
 
-      <ParentCard title="Rating">
+      <ParentCard title="Rating" description="">
         <Grid container spacing={3}>
           <Grid item xs={12} lg={4} sm={6} display="flex" alignItems="stretch">
             <ChildCard title="Controlled">

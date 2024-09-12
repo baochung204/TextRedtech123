@@ -1,5 +1,19 @@
 import React from 'react';
-import { Box, Theme, useMediaQuery, Typography, Stack, Alert, styled } from '@mui/material';
+
+import {
+  Box,
+  Theme,
+  useMediaQuery,
+  Typography,
+  Stack,
+  Avatar,
+  Grid,
+  Alert,
+  IconButton,
+  styled,
+  Rating,
+} from '@mui/material';
+
 import { ChatsType } from 'src/types/apps/chat';
 import { uniq, flatten } from 'lodash';
 
@@ -14,12 +28,14 @@ const drawerWidth = 320;
 
 // Thêm dữ liệu mẫu cho phần đánh giá
 const reviews = [
-  { id: 1, reviewer: 'John Doe', rating: 5, comment: 'Sản phẩm tuyệt vời!' },
-  { id: 2, reviewer: 'Jane Smith', rating: 4, comment: 'Tốt nhưng cần cải thiện.' },
+  // { id: 1, reviewer: 'Nguyễn Văn Nam', rating: 5, comment: 'Sản phẩm tuyệt vời!' },
+  // { id: 2, reviewer: 'Hà Quang Dũng', rating: 4, comment: 'Tốt nhưng cần cải thiện.' },
 ];
 
 const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  const [value, setValue] = React.useState<number | null>(0);
+
   const totalAttachment = uniq(flatten(chat?.messages.map((item) => item.attachment))).length;
   const totalMedia =
     uniq(flatten(chat?.messages.map((item) => (item?.type === 'image' ? item.msg : null)))).length -
@@ -126,13 +142,17 @@ const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
           <Typography variant="h6" mt={5} mb={2}>
             Bạn đánh giá thế nào về lần hỗ trợ lần này?
           </Typography>
-          <StarIcon sx={{ color: 'gold' }} />
-          <StarIcon sx={{ color: 'gold' }} />
-          <StarIcon sx={{ color: 'gold' }} />
-          <StarIcon sx={{ color: 'gold' }} />
-          <StarIcon sx={{ color: 'gold' }} />
+          <Rating
+            name="simple-controlled"
+            value={value}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          />
           {/* Phần Đánh giá */}
-          <Typography variant="h6" mt={5} mb={2}>
+          {/* <Typography variant="h6" mt={5} mb={2}>
             Đánh giá ({reviews.length})
           </Typography>
           <Box>
@@ -151,7 +171,7 @@ const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
                 </Box>
               ))
             )}
-          </Box>
+          </Box> */}
         </Box>
       ) : null}
     </>

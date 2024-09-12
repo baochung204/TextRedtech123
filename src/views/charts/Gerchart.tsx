@@ -99,7 +99,7 @@ const GerChart = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: [primary],
+        gradientToColors: ['#a8ff78'],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
@@ -132,7 +132,7 @@ const GerChart = () => {
   const seriesgredientchart: any = [
     {
       name: 'Thích',
-      data: [4, 3, 10, 9, 35, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5],
+      data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
     },
   ];
   const [month, setMonth] = React.useState('1');

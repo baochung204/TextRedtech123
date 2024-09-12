@@ -98,8 +98,9 @@ const BlogCard = ({ post }: Btype) => {
                   display: 'flex',
                   alignItems: 'center',
                   bottom: 0,
-                  py: 2
-                }}>
+                  py: 2,
+                }}
+              >
                 <Tooltip title={author?.name} placement="top">
                   <Avatar aria-label="recipe" src={author?.avatar} />
                 </Tooltip>
@@ -109,6 +110,7 @@ const BlogCard = ({ post }: Btype) => {
                     flexDirection: 'column',
                     marginLeft: '10px',
                     alignItems: 'center',
+                    justifyContent: 'space-between',
                   }}
                 >
                   <Typography variant="body2">Nguyễn Mạnh Cường</Typography>

@@ -3,12 +3,13 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import PageContainer from '../../components/container/PageContainer';
 import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
 import ParentCard from '../../components/shared/ParentCard';
 import { Props } from 'react-apexcharts';
-import Modarm from 'src/components/shared/moderm';
+import Affilatec2 from 'src/components/shared/Affilatec2';
+import { PiTextAlignCenter } from 'react-icons/pi';
 
 const BCrumb = [
   {
@@ -20,7 +21,7 @@ const BCrumb = [
   },
 ];
 
-const PieCharts = () => {
+const Affilatechart2 = () => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -51,15 +52,14 @@ const PieCharts = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, secondary, warning, '#2c5364', '#99f2c8'],
+    colors: ['#93f9b9', '#1D976C'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
+    labels: ['Chi phí', 'Cuộc trò chuyện'],
   };
-
-  const seriespiechart = [45, 65, 27, 18, 35];
+  const seriesdoughnutchart = [55, 65];
 
   return (
     // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
@@ -72,10 +72,16 @@ const PieCharts = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <Modarm title="Nguồn khách hàng " description="">
-      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
-    </Modarm>
+    <Affilatec2 title="Cuộc trò chuyện">
+      <Chart
+        options={optionsdoughnutchart}
+        series={seriesdoughnutchart}
+        type="donut"
+        height="300px"
+        // style={{ position: 'relative' }}
+      />
+    </Affilatec2>
   );
 };
 
-export default PieCharts;
+export default Affilatechart2;
