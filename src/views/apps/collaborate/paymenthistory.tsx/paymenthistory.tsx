@@ -31,6 +31,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+
+import SearchInput from 'src/components/apps/search/search';
+
 import pointimg from 'src/assets/images/icon.png/point.png';
 import SearchInput from 'src/components/apps/search/search';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -63,16 +67,13 @@ const rows: any = tablepayment.map((item) => ({
 
 type Order = 'asc' | 'desc';
 
-function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key,
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
+function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -88,7 +89,7 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
 
 interface HeadCell {
   disablePadding: boolean;
-  id: any;
+  id: string;
   label: string;
   numeric: boolean;
 }
@@ -135,7 +136,7 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
 }
-const getStatusTextAndColor = (status: any) => {
+const getStatusTextAndColor = (status: number) => {
   switch (status) {
     case 1:
       return (
@@ -160,7 +161,9 @@ const getStatusTextAndColor = (status: any) => {
   }
 };
 
+
 function EnhancedTableHead(props: EnhancedTableProps) {
+
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
@@ -179,7 +182,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              onClick={createSortHandler(parseInt(headCell.id))}
             >
               <Typography variant="subtitle1" fontWeight="700">
                 {headCell.label}
@@ -197,9 +200,10 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
+
 const Paymenthistory = () => {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<any>('calories');
+  const [orderBy, setOrderBy] = React.useState<string>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   // const [dense, setDense] = React.useState(false);
@@ -256,8 +260,10 @@ const Paymenthistory = () => {
     setPage(0);
   };
 
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
 
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
