@@ -79,10 +79,10 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/auth/updating"
+        to="/apps/blog/posts"
         component={Link}
       >
-        Tài liệu
+        Blog
       </Button>
       <Button
         color="inherit"

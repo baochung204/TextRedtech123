@@ -1,34 +1,26 @@
 // import { Box } from '@mui/material';
 // import React from 'react';
-import React from 'react';
 import {
-  Box,
-  Typography,
   Avatar,
-  Stack,
-  ButtonGroup,
+  Box,
   Button,
+  ButtonGroup,
+  Stack,
   Table,
+  TableBody,
+  TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TableCell,
-  TableBody,
-  IconButton,
+  Typography,
 } from '@mui/material';
 // import { Link } from 'react-router-dom';
-import { IconMinus, IconPlus, IconTrash } from '@tabler/icons-react';
 // import { useSelector, useDispatch } from 'src/store/Store';
-import products from 'src/assets/images/products/s25.jpg';
 import products2 from 'src/assets/images/products/s24.jpg';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepButton from '@mui/material/StepButton';
+import products from 'src/assets/images/products/s25.jpg';
 import ChildCard from 'src/components/shared/ChildCard';
 
-const steps = ['Giỏ hàng', 'Thanh toán & địa chỉ', 'Payment'];
 const Content = () => {
-  const [activeStep, setActiveStep] = React.useState(2);
   return (
     <div>
       {/* <ProductChecout /> */}

@@ -1,12 +1,9 @@
-import { Avatar, Box, Button, CardContent, Grid, Stack, Typography } from "@mui/material"
+import { Box, CardContent, Typography } from '@mui/material';
 
 import starBg from 'src/assets/images/backgrounds/gold.png';
-import BlankCard from '../AssistantEditor/BlankCard';
-
-
 
 const Strategy = () => {
-    return (
+  return (
     <Box>
       <CardContent sx={{ p: '30px' }}>
         <Box textAlign="center">
@@ -15,6 +12,6 @@ const Strategy = () => {
         </Box>
       </CardContent>
     </Box>
-    )
-}
+  );
+};
 export default Strategy;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Checkbox, Grid, ListItemText, MenuItem, Typography, Button } from '@mui/material';
+import { Box, Checkbox, Grid, ListItemText, MenuItem, Typography, Button, useTheme } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
@@ -26,6 +26,8 @@ const channels: CurrencyType[] = [
 ];
 
 const PopupAddList2 = () => {
+  const theme = useTheme();
+  
   const formik = useFormik({
     initialValues: {
       gender: '',
@@ -39,7 +41,7 @@ const PopupAddList2 = () => {
       facebookUrl: '',
       zaloUrl: '',
       instagramUrl: '',
-      taxId: '', // Thêm mã số thuế công ty
+      taxId: '',
       assistant: '',
     },
     validationSchema: Yup.object({
@@ -56,7 +58,7 @@ const PopupAddList2 = () => {
       facebookUrl: Yup.string().url('URL không hợp lệ'),
       zaloUrl: Yup.string().url('URL không hợp lệ'),
       instagramUrl: Yup.string().url('URL không hợp lệ'),
-      taxId: Yup.string().required('Mã số thuế công ty là bắt buộc'), // Validation cho mã số thuế
+      taxId: Yup.string().required('Mã số thuế công ty là bắt buộc'),
       assistant: Yup.string(),
     }),
     onSubmit: (values) => {
@@ -68,8 +70,8 @@ const PopupAddList2 = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       {/* Thông tin cá nhân */}
-      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: '#fafafa' }}>
-        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: '#333' }}>
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
           Thông tin cá nhân
         </Typography>
         <Grid container spacing={2}>
@@ -154,8 +156,8 @@ const PopupAddList2 = () => {
       </Box>
 
       {/* Thông tin trợ lý và kênh */}
-      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: '#fafafa' }}>
-        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: '#333' }}>
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
           Trợ lý và kênh
         </Typography>
         <Grid container spacing={2}>
@@ -189,7 +191,7 @@ const PopupAddList2 = () => {
               id="channel-select"
               multiple
               value={formik.values.selectedChannels}
-              onChange={(event) => {
+              onChange={(event: any) => {
                 formik.setFieldValue('selectedChannels', event.target.value);
               }}
               name="selectedChannels"
@@ -203,11 +205,10 @@ const PopupAddList2 = () => {
                         alignItems: 'center',
                         border: '1px solid #ddd',
                         borderRadius: '4px',
-                        padding: '2px 6px',
-                        backgroundColor: '#f1f1f1',
+                        padding: '2px 4px',
                       }}
                     >
-                      {channels.find((channel) => channel.value === value)?.label}
+                      <ListItemText primary={currencies.find((currency) => currency.value === value)?.label} />
                     </Box>
                   ))}
                 </Box>
@@ -215,10 +216,10 @@ const PopupAddList2 = () => {
               fullWidth
               variant="outlined"
             >
-              {channels.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  <Checkbox checked={formik.values.selectedChannels.includes(option.value)} />
-                  <ListItemText primary={option.label} />
+              {channels.map((channel) => (
+                <MenuItem key={channel.value} value={channel.value}>
+                  {/* <Checkbox checked={formik.values.selectedChannels.indexOf(channel.value) > -1} /> */}
+                  <ListItemText primary={channel.label} />
                 </MenuItem>
               ))}
             </CustomSelect>
@@ -230,8 +231,8 @@ const PopupAddList2 = () => {
       </Box>
 
       {/* Thông tin công ty */}
-      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: '#fafafa' }}>
-        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: '#333' }}>
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
           Thông tin công ty
         </Typography>
         <Grid container spacing={2}>
@@ -258,19 +259,7 @@ const PopupAddList2 = () => {
               error={formik.touched.companyAddress && Boolean(formik.errors.companyAddress)}
               helperText={formik.touched.companyAddress && formik.errors.companyAddress}
             />
-            <CustomFormLabel htmlFor="companyEmail-text" sx={{ mt: 2 }}>Email công ty</CustomFormLabel>
-            <CustomTextField
-              id="companyEmail-text"
-              type="email"
-              variant="outlined"
-              fullWidth
-              value={formik.values.companyEmail}
-              onChange={formik.handleChange}
-              name="companyEmail"
-              error={formik.touched.companyEmail && Boolean(formik.errors.companyEmail)}
-              helperText={formik.touched.companyEmail && formik.errors.companyEmail}
-            />
-            <CustomFormLabel htmlFor="taxId-text" sx={{ mt: 2 }}>Mã số thuế công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="taxId-text" sx={{ mt: 2 }}>Mã số thuế</CustomFormLabel>
             <CustomTextField
               id="taxId-text"
               variant="outlined"
@@ -283,7 +272,19 @@ const PopupAddList2 = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="companyPhone-text">Số điện thoại công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="companyEmail-text">Email công ty</CustomFormLabel>
+            <CustomTextField
+              id="companyEmail-text"
+              type="email"
+              variant="outlined"
+              fullWidth
+              value={formik.values.companyEmail}
+              onChange={formik.handleChange}
+              name="companyEmail"
+              error={formik.touched.companyEmail && Boolean(formik.errors.companyEmail)}
+              helperText={formik.touched.companyEmail && formik.errors.companyEmail}
+            />
+            <CustomFormLabel htmlFor="companyPhone-text" sx={{ mt: 2 }}>Số điện thoại công ty</CustomFormLabel>
             <CustomTextField
               id="companyPhone-text"
               variant="outlined"
@@ -306,7 +307,18 @@ const PopupAddList2 = () => {
               error={formik.touched.companyWebsite && Boolean(formik.errors.companyWebsite)}
               helperText={formik.touched.companyWebsite && formik.errors.companyWebsite}
             />
-            <CustomFormLabel htmlFor="facebookUrl-text" sx={{ mt: 2 }}>Facebook URL</CustomFormLabel>
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Thông tin mạng xã hội */}
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
+          Thông tin mạng xã hội
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="facebookUrl-text">Facebook</CustomFormLabel>
             <CustomTextField
               id="facebookUrl-text"
               type="url"
@@ -318,7 +330,7 @@ const PopupAddList2 = () => {
               error={formik.touched.facebookUrl && Boolean(formik.errors.facebookUrl)}
               helperText={formik.touched.facebookUrl && formik.errors.facebookUrl}
             />
-            <CustomFormLabel htmlFor="zaloUrl-text" sx={{ mt: 2 }}>Zalo URL</CustomFormLabel>
+            <CustomFormLabel htmlFor="zaloUrl-text" sx={{ mt: 2 }}>Zalo</CustomFormLabel>
             <CustomTextField
               id="zaloUrl-text"
               type="url"
@@ -330,7 +342,9 @@ const PopupAddList2 = () => {
               error={formik.touched.zaloUrl && Boolean(formik.errors.zaloUrl)}
               helperText={formik.touched.zaloUrl && formik.errors.zaloUrl}
             />
-            <CustomFormLabel htmlFor="instagramUrl-text" sx={{ mt: 2 }}>Instagram URL</CustomFormLabel>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="instagramUrl-text">Instagram</CustomFormLabel>
             <CustomTextField
               id="instagramUrl-text"
               type="url"
@@ -346,11 +360,9 @@ const PopupAddList2 = () => {
         </Grid>
       </Box>
 
-      <Box display="flex" justifyContent="flex-end" mt={4}>
-        <Button type="submit" variant="contained" color="primary">
-          Lưu
-        </Button>
-      </Box>
+      <Button type="submit" variant="contained" color="primary" fullWidth>
+        Lưu thông tin
+      </Button>
     </form>
   );
 };

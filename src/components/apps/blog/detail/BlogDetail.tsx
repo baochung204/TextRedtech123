@@ -1,42 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
-import User1 from 'src/assets/images/profile/user-1.jpg';
-import User2 from 'src/assets/images/profile/user-2.jpg';
-import User3 from 'src/assets/images/profile/user-5.jpg';
-import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
-import { useLocation } from 'react-router-dom';
 import {
-  CardContent,
-  Stack,
   Avatar,
-  Typography,
+  Box,
+  CardContent,
   CardMedia,
   Chip,
-  Tooltip,
-  Box,
   Divider,
-  TextField,
-  Button,
   Skeleton,
+  Stack,
+  Tooltip,
+  Typography,
 } from '@mui/material';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import { IconEye, IconMessage2, IconPoint, IconQuote } from '@tabler/icons-react';
-import { format } from 'date-fns';
-import BlogComment from './BlogComment';
-import { uniqueId } from 'lodash';
-import { addComment } from 'src/store/apps/blog/BlogSlice';
-import BlankCard from '../../../shared/BlankCard';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
-import type { BlogPostType, BlogType } from 'src/types/apps/blog';
-import { IconMoodHappy } from '@tabler/icons-react';
+import type { BlogPostType } from 'src/types/apps/blog';
+import BlankCard from '../../../shared/BlankCard';
 
 const BlogDetail = () => {
   const dispatch = useDispatch();
   const title = useLocation();
   const getTitle: any = title.pathname.split('/').pop();
-  const [replyTxt, setReplyTxt] = React.useState('');
 
   useEffect(() => {
     dispatch(fetchBlogPost(getTitle));
@@ -44,37 +31,6 @@ const BlogDetail = () => {
 
   // Lấy bài viết
   const post: BlogPostType | any = useSelector((state: AppState) => state.blogReducer.selectedPost);
-  const BCrumb = [
-    {
-      to: '/',
-      title: 'Trang chủ',
-    },
-    {
-      to: '/apps/blog/posts',
-      title: 'Blog',
-    },
-    {
-      title: 'Bài viết',
-    },
-  ];
-
-  const onSubmit = async (id: number, reply: string) => {
-    const replyId: string = uniqueId('#comm_');
-    const newReply = {
-      id: replyId,
-      profile: {
-        id: uniqueId('#REPLY_'),
-        avatar: post?.author.avatar,
-        name: post?.author.name,
-        time: 'now',
-      },
-      comment: reply,
-      replies: [],
-    };
-    dispatch(addComment(id, newReply));
-    dispatch(fetchBlogPost(getTitle));
-    setReplyTxt('');
-  };
 
   // skeleton
   const [isLoading, setLoading] = React.useState(true);
@@ -167,77 +123,8 @@ const BlogDetail = () => {
             </p>
             <Typography fontWeight={600}>Trợ lý ảo Redtech</Typography>
             <Typography fontStyle="italic">Trợ lý ảo Redtech</Typography>
-            <Box my={4}>
-              <Divider />
-            </Box>
-            <Typography variant="h3">Danh sách không thứ tự.</Typography>
-            <ul>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-            </ul>
-            <Box my={4}>
-              <Divider />
-            </Box>
-            <Typography variant="h3">Danh sách có thứ tự.</Typography>
-            <ol>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-            </ol>
-            <Box my={4}>
-              <Divider />
-            </Box>
-            <Typography variant="h3">Trích dẫn</Typography>
-            <Box p={2} bgcolor="grey[100]" mt={2}>
-              <Typography variant="h6">
-                <IconQuote /> Cuộc sống ngắn ngủi, Hãy cười khi bạn vẫn còn răng!
-              </Typography>
-            </Box>
           </CardContent>
         </>
-      </BlankCard>
-      <BlankCard sx={{ mt: 3, p: 0 }}>
-        <CardContent>
-          <Typography variant="h4" fontWeight={600}>
-            Bình luận bài viết
-          </Typography>
-          <br />
-          <TextField
-            rows={4}
-            multiline
-            fullWidth
-            value={replyTxt}
-            onChange={(e) => setReplyTxt(e.target.value)}
-          ></TextField>
-          <br />
-          <br />
-          <Button color="primary" variant="contained" onClick={() => onSubmit(post.id, replyTxt)}>
-            Đăng bình luận
-          </Button>
-
-          <Stack direction="row" gap={2} alignItems="center" mb={3} mt={5}>
-            <Typography variant="h4" fontWeight={600}>
-              Bình luận
-            </Typography>
-            <Box px={1.5} py={1} color="primary.main" bgcolor={'primary.light'}>
-              <Typography variant="h6" fontWeight={600}>
-                {post?.comments.length}
-              </Typography>
-            </Box>
-          </Stack>
-          <Box>
-            {post?.comments?.map((comment: BlogType | any) => {
-              return <BlogComment comment={comment} key={comment.profile.id} />;
-            })}
-          </Box>
-        </CardContent>
       </BlankCard>
     </Box>
   );

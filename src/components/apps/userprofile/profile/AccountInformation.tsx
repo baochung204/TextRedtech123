@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button, useTheme } from '@mui/material';
-import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
-import { setSelected } from 'src/store/RouterSlice';
-import { dispatch, useDispatch } from 'src/store/Store';
-import * as yup from 'yup';
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  IconButton,
+  TextField,
+  Typography,
+  useTheme,
+} from '@mui/material';
+import { IconCheck, IconEdit, IconLock, IconUserCircle } from '@tabler/icons-react';
 import { useFormik } from 'formik';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSelected } from 'src/store/RouterSlice';
+import * as yup from 'yup';
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(
+    null,
+  );
 
   // Validation schema
   const validationSchema = yup.object({
@@ -27,7 +37,7 @@ const AccountInformation = () => {
       password: '**********',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: () => {
       setEditing(null);
       setShowAlert({ message: 'Cập nhật thông tin thành công!', type: 'success' });
       setTimeout(() => setShowAlert(null), 3000);
@@ -35,7 +45,7 @@ const AccountInformation = () => {
   });
 
   const theme = useTheme();
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const handleButtonClick = (id: number) => {
@@ -70,20 +80,28 @@ const AccountInformation = () => {
             value={formik.values[field as keyof typeof formik.values]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched[field as keyof typeof formik.touched] && Boolean(formik.errors[field as keyof typeof formik.errors])}
-            helperText={formik.touched[field as keyof typeof formik.touched] && formik.errors[field as keyof typeof formik.errors]}
+            error={
+              formik.touched[field as keyof typeof formik.touched] &&
+              Boolean(formik.errors[field as keyof typeof formik.errors])
+            }
+            helperText={
+              formik.touched[field as keyof typeof formik.touched] &&
+              formik.errors[field as keyof typeof formik.errors]
+            }
             onKeyDown={handleKeyDown}
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
           />
-          <IconButton onClick={formik.handleSubmit}>
+          <IconButton onClick={() => formik.handleSubmit()}>
             <IconCheck />
           </IconButton>
         </>
       ) : (
         <>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {field === 'password' ? '**********' : formik.values[field as keyof typeof formik.values]}
+            {field === 'password'
+              ? '**********'
+              : formik.values[field as keyof typeof formik.values]}
           </Typography>
           {field !== 'password' && (
             <IconButton onClick={() => handleEditClick(field)}>
@@ -117,7 +135,12 @@ const AccountInformation = () => {
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
             {formik.values.password}
           </Typography>
-          <Button onClick={() => handleEditClick('password')} variant="outlined" color="primary" startIcon={<IconLock />}>
+          <Button
+            onClick={() => handleEditClick('password')}
+            variant="outlined"
+            color="primary"
+            startIcon={<IconLock />}
+          >
             Đổi mật khẩu
           </Button>
         </Box>
@@ -133,9 +156,9 @@ const AccountInformation = () => {
             zIndex: theme.zIndex.snackbar,
             backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
             color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
-            borderRadius: 1, 
-            padding: 2, 
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: 1,
+            padding: 2,
             width: 300,
           }}
         >

@@ -68,7 +68,7 @@ const Search = () => {
           <Stack direction="row" spacing={2} alignItems="center">
             <TextField
               id="tb-search"
-              placeholder="Search here"
+              placeholder="Tìm kiếm ..."
               fullWidth
               onChange={(e) => setSerach(e.target.value)}
               inputProps={{ 'aria-label': 'Search here' }}
@@ -81,7 +81,7 @@ const Search = () => {
         <Divider />
         <Box p={2} sx={{ maxHeight: '60vh', overflow: 'auto' }}>
           <Typography variant="h5" p={1}>
-            Quick Page Links
+            Tìm kiếm trang ...
           </Typography>
           <Box>
             <List component="nav">
@@ -90,11 +90,7 @@ const Search = () => {
                   <Box key={menu.title ? menu.id : menu.subheader}>
                     {menu.title && !menu.children ? (
                       <ListItemButton sx={{ py: 0.5, px: 1 }} to={menu?.href} component={Link}>
-                        <ListItemText
-                          primary={menu.title}
-                          secondary={menu?.href}
-                          sx={{ my: 0, py: 0.5 }}
-                        />
+                        <ListItemText primary={menu.title} sx={{ my: 0, py: 0.5 }} />
                       </ListItemButton>
                     ) : (
                       ''
@@ -109,11 +105,7 @@ const Search = () => {
                               component={Link}
                               key={child.title ? child.id : menu.subheader}
                             >
-                              <ListItemText
-                                primary={child.title}
-                                secondary={child.href}
-                                sx={{ my: 0, py: 0.5 }}
-                              />
+                              <ListItemText primary={child.title} sx={{ my: 0, py: 0.5 }} />
                             </ListItemButton>
                           );
                         })}

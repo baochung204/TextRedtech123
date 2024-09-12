@@ -1,4 +1,3 @@
-import React from 'react';
 import FeaturesTitle from './FeaturesTitle';
 import { Typography, Grid, Container, Box, Button } from '@mui/material';
 import AnimationFadeIn from '../animation/Animation';
@@ -29,7 +28,8 @@ const Features = () => {
                   Chữ thành lời
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  Công cụ tạo tiếng nói nhân tạo AI từ văn bản chỉ trong tích tắc, mở ra một kỷ nguyên mới về tổng hợp tiếng nói chất lượng cao, giàu cảm xúc như con người.
+                  Công cụ tạo tiếng nói nhân tạo AI từ văn bản chỉ trong tích tắc, mở ra một kỷ
+                  nguyên mới về tổng hợp tiếng nói chất lượng cao, giàu cảm xúc như con người.
                 </Typography>
                 <Box mt={2}>
                   <Button variant="contained" color="primary" sx={{ mr: 2, borderRadius: '8px' }}>
@@ -49,7 +49,8 @@ const Features = () => {
                   Lồng tiếng AI
                 </Typography>
                 <Typography variant="body1">
-                  Giải pháp lồng tiếng bằng công nghệ tiếng nói và dịch máy AI tiên tiến, giúp tạo ra sản phẩm lồng tiếng chất lượng cao một cách nhanh chóng và hiệu quả chi phí.
+                  Giải pháp lồng tiếng bằng công nghệ tiếng nói và dịch máy AI tiên tiến, giúp tạo
+                  ra sản phẩm lồng tiếng chất lượng cao một cách nhanh chóng và hiệu quả chi phí.
                 </Typography>
                 <Box mt={2}>
                   <Button variant="contained" color="primary" sx={{ mr: 2, borderRadius: '8px' }}>
@@ -87,7 +88,8 @@ const Features = () => {
                   AIVoice API
                 </Typography>
                 <Typography variant="body1">
-                  Nền tảng tích hợp nhanh chóng giọng nói nhân tạo và các dịch vụ tiếng nói vào hệ thống của bạn mà không cần đầu tư nhiều thời gian và nguồn lực phát triển từ đầu.
+                  Nền tảng tích hợp nhanh chóng giọng nói nhân tạo và các dịch vụ tiếng nói vào hệ
+                  thống của bạn mà không cần đầu tư nhiều thời gian và nguồn lực phát triển từ đầu.
                 </Typography>
                 <Box mt={2}>
                   <Button variant="contained" color="primary" sx={{ mr: 2, borderRadius: '8px' }}>
@@ -99,7 +101,6 @@ const Features = () => {
                 </Box>
               </Grid>
             </Grid>
-
           </Box>
         </AnimationFadeIn>
       </Container>

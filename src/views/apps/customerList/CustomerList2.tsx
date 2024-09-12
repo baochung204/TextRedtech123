@@ -42,8 +42,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const CustomerList2 = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  const [filterColumn, setFilterColumn] = React.useState('');
-  const [searchText, setSearchText] = React.useState('');
+
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
@@ -208,12 +207,12 @@ const CustomerList2 = () => {
         <DialogContent>
           <PopupAddList2 /> {/* Gọi component PopupAdd */}
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
           <Button onClick={handleClosePopup} variant="contained" color="primary">
             Xác nhận
           </Button>
-        </DialogActions>
+        </DialogActions> */}
       </Dialog>
     </div>
   );

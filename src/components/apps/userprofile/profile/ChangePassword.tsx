@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, Alert, AlertTitle, IconButton, InputAdornment, useTheme } from '@mui/material';
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Alert,
+  AlertTitle,
+  IconButton,
+  InputAdornment,
+  useTheme,
+} from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State để mở/tắt mật khẩu
-  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(
+    null,
+  );
   const [passwordMatchError, setPasswordMatchError] = useState(false); // State để hiển thị lỗi khớp mật khẩu
   const theme = useTheme();
-  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (newPassword !== confirmNewPassword) {
@@ -67,7 +77,7 @@ const ChangePassword = () => {
           sx={{
             mb: 2,
             input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
-            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }
+            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
           }}
           InputProps={{
             endAdornment: (
@@ -88,7 +98,7 @@ const ChangePassword = () => {
           sx={{
             mb: 2,
             input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
-            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }
+            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
           }}
           InputProps={{
             endAdornment: (
@@ -110,7 +120,7 @@ const ChangePassword = () => {
           helperText={passwordMatchError ? 'Mật khẩu không khớp' : ''}
           sx={{
             input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
-            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' }
+            label: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
           }}
           InputProps={{
             endAdornment: (
@@ -139,17 +149,16 @@ const ChangePassword = () => {
             zIndex: theme.zIndex.snackbar,
             backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
             color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
-            borderRadius: 1, 
-            padding: 2, 
-            width: 300, 
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: 1,
+            padding: 2,
+            width: 300,
           }}
         >
           <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
           {showAlert.message}
         </Alert>
       )}
-
     </Box>
   );
 };

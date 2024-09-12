@@ -16,6 +16,7 @@ export interface TableType {
 }
 
 export interface EnTableType {
+  name: any;
   id: string;
   amount: number; // số tiền
   paymentMethod: string; // phương thức thanh toán
@@ -28,7 +29,7 @@ export interface EnTableType {
 }
 
 export interface CustomerListTable {
-  id: number
+  id: number;
   assistant: string;
   name: string; // họ tên
   email: string; // email
@@ -38,12 +39,12 @@ export interface CustomerListTable {
   electronics: string;
   image: string;
   createdAt: string;
-  orderValue:string;
+  orderValue: string;
   channel: string;
   address: string;
   orderInfo: string;
   note: string;
-  imgsrc?: string
+  imgsrc?: string;
 }
 const DataRowCustomerTable: CustomerListTable[] = [
   {
@@ -101,7 +102,8 @@ const DataRowCustomerTable: CustomerListTable[] = [
     orderInfo: 'Đơn hàng B',
     note: 'Ghi chú B',
     imgsrc: img2,
-  },{
+  },
+  {
     id: '5',
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
@@ -128,7 +130,8 @@ const DataRowCustomerTable: CustomerListTable[] = [
     orderInfo: 'Đơn hàng B',
     note: 'Ghi chú B',
     imgsrc: img2,
-  },{
+  },
+  {
     id: '7',
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',

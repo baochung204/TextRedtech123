@@ -110,7 +110,7 @@ const CustomerTable3 = () => {
             {paginatedRows.map((row) => (
               <TableRow>
                 <TableCell>
-                  <Typography color="textSecondary">1</Typography>
+                  <Typography color="textSecondary">{row.id}</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>

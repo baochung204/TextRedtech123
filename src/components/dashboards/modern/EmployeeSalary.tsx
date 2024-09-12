@@ -76,6 +76,7 @@ const EmployeeSalary = () => {
       dataItem1="$36,358"
       dataLabel2="Lợi nhuận"
       dataItem2="$5,296"
+      action={undefined}
     >
       <>
         <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="280px" />

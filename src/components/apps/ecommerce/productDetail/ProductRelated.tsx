@@ -1,10 +1,10 @@
+import { Box, CardContent, Grid, Rating, Skeleton, Stack, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
-import { Box, Stack, Typography, CardContent, Grid, Rating, Skeleton } from '@mui/material';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { Link } from 'react-router-dom';
-import BlankCard from '../../../shared/BlankCard';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { ProductType } from 'src/types/apps/eCommerce';
+import BlankCard from '../../../shared/BlankCard';
 
 const ProductRelated = () => {
   const dispatch = useDispatch();
@@ -32,13 +32,9 @@ const ProductRelated = () => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
-    
+
     return () => clearTimeout(timer);
   }, []);
-
-  const convertToVND = (amount: number, rate: number = 24000) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount * rate);
-  };
 
   return (
     <Box>
@@ -52,7 +48,12 @@ const ProductRelated = () => {
             <BlankCard sx={{ p: 0 }} className="hoverCard">
               <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
                 {isLoading ? (
-                  <Skeleton variant="rectangular" animation="wave" width="100%" height={270}></Skeleton>
+                  <Skeleton
+                    variant="rectangular"
+                    animation="wave"
+                    width="100%"
+                    height={270}
+                  ></Skeleton>
                 ) : (
                   <img src={product.photo} alt="img" width="100%" />
                 )}
@@ -61,9 +62,9 @@ const ProductRelated = () => {
                 <Typography fontWeight={600}>{product.title}</Typography>
                 <Stack direction="column" spacing={1} mt={1}>
                   <Stack direction="row" alignItems="center" justifyContent="space-between">
-                    <Typography variant="h5">{convertToVND(product.price)}</Typography>
+                    <Typography variant="h5">{product.price.toLocaleString()} point</Typography>
                     <Typography color={'GrayText'} ml={1} sx={{ textDecoration: 'line-through' }}>
-                      {convertToVND(product.salesPrice)}
+                      {product.salesPrice.toLocaleString()} point
                     </Typography>
                   </Stack>
                   <Rating name="read-only" size="small" value={product.rating} readOnly />
