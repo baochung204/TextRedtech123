@@ -118,7 +118,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     items: '5',
     imgsrc: img1,
-    name: 'Sunil Joshi',
+    name: 'Chatbot Marketing',
     total: '550,000',
     tags: 'đồ chơi',
     totalSales: '500,000',
@@ -127,7 +127,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     items: '1',
     imgsrc: img2,
-    name: 'John Deo',
+    name: 'ChatAI',
     total: '45,000',
     tags: 'quần áo',
     totalSales: '40,000',
@@ -136,7 +136,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     items: '3',
     imgsrc: img3,
-    name: 'Mily Peter',
+    name: 'ChatOpenAi',
     total: '57,000',
     tags: 'phụ kiện',
     totalSales: '50,000',
@@ -145,7 +145,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     items: '11',
     imgsrc: img4,
-    name: 'Andrew McDownland',
+    name: 'ChatBot Chicken',
     total: '457,000',
     tags: 'di động',
     totalSales: '450,000',
@@ -154,7 +154,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     items: '4',
     imgsrc: img5,
-    name: 'Christopher Jamil',
+    name: 'SaleBot',
     total: '120,000',
     tags: 'đời sống',
     totalSales: '110,000',
@@ -163,7 +163,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     items: '1',
     imgsrc: img2,
-    name: 'John Deo',
+    name: 'GameBot',
     total: '45,000',
     tags: 'điện tử',
     totalSales: '40,000',
@@ -172,7 +172,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     items: '3',
     imgsrc: img3,
-    name: 'Mily Peter',
+    name: 'LifeBot',
     total: '57,000',
     tags: 'điện tử',
     totalSales: '50,000',
@@ -181,7 +181,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     items: '11',
     imgsrc: img4,
-    name: 'Andrew McDownland',
+    name: 'ChatBot BĐS',
     total: '457,000',
     tags: 'điện tử',
     totalSales: '450,000',
@@ -190,7 +190,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     items: '4',
     imgsrc: img5,
-    name: 'Christopher Jamil',
+    name: 'ChatBot BĐS',
     total: '120,000',
     tags: 'điện tử',
     totalSales: '110,000',
@@ -199,7 +199,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     items: '5',
     imgsrc: img1,
-    name: 'Sunil Joshi',
+    name: 'ChatBot BĐS',
     total: '550,000',
     tags: 'thể thao',
     totalSales: '530,000',
@@ -208,7 +208,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     items: '11',
     imgsrc: img4,
-    name: 'Andrew McDownland',
+    name: 'ChatBot Tỉ số bóng đá',
     total: '457,000',
     tags: 'thể thao',
     totalSales: '450,000',
@@ -217,9 +217,9 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     items: '4',
     imgsrc: img5,
-    name: 'Christopher Jamil',
+    name: 'ChatBot Y tế',
     total: '120,000',
-    tags: 'thể thao',
+    tags: 'đời sống',
     totalSales: '100,000',
   },
 ].sort((a, b) => (a.name < b.name ? -1 : 1));
@@ -329,8 +329,6 @@ const PaginationTable = () => {
       {/* Phần bên trái */}
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <ADDDialog/>
-
-        
         <EnhancedTableToolbar
           numSelected={selected.length}
           search={search}
@@ -349,7 +347,7 @@ const PaginationTable = () => {
           id="column-filter"
           size="small"
           value={1} // Setting the first value as default
-          sx={{ marginLeft: '20px' }}
+          sx={{ marginLeft: '10px' }}
         >
           <MenuItem value={1}>Sắp xếp</MenuItem>
         </CustomSelect>
@@ -376,13 +374,13 @@ const PaginationTable = () => {
                     <Typography variant="h6">Tên sản phẩm</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Giá niêm yết</Typography>
+                    <Typography variant="h6">Tags</Typography>
                   </TableCell>
                   <TableCell>
                     <Typography variant="h6">Giá khuyến mãi</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Tags</Typography>
+                    <Typography variant="h6">Giá niêm yết</Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -426,14 +424,35 @@ const PaginationTable = () => {
                     </TableCell>
                     <TableCell>
                       <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.total}
+                        {row.total}{" "}
+                      <Typography 
+                        color="textSecondary"
+                        variant="h6" 
+                        fontWeight="400" 
+                        fontStyle="italic" 
+                        component="span" 
+                        display="inline"
+                      >
+                        point
+                      </Typography>
                       </Typography>
                     </TableCell>
 
                     <TableCell>
                     <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.totalSales}
+                      {row.totalSales}{" "}
+                      <Typography 
+                        color="textSecondary" 
+                        variant="h6" 
+                        fontWeight="400" 
+                        fontStyle="italic" 
+                        component="span" 
+                        display="inline"
+                      >
+                        point
                       </Typography>
+                    </Typography>
+
                     </TableCell>
 
                   </TableRow>

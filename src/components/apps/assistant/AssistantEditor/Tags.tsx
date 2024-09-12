@@ -48,8 +48,8 @@ const Tags = () => {
       renderInput={(params) => (
         <CustomTextField
           {...params}
-          placeholder="Favorites"
-          aria-label="Favorites"
+          placeholder="Tags"
+          aria-label="tags"
           onKeyDown={handleKeyDown} // Bắt sự kiện khi nhấn Enter
         />
       )}

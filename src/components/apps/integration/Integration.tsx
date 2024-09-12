@@ -13,7 +13,7 @@ import {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import React, { useState } from 'react';
-  import BlankCard from 'src/components/shared/BlankCard';
+  import BlankCard from './BlankCard';
 
   
 
@@ -113,7 +113,7 @@ const rows: Assistant[] = [
     id: 'ORD - 0124060',
     model: 'GPT-3',
     imgsrc: img4,
-    name: 'Andrew McDownland',
+    name: 'Chat Room',
     connect: '457,000',
     status: 'Completed',
     date: '10 Jun, 2021 04:12:29',
@@ -190,7 +190,7 @@ const Integration = () => {
                           {profile.id}
                       </Typography>
                       </Box>
-                      <Box ml="auto">
+                      {/* <Box ml="auto">
                         
                       {profile.isConnected ? (
                           <Button
@@ -209,7 +209,7 @@ const Integration = () => {
                           Kết nối
                           </Button>
                       )}
-                      </Box>
+                      </Box> */}
                   </Stack>
                   </CardContent>
               </BlankCard>
