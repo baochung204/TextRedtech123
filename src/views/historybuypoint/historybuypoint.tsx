@@ -2,7 +2,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { alpha } from '@mui/material/styles';
 import {
   Box,
   Table,
@@ -18,25 +17,19 @@ import {
   // @ts-ignore
   Paper,
   IconButton,
-  Tooltip,
-  FormControlLabel,
-  Typography,
   Avatar,
-  AvatarGroup,
-  Badge,
-  Stack,
   Button,
+  Typography,
+  Stack,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 import ParentCard from 'src/components/shared/ParentCard';
-import { IconTrash, IconFilter } from '@tabler/icons-react';
-import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import BlankCard from '../../components/shared/BlankCard';
 import { format } from 'date-fns';
+import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
 const BCrumb = [
   {
@@ -86,7 +79,7 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
 
 interface HeadCell {
   disablePadding: boolean;
-  id: any;
+  id: string;
   label: string;
   numeric: boolean;
 }
@@ -149,7 +142,7 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
 }
-const getStatusTextAndColor = (status) => {
+const getStatusTextAndColor = (status: any) => {
   switch (status) {
     case 1:
       return (
@@ -173,7 +166,7 @@ const getStatusTextAndColor = (status) => {
       return;
   }
 };
-const getInvoiceTextAndColor = (status) => {
+const getInvoiceTextAndColor = (status: any) => {
   switch (status) {
     case 1:
       return <Button color="success">Tải về</Button>;
@@ -205,7 +198,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              onClick={createSortHandler(headCell.id as string)}
             >
               <Typography variant="subtitle1" fontWeight="700">
                 {headCell.label}
@@ -223,16 +216,17 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
+// interface EnhancedTableToolbarProps {
+//   numSelected: number;
+// }
 
 const HistoryBuyPoint = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -284,11 +278,9 @@ const HistoryBuyPoint = () => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDense(event.target.checked);
+  // };
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -317,7 +309,7 @@ const HistoryBuyPoint = () => {
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
+                  .map((row: any) => {
                     // const isItemSelected = isSelected(row.name);
                     // const labelId = `enhanced-table-checkbox-${index}`;
 

@@ -1,27 +1,27 @@
-import { useTheme, Theme } from '@mui/material/styles';
+import React, { useState } from 'react';
 import {
-  Alert,
   Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControl,
-  Grid,
-  Input,
-  MenuItem,
-  Select,
-  Stack,
+  Stepper,
   Step,
   StepLabel,
-  Stepper,
+  Button,
   Typography,
+  FormControl,
+  Select,
+  MenuItem,
+  Input,
+  Grid,
+  Stack,
+  Alert,
+  Checkbox,
+  Container,
 } from '@mui/material';
-import { useFormik } from 'formik';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import { Link } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const steps = [
@@ -61,7 +61,7 @@ const CompanyAffiliate = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set<number>());
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const theme: Theme = useTheme();
+  const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
   const [fileNameURL, setFileNameURL] = useState<string>('');
   const [fileName, setFileName] = useState<string>('');
@@ -78,7 +78,7 @@ const CompanyAffiliate = () => {
       bank: '',
       branch: '',
       fileName: '',
-      fileNameURL: '',
+      fileNameURL: ''
     },
     validationSchema: validationSchemas[activeStep],
     validateOnChange: false,
@@ -102,14 +102,8 @@ const CompanyAffiliate = () => {
     return numericValue;
   }
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const { id, value, type } = e.target;
-    const checked =
-      (e.target as HTMLInputElement).type === 'checkbox'
-        ? (e.target as HTMLInputElement).checked
-        : undefined;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value, checked, type } = e.target;
     let filteredValue = value;
 
     if (id === 'taxCode') {
@@ -126,10 +120,7 @@ const CompanyAffiliate = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const validTypes = [
-        'application/pdf',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      ];
+      const validTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       if (!validTypes.includes(file.type)) {
         alert('File không hợp lệ. Vui lòng tải lên file PDF hoặc DOCX.');
         return;
@@ -181,7 +172,7 @@ const CompanyAffiliate = () => {
                 overflowY: 'scroll',
                 padding: '16px',
                 borderRadius: '8px',
-                marginTop: '20px',
+                marginTop: '20px'
               }}
             >
               <h3>MỤC I. ĐỐI TÁC</h3>
@@ -617,8 +608,7 @@ const CompanyAffiliate = () => {
           <Box>
             <Alert severity="warning" sx={{ marginTop: '30px', fontWeight: 'bold' }}>
               Chú ý: Nội dung đối tác điền dưới đây sẽ được sử dụng làm thông tin trong hợp đồng hợp
-              tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp &
-              Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
+              tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp & Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
             </Alert>
             <Box
               sx={{
@@ -686,6 +676,8 @@ const CompanyAffiliate = () => {
                     helperText={isSubmitting && formik.errors.address}
                   />
                 </Grid>
+
+
               </Grid>
             </Box>
             <Box
@@ -766,6 +758,7 @@ const CompanyAffiliate = () => {
                     )}
                   </FormControl>
                 </Grid>
+
               </Grid>
             </Box>
           </Box>
@@ -943,8 +936,8 @@ const CompanyAffiliate = () => {
       <Box mt={4}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
-            const stepProps: { completed?: boolean } = {};
-            const labelProps: { optional?: React.ReactNode } = {};
+            const stepProps = {};
+            const labelProps = {};
             if (isStepSkipped(index)) {
               stepProps.completed = false;
             }
@@ -996,8 +989,10 @@ const CompanyAffiliate = () => {
                 }}
                 variant="contained"
                 color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
+                component={Link}
+                to={activeStep === (steps.length - 1) && "/apps/pending"}
               >
-                {activeStep === steps.length - 1 ? 'Kết thúc' : 'Tiếp tục'}
+                {activeStep === steps.length - 1 ? 'Hoàn thành' : 'Tiếp tục'}
               </Button>
             </Box>
           </Box>

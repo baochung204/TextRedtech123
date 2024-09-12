@@ -28,7 +28,6 @@ const Cart = () => {
     setAnchorEl(null);
   };
 
-  // Hàm xử lý sự kiện đóng Popover khi di chuột ra ngoài
   const handlePopoverMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
     const relatedTarget = event.relatedTarget as HTMLElement;
     if (!relatedTarget.closest('.MuiPopover-paper')) {

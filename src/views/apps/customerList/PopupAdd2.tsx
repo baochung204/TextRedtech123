@@ -196,7 +196,8 @@ const OrderTableList = () => {
   const [orderBy, setOrderBy] = useState<any>('id');
   const [selected, setSelected] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
-  const [dense, setDense] = useState(false);
+  // const [dense, setDense] = useState(false);
+  const [dense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [search, setSearch] = useState('');
   const [rows, setRows] = useState(orders);

@@ -37,7 +37,8 @@ const CustomerListOrder = () => {
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value, setValue] = React.useState('1');
+  const [value] = React.useState('1');
+  // const [value, setValue] = React.useState('1');
 
   // Function mở popup
   const handleOpenPopup = () => {
