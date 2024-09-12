@@ -1,19 +1,8 @@
 import React from 'react';
-import {
-  Box,
-  Theme,
-  useMediaQuery,
-  Typography,
-  Stack,
-  Avatar,
-  Grid,
-  Alert,
-  IconButton,
-  styled,
-} from '@mui/material';
+import { Box, Theme, useMediaQuery, Typography, Stack, Alert, styled } from '@mui/material';
 import { ChatsType } from 'src/types/apps/chat';
 import { uniq, flatten } from 'lodash';
-import { IconDownload } from '@tabler/icons-react';
+
 import StarIcon from '@mui/icons-material/Star';
 
 interface chatType {
