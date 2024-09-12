@@ -152,7 +152,7 @@ const GerChart = () => {
     //   {/* end breadcrumb */}
 
     // </PageContainer>
-    <DashboardCard sx={{ pt: 0 }}>
+    <DashboardCard>
       <Box sx={{ marginTop: '0px' }}>
         <Typography variant="h4">Báo cáo công việc</Typography>
         <Typography variant="subtitle2" color="textSecondary" mb={2}>
