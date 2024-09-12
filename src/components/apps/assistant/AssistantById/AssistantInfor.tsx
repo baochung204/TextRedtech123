@@ -328,6 +328,7 @@ const AssistantInfor = () => {
                   zIndex: '1',
                   position: 'relative',
                   mt: { xs: 1, sm: 3 },
+                  mb: 0.5,
                 }}
               >
                 <Box
@@ -376,7 +377,7 @@ const AssistantInfor = () => {
           </Grid>
           <Grid item xs={12} sm={6} lg={4}>
             <DashboardCard title="Thông tin trợ lý">
-              <Grid container spacing={1.8}>
+              {/* <Grid container spacing={1.8}>
                 {[
                   { label: 'Ngày sinh', value: '11/08/2024' },
                   { label: 'Giới tính', value: 'Nữ' },
@@ -400,6 +401,68 @@ const AssistantInfor = () => {
                     </Grid>
                   </React.Fragment>
                 ))}
+              </Grid> */}
+              <Grid container>
+                <Grid container>
+                  <Grid item xs={12} sm={4}>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      Ngày sinh
+                    </CustomFormLabel>
+                  </Grid>
+                  <Grid item xs={12} sm={7}>
+                    <Typography>11/08/2024</Typography>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={12} sm={4}>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      Giới tính
+                    </CustomFormLabel>
+                  </Grid>
+                  <Grid item xs={12} sm={7}>
+                    <Typography>Nữ</Typography>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={12} sm={4}>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      Vị trí nghề nghiệp
+                    </CustomFormLabel>
+                  </Grid>
+                  <Grid item xs={12} sm={7}>
+                    <Typography>Đại học</Typography>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={12} sm={4}>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      Tính cách
+                    </CustomFormLabel>
+                  </Grid>
+                  <Grid item xs={12} sm={7}>
+                    <Typography>11/08/2024</Typography>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={12} sm={4}>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      Ngày sinh
+                    </CustomFormLabel>
+                  </Grid>
+                  <Grid item xs={12} sm={7}>
+                    <Typography>11/08/2024</Typography>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={12} sm={4}>
+                    <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      Ngày sinh
+                    </CustomFormLabel>
+                  </Grid>
+                  <Grid item xs={12} sm={7}>
+                    <Typography>11/08/2024</Typography>
+                  </Grid>
+                </Grid>
               </Grid>
             </DashboardCard>
           </Grid>
