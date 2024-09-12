@@ -49,7 +49,8 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Quản lý Trợ lý',
         icon: IconPoint,
-        href: '/apps/list-assistant',
+        // href: '/apps/list-assistant',
+        href: '/assistant/list'
       },
     ],
   },
