@@ -28,7 +28,8 @@ const Tags = () => {
       multiple
       fullWidth
       id="tags-outlined"
-      size="small"
+      size="medium"
+      variant="outlined"
       options={top100Films}
       getOptionLabel={(option) => option.title}
       value={tags}
@@ -48,8 +49,8 @@ const Tags = () => {
       renderInput={(params) => (
         <CustomTextField
           {...params}
-          placeholder="Favorites"
-          aria-label="Favorites"
+          placeholder="Tag . . ."
+          aria-label="Tag . . ."
           onKeyDown={handleKeyDown} // Bắt sự kiện khi nhấn Enter
         />
       )}

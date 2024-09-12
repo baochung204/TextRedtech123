@@ -13,15 +13,16 @@ import {
   FormControlLabel,
 } from '@mui/material';
 
-
+import { IconUser, IconPlus } from '@tabler/icons-react';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 const emails = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl'];
 
-const FunctionsDialog = () => {
+const SimpleDialog = () => {
   const [open, setOpen] = useState(false);
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
-
+  const [fileName, setFileName] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,7 +32,17 @@ const FunctionsDialog = () => {
     setOpen(false);
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFileName(event.target.files[0].name); // Cập nhật tên file
+    }
+  };
 
+  const handleAddAccount = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Mở hộp thoại chọn tệp
+    }
+  };
 
   const handleToggle = (email: string) => {
     setSelectedValues(prevSelectedValues =>
@@ -83,12 +94,32 @@ const FunctionsDialog = () => {
               <ListItemText primary={email} />
             </ListItem>
           ))}
+
+          <ListItem autoFocus button onClick={handleAddAccount}>
+            <ListItemAvatar>
+              <Avatar>
+                <IconPlus width={20} height={20} />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Thêm mới" />
+          </ListItem>
         </List>
       </Dialog>
 
-
+      {/* Hộp thoại upload file */}
+      <input
+        type="file"
+        style={{ display: 'none' }}
+        ref={fileInputRef}
+        onChange={handleFileChange}
+      />
+      {fileName && (
+        <Typography variant="subtitle1" component="div" mt={0} ml={-30}>
+          {fileName}
+        </Typography>
+      )}
     </>
   );
 };
 
-export default FunctionsDialog;
+export default SimpleDialog;

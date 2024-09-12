@@ -41,8 +41,8 @@ import { IconPlus } from '@tabler/icons-react';
 import Integration from './Integration';
 import Strategy from './Strategy';
 import StrategyDialog from './strategyDialog';
-import SimpleDialog from './searchDialog';
-import FunctionsDialog from './functionsDialog';
+import SimpleDialog from './dialog/searchDialog';
+import FunctionsDialog from './dialog/functionsDialog';
 function CustomThumbComponent(props: SliderValueLabelProps) {
   const { children, ...other } = props;
 
