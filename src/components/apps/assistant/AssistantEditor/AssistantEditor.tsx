@@ -33,7 +33,7 @@ import PageContainer from 'src/components/container/PageContainer';
 // import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
 import PersonIcon from '@mui/icons-material/Person';
 import { IconSend } from '@tabler/icons-react';
-import DateTime from './DateTime'
+import DateTime from './DateTime';
 import Checkboxes from './Tags';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import QuillEditor from './QuillEditor';
@@ -82,7 +82,6 @@ interface Message {
 }
 
 const AssistantEditor = () => {
-
   const [country, setCountry] = useState('1');
   const [language, setLanguage] = useState('1');
   const [model, setModel] = useState('1');
@@ -91,7 +90,6 @@ const AssistantEditor = () => {
   const [inputValue, setInputValue] = useState<string>('');
   // const [fileSearchName, setFileSearchName] = useState('');
   // const [fileFunctionsName, setFileFunctionsName] = useState('');
-  
 
   const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCountry(event.target.value as string); // Cập nhật state khi chọn
@@ -116,13 +114,15 @@ const AssistantEditor = () => {
   //   }
   // };
 
-
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages([...messages, { text: inputValue, sender: 'user' }]);
       setInputValue('');
       setTimeout(() => {
-        setMessages(prevMessages => [...prevMessages, { text: 'Đây là phản hồi từ bot.', sender: 'bot' }]);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: 'Đây là phản hồi từ bot.', sender: 'bot' },
+        ]);
       }, 1000);
     }
   };
@@ -148,207 +148,234 @@ const AssistantEditor = () => {
   return (
     <PageContainer title="Tạo Assistant" description="this is Custom Form page">
       <Box>
-      <Stack
-              direction={{ xs: 'column', sm: 'row' }}
-              spacing={2}
-              justifyContent="space-between"
-              mt={2}
-              mb={2}
-            >
-              <Stack spacing={1} direction="row">
-                
-              </Stack>
-              <Stack direction="row" spacing={1}>
-                <Button variant="contained" color="secondary">
-                  Thêm mới
-                </Button>
-               
-              </Stack>
-            </Stack>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          justifyContent="space-between"
+          mt={2}
+          mb={2}
+        >
+          <Stack spacing={1} direction="row"></Stack>
+          <Stack direction="row" spacing={1}>
+            <Button variant="contained" color="secondary">
+              Thêm mới
+            </Button>
+          </Stack>
+        </Stack>
         <Grid container spacing={3}>
           {/* Cột 1 */}
-          
-          <Grid item xs={12} sm={12} lg={4}>
-          <Paper elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}>
-          <Box sx={{height:'100%'}}>
-              {/* Circular Avatar Placeholder */}
-              <Box sx={{maxHeight: 'calc(72vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb:'20px' }}>
-                <label htmlFor="avatar-upload">
-                  <Avatar
-                    src={avatarPreview || ''}
-                    alt="avatar preview"
-                    sx={{
-                      width: { xs: 80, sm: 100, md: 120, lg: 150 },
-                      height: { xs: 80, sm: 100, md: 120, lg: 150 },
-                      margin: 'auto',
-                      fontSize: 50,
-                      backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
-                      border: '2px dashed #ccc',
-                      color: '#9e9e9e',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    {!avatarPreview && <PersonIcon fontSize="inherit" />}
-                  </Avatar>
-                </label>
-                {/* Hidden file input */}
-                <input
-                  id="avatar-upload"
-                  type="file"
-                  accept="image/*"
-                  hidden
-                  onChange={handleAvatarChange}
-                />
-              </Box>
-                    
-              <CustomFormLabel htmlFor="name" sx={{mt: 0}}>Tên</CustomFormLabel>
-              <CustomTextField size="small" id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
-              <Grid container item xs={12} sm={12} lg={12} spacing={2}>
-                <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Ngày sinh</CustomFormLabel>
-                  <DateTime />
-                </Grid>
-                <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel sx={{ mt: 3 }}  htmlFor="demo-simple-select">Trình độ học vẫn</CustomFormLabel>
-                  <CustomSelect
-                    size="small"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={level}
-                    onChange={handleLevel}
-                    fullWidth
-                  >
-                    <MenuItem value={1}>Tốt nghiệp cấp 3</MenuItem>
-                    <MenuItem value={2}>Đại học</MenuItem>
-                    <MenuItem value={3}>Trên đại học</MenuItem>
-                  </CustomSelect>
-                </Grid>
-              </Grid>
-              <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Chuyên môn</CustomFormLabel>
-              <Checkboxes />
-              
-              <Grid container item xs={12} sm={12} lg={12} spacing={2}>
-                <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel htmlFor="demo-simple-select">Quốc gia</CustomFormLabel>
-                  <CustomSelect
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={country}
-                    onChange={handleChangeCountry}
-                    fullWidth
-                  >
-                    <MenuItem value={1}>Việt Nam</MenuItem>
-                    <MenuItem value={2}>Trung Quốc</MenuItem>
-                    <MenuItem value={3}>Nhật</MenuItem>
-                  </CustomSelect>
-                </Grid>
-                <Grid item xs={12} sm={6} lg={6}>
-                  <CustomFormLabel htmlFor="demo-simple-select">Ngôn ngữ</CustomFormLabel>
-                  <CustomSelect
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={language}
-                    onChange={handleChangeLanguage}
-                    fullWidth
-                  >
-                    <MenuItem value={1}>Việt Nam</MenuItem>
-                    <MenuItem value={2}>Anh</MenuItem>
-                  </CustomSelect>
-                </Grid>
-              </Grid>
 
-              <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
-              <Grid container spacing={2}>
+          <Grid item xs={12} sm={12} lg={4}>
+            <Paper
+              elevation={3}
+              sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}
+            >
+              <Box sx={{ height: '100%' }}>
+                {/* Circular Avatar Placeholder */}
+                <Box
+                  sx={{
+                    maxHeight: 'calc(72vh - 120px)',
+                    textAlign: 'center',
+                    mt: { md: 2 },
+                    mb: '20px',
+                  }}
+                >
+                  <label htmlFor="avatar-upload">
+                    <Avatar
+                      src={avatarPreview || ''}
+                      alt="avatar preview"
+                      sx={{
+                        width: { xs: 80, sm: 100, md: 120, lg: 150 },
+                        height: { xs: 80, sm: 100, md: 120, lg: 150 },
+                        margin: 'auto',
+                        fontSize: 50,
+                        backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
+                        border: '2px dashed #ccc',
+                        color: '#9e9e9e',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {!avatarPreview && <PersonIcon fontSize="inherit" />}
+                    </Avatar>
+                  </label>
+                  {/* Hidden file input */}
+                  <input
+                    id="avatar-upload"
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={handleAvatarChange}
+                  />
+                </Box>
+
+                <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>
+                  Tên
+                </CustomFormLabel>
+                <CustomTextField
+                  size="small"
+                  id="name"
+                  placeholder="Nhập tên trợ lý mong muốn "
+                  variant="outlined"
+                  fullWidth
+                />
+                <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+                  <Grid item xs={12} sm={6} lg={6}>
+                    <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>
+                      Ngày sinh
+                    </CustomFormLabel>
+                    <DateTime />
+                  </Grid>
+                  <Grid item xs={12} sm={6} lg={6}>
+                    <CustomFormLabel sx={{ mt: 3 }} htmlFor="demo-simple-select">
+                      Trình độ học vẫn
+                    </CustomFormLabel>
+                    <CustomSelect
+                      size="small"
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={level}
+                      onChange={handleLevel}
+                      fullWidth
+                    >
+                      <MenuItem value={1}>Tốt nghiệp cấp 3</MenuItem>
+                      <MenuItem value={2}>Đại học</MenuItem>
+                      <MenuItem value={3}>Trên đại học</MenuItem>
+                    </CustomSelect>
+                  </Grid>
+                </Grid>
+                <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>
+                  Chuyên môn
+                </CustomFormLabel>
+                <Checkboxes />
+
+                <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+                  <Grid item xs={12} sm={6} lg={6}>
+                    <CustomFormLabel htmlFor="demo-simple-select">Quốc gia</CustomFormLabel>
+                    <CustomSelect
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={country}
+                      onChange={handleChangeCountry}
+                      fullWidth
+                    >
+                      <MenuItem value={1}>Việt Nam</MenuItem>
+                      <MenuItem value={2}>Trung Quốc</MenuItem>
+                      <MenuItem value={3}>Nhật</MenuItem>
+                    </CustomSelect>
+                  </Grid>
+                  <Grid item xs={12} sm={6} lg={6}>
+                    <CustomFormLabel htmlFor="demo-simple-select">Ngôn ngữ</CustomFormLabel>
+                    <CustomSelect
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={language}
+                      onChange={handleChangeLanguage}
+                      fullWidth
+                    >
+                      <MenuItem value={1}>Việt Nam</MenuItem>
+                      <MenuItem value={2}>Anh</MenuItem>
+                    </CustomSelect>
+                  </Grid>
+                </Grid>
+
+                <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 3 }}>
+                  <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} lg={10}>
-                    <Box display="flex" alignItems="center">
-                      <FacebookIcon fontSize='large' color="info" />
-                      <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
-                    </Box>
+                      <Box display="flex" alignItems="center">
+                        <FacebookIcon fontSize="large" color="info" />
+                        <Box fontWeight={600} ml={1}>
+                          Tích hợp Facebook
+                        </Box>
+                      </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} lg={2}>
                       <Tooltip title="Thêm">
                         <Fab size="small" color="secondary" aria-label="plus">
                           <IconPlus width={18} />
                         </Fab>
-                    </Tooltip>
+                      </Tooltip>
                     </Grid>
-              </Grid>
-              <Integration/>
+                  </Grid>
+                  <Integration />
+                </Paper>
+              </Box>
             </Paper>
-            </Box>
-            
-            
-            
-          </Paper>
           </Grid>
           {/* Cột 2 */}
-          <Grid item xs={12} sm={12} lg={4} >
-            <Paper elevation={3} sx={{ height: '46vh', overflowY: 'auto', px:2 }}>
-              <Box fontWeight={600} mt={2} mb={1}  htmlFor="demo-simple-select">Model</Box>
-                <CustomSelect
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={model}
-                  onChange={handleModel}
-                  fullWidth
-                >
-                  <MenuItem value={1}>GPT-3.5-TURBO</MenuItem>
-                  <MenuItem value={2}>GPT-4-MINI</MenuItem>
-                  <MenuItem value={3}>GPT-4-TURBO</MenuItem>
+          <Grid item xs={12} sm={12} lg={4}>
+            <Paper elevation={3} sx={{ height: '46vh', overflowY: 'auto', px: 2 }}>
+              <Box fontWeight={600} mt={2} mb={1}>
+                Model
+              </Box>
+              <CustomSelect
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={model}
+                onChange={handleModel}
+                fullWidth
+              >
+                <MenuItem value={1}>GPT-3.5-TURBO</MenuItem>
+                <MenuItem value={2}>GPT-4-MINI</MenuItem>
+                <MenuItem value={3}>GPT-4-TURBO</MenuItem>
               </CustomSelect>
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
               {/* <TextField minRows={3} multiline  id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth /> */}
-              <QuillEditor/>
+              <QuillEditor />
             </Paper>
             {/* tri thức */}
-            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6} lg={8.4}>
-                    <Box fontWeight={600}>Tri thức</Box>
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3.6}>
-                    <SimpleDialog/>
-                  </Grid>
+            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} lg={8.4}>
+                  <Box fontWeight={600}>Tri thức</Box>
                 </Grid>
-              
-              
+                <Grid item xs={12} sm={6} lg={3.6}>
+                  <SimpleDialog />
+                </Grid>
+              </Grid>
             </Paper>
             {/* Functions */}
-            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:2 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6} lg={8.4}>
-                    <Box fontWeight={600}>Functions</Box>
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3.6}>
-                    <FunctionsDialog/>
-                  </Grid>
-                </Grid>
-            </Paper>
-            <Paper elevation={3} sx={{ minHeight:'5%', p:2,mt:3 }}>
+            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
               <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6} lg={10}>
-                      <Box fontWeight={600}>Chiến lược</Box>
-                    </Grid>
-                    <Grid item xs={12} sm={6} lg={2}>
-                      <StrategyDialog/>
-                    </Grid>
-                    <Grid item xs={12} sm={6} lg={12}>
-                      {/* <Strategy/> */}
-                    </Grid>
+                <Grid item xs={12} sm={6} lg={8.4}>
+                  <Box fontWeight={600}>Functions</Box>
+                </Grid>
+                <Grid item xs={12} sm={6} lg={3.6}>
+                  <FunctionsDialog />
+                </Grid>
               </Grid>
-              
+            </Paper>
+            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 3 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} lg={10}>
+                  <Box fontWeight={600}>Chiến lược</Box>
+                </Grid>
+                <Grid item xs={12} sm={6} lg={2}>
+                  <StrategyDialog />
+                </Grid>
+                <Grid item xs={12} sm={6} lg={12}>
+                  {/* <Strategy/> */}
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
-            
-            <Paper elevation={3} sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper
+              elevation={3}
+              sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}
+            >
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
               <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(110vh - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
-                    <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>
+                    <ListItem
+                      key={index}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
+                      }}
+                    >
                       <ListItemText
                         primary={message.text}
                         sx={{
@@ -356,7 +383,7 @@ const AssistantEditor = () => {
                           color: message.sender === 'user' ? '#fff' : '#000',
                           borderRadius: '10px',
                           p: 1,
-                          maxWidth: '80%'
+                          maxWidth: '80%',
                         }}
                       />
                     </ListItem>
@@ -365,7 +392,6 @@ const AssistantEditor = () => {
               </Box>
               <Divider sx={{ my: 2 }} />
               <Box sx={{ display: 'flex' }}>
-               
                 <InputBase
                   id="msg-sent"
                   fullWidth
@@ -382,7 +408,6 @@ const AssistantEditor = () => {
                 </IconButton>
               </Box>
             </Paper>
-            
           </Grid>
         </Grid>
       </Box>
