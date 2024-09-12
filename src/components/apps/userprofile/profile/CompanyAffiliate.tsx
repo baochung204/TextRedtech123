@@ -676,7 +676,7 @@ const CompanyAffiliate = () => {
                     helperText={isSubmitting && formik.errors.address}
                   />
                 </Grid>
-                
+
 
               </Grid>
             </Box>
@@ -989,8 +989,10 @@ const CompanyAffiliate = () => {
                 }}
                 variant="contained"
                 color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
+                component={Link}
+                to={activeStep === (steps.length - 1) && "/apps/pending"}
               >
-                {activeStep === steps.length - 1 ? 'Kết thúc' : 'Tiếp tục'}
+                {activeStep === steps.length - 1 ? 'Hoàn thành' : 'Tiếp tục'}
               </Button>
             </Box>
           </Box>
