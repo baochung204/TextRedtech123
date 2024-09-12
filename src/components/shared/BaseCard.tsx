@@ -7,8 +7,8 @@ import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
 
 type Props = {
-  title: string;
-  children: JSX.Element | JSX.Element[];
+  title?: string;
+  children?: JSX.Element | JSX.Element[];
 };
 
 const BaseCard = ({ title, children }: Props) => {

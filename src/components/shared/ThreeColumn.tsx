@@ -3,14 +3,13 @@
 import React, { useState } from 'react';
 import { Button, Box, Drawer, useMediaQuery, Paper, Theme } from '@mui/material';
 
-
 const drawerWidth = 240;
 const secdrawerWidth = 320;
 
 type Props = {
-  middleChild: JSX.Element | string;
-  leftChild: JSX.Element | string;
-  rightChild: JSX.Element;
+  middleChild?: JSX.Element | string;
+  leftChild?: JSX.Element | string;
+  rightChild?: JSX.Element;
 };
 
 const ThreeColumn = ({ leftChild, middleChild, rightChild }: Props) => {

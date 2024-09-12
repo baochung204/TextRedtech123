@@ -7,7 +7,7 @@ import { AppState, useSelector } from 'src/store/Store';
 
 type Props = {
   className?: string;
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
   sx?: any;
 };
 
@@ -24,7 +24,7 @@ const BlankCard = ({ children, className, sx }: Props) => {
         border: !customizer.isCardShadow ? `1px solid ${borderColor}` : 'none',
         position: 'relative',
         paddingBottom: 6,
-        sx
+        sx,
       }}
       className={className}
       elevation={customizer.isCardShadow ? 9 : 0}
