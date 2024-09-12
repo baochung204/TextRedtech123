@@ -1,24 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Box,
-} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import PageContainer from 'src/components/container/PageContainer';
-import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
-import ChildCard from 'src/components/shared/ChildCard';
+// import PageContainer from 'src/components/container/PageContainer';
+// import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
+// import ChildCard from 'src/components/shared/ChildCard';
 const BCrumb = [
   {
     to: '/',
@@ -53,7 +44,7 @@ const Aflertdetail = ({ row }: any) => {
   return (
     <>
       {row.status == 1 ? (
-        <Button variant="contained" color="success" width="50%" onClick={handleClickOpen}>
+        <Button variant="contained" color="success" sx={{ width: '50%' }} onClick={handleClickOpen}>
           Chi tiết
         </Button>
       ) : (

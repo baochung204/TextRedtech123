@@ -31,6 +31,9 @@ const RecentTransactions = () => {
               paddingLeft: 0,
             },
           }}
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
         >
           <>
             {' '}
