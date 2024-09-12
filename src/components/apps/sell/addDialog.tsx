@@ -1,6 +1,6 @@
 import {Dialog, Button, DialogActions, DialogContent, DialogTitle, Box, Tooltip, Fab } from "@mui/material"
 import { IconPlus } from "@tabler/icons-react";
-import PopupAddList2 from "src/views/apps/customerList/PopupAddlist2"
+import PopupAddList2 from "./PopupAddlist2"
 import { useState } from 'react';
 import * as React from 'react';
 const AddDialog = () => {
@@ -27,18 +27,34 @@ const AddDialog = () => {
                 <IconPlus width={18} />
             </Fab>
             </Tooltip>
-        <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
-        <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
-        <DialogContent>
-          <PopupAddList2 /> {/* Gọi component PopupAdd */}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClosePopup}>Hủy</Button>
-          <Button onClick={handleClosePopup} variant="contained" color="primary">
-            Xác nhận
-          </Button>
-        </DialogActions>
-      </Dialog> 
+            <Dialog
+              open={isPopupOpen}
+              onClose={handleClosePopup}
+              maxWidth="lg"
+              sx={{
+                '& .MuiDialog-container': {
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
+                '& .MuiPaper-root': {
+                  width: '40%',
+                  maxWidth: 'none', // Giữ chiều rộng của Dialog
+                },
+              }}
+            >
+              <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
+              <DialogContent>
+                <PopupAddList2 /> {/* Gọi component PopupAdd */}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClosePopup}>Hủy</Button>
+                <Button onClick={handleClosePopup} variant="contained" color="primary">
+                  Xác nhận
+                </Button>
+              </DialogActions>
+            </Dialog>
+
         </Box>
         
     )
