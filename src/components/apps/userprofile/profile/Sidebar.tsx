@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab, Stack, Box } from '@mui/material';
+import { Tabs, Tab, Box } from '@mui/material';
 import { AccountCircle, Business, Email, Person, Security } from '@mui/icons-material'; // Import icons nếu cần
 import { IconLock } from '@tabler/icons-react';
 import { dispatch } from 'src/store/Store';
@@ -18,9 +18,9 @@ const SCROLLABLE_TAB = [
   { value: 'twofactorsecurity', icon: <Security />, label: 'Bảo mật 2 lớp' },
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    dispatch(setSelected(newValue))
+const Sidebar: React.FC<SidebarProps> = ({ selected }) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+    dispatch(setSelected(newValue));
   };
 
   return (
@@ -48,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
                 gap: 1,
                 justifyContent: 'flex-start',
                 textAlign: 'left',
-                paddingLeft: 0, 
+                paddingLeft: 0,
                 fontWeight: 'bold',
               }}
             >
@@ -58,16 +58,16 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
           }
           value={tab.value}
           sx={{
-            minHeight: 72, 
-            justifyContent: 'center', 
+            minHeight: 72,
+            justifyContent: 'center',
             alignItems: 'flex-start',
-            paddingLeft: 1, 
+            paddingLeft: 1,
             '&.Mui-selected': {
               color: 'primary.main',
               backgroundColor: 'action.hover',
             },
             '& .MuiTab-wrapper': {
-              justifyContent: 'flex-start', 
+              justifyContent: 'flex-start',
             },
           }}
         />

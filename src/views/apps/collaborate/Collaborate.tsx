@@ -77,7 +77,7 @@ const CollaboratePost = () => {
   const [value, setValue] = React.useState('1');
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   const [value2, setValue2] = React.useState<Dayjs | null>(null);
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
   const ProfileImage = styled(Box)(() => ({

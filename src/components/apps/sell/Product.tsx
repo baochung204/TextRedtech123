@@ -2,49 +2,50 @@
 // @ts-ignore
 import * as React from 'react';
 
-import { useTheme } from '@mui/material/styles';
 import {
-  Typography,
-  TableHead,
   Avatar,
-  Chip,
   Box,
+  Button,
+  Chip,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  Stack,
   Table,
   TableBody,
   TableCell,
+  TableContainer,
+  TableFooter,
+  TableHead,
   TablePagination,
   TableRow,
-  TableFooter,
-  IconButton,
-  TableContainer,
-  Stack,
-  MenuItem,
-  Button,
-  Tooltip,
-  Fab,
-  Toolbar,
   TextField,
-  InputAdornment,
+  Toolbar,
+  Tooltip,
+  Typography,
 } from '@mui/material';
+import { useTheme, alpha } from '@mui/material/styles';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
+import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
-import ParentCard from 'src/components/shared/ParentCard';
-import BlankCard from '../../../components/shared/BlankCard';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { IconFilter, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
-import ADDDialog from './AddDialog';
+import BlankCard from '../../../components/shared/BlankCard';
+// import ADDDialog from './AddDialog';
+import { ProductType } from 'src/types/apps/eCommerce';
+import { getProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import AddDialog from './addDialog';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -257,7 +258,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 </InputAdornment>
               ),
             }}
-            placeholder="Tìm kiếm ..."
+            placeholder="Search Product"
             size="small"
             onChange={handleSearch}
             value={search}
@@ -294,11 +295,13 @@ const BCrumb = [
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const [search, setSearch] = React.useState('');
+  // const [selected, setSelected] = React.useState<readonly string[]>([]);
+  const [selected] = React.useState<readonly string[]>([]);
 
+  const [search, setSearch] = React.useState('');
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filteredRows: ProductType[] = getProducts.filter((row) => {
+    const products = getProducts([]).payload as ProductType[];
+    const filteredRows: ProductType[] = products.filter((row) => {
       return row.title.toLowerCase().includes(event.target.value);
     });
     setSearch(event.target.value);
@@ -324,11 +327,9 @@ const PaginationTable = () => {
       {/* end breadcrumb */}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-
         {/* Phần bên trái */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <ADDDialog />
-
+          <AddDialog />
           <EnhancedTableToolbar
             numSelected={selected.length}
             search={search}
@@ -336,24 +337,20 @@ const PaginationTable = () => {
           />
         </Box>
 
-
-
         {/* Phần bên phải */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Button>Sửa đổi cột</Button>
-
 
           <CustomSelect
             labelId="column-filter"
             id="column-filter"
             size="small"
             value={1} // Setting the first value as default
-            sx={{ marginLeft: '20px' }}
+            sx={{ marginLeft: '10px' }}
           >
             <MenuItem value={1}>Sắp xếp</MenuItem>
           </CustomSelect>
         </Box>
-
       </Box>
 
       <BlankCard>
@@ -376,13 +373,13 @@ const PaginationTable = () => {
                   <Typography variant="h6">Tên sản phẩm</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Giá niêm yết</Typography>
+                  <Typography variant="h6">Tags</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="h6">Giá khuyến mãi</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Tags</Typography>
+                  <Typography variant="h6">Giá niêm yết</Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -406,7 +403,6 @@ const PaginationTable = () => {
                     </Typography>
                   </TableCell>
                   <TableCell>
-
                     <Chip
                       color={
                         row.tags === 'di động'
@@ -423,94 +419,40 @@ const PaginationTable = () => {
                       size="small"
                       label={row.tags}
                     />
-
                   </TableCell>
                   <TableCell>
                     <Typography color="textSecondary" variant="h6" fontWeight="400">
-                      ${row.total}
+                      {row.total}{' '}
+                      <Typography
+                        color="textSecondary"
+                        variant="h6"
+                        fontWeight="400"
+                        fontStyle="italic"
+                        component="span"
+                        display="inline"
+                      >
+                        point
+                      </Typography>
                     </Typography>
                   </TableCell>
 
                   <TableCell>
-
-                    <Typography variant="h6">Giá niêm yết</Typography>
+                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                      {row.totalSales}{' '}
+                      <Typography
+                        color="textSecondary"
+                        variant="h6"
+                        fontWeight="400"
+                        fontStyle="italic"
+                        component="span"
+                        display="inline"
+                      >
+                        point
+                      </Typography>
+                    </Typography>
                   </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : rows
-                ).map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      <Typography variant="subtitle2">{row.id}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                        
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                        <Typography variant="subtitle2" fontWeight="600">
-                          {row.name}
-                        </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        color={
-                          row.tags === 'di động'
-                            ? 'success'
-                            : row.tags === 'điện tử'
-                              ? 'warning'
-                              : row.tags === 'đời sống'
-                                ? 'error'
-                                : 'secondary'
-                        }
-                        sx={{
-                          borderRadius: '6px',
-                        }}
-                        size="small"
-                        label={row.tags}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        {row.total}{" "}
-                      <Typography 
-                        color="textSecondary"
-                        variant="h6" 
-                        fontWeight="400" 
-                        fontStyle="italic" 
-                        component="span" 
-                        display="inline"
-                      >
-                        point
-                      </Typography>
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell>
-                    <Typography color="textSecondary" variant="h6" fontWeight="400">
-                      {row.totalSales}{" "}
-                      <Typography 
-                        color="textSecondary" 
-                        variant="h6" 
-                        fontWeight="400" 
-                        fontStyle="italic" 
-                        component="span" 
-                        display="inline"
-                      >
-                        point
-                      </Typography>
-                    </Typography>
-
-                    </TableCell>
-
-                  </TableRow>
-                ))}
-
+              ))}
 
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
@@ -543,3 +485,6 @@ const PaginationTable = () => {
 };
 
 export default PaginationTable;
+function setRows(_filteredRows: ProductType[]) {
+  throw new Error('Function not implemented.');
+}

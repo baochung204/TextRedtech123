@@ -1,10 +1,10 @@
+import { Box, CardContent, Grid, Rating, Skeleton, Stack, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
-import { Box, Stack, Typography, CardContent, Grid, Rating, Skeleton } from '@mui/material';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { Link } from 'react-router-dom';
-import BlankCard from '../../../shared/BlankCard';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { ProductType } from 'src/types/apps/eCommerce';
+import BlankCard from '../../../shared/BlankCard';
 
 const ProductRelated = () => {
   const dispatch = useDispatch();
@@ -35,12 +35,6 @@ const ProductRelated = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  const convertToVND = (amount: number, rate: number = 24000) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
-      amount * rate,
-    );
-  };
 
   return (
     <Box>

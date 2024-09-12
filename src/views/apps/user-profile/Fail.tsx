@@ -1,9 +1,8 @@
-import { Avatar, Box, Button, Grid, styled, Typography } from '@mui/material';
-import userimg from 'src/assets/images/profile/user-1.jpg';
-import React from 'react';
-import fail from 'src/assets/images/certificate/failre.png';
-import { Link } from 'react-router-dom'; // Import useNavigate for navigation
 import { useTheme } from '@emotion/react';
+import { Avatar, Box, Button, Grid, styled, Typography } from '@mui/material';
+import { Link } from 'react-router-dom'; // Import useNavigate for navigation
+import fail from 'src/assets/images/certificate/failre.png';
+import userimg from 'src/assets/images/profile/user-1.jpg';
 
 const ProfileImage = styled(Box)(() => ({
   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -79,7 +78,7 @@ const Fail = () => {
                 <img src={fail} alt="Error Image" style={{ width: '200px', height: '170px' }} />
 
                 {/* Failure Message */}
-                <FailMessageWrapper theme={theme}>
+                <FailMessageWrapper>
                   <Typography
                     variant="h5"
                     sx={{

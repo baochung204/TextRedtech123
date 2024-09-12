@@ -9,7 +9,6 @@ import { AppState } from 'src/store/Store';
 type Props = {
   title?: string;
   subtitle?: string;
-
   action?: JSX.Element | any;
   footer?: JSX.Element;
   cardheading?: string | JSX.Element;

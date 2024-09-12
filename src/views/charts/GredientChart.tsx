@@ -1,22 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
-import PageContainer from '../../components/container/PageContainer';
-import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
+import Chart, { Props } from 'react-apexcharts';
 import ParentCard from '../../components/shared/ParentCard';
-import { Props } from 'react-apexcharts';
-
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Gradient Chart',
-  },
-];
 
 const GredientChart = () => {
   // chart color
@@ -117,7 +103,7 @@ const GredientChart = () => {
     //   {/* end breadcrumb */}
 
     // </PageContainer>
-    <ParentCard title="Gradient Chart">
+    <ParentCard title="Gradient Chart" description={''} children={undefined}>
       <Chart
         options={optionsgredientchart}
         series={seriesgredientchart}

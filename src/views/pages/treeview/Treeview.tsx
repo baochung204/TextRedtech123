@@ -3,12 +3,8 @@
 import React from 'react';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import { alpha, styled } from '@mui/material/styles';
-import { TreeView } from "@mui/x-tree-view/TreeView";
-import {
-  TreeItem,
-  treeItemClasses,
-  TreeItemProps
-} from "@mui/x-tree-view/TreeItem";
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import { TreeItem, treeItemClasses, TreeItemProps } from '@mui/x-tree-view/TreeItem';
 import { useSpring, animated } from 'react-spring';
 import { Collapse } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
@@ -92,7 +88,7 @@ const Treeview = () => {
       {/* breadcrumb */}
       <Breadcrumb title="Treeview" items={BCrumb} />
       {/* end breadcrumb */}
-      <ParentCard title="Treeview">
+      <ParentCard title="Treeview" description={''}>
         <ChildCard>
           <TreeView
             aria-label="customized"

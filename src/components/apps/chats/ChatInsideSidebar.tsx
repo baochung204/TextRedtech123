@@ -1,23 +1,8 @@
 import React from 'react';
 
-import {
-  Box,
-  Theme,
-  useMediaQuery,
-  Typography,
-  Stack,
-  Avatar,
-  Grid,
-  Alert,
-  IconButton,
-  styled,
-  Rating,
-} from '@mui/material';
+import { Box, Rating, Theme, Typography, useMediaQuery } from '@mui/material';
 
 import { ChatsType } from 'src/types/apps/chat';
-import { uniq, flatten } from 'lodash';
-
-import StarIcon from '@mui/icons-material/Star';
 
 interface chatType {
   isInSidebar?: boolean;
@@ -27,28 +12,10 @@ interface chatType {
 const drawerWidth = 320;
 
 // Thêm dữ liệu mẫu cho phần đánh giá
-const reviews = [
-  // { id: 1, reviewer: 'Nguyễn Văn Nam', rating: 5, comment: 'Sản phẩm tuyệt vời!' },
-  // { id: 2, reviewer: 'Hà Quang Dũng', rating: 4, comment: 'Tốt nhưng cần cải thiện.' },
-];
 
-const ChatInsideSidebar = ({ isInSidebar, chat }: chatType) => {
+const ChatInsideSidebar = ({ isInSidebar }: chatType) => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
   const [value, setValue] = React.useState<number | null>(0);
-
-  const totalAttachment = uniq(flatten(chat?.messages.map((item) => item.attachment))).length;
-  const totalMedia =
-    uniq(flatten(chat?.messages.map((item) => (item?.type === 'image' ? item.msg : null)))).length -
-    1;
-
-  const StyledStack = styled(Stack)(() => ({
-    '.showOnHover': {
-      display: 'none',
-    },
-    '&:hover .showOnHover': {
-      display: 'block',
-    },
-  }));
 
   return (
     <>

@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Select, MenuItem, Alert, AlertTitle, useTheme } from '@mui/material';
+import {
+  Box,
+  Typography,
+  IconButton,
+  TextField,
+  Select,
+  MenuItem,
+  Alert,
+  AlertTitle,
+  useTheme,
+} from '@mui/material';
 import { IconUser, IconEdit, IconCheck } from '@tabler/icons-react';
 import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
+import { SelectChangeEvent } from '@mui/material';
 const PersonalInformation = () => {
-  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
+  const theme = useTheme();
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
+    null,
+  );
   const [userInfo, setUserInfo] = useState({
     name: 'Ngô Quốc Toản',
     gender: 'Nam',
@@ -27,7 +39,7 @@ const PersonalInformation = () => {
     });
   };
 
-  const handleGenderChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+  const handleGenderChange = (e: SelectChangeEvent<string>) => {
     setUserInfo({
       ...userInfo,
       gender: e.target.value as string,
@@ -64,7 +76,9 @@ const PersonalInformation = () => {
             <DatePicker
               value={userInfo.dob}
               onChange={handleDateChange}
-              renderInput={(params) => <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />}
+              renderInput={(params) => (
+                <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />
+              )}
             />
           </LocalizationProvider>
         ) : field === 'gender' ? (
@@ -90,7 +104,9 @@ const PersonalInformation = () => {
       ) : (
         <>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {field === 'dob' ? userInfo.dob.toLocaleDateString() : userInfo[field as keyof typeof userInfo]}
+            {field === 'dob'
+              ? userInfo.dob.toLocaleDateString()
+              : String(userInfo[field as keyof typeof userInfo])}
           </Typography>
           <IconButton onClick={() => handleEditClick(field)}>
             <IconEdit />

@@ -33,12 +33,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Searchtable from 'src/components/apps/search/search';
-import SearchInput from 'src/components/apps/search/search';
 import pointimg from 'src/assets/images/icon.png/point.png';
+import SearchInput from 'src/components/apps/search/search';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
-import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
 // const BCrumb = [
 //   {
@@ -163,33 +161,9 @@ const getStatusTextAndColor = (status: any) => {
       return;
   }
 };
-const getInvoiceTextAndColor = (status: any) => {
-  switch (status) {
-    case 1:
-      return <Button color="success">Tải về</Button>;
-    case 2:
-      return <Typography color="#ff9800">Chờ xử lý</Typography>;
-    case 3:
-      return <Typography color="#f44336"> Không thành công</Typography>;
-    default:
-      return;
-  }
-};
-const getdetailTextAndColor = (status: any) => {
-  switch (status) {
-    case 1:
-      return <Button color="success">Chi tiết</Button>;
-    case 2:
-      return <Typography color="#ff9800"></Typography>;
-    case 3:
-      return <Typography color="#f44336"> </Typography>;
-    default:
-      return;
-  }
-};
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -223,10 +197,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
       </TableRow>
     </TableHead>
   );
-}
-
-interface EnhancedTableToolbarProps {
-  numSelected: number;
 }
 
 const Paymenthistory = () => {
@@ -286,21 +256,9 @@ const Paymenthistory = () => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  const [month, setMonth] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
@@ -385,7 +343,7 @@ const Paymenthistory = () => {
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
+                  .map((row: any) => {
                     // const isItemSelected = isSelected(row.name);
                     // const labelId = `enhanced-table-checkbox-${index}`;
 

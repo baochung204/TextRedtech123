@@ -1,28 +1,27 @@
-import * as React from 'react';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  InputAdornment,
+  Slide,
+} from '@mui/material';
+import Fab from '@mui/material/Fab';
 import MenuItem from '@mui/material/MenuItem';
-import DashboardCard from '../../../components/shared/DashboardCard';
-import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
-import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import CustomerTable from 'src/components/tables/CustomerTable';
+import Tooltip from '@mui/material/Tooltip';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import Tooltip from '@mui/material/Tooltip';
-import Fab from '@mui/material/Fab';
+import * as React from 'react';
 import { FaPlus, FaSearch } from 'react-icons/fa';
-import {
-  Grid,
-  Box,
-  InputAdornment,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Slide,
-} from '@mui/material';
+import CustomerTable from 'src/components/tables/CustomerTable';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
+import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import PopupAdd from './PopupAdd';
+import { TransitionProps } from '@mui/material/transitions';
 // import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 // import PopupAdd2 from './PopupAdd2';
 

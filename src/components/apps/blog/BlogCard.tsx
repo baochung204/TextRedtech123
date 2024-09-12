@@ -3,25 +3,23 @@
 import React, { useEffect } from 'react';
 
 // third-party
-import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'src/store/Store';
 import {
-  CardContent,
-  Stack,
   Avatar,
-  Typography,
+  Box,
+  CardContent,
   CardMedia,
   Chip,
   Grid,
-  Tooltip,
-  Box,
   Skeleton,
+  Stack,
+  Tooltip,
+  Typography,
 } from '@mui/material';
-import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
-import BlankCard from '../../shared/BlankCard';
+import { useDispatch } from 'src/store/Store';
 import { BlogPostType } from 'src/types/apps/blog';
+import BlankCard from '../../shared/BlankCard';
 
 interface Btype {
   post: BlogPostType;
@@ -30,7 +28,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+  const { coverImg, title, view, category, author }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')

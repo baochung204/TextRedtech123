@@ -1,28 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Chart from 'react-apexcharts';
-import { useTheme } from '@mui/material/styles';
 
 import { Props } from 'react-apexcharts';
 
-import { Dayjs } from 'dayjs';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { Box, MenuItem, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Dayjs } from 'dayjs';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Gradient Chart',
-  },
-];
 const monthsInVietnamese = [
   'Tháng 1',
   'Tháng 2',
@@ -38,10 +28,6 @@ const monthsInVietnamese = [
   'Tháng 12',
 ];
 const Affiliatedetail = () => {
-  // chart color
-  const theme = useTheme();
-  const primary = theme.palette.primary.main;
-
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -136,10 +122,6 @@ const Affiliatedetail = () => {
     },
   ];
   const [month, setMonth] = React.useState('1');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
 
   // chart color
 

@@ -1,24 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import {
-  Box,
-  CardContent,
-  Chip,
-  Paper,
-  Stack,
-  Typography,
-  LinearProgress,
-  Grid,
-  Card,
-  IconButton,
-  CardMedia,
-} from '@mui/material';
+import { Box, CardContent, Chip, LinearProgress, Paper, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import SavingsImg from '../../../assets/images/backgrounds/piggy.png';
-import { IconPlayerPlay, IconPlayerSkipBack, IconPlayerSkipForward } from '@tabler/icons-react';
-import img1 from 'src/assets/images/blog/blog-img5.jpg';
-import products from './../../../views/apps/admin/products/products';
 
 interface sellsData {
   product: string;

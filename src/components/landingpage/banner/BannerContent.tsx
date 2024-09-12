@@ -1,8 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { Typography, Box, Button, Stack, styled, useMediaQuery, Theme } from '@mui/material';
-import { IconRocket } from '@tabler/icons-react';
+import { Box, Button, Stack, styled, Theme, Typography, useMediaQuery } from '@mui/material';
 
 // third party
 
@@ -28,9 +26,7 @@ const BannerContent = () => {
         }}
       >
         <Typography variant="h6" display={'flex'} gap={1} mb={2}>
-          <Typography color={'secondary'}>
-            {/* <IconRocket size={'21'} /> */}
-          </Typography>{' '}
+          <Typography color={'secondary'}>{/* <IconRocket size={'21'} /> */}</Typography>{' '}
           {/* Kick start your project with */}
         </Typography>
 
