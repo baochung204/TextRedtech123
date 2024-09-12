@@ -1,13 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { Grid, Box, Container, useMediaQuery, styled, Stack, Theme } from '@mui/material';
-import BannerContent from './BannerContent';
-import bannerbgImg1 from 'src/assets/images/landingpage/bannerimg1.svg';
-import bannerbgImg2 from 'src/assets/images/landingpage/bannerimg2.svg';
+import { Box, Container, Grid, Stack, styled, Theme, useMediaQuery } from '@mui/material';
 import bannerbgImg3 from 'src/assets/images/landingpage/ai.png';
 import bannerbgImg4 from 'src/assets/images/landingpage/ai2.png';
 import bannerbgImg5 from 'src/assets/images/landingpage/chatbot.png';
+import BannerContent from './BannerContent';
 
 const Banner = () => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));

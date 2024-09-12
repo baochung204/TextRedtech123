@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CloseIcon from '@mui/icons-material/Close';
+import SecurityIcon from '@mui/icons-material/Security';
 import {
   Box,
-  Stepper,
+  Button,
+  Checkbox,
+  Divider,
+  FormControl,
+  Grid,
+  IconButton,
+  Input,
+  MenuItem,
+  Select,
   Step,
   StepLabel,
-  Button,
+  Stepper,
   Typography,
-  FormControl,
-  Select,
-  MenuItem,
-  Input,
-  IconButton,
-  Checkbox,
-  Grid,
-  Divider,
 } from '@mui/material';
-import PageContainer from 'src/components/container/PageContainer';
-import CloseIcon from '@mui/icons-material/Close';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SecurityIcon from '@mui/icons-material/Security';
-import Authenticate from 'src/assets/images/authenticate/authenticate.png';
-import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Authenticate from 'src/assets/images/authenticate/authenticate.png';
+import PageContainer from 'src/components/container/PageContainer';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import * as Yup from 'yup';
 
 const steps = ['Thỏa thuận hợp tác', 'Tài khoản cá nhân', 'Xác minh tài khoản'];
@@ -45,8 +45,8 @@ const validationSchemaStep2 = Yup.object({
 });
 
 const PersonAffiliate = () => {
-  const [selectedImage1, setSelectedImage1] = useState(null);
-  const [selectedImage2, setSelectedImage2] = useState(null);
+  const [selectedImage1, setSelectedImage1] = useState<string | null>(null);
+  const [selectedImage2, setSelectedImage2] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
   const isStepSkipped = (step: any) => skipped.has(step);
@@ -116,7 +116,7 @@ const PersonAffiliate = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSteps = (step) => {
+  const handleSteps = (step: number) => {
     switch (step) {
       case 0:
         return (
@@ -608,7 +608,6 @@ const PersonAffiliate = () => {
                     value={formik.values.bank}
                     onChange={formik.handleChange}
                     error={!!formik.errors.bank}
-                    helperText={formik.errors.bank}
                   >
                     <MenuItem value={1}>Mb bank</MenuItem>
                     <MenuItem value={2}>TP bank</MenuItem>
@@ -625,7 +624,6 @@ const PersonAffiliate = () => {
                     value={formik.values.branch}
                     onChange={formik.handleChange}
                     error={!!formik.errors.branch}
-                    helperText={formik.errors.branch}
                   >
                     <MenuItem value={1}>Hà Nội</MenuItem>
                     <MenuItem value={2}>Hồ Chí Minh</MenuItem>
@@ -707,7 +705,7 @@ const PersonAffiliate = () => {
                   <Input
                     id="frontImage"
                     type="file"
-                    accept="image/*"
+                    inputProps={{ accept: "image/*" }}
                     onChange={handleImage1Change}
                     style={{ display: 'none' }}
                   />
@@ -738,7 +736,7 @@ const PersonAffiliate = () => {
                   <Input
                     id="backImage"
                     type="file"
-                    accept="image/*"
+                    inputProps={{ accept: "image/*" } as any}
                     onChange={handleImage2Change}
                     style={{ display: 'none' }}
                   />
@@ -797,7 +795,7 @@ const PersonAffiliate = () => {
 
               <Box flex="1 1 auto" />
               <Button
-                onClick={formik.handleSubmit}
+                onClick={() => formik.handleSubmit()}
                 variant="contained"
                 color="success"
                 size="small"
@@ -836,7 +834,7 @@ const PersonAffiliate = () => {
 
               <Box flex="1 1 auto" />
               <Button
-                onClick={formik.handleSubmit}
+                onClick={() => formik.handleSubmit()}
                 variant="contained"
                 color="secondary"
                 size="small"

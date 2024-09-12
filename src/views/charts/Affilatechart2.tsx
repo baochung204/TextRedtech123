@@ -1,35 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
-import { Box, Grid } from '@mui/material';
-import PageContainer from '../../components/container/PageContainer';
-import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
-import ParentCard from '../../components/shared/ParentCard';
-import { Props } from 'react-apexcharts';
+import Chart, { Props } from 'react-apexcharts';
 import Affilatec2 from 'src/components/shared/Affilatec2';
-import { PiTextAlignCenter } from 'react-icons/pi';
-
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Doughtnut Chart',
-  },
-];
 
 const Affilatechart2 = () => {
-  // chart color
-  const theme = useTheme();
-  const primary = theme.palette.primary.main;
-  const primarylight = theme.palette.primary.light;
-  const secondary = theme.palette.secondary.main;
-  const secondarylight = theme.palette.secondary.light;
-  const warning = theme.palette.warning.main;
-
   // 1
   const optionsdoughnutchart: Props = {
     chart: {
@@ -72,7 +47,7 @@ const Affilatechart2 = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <Affilatec2 title="Cuộc trò chuyện">
+    <Affilatec2 title="Cuộc trò chuyện" description={''} children={undefined}>
       <Chart
         options={optionsdoughnutchart}
         series={seriesdoughnutchart}

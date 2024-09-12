@@ -36,15 +36,6 @@ function SlideTransition(props: any) {
 
 const AddToCart = () => {
   const checkout = useSelector((state) => state.ecommerceReducer.cart);
-  const steps = [''];
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-  const handleReset = () => {
-    setActiveStep(0);
-  };
 
   const total = sum(checkout.map((product: ProductType) => product.price * product.qty));
   const Discount = Math.round(total * (5 / 100));
@@ -59,7 +50,7 @@ const AddToCart = () => {
     }, 2000);
   };
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+  const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }

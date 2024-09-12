@@ -1,21 +1,21 @@
-import React, { useState, useRef } from 'react';
 import {
-  Typography,
+  Avatar,
   Button,
+  Checkbox,
   Dialog,
   DialogTitle,
+  FormControlLabel,
   List,
   ListItem,
   ListItemAvatar,
-  Avatar,
   ListItemText,
-  Checkbox,
-  FormControlLabel,
+  Typography,
 } from '@mui/material';
+import React, { useRef, useState } from 'react';
 
-import { IconUser, IconPlus } from '@tabler/icons-react';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
+import { IconPlus } from '@tabler/icons-react';
 const emails = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl'];
 
 const SimpleDialog = () => {
@@ -45,10 +45,10 @@ const SimpleDialog = () => {
   };
 
   const handleToggle = (email: string) => {
-    setSelectedValues(prevSelectedValues =>
+    setSelectedValues((prevSelectedValues) =>
       prevSelectedValues.includes(email)
-        ? prevSelectedValues.filter(value => value !== email)
-        : [...prevSelectedValues, email]
+        ? prevSelectedValues.filter((value) => value !== email)
+        : [...prevSelectedValues, email],
     );
   };
 
@@ -61,24 +61,31 @@ const SimpleDialog = () => {
         style={{ marginBottom: '10px' }}
         onClick={handleClickOpen}
       >
-        <AddIcon fontSize='small' style={{ marginRight: '10px' }} />File
-        
+        <AddIcon fontSize="small" style={{ marginRight: '10px' }} />
+        File
       </Button>
       <Typography ml={-30} variant="subtitle1" component="div">
-        {selectedValues.join('\n').split('\n').map((value, index) => (
+        {selectedValues
+          .join('\n')
+          .split('\n')
+          .map((value, index) => (
             <React.Fragment key={index}>
               {value}
               <br />
             </React.Fragment>
           ))}
       </Typography>
-      <Dialog onClose={handleClose} open={open} >
-        <DialogTitle 
-          sx={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center'
-          }}>Chọn file<CloseIcon onClick={handleClose} style={{cursor:'pointer',opacity:0.7}}/></DialogTitle>
+      <Dialog onClose={handleClose} open={open}>
+        <DialogTitle
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          Chọn file
+          <CloseIcon onClick={handleClose} style={{ cursor: 'pointer', opacity: 0.7 }} />
+        </DialogTitle>
         <List sx={{ pt: 0 }}>
           {emails.map((email) => (
             <ListItem key={email}>

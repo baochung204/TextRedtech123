@@ -85,6 +85,7 @@ const FbBasicHeaderForm = () => {
             </Button>
           </>
         }
+        description={''}
       >
         <>
           <Alert severity="info">Person Info</Alert>

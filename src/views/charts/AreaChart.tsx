@@ -19,13 +19,12 @@ const BCrumb = [
 ];
 
 const AreaChart = () => {
-
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
 
-  const optionsareachart:Props = {
+  const optionsareachart: Props = {
     chart: {
       id: 'area-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
@@ -92,7 +91,7 @@ const AreaChart = () => {
       {/* breadcrumb */}
       <Breadcrumb title="Area Chart" items={BCrumb} />
       {/* end breadcrumb */}
-      <ParentCard title="Area Chart">
+      <ParentCard title="Area Chart" description={''}>
         <Chart options={optionsareachart} series={seriesareachart} type="area" height="300px" />
       </ParentCard>
     </PageContainer>

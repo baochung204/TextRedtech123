@@ -46,7 +46,7 @@ interface Btype {
 
 const BlogFeaturedCard = ({ post, index }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+  const { coverImg, title, view, category, author }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')

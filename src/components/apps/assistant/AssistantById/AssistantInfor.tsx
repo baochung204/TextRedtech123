@@ -2,61 +2,61 @@
 // @ts-ignore
 import React from 'react';
 
-import rank9 from 'src/assets/images/rank/rank9.png';
-import avt9 from 'src/assets/images/profile/user-9.jpg';
 import Chart from 'react-apexcharts';
+import avt9 from 'src/assets/images/profile/user-9.jpg';
+import rank9 from 'src/assets/images/rank/rank9.png';
 
-import { useTheme } from '@mui/material/styles';
 import {
-  Box,
-  CardContent,
-  Grid,
-  Typography,
-  Stack,
-  Chip,
-  Paper,
-  LinearProgress,
   Avatar,
-  Card,
-  Divider,
-  Tooltip,
-  MenuItem,
+  Box,
   Button,
+  Card,
+  CardContent,
+  Chip,
+  Divider,
+  Grid,
+  LinearProgress,
+  MenuItem,
+  Paper,
+  Stack,
+  Tooltip,
+  Typography,
 } from '@mui/material';
-import { Props } from 'react-apexcharts';
+import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/system';
+import { IconArrowUpRight } from '@tabler/icons-react';
+import { Props } from 'react-apexcharts';
 import bot from 'src/assets/images/backgrounds/bot.svg';
-import { IconArrowUpRight, IconGridDots } from '@tabler/icons-react';
-import PageContainer from 'src/components/container/PageContainer';
 import welcomeImg from 'src/assets/images/backgrounds/welcome-bg.svg';
 import userImg from 'src/assets/images/profile/user-1.jpg';
+import PageContainer from 'src/components/container/PageContainer';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-import icon1 from 'src/assets/images/svgs/icon-connect.svg';
-import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
-import icon3 from 'src/assets/images/svgs/icon-briefcase.svg';
-import icon4 from 'src/assets/images/svgs/icon-mailbox.svg';
-import icon5 from 'src/assets/images/svgs/icon-favorites.svg';
-import icon6 from 'src/assets/images/svgs/icon-speech-bubble.svg';
 import SavingsImg from 'src/assets/images/backgrounds/piggy.png';
-import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
-import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
-import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
-import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
 import icon5Img from 'src/assets/images/svgs/icon-account.svg';
+import icon3 from 'src/assets/images/svgs/icon-briefcase.svg';
+import icon1 from 'src/assets/images/svgs/icon-connect.svg';
+import icon5 from 'src/assets/images/svgs/icon-favorites.svg';
+import icon4 from 'src/assets/images/svgs/icon-mailbox.svg';
+import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
+import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
+import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
+import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
+import icon6 from 'src/assets/images/svgs/icon-speech-bubble.svg';
+import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
 
-import pck3 from 'src/assets/images/backgrounds/gold.png';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Modarm from 'src/components/shared/moderm';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
-import Affilatec3 from 'src/components/shared/Affilatec3';
+import pck3 from 'src/assets/images/backgrounds/gold.png';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Affilatec from 'src/components/shared/Affilatec';
 import Affilatec1 from 'src/components/shared/Affilatec1';
 import Affilatec2 from 'src/components/shared/Affilatec2';
+import Affilatec3 from 'src/components/shared/Affilatec3';
+import Modarm from 'src/components/shared/moderm';
 
 interface cardType {
   icon: string;

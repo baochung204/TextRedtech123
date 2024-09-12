@@ -79,7 +79,7 @@ const Affilatechart3 = () => {
   const seriesradialchart = [93.27]; // Giá trị hiển thị trên đồng hồ
 
   return (
-    <Affilatec3 title="Tỉ trọng chi phí /vòng quay">
+    <Affilatec3 title="Tỉ trọng chi phí /vòng quay" description={''}>
       <Chart
         options={optionsradialchart}
         series={seriesradialchart}

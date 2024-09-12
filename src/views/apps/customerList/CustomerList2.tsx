@@ -18,15 +18,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import * as React from 'react';
-import { FaPlus, FaSearch } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 
-import { IconSearch } from '@tabler/icons-react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import Tags from 'src/components/apps/sell/tags';
+import { IconSearch } from '@tabler/icons-react';
+import Tags from 'src/components/apps/sell/Tags';
 import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [
@@ -38,8 +38,7 @@ const BCrumb = [
 const CustomerList2 = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  const [filterColumn, setFilterColumn] = React.useState('');
-  const [searchText, setSearchText] = React.useState('');
+
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
@@ -52,7 +51,7 @@ const CustomerList2 = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 

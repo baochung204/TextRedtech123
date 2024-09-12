@@ -1,14 +1,13 @@
 import { Grid } from '@mui/material';
-import { useState } from 'react';
-import PageContainer from 'src/components/container/PageContainer';
 import { default as AccountInformation } from 'src/components/apps/userprofile/profile/AccountInformation';
 import BusinessInformation from 'src/components/apps/userprofile/profile/BusinessInformation';
+import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import PersonalInformation from 'src/components/apps/userprofile/profile/PersonalInformation';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
-import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
 import ReceiveEmail from 'src/components/apps/userprofile/profile/ReceiveEmail';
-import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
+import Sidebar from 'src/components/apps/userprofile/profile/Sidebar';
 import TwoFactorSecurity from 'src/components/apps/userprofile/profile/TwoFactorSecurity';
+import PageContainer from 'src/components/container/PageContainer';
 import { setSelected } from 'src/store/RouterSlice';
 import { useSelector } from 'src/store/Store';
 

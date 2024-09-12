@@ -91,7 +91,7 @@ const RadialbarChart = () => {
       {/* end breadcrumb */}
       <Grid container spacing={3}>
         <Grid item lg={6} md={12} xs={12}>
-          <ParentCard title="Radialbar Charts">
+          <ParentCard title="Radialbar Charts" description={''}>
             <Chart
               options={optionsradialchart}
               series={seriesradialchart}
@@ -101,7 +101,7 @@ const RadialbarChart = () => {
           </ParentCard>
         </Grid>
         <Grid item lg={6} md={12} xs={12}>
-          <ParentCard title="Radar Charts">
+          <ParentCard title="Radar Charts" description={''}>
             <Chart
               options={optionsradarchart}
               series={seriesradarchart}
