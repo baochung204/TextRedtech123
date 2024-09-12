@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -28,12 +26,7 @@ const Faq = () => {
   return (
     <Grid container xs={12}>
       <Grid item xs={12}>
-        <Box
-        // sx={{
-        //   typography: 'body1',
-        //   overflowX: 'auto'
-        // }}
-        >
+        <Box>
           <TabContext value={value}>
             <Box
               sx={{

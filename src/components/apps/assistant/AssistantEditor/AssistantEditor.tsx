@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
   Grid,
-  Box,
   Typography,
-  // FormControl,
   MenuItem,
   Button,
   Stack,
@@ -14,67 +12,26 @@ import {
   ListItemText,
   InputBase,
   IconButton,
-  // FormControlLabel,
-  // TextField,
   Avatar,
   Tooltip,
   Fab,
 } from '@mui/material';
-// import { SliderThumb } from '@mui/material/Slider';
-// import AddIcon from '@mui/icons-material/Add';
-// import SendIcon from '@mui/icons-material/Send';
+import Box from '@mui/material/Box';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-// import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import PageContainer from 'src/components/container/PageContainer';
-// import ParentCard from 'src/components/shared/ParentCard';
-// import CustomDisabledButton from 'src/components/forms/theme-elements/CustomDisabledButton';
-// import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
 import PersonIcon from '@mui/icons-material/Person';
 import { IconSend } from '@tabler/icons-react';
-import DateTime from './DateTime';
+import DateTime from './DateTime'
 import Checkboxes from './Tags';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import QuillEditor from './QuillEditor';
 import { IconPlus } from '@tabler/icons-react';
 import Integration from './Integration';
-// import Strategy from './Strategy';
 import StrategyDialog from './dialog/strategyDialog';
 import SimpleDialog from './dialog/searchDialog';
 import FunctionsDialog from './dialog/functionsDialog';
-// function CustomThumbComponent(props: SliderValueLabelProps) {
-//   const { children, ...other } = props;
-
-//   return (
-//     <SliderThumb {...other}>
-//       {children}
-//       <Box
-//         sx={{
-//           height: 9,
-//           width: '2px',
-//           backgroundColor: '#fff',
-//         }}
-//       />
-//       <Box
-//         sx={{
-//           height: '14px',
-//           width: '2px',
-//           backgroundColor: '#fff',
-//           ml: '2px',
-//         }}
-//       />
-//       <Box
-//         sx={{
-//           height: 9,
-//           width: '2px',
-//           backgroundColor: '#fff',
-//           ml: '2px',
-//         }}
-//       />
-//     </SliderThumb>
-//   );
-// }
 
 interface Message {
   text: string;
@@ -82,47 +39,32 @@ interface Message {
 }
 
 const AssistantEditor = () => {
+
   const [country, setCountry] = useState('1');
   const [language, setLanguage] = useState('1');
   const [model, setModel] = useState('1');
   const [level, setLevel] = useState('1');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
-  // const [fileSearchName, setFileSearchName] = useState('');
-  // const [fileFunctionsName, setFileFunctionsName] = useState('');
-
   const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setCountry(event.target.value as string); // Cập nhật state khi chọn
+    setCountry(event.target.value as string);
   };
   const handleChangeLanguage = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLanguage(event.target.value as string); // Cập nhật state khi chọn
+    setLanguage(event.target.value as string);
   };
   const handleModel = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setModel(event.target.value as string); // Cập nhật state khi chọn
+    setModel(event.target.value as string);
   };
   const handleLevel = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLevel(event.target.value as string); // Cập nhật state khi chọn
+    setLevel(event.target.value as string);
   };
-  // const handleFileSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     setFileSearchName(event.target.files[0].name); // Cập nhật tên file
-  //   }
-  // };
-  // const handleFileFunctions = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     setFileFunctionsName(event.target.files[0].name); // Cập nhật tên file
-  //   }
-  // };
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages([...messages, { text: inputValue, sender: 'user' }]);
       setInputValue('');
       setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: 'Đây là phản hồi từ bot.', sender: 'bot' },
-        ]);
+        setMessages(prevMessages => [...prevMessages, { text: 'Đây là phản hồi từ bot.', sender: 'bot' }]);
       }, 1000);
     }
   };
@@ -155,31 +97,24 @@ const AssistantEditor = () => {
           mt={2}
           mb={2}
         >
-          <Stack spacing={1} direction="row"></Stack>
+          <Stack spacing={1} direction="row">
+
+          </Stack>
           <Stack direction="row" spacing={1}>
             <Button variant="contained" color="secondary">
               Thêm mới
             </Button>
+
           </Stack>
         </Stack>
         <Grid container spacing={3}>
           {/* Cột 1 */}
 
           <Grid item xs={12} sm={12} lg={4}>
-            <Paper
-              elevation={3}
-              sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}
-            >
+            <Paper elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Box sx={{ height: '100%' }}>
                 {/* Circular Avatar Placeholder */}
-                <Box
-                  sx={{
-                    maxHeight: 'calc(72vh - 120px)',
-                    textAlign: 'center',
-                    mt: { md: 2 },
-                    mb: '20px',
-                  }}
-                >
+                <Box sx={{ maxHeight: 'calc(72vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb: '20px' }}>
                   <label htmlFor="avatar-upload">
                     <Avatar
                       src={avatarPreview || ''}
@@ -208,27 +143,15 @@ const AssistantEditor = () => {
                   />
                 </Box>
 
-                <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>
-                  Tên
-                </CustomFormLabel>
-                <CustomTextField
-                  size="small"
-                  id="name"
-                  placeholder="Nhập tên trợ lý mong muốn "
-                  variant="outlined"
-                  fullWidth
-                />
+                <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>Tên</CustomFormLabel>
+                <CustomTextField size="small" id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
                 <Grid container item xs={12} sm={12} lg={12} spacing={2}>
                   <Grid item xs={12} sm={6} lg={6}>
-                    <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>
-                      Ngày sinh
-                    </CustomFormLabel>
+                    <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Ngày sinh</CustomFormLabel>
                     <DateTime />
                   </Grid>
                   <Grid item xs={12} sm={6} lg={6}>
-                    <CustomFormLabel sx={{ mt: 3 }} htmlFor="demo-simple-select">
-                      Trình độ học vẫn
-                    </CustomFormLabel>
+                    <CustomFormLabel sx={{ mt: 3 }} htmlFor="demo-simple-select">Trình độ học vẫn</CustomFormLabel>
                     <CustomSelect
                       size="small"
                       labelId="demo-simple-select-label"
@@ -243,9 +166,7 @@ const AssistantEditor = () => {
                     </CustomSelect>
                   </Grid>
                 </Grid>
-                <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>
-                  Chuyên môn
-                </CustomFormLabel>
+                <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Chuyên môn</CustomFormLabel>
                 <Checkboxes />
 
                 <Grid container item xs={12} sm={12} lg={12} spacing={2}>
@@ -282,10 +203,8 @@ const AssistantEditor = () => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} lg={10}>
                       <Box display="flex" alignItems="center">
-                        <FacebookIcon fontSize="large" color="info" />
-                        <Box fontWeight={600} ml={1}>
-                          Tích hợp Facebook
-                        </Box>
+                        <FacebookIcon fontSize='large' color="info" />
+                        <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} lg={2}>
@@ -299,14 +218,15 @@ const AssistantEditor = () => {
                   <Integration />
                 </Paper>
               </Box>
+
+
+
             </Paper>
           </Grid>
           {/* Cột 2 */}
-          <Grid item xs={12} sm={12} lg={4}>
+          <Grid item xs={12} sm={12} lg={4} >
             <Paper elevation={3} sx={{ height: '46vh', overflowY: 'auto', px: 2 }}>
-              <Box fontWeight={600} mt={2} mb={1}>
-                Model
-              </Box>
+              <Box fontWeight={600} mt={2} mb={1}>Model</Box>
               <CustomSelect
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -332,6 +252,8 @@ const AssistantEditor = () => {
                   <SimpleDialog />
                 </Grid>
               </Grid>
+
+
             </Paper>
             {/* Functions */}
             <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
@@ -356,26 +278,19 @@ const AssistantEditor = () => {
                   {/* <Strategy/> */}
                 </Grid>
               </Grid>
+
             </Paper>
           </Grid>
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
-            <Paper
-              elevation={3}
-              sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}
-            >
+
+            <Paper elevation={3} sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
               <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(110vh - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
-                    <ListItem
-                      key={index}
-                      sx={{
-                        display: 'flex',
-                        justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
-                      }}
-                    >
+                    <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>
                       <ListItemText
                         primary={message.text}
                         sx={{
@@ -383,7 +298,7 @@ const AssistantEditor = () => {
                           color: message.sender === 'user' ? '#fff' : '#000',
                           borderRadius: '10px',
                           p: 1,
-                          maxWidth: '80%',
+                          maxWidth: '80%'
                         }}
                       />
                     </ListItem>
@@ -392,6 +307,7 @@ const AssistantEditor = () => {
               </Box>
               <Divider sx={{ my: 2 }} />
               <Box sx={{ display: 'flex' }}>
+
                 <InputBase
                   id="msg-sent"
                   fullWidth
@@ -408,6 +324,7 @@ const AssistantEditor = () => {
                 </IconButton>
               </Box>
             </Paper>
+
           </Grid>
         </Grid>
       </Box>
