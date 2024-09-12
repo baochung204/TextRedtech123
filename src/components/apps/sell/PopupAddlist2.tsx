@@ -3,7 +3,8 @@ import { Box, Button, Checkbox, Grid, ListItemText, MenuItem, Typography } from 
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Tags from './tags';
+import Tags from './Tags';
+// import Tags from './tags';
 
 interface CurrencyType {
   value: string;
@@ -33,7 +34,10 @@ const PopupAddList2 = () => {
   const [thumbnailImage, setThumbnailImage] = useState<File | null>(null);
   const [productImage, setProductImage] = useState<File | null>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<File | null>>) => {
+  const handleFileChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setter: React.Dispatch<React.SetStateAction<File | null>>,
+  ) => {
     if (event.target.files && event.target.files.length > 0) {
       setter(event.target.files[0]);
     }
@@ -110,14 +114,13 @@ const PopupAddList2 = () => {
 
           <Grid item lg={6} md={12}>
             {/* Ảnh thumbnail */}
-            <Box >
+            <Box>
               <CustomFormLabel htmlFor="thumbnail-image">Ảnh thumbnail</CustomFormLabel>
               <input
                 type="file"
                 id="thumbnail-image"
                 style={{ display: 'none' }}
                 onChange={(e) => handleFileChange(e, setThumbnailImage)}
-                
               />
               <Button
                 variant="contained"
@@ -136,7 +139,6 @@ const PopupAddList2 = () => {
                 </Box>
               )}
             </Box>
-            
 
             {/* Ảnh sản phẩm */}
             <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel>
@@ -146,12 +148,7 @@ const PopupAddList2 = () => {
               style={{ display: 'none' }}
               onChange={(e) => handleFileChange(e, setProductImage)}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              component="label"
-              htmlFor="product-image"
-            >
+            <Button variant="contained" color="primary" component="label" htmlFor="product-image">
               Chọn ảnh sản phẩm
             </Button>
             {productImage && (

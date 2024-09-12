@@ -42,9 +42,10 @@ import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from '../../../components/shared/BlankCard';
-import ADDDialog from './AddDialog';
+// import ADDDialog from './AddDialog';
 import { ProductType } from 'src/types/apps/eCommerce';
 import { getProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import AddDialog from './addDialog';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -294,9 +295,10 @@ const BCrumb = [
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const [search, setSearch] = React.useState('');
+  // const [selected, setSelected] = React.useState<readonly string[]>([]);
+  const [selected] = React.useState<readonly string[]>([]);
 
+  const [search, setSearch] = React.useState('');
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const products = getProducts([]).payload as ProductType[];
     const filteredRows: ProductType[] = products.filter((row) => {
@@ -327,7 +329,7 @@ const PaginationTable = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Phần bên trái */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <ADDDialog />
+          <AddDialog />
           <EnhancedTableToolbar
             numSelected={selected.length}
             search={search}

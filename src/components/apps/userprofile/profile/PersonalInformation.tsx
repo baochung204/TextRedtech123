@@ -14,9 +14,9 @@ import { IconUser, IconEdit, IconCheck } from '@tabler/icons-react';
 import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
+import { SelectChangeEvent } from '@mui/material';
 const PersonalInformation = () => {
-  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
+  const theme = useTheme();
   const [editing, setEditing] = useState<string | null>(null);
   const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
     null,
@@ -38,8 +38,6 @@ const PersonalInformation = () => {
       [editing as string]: e.target.value,
     });
   };
-
-  import { SelectChangeEvent } from '@mui/material';
 
   const handleGenderChange = (e: SelectChangeEvent<string>) => {
     setUserInfo({

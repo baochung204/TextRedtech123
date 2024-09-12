@@ -968,108 +968,110 @@ const AssistantInfor = () => {
             </Modarm>
           </Grid>
           <Grid item xs={12} sm={8}>
-            <DashboardCard>
-              <Box sx={{ marginTop: '0px' }}>
-                <Typography variant="h4">Báo cáo công việc</Typography>
-                <Typography variant="subtitle2" color="textSecondary" mb={2}>
-                  kinh doanh
-                </Typography>
-                <Box
-                  style={{
-                    display: 'flex',
-                    gap: '12px',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <CustomSelect
-                    labelId="month-dd"
-                    id="month-dd"
-                    size="small"
-                    value={month}
-                    onChange={handleChange}
+            <DashboardCard title={'san pham 1'}>
+              <Box>
+                <Box sx={{ marginTop: '0px' }}>
+                  <Typography variant="h4">Báo cáo công việc</Typography>
+                  <Typography variant="subtitle2" color="textSecondary" mb={2}>
+                    kinh doanh
+                  </Typography>
+                  <Box
+                    style={{
+                      display: 'flex',
+                      gap: '12px',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
                   >
-                    <MenuItem value={1}>Danh thu</MenuItem>
-                    <MenuItem value={2}>Khách hàng </MenuItem>
-                    <MenuItem value={3}>Đơn Hàng </MenuItem>
-                  </CustomSelect>
-                  <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
-                    {' '}
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        value={value}
-                        onChange={(newValue) => {
-                          setValue(newValue);
-                        }}
-                        renderInput={(props) => (
-                          <CustomTextField
-                            {...props}
-                            fullWidth
-                            size="small"
-                            sx={{
-                              '& .MuiSvgIcon-root': {
-                                width: '18px',
-                                height: '18px',
-                              },
-                              '& .MuiFormHelperText-root': {
-                                display: 'none',
-                              },
-                            }}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                    tới
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        value={value1}
-                        onChange={(newValue) => {
-                          setValue1(newValue);
-                        }}
-                        renderInput={(props) => (
-                          <CustomTextField
-                            {...props}
-                            fullWidth
-                            size="small"
-                            sx={{
-                              '& .MuiSvgIcon-root': {
-                                width: '18px',
-                                height: '18px',
-                              },
-                              '& .MuiFormHelperText-root': {
-                                display: 'none',
-                              },
-                            }}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="50"
-                      height="50"
-                      cursor="pointer"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
+                    <CustomSelect
+                      labelId="month-dd"
+                      id="month-dd"
+                      size="small"
+                      value={month}
+                      onChange={handleChange}
                     >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                      <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                    </svg>
+                      <MenuItem value={1}>Danh thu</MenuItem>
+                      <MenuItem value={2}>Khách hàng </MenuItem>
+                      <MenuItem value={3}>Đơn Hàng </MenuItem>
+                    </CustomSelect>
+                    <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
+                      {' '}
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                          value={value}
+                          onChange={(newValue) => {
+                            setValue(newValue);
+                          }}
+                          renderInput={(props) => (
+                            <CustomTextField
+                              {...props}
+                              fullWidth
+                              size="small"
+                              sx={{
+                                '& .MuiSvgIcon-root': {
+                                  width: '18px',
+                                  height: '18px',
+                                },
+                                '& .MuiFormHelperText-root': {
+                                  display: 'none',
+                                },
+                              }}
+                            />
+                          )}
+                        />
+                      </LocalizationProvider>
+                      tới
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                          value={value1}
+                          onChange={(newValue) => {
+                            setValue1(newValue);
+                          }}
+                          renderInput={(props) => (
+                            <CustomTextField
+                              {...props}
+                              fullWidth
+                              size="small"
+                              sx={{
+                                '& .MuiSvgIcon-root': {
+                                  width: '18px',
+                                  height: '18px',
+                                },
+                                '& .MuiFormHelperText-root': {
+                                  display: 'none',
+                                },
+                              }}
+                            />
+                          )}
+                        />
+                      </LocalizationProvider>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="50"
+                        height="50"
+                        cursor="pointer"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                      </svg>
+                    </Box>
                   </Box>
                 </Box>
+                <Chart
+                  options={optionsgredientchart}
+                  series={seriesgredientchart}
+                  type="line"
+                  height="300px"
+                />
               </Box>
-              <Chart
-                options={optionsgredientchart}
-                series={seriesgredientchart}
-                type="line"
-                height="300px"
-              />
             </DashboardCard>
           </Grid>
           {/* column */}
@@ -1223,97 +1225,99 @@ const AssistantInfor = () => {
           </Grid>
           {/* column */}
           <Grid item xs={12} lg={8}>
-            <DashboardCard sx={{ pt: 0 }}>
-              <Box sx={{ marginTop: '-15px' }}>
-                <Typography variant="h4">Báo cáo chi tiêu trợ lý </Typography>
-                <Typography variant="subtitle2" color="textSecondary" mb={2}>
-                  kinh doanh
-                </Typography>
-                <Box
-                  style={{
-                    display: 'flex',
-                    gap: '12px',
-                    alignItems: 'center',
-                    justifyContent: 'end',
-                  }}
-                >
-                  <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
-                    {' '}
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        value={value}
-                        onChange={(newValue) => {
-                          setValue(newValue);
-                        }}
-                        renderInput={(props) => (
-                          <CustomTextField
-                            {...props}
-                            fullWidth
-                            size="small"
-                            sx={{
-                              '& .MuiSvgIcon-root': {
-                                width: '18px',
-                                height: '18px',
-                              },
-                              '& .MuiFormHelperText-root': {
-                                display: 'none',
-                              },
-                            }}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                    tới
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        value={value1}
-                        onChange={(newValue) => {
-                          setValue1(newValue);
-                        }}
-                        renderInput={(props) => (
-                          <CustomTextField
-                            {...props}
-                            fullWidth
-                            size="small"
-                            sx={{
-                              '& .MuiSvgIcon-root': {
-                                width: '18px',
-                                height: '18px',
-                              },
-                              '& .MuiFormHelperText-root': {
-                                display: 'none',
-                              },
-                            }}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="50"
-                      height="50"
-                      cursor="pointer"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                      <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                    </svg>
+            <DashboardCard>
+              <Box>
+                <Box sx={{ marginTop: '-15px' }}>
+                  <Typography variant="h4">Báo cáo chi tiêu trợ lý </Typography>
+                  <Typography variant="subtitle2" color="textSecondary" mb={2}>
+                    kinh doanh
+                  </Typography>
+                  <Box
+                    style={{
+                      display: 'flex',
+                      gap: '12px',
+                      alignItems: 'center',
+                      justifyContent: 'end',
+                    }}
+                  >
+                    <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
+                      {' '}
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                          value={value}
+                          onChange={(newValue) => {
+                            setValue(newValue);
+                          }}
+                          renderInput={(props) => (
+                            <CustomTextField
+                              {...props}
+                              fullWidth
+                              size="small"
+                              sx={{
+                                '& .MuiSvgIcon-root': {
+                                  width: '18px',
+                                  height: '18px',
+                                },
+                                '& .MuiFormHelperText-root': {
+                                  display: 'none',
+                                },
+                              }}
+                            />
+                          )}
+                        />
+                      </LocalizationProvider>
+                      tới
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                          value={value1}
+                          onChange={(newValue) => {
+                            setValue1(newValue);
+                          }}
+                          renderInput={(props) => (
+                            <CustomTextField
+                              {...props}
+                              fullWidth
+                              size="small"
+                              sx={{
+                                '& .MuiSvgIcon-root': {
+                                  width: '18px',
+                                  height: '18px',
+                                },
+                                '& .MuiFormHelperText-root': {
+                                  display: 'none',
+                                },
+                              }}
+                            />
+                          )}
+                        />
+                      </LocalizationProvider>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="50"
+                        height="50"
+                        cursor="pointer"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                      </svg>
+                    </Box>
                   </Box>
                 </Box>
+                <Chart
+                  options={optionsgredientchart2}
+                  series={seriesgredientchart2}
+                  type="line"
+                  height="300px"
+                />
               </Box>
-              <Chart
-                options={optionsgredientchart2}
-                series={seriesgredientchart2}
-                type="line"
-                height="300px"
-              />
             </DashboardCard>
           </Grid>
           <Grid item xs={12} lg={4}>

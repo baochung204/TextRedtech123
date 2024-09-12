@@ -33,7 +33,9 @@ const validationSchemaStep0 = Yup.object({
 });
 
 const validationSchemaStep1 = Yup.object({
-  bankNumber: Yup.string().matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số').required('Số tài khoản là bắt buộc'),
+  bankNumber: Yup.string()
+    .matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số')
+    .required('Số tài khoản là bắt buộc'),
   accountName: Yup.string().required('Chủ tài khoản là bắt buộc'),
   bank: Yup.number().required('Ngân hàng là bắt buộc'),
   branch: Yup.number().required('Chi nhánh ngân hàng là bắt buộc'),
@@ -48,15 +50,16 @@ const PersonAffiliate = () => {
   const [selectedImage1, setSelectedImage1] = useState<string | null>(null);
   const [selectedImage2, setSelectedImage2] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const [skipped, setSkipped] = useState(new Set());
+  // const [skipped, setSkipped] = useState(new Set());
+  const [skipped] = useState(new Set());
   const isStepSkipped = (step: any) => skipped.has(step);
 
-  const handleImage1Change = (event) => {
+  const handleImage1Change = (event: any) => {
     formik.setFieldValue('frontImage', event.target.files[0]);
     setSelectedImage1(URL.createObjectURL(event.target.files[0]));
   };
 
-  const handleImage2Change = (event) => {
+  const handleImage2Change = (event: any) => {
     formik.setFieldValue('backImage', event.target.files[0]);
     setSelectedImage2(URL.createObjectURL(event.target.files[0]));
   };
@@ -127,7 +130,7 @@ const PersonAffiliate = () => {
                 overflowY: 'scroll',
                 padding: '16px',
                 borderRadius: '8px',
-                marginTop: '20px'
+                marginTop: '20px',
               }}
             >
               <h3>MỤC I. ĐỐI TÁC</h3>
@@ -705,7 +708,7 @@ const PersonAffiliate = () => {
                   <Input
                     id="frontImage"
                     type="file"
-                    inputProps={{ accept: "image/*" }}
+                    inputProps={{ accept: 'image/*' }}
                     onChange={handleImage1Change}
                     style={{ display: 'none' }}
                   />
@@ -736,7 +739,7 @@ const PersonAffiliate = () => {
                   <Input
                     id="backImage"
                     type="file"
-                    inputProps={{ accept: "image/*" } as any}
+                    inputProps={{ accept: 'image/*' } as any}
                     onChange={handleImage2Change}
                     style={{ display: 'none' }}
                   />

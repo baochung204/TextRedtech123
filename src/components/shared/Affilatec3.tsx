@@ -8,7 +8,7 @@ import { AppState } from 'src/store/Store';
 
 type Props = {
   title: string;
-  description: string;
+  description?: string;
   footer?: string | JSX.Element;
   children: JSX.Element;
 };
