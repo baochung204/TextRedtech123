@@ -82,7 +82,7 @@ const AppDD = () => {
         to="/apps/blog/posts"
         component={Link}
       >
-        Tài liệu
+        Blog
       </Button>
       <Button
         color="inherit"
