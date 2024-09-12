@@ -676,6 +676,24 @@ const CompanyAffiliate = () => {
                     helperText={isSubmitting && formik.errors.address}
                   />
                 </Grid>
+                
+
+              </Grid>
+            </Box>
+            <Box
+              sx={{
+                width: '100%',
+                border: '2px solid #ccc',
+                display: 'flex',
+                flexDirection: 'column',
+                margin: '20px 0',
+                padding: '10px 20px 50px 20px',
+              }}
+            >
+              <Typography variant={'h5'} style={{ padding: '10px 0' }}>
+                Thông tin làm hợp đồng
+              </Typography>
+              <Grid container spacing={3}>
                 <Grid item xs={6}>
                   <CustomFormLabel htmlFor="accountName">Chủ tài khoản</CustomFormLabel>
                   <CustomTextField
