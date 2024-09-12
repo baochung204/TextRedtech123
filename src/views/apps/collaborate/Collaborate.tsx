@@ -1,6 +1,16 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-
-import { Box, Button, CardContent, Grid, IconButton, Tab, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  CardContent,
+  Chip,
+  Grid,
+  IconButton,
+  Tab,
+  Typography,
+  styled,
+} from '@mui/material';
 import { IconPackage } from '@tabler/icons-react';
 import React from 'react';
 
@@ -10,7 +20,7 @@ import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutli
 
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-
+import rank1 from 'src/assets/images/rank/rank1.png';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
@@ -22,6 +32,7 @@ import { BiSolidPurchaseTag } from 'react-icons/bi';
 import { FaChartLine } from 'react-icons/fa';
 import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
+import userimg from 'src/assets/images/profile/user-1.jpg';
 
 interface cardType {
   icon: JSX.Element;
@@ -69,6 +80,15 @@ const CollaboratePost = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+  const ProfileImage = styled(Box)(() => ({
+    backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
+    borderRadius: '50%',
+    width: '110px',
+    height: '110px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
 
   return (
     <Box>
@@ -250,40 +270,102 @@ const CollaboratePost = () => {
               </Grid>
             </Grid>
           </Box>
-
-          {/* <Box padding="20px 0px">
-            <Typography variant="h3" marginTop="20px">
-              Tùy chỉnh liên kết Affiliate
-            </Typography>
-            <div style={{ margin: '10px' }}>
-              <Typography variant="body1" color="textSecondary" marginTop="2px">
-                Bạn có thể thay đổi liên kết Affiliate bằng cách nhập vào ô bên dưới
-              </Typography>
-              <Typography variant="body1" color="textSecondary">
-                * Lưu ý: Chỉ được phép chứa chữ cái, chữ số và dấu gạch dưới
-              </Typography>
-            </div>
-            <Grid container spacing={1}>
-              <Grid item xs={8}>
-                <CustomOutlinedInput
-                  id="http"
-                  placeholder="http://s"
-                  value="http://Redtech.vn/affiliate/123456"
-                  fontSize="17px"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  style={{ padding: '10px', width: '70%' }}
+          <Box paddingTop="30px">
+            <Grid container spacing={2}>
+              {/* Left section - 3 columns */}
+              <Grid item xs={12} md={3} display="flex" justifyContent="center" alignItems="center">
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center', // Center horizontally
+                    justifyContent: 'center', // Center vertically
+                  }}
                 >
-                  SAO CHÉP
-                </Button>
+                  <ProfileImage>
+                    <Avatar
+                      src={userimg}
+                      alt={userimg}
+                      sx={{
+                        borderRadius: '50%',
+                        width: '100px',
+                        height: '100px',
+                        border: '4px solid #fff',
+                      }}
+                    />
+                  </ProfileImage>
+                  <Box sx={{ marginTop: '10px', textAlign: 'center' }}>
+                    <Typography fontWeight={600} variant="h5">
+                      Nguyễn Đăng Hòa
+                    </Typography>
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      fontWeight={400}
+                      sx={{ color: '#757575', margin: '10px 0' }}
+                    >
+                      Đối tác cá nhân
+                    </Typography>
+                    <Chip label="Hoạt động" color="success" />
+                  </Box>
+                </Box>
+              </Grid>
+              {/* Left section - 9 columns */}
+              <Grid item xs={12} md={9}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={4}>
+                    <Box sx={{ width: '50px', height: 'auto' }}>
+                      <img src={rank1} style={{ width: '160px', height: '100%' }} />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={8}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center', // Centers content vertically
+                        alignItems: 'start', // Centers content horizontally (optional)
+                        height: '100%', // Ensure the box takes the full available height
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          fontSize: '24px', // Set the font size
+                          fontWeight: 'bold', // Set the text to bold
+                          marginBottom: '10px',
+                        }}
+                      >
+                        Trạng thái đối tác:
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '20px', // Set the font size
+                          fontWeight: 'bold', // Set the text to bold
+                        }}
+                      >
+                        Rank A
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography
+                    sx={{
+                      marginTop: '20px',
+                      textAlign: 'center',
+                      maxWidth: '500px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                    }}
+                  >
+                    Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi tốt
+                    hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ đối tác
+                    chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn.
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
-          </Box> */}
+          </Box>
         </Box>
       </Box>
       <Box sx={{ width: '100%', typography: 'body1' }}>

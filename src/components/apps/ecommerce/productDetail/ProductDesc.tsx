@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { IconPencil } from '@tabler/icons-react';
 import ChildCard from 'src/components/shared/ChildCard';
+import StarIcon from '../../../../assets/images/icon.png/star.png';
 
 interface ProductCardProps {
   like: number;
@@ -34,7 +35,16 @@ function ProgressBar({ like, star, value, ...others }: ProductCardProps) {
   return (
     <Box display={'flex'} alignItems="center" gap="20px">
       <Box sx={{ minWidth: 50 }}>
-        <Typography variant="body2" color="textSecondary">{`${Math.round(star)} Stars`}</Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          display={'flex'}
+          alignItems={'center'}
+          gap={'3px'}
+        >
+          <span>{`${Math.round(star)}`}</span>{' '}
+          <img src={StarIcon} alt="" width={20} style={{ paddingBottom: '5px' }} />
+        </Typography>
       </Box>
       <Box sx={{ width: '100%' }}>
         <LinearProgress value={value} variant="determinate" color="primary" {...others} />
@@ -71,7 +81,7 @@ const a11yProps = (index: number) => {
 
 const ProductDesc = () => {
   const [value, setValue] = React.useState(0);
-
+  const [star, setStar] = React.useState<number | null>(2);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -100,14 +110,23 @@ const ProductDesc = () => {
         {/* ------------------------------------------- */}
         <TabPanel value={value} index={0}>
           <Typography variant="h5">
-            "Nhưng tại sao lại như vậy? Hãy sống trong sự ghét bỏ, sự kết hợp với các loại hình từ, chọn lựa từ lạc vào các loại hình khác."
+            Superintelligent AI là một dạng trí tuệ nhân tạo (AI) có khả năng vượt xa con người
+            trong mọi lĩnh vực
           </Typography>
           <Typography color="textSecondary" mt={4}>
-          Thực hiện các bước bằng cách giữ vững chất lượng, kết hợp các thành phần khác. Không có gì có thể làm giảm đi sự ảnh hưởng. Hiện tại đang được sử dụng trong các lĩnh vực khác nhau. Đảm bảo duy trì sự chính xác.
-
+            Thực hiện các bước bằng cách giữ vững chất lượng dự đoán sẽ có khả năng tự học và cải
+            thiện bản thân không giới hạn, khiến nó trở nên thông minh hơn bất kỳ bộ não con người
+            nào. Superintelligent AI có thể tạo ra những tiến bộ vượt bậc về khoa học, y tế và công
+            nghệ, nhưng cũng đặt ra nhiều thách thức và rủi ro, đặc biệt là nếu không được kiểm soát
+            đúng cách.
           </Typography>
           <Typography color="textSecondary" variant="body1" fontWeight={400} mt={4}>
-            "Sống với sự hiệu quả hiện tại. Nếu bạn làm việc với sự chính xác, tạo ra sự phát triển tối ưu. Giữ cho các yêu cầu được đặt ra, và tạo ra sự kết hợp tối ưu."
+            Không chỉ có khả năng xử lý thông tin nhanh hơn con người mà còn có thể đưa ra các quyết
+            định sáng suốt hơn, tính toán các kịch bản phức tạp với độ chính xác cao và dự đoán
+            tương lai tốt hơn. Nó có tiềm năng tự phát triển, sáng tạo ra công nghệ và tri thức mới
+            mà con người chưa từng nghĩ đến. Tuy nhiên, sự phát triển này cũng tiềm ẩn nguy cơ nếu
+            Superintelligent AI hành động ngoài tầm kiểm soát hoặc có mục tiêu không phù hợp với lợi
+            ích của con người, gây ra các mối đe dọa về an ninh, kinh tế và đạo đức
           </Typography>
         </TabPanel>
         {/* ------------------------------------------- */}
@@ -118,7 +137,7 @@ const ProductDesc = () => {
             {/* ------------------------------------------- */}
             {/* Average Rate Tab */}
             {/* ------------------------------------------- */}
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} lg={6}>
               <Paper variant="outlined" sx={{ height: '100%', p: 3 }}>
                 <Stack
                   alignItems="center"
@@ -128,16 +147,24 @@ const ProductDesc = () => {
                 >
                   <Typography variant="subtitle1">Đánh giá trung bình</Typography>
                   <Typography variant="h1" color="primary" fontWeight={600}>
-                    4/5
+                    {star}/5
                   </Typography>
-                  <Rating name="rate" value={4} />
+                  <Rating
+                    name="simple-controlled"
+                    value={star}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    onChange={(event, newValue) => {
+                      setStar(newValue);
+                    }}
+                  />
                 </Stack>
               </Paper>
             </Grid>
             {/* ------------------------------------------- */}
             {/* Progrees Rate Tab */}
             {/* ------------------------------------------- */}
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} lg={6}>
               <Paper variant="outlined" sx={{ p: 3 }}>
                 <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
                   <Grid item xs={12}>
@@ -161,20 +188,6 @@ const ProductDesc = () => {
             {/* ------------------------------------------- */}
             {/* Button */}
             {/* ------------------------------------------- */}
-            <Grid item xs={12} lg={4}>
-              <Paper sx={{ height: '100%', p: 3 }} variant="outlined">
-                <Stack
-                  alignItems="center"
-                  justifyContent="center"
-                  spacing={2}
-                  sx={{ height: '100%' }}
-                >
-                  <Button variant="outlined" size="large" startIcon={<IconPencil />}>
-                  Viết Đánh giá
-                  </Button>
-                </Stack>
-              </Paper>
-            </Grid>
           </Grid>
         </TabPanel>
       </Box>

@@ -167,77 +167,8 @@ const BlogDetail = () => {
             </p>
             <Typography fontWeight={600}>Trợ lý ảo Redtech</Typography>
             <Typography fontStyle="italic">Trợ lý ảo Redtech</Typography>
-            <Box my={4}>
-              <Divider />
-            </Box>
-            <Typography variant="h3">Danh sách không thứ tự.</Typography>
-            <ul>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-            </ul>
-            <Box my={4}>
-              <Divider />
-            </Box>
-            <Typography variant="h3">Danh sách có thứ tự.</Typography>
-            <ol>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-              <li>Tìm hiểu nó là gì hoặc</li>
-              <li>Các liên kết hiện tại của nó</li>
-              <li>Nó cho phép bạn bắt đầu đấu giá của bạn</li>
-            </ol>
-            <Box my={4}>
-              <Divider />
-            </Box>
-            <Typography variant="h3">Trích dẫn</Typography>
-            <Box p={2} bgcolor="grey[100]" mt={2}>
-              <Typography variant="h6">
-                <IconQuote /> Cuộc sống ngắn ngủi, Hãy cười khi bạn vẫn còn răng!
-              </Typography>
-            </Box>
           </CardContent>
         </>
-      </BlankCard>
-      <BlankCard sx={{ mt: 3, p: 0 }}>
-        <CardContent>
-          <Typography variant="h4" fontWeight={600}>
-            Bình luận bài viết
-          </Typography>
-          <br />
-          <TextField
-            rows={4}
-            multiline
-            fullWidth
-            value={replyTxt}
-            onChange={(e) => setReplyTxt(e.target.value)}
-          ></TextField>
-          <br />
-          <br />
-          <Button color="primary" variant="contained" onClick={() => onSubmit(post.id, replyTxt)}>
-            Đăng bình luận
-          </Button>
-
-          <Stack direction="row" gap={2} alignItems="center" mb={3} mt={5}>
-            <Typography variant="h4" fontWeight={600}>
-              Bình luận
-            </Typography>
-            <Box px={1.5} py={1} color="primary.main" bgcolor={'primary.light'}>
-              <Typography variant="h6" fontWeight={600}>
-                {post?.comments.length}
-              </Typography>
-            </Box>
-          </Stack>
-          <Box>
-            {post?.comments?.map((comment: BlogType | any) => {
-              return <BlogComment comment={comment} key={comment.profile.id} />;
-            })}
-          </Box>
-        </CardContent>
       </BlankCard>
     </Box>
   );

@@ -51,7 +51,7 @@ const Affilatechart = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, warning, primarylight, secondary, secondarylight],
+    colors: ['#ff416c', '#ff4b2b'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,

@@ -56,41 +56,7 @@ const ProfileBanner = () => {
               my={2}
               spacing={6}
               px={2}
-            >
-              {/* <Box>
-                <Typography color="text.secondary">
-                  <IconFileDescription width="20" />
-                </Typography>
-                <Typography variant="h4" fontWeight="600">
-                  938
-                </Typography>
-                <Typography color="textSecondary" variant="h6" fontWeight={400}>
-                  Số point
-                </Typography>
-              </Box> */}
-              {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Link
-                  to={'/assistant/list'}
-                  style={{ display: 'flex', alignItems: 'center', gap: 10 }}
-                >
-                  <Typography
-                    variant="h4"
-                    fontWeight="600"
-                    sx={{ fontSize: { xs: '14px', sm: '16px', md: '16px', lg: '20px' } }}
-                  >
-                    2,659
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    variant="h6"
-                    fontWeight={500}
-                    sx={{ fontSize: { xs: '14px', sm: '16px', md: '16px', lg: '20px' } }}
-                  >
-                    Trợ lý
-                  </Typography>
-                </Link>
-              </Box> */}
-            </Stack>
+            ></Stack>
           </Grid>
           {/* about profile */}
           <Grid

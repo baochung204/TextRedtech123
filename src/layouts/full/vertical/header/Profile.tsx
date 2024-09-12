@@ -146,7 +146,7 @@ const Profile = () => {
               <Box>
                 <Typography variant="h5" mb={2}>
                   Giúp trợ lý của bạn <br />
-                  thông minh hơn
+                  thông minh hơn !
                 </Typography>
                 <Button variant="contained" color="primary" onClick={handleButtonClick2}>
                   Shopping ngay

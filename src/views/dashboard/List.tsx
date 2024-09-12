@@ -1,11 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import {
-  Box,
-  Grid
-} from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
-
 
 import Expence from 'src/components/dashboards/ecommerce/Expence';
 import Growth from 'src/components/dashboards/ecommerce/Growth';

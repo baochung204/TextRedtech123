@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React ,{useState} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Snackbar, Alert } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
@@ -33,7 +33,7 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     const handleClose = () => {
         setOpen(false);
     };
-
+    const [open1, setOpen1] = useState(false);
     const [name, setName] = React.useState<string | null>(null);
     const hanldeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files !== null) {
@@ -41,6 +41,14 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         }
 
     }
+    const handleSubmit = () => {
+
+        handleClose();
+        setOpen1(true);
+        setTimeout(() => {
+            setOpen1(false);
+        }, 3000);
+    };
     return (
         <>
             <Dialog
@@ -125,11 +133,19 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button variant='contained' onClick={handleClose}>Thêm</Button>
+                    <Button variant='contained' onClick={handleSubmit}>Thêm</Button>
                     <Button onClick={handleClose}>Đóng</Button>
                 </DialogActions>
 
             </Dialog >
+            <Snackbar
+                open={open1}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+                <Alert variant="filled" severity="success" sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+                    Thành công!
+                </Alert>
+            </Snackbar>
         </>
     );
 }

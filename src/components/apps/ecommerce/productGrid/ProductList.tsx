@@ -184,19 +184,17 @@ const ProductList = ({ onClick }: Props) => {
                   <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
                     <img src={product.photo} alt={product.title} width="100%" />
                   </Typography>
-                  <Tooltip title="Add To Cart">
-                    <Fab
-                      size="small"
-                      color="primary"
-                      onClick={() => dispatch(addToCart(product)) && handleClick()}
-                      sx={{ bottom: '10px', right: '10px', position: 'absolute' }}
-                    >
-                      <IconBasket size="16" />
-                    </Fab>
-                  </Tooltip>
-                  <CardContent sx={{ p: 3, pt: 2 }}>
+                  <CardContent
+                    sx={{
+                      p: 3,
+                      pt: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      position: 'relative',
+                    }}
+                  >
                     <Typography variant="h6">{product.title}</Typography>
-                    <Stack direction="column" spacing={1} mt={1}>
+                    <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
                         <Typography variant="h6">{product.price} point</Typography>
                         <Typography
@@ -207,21 +205,42 @@ const ProductList = ({ onClick }: Props) => {
                           {product.salesPrice} point
                         </Typography>
                       </Stack>
-                      {product.category.map((category, index) => (
-                        <Chip
-                          key={index} // Use a unique key if possible
-                          sx={{
-                            backgroundColor: '#13DEB9',
-                            width: '100px', // Set the width here
-                            textAlign: 'center', // Optional: Center text if needed
-                            overflow: 'hidden', // Optional: Handle text overflow
-                            whiteSpace: 'nowrap', // Optional: Prevent text wrapping
-                            color: 'white',
-                          }}
-                          label={category}
-                          size="small"
-                        />
-                      ))}
+                      <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
+                        {product.category.map((category, index) => (
+                          <Stack direction="row" spacing={1} alignItems="center" key={index}>
+                            <Chip
+                              sx={{
+                                backgroundColor: '#13DEB9',
+                                width: '100px',
+                                textAlign: 'center',
+                                overflow: 'hidden',
+                                whiteSpace: 'nowrap',
+                                color: 'white',
+                                display: 'block', // Ensures each Chip is on a new line
+                              }}
+                              label={category}
+                              size="small"
+                            />
+                            {index === 0 && (
+                              <Tooltip title="Add To Cart">
+                                <Fab
+                                  size="small"
+                                  color="primary"
+                                  onClick={() => dispatch(addToCart(product)) && handleClick()}
+                                  sx={{
+                                    position: 'absolute',
+                                    right: 0,
+                                    top: 0,
+                                    transform: 'translateY(-15%)',
+                                  }}
+                                >
+                                  <IconBasket size="16" />
+                                </Fab>
+                              </Tooltip>
+                            )}
+                          </Stack>
+                        ))}
+                      </Stack>
                       <Typography sx={{ fontWeight: 'bold' }}></Typography>
                     </Stack>
                   </CardContent>

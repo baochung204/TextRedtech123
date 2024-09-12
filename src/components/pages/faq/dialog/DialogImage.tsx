@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography, Box, TextField } from '@mui/material';
+import { Typography, Box, TextField, Snackbar, Alert } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import DataTable5 from '../DataTable/TableTab5';
 
@@ -38,7 +38,7 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
         title: '',
         moTa: '',
     });
-
+    const [open1, setOpen1] = useState(false);
     useEffect(() => {
         if (selectedItemId1 !== null) {
             const item = DataTable5.find(item => item.id === selectedItemId1);
@@ -90,6 +90,10 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
         console.log('Tiêu đề:', formData.title);
         console.log('Mô tả:', formData.moTa);
         handleClose();
+        setOpen1(true);
+        setTimeout(() => {
+            setOpen1(false);
+        }, 3000);
     };
 
     const resetForm = () => {
@@ -213,6 +217,14 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                     <Button onClick={handleClose}>Đóng</Button>
                 </DialogActions>
             </Dialog>
+            <Snackbar
+                open={open1}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+                <Alert variant="filled" severity="success" sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+                    Thành công!
+                </Alert>
+            </Snackbar>
         </>
     );
 };
