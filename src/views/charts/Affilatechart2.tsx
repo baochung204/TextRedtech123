@@ -47,7 +47,7 @@ const Affilatechart2 = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <Affilatec2 title="Cuộc trò chuyện" description={''} children={undefined}>
+    <Affilatec2 title="Cuộc trò chuyện" description={''}>
       <Chart
         options={optionsdoughnutchart}
         series={seriesdoughnutchart}

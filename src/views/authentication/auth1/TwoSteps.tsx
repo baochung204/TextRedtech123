@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 
 import PageContainer from 'src/components/container/PageContainer';
@@ -77,7 +77,8 @@ const TwoSteps = () => (
           </Typography>
 
           <Typography variant="subtitle1" color="textSecondary" mb={2}>
-            Chúng tôi đã gửi mã xác minh đến điện thoại di động của bạn. Nhập mã từ điện thoại di động vào ô bên dưới.
+            Chúng tôi đã gửi mã xác minh đến điện thoại di động của bạn. Nhập mã từ điện thoại di
+            động vào ô bên dưới.
           </Typography>
 
           <Typography variant="subtitle1" fontWeight="700" mb={3}>

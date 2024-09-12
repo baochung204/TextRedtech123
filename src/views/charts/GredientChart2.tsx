@@ -5,15 +5,15 @@ import Chart, { Props } from 'react-apexcharts';
 import PageContainer from '../../components/container/PageContainer';
 import ParentCard from '../../components/shared/ParentCard';
 
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Gradient Chart',
-  },
-];
+// const BCrumb = [
+//   {
+//     to: '/',
+//     title: 'Home',
+//   },
+//   {
+//     title: 'Gradient Chart',
+//   },
+// ];
 
 const GredientChart2 = () => {
   // chart color

@@ -66,7 +66,7 @@ const sliderData: SliderType[] = [
 
 const PressMedia = () => {
   const sliderRef = useRef<Slider>(null);
-  const [playing, setPlaying] = useState(true);
+  // const [playing, setPlaying] = useState(true);
 
   const settings = {
     className: 'testimonial-slider',

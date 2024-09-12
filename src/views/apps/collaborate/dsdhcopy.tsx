@@ -40,7 +40,7 @@ const Danhsachdh = () => {
   };
 
   // chart color
-  const theme = useTheme();
+  // const theme = useTheme();
   // const primary = theme.palette.primary.main;
   // const grey = theme.palette.grey[300];
   // const primarylight = theme.palette.primary.light;
