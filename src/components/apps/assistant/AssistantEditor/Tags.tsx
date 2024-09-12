@@ -43,7 +43,7 @@ const Tags = () => {
         (_event, newValue) => setTags(newValue.map((tag) => ({ ...tag, color: getRandomColor() }))) // Cập nhật tag với màu ngẫu nhiên
       }
       renderTags={(value, getTagProps) =>
-        value.map((option, index) => (
+        value.map((option: any, index) => (
           <Chip
             label={option.title}
             {...getTagProps({ index })}

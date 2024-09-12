@@ -13,7 +13,7 @@ type Props = {
   children: JSX.Element;
 };
 
-const ParentCard = ({ title, children, footer, description }: Props) => {
+const ParentCard = ({ title, children, footer }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();

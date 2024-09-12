@@ -81,7 +81,7 @@ const Subtitle = styled(Typography)<{ visible: boolean }>(({ theme, visible }) =
   marginTop: visible ? '10px' : '0', // Add margin-top to push elements down
 }));
 
-const StyledListItem = styled(Box)(({ theme }) => ({
+const StyledListItem = styled(Box)(({}) => ({
   position: 'relative',
   padding: '10px 0',
   minHeight: '40px', // Ensure minimum height to accommodate subtitle

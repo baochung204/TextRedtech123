@@ -3,7 +3,6 @@
 // @ts-ignore
 import {
   Box,
-  Button,
   Grid,
   Stack,
   Table,
@@ -21,12 +20,11 @@ import { format } from 'date-fns';
 import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
-import { EnTableType } from 'src/components/tables/tableData';
+// import { EnTableType } from 'src/components/tables/tableData';
 import { tablepayment } from 'src/components/tables/tablepayment';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Dayjs } from 'dayjs';
 // import CustomSelect from '../../forms/theme-elements/CustomSelect';
 // import DashboardCard from '../../shared/DashboardCard';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -57,7 +55,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
   return 0;
 }
-const rows: EnTableType[] = tablepayment.map((item) => ({
+const rows: any = tablepayment.map((item) => ({
   ...item,
   paymentMethod: '', // Add the missing property
   numberPrice: 0, // Add the missing property
@@ -204,7 +202,9 @@ const Paymenthistory = () => {
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
+  const [dense] = React.useState(false);
+
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

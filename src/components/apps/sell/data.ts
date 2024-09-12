@@ -1,5 +1,5 @@
 interface FilmsData {
-  color: BackgroundColor | undefined;
+  // color: BackgroundColor | undefined;
   title: string;
   year: number;
 }

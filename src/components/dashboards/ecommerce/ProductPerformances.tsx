@@ -13,7 +13,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import React from 'react';
 // import { Props } from 'react-apexcharts';
 import CustomSelect from '../../forms/theme-elements/CustomSelect';
@@ -31,7 +31,7 @@ const ProductPerformances = () => {
   };
 
   // chart color
-  const theme = useTheme();
+  // const theme = useTheme();
   // const primary = theme.palette.primary.main;
   // const grey = theme.palette.grey[300];
   // const primarylight = theme.palette.primary.light;
@@ -76,8 +76,8 @@ const ProductPerformances = () => {
   //     data: [30, 25, 35, 20, 30],
   //   },
   // ];
-  let data = '0974943593';
-  const phone = data.slice(0, 3) + '####' + data.slice(7, 10);
+  // let data = '0974943593';
+  // const phone = data.slice(0, 3) + '####' + data.slice(7, 10);
   // chart 2
   // const optionsrow2chart: Props = {
   //   chart: {

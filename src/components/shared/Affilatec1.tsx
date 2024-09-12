@@ -2,7 +2,7 @@
 // @ts-ignore
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-import { Card, CardHeader, CardContent, Divider, Box } from '@mui/material';
+import { Card, CardContent, Divider, Box } from '@mui/material';
 import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
 
@@ -13,7 +13,7 @@ type Props = {
   children: JSX.Element;
 };
 
-const Affilatec1 = ({ title, children, footer, description }: Props) => {
+const Affilatec1 = ({ children, footer }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();

@@ -121,14 +121,14 @@ const PressMedia = () => {
     sliderRef.current?.slickNext();
   };
 
-  const togglePlayPause = () => {
-    setPlaying(!playing);
-    if (playing) {
-      sliderRef.current?.slickPause();
-    } else {
-      sliderRef.current?.slickPlay();
-    }
-  };
+  // const togglePlayPause = () => {
+  //   setPlaying(!playing);
+  //   if (playing) {
+  //     sliderRef.current?.slickPause();
+  //   } else {
+  //     sliderRef.current?.slickPlay();
+  //   }
+  // };
 
   return (
     <Box pt={14} pb={11} position="relative">
