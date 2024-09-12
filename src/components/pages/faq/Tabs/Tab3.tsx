@@ -13,7 +13,11 @@ interface PropsTab3 {
 const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          width: '100%'
+        }}
+      >
 
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -63,17 +67,6 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
                     </Typography>
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {/* <Stack direction="row" spacing={2}>
-                      <Avatar src={items.images} variant="rounded" alt={items.images} sx={{ width: 48, height: 48 }} />
-                      <Box>
-                        <Typography variant='subtitle2' fontWeight={500}>
-                          {items.fullName}
-                        </Typography>
-                        <Typography color="textSecondary" fontSize="11px" variant="subtitle2">
-                          {items.election}
-                        </Typography>
-                      </Box>
-                    </Stack> */}
                     <Typography variant='subtitle2' fontWeight={400}>
                       {items.idCode}
                     </Typography>

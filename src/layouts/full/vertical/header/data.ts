@@ -3,7 +3,6 @@ import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import icon1 from 'src/assets/images/svgs/icon-account.svg';
-import icon2 from 'src/assets/images/svgs/icon-inbox.svg';
 import icon3 from 'src/assets/images/svgs/icon-tasks.svg';
 import Iconkey from 'src/assets/images/iconHeadrProfile/key.png';
 import ddIcon8 from 'src/assets/images/svgs/icon-dd-application.svg';
@@ -25,33 +24,33 @@ interface notificationType {
 const notifications: notificationType[] = [
   {
     avatar: img1,
-    title: 'Roman Joined the Team!',
-    subtitle: 'Congratulate him',
+    title: 'Trung đã đăng ký thành công',
+    subtitle: 'Chúc mừng anh !',
   },
   {
     avatar: img2,
-    title: 'New message received',
-    subtitle: 'Salma sent you new message',
+    title: 'Bạn có một tin nhắn mới',
+    subtitle: 'Trung đã gửi bạn tin nhắn mới',
   },
   {
     avatar: img3,
-    title: 'New Payment received',
-    subtitle: 'Check your earnings',
+    title: 'Có một giao dịch mới',
+    subtitle: 'Kiểm tra ngay nào',
   },
   {
     avatar: img4,
-    title: 'Jolly completed tasks',
-    subtitle: 'Assign her new tasks',
+    title: 'Toản đã hoàn thành một nhiệm vụ',
+    subtitle: 'Hãy cập nhật nhiệm vụ mới cho anh ý ngay nào',
   },
   {
     avatar: img1,
-    title: 'Roman Joined the Team!',
-    subtitle: 'Congratulate him',
+    title: 'Hòa đã đăng ký thành công',
+    subtitle: 'Chúc mừng anh !',
   },
   {
     avatar: img2,
-    title: 'New message received',
-    subtitle: 'Salma sent you new message',
+    title: 'Bạn có một yêu cầu mới',
+    subtitle: 'Hãy kiểm tra ngay nào',
   },
   {
     avatar: img3,

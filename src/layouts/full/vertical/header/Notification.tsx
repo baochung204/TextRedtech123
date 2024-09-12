@@ -110,7 +110,7 @@ const Notifications = () => {
           ))}
         </Scrollbar>
         <Box p={3} pb={1}>
-          <Button to="/apps/email" variant="outlined" component={Link} color="primary" fullWidth>
+          <Button variant="outlined" color="primary" fullWidth>
             Xem tất cả thông báo
           </Button>
         </Box>

@@ -32,13 +32,13 @@ const Faq = () => {
   return (
     <Grid container xs={12}
     >
-      <Grid item>
+      <Grid item xs={12}>
         <Box
-          sx={{
-            width: '100%',
-            typography: 'body1',
-            overflowX: 'auto'
-          }}>
+          // sx={{
+          //   typography: 'body1',
+          //   overflowX: 'auto'
+          // }}
+        >
           <TabContext value={value}>
             <Box sx={{
               borderBottom: 1,
