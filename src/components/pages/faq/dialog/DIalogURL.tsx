@@ -127,6 +127,7 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                             </Grid>
                         </Grid>
                     </DialogContentText>
+
                 </DialogContent>
 
                 <DialogActions>
@@ -141,15 +142,16 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 </DialogActions>
             </Dialog>
 
-            {/* Snackbar chứa Alert */}
             <Snackbar
                 open={open1}
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
-                <Alert variant="filled" severity="success" sx={{ width: '100%' , display: 'flex', alignItems: 'center'}}>
+                <Alert variant="filled" severity="success" sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
                     Thành công!
                 </Alert>
             </Snackbar>
+
+
         </>
     );
 };
