@@ -32,11 +32,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-
 import SearchInput from 'src/components/apps/search/search';
 
 import pointimg from 'src/assets/images/icon.png/point.png';
-import SearchInput from 'src/components/apps/search/search';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
 
@@ -161,9 +159,7 @@ const getStatusTextAndColor = (status: number) => {
   }
 };
 
-
 function EnhancedTableHead(props: EnhancedTableProps) {
-
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
@@ -200,7 +196,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-
 const Paymenthistory = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<string>('calories');
@@ -212,7 +207,7 @@ const Paymenthistory = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof []) => {
+  const handleRequestSort = (event: React.MouseEvent<unknown>, property: any) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
@@ -260,10 +255,8 @@ const Paymenthistory = () => {
     setPage(0);
   };
 
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
 
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);

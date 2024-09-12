@@ -78,7 +78,7 @@ const CompanyAffiliate = () => {
       bank: '',
       branch: '',
       fileName: '',
-      fileNameURL: ''
+      fileNameURL: '',
     },
     validationSchema: validationSchemas[activeStep],
     validateOnChange: false,
@@ -102,8 +102,12 @@ const CompanyAffiliate = () => {
     return numericValue;
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { id, value, checked, type } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    const { id, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+
     let filteredValue = value;
 
     if (id === 'taxCode') {
@@ -120,7 +124,10 @@ const CompanyAffiliate = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const validTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const validTypes = [
+        'application/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      ];
       if (!validTypes.includes(file.type)) {
         alert('File không hợp lệ. Vui lòng tải lên file PDF hoặc DOCX.');
         return;
@@ -172,7 +179,7 @@ const CompanyAffiliate = () => {
                 overflowY: 'scroll',
                 padding: '16px',
                 borderRadius: '8px',
-                marginTop: '20px'
+                marginTop: '20px',
               }}
             >
               <h3>MỤC I. ĐỐI TÁC</h3>
@@ -608,7 +615,8 @@ const CompanyAffiliate = () => {
           <Box>
             <Alert severity="warning" sx={{ marginTop: '30px', fontWeight: 'bold' }}>
               Chú ý: Nội dung đối tác điền dưới đây sẽ được sử dụng làm thông tin trong hợp đồng hợp
-              tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp & Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
+              tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp &
+              Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
             </Alert>
             <Box
               sx={{
@@ -676,8 +684,6 @@ const CompanyAffiliate = () => {
                     helperText={isSubmitting && formik.errors.address}
                   />
                 </Grid>
-
-
               </Grid>
             </Box>
             <Box
@@ -758,7 +764,6 @@ const CompanyAffiliate = () => {
                     )}
                   </FormControl>
                 </Grid>
-
               </Grid>
             </Box>
           </Box>
@@ -936,7 +941,7 @@ const CompanyAffiliate = () => {
       <Box mt={4}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
-            const stepProps = {};
+            const stepProps: { completed?: boolean } = {};
             const labelProps = {};
             if (isStepSkipped(index)) {
               stepProps.completed = false;
@@ -982,18 +987,31 @@ const CompanyAffiliate = () => {
                 Hủy bỏ
               </Button>
               <Box flex="1 1 auto" />
-              <Button
-                onClick={() => {
-                  setIsSubmitting(true);
-                  formik.handleSubmit();
-                }}
-                variant="contained"
-                color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
-                component={Link}
-                to={activeStep === (steps.length - 1) && "/apps/pending"}
-              >
-                {activeStep === steps.length - 1 ? 'Hoàn thành' : 'Tiếp tục'}
-              </Button>
+              {activeStep === steps.length - 1 ? (
+                <Button
+                  onClick={() => {
+                    setIsSubmitting(true);
+                    formik.handleSubmit();
+                  }}
+                  variant="contained"
+                  color="success"
+                  component={Link}
+                  to="/apps/pending"
+                >
+                  Hoàn thành
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    setIsSubmitting(true);
+                    formik.handleSubmit();
+                  }}
+                  variant="contained"
+                  color="secondary"
+                >
+                  Tiếp tục
+                </Button>
+              )}
             </Box>
           </Box>
         )}

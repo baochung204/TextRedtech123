@@ -1,5 +1,5 @@
 import { Box, Typography, Container, Button } from '@mui/material';
-import React from 'react';
+// import React from 'react';
 import bot from 'src/assets/images/backgrounds/bot.svg';
 import { Link } from 'react-router-dom';
 

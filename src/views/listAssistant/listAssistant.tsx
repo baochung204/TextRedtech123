@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import avt1 from 'src/assets/images/profile/user-1.jpg';
 import avt10 from 'src/assets/images/profile/user-10.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
@@ -43,7 +43,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import { IconArrowUpRight } from '@tabler/icons-react';
 import { Props } from 'react-apexcharts';
 
-import { useMediaQuery } from '@mui/material';
+// import { useMediaQuery } from '@mui/material';
 import { IconTable } from '@tabler/icons-react';
 import Chart from 'react-apexcharts';
 import icon1 from 'src/assets/images/svgs/icon-bars.svg';
@@ -226,7 +226,7 @@ const top10rank: ITopRank[] = [
 
 const ListAssistant = () => {
   const theme = useTheme();
-  const [isLoading, setLoading] = React.useState(true);
+  // Removed unused isLoading state
   // chart color
   const secondary = theme.palette.secondary.main;
 
@@ -271,13 +271,7 @@ const ListAssistant = () => {
     },
   ];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 700);
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Removed useEffect that sets isLoading state
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
 
   const onHandleCheckOnOrOff = (rank: Irank) => {

@@ -16,7 +16,6 @@ export interface TableType {
 }
 
 export interface EnTableType {
-  name: any;
   id: string;
   amount: number; // số tiền
   paymentMethod: string; // phương thức thanh toán
@@ -29,15 +28,12 @@ export interface EnTableType {
 }
 
 export interface CustomerListTable {
-  id: number;
+  id: string;
   assistant: string;
   name: string; // họ tên
   email: string; // email
   phone: string; // SĐT
-  registrationDate: string; // Ngày đăng ký
-  totalExpenses: string; // Tổng tiền thanh toán
-  electronics: string;
-  image: string;
+
   createdAt: string;
   orderValue: string;
   channel: string;

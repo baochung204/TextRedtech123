@@ -17,7 +17,7 @@ import {
   InputLabel,
   Paper,
   FormControlLabel,
-  SelectChangeEvent,
+  // SelectChangeEvent,
 } from '@mui/material';
 import { DataRowCustomerTable } from './tableData';
 import CustomSwitch from '../forms/theme-elements/CustomSwitch';

@@ -6,7 +6,7 @@ import { Grid, Box, Typography, Stack } from '@mui/material';
 
 import PageContainer from 'src/components/container/PageContainer';
 import img1 from 'src/assets/images/backgrounds/login-bg1.svg';
-import Logo from 'src/layouts/full/shared/logo/Logo';
+// import Logo from 'src/layouts/full/shared/logo/Logo';
 
 import AuthRegister from '../authForms/AuthRegister';
 // import AuthSocialButtons from '../authForms/AuthSocialButtons';

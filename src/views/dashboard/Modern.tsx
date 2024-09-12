@@ -1,31 +1,21 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
 import { Box, Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
-import TopCards from 'src/components/dashboards/modern/TopCards';
-import RevenueUpdates from 'src/components/dashboards/modern/RevenueUpdates';
-import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
-import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
-import EmployeeSalary from 'src/components/dashboards/modern/EmployeeSalary';
-import Customers from 'src/components/dashboards/modern/Customers';
-import Projects from 'src/components/dashboards/modern/Projects';
-import Social from 'src/components/dashboards/modern/Social';
-import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
-import WeeklyStats from 'src/components/dashboards/modern/WeeklyStats';
-import TopPerformers from 'src/components/dashboards/modern/TopPerformers';
-import Welcome from 'src/layouts/full/shared/welcome/Welcome';
-import GredientChart from '../charts/GredientChart';
-import PieCharts from '../charts/PieCharts';
-import GerChart from '../charts/Gerchart';
 import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
-import Affiliatedetail from '../charts/affiliatedetail';
+import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
+import TopCards from 'src/components/dashboards/modern/TopCards';
+import WeeklyStats from 'src/components/dashboards/modern/WeeklyStats';
+import Welcome from 'src/layouts/full/shared/welcome/Welcome';
 import Affilatechart from '../charts/Affilatechart';
-import SalesOverview from 'src/components/dashboards/ecommerce/SalesOverview';
-import Affilatechart2 from '../charts/Affilatechart2';
 import Affilatechart1 from '../charts/Affilatechart1';
+import Affilatechart2 from '../charts/Affilatechart2';
 import Affilatechart3 from '../charts/Affilatechart3';
+// import Affiliatedetail from '../charts/affiliatedetail';
+import GerChart from '../charts/Gerchart';
+import PieCharts from '../charts/PieCharts';
+import Affiliatedetail from './../charts/Affiliatedetail';
 
 const Modern = () => {
   return (

@@ -19,20 +19,19 @@ import DashboardCard from '../../shared/DashboardCard';
 
 import img1 from 'src/assets/images/products/s6.jpg';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { useState } from 'react';
 
 const DSdonhang = () => {
   // for select
-  const [month, setMonth] = React.useState('1');
+  const [month, setMonth] = useState('1');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
 
-
   let data = '0974943593';
   const phone = data.slice(0, 3) + '####' + data.slice(7, 10);
   console.log(phone);
-
 
   return (
     <DashboardCard

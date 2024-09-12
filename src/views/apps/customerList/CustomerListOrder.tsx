@@ -22,50 +22,46 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
-// import Tags from 'src/components/apps/sell/Tags';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import AddOrder, { default as OrderTable, default as OrderTableList } from './PopupAdd2';
-import Tags from 'src/components/apps/sell/tags';
+import AddOrder from './PopupAdd2';
 import TableListOrder from './TableOrderList';
+import Tags from 'src/components/apps/sell/Tags';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
   { to: '/apps/blog/posts', title: 'Blog' },
   { title: 'Blog post' },
 ];
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
 const CustomerListOrder = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
-  // Function mở popup
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
+  const handleOpenPopup = () => setIsPopupOpen(true);
+  const handleClosePopup = () => setIsPopupOpen(false);
 
-  // Function đóng popup
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-  };
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>
       {/* Breadcrumb */}
       <Breadcrumb title="Blog Detail" items={BCrumb} />
+
       <Grid container spacing={3}>
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <TabList onChange={handleChange} aria-label="lab API tabs example">
+              <TabList onChange={handleChange} aria-label="Tabs">
                 <Tab label="Khách hàng" value="1" />
                 <Tab label="Tags" value="2" />
               </TabList>
@@ -88,7 +84,7 @@ const CustomerListOrder = () => {
                     <Fab
                       color="primary"
                       aria-label="add"
-                      size="small" // Set the size to "small"
+                      size="small"
                       sx={{ marginRight: '30px' }}
                       onClick={handleOpenPopup}
                     >
@@ -124,7 +120,7 @@ const CustomerListOrder = () => {
                     labelId="column-filter"
                     id="column-filter"
                     size="small"
-                    value={1} // Setting the first value as default
+                    value={1}
                     sx={{ marginRight: '30px' }}
                   >
                     <MenuItem value={1}>Sửa đổi cột</MenuItem>
@@ -134,7 +130,7 @@ const CustomerListOrder = () => {
                     labelId="column-sort"
                     id="column-sort"
                     size="small"
-                    value={1} // Setting the first value as default
+                    value={1}
                     sx={{ marginRight: '20px' }}
                   >
                     <MenuItem value={1}>Bộ cọc</MenuItem>
@@ -146,7 +142,7 @@ const CustomerListOrder = () => {
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       value={selectedStartDate}
-                      onChange={(newDate) => setSelectedStartDate(newDate)}
+                      onChange={setSelectedStartDate}
                       renderInput={(params) => (
                         <CustomTextField {...params} sx={{ marginRight: '10px' }} />
                       )}
@@ -154,7 +150,7 @@ const CustomerListOrder = () => {
                     <Typography sx={{ marginRight: '10px' }}>tới</Typography>
                     <DatePicker
                       value={selectedEndDate}
-                      onChange={(newDate) => setSelectedEndDate(newDate)}
+                      onChange={setSelectedEndDate}
                       renderInput={(params) => (
                         <CustomTextField {...params} sx={{ marginRight: '10px' }} />
                       )}
@@ -164,8 +160,8 @@ const CustomerListOrder = () => {
                   {/* Icon Refresh */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="20" // Adjust the width to make the icon smaller
-                    height="20" // Adjust the height to make the icon smaller
+                    width="20"
+                    height="20"
                     cursor="pointer"
                     viewBox="0 0 24 24"
                     fill="none"
@@ -173,7 +169,6 @@ const CustomerListOrder = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="icon icon-tabler icons-tabler-outline icon-tabler-refresh"
                     style={{ marginLeft: '10px' }}
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -184,6 +179,7 @@ const CustomerListOrder = () => {
               </Box>
               <TableListOrder />
             </TabPanel>
+
             <TabPanel value="2">
               <Tags />
             </TabPanel>
@@ -191,18 +187,20 @@ const CustomerListOrder = () => {
         </Box>
       </Grid>
 
-      {/* Bảng khách hàng */}
       {/* Popup Thêm đơn hàng */}
-      <Dialog open={isPopupOpen}
+      <Dialog
+        open={isPopupOpen}
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
         TransitionComponent={Transition}
-        keepMounted>
-        <DialogTitle padding={'10px'}>Thêm đơn hàng</DialogTitle>
+        keepMounted
+      >
+        <DialogTitle padding="10px">Thêm đơn hàng</DialogTitle>
         <DialogContent>
-          <AddOrder /> {/* Gọi component PopupAdd */}
+          <AddOrder />
         </DialogContent>
+        {/* Uncomment if you want to use dialog actions */}
         {/* <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
           <Button onClick={handleClosePopup} variant="contained" color="primary">

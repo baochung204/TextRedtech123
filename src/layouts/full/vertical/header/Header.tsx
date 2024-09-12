@@ -1,29 +1,26 @@
 import {
-  IconButton,
-  Box,
   AppBar,
-  useMediaQuery,
-  Toolbar,
-  styled,
-  Stack,
+  Box,
   Button,
+  IconButton,
+  Stack,
+  Toolbar,
   Typography,
+  styled,
+  useMediaQuery,
 } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { toggleSidebar, toggleMobileSidebar } from 'src/store/customizer/CustomizerSlice';
 import { IconMenu2 } from '@tabler/icons-react';
+import { Link as RouterLink } from 'react-router-dom';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import { toggleMobileSidebar, toggleSidebar } from 'src/store/customizer/CustomizerSlice';
+import { AppState, useDispatch, useSelector } from 'src/store/Store';
+import Cart from './Cart';
+import Language from './Language';
+import MobileRightSidebar from './MobileRightSidebar';
+import Navigation from './Navigation';
 import Notifications from './Notification';
 import Profile from './Profile';
-import Cart from './Cart';
-import { SxProps } from '@mui/system';
 import Search from './Search';
-import Language from './Language';
-import { AppState } from 'src/store/Store';
-import Navigation from './Navigation';
-import MobileRightSidebar from './MobileRightSidebar';
-import logochicken from 'src/assets/images/logos/logo chicken.png';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
 
 import { Link } from 'react-router-dom';
 const Header = () => {
@@ -47,7 +44,7 @@ const Header = () => {
     width: '100%',
     color: theme.palette.text.secondary,
   }));
-  const a = 70000;
+  // const a = 70000;
   return (
     <AppBarStyled position="sticky" color="default">
       <ToolbarStyled>

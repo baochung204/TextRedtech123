@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Grid,
@@ -28,7 +28,7 @@ const Aisupport = () => {
   const [inputMessage, setInputMessage] = useState('');
 
   // List of previous chat histories (mock data)
-  const [chatHistory, setChatHistory] = useState([
+  const [chatHistory] = useState([
     {
       id: 1,
       title: 'Support Inquiry',
@@ -76,7 +76,7 @@ const Aisupport = () => {
   };
 
   // Load a selected chat history
-  const handleChatHistoryClick = (chat) => {
+  const handleChatHistoryClick = (chat: any) => {
     setMessages(chat.messages);
     setSelectedChat(chat.id);
   };

@@ -103,7 +103,7 @@ const GredientChart = () => {
     //   {/* end breadcrumb */}
 
     // </PageContainer>
-    <ParentCard title="Gradient Chart" description={''} children={undefined}>
+    <ParentCard title="Gradient Chart" description={''}>
       <Chart
         options={optionsgredientchart}
         series={seriesgredientchart}

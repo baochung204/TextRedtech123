@@ -50,7 +50,7 @@ const Tags = () => {
           ) // Cập nhật tag với màu ngẫu nhiên
       }
       renderTags={(value, getTagProps) =>
-        value.map((option, index) => (
+        value.map((option: any, index) => (
           <Chip
             label={option.title}
             {...getTagProps({ index })}

@@ -15,6 +15,7 @@ declare module '@emotion/react' {
       };
       text: {
         primary: string;
+        secondary: string;
       };
     };
   }

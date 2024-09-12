@@ -1,8 +1,8 @@
 import {
   Box,
-  Button,
+  // Button,
   Dialog,
-  DialogActions,
+  // DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
@@ -25,9 +25,11 @@ import CustomSelect from '../../../components/forms/theme-elements/CustomSelect'
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { IconSearch } from '@tabler/icons-react';
-import Tags from 'src/components/apps/sell/tags';
+
 import PopupAddList2 from './PopupAddlist2';
 import { Slide } from '@mui/material';
+import Tags from 'src/components/apps/sell/Tags';
+import { TransitionProps } from '@mui/material/transitions';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -35,7 +37,10 @@ const BCrumb = [
   { title: 'Blog post' },
 ];
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -55,8 +60,8 @@ const CustomerList2 = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 

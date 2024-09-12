@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Stepper,
@@ -14,13 +14,14 @@ import {
   Checkbox,
   Grid,
   Divider,
+  FormHelperText,
 } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 import CloseIcon from '@mui/icons-material/Close';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SecurityIcon from '@mui/icons-material/Security';
+// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+// import SecurityIcon from '@mui/icons-material/Security';
 import Authenticate from 'src/assets/images/authenticate/authenticate.png';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -33,7 +34,9 @@ const validationSchemaStep0 = Yup.object({
 });
 
 const validationSchemaStep1 = Yup.object({
-  bankNumber: Yup.string().matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số').required('Số tài khoản là bắt buộc'),
+  bankNumber: Yup.string()
+    .matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số')
+    .required('Số tài khoản là bắt buộc'),
   accountName: Yup.string().required('Chủ tài khoản là bắt buộc'),
   bank: Yup.number().required('Ngân hàng là bắt buộc'),
   branch: Yup.number().required('Chi nhánh ngân hàng là bắt buộc'),
@@ -45,19 +48,21 @@ const validationSchemaStep2 = Yup.object({
 });
 
 const PersonAffiliate = () => {
-  const [selectedImage1, setSelectedImage1] = useState(null);
-  const [selectedImage2, setSelectedImage2] = useState(null);
+  const [selectedImage1, setSelectedImage1] = useState<string | null>(null);
+  const [selectedImage2, setSelectedImage2] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const [skipped, setSkipped] = useState(new Set());
+  // const [skipped, setSkipped] = useState(new Set());
+  const [skipped] = useState(new Set());
+
   const isStepSkipped = (step: number) => skipped.has(step);
 
-  const handleImage1Change = (event) => {
+  const handleImage1Change = (event: any) => {
     const file = event.target.files[0];
     formik.setFieldValue('frontImage', file);
     setSelectedImage1(URL.createObjectURL(file));
   };
 
-  const handleImage2Change = (event) => {
+  const handleImage2Change = (event: any) => {
     const file = event.target.files[0];
     formik.setFieldValue('backImage', file);
     setSelectedImage2(URL.createObjectURL(file));
@@ -72,7 +77,6 @@ const PersonAffiliate = () => {
     formik.setFieldValue('backImage', null);
     setSelectedImage2(null);
   };
-
 
   const formik = useFormik({
     initialValues: {
@@ -119,7 +123,7 @@ const PersonAffiliate = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSteps = (step) => {
+  const handleSteps = (step: any) => {
     switch (step) {
       case 0:
         return (
@@ -130,7 +134,7 @@ const PersonAffiliate = () => {
                 overflowY: 'scroll',
                 padding: '16px',
                 borderRadius: '8px',
-                marginTop: '20px'
+                marginTop: '20px',
               }}
             >
               <h3>MỤC I. ĐỐI TÁC</h3>
@@ -611,7 +615,6 @@ const PersonAffiliate = () => {
                     value={formik.values.bank}
                     onChange={formik.handleChange}
                     error={!!formik.errors.bank}
-                    helperText={formik.errors.bank}
                   >
                     <MenuItem value={1}>Mb bank</MenuItem>
                     <MenuItem value={2}>TP bank</MenuItem>
@@ -620,19 +623,18 @@ const PersonAffiliate = () => {
               </Grid>
               <Grid item xs={6}>
                 <CustomFormLabel htmlFor="branch">Chi nhánh ngân hàng</CustomFormLabel>
-                <FormControl fullWidth>
+                <FormControl fullWidth error={!!formik.errors.branch}>
                   <Select
                     labelId="branch-select-label"
                     id="branch"
                     name="branch"
                     value={formik.values.branch}
                     onChange={formik.handleChange}
-                    error={!!formik.errors.branch}
-                    helperText={formik.errors.branch}
                   >
                     <MenuItem value={1}>Hà Nội</MenuItem>
                     <MenuItem value={2}>Hồ Chí Minh</MenuItem>
                   </Select>
+                  {formik.errors.branch && <FormHelperText>{formik.errors.branch}</FormHelperText>}
                 </FormControl>
               </Grid>
             </Grid>
@@ -688,7 +690,7 @@ const PersonAffiliate = () => {
                   <Input
                     id="frontImage"
                     type="file"
-                    accept="image/*"
+                    inputProps={{ accept: 'image/*' }}
                     onChange={handleImage1Change}
                     style={{ display: 'none' }}
                   />
@@ -723,7 +725,7 @@ const PersonAffiliate = () => {
                   <Input
                     id="backImage"
                     type="file"
-                    accept="image/*"
+                    inputProps={{ accept: 'image/*' }}
                     onChange={handleImage2Change}
                     style={{ display: 'none' }}
                   />
@@ -782,18 +784,28 @@ const PersonAffiliate = () => {
             Hủy bỏ
           </Button>
           <Box flex="1 1 auto" />
-          <Button
-            onClick={formik.handleSubmit}
-            variant="contained"
-            color="secondary"
-            size="small"
-            component={Link}
-            to={activeStep === (steps.length - 1) && "/apps/pending"}
-          >
-            {activeStep === (steps.length - 1) ? 'Hoàn tất đăng ký' : 'Tiếp tục'}
-          </Button>
+          {activeStep === steps.length - 1 ? (
+            <Button
+              onClick={() => formik.handleSubmit()}
+              variant="contained"
+              color="secondary"
+              size="small"
+              component={Link}
+              to="/apps/pending"
+            >
+              Hoàn tất đăng ký
+            </Button>
+          ) : (
+            <Button
+              onClick={() => formik.handleSubmit()}
+              variant="contained"
+              color="secondary"
+              size="small"
+            >
+              Tiếp tục
+            </Button>
+          )}
         </Box>
-
       </Box>
     </PageContainer>
   );

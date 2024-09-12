@@ -12,20 +12,15 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-  Toolbar,
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   Paper,
-  IconButton,
-  Avatar,
-  Button,
   Typography,
   Stack,
+  Button,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import PageContainer from 'src/components/container/PageContainer';
-import ParentCard from 'src/components/shared/ParentCard';
 import BlankCard from '../../components/shared/BlankCard';
 import { format } from 'date-fns';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
@@ -180,7 +175,9 @@ const getInvoiceTextAndColor = (status: any) => {
 };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  // const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
+
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -188,7 +185,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
+        {headCells.map((headCell: any) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
@@ -198,7 +195,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id as string)}
+              onClick={createSortHandler(headCell.id)}
             >
               <Typography variant="subtitle1" fontWeight="700">
                 {headCell.label}
@@ -238,7 +235,7 @@ const HistoryBuyPoint = () => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n: any) => n.name);
       setSelected(newSelecteds);
 
       return;

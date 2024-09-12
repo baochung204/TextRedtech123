@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react';
 // images
 import bannerbgImg3 from 'src/assets/images/landingpage/ai.png';
 import bannerbgImg4 from 'src/assets/images/landingpage/ai2.png';
-import bannerbgImg5 from 'src/assets/images/landingpage/qchatbot.png';
+import bannerbgImg5 from 'src/assets/images/landingpage/ai2.png';
+// import bannerbgImg5 from 'src/assets/images/landingpage/qchatbot.png';
+
 import FrameworksTitle from './FrameworksTitle';
 
 // Define the images you want to display

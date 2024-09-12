@@ -107,7 +107,7 @@ const DoughnutChart = () => {
           </ParentCard>
         </Grid>
         <Grid item lg={6} md={12} xs={12}>
-          <ParentCard title="Pie Charts" description={''} children={undefined}>
+          <ParentCard title="Pie Charts" description={''}>
             <Chart options={optionspiechart} series={seriespiechart} type="pie" height="300px" />
           </ParentCard>
         </Grid>

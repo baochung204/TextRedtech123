@@ -3,6 +3,7 @@
 import PageContainer from 'src/components/container/PageContainer';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
+// import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/AssistantEditor';
 import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/AssistantEditor';
 
 const BCrumb = [
@@ -17,16 +18,22 @@ const BCrumb = [
 ];
 
 const AssistantEditor = () => {
+  // return (
+  //   <PageContainer title="Tạo Assistant" description="this is Shop List page">
+  //     {/* breadcrumb */}
+  //     <Breadcrumb title="Tạo Assistant" items={BCrumb} />
+  //     {/* <BlankCard> */}
+  //     {/* ------------------------------------------- */}
+  //     {/* Left part */}
+  //     {/* ------------------------------------------- */}
+  //     <Assistant_Add />
+  //     {/* </BlankCard> */}
+  //   </PageContainer>
+  // );
   return (
     <PageContainer title="Tạo Assistant" description="this is Shop List page">
-      {/* breadcrumb */}
       <Breadcrumb title="Tạo Assistant" items={BCrumb} />
-      {/* <BlankCard> */}
-      {/* ------------------------------------------- */}
-      {/* Left part */}
-      {/* ------------------------------------------- */}
       <Assistant_Add />
-      {/* </BlankCard> */}
     </PageContainer>
   );
 };

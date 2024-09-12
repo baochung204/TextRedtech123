@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import {
   Box,
   CardContent,
@@ -66,7 +66,7 @@ const sliderData: SliderType[] = [
 
 const PressMedia = () => {
   const sliderRef = useRef<Slider>(null);
-  const [playing, setPlaying] = useState(true);
+  // const [playing, setPlaying] = useState(true);
 
   const settings = {
     className: 'testimonial-slider',
