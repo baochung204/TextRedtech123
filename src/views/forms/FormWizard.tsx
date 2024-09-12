@@ -38,7 +38,7 @@ const FormWizard = () => {
   const [selectedImage1, setSelectedImage1] = useState(null);
   const [selectedImage2, setSelectedImage2] = useState(null);
 
-  const handleImage1Change = (event) => {
+  const handleImage1Change = (event: any) => {
     setSelectedImage1(URL.createObjectURL(event.target.files[0]));
   };
 
