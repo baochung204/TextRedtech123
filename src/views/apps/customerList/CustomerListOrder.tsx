@@ -60,12 +60,12 @@ const CustomerListOrder = () => {
       <Grid container spacing={3}>
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} aria-label="Tabs">
                 <Tab label="Khách hàng" value="1" />
                 <Tab label="Tags" value="2" />
               </TabList>
-            </Box>
+            </Box> */}
 
             <TabPanel value="1">
               {/* Action Buttons and Filters */}
