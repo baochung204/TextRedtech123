@@ -556,7 +556,7 @@ const AssistantInfor = () => {
   const seriesgredientchart2: any = [
     {
       name: 'Likes',
-      data: [4, 3, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
+      data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
   const optionsdoughnutchart3: Props = {
