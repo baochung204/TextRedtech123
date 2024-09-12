@@ -12,6 +12,8 @@ interface TableDH {
   completedAt: Date;
   status: boolean;
   invoice: number;
+  // paymentMethod: string; // add this
+  // numberPrice: number;
 }
 
 const tabledh: TableDH[] = [

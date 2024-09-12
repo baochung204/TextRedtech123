@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, TextField, Alert, AlertTitle, Button, useTheme } from '@mui/material';
+import {
+  Box,
+  Typography,
+  IconButton,
+  TextField,
+  Alert,
+  AlertTitle,
+  Button,
+  useTheme,
+} from '@mui/material';
 import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { setSelected } from 'src/store/RouterSlice';
-import { dispatch, useDispatch } from 'src/store/Store';
+import { useDispatch } from 'src/store/Store';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(
+    null,
+  );
 
   // Validation schema
   const validationSchema = yup.object({
@@ -70,8 +81,14 @@ const AccountInformation = () => {
             value={formik.values[field as keyof typeof formik.values]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched[field as keyof typeof formik.touched] && Boolean(formik.errors[field as keyof typeof formik.errors])}
-            helperText={formik.touched[field as keyof typeof formik.touched] && formik.errors[field as keyof typeof formik.errors]}
+            error={
+              formik.touched[field as keyof typeof formik.touched] &&
+              Boolean(formik.errors[field as keyof typeof formik.errors])
+            }
+            helperText={
+              formik.touched[field as keyof typeof formik.touched] &&
+              formik.errors[field as keyof typeof formik.errors]
+            }
             onKeyDown={handleKeyDown}
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
@@ -83,7 +100,9 @@ const AccountInformation = () => {
       ) : (
         <>
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {field === 'password' ? '**********' : formik.values[field as keyof typeof formik.values]}
+            {field === 'password'
+              ? '**********'
+              : formik.values[field as keyof typeof formik.values]}
           </Typography>
           {field !== 'password' && (
             <IconButton onClick={() => handleEditClick(field)}>
@@ -117,7 +136,12 @@ const AccountInformation = () => {
           <Typography variant="body1" sx={{ flexGrow: 1 }}>
             {formik.values.password}
           </Typography>
-          <Button onClick={() => handleEditClick('password')} variant="outlined" color="primary" startIcon={<IconLock />}>
+          <Button
+            onClick={() => handleEditClick('password')}
+            variant="outlined"
+            color="primary"
+            startIcon={<IconLock />}
+          >
             Đổi mật khẩu
           </Button>
         </Box>
@@ -133,9 +157,9 @@ const AccountInformation = () => {
             zIndex: theme.zIndex.snackbar,
             backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
             color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
-            borderRadius: 1, 
-            padding: 2, 
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: 1,
+            padding: 2,
             width: 300,
           }}
         >

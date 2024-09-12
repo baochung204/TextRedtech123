@@ -34,11 +34,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Searchtable from 'src/components/apps/search/search';
+
 import SearchInput from 'src/components/apps/search/search';
 import pointimg from 'src/assets/images/icon.png/point.png';
 import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
-import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
 // const BCrumb = [
 //   {
@@ -67,16 +66,13 @@ const rows: EnTableType[] = tablepayment.map((item) => ({
 
 type Order = 'asc' | 'desc';
 
-function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key,
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
+function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -92,7 +88,7 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
 
 interface HeadCell {
   disablePadding: boolean;
-  id: any;
+  id: string;
   label: string;
   numeric: boolean;
 }
@@ -139,7 +135,7 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
 }
-const getStatusTextAndColor = (status: any) => {
+const getStatusTextAndColor = (status: number) => {
   switch (status) {
     case 1:
       return (
@@ -163,33 +159,34 @@ const getStatusTextAndColor = (status: any) => {
       return;
   }
 };
-const getInvoiceTextAndColor = (status: any) => {
-  switch (status) {
-    case 1:
-      return <Button color="success">Tải về</Button>;
-    case 2:
-      return <Typography color="#ff9800">Chờ xử lý</Typography>;
-    case 3:
-      return <Typography color="#f44336"> Không thành công</Typography>;
-    default:
-      return;
-  }
-};
-const getdetailTextAndColor = (status: any) => {
-  switch (status) {
-    case 1:
-      return <Button color="success">Chi tiết</Button>;
-    case 2:
-      return <Typography color="#ff9800"></Typography>;
-    case 3:
-      return <Typography color="#f44336"> </Typography>;
-    default:
-      return;
-  }
-};
+// const getInvoiceTextAndColor = (status: any) => {
+//   switch (status) {
+//     case 1:
+//       return <Button color="success">Tải về</Button>;
+//     case 2:
+//       return <Typography color="#ff9800">Chờ xử lý</Typography>;
+//     case 3:
+//       return <Typography color="#f44336"> Không thành công</Typography>;
+//     default:
+//       return;
+//   }
+// };
+// const getdetailTextAndColor = (status: any) => {
+//   switch (status) {
+//     case 1:
+//       return <Button color="success">Chi tiết</Button>;
+//     case 2:
+//       return <Typography color="#ff9800"></Typography>;
+//     case 3:
+//       return <Typography color="#f44336"> </Typography>;
+//     default:
+//       return;
+//   }
+// };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  // const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -207,7 +204,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              onClick={createSortHandler(parseInt(headCell.id))}
             >
               <Typography variant="subtitle1" fontWeight="700">
                 {headCell.label}
@@ -225,13 +222,13 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
+// interface EnhancedTableToolbarProps {
+//   numSelected: number;
+// }
 
 const Paymenthistory = () => {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<any>('calories');
+  const [orderBy, setOrderBy] = React.useState<string>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -286,21 +283,21 @@ const Paymenthistory = () => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
+  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDense(event.target.checked);
+  // };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  // const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  const [month, setMonth] = React.useState('1');
+  // const [month, setMonth] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
+  // const [value, setValue] = React.useState<Dayjs | null>(null);
+  // const [value1, setValue1] = React.useState<Dayjs | null>(null);
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (

@@ -1,9 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { Card, CardContent, Typography, Button, Box, Grid, Hidden } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
 import ai from 'src/assets/images/svgs/ai.png';
-import { hi } from 'date-fns/locale';
 const Banner1 = () => {
   return (
     <Card

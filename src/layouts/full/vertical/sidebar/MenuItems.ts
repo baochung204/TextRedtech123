@@ -1,3 +1,10 @@
+import {
+  IconAppWindow,
+  IconChartDonut3,
+  IconPackage,
+  IconPoint,
+  IconShoppingCart,
+} from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
 interface MenuitemsType {
@@ -14,57 +21,6 @@ interface MenuitemsType {
   variant?: string;
   external?: boolean;
 }
-import {
-  IconAward,
-  IconBoxMultiple,
-  IconPoint,
-  IconAlertCircle,
-  IconNotes,
-  IconCalendar,
-  IconMail,
-  IconTicket,
-  IconEdit,
-  IconGitMerge,
-  IconCurrencyDollar,
-  IconApps,
-  IconFileDescription,
-  IconFileDots,
-  IconFiles,
-  IconBan,
-  IconStar,
-  IconMoodSmile,
-  IconBorderAll,
-  IconBorderHorizontal,
-  IconBorderInner,
-  IconBorderVertical,
-  IconBorderTop,
-  IconUserCircle,
-  IconPackage,
-  IconMessage2,
-  IconBasket,
-  IconChartLine,
-  IconChartArcs,
-  IconChartCandle,
-  IconChartArea,
-  IconChartDots,
-  IconChartDonut3,
-  IconChartRadar,
-  IconLogin,
-  IconUserPlus,
-  IconRotate,
-  IconBox,
-  IconShoppingCart,
-  IconAperture,
-  IconLayout,
-  IconSettings,
-  IconHelp,
-  IconZoomCode,
-  IconBoxAlignBottom,
-  IconBoxAlignLeft,
-  IconBorderStyle2,
-  IconAppWindow,
-  IconBrandOpenSource,
-} from '@tabler/icons-react';
 
 const Menuitems: MenuitemsType[] = [
   // {
