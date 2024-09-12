@@ -1,4 +1,4 @@
-import { TabContext, TabPanel } from '@mui/lab';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Box,
   Button,
@@ -8,6 +8,8 @@ import {
   DialogTitle,
   Grid,
   InputAdornment,
+  Slide,
+  Tab,
   TextField,
   Typography,
 } from '@mui/material';
@@ -20,25 +22,28 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
-import Tags from 'src/components/apps/sell/Tags';
+// import Tags from 'src/components/apps/sell/Tags';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import { default as OrderTable, default as OrderTableList } from './PopupAdd2';
+import AddOrder, { default as OrderTable, default as OrderTableList } from './PopupAdd2';
+import Tags from 'src/components/apps/sell/tags';
+import TableListOrder from './TableOrderList';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
   { to: '/apps/blog/posts', title: 'Blog' },
   { title: 'Blog post' },
 ];
-
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 const CustomerListOrder = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value] = React.useState('1');
-  // const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState('1');
 
   // Function mở popup
   const handleOpenPopup = () => {
@@ -49,7 +54,9 @@ const CustomerListOrder = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>
       {/* Breadcrumb */}
@@ -57,15 +64,14 @@ const CustomerListOrder = () => {
       <Grid container spacing={3}>
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
-            {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} aria-label="lab API tabs example">
                 <Tab label="Khách hàng" value="1" />
                 <Tab label="Tags" value="2" />
               </TabList>
-            </Box> */}
+            </Box>
 
             <TabPanel value="1">
-              {' '}
               {/* Action Buttons and Filters */}
               <Box
                 className="actions-and-filters"
@@ -176,7 +182,7 @@ const CustomerListOrder = () => {
                   </svg>
                 </Box>
               </Box>
-              <OrderTableList />
+              <TableListOrder />
             </TabPanel>
             <TabPanel value="2">
               <Tags />
@@ -187,17 +193,22 @@ const CustomerListOrder = () => {
 
       {/* Bảng khách hàng */}
       {/* Popup Thêm đơn hàng */}
-      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
-        <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
+      <Dialog open={isPopupOpen}
+        onClose={handleClosePopup}
+        fullWidth
+        maxWidth="lg"
+        TransitionComponent={Transition}
+        keepMounted>
+        <DialogTitle padding={'10px'}>Thêm đơn hàng</DialogTitle>
         <DialogContent>
-          <OrderTable /> {/* Gọi component PopupAdd */}
+          <AddOrder /> {/* Gọi component PopupAdd */}
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
           <Button onClick={handleClosePopup} variant="contained" color="primary">
             Xác nhận
           </Button>
-        </DialogActions>
+        </DialogActions> */}
       </Dialog>
     </div>
   );
