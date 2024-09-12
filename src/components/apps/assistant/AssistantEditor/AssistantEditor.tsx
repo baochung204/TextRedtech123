@@ -1,80 +1,38 @@
-import React, { useState } from 'react';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PersonIcon from '@mui/icons-material/Person';
 import {
-  Grid,
+  Avatar,
   Box,
-  Typography,
-  FormControl,
-  MenuItem,
   Button,
-  Stack,
-  Paper,
   Divider,
+  Fab,
+  Grid,
+  IconButton,
+  InputBase,
   List,
   ListItem,
   ListItemText,
-  InputBase,
-  IconButton,
-  FormControlLabel,
-  TextField,
-  Avatar,
+  MenuItem,
+  Paper,
+  Stack,
   Tooltip,
-  Fab,
+  Typography
 } from '@mui/material';
-import { SliderThumb } from '@mui/material/Slider';
-import AddIcon from '@mui/icons-material/Add';
-import SendIcon from '@mui/icons-material/Send';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import PageContainer from 'src/components/container/PageContainer';
-import ParentCard from 'src/components/shared/ParentCard';
-import CustomDisabledButton from 'src/components/forms/theme-elements/CustomDisabledButton';
-import CustomOutlinedButton from 'src/components/forms/theme-elements/CustomOutlinedButton';
-import PersonIcon from '@mui/icons-material/Person';
-import { IconEdit, IconSend } from '@tabler/icons-react';
-import DateTime from './DateTime'
-import Checkboxes from './Tags';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import QuillEditor from './QuillEditor';
-import { IconPlus } from '@tabler/icons-react';
-import Integration from './Integration';
-import Strategy from './Strategy';
-import StrategyDialog from './strategyDialog';
-import SimpleDialog from './dialog/searchDialog';
-import FunctionsDialog from './dialog/functionsDialog';
-function CustomThumbComponent(props: SliderValueLabelProps) {
-  const { children, ...other } = props;
 
-  return (
-    <SliderThumb {...other}>
-      {children}
-      <Box
-        sx={{
-          height: 9,
-          width: '2px',
-          backgroundColor: '#fff',
-        }}
-      />
-      <Box
-        sx={{
-          height: '14px',
-          width: '2px',
-          backgroundColor: '#fff',
-          ml: '2px',
-        }}
-      />
-      <Box
-        sx={{
-          height: 9,
-          width: '2px',
-          backgroundColor: '#fff',
-          ml: '2px',
-        }}
-      />
-    </SliderThumb>
-  );
-}
+import { IconPlus, IconSend } from '@tabler/icons-react';
+import React, { useState } from 'react';
+import PageContainer from 'src/components/container/PageContainer';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DateTime from './DateTime';
+import FunctionsDialog from './dialog/functionsDialog';
+import SimpleDialog from './dialog/searchDialog';
+import Integration from './Integration';
+import QuillEditor from './QuillEditor';
+import StrategyDialog from '../AssistantEditor/dialog/strategyDialog';
+import Checkboxes from './Tags';
+
 
 interface Message {
   text: string;
@@ -104,16 +62,6 @@ const AssistantEditor = () => {
   };
   const handleLevel = (event: React.ChangeEvent<{ value: unknown }>) => {
     setLevel(event.target.value as string); // Cập nhật state khi chọn
-  };
-  const handleFileSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setFileSearchName(event.target.files[0].name); // Cập nhật tên file
-    }
-  };
-  const handleFileFunctions = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setFileFunctionsName(event.target.files[0].name); // Cập nhật tên file
-    }
   };
 
 
