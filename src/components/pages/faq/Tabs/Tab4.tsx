@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Avatar,
   Box,
@@ -10,21 +11,27 @@ import {
   TableHead,
   TableRow,
   Typography,
+  TablePagination
 } from '@mui/material';
 import DataTable4 from '../DataTable/TableTab4';
 
 const Tab4 = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const handleChangePage = ( newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const paginatedData = DataTable4.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
   return (
     <Box>
-      {/* <Box display="flex" justifyContent="flex-end">
-        <IconButton color="primary" aria-label="add to shopping cart">
-          <AddCircleIcon
-            sx={{
-              fontSize: 30
-            }}
-          />
-        </IconButton>
-      </Box> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -62,7 +69,7 @@ const Tab4 = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {DataTable4.map((items) => (
+            {paginatedData.map((items) => (
               <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={400}>
@@ -112,6 +119,15 @@ const Tab4 = () => {
             ))}
           </TableBody>
         </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={DataTable4.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={() => handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </TableContainer>
     </Box>
   );

@@ -1,27 +1,40 @@
 import axios from '../../../utils/axios';
 import { filter, map } from 'lodash';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch } from 'src/store/Store';
 
 const API_URL = '/api/data/eCommerce/ProductsData';
 
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  qty: number;
+  category: string;
+  color: string;
+  gender: string;
+  rating: number;
+}
+
+interface Filters {
+  category: string;
+  color: string;
+  gender: string;
+  price: string;
+  rating: string;
+}
+
 interface StateType {
-  products: any[];
+  products: Product[];
   productSearch: string;
   sortBy: string;
-  cart: any[];
+  cart: Product[];
   total: number;
-  filters: {
-    category: string;
-    color: string;
-    gender: string;
-    price: string;
-    rating: string;
-  };
+  filters: Filters;
   error: string;
 }
 
-const initialState = {
+const initialState: StateType = {
   products: [],
   productSearch: '',
   sortBy: 'newest',
@@ -42,45 +55,45 @@ export const EcommerceSlice = createSlice({
   initialState,
   reducers: {
     // HAS ERROR
-
-    hasError(state: StateType, action) {
+    hasError(state, action: PayloadAction<string>) {
       state.error = action.payload;
     },
 
     // GET PRODUCTS
-    getProducts: (state, action) => {
+    getProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
-    SearchProduct: (state, action) => {
+
+    SearchProduct: (state, action: PayloadAction<string>) => {
       state.productSearch = action.payload;
     },
 
-    //  SORT  PRODUCTS
-    sortByProducts(state, action) {
+    // SORT PRODUCTS
+    sortByProducts(state, action: PayloadAction<string>) {
       state.sortBy = action.payload;
     },
 
-    //  SORT  PRODUCTS
-    sortByGender(state, action) {
+    // SORT BY GENDER
+    sortByGender(state, action: PayloadAction<{ gender: string }>) {
       state.filters.gender = action.payload.gender;
     },
 
-    //  SORT  By Color
-    sortByColor(state, action) {
+    // SORT BY COLOR
+    sortByColor(state, action: PayloadAction<{ color: string }>) {
       state.filters.color = action.payload.color;
     },
 
-    //  SORT  By Color
-    sortByPrice(state, action) {
+    // SORT BY PRICE
+    sortByPrice(state, action: PayloadAction<{ price: string }>) {
       state.filters.price = action.payload.price;
     },
 
-    //  FILTER PRODUCTS
-    filterProducts(state, action) {
+    // FILTER PRODUCTS
+    filterProducts(state, action: PayloadAction<{ category: string }>) {
       state.filters.category = action.payload.category;
     },
 
-    //  FILTER Reset
+    // FILTER RESET
     filterReset(state) {
       state.filters.category = 'All';
       state.filters.color = 'All';
@@ -90,52 +103,51 @@ export const EcommerceSlice = createSlice({
     },
 
     // ADD TO CART
-    addToCart(state: StateType, action) {
+    addToCart(state, action: PayloadAction<Product>) {
       const product = action.payload;
       state.cart = [...state.cart, product];
     },
 
-    // qty increment
-    increment(state: StateType, action) {
+    // QTY INCREMENT
+    increment(state, action: PayloadAction<string>) {
       const productId = action.payload;
-      const updateCart = map(state.cart, (product) => {
-        if (product.id === productId) {
-          return {
-            ...product,
-            qty: product.qty + 1,
-          };
-        }
-
-        return product;
-      });
-
-      state.cart = updateCart;
+      state.cart = map(state.cart, (product) =>
+        product.id === productId
+          ? { ...product, qty: product.qty + 1 }
+          : product
+      );
     },
 
-    // qty decrement
-    decrement(state: StateType, action) {
+    // QTY DECREMENT
+    decrement(state, action: PayloadAction<string>) {
       const productId = action.payload;
-      const updateCart = map(state.cart, (product) => {
-        if (product.id === productId) {
-          return {
-            ...product,
-            qty: product.qty - 1,
-          };
-        }
-
-        return product;
-      });
-
-      state.cart = updateCart;
+      state.cart = map(state.cart, (product) =>
+        product.id === productId
+          ? { ...product, qty: product.qty - 1 }
+          : product
+      );
     },
 
-    // delete Cart
-    deleteCart(state: StateType, action) {
-      const updateCart = filter(state.cart, (item) => item.id !== action.payload);
-      state.cart = updateCart;
+    // DELETE CART ITEM
+    deleteCart(state, action: PayloadAction<string>) {
+      state.cart = filter(state.cart, (item) => item.id !== action.payload);
     },
   },
 });
+
+export const fetchProducts = () => async (dispatch: AppDispatch) => {
+  try {
+    const response = await axios.get(API_URL);
+    dispatch(getProducts(response.data));
+  } catch (error) {
+    if (error instanceof Error) {
+      dispatch(hasError(error.message));
+    } else {
+      dispatch(hasError('An unknown error occurred'));
+    }
+  }
+};
+
 export const {
   hasError,
   getProducts,
@@ -152,13 +164,6 @@ export const {
   sortByColor,
 } = EcommerceSlice.actions;
 
-export const fetchProducts = () => async (dispatch: AppDispatch) => {
-  try {
-    const response = await axios.get(`${API_URL}`);
-    dispatch(getProducts(response.data));
-  } catch (error) {
-    dispatch(hasError(error));
-  }
-};
+
 
 export default EcommerceSlice.reducer;
