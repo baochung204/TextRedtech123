@@ -47,9 +47,7 @@ const AssistantEditor = () => {
   const [level, setLevel] = useState('1');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
-  const [fileSearchName, setFileSearchName] = useState('');
-  const [fileFunctionsName, setFileFunctionsName] = useState('');
-  
+
 
   const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCountry(event.target.value as string); // Cập nhật state khi chọn
