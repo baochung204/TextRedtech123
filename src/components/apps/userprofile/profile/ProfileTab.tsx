@@ -1,26 +1,41 @@
 import React, { useState } from 'react';
 import { Box, Tab, Tabs, Menu, MenuItem, Typography } from '@mui/material';
-import { IconHistory, IconPoint, IconUser } from '@tabler/icons-react'; // Thêm icon phù hợp
+import {
+  IconHistory,
+  IconPoint,
+  IconUser,
+  IconUserCircle,
+  IconTicket,
+  IconShoppingCart,
+  IconCoin,
+} from '@tabler/icons-react';
+import DescriptionIcon from '@mui/icons-material/Description';
 import { Link, useLocation } from 'react-router-dom';
-import { IconUserCircle } from '@tabler/icons-react';
-import { IconTicket } from '@tabler/icons-react';
-import { IconShoppingCart, IconCoin } from '@tabler/icons-react'; // Import thêm icon cho menu con
 
 const ProfileTab = () => {
   const location = useLocation();
   const [value, setValue] = useState(location.pathname);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorElTransaction, setAnchorElTransaction] = useState<null | HTMLElement>(null);
+  const [anchorElContract, setAnchorElContract] = useState<null | HTMLElement>(null);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
   const handleLichSuGiaoDichClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorElTransaction(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleHopDongClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElContract(event.currentTarget);
+  };
+
+  const handleCloseTransaction = () => {
+    setAnchorElTransaction(null);
+  };
+
+  const handleCloseContract = () => {
+    setAnchorElContract(null);
   };
 
   interface profileType {
@@ -28,6 +43,7 @@ const ProfileTab = () => {
     icon: JSX.Element;
     to?: string;
     dropdown?: boolean;
+    handleClick?: (event: React.MouseEvent<HTMLElement>) => void;
   }
 
   const ProfileTabs: profileType[] = [
@@ -40,6 +56,13 @@ const ProfileTab = () => {
       label: 'Lịch sử giao dịch',
       icon: <IconHistory size="20" />,
       dropdown: true,
+      handleClick: handleLichSuGiaoDichClick,
+    },
+    {
+      label: 'Hợp đồng',
+      icon: <DescriptionIcon fontSize="small" />,
+      dropdown: true,
+      handleClick: handleHopDongClick,
     },
     {
       label: 'Trợ lý',
@@ -76,7 +99,7 @@ const ProfileTab = () => {
                   label={tab.label}
                   sx={{ minHeight: '50px' }}
                   icon={tab.icon}
-                  onClick={handleLichSuGiaoDichClick}
+                  onClick={tab.handleClick}
                 />
               );
             } else {
@@ -99,9 +122,9 @@ const ProfileTab = () => {
         {/* Dropdown menu for Lịch sử giao dịch */}
         <Menu
           id="lich-su-giao-dich-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
+          anchorEl={anchorElTransaction}
+          open={Boolean(anchorElTransaction)}
+          onClose={handleCloseTransaction}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           transformOrigin={{ horizontal: 'left', vertical: 'top' }}
           PaperProps={{
@@ -116,7 +139,7 @@ const ProfileTab = () => {
           <MenuItem
             component={Link}
             to="/purchasehistory"
-            onClick={handleClose}
+            onClick={handleCloseTransaction}
             sx={{
               padding: '10px 20px',
               borderRadius: '8px',
@@ -126,7 +149,7 @@ const ProfileTab = () => {
               },
             }}
           >
-            <IconShoppingCart size="20" style={{ marginRight: '8px' }} /> {/* Thêm icon giỏ hàng */}
+            <IconShoppingCart size="20" style={{ marginRight: '8px' }} />
             <Typography variant="body1" fontWeight="500">
               Lịch sử mua hàng
             </Typography>
@@ -134,7 +157,7 @@ const ProfileTab = () => {
           <MenuItem
             component={Link}
             to="/pointhistory"
-            onClick={handleClose}
+            onClick={handleCloseTransaction}
             sx={{
               padding: '10px 20px',
               borderRadius: '8px',
@@ -144,9 +167,64 @@ const ProfileTab = () => {
               },
             }}
           >
-            <IconCoin size="20" style={{ marginRight: '8px' }} /> {/* Thêm icon đồng tiền */}
+            <IconCoin size="20" style={{ marginRight: '8px' }} />
             <Typography variant="body1" fontWeight="500">
               Lịch sử nạp Point
+            </Typography>
+          </MenuItem>
+        </Menu>
+
+        {/* Dropdown menu for Hợp đồng */}
+        <Menu
+          id="hop-dong-menu"
+          anchorEl={anchorElContract}
+          open={Boolean(anchorElContract)}
+          onClose={handleCloseContract}
+          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+          transformOrigin={{ horizontal: 'left', vertical: 'top' }}
+          PaperProps={{
+            sx: {
+              borderRadius: '8px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+              minWidth: '200px',
+              bgcolor: 'background.paper',
+            },
+          }}
+        >
+          <MenuItem
+            component={Link}
+            to="/contracthistory"
+            onClick={handleCloseContract}
+            sx={{
+              padding: '10px 20px',
+              borderRadius: '8px',
+              '&:hover': {
+                bgcolor: 'primary.main',
+                color: 'white',
+              },
+            }}
+          >
+            <DescriptionIcon style={{ marginRight: '8px' }} />
+            <Typography variant="body1" fontWeight="500">
+              Hợp đồng affiliate
+            </Typography>
+          </MenuItem>
+          <MenuItem
+            component={Link}
+            to="/contracthistory"
+            onClick={handleCloseContract}
+            sx={{
+              padding: '10px 20px',
+              borderRadius: '8px',
+              '&:hover': {
+                bgcolor: 'primary.main',
+                color: 'white',
+              },
+            }}
+          >
+            <DescriptionIcon style={{ marginRight: '8px' }} />
+            <Typography variant="body1" fontWeight="500">
+              Hợp đồng mua hàng
             </Typography>
           </MenuItem>
         </Menu>

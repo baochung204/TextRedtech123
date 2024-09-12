@@ -8,7 +8,8 @@ import PageContainer from '../../components/container/PageContainer';
 import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
 import ParentCard from '../../components/shared/ParentCard';
 import { Props } from 'react-apexcharts';
-import Modarm from 'src/components/shared/moderm';
+import Affilatec from 'src/components/shared/Affilatec';
+import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const BCrumb = [
   {
@@ -20,7 +21,7 @@ const BCrumb = [
   },
 ];
 
-const PieCharts = () => {
+const Affilatechart1 = () => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -51,15 +52,16 @@ const PieCharts = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, secondary, warning, '#2c5364', '#99f2c8'],
+    colors: ['#ffc837', '#FF8008'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
+    labels: ['Chi phí', 'Đơn hàng'],
   };
+  const seriesdoughnutchart = [35, 75];
 
-  const seriespiechart = [45, 65, 27, 18, 35];
+  // 2
 
   return (
     // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
@@ -72,10 +74,15 @@ const PieCharts = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <Modarm title="Nguồn khách hàng " description="">
-      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
-    </Modarm>
+    <Affilatec1 title=" Đơn hàng">
+      <Chart
+        options={optionsdoughnutchart}
+        series={seriesdoughnutchart}
+        type="donut"
+        height="300px"
+      />
+    </Affilatec1>
   );
 };
 
-export default PieCharts;
+export default Affilatechart1;

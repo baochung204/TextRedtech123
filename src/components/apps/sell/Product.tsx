@@ -24,7 +24,7 @@ import {
   Fab,
   Toolbar,
   TextField,
-  InputAdornment
+  InputAdornment,
 } from '@mui/material';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -102,7 +102,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-
 interface OrderType {
   id: string;
   items: string;
@@ -118,7 +117,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     items: '5',
     imgsrc: img1,
-    name: 'Sunil Joshi',
+    name: 'Chatbot Marketing',
     total: '550,000',
     tags: 'đồ chơi',
     totalSales: '500,000',
@@ -127,7 +126,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     items: '1',
     imgsrc: img2,
-    name: 'John Deo',
+    name: 'ChatAI',
     total: '45,000',
     tags: 'quần áo',
     totalSales: '40,000',
@@ -136,7 +135,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     items: '3',
     imgsrc: img3,
-    name: 'Mily Peter',
+    name: 'ChatOpenAi',
     total: '57,000',
     tags: 'phụ kiện',
     totalSales: '50,000',
@@ -145,7 +144,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     items: '11',
     imgsrc: img4,
-    name: 'Andrew McDownland',
+    name: 'ChatBot Chicken',
     total: '457,000',
     tags: 'di động',
     totalSales: '450,000',
@@ -154,7 +153,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     items: '4',
     imgsrc: img5,
-    name: 'Christopher Jamil',
+    name: 'SaleBot',
     total: '120,000',
     tags: 'đời sống',
     totalSales: '110,000',
@@ -163,7 +162,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120146',
     items: '1',
     imgsrc: img2,
-    name: 'John Deo',
+    name: 'GameBot',
     total: '45,000',
     tags: 'điện tử',
     totalSales: '40,000',
@@ -172,7 +171,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120460',
     items: '3',
     imgsrc: img3,
-    name: 'Mily Peter',
+    name: 'LifeBot',
     total: '57,000',
     tags: 'điện tử',
     totalSales: '50,000',
@@ -181,7 +180,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     items: '11',
     imgsrc: img4,
-    name: 'Andrew McDownland',
+    name: 'ChatBot BĐS',
     total: '457,000',
     tags: 'điện tử',
     totalSales: '450,000',
@@ -190,7 +189,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     items: '4',
     imgsrc: img5,
-    name: 'Christopher Jamil',
+    name: 'ChatBot BĐS',
     total: '120,000',
     tags: 'điện tử',
     totalSales: '110,000',
@@ -199,7 +198,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0120145',
     items: '5',
     imgsrc: img1,
-    name: 'Sunil Joshi',
+    name: 'ChatBot BĐS',
     total: '550,000',
     tags: 'thể thao',
     totalSales: '530,000',
@@ -208,7 +207,7 @@ const rows: OrderType[] = [
     id: 'ORD - 0124060',
     items: '11',
     imgsrc: img4,
-    name: 'Andrew McDownland',
+    name: 'ChatBot Tỉ số bóng đá',
     total: '457,000',
     tags: 'thể thao',
     totalSales: '450,000',
@@ -217,9 +216,9 @@ const rows: OrderType[] = [
     id: 'ORD - 0124568',
     items: '4',
     imgsrc: img5,
-    name: 'Christopher Jamil',
+    name: 'ChatBot Y tế',
     total: '120,000',
-    tags: 'thể thao',
+    tags: 'đời sống',
     totalSales: '100,000',
   },
 ].sort((a, b) => (a.name < b.name ? -1 : 1));
@@ -258,7 +257,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 </InputAdornment>
               ),
             }}
-            placeholder="Search Product"
+            placeholder="Tìm kiếm ..."
             size="small"
             onChange={handleSearch}
             value={search}
@@ -297,7 +296,7 @@ const PaginationTable = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [search, setSearch] = React.useState('');
-  
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredRows: ProductType[] = getProducts.filter((row) => {
       return row.title.toLowerCase().includes(event.target.value);
@@ -319,70 +318,122 @@ const PaginationTable = () => {
   };
 
   return (
-
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
       {/* breadcrumb */}
       <Breadcrumb title="Pagination Table" items={BCrumb} />
       {/* end breadcrumb */}
-      
+
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      {/* Phần bên trái */}
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <ADDDialog/>
 
-        
-        <EnhancedTableToolbar
-          numSelected={selected.length}
-          search={search}
-          handleSearch={(event: any) => handleSearch(event)}
-        />
+        {/* Phần bên trái */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <ADDDialog />
+
+          <EnhancedTableToolbar
+            numSelected={selected.length}
+            search={search}
+            handleSearch={(event: any) => handleSearch(event)}
+          />
+        </Box>
+
+
+
+        {/* Phần bên phải */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Button>Sửa đổi cột</Button>
+
+
+          <CustomSelect
+            labelId="column-filter"
+            id="column-filter"
+            size="small"
+            value={1} // Setting the first value as default
+            sx={{ marginLeft: '20px' }}
+          >
+            <MenuItem value={1}>Sắp xếp</MenuItem>
+          </CustomSelect>
+        </Box>
+
       </Box>
 
-      {/* Phần bên phải */}
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Button>
-          Sửa đổi cột
-        </Button>
+      <BlankCard>
+        <TableContainer>
+          <Table
+            aria-label="custom pagination table"
+            sx={{
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Typography variant="h6">ID</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Ảnh</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Tên sản phẩm</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Giá niêm yết</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Giá khuyến mãi</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Tags</Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : rows
+              ).map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Typography variant="subtitle2">{row.id}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+                    </Stack>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2" fontWeight="600">
+                      {row.name}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
 
-        <CustomSelect
-          labelId="column-filter"
-          id="column-filter"
-          size="small"
-          value={1} // Setting the first value as default
-          sx={{ marginLeft: '20px' }}
-        >
-          <MenuItem value={1}>Sắp xếp</MenuItem>
-        </CustomSelect>
-      </Box>
-    </Box>
+                    <Chip
+                      color={
+                        row.tags === 'di động'
+                          ? 'success'
+                          : row.tags === 'điện tử'
+                          ? 'warning'
+                          : row.tags === 'đời sống'
+                          ? 'error'
+                          : 'secondary'
+                      }
+                      sx={{
+                        borderRadius: '6px',
+                      }}
+                      size="small"
+                      label={row.tags}
+                    />
 
-        <BlankCard>
-          <TableContainer>
-            <Table
-              aria-label="custom pagination table"
-              sx={{
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <Typography variant="h6">ID</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="h6">Ảnh</Typography>
+                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                      ${row.total}
+                    </Typography>
                   </TableCell>
+
                   <TableCell>
-                    <Typography variant="h6">Tên sản phẩm</Typography>
-                  </TableCell>
-                  <TableCell>
+
                     <Typography variant="h6">Giá niêm yết</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="h6">Giá khuyến mãi</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="h6">Tags</Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -426,46 +477,67 @@ const PaginationTable = () => {
                     </TableCell>
                     <TableCell>
                       <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.total}
+                        {row.total}{" "}
+                      <Typography 
+                        color="textSecondary"
+                        variant="h6" 
+                        fontWeight="400" 
+                        fontStyle="italic" 
+                        component="span" 
+                        display="inline"
+                      >
+                        point
+                      </Typography>
                       </Typography>
                     </TableCell>
 
                     <TableCell>
                     <Typography color="textSecondary" variant="h6" fontWeight="400">
-                        ${row.totalSales}
+                      {row.totalSales}{" "}
+                      <Typography 
+                        color="textSecondary" 
+                        variant="h6" 
+                        fontWeight="400" 
+                        fontStyle="italic" 
+                        component="span" 
+                        display="inline"
+                      >
+                        point
                       </Typography>
+                    </Typography>
+
                     </TableCell>
 
                   </TableRow>
                 ))}
 
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                    colSpan={6}
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
+
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
                 </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
-        </BlankCard>
-    
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                  colSpan={6}
+                  count={rows.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    native: true,
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </BlankCard>
     </PageContainer>
   );
 };

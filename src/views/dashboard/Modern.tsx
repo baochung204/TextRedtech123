@@ -22,6 +22,10 @@ import GerChart from '../charts/Gerchart';
 import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
 import Affiliatedetail from '../charts/affiliatedetail';
 import Affilatechart from '../charts/Affilatechart';
+import SalesOverview from 'src/components/dashboards/ecommerce/SalesOverview';
+import Affilatechart2 from '../charts/Affilatechart2';
+import Affilatechart1 from '../charts/Affilatechart1';
+import Affilatechart3 from '../charts/Affilatechart3';
 
 const Modern = () => {
   return (
@@ -69,7 +73,16 @@ const Modern = () => {
             <Affiliatedetail />
           </Grid>
           <Grid item xs={12} lg={4}>
+            <Affilatechart3 />
+          </Grid>{' '}
+          <Grid item xs={12} lg={4}>
             <Affilatechart />
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <Affilatechart1 />
+          </Grid>{' '}
+          <Grid item xs={12} lg={4}>
+            <Affilatechart2 />
           </Grid>
           {/* column */}
           {/* <Grid item xs={12} lg={8}>

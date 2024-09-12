@@ -16,17 +16,11 @@ import {
   Button,
   Avatar,
   Autocomplete,
-  FormControlLabel,
-  SvgIcon,
-  Switch,
-  Input,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-
 import PageContainer from 'src/components/container/PageContainer';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
-import { IconBalloon, IconDetails, IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
-// import BlankCard from '../../shared/BlankCard';
+import { IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
 import rank1 from 'src/assets/images/rank/rank1.png';
 import rank2 from 'src/assets/images/rank/rank2.png';
 import rank3 from 'src/assets/images/rank/rank3.png';
@@ -296,7 +290,7 @@ const ListAssistant = () => {
   const isXs = useMediaQuery((theme) => theme.breakpoints.down('xs'));
   const isSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
-  const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
+  // const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
 
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
