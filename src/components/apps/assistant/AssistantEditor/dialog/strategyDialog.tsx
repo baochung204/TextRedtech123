@@ -57,7 +57,8 @@ const Strategy: React.FC<PropsDialog> = ({open, setOpen}) => {
           <Box 
             display="flex" 
             alignItems="center"  // Căn chỉnh ảnh và text theo chiều dọc
-            justifyContent="left"  // Căn giữa theo chiều ngang
+            justifyContent="left"
+            mb={1}  // Căn giữa theo chiều ngang
           >
             <img src={selectedValue.rankImg} alt="rank" width={88} />
             <Typography variant="h5" ml={2} minWidth={'130px'}>  {/* Thêm margin bên trái cho text */}
@@ -90,7 +91,7 @@ const Strategy: React.FC<PropsDialog> = ({open, setOpen}) => {
             <Box key={rank.rankName} onClick={() => handleClose(rank)}>
               <CardContent sx={{ p: '30px', cursor: 'pointer' }}>
                 <Box textAlign="center">
-                  <img src={rank.rankImg} alt="star" width={100} />
+                  <img src={rank.rankImg} alt="star" width={100}  />
                   <Typography variant="h5">{rank.rankName}</Typography>
                 </Box>
               </CardContent>
