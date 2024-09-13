@@ -119,7 +119,7 @@ const ChatListing = () => {
       {/* Contact List */}
       {/* ------------------------------------------- */}
       <List sx={{ px: 0 }}>
-        <Box px={2.5} pb={1}>
+        {/* <Box px={2.5} pb={1}>
           <Button
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -142,7 +142,7 @@ const ChatListing = () => {
             <MenuItem onClick={handleClose}>Thời gian giảm dần</MenuItem>
             <MenuItem onClick={handleClose}>Thời gian tăng dần</MenuItem>
           </Menu>
-        </Box>
+        </Box> */}
         <Scrollbar sx={{ height: { lg: 'calc(100vh - 100px)', md: '100vh' }, maxHeight: '600px' }}>
           {chats && chats.length ? (
             chats.map((chat) => (
@@ -195,7 +195,7 @@ const ChatListing = () => {
                   <Typography variant="body2">
                     {formatDistanceToNowStrict(new Date(lastActivity(chat)), {
                       addSuffix: true,
-                      locale: vi, // Use Vietnamese locale
+                      locale: vi,
                     })}
                   </Typography>
                 </Box>

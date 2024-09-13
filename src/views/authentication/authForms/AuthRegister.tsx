@@ -279,7 +279,7 @@ const AuthRegister = ({ subtitle }: registerType) => {
                 Doanh thu
               </Typography> */}
               <Typography color="textSecondary" fontWeight={600}>
-                Tôi muốn đăng ký tài khoản doanh nghiệp
+                Đăng ký tài khoản doanh nghiệp
               </Typography>
             </Grid>
           </Grid>
