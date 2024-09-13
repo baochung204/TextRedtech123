@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { IconMapPin } from '@tabler/icons-react';
-import BlankCard from 'src/components/shared/BlankCard';
+import BlankCard from 'src/components/apps/integration/BlankCard';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import { useState } from 'react';
 
