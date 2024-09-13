@@ -23,7 +23,7 @@ const ranks: Ranks[] = [
     rankImg: rank1,
   },
   {
-    rankName: 'Rank 222222 222222 2222222 222222 2222',
+    rankName: 'Rank 2',
     rankImg: rank2,
   },
   {
