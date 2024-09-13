@@ -22,15 +22,9 @@ import {
   TextField,
   Toolbar,
   Tooltip,
-<<<<<<< HEAD
-  Typography
-} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-=======
   Typography,
 } from '@mui/material';
 import { useTheme, alpha } from '@mui/material/styles';
->>>>>>> 28e8b82566252452ef786d3a090b838d59f5a55b
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -48,14 +42,10 @@ import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from '../../../components/shared/BlankCard';
-<<<<<<< HEAD
-import ADDDialog from './addDialog';
-=======
 // import ADDDialog from './AddDialog';
 import { ProductType } from 'src/types/apps/eCommerce';
 import { getProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import AddDialog from './addDialog';
->>>>>>> 28e8b82566252452ef786d3a090b838d59f5a55b
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -418,10 +408,10 @@ const PaginationTable = () => {
                         row.tags === 'di động'
                           ? 'success'
                           : row.tags === 'điện tử'
-                          ? 'warning'
-                          : row.tags === 'đời sống'
-                          ? 'error'
-                          : 'secondary'
+                            ? 'warning'
+                            : row.tags === 'đời sống'
+                              ? 'error'
+                              : 'secondary'
                       }
                       sx={{
                         borderRadius: '6px',
