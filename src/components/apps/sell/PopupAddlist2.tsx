@@ -17,26 +17,31 @@ const currencies: CurrencyType[] = [
   { value: 'other', label: 'Khác' },
 ];
 
-const channels: CurrencyType[] = [
-  { value: 'mkt', label: 'MKT' },
-  { value: 'zl', label: 'Zalo' },
-  { value: 'fb', label: 'Facebook' },
-  { value: 'inst', label: 'Instagram' },
-  { value: 'other', label: 'Other' },
-];
+// const channels: CurrencyType[] = [
+//   { value: 'mkt', label: 'MKT' },
+//   { value: 'zl', label: 'Zalo' },
+//   { value: 'fb', label: 'Facebook' },
+//   { value: 'inst', label: 'Instagram' },
+//   { value: 'other', label: 'Other' },
+// ];
 
 const PopupAddList2 = () => {
   const [gender, setGender] = React.useState('');
-  const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+  // const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+  // const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+
   const [tags, setTags] = React.useState('');
   const [companyPhone, setCompanyPhone] = React.useState('');
-  const [assistant, setAssistant] = React.useState('');
+  // const [assistant, setAssistant] = React.useState('');
   const [thumbnailImage, setThumbnailImage] = useState<File | null>(null);
   const [productImage, setProductImage] = useState<File | null>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setImage: React.Dispatch<React.SetStateAction<File | null>>,
+  ) => {
     if (event.target.files && event.target.files[0]) {
-      setThumbnailImage(event.target.files[0]);
+      setImage(event.target.files[0]);
     }
   };
 
@@ -44,9 +49,9 @@ const PopupAddList2 = () => {
     setGender(event.target.value as string);
   };
 
-  const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedChannels(event.target.value as string[]);
-  };
+  // const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  //   setSelectedChannels(event.target.value as string[]);
+  // };
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
@@ -118,13 +123,11 @@ const PopupAddList2 = () => {
                 id="thumbnail-image"
                 style={{ display: 'none' }}
                 accept="image/*"
-                onChange={handleFileChange}
+                onChange={(e) => handleFileChange(e, setThumbnailImage)}
               />
-              
 
               {/* Khung hiển thị ảnh */}
               <Box
-                
                 p={1}
                 sx={{
                   width: '300px', // Kích thước khung cố định
@@ -137,7 +140,6 @@ const PopupAddList2 = () => {
                   overflow: 'hidden', // Ẩn phần ảnh bị vượt quá khung
                 }}
               >
-                
                 {/* Hiển thị ảnh nếu có */}
                 {thumbnailImage ? (
                   <img
@@ -150,10 +152,9 @@ const PopupAddList2 = () => {
                     Chưa có ảnh
                   </Typography>
                 )}
-                
               </Box>
               <Button
-                sx={{mt:2}}
+                sx={{ mt: 2 }}
                 variant="contained"
                 color="primary"
                 component="label"
@@ -162,9 +163,6 @@ const PopupAddList2 = () => {
                 Chọn ảnh thumbnail
               </Button>
             </Box>
-
-
-          
           </Grid>
         </Grid>
       </Box>
@@ -271,7 +269,6 @@ const PopupAddList2 = () => {
           </Grid>
         </Grid>
       </Box>
-
     </Box>
   );
 };
