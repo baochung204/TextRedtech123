@@ -1,8 +1,8 @@
 import { Avatar, Box, Button, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { IconMapPin } from '@tabler/icons-react';
-import BlankCard from 'src/components/shared/BlankCard';
-import img1 from 'src/assets/images/profile/user-1.jpg';
 import { useState } from 'react';
+import img1 from 'src/assets/images/profile/user-1.jpg';
+import BlankCard from 'src/components/apps/integration/BlankCard';
 
 const Integration = () => {
   const [connect, setConnect] = useState<boolean>(false);

@@ -421,11 +421,11 @@ const PaginationTable = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                    <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
                       {row.total}{' '}
                       <Typography
                         color="textSecondary"
-                        variant="h6"
+                        variant="subtitle2"
                         fontWeight="400"
                         fontStyle="italic"
                         component="span"
@@ -437,11 +437,11 @@ const PaginationTable = () => {
                   </TableCell>
 
                   <TableCell>
-                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                    <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
                       {row.totalSales}{' '}
                       <Typography
                         color="textSecondary"
-                        variant="h6"
+                        variant="subtitle2"
                         fontWeight="400"
                         fontStyle="italic"
                         component="span"

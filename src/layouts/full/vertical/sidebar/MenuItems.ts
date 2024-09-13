@@ -89,6 +89,14 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/apps/customerList2',
       },
+
+      // {
+      //   id: uniqueId(),
+      //   title: 'Thỏa thuận hợp tác',
+      //   icon: IconPoint,
+      //   href: '/apps/contract-client',
+      // },
+
     ],
   },
   {
