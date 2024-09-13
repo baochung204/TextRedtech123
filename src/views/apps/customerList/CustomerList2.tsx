@@ -145,7 +145,7 @@ const CustomerList2 = () => {
                     value={1} // Setting the first value as default
                     sx={{ marginRight: '20px' }}
                   >
-                    <MenuItem value={1}>Bộ cọc</MenuItem>
+                    <MenuItem value={1}>Bộ lọc</MenuItem>
                   </CustomSelect>
                 </Box>
 
