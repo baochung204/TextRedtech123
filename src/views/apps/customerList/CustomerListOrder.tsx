@@ -13,6 +13,7 @@ import {
 import Fab from '@mui/material/Fab';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
+import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -25,7 +26,7 @@ import CustomSelect from '../../../components/forms/theme-elements/CustomSelect'
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import AddOrder from './PopupAdd2';
 import TableListOrder from './TableOrderList';
-import { TransitionProps } from '@mui/material/transitions';
+// import Tags from 'src/components/apps/sell/Tags';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -62,17 +63,9 @@ const CustomerListOrder = () => {
       <Grid container spacing={3}>
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
-            {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <TabList onChange={handleChange} aria-label="Tabs">
-                <Tab label="Khách hàng" value="1" />
-                <Tab label="Tags" value="2" />
-              </TabList>
-            </Box> */}
-
+            {/* Tabs */}
             <TabPanel value="1">
-              {/* Action Buttons and Filters */}
               <Box
-                className="actions-and-filters"
                 sx={{
                   marginBottom: '20px',
                   display: 'flex',
@@ -80,8 +73,9 @@ const CustomerListOrder = () => {
                   alignItems: 'center',
                 }}
               >
-                {/* Nút tạo đơn hàng và thanh tìm kiếm */}
+                {/* Action Buttons and Filters */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  {/* Add Order Button */}
                   <Tooltip title="Tạo đơn hàng">
                     <Fab
                       color="primary"
@@ -94,7 +88,7 @@ const CustomerListOrder = () => {
                     </Fab>
                   </Tooltip>
 
-                  {/* Thanh tìm kiếm với icon */}
+                  {/* Search Bar */}
                   <TextField
                     sx={{
                       width: '200px',
@@ -118,6 +112,7 @@ const CustomerListOrder = () => {
                     size="small"
                   />
 
+                  {/* Column Filter and Sort */}
                   <CustomSelect
                     labelId="column-filter"
                     id="column-filter"
@@ -159,7 +154,7 @@ const CustomerListOrder = () => {
                     />
                   </LocalizationProvider>
 
-                  {/* Icon Refresh */}
+                  {/* Refresh Icon */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -189,7 +184,7 @@ const CustomerListOrder = () => {
         </Box>
       </Grid>
 
-      {/* Popup Thêm đơn hàng */}
+      {/* Add Order Popup */}
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}

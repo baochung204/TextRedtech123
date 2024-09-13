@@ -5,21 +5,25 @@ import {
   TextField,
   Button,
   Alert,
-  AlertTitle,
+  Snackbar,
   IconButton,
   InputAdornment,
   useTheme,
+  Slide,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+
+function SlideTransition(props: any) {
+  return <Slide {...props} direction="left" />;
+}
 
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State để mở/tắt mật khẩu
-  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(
-    null,
-  );
+  const [open, setOpen] = useState(false); // State để mở Snackbar
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [passwordMatchError, setPasswordMatchError] = useState(false); // State để hiển thị lỗi khớp mật khẩu
   const theme = useTheme();
 
@@ -27,10 +31,12 @@ const ChangePassword = () => {
     if (newPassword !== confirmNewPassword) {
       setPasswordMatchError(true);
       setShowAlert({ message: 'Mật khẩu mới và xác nhận mật khẩu không khớp.', type: 'error' });
+      setOpen(true); // Mở Snackbar khi có lỗi
       return;
     }
 
     setShowAlert({ message: 'Đổi mật khẩu thành công!', type: 'success' });
+    setOpen(true); // Mở Snackbar khi thành công
 
     setTimeout(() => setShowAlert(null), 3000);
 
@@ -51,6 +57,13 @@ const ChangePassword = () => {
     } else {
       setPasswordMatchError(false);
     }
+  };
+
+  const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); // Đóng Snackbar
   };
 
   return (
@@ -139,26 +152,18 @@ const ChangePassword = () => {
         </Button>
       </Box>
 
-      {showAlert && (
-        <Alert
-          severity={showAlert.type}
-          sx={{
-            position: 'fixed',
-            top: 16,
-            right: 16,
-            zIndex: theme.zIndex.snackbar,
-            backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
-            color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-            borderRadius: 1,
-            padding: 2,
-            width: 300,
-          }}
-        >
-          <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
-          {showAlert.message}
+      {/* Hiển thị Alert khi có sự thay đổi */}
+      <Snackbar
+        open={open} // Kiểm soát việc mở/đóng Snackbar
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert onClose={handleClose} severity={showAlert?.type || 'success'} variant="filled">
+          {showAlert?.message || 'Lưu thay đổi thành công'}
         </Alert>
-      )}
+      </Snackbar>
     </Box>
   );
 };
