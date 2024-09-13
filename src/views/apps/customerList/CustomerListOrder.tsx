@@ -1,15 +1,12 @@
-import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { TabContext, TabPanel } from '@mui/lab';
 import {
   Box,
-  Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
   InputAdornment,
   Slide,
-  Tab,
   TextField,
   Typography,
 } from '@mui/material';
@@ -22,12 +19,13 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
+import Tags from 'src/components/apps/sell/Tags';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import AddOrder from './PopupAdd2';
 import TableListOrder from './TableOrderList';
-import Tags from 'src/components/apps/sell/Tags';
+import { TransitionProps } from '@mui/material/transitions';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -35,7 +33,10 @@ const BCrumb = [
   { title: 'Blog post' },
 ];
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -43,14 +44,15 @@ const CustomerListOrder = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value, setValue] = React.useState('1');
+  // const [value, setValue] = React.useState('1');
+  const [value] = React.useState('1');
 
   const handleOpenPopup = () => setIsPopupOpen(true);
   const handleClosePopup = () => setIsPopupOpen(false);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+  // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  //   setValue(newValue);
+  // };
 
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>

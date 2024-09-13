@@ -236,7 +236,16 @@ const ProductTableList = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const getProducts: ProductType[] = useSelector((state) => state.ecommerceReducer.products);
+  const getProducts: ProductType[] = useSelector((state: any) =>
+    state.ecommerceReducer.products.map((product: any) => ({
+      title: product.title,
+      discount: product.discount,
+      related: product.related,
+      salesPrice: product.salesPrice,
+      // Add other properties to match ProductType
+      // ...
+    })),
+  );
 
   const [rows, setRows] = React.useState<any>(getProducts);
   const [search, setSearch] = React.useState('');

@@ -1,31 +1,28 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
+import AddIcon from '@mui/icons-material/Add';
 import {
+  Alert,
   Avatar,
+  Badge,
+  Box,
+  InputAdornment,
   List,
+  ListItemButton,
   ListItemText,
   TextField,
-  Box,
-  Alert,
-  Badge,
-  ListItemButton,
   Typography,
-  InputAdornment,
-  Button,
-  Menu,
-  MenuItem,
 } from '@mui/material';
-import { useSelector, useDispatch } from 'src/store/Store';
-import AddIcon from '@mui/icons-material/Add';
-import Scrollbar from '../../custom-scroll/Scrollbar';
-import { SelectChat, fetchChats, SearchChat } from '../../../store/apps/chat/ChatSlice';
-import { ChatsType } from 'src/types/apps/chat';
-import { last } from 'lodash';
-import { IconChevronDown, IconSearch } from '@tabler/icons-react';
-import user1 from 'src/assets/images/profile/user-1.jpg';
+import { IconSearch } from '@tabler/icons-react';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { vi } from 'date-fns/locale';
+import { last } from 'lodash';
+import { useEffect } from 'react';
+import user1 from 'src/assets/images/profile/user-1.jpg';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { ChatsType } from 'src/types/apps/chat';
+import { fetchChats, SearchChat, SelectChat } from '../../../store/apps/chat/ChatSlice';
+import Scrollbar from '../../custom-scroll/Scrollbar';
 
 const ChatListing = () => {
   const dispatch = useDispatch();
@@ -61,14 +58,14 @@ const ChatListing = () => {
 
   const lastActivity = (chat: ChatsType) => last(chat.messages)?.createdAt;
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  // const open = Boolean(anchorEl);
+  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   return (
     <div>
