@@ -7,7 +7,8 @@ import {
   Select,
   MenuItem,
   Alert,
-  AlertTitle,
+  Snackbar,
+  Slide,
   useTheme,
 } from '@mui/material';
 import { IconUser, IconEdit, IconCheck } from '@tabler/icons-react';
@@ -15,9 +16,15 @@ import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { SelectChangeEvent } from '@mui/material';
+
+function SlideTransition(props: any) {
+  return <Slide {...props} direction="left" />;
+}
+
 const PersonalInformation = () => {
   const theme = useTheme();
   const [editing, setEditing] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
   const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
     null,
   );
@@ -56,6 +63,7 @@ const PersonalInformation = () => {
   const handleSaveClick = () => {
     setEditing(null);
     setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công!' });
+    setOpen(true); // Hiển thị Snackbar khi lưu thay đổi
     setTimeout(() => setShowAlert(null), 3000);
   };
 
@@ -63,6 +71,13 @@ const PersonalInformation = () => {
     if (e.key === 'Enter') {
       handleSaveClick();
     }
+  };
+
+  const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
   };
 
   const renderField = (field: string, label: string) => (
@@ -141,26 +156,17 @@ const PersonalInformation = () => {
       {renderField('address', 'Địa chỉ')}
 
       {/* Hiển thị Alert khi có sự thay đổi */}
-      {showAlert && (
-        <Alert
-          severity={showAlert.type}
-          sx={{
-            position: 'fixed',
-            top: 16,
-            right: 16,
-            zIndex: theme.zIndex.snackbar,
-            backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
-            color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-            borderRadius: 1,
-            padding: 2,
-            width: 300,
-          }}
-        >
-          <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
-          {showAlert.message}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert onClose={handleClose} severity={'success'} variant="filled">
+          {showAlert?.message || 'Lưu thay đổi thành công'}
         </Alert>
-      )}
+      </Snackbar>
     </Box>
   );
 };
