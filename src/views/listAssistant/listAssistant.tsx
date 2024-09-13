@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+
 import {
   Autocomplete,
   Avatar,
@@ -50,6 +49,8 @@ import icon1 from 'src/assets/images/svgs/icon-bars.svg';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
+// import components from '../../theme/Components';
+import { Link } from 'react-router-dom';
 interface sellsData {
   product: string;
   percent: number;
@@ -481,7 +482,7 @@ const ListAssistant = () => {
                       </Grid>
 
                       <Grid item xs={4}>
-                        <Button variant="contained" color="error">
+                        <Button variant="contained" color="error" component={Link} to="/apps/list-assistant">
                           <IconTable fontSize={20} />
                         </Button>
                       </Grid>
@@ -626,7 +627,7 @@ const ListAssistant = () => {
                       >
                         <Box sx={{ p: { xs: 2, sm: 2.5, md: 1.7, lg: 2 } }}>
                           <Stack spacing={3}>
-                            {sells.map((sell: any) => (
+                            {sells.map((sell) => (
                               <Box>
                                 <Stack
                                   direction="row"
@@ -639,7 +640,7 @@ const ListAssistant = () => {
                                   <Box>
                                     <Typography variant="h6">Kinh nghiệm</Typography>
                                     <Typography variant="subtitle2" color="textSecondary">
-                                      {sell.total}
+                                      {/* {sell.total} */}
                                     </Typography>
                                   </Box>
                                   <Chip

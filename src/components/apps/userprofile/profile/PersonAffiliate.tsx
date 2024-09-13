@@ -560,19 +560,19 @@ const PersonAffiliate = () => {
                   này cho phù hợp với tình hình kinh doanh và quy định của pháp luật hiện hành.
                 </li>
               </ol>
+              <Checkbox
+                id="agreeTerms"
+                name="agreeTerms"
+                checked={formik.values.agreeTerms}
+                onChange={formik.handleChange}
+                color="primary"
+                inputProps={{ 'aria-label': 'checkbox with default color' }}
+              />
+              <span>Đồng ý với các điều khoản của chúng tôi</span>
+              {formik.errors.agreeTerms ? (
+                <Typography color="error">{formik.errors.agreeTerms}</Typography>
+              ) : null}
             </Box>
-            <Checkbox
-              id="agreeTerms"
-              name="agreeTerms"
-              checked={formik.values.agreeTerms}
-              onChange={formik.handleChange}
-              color="primary"
-              inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
-            <span>Đồng ý với các điều khoản của chúng tôi</span>
-            {formik.errors.agreeTerms ? (
-              <Typography color="error">{formik.errors.agreeTerms}</Typography>
-            ) : null}
           </>
         );
       case 1:
