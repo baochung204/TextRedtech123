@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
 import { useTheme } from '@mui/material/styles';
+import { useState } from 'react';
+import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 import { Paper } from '@mui/material';

@@ -1,37 +1,36 @@
-import React, { useState } from 'react';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PersonIcon from '@mui/icons-material/Person';
 import {
-  Grid,
-  Typography,
-  MenuItem,
+  Avatar,
   Button,
-  Stack,
-  Paper,
   Divider,
+  Fab,
+  Grid,
+  IconButton,
+  InputBase,
   List,
   ListItem,
   ListItemText,
-  InputBase,
-  IconButton,
-  Avatar,
+  MenuItem,
+  Paper,
+  Stack,
+  TextField,
   Tooltip,
-  Fab,
+  Typography,
 } from '@mui/material';
 import Box from '@mui/material/Box';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import { IconPlus, IconSend } from '@tabler/icons-react';
+import React, { useState } from 'react';
 import PageContainer from 'src/components/container/PageContainer';
-import PersonIcon from '@mui/icons-material/Person';
-import { IconSend } from '@tabler/icons-react';
-import DateTime from './DateTime'
-import Checkboxes from './Tags';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import QuillEditor from './QuillEditor';
-import { IconPlus } from '@tabler/icons-react';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DateTime from './DateTime';
 import Integration from './Integration';
-import StrategyDialog from './dialog/strategyDialog';
-import SimpleDialog from './dialog/searchDialog';
+import Checkboxes from './Tags';
 import FunctionsDialog from './dialog/functionsDialog';
+import SimpleDialog from './dialog/searchDialog';
+import StrategyDialog from './dialog/strategyDialog';
 
 interface Message {
   text: string;
@@ -46,6 +45,11 @@ const AssistantEditor = () => {
   const [level, setLevel] = useState('1');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCountry(event.target.value as string);
   };
@@ -111,27 +115,46 @@ const AssistantEditor = () => {
           {/* Cột 1 */}
 
           <Grid item xs={12} sm={12} lg={4}>
-            <Paper elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper elevation={3} sx={{ minHeight: '64%', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Box sx={{ height: '100%' }}>
                 {/* Circular Avatar Placeholder */}
-                <Box sx={{ maxHeight: 'calc(72vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb: '20px' }}>
+                <Box sx={{ maxHeight: 'calc(65vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb: '20px' }}>
                   <label htmlFor="avatar-upload">
-                    <Avatar
-                      src={avatarPreview || ''}
-                      alt="avatar preview"
-                      sx={{
-                        width: { xs: 80, sm: 100, md: 120, lg: 150 },
-                        height: { xs: 80, sm: 100, md: 120, lg: 150 },
-                        margin: 'auto',
-                        fontSize: 50,
-                        backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
-                        border: '2px dashed #ccc',
-                        color: '#9e9e9e',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      {!avatarPreview && <PersonIcon fontSize="inherit" />}
-                    </Avatar>
+                  <Avatar
+                    src={avatarPreview || ''}
+                    alt="avatar preview"
+                    sx={{
+                      width: { xs: 80, sm: 100, md: 120, lg: 150 },
+                      height: { xs: 80, sm: 100, md: 120, lg: 150 },
+                      margin: 'auto',
+                      fontSize: 50,
+                      backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
+                      color: '#9e9e9e',
+                      cursor: 'pointer',
+                      position: 'relative',
+                      zIndex: 1,
+                      borderRadius: '50%',
+                      border: 'none',  // Xóa đường viền mặc định
+                      '&:before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        borderRadius: '50%',
+                        padding: '6px', // Độ rộng của đường viền
+                        background: 'linear-gradient(#50b2fc, #f44c66)', // Gradient màu
+                        '-webkit-mask': 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                        mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                        maskComposite: 'exclude',
+                        zIndex: 1,  // Đảm bảo gradient ở sau avatar
+                      },
+                    }}
+                  >
+                    {!avatarPreview && <PersonIcon fontSize="inherit" />}
+                  </Avatar>
+
                   </label>
                   {/* Hidden file input */}
                   <input
@@ -198,30 +221,28 @@ const AssistantEditor = () => {
                     </CustomSelect>
                   </Grid>
                 </Grid>
-
-                <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 3 }}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6} lg={10}>
-                      <Box display="flex" alignItems="center">
-                        <FacebookIcon fontSize='large' color="info" />
-                        <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={6} lg={2}>
-                      <Tooltip title="Thêm">
-                        <Fab size="small" color="secondary" aria-label="plus">
-                          <IconPlus width={18} />
-                        </Fab>
-                      </Tooltip>
-                    </Grid>
-                  </Grid>
-                  <Integration />
-                </Paper>
+               
               </Box>
-
-
-
             </Paper>
+            {/*Tích hợp  */}
+            <Paper elevation={3} sx={{ minHeight: '4%', p: 2, mt: 3 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6} lg={10}>
+                    <Box display="flex" alignItems="center">
+                      <FacebookIcon fontSize='large' color="info" />
+                      <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} sm={6} lg={2}>
+                    <Tooltip title="Thêm">
+                      <Fab size="small" color="secondary" aria-label="plus">
+                        <IconPlus width={18} />
+                      </Fab>
+                    </Tooltip>
+                  </Grid>
+                </Grid>
+                <Integration />
+              </Paper>
           </Grid>
           {/* Cột 2 */}
           <Grid item xs={12} sm={12} lg={4} >
@@ -240,15 +261,27 @@ const AssistantEditor = () => {
               </CustomSelect>
               <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
               {/* <TextField minRows={3} multiline  id="cname" placeholder="Hướng dẫn trợ lý" variant="outlined" fullWidth /> */}
-              <QuillEditor />
+              {/* <QuillEditor /> */}
+              <TextField
+                id="outlined-multiline-static"
+                multiline
+                rows={7}
+                fullWidth
+                placeholder="Nhập hướng dẫn . . ."
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    padding: 0,  // Loại bỏ padding của TextField
+                  },
+                }}
+              />
             </Paper>
             {/* tri thức */}
-            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
+            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 3 }}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6} lg={8.4}>
-                  <Box fontWeight={600}>Tri thức</Box>
+                <Grid item xs={12} sm={6} lg={9}>
+                  <Box fontWeight={600} mt={0.5}>Tri thức</Box>
                 </Grid>
-                <Grid item xs={12} sm={6} lg={3.6}>
+                <Grid item xs={12} sm={6} lg={3}>
                   <SimpleDialog />
                 </Grid>
               </Grid>
@@ -256,12 +289,12 @@ const AssistantEditor = () => {
 
             </Paper>
             {/* Functions */}
-            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
+            <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2.3 }}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6} lg={8.4}>
-                  <Box fontWeight={600}>Functions</Box>
+                <Grid item xs={12} sm={6} lg={9}>
+                  <Box fontWeight={600} mt={0.5}>Functions</Box>
                 </Grid>
-                <Grid item xs={12} sm={6} lg={3.6}>
+                <Grid item xs={12} sm={6} lg={3}>
                   <FunctionsDialog />
                 </Grid>
               </Grid>
@@ -269,13 +302,19 @@ const AssistantEditor = () => {
             <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} lg={10}>
-                  <Box fontWeight={600}>Chiến lược</Box>
+                  <Box fontWeight={600} mt={0.5}>Chiến lược</Box>
+                  
                 </Grid>
-                <Grid item xs={12} sm={6} lg={2}>
-                  <StrategyDialog />
+                <Grid item xs={12} sm={6} lg={2} p={0}>
+                  <Tooltip title="Chọn chiến lược" >
+                    <Fab onClick={handleClickOpen} size="small" color="secondary" aria-label="plus">
+                      <IconPlus width={18} />
+                    </Fab>
+                  </Tooltip>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={12}>
-                  {/* <Strategy/> */}
+                  <StrategyDialog open={open} setOpen={setOpen}/>
+                  
                 </Grid>
               </Grid>
 
@@ -284,10 +323,10 @@ const AssistantEditor = () => {
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
 
-            <Paper elevation={3} sx={{ height: '110vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper elevation={3} sx={{ height: '78vh', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
-              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(110vh - 120px)' }}>
+              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(78vh - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
                     <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>

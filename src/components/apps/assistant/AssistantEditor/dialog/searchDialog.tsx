@@ -58,6 +58,7 @@ const SimpleDialog = () => {
         variant="contained"
         color="primary"
         component="span"
+        size='small'
         style={{ marginBottom: '10px' }}
         onClick={handleClickOpen}
       >
