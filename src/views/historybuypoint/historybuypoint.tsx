@@ -98,16 +98,10 @@ const headCells: HeadCell[] = [
     label: 'ID Yêu cầu',
   },
   {
-    id: 'paymentMethod',
-    numeric: false,
-    disablePadding: false,
-    label: 'Phương thức thanh toán',
-  },
-  {
     id: 'amount',
     numeric: false,
     disablePadding: false,
-    label: 'Số tiền',
+    label: 'Số Point',
   },
   {
     id: 'numberPrice',
@@ -151,12 +145,7 @@ const getStatusTextAndColor = (status: any) => {
           Chờ xử lý
         </Typography>
       );
-    case 3:
-      return (
-        <Typography color="#f44336" variant="subtitle2">
-          Chưa thanh toán
-        </Typography>
-      );
+
     default:
       return;
   }
@@ -167,8 +156,7 @@ const getInvoiceTextAndColor = (status: any) => {
       return <Button color="success">Tải về</Button>;
     case 2:
       return <Typography color="#ff9800">Chờ xử lý</Typography>;
-    case 3:
-      return <Typography color="#f44336"> Chưa thanh toán</Typography>;
+
     default:
       return;
   }
@@ -197,9 +185,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
-              <Typography variant="subtitle1" fontWeight="700">
-                {headCell.label}
-              </Typography>
+              <Typography variant="h6">{headCell.label}</Typography>
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -347,15 +333,7 @@ const HistoryBuyPoint = () => {
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.paymentMethod}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
+
                         <TableCell>
                           <Stack spacing={2} direction="row">
                             <Box>
