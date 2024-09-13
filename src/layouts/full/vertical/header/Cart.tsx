@@ -29,10 +29,10 @@ const Cart = () => {
   };
 
   const handlePopoverMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
-    // const relatedTarget = event.relatedTarget as HTMLElement;
-    // if (!relatedTarget.closest('.MuiPopover-paper')) {
-    //   handleClose();
-    // }
+    const relatedTarget = event.relatedTarget as HTMLElement;
+    if (!relatedTarget.closest('.MuiPopover-paper')) {
+      handleClose();
+    }
   };
 
   const cartContent = (
