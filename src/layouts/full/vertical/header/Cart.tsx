@@ -31,8 +31,8 @@ const Cart = () => {
     <Box
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      component='div'
-      className='cart-dropdown-wrapper'
+      component="div"
+      className="cart-dropdown-wrapper"
       sx={{ position: 'relative', display: 'inline-block' }}
     >
       <IconButton
@@ -62,19 +62,13 @@ const Cart = () => {
             zIndex: 1,
             backgroundColor: 'white',
             border: '1px solid #ccc',
-            borderRadius: '4px',
-            width: '400px',
-            padding: '16px',
+            borderRadius: '10px',
+            width: '300px',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            p={2}
-          >
+          <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
             <Typography variant="h5" fontWeight={600}>
               Giỏ hàng
             </Typography>
@@ -123,12 +117,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
-
-
-
-
-
-
-
