@@ -142,10 +142,11 @@ const Affiliatedetail = () => {
     <DashboardCard>
       <>
         <Box sx={{ marginTop: '-15px' }}>
-          <Typography variant="h4">Báo cáo chi tiêu trợ lý </Typography>
-          <Typography variant="subtitle2" color="textSecondary" mb={2}>
+          <Typography variant="h4">Báo cáo chi tiêu trợ lý</Typography>
+          {/* <Typography variant="subtitle2" color="textSecondary" mb={2}>
             kinh doanh
-          </Typography>
+          </Typography> */}
+
           <Box
             style={{
               display: 'flex',
@@ -154,18 +155,6 @@ const Affiliatedetail = () => {
               justifyContent: 'space-between',
             }}
           >
-            {' '}
-            <CustomSelect
-              labelId="month-dd"
-              id="month-dd"
-              size="small"
-              value={month}
-              onChange={handleChange}
-            >
-              <MenuItem value={1}>Tất cả</MenuItem>
-              <MenuItem value={2}>Assistant 1 </MenuItem>
-              <MenuItem value={3}>Assistant 2 </MenuItem>
-            </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
               {' '}
               <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -217,7 +206,7 @@ const Affiliatedetail = () => {
                   )}
                 />
               </LocalizationProvider>
-              <svg
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="50"
                 height="50"
@@ -233,7 +222,7 @@ const Affiliatedetail = () => {
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
                 <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-              </svg>
+              </svg> */}
             </Box>
           </Box>
         </Box>

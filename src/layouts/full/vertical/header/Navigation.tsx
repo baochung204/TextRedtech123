@@ -17,6 +17,14 @@ const AppDD = () => {
     setAnchorEl2(null);
   };
 
+  const handleClickComunity = () => {
+    window.open('https://zalo.me/g/mwvaot164', '_blank');
+  };
+
+  const handleClickEvent = () => {
+    window.open('https://redtech.ai.vn', '_blank');
+  };
+
   return (
     <>
       <Box>
@@ -86,8 +94,7 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/auth/updating"
-        component={Link}
+        onClick={handleClickComunity}
       >
         Cộng đồng
       </Button>
@@ -95,11 +102,11 @@ const AppDD = () => {
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
-        to="/auth/updating"
-        component={Link}
+        onClick={handleClickEvent}
       >
         Sự kiện
       </Button>
+
       <Button
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
