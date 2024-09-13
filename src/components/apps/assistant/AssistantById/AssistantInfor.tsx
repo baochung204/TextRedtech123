@@ -42,9 +42,10 @@ import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
 import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
 import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
 import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
-import icon6 from 'src/assets/images/svgs/icon-speech-bubble.svg';
 import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
-
+import iconExpense from 'src/assets/images/icon.png/expense.png';
+import iconRotation from 'src/assets/images/icon.png/rotation.png';
+import badge from 'src/assets/images/badge/badge.png';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
@@ -90,13 +91,13 @@ const topcards: cardType[] = [
     bgcolor: 'error',
   },
   {
-    icon: icon1,
+    icon: iconRotation,
     title: 'Tổng Vòng Quay',
     digits: '251K',
     bgcolor: 'success',
   },
   {
-    icon: icon6,
+    icon: iconExpense,
     title: 'Chi Phí',
     digits: '251K',
     bgcolor: 'info',
@@ -685,14 +686,15 @@ const AssistantInfor = () => {
               </CardContent>
             </Card>
           </Grid>
-          {/* column */}
-          <Grid item xs={12} lg={4}>
-            <Grid item xs={12}>
+          {/* <Grid item xs={12} lg={4}>
+            <Box height="100%" bgcolor={'error.light'}>
+             
               <DashboardCard title="Chiến lược của trợ lý">
                 <Box
                   sx={{
                     display: 'flex',
                     height: '100%',
+                    flexDirection: 'column',
                   }}
                 >
                   <Grid container>
@@ -707,17 +709,80 @@ const AssistantInfor = () => {
                     <Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                       <Box
                         sx={{
-                          width: '75%',
+                          width: '100%',
+                          maxWidth: '100px',
                         }}
                       >
-                        <img src={bannercl} style={{ width: '100%' }} />
+                        <img src={bannercl} alt="Banner chiến lược" style={{ width: '100%' }} />
                       </Box>
                     </Grid>
                   </Grid>
                 </Box>
               </DashboardCard>
-            </Grid>
+            </Box>
+          </Grid> */}
+          <Grid item xs={12} lg={4}>
+            <Box
+              height="100%"
+              bgcolor="error.light"
+              sx={{
+                padding: 2,
+                borderRadius: 2,
+              }}
+            >
+              <Typography
+                variant="h5"
+                sx={{
+                  py: 2,
+                  fontWeight: 600,
+                  color: '#FA896B',
+                }}
+              >
+                Chiến lược của trợ lý
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                }}
+              >
+                <Grid container spacing={2}>
+                  <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Box
+                      sx={{
+                        width: '100%',
+                        maxWidth: '100px',
+                        borderRadius: 1,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <img
+                        src={badge}
+                        alt="Banner chiến lược"
+                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={8}>
+                    <Box sx={{ textAlign: 'center' }}>
+                      <Typography
+                        variant="h6"
+                        fontWeight={500}
+                        sx={{
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        Chiến lược Tích Hợp Dịch Vụ Bên Thứ Ba
+                      </Typography>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Box>
           </Grid>
+          {/* column */}
           <Grid item xs={12} sm={4}>
             <BoxStyled sx={{ textAlign: 'center' }}>
               <Box
@@ -935,7 +1000,12 @@ const AssistantInfor = () => {
                 <Grid item xs={12} sm={4} lg={6} key={i}>
                   <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
                     <CardContent sx={{}}>
-                      <img src={topcard.icon} alt={topcard.icon} width="50" />
+                      <img
+                        src={topcard.icon}
+                        alt={topcard.icon}
+                        width="50"
+                        style={{ objectFit: 'cover' }}
+                      />
                       <Typography
                         color={topcard.bgcolor + '.main'}
                         mt={1}
@@ -1067,10 +1137,10 @@ const AssistantInfor = () => {
             >
               <CardContent>
                 <Typography variant="h5" color="white">
-                  Cấu hình trang bị trợ lý
+                  Trang bị trợ lý
                 </Typography>
                 <Typography variant="subtitle1" color="white">
-                  Tổng quan
+                  Cấu hình
                 </Typography>
 
                 <Box textAlign="center" mt={2} mb="-90px">
