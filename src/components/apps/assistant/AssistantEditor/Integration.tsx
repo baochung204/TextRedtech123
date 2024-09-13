@@ -10,7 +10,7 @@ const Integration = () => {
     setConnect((prevConnect) => !prevConnect);
   };
   return (
-    <Grid item xs={12} lg={12} mt={2}>
+    <Grid item xs={12} lg={12} mt={2} mb={1}>
       <BlankCard>
         <CardContent>
           <Stack direction={'row'} gap={2} alignItems="center">
