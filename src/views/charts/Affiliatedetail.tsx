@@ -13,6 +13,8 @@ import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+// import { m } from 'framer-motion';
+// import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 
 const monthsInVietnamese = [
   'Tháng 1',
@@ -153,8 +155,21 @@ const Affiliatedetail = () => {
               gap: '12px',
               alignItems: 'center',
               justifyContent: 'space-between',
+              marginTop: '20px',
             }}
           >
+            {' '}
+            <CustomSelect
+              labelId="month-dd"
+              id="month-dd"
+              size="small"
+              value={month}
+              onChange={handleChange}
+            >
+              <MenuItem value={1}>Doanh thu</MenuItem>
+              <MenuItem value={2}>Khách hàng </MenuItem>
+              <MenuItem value={3}>Đơn Hàng </MenuItem>
+            </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
               {' '}
               <LocalizationProvider dateAdapter={AdapterDateFns}>
