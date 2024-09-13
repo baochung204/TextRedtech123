@@ -106,7 +106,7 @@ const AssistantEditor = () => {
           </Stack>
           <Stack direction="row" spacing={1}>
             <Button variant="contained" color="secondary">
-              Thêm mới
+              Lưu
             </Button>
 
           </Stack>
@@ -114,9 +114,9 @@ const AssistantEditor = () => {
         <Grid container spacing={3}>
           {/* Cột 1 */}
 
-          <Grid item xs={12} sm={12} lg={4}>
-            <Paper elevation={3} sx={{ minHeight: '64%', display: 'flex', flexDirection: 'column', p: 2 }}>
-              <Box sx={{ height: '100%' }}>
+          <Grid item xs={12} sm={12} lg={4} >
+            <Paper  elevation={3} sx={{ minHeight: '64%', display: 'flex', flexDirection: 'column', p: 2 }}>
+              <Box mb={1.2} sx={{ height: '100%' }}>
                 {/* Circular Avatar Placeholder */}
                 <Box sx={{ maxHeight: 'calc(65vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb: '20px' }}>
                   <label htmlFor="avatar-upload">
