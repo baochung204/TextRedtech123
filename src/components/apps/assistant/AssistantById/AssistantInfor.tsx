@@ -990,7 +990,7 @@ const AssistantInfor = () => {
                       value={month}
                       onChange={handleChange}
                     >
-                      <MenuItem value={1}>Danh thu</MenuItem>
+                      <MenuItem value={1}>Doanh thu</MenuItem>
                       <MenuItem value={2}>Khách hàng </MenuItem>
                       <MenuItem value={3}>Đơn Hàng </MenuItem>
                     </CustomSelect>
@@ -1228,10 +1228,8 @@ const AssistantInfor = () => {
             <DashboardCard>
               <Box>
                 <Box sx={{ marginTop: '-15px' }}>
-                  <Typography variant="h4">Báo cáo chi tiêu trợ lý </Typography>
-                  <Typography variant="subtitle2" color="textSecondary" mb={2}>
-                    kinh doanh
-                  </Typography>
+                  <Typography variant="h4">Báo cáo chi tiêu trợ lý</Typography>
+
                   <Box
                     style={{
                       display: 'flex',
