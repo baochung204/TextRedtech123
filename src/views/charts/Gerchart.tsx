@@ -156,9 +156,9 @@ const GerChart = () => {
       <>
         <Box sx={{ marginTop: '0px' }}>
           <Typography variant="h4">Báo cáo công việc</Typography>
-          <Typography variant="subtitle2" color="textSecondary" mb={2}>
-            kinh doanh
-          </Typography>
+
+          <Typography variant="subtitle2" color="textSecondary" mb={2}></Typography>
+
           <Box
             style={{
               display: 'flex',
@@ -174,7 +174,7 @@ const GerChart = () => {
               value={month}
               onChange={handleChange}
             >
-              <MenuItem value={1}>Danh thu</MenuItem>
+              <MenuItem value={1}>Doanh thu</MenuItem>
               <MenuItem value={2}>Khách hàng </MenuItem>
               <MenuItem value={3}>Đơn Hàng </MenuItem>
             </CustomSelect>

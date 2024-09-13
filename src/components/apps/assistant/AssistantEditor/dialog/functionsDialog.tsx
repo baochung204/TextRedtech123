@@ -40,6 +40,7 @@ const FunctionsDialog = () => {
       <Button
         variant="contained"
         color="primary"
+        size='small'
         component="span"
         style={{ marginBottom: '10px' }}
         onClick={handleClickOpen}

@@ -15,7 +15,7 @@ import {
 import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts, addToCart } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';
-import { ProductType } from 'src/types/apps/eCommerce';
+// import { ProductType } from 'src/types/apps/eCommerce';
 
 const ProductDetail = () => {
   const theme = useTheme();
@@ -28,9 +28,7 @@ const ProductDetail = () => {
   }, [dispatch]);
 
   // Get Products
-  const product: ProductType = useSelector(
-    (state) => state.ecommerceReducer.products[Number(id) - 1],
-  );
+  const product: any = useSelector((state) => state.ecommerceReducer.products[Number(id) - 1]);
 
   // Set qty
   // const [count, setCount] = useState(500);
@@ -121,7 +119,7 @@ const ProductDetail = () => {
                 component={Link}
                 variant="contained"
                 to="/apps/eco-checkout"
-                onClick={() => dispatch(addToCart(product))}
+                onClick={() => dispatch(addToCart(product as any))}
               >
                 Mua ngay
               </Button>
@@ -133,7 +131,7 @@ const ProductDetail = () => {
                 fullWidth
                 variant="contained"
                 sx={{ width: '200px' }}
-                onClick={() => dispatch(addToCart(product)) && handleClick()}
+                onClick={() => dispatch(addToCart(product as any)) && handleClick()}
               >
                 Thêm vào giỏ hàng
               </Button>

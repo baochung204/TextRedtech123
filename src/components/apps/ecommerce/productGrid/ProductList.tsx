@@ -94,7 +94,7 @@ const ProductList = ({ onClick }: Props) => {
     return products;
   };
 
-  const getProducts = useSelector((state) =>
+  const getProducts = useSelector((state: any) =>
     getVisibleProduct(
       state.ecommerceReducer.products,
       state.ecommerceReducer.sortBy,
@@ -218,7 +218,9 @@ const ProductList = ({ onClick }: Props) => {
                                 <Fab
                                   size="small"
                                   color="primary"
-                                  onClick={() => dispatch(addToCart(product)) && handleClick()}
+                                  onClick={() =>
+                                    dispatch(addToCart(product as any)) && handleClick()
+                                  }
                                   sx={{
                                     position: 'absolute',
                                     right: 0,
