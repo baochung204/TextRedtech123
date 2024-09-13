@@ -50,7 +50,7 @@ const Menuitems: MenuitemsType[] = [
         title: 'Quản lý Trợ lý',
         icon: IconPoint,
         // href: '/apps/list-assistant',
-        href: '/assistant/list'
+        href: '/assistant/list',
       },
     ],
   },
@@ -91,12 +91,6 @@ const Menuitems: MenuitemsType[] = [
         title: 'Danh sách khách hàng',
         icon: IconPoint,
         href: '/apps/customerList2',
-      },
-      {
-        id: uniqueId(),
-        title: 'Thỏa thuận hợp tác',
-        icon: IconPoint,
-        href: '/apps/contract-client',
       },
     ],
   },
