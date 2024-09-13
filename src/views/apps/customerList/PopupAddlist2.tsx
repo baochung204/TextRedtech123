@@ -1,5 +1,7 @@
-import { Box, Checkbox, Grid, ListItemText, MenuItem, Typography } from '@mui/material';
-import React from 'react';
+// import React from 'react';
+import { Box,Grid, ListItemText, MenuItem, Typography, Button, useTheme } from '@mui/material';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -24,81 +26,84 @@ const channels: CurrencyType[] = [
 ];
 
 const PopupAddList2 = () => {
-  const [gender, setGender] = React.useState('');
-  const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
-  const [tags, setTags] = React.useState('');
-  const [companyName, setCompanyName] = React.useState('');
-  const [companyAddress, setCompanyAddress] = React.useState('');
-  const [companyEmail, setCompanyEmail] = React.useState('');
-  const [companyPhone, setCompanyPhone] = React.useState('');
-  const [companyWebsite, setCompanyWebsite] = React.useState('');
-  const [facebookUrl, setFacebookUrl] = React.useState('');
-  const [zaloUrl, setZaloUrl] = React.useState('');
-  const [instagramUrl, setInstagramUrl] = React.useState('');
-  const [assistant, setAssistant] = React.useState('');
-
-  const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setGender(event.target.value as string);
-  };
-
-  const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedChannels(event.target.value as string[]);
-  };
-
-  const handleChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setter(event.target.value);
-    };
-
-  const handleSubmit = () => {
-    // Xử lý gửi dữ liệu
-    console.log({
-      gender,
-      channels: selectedChannels,
-      tags,
-      companyName,
-      companyAddress,
-      companyEmail,
-      companyPhone,
-      companyWebsite,
-      facebookUrl,
-      zaloUrl,
-      instagramUrl,
-      assistant,
-    });
-  };
+  const theme = useTheme();
+  
+  const formik = useFormik({
+    initialValues: {
+      gender: '',
+      selectedChannels: [],
+      tags: '',
+      companyName: '',
+      companyAddress: '',
+      companyEmail: '',
+      companyPhone: '',
+      companyWebsite: '',
+      facebookUrl: '',
+      zaloUrl: '',
+      instagramUrl: '',
+      taxId: '',
+      assistant: '',
+    },
+    validationSchema: Yup.object({
+      gender: Yup.string().required('Giới tính là bắt buộc'),
+      selectedChannels: Yup.array().min(1, 'Chọn ít nhất một kênh'),
+      tags: Yup.string(),
+      companyName: Yup.string().required('Tên công ty là bắt buộc'),
+      companyAddress: Yup.string().required('Địa chỉ công ty là bắt buộc'),
+      companyEmail: Yup.string().email('Email không hợp lệ').required('Email công ty là bắt buộc'),
+      companyPhone: Yup.string()
+        .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ')
+        .required('Số điện thoại công ty là bắt buộc'),
+      companyWebsite: Yup.string().url('URL không hợp lệ'),
+      facebookUrl: Yup.string().url('URL không hợp lệ'),
+      zaloUrl: Yup.string().url('URL không hợp lệ'),
+      instagramUrl: Yup.string().url('URL không hợp lệ'),
+      taxId: Yup.string().required('Mã số thuế công ty là bắt buộc'),
+      assistant: Yup.string(),
+    }),
+    onSubmit: (values) => {
+      // Xử lý gửi dữ liệu
+      console.log(values);
+    },
+  });
 
   return (
-    <div>
+    <form onSubmit={formik.handleSubmit}>
       {/* Thông tin cá nhân */}
-      <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
-        <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
           Thông tin cá nhân
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item lg={6} md={12}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
             <CustomFormLabel htmlFor="name-text">Tên khách hàng</CustomFormLabel>
             <CustomTextField
               id="name-text"
               variant="outlined"
               fullWidth
-              value={tags}
-              onChange={handleChange(setTags)}
+              value={formik.values.tags}
+              onChange={formik.handleChange}
+              name="tags"
+              error={formik.touched.tags && Boolean(formik.errors.tags)}
+              helperText={formik.touched.tags && formik.errors.tags}
             />
-            <CustomFormLabel htmlFor="phone-text">SĐT</CustomFormLabel>
+            <CustomFormLabel htmlFor="phone-text" sx={{ mt: 2 }}>SĐT</CustomFormLabel>
             <CustomTextField
               id="phone-text"
               variant="outlined"
               fullWidth
-              value={companyPhone}
-              onChange={handleChange(setCompanyPhone)}
+              value={formik.values.companyPhone}
+              onChange={formik.handleChange}
+              name="companyPhone"
+              error={formik.touched.companyPhone && Boolean(formik.errors.companyPhone)}
+              helperText={formik.touched.companyPhone && formik.errors.companyPhone}
             />
-            <CustomFormLabel htmlFor="gender-select">Giới tính</CustomFormLabel>
+            <CustomFormLabel htmlFor="gender-select" sx={{ mt: 2 }}>Giới tính</CustomFormLabel>
             <CustomSelect
               id="gender-select"
-              value={gender}
-              onChange={handleGenderChange}
+              value={formik.values.gender}
+              onChange={formik.handleChange}
+              name="gender"
               fullWidth
               variant="outlined"
             >
@@ -108,18 +113,24 @@ const PopupAddList2 = () => {
                 </MenuItem>
               ))}
             </CustomSelect>
+            {formik.touched.gender && Boolean(formik.errors.gender) && (
+              <Typography color="error" variant="body2">{formik.errors.gender}</Typography>
+            )}
           </Grid>
-          <Grid item lg={6} md={12}>
+          <Grid item xs={12} md={6}>
             <CustomFormLabel htmlFor="email-text">Email</CustomFormLabel>
             <CustomTextField
               id="email-text"
               type="email"
               variant="outlined"
               fullWidth
-              value={companyEmail}
-              onChange={handleChange(setCompanyEmail)}
+              value={formik.values.companyEmail}
+              onChange={formik.handleChange}
+              name="companyEmail"
+              error={formik.touched.companyEmail && Boolean(formik.errors.companyEmail)}
+              helperText={formik.touched.companyEmail && formik.errors.companyEmail}
             />
-            <CustomFormLabel htmlFor="dob-text">Ngày sinh</CustomFormLabel>
+            <CustomFormLabel htmlFor="dob-text" sx={{ mt: 2 }}>Ngày sinh</CustomFormLabel>
             <CustomTextField
               id="dob-text"
               type="date"
@@ -127,65 +138,77 @@ const PopupAddList2 = () => {
               fullWidth
               InputLabelProps={{ shrink: true }}
             />
-            <CustomFormLabel htmlFor="notes-text">Ghi chú</CustomFormLabel>
+            <CustomFormLabel htmlFor="notes-text" sx={{ mt: 2 }}>Ghi chú</CustomFormLabel>
             <CustomTextField
               id="notes-text"
               variant="outlined"
               fullWidth
               multiline
               rows={3}
-              value={tags}
-              onChange={handleChange(setTags)}
+              value={formik.values.tags}
+              onChange={formik.handleChange}
+              name="tags"
+              error={formik.touched.tags && Boolean(formik.errors.tags)}
+              helperText={formik.touched.tags && formik.errors.tags}
             />
           </Grid>
         </Grid>
       </Box>
 
       {/* Thông tin trợ lý và kênh */}
-      <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
-        <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
           Trợ lý và kênh
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item lg={6} md={12}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
             <CustomFormLabel htmlFor="assistant-text">Trợ lý</CustomFormLabel>
             <CustomTextField
               id="assistant-text"
               variant="outlined"
               fullWidth
-              value={assistant}
-              onChange={handleChange(setAssistant)}
+              value={formik.values.assistant}
+              onChange={formik.handleChange}
+              name="assistant"
+              error={formik.touched.assistant && Boolean(formik.errors.assistant)}
+              helperText={formik.touched.assistant && formik.errors.assistant}
             />
-            <CustomFormLabel htmlFor="tags-text">Tags</CustomFormLabel>
+            <CustomFormLabel htmlFor="tags-text" sx={{ mt: 2 }}>Tags</CustomFormLabel>
             <CustomTextField
               id="tags-text"
               variant="outlined"
               fullWidth
-              value={tags}
-              onChange={handleChange(setTags)}
+              value={formik.values.tags}
+              onChange={formik.handleChange}
+              name="tags"
+              error={formik.touched.tags && Boolean(formik.errors.tags)}
+              helperText={formik.touched.tags && formik.errors.tags}
             />
           </Grid>
-          <Grid item lg={6} md={12}>
+          <Grid item xs={12} md={6}>
             <CustomFormLabel htmlFor="channel-select">Kênh</CustomFormLabel>
             <CustomSelect
               id="channel-select"
               multiple
-              value={selectedChannels}
-              onChange={handleChannelChange}
+              value={formik.values.selectedChannels}
+              onChange={(event: any) => {
+                formik.setFieldValue('selectedChannels', event.target.value);
+              }}
+              name="selectedChannels"
               renderValue={(selected: any) => (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                   {selected.map((value: any) => (
                     <Box
                       key={value}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        border: '1px solid',
+                        border: '1px solid #ddd',
                         borderRadius: '4px',
-                        padding: '2px 6px',
+                        padding: '2px 4px',
                       }}
                     >
-                      {channels.find((channel) => channel.value === value)?.label}
+                      <ListItemText primary={currencies.find((currency) => currency.value === value)?.label} />
                     </Box>
                   ))}
                 </Box>
@@ -193,111 +216,154 @@ const PopupAddList2 = () => {
               fullWidth
               variant="outlined"
             >
-              {channels.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  <Checkbox checked={selectedChannels.indexOf(option.value) > -1} />
-                  <ListItemText primary={option.label} />
+              {channels.map((channel) => (
+                <MenuItem key={channel.value} value={channel.value}>
+                  {/* <Checkbox checked={formik.values.selectedChannels.indexOf(channel.value) > -1} /> */}
+                  <ListItemText primary={channel.label} />
                 </MenuItem>
               ))}
             </CustomSelect>
+            {formik.touched.selectedChannels && Boolean(formik.errors.selectedChannels) && (
+              <Typography color="error" variant="body2">{formik.errors.selectedChannels}</Typography>
+            )}
           </Grid>
         </Grid>
       </Box>
-      {/* thongtindoangnghiep */}
-      <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
-        <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
-          Thông tin doanh nghiệp
+
+      {/* Thông tin công ty */}
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
+          Thông tin công ty
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item lg={6} md={12} xs={12}>
-            <CustomFormLabel htmlFor="company-name-text">Tên công ty</CustomFormLabel>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="companyName-text">Tên công ty</CustomFormLabel>
             <CustomTextField
-              id="company-name-text"
+              id="companyName-text"
               variant="outlined"
               fullWidth
-              value={companyName}
-              onChange={handleChange(setCompanyName)}
+              value={formik.values.companyName}
+              onChange={formik.handleChange}
+              name="companyName"
+              error={formik.touched.companyName && Boolean(formik.errors.companyName)}
+              helperText={formik.touched.companyName && formik.errors.companyName}
             />
-          </Grid>
-          <Grid item lg={6} md={12} xs={12}>
-            <CustomFormLabel htmlFor="company-address-text">Địa chỉ công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="companyAddress-text" sx={{ mt: 2 }}>Địa chỉ công ty</CustomFormLabel>
             <CustomTextField
-              id="company-address-text"
+              id="companyAddress-text"
               variant="outlined"
               fullWidth
-              value={companyAddress}
-              onChange={handleChange(setCompanyAddress)}
+              value={formik.values.companyAddress}
+              onChange={formik.handleChange}
+              name="companyAddress"
+              error={formik.touched.companyAddress && Boolean(formik.errors.companyAddress)}
+              helperText={formik.touched.companyAddress && formik.errors.companyAddress}
             />
-          </Grid>
-          <Grid item lg={6} md={12} xs={12}>
-            <CustomFormLabel htmlFor="company-phone-text">Số điện thoại công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="taxId-text" sx={{ mt: 2 }}>Mã số thuế</CustomFormLabel>
             <CustomTextField
-              id="company-phone-text"
+              id="taxId-text"
               variant="outlined"
               fullWidth
-              value={companyPhone}
-              onChange={handleChange(setCompanyPhone)}
+              value={formik.values.taxId}
+              onChange={formik.handleChange}
+              name="taxId"
+              error={formik.touched.taxId && Boolean(formik.errors.taxId)}
+              helperText={formik.touched.taxId && formik.errors.taxId}
             />
           </Grid>
-          <Grid item lg={6} md={12} xs={12}>
-            <CustomFormLabel htmlFor="company-email-text">Email công ty</CustomFormLabel>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="companyEmail-text">Email công ty</CustomFormLabel>
             <CustomTextField
-              id="company-email-text"
+              id="companyEmail-text"
               type="email"
               variant="outlined"
               fullWidth
-              value={companyEmail}
-              onChange={handleChange(setCompanyEmail)}
+              value={formik.values.companyEmail}
+              onChange={formik.handleChange}
+              name="companyEmail"
+              error={formik.touched.companyEmail && Boolean(formik.errors.companyEmail)}
+              helperText={formik.touched.companyEmail && formik.errors.companyEmail}
             />
-          </Grid>
-          <Grid item lg={6} md={12} xs={12}>
-            <CustomFormLabel htmlFor="company-website-text">Website công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="companyPhone-text" sx={{ mt: 2 }}>Số điện thoại công ty</CustomFormLabel>
             <CustomTextField
-              id="company-website-text"
+              id="companyPhone-text"
               variant="outlined"
               fullWidth
-              value={companyWebsite}
-              onChange={handleChange(setCompanyWebsite)}
+              value={formik.values.companyPhone}
+              onChange={formik.handleChange}
+              name="companyPhone"
+              error={formik.touched.companyPhone && Boolean(formik.errors.companyPhone)}
+              helperText={formik.touched.companyPhone && formik.errors.companyPhone}
+            />
+            <CustomFormLabel htmlFor="companyWebsite-text" sx={{ mt: 2 }}>Website công ty</CustomFormLabel>
+            <CustomTextField
+              id="companyWebsite-text"
+              type="url"
+              variant="outlined"
+              fullWidth
+              value={formik.values.companyWebsite}
+              onChange={formik.handleChange}
+              name="companyWebsite"
+              error={formik.touched.companyWebsite && Boolean(formik.errors.companyWebsite)}
+              helperText={formik.touched.companyWebsite && formik.errors.companyWebsite}
             />
           </Grid>
         </Grid>
       </Box>
 
       {/* Thông tin mạng xã hội */}
-      <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
-        <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
+        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
           Thông tin mạng xã hội
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item lg={6} md={12}>
-            <CustomFormLabel htmlFor="facebook-url-text">Facebook URL</CustomFormLabel>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="facebookUrl-text">Facebook</CustomFormLabel>
             <CustomTextField
-              id="facebook-url-text"
+              id="facebookUrl-text"
+              type="url"
               variant="outlined"
               fullWidth
-              value={facebookUrl}
-              onChange={handleChange(setFacebookUrl)}
+              value={formik.values.facebookUrl}
+              onChange={formik.handleChange}
+              name="facebookUrl"
+              error={formik.touched.facebookUrl && Boolean(formik.errors.facebookUrl)}
+              helperText={formik.touched.facebookUrl && formik.errors.facebookUrl}
             />
-            <CustomFormLabel htmlFor="zalo-url-text">Zalo URL</CustomFormLabel>
+            <CustomFormLabel htmlFor="zaloUrl-text" sx={{ mt: 2 }}>Zalo</CustomFormLabel>
             <CustomTextField
-              id="zalo-url-text"
+              id="zaloUrl-text"
+              type="url"
               variant="outlined"
               fullWidth
-              value={zaloUrl}
-              onChange={handleChange(setZaloUrl)}
+              value={formik.values.zaloUrl}
+              onChange={formik.handleChange}
+              name="zaloUrl"
+              error={formik.touched.zaloUrl && Boolean(formik.errors.zaloUrl)}
+              helperText={formik.touched.zaloUrl && formik.errors.zaloUrl}
             />
-            <CustomFormLabel htmlFor="instagram-url-text">Instagram URL</CustomFormLabel>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="instagramUrl-text">Instagram</CustomFormLabel>
             <CustomTextField
-              id="instagram-url-text"
+              id="instagramUrl-text"
+              type="url"
               variant="outlined"
               fullWidth
-              value={instagramUrl}
-              onChange={handleChange(setInstagramUrl)}
+              value={formik.values.instagramUrl}
+              onChange={formik.handleChange}
+              name="instagramUrl"
+              error={formik.touched.instagramUrl && Boolean(formik.errors.instagramUrl)}
+              helperText={formik.touched.instagramUrl && formik.errors.instagramUrl}
             />
           </Grid>
         </Grid>
       </Box>
-    </div>
+
+      <Button type="submit" variant="contained" color="primary" fullWidth>
+        Lưu thông tin
+      </Button>
+    </form>
   );
 };
 

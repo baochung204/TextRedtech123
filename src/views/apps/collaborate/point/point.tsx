@@ -3,24 +3,9 @@
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { Box, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
-
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Checkout',
-  },
-];
 import {
+  Box,
   Button,
-  Dialog,
-  DialogActions,
   Grid,
   Stack,
   Table,
@@ -35,10 +20,21 @@ import {
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { format } from 'date-fns';
+import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
-import { EnTableType } from 'src/components/tables/tableData';
+// import { EnTableType } from 'src/components/tables/tableData';
 import { tablepoin } from 'src/components/tables/tablepoin';
+
+// const BCrumb = [
+//   {
+//     to: '/',
+//     title: 'Home',
+//   },
+//   {
+//     title: 'Checkout',
+//   },
+// ];
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -48,15 +44,12 @@ import { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
+// import Slide from '@mui/material/Slide';
+// import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import SearchInput from 'src/components/apps/search/search';
 import pointimg from 'src/assets/images/icon.png/point.png';
-import ChildCard from 'src/components/shared/ChildCard';
-import { TransitionProps } from '@mui/material/transitions';
-import Slide from '@mui/material/Slide';
-import Detailpoin from './detailpoint';
-import TransitionDialog from 'src/components/material-ui/dialog/TransitionDialog';
+import SearchInput from 'src/components/apps/search/search';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
 // const BCrumb = [
@@ -67,14 +60,14 @@ import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 //   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
 //   { title: 'Lịch sử quy đổi ' },
 // ];
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+// const Transition = React.forwardRef(function Transition(
+//   props: TransitionProps & {
+//     children: React.ReactElement;
+//   },
+//   ref: React.Ref<unknown>,
+// ) {
+//   return <Slide direction="up" ref={ref} {...props} />;
+// });
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -85,7 +78,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
   return 0;
 }
-const rows: EnTableType[] = tablepoin;
+const rows: any = tablepoin;
 
 type Order = 'asc' | 'desc';
 
@@ -207,21 +200,21 @@ const getInvoiceTextAndColor = (status: any) => {
       return;
   }
 };
-const getdetailTextAndColor = (status: any) => {
-  switch (status) {
-    case 1:
-      return <Button color="success">Xem</Button>;
-    case 2:
-      return <Typography color="#ff9800"></Typography>;
-    case 3:
-      return <Typography color="#f44336"> </Typography>;
-    default:
-      return;
-  }
-};
+// const getdetailTextAndColor = (status: any) => {
+//   switch (status) {
+//     case 1:
+//       return <Button color="success">Xem</Button>;
+//     case 2:
+//       return <Typography color="#ff9800"></Typography>;
+//     case 3:
+//       return <Typography color="#f44336"> </Typography>;
+//     default:
+//       return;
+//   }
+// };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -229,7 +222,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
+        {headCells.map((headCell: any) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
@@ -257,16 +250,18 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
+// interface EnhancedTableToolbarProps {
+//   numSelected: number;
+// }
 
 const Lspoin = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
+  const [dense] = React.useState(false);
+
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -318,30 +313,30 @@ const Lspoin = () => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
+  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDense(event.target.checked);
+  // };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  // const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  const [month, setMonth] = React.useState('1');
+  // const [month, setMonth] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
-  const [open, setOpen] = React.useState(false);
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
+  // const [value, setValue] = React.useState<Dayjs | null>(null);
+  // const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
@@ -426,7 +421,7 @@ const Lspoin = () => {
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
+                  .map((row: any) => {
                     // const isItemSelected = isSelected(row.name);
                     // const labelId = `enhanced-table-checkbox-${index}`;
 

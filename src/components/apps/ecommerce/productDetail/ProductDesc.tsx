@@ -4,17 +4,15 @@ import React from 'react';
 
 import {
   Box,
-  Typography,
-  LinearProgress,
-  Tabs,
-  Tab,
   Grid,
-  Stack,
-  Rating,
-  Button,
+  LinearProgress,
   Paper,
+  Rating,
+  Stack,
+  Tab,
+  Tabs,
+  Typography,
 } from '@mui/material';
-import { IconPencil } from '@tabler/icons-react';
 import ChildCard from 'src/components/shared/ChildCard';
 import StarIcon from '../../../../assets/images/icon.png/star.png';
 

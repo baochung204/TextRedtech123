@@ -35,14 +35,14 @@ const steps = [
 ];
 
 const FormWizard = () => {
-  const [selectedImage1, setSelectedImage1] = useState(null);
-  const [selectedImage2, setSelectedImage2] = useState(null);
+  const [selectedImage1, setSelectedImage1] = useState<string | null>(null);
+  const [selectedImage2, setSelectedImage2] = useState<string | null>(null);
 
-  const handleImage1Change = (event) => {
+  const handleImage1Change = (event: any) => {
     setSelectedImage1(URL.createObjectURL(event.target.files[0]));
   };
 
-  const handleImage2Change = (event) => {
+  const handleImage2Change = (event: any) => {
     setSelectedImage2(URL.createObjectURL(event.target.files[0]));
   };
   const handleRemoveImage1 = () => {
@@ -195,7 +195,7 @@ const FormWizard = () => {
                 <Input
                   id="image1"
                   type="file"
-                  accept="image/*"
+                  inputProps={{ accept: 'image/*' }}
                   onChange={handleImage1Change}
                   style={{ display: 'none' }}
                 />
@@ -225,7 +225,7 @@ const FormWizard = () => {
                 <Input
                   id="image2"
                   type="file"
-                  accept="image/*"
+                  inputProps={{ accept: 'image/*' }}
                   onChange={handleImage2Change}
                   style={{ display: 'none' }}
                 />

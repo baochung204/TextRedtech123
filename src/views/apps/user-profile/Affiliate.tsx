@@ -1,8 +1,7 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
-import PageContainer from 'src/components/container/PageContainer';
 import SiderAffiliate from 'src/components/apps/userprofile/profile/SiderAffiliate';
+import PageContainer from 'src/components/container/PageContainer';
 // import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 // import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
 

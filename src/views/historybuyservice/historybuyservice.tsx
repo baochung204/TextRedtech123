@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { alpha } from '@mui/material/styles';
 import {
   Box,
+  Button,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -13,30 +13,15 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-  Toolbar,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  Paper,
-  IconButton,
-  Tooltip,
-  FormControlLabel,
   Typography,
-  Avatar,
-  AvatarGroup,
-  Badge,
-  Stack,
-  Button,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import PageContainer from 'src/components/container/PageContainer';
-import ParentCard from 'src/components/shared/ParentCard';
-import { IconTrash, IconFilter } from '@tabler/icons-react';
-import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
-import BlankCard from '../../components/shared/BlankCard';
 import { format } from 'date-fns';
+import React from 'react';
+import PageContainer from 'src/components/container/PageContainer';
+import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import BlankCard from '../../components/shared/BlankCard';
 
 const BCrumb = [
   {
@@ -86,7 +71,7 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
 
 interface HeadCell {
   disablePadding: boolean;
-  id: any;
+  id: string;
   label: string;
   numeric: boolean;
 }
@@ -149,7 +134,7 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
 }
-const getStatusTextAndColor = (status) => {
+const getStatusTextAndColor = (status: any) => {
   switch (status) {
     case 1:
       return (
@@ -173,7 +158,7 @@ const getStatusTextAndColor = (status) => {
       return;
   }
 };
-const getInvoiceTextAndColor = (status) => {
+const getInvoiceTextAndColor = (status: any) => {
   switch (status) {
     case 1:
       return <Button color="success">Tải về</Button>;
@@ -187,7 +172,7 @@ const getInvoiceTextAndColor = (status) => {
 };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -195,7 +180,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
+        {headCells.map((headCell: any) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
@@ -223,16 +208,13 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
-
 const HistoryBuyService = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -244,7 +226,7 @@ const HistoryBuyService = () => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n: any) => n.name);
       setSelected(newSelecteds);
 
       return;
@@ -284,12 +266,6 @@ const HistoryBuyService = () => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -317,7 +293,7 @@ const HistoryBuyService = () => {
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
+                  .map((row: any) => {
                     // const isItemSelected = isSelected(row.name);
                     // const labelId = `enhanced-table-checkbox-${index}`;
 

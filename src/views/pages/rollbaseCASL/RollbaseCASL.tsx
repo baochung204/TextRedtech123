@@ -120,7 +120,7 @@ const RollbaseCASL = () => {
       {/* breadcrumb */}
       <Breadcrumb title="Pricing" items={BCrumb} />
       {/* end breadcrumb */}
-      <ParentCard title="Permission Base Access with CASL">
+      <ParentCard title="Permission Base Access with CASL" description={''}>
         <>
           <Stack direction={'row'} gap={1}>
             {Object.entries(users).map(([id]) => (

@@ -1,28 +1,26 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import * as React from 'react';
 import {
-  IconButton,
-  Box,
   AppBar,
-  useMediaQuery,
-  Toolbar,
-  styled,
+  Box,
+  IconButton,
   Stack,
   Theme,
+  Toolbar,
+  styled,
+  useMediaQuery,
 } from '@mui/material';
 
-import { useSelector, useDispatch } from 'src/store/Store';
-import { toggleMobileSidebar } from 'src/store/customizer/CustomizerSlice';
 import { IconMenu2 } from '@tabler/icons-react';
-import Notifications from 'src/layouts/full/vertical/header/Notification';
+import Logo from 'src/layouts/full/shared/logo/Logo';
 import Cart from 'src/layouts/full/vertical/header/Cart';
-import Profile from 'src/layouts/full/vertical/header/Profile';
-import Search from 'src/layouts/full/vertical/header/Search';
 import Language from 'src/layouts/full/vertical/header/Language';
 import Navigation from 'src/layouts/full/vertical/header/Navigation';
-import Logo from 'src/layouts/full/shared/logo/Logo';
-import { AppState } from 'src/store/Store';
+import Notifications from 'src/layouts/full/vertical/header/Notification';
+import Profile from 'src/layouts/full/vertical/header/Profile';
+import Search from 'src/layouts/full/vertical/header/Search';
+import { AppState, useDispatch, useSelector } from 'src/store/Store';
+import { toggleMobileSidebar } from 'src/store/customizer/CustomizerSlice';
 
 const Header = () => {
   const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));

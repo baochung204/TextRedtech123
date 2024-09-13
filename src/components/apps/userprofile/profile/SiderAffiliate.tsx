@@ -1,10 +1,28 @@
-import React from 'react';
+import { Theme, useTheme } from '@emotion/react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useTheme } from '@emotion/react';
+
+// Extend the Theme interface to include palette
+declare module '@emotion/react' {
+  export interface Theme {
+    palette: {
+      success: any;
+      warning: any;
+      error: any;
+      mode: 'light' | 'dark';
+      background: {
+        paper: string;
+      };
+      text: {
+        primary: string;
+        secondary: string;
+      };
+    };
+  }
+}
 
 const SiderAffiliate = () => {
-  const theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
+  const theme: Theme = useTheme(); // Lấy theme để kiểm tra chế độ dark/light
   const isDarkMode = theme.palette.mode === 'dark';
 
   return (

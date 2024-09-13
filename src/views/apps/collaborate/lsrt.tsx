@@ -24,7 +24,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
-import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
+// import { EnTableType } from 'src/components/tables/tableData';
 import { tabledh } from 'src/components/tables/tabledh';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
@@ -37,7 +37,7 @@ import { tabledh } from 'src/components/tables/tabledh';
 //   { title: 'Lịch sử quy đổi ' },
 // ];
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { useTheme } from '@emotion/react';
+// import { useTheme } from '@emotion/react';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -49,7 +49,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
   return 0;
 }
-const rows: EnTableType[] = tabledh;
+const rows: any = tabledh;
 
 type Order = 'asc' | 'desc';
 
@@ -130,45 +130,45 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
 }
-const getStatusTextAndColor = (status: any) => {
-  switch (status) {
-    case 1:
-      return (
-        <Typography color="#13DEB9" variant="subtitle2">
-          Thanh toán
-        </Typography>
-      );
-    case 2:
-      return (
-        <Typography color="#ff9800" variant="subtitle2">
-          Chờ xử lý
-        </Typography>
-      );
-    case 3:
-      return (
-        <Typography color="#f44336" variant="subtitle2">
-          Chưa thanh toán
-        </Typography>
-      );
-    default:
-      return;
-  }
-};
-const getInvoiceTextAndColor = (status: any) => {
-  switch (status) {
-    case 1:
-      return <Button color="success">Tải về</Button>;
-    case 2:
-      return <Typography color="#ff9800">Chờ xử lý</Typography>;
-    case 3:
-      return <Typography color="#f44336"> Chưa thanh toán</Typography>;
-    default:
-      return;
-  }
-};
+// const getStatusTextAndColor = (status: any) => {
+//   switch (status) {
+//     case 1:
+//       return (
+//         <Typography color="#13DEB9" variant="subtitle2">
+//           Thanh toán
+//         </Typography>
+//       );
+//     case 2:
+//       return (
+//         <Typography color="#ff9800" variant="subtitle2">
+//           Chờ xử lý
+//         </Typography>
+//       );
+//     case 3:
+//       return (
+//         <Typography color="#f44336" variant="subtitle2">
+//           Chưa thanh toán
+//         </Typography>
+//       );
+//     default:
+//       return;
+//   }
+// };
+// const getInvoiceTextAndColor = (status: any) => {
+//   switch (status) {
+//     case 1:
+//       return <Button color="success">Tải về</Button>;
+//     case 2:
+//       return <Typography color="#ff9800">Chờ xử lý</Typography>;
+//     case 3:
+//       return <Typography color="#f44336"> Chưa thanh toán</Typography>;
+//     default:
+//       return;
+//   }
+// };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
     onRequestSort(event, property);
   };
@@ -204,16 +204,18 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
+// interface EnhancedTableToolbarProps {
+//   numSelected: number;
+// }
 
 const HistoryMoney = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
+  const [dense] = React.useState(false);
+
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -265,11 +267,11 @@ const HistoryMoney = () => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
+  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDense(event.target.checked);
+  // };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  // const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -280,9 +282,9 @@ const HistoryMoney = () => {
   };
 
   // chart color
-  const theme = useTheme();
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  // const theme = useTheme();
+  const [value, setValue] = React.useState<any | null>(null);
+  const [value1, setValue1] = React.useState<any | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
@@ -395,7 +397,7 @@ const HistoryMoney = () => {
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
+                  .map((row: any) => {
                     // const isItemSelected = isSelected(row.name);
                     // const labelId = `enhanced-table-checkbox-${index}`;
 

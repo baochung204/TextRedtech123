@@ -90,7 +90,7 @@ const LineChart = () => {
       {/* breadcrumb */}
       <Breadcrumb title="Line Chart" items={BCrumb} />
       {/* end breadcrumb */}
-      <ParentCard title="Line Chart">
+      <ParentCard title="Line Chart" description={''}>
         <Chart
           options={optionslinechart}
           series={serieslinechart}

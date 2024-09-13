@@ -17,6 +17,7 @@ import {
   InputLabel,
   Paper,
   FormControlLabel,
+  // SelectChangeEvent,
 } from '@mui/material';
 import { DataRowCustomerTable } from './tableData';
 import CustomSwitch from '../forms/theme-elements/CustomSwitch';
@@ -27,12 +28,15 @@ const CustomerTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dense, setDense] = React.useState(false);
   // Hàm xử lý thay đổi trang
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
     setPage(newPage);
   };
 
   // Hàm xử lý thay đổi số lượng hàng trên mỗi trang
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChangeRowsPerPage = (event: any) => {
     setRowsPerPage(parseInt(event.target.value as string, 10));
     setPage(0);
   };

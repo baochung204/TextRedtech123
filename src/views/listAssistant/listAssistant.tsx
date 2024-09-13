@@ -1,36 +1,25 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import React, { useEffect, useState } from 'react';
+
 import {
-  Typography,
-  Grid,
+  Autocomplete,
+  Avatar,
   Box,
-  Stack,
-  Chip,
-  TextField,
-  InputAdornment,
+  Button,
   Card,
+  Chip,
+  Grid,
+  InputAdornment,
   LinearProgress,
   Paper,
+  Stack,
+  TextField,
   Tooltip,
-  Button,
-  Avatar,
-  Autocomplete,
+  Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import PageContainer from 'src/components/container/PageContainer';
-import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
 import { IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
-import rank1 from 'src/assets/images/rank/rank1.png';
-import rank2 from 'src/assets/images/rank/rank2.png';
-import rank3 from 'src/assets/images/rank/rank3.png';
-import rank4 from 'src/assets/images/rank/rank4.png';
-import rank6 from 'src/assets/images/rank/rank6.png';
-import rank7 from 'src/assets/images/rank/rank7.png';
-import rank8 from 'src/assets/images/rank/rank8.png';
-import rank9 from 'src/assets/images/rank/rank9.png';
-import rank10 from 'src/assets/images/rank/rank10.png';
+import { useState } from 'react';
 import avt1 from 'src/assets/images/profile/user-1.jpg';
+import avt10 from 'src/assets/images/profile/user-10.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
 import avt3 from 'src/assets/images/profile/user-3.jpg';
 import avt4 from 'src/assets/images/profile/user-4.jpg';
@@ -38,18 +27,30 @@ import avt6 from 'src/assets/images/profile/user-6.jpg';
 import avt7 from 'src/assets/images/profile/user-7.jpg';
 import avt8 from 'src/assets/images/profile/user-8.jpg';
 import avt9 from 'src/assets/images/profile/user-9.jpg';
-import avt10 from 'src/assets/images/profile/user-10.jpg';
+import rank1 from 'src/assets/images/rank/rank1.png';
+import rank10 from 'src/assets/images/rank/rank10.png';
+import rank2 from 'src/assets/images/rank/rank2.png';
+import rank3 from 'src/assets/images/rank/rank3.png';
+import rank4 from 'src/assets/images/rank/rank4.png';
+import rank6 from 'src/assets/images/rank/rank6.png';
+import rank7 from 'src/assets/images/rank/rank7.png';
+import rank8 from 'src/assets/images/rank/rank8.png';
+import rank9 from 'src/assets/images/rank/rank9.png';
+import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
+import PageContainer from 'src/components/container/PageContainer';
 // import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { Props } from 'react-apexcharts';
 import { IconArrowUpRight } from '@tabler/icons-react';
+import { Props } from 'react-apexcharts';
 
-import icon1 from 'src/assets/images/svgs/icon-bars.svg';
-import DashboardCard from 'src/components/shared/DashboardCard';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import Chart from 'react-apexcharts';
+// import { useMediaQuery } from '@mui/material';
 import { IconTable } from '@tabler/icons-react';
-import { useMediaQuery } from '@mui/material';
+import Chart from 'react-apexcharts';
+import icon1 from 'src/assets/images/svgs/icon-bars.svg';
+import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DashboardCard from 'src/components/shared/DashboardCard';
+// import components from '../../theme/Components';
+import { Link } from 'react-router-dom';
 interface sellsData {
   product: string;
   percent: number;
@@ -226,7 +227,7 @@ const top10rank: ITopRank[] = [
 
 const ListAssistant = () => {
   const theme = useTheme();
-  const [isLoading, setLoading] = React.useState(true);
+  // Removed unused isLoading state
   // chart color
   const secondary = theme.palette.secondary.main;
 
@@ -271,13 +272,7 @@ const ListAssistant = () => {
     },
   ];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 700);
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Removed useEffect that sets isLoading state
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
 
   const onHandleCheckOnOrOff = (rank: Irank) => {
@@ -287,8 +282,6 @@ const ListAssistant = () => {
         : [...prevChecked, rank.id],
     );
   };
-  const isXs = useMediaQuery((theme) => theme.breakpoints.down('xs'));
-  const isSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   // const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
 
@@ -489,7 +482,7 @@ const ListAssistant = () => {
                       </Grid>
 
                       <Grid item xs={4}>
-                        <Button variant="contained" color="error">
+                        <Button variant="contained" color="error" component={Link} to="/apps/list-assistant">
                           <IconTable fontSize={20} />
                         </Button>
                       </Grid>
@@ -634,7 +627,7 @@ const ListAssistant = () => {
                       >
                         <Box sx={{ p: { xs: 2, sm: 2.5, md: 1.7, lg: 2 } }}>
                           <Stack spacing={3}>
-                            {sells.map((sell: any) => (
+                            {sells.map((sell) => (
                               <Box>
                                 <Stack
                                   direction="row"
@@ -647,7 +640,7 @@ const ListAssistant = () => {
                                   <Box>
                                     <Typography variant="h6">Kinh nghiệm</Typography>
                                     <Typography variant="subtitle2" color="textSecondary">
-                                      {sell.total}
+                                      {/* {sell.total} */}
                                     </Typography>
                                   </Box>
                                   <Chip

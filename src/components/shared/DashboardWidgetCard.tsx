@@ -8,14 +8,14 @@ import { AppState } from 'src/store/Store';
 import { IconGridDots } from '@tabler/icons-react';
 
 type Props = {
-  title: string;
-  subtitle: string;
-  action: any;
-  dataLabel1: string;
-  dataItem1: string;
-  dataLabel2: string;
-  dataItem2: string;
-  children: JSX.Element;
+  title?: string;
+  subtitle?: string;
+  action?: any;
+  dataLabel1?: string;
+  dataItem1?: string;
+  dataLabel2?: string;
+  dataItem2?: string;
+  children?: JSX.Element;
 };
 
 const DashboardWidgetCard = ({

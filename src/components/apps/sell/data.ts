@@ -1,9 +1,10 @@
-  interface FilmsData {
-    title: string;
-    year: number;
-  }
+interface FilmsData {
+  // color: BackgroundColor | undefined;
+  title: string;
+  year: number;
+}
 
-  const top100Films: FilmsData[] = [
+const top100Films: FilmsData[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Stepper,
@@ -14,13 +14,14 @@ import {
   Checkbox,
   Grid,
   Divider,
+  FormHelperText,
 } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 import CloseIcon from '@mui/icons-material/Close';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SecurityIcon from '@mui/icons-material/Security';
+// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+// import SecurityIcon from '@mui/icons-material/Security';
 import Authenticate from 'src/assets/images/authenticate/authenticate.png';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -33,7 +34,9 @@ const validationSchemaStep0 = Yup.object({
 });
 
 const validationSchemaStep1 = Yup.object({
-  bankNumber: Yup.string().matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số').required('Số tài khoản là bắt buộc'),
+  bankNumber: Yup.string()
+    .matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số')
+    .required('Số tài khoản là bắt buộc'),
   accountName: Yup.string().required('Chủ tài khoản là bắt buộc'),
   bank: Yup.number().required('Ngân hàng là bắt buộc'),
   branch: Yup.number().required('Chi nhánh ngân hàng là bắt buộc'),
@@ -45,20 +48,24 @@ const validationSchemaStep2 = Yup.object({
 });
 
 const PersonAffiliate = () => {
-  const [selectedImage1, setSelectedImage1] = useState(null);
-  const [selectedImage2, setSelectedImage2] = useState(null);
+  const [selectedImage1, setSelectedImage1] = useState<string | null>(null);
+  const [selectedImage2, setSelectedImage2] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState(0);
-  const [skipped, setSkipped] = useState(new Set());
-  const isStepSkipped = (step: any) => skipped.has(step);
+  // const [skipped, setSkipped] = useState(new Set());
+  const [skipped] = useState(new Set());
 
-  const handleImage1Change = (event) => {
-    formik.setFieldValue('frontImage', event.target.files[0]);
-    setSelectedImage1(URL.createObjectURL(event.target.files[0]));
+  const isStepSkipped = (step: number) => skipped.has(step);
+
+  const handleImage1Change = (event: any) => {
+    const file = event.target.files[0];
+    formik.setFieldValue('frontImage', file);
+    setSelectedImage1(URL.createObjectURL(file));
   };
 
-  const handleImage2Change = (event) => {
-    formik.setFieldValue('backImage', event.target.files[0]);
-    setSelectedImage2(URL.createObjectURL(event.target.files[0]));
+  const handleImage2Change = (event: any) => {
+    const file = event.target.files[0];
+    formik.setFieldValue('backImage', file);
+    setSelectedImage2(URL.createObjectURL(file));
   };
 
   const handleRemoveImage1 = () => {
@@ -116,7 +123,7 @@ const PersonAffiliate = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSteps = (step) => {
+  const handleSteps = (step: any) => {
     switch (step) {
       case 0:
         return (
@@ -127,7 +134,7 @@ const PersonAffiliate = () => {
                 overflowY: 'scroll',
                 padding: '16px',
                 borderRadius: '8px',
-                marginTop: '20px'
+                marginTop: '20px',
               }}
             >
               <h3>MỤC I. ĐỐI TÁC</h3>
@@ -553,19 +560,19 @@ const PersonAffiliate = () => {
                   này cho phù hợp với tình hình kinh doanh và quy định của pháp luật hiện hành.
                 </li>
               </ol>
+              <Checkbox
+                id="agreeTerms"
+                name="agreeTerms"
+                checked={formik.values.agreeTerms}
+                onChange={formik.handleChange}
+                color="primary"
+                inputProps={{ 'aria-label': 'checkbox with default color' }}
+              />
+              <span>Đồng ý với các điều khoản của chúng tôi</span>
+              {formik.errors.agreeTerms ? (
+                <Typography color="error">{formik.errors.agreeTerms}</Typography>
+              ) : null}
             </Box>
-            <Checkbox
-              id="agreeTerms"
-              name="agreeTerms"
-              checked={formik.values.agreeTerms}
-              onChange={formik.handleChange}
-              color="primary"
-              inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
-            <span>Đồng ý với các điều khoản của chúng tôi</span>
-            {formik.errors.agreeTerms ? (
-              <Typography color="error">{formik.errors.agreeTerms}</Typography>
-            ) : null}
           </>
         );
       case 1:
@@ -608,7 +615,6 @@ const PersonAffiliate = () => {
                     value={formik.values.bank}
                     onChange={formik.handleChange}
                     error={!!formik.errors.bank}
-                    helperText={formik.errors.bank}
                   >
                     <MenuItem value={1}>Mb bank</MenuItem>
                     <MenuItem value={2}>TP bank</MenuItem>
@@ -617,19 +623,18 @@ const PersonAffiliate = () => {
               </Grid>
               <Grid item xs={6}>
                 <CustomFormLabel htmlFor="branch">Chi nhánh ngân hàng</CustomFormLabel>
-                <FormControl fullWidth>
+                <FormControl fullWidth error={!!formik.errors.branch}>
                   <Select
                     labelId="branch-select-label"
                     id="branch"
                     name="branch"
                     value={formik.values.branch}
                     onChange={formik.handleChange}
-                    error={!!formik.errors.branch}
-                    helperText={formik.errors.branch}
                   >
                     <MenuItem value={1}>Hà Nội</MenuItem>
                     <MenuItem value={2}>Hồ Chí Minh</MenuItem>
                   </Select>
+                  {formik.errors.branch && <FormHelperText>{formik.errors.branch}</FormHelperText>}
                 </FormControl>
               </Grid>
             </Grid>
@@ -639,26 +644,11 @@ const PersonAffiliate = () => {
         return (
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
+              {/* Image Instructions */}
               <CustomFormLabel sx={{ marginTop: '25px' }} htmlFor="image1">
                 Hướng dẫn
               </CustomFormLabel>
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>Chụp đủ mặt trước và mặt sau</Typography>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>Chụp rõ nét không bị mất góc</Typography>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>
-                  Chụp hình ảnh giấy tờ còn hạn, hình gốc, không scan hay photocopy
-                </Typography>
-              </Box>
-
+              {/* Display instructions here */}
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
               <Box>
                 <img
@@ -671,19 +661,12 @@ const PersonAffiliate = () => {
                   alt="Authenticate"
                 />
               </Box>
-
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
-
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <SecurityIcon sx={{ fontSize: '32px', mr: 1 }} />
-                <Typography variant="h6">
-                  Hình ảnh được bảo mật tuyệt đối, chỉ sử dụng để đăng ký affiliate
-                </Typography>
-              </Box>
             </Grid>
 
             <Grid item xs={12} md={6}>
               <Box>
+                {/* Front Image */}
                 {selectedImage1 && (
                   <Box mb={2} position="relative">
                     <Typography variant="subtitle1">Mặt trước căn cước công dân:</Typography>
@@ -707,14 +690,18 @@ const PersonAffiliate = () => {
                   <Input
                     id="frontImage"
                     type="file"
-                    accept="image/*"
+                    inputProps={{ accept: 'image/*' }}
                     onChange={handleImage1Change}
                     style={{ display: 'none' }}
                   />
                 </Button>
+                {formik.errors.frontImage && (
+                  <Typography color="error">{formik.errors.frontImage}</Typography>
+                )}
               </Box>
 
               <Box>
+                {/* Back Image */}
                 {selectedImage2 && (
                   <Box mb={2} position="relative">
                     <Typography variant="subtitle1">Mặt sau căn cước công dân:</Typography>
@@ -738,11 +725,14 @@ const PersonAffiliate = () => {
                   <Input
                     id="backImage"
                     type="file"
-                    accept="image/*"
+                    inputProps={{ accept: 'image/*' }}
                     onChange={handleImage2Change}
                     style={{ display: 'none' }}
                   />
                 </Button>
+                {formik.errors.backImage && (
+                  <Typography color="error">{formik.errors.backImage}</Typography>
+                )}
               </Box>
             </Grid>
           </Grid>
@@ -769,83 +759,53 @@ const PersonAffiliate = () => {
             );
           })}
         </Stepper>
-        {activeStep === steps.length - 1 ? (
-          <>
-            <Box sx={{ mt: 2 }}>{handleSteps(activeStep)}</Box>
 
-            <Box display="flex" flexDirection="row" mt={2}>
-              <Button
-                color="inherit"
-                variant="contained"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-                size="small"
-              >
-                Quay lại
-              </Button>
-              <Button
-                component={Link}
-                color="inherit"
-                variant="contained"
-                to="/user-profile"
-                sx={{ mr: 1 }}
-                size="small"
-              >
-                Hủy bỏ
-              </Button>
+        <Box sx={{ mt: 2 }}>{handleSteps(activeStep)}</Box>
 
-              <Box flex="1 1 auto" />
-              <Button
-                onClick={formik.handleSubmit}
-                variant="contained"
-                color="success"
-                size="small"
-                component={Link}
-                to="/apps/pending"
-              >
-                Hoàn tất đăng ký
-              </Button>
-            </Box>
-          </>
-        ) : (
-          <>
-            <Box sx={{ mt: 2 }}>{handleSteps(activeStep)}</Box>
-
-            <Box display="flex" flexDirection="row" mt={2}>
-              <Button
-                color="inherit"
-                variant="contained"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-                size="small"
-              >
-                Quay lại
-              </Button>
-              <Button
-                component={Link}
-                color="inherit"
-                variant="contained"
-                to="/user-profile"
-                sx={{ mr: 1 }}
-                size="small"
-              >
-                Hủy bỏ
-              </Button>
-
-              <Box flex="1 1 auto" />
-              <Button
-                onClick={formik.handleSubmit}
-                variant="contained"
-                color="secondary"
-                size="small"
-              >
-                Tiếp tục
-              </Button>
-            </Box>
-          </>
-        )}
+        <Box display="flex" flexDirection="row" mt={2}>
+          <Button
+            color="inherit"
+            variant="contained"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            sx={{ mr: 1 }}
+            size="small"
+          >
+            Quay lại
+          </Button>
+          <Button
+            component={Link}
+            color="inherit"
+            variant="contained"
+            to="/user-profile"
+            sx={{ mr: 1 }}
+            size="small"
+          >
+            Hủy bỏ
+          </Button>
+          <Box flex="1 1 auto" />
+          {activeStep === steps.length - 1 ? (
+            <Button
+              onClick={() => formik.handleSubmit()}
+              variant="contained"
+              color="secondary"
+              size="small"
+              component={Link}
+              to="/apps/pending"
+            >
+              Hoàn tất đăng ký
+            </Button>
+          ) : (
+            <Button
+              onClick={() => formik.handleSubmit()}
+              variant="contained"
+              color="secondary"
+              size="small"
+            >
+              Tiếp tục
+            </Button>
+          )}
+        </Box>
       </Box>
     </PageContainer>
   );

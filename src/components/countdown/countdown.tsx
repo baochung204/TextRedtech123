@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 const Countdown = ({ initialSeconds }: { initialSeconds: number }) => {
   const [seconds, setSeconds] = useState(initialSeconds);

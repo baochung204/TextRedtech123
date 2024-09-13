@@ -3,21 +3,17 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
-
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
-
 /* ****Pages***** */
 const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
 const List = Loadable(lazy(() => import('../views/dashboard/List')));
-
 //  admin
 const Admin = Loadable(lazy(() => import('../views/apps/admin/dashboard/dashboard')));
 const Adminproducts = Loadable(lazy(() => import('../views/apps/admin/products/products')));
 const Adminuser = Loadable(lazy(() => import('../views/apps/admin/user/user')));
-
 /* ****Apps***** */
 const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
 const BlogDetail = Loadable(lazy(() => import('../views/apps/blog/BlogPost')));
@@ -46,22 +42,16 @@ const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar'
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Purchasehistory = Loadable(lazy(() => import('../views/apps/history/purchase-history')));
 const Pointhistory = Loadable(lazy(() => import('../views/apps/history/point-history')));
-
 const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followers')));
 const Friends = Loadable(lazy(() => import('../views/apps/user-profile/Friends')));
-
 const Gallery = Loadable(lazy(() => import('../views/apps/user-profile/Gallery')));
 const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
-
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
-
 //Ai ticket
 const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
-
 //update page
 // const Update = Loadable(lazy(() => import('../views/apps/update/update')));
-
 // ui components
 const MuiAlert = Loadable(lazy(() => import('../views/ui-components/MuiAlert')));
 const MuiAccordion = Loadable(lazy(() => import('../views/ui-components/MuiAccordion')));
@@ -75,7 +65,6 @@ const MuiTabs = Loadable(lazy(() => import('../views/ui-components/MuiTabs')));
 const MuiTooltip = Loadable(lazy(() => import('../views/ui-components/MuiTooltip')));
 const MuiTransferList = Loadable(lazy(() => import('../views/ui-components/MuiTransferList')));
 const MuiTypography = Loadable(lazy(() => import('../views/ui-components/MuiTypography')));
-
 // form elements
 const MuiAutoComplete = Loadable(
   lazy(() => import('../views/forms/form-elements/MuiAutoComplete')),
@@ -86,7 +75,6 @@ const MuiRadio = Loadable(lazy(() => import('../views/forms/form-elements/MuiRad
 const MuiSlider = Loadable(lazy(() => import('../views/forms/form-elements/MuiSlider')));
 const MuiDateTime = Loadable(lazy(() => import('../views/forms/form-elements/MuiDateTime')));
 const MuiSwitch = Loadable(lazy(() => import('../views/forms/form-elements/MuiSwitch')));
-
 // forms
 const FormLayouts = Loadable(lazy(() => import('../views/forms/FormLayouts')));
 const FormCustom = Loadable(lazy(() => import('../views/forms/FormCustom')));
@@ -105,7 +93,6 @@ import ChangePassword from 'src/components/apps/userprofile/profile/ChangePasswo
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import Update from 'src/views/apps/update/Update';
 import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
-
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -114,18 +101,15 @@ const Pricing = Loadable(lazy(() => import('../views/pages/pricing/Pricing')));
 const AccountSetting = Loadable(
   lazy(() => import('../views/pages/account-setting/AccountSetting')),
 );
-
 // charts
 const AreaChart = Loadable(lazy(() => import('../views/charts/AreaChart')));
 const CandlestickChart = Loadable(lazy(() => import('../views/charts/CandlestickChart')));
 const ColumnChart = Loadable(lazy(() => import('../views/charts/ColumnChart')));
 const DoughnutChart = Loadable(lazy(() => import('../views/charts/DoughnutChart')));
 const PieCharts = Loadable(lazy(() => import('../views/charts/PieCharts')));
-
 const GredientChart = Loadable(lazy(() => import('../views/charts/GredientChart')));
 const RadialbarChart = Loadable(lazy(() => import('../views/charts/RadialbarChart')));
 const LineChart = Loadable(lazy(() => import('../views/charts/LineChart')));
-
 // tables
 const BasicTable = Loadable(lazy(() => import('../views/tables/BasicTable')));
 const EnhanceTable = Loadable(lazy(() => import('../views/tables/EnhanceTable')));
@@ -133,12 +117,10 @@ const PaginationTable = Loadable(lazy(() => import('../views/tables/PaginationTa
 const FixedHeaderTable = Loadable(lazy(() => import('../views/tables/FixedHeaderTable')));
 const CollapsibleTable = Loadable(lazy(() => import('../views/tables/CollapsibleTable')));
 const SearchTable = Loadable(lazy(() => import('../views/tables/SearchTable')));
-
 // widget
 const WidgetCards = Loadable(lazy(() => import('../views/widgets/cards/WidgetCards')));
 const WidgetBanners = Loadable(lazy(() => import('../views/widgets/banners/WidgetBanners')));
 const WidgetCharts = Loadable(lazy(() => import('../views/widgets/charts/WidgetCharts')));
-
 // authentication
 const Login = Loadable(lazy(() => import('../views/authentication/auth1/Login')));
 const Login2 = Loadable(lazy(() => import('../views/authentication/auth2/Login2')));
@@ -153,7 +135,6 @@ const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoS
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
 const Updating = Loadable(lazy(() => import('../views/authentication/Updating')));
-
 // landingpage
 const Landingpage = Loadable(lazy(() => import('../views/pages/landingpage/Landingpage')));
 // buypoint
@@ -173,14 +154,12 @@ const Router = [
     path: '/',
     element: <FullLayout />,
     children: [
-      { path: '/', element: <Navigate to="dashboards/modern" /> },
+      { path: '/', element: <Navigate to="/dashboards/modern" /> },
       { path: '/admin', element: <Navigate to="/admin/dashborard" /> },
-
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/list-assistant', element: <Assistant /> },
-
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
@@ -188,7 +167,6 @@ const Router = [
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
       { path: '/apps/sell/order', element: <CustomerListOrder /> },
-
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
       { path: '/apps/customerlist2', element: <CustomerList2 /> },
@@ -199,7 +177,6 @@ const Router = [
       { path: '/admin/dashborard', element: <Admin /> },
       { path: '/admin/products', element: <Adminproducts /> },
       { path: '/admin/user', element: <Adminuser /> },
-
       { path: '/apps/blog/posts', element: <Blog /> },
       { path: '/apps/blog/detail/:id', element: <BlogDetail /> },
       { path: '/apps/chats', element: <Chats /> },
@@ -211,7 +188,6 @@ const Router = [
       { path: '/apps/ecommerce/eco-product-list', element: <EcomProductList /> },
       { path: '/apps/ecommerce/eco-checkout', element: <EcomProductCheckout /> },
       { path: '/apps/point/detaipoint/:id', element: <Detailpoint /> },
-
       { path: '/apps/ecommerce/detail/:id', element: <EcommerceDetail /> },
       { path: '/apps/followers', element: <Followers /> },
       { path: '/apps/friends', element: <Friends /> },
@@ -224,9 +200,7 @@ const Router = [
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user-profile', element: <UserProfile /> },
       { path: '/pointhistory', element: <Pointhistory /> },
-
       { path: '/purchasehistory', element: <Purchasehistory /> },
-
       { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
       { path: '/ui-components/alert', element: <MuiAlert /> },
@@ -275,7 +249,6 @@ const Router = [
       { path: '/charts/column-chart', element: <ColumnChart /> },
       { path: '/charts/doughnut-pie-chart', element: <DoughnutChart /> },
       { path: '/charts/pieCharts', element: <PieCharts /> },
-
       { path: '/charts/radialbar-chart', element: <RadialbarChart /> },
       { path: '/widgets/cards', element: <WidgetCards /> },
       { path: '/widgets/banners', element: <WidgetBanners /> },
@@ -294,10 +267,8 @@ const Router = [
     element: <BlankLayout />,
     children: [
       { path: '/auth/404', element: <Error /> },
-
       { path: '/auth/login', element: <Login /> },
       { path: '/auth/login2', element: <Login2 /> },
-
       { path: '/auth/register', element: <Register /> },
       { path: '/auth/register2', element: <Register2 /> },
       { path: '/auth/forgot-password2', element: <ForgotPassword /> },

@@ -1,16 +1,16 @@
 import {
-  IconHome,
-  IconPoint,
+  IconAlertCircle,
   IconApps,
+  IconBorderAll,
   IconClipboard,
   IconFileDescription,
-  IconBorderAll,
-  IconZoomCode,
-  IconRotate,
-  IconUserPlus,
+  IconHome,
   IconLogin,
-  IconAlertCircle,
+  IconPoint,
+  IconRotate,
   IconSettings,
+  IconUserPlus,
+  IconZoomCode,
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 

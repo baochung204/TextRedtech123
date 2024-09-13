@@ -1,30 +1,25 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
+import Chart, { Props } from 'react-apexcharts';
 import PageContainer from '../../components/container/PageContainer';
-import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
 import ParentCard from '../../components/shared/ParentCard';
-import { Props } from 'react-apexcharts';
 
-
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Gradient Chart',
-  },
-];
+// const BCrumb = [
+//   {
+//     to: '/',
+//     title: 'Home',
+//   },
+//   {
+//     title: 'Gradient Chart',
+//   },
+// ];
 
 const GredientChart2 = () => {
-
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
-  
+
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -114,8 +109,7 @@ const GredientChart2 = () => {
 
   return (
     <PageContainer title="Gredient Chart" description="this is innerpage">
-     
-      <ParentCard title='Gradient Chart'>
+      <ParentCard title="Gradient Chart" description={''}>
         <Chart
           options={optionsgredientchart}
           series={seriesgredientchart}

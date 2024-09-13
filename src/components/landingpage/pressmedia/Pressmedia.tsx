@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef } from 'react';
 import {
   Box,
   CardContent,
@@ -66,7 +66,7 @@ const sliderData: SliderType[] = [
 
 const PressMedia = () => {
   const sliderRef = useRef<Slider>(null);
-  const [playing, setPlaying] = useState(true);
+  // const [playing, setPlaying] = useState(true);
 
   const settings = {
     className: 'testimonial-slider',
@@ -121,14 +121,14 @@ const PressMedia = () => {
     sliderRef.current?.slickNext();
   };
 
-  const togglePlayPause = () => {
-    setPlaying(!playing);
-    if (playing) {
-      sliderRef.current?.slickPause();
-    } else {
-      sliderRef.current?.slickPlay();
-    }
-  };
+  // const togglePlayPause = () => {
+  //   setPlaying(!playing);
+  //   if (playing) {
+  //     sliderRef.current?.slickPause();
+  //   } else {
+  //     sliderRef.current?.slickPlay();
+  //   }
+  // };
 
   return (
     <Box pt={14} pb={11} position="relative">

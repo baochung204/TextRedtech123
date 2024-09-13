@@ -24,7 +24,7 @@ import {
   Avatar,
   AvatarGroup,
   Badge,
-  Stack
+  Stack,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
@@ -238,7 +238,7 @@ const EnhanceTable = () => {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+  // @ts-ignore
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof []) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -247,7 +247,7 @@ const EnhanceTable = () => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n: any) => n.name);
       setSelected(newSelecteds);
 
       return;
@@ -255,7 +255,7 @@ const EnhanceTable = () => {
     setSelected([]);
   };
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+  // @ts-ignore
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
@@ -277,7 +277,7 @@ const EnhanceTable = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+  // @ts-ignore
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };

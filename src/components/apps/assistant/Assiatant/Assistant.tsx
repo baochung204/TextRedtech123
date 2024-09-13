@@ -1,24 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import * as React from 'react';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
 import {
-  Typography,
-  TableHead,
   Avatar,
   Box,
+  IconButton,
+  Stack,
   Table,
   TableBody,
   TableCell,
+  TableContainer,
+  TableFooter,
+  TableHead,
   TablePagination,
   TableRow,
-  TableFooter,
-  IconButton,
-  TableContainer,
-  Stack,
+  Typography,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import * as React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -27,6 +26,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 
 import PageContainer from 'src/components/container/PageContainer';
 
+import { IconEdit } from '@tabler/icons-react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
@@ -34,7 +34,6 @@ import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import ParentCard from 'src/components/shared/ParentCard';
 import BlankCard from '../../../shared/BlankCard';
-import { IconEdit } from '@tabler/icons-react';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -218,7 +217,7 @@ const Assistant = () => {
 
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
-      <ParentCard title="Quản lý Trợ lý">
+      <ParentCard title="Quản lý Trợ lý" description="This is the description">
         <BlankCard>
           <TableContainer>
             <Table
@@ -262,7 +261,7 @@ const Assistant = () => {
                       </Typography>
                     </TableCell>
                     <TableCell onClick={handleInfor}>
-                      <Stack direction="row" spacing={2} alignmodel="center">
+                      <Stack direction="row" spacing={2} alignItems="center">
                         <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
 
                         <Link to={'/apps/assistant/:id'}>

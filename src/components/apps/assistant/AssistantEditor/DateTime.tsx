@@ -1,64 +1,56 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
 import { Grid } from '@mui/material';
-import ParentCard from 'src/components/shared/ParentCard';
-import ChildCard from 'src/components/shared/ChildCard';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import PageContainer from 'src/components/container/PageContainer';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import dayjs, { Dayjs } from 'dayjs';
+import React from 'react';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 // import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 // import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 // import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Date Time',
-  },
-];
+// const BCrumb = [
+//   {
+//     to: '/',
+//     title: 'Home',
+//   },
+//   {
+//     title: 'Date Time',
+//   },
+// ];
 
 const DateTime = () => {
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value2, setValue2] = React.useState<Dayjs | null>(null);
   const [value3, setValue3] = React.useState<Dayjs | null>(dayjs('2018-01-01T00:00:00.000Z'));
 
   return (
-     
-        <Grid >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value3}
-                  onChange={(newValue) => {
-                    setValue3(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-        </Grid>
+    <Grid>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+          value={value3}
+          onChange={(newValue) => {
+            setValue3(newValue);
+          }}
+          renderInput={(props) => (
+            <CustomTextField
+              {...props}
+              fullWidth
+              size="small"
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  width: '18px',
+                  height: '18px',
+                },
+                '& .MuiFormHelperText-root': {
+                  display: 'none',
+                },
+              }}
+            />
+          )}
+        />
+      </LocalizationProvider>
+    </Grid>
   );
 };
 

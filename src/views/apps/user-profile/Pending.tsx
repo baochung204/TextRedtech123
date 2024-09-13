@@ -1,9 +1,8 @@
-import { Avatar, Box, Button, Grid, styled, Typography } from '@mui/material';
-import userimg from 'src/assets/images/profile/user-1.jpg';
-import loading from 'src/assets/images/certificate/loadingre.png';
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
+import { Avatar, Box, Button, Grid, styled, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import loading from 'src/assets/images/certificate/loadingre.png';
+import userimg from 'src/assets/images/profile/user-1.jpg';
 
 const ProfileImage = styled(Box)(() => ({
   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -109,7 +108,7 @@ const Pending = () => {
                 <RotatingImage src={loading} alt="Loading" />
 
                 {/* Pending Approval Message */}
-                <PendingMessageWrapper theme={theme}>
+                <PendingMessageWrapper>
                   <Box
                     sx={{
                       display: 'flex',

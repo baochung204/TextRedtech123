@@ -1,8 +1,8 @@
 import {
   Box,
-  Button,
+  // Button,
   Dialog,
-  DialogActions,
+  // DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
@@ -18,16 +18,18 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import * as React from 'react';
-import { FaPlus, FaSearch } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-
-import { IconSearch } from '@tabler/icons-react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import Tags from 'src/components/apps/sell/tags';
+import { IconSearch } from '@tabler/icons-react';
+
 import PopupAddList2 from './PopupAddlist2';
+import { Slide } from '@mui/material';
+import Tags from 'src/components/apps/sell/Tags';
+import { TransitionProps } from '@mui/material/transitions';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -35,11 +37,17 @@ const BCrumb = [
   { title: 'Blog post' },
 ];
 
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const CustomerList2 = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  const [filterColumn, setFilterColumn] = React.useState('');
-  const [searchText, setSearchText] = React.useState('');
+
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
@@ -52,7 +60,8 @@ const CustomerList2 = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
@@ -71,7 +80,6 @@ const CustomerList2 = () => {
             </Box>
 
             <TabPanel value="1">
-              {' '}
               {/* Action Buttons and Filters */}
               <Box
                 className="actions-and-filters"
@@ -191,19 +199,25 @@ const CustomerList2 = () => {
         </Box>
       </Grid>
 
-      {/* Bảng khách hàng */}
-      {/* Popup Thêm đơn hàng */}
-      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg">
+      {/* Popup Thêm khách hàng */}
+      <Dialog
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        fullWidth
+        maxWidth="lg"
+        TransitionComponent={Transition}
+        keepMounted
+      >
         <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
         <DialogContent>
           <PopupAddList2 /> {/* Gọi component PopupAdd */}
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
           <Button onClick={handleClosePopup} variant="contained" color="primary">
             Xác nhận
           </Button>
-        </DialogActions>
+        </DialogActions> */}
       </Dialog>
     </div>
   );

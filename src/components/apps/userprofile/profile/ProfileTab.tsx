@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Box, Tab, Tabs, Menu, MenuItem, Typography } from '@mui/material';
+import DescriptionIcon from '@mui/icons-material/Description';
+import { Box, Menu, MenuItem, Tab, Tabs, Typography } from '@mui/material';
 import {
+  IconCoin,
   IconHistory,
-  IconPoint,
+  IconShoppingCart,
+  IconTicket,
   IconUser,
   IconUserCircle,
-  IconTicket,
-  IconShoppingCart,
-  IconCoin,
 } from '@tabler/icons-react';
-import DescriptionIcon from '@mui/icons-material/Description';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const ProfileTab = () => {
@@ -18,7 +17,7 @@ const ProfileTab = () => {
   const [anchorElTransaction, setAnchorElTransaction] = useState<null | HTMLElement>(null);
   const [anchorElContract, setAnchorElContract] = useState<null | HTMLElement>(null);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
@@ -111,8 +110,8 @@ const ProfileTab = () => {
                   sx={{ minHeight: '50px' }}
                   icon={tab.icon}
                   component={Link}
-                  to={tab.to}
-                  value={tab.to}
+                  to={tab.to || ''}
+                  value={tab.to || ''}
                 />
               );
             }

@@ -1,8 +1,6 @@
-import React from 'react';
-import { MenuItem, Select, FormControl, InputLabel, Box, Stack } from '@mui/material';
-import { useSelector } from 'src/store/Store';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { sortByProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import { dispatch } from 'src/store/Store';
+import { dispatch, useSelector } from 'src/store/Store';
 
 const ProductSelect = () => {
   const checkactive = useSelector((state) => state.ecommerceReducer.sortBy);
@@ -14,7 +12,7 @@ const ProductSelect = () => {
     { id: 4, value: 'discount', label: 'Giảm giá' },
   ];
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { value: any } }) => {
     dispatch(sortByProducts(event.target.value));
   };
 

@@ -6,7 +6,7 @@ import { Card, CardHeader, CardContent, Divider } from '@mui/material';
 
 type Props = {
   title?: string;
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
 };
 
 const ChildCard = ({ title, children }: Props) => (

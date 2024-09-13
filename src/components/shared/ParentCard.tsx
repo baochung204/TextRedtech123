@@ -7,13 +7,13 @@ import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
 
 type Props = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   footer?: string | JSX.Element;
-  children: JSX.Element;
+  children?: JSX.Element;
 };
 
-const ParentCard = ({ title, children, footer, description }: Props) => {
+const ParentCard = ({ title, children, footer }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();

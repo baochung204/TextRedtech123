@@ -1,23 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useState } from 'react';
 import {
-  IconButton,
-  Box,
-  Badge,
-  Menu,
-  MenuItem,
   Avatar,
-  Typography,
+  Badge,
+  Box,
   Button,
   Chip,
+  IconButton,
+  Menu,
+  MenuItem,
   Stack,
+  Typography,
 } from '@mui/material';
-import * as dropdownData from './data';
+import { useState } from 'react';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import * as dropdownData from './data';
 
 import { IconBellRinging } from '@tabler/icons-react';
-import { Link } from 'react-router-dom';
 
 const Notifications = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);

@@ -1,35 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Box,
-} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import PageContainer from 'src/components/container/PageContainer';
-import ProductChecout from 'src/components/apps/ecommerce/productCheckout/ProductCheckout';
-import ChildCard from 'src/components/shared/ChildCard';
-import Content from 'src/views/apps/collaborate/paymenthistory.tsx/content';
 import CloseIcon from '@mui/icons-material/Close';
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Checkout',
-  },
-];
+import Content from 'src/views/apps/collaborate/paymenthistory.tsx/content';
+// const BCrumb = [
+//   {
+//     to: '/',
+//     title: 'Home',
+//   },
+//   {
+//     title: 'Checkout',
+//   },
+// ];
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement;

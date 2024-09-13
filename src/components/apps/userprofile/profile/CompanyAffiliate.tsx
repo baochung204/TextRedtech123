@@ -39,7 +39,7 @@ const validationSchemas = [
     companyName: Yup.string().required('Tên công ty là bắt buộc'),
     taxCode: Yup.string()
       .required('Mã số thuế là bắt buộc')
-      .matches(/^\d{10}-\d{3}$/, 'Định dạng mã số thuế là xxxxxxxxxx-xxx, x là các số từ 0-9'),
+      .matches(/^\d{10}|\d{13}$/, 'Mã số thuế phải chứa 10 hoặc 13 chữ số'),
     companyEmail: Yup.string().email('Email không hợp lệ').required('Email công ty là bắt buộc'),
     address: Yup.string().required('Địa chỉ công ty là bắt buộc'),
     accountName: Yup.string()
@@ -78,7 +78,7 @@ const CompanyAffiliate = () => {
       bank: '',
       branch: '',
       fileName: '',
-      fileNameURL: ''
+      fileNameURL: '',
     },
     validationSchema: validationSchemas[activeStep],
     validateOnChange: false,
@@ -102,8 +102,12 @@ const CompanyAffiliate = () => {
     return numericValue;
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { id, value, checked, type } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    const { id, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+
     let filteredValue = value;
 
     if (id === 'taxCode') {
@@ -120,7 +124,10 @@ const CompanyAffiliate = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const validTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const validTypes = [
+        'application/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      ];
       if (!validTypes.includes(file.type)) {
         alert('File không hợp lệ. Vui lòng tải lên file PDF hoặc DOCX.');
         return;
@@ -172,7 +179,7 @@ const CompanyAffiliate = () => {
                 overflowY: 'scroll',
                 padding: '16px',
                 borderRadius: '8px',
-                marginTop: '20px'
+                marginTop: '20px',
               }}
             >
               <h3>MỤC I. ĐỐI TÁC</h3>
@@ -589,18 +596,18 @@ const CompanyAffiliate = () => {
                   này cho phù hợp với tình hình kinh doanh và quy định của pháp luật hiện hành.
                 </li>
               </ol>
+              <Checkbox
+                id="agreeTerms"
+                checked={formik.values.agreeTerms}
+                onChange={handleChange}
+                color="primary"
+                inputProps={{ 'aria-label': 'checkbox with default color' }}
+              />
+              <span>Đồng ý với các điều khoản của chúng tôi</span>
+              {isSubmitting && formik.errors.agreeTerms && (
+                <Typography color="error">{formik.errors.agreeTerms}</Typography>
+              )}
             </Box>
-            <Checkbox
-              id="agreeTerms"
-              checked={formik.values.agreeTerms}
-              onChange={handleChange}
-              color="primary"
-              inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
-            <span>Đồng ý với các điều khoản của chúng tôi</span>
-            {isSubmitting && formik.errors.agreeTerms && (
-              <Typography color="error">{formik.errors.agreeTerms}</Typography>
-            )}
           </>
         );
       case 1:
@@ -608,7 +615,8 @@ const CompanyAffiliate = () => {
           <Box>
             <Alert severity="warning" sx={{ marginTop: '30px', fontWeight: 'bold' }}>
               Chú ý: Nội dung đối tác điền dưới đây sẽ được sử dụng làm thông tin trong hợp đồng hợp
-              tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp & Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
+              tác và thanh toán hoa hồng. Đối tác vui lòng điền chính xác thông tin doanh nghiệp &
+              Thông tin tài khoản trước khi chuyển qua bước tiếp theo. Trân trọng!
             </Alert>
             <Box
               sx={{
@@ -676,8 +684,6 @@ const CompanyAffiliate = () => {
                     helperText={isSubmitting && formik.errors.address}
                   />
                 </Grid>
-                
-
               </Grid>
             </Box>
             <Box
@@ -758,7 +764,6 @@ const CompanyAffiliate = () => {
                     )}
                   </FormControl>
                 </Grid>
-
               </Grid>
             </Box>
           </Box>
@@ -812,29 +817,19 @@ const CompanyAffiliate = () => {
           <Box sx={{ width: '100%', padding: '20px' }}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <Box
-                  sx={{
-                    border: '1px solid #ccc',
-                    padding: '16px',
-                    textAlign: 'center',
-                    height: '100%',
-                  }}
-                >
-                  <iframe
-                    width="100%"
-                    height="315"
-                    src="https://www.youtube.com/embed/iCRV5g-u_M0?si=fM5Z3KQsaL5uv_PA"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  ></iframe>
-                </Box>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/iCRV5g-u_M0?si=fM5Z3KQsaL5uv_PA"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
               </Grid>
               <Grid item xs={6}>
                 <Box
                   sx={{
                     border: `1px solid ${isDarkMode ? '#444' : '#ccc'}`,
                     padding: '24px',
-                    borderRadius: '8px',
                     boxShadow: isDarkMode
                       ? '0px 4px 12px rgba(0, 0, 0, 0.7)'
                       : '0px 4px 12px rgba(0, 0, 0, 0.1)',
@@ -936,7 +931,7 @@ const CompanyAffiliate = () => {
       <Box mt={4}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
-            const stepProps = {};
+            const stepProps: { completed?: boolean } = {};
             const labelProps = {};
             if (isStepSkipped(index)) {
               stepProps.completed = false;
@@ -982,16 +977,31 @@ const CompanyAffiliate = () => {
                 Hủy bỏ
               </Button>
               <Box flex="1 1 auto" />
-              <Button
-                onClick={() => {
-                  setIsSubmitting(true);
-                  formik.handleSubmit();
-                }}
-                variant="contained"
-                color={activeStep === steps.length - 1 ? 'success' : 'secondary'}
-              >
-                {activeStep === steps.length - 1 ? 'Kết thúc' : 'Tiếp tục'}
-              </Button>
+              {activeStep === steps.length - 1 ? (
+                <Button
+                  onClick={() => {
+                    setIsSubmitting(true);
+                    formik.handleSubmit();
+                  }}
+                  variant="contained"
+                  color="success"
+                  component={Link}
+                  to="/apps/pending"
+                >
+                  Hoàn thành
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    setIsSubmitting(true);
+                    formik.handleSubmit();
+                  }}
+                  variant="contained"
+                  color="secondary"
+                >
+                  Tiếp tục
+                </Button>
+              )}
             </Box>
           </Box>
         )}

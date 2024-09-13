@@ -51,24 +51,6 @@ const PopupAdd = () => {
       setter(event.target.value);
     };
 
-  const handleSubmit = () => {
-    // Xử lý gửi dữ liệu
-    console.log({
-      gender,
-      channels: selectedChannels,
-      tags,
-      companyName,
-      companyAddress,
-      companyEmail,
-      companyPhone,
-      companyWebsite,
-      facebookUrl,
-      zaloUrl,
-      instagramUrl,
-      assistant,
-    });
-  };
-
   return (
     <div>
       {/* Thông tin cá nhân */}

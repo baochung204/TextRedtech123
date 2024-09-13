@@ -7,7 +7,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import Banner from '../../../components/landingpage/banner/Banner';
 import C2a from '../../../components/landingpage/c2a/C2a';
 import C2a2 from '../../../components/landingpage/c2a/C2a2';
-import DemoSlider from '../../../components/landingpage/demo-slider/DemoSlider';
+// import DemoSlider from '../../../components/landingpage/demo-slider/DemoSlider';
 import Features from '../../../components/landingpage/features/Features';
 import Footer from '../../../components/landingpage/footer/Footer';
 import Frameworks from '../../../components/landingpage/frameworks/Frameworks';
@@ -22,7 +22,7 @@ const Landingpage = () => {
       <Banner />
       {/* <DemoSlider /> */}
       <Frameworks />
-      <PressMedia/>
+      <PressMedia />
       <Testimonial />
       <Features />
       <C2a />

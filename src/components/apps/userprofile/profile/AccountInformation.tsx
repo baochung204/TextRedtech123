@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
 import {
-  Box,
-  Typography,
-  IconButton,
-  TextField,
   Alert,
   AlertTitle,
+  Box,
   Button,
+  IconButton,
+  TextField,
+  Typography,
   useTheme,
 } from '@mui/material';
-import { IconUserCircle, IconEdit, IconCheck, IconLock } from '@tabler/icons-react';
-import { setSelected } from 'src/store/RouterSlice';
-import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
-import * as yup from 'yup';
+import { IconCheck, IconEdit, IconLock, IconUserCircle } from '@tabler/icons-react';
 import { useFormik } from 'formik';
+import React, { useState } from 'react';
+
+
+import { useDispatch } from 'react-redux';
+import { setSelected } from 'src/store/RouterSlice';
+
+import * as yup from 'yup';
 
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
@@ -38,7 +40,7 @@ const AccountInformation = () => {
       password: '**********',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: () => {
       setEditing(null);
       setShowAlert({ message: 'Cập nhật thông tin thành công!', type: 'success' });
       setTimeout(() => setShowAlert(null), 3000);
@@ -46,7 +48,7 @@ const AccountInformation = () => {
   });
 
   const theme = useTheme();
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const handleButtonClick = (id: number) => {
@@ -93,7 +95,7 @@ const AccountInformation = () => {
             sx={{ flexGrow: 1, mr: 1 }}
             size="small"
           />
-          <IconButton onClick={formik.handleSubmit}>
+          <IconButton onClick={() => formik.handleSubmit()}>
             <IconCheck />
           </IconButton>
         </>

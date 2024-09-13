@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 

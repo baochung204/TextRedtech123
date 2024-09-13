@@ -2,18 +2,18 @@
 // @ts-ignore
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-import { Card, CardHeader, CardContent, Divider, Box } from '@mui/material';
+import { Card, CardContent, Divider, Box } from '@mui/material';
 import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
 
 type Props = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   footer?: string | JSX.Element;
-  children: JSX.Element;
+  children?: JSX.Element;
 };
 
-const Modarm = ({ title, children, footer, description }: Props) => {
+const Modarm = ({ children, footer }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
