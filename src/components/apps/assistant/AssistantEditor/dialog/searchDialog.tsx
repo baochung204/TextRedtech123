@@ -109,7 +109,7 @@ const SimpleDialog = () => {
                 <IconPlus width={20} height={20} />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Thêm mới" />
+            <ListItemText primary="Thêm trang bị" />
           </ListItem>
         </List>
       </Dialog>
