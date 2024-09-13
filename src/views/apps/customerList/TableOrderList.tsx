@@ -71,6 +71,7 @@ const TableListOrder = () => {
   };
 
   return (
+    <>
     <TableContainer component={Paper} sx={{ padding: 4 }}>
       <Table
         aria-label="order table"
@@ -166,7 +167,9 @@ const TableListOrder = () => {
           ))}
         </TableBody>
       </Table>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: 2 }}>
+     
+    </TableContainer>
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: 2 }}>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
@@ -177,13 +180,14 @@ const TableListOrder = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Box>
+{/*       
       <Box sx={{ padding: 2 }}>
         <FormControlLabel
           control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
           label="Dense padding"
         />
-      </Box>
-    </TableContainer>
+      </Box> */}
+    </>
   );
 };
 

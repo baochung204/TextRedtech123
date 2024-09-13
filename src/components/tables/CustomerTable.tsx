@@ -50,6 +50,7 @@ const CustomerTable = () => {
     setDense(event.target.checked);
   };
   return (
+    <>
     <TableContainer component={Paper} sx={{ padding: 2 }}>
       <Table
         aria-label="customer table"
@@ -175,24 +176,12 @@ const CustomerTable = () => {
       <Box
         sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 2 }}
       >
-        <FormControl>
-          <InputLabel id="rows-per-page-label">Hàng trên mỗi trang</InputLabel>
-          <Select
-            labelId="rows-per-page-label"
-            id="rows-per-page"
-            value={rowsPerPage}
-            onChange={handleChangeRowsPerPage}
-            sx={{ width: 120 }}
-          >
-            {[5, 10, 25].map((rows) => (
-              <MenuItem key={rows} value={rows}>
-                {rows}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <TablePagination
+        
+        
+      </Box>
+      
+    </TableContainer>
+    <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={DataRowCustomerTable.length}
@@ -201,14 +190,13 @@ const CustomerTable = () => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      </Box>
-      <Box ml={2}>
+        <Box ml={2}>
         <FormControlLabel
           control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
           label="Dense padding"
         />
       </Box>
-    </TableContainer>
+    </>
   );
 };
 

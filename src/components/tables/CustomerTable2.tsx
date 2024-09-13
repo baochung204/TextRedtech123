@@ -55,6 +55,7 @@ const CustomerTable2 = () => {
   };
 
   return (
+    <>
     <TableContainer component={Paper} sx={{ padding: 4 }}>
       <Table
         aria-label="customer table"
@@ -150,7 +151,10 @@ const CustomerTable2 = () => {
           ))}
         </TableBody>
       </Table>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: 2 }}>
+      
+      
+    </TableContainer>
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: 2 }}>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
@@ -161,13 +165,8 @@ const CustomerTable2 = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Box>
-      <Box sx={{ padding: 2 }}>
-        <FormControlLabel
-          control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
-          label="Dense padding"
-        />
-      </Box>
-    </TableContainer>
+      
+    </>
   );
 };
 
