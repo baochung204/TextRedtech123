@@ -48,7 +48,7 @@ import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
-import pck3 from 'src/assets/images/backgrounds/gold.png';
+import bannercl from 'src/assets/images/banner/banner_assistant.png';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -64,7 +64,6 @@ interface cardType {
   digits: string;
   bgcolor: string;
 }
-
 const topcards: cardType[] = [
   {
     icon: icon2,
@@ -103,7 +102,6 @@ const topcards: cardType[] = [
     bgcolor: 'info',
   },
 ];
-
 interface sellsData {
   product: string;
   percent: number;
@@ -328,22 +326,22 @@ const AssistantInfor = () => {
       gradient: {
         shade: 'light',
         type: 'horizontal',
-        gradientToColors: [warning, '#FC2032'], // Màu vàng và màu đỏ cho gradient
-        stops: [0, 50, 100], // Vị trí bắt đầu chuyển đổi màu: xanh, vàng, đỏ
+        gradientToColors: [warning, '#FC2032'],
+        stops: [0, 50, 100],
         colorStops: [
           {
             offset: 0,
-            color: success2, // Màu xanh cho 0-30
+            color: success2,
             opacity: 1,
           },
           {
             offset: 50,
-            color: warning, // Màu vàng cho 30-70
+            color: warning,
             opacity: 1,
           },
           {
             offset: 100,
-            color: danger2, // Màu đỏ cho 70-100
+            color: danger2,
             opacity: 1,
           },
         ],
@@ -636,7 +634,7 @@ const AssistantInfor = () => {
               elevation={0}
               sx={{ backgroundColor: (theme) => theme.palette.primary.light, py: 0 }}
             >
-              <CardContent sx={{ py: 4, px: 2 }}>
+              <CardContent sx={{ py: 2, px: 2, m: 0 }}>
                 <Grid container justifyContent="space-between">
                   <Grid item sm={6} display="flex" alignItems="center">
                     <Box>
@@ -662,17 +660,19 @@ const AssistantInfor = () => {
                         direction="row"
                         divider={<Divider orientation="vertical" flexItem />}
                       >
-                        <Box>
-                          <Typography variant="h2" whiteSpace="nowrap">
-                            35%
-                            <span>
-                              <IconArrowUpRight width={18} color="#39B69A" />
-                            </span>
-                          </Typography>
-                          <Typography variant="subtitle1" whiteSpace="nowrap">
-                            CRB
-                          </Typography>
-                        </Box>
+                        <Tooltip title="Tỉ lệ chuyển đổi" placement="top">
+                          <Box>
+                            <Typography variant="h2" whiteSpace="nowrap">
+                              35%
+                              <span>
+                                <IconArrowUpRight width={18} color="#39B69A" />
+                              </span>
+                            </Typography>
+                            <Typography variant="subtitle1" whiteSpace="nowrap">
+                              CR
+                            </Typography>
+                          </Box>
+                        </Tooltip>
                       </Stack>
                     </Box>
                   </Grid>
@@ -693,23 +693,27 @@ const AssistantInfor = () => {
                   sx={{
                     display: 'flex',
                     height: '100%',
-                    mt: '-6px',
                   }}
                 >
-                  <Box
-                    component="img"
-                    src={pck3}
-                    alt="Hoa hồng"
-                    sx={{
-                      maxWidth: '40%',
-                      height: 'auto',
-                    }}
-                  />
-                  <Box sx={{ mt: 2 }}>
-                    <Typography variant="h6" fontWeight={500}>
-                      Chiến lược Tích Hợp Dịch Vụ Bên Thứ Ba
-                    </Typography>
-                  </Box>
+                  <Grid container>
+                    <Grid item xs={7}>
+                      <Box sx={{ mt: 2 }}>
+                        <Typography variant="subtitle2" fontWeight={500}>
+                          Chiến lược Tích Hợp Dịch Vụ Bên Thứ Ba
+                        </Typography>
+                      </Box>
+                    </Grid>
+
+                    <Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Box
+                        sx={{
+                          width: '75%',
+                        }}
+                      >
+                        <img src={bannercl} style={{ width: '100%' }} />
+                      </Box>
+                    </Grid>
+                  </Grid>
                 </Box>
               </DashboardCard>
             </Grid>
@@ -968,19 +972,17 @@ const AssistantInfor = () => {
             </Modarm>
           </Grid>
           <Grid item xs={12} sm={8}>
-            <DashboardCard title={'san pham 1'}>
+            <DashboardCard>
               <Box>
                 <Box sx={{ marginTop: '0px' }}>
                   <Typography variant="h4">Báo cáo công việc</Typography>
-                  <Typography variant="subtitle2" color="textSecondary" mb={2}>
-                    kinh doanh
-                  </Typography>
                   <Box
-                    style={{
+                    sx={{
                       display: 'flex',
                       gap: '12px',
                       alignItems: 'center',
                       justifyContent: 'space-between',
+                      mt: '5px',
                     }}
                   >
                     <CustomSelect
@@ -1045,23 +1047,6 @@ const AssistantInfor = () => {
                           )}
                         />
                       </LocalizationProvider>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="50"
-                        height="50"
-                        cursor="pointer"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                      </svg>
                     </Box>
                   </Box>
                 </Box>
@@ -1227,19 +1212,28 @@ const AssistantInfor = () => {
           <Grid item xs={12} lg={8}>
             <DashboardCard>
               <Box>
-                <Box sx={{ marginTop: '-15px' }}>
-                  <Typography variant="h4">Báo cáo chi tiêu trợ lý </Typography>
-                  <Typography variant="subtitle2" color="textSecondary" mb={2}>
-                    kinh doanh
-                  </Typography>
+                <Box sx={{ marginTop: '0px' }}>
+                  <Typography variant="h4">Báo cáo chi tiêu trợ lý</Typography>
                   <Box
-                    style={{
+                    sx={{
                       display: 'flex',
                       gap: '12px',
                       alignItems: 'center',
-                      justifyContent: 'end',
+                      justifyContent: 'space-between',
+                      mt: '5px',
                     }}
                   >
+                    <CustomSelect
+                      labelId="month-dd"
+                      id="month-dd"
+                      size="small"
+                      value={month}
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={1}>Danh thu</MenuItem>
+                      <MenuItem value={2}>Khách hàng </MenuItem>
+                      <MenuItem value={3}>Đơn Hàng </MenuItem>
+                    </CustomSelect>
                     <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
                       {' '}
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -1291,23 +1285,6 @@ const AssistantInfor = () => {
                           )}
                         />
                       </LocalizationProvider>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="50"
-                        height="50"
-                        cursor="pointer"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="icon icon-tabler icons-tabler-outline icon-tabler-refresh "
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                      </svg>
                     </Box>
                   </Box>
                 </Box>
