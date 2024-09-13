@@ -1212,14 +1212,9 @@ const AssistantInfor = () => {
           <Grid item xs={12} lg={8}>
             <DashboardCard>
               <Box>
-<<<<<<< HEAD
-                <Box sx={{ marginTop: '0px' }}>
-                  <Typography variant="h4">Báo cáo chi tiêu trợ lý</Typography>
-=======
                 <Box sx={{ marginTop: '-15px' }}>
                   <Typography variant="h4">Báo cáo chi tiêu trợ lý</Typography>
 
->>>>>>> main
                   <Box
                     sx={{
                       display: 'flex',
