@@ -44,10 +44,10 @@ const SellingProducts = () => {
     <Paper sx={{ bgcolor: 'primary.main', border: `1px solid ${borderColor}` }} variant="outlined">
       <CardContent>
         <Typography variant="h5" color="white">
-          Cấu hình trang bị trợ lý
+          Trang bị trợ lý
         </Typography>
         <Typography variant="subtitle1" color="white">
-          Tổng quan
+          Cấu hình
         </Typography>
 
         <Box textAlign="center" mt={2} mb="-90px">

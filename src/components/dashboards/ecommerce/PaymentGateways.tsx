@@ -115,7 +115,7 @@ const PaymentGateways: React.FC = () => {
             </Stack>
           ))}
           <Button variant="outlined" color="primary" sx={{ mt: '40px !important' }}>
-            Xem tất cả giao dịch
+            Xem tất cả trợ lý
           </Button>
         </Stack>
       </Box>
