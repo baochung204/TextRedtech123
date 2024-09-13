@@ -33,6 +33,7 @@ const Cart = () => {
     // if (!relatedTarget.closest('.MuiPopover-paper')) {
     //   handleClose();
     // }
+
   };
 
   const cartContent = (
