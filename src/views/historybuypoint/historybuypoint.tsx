@@ -14,11 +14,6 @@ import {
   TableRow,
   TableSortLabel,
   Typography,
-<<<<<<< HEAD
-  Stack,
-  Button,
-=======
->>>>>>> 4f232afb18c5cd450029063e8c84a210168bbcf1
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -31,15 +26,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-<<<<<<< HEAD
-import logoPoint from 'src/assets/images/logos/R-Point.png';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { Dayjs } from 'dayjs';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-=======
 import BlankCard from '../../components/shared/BlankCard';
->>>>>>> 4f232afb18c5cd450029063e8c84a210168bbcf1
 
 const BCrumb = [
   {
