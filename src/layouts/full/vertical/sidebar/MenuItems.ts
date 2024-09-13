@@ -1,6 +1,6 @@
 import {
   IconAppWindow,
-  IconChartDonut3,
+  IconHeadset,
   IconPackage,
   IconPoint,
   IconShoppingCart,
@@ -36,7 +36,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Trợ lý',
-    icon: IconChartDonut3,
+    icon: IconHeadset,
     href: '/apps/assistant/',
     children: [
       {
@@ -50,7 +50,7 @@ const Menuitems: MenuitemsType[] = [
         title: 'Quản lý Trợ lý',
         icon: IconPoint,
         // href: '/apps/list-assistant',
-        href: '/assistant/list'
+        href: '/assistant/list',
       },
     ],
   },
