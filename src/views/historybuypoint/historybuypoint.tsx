@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
 import {
   Box,
+  Button,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -12,26 +13,20 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  Paper,
   Typography,
-  Stack,
-  Button,
-  MenuItem,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import PageContainer from 'src/components/container/PageContainer';
-import BlankCard from '../../components/shared/BlankCard';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { format } from 'date-fns';
+import { Dayjs } from 'dayjs';
+import React from 'react';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import PageContainer from 'src/components/container/PageContainer';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { Dayjs } from 'dayjs';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import BlankCard from '../../components/shared/BlankCard';
 
 const BCrumb = [
   {
@@ -274,11 +269,11 @@ const HistoryBuyPoint = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  const [month, setMonth] = React.useState('1');
+  // const [month, setMonth] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
 
   // chart color
 
