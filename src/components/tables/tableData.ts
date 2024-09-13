@@ -18,7 +18,6 @@ export interface TableType {
 export interface EnTableType {
   id: string;
   amount: number; // số tiền
-  paymentMethod: string; // phương thức thanh toán
   numberPrice: number; // số tiền thanh toán
   requestId: string; // id yêu cầu
   createdAt: Date; //ngày thanh toán
@@ -264,7 +263,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '1',
     amount: 70,
-    paymentMethod: '123 456 789',
     numberPrice: 21.0,
     requestId: '10000017392941114415106834',
     createdAt: new Date('2024-07-18T18:47:28'),
@@ -275,7 +273,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '2',
     amount: 150,
-    paymentMethod: '987 654 321',
     numberPrice: 33.0,
     requestId: '10000017392941114415106835',
     createdAt: new Date('2024-07-19T10:15:12'),
@@ -286,7 +283,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '3',
     amount: 120,
-    paymentMethod: '112 233 445',
     numberPrice: 44.0,
     requestId: '10000017392941114415106836',
     createdAt: new Date('2024-07-20T14:35:48'),
@@ -297,7 +293,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '4',
     amount: 200,
-    paymentMethod: '445 556 667',
     numberPrice: 21.555,
     requestId: '10000017392941114415106837',
     createdAt: new Date('2024-07-21T16:00:00'),
@@ -308,7 +303,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '5',
     amount: 90,
-    paymentMethod: '778 899 000',
     numberPrice: 66.0,
     requestId: '10000017392941114415106838',
     createdAt: new Date('2024-07-22T09:45:22'),
@@ -319,7 +313,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '6',
     amount: 110,
-    paymentMethod: '334 455 667',
     numberPrice: 777.0,
     requestId: '10000017392941114415106839',
     createdAt: new Date('2024-07-23T11:11:11'),
@@ -330,7 +323,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '7',
     amount: 80,
-    paymentMethod: '998 877 665',
     numberPrice: 777.0,
     requestId: '10000017392941114415106840',
     createdAt: new Date('2024-07-24T13:30:10'),
@@ -341,7 +333,6 @@ const EnhancedTableData: EnTableType[] = [
   {
     id: '10',
     amount: 50,
-    paymentMethod: '887 766 554',
     numberPrice: 99.0,
     requestId: '10000017392941114415106843',
     createdAt: new Date('2024-07-27T18:00:00'),

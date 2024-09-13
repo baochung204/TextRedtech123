@@ -8,7 +8,7 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import MenuItem from '@mui/material/MenuItem';
@@ -26,6 +26,7 @@ import CustomSelect from '../../../components/forms/theme-elements/CustomSelect'
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import AddOrder from './PopupAdd2';
 import TableListOrder from './TableOrderList';
+// import Tags from 'src/components/apps/sell/Tags';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -44,13 +45,15 @@ const CustomerListOrder = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value, setValue] = React.useState('1');
+  // const [value, setValue] = React.useState('1');
+  const [value] = React.useState('1');
 
   const handleOpenPopup = () => setIsPopupOpen(true);
   const handleClosePopup = () => setIsPopupOpen(false);
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+
+  // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  //   setValue(newValue);
+  // };
 
   return (
     <div className="customer-list-container" style={{ padding: '20px' }}>

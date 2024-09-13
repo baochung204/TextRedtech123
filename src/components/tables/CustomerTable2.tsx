@@ -12,16 +12,16 @@ import {
   Paper,
   FormControlLabel,
 } from '@mui/material';
-import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'; // Import các biểu tượng mạng xã hội
+// import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'; // Import các biểu tượng mạng xã hội
 import { DataRowCustomerTable } from './tableData';
 import CustomSwitch from '../forms/theme-elements/CustomSwitch';
 
 // Danh sách các icon
-const icons = [
-  <FaFacebook color="#1877F2" size={30} />, // Tăng kích thước icon
-  <FaWhatsapp color="#25D366" size={30} />,
-  <FaInstagram color="#C13584" size={30} />,
-];
+// const icons = [
+//   <FaFacebook color="#1877F2" size={30} />, // Tăng kích thước icon
+//   <FaWhatsapp color="#25D366" size={30} />,
+//   <FaInstagram color="#C13584" size={30} />,
+// ];
 
 const CustomerTable2 = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
@@ -116,7 +116,7 @@ const CustomerTable2 = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {paginatedRows.map((row, index) => (
+          {paginatedRows.map((row) => (
             <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell sx={{ textAlign: 'center' }}>
                 <Typography variant="subtitle2">{row.id}</Typography>

@@ -12,15 +12,15 @@ import {
   Paper,
   FormControlLabel,
 } from '@mui/material';
-import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'; // Import các biểu tượng mạng xã hội
+// import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'; // Import các biểu tượng mạng xã hội
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 
 // Danh sách các icon
-const icons = [
-  <FaFacebook color="#1877F2" size={30} />, // Tăng kích thước icon
-  <FaWhatsapp color="#25D366" size={30} />,
-  <FaInstagram color="#C13584" size={30} />,
-];
+// const icons = [
+//   <FaFacebook color="#1877F2" size={30} />, // Tăng kích thước icon
+//   <FaWhatsapp color="#25D366" size={30} />,
+//   <FaInstagram color="#C13584" size={30} />,
+// ];
 
 const DataRowCustomerTable = [
   {
@@ -55,7 +55,10 @@ const TableListOrder = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dense, setDense] = useState(false);
 
-  const handleChangePage = (_event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
     setPage(newPage);
   };
 
@@ -64,7 +67,10 @@ const TableListOrder = () => {
     setPage(0);
   };
 
-  const paginatedRows = DataRowCustomerTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const paginatedRows = DataRowCustomerTable.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
 
   const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);

@@ -13,6 +13,8 @@ import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+// import { m } from 'framer-motion';
+// import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 
 const monthsInVietnamese = [
   'Tháng 1',
@@ -125,7 +127,11 @@ const Affiliatedetail = () => {
   // const [month, setMonth] = React.useState('1');
 
   // chart color
+  const [month, setMonth] = React.useState('1');
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
   const [value, setValue] = React.useState<Dayjs | null>(null);
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
@@ -148,25 +154,24 @@ const Affiliatedetail = () => {
               display: 'flex',
               gap: '12px',
               alignItems: 'center',
-              justifyContent: 'end',
+              justifyContent: 'space-between',
+              marginTop: '20px',
             }}
           >
-            <Box style={{ width: '70%' }} display={'flex'} alignItems={'center'} gap="5px">
-              <CustomSelect
-                labelId="month-dd"
-                id="month-dd"
-                size="small"
-                // value={month}
-                // onChange={handleChange}
-                value={1}
-              >
-                <MenuItem value={1}>
-                  <em>Tất cả</em>
-                </MenuItem>
-                <MenuItem value={2}>Assistant 1</MenuItem>
-                <MenuItem value={3}>Assistant 2</MenuItem>
-                <MenuItem value={4}>Assistant 3</MenuItem>
-              </CustomSelect>
+            {' '}
+            <CustomSelect
+              labelId="month-dd"
+              id="month-dd"
+              size="small"
+              value={month}
+              onChange={handleChange}
+            >
+              <MenuItem value={1}>Tất cả</MenuItem>
+              <MenuItem value={2}>Assistant 1</MenuItem>
+              <MenuItem value={3}>Assistant 2</MenuItem>
+            </CustomSelect>
+            <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
+              {' '}
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   value={value}

@@ -258,7 +258,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 </InputAdornment>
               ),
             }}
-            placeholder="Search Product"
+            placeholder="Tìm kiếm sản phẩm"
             size="small"
             onChange={handleSearch}
             value={search}
@@ -300,7 +300,7 @@ const PaginationTable = () => {
 
   const [search, setSearch] = React.useState('');
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const products = getProducts([]).payload as ProductType[];
+    const products = getProducts([]).payload as unknown as ProductType[];
     const filteredRows: ProductType[] = products.filter((row) => {
       return row.title.toLowerCase().includes(event.target.value);
     });

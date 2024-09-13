@@ -1,15 +1,14 @@
 import { Email } from '@mui/icons-material';
 import {
+  Alert,
   Box,
-  Typography,
+  Button,
   Checkbox,
   FormControlLabel,
   FormGroup,
-  Button,
-  Alert,
-  useTheme,
-  Snackbar,
   Slide,
+  Snackbar,
+  Typography,
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -30,7 +29,9 @@ const ReceiveEmail = () => {
   const [checked, setChecked] = useState(initialState);
   const [savedState, setSavedState] = useState(initialState);
   const [open, setOpen] = useState(false);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'info'; message: string } | null>(null);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'info'; message: string } | null>(
+    null,
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked({
@@ -51,7 +52,7 @@ const ReceiveEmail = () => {
     setOpen(true); // Open the snackbar
   };
 
-  const theme = useTheme();
+  // const theme = useTheme();
   const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
     if (reason === 'clickaway') {
       return;
