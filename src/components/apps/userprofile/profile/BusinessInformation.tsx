@@ -1,13 +1,4 @@
-import {
-  Alert,
-  Box,
-  IconButton,
-  Slide,
-  TextField,
-  Typography,
-  useTheme,
-  Snackbar,
-} from '@mui/material';
+import { Alert, Box, IconButton, Slide, Snackbar, TextField, Typography } from '@mui/material';
 import { IconBriefcase, IconCheck, IconEdit } from '@tabler/icons-react';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
@@ -56,7 +47,7 @@ const BusinessInformation = () => {
     },
   });
 
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const handleEditClick = (field: string) => {
     setEditing(field);
