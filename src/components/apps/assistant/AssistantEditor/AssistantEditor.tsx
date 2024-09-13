@@ -1,39 +1,36 @@
-import React, { useState } from 'react';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PersonIcon from '@mui/icons-material/Person';
 import {
-  Grid,
-  Typography,
-  MenuItem,
+  Avatar,
   Button,
-  Stack,
-  Paper,
   Divider,
+  Fab,
+  Grid,
+  IconButton,
+  InputBase,
   List,
   ListItem,
   ListItemText,
-  InputBase,
-  IconButton,
-  Avatar,
-  Tooltip,
-  Fab,
+  MenuItem,
+  Paper,
+  Stack,
   TextField,
+  Tooltip,
+  Typography,
 } from '@mui/material';
 import Box from '@mui/material/Box';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import { IconPlus, IconSend } from '@tabler/icons-react';
+import React, { useState } from 'react';
 import PageContainer from 'src/components/container/PageContainer';
-import PersonIcon from '@mui/icons-material/Person';
-import { IconSend } from '@tabler/icons-react';
-import DateTime from './DateTime'
-import Checkboxes from './Tags';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import QuillEditor from './QuillEditor';
-import { IconPlus } from '@tabler/icons-react';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DateTime from './DateTime';
 import Integration from './Integration';
-import StrategyDialog from './dialog/strategyDialog';
-import SimpleDialog from './dialog/searchDialog';
+import Checkboxes from './Tags';
 import FunctionsDialog from './dialog/functionsDialog';
-import userimg from 'src/assets/images/profile/user-1.jpg';
+import SimpleDialog from './dialog/searchDialog';
+import StrategyDialog from './dialog/strategyDialog';
 
 interface Message {
   text: string;

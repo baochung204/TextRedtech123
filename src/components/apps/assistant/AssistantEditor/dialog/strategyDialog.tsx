@@ -1,16 +1,13 @@
-import { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Box,
   CardContent,
   Dialog,
   DialogTitle,
-  Fab,
   List,
-  Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
-import { IconPlus } from '@tabler/icons-react';
-import CloseIcon from '@mui/icons-material/Close';
+import { useState } from 'react';
 import rank1 from 'src/assets/images/rank/rank1.png';
 import rank2 from 'src/assets/images/rank/rank2.png';
 import rank3 from 'src/assets/images/rank/rank3.png';
