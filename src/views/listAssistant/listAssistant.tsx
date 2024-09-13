@@ -485,7 +485,7 @@ const ListAssistant = () => {
                             minWidth: 'auto',
                           }}
                           component={Link}
-                          to="/apps/list-assistant"
+                          to="/apps/assistant/:id"
                         >
                           <IconStackBack stroke={2} />
                         </Button>
