@@ -18,6 +18,7 @@ import {
   Typography,
   Stack,
   Button,
+  MenuItem,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import PageContainer from 'src/components/container/PageContainer';
@@ -25,6 +26,12 @@ import BlankCard from '../../components/shared/BlankCard';
 import { format } from 'date-fns';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { Dayjs } from 'dayjs';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BCrumb = [
   {
@@ -267,12 +274,93 @@ const HistoryBuyPoint = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const [month, setMonth] = React.useState('1');
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
+
+  // chart color
+
+  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
       <Breadcrumb title="Lịch sử quy đổi ngân lượng" items={BCrumb} />
-
+      <Box
+        style={{
+          display: 'flex',
+          gap: '12px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        {' '}
+        <Box sx={{}}>
+          <Typography variant="h3" sx={{ fontSize: { xs: '18px', sm: '20px' } }}>
+            Lịch sử nạp point
+          </Typography>
+        </Box>
+        <Box
+          style={{ width: '35%' }}
+          display={'flex'}
+          alignItems={'center'}
+          gap="5px"
+          sx={{ my: 2 }}
+        >
+          {' '}
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          tới
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value1}
+              onChange={(newValue) => {
+                setValue1(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
+      </Box>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
           <TableContainer>
@@ -337,8 +425,19 @@ const HistoryBuyPoint = () => {
                         <TableCell>
                           <Stack spacing={2} direction="row">
                             <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.numberPrice}
+                              <Typography
+                                color="textSecondary"
+                                variant="subtitle2"
+                                sx={{ display: 'flex', gap: 0.5 }}
+                              >
+                                {row.numberPrice}{' '}
+                                <img
+                                  src={logoPoint}
+                                  alt=""
+                                  width={20}
+                                  height={20}
+                                  style={{ borderRadius: 50 }}
+                                />
                               </Typography>
                             </Box>
                           </Stack>
@@ -347,7 +446,7 @@ const HistoryBuyPoint = () => {
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount}
+                                {row.amount} ₫
                               </Typography>
                             </Box>
                           </Stack>
@@ -375,7 +474,6 @@ const HistoryBuyPoint = () => {
                   </TableRow>
                 )}
               </TableBody>
-              
             </Table>
           </TableContainer>
           <TablePagination
