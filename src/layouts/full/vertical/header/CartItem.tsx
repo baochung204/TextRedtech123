@@ -90,7 +90,7 @@ const CartItems = () => {
             Không có sản phẩm nào
           </Typography>
           <Button component={Link} to="/apps/ecommerce/shop" variant="contained">
-            Đi tới trang shop
+            Shopping ngay !
           </Button>
         </Box>
       )}
