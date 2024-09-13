@@ -10,8 +10,14 @@ const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#FFBB33', '#33FFBB'
 
 const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
+interface Tag {
+  title: string;
+  year: number;
+  color: string;
+}
+
 const Tags = () => {
-  const [tags, setTags] = useState([]); // Khởi tạo với mảng rỗng
+  const [tags, setTags] = useState<Tag[]>([]); // Khởi tạo với mảng rỗng
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && (event.target as HTMLInputElement).value) {
