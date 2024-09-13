@@ -1,12 +1,19 @@
-import { Alert, AlertTitle, Box, IconButton, TextField, Typography, useTheme } from '@mui/material';
+import { Alert, Box, IconButton, Slide, Snackbar, TextField, Typography } from '@mui/material';
 import { IconBriefcase, IconCheck, IconEdit } from '@tabler/icons-react';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 
+function SlideTransition(props: any) {
+  return <Slide {...props} direction="left" />;
+}
+
 const BusinessInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [open, setOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
+    null,
+  );
 
   // Sử dụng Formik để quản lý form và Yup để xác thực
   const formik = useFormik({
@@ -35,12 +42,12 @@ const BusinessInformation = () => {
     }),
     onSubmit: () => {
       setEditing(null);
-      setAlert({ type: 'success', message: 'Thông tin đã được cập nhật!' });
-      setTimeout(() => setAlert(null), 3000);
+      setShowAlert({ type: 'success', message: 'Thông tin đã được cập nhật!' });
+      setOpen(true); // Hiển thị Snackbar khi có thông báo
     },
   });
 
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const handleEditClick = (field: string) => {
     setEditing(field);
@@ -50,6 +57,13 @@ const BusinessInformation = () => {
     if (e.key === 'Enter') {
       formik.handleSubmit();
     }
+  };
+
+  const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); // Đóng Snackbar khi bấm ngoài
   };
 
   const renderField = (field: string, label: string) => (
@@ -65,11 +79,11 @@ const BusinessInformation = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={
-              formik.touched[field as keyof typeof formik.values] &&
+              formik.touched[field as keyof typeof formik.touched] &&
               Boolean(formik.errors[field as keyof typeof formik.errors])
             }
             helperText={
-              formik.touched[field as keyof typeof formik.values] &&
+              formik.touched[field as keyof typeof formik.touched] &&
               formik.errors[field as keyof typeof formik.errors]
             }
             onKeyDown={handleKeyDown}
@@ -107,26 +121,17 @@ const BusinessInformation = () => {
       {renderField('email', 'Email doanh nghiệp')}
 
       {/* Hiển thị Alert khi có sự thay đổi */}
-      {alert && (
-        <Alert
-          severity={alert.type}
-          sx={{
-            position: 'fixed',
-            top: 16,
-            right: 16,
-            zIndex: theme.zIndex.snackbar,
-            backgroundColor: alert.type === 'success' ? '#4caf50' : '#f44336',
-            color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-            borderRadius: 1,
-            padding: 2,
-            width: 300,
-          }}
-        >
-          <AlertTitle>{alert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
-          {alert.message}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert onClose={handleClose} severity={showAlert?.type || 'success'} variant="filled">
+          {showAlert?.message || 'Lưu thay đổi thành công'}
         </Alert>
-      )}
+      </Snackbar>
     </Box>
   );
 };

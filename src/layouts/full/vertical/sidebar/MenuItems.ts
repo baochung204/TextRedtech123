@@ -1,7 +1,14 @@
-import { IconAffiliate, IconArchive, IconTerminal2, IconUsersGroup } from '@tabler/icons-react';
+import {
+  IconAffiliate,
+  IconArchive,
+  IconMessage2Bolt,
+  IconPresentationAnalytics,
+  IconTerminal2,
+  IconUsersGroup,
+} from '@tabler/icons-react';
 import {
   IconAppWindow,
-  IconChartDonut3,
+  IconHeadset,
   IconPackage,
   IconPoint,
   IconShoppingCart,
@@ -27,13 +34,13 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Dashboard',
-    icon: IconAppWindow,
+    icon: IconPresentationAnalytics,
     href: '/dashboards/modern',
   },
   {
     id: uniqueId(),
     title: 'Trợ lý',
-    icon: IconChartDonut3,
+    icon: IconHeadset,
     href: '/apps/assistant/',
     children: [
       {
@@ -46,6 +53,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Quản lý Trợ lý',
         icon: IconPoint,
+        // href: '/apps/list-assistant',
         href: '/assistant/list',
       },
     ],
@@ -133,7 +141,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Tích hợp',
-    icon: IconAppWindow,
+    icon: IconMessage2Bolt,
     href: '/apps/integration',
   },
   {

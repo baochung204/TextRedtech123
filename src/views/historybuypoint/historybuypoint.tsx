@@ -98,16 +98,10 @@ const headCells: HeadCell[] = [
     label: 'ID Yêu cầu',
   },
   {
-    id: 'paymentMethod',
-    numeric: false,
-    disablePadding: false,
-    label: 'Phương thức thanh toán',
-  },
-  {
     id: 'amount',
     numeric: false,
     disablePadding: false,
-    label: 'Số tiền',
+    label: 'Số Point',
   },
   {
     id: 'numberPrice',
@@ -151,12 +145,7 @@ const getStatusTextAndColor = (status: any) => {
           Chờ xử lý
         </Typography>
       );
-    case 3:
-      return (
-        <Typography color="#f44336" variant="subtitle2">
-          Chưa thanh toán
-        </Typography>
-      );
+
     default:
       return;
   }
@@ -167,8 +156,7 @@ const getInvoiceTextAndColor = (status: any) => {
       return <Button color="success">Tải về</Button>;
     case 2:
       return <Typography color="#ff9800">Chờ xử lý</Typography>;
-    case 3:
-      return <Typography color="#f44336"> Chưa thanh toán</Typography>;
+
     default:
       return;
   }
@@ -197,9 +185,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
-              <Typography variant="subtitle1" fontWeight="700">
-                {headCell.label}
-              </Typography>
+              <Typography variant="h6">{headCell.label}</Typography>
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -347,15 +333,7 @@ const HistoryBuyPoint = () => {
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.paymentMethod}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
+
                         <TableCell>
                           <Stack spacing={2} direction="row">
                             <Box>
@@ -397,116 +375,7 @@ const HistoryBuyPoint = () => {
                   </TableRow>
                 )}
               </TableBody>
-              {/* <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
-                    const isItemSelected = isSelected(row.name);
-                    const labelId = `enhanced-table-checkbox-${index}`;
-
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        selected={isItemSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <CustomCheckbox
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Avatar
-                              alt="text"
-                              src={row.imgsrc}
-                              sx={{
-                                width: '35px',
-                                height: '35px',
-                              }}
-                            />
-                            <Box>
-                              <Typography variant="h6" fontWeight="600">
-                                {row.name}
-                              </Typography>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.email}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
-                            {row.pname}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Stack direction="row">
-                            <AvatarGroup>
-                              {row.teams.map((team: any) => (
-                                <Avatar
-                                  key={team.id}
-                                  sx={{
-                                    width: '35px',
-                                    height: '35px',
-                                    bgcolor: team.color,
-                                  }}
-                                >
-                                  {team.text}
-                                </Avatar>
-                              ))}
-                            </AvatarGroup>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={1} direction="row" alignItems="center">
-                            <Badge
-                              color={
-                                row.status === 'Active'
-                                  ? 'success'
-                                  : row.status === 'Pending'
-                                  ? 'warning'
-                                  : row.status === 'Completed'
-                                  ? 'primary'
-                                  : row.status === 'Cancel'
-                                  ? 'error'
-                                  : 'secondary'
-                              }
-                              variant="dot"
-                            ></Badge>
-                            <Typography color="textSecondary" variant="body1">
-                              {row.status}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="body1">
-                            {row.weeks}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="h6">${row.budget}k</Typography>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody> */}
+              
             </Table>
           </TableContainer>
           <TablePagination

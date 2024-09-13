@@ -1,10 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-
 import React, { useState } from 'react';
 import { sum } from 'lodash';
 import { IconShoppingCart, IconX } from '@tabler/icons-react';
-import { Box, Typography, Badge, IconButton, Button, Stack, Popover } from '@mui/material';
+import { Box, Typography, Badge, IconButton, Button, Stack } from '@mui/material';
 import { useSelector } from 'src/store/Store';
 import { Link } from 'react-router-dom';
 import CartItems from './CartItem';
@@ -17,42 +14,36 @@ const Cart = () => {
   const checkout = useSelector((state: AppState) => state.ecommerceReducer.cart);
   const total = sum(checkout.map((product: any) => product.price * product.qty));
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleMouseEnter = () => {
+    setIsDropdownOpen(true);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+    const relatedTarget = event.relatedTarget as HTMLElement;
+    if (!relatedTarget.closest('.cart-dropdown')) {
+      setIsDropdownOpen(false);
+    }
   };
-
-  const handlePopoverMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
-    // const relatedTarget = event.relatedTarget as HTMLElement;
-    // if (!relatedTarget.closest('.MuiPopover-paper')) {
-    //   handleClose();
-    // }
-  };
-
-  const cartContent = (
-    <Box>
-      <CartItems />
-    </Box>
-  );
 
   return (
-    <Box onMouseLeave={handlePopoverMouseLeave}>
+    <Box
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      component="div"
+      className="cart-dropdown-wrapper"
+      sx={{ position: 'relative', display: 'inline-block' }}
+    >
       <IconButton
         size="large"
         color="inherit"
         sx={{
           color: 'text.secondary',
-          ...(open && {
+          ...(isDropdownOpen && {
             color: 'primary.main',
           }),
         }}
-        onMouseEnter={handleClick}
       >
         <Button size="large" color="inherit">
           <Badge color="warning" badgeContent={bcount}>
@@ -61,56 +52,40 @@ const Cart = () => {
         </Button>
       </IconButton>
 
-      <Popover
-        id="cart-popover"
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        onMouseLeave={handlePopoverMouseLeave}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        slotProps={{
-          paper: {
-            className: 'MuiPopover-paper',
-            sx: { maxWidth: '400px' },
-          },
-        }}
-      >
-        <Box onMouseLeave={handlePopoverMouseLeave}>
-          <Box
-            className="test"
-            display="flex"
-            alignItems="center"
-            p={3}
-            pb={0}
-            justifyContent="space-between"
-            onMouseLeave={handlePopoverMouseLeave}
-          >
+      {isDropdownOpen && (
+        <Box
+          className="cart-dropdown"
+          sx={{
+            position: 'absolute',
+            top: '100%',
+            right: '1%',
+            zIndex: 1,
+            backgroundColor: 'white',
+            border: '1px solid #ccc',
+            borderRadius: '10px',
+            width: '300px',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          }}
+          onMouseLeave={handleMouseLeave}
+        >
+          <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
             <Typography variant="h5" fontWeight={600}>
               Giỏ hàng
             </Typography>
-            <Box>
-              <IconButton
-                color="inherit"
-                sx={{
-                  color: (theme) => theme.palette.grey.A200,
-                }}
-                onClick={handleClose}
-              >
-                <IconX size="1rem" />
-              </IconButton>
-            </Box>
+            <IconButton
+              color="inherit"
+              onClick={() => setIsDropdownOpen(false)}
+              sx={{
+                color: (theme) => theme.palette.grey.A200,
+              }}
+            >
+              <IconX size="1rem" />
+            </IconButton>
           </Box>
 
-          {cartContent}
+          <CartItems />
 
-          <Box px={3} mt={2}>
+          <Box mt={2}>
             {Cartproduct.length > 0 ? (
               <>
                 <Stack direction="row" justifyContent="space-between" mb={3}>
@@ -136,7 +111,7 @@ const Cart = () => {
             )}
           </Box>
         </Box>
-      </Popover>
+      )}
     </Box>
   );
 };

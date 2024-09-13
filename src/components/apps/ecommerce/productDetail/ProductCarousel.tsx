@@ -14,7 +14,7 @@ import SliderData from './SliderData';
 
 //fetch product
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import { ProductType } from 'src/types/apps/eCommerce';
+// import { ProductType } from 'src/types/apps/eCommerce';
 
 const ProductCarousel = () => {
   const [state, setState] = React.useState<any>({ nav1: null, nav2: null });
@@ -29,7 +29,7 @@ const ProductCarousel = () => {
   }, [dispatch]);
 
   // Get Products
-  const product: ProductType = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
+  const product: any = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
   const getProductImage = product ? product.photo : '';
 
   useEffect(() => {

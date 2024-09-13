@@ -1,28 +1,30 @@
 import {
   Alert,
-  AlertTitle,
   Box,
   Button,
   IconButton,
+  Slide,
+  Snackbar,
   TextField,
   Typography,
-  useTheme,
 } from '@mui/material';
 import { IconCheck, IconEdit, IconLock, IconUserCircle } from '@tabler/icons-react';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-
 
 import { useDispatch } from 'react-redux';
 import { setSelected } from 'src/store/RouterSlice';
 
 import * as yup from 'yup';
 
+function SlideTransition(props: any) {
+  return <Slide {...props} direction="left" />;
+}
+
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
-  const [showAlert, setShowAlert] = useState<{ message: string; type: 'success' | 'error' } | null>(
-    null,
-  );
+  const [open, setOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   // Validation schema
   const validationSchema = yup.object({
@@ -43,11 +45,9 @@ const AccountInformation = () => {
     onSubmit: () => {
       setEditing(null);
       setShowAlert({ message: 'Cập nhật thông tin thành công!', type: 'success' });
-      setTimeout(() => setShowAlert(null), 3000);
+      setOpen(true); // Mở Snackbar khi submit thành công
     },
   });
-
-  const theme = useTheme();
 
   const dispatch = useDispatch();
 
@@ -69,6 +69,13 @@ const AccountInformation = () => {
     if (e.key === 'Enter') {
       formik.handleSubmit();
     }
+  };
+
+  const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
   };
 
   const renderField = (field: string, label: string) => (
@@ -149,26 +156,18 @@ const AccountInformation = () => {
         </Box>
       </Box>
 
-      {showAlert && (
-        <Alert
-          severity={showAlert.type}
-          sx={{
-            position: 'fixed',
-            top: 16,
-            right: 16,
-            zIndex: theme.zIndex.snackbar,
-            backgroundColor: showAlert.type === 'success' ? '#4caf50' : '#f44336',
-            color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-            borderRadius: 1,
-            padding: 2,
-            width: 300,
-          }}
-        >
-          <AlertTitle>{showAlert.type === 'success' ? 'Thành công' : 'Lỗi'}</AlertTitle>
-          {showAlert.message}
+      {/* Hiển thị Alert khi có sự thay đổi */}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert onClose={handleClose} severity={'success'} variant="filled">
+          {showAlert?.message || 'Lưu thay đổi thành công'}
         </Alert>
-      )}
+      </Snackbar>
     </Box>
   );
 };
