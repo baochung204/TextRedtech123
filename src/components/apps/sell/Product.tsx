@@ -258,7 +258,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 </InputAdornment>
               ),
             }}
-            placeholder="Search Product"
+            placeholder="Tìm kiếm sản phẩm"
             size="small"
             onChange={handleSearch}
             value={search}
@@ -300,7 +300,7 @@ const PaginationTable = () => {
 
   const [search, setSearch] = React.useState('');
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const products = getProducts([]).payload as ProductType[];
+    const products = getProducts([]).payload as unknown as ProductType[];
     const filteredRows: ProductType[] = products.filter((row) => {
       return row.title.toLowerCase().includes(event.target.value);
     });
@@ -421,11 +421,11 @@ const PaginationTable = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                    <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
                       {row.total}{' '}
                       <Typography
                         color="textSecondary"
-                        variant="h6"
+                        variant="subtitle2"
                         fontWeight="400"
                         fontStyle="italic"
                         component="span"
@@ -437,11 +437,11 @@ const PaginationTable = () => {
                   </TableCell>
 
                   <TableCell>
-                    <Typography color="textSecondary" variant="h6" fontWeight="400">
+                    <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
                       {row.totalSales}{' '}
                       <Typography
                         color="textSecondary"
-                        variant="h6"
+                        variant="subtitle2"
                         fontWeight="400"
                         fontStyle="italic"
                         component="span"

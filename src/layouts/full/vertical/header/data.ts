@@ -4,6 +4,7 @@ import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import icon1 from 'src/assets/images/svgs/icon-account.svg';
 import icon3 from 'src/assets/images/svgs/icon-tasks.svg';
+import icon4 from 'src/assets/images/svgs/icon-dd-chat.svg';
 import Iconkey from 'src/assets/images/iconHeadrProfile/key.png';
 import ddIcon8 from 'src/assets/images/svgs/icon-dd-application.svg';
 import ddIcon2 from 'src/assets/images/svgs/icon-dd-cart.svg';
@@ -148,7 +149,7 @@ const profile: ProfileType[] = [
     href: '/forms/form-request',
     title: 'Đề xuất tính năng',
     // subtitle: 'To-do and Daily Tasks',
-    icon: icon3,
+    icon: icon4,
   },
 ];
 

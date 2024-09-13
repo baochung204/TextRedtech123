@@ -46,8 +46,8 @@ const AddDialog = () => {
             alignItems: 'center',
           },
           '& .MuiPaper-root': {
-            width: '40%',
-            maxWidth: 'none', // Giữ chiều rộng của Dialog
+            width: '100%',
+            maxWidth: '1000PX', // Giữ chiều rộng của Dialog
           },
         }}
       >

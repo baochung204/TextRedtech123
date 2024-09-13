@@ -8,7 +8,7 @@ import {
 } from '@tabler/icons-react';
 import {
   IconAppWindow,
-  IconChartDonut3,
+  IconHeadset,
   IconPackage,
   IconPoint,
   IconShoppingCart,
@@ -40,7 +40,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Trợ lý',
-    icon: IconChartDonut3,
+    icon: IconHeadset,
     href: '/apps/assistant/',
     children: [
       {
@@ -53,6 +53,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Quản lý Trợ lý',
         icon: IconPoint,
+        // href: '/apps/list-assistant',
         href: '/assistant/list',
       },
     ],
@@ -95,6 +96,14 @@ const Menuitems: MenuitemsType[] = [
         icon: IconPoint,
         href: '/apps/customerList2',
       },
+
+      // {
+      //   id: uniqueId(),
+      //   title: 'Thỏa thuận hợp tác',
+      //   icon: IconPoint,
+      //   href: '/apps/contract-client',
+      // },
+
     ],
   },
   {
