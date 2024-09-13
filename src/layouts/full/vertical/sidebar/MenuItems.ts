@@ -1,4 +1,5 @@
 import { IconAffiliate, IconArchive, IconTerminal2, IconUsersGroup } from '@tabler/icons-react';
+import { IconFilePencil } from '@tabler/icons-react';
 import {
   IconAppWindow,
   IconHeadset,
@@ -96,7 +97,6 @@ const Menuitems: MenuitemsType[] = [
       //   icon: IconPoint,
       //   href: '/apps/contract-client',
       // },
-
     ],
   },
   {
@@ -147,7 +147,7 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Cập nhật',
-    icon: IconAppWindow,
+    icon: IconFilePencil,
     href: '/apps/update',
   },
 ];
