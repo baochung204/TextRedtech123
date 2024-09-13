@@ -45,7 +45,7 @@ import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
 import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
 import iconExpense from 'src/assets/images/icon.png/expense.png';
 import iconRotation from 'src/assets/images/icon.png/rotation.png';
-import badge from 'src/assets/images/badge/badge.png';
+import badge from 'src/assets/images/badge/badge2.png';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
