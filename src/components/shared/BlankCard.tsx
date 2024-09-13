@@ -23,7 +23,7 @@ const BlankCard = ({ children, className, sx }: Props) => {
         p: 0,
         border: !customizer.isCardShadow ? `1px solid ${borderColor}` : 'none',
         position: 'relative',
-        paddingBottom: 6,
+        // paddingBottom: 6,
         sx,
       }}
       className={className}
