@@ -105,7 +105,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2">
-                    {item.titles}
+                    {item.title}
                   </Typography>
                 </TableCell>
                 <TableCell>

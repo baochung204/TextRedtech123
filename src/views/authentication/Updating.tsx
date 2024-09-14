@@ -1,7 +1,7 @@
 import { Box, Typography, Container, Button } from '@mui/material';
 // import React from 'react';
-import bot from 'src/assets/images/backgrounds/bot.svg';
 import { Link } from 'react-router-dom';
+import develop from 'src/assets/images/backgrounds/develop.svg';
 
 const Updating = () => {
   return (
@@ -15,20 +15,11 @@ const Updating = () => {
       <Container maxWidth="md">
         <Box
           component="img"
-          src={bot}
+          src={develop}
           alt="404"
           sx={{
             width: '100%',
             maxWidth: '400px',
-            animation: 'spin 4s linear infinite',
-            '@keyframes spin': {
-              '0%': {
-                transform: 'rotateY(0deg)',
-              },
-              '100%': {
-                transform: 'rotateY(360deg)',
-              },
-            },
           }}
         />
         <br />

@@ -1,39 +1,39 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    Box,
-    Typography,
-    TablePagination
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Box,
+  Typography,
+  TablePagination,
 } from '@mui/material';
 import DataRow from '../DataTable/TableTab6';
-import DialogURL from "../dialog/DIalogURL";
+import DialogURL from '../dialog/DIalogURL';
 
 interface PropsTab6 {
-    value: string;
-    open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  value: string;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    const handleChangePage = (newPage: number) => {
-        setPage(newPage);
-    };
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
+  };
 
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
-    const paginatedData = DataRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const paginatedData = DataRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
     return (
         <>
@@ -95,20 +95,20 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
                         </TableBody>
                     </Table>
 
-                    <TablePagination
-                        rowsPerPageOptions={[5, 10, 25]}
-                        component="div"
-                        count={DataRow.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={() => handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                    />
-                </TableContainer>
-            </Box>
-            <DialogURL open={open} setOpen={setOpen} value={value} />
-        </>
-    );
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={DataRow.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={() => handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </TableContainer>
+      </Box>
+      <DialogURL open={open} setOpen={setOpen} value={value} />
+    </>
+  );
 };
 
 export default Tab6;

@@ -13,23 +13,22 @@ import {
 } from '@mui/material';
 import React, { useRef, useState } from 'react';
 
-import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconPlus } from '@tabler/icons-react';
 const emails = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl'];
-
-const SimpleDialog = () => {
-  const [open, setOpen] = useState(false);
+interface PropsSearch {
+  openSearch: boolean;
+  setOpenSearch: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const SimpleDialog: React.FC<PropsSearch> = ({openSearch,setOpenSearch}) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [fileName, setFileName] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenSearch(false);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,18 +53,8 @@ const SimpleDialog = () => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="primary"
-        component="span"
-        size='small'
-        style={{ marginBottom: '10px' }}
-        onClick={handleClickOpen}
-      >
-        <AddIcon fontSize="small" style={{ marginRight: '10px' }} />
-        File
-      </Button>
-      <Typography ml={-30} variant="subtitle1" component="div">
+
+      <Typography variant="subtitle1" component="div">
         {selectedValues
           .join('\n')
           .split('\n')
@@ -76,7 +65,7 @@ const SimpleDialog = () => {
             </React.Fragment>
           ))}
       </Typography>
-      <Dialog onClose={handleClose} open={open}>
+      <Dialog onClose={handleClose} open={openSearch}>
         <DialogTitle
           sx={{
             display: 'flex',
@@ -109,7 +98,7 @@ const SimpleDialog = () => {
                 <IconPlus width={20} height={20} />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Thêm mới" />
+            <ListItemText primary="Thêm trang bị" />
           </ListItem>
         </List>
       </Dialog>
@@ -122,7 +111,7 @@ const SimpleDialog = () => {
         onChange={handleFileChange}
       />
       {fileName && (
-        <Typography variant="subtitle1" component="div" mt={0} ml={-30}>
+        <Typography variant="subtitle1" component="div" mt={0}>
           {fileName}
         </Typography>
       )}

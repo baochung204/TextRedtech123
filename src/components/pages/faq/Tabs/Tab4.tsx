@@ -9,7 +9,7 @@ import {
   TableHead,
   TableRow,
   Typography,
-  TablePagination
+  TablePagination,
 } from '@mui/material';
 import DataTable4 from '../DataTable/TableTab4';
 
@@ -17,7 +17,7 @@ const Tab4 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleChangePage = ( newPage: number) => {
+  const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
 
