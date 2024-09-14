@@ -158,8 +158,7 @@ const Integration = () => {
               </TabList>
             </Box>
 
-            <TabPanel value="1">
-              {' '}
+            <TabPanel value="1" sx={{ padding: 'none' }}>
               <Tooltip title="Add" sx={{ mb: '15px' }}>
                 <Fab size="medium" color="secondary" aria-label="plus">
                   <IconPlus width={20} />

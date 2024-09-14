@@ -10,6 +10,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PageContainer from 'src/components/container/PageContainer';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const Update = () => {
   const [expanded, setExpanded] = useState(false);
@@ -17,10 +18,10 @@ const Update = () => {
   const BCrumb = [
     {
       to: '/',
-      title: 'Home',
+      title: 'Trang Chủ',
     },
     {
-      title: 'FAQ',
+      title: 'Cập Nhật',
     },
   ];
 
@@ -31,7 +32,7 @@ const Update = () => {
   return (
     <PageContainer title="Faq" description="this is Faq page">
       {/* breadcrumb */}
-      <Breadcrumb title="FAQ" items={BCrumb} />
+      <BannerPage title="Cập nhật" items={BCrumb} />
       {/* end breadcrumb */}
       <Box mt={4}>
         <Box mb={4} textAlign="center">
