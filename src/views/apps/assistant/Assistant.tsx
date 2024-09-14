@@ -10,17 +10,6 @@ import BlankCard from 'src/components/shared/BlankCard';
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Trang chủ',
-  },
-  {
-    to: '/apps/assistant',
-    title: 'Quản lý Assistant',
-  },
-];
-
 const Assistant = () => {
   const nav = useNavigate();
   const handleAdd = () => {
@@ -29,7 +18,8 @@ const Assistant = () => {
   return (
     <PageContainer title="Assistant" description="this is Shop List page">
       {/* breadcrumb */}
-      <Breadcrumb title="Assistant" items={BCrumb} />
+      {/* <BannerPage title="Quản lý sản phẩm  " items={BCrumb} /> */}
+
       <Button
         onClick={handleAdd}
         variant="contained"

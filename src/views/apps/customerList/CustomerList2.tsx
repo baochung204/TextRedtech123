@@ -127,7 +127,7 @@ const CustomerList2 = () => {
                     placeholder="Tìm kiếm"
                     size="small"
                   />
-{/* 
+
                   <CustomSelect
                     labelId="column-filter"
                     id="column-filter"
@@ -146,7 +146,7 @@ const CustomerList2 = () => {
                     sx={{ marginRight: '20px' }}
                   >
                     <MenuItem value={1}>Bộ cọc</MenuItem>
-                  </CustomSelect> */}
+                  </CustomSelect>
                 </Box>
 
                 {/* Time Filter and Refresh Icon */}
@@ -170,7 +170,7 @@ const CustomerList2 = () => {
                   </LocalizationProvider>
 
                   {/* Icon Refresh */}
-                  {/* <svg
+                  <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20" // Adjust the width to make the icon smaller
                     height="20" // Adjust the height to make the icon smaller
@@ -187,14 +187,14 @@ const CustomerList2 = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
                     <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                  </svg> */}
+                  </svg>
                 </Box>
               </Box>
               <CustomerTable2 />
             </TabPanel>
             <TabPanel value="2">
               <Tags />
-            </TabPanel> 
+            </TabPanel>
           </TabContext>
         </Box>
       </Grid>

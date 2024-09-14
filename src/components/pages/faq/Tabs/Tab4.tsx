@@ -11,7 +11,7 @@ import {
   TableHead,
   TableRow,
   Typography,
-  TablePagination
+  TablePagination,
 } from '@mui/material';
 import DataTable4 from '../DataTable/TableTab4';
 
@@ -19,7 +19,7 @@ const Tab4 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleChangePage = ( newPage: number) => {
+  const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
 
@@ -37,45 +37,25 @@ const Tab4 = () => {
           <TableHead>
             <TableRow>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  STT
-                </Typography>
+                <Typography variant="h6">ID</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  ID
-                </Typography>
+                <Typography variant="h6">Tên file</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Tên file
-                </Typography>
+                <Typography variant="h6">Dung lượng</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Dung lượng
-                </Typography>
+                <Typography variant="h6">Ngày tải</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Ngày tải
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Định dạng
-                </Typography>
+                <Typography variant="h6">Định dạng</Typography>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {paginatedData.map((items) => (
               <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {items.id}
-                  </Typography>
-                </TableCell>
                 <TableCell component="th" scope="row">
                   <Stack direction="row" spacing={2}>
                     <Avatar
@@ -96,22 +76,22 @@ const Tab4 = () => {
                 </TableCell>
 
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
+                  <Typography variant="subtitle2" color="textSecondary">
                     {items.modelName}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
+                  <Typography variant="subtitle2" color="textSecondary">
                     {items.modelLocal}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
+                  <Typography variant="subtitle2" color="textSecondary">
                     {items.creationDate.toLocaleDateString()}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
+                  <Typography variant="subtitle2" color="textSecondary">
                     {items.trainedTokens}
                   </Typography>
                 </TableCell>

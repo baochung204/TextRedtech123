@@ -1,5 +1,4 @@
 import {
-  Button,
   Checkbox,
   Dialog,
   DialogTitle,
@@ -7,24 +6,24 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography,
+  Typography
 } from '@mui/material';
 import React, { useState } from 'react';
 
-import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 const functions = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl'];
+interface PropsFunction {
+  openFunction: boolean;
+  setOpenFunction: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const FunctionsDialog = () => {
-  const [open, setOpen] = useState(false);
+const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenFunction(false);
   };
 
   const handleToggle = (email: string) => {
@@ -37,18 +36,8 @@ const FunctionsDialog = () => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="primary"
-        size='small'
-        component="span"
-        style={{ marginBottom: '10px' }}
-        onClick={handleClickOpen}
-      >
-        <AddIcon fontSize="small" style={{ marginRight: '10px' }} />
-        File
-      </Button>
-      <Typography ml={-30} variant="subtitle1" component="div">
+
+      <Typography variant="subtitle1" component="div">
         {selectedValues
           .join('\n')
           .split('\n')
@@ -59,7 +48,7 @@ const FunctionsDialog = () => {
             </React.Fragment>
           ))}
       </Typography>
-      <Dialog onClose={handleClose} open={open}>
+      <Dialog onClose={handleClose} open={openFunction}>
         <DialogTitle
           sx={{
             display: 'flex',

@@ -26,6 +26,7 @@ import CustomTextField from '../../../components/forms/theme-elements/CustomText
 import PopupAdd from './PopupAdd';
 // import { TabPanel } from '@mui/lab';
 import { IconSearch } from '@tabler/icons-react';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 // Tạo Transition component để sử dụng hiệu ứng slide từ dưới lên
 const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement }>(
@@ -39,9 +40,8 @@ const Transition = React.forwardRef<unknown, TransitionProps & { children: React
 );
 
 const BCrumb = [
-  { to: '/', title: 'Home' },
-  { to: '/apps/blog/posts', title: 'Blog' },
-  { title: 'Blog post' },
+  { to: '/', title: 'Trang Chủ' },
+  { to: '/apps/blog/posts', title: 'Danh sách khách hàng' },
 ];
 
 const CustomerList = () => {
@@ -62,9 +62,10 @@ const CustomerList = () => {
   };
 
   return (
-    <div className="customer-list-container" style={{ padding: '20px' }}>
+    <div className="customer-list-container">
       {/* Breadcrumb */}
-      <Breadcrumb title="Blog Detail" items={BCrumb} />
+      {/* <Breadcrumb title="Blog Detail" items={BCrumb} /> */}
+      <BannerPage title="Danh sách khách hàng" items={BCrumb} />
 
       {/* Action Buttons and Filters */}
       {/* Action Buttons and Filters */}
@@ -132,7 +133,7 @@ const CustomerList = () => {
             value={1} // Setting the first value as default
             sx={{ marginRight: '20px' }}
           >
-            <MenuItem value={1}>Bộ cọc</MenuItem>
+            <MenuItem value={1}>Bộ lọc</MenuItem>
           </CustomSelect>
         </Box>
 
@@ -151,26 +152,6 @@ const CustomerList = () => {
               renderInput={(params) => <CustomTextField {...params} sx={{ marginRight: '10px' }} />}
             />
           </LocalizationProvider>
-
-          {/* Icon Refresh */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20" // Adjust the width to make the icon smaller
-            height="20" // Adjust the height to make the icon smaller
-            cursor="pointer"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="icon icon-tabler icons-tabler-outline icon-tabler-refresh"
-            style={{ marginLeft: '10px' }}
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-            <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-          </svg>
         </Box>
       </Box>
       {/* Bảng khách hàng */}

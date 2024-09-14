@@ -1,5 +1,5 @@
+import { Box, Button, Grid, MenuItem, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Box, Button, Checkbox, Grid, ListItemText, MenuItem, Typography } from '@mui/material';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -17,29 +17,31 @@ const currencies: CurrencyType[] = [
   { value: 'other', label: 'Khác' },
 ];
 
-const channels: CurrencyType[] = [
-  { value: 'mkt', label: 'MKT' },
-  { value: 'zl', label: 'Zalo' },
-  { value: 'fb', label: 'Facebook' },
-  { value: 'inst', label: 'Instagram' },
-  { value: 'other', label: 'Other' },
-];
+// const channels: CurrencyType[] = [
+//   { value: 'mkt', label: 'MKT' },
+//   { value: 'zl', label: 'Zalo' },
+//   { value: 'fb', label: 'Facebook' },
+//   { value: 'inst', label: 'Instagram' },
+//   { value: 'other', label: 'Other' },
+// ];
 
 const PopupAddList2 = () => {
   const [gender, setGender] = React.useState('');
-  const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+  // const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+  // const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+
   const [tags, setTags] = React.useState('');
   const [companyPhone, setCompanyPhone] = React.useState('');
-  const [assistant, setAssistant] = React.useState('');
+  // const [assistant, setAssistant] = React.useState('');
   const [thumbnailImage, setThumbnailImage] = useState<File | null>(null);
   const [productImage, setProductImage] = useState<File | null>(null);
 
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    setter: React.Dispatch<React.SetStateAction<File | null>>,
+    setImage: React.Dispatch<React.SetStateAction<File | null>>,
   ) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setter(event.target.files[0]);
+    if (event.target.files && event.target.files[0]) {
+      setImage(event.target.files[0]);
     }
   };
 
@@ -47,15 +49,15 @@ const PopupAddList2 = () => {
     setGender(event.target.value as string);
   };
 
-  const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedChannels(event.target.value as string[]);
-  };
+  // const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  //   setSelectedChannels(event.target.value as string[]);
+  // };
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setter(event.target.value);
-    };
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setter(event.target.value);
+      };
 
   const renderImagePreview = (image: File | null) => {
     if (!image) return null;
@@ -120,9 +122,49 @@ const PopupAddList2 = () => {
                 type="file"
                 id="thumbnail-image"
                 style={{ display: 'none' }}
+                accept="image/*"
                 onChange={(e) => handleFileChange(e, setThumbnailImage)}
               />
+
+
+
+              {/* Khung hiển thị ảnh */}
+              <Box
+
+
+
+              {/* Khung hiển thị ảnh */}
+              <Box
+
+                p={1}
+                sx={{
+                  width: '300px', // Kích thước khung cố định
+                  height: '296px',
+                  border: '2px dashed #ddd',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  overflow: 'hidden', // Ẩn phần ảnh bị vượt quá khung
+                }}
+              >
+
+                {/* Hiển thị ảnh nếu có */}
+                {thumbnailImage ? (
+                  <img
+                    src={URL.createObjectURL(thumbnailImage)}
+                    alt="Thumbnail Preview"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} // Đảm bảo ảnh lấp đầy khung
+                  />
+                ) : (
+                  <Typography variant="body2" color="textSecondary">
+                    Chưa có ảnh
+                  </Typography>
+                )}
+
+              </Box>
               <Button
+                sx={{ mt: 2 }}
                 variant="contained"
                 color="primary"
                 component="label"
@@ -130,16 +172,92 @@ const PopupAddList2 = () => {
               >
                 Chọn ảnh thumbnail
               </Button>
-              {thumbnailImage && (
-                <Box mt={1}>
-                  <Typography variant="subtitle1" component="div">
-                    {thumbnailImage.name}
-                  </Typography>
-                  {renderImagePreview(thumbnailImage)}
-                </Box>
-              )}
             </Box>
 
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Thông tin trợ lý và kênh */}
+      <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
+        <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
+          Chi tiết sản phẩm
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item lg={6} md={12}>
+            <CustomFormLabel htmlFor="title-text">Tiêu đề</CustomFormLabel>
+            <CustomTextField
+              id="title-text"
+              variant="outlined"
+              fullWidth
+            // value={title}
+            // onChange={handleChange(setTitle)}
+            />
+
+            <CustomFormLabel htmlFor="description-text">Mô tả</CustomFormLabel>
+            <CustomTextField
+              id="description-text"
+              variant="outlined"
+              fullWidth
+            // value={description}
+            // onChange={handleChange(setDescription)}
+            />
+
+            <CustomFormLabel htmlFor="weight-text">Khối lượng</CustomFormLabel>
+            <CustomTextField
+              id="weight-text"
+              variant="outlined"
+              fullWidth
+            // value={weight}
+            // onChange={handleChange(setWeight)}
+            />
+
+            <CustomFormLabel htmlFor="unit-text">Đơn vị tính</CustomFormLabel>
+            <CustomTextField
+              id="unit-text"
+              variant="outlined"
+              fullWidth
+            // value={unit}
+            // onChange={handleChange(setUnit)}
+            />
+          </Grid>
+
+          <Grid item lg={6} md={12}>
+            <CustomFormLabel htmlFor="size-text">Kích thước</CustomFormLabel>
+            <CustomTextField
+              id="size-text"
+              variant="outlined"
+              fullWidth
+            // value={size}
+            // onChange={handleChange(setSize)}
+            />
+
+            <CustomFormLabel htmlFor="color-text">Màu sắc</CustomFormLabel>
+            <CustomTextField
+              id="color-text"
+              variant="outlined"
+              fullWidth
+            // value={color}
+            // onChange={handleChange(setColor)}
+            />
+
+            <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
+            <CustomTextField
+              id="material-text"
+              variant="outlined"
+              fullWidth
+            // value={material}
+            // onChange={handleChange(setMaterial)}
+            />
+
+            <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
+            <CustomTextField
+              id="style-text"
+              variant="outlined"
+              fullWidth
+            // value={style}
+            // onChange={handleChange(setStyle)}
+            />
             {/* Ảnh sản phẩm */}
             <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel>
             <input
@@ -159,69 +277,6 @@ const PopupAddList2 = () => {
                 {renderImagePreview(productImage)}
               </Box>
             )}
-          </Grid>
-        </Grid>
-      </Box>
-
-      {/* Thông tin trợ lý và kênh */}
-      <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
-        <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
-          Chi tiết sản phẩm
-        </Typography>
-        <Grid container spacing={3}>
-          <Grid item lg={6} md={12}>
-            <CustomFormLabel htmlFor="assistant-text">Trợ lý</CustomFormLabel>
-            <CustomTextField
-              id="assistant-text"
-              variant="outlined"
-              fullWidth
-              value={assistant}
-              onChange={handleChange(setAssistant)}
-            />
-            <CustomFormLabel htmlFor="tags-text">Tags</CustomFormLabel>
-            <CustomTextField
-              id="tags-text"
-              variant="outlined"
-              fullWidth
-              value={tags}
-              onChange={handleChange(setTags)}
-            />
-          </Grid>
-          <Grid item lg={6} md={12}>
-            <CustomFormLabel htmlFor="channel-select">Kênh</CustomFormLabel>
-            <CustomSelect
-              id="channel-select"
-              multiple
-              value={selectedChannels}
-              onChange={handleChannelChange}
-              renderValue={(selected: any) => (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {selected.map((value: any) => (
-                    <Box
-                      key={value}
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        border: '1px solid',
-                        borderRadius: '4px',
-                        padding: '2px 6px',
-                      }}
-                    >
-                      {channels.find((channel) => channel.value === value)?.label}
-                    </Box>
-                  ))}
-                </Box>
-              )}
-              fullWidth
-              variant="outlined"
-            >
-              {channels.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  <Checkbox checked={selectedChannels.indexOf(option.value) > -1} />
-                  <ListItemText primary={option.label} />
-                </MenuItem>
-              ))}
-            </CustomSelect>
           </Grid>
         </Grid>
       </Box>
