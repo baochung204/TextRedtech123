@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
 import {
-  TableRow,
-  TableHead,
-  Table,
-  TableContainer,
-  TableCell,
-  TableBody,
-  Typography,
   Avatar,
   Box,
-  Stack,
-  TablePagination,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
   Paper,
-  FormControlLabel,
-  // SelectChangeEvent,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  Typography
 } from '@mui/material';
+import React, { useState } from 'react';
 import { DataRowCustomerTable } from './tableData';
-import CustomSwitch from '../forms/theme-elements/CustomSwitch';
 
 const CustomerTable = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
@@ -190,12 +183,12 @@ const CustomerTable = () => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-        <Box ml={2}>
+        {/* <Box ml={2}>
         <FormControlLabel
           control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
           label="Dense padding"
         />
-      </Box>
+      </Box> */}
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Box,
   // Button,
@@ -17,19 +18,18 @@ import Tooltip from '@mui/material/Tooltip';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { IconSearch } from '@tabler/icons-react';
 
-import PopupAddList2 from './PopupAddlist2';
 import { Slide } from '@mui/material';
-import Tags from 'src/components/apps/sell/Tags';
 import { TransitionProps } from '@mui/material/transitions';
+import Tags from 'src/components/apps/sell/Tags';
+import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [
   { to: '/', title: 'Home' },
@@ -127,7 +127,7 @@ const CustomerList2 = () => {
                     placeholder="Tìm kiếm"
                     size="small"
                   />
-
+{/* 
                   <CustomSelect
                     labelId="column-filter"
                     id="column-filter"
@@ -146,7 +146,7 @@ const CustomerList2 = () => {
                     sx={{ marginRight: '20px' }}
                   >
                     <MenuItem value={1}>Bộ cọc</MenuItem>
-                  </CustomSelect>
+                  </CustomSelect> */}
                 </Box>
 
                 {/* Time Filter and Refresh Icon */}
@@ -170,7 +170,7 @@ const CustomerList2 = () => {
                   </LocalizationProvider>
 
                   {/* Icon Refresh */}
-                  <svg
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20" // Adjust the width to make the icon smaller
                     height="20" // Adjust the height to make the icon smaller
@@ -187,14 +187,14 @@ const CustomerList2 = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
                     <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                  </svg>
+                  </svg> */}
                 </Box>
               </Box>
               <CustomerTable2 />
             </TabPanel>
             <TabPanel value="2">
               <Tags />
-            </TabPanel>
+            </TabPanel> 
           </TabContext>
         </Box>
       </Grid>
