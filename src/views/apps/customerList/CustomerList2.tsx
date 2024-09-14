@@ -1,3 +1,4 @@
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Box,
   // Button,
@@ -17,22 +18,20 @@ import Tooltip from '@mui/material/Tooltip';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { IconSearch } from '@tabler/icons-react';
 
-import PopupAddList2 from './PopupAddlist2';
 import { Slide } from '@mui/material';
-import Tags from 'src/components/apps/sell/Tags';
 import { TransitionProps } from '@mui/material/transitions';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
+import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -81,7 +80,7 @@ const CustomerList2 = () => {
             >
               <Tab label="Danh sách khách hàng" value="1" sx={{ p: 0 }} />
 
-              <Tab label="Tags" value="2" sx={{ p: 0 }} />
+              {/* <Tab label="Tags" value="2" sx={{ p: 0 }} /> */}
             </TabList>
 
             <TabPanel value="1" sx={{ p: 0 }}>
@@ -181,9 +180,9 @@ const CustomerList2 = () => {
               <CustomerTable2 />
             </TabPanel>
 
-            <TabPanel value="2" sx={{ p: 0 }}>
+            {/* <TabPanel value="2" sx={{ p: 0 }}>
               <Tags />
-            </TabPanel>
+            </TabPanel> */}
           </Box>
         </TabContext>
       </ChildCard>
@@ -198,7 +197,7 @@ const CustomerList2 = () => {
       >
         <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
         <DialogContent>
-          <PopupAddList2 /> {/* Gọi component PopupAdd */}
+          <PopupAddList2 />
         </DialogContent>
         {/* <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>

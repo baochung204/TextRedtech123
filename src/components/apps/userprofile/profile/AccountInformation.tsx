@@ -28,7 +28,6 @@ const AccountInformation = () => {
 
   // Validation schema
   const validationSchema = yup.object({
-    email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
     phone: yup
       .string()
       .matches(/^0\d{9}$/, 'Số điện thoại không hợp lệ, phải có 10 chữ số và bắt đầu bằng 0')
@@ -37,7 +36,6 @@ const AccountInformation = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: 'nqton301004@gmail.com',
       phone: '0901234567',
       password: '**********',
     },
@@ -78,12 +76,16 @@ const AccountInformation = () => {
     setOpen(false);
   };
 
-  const renderField = (field: string, label: string) => (
+  const renderField = (field: string, label: string, isEditable: boolean) => (
     <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
         {label}:
       </Typography>
-      {editing === field ? (
+      {field === 'email' ? (
+        <Typography variant="body1" sx={{ flexGrow: 1 }}>
+          nqton301004@gmail.com {/* Email tĩnh và không thể chỉnh sửa */}
+        </Typography>
+      ) : editing === field ? (
         <>
           <TextField
             name={field}
@@ -113,7 +115,7 @@ const AccountInformation = () => {
               ? '**********'
               : formik.values[field as keyof typeof formik.values]}
           </Typography>
-          {field !== 'password' && (
+          {isEditable && (
             <IconButton onClick={() => handleEditClick(field)}>
               <IconEdit />
             </IconButton>
@@ -135,8 +137,8 @@ const AccountInformation = () => {
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
         <IconUserCircle /> <span>Thông tin tài khoản</span>
       </Typography>
-      {renderField('email', 'Email')}
-      {renderField('phone', 'Số điện thoại')}
+      {renderField('email', 'Email', false)} {/* Email không thể chỉnh sửa */}
+      {renderField('phone', 'Số điện thoại', true)} {/* Số điện thoại có thể chỉnh sửa */}
       <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
           Mật khẩu:

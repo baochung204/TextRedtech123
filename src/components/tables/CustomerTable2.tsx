@@ -167,4 +167,4 @@ const CustomerTable2 = () => {
   );
 };
 
-export default CustomerTable2;
+  export default CustomerTable2;

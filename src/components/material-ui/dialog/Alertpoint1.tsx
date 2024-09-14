@@ -219,111 +219,26 @@ const Afletpoint1 = ({ row }: any) => {
                       boxShadow: 'none',
                     }}
                   >
-                    <AccordionSummary
-                      expandIcon={<IconChevronDown />}
+                    <Box
                       sx={{
                         fontSize: 15,
                         px: 0,
                         border: 'none',
                         boxShadow: 'none',
+                        display: 'flex',
+
+                        justifyContent: 'space-between',
                       }}
                     >
                       <Typography variant="body2" sx={{ fontSize: 17, fontWeight: 500 }}>
                         Mã khuyến mãi
                       </Typography>
-                    </AccordionSummary>
-
-                    <AccordionDetails
-                      sx={{
-                        border: 'none',
-                        boxShadow: 'none',
-                        display: 'flex',
-                        gap: 2,
-                        px: 0,
-                      }}
-                    >
-                      <CustomInput
-                        id="ordinary-outlined-password-input"
-                        type="text"
-                        autoComplete="current-password"
-                        variant="outlined"
-                        fullWidth
-                        placeholder="Nhập mã khuyến mãi"
-                        sx={{
-                          px: 0,
-                          width: '80%',
-                        }}
-                      />
-
-                      <Box>
-                        <Button
-                          color="primary"
-                          variant="contained"
-                          sx={{ width: 'auto', borderRadius: '50px', py: 1 }}
-                        >
-                          Áp dụng
-                        </Button>
-                      </Box>
-                    </AccordionDetails>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 2,
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          border: '2px solid #FFD60A',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
-                      >
-                        <Typography sx={{ fontWeight: 600, px: 2, fontSize: 16, py: 2 }}>
-                          Giảm 900.000 đ
-                        </Typography>
-                        <Button
-                          variant="outlined"
-                          color="warning"
-                          sx={{ height: '35px', my: 'auto', mr: 2 }}
-                        >
-                          Bỏ chọn
-                        </Button>
-                      </Box>
-                      <Box
-                        sx={{
-                          border: '2px solid #E0E0E0',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          position: 'relative',
-
-                          '&:hover button': {
-                            opacity: 1,
-                            visibility: 'visible',
-                          },
-                        }}
-                      >
-                        <Typography sx={{ fontWeight: 600, px: 2, fontSize: 16, py: 2 }}>
-                          Giảm 800.000 đ
-                        </Typography>
-                        <Button
-                          variant="outlined"
-                          color="warning"
-                          sx={{
-                            height: '35px',
-                            my: 'auto',
-                            mr: 2,
-                            opacity: 0,
-                            visibility: 'hidden',
-                            transition: 'opacity 0.3s ease, visibility 0.3s ease',
-                          }}
-                        >
-                          Áp dụng
-                        </Button>
-                      </Box>
+                      <Typography variant="body2" sx={{ fontSize: 17, fontWeight: 500 }}>
+                        KM025K2J - Giảm 15%{' '}
+                      </Typography>
                     </Box>
                   </Accordion>
-                  <Accordion
+                  {/* <Accordion
                     sx={{
                       border: 'none',
                       boxShadow: 'none',
@@ -458,7 +373,7 @@ const Afletpoint1 = ({ row }: any) => {
                         1.023.900 đ
                       </Typography>
                     </Box>
-                  </Accordion>
+                  </Accordion> */}
                 </Box>
                 <Box>
                   <Box sx={{ mt: 2 }}>

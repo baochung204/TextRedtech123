@@ -113,14 +113,13 @@ const BuyPoint = () => {
 
       {/* <Breadcrumb title="Quy Đổi R-Point  " items={BCrumb} /> */}
       <ChildCard>
-        {/* <Button onClick={() => onHandleOpenPopup()}>click</Button> */}
         <Grid container spacing={7}>
           <Grid item lg={10} sm={6} xs={12} sx={{}}>
             <Box
               sx={{
-                backgroundColor: theme.palette.mode === 'dark' ? '#404759' : '#FEF3F4', // Sử dụng màu nền tùy theo chế độ
+                backgroundColor: theme.palette.mode === 'dark' ? '#404759' : '#FEF3F4',
                 padding: 0.3,
-                overflow: 'hidden', // Đảm bảo không có văn bản hiển thị ngoài vùng cuộn
+                overflow: 'hidden', 
                 position: 'relative',
               }}
             >
