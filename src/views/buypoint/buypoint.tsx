@@ -45,6 +45,7 @@ const BCrumb = [
   },
   { to: '/buy/point', title: 'Đổi R-Point' },
 ];
+
 const marqueeAnimation = keyframes`
   0% {
     transform: translateX(100%);
