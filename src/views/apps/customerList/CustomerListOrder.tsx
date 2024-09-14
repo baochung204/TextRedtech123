@@ -26,6 +26,8 @@ import CustomSelect from '../../../components/forms/theme-elements/CustomSelect'
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import AddOrder from './PopupAdd2';
 import TableListOrder from './TableOrderList';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import PageContainer from 'src/components/container/PageContainer';
 // import Tags from 'src/components/apps/sell/Tags';
 
 const BCrumb = [
@@ -54,12 +56,15 @@ const CustomerListOrder = () => {
   // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
   //   setValue(newValue);
   // };
-
+  const BCrumb = [
+    { to: '/', title: 'Trang Chủ' },
+    { to: '/apps/blog/posts', title: 'Đơn hàng' },
+  ];
   return (
-    <div className="customer-list-container" style={{ padding: '20px' }}>
+    <PageContainer>
       {/* Breadcrumb */}
-      <Breadcrumb title="Blog Detail" items={BCrumb} />
-
+      {/* <Breadcrumb title="Blog Detail" items={BCrumb} /> */}
+      <BannerPage title="Đơn hàng" items={BCrumb} />
       <Grid container spacing={3}>
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
@@ -186,7 +191,7 @@ const CustomerListOrder = () => {
           </Button>
         </DialogActions> */}
       </Dialog>
-    </div>
+    </PageContainer>
   );
 };
 
