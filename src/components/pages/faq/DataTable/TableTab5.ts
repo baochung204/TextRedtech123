@@ -14,6 +14,9 @@ interface DataTable5 {
     images: string;
     imgName: string;
     createDate: string;
+    idCode: string,
+    title: string,
+    moTa: string
 }
 
 const imageSources = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10];
@@ -30,12 +33,18 @@ const generateRandomDate = () => {
     const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     return randomDate.toISOString().split('T')[0]; 
 };
-
+const generateIdCode = () => {
+    const randomNumber = Math.floor(Math.random() * 1000000); // Random number between 0 and 999999
+    return `#${randomNumber.toString().padStart(6, '0')}`; // Pad with leading zeros if necessary
+}
 const DataTable5: DataTable5[] = Array.from({ length: 20 }, (_, index) => ({
     id: (index + 1).toString(),
     images: imageSources[Math.floor(Math.random() * imageSources.length)],
     imgName: generateRandomImageName(),
     createDate: generateRandomDate(),
+    idCode: generateIdCode(),
+    title: 'Ảnh test',
+    moTa: 'Mô tả'
 }));
 
 export default DataTable5;

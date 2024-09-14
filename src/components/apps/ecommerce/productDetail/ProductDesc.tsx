@@ -99,8 +99,8 @@ const ProductDesc = () => {
             scrollButtons
             indicatorColor="primary"
           >
-            <Tab label="Mô tả" {...a11yProps(0)} />
-            <Tab label="Đánh giá" {...a11yProps(1)} />
+            <Tab label="Thông tin chi tiết" {...a11yProps(0)} />
+            <Tab label="Hướng dẫn sử dụng" {...a11yProps(1)} />
           </Tabs>
         </Box>
         {/* ------------------------------------------- */}
@@ -132,60 +132,56 @@ const ProductDesc = () => {
         {/* ------------------------------------------- */}
         <TabPanel value={value} index={1}>
           <Grid container spacing={3}>
-            {/* ------------------------------------------- */}
-            {/* Average Rate Tab */}
-            {/* ------------------------------------------- */}
-            <Grid item xs={12} lg={6}>
-              <Paper variant="outlined" sx={{ height: '100%', p: 3 }}>
-                <Stack
-                  alignItems="center"
-                  justifyContent="center"
-                  spacing={2}
-                  sx={{ height: '100%' }}
-                >
-                  <Typography variant="subtitle1">Đánh giá trung bình</Typography>
-                  <Typography variant="h1" color="primary" fontWeight={600}>
-                    {star}/5
-                  </Typography>
-                  <Rating
-                    name="simple-controlled"
-                    value={star}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    onChange={(event, newValue) => {
-                      setStar(newValue);
-                    }}
-                  />
-                </Stack>
-              </Paper>
+            {/* Section 1: Introduction */}
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom>
+                Hướng dẫn sử dụng cơ bản Chatbot
+              </Typography>
+              <Typography variant="body1">
+                Chatbot này được thiết kế để hỗ trợ bạn trong việc trả lời các câu hỏi cơ bản và
+                cung cấp thông tin. Bạn có thể bắt đầu sử dụng chatbot bằng cách nhập câu hỏi của
+                mình vào hộp chat, và chatbot sẽ trả lời ngay lập tức.
+              </Typography>
             </Grid>
-            {/* ------------------------------------------- */}
-            {/* Progrees Rate Tab */}
-            {/* ------------------------------------------- */}
-            <Grid item xs={12} lg={6}>
-              <Paper variant="outlined" sx={{ p: 3 }}>
-                <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
-                  <Grid item xs={12}>
-                    <ProgressBar star={1} value={45} like={485} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <ProgressBar star={2} value={25} like={215} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <ProgressBar star={3} value={20} like={110} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <ProgressBar star={4} value={80} like={620} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <ProgressBar star={5} value={12} like={160} />
-                  </Grid>
-                </Grid>
-              </Paper>
+
+            {/* Section 2: Cách tương tác với Chatbot */}
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom>
+                Cách tương tác với Chatbot
+              </Typography>
+              <Typography variant="body1">Bạn có thể hỏi chatbot về các chủ đề sau:</Typography>
+              <ul>
+                <li>Các câu hỏi chung (ví dụ: "Giờ làm việc của công ty là gì?")</li>
+                <li>Các câu hỏi về dịch vụ (ví dụ: "Làm thế nào để đặt lại mật khẩu?")</li>
+                <li>Các hướng dẫn sử dụng (ví dụ: "Hướng dẫn tôi cách sử dụng hệ thống.")</li>
+              </ul>
             </Grid>
-            {/* ------------------------------------------- */}
-            {/* Button */}
-            {/* ------------------------------------------- */}
+
+            {/* Section 3: Các tính năng nâng cao */}
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom>
+                Các tính năng nâng cao
+              </Typography>
+              <Typography variant="body1">
+                Ngoài việc trả lời các câu hỏi cơ bản, chatbot còn có thể hỗ trợ:
+              </Typography>
+              <ul>
+                <li>Cung cấp các hướng dẫn chi tiết từng bước.</li>
+                <li>Đưa ra gợi ý khắc phục sự cố cho các vấn đề phổ biến.</li>
+                <li>Hướng dẫn bạn quản lý tài khoản và các tác vụ khác.</li>
+              </ul>
+            </Grid>
+
+            {/* Section 4: Kết luận */}
+            <Grid item xs={12}>
+              <Typography variant="h6" gutterBottom>
+                Kết luận
+              </Typography>
+              <Typography variant="body1">
+                Chúng tôi hy vọng hướng dẫn này sẽ giúp bạn sử dụng chatbot một cách hiệu quả. Nếu
+                bạn gặp bất kỳ vấn đề gì hoặc cần thêm hỗ trợ, đừng ngần ngại hỏi chatbot nhé!
+              </Typography>
+            </Grid>
           </Grid>
         </TabPanel>
       </Box>

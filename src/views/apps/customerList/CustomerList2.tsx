@@ -1,3 +1,4 @@
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Box,
   // Button,
@@ -17,24 +18,24 @@ import Tooltip from '@mui/material/Tooltip';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { IconSearch } from '@tabler/icons-react';
 
-import PopupAddList2 from './PopupAddlist2';
 import { Slide } from '@mui/material';
-import Tags from 'src/components/apps/sell/Tags';
 import { TransitionProps } from '@mui/material/transitions';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import PageContainer from 'src/components/container/PageContainer';
+import ChildCard from 'src/components/shared/ChildCard';
+import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [
-  { to: '/', title: 'Home' },
-  { to: '/apps/blog/posts', title: 'Blog' },
-  { title: 'Blog post' },
+  { to: '/', title: 'Trang Chủ' },
+  { to: '/apps/blog/posts', title: 'Danh Sách Khách Hàng' },
 ];
 
 const Transition = React.forwardRef<
@@ -66,37 +67,39 @@ const CustomerList2 = () => {
   };
 
   return (
-    <div className="customer-list-container" style={{ padding: '20px' }}>
+    <PageContainer>
       {/* Breadcrumb */}
-      <Breadcrumb title="Blog Detail" items={BCrumb} />
-      <Grid container spacing={3}>
-        <Box sx={{ width: '100%', typography: 'body1' }}>
-          <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab label="Khách hàng" value="1" />
-                <Tab label="Tags" value="2" />
-              </TabList>
-            </Box>
+      <BannerPage title="Danh sách khách hàng" items={BCrumb} />
+      <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
+        <TabContext value={value}>
+          <Box>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              sx={{ p: 0, border: 'none' }}
+            >
+              <Tab label="Danh sách khách hàng" value="1" sx={{ p: 0 }} />
 
-            <TabPanel value="1">
-              {/* Action Buttons and Filters */}
+              {/* <Tab label="Tags" value="2" sx={{ p: 0 }} /> */}
+            </TabList>
+
+            <TabPanel value="1" sx={{ p: 0 }}>
+              {' '}
               <Box
                 className="actions-and-filters"
                 sx={{
-                  marginBottom: '20px',
+                  mt: '20px',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
               >
-                {/* Nút tạo đơn hàng và thanh tìm kiếm */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Tooltip title="Tạo đơn hàng">
                     <Fab
                       color="primary"
                       aria-label="add"
-                      size="small" // Set the size to "small"
+                      size="small"
                       sx={{ marginRight: '30px' }}
                       onClick={handleOpenPopup}
                     >
@@ -104,7 +107,6 @@ const CustomerList2 = () => {
                     </Fab>
                   </Tooltip>
 
-                  {/* Thanh tìm kiếm với icon */}
                   <TextField
                     sx={{
                       width: '200px',
@@ -128,11 +130,11 @@ const CustomerList2 = () => {
                     size="small"
                   />
 
-                  <CustomSelect
+                  {/* <CustomSelect
                     labelId="column-filter"
                     id="column-filter"
                     size="small"
-                    value={1} // Setting the first value as default
+                    value={1}
                     sx={{ marginRight: '30px' }}
                   >
                     <MenuItem value={1}>Sửa đổi cột</MenuItem>
@@ -142,21 +144,23 @@ const CustomerList2 = () => {
                     labelId="column-sort"
                     id="column-sort"
                     size="small"
-                    value={1} // Setting the first value as default
+                    value={1}
                     sx={{ marginRight: '20px' }}
                   >
                     <MenuItem value={1}>Bộ lọc</MenuItem>
-                  </CustomSelect>
+                  </CustomSelect> */}
                 </Box>
 
-                {/* Time Filter and Refresh Icon */}
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       value={selectedStartDate}
                       onChange={(newDate) => setSelectedStartDate(newDate)}
                       renderInput={(params) => (
-                        <CustomTextField {...params} sx={{ marginRight: '10px' }} />
+                        <CustomTextField
+                          {...params}
+                          sx={{ marginRight: '10px', maxWidth: '170px' }}
+                        />
                       )}
                     />
                     <Typography sx={{ marginRight: '10px' }}>tới</Typography>
@@ -164,7 +168,10 @@ const CustomerList2 = () => {
                       value={selectedEndDate}
                       onChange={(newDate) => setSelectedEndDate(newDate)}
                       renderInput={(params) => (
-                        <CustomTextField {...params} sx={{ marginRight: '10px' }} />
+                        <CustomTextField
+                          {...params}
+                          sx={{ marginRight: '10px', maxWidth: '170px' }}
+                        />
                       )}
                     />
                   </LocalizationProvider>
@@ -172,13 +179,13 @@ const CustomerList2 = () => {
               </Box>
               <CustomerTable2 />
             </TabPanel>
-            <TabPanel value="2">
-              <Tags />
-            </TabPanel>
-          </TabContext>
-        </Box>
-      </Grid>
 
+            {/* <TabPanel value="2" sx={{ p: 0 }}>
+              <Tags />
+            </TabPanel> */}
+          </Box>
+        </TabContext>
+      </ChildCard>
       {/* Popup Thêm khách hàng */}
       <Dialog
         open={isPopupOpen}
@@ -190,7 +197,7 @@ const CustomerList2 = () => {
       >
         <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
         <DialogContent>
-          <PopupAddList2 /> {/* Gọi component PopupAdd */}
+          <PopupAddList2 />
         </DialogContent>
         {/* <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
@@ -199,7 +206,7 @@ const CustomerList2 = () => {
           </Button>
         </DialogActions> */}
       </Dialog>
-    </div>
+    </PageContainer>
   );
 };
 

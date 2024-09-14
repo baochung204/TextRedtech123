@@ -26,6 +26,7 @@ import CustomTextField from '../../../components/forms/theme-elements/CustomText
 import PopupAdd from './PopupAdd';
 // import { TabPanel } from '@mui/lab';
 import { IconSearch } from '@tabler/icons-react';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 // Tạo Transition component để sử dụng hiệu ứng slide từ dưới lên
 const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement }>(
@@ -39,9 +40,8 @@ const Transition = React.forwardRef<unknown, TransitionProps & { children: React
 );
 
 const BCrumb = [
-  { to: '/', title: 'Home' },
-  { to: '/apps/blog/posts', title: 'Blog' },
-  { title: 'Blog post' },
+  { to: '/', title: 'Trang Chủ' },
+  { to: '/apps/blog/posts', title: 'Danh sách khách hàng' },
 ];
 
 const CustomerList = () => {
@@ -62,9 +62,10 @@ const CustomerList = () => {
   };
 
   return (
-    <div className="customer-list-container" style={{ padding: '20px' }}>
+    <div className="customer-list-container">
       {/* Breadcrumb */}
-      <Breadcrumb title="Blog Detail" items={BCrumb} />
+      {/* <Breadcrumb title="Blog Detail" items={BCrumb} /> */}
+      <BannerPage title="Danh sách khách hàng" items={BCrumb} />
 
       {/* Action Buttons and Filters */}
       {/* Action Buttons and Filters */}

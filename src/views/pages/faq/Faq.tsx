@@ -5,29 +5,24 @@ import PageContainer from 'src/components/container/PageContainer';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import { Grid } from '@mui/material';
 import FaqCpn from 'src/components/pages/faq/FaqCpn';
-
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
   {
     to: '/',
-    title: 'Home',
+    title: 'Trang chủ',
   },
-  {
-    title: 'FAQ',
-  },
+  { to: '/buy/point', title: 'Tài nguyên' },
 ];
 
 const Faq = () => {
-
   return (
     <PageContainer title="Faq" description="this is Faq page">
-      {/* breadcrumb */}
-      <Breadcrumb title="FAQ" items={BCrumb} />
+      <BannerPage title="Tài nguyên" items={BCrumb} />
       {/* end breadcrumb */}
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <FaqCpn />
-
         </Grid>
       </Grid>
     </PageContainer>

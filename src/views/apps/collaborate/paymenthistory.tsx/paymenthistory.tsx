@@ -111,12 +111,12 @@ const headCells: HeadCell[] = [
     label: 'Số point',
   },
 
-  {
-    id: 'status',
-    numeric: false,
-    disablePadding: false,
-    label: 'Trạng thái',
-  },
+  // {
+  //   id: 'status',
+  //   numeric: false,
+  //   disablePadding: false,
+  //   label: 'Trạng thái',
+  // },
 
   {
     id: 'detail',
@@ -134,30 +134,30 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
 }
-const getStatusTextAndColor = (status: number) => {
-  switch (status) {
-    case 1:
-      return (
-        <Typography color="#13DEB9" variant="subtitle2">
-          Đã thanh toán
-        </Typography>
-      );
-    case 2:
-      return (
-        <Typography color="#ff9800" variant="subtitle2">
-          Chờ xử lý
-        </Typography>
-      );
-    case 3:
-      return (
-        <Typography color="#f44336" variant="subtitle2">
-          Không thành công
-        </Typography>
-      );
-    default:
-      return;
-  }
-};
+// const getStatusTextAndColor = (status: number) => {
+//   switch (status) {
+//     case 1:
+//       return (
+//         <Typography color="#13DEB9" variant="subtitle2">
+//           Đã thanh toán
+//         </Typography>
+//       );
+//     case 2:
+//       return (
+//         <Typography color="#ff9800" variant="subtitle2">
+//           Chờ xử lý
+//         </Typography>
+//       );
+//     case 3:
+//       return (
+//         <Typography color="#f44336" variant="subtitle2">
+//           Không thành công
+//         </Typography>
+//       );
+//     default:
+//       return;
+//   }
+// };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
   const { order, orderBy, onRequestSort } = props;
@@ -356,7 +356,7 @@ const Paymenthistory = () => {
                         key={row.id}
                         // selected={isItemSelected}
                       >
-                        <TableCell style={{ width: '16%' }}>
+                        <TableCell style={{ width: '25%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
@@ -365,7 +365,7 @@ const Paymenthistory = () => {
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell style={{ width: '20%' }}>
+                        <TableCell style={{ width: '25%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
@@ -374,7 +374,7 @@ const Paymenthistory = () => {
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell style={{ width: '20%' }}>
+                        <TableCell style={{ width: '25%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography
@@ -389,7 +389,7 @@ const Paymenthistory = () => {
                             </Box>
                           </Stack>
                         </TableCell>
-                        <TableCell style={{ width: '20%' }}>
+                        {/* <TableCell style={{ width: '20%' }}>
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
@@ -397,9 +397,9 @@ const Paymenthistory = () => {
                               </Typography>
                             </Box>
                           </Stack>
-                        </TableCell>
+                        </TableCell> */}
 
-                        <TableCell>
+                        <TableCell style={{ width: '15%' }}>
                           <Stack spacing={2} direction="row">
                             <Afletpoint row={row}></Afletpoint>
                           </Stack>

@@ -34,7 +34,7 @@ const PaymentGateways: React.FC = () => {
 
   const stats: statType[] = [
     {
-      title: 'Trợ lý 1',
+      title: 'Trợ lý 5',
       level: 9,
       price: 78.3,
       color: primary,
@@ -44,7 +44,7 @@ const PaymentGateways: React.FC = () => {
     {
       title: 'Trợ lý 2',
       level: 2,
-      price: 23,
+      price: 73,
       color: secondary,
       lightcolor: secondarylight,
       icon: icon2Img,
@@ -52,7 +52,7 @@ const PaymentGateways: React.FC = () => {
     {
       title: 'Credit Card',
       level: 1,
-      price: 22.5,
+      price: 43.5,
       color: warning,
       lightcolor: warninglight,
       icon: icon3Img,
@@ -60,7 +60,7 @@ const PaymentGateways: React.FC = () => {
     {
       title: 'Refund',
       level: 6,
-      price: 43,
+      price: 39,
       color: error,
       lightcolor: errorlight,
       icon: icon4Img,
@@ -114,7 +114,14 @@ const PaymentGateways: React.FC = () => {
               )}
             </Stack>
           ))}
-          <Button variant="outlined" color="primary" sx={{ mt: '40px !important' }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            sx={{ mt: '40px !important' }}
+            onClick={() => {
+              window.location.href = '/assistant/list';
+            }}
+          >
             Xem tất cả trợ lý
           </Button>
         </Stack>
