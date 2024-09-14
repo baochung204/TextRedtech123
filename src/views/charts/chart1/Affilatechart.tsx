@@ -3,7 +3,7 @@ import Chart, { Props } from 'react-apexcharts';
 import Affilatec from 'src/components/shared/Affilatec';
 
 const Affilatechart = () => {
-  const seriesdoughnutchart = [75, 85];
+  const seriesdoughnutchart = [35, 65];
 
   const optionsdoughnutchart: Props = {
     chart: {
@@ -62,7 +62,7 @@ const Affilatechart = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#ff416c', '#ff4b2b'],
+    colors: ['#4cb8c4', '#3cd3ad'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,

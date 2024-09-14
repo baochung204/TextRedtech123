@@ -1,18 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { useTheme } from '@mui/material/styles';
-import React from 'react';
 import Chart from 'react-apexcharts';
 
 import { Props } from 'react-apexcharts';
 
-import { Box, MenuItem, Typography } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { Dayjs } from 'dayjs';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { Box, Typography } from '@mui/material';
 import DashboardCard from 'src/components/shared/DashboardCard';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 // import { m } from 'framer-motion';
 // import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 
@@ -30,7 +23,7 @@ const monthsInVietnamese = [
   'Tháng 11',
   'Tháng 12',
 ];
-const Affiliatedetail = () => {
+const Affiliatedetail3 = () => {
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -88,7 +81,7 @@ const Affiliatedetail = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: ['#6dd5fa'],
+        gradientToColors: ['#fe8c00'],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
@@ -99,7 +92,7 @@ const Affiliatedetail = () => {
     markers: {
       size: 4,
       opacity: 0.9,
-      colors: ['#FFA41B'],
+      colors: ['#fe8c00'],
       strokeColor: '#fff',
       strokeWidth: 2,
 
@@ -121,19 +114,19 @@ const Affiliatedetail = () => {
   const seriesgredientchart: any = [
     {
       name: 'Likes',
-      data: [4, 3, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
+      data: [4, 2, 9, 10, 30, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 4],
     },
   ];
   // const [month, setMonth] = React.useState('1');
 
   // chart color
-  const [month, setMonth] = React.useState('1');
+  // const [month, setMonth] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
+  // const [value, setValue] = React.useState<Dayjs | null>(null);
+  // const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     // <PageContainer title="Gredient Chart" description="this is innerpage">
     //   {/* breadcrumb */}
@@ -144,12 +137,12 @@ const Affiliatedetail = () => {
     <DashboardCard>
       <>
         <Box sx={{ marginTop: '-15px' }}>
-          <Typography variant="h4">Báo cáo chi tiêu trợ lý</Typography>
+          <Typography variant="h4">Chi tiêu trợ lý</Typography>
           {/* <Typography variant="subtitle2" color="textSecondary" mb={2}>
             kinh doanh
           </Typography> */}
 
-          <Box
+          {/* <Box
             style={{
               display: 'flex',
               gap: '12px',
@@ -170,7 +163,7 @@ const Affiliatedetail = () => {
               <MenuItem value={2}>Assistant 1</MenuItem>
               <MenuItem value={3}>Assistant 2</MenuItem>
             </CustomSelect>
-            <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
+            {/* <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
               {' '}
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -238,8 +231,8 @@ const Affiliatedetail = () => {
                 <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
                 <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
               </svg> */}
-            </Box>
-          </Box>
+          {/* </Box> */}
+          {/* </Box> */}
         </Box>
         <Chart
           options={optionsgredientchart}
@@ -252,4 +245,4 @@ const Affiliatedetail = () => {
   );
 };
 
-export default Affiliatedetail;
+export default Affiliatedetail3;

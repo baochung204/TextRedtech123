@@ -17,7 +17,9 @@ import ChildCard from '../../../shared/ChildCard';
 import { IconChevronDown } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import Countdown from 'src/components/countdown/countdown';
-
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import products2 from 'src/assets/images/products/s24.jpg';
+import products from 'src/assets/images/products/s25.jpg';
 interface Props {
   total: number;
   Discount: number;
@@ -25,7 +27,7 @@ interface Props {
 const packages = [
   {
     id: 5,
-    img: 'http://localhost:5173/src/assets/images/products/s11.jpg',
+    img: products,
     title: 'Chatbot marketing',
     price: 115,
     discount: 100,
@@ -34,19 +36,10 @@ const packages = [
   },
   {
     id: 6,
-    img: 'http://localhost:5173/src/assets/images/products/s10.jpg',
+    img: products2,
     title: 'Chatbot hỗ trợ khách hàng',
     price: 210,
     discount: 199,
-    sale: 80,
-    timeFlash: 180,
-  },
-  {
-    id: 7,
-    img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
-    title: 'Chatbot thương mại điện tử',
-    price: 520,
-    discount: 399,
     sale: 80,
     timeFlash: 180,
   },
@@ -148,16 +141,37 @@ const FirstStep = ({ total, Discount }: Props) => {
                                 {' '}
                                 <Typography
                                   sx={{
-                                    fontWeight: 'bold',
                                     mb: 1,
-
+                                    color: '#888',
                                     fontSize: '14px',
+                                    display: 'flex',
                                   }}
                                 >
-                                  {pkg.discount.toLocaleString()} point
+                                  <del>{pkg.discount.toLocaleString()} </del>
+                                  <img
+                                    src={logoPoint}
+                                    alt={logoPoint}
+                                    width={20}
+                                    height={20}
+                                    style={{ borderRadius: 50 }}
+                                  />
                                 </Typography>
-                                <Typography sx={{ color: '#888', mb: 1 }}>
-                                  <del> {pkg.price.toLocaleString()} point</del>
+                                <Typography
+                                  sx={{
+                                    mb: 1,
+                                    display: 'flex',
+                                    fontWeight: 'bold',
+                                  }}
+                                >
+                                  {' '}
+                                  {pkg.price.toLocaleString()}{' '}
+                                  <img
+                                    src={logoPoint}
+                                    alt={logoPoint}
+                                    width={20}
+                                    height={20}
+                                    style={{ borderRadius: 50 }}
+                                  />
                                 </Typography>{' '}
                               </div>
                               <Box>
@@ -226,15 +240,31 @@ const FirstStep = ({ total, Discount }: Props) => {
               <Typography variant="h6" fontWeight={400}>
                 Giá trị đơn hàng
               </Typography>
-              <Typography variant="h6">{total.toLocaleString('vn-VN')} point</Typography>
+              <Typography variant="h6" display={'flex'} alignItems={'center'}>
+                {total.toLocaleString('vn-VN')}{' '}
+                <img
+                  src={logoPoint}
+                  alt={logoPoint}
+                  width={20}
+                  height={20}
+                  style={{ borderRadius: 50 }}
+                />
+              </Typography>
             </Stack>
             {/* Giảm giá */}
             <Stack direction="row" justifyContent="space-between" mb={3}>
               <Typography variant="h6" fontWeight={400}>
                 Khuyến mãi
               </Typography>
-              <Typography variant="h6" color="error">
-                -{Discount.toLocaleString('vn-VN')} point
+              <Typography variant="h6" color="error" display={'flex'} alignItems={'center'}>
+                -{Discount.toLocaleString('vn-VN')}{' '}
+                <img
+                  src={logoPoint}
+                  alt={logoPoint}
+                  width={20}
+                  height={20}
+                  style={{ borderRadius: 50 }}
+                />
               </Typography>
             </Stack>
             {/* Vận chuyển */}
@@ -242,8 +272,15 @@ const FirstStep = ({ total, Discount }: Props) => {
             {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={1}>
               <Typography variant="h6">Tổng thanh toán</Typography>
-              <Typography variant="h5" color="success">
-                {(total - Discount).toLocaleString('vn-VN')} point
+              <Typography variant="h5" color="success" display={'flex'} alignItems={'center'}>
+                {(total - Discount).toLocaleString('vn-VN')}{' '}
+                <img
+                  src={logoPoint}
+                  alt={logoPoint}
+                  width={20}
+                  height={20}
+                  style={{ borderRadius: 50 }}
+                />
               </Typography>
             </Stack>
           </Box>
