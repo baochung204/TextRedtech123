@@ -1,6 +1,5 @@
-
 import {
-  Autocomplete,
+  // Autocomplete,
   Avatar,
   Box,
   Button,
@@ -9,15 +8,17 @@ import {
   Grid,
   InputAdornment,
   LinearProgress,
+  MenuItem,
   Paper,
   Stack,
   TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
+import { IconStackBack } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
 import { IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import avt1 from 'src/assets/images/profile/user-1.jpg';
 import avt10 from 'src/assets/images/profile/user-10.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
@@ -43,14 +44,15 @@ import { IconArrowUpRight } from '@tabler/icons-react';
 import { Props } from 'react-apexcharts';
 
 // import { useMediaQuery } from '@mui/material';
-import { IconTable } from '@tabler/icons-react';
+// import { IconTable } from '@tabler/icons-react';
 import Chart from 'react-apexcharts';
 import icon1 from 'src/assets/images/svgs/icon-bars.svg';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+// import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+// import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 // import components from '../../theme/Components';
 import { Link } from 'react-router-dom';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 interface sellsData {
   product: string;
   percent: number;
@@ -209,27 +211,20 @@ const dataRank: Irank[] = [
     sale: 50,
   },
 ];
-interface ITopRank {
-  title: string;
-}
-const top10rank: ITopRank[] = [
-  { title: 'Rank 1' },
-  { title: 'Rank 2' },
-  { title: 'Rank 3' },
-  { title: 'Rank 4' },
-  { title: 'Rank 5' },
-  { title: 'Rank 6' },
-  { title: 'Rank 7' },
-  { title: 'Rank 8' },
-  { title: 'Rank 9' },
-  { title: 'Rank 10' },
-];
+// interface ITopRank {
+//   title: string;
+// }
 
 const ListAssistant = () => {
   const theme = useTheme();
   // Removed unused isLoading state
   // chart color
   const secondary = theme.palette.secondary.main;
+  const [month, setMonth] = React.useState('1');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
 
   // chart
   const optionscolumnchart: Props = {
@@ -305,41 +300,27 @@ const ListAssistant = () => {
                   <Chip label="20" color="secondary" size="small" />
                 </Typography>
               </Box>
+
               <Grid
-                container
                 spacing={2}
                 my={{ xs: '2px', sm: 0 }}
-                display={{ sm: 'flex' }}
                 width={{ sm: 600 }}
+                display={'flex'}
+                justifyContent={'end'}
               >
-                <Grid item xs={6} sm={6} md={6}>
-                  <Autocomplete
-                    multiple
-                    id="checkboxes-tags-demo"
-                    options={top10rank}
-                    disableCloseOnSelect
-                    getOptionLabel={(option) => option.title}
-                    renderOption={(props, option, { selected }) => (
-                      <li {...props}>
-                        <CustomCheckbox style={{ marginRight: 8 }} checked={selected} />
-                        {option.title}
-                      </li>
-                    )}
-                    fullWidth
-                    renderInput={(params) => (
-                      <CustomTextField
-                        {...params}
-                        placeholder="Lọc xếp hạng"
-                        aria-label="Favorites"
-                      />
-                    )}
+                <Grid item xs={6} sm={6} md={3}>
+                  <CustomSelect
+                    // {...params}
+                    labelId="month-dd"
+                    id="month-dd"
                     size="small"
-                    sx={{
-                      fontSize: { xs: '10px', sm: '16px' },
-                      width: { xs: '150px' },
-                      ml: 'auto',
-                    }}
-                  />
+                    value={month}
+                    onChange={handleChange}
+                  >
+                    {' '}
+                    <MenuItem value={1}>Thấp-Cao</MenuItem>
+                    <MenuItem value={2}>Cao-Thấp</MenuItem>
+                  </CustomSelect>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6}>
                   <TextField
@@ -457,33 +438,56 @@ const ListAssistant = () => {
                         <Button
                           onClick={() => onHandleCheckOnOrOff(rank)}
                           sx={{
-                            backgroundColor: checkedRanks.includes(rank.id) ? '#AE00FF' : '#BDBDBD',
+                            backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
                             display: 'flex',
                             alignItems: 'center',
                             height: '100%',
                             justifyContent: 'center',
                             ':hover': {
                               backgroundColor: checkedRanks.includes(rank.id)
-                                ? '#AE00FF'
-                                : '#BDBDBD',
+                                ? '#38D955'
+                                : '#FF2023',
                               boxShadow: 'none',
                             },
                             boxShadow: 'none',
+                            color: 'white',
+                            fontWeight: '5px 17px',
+                            fontSize: '12px',
+                            minWidth: 'auto',
                           }}
                         >
                           <IconPower color="white" />
+                          {/* {checkedRanks.includes(rank.id) ? 'ON' : 'OFF'} */}
                         </Button>
                       </Grid>
 
                       <Grid item xs={4}>
-                        <Button variant="contained" color="primary">
+                        <Button
+                          variant="contained"
+                          style={{
+                            background: '#2196F3',
+                            padding: '5px 17px',
+                            fontSize: '12px',
+                            minWidth: 'auto',
+                          }}
+                        >
                           <IconEdit color="white" />
                         </Button>
                       </Grid>
 
                       <Grid item xs={4}>
-                        <Button variant="contained" color="error" component={Link} to="/apps/list-assistant">
-                          <IconTable fontSize={20} />
+                        <Button
+                          variant="contained"
+                          style={{
+                            background: '#FFC107',
+                            padding: '5px 17px',
+                            fontSize: '12px',
+                            minWidth: 'auto',
+                          }}
+                          component={Link}
+                          to="/apps/assistant/:id"
+                        >
+                          <IconStackBack stroke={2} />
                         </Button>
                       </Grid>
                     </Grid>
@@ -533,7 +537,7 @@ const ListAssistant = () => {
                                 color="textSecondary"
                                 sx={{ display: { xs: 'block', sm: 'block' } }}
                               >
-                                CRB
+                                CR
                               </Typography>
                               <Box
                                 sx={{
@@ -555,7 +559,7 @@ const ListAssistant = () => {
                         <Grid item xs={6} sm={6} spacing={2}>
                           <Grid container rowSpacing={{ xs: 1.1, sm: 1.7 }}>
                             <Grid item xs={12} sm={12}>
-                              <Tooltip title="Tổng giá trị hàng hóa" placement="top">
+                              <Tooltip title="Tổng doanh thu" placement="top">
                                 <Button
                                   variant="outlined"
                                   color="primary"

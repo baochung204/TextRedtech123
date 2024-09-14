@@ -1,16 +1,20 @@
 import { Email } from '@mui/icons-material';
 import {
+  Alert,
   Box,
-  Typography,
+  Button,
   Checkbox,
   FormControlLabel,
   FormGroup,
-  Button,
-  Alert,
-  AlertTitle,
-  useTheme,
+  Slide,
+  Snackbar,
+  Typography,
 } from '@mui/material';
 import { useState } from 'react';
+
+function SlideTransition(props: any) {
+  return <Slide {...props} direction="left" />;
+}
 
 const ReceiveEmail = () => {
   const initialState = {
@@ -24,10 +28,10 @@ const ReceiveEmail = () => {
 
   const [checked, setChecked] = useState(initialState);
   const [savedState, setSavedState] = useState(initialState);
-  const [showAlert, setShowAlert] = useState<{ success: boolean; cancel: boolean }>({
-    success: false,
-    cancel: false,
-  });
+  const [open, setOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'info'; message: string } | null>(
+    null,
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked({
@@ -38,17 +42,23 @@ const ReceiveEmail = () => {
 
   const handleSave = () => {
     setSavedState(checked); // Save the current state
-    setShowAlert({ success: true, cancel: false });
-    setTimeout(() => setShowAlert({ success: false, cancel: false }), 3000); // Hide alert after 3 seconds
+    setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công' });
+    setOpen(true); // Open the snackbar
   };
 
   const handleCancel = () => {
     setChecked(savedState); // Restore the previous state
-    setShowAlert({ success: false, cancel: true });
-    setTimeout(() => setShowAlert({ success: false, cancel: false }), 3000); // Hide alert after 3 seconds
+    setShowAlert({ type: 'info', message: 'Hủy thay đổi thành công' });
+    setOpen(true); // Open the snackbar
   };
 
-  const theme = useTheme();
+  // const theme = useTheme();
+  const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); // Close the snackbar
+  };
 
   return (
     <Box
@@ -99,47 +109,18 @@ const ReceiveEmail = () => {
         </Button>
       </Box>
 
-      {/* Display alerts for success and cancellation */}
-      {showAlert.success && (
-        <Alert
-          severity="success"
-          sx={{
-            position: 'fixed',
-            top: 16,
-            right: 16,
-            zIndex: theme.zIndex.snackbar,
-            backgroundColor: '#4caf50',
-            color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-            borderRadius: 1,
-            padding: 2,
-            width: 300,
-          }}
-        >
-          <AlertTitle>Thành công</AlertTitle>
-          Lưu thay đổi thành công!
+      {/* Hiển thị Alert khi có sự thay đổi */}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert onClose={handleClose} severity={showAlert?.type} variant="filled">
+          {showAlert?.message}
         </Alert>
-      )}
-      {showAlert.cancel && (
-        <Alert
-          severity="info"
-          sx={{
-            position: 'fixed',
-            top: 16,
-            right: 16,
-            zIndex: theme.zIndex.snackbar,
-            backgroundColor: '#2196f3',
-            color: 'white',
-            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-            borderRadius: 1,
-            padding: 2,
-            width: 300,
-          }}
-        >
-          <AlertTitle>Hủy bỏ</AlertTitle>
-          Đã hủy thay đổi!
-        </Alert>
-      )}
+      </Snackbar>
     </Box>
   );
 };

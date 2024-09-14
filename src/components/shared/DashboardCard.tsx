@@ -58,8 +58,6 @@ const DashboardCard = ({
               mb={2}
             >
               <Box>
-                {title ? <Typography variant="h5">{title}</Typography> : ''}
-
                 {subtitle ? (
                   <Typography variant="subtitle2" color="textSecondary">
                     {subtitle}
@@ -67,6 +65,7 @@ const DashboardCard = ({
                 ) : (
                   ''
                 )}
+                {title ? <Typography variant="h5">{title}</Typography> : ''}
               </Box>
               {action}
             </Stack>

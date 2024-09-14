@@ -78,8 +78,8 @@ const Header = () => {
               px: '15px',
               py: '3px',
               alignItems: 'center',
-              borderRadius: '5px',
-              border: '1px solid #FC2005',
+              // borderRadius: '5px',
+              // border: '1px solid #FC2005',
             }}
           >
             <Typography

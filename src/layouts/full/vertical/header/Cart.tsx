@@ -129,6 +129,9 @@ export default Cart;
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> bb29f706085f2a2da289ecdd63942eb2cfe5a51a

@@ -18,7 +18,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
 import { useDispatch, useSelector } from 'src/store/Store';
-import { ProductType } from 'src/types/apps/eCommerce';
+// import { ProductType } from 'src/types/apps/eCommerce';
 import { decrement, deleteCart, increment } from '../../../../store/apps/eCommerce/ECommerceSlice';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -37,7 +37,7 @@ function SlideTransition(props: any) {
 const AddToCart = () => {
   const checkout = useSelector((state) => state.ecommerceReducer.cart);
 
-  const total = sum(checkout.map((product: ProductType) => product.price * product.qty));
+  const total = sum(checkout.map((product: any) => product.price * product.qty));
   const Discount = Math.round(total * (5 / 100));
   const [open, setOpen] = useState(false);
 
@@ -59,13 +59,13 @@ const AddToCart = () => {
   const dispatch = useDispatch();
 
   // Lấy sản phẩm từ giỏ hàng
-  const Cartproduct: ProductType[] = useSelector((state) => state.ecommerceReducer.cart);
+  const Cartproduct: any = useSelector((state) => state.ecommerceReducer.cart);
   console.log(Cartproduct);
-  const Increase = (productId: number | string) => {
+  const Increase = (productId: number | any) => {
     dispatch(increment(productId));
   };
 
-  const Decrease = (productId: number | string) => {
+  const Decrease = (productId: number | any) => {
     dispatch(decrement(productId));
   };
 
@@ -97,7 +97,7 @@ const AddToCart = () => {
                 </TableHead>
 
                 <TableBody>
-                  {Cartproduct.map((product) => (
+                  {Cartproduct.map((product: any) => (
                     <TableRow key={product.id}>
                       {/* ------------------------------------------- */}
                       {/* Hình ảnh và tiêu đề sản phẩm */}
