@@ -46,6 +46,8 @@ const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followe
 const Friends = Loadable(lazy(() => import('../views/apps/user-profile/Friends')));
 const Gallery = Loadable(lazy(() => import('../views/apps/user-profile/Gallery')));
 const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
+// const Bill = Loadable(lazy(() => import('../views/apps/collaborate/bill')));
+
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
 //Ai ticket
@@ -93,6 +95,7 @@ import ChangePassword from 'src/components/apps/userprofile/profile/ChangePasswo
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import Update from 'src/views/apps/update/Update';
 import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
+import Bill from 'src/views/apps/collaborate/bill';
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -176,6 +179,7 @@ const Router = [
       { path: '/apps/customerlist', element: <CustomerList /> },
       { path: '/apps/contract-client', element: <Client /> },
       { path: '/apps/contract-affiliate', element: <Aff /> },
+
       // { path: '/admin', element: <Blog /> },
       { path: '/admin/dashborard', element: <Admin /> },
       { path: '/admin/products', element: <Adminproducts /> },
@@ -283,6 +287,8 @@ const Router = [
       { path: '/auth/maintenance', element: <Maintenance /> },
       { path: '/auth/updating', element: <Updating /> },
       { path: '/landingpage', element: <Landingpage /> },
+      { path: '/bill/:id', element: <Bill /> },
+
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },

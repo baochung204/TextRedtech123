@@ -31,7 +31,7 @@ import products from 'src/assets/images/products/s25.jpg';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
 
-const Content = () => {
+const Content2 = () => {
   const packages = [
     {
       id: 7,
@@ -52,7 +52,7 @@ const Content = () => {
     <div>
       {/* <ProductChecout /> */}
       <Box display={'flex'} alignItems="center" justifyContent={'center'} marginBottom={5}>
-        <Typography variant="h3">Chi tiết đơn hàng </Typography>
+        <Typography variant="h3">Thông tin đơn hàng của bạn </Typography>
       </Box>
       <Box>
         <TableContainer sx={{ minWidth: 350 }}>
@@ -486,4 +486,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default Content2;
