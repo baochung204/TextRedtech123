@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// src/components/notifications/Notifications.tsx
 import {
   Avatar,
   Badge,
@@ -13,13 +12,14 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import * as dropdownData from './data';
-
 import { IconBellRinging } from '@tabler/icons-react';
 
 const Notifications = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
@@ -27,6 +27,12 @@ const Notifications = () => {
 
   const handleClose2 = () => {
     setAnchorEl2(null);
+  };
+
+  // Handle navigation to the all notifications page
+  const handleViewAll = () => {
+    handleClose2(); // Close the menu
+    navigate('/notifications');
   };
 
   return (
@@ -46,9 +52,7 @@ const Notifications = () => {
           <IconBellRinging size="21" stroke="1.5" />
         </Badge>
       </IconButton>
-      {/* ------------------------------------------- */}
-      {/* Message Dropdown */}
-      {/* ------------------------------------------- */}
+      
       <Menu
         id="msgs-menu"
         anchorEl={anchorEl2}
@@ -109,7 +113,7 @@ const Notifications = () => {
           ))}
         </Scrollbar>
         <Box p={3} pb={1}>
-          <Button variant="outlined" color="primary" fullWidth>
+          <Button variant="outlined" color="primary" fullWidth onClick={handleViewAll}>
             Xem tất cả thông báo
           </Button>
         </Box>

@@ -93,6 +93,7 @@ import ChangePassword from 'src/components/apps/userprofile/profile/ChangePasswo
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import Update from 'src/views/apps/update/Update';
 import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
+import AllNotifications from 'src/layouts/full/vertical/header/AllNotification';
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -259,6 +260,7 @@ const Router = [
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
       { path: '/history/buy-service', element: <HistoryBuyService /> },
       { path: '/assistant/list', element: <ListAssistant /> },
+      { path: '/notifications', element: <AllNotifications /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },

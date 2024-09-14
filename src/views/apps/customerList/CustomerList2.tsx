@@ -6,14 +6,12 @@ import {
   // DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
   InputAdornment,
   Tab,
   TextField,
-  Typography,
+  Typography
 } from '@mui/material';
 import Fab from '@mui/material/Fab';
-import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -22,15 +20,13 @@ import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 
 import { Slide } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [

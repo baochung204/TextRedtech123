@@ -81,7 +81,7 @@ const CustomerListOrder = () => {
                 {/* Action Buttons and Filters */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   {/* Add Order Button */}
-                  <Tooltip title="Tạo đơn hàng">
+                  {/* <Tooltip title="Tạo đơn hàng">
                     <Fab
                       color="primary"
                       aria-label="add"
@@ -91,7 +91,7 @@ const CustomerListOrder = () => {
                     >
                       <FaPlus />
                     </Fab>
-                  </Tooltip>
+                  </Tooltip> */}
 
                   {/* Search Bar */}
                   <TextField
@@ -118,7 +118,7 @@ const CustomerListOrder = () => {
                   />
 
                   {/* Column Filter and Sort */}
-                  <CustomSelect
+                  {/* <CustomSelect
                     labelId="column-filter"
                     id="column-filter"
                     size="small"
@@ -136,7 +136,7 @@ const CustomerListOrder = () => {
                     sx={{ marginRight: '20px' }}
                   >
                     <MenuItem value={1}>Bộ lọc</MenuItem>
-                  </CustomSelect>
+                  </CustomSelect> */}
                 </Box>
 
                 {/* Time Filter and Refresh Icon */}

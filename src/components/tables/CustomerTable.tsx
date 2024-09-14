@@ -16,12 +16,21 @@ import {
 import React, { useState } from 'react';
 import CustomSwitch from '../forms/theme-elements/CustomSwitch';
 import { DataRowCustomerTable } from './tableData';
+import useSortableData from 'src/views/apps/customerList/useSortableData';
 
 const CustomerTable = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dense, setDense] = React.useState(false);
+
+  // Sử dụng useSortableData để sắp xếp dữ liệu
+  const { sortedItems, sortBy, sortOrder, handleSortRequest } = useSortableData({
+    items: DataRowCustomerTable,
+    initialSortBy: 'id',
+    initialSortOrder: 'asc',
+  });
+
   // Hàm xử lý thay đổi trang
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -37,80 +46,113 @@ const CustomerTable = () => {
   };
 
   // Cắt dữ liệu để hiển thị theo trang
-  const paginatedRows = DataRowCustomerTable.slice(
+  const paginatedRows = sortedItems.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage,
   );
+
   const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);
   };
+
   return (
     <>
       <TableContainer component={Paper} sx={{ padding: 2 }}>
         <Table
           aria-label="customer table"
-          size="small" // Thay đổi kích thước của bảng để giảm padding
+          size={dense ? 'small' : 'medium'} // Thay đổi kích thước của bảng để giảm padding
           sx={{
             whiteSpace: 'nowrap',
           }}
         >
           <TableHead>
             <TableRow>
-              <TableCell sx={{ padding: '8px 16px' }}>
-                {' '}
-                {/* Tùy chỉnh padding */}
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('id')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Id Đơn Hàng
+                  Id Đơn Hàng {sortBy === 'id' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('createdAt')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Ngày Tạo
+                  Ngày Tạo {sortBy === 'createdAt' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('assistant')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Trợ Lý
+                  Trợ Lý {sortBy === 'assistant' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('orderValue')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Giá Trị Đơn Hàng
+                  Giá Trị Đơn Hàng {sortBy === 'orderValue' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('channel')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Kênh (MTK)
+                  Kênh (MTK) {sortBy === 'channel' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('name')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Tên Khách Hàng
+                  Tên Khách Hàng {sortBy === 'name' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('phone')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  SĐT
+                  SĐT {sortBy === 'phone' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('address')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Địa Chỉ
+                  Địa Chỉ {sortBy === 'address' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('email')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Email
+                  Email {sortBy === 'email' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('orderInfo')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Thông Tin Đơn Hàng
+                  Thông Tin Đơn Hàng {sortBy === 'orderInfo' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
-              <TableCell sx={{ padding: '8px 16px' }}>
+              <TableCell
+                sx={{ padding: '8px 16px', cursor: 'pointer' }}
+                onClick={() => handleSortRequest('note')}
+              >
                 <Typography variant="subtitle2" fontWeight={600}>
-                  Ghi Chú
+                  Ghi Chú {sortBy === 'note' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                 </Typography>
               </TableCell>
             </TableRow>
