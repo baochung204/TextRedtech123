@@ -214,7 +214,7 @@ const ProductList = ({ onClick }: Props) => {
                               size="small"
                             />
                             {index === 0 && (
-                              <Tooltip title="Add To Cart">
+                              <Tooltip title="Thêm giỏ hàng">
                                 <Fab
                                   size="small"
                                   color="primary"

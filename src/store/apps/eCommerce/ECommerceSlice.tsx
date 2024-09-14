@@ -112,9 +112,7 @@ export const EcommerceSlice = createSlice({
     increment(state, action: PayloadAction<string>) {
       const productId = action.payload;
       state.cart = map(state.cart, (product) =>
-        product.id === productId
-          ? { ...product, qty: product.qty + 1 }
-          : product
+        product.id === productId ? { ...product, qty: product.qty + 1 } : product,
       );
     },
 
@@ -122,9 +120,7 @@ export const EcommerceSlice = createSlice({
     decrement(state, action: PayloadAction<string>) {
       const productId = action.payload;
       state.cart = map(state.cart, (product) =>
-        product.id === productId
-          ? { ...product, qty: product.qty - 1 }
-          : product
+        product.id === productId ? { ...product, qty: product.qty - 1 } : product,
       );
     },
 
@@ -163,7 +159,5 @@ export const {
   filterReset,
   sortByColor,
 } = EcommerceSlice.actions;
-
-
 
 export default EcommerceSlice.reducer;
