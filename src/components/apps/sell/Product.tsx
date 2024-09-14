@@ -409,10 +409,10 @@ const PaginationTable = () => {
                         row.tags === 'di động'
                           ? 'success'
                           : row.tags === 'điện tử'
-                          ? 'warning'
-                          : row.tags === 'đời sống'
-                          ? 'error'
-                          : 'secondary'
+                            ? 'warning'
+                            : row.tags === 'đời sống'
+                              ? 'error'
+                              : 'secondary'
                       }
                       sx={{
                         borderRadius: '6px',
