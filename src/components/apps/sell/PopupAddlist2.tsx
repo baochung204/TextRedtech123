@@ -126,20 +126,8 @@ const PopupAddList2 = () => {
                 onChange={(e) => handleFileChange(e, setThumbnailImage)}
               />
 
-<<<<<<< HEAD
-
-
-            
-
-
-
               {/* Khung hiển thị ảnh */}
               <Box
-
-=======
-              {/* Khung hiển thị ảnh */}
-              <Box
->>>>>>> f0509e58af1f5de6796d0cb4f0dee9221fb1f73d
                 p={1}
                 sx={{
                   width: '300px', // Kích thước khung cố định
