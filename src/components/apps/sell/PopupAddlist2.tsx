@@ -128,8 +128,7 @@ const PopupAddList2 = () => {
 
 
 
-              {/* Khung hiển thị ảnh */}
-              <Box
+            
 
 
 
