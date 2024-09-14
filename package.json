@@ -55,6 +55,7 @@
     "react-slick": "0.29.0",
     "react-spring": "^9.5.5",
     "redux": "^4.2.1",
+    "scss": "^0.2.4",
     "simplebar": "^6.2.5",
     "simplebar-react": "2.4.1",
     "slick-carousel": "1.8.1",
