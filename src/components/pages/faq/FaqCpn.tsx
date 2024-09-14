@@ -10,8 +10,11 @@ import Tab2 from './Tabs/Tab2';
 import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
-import { Grid, IconButton } from '@mui/material';
+import { Grid, IconButton, TextField, InputAdornment, MenuItem } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { IconSearch } from '@tabler/icons-react';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+
 
 const Faq = () => {
   const [value, setValue] = React.useState('1');
@@ -48,17 +51,54 @@ const Faq = () => {
                 <Tab label="URL" value="6" />
               </TabList>
               {(value === '3' || value === '5' || value === '6') && (
-                <Box>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    onClick={() => setOpen(true)}
-                    sx={{
-                      pr: 1.5,
-                    }}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
+                <Box>                  
+                  <Grid container sx={{display: 'flex', alignItems: 'center'}} >
+                    <Grid item>
+                      <CustomSelect
+                        labelId="column-sort"
+                        id="column-sort"
+                        size="small"
+                        value={1}
+                        sx={{ marginRight: '20px' }}
+                      >
+                        <MenuItem value={1}>Tất cả</MenuItem>
+                        <MenuItem value={2}>ID</MenuItem>
+                      </CustomSelect>
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        id="outlined-search"
+                        placeholder="Tìm kiếm"
+                        size="small"
+                        type="search"
+                        variant="outlined"
+                        inputProps={{ 'aria-label': 'Search Followers' }}
+                        sx={{
+                          fontSize: { xs: '50px', sm: '50px', md: '50px' }
+                        }}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <IconSearch size="12" />
+                            </InputAdornment>
+                          ),
+                        }}
+                        fullWidth={true}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <IconButton
+                        color="primary"
+                        aria-label="Add to cart"
+                        onClick={() => setOpen(true)}
+                        sx={{
+                          pr: 1.5,
+                        }}
+                      >
+                        <AddCircleIcon sx={{ fontSize: 30 }} />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
                 </Box>
               )}
             </Box>

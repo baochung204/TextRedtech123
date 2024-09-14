@@ -42,28 +42,24 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
+
                                 <TableCell>
-                                    <Typography variant="subtitle2" fontWeight={600}>
-                                        STT
-                                    </Typography>
-                                </TableCell>
-                                <TableCell>
-                                    <Typography variant="subtitle2" fontWeight={600}>
+                                    <Typography variant="h6" >
                                         ID
                                     </Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography variant="subtitle2" fontWeight={600}>
+                                    <Typography variant="h6" >
                                         Tiêu đề URL
                                     </Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography variant="subtitle2" fontWeight={600}>
+                                    <Typography variant="h6" >
                                         Mô tả URL
                                     </Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography variant="subtitle2" fontWeight={600}>
+                                    <Typography variant="h6" >
                                         URL
                                     </Typography>
                                 </TableCell>
@@ -72,29 +68,25 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
                         <TableBody>
                             {paginatedData.map((items) => (
                                 <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <TableCell>
-                                        <Typography variant="subtitle2" fontWeight={400}>
-                                            {items.id}
-                                        </Typography>
-                                    </TableCell>
+
                                     <TableCell component="th" scope="row">
-                                        <Typography variant="subtitle2" fontWeight={400}>
+                                        <Typography variant="subtitle2" >
                                             {items.idCode}
                                         </Typography>
                                     </TableCell>
 
                                     <TableCell>
-                                        <Typography variant="subtitle2" fontWeight={400}>
+                                        <Typography variant="subtitle2" >
                                             {items.titleurl}
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
-                                        <Typography variant="subtitle2" fontWeight={400}>
+                                        <Typography variant="subtitle2" >
                                             {items.descriptionurl}
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
-                                        <Typography variant="subtitle2" fontWeight={400}>
+                                        <Typography variant="subtitle2" >
                                             {items.url}
                                         </Typography>
                                     </TableCell>

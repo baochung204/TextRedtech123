@@ -1,13 +1,6 @@
-import img1 from 'src/assets/images/rank/rank1.png';
-import img2 from 'src/assets/images/rank/rank2.png';
-import img3 from 'src/assets/images/rank/rank3.png';
-import img4 from 'src/assets/images/rank/rank4.png';
-import img5 from 'src/assets/images/rank/rank5.png';
-import img6 from 'src/assets/images/rank/rank6.png';
-import img7 from 'src/assets/images/rank/rank7.png';
-import img8 from 'src/assets/images/rank/rank8.png';
-import img9 from 'src/assets/images/rank/rank9.png';
-import img10 from 'src/assets/images/rank/rank10.png';
+import img1 from 'src/assets/images/badge/badge.png';
+import img2 from 'src/assets/images/badge/badge2.png';
+import img3 from 'src/assets/images/badge/badge3.png';
 
 interface ItemTab1 {
     images: string;
@@ -15,6 +8,7 @@ interface ItemTab1 {
     strategy: string;
     strategyLevel: string;
     strategyID: string;
+    isActive: boolean
 }
 
 const strategyNames = [
@@ -40,7 +34,7 @@ const getImageForLevel = (level: string) => {
 
 const getRandomID = () => `#SI${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
 
-const imagesArray = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
+const imagesArray = [img1, img2, img3, img1, img2, img3, img1, img1, img2, img3];
 const DataTab1: ItemTab1[] = Array.from({ length: 20 }, (_, index) => {
     const level = strategyLevels[index % strategyLevels.length];
     return {
@@ -49,6 +43,7 @@ const DataTab1: ItemTab1[] = Array.from({ length: 20 }, (_, index) => {
         strategy: strategyNames[index % strategyNames.length],
         strategyLevel: level,
         strategyID: getRandomID(),
+        isActive: true
     };
 });
 

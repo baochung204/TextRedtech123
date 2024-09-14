@@ -1,10 +1,7 @@
-import { Box, Skeleton, CardMedia, Grid, IconButton, Typography, Stack, Menu, MenuItem } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import { Avatar, Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TablePagination } from "@mui/material";
+import React, { useState } from "react";
 import DataTable5 from '../DataTable/TableTab5';
-import DialogImage from '../dialog/DialogImage';
-import BlankCard from 'src/components/shared/BlankCard';
-import { format } from 'date-fns';
-import { IconDotsVertical } from '@tabler/icons-react';
+import DialogImage from "../dialog/DialogImage";
 
 interface PropsTab5 {
   value: string;
@@ -12,130 +9,148 @@ interface PropsTab5 {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+interface HeadTable {
+  head: string,
+}
+
+const headDate: HeadTable[] = [
+  {
+    head: 'ID'
+  },
+  {
+    head: 'Ngày tạo'
+  },
+  {
+    head: 'Hình ảnh'
+  },
+  {
+    head: 'Tên ảnh'
+  },
+  {
+    head: 'Mô tả'
+  },
+  {
+    head: 'Tiêu đề'
+  },
+  {
+    head: 'Hoạt động'
+  },
+]
+
+
+
 const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedItemId, setSelectedItemId] = useState<null | string>(null);
-  const [selectedItemId1, setSelectedItemId1] = useState<null | string>(null);
-  const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 500);
+  const [key, setKey] = useState<string | null>(null)
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    setAnchorEl(event.currentTarget);
-    setSelectedItemId(id);
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-    setSelectedItemId(null);
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
-  const handleEdit = (id: string) => {
-    console.log(`Chỉnh sửa item với id: ${id}`);
-    setSelectedItemId1(id)
-    setOpen(true)
-    handleClose();
-  };
-
-  const handleDelete = (id: string) => {
-    console.log(`Xóa item với id: ${id}`);
-    handleClose();
-  };
-  console.log('e', selectedItemId1);
-
+  const paginatedData = DataTable5.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   return (
     <>
-      <Box>
-        <Grid container spacing={2}>
-          {DataTable5.map((items) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={items.id}>
-              <BlankCard className="hoverCard">
-                {isLoading ? (
-                  <>
-                    <Skeleton
-                      variant="rectangular"
-                      animation="wave"
-                      width="100%"
-                      height={220}
-                    ></Skeleton>
-                  </>
-                ) : (
-                    <>
-                      <CardMedia component={'img'} height="220" alt="Remy Sharp" src={items.images} />
-                      <Box p={3}>
-                        <Stack direction="row" gap={1}>
-                          <Box>
-                            <Typography variant="h6">{items.imgName}</Typography>
-                            <Typography variant="caption">
-                              {format(new Date(items.createDate), 'E, MMM d, yyyy')}
-                            </Typography>
-                          </Box>
-                          <Box ml={'auto'}>
-                            <IconButton
-                              onClick={(event) => handleClick(event, items.id)}
-                            >
-                              <IconDotsVertical size="16" />
-                            </IconButton>
-                            <Menu
-                              id="basic-menu"
-                              anchorEl={anchorEl}
-                              open={selectedItemId === items.id}
-                              onClose={handleClose}
-                              MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                              }}
-                            >
-                              <MenuItem onClick={() => handleEdit(items.id)}>Chỉnh sửa</MenuItem>
-                              <MenuItem onClick={() => handleDelete(items.id)}>Xóa</MenuItem>
-                            </Menu>
-                          </Box>
-                        </Stack>
-                      </Box>
-                    </>
-                )}
-                {/* <Box p={3}>
-                  <Stack direction="row" gap={1}>
-                    <Box>
-                      <Typography variant="h6">{items.imgName}</Typography>
-                      <Typography variant="caption">
-                        {format(new Date(items.createDate), 'E, MMM d, yyyy')}
-                      </Typography>
-                    </Box>
-                    <Box ml={'auto'}>
-                      <IconButton
-                        onClick={(event) => handleClick(event, items.id)}
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              {headDate.map((item, index) =>
+                <TableCell key={index}>
+                  <Typography variant="h6">
+                    {item.head}
+                  </Typography>
+                </TableCell>
+              )}
+            </TableRow>
+          </TableHead>
+          <TableBody >
+
+            {paginatedData.map((item, index) =>
+            (
+              <TableRow key={index}>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item.idCode}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item.createDate}
+                  </Typography>
+                </TableCell>
+                <TableCell >
+                  <Avatar
+                    src={item.images}
+                    variant="rounded"
+                    alt={item.images}
+                    sx={{ width: 48, height: 48 }}
+                  />
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item.imgName}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item.moTa}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {item.titles}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Grid container spacing={2}>
+                    <Grid item >
+                      <Button
+                        variant="contained"
+                        onClick={() => { setKey(`${item.idCode}`); setOpen(true) }}
                       >
-                        <IconDotsVertical size="16" />
-                      </IconButton>
-                      <Menu
-                        id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={selectedItemId === items.id}
-                        onClose={handleClose}
-                        MenuListProps={{
-                          'aria-labelledby': 'basic-button',
-                        }}
-                      >
-                        <MenuItem onClick={() => handleEdit(items.id)}>Chỉnh sửa</MenuItem>
-                        <MenuItem onClick={() => handleDelete(items.id)}>Xóa</MenuItem>
-                      </Menu>
-                    </Box>
-                  </Stack>
-                </Box> */}
-              </BlankCard>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-      <DialogImage open={open} setOpen={setOpen} value={value} selectedItemId1={selectedItemId1} setSelectedItemId1={setSelectedItemId1} />
+                        Sửa
+                      </Button>
+                    </Grid>
+                    <Grid item >
+                      <Button variant="contained" color="error" >
+                        Xóa
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </TableCell>
+              </TableRow>
+            )
+
+            )}
+          </TableBody>
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={DataTable5.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={() => handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </TableContainer>
+
+      <DialogImage
+        open={open}
+        setOpen={setOpen}
+        value={value}
+        selectedItemId1={key}
+        setSelectedItemId1={setKey}
+      />
     </>
-  );
-};
+  )
+}
 
 export default Tab5;

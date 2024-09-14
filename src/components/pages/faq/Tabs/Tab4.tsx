@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
-  Avatar,
   Box,
   Paper,
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -37,33 +35,29 @@ const Tab4 = () => {
           <TableHead>
             <TableRow>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  STT
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
+                <Typography variant="h6">
                   ID
                 </Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Tên file
+                <Typography variant="h6">
+                  Ngày tạo
                 </Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Dung lượng
+                <Typography variant="h6">
+                  Tên model
                 </Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Ngày tải
+                <Typography variant="h6">
+                  Model gốc
                 </Typography>
               </TableCell>
+              
               <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Định dạng
+                <Typography variant="h6">
+                  Token huấn luyện
                 </Typography>
               </TableCell>
             </TableRow>
@@ -72,46 +66,28 @@ const Tab4 = () => {
             {paginatedData.map((items) => (
               <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {items.id}
-                  </Typography>
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  <Stack direction="row" spacing={2}>
-                    <Avatar
-                      src={items.images}
-                      variant="rounded"
-                      alt={items.images}
-                      sx={{ width: 48, height: 48 }}
-                    />
-                    <Box>
-                      <Typography variant="subtitle2" fontWeight={500}>
-                        {items.fullName}
-                      </Typography>
-                      <Typography color="textSecondary" fontSize="11px" variant="subtitle2">
-                        {items.election}
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </TableCell>
-
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {items.modelName}
+                  <Typography variant="subtitle2">
+                    {items.idCode}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {items.modelLocal}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
+                  <Typography variant="subtitle2">
                     {items.creationDate.toLocaleDateString()}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
+                  <Typography variant="subtitle2">
+                    {items.modelName}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2">
+                    {items.modelLocal}
+                  </Typography>
+                </TableCell>
+               
+                <TableCell>
+                  <Typography variant="subtitle2">
                     {items.trainedTokens}
                   </Typography>
                 </TableCell>

@@ -41,13 +41,13 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
     const [open1, setOpen1] = useState(false);
     useEffect(() => {
         if (selectedItemId1 !== null) {
-            const item = DataTable5.find(item => item.id === selectedItemId1);
+            const item = DataTable5.find(item => item.idCode === selectedItemId1);
             if (item) {
                 setFileUrl(item.images);
                 setFormData({
                     name: item.imgName,
-                    title: '',
-                    moTa: '',
+                    title: item.title,
+                    moTa: item.moTa,
                 });
             }
         } else {
@@ -202,6 +202,7 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                     </Grid>
                                 </Grid>
                             )}
+                            
                         </Grid>
                     </DialogContentText>
                 </DialogContent>

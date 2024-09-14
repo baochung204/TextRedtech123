@@ -130,7 +130,7 @@ const CustomerListOrder = () => {
                     value={1}
                     sx={{ marginRight: '20px' }}
                   >
-                    <MenuItem value={1}>Bộ cọc</MenuItem>
+                    <MenuItem value={1}>Bộ lọc</MenuItem>
                   </CustomSelect>
                 </Box>
 
