@@ -13,17 +13,15 @@ import {
 } from '@mui/material';
 import { IconPackage } from '@tabler/icons-react';
 import React from 'react';
-
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
-
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-import rank1 from 'src/assets/images/rank/rank1.png';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import badge from 'src/assets/images/badge/badge2.png';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -312,57 +310,81 @@ const CollaboratePost = () => {
               </Grid>
               {/* Left section - 9 columns */}
               <Grid item xs={12} md={9}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={4}>
-                    <Box sx={{ width: '50px', height: 'auto' }}>
-                      <img src={rank1} style={{ width: '160px', height: '100%' }} />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12} md={8}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center', // Centers content vertically
-                        alignItems: 'start', // Centers content horizontally (optional)
-                        height: '100%', // Ensure the box takes the full available height
-                      }}
+                <Box
+                  height="100%"
+                  bgcolor="error.light"
+                  sx={{
+                    padding: 2,
+                    borderRadius: 2,
+                  }}
+                >
+                  <Grid container spacing={2} alignItems="center">
+                    {/* Left Column */}
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                     >
+                      {/* "Trạng thái đối tác" centered above the icon */}
                       <Typography
+                        variant="h5"
                         sx={{
-                          fontSize: '24px', // Set the font size
-                          fontWeight: 'bold', // Set the text to bold
-                          marginBottom: '10px',
+                          py: 2,
+                          fontWeight: 600,
+                          color: '#FA896B',
+                          textAlign: 'center', // Center the text
                         }}
                       >
-                        Trạng thái đối tác:
+                        Trạng thái đối tác
                       </Typography>
-                      <Typography
+
+                      {/* Icon */}
+                      <Box
                         sx={{
-                          fontSize: '20px', // Set the font size
-                          fontWeight: 'bold', // Set the text to bold
+                          width: '100%',
+                          maxWidth: '100px',
+                          borderRadius: 1,
+                          overflow: 'hidden',
+                          mb: 1, // Margin below the image
+                        }}
+                      >
+                        <img
+                          src={badge}
+                          alt="Banner chiến lược"
+                          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                        />
+                      </Box>
+
+                      {/* "Rank A" centered below the icon */}
+                      <Typography
+                        variant="h6"
+                        fontWeight={500}
+                        sx={{
+                          lineHeight: 1.5,
+                          textAlign: 'center', // Center the paragraph
                         }}
                       >
                         Rank A
                       </Typography>
-                    </Box>
+                    </Grid>
+
+                    {/* Right Column */}
+                    <Grid item xs={8}>
+                      <Typography
+                        variant="h6"
+                        fontWeight={500}
+                        sx={{
+                          lineHeight: 1.5,
+                          textAlign: 'center', // Center the paragraph
+                        }}
+                      >
+                        Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
+                        tốt hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ
+                        đối tác chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn.
+                      </Typography>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography
-                    sx={{
-                      marginTop: '20px',
-                      textAlign: 'center',
-                      maxWidth: '500px',
-                      fontWeight: 'bold',
-                      fontSize: '15px',
-                    }}
-                  >
-                    Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi tốt
-                    hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ đối tác
-                    chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn.
-                  </Typography>
-                </Grid>
+                </Box>
               </Grid>
             </Grid>
           </Box>

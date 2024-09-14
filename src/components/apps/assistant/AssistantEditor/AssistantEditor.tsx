@@ -124,45 +124,45 @@ const AssistantEditor = () => {
           {/* Cột 1 */}
 
           <Grid item xs={12} sm={12} lg={4} >
-            <Paper  elevation={3} sx={{ minHeight: '64%', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper elevation={3} sx={{ minheight: '100%', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Box mb={1.2} sx={{ height: '100%' }}>
                 {/* Circular Avatar Placeholder */}
                 <Box sx={{ maxHeight: 'calc(65vh - 120px)', textAlign: 'center', mt: { md: 2 }, mb: '20px' }}>
                   <label htmlFor="avatar-upload">
-                  <Avatar
-                    src={avatarPreview || ''}
-                    alt="avatar preview"
-                    sx={{
-                      width: { xs: 80, sm: 100, md: 120, lg: 150 },
-                      height: { xs: 80, sm: 100, md: 120, lg: 150 },
-                      margin: 'auto',
-                      fontSize: 50,
-                      backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
-                      color: '#9e9e9e',
-                      cursor: 'pointer',
-                      position: 'relative',
-                      zIndex: 1,
-                      borderRadius: '50%',
-                      border: 'none',  // Xóa đường viền mặc định
-                      '&:before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
+                    <Avatar
+                      src={avatarPreview || ''}
+                      alt="avatar preview"
+                      sx={{
+                        width: { xs: 80, sm: 100, md: 120, lg: 150 },
+                        height: { xs: 80, sm: 100, md: 120, lg: 150 },
+                        margin: 'auto',
+                        fontSize: 50,
+                        backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
+                        color: '#9e9e9e',
+                        cursor: 'pointer',
+                        position: 'relative',
+                        zIndex: 1,
                         borderRadius: '50%',
-                        padding: '6px', // Độ rộng của đường viền
-                        background: 'linear-gradient(#50b2fc, #f44c66)', // Gradient màu
-                        '-webkit-mask': 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                        mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                        maskComposite: 'exclude',
-                        zIndex: 1,  // Đảm bảo gradient ở sau avatar
-                      },
-                    }}
-                  >
-                    {!avatarPreview && <PersonIcon fontSize="inherit" />}
-                  </Avatar>
+                        border: 'none',  // Xóa đường viền mặc định
+                        '&:before': {
+                          content: '""',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          borderRadius: '50%',
+                          padding: '6px', // Độ rộng của đường viền
+                          background: 'linear-gradient(#50b2fc, #f44c66)', // Gradient màu
+                          '-webkit-mask': 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                          mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                          maskComposite: 'exclude',
+                          zIndex: 1,  // Đảm bảo gradient ở sau avatar
+                        },
+                      }}
+                    >
+                      {!avatarPreview && <PersonIcon fontSize="inherit" />}
+                    </Avatar>
 
                   </label>
                   {/* Hidden file input */}
@@ -230,32 +230,32 @@ const AssistantEditor = () => {
                     </CustomSelect>
                   </Grid>
                 </Grid>
-               
+
               </Box>
             </Paper>
             {/*Tích hợp  */}
             <Paper elevation={3} sx={{ minHeight: '4%', p: 2, mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6} lg={7}>
-                    <Box display="flex" alignItems="center">
-                      <FacebookIcon fontSize='large' color="info" />
-                      <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
-                    </Box>
-                  </Grid>
-                <Grid item xs={12} sm={6} lg={5} display={'flex'} justifyContent={'end'}>
-                    <Tooltip title="Thêm">
-                      <Fab size="small" color="secondary" aria-label="plus">
-                        <IconPlus width={18} />
-                      </Fab>
-                    </Tooltip>
-                  </Grid>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} lg={7}>
+                  <Box display="flex" alignItems="center">
+                    <FacebookIcon fontSize='large' color="info" />
+                    <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
+                  </Box>
                 </Grid>
-                <Integration />
-              </Paper>
+                <Grid item xs={12} sm={6} lg={5} display={'flex'} justifyContent={'end'}>
+                  <Tooltip title="Thêm">
+                    <Fab size="small" color="secondary" aria-label="plus">
+                      <IconPlus width={18} />
+                    </Fab>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+              <Integration />
+            </Paper>
           </Grid>
           {/* Cột 2 */}
           <Grid item xs={12} sm={12} lg={4} >
-            <Paper elevation={3} sx={{ height: '43vh', overflowY: 'auto', px: 2 }}>
+            <Paper elevation={3} sx={{ minheight: '100%', overflowY: 'auto', px: 2, pb: 3 }}>
               <Box fontWeight={600} mt={2} mb={1}>Model</Box>
               <CustomSelect
                 labelId="demo-simple-select-label"
@@ -330,7 +330,7 @@ const AssistantEditor = () => {
                   </Button>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={12}>
-                  <FunctionsDialog openFunction={openFunction} setOpenFunction={setOpenFunction}/>
+                  <FunctionsDialog openFunction={openFunction} setOpenFunction={setOpenFunction} />
                 </Grid>
               </Grid>
             </Paper>
@@ -338,7 +338,7 @@ const AssistantEditor = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} lg={6}>
                   <Box fontWeight={600} mt={0.5}>Chiến lược</Box>
-                  
+
                 </Grid>
                 <Grid item xs={12} sm={6} lg={6} display={'flex'} justifyContent={'end'}>
                   <Tooltip title="Chọn chiến lược" >
@@ -348,8 +348,8 @@ const AssistantEditor = () => {
                   </Tooltip>
                 </Grid>
                 <Grid item xs={12} sm={6} lg={12}>
-                  <StrategyDialog open={open} setOpen={setOpen}/>
-                  
+                  <StrategyDialog open={open} setOpen={setOpen} />
+
                 </Grid>
               </Grid>
 
@@ -358,10 +358,10 @@ const AssistantEditor = () => {
           {/* Cột 3 */}
           <Grid item xs={12} sm={12} lg={4}>
 
-            <Paper elevation={3} sx={{ maxHeight: '78vh', minHeight: '78vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Paper elevation={3} sx={{ minHeight: '100%', display: 'flex', flexDirection: 'column', p: 2 }}>
               <Typography variant="h6">Chatbot</Typography>
               <Divider sx={{ my: 2 }} />
-              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(78vh - 120px)' }}>
+              <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(100% - 120px)' }}>
                 <List>
                   {messages.map((message, index) => (
                     <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>

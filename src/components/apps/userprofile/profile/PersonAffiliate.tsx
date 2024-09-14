@@ -20,8 +20,8 @@ import PageContainer from 'src/components/container/PageContainer';
 import CloseIcon from '@mui/icons-material/Close';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-// import SecurityIcon from '@mui/icons-material/Security';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import SecurityIcon from '@mui/icons-material/Security';
 import Authenticate from 'src/assets/images/authenticate/authenticate.png';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -103,11 +103,13 @@ const PersonAffiliate = () => {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: (values) => {
-      if (activeStep === steps.length - 1) {
-        console.log('Final values:', values);
-      } else {
-        handleNext();
-      }
+      // if (activeStep === steps.length - 1) {
+      //   console.log('Final values:', values);
+      // } else {
+
+      handleNext();
+
+      // }
     },
   });
 
@@ -650,6 +652,22 @@ const PersonAffiliate = () => {
               </CustomFormLabel>
               {/* Display instructions here */}
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                <Typography>Chụp đủ mặt trước và mặt sau</Typography>
+              </Box>
+
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                <Typography>Chụp rõ nét không bị mất góc</Typography>
+              </Box>
+
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                <Typography>
+                  Chụp hình ảnh giấy tờ còn hạn, hình gốc, không scan hay photocopy
+                </Typography>
+              </Box>
               <Box>
                 <img
                   style={{
@@ -662,6 +680,12 @@ const PersonAffiliate = () => {
                 />
               </Box>
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <SecurityIcon sx={{ marginRight: '8px' }} />
+                <Typography sx={{ fontWeight: 'bold', fontSize: '15px' }}>
+                  Hình ảnh được bảo mật tuyệt đối,chỉ sử dụng để ký tài liệu
+                </Typography>
+              </Box>
             </Grid>
 
             <Grid item xs={12} md={6}>
@@ -691,7 +715,11 @@ const PersonAffiliate = () => {
                     id="frontImage"
                     type="file"
                     inputProps={{ accept: 'image/*' }}
-                    onChange={handleImage1Change}
+                    value={formik.values.frontImage}
+                    onChange={formik.handleChange}
+                    error={!!formik.errors.frontImage}
+                    // helperText={formik.errors.frontImage}
+                    // onChange={formik.handleChange}
                     style={{ display: 'none' }}
                   />
                 </Button>
@@ -726,7 +754,9 @@ const PersonAffiliate = () => {
                     id="backImage"
                     type="file"
                     inputProps={{ accept: 'image/*' }}
-                    onChange={handleImage2Change}
+                    value={formik.values.backImage}
+                    onChange={formik.handleChange}
+                    error={!!formik.errors.backImage}
                     style={{ display: 'none' }}
                   />
                 </Button>
@@ -790,8 +820,8 @@ const PersonAffiliate = () => {
               variant="contained"
               color="secondary"
               size="small"
-              component={Link}
-              to="/apps/pending"
+              // component={Link}
+              // to="/apps/pending"
             >
               Hoàn tất đăng ký
             </Button>

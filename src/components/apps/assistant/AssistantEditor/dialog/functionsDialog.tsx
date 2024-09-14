@@ -17,7 +17,7 @@ interface PropsFunction {
   setOpenFunction: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FunctionsDialog: React.FC<PropsFunction> = ({openFunction,setOpenFunction}) => {
+const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
 
