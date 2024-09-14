@@ -20,7 +20,7 @@ interface PropsSearch {
   openSearch: boolean;
   setOpenSearch: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const SimpleDialog: React.FC<PropsSearch> = ({openSearch,setOpenSearch}) => {
+const SimpleDialog: React.FC<PropsSearch> = ({ openSearch, setOpenSearch }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [fileName, setFileName] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
