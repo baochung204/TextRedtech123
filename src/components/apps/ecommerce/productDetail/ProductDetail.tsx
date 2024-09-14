@@ -61,7 +61,7 @@ const ProductDetail = () => {
         <>
           <Box display="flex" alignItems="center">
             {/* Badge and category */}
-            <Chip label="Còn hàng" color="success" size="small" />
+            <Chip label={product.category} color="success" size="small" />
           </Box>
           {/* Title and description */}
           <Typography fontWeight="600" variant="h4" mt={1}>
@@ -73,22 +73,21 @@ const ProductDetail = () => {
           </Typography>
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
-            <Box
-              component={'small'}
-              color={theme.palette.text.secondary}
-              sx={{ textDecoration: 'line-through' }}
-            >
-              {/* {convertToVND(product.salesPrice)} */}
-            </Box>{' '}
-            {/* {convertToVND()} */}
-            {product.price} point
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Box component="span">{product.price - 10} point</Box>
+              <Box
+                component="small"
+                color={theme.palette.text.secondary}
+                sx={{ textDecoration: 'line-through' }}
+              >
+                {/* Display the original price */}
+                {product.price} point
+              </Box>
+            </Box>
           </Typography>
           {/* Ratings */}
           <Stack direction={'row'} alignItems="center" gap="10px" mt={2} pb={3}>
             <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
-            <Link to="/" color="inherit">
-              (236 đánh giá)
-            </Link>
           </Stack>
           <Divider />
           {/* Qty */}
@@ -133,7 +132,7 @@ const ProductDetail = () => {
                 sx={{ width: '200px' }}
                 onClick={() => dispatch(addToCart(product as any)) && handleClick()}
               >
-                Thêm vào giỏ hàng
+                Thêm giỏ hàng
               </Button>
             </Grid>
           </Grid>

@@ -351,7 +351,7 @@ const PaginationTable = () => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  <Typography variant="h6">ID</Typography>
+                  <Typography variant="h6">Id</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="h6">Ảnh</Typography>
@@ -414,13 +414,14 @@ const PaginationTable = () => {
                       sx={{ display: 'flex', gap: 0.5 }}
                     >
                       {row.total}{' '}
-                      <img
+                      {/* <img
                         src={logoPoint}
                         alt=""
                         width={20}
                         height={20}
                         style={{ borderRadius: 50 }}
-                      />
+                      /> */}
+                      đ
                     </Typography>
                   </TableCell>
 
@@ -431,13 +432,14 @@ const PaginationTable = () => {
                       sx={{ display: 'flex', gap: 0.5 }}
                     >
                       {row.totalSales}{' '}
-                      <img
+                      {/* <img
                         src={logoPoint}
                         alt=""
                         width={20}
                         height={20}
                         style={{ borderRadius: 50 }}
-                      />
+                      /> */}
+                      đ
                     </Typography>
                   </TableCell>
                 </TableRow>
