@@ -27,6 +27,7 @@ import logoMB from 'src/assets/images/logoPay/Mb.jpg';
 import logoTCB from 'src/assets/images/logoPay/TCB.jpg';
 import { useTheme } from '@mui/material';
 import { keyframes } from '@mui/system';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
@@ -107,7 +108,9 @@ const BuyPoint = () => {
 
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
-      <Breadcrumb title="Quy Đổi R-Point  " items={BCrumb} />
+      <BannerPage title="Quy Đổi R-Point  " items={BCrumb} />
+
+      {/* <Breadcrumb title="Quy Đổi R-Point  " items={BCrumb} /> */}
       <ChildCard>
         {/* <Button onClick={() => onHandleOpenPopup()}>click</Button> */}
         <Grid container spacing={7}>

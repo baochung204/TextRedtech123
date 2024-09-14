@@ -27,13 +27,14 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import BlankCard from '../../components/shared/BlankCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
   {
     to: '/',
     title: 'Trang chủ',
   },
-  { to: '/buy/point', title: 'Quy đổi ngân lượng' },
+  { to: '/buy/point', title: 'Quy đổi R-Point' },
   { title: 'Lịch sử quy đổi ' },
 ];
 
@@ -281,8 +282,7 @@ const HistoryBuyPoint = () => {
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
-      {/* breadcrumb */}
-      <Breadcrumb title="Lịch sử quy đổi ngân lượng" items={BCrumb} />
+      <BannerPage title="Lịch sử quy đổi R-Point" items={BCrumb} />
       <Box
         style={{
           display: 'flex',
@@ -294,7 +294,7 @@ const HistoryBuyPoint = () => {
         {' '}
         <Box sx={{}}>
           <Typography variant="h3" sx={{ fontSize: { xs: '18px', sm: '20px' } }}>
-            Lịch sử nạp point
+            Lịch sử nạp R-Point
           </Typography>
         </Box>
         <Box

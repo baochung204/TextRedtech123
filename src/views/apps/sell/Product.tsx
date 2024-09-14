@@ -5,12 +5,20 @@ import { Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 import Products from 'src/components/apps/sell/Product';
-
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+const BCrumb = [
+  {
+    to: '/',
+    title: 'Trang Chủ',
+  },
+  { to: '/', title: 'Quản lý sản phẩm' },
+];
 const Product = () => {
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
+      <BannerPage title="Quản lý sản phẩm  " items={BCrumb} />
+
       <Grid container spacing={3}>
-        <Grid item sm={12}></Grid>
         <Grid item sm={12}>
           <Products />
         </Grid>
