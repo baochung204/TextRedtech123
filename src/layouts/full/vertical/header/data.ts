@@ -125,6 +125,13 @@ const profile: ProfileType[] = [
     icon: icon1,
   },
   {
+    id: 1,
+    href: '/purchasehistory',
+    title: 'Lịch sử giao dịch',
+    // subtitle: 'Account Settings',
+    icon: ddIcon4,
+  },
+  {
     id: 2,
     href: '/user-profile',
     title: 'Đổi mật khẩu',
@@ -142,14 +149,14 @@ const profile: ProfileType[] = [
     href: '/apps/chats',
     title: 'Ticket hỗ trợ',
     // subtitle: 'To-do and Daily Tasks',
-    icon: icon3,
+    icon: icon4,
   },
   {
     id: 4,
     href: '/forms/form-request',
     title: 'Đề xuất tính năng',
     // subtitle: 'To-do and Daily Tasks',
-    icon: icon4,
+    icon: icon3,
   },
 ];
 

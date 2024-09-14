@@ -1,10 +1,16 @@
 // import { Box } from '@mui/material';
 // import React from 'react';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Avatar,
   Box,
   Button,
   ButtonGroup,
+  Card,
+  CardContent,
+  Grid,
   Stack,
   Table,
   TableBody,
@@ -14,13 +20,33 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+import { IconChevronDown } from '@tabler/icons-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'src/store/Store';
 import products2 from 'src/assets/images/products/s24.jpg';
 import products from 'src/assets/images/products/s25.jpg';
+import Countdown from 'src/components/countdown/countdown';
 import ChildCard from 'src/components/shared/ChildCard';
 
 const Content = () => {
+  const packages = [
+    {
+      id: 7,
+      img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
+      title: 'Chatbot thương mại điện tử',
+      price: 520,
+      discount: 499,
+      sale: 80,
+      timeFlash: 180,
+    },
+  ];
+  const [selectedPackage, setSelectedPackage] = useState(null);
+  const handleSelectPackage = (pkg: any) => {
+    setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
+  };
+
   return (
     <div>
       {/* <ProductChecout /> */}
@@ -161,6 +187,146 @@ const Content = () => {
                 Đơn hàng
               </Typography>
               {/* Tổng cộng */}
+              <Accordion
+                sx={{
+                  border: 'none',
+                  boxShadow: 'none',
+                }}
+              >
+                <AccordionSummary
+                  expandIcon={<IconChevronDown />}
+                  sx={{
+                    fontSize: 15,
+                    px: 0,
+                    border: 'none',
+                    boxShadow: 'none',
+                  }}
+                >
+                  <Typography variant="body2" sx={{ fontSize: 16, fontWeight: 500 }}>
+                    Flash-sale
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails
+                  sx={{
+                    border: 'none',
+                    boxShadow: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+
+                    px: 0,
+                  }}
+                >
+                  <Grid container spacing={1}>
+                    {packages.map((pkg) => (
+                      <Grid item xs={12} md={12} key={pkg.id}>
+                        <Card
+                          sx={{
+                            borderRadius: '15px',
+                            overflow: 'hidden',
+                            boxShadow:
+                              selectedPackage === pkg.id
+                                ? '0 6px 18px rgba(128, 128, 128, 0.4)'
+                                : '0 6px 18px rgba(0,0,0,0.1)',
+                            transition: 'transform 0.3s',
+                            height: 'auto',
+                            marginY: '0px',
+                            paddingY: '0px',
+
+                            transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
+                          }}
+                          onClick={() => handleSelectPackage(pkg)}
+                        >
+                          <CardContent
+                            sx={{
+                              p: 2,
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'end',
+                              '&:last-child': {
+                                pb: 2,
+                              },
+                            }}
+                          >
+                            <div style={{ display: 'flex', gap: '20px' }}>
+                              <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
+                                <img
+                                  src={pkg.img}
+                                  alt={''}
+                                  width="120"
+                                  style={{ borderRadius: '10px' }}
+                                />
+                              </Typography>
+                              <div>
+                                <Typography
+                                  variant="h6"
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    mb: 1,
+                                  }}
+                                >
+                                  {pkg.title}
+                                </Typography>
+
+                                <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                                  {' '}
+                                  <Typography
+                                    sx={{
+                                      fontWeight: 'bold',
+                                      mb: 1,
+
+                                      fontSize: '14px',
+                                    }}
+                                  >
+                                    {pkg.discount.toLocaleString()} point
+                                  </Typography>
+                                  <Typography sx={{ color: '#888', mb: 1 }}>
+                                    <del> {pkg.price.toLocaleString()} point</del>
+                                  </Typography>{' '}
+                                </div>
+                                <Box>
+                                  <Button
+                                    variant={'outlined'}
+                                    color="warning"
+                                    sx={{
+                                      display: { xs: 'none', md: 'block' },
+                                      backgroundImage: 'none',
+                                      ':hover': { backgroundColor: 'none' },
+                                      mt: 3.4,
+                                    }}
+                                  >
+                                    {pkg.sale}%
+                                  </Button>
+                                </Box>
+                              </div>
+                            </div>
+                            <Box></Box>
+                          </CardContent>
+                          {/* <Box
+                              style={{
+                                position: 'absolute',
+                                top: '-15px',
+
+                                padding: '5px 10px',
+                                color: 'white',
+                                borderRadius: '0px 0px 10px 10px',
+                                fontWeight: 'bold',
+                              }}
+                              sx={{ right: { xs: '-15px', md: '45px' } }}
+                            >
+                              <img src={sale} alt="" style={{ width: '70px' }} />
+                            </Box> */}
+                        </Card>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </AccordionDetails>
+                <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography variant="h5">Tổng giá gói : </Typography>
+                  <Typography variant="h5" sx={{ paddingX: '3px' }}>
+                    1.023.900₫
+                  </Typography>
+                </Box>{' '}
+              </Accordion>
               <Stack direction="row" justifyContent="space-between" mb={3}>
                 <Typography variant="h6" fontWeight={400}>
                   Giá trị đơn hàng

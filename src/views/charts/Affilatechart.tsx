@@ -1,16 +1,42 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { useTheme } from '@mui/material/styles';
+// import React from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import Affilatec from 'src/components/shared/Affilatec';
 
 const Affilatechart = () => {
-  // 1
+  const seriesdoughnutchart = [75, 85];
+
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: '#000000',
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -19,6 +45,15 @@ const Affilatechart = () => {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
         },
       },
     },
@@ -34,22 +69,9 @@ const Affilatechart = () => {
     },
     labels: ['Chi phí', 'Doanh thu'],
   };
-  const seriesdoughnutchart = [65, 35];
-
-  // 2
 
   return (
-    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-    //   <Grid container spacing={3}>
-    //     <Grid item lg={6} md={12} xs={12}>
-
-    //     </Grid>
-    //   </Grid>
-    // </PageContainer>
-    <Affilatec title="Tỉ trọng chi phí /doanh thu " description={''}>
+    <Affilatec title="Tỉ trọng chi phí / doanh thu" description={''}>
       <Chart
         options={optionsdoughnutchart}
         series={seriesdoughnutchart}

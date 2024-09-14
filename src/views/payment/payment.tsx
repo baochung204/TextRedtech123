@@ -1,35 +1,30 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
-  Box,
-  Drawer,
-  Typography,
-  Grid,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
+  AccordionSummary,
+  Box,
   Button,
+  Drawer,
+  FormControl,
+  Grid,
   styled,
   TextField,
-  FormControl,
-  Card,
-  CardContent,
+  Typography,
 } from '@mui/material';
+import React from 'react';
 
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import PageContainer from 'src/components/container/PageContainer';
-import AppCard from 'src/components/shared/AppCard';
-import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
 import { IconChevronDown } from '@tabler/icons-react';
+import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
+import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
+import PageContainer from 'src/components/container/PageContainer';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
-
-import Countdown from 'src/components/countdown/countdown';
+import AppCard from 'src/components/shared/AppCard';
+import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
 const CustomInput = styled((props: any) => <TextField {...props} />)(({ theme }) => ({
   '& .MuiOutlinedInput-input::-webkit-input-placeholder': {
@@ -58,41 +53,41 @@ const PayMentPonit = () => {
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
-  const [selectedPackage, setSelectedPackage] = useState(null);
+  // const [selectedPackage, setSelectedPackage] = useState(null);
 
-  const packages = [
-    {
-      id: 5,
-      img: 'http://localhost:5173/src/assets/images/products/s11.jpg',
-      title: 'Chatbot marketing',
-      price: 1055000,
-      discount: 1023900,
-      sale: 80,
-      timeFlash: 180,
-    },
-    {
-      id: 6,
-      img: 'http://localhost:5173/src/assets/images/products/s10.jpg',
-      title: 'Chatbot hỗ trợ khách hàng',
-      price: 2010000,
-      discount: 1995002,
-      sale: 80,
-      timeFlash: 180,
-    },
-    {
-      id: 7,
-      img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
-      title: 'Chatbot thương mại điện tử',
-      price: 5025000,
-      discount: 3935000,
-      sale: 80,
-      timeFlash: 180,
-    },
-  ];
+  // const packages = [
+  //   {
+  //     id: 5,
+  //     img: 'http://localhost:5173/src/assets/images/products/s11.jpg',
+  //     title: 'Chatbot marketing',
+  //     price: 1055000,
+  //     discount: 1023900,
+  //     sale: 80,
+  //     timeFlash: 180,
+  //   },
+  //   {
+  //     id: 6,
+  //     img: 'http://localhost:5173/src/assets/images/products/s10.jpg',
+  //     title: 'Chatbot hỗ trợ khách hàng',
+  //     price: 2010000,
+  //     discount: 1995002,
+  //     sale: 80,
+  //     timeFlash: 180,
+  //   },
+  //   {
+  //     id: 7,
+  //     img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
+  //     title: 'Chatbot thương mại điện tử',
+  //     price: 5025000,
+  //     discount: 3935000,
+  //     sale: 80,
+  //     timeFlash: 180,
+  //   },
+  // ];
 
-  const handleSelectPackage = (pkg: any) => {
-    setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
-  };
+  // const handleSelectPackage = (pkg: any) => {
+  //   setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
+  // };
   return (
     <PageContainer title="Email App" description="this is email page">
       <Breadcrumb title="Thanh Toá</PageContainer>n" items={BCrumb}>
@@ -328,7 +323,7 @@ const PayMentPonit = () => {
                     </Grid>
                   </Grid>
                 </Accordion>
-                <Accordion
+                {/* <Accordion
                   sx={{
                     border: 'none',
                     boxShadow: 'none',
@@ -358,7 +353,7 @@ const PayMentPonit = () => {
                     }}
                   >
                     <Grid container spacing={1}>
-                      {packages.map((pkg) => (
+                      {/* {packages.map((pkg) => (
                         <Grid item xs={12} md={12} key={pkg.id}>
                           <Card
                             sx={{
@@ -474,18 +469,18 @@ const PayMentPonit = () => {
                             >
                               <img src={sale} alt="" style={{ width: '70px' }} />
                             </Box> */}
-                          </Card>
+                {/* </Card>
                         </Grid>
-                      ))}
-                    </Grid>
+                      ))} */}
+                {/* </Grid>
                   </AccordionDetails>
-                  <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                  {/* <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant="h5">Tổng giá gói : </Typography>
                     <Typography variant="h5" sx={{ paddingX: '3px' }}>
                       1.023.900₫
                     </Typography>
-                  </Box>{' '}
-                </Accordion>
+                  </Box>{' '} */}
+                {/* </Accordion>  */}
               </Box>
               <Box>
                 <Box sx={{ mt: 2 }}>
