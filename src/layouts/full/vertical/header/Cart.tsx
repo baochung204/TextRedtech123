@@ -31,8 +31,8 @@ const Cart = () => {
     <Box
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      component='div'
-      className='cart-dropdown-wrapper'
+      component="div"
+      className="cart-dropdown-wrapper"
       sx={{ position: 'relative', display: 'inline-block' }}
     >
       <IconButton
@@ -61,17 +61,14 @@ const Cart = () => {
             zIndex: 1,
             backgroundColor: 'white',
             borderRadius: '10px',
-            padding: '14px 16px',
+            padding: '14px 35px',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+            maxHeight: '400px', // Set the maximum height of the dropdown
+            overflowY: 'auto', // Allow vertical scroll if content overflows
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            p={2}
-          >
+          <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
             <Typography variant="h5" fontWeight={600}>
               Giỏ hàng
             </Typography>
@@ -86,8 +83,10 @@ const Cart = () => {
             </IconButton>
           </Box>
 
+          {/* Cart Items */}
           <CartItems />
 
+          {/* Total and Checkout */}
           <Box mt={2}>
             {Cartproduct.length > 0 ? (
               <>
