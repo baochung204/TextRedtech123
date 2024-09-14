@@ -28,7 +28,7 @@ const generateTrainedTokens = (min: number, max: number) => {
 
 const generateCreationDate = () => {
     const today = new Date();
-    const randomDaysAgo = Math.floor(Math.random() * 30); 
+    const randomDaysAgo = Math.floor(Math.random() * 30);
     const randomDate = new Date(today.setDate(today.getDate() - randomDaysAgo));
     return randomDate;
 }
@@ -47,7 +47,7 @@ const DataTable4: ItemTable4[] = [
         id: '2',
         images: img2,
         modelName: 'GPT-1',
-        modelLocal: 'Ford Mustang',  
+        modelLocal: 'Chat GPT 1',
         creationDate: generateCreationDate(),
         trainedTokens: generateTrainedTokens(150, 250),
         idCode: generateIdCode('Mustang')
@@ -55,8 +55,8 @@ const DataTable4: ItemTable4[] = [
     {
         id: '3',
         images: img3,
-        modelName: 'Corolla',
-        modelLocal: 'Toyota Corolla', 
+        modelName: 'GPT-2',
+        modelLocal: 'Chat GPT 2',
         creationDate: generateCreationDate(),
         trainedTokens: generateTrainedTokens(120, 220),
         idCode: generateIdCode('Corolla')
@@ -64,8 +64,8 @@ const DataTable4: ItemTable4[] = [
     {
         id: '4',
         images: img4,
-        modelName: 'i8',
-        modelLocal: 'BMW i8', 
+        modelName: 'GPT-3',
+        modelLocal: 'Chat GPT 3',
         creationDate: generateCreationDate(),
         trainedTokens: generateTrainedTokens(130, 230),
         idCode: generateIdCode('i8')
@@ -73,8 +73,8 @@ const DataTable4: ItemTable4[] = [
     {
         id: '5',
         images: img5,
-        modelName: 'Civic',
-        modelLocal: 'Honda Civic',  
+        modelName: 'GPT-4',
+        modelLocal: 'Chat GPT 4',
         creationDate: generateCreationDate(),
         trainedTokens: generateTrainedTokens(140, 240),
         idCode: generateIdCode('Civic')

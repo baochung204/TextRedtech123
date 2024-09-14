@@ -16,15 +16,14 @@ interface ItemTable3 {
     idCode: string;
 }
 
-// Hàm chọn ngẫu nhiên một ảnh từ danh sách ảnh
 const getRandomImage = (): string => {
     const images = [img1, img2, img3, img4, img5];
     return images[Math.floor(Math.random() * images.length)];
 };
 
 const generateIdCode = () => {
-    const randomNumber = Math.floor(Math.random() * 1000000); // Random number between 0 and 999999
-    return `#${randomNumber.toString().padStart(6, '0')}`; // Pad with leading zeros if necessary
+    const randomNumber = Math.floor(Math.random() * 1000000);
+    return `#${randomNumber.toString().padStart(6, '0')}`;
 }
 
 
@@ -35,7 +34,7 @@ const DataTable3: ItemTable3[] = [
         fullName: 'Nguyễn Văn A',
         election: 'General Election',
         fileName: 'file1.pdf',
-        datas: 'Sample data 1',
+        datas: '123Kb',
         creationDate: new Date('2024-09-01'),
         formats: 'PDF',
         idCode: generateIdCode()
@@ -46,7 +45,7 @@ const DataTable3: ItemTable3[] = [
         fullName: 'Trần Thị B',
         election: 'Local Election',
         fileName: 'file2.docx',
-        datas: 'Sample data 2',
+        datas: '453Kb',
         creationDate: new Date('2024-09-02'),
         formats: 'DOCX',
         idCode: generateIdCode()
@@ -57,7 +56,7 @@ const DataTable3: ItemTable3[] = [
         fullName: 'Lê Văn C',
         election: 'Presidential Election',
         fileName: 'file3.xlsx',
-        datas: 'Sample data 3',
+        datas: '863Kb',
         creationDate: new Date('2024-09-03'),
         formats: 'XLSX',
         idCode: generateIdCode()
@@ -68,7 +67,7 @@ const DataTable3: ItemTable3[] = [
         fullName: 'Hoàng Thị D',
         election: 'State Election',
         fileName: 'file4.pptx',
-        datas: 'Sample data 4',
+        datas: '533Kb',
         creationDate: new Date('2024-09-04'),
         formats: 'PPTX',
         idCode: generateIdCode()
@@ -79,7 +78,7 @@ const DataTable3: ItemTable3[] = [
         fullName: 'Nguyễn Thị E',
         election: 'Municipal Election',
         fileName: 'file5.txt',
-        datas: 'Sample data 5',
+        datas: '243Kb',
         creationDate: new Date('2024-09-05'),
         formats: 'TXT',
         idCode: generateIdCode()
