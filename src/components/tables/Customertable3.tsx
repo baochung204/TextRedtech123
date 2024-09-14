@@ -74,32 +74,27 @@ const CustomerTable3 = () => {
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
-                  EMAIL
+                  Email
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
-                  NGÀY MUA
+                  Ngày mua
                 </Typography>
               </TableCell>{' '}
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
-                  SỐ ĐIỆN THOẠI
+                  Số điện thoại
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
-                  GIÁ TRỊ ĐƠN HÀNG
+                  Giá trị đơn hàng
                 </Typography>
               </TableCell>
               <TableCell>
                 <Typography variant="subtitle2" fontWeight={600}>
-                  GÓI ĐƠN HÀNG
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  HOA HỒNG
+                  Hoa hồng
                 </Typography>
               </TableCell>
               {/* <TableCell>
@@ -150,11 +145,7 @@ const CustomerTable3 = () => {
                     {row.amount.toLocaleString('vn-VN')}đ
                   </Typography>
                 </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {row.title}
-                  </Typography>
-                </TableCell>
+
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={400}>
                     {row.money.toLocaleString('vn-VN')}đ
@@ -165,26 +156,7 @@ const CustomerTable3 = () => {
           </TableBody>
         </Table>
       </TableContainer>{' '}
-      <Box
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 2 }}
-      >
-        <FormControl>
-          <InputLabel id="rows-per-page-label">Hàng trên mỗi trang</InputLabel>
-          <Select
-            labelId="rows-per-page-label"
-            id="rows-per-page"
-            value={rowsPerPage}
-            onChange={handleChangeRowsPerPage}
-            sx={{ width: 120 }}
-          >
-            {[5, 10, 25].map((rows) => (
-              <MenuItem key={rows} value={rows}>
-                {rows}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"

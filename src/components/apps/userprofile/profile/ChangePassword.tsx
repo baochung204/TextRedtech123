@@ -21,13 +21,22 @@ const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State để mở/tắt mật khẩu
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false); // State để mở/tắt mật khẩu hiện tại
+  const [showPassword, setShowPassword] = useState(false); // State để mở/tắt mật khẩu mới và xác nhận
   const [open, setOpen] = useState(false); // State để mở Snackbar
   const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [passwordMatchError, setPasswordMatchError] = useState(false); // State để hiển thị lỗi khớp mật khẩu
+  const [passwordLengthError, setPasswordLengthError] = useState(false); // State để hiển thị lỗi độ dài mật khẩu
   const theme = useTheme();
 
   const handleSubmit = () => {
+    if (newPassword.length < 6) {
+      setPasswordLengthError(true);
+      setShowAlert({ message: 'Mật khẩu mới phải có ít nhất 6 ký tự.', type: 'error' });
+      setOpen(true); // Mở Snackbar khi có lỗi
+      return;
+    }
+
     if (newPassword !== confirmNewPassword) {
       setPasswordMatchError(true);
       setShowAlert({ message: 'Mật khẩu mới và xác nhận mật khẩu không khớp.', type: 'error' });
@@ -44,10 +53,15 @@ const ChangePassword = () => {
     setNewPassword('');
     setConfirmNewPassword('');
     setPasswordMatchError(false);
+    setPasswordLengthError(false);
+  };
+
+  const handleToggleCurrentPasswordVisibility = () => {
+    setShowCurrentPassword(!showCurrentPassword); // Đổi trạng thái hiển thị mật khẩu hiện tại
   };
 
   const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword); // Đổi trạng thái hiển thị mật khẩu
+    setShowPassword(!showPassword); // Đổi trạng thái hiển thị mật khẩu mới và xác nhận
   };
 
   const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +97,7 @@ const ChangePassword = () => {
       <Box sx={{ mb: 2 }}>
         <TextField
           label="Mật khẩu hiện tại"
-          type={showPassword ? 'text' : 'password'} // Hiển thị hoặc ẩn mật khẩu
+          type={showCurrentPassword ? 'text' : 'password'} // Hiển thị hoặc ẩn mật khẩu hiện tại
           fullWidth
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
@@ -95,8 +109,8 @@ const ChangePassword = () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={handleTogglePasswordVisibility}>
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                <IconButton onClick={handleToggleCurrentPasswordVisibility}>
+                  {showCurrentPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             ),
@@ -108,6 +122,8 @@ const ChangePassword = () => {
           fullWidth
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
+          error={passwordLengthError} // Đặt lỗi nếu mật khẩu ngắn
+          helperText={passwordLengthError ? 'Mật khẩu mới phải có ít nhất 6 ký tự' : ''}
           sx={{
             mb: 2,
             input: { color: theme.palette.mode === 'dark' ? '#fff' : '#000' },
@@ -154,7 +170,7 @@ const ChangePassword = () => {
 
       {/* Hiển thị Alert khi có sự thay đổi */}
       <Snackbar
-        open={open} // Kiểm soát việc mở/đóng Snackbar
+        open={open}
         autoHideDuration={6000}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}

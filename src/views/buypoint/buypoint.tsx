@@ -27,6 +27,7 @@ import logoMB from 'src/assets/images/logoPay/Mb.jpg';
 import logoTCB from 'src/assets/images/logoPay/TCB.jpg';
 import { useTheme } from '@mui/material';
 import { keyframes } from '@mui/system';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
@@ -107,16 +108,17 @@ const BuyPoint = () => {
 
   return (
     <PageContainer title="Buy Point " description="Buy Point Here">
-      <Breadcrumb title="Quy Đổi R-Point  " items={BCrumb} />
+      <BannerPage title="Quy Đổi R-Point  " items={BCrumb} />
+
+      {/* <Breadcrumb title="Quy Đổi R-Point  " items={BCrumb} /> */}
       <ChildCard>
-        {/* <Button onClick={() => onHandleOpenPopup()}>click</Button> */}
         <Grid container spacing={7}>
           <Grid item lg={10} sm={6} xs={12} sx={{}}>
             <Box
               sx={{
-                backgroundColor: theme.palette.mode === 'dark' ? '#404759' : '#FEF3F4', // Sử dụng màu nền tùy theo chế độ
+                backgroundColor: theme.palette.mode === 'dark' ? '#404759' : '#FEF3F4',
                 padding: 0.3,
-                overflow: 'hidden', // Đảm bảo không có văn bản hiển thị ngoài vùng cuộn
+                overflow: 'hidden', 
                 position: 'relative',
               }}
             >

@@ -125,6 +125,13 @@ const profile: ProfileType[] = [
     icon: icon1,
   },
   {
+    id: 1,
+    href: '/purchasehistory',
+    title: 'Lịch sử giao dịch',
+    // subtitle: 'Account Settings',
+    icon: ddIcon4,
+  },
+  {
     id: 2,
     href: '/user-profile',
     title: 'Đổi mật khẩu',

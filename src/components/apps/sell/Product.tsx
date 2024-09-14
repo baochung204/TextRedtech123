@@ -32,7 +32,6 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
 import PageContainer from 'src/components/container/PageContainer';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
@@ -283,15 +282,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     </Toolbar>
   );
 };
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Pagination Table',
-  },
-];
 
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
@@ -323,10 +313,6 @@ const PaginationTable = () => {
 
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
-      {/* breadcrumb */}
-      <Breadcrumb title="Pagination Table" items={BCrumb} />
-      {/* end breadcrumb */}
-
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Phần bên trái */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -365,7 +351,7 @@ const PaginationTable = () => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  <Typography variant="h6">ID</Typography>
+                  <Typography variant="h6">Id</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="h6">Ảnh</Typography>
@@ -422,32 +408,38 @@ const PaginationTable = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography color="textSecondary"
+                    <Typography
+                      color="textSecondary"
                       variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}>
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
                       {row.total}{' '}
-                      <img
+                      {/* <img
                         src={logoPoint}
                         alt=""
                         width={20}
                         height={20}
                         style={{ borderRadius: 50 }}
-                      />
+                      /> */}
+                      đ
                     </Typography>
                   </TableCell>
 
                   <TableCell>
-                    <Typography color="textSecondary"
+                    <Typography
+                      color="textSecondary"
                       variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}>
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
                       {row.totalSales}{' '}
-                      <img
+                      {/* <img
                         src={logoPoint}
                         alt=""
                         width={20}
                         height={20}
                         style={{ borderRadius: 50 }}
-                      />
+                      /> */}
+                      đ
                     </Typography>
                   </TableCell>
                 </TableRow>

@@ -54,11 +54,13 @@ const CustomerTable2 = () => {
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ padding: 4 }}>
+      <TableContainer component={Paper} sx={{}}>
         <Table
           aria-label="customer table"
           size={dense ? 'small' : 'medium'} // Thay đổi kích thước của bảng
           sx={{
+            mt: '20px',
+
             whiteSpace: 'nowrap',
             '& th': { fontSize: '1.2rem', padding: '16px' }, // Tăng kích thước chữ tiêu đề cột và padding
             '& td': { fontSize: '1.2rem', padding: '16px' }, // Tăng kích thước chữ dữ liệu và padding
@@ -165,4 +167,4 @@ const CustomerTable2 = () => {
   );
 };
 
-export default CustomerTable2;
+  export default CustomerTable2;

@@ -5,6 +5,9 @@ import {
   Button,
   CardContent,
   Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
   Grid,
   IconButton,
   Tab,
@@ -13,17 +16,15 @@ import {
 } from '@mui/material';
 import { IconPackage } from '@tabler/icons-react';
 import React from 'react';
-
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
-
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-import rank1 from 'src/assets/images/rank/rank1.png';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import badge from 'src/assets/images/badge/badge2.png';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -33,6 +34,9 @@ import { FaChartLine } from 'react-icons/fa';
 import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
 import userimg from 'src/assets/images/profile/user-1.jpg';
+
+import Popupconvert from '../customerList/Popupconvert';
+import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 
 interface cardType {
   icon: JSX.Element;
@@ -77,6 +81,9 @@ const CollaboratePost = () => {
   const [value, setValue] = React.useState('1');
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   const [value2, setValue2] = React.useState<Dayjs | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
+
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -89,6 +96,25 @@ const CollaboratePost = () => {
     alignItems: 'center',
     justifyContent: 'center',
   }));
+
+  // Function mở popup
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  // Function đóng popup
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleOpenPopup2 = () => {
+    setIsPopupOpen2(true);
+  };
+
+  // Function đóng popup
+  const handleClosePopup2 = () => {
+    setIsPopupOpen2(false);
+  };
 
   return (
     <Box>
@@ -185,10 +211,21 @@ const CollaboratePost = () => {
               display={'flex'}
               justifyContent={'space-between'}
             >
-              <Button variant="contained" color="primary" sx={{ width: '48%' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ width: '48%' }}
+                onClick={handleOpenPopup}
+              >
                 RÚT TIỀN
               </Button>
-              <Button variant="contained" color="error" sx={{ width: '48%' }}>
+
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ width: '48%' }}
+                onClick={handleOpenPopup2}
+              >
                 ĐỔI POINT
               </Button>
             </Box>
@@ -312,57 +349,81 @@ const CollaboratePost = () => {
               </Grid>
               {/* Left section - 9 columns */}
               <Grid item xs={12} md={9}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={4}>
-                    <Box sx={{ width: '50px', height: 'auto' }}>
-                      <img src={rank1} style={{ width: '160px', height: '100%' }} />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12} md={8}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center', // Centers content vertically
-                        alignItems: 'start', // Centers content horizontally (optional)
-                        height: '100%', // Ensure the box takes the full available height
-                      }}
+                <Box
+                  height="100%"
+                  bgcolor="error.light"
+                  sx={{
+                    padding: 2,
+                    borderRadius: 2,
+                  }}
+                >
+                  <Grid container spacing={2} alignItems="center">
+                    {/* Left Column */}
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                     >
+                      {/* "Trạng thái đối tác" centered above the icon */}
                       <Typography
+                        variant="h5"
                         sx={{
-                          fontSize: '24px', // Set the font size
-                          fontWeight: 'bold', // Set the text to bold
-                          marginBottom: '10px',
+                          py: 2,
+                          fontWeight: 600,
+                          color: '#FA896B',
+                          textAlign: 'center', // Center the text
                         }}
                       >
-                        Trạng thái đối tác:
+                        Trạng thái đối tác
                       </Typography>
-                      <Typography
+
+                      {/* Icon */}
+                      <Box
                         sx={{
-                          fontSize: '20px', // Set the font size
-                          fontWeight: 'bold', // Set the text to bold
+                          width: '100%',
+                          maxWidth: '100px',
+                          borderRadius: 1,
+                          overflow: 'hidden',
+                          mb: 1, // Margin below the image
+                        }}
+                      >
+                        <img
+                          src={badge}
+                          alt="Banner chiến lược"
+                          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                        />
+                      </Box>
+
+                      {/* "Rank A" centered below the icon */}
+                      <Typography
+                        variant="h6"
+                        fontWeight={500}
+                        sx={{
+                          lineHeight: 1.5,
+                          textAlign: 'center', // Center the paragraph
                         }}
                       >
                         Rank A
                       </Typography>
-                    </Box>
+                    </Grid>
+
+                    {/* Right Column */}
+                    <Grid item xs={8}>
+                      <Typography
+                        variant="h6"
+                        fontWeight={500}
+                        sx={{
+                          lineHeight: 1.5,
+                          textAlign: 'center', // Center the paragraph
+                        }}
+                      >
+                        Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
+                        tốt hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ
+                        đối tác chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn.
+                      </Typography>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography
-                    sx={{
-                      marginTop: '20px',
-                      textAlign: 'center',
-                      maxWidth: '500px',
-                      fontWeight: 'bold',
-                      fontSize: '15px',
-                    }}
-                  >
-                    Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi tốt
-                    hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ đối tác
-                    chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn.
-                  </Typography>
-                </Grid>
+                </Box>
               </Grid>
             </Grid>
           </Box>
@@ -391,9 +452,41 @@ const CollaboratePost = () => {
           </TabPanel>
         </TabContext>
       </Box>
-      {/* <Grid item xs={12}>
-        <Banner1 />
-      </Grid> */}
+
+      <Dialog
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        maxWidth="lg"
+        // TransitionComponent={Transition}
+        keepMounted
+      >
+        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
+          <Popupwithdrawmoney />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup}>Hủy</Button>
+          <Button onClick={handleClosePopup} variant="contained" color="primary">
+            Xác nhận
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={isPopupOpen2}
+        onClose={handleClosePopup2}
+        maxWidth="lg"
+        // TransitionComponent={Transition}
+        keepMounted
+      >
+        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
+          <Popupconvert /> {/* Gọi component PopupAdd */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup2}>Hủy</Button>
+          <Button onClick={handleClosePopup2} variant="contained" color="primary">
+            Xác nhận
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

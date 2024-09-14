@@ -55,9 +55,9 @@ const PopupAddList2 = () => {
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        setter(event.target.value);
-      };
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
+    };
 
   const renderImagePreview = (image: File | null) => {
     if (!image) return null;
@@ -126,6 +126,7 @@ const PopupAddList2 = () => {
                 onChange={(e) => handleFileChange(e, setThumbnailImage)}
               />
 
+<<<<<<< HEAD
 
 
             
@@ -135,6 +136,10 @@ const PopupAddList2 = () => {
               {/* Khung hiển thị ảnh */}
               <Box
 
+=======
+              {/* Khung hiển thị ảnh */}
+              <Box
+>>>>>>> f0509e58af1f5de6796d0cb4f0dee9221fb1f73d
                 p={1}
                 sx={{
                   width: '300px', // Kích thước khung cố định
@@ -147,7 +152,6 @@ const PopupAddList2 = () => {
                   overflow: 'hidden', // Ẩn phần ảnh bị vượt quá khung
                 }}
               >
-
                 {/* Hiển thị ảnh nếu có */}
                 {thumbnailImage ? (
                   <img
@@ -160,7 +164,6 @@ const PopupAddList2 = () => {
                     Chưa có ảnh
                   </Typography>
                 )}
-
               </Box>
               <Button
                 sx={{ mt: 2 }}
@@ -172,7 +175,6 @@ const PopupAddList2 = () => {
                 Chọn ảnh thumbnail
               </Button>
             </Box>
-
           </Grid>
         </Grid>
       </Box>
@@ -189,8 +191,8 @@ const PopupAddList2 = () => {
               id="title-text"
               variant="outlined"
               fullWidth
-            // value={title}
-            // onChange={handleChange(setTitle)}
+              // value={title}
+              // onChange={handleChange(setTitle)}
             />
 
             <CustomFormLabel htmlFor="description-text">Mô tả</CustomFormLabel>
@@ -198,8 +200,8 @@ const PopupAddList2 = () => {
               id="description-text"
               variant="outlined"
               fullWidth
-            // value={description}
-            // onChange={handleChange(setDescription)}
+              // value={description}
+              // onChange={handleChange(setDescription)}
             />
 
             <CustomFormLabel htmlFor="weight-text">Khối lượng</CustomFormLabel>
@@ -207,8 +209,8 @@ const PopupAddList2 = () => {
               id="weight-text"
               variant="outlined"
               fullWidth
-            // value={weight}
-            // onChange={handleChange(setWeight)}
+              // value={weight}
+              // onChange={handleChange(setWeight)}
             />
 
             <CustomFormLabel htmlFor="unit-text">Đơn vị tính</CustomFormLabel>
@@ -216,8 +218,8 @@ const PopupAddList2 = () => {
               id="unit-text"
               variant="outlined"
               fullWidth
-            // value={unit}
-            // onChange={handleChange(setUnit)}
+              // value={unit}
+              // onChange={handleChange(setUnit)}
             />
           </Grid>
 
@@ -227,8 +229,8 @@ const PopupAddList2 = () => {
               id="size-text"
               variant="outlined"
               fullWidth
-            // value={size}
-            // onChange={handleChange(setSize)}
+              // value={size}
+              // onChange={handleChange(setSize)}
             />
 
             <CustomFormLabel htmlFor="color-text">Màu sắc</CustomFormLabel>
@@ -236,8 +238,8 @@ const PopupAddList2 = () => {
               id="color-text"
               variant="outlined"
               fullWidth
-            // value={color}
-            // onChange={handleChange(setColor)}
+              // value={color}
+              // onChange={handleChange(setColor)}
             />
 
             <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
@@ -245,8 +247,8 @@ const PopupAddList2 = () => {
               id="material-text"
               variant="outlined"
               fullWidth
-            // value={material}
-            // onChange={handleChange(setMaterial)}
+              // value={material}
+              // onChange={handleChange(setMaterial)}
             />
 
             <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
@@ -254,8 +256,8 @@ const PopupAddList2 = () => {
               id="style-text"
               variant="outlined"
               fullWidth
-            // value={style}
-            // onChange={handleChange(setStyle)}
+              // value={style}
+              // onChange={handleChange(setStyle)}
             />
             {/* Ảnh sản phẩm */}
             <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel>

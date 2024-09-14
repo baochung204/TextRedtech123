@@ -188,14 +188,13 @@ const getStatusTextAndColor = (status: any) => {
       return;
   }
 };
-const getInvoiceTextAndColor = (status: any) => {
-  switch (status) {
+const getInvoiceTextAndColor = (invoice: any) => {
+  switch (invoice) {
     case 1:
       return <Button color="success">Tải về</Button>;
     case 2:
       return <Typography color="#ff9800">Chờ xử lý</Typography>;
-    case 3:
-      return <Typography color="#f44336"> Không thành công</Typography>;
+
     default:
       return;
   }
