@@ -72,7 +72,7 @@ const AppDD = () => {
           </Grid>
         </Menu>
       </Box>
-      <Button
+      {/* <Button
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
@@ -80,7 +80,7 @@ const AppDD = () => {
         component={Link}
       >
         Khóa học
-      </Button>
+      </Button> */}
       <Button
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
@@ -107,7 +107,7 @@ const AppDD = () => {
         Sự kiện
       </Button>
 
-      <Button
+      {/* <Button
         color="inherit"
         sx={{ color: (theme) => theme.palette.text.secondary }}
         variant="text"
@@ -115,7 +115,7 @@ const AppDD = () => {
         component={Link}
       >
         Mini game
-      </Button>
+      </Button> */}
     </>
   );
 };
