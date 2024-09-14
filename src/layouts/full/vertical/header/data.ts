@@ -142,14 +142,14 @@ const profile: ProfileType[] = [
     href: '/apps/chats',
     title: 'Ticket hỗ trợ',
     // subtitle: 'To-do and Daily Tasks',
-    icon: icon3,
+    icon: icon4,
   },
   {
     id: 4,
     href: '/forms/form-request',
     title: 'Đề xuất tính năng',
     // subtitle: 'To-do and Daily Tasks',
-    icon: icon4,
+    icon: icon3,
   },
 ];
 
