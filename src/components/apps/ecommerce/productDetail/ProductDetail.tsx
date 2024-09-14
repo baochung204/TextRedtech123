@@ -93,18 +93,19 @@ const ProductDetail = () => {
           {/* Qty */}
           <Stack direction="row" alignItems="center" pb={5}>
             <Typography variant="h6" mt={4} mr={4}>
-              Dung lượng
+              Dung lượng:
             </Typography>
             <Box mt={4}>
               <ButtonGroup size="small" color="secondary" aria-label="small button group">
                 {/* <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
                   <IconMinus size="1.1rem" />
                 </Button> */}
-                <Button key="two">{count} MB</Button>
-                {/* <Button key="three" onClick={() => setCount(count + 1)}>
-                  <IconPlus size="1.1rem" />
-                </Button> */}
               </ButtonGroup>
+              <Button key="two">{count} MB</Button>
+              <Button sx={{ margin: '0 10px' }} key="two">
+                600 MB
+              </Button>
+              <Button key="two">700 MB</Button>
             </Box>
           </Stack>
           <Divider />

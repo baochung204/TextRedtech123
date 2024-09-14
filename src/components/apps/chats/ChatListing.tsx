@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'src/store/Store';
 import { ChatsType } from 'src/types/apps/chat';
 import { fetchChats, SearchChat, SelectChat } from '../../../store/apps/chat/ChatSlice';
 import Scrollbar from '../../custom-scroll/Scrollbar';
+import { IconPencilPlus } from '@tabler/icons-react';
 
 const ChatListing = () => {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const ChatListing = () => {
           <Typography variant="body1" fontWeight={600}>
             Nguyễn Đăng Hòa
           </Typography>
-          <AddIcon />
+          <IconPencilPlus />
         </Box>
       </Box>
       {/* ------------------------------------------- */}
