@@ -24,7 +24,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { useTheme, alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -42,9 +42,10 @@ import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from '../../../components/shared/BlankCard';
-// import ADDDialog from './AddDialog';
-import { ProductType } from 'src/types/apps/eCommerce';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+
 import { getProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import { ProductType } from 'src/types/apps/eCommerce';
 import AddDialog from './addDialog';
 interface TablePaginationActionsProps {
   count: number;
@@ -376,10 +377,10 @@ const PaginationTable = () => {
                   <Typography variant="h6">Tags</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Giá khuyến mãi</Typography>
+                  <Typography variant="h6">Giá niêm yết</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Giá niêm yết</Typography>
+                  <Typography variant="h6">Giá khuyến mãi</Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -421,34 +422,32 @@ const PaginationTable = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
+                    <Typography color="textSecondary"
+                      variant="subtitle2"
+                      sx={{ display: 'flex', gap: 0.5 }}>
                       {row.total}{' '}
-                      <Typography
-                        color="textSecondary"
-                        variant="subtitle2"
-                        fontWeight="400"
-                        fontStyle="italic"
-                        component="span"
-                        display="inline"
-                      >
-                        point
-                      </Typography>
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
                     </Typography>
                   </TableCell>
 
                   <TableCell>
-                    <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
+                    <Typography color="textSecondary"
+                      variant="subtitle2"
+                      sx={{ display: 'flex', gap: 0.5 }}>
                       {row.totalSales}{' '}
-                      <Typography
-                        color="textSecondary"
-                        variant="subtitle2"
-                        fontWeight="400"
-                        fontStyle="italic"
-                        component="span"
-                        display="inline"
-                      >
-                        point
-                      </Typography>
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
                     </Typography>
                   </TableCell>
                 </TableRow>
