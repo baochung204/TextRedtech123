@@ -76,7 +76,7 @@ const WeeklyStats: React.FC = () => {
 
   const stats: Stat[] = [
     {
-      title: 'Trợ lý 1',
+      title: 'Trợ lý 5',
       level: 9,
       percent: '68',
       color: primary,
@@ -84,7 +84,7 @@ const WeeklyStats: React.FC = () => {
       icon: <IconGridDots width={18} />,
     },
     {
-      title: 'Trợ lý 4.0',
+      title: 'Trợ lý 2',
       level: 2,
       percent: '45',
       color: secondary,

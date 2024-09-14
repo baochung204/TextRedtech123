@@ -41,7 +41,7 @@ const TwoFactorSecurity = () => {
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-        <Typography sx={{ flexGrow: 1, fontWeight: 'bold', fontSize: 17 }}>Bảo mật hai lớp:</Typography>
+        <Typography sx={{ flexGrow: 1, fontWeight: 'bold', fontSize: 17 }}>Bật bảo mật 2 lớp:</Typography>
         <Switch
           sx={{ border: "3px"}}
           checked={isTwoFactorEnabled}

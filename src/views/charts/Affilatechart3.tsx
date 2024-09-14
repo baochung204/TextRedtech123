@@ -1,4 +1,3 @@
-// import React from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 import Affilatec3 from 'src/components/shared/Affilatec3';
@@ -34,7 +33,7 @@ const Affilatechart3 = () => {
             show: true,
             fontSize: '24px',
             fontWeight: 'bold',
-            formatter: (val: any) => val,
+            formatter: (val: any) => `${val}%`, // Thêm đơn vị phần trăm
           },
         },
         track: {
@@ -75,7 +74,6 @@ const Affilatechart3 = () => {
       theme: 'dark',
     },
   };
-
   const seriesradialchart = [93.27]; // Giá trị hiển thị trên đồng hồ
 
   return (

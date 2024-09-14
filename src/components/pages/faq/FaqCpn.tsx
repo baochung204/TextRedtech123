@@ -24,7 +24,6 @@ const Faq = () => {
     setValue(newValue);
     setOpen(false);
   };
-  console.log(value);
 
   return (
     <Grid container xs={12}>

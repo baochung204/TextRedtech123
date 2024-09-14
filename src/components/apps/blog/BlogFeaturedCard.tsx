@@ -16,8 +16,8 @@ import {
   styled,
   Skeleton,
 } from '@mui/material';
-import { IconEye } from '@tabler/icons-react';
-
+import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
+import { format } from 'date-fns';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from 'src/types/apps/blog';
@@ -46,7 +46,7 @@ interface Btype {
 
 const BlogFeaturedCard = ({ post, index }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, category, author }: any = post;
+  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')
@@ -115,13 +115,15 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                   >
                     <Box>
                       <Stack direction="row">
+                        <Tooltip title={author?.name} placement="top">
+                          <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
+                        </Tooltip>
                         <Chip
-                          sx={{ marginLeft: 'auto', backgroundColor: 'black' }}
-                          label={view}
+                          sx={{ marginLeft: 'auto' }}
+                          label={category}
                           size="small"
                           color="primary"
-                          icon={<IconEye />} // Adding the icon here
-                        />
+                        ></Chip>
                       </Stack>
                     </Box>
                     <Box>
@@ -139,23 +141,16 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                         </Typography>
                       </Box>
                       <Stack direction="row" gap={3} alignItems="center">
-                        <Tooltip title={author?.name} placement="top">
-                          <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
-                        </Tooltip>
-                        <Box>
-                          <Stack direction="column" gap={1} alignItems="flex-start">
-                            <Stack direction="row" gap={1} alignItems="center">
-                              Nguyễn Đăng Hòa
-                            </Stack>
-                            <Stack direction="row" alignItems="center">
-                              <Chip label={category} size="small" color="primary" />
-                            </Stack>
-                          </Stack>
-                        </Box>
+                        <Stack direction="row" gap={1} alignItems="center">
+                          <IconEye size="18" /> {view}
+                        </Stack>
+                        <Stack direction="row" gap={1} alignItems="center">
+                          <IconMessage2 size="18" /> {comments?.length}
+                        </Stack>
 
                         <Stack direction="row" ml="auto" alignItems="center">
-                          {/* <small>{format(new Date(createdAt), 'E, MMM d')}</small> */}
-                          09-09-2024
+                          <IconPoint size="16" />
+                          <small>{format(new Date(createdAt), 'E, MMM d')}</small>
                         </Stack>
                       </Stack>
                     </Box>

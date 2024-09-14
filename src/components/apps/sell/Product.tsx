@@ -32,7 +32,6 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
 import PageContainer from 'src/components/container/PageContainer';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
@@ -283,15 +282,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     </Toolbar>
   );
 };
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Pagination Table',
-  },
-];
 
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
@@ -323,10 +313,6 @@ const PaginationTable = () => {
 
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
-      {/* breadcrumb */}
-      <Breadcrumb title="Pagination Table" items={BCrumb} />
-      {/* end breadcrumb */}
-
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Phần bên trái */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -409,10 +395,10 @@ const PaginationTable = () => {
                         row.tags === 'di động'
                           ? 'success'
                           : row.tags === 'điện tử'
-                          ? 'warning'
-                          : row.tags === 'đời sống'
-                          ? 'error'
-                          : 'secondary'
+                            ? 'warning'
+                            : row.tags === 'đời sống'
+                              ? 'error'
+                              : 'secondary'
                       }
                       sx={{
                         borderRadius: '6px',
@@ -422,9 +408,11 @@ const PaginationTable = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography color="textSecondary"
+                    <Typography
+                      color="textSecondary"
                       variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}>
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
                       {row.total}{' '}
                       <img
                         src={logoPoint}
@@ -437,9 +425,11 @@ const PaginationTable = () => {
                   </TableCell>
 
                   <TableCell>
-                    <Typography color="textSecondary"
+                    <Typography
+                      color="textSecondary"
                       variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}>
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
                       {row.totalSales}{' '}
                       <img
                         src={logoPoint}

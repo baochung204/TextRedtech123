@@ -191,7 +191,7 @@ const CustomerTable = () => {
           control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
           label="Dense padding"
         />
-      </Box>
+      </Box> 
     </>
   );
 };

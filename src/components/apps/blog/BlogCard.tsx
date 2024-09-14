@@ -3,23 +3,25 @@
 import React, { useEffect } from 'react';
 
 // third-party
+import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'src/store/Store';
 import {
-  Avatar,
-  Box,
   CardContent,
+  Stack,
+  Avatar,
+  Typography,
   CardMedia,
   Chip,
   Grid,
-  Skeleton,
-  Stack,
   Tooltip,
-  Typography,
+  Box,
+  Skeleton,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
-import { useDispatch } from 'src/store/Store';
-import { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../shared/BlankCard';
+import { BlogPostType } from 'src/types/apps/blog';
 
 interface Btype {
   post: BlogPostType;
@@ -28,7 +30,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, category, author }: any = post;
+  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')
@@ -69,13 +71,16 @@ const BlogCard = ({ post }: Btype) => {
             </Typography>
             <CardContent>
               <Stack direction="row" sx={{ marginTop: '-45px' }}>
+                <Tooltip title={author?.name} placement="top">
+                  <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
+                </Tooltip>
                 <Chip
                   sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                  label={`${view} lượt xem`}
+                  label="2 min Read"
                   size="small"
                 ></Chip>
               </Stack>
-
+              <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
               <Box my={3}>
                 <Typography
                   gutterBottom
@@ -89,35 +94,19 @@ const BlogCard = ({ post }: Btype) => {
                   {title}
                 </Typography>
               </Box>
-              <Chip label={category} size="small" sx={{ marginLeft: 'auto', marginTop: 0 }} />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  display: 'flex',
-                  alignItems: 'center',
-                  bottom: 0,
-                  py: 2,
-                }}
-              >
-                <Tooltip title={author?.name} placement="top">
-                  <Avatar aria-label="recipe" src={author?.avatar} />
-                </Tooltip>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginLeft: '10px',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <Typography variant="body2">Nguyễn Mạnh Cường</Typography>
-                </Box>
+              <Stack direction="row" gap={3} alignItems="center">
+                <Stack direction="row" gap={1} alignItems="center">
+                  <IconEye size="18" /> {view}
+                </Stack>
+                <Stack direction="row" gap={1} alignItems="center">
+                  <IconMessage2 size="18" /> {comments?.length}
+                </Stack>
 
                 <Stack direction="row" ml="auto" alignItems="center">
-                  <small>09-09-2024</small>
+                  <IconPoint size="16" />
+                  <small>{format(new Date(createdAt), 'E, MMM d')}</small>
                 </Stack>
-              </Box>
+              </Stack>
             </CardContent>
           </>
         </BlankCard>
