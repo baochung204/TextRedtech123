@@ -2,7 +2,7 @@
 // @ts-ignore
 import React from 'react';
 import icon1 from 'src/assets/images/svgs/google-icon.svg';
-import icon2 from 'src/assets/images/svgs/facebook-icon.svg';
+import icon2 from 'src/assets/images/svgs/face.svg';
 import CustomSocialButton from '../../../components/forms/theme-elements/CustomSocialButton';
 import { Avatar, Box, Stack } from '@mui/material';
 import { signInType } from 'src/types/auth/auth';
@@ -13,42 +13,61 @@ const AuthSocialButtons = ({ title }: signInType) => (
     <Stack direction="row" justifyContent="center" spacing={1} mt={3}>
       <Link to={'/auth/register'}>
         <CustomSocialButton>
-          <Avatar
-            src={icon1}
-            alt="Google Icon"
-            sx={{
-              width: 16,
-              height: 16,
-              borderRadius: 0,
-              mr: 1,
-            }}
-          />
+          {' '}
           <Box
-            sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}
+            sx={{
+              minWidth: '148px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
-            {title}
+            <Avatar
+              src={icon1}
+              alt="Google Icon"
+              sx={{
+                width: 25,
+                height: 25,
+                borderRadius: 0,
+                mr: 1,
+              }}
+            />
+            <Box
+              sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}
+            >
+              {title}
+            </Box>
+            <Box sx={{ fontWeight: 600, color: 'black', opacity: 0.8, fontSize: 16 }}>Google</Box>
           </Box>
-          Google
         </CustomSocialButton>
       </Link>
       <Link to={'/auth/register'}>
         <CustomSocialButton>
-          <Avatar
-            src={icon2}
-            alt="Facebook Icon"
-            sx={{
-              width: 20,
-              height: 25,
-              borderRadius: 0,
-              mr: 1,
-            }}
-          />
           <Box
-            sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}
+            sx={{
+              minWidth: '148px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
-            {title}{' '}
-          </Box>{' '}
-          Facebook
+            <Avatar
+              src={icon2}
+              alt="Facebook Icon"
+              sx={{
+                width: 25,
+                height: 25,
+                borderRadius: 0,
+                mr: 1,
+              }}
+            />
+            <Box
+              sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}
+            >
+              {title}{' '}
+            </Box>{' '}
+            <Box sx={{ fontWeight: 600, color: 'black', opacity: 0.8, fontSize: 16 }}>Facebook</Box>
+          </Box>
         </CustomSocialButton>
       </Link>
     </Stack>

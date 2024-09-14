@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Card, Typography, Backdrop } from '@mui/material';
 
 import Logo from 'src/layouts/full/shared/logo/Logo';
@@ -15,7 +15,34 @@ import CustomTextField from '../../../components/forms/theme-elements/CustomText
 import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
 
 const ForgotPassword2 = () => {
+  const [email, setEmail] = useState('');
+  interface Errors {
+    email?: string;
+  }
+
+  const [errors, setErrors] = useState<Errors>({});
+
   const [thankYou, setThankYou] = React.useState(false);
+  const handleEmailChange = (e: any) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+
+    if (!validateEmail(emailValue)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: 'Vui lòng nhập địa chỉ email hợp lệ.',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: '',
+      }));
+    }
+  };
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
   return (
     <>
       {thankYou && (
@@ -129,6 +156,10 @@ const ForgotPassword2 = () => {
                       id="reset-email"
                       variant="outlined"
                       fullWidth
+                      value={email}
+                      onChange={handleEmailChange}
+                      error={!!errors.email}
+                      helperText={errors.email}
                       label="Vui lòng nhập email "
                     />
 

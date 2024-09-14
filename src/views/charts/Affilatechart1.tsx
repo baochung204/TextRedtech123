@@ -5,14 +5,41 @@ import Chart, { Props } from 'react-apexcharts';
 import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const Affilatechart1 = () => {
-  // chart color
+  const seriesdoughnutchart = [95, 5];
 
-  // 1
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: '#0000000',
+
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] + '%' : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -21,6 +48,15 @@ const Affilatechart1 = () => {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
         },
       },
     },
@@ -29,16 +65,26 @@ const Affilatechart1 = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#ffc837', '#FF8008'],
+    colors: ['#ff7e5f', '#feb47b'],
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: 'vertical',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#feb47b', '#ff7e5f'],
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100],
+      },
+    },
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
     labels: ['Chi phí', 'Đơn hàng'],
   };
-  const seriesdoughnutchart = [35, 75];
-
-  // 2
 
   return (
     // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
