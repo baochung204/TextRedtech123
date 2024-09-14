@@ -90,7 +90,7 @@ const Profile = () => {
               sx={{ gap: '2px' }}
             >
               <IconMail width={15} height={15} />
-              hoaace2003@gmail.com
+              hoaace2003@gmail.com 
             </Typography>
           </Box>
         </Stack>
