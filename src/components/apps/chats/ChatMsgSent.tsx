@@ -84,9 +84,19 @@ const ChatMsgSent = () => {
           inputProps={{ 'aria-label': 'Type a Message' }}
           onChange={handleChatMsgChange.bind(null)}
         />
-        <IconButton aria-label="delete">
-          <IconPhoto stroke={1.5} size="20" />
-        </IconButton>
+        <label htmlFor="upload-image">
+          <input
+            accept="image/*"
+            id="upload-image"
+            type="file"
+            style={{ display: 'none' }}
+            onChange={(e) => console.log(e.target.files[0])} // Handle file upload here
+          />
+          <IconButton component="span" aria-label="upload image">
+            <IconPhoto stroke={1.5} size="20" />
+          </IconButton>
+        </label>
+
         <IconButton
           aria-label="delete"
           onClick={() => {

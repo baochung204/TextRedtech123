@@ -61,7 +61,7 @@ const ProductDetail = () => {
         <>
           <Box display="flex" alignItems="center">
             {/* Badge and category */}
-            <Chip label="Còn hàng" color="success" size="small" />
+            <Chip label={product.category} color="success" size="small" />
           </Box>
           {/* Title and description */}
           <Typography fontWeight="600" variant="h4" mt={1}>
@@ -73,39 +73,39 @@ const ProductDetail = () => {
           </Typography>
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
-            <Box
-              component={'small'}
-              color={theme.palette.text.secondary}
-              sx={{ textDecoration: 'line-through' }}
-            >
-              {/* {convertToVND(product.salesPrice)} */}
-            </Box>{' '}
-            {/* {convertToVND()} */}
-            {product.price} point
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Box component="span">{product.price - 10} point</Box>
+              <Box
+                component="small"
+                color={theme.palette.text.secondary}
+                sx={{ textDecoration: 'line-through' }}
+              >
+                {/* Display the original price */}
+                {product.price} point
+              </Box>
+            </Box>
           </Typography>
           {/* Ratings */}
           <Stack direction={'row'} alignItems="center" gap="10px" mt={2} pb={3}>
             <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
-            <Link to="/" color="inherit">
-              (236 đánh giá)
-            </Link>
           </Stack>
           <Divider />
           {/* Qty */}
           <Stack direction="row" alignItems="center" pb={5}>
             <Typography variant="h6" mt={4} mr={4}>
-              Dung lượng
+              Dung lượng:
             </Typography>
             <Box mt={4}>
               <ButtonGroup size="small" color="secondary" aria-label="small button group">
                 {/* <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
                   <IconMinus size="1.1rem" />
                 </Button> */}
-                <Button key="two">{count} MB</Button>
-                {/* <Button key="three" onClick={() => setCount(count + 1)}>
-                  <IconPlus size="1.1rem" />
-                </Button> */}
               </ButtonGroup>
+              <Button key="two">{count} MB</Button>
+              <Button sx={{ margin: '0 10px' }} key="two">
+                600 MB
+              </Button>
+              <Button key="two">700 MB</Button>
             </Box>
           </Stack>
           <Divider />
@@ -133,7 +133,7 @@ const ProductDetail = () => {
                 sx={{ width: '200px' }}
                 onClick={() => dispatch(addToCart(product as any)) && handleClick()}
               >
-                Thêm vào giỏ hàng
+                Thêm giỏ hàng
               </Button>
             </Grid>
           </Grid>

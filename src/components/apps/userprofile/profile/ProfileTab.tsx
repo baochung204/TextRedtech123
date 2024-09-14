@@ -1,36 +1,21 @@
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Box, Menu, MenuItem, Tab, Tabs, Typography } from '@mui/material';
-import {
-  IconCoin,
-  IconHistory,
-  IconShoppingCart,
-  IconTicket,
-  IconUser,
-  IconUserCircle,
-} from '@tabler/icons-react';
+import { IconTicket, IconUser, IconUserCircle } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const ProfileTab = () => {
   const location = useLocation();
   const [value, setValue] = useState(location.pathname);
-  const [anchorElTransaction, setAnchorElTransaction] = useState<null | HTMLElement>(null);
+  // const [anchorElTransaction, setAnchorElTransaction] = useState<null | HTMLElement>(null);
   const [anchorElContract, setAnchorElContract] = useState<null | HTMLElement>(null);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  const handleLichSuGiaoDichClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElTransaction(event.currentTarget);
-  };
-
   const handleHopDongClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElContract(event.currentTarget);
-  };
-
-  const handleCloseTransaction = () => {
-    setAnchorElTransaction(null);
   };
 
   const handleCloseContract = () => {
@@ -51,12 +36,12 @@ const ProfileTab = () => {
       icon: <IconUser size="20" />,
       to: '/user-profile',
     },
-    {
-      label: 'Lịch sử giao dịch',
-      icon: <IconHistory size="20" />,
-      dropdown: true,
-      handleClick: handleLichSuGiaoDichClick,
-    },
+    // {
+    //   label: 'Lịch sử giao dịch',
+    //   icon: <IconHistory size="20" />,
+    //   dropdown: true,
+    //   handleClick: handleLichSuGiaoDichClick,
+    // },
     {
       label: 'Hợp đồng',
       icon: <DescriptionIcon fontSize="small" />,
@@ -66,7 +51,7 @@ const ProfileTab = () => {
     {
       label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
-      to: '/assistant/list',
+      to: '/profile/assistant/list',
     },
     {
       label: 'Ticket',
@@ -74,7 +59,7 @@ const ProfileTab = () => {
       to: '/apps/chats',
     },
   ];
-
+  console.log('ProfileTabs', ProfileTabs);
   return (
     <Box mt={1} sx={{ mt: 1, backgroundColor: (theme) => theme.palette.grey[100] }}>
       <Box
@@ -118,7 +103,7 @@ const ProfileTab = () => {
           })}
         </Tabs>
 
-        {/* Dropdown menu for Lịch sử giao dịch */}
+        {/* Dropdown menu for Lịch sử giao dịch
         <Menu
           id="lich-su-giao-dich-menu"
           anchorEl={anchorElTransaction}
@@ -171,7 +156,7 @@ const ProfileTab = () => {
               Lịch sử nạp Point
             </Typography>
           </MenuItem>
-        </Menu>
+        </Menu> */}
 
         {/* Dropdown menu for Hợp đồng */}
         <Menu

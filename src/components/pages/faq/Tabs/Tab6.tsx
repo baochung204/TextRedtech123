@@ -35,55 +35,65 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
 
   const paginatedData = DataRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
-  return (
-    <>
-      <Box>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <Typography variant="h6">ID</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Tiêu đề URL</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Mô tả URL</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">URL</Typography>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {paginatedData.map((items) => (
-                <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component="th" scope="row">
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {items.idCode}
-                    </Typography>
-                  </TableCell>
+    return (
+        <>
+            <Box>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
 
-                  <TableCell>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {items.titleurl}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {items.descriptionurl}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {items.url}
-                    </Typography>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                                <TableCell>
+                                    <Typography variant="h6" >
+                                        ID
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography variant="h6" >
+                                        Tiêu đề URL
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography variant="h6" >
+                                        Mô tả URL
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography variant="h6" >
+                                        URL
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {paginatedData.map((items) => (
+                                <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+
+                                    <TableCell component="th" scope="row">
+                                        <Typography variant="subtitle2" >
+                                            {items.idCode}
+                                        </Typography>
+                                    </TableCell>
+
+                                    <TableCell>
+                                        <Typography variant="subtitle2" >
+                                            {items.titleurl}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography variant="subtitle2" >
+                                            {items.descriptionurl}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography variant="subtitle2" >
+                                            {items.url}
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
 
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}

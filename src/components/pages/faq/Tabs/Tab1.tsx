@@ -1,6 +1,6 @@
 import { CardContent, Box, Stack, Avatar, Grid, Button, Typography } from '@mui/material';
 import BlankCard from 'src/components/shared/BlankCard';
-import { IconMapPin } from '@tabler/icons-react';
+import CircleIcon from '@mui/icons-material/Circle';
 import DataTab1 from '../DataTable/TableTab1';
 
 const Tab1 = () => {
@@ -21,7 +21,7 @@ const Tab1 = () => {
                       variant="caption"
                       sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
                     >
-                      <IconMapPin size="14" />
+                      <CircleIcon sx={{ fontSize: '13px', color: `${items.isActive ? '#46AB5E' : ''}`}} />
                       {items.strategyLevel}
                     </Typography>
                   </Box>

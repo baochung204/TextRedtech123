@@ -28,6 +28,7 @@ import BlankCard from '../../../shared/BlankCard';
 import AlertCart from '../productCart/AlertCart';
 import ProductSearch from './ProductSearch';
 import ProductSelect from './ProductSelect';
+import logo from '../../../../assets/images/logos/R-Point.png';
 
 interface Props {
   onClick: (event: React.SyntheticEvent | Event) => void;
@@ -185,16 +186,30 @@ const ProductList = ({ onClick }: Props) => {
                       position: 'relative',
                     }}
                   >
-                    <Typography variant="h6">{product.title}</Typography>
+                    <Typography variant="h6" sx={{ fontSize: '20px' }}>
+                      {product.title}
+                    </Typography>
                     <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
-                        <Typography variant="h6">{product.price} point</Typography>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Typography variant="h6">{product.price}</Typography>
+                          <img
+                            src={logo}
+                            alt="Logo"
+                            style={{ width: '25px', height: '25px', marginLeft: '10px' }}
+                          />
+                        </Box>
                         <Typography
                           color="textSecondary"
                           ml={1}
                           sx={{ textDecoration: 'line-through' }}
                         >
-                          {product.salesPrice} point
+                          {product.salesPrice}{' '}
                         </Typography>
                       </Stack>
                       <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
@@ -214,7 +229,7 @@ const ProductList = ({ onClick }: Props) => {
                               size="small"
                             />
                             {index === 0 && (
-                              <Tooltip title="Add To Cart">
+                              <Tooltip title="Thêm giỏ hàng">
                                 <Fab
                                   size="small"
                                   color="primary"

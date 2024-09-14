@@ -47,19 +47,29 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  <Typography variant="h6">ID</Typography>
+                  <Typography variant="h6" >
+                    ID
+                  </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Tên file</Typography>
+                  <Typography variant="h6" >
+                    Tên file
+                  </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Dung lượng</Typography>
+                  <Typography variant="h6" >
+                    Dung lượng
+                  </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Ngày tải</Typography>
+                  <Typography variant="h6" >
+                    Ngày tải
+                  </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="h6">Định dạng</Typography>
+                  <Typography variant="h6" >
+                    Định dạng
+                  </Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -67,27 +77,27 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
               {paginatedData.map((items) => (
                 <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell component="th" scope="row">
-                    <Typography variant="subtitle2" color="textSecondary">
+                    <Typography variant="subtitle2">
                       {items.idCode}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" color="textSecondary">
+                    <Typography variant="subtitle2">
                       {items.fileName}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" color="textSecondary">
+                    <Typography variant="subtitle2">
                       {items.datas}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" color="textSecondary">
+                    <Typography variant="subtitle2">
                       {items.creationDate.toLocaleDateString()}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" color="textSecondary">
+                    <Typography variant="subtitle2">
                       {items.formats}
                     </Typography>
                   </TableCell>
@@ -95,7 +105,6 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
               ))}
             </TableBody>
           </Table>
-          {/* TablePagination Component */}
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"

@@ -5,6 +5,9 @@ import {
   Button,
   CardContent,
   Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
   Grid,
   IconButton,
   Tab,
@@ -31,6 +34,9 @@ import { FaChartLine } from 'react-icons/fa';
 import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
 import userimg from 'src/assets/images/profile/user-1.jpg';
+
+import Popupconvert from '../customerList/Popupconvert';
+import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 
 interface cardType {
   icon: JSX.Element;
@@ -75,6 +81,9 @@ const CollaboratePost = () => {
   const [value, setValue] = React.useState('1');
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   const [value2, setValue2] = React.useState<Dayjs | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
+
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -87,6 +96,25 @@ const CollaboratePost = () => {
     alignItems: 'center',
     justifyContent: 'center',
   }));
+
+  // Function mở popup
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  // Function đóng popup
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleOpenPopup2 = () => {
+    setIsPopupOpen2(true);
+  };
+
+  // Function đóng popup
+  const handleClosePopup2 = () => {
+    setIsPopupOpen2(false);
+  };
 
   return (
     <Box>
@@ -176,17 +204,27 @@ const CollaboratePost = () => {
           <Box paddingRight="10px" textAlign={{ sx: 'center', lg: 'start' }}>
             {' '}
             <Box
-              borderBottom="1px solid #EEEEEE"
               width={{ md: '250px', lg: '250px', xl: '320px', xs: '320px' }}
               marginY={{ xs: '10px', md: '10px', lg: '20px' }}
               marginX={{ xs: 'auto', md: '0px' }}
               display={'flex'}
               justifyContent={'space-between'}
             >
-              <Button variant="contained" color="primary" sx={{ width: '48%' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ width: '48%' }}
+                onClick={handleOpenPopup}
+              >
                 RÚT TIỀN
               </Button>
-              <Button variant="contained" color="error" sx={{ width: '48%' }}>
+
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ width: '48%' }}
+                onClick={handleOpenPopup2}
+              >
                 ĐỔI POINT
               </Button>
             </Box>
@@ -413,9 +451,41 @@ const CollaboratePost = () => {
           </TabPanel>
         </TabContext>
       </Box>
-      {/* <Grid item xs={12}>
-        <Banner1 />
-      </Grid> */}
+
+      <Dialog
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        maxWidth="lg"
+        // TransitionComponent={Transition}
+        keepMounted
+      >
+        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
+          <Popupwithdrawmoney />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup}>Hủy</Button>
+          <Button onClick={handleClosePopup} variant="contained" color="primary">
+            Yêu cầu rút tiền
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={isPopupOpen2}
+        onClose={handleClosePopup2}
+        maxWidth="lg"
+        // TransitionComponent={Transition}
+        keepMounted
+      >
+        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
+          <Popupconvert /> {/* Gọi component PopupAdd */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup2}>Hủy</Button>
+          <Button onClick={handleClosePopup2} variant="contained" color="primary">
+            Xác nhận
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
