@@ -435,30 +435,33 @@ const ListAssistant = () => {
                       }}
                     >
                       <Grid item xs={4}>
-                        <Button
-                          onClick={() => onHandleCheckOnOrOff(rank)}
-                          sx={{
-                            backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
-                            display: 'flex',
-                            alignItems: 'center',
-                            height: '100%',
-                            justifyContent: 'center',
-                            ':hover': {
-                              backgroundColor: checkedRanks.includes(rank.id)
-                                ? '#38D955'
-                                : '#FF2023',
-                              boxShadow: 'none',
-                            },
-                            boxShadow: 'none',
-                            color: 'white',
-                            fontWeight: '5px 17px',
-                            fontSize: '12px',
-                            minWidth: 'auto',
-                          }}
+                        <Tooltip
+                          title={checkedRanks.includes(rank.id) ? 'Tắt' : 'Bật'}
+                          placement="top"
+                          arrow
                         >
-                          <IconPower color="white" />
-                          {/* {checkedRanks.includes(rank.id) ? 'ON' : 'OFF'} */}
-                        </Button>
+                          <Button
+                            onClick={() => onHandleCheckOnOrOff(rank)}
+                            sx={{
+                              backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
+                              display: 'flex',
+                              alignItems: 'center',
+                              height: '100%',
+                              justifyContent: 'center',
+                              ':hover': {
+                                backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
+                                boxShadow: 'none',
+                              },
+                              boxShadow: 'none',
+                              color: 'white',
+                              fontWeight: '5px 17px',
+                              fontSize: '12px',
+                              minWidth: 'auto',
+                            }}
+                          >
+                            <IconPower color="white" />
+                          </Button>
+                        </Tooltip>
                       </Grid>
 
                       <Grid item xs={4}>

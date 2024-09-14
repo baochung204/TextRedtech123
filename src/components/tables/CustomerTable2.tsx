@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Box,
   Paper,
@@ -9,23 +10,41 @@ import {
   TablePagination,
   TableRow,
   Typography,
+  TableSortLabel,
 } from '@mui/material';
-import React, { useState } from 'react';
-// import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'; // Import các biểu tượng mạng xã hội
 import { DataRowCustomerTable } from './tableData';
+import useSortableData from 'src/views/apps/customerList/useSortableData';
 
-// Danh sách các icon
-// const icons = [
-//   <FaFacebook color="#1877F2" size={30} />, // Tăng kích thước icon
-//   <FaWhatsapp color="#25D366" size={30} />,
-//   <FaInstagram color="#C13584" size={30} />,
-// ];
+// Định nghĩa kiểu cho dữ liệu bảng
+interface DataRow {
+  id: string;
+  createdAt: string;
+  assistant: string;
+  channel: number;
+  orderInfo: string;
+  name: string;
+  orderValue: string;
+  phone: string;
+  address: string;
+}
 
 const CustomerTable2 = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [dense] = useState(false);
+
+  // Sử dụng hook useSortableData để sắp xếp dữ liệu
+  const { sortedItems, sortBy, sortOrder, handleSortRequest } = useSortableData<DataRow>({
+    items: DataRowCustomerTable,
+    initialSortBy: 'id',
+    initialSortOrder: 'asc',
+  });
+
+  // Cắt dữ liệu để hiển thị theo trang
+  const paginatedRows = sortedItems.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
 
   // Hàm xử lý thay đổi trang
   const handleChangePage = (
@@ -41,78 +60,41 @@ const CustomerTable2 = () => {
     setPage(0);
   };
 
-  // Cắt dữ liệu để hiển thị theo trang
-  const paginatedRows = DataRowCustomerTable.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage,
-  );
-
-  // Hàm xử lý thay đổi chế độ padding dày
-  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDense(event.target.checked);
-  // };
-
   return (
     <>
-      <TableContainer component={Paper} sx={{}}>
+      <TableContainer component={Paper} sx={{ mt: '20px' }}>
         <Table
           aria-label="customer table"
-          size={dense ? 'small' : 'medium'} // Thay đổi kích thước của bảng
+          size="medium"
           sx={{
-            mt: '20px',
-
             whiteSpace: 'nowrap',
-            '& th': { fontSize: '1.2rem', padding: '16px' }, // Tăng kích thước chữ tiêu đề cột và padding
-            '& td': { fontSize: '1.2rem', padding: '16px' }, // Tăng kích thước chữ dữ liệu và padding
+            '& th': { fontSize: '1.2rem', padding: '16px' },
+            '& td': { fontSize: '1.2rem', padding: '16px' },
           }}
         >
           <TableHead>
             <TableRow>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Id Đơn Hàng
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Ngày Tạo
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Trợ Lý
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Kênh (MTK)
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Tags
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Tên Khách Hàng
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Tổng Chi Tiêu
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  SĐT
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Địa Chỉ
-                </Typography>
-              </TableCell>
+              {['id', 'createdAt', 'assistant', 'channel', 'orderInfo', 'name', 'orderValue', 'phone', 'address'].map((column) => (
+                <TableCell key={column} sx={{ textAlign: 'center' }}>
+                  <TableSortLabel
+                    active={sortBy === column}
+                    direction={sortBy === column ? sortOrder : 'asc'}
+                    onClick={() => handleSortRequest(column as keyof DataRow)}
+                  >
+                    <Typography variant="h6" fontWeight={600}>
+                      {column === 'id' && 'Id Đơn Hàng'}
+                      {column === 'createdAt' && 'Ngày Tạo'}
+                      {column === 'assistant' && 'Trợ Lý'}
+                      {column === 'channel' && 'Kênh (MTK)'}
+                      {column === 'orderInfo' && 'Tags'}
+                      {column === 'name' && 'Tên Khách Hàng'}
+                      {column === 'orderValue' && 'Tổng Chi Tiêu'}
+                      {column === 'phone' && 'SĐT'}
+                      {column === 'address' && 'Địa Chỉ'}
+                    </Typography>
+                  </TableSortLabel>
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -167,4 +149,4 @@ const CustomerTable2 = () => {
   );
 };
 
-  export default CustomerTable2;
+export default CustomerTable2;

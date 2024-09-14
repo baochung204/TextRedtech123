@@ -9,16 +9,10 @@ import {
   TablePagination,
   TableRow,
   Typography,
+  TableSortLabel,
 } from '@mui/material';
 import React, { useState } from 'react';
-// import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'; // Import các biểu tượng mạng xã hội
-
-// Danh sách các icon
-// const icons = [
-//   <FaFacebook color="#1877F2" size={30} />, // Tăng kích thước icon
-//   <FaWhatsapp color="#25D366" size={30} />,
-//   <FaInstagram color="#C13584" size={30} />,
-// ];
+import useSortableData from './useSortableData';
 
 const DataRowCustomerTable = [
   {
@@ -51,9 +45,16 @@ const DataRowCustomerTable = [
 const TableListOrder = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  // const [dense, setDense] = useState(false);
+  const { sortedItems, sortBy, sortOrder, handleSortRequest } = useSortableData({
+    items: DataRowCustomerTable,
+    initialSortBy: 'id',
+    initialSortOrder: 'asc',
+  });
 
-  const [dense] = useState(false);
+  const paginatedRows = sortedItems.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -67,74 +68,40 @@ const TableListOrder = () => {
     setPage(0);
   };
 
-  const paginatedRows = DataRowCustomerTable.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage,
-  );
-
-  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDense(event.target.checked);
-  // };
-
   return (
     <>
       <TableContainer component={Paper} sx={{ padding: 4 }}>
         <Table
           aria-label="order table"
-          size={dense ? 'small' : 'medium'}
+          size="medium"
           sx={{
             whiteSpace: 'nowrap',
-            '& th': { fontSize: '1.2rem', padding: '16px' }, // Tăng kích thước chữ tiêu đề cột và padding
-            '& td': { fontSize: '1.2rem', padding: '16px' }, // Tăng kích thước chữ dữ liệu và padding
+            '& th': { fontSize: '1.2rem', padding: '16px' },
+            '& td': { fontSize: '1.2rem', padding: '16px' },
           }}
         >
           <TableHead>
             <TableRow>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Id Đơn Hàng
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Ngày Tạo
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Trợ Lý
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Kênh (MTK)
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Tags
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Tên Khách Hàng
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Tổng Chi Tiêu
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  SĐT
-                </Typography>
-              </TableCell>
-              <TableCell sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" fontWeight={600}>
-                  Địa Chỉ
-                </Typography>
-              </TableCell>
+              {['id', 'createdAt', 'assistant', 'channel', 'orderInfo', 'name', 'phone', 'address'].map((column) => (
+                <TableCell key={column} sx={{ textAlign: 'center' }}>
+                  <TableSortLabel
+                    active={sortBy === column}
+                    direction={sortBy === column ? sortOrder : 'asc'}
+                    onClick={() => handleSortRequest(column as keyof typeof DataRowCustomerTable[0])}
+                  >
+                    <Typography variant="h6" fontWeight={600}>
+                      {column === 'id' && 'Id Đơn Hàng'}
+                      {column === 'createdAt' && 'Ngày Tạo'}
+                      {column === 'assistant' && 'Trợ Lý'}
+                      {column === 'channel' && 'Kênh (MTK)'}
+                      {column === 'orderInfo' && 'Tags'}
+                      {column === 'name' && 'Tên Khách Hàng'}
+                      {column === 'phone' && 'SĐT'}
+                      {column === 'address' && 'Địa Chỉ'}
+                    </Typography>
+                  </TableSortLabel>
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -161,9 +128,6 @@ const TableListOrder = () => {
                   </Typography>
                 </TableCell>
                 <TableCell sx={{ textAlign: 'center' }}>
-                  {/* <Typography variant="subtitle2">{row.orderValue}</Typography> */}
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
                   <Typography variant="subtitle2">{row.phone}</Typography>
                 </TableCell>
                 <TableCell sx={{ textAlign: 'center' }}>
@@ -185,13 +149,6 @@ const TableListOrder = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Box>
-      {/*       
-      <Box sx={{ padding: 2 }}>
-        <FormControlLabel
-          control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
-          label="Dense padding"
-        />
-      </Box> */}
     </>
   );
 };
