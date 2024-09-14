@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 
 import DataTable3 from '../DataTable/TableTab3';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Typography, TablePagination } from '@mui/material';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Box,
+  Typography,
+  TablePagination,
+} from '@mui/material';
 import DialogFile from '../dialog/DialogFile';
 
 interface PropsTab3 {
@@ -36,67 +47,47 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    STT
-                  </Typography>
+                  <Typography variant="h6">ID</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    ID
-                  </Typography>
+                  <Typography variant="h6">Tên file</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Tên file
-                  </Typography>
+                  <Typography variant="h6">Dung lượng</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Dung lượng
-                  </Typography>
+                  <Typography variant="h6">Ngày tải</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Ngày tải
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Định dạng
-                  </Typography>
+                  <Typography variant="h6">Định dạng</Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {paginatedData.map((items) => (
                 <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell>
-                    <Typography variant="subtitle2" fontWeight={400}>
-                      {items.id}
-                    </Typography>
-                  </TableCell>
                   <TableCell component="th" scope="row">
-                    <Typography variant="subtitle2" fontWeight={400}>
+                    <Typography variant="subtitle2" color="textSecondary">
                       {items.idCode}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" fontWeight={400}>
+                    <Typography variant="subtitle2" color="textSecondary">
                       {items.fileName}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" fontWeight={400}>
+                    <Typography variant="subtitle2" color="textSecondary">
                       {items.datas}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" fontWeight={400}>
+                    <Typography variant="subtitle2" color="textSecondary">
                       {items.creationDate.toLocaleDateString()}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2" fontWeight={400}>
+                    <Typography variant="subtitle2" color="textSecondary">
                       {items.formats}
                     </Typography>
                   </TableCell>

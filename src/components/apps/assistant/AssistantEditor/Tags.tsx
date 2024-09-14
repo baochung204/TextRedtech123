@@ -10,10 +10,14 @@ const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#FFBB33', '#33FFBB'
 
 const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
+interface Tag {
+  title: string;
+  year: number;
+  color: string;
+}
+
 const Tags = () => {
-  const [tags, setTags] = useState([
-    { title: 'Forrest Gump', year: 1994, color: getRandomColor() },
-  ]); // Tag mặc định với màu ngẫu nhiên
+  const [tags, setTags] = useState<Tag[]>([]); // Khởi tạo với mảng rỗng
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && (event.target as HTMLInputElement).value) {
@@ -39,15 +43,15 @@ const Tags = () => {
       getOptionLabel={(option) => option.title}
       value={tags}
       filterSelectedOptions
-      onChange={
-        (_event, newValue) => setTags(newValue.map((tag) => ({ ...tag, color: getRandomColor() }))) // Cập nhật tag với màu ngẫu nhiên
+      onChange={(_event, newValue) =>
+        setTags(newValue.map((tag) => ({ ...tag, color: getRandomColor() })))
       }
       renderTags={(value, getTagProps) =>
         value.map((option: any, index) => (
           <Chip
             label={option.title}
             {...getTagProps({ index })}
-            style={{ backgroundColor: option.color, color: '#fff' }} // Thêm màu ngẫu nhiên
+            style={{ backgroundColor: option.color, color: '#fff' }}
           />
         ))
       }
@@ -56,7 +60,7 @@ const Tags = () => {
           {...params}
           placeholder="Tags"
           aria-label="tags"
-          onKeyDown={handleKeyDown} // Bắt sự kiện khi nhấn Enter
+          onKeyDown={handleKeyDown}
         />
       )}
     />

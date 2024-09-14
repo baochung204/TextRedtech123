@@ -25,7 +25,7 @@ import Search from './Search';
 import { Link } from 'react-router-dom';
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
-  const lgDown = useMediaQuery((theme: any) => theme.breakpoints.down('lg'));
+  const lgDown = useMediaQuery((theme: any) => theme.breakpoints.down('xl'));
 
   // drawer
   const customizer = useSelector((state: AppState) => state.customizer);
@@ -78,8 +78,8 @@ const Header = () => {
               px: '15px',
               py: '3px',
               alignItems: 'center',
-              borderRadius: '5px',
-              border: '1px solid #FC2005',
+              // borderRadius: '5px',
+              // border: '1px solid #FC2005',
             }}
           >
             <Typography
@@ -113,11 +113,11 @@ const Header = () => {
                   backgroundColor: '#FC2032',
                   color: 'white',
                   ':hover': { backgroundColor: '#CA0211' },
-                  fontSize: { xs: '12px', sm: '12px', md: '14px', lg: '16px' },
+                  fontSize: { xs: '12px', sm: '12px', md: '14px', lg: '16px', xl: '16px' },
                   px: { xs: '5px', sm: '10px', md: '7px', lg: '20px' },
                 }}
               >
-                Nạp R-Point
+                {lgDown ? 'Nạp' : lgUp ? 'Nạp R-Point' : 'Nạp'}
               </Button>
             </Link>
           </Box>

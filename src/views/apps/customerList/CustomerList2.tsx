@@ -145,7 +145,7 @@ const CustomerList2 = () => {
                     value={1} // Setting the first value as default
                     sx={{ marginRight: '20px' }}
                   >
-                    <MenuItem value={1}>Bộ cọc</MenuItem>
+                    <MenuItem value={1}>Bộ lọc</MenuItem>
                   </CustomSelect>
                 </Box>
 
@@ -168,26 +168,6 @@ const CustomerList2 = () => {
                       )}
                     />
                   </LocalizationProvider>
-
-                  {/* Icon Refresh */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20" // Adjust the width to make the icon smaller
-                    height="20" // Adjust the height to make the icon smaller
-                    cursor="pointer"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="icon icon-tabler icons-tabler-outline icon-tabler-refresh"
-                    style={{ marginLeft: '10px' }}
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                  </svg>
                 </Box>
               </Box>
               <CustomerTable2 />

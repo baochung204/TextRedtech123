@@ -1,16 +1,13 @@
-import { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Box,
   CardContent,
   Dialog,
   DialogTitle,
-  Fab,
   List,
-  Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
-import { IconPlus } from '@tabler/icons-react';
-import CloseIcon from '@mui/icons-material/Close';
+import { useState } from 'react';
 import rank1 from 'src/assets/images/rank/rank1.png';
 import rank2 from 'src/assets/images/rank/rank2.png';
 import rank3 from 'src/assets/images/rank/rank3.png';
@@ -35,13 +32,16 @@ const ranks: Ranks[] = [
   },
 ];
 
-const Strategy = () => {
-  const [open, setOpen] = useState(false);
+interface PropsDialog {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Strategy: React.FC<PropsDialog> = ({open, setOpen}) => {
+  // const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Ranks>(ranks[1]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+
 
   const handleClose = (value: Ranks) => {
     setOpen(false);
@@ -50,19 +50,22 @@ const Strategy = () => {
 
   return (
     <Box>
-      <Tooltip title="Thêm" onClick={handleClickOpen}>
-        <Fab size="small" color="secondary" aria-label="plus">
-          <IconPlus width={18} />
-        </Fab>
-      </Tooltip>
 
-      <Box ml={-36}>
-        <CardContent>
-          <Box textAlign="center">
-            <img src={selectedValue.rankImg} alt="rank" width={130} />
-            <Typography variant="h5">{selectedValue.rankName}</Typography>
+
+      <Box p={0} maxWidth={45}>
+        
+          <Box 
+            display="flex" 
+            alignItems="center"  // Căn chỉnh ảnh và text theo chiều dọc
+            justifyContent="left"
+            mb={1}  // Căn giữa theo chiều ngang
+          >
+            <img src={selectedValue.rankImg} alt="rank" width={88} />
+            <Typography variant="h5" ml={2} minWidth={'130px'}>  {/* Thêm margin bên trái cho text */}
+              {selectedValue.rankName}
+            </Typography>
           </Box>
-        </CardContent>
+        
       </Box>
 
       <Dialog onClose={() => handleClose(selectedValue)} open={open}>
@@ -88,7 +91,7 @@ const Strategy = () => {
             <Box key={rank.rankName} onClick={() => handleClose(rank)}>
               <CardContent sx={{ p: '30px', cursor: 'pointer' }}>
                 <Box textAlign="center">
-                  <img src={rank.rankImg} alt="star" width={100} />
+                  <img src={rank.rankImg} alt="star" width={100}  />
                   <Typography variant="h5">{rank.rankName}</Typography>
                 </Box>
               </CardContent>

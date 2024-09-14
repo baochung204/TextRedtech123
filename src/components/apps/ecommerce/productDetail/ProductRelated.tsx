@@ -21,7 +21,7 @@ const ProductRelated = () => {
   };
 
   // Get Products
-  const Relatedproducts = useSelector((state) =>
+  const Relatedproducts = useSelector((state: any) =>
     filterRelatedProduct(state.ecommerceReducer.products),
   );
 

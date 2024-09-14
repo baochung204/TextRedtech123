@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
 import {
   Box,
+  Button,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -12,19 +13,20 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  Paper,
   Typography,
-  Stack,
-  Button,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import PageContainer from 'src/components/container/PageContainer';
-import BlankCard from '../../components/shared/BlankCard';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { format } from 'date-fns';
+import { Dayjs } from 'dayjs';
+import React from 'react';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import PageContainer from 'src/components/container/PageContainer';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
+import BlankCard from '../../components/shared/BlankCard';
 
 const BCrumb = [
   {
@@ -98,16 +100,10 @@ const headCells: HeadCell[] = [
     label: 'ID Yêu cầu',
   },
   {
-    id: 'paymentMethod',
-    numeric: false,
-    disablePadding: false,
-    label: 'Phương thức thanh toán',
-  },
-  {
     id: 'amount',
     numeric: false,
     disablePadding: false,
-    label: 'Số tiền',
+    label: 'Số Point',
   },
   {
     id: 'numberPrice',
@@ -151,12 +147,7 @@ const getStatusTextAndColor = (status: any) => {
           Chờ xử lý
         </Typography>
       );
-    case 3:
-      return (
-        <Typography color="#f44336" variant="subtitle2">
-          Chưa thanh toán
-        </Typography>
-      );
+
     default:
       return;
   }
@@ -167,8 +158,7 @@ const getInvoiceTextAndColor = (status: any) => {
       return <Button color="success">Tải về</Button>;
     case 2:
       return <Typography color="#ff9800">Chờ xử lý</Typography>;
-    case 3:
-      return <Typography color="#f44336"> Chưa thanh toán</Typography>;
+
     default:
       return;
   }
@@ -197,9 +187,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
-              <Typography variant="subtitle1" fontWeight="700">
-                {headCell.label}
-              </Typography>
+              <Typography variant="h6">{headCell.label}</Typography>
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -281,12 +269,93 @@ const HistoryBuyPoint = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // const [month, setMonth] = React.useState('1');
 
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
+
+  // chart color
+
+  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
       <Breadcrumb title="Lịch sử quy đổi ngân lượng" items={BCrumb} />
-
+      <Box
+        style={{
+          display: 'flex',
+          gap: '12px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        {' '}
+        <Box sx={{}}>
+          <Typography variant="h3" sx={{ fontSize: { xs: '18px', sm: '20px' } }}>
+            Lịch sử nạp point
+          </Typography>
+        </Box>
+        <Box
+          style={{ width: '35%' }}
+          display={'flex'}
+          alignItems={'center'}
+          gap="5px"
+          sx={{ my: 2 }}
+        >
+          {' '}
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          tới
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={value1}
+              onChange={(newValue) => {
+                setValue1(newValue);
+              }}
+              renderInput={(props) => (
+                <CustomTextField
+                  {...props}
+                  fullWidth
+                  size="small"
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      width: '18px',
+                      height: '18px',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      display: 'none',
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
+      </Box>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
           <TableContainer>
@@ -347,11 +416,23 @@ const HistoryBuyPoint = () => {
                             </Box>
                           </Stack>
                         </TableCell>
+
                         <TableCell>
                           <Stack spacing={2} direction="row">
                             <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.paymentMethod}
+                              <Typography
+                                color="textSecondary"
+                                variant="subtitle2"
+                                sx={{ display: 'flex', gap: 0.5 }}
+                              >
+                                {row.numberPrice}{' '}
+                                <img
+                                  src={logoPoint}
+                                  alt=""
+                                  width={20}
+                                  height={20}
+                                  style={{ borderRadius: 50 }}
+                                />
                               </Typography>
                             </Box>
                           </Stack>
@@ -360,16 +441,7 @@ const HistoryBuyPoint = () => {
                           <Stack spacing={2} direction="row">
                             <Box>
                               <Typography color="textSecondary" variant="subtitle2">
-                                {row.numberPrice}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount}
+                                {row.amount} ₫
                               </Typography>
                             </Box>
                           </Stack>
@@ -397,116 +469,6 @@ const HistoryBuyPoint = () => {
                   </TableRow>
                 )}
               </TableBody>
-              {/* <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
-                    const isItemSelected = isSelected(row.name);
-                    const labelId = `enhanced-table-checkbox-${index}`;
-
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        selected={isItemSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <CustomCheckbox
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Avatar
-                              alt="text"
-                              src={row.imgsrc}
-                              sx={{
-                                width: '35px',
-                                height: '35px',
-                              }}
-                            />
-                            <Box>
-                              <Typography variant="h6" fontWeight="600">
-                                {row.name}
-                              </Typography>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.email}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
-                            {row.pname}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Stack direction="row">
-                            <AvatarGroup>
-                              {row.teams.map((team: any) => (
-                                <Avatar
-                                  key={team.id}
-                                  sx={{
-                                    width: '35px',
-                                    height: '35px',
-                                    bgcolor: team.color,
-                                  }}
-                                >
-                                  {team.text}
-                                </Avatar>
-                              ))}
-                            </AvatarGroup>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={1} direction="row" alignItems="center">
-                            <Badge
-                              color={
-                                row.status === 'Active'
-                                  ? 'success'
-                                  : row.status === 'Pending'
-                                  ? 'warning'
-                                  : row.status === 'Completed'
-                                  ? 'primary'
-                                  : row.status === 'Cancel'
-                                  ? 'error'
-                                  : 'secondary'
-                              }
-                              variant="dot"
-                            ></Badge>
-                            <Typography color="textSecondary" variant="body1">
-                              {row.status}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="body1">
-                            {row.weeks}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="h6">${row.budget}k</Typography>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody> */}
             </Table>
           </TableContainer>
           <TablePagination
