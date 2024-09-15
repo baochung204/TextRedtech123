@@ -184,7 +184,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
           count={DataTable5.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onPageChange={() => handleChangePage}
+          onPageChange={(event, newPage) => handleChangePage(newPage)}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>

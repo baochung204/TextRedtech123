@@ -152,9 +152,9 @@ const HistoryBuyService = Loadable(
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 //list assistant
 const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
-const AssistantList = Loadable(
-  lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
-);
+// const AssistantList = Loadable(
+//   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
+// );
 const Router = [
   {
     path: '/',

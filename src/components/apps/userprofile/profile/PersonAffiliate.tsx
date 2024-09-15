@@ -695,7 +695,7 @@ const PersonAffiliate = () => {
                     >
                       <CloseIcon />
                     </IconButton>
-                    
+
                   </Box>
 
                 )}
@@ -759,12 +759,10 @@ const PersonAffiliate = () => {
 
   const handleButtonClick = () => {
     formik.handleSubmit();
-    console.log(Object.keys(formik.errors));
-    console.log(formik.errors.frontImage, formik.errors.backImage);
+    if (formik.errors.backImage === undefined && formik.errors.frontImage === undefined) {
+      window.location.href = '/apps/pending';
 
-    // if (!formik.errors.backImage && !formik.errors.frontImage) {
-    //   window.location.href = '/apps/pending';
-    // }
+    }
   };
   return (
     <PageContainer>
