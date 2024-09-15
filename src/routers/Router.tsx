@@ -287,7 +287,7 @@ const Router = [
       { path: '/auth/maintenance', element: <Maintenance /> },
       { path: '/auth/updating', element: <Updating /> },
       { path: '/landingpage', element: <Landingpage /> },
-      { path: '/bill/:id', element: <Bill /> },
+      // { path: '/bill/:id', element: <Bill /> },
 
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
