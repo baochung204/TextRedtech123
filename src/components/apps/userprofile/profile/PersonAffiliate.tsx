@@ -26,6 +26,8 @@ import * as Yup from 'yup';
 
 const steps = ['Thỏa thuận hợp tác', 'Tài khoản cá nhân', 'Xác minh tài khoản'];
 
+
+
 const validationSchemas = [
   Yup.object({
     agreeTerms: Yup.boolean().oneOf([true], 'Bạn cần đồng ý với các điều khoản'),
@@ -693,7 +695,9 @@ const PersonAffiliate = () => {
                     >
                       <CloseIcon />
                     </IconButton>
+
                   </Box>
+
                 )}
                 <CustomFormLabel htmlFor="frontImage">Mặt trước căn cước công dân</CustomFormLabel>
                 <Button variant="contained" component="label" color="primary">
@@ -755,9 +759,7 @@ const PersonAffiliate = () => {
 
   const handleButtonClick = () => {
     formik.handleSubmit();
-    console.log(Object.keys(formik.errors).length);
-
-    if (!formik.errors.backImage && !formik.errors.frontImage) {
+    if (formik.errors.backImage === undefined && formik.errors.frontImage === undefined) {
       window.location.href = '/apps/pending';
 
     }
