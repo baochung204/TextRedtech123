@@ -14,14 +14,11 @@ import {
   Checkbox,
   Grid,
   Divider,
-  FormHelperText,
 } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 import CloseIcon from '@mui/icons-material/Close';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-// import SecurityIcon from '@mui/icons-material/Security';
 import Authenticate from 'src/assets/images/authenticate/authenticate.png';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -29,43 +26,49 @@ import * as Yup from 'yup';
 
 const steps = ['Thỏa thuận hợp tác', 'Tài khoản cá nhân', 'Xác minh tài khoản'];
 
-const validationSchemaStep0 = Yup.object({
-  agreeTerms: Yup.boolean().oneOf([true], 'Bạn cần đồng ý với các điều khoản'),
-});
-
-const validationSchemaStep1 = Yup.object({
-  bankNumber: Yup.string()
-    .matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số')
-    .required('Số tài khoản là bắt buộc'),
-  accountName: Yup.string().required('Chủ tài khoản là bắt buộc'),
-  bank: Yup.number().required('Ngân hàng là bắt buộc'),
-  branch: Yup.number().required('Chi nhánh ngân hàng là bắt buộc'),
-});
-
-const validationSchemaStep2 = Yup.object({
-  frontImage: Yup.mixed().required('Bạn cần tải lên hình ảnh mặt trước'),
-  backImage: Yup.mixed().required('Bạn cần tải lên hình ảnh mặt sau'),
-});
+const validationSchemas = [
+  Yup.object({
+    agreeTerms: Yup.boolean().oneOf([true], 'Bạn cần đồng ý với các điều khoản'),
+  }),
+  Yup.object({
+    bankNumber: Yup.string()
+      .matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số')
+      .max(16, 'Số tài khoản không được vượt quá 16 ký tự')
+      .required('Số tài khoản là bắt buộc'),
+    accountName: Yup.string()
+      .matches(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẾẾỄỀỦỶỴýỳỷỹ\s]+$/, 'Người đại diện chỉ chứa ký tự chữ.')
+      .required('Chủ tài khoản là bắt buộc'),
+    bank: Yup.number().required('Ngân hàng là bắt buộc'),
+    branch: Yup.number().required('Chi nhánh ngân hàng là bắt buộc'),
+  }),
+  Yup.object({
+    frontImage: Yup.mixed().required('Bạn cần tải lên hình ảnh mặt trước'),
+    backImage: Yup.mixed().required('Bạn cần tải lên hình ảnh mặt sau'),
+  })
+]
 
 const PersonAffiliate = () => {
   const [selectedImage1, setSelectedImage1] = useState<string | null>(null);
   const [selectedImage2, setSelectedImage2] = useState<string | null>(null);
   const [activeStep, setActiveStep] = useState(0);
-  // const [skipped, setSkipped] = useState(new Set());
-  const [skipped] = useState(new Set());
-
+  const [skipped, setSkipped] = useState(new Set<number>());
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const isStepSkipped = (step: number) => skipped.has(step);
 
-  const handleImage1Change = (event: any) => {
-    const file = event.target.files[0];
-    formik.setFieldValue('frontImage', file);
-    setSelectedImage1(URL.createObjectURL(file));
+  const handleImage1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files !== null) {
+      const file = event.target.files[0];
+      formik.setFieldValue('frontImage', file);
+      setSelectedImage1(URL.createObjectURL(file));
+    }
   };
 
-  const handleImage2Change = (event: any) => {
-    const file = event.target.files[0];
-    formik.setFieldValue('backImage', file);
-    setSelectedImage2(URL.createObjectURL(file));
+  const handleImage2Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files !== null) {
+      const file = event.target.files[0];
+      formik.setFieldValue('backImage', file);
+      setSelectedImage2(URL.createObjectURL(file));
+    }
   };
 
   const handleRemoveImage1 = () => {
@@ -85,22 +88,11 @@ const PersonAffiliate = () => {
       accountName: '',
       bank: '',
       branch: '',
-      frontImage: null,
-      backImage: null,
+      frontImage: '',
+      backImage: '',
     },
-    validationSchema: () => {
-      switch (activeStep) {
-        case 0:
-          return validationSchemaStep0;
-        case 1:
-          return validationSchemaStep1;
-        case 2:
-          return validationSchemaStep2;
-        default:
-          return Yup.object();
-      }
-    },
-    validateOnChange: false,
+    validationSchema: validationSchemas[activeStep],
+    validateOnChange: true,
     validateOnBlur: false,
     onSubmit: (values) => {
       if (activeStep === steps.length - 1) {
@@ -111,19 +103,33 @@ const PersonAffiliate = () => {
     },
   });
 
-  const handleNext = () => {
-    formik.validateForm().then((errors) => {
+  const handleNext = async () => {
+    setIsSubmitting(true);
+    try {
+      const errors = await formik.validateForm();
+
       if (Object.keys(errors).length === 0) {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped((prevSkipped) => {
+          const newSkipped = new Set(prevSkipped);
+          newSkipped.delete(activeStep);
+          return newSkipped;
+        });
+      } else {
+        formik.setErrors(errors);
       }
-    });
+    } catch (error) {
+      console.error('Validation failed:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSteps = (step: any) => {
+  const handleSteps = (step: number) => {
     switch (step) {
       case 0:
         return (
@@ -581,44 +587,45 @@ const PersonAffiliate = () => {
             <CustomFormLabel htmlFor="bankNumber">Số tài khoản</CustomFormLabel>
             <CustomTextField
               id="bankNumber"
-              name="bankNumber"
               variant="outlined"
               placeholder="Nhập số tài khoản của bạn"
               fullWidth
               value={formik.values.bankNumber}
               onChange={formik.handleChange}
-              error={!!formik.errors.bankNumber}
-              helperText={formik.errors.bankNumber}
+              error={isSubmitting && Boolean(formik.errors.bankNumber)}
+              helperText={isSubmitting && formik.errors.bankNumber}
             />
             <CustomFormLabel htmlFor="accountName">Chủ tài khoản</CustomFormLabel>
             <CustomTextField
               id="accountName"
-              name="accountName"
-              type="text"
               variant="outlined"
               placeholder="Nhập tên tài khoản của bạn"
               fullWidth
               value={formik.values.accountName}
               onChange={formik.handleChange}
-              error={!!formik.errors.accountName}
-              helperText={formik.errors.accountName}
+              error={isSubmitting && Boolean(formik.errors.accountName)}
+              helperText={isSubmitting && formik.errors.accountName}
             />
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <CustomFormLabel htmlFor="bank">Ngân hàng</CustomFormLabel>
-                <FormControl fullWidth>
+                <FormControl fullWidth error={!!formik.errors.bank}>
                   <Select
                     placeholder="Chọn ngân hàng"
                     labelId="bank-select-label"
                     id="bank"
                     name="bank"
                     value={formik.values.bank}
-                    onChange={formik.handleChange}
-                    error={!!formik.errors.bank}
+                    // onChange={formik.handleChange}
+                    onChange={(e) => formik.setFieldValue('bank', e.target.value)}
+                    error={isSubmitting && Boolean(formik.errors.bank)}
                   >
                     <MenuItem value={1}>Mb bank</MenuItem>
                     <MenuItem value={2}>TP bank</MenuItem>
                   </Select>
+                  {isSubmitting && formik.errors.bank && (
+                    <Typography color="error">{formik.errors.bank}</Typography>
+                  )}
                 </FormControl>
               </Grid>
               <Grid item xs={6}>
@@ -629,12 +636,16 @@ const PersonAffiliate = () => {
                     id="branch"
                     name="branch"
                     value={formik.values.branch}
-                    onChange={formik.handleChange}
+                    // onChange={formik.handleChange}
+                    onChange={(e) => formik.setFieldValue('branch', e.target.value)}
+                    error={isSubmitting && Boolean(formik.errors.branch)}
                   >
                     <MenuItem value={1}>Hà Nội</MenuItem>
                     <MenuItem value={2}>Hồ Chí Minh</MenuItem>
                   </Select>
-                  {formik.errors.branch && <FormHelperText>{formik.errors.branch}</FormHelperText>}
+                  {isSubmitting && formik.errors.branch && (
+                    <Typography color="error">{formik.errors.branch}</Typography>
+                  )}
                 </FormControl>
               </Grid>
             </Grid>
@@ -742,6 +753,15 @@ const PersonAffiliate = () => {
     }
   };
 
+  const handleButtonClick = () => {
+    formik.handleSubmit();
+    console.log(Object.keys(formik.errors).length);
+
+    if (!formik.errors.backImage && !formik.errors.frontImage) {
+      window.location.href = '/apps/pending';
+
+    }
+  };
   return (
     <PageContainer>
       <Box mt={2} sx={{ maxWidth: '1100px', margin: '0 auto' }}>
@@ -786,18 +806,20 @@ const PersonAffiliate = () => {
           <Box flex="1 1 auto" />
           {activeStep === steps.length - 1 ? (
             <Button
-              onClick={() => formik.handleSubmit()}
+              onClick={handleButtonClick}
               variant="contained"
               color="secondary"
               size="small"
-              component={Link}
-              to="/apps/pending"
+
             >
               Hoàn tất đăng ký
             </Button>
           ) : (
             <Button
-              onClick={() => formik.handleSubmit()}
+              onClick={() => {
+                setIsSubmitting(true);
+                formik.handleSubmit();
+              }}
               variant="contained"
               color="secondary"
               size="small"
