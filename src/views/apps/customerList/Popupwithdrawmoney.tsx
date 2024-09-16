@@ -2,7 +2,7 @@ import { Box, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 const PopupWithdrawMoney = () => {
-  const [currentBalance, setCurrentBalance] = useState<number>(10000000); // Số tiền hiện có
+  const [currentBalance] = useState<number>(10000000); // Số tiền hiện có
   const [withdrawAmount, setWithdrawAmount] = useState<number | null>(null); // Số tiền muốn rút
 
   // Số tiền còn lại - dùng mặc định 0 nếu withdrawAmount là null hoặc không hợp lệ

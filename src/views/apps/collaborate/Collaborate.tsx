@@ -11,7 +11,6 @@ import {
   DialogTitle,
   Grid,
   IconButton,
-  TextField,
   Tab,
   Typography,
   styled,
@@ -35,9 +34,10 @@ import { FaChartLine } from 'react-icons/fa';
 import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
 import userimg from 'src/assets/images/profile/user-1.jpg';
-import React, { useEffect, useState } from 'react';
-// import Popupconvert from '../customerList/Popupconvert';
+import React, { useState } from 'react';
+
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
+import PopupConvert from '../customerList/Popupconvert';
 
 interface cardType {
   icon: JSX.Element;
@@ -118,26 +118,6 @@ const CollaboratePost = () => {
     setUsdValue(null);
     SetVNDValue(null);
     setIsPopupOpen2(false);
-  };
-
-  const conversionRate = 24000; // 1 USD = 24,000 VND (you can update this rate)
-
-  useEffect(() => {
-    if (usdValue !== null) {
-      SetVNDValue(usdValue * conversionRate);
-    } else SetVNDValue(null)
-  }, [usdValue]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    console.log(value);
-    if (value === '') {
-      setUsdValue(null)
-    }
-    else {
-      const numericValue = parseFloat(value);
-      setUsdValue(numericValue);
-    }
   };
 
   return (
@@ -492,36 +472,50 @@ const CollaboratePost = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog open={isPopupOpen2} onClose={handleClosePopup2} maxWidth="xs" keepMounted>
-        <DialogContent style={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
-          <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', mt: 5, textAlign: 'center' }}>
-            <Typography variant="h4" component="h1" gutterBottom sx={{ marginBottom: '40px' }}>
-              Đổi Point
-            </Typography>
 
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <TextField
-                  label="Nhập USD"
-                  type="number"
-                  fullWidth
-                  value={usdValue !== null ? usdValue : ''}
-                  onChange={handleInputChange}
-                  variant="outlined"
-                />
-              </Grid>
+      <Dialog
+        open={isPopupOpen2}
+        onClose={handleClosePopup2}
+        maxWidth="xs"
+        keepMounted
+        PaperProps={{
+          sx: {
+            borderRadius: '15px', // Add border-radius to the entire dialog
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            m: 'auto',
+          }}
+        >
+          <Typography variant="h4">Đổi point</Typography>
+        </DialogTitle>
 
-              <Grid item xs={6}>
-                <Typography variant="body1" color="textSecondary">
-                  Giá trị VND:
-                </Typography>
-                <Typography variant="h6" color="primary">
-                  {vndValue !== null ? vndValue.toLocaleString() : null} VND
-                </Typography>
-              </Grid>
-            </Grid>
+        <DialogContent
+          sx={{
+            width: '430px',
+            height: '250px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '15px',
+            overflowX: 'hidden', // Turn off horizontal scrollbar
+          }}
+        >
+          <Box
+            sx={{
+              width: '400px',
+              height: 'auto',
+              borderRadius: '15px',
+              overflowX: 'hidden',
+              padding: '10px 0',
+            }}
+          >
+            <PopupConvert usdValue={usdValue} setUsdValue={setUsdValue} />
           </Box>
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClosePopup2}>Hủy</Button>
           <Button onClick={handleClosePopup2} variant="contained" color="primary">
