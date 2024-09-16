@@ -150,6 +150,7 @@ const HistoryBuyService = Loadable(
 );
 // pay
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
+const PaymentPoint2 = Loadable(lazy(() => import('../views/payment2/payment2')));
 //list assistant
 const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
 const AssistantList = Loadable(
@@ -267,6 +268,7 @@ const Router = [
       { path: '/assistant/list', element: <AssistantList /> },
       { path: '/buy/point', element: <BuyPoint /> },
       { path: '/pay/point', element: <PaymentPoint /> },
+      { path: '/pay/point2', element: <PaymentPoint2 /> },
       { path: '/buy/service', element: <BuyPointService /> },
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
       { path: '/history/buy-service', element: <HistoryBuyService /> },
