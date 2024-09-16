@@ -19,11 +19,11 @@ const currencies: CurrencyType[] = [
 ];
 
 const channels: CurrencyType[] = [
-  { value: 'mkt', label: 'MKT' },
-  { value: 'zl', label: 'Zalo' },
-  { value: 'fb', label: 'Facebook' },
-  { value: 'inst', label: 'Instagram' },
-  { value: 'other', label: 'Other' },
+  { value: 'Makerting', label: 'MKT' },
+  { value: 'Zalo', label: 'Zalo' },
+  { value: 'Facebook', label: 'Facebook' },
+  { value: 'Instagram', label: 'Instagram' },
+  // { value: 'other', label: 'Other' },
 ];
 
 const PopupAddList2 = () => {
@@ -54,21 +54,28 @@ const PopupAddList2 = () => {
       name: Yup.string().required('Tên khách hàng là bắt buộc'),
       phone: Yup.string()
         .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ')
-        .required('Số điện thoại là bắt buộc'),
-      gender: Yup.string().required('Giới tính là bắt buộc'),
-      email: Yup.string().email('Email không hợp lệ').required('Email là bắt buộc'),
-      dob: Yup.date().required('Ngày sinh là bắt buộc'),
+        .when('email', {
+          is: (email: string) => !email, // Nếu email không có giá trị
+          then: Yup.string().required('Số điện thoại khách hàng là bắt buộc')
+        }),
+      gender: Yup.string(),
+      email: Yup.string().required('Email là bắt buộc'),
+        // .email('Email không hợp lệ')
+        // .when('phone', {
+        //   is: (phone:string) => !phone, // Nếu phone không có giá trị
+        //   then: Yup.string().required('Email là bắt buộc')
+        // }),
+      dob: Yup.date(),
       notes: Yup.string(),
       assistant: Yup.string(),
       tags: Yup.string(),
       selectedChannels: Yup.array().min(1, 'Chọn ít nhất một kênh'),
-      companyName: Yup.string().required('Tên công ty là bắt buộc'),
-      companyAddress: Yup.string().required('Địa chỉ công ty là bắt buộc'),
-      taxId: Yup.string().required('Mã số thuế là bắt buộc'),
-      companyEmail: Yup.string().email('Email không hợp lệ').required('Email công ty là bắt buộc'),
+      companyName: Yup.string(),
+      companyAddress: Yup.string(),
+      taxId: Yup.string(),
+      companyEmail: Yup.string().email('Email không hợp lệ'),
       companyPhone: Yup.string()
-        .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ')
-        .required('Số điện thoại công ty là bắt buộc'),
+        .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ'),
       companyWebsite: Yup.string().url('URL không hợp lệ'),
       facebookUrl: Yup.string().url('URL không hợp lệ'),
       zaloUrl: Yup.string().url('URL không hợp lệ'),
@@ -100,7 +107,7 @@ const PopupAddList2 = () => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
             />
-            <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>SĐT</CustomFormLabel>
+            <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>Số điện thoại</CustomFormLabel>
             <CustomTextField
               id="phone"
               variant="outlined"
@@ -275,7 +282,7 @@ const PopupAddList2 = () => {
               error={formik.touched.companyEmail && Boolean(formik.errors.companyEmail)}
               helperText={formik.touched.companyEmail && formik.errors.companyEmail}
             />
-            <CustomFormLabel htmlFor="companyPhone" sx={{ mt: 2 }}>SĐT công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="companyPhone" sx={{ mt: 2 }}>Số điện thoại công ty</CustomFormLabel>
             <CustomTextField
               id="companyPhone"
               variant="outlined"
@@ -310,6 +317,7 @@ const PopupAddList2 = () => {
           <Grid item xs={12} md={4}>
             <CustomFormLabel htmlFor="facebookUrl">Facebook</CustomFormLabel>
             <CustomTextField
+              placeholder="https://www.facebook.com/abc"
               id="facebookUrl"
               type="url"
               variant="outlined"
@@ -324,6 +332,7 @@ const PopupAddList2 = () => {
           <Grid item xs={12} md={4}>
             <CustomFormLabel htmlFor="zaloUrl">Zalo</CustomFormLabel>
             <CustomTextField
+              placeholder="https://www.zalo.com/abc"
               id="zaloUrl"
               type="url"
               variant="outlined"
@@ -338,6 +347,7 @@ const PopupAddList2 = () => {
           <Grid item xs={12} md={4}>
             <CustomFormLabel htmlFor="instagramUrl">Instagram</CustomFormLabel>
             <CustomTextField
+              placeholder="https://www.instagram.com/abc"
               id="instagramUrl"
               type="url"
               variant="outlined"
@@ -359,5 +369,6 @@ const PopupAddList2 = () => {
     </form>
   );
 };
+
 
 export default PopupAddList2;
