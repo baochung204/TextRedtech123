@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-const rule = () => {
+const Rule = () => {
   return (
     <>
       {/* thay */}
@@ -426,4 +426,4 @@ const rule = () => {
   );
 };
 
-export default rule;
+export default Rule;
