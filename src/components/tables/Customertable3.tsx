@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
 import {
-  TableRow,
-  TableHead,
-  Table,
-  TableContainer,
-  TableCell,
-  TableBody,
-  Typography,
   Avatar,
   Box,
-  Stack,
-  TablePagination,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-  Paper,
   FormControlLabel,
+  Paper,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  Typography,
 } from '@mui/material';
+import React, { useState } from 'react';
 import { tabledh } from 'src/components/tables/tabledh';
 import CustomSwitch from '../forms/theme-elements/CustomSwitch';
+import Scrollbar_x from '../custom-scroll/Scrollbar_x';
 
 const CustomerTable3 = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
@@ -48,113 +45,115 @@ const CustomerTable3 = () => {
   return (
     <>
       <TableContainer component={Paper} sx={{ padding: 2 }}>
-        <Table
-          aria-label="customer table"
-          size="small" // Thay đổi kích thước của bảng để giảm padding
-          sx={{
-            whiteSpace: 'nowrap',
-          }}
-        >
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  STT
-                </Typography>
-              </TableCell>{' '}
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Mã đơn hàng
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Khách hàng
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Email
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Ngày mua
-                </Typography>
-              </TableCell>{' '}
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Số điện thoại
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Giá trị đơn hàng
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="subtitle2" fontWeight={600}>
-                  Hoa hồng
-                </Typography>
-              </TableCell>
-              {/* <TableCell>
+        <Scrollbar_x>
+          <Table
+            aria-label="customer table"
+            size="small" // Thay đổi kích thước của bảng để giảm padding
+            sx={{
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    STT
+                  </Typography>
+                </TableCell>{' '}
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Mã đơn hàng
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Khách hàng
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Email
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Ngày mua
+                  </Typography>
+                </TableCell>{' '}
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Số điện thoại
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Giá trị đơn hàng
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Hoa hồng
+                  </Typography>
+                </TableCell>
+                {/* <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
                     TRẠNG THÁI
                   </Typography>
                 </TableCell> */}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {paginatedRows.map((row) => (
-              <TableRow>
-                <TableCell>
-                  <Typography color="textSecondary">{row.id}</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    {row.MHD}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Stack direction="row" spacing={2} alignItems="center">
-                    <Avatar src={''} variant="rounded" alt={''} sx={{ width: 48, height: 48 }} />
-                    <Box>
-                      <Typography variant="subtitle2" fontWeight={600}>
-                        {row.username}
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {row.email}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {new Date(row.createdAt).toLocaleDateString('vi-VN')}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {row.phone}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {row.amount.toLocaleString('vn-VN')}đ
-                  </Typography>
-                </TableCell>
-
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={400}>
-                    {row.money.toLocaleString('vn-VN')}đ
-                  </Typography>
-                </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {paginatedRows.map((row) => (
+                <TableRow>
+                  <TableCell>
+                    <Typography color="textSecondary">{row.id}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2" fontWeight={600}>
+                      {row.MHD}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Avatar src={''} variant="rounded" alt={''} sx={{ width: 48, height: 48 }} />
+                      <Box>
+                        <Typography variant="subtitle2" fontWeight={600}>
+                          {row.username}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2" fontWeight={400}>
+                      {row.email}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2" fontWeight={400}>
+                      {new Date(row.createdAt).toLocaleDateString('vi-VN')}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2" fontWeight={400}>
+                      {row.phone}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2" fontWeight={400}>
+                      {row.amount.toLocaleString('vn-VN')}đ
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell>
+                    <Typography variant="subtitle2" fontWeight={400}>
+                      {row.money.toLocaleString('vn-VN')}đ
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Scrollbar_x>
       </TableContainer>{' '}
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
         <TablePagination
