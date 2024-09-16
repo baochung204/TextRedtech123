@@ -1,7 +1,9 @@
 import { Box, Divider, IconButton, InputBase, List, ListItem, ListItemText, Paper, Typography } from "@mui/material";
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 
 import { IconSend } from "@tabler/icons-react";
 import { useState } from "react";
+
 interface Message {
     text: string;
     sender: 'user' | 'bot';
@@ -31,27 +33,30 @@ const ChatBot = () => {
         }
     };
     return (
-        <Paper elevation={3} sx={{ minHeight: '58vh', maxHeight: '58vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+        <Paper elevation={3} sx={{height:'100%', minHeight: '51vh', maxHeight: '51vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+
             <Typography variant="h6">Chatbot</Typography>
             <Divider sx={{ my: 2 }} />
-            <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(100% - 120px)' }}>
-                <List>
-                    {messages.map((message, index) => (
-                        <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>
-                            <ListItemText
-                                primary={message.text}
-                                sx={{
-                                    backgroundColor: message.sender === 'user' ? '#1976d2' : '#e0e0e0',
-                                    color: message.sender === 'user' ? '#fff' : '#000',
-                                    borderRadius: '10px',
-                                    p: 1,
-                                    maxWidth: '80%'
-                                }}
-                            />
-                        </ListItem>
-                    ))}
-                </List>
-            </Box>
+            <Scrollbar sx={{ minHeight: '30vh', maxHeight: '30vh' }}>
+                <Box sx={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(100% - 150px)' }}>
+                    <List>
+                        {messages.map((message, index) => (
+                            <ListItem key={index} sx={{ display: 'flex', justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start' }}>
+                                <ListItemText
+                                    primary={message.text}
+                                    sx={{
+                                        backgroundColor: message.sender === 'user' ? '#1976d2' : '#e0e0e0',
+                                        color: message.sender === 'user' ? '#fff' : '#000',
+                                        borderRadius: '10px',
+                                        p: 1,
+                                        maxWidth: '80%'
+                                    }}
+                                />
+                            </ListItem>
+                        ))}
+                    </List>
+                </Box>
+            </Scrollbar>
             <Divider sx={{ my: 2 }} />
             <Box sx={{ display: 'flex' }}>
 
@@ -70,6 +75,7 @@ const ChatBot = () => {
                     <IconSend stroke={1.5} size="20" />
                 </IconButton>
             </Box>
+
         </Paper>
 
     )
