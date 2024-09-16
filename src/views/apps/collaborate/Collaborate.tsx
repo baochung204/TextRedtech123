@@ -485,13 +485,7 @@ const CollaboratePost = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog
-        open={isPopupOpen2}
-        onClose={handleClosePopup2}
-        maxWidth="lg"
-        // TransitionComponent={Transition}
-        keepMounted
-      >
+      <Dialog open={isPopupOpen2} onClose={handleClosePopup2} maxWidth="xs" keepMounted>
         <DialogContent style={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', mt: 5, textAlign: 'center' }}>
             <Typography variant="h4" component="h1" gutterBottom sx={{ marginBottom: '40px' }}>
