@@ -91,7 +91,7 @@ const CustomerTable2 = () => {
                       onClick={() => handleSortRequest(column as keyof DataRow)}
                     >
                       <Typography variant="h6" fontWeight={600}>
-                        {column === 'id' && 'Id Đơn Hàng'}
+                        {column === 'id' && 'ID khách hàng'}
                         {column === 'createdAt' && 'Ngày Tạo'}
                         {column === 'assistant' && 'Trợ Lý'}
                         {column === 'channel' && 'Kênh (MTK)'}
