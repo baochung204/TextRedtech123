@@ -2,20 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Box, TextField, Typography, Grid } from '@mui/material';
 
 interface PropsItem {
-  usdValue: number | null,
-  setUsdValue: React.Dispatch<React.SetStateAction<number | null>>
+  usdValue: number | null;
+  setUsdValue: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const PopupConvert = ({ usdValue, setUsdValue }: PropsItem) => {
-
   const conversionRate = 24000; // 1 USD = 24,000 VND (you can update this rate)
-  const [vndValue, SetVNDValue] = useState<number | null>(null)
+  const [vndValue, SetVNDValue] = useState<number | null>(null);
 
   useEffect(() => {
     if (usdValue !== null) {
-      SetVNDValue(usdValue * conversionRate)
+      SetVNDValue(usdValue * conversionRate);
     }
-  }, [usdValue])
+  }, [usdValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
@@ -32,7 +31,7 @@ const PopupConvert = ({ usdValue, setUsdValue }: PropsItem) => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <TextField
-            label="Nhập USD"
+            label="Nhập số point"
             type="number"
             fullWidth
             value={usdValue}
