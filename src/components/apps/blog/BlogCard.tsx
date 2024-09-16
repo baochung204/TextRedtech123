@@ -89,13 +89,19 @@ const BlogCard = ({ post }: Btype) => {
                   {title}
                 </Typography>
               </Box>
-              <Chip label={category} size="small" sx={{ marginLeft: 'auto', marginTop: 0 }} />
+              <Chip
+                label={category}
+                size="small"
+                sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 6 }}
+              />
               <Box
                 sx={{
                   position: 'absolute',
                   display: 'flex',
                   alignItems: 'center',
                   bottom: 0,
+                  width: '90%',
+                  // gap: '10px',
                   py: 2,
                 }}
               >
@@ -108,13 +114,14 @@ const BlogCard = ({ post }: Btype) => {
                     flexDirection: 'column',
                     marginLeft: '10px',
                     alignItems: 'center',
+                    width: '40%',
                     justifyContent: 'space-between',
                   }}
                 >
                   <Typography variant="body2">Nguyễn Mạnh Cường</Typography>
                 </Box>
 
-                <Stack direction="row" ml="auto" alignItems="center">
+                <Stack direction="row" ml="auto" alignItems="center" width="30%">
                   <small>09-09-2024</small>
                 </Stack>
               </Box>
