@@ -64,7 +64,7 @@ const PersonAffiliate = () => {
   const handleImage1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       const file = event.target.files[0];
-      formik.setFieldValue('frontImage', file);
+      formik.setFieldValue('frontImage', file.name);
       setSelectedImage1(URL.createObjectURL(file));
     }
   };
@@ -72,7 +72,7 @@ const PersonAffiliate = () => {
   const handleImage2Change = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       const file = event.target.files[0];
-      formik.setFieldValue('backImage', file);
+      formik.setFieldValue('backImage', file.name);
       setSelectedImage2(URL.createObjectURL(file));
     }
   };
@@ -94,8 +94,8 @@ const PersonAffiliate = () => {
       accountName: '',
       bank: '',
       branch: '',
-      frontImage: '',
-      backImage: '',
+      frontImage: null,
+      backImage: null,
     },
     validationSchema: validationSchemas[activeStep],
     validateOnChange: true,
@@ -163,6 +163,7 @@ const PersonAffiliate = () => {
                 onChange={formik.handleChange}
                 color="primary"
                 inputProps={{ 'aria-label': 'checkbox with default color' }}
+
               />
               <span>Đồng ý với các điều khoản của chúng tôi</span>
 
@@ -229,8 +230,8 @@ const PersonAffiliate = () => {
                     id="branch"
                     name="branch"
                     value={formik.values.branch}
-                    // onChange={formik.handleChange}
-                    onChange={(e) => formik.setFieldValue('branch', e.target.value)}
+                    onChange={formik.handleChange}
+                    // onChange={(e) => formik.setFieldValue('branch', e.target.value)}
                     error={isSubmitting && Boolean(formik.errors.branch)}
                   >
                     <MenuItem value={1}>Hà Nội</MenuItem>
@@ -316,7 +317,7 @@ const PersonAffiliate = () => {
                     style={{ display: 'none' }}
                   />
                 </Button>
-                {formik.errors.frontImage && (
+                {isSubmitting && formik.errors.frontImage && (
                   <Typography color="error">{formik.errors.frontImage}</Typography>
                 )}
               </Box>
@@ -351,7 +352,7 @@ const PersonAffiliate = () => {
                     style={{ display: 'none' }}
                   />
                 </Button>
-                {formik.errors.backImage && (
+                {isSubmitting && formik.errors.backImage && (
                   <Typography color="error">{formik.errors.backImage}</Typography>
                 )}
               </Box>
@@ -364,8 +365,11 @@ const PersonAffiliate = () => {
   };
 
   const handleButtonClick = () => {
+    setIsSubmitting(true);
     formik.handleSubmit();
-    if (formik.errors.backImage === undefined && formik.errors.frontImage === undefined) {
+    console.log(formik.values.frontImage);
+    console.log(formik.values.backImage);
+    if (formik.values.backImage !== null && formik.values.frontImage !== null) {
       window.location.href = '/apps/pending';
     }
   };
@@ -420,6 +424,8 @@ const PersonAffiliate = () => {
               onClick={() => {
                 setIsSubmitting(true);
                 formik.handleSubmit();
+                console.log(formik.errors);
+
               }}
               variant="contained"
               color="secondary"

@@ -8,14 +8,15 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogTitle,
   Grid,
   IconButton,
+  TextField,
   Tab,
   Typography,
   styled,
 } from '@mui/material';
 import { IconPackage } from '@tabler/icons-react';
-import React from 'react';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
@@ -23,7 +24,6 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import badge from 'src/assets/images/badge/badge2.png';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -34,7 +34,7 @@ import { FaChartLine } from 'react-icons/fa';
 import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
 import userimg from 'src/assets/images/profile/user-1.jpg';
-
+import React, { useEffect, useState } from 'react';
 import Popupconvert from '../customerList/Popupconvert';
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 
@@ -83,6 +83,8 @@ const CollaboratePost = () => {
   const [value2, setValue2] = React.useState<Dayjs | null>(null);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
+  const [usdValue, setUsdValue] = useState<number | null>(null);
+  const [vndValue, SetVNDValue] = useState<number | null>(null)
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -111,9 +113,23 @@ const CollaboratePost = () => {
     setIsPopupOpen2(true);
   };
 
-  // Function đóng popup
   const handleClosePopup2 = () => {
+    setUsdValue(null)
+    SetVNDValue(null)
     setIsPopupOpen2(false);
+  };
+
+  const conversionRate = 24000; // 1 USD = 24,000 VND (you can update this rate)
+
+  useEffect(() => {
+    if (usdValue !== null) {
+      SetVNDValue(usdValue * conversionRate);
+    }
+  }, [usdValue]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(e.target.value);
+    setUsdValue(value);
   };
 
   return (
@@ -455,11 +471,19 @@ const CollaboratePost = () => {
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
-        maxWidth="lg"
-        // TransitionComponent={Transition}
-        keepMounted
+        maxWidth="xs"
+        fullWidth
       >
-        <DialogContent style={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
+        <DialogTitle
+          sx={{
+            m: 'auto'
+          }}
+        >
+          <Typography variant="h4" >
+            Rút tiền
+          </Typography>
+        </DialogTitle>
+        <DialogContent style={{ display: 'flex', justifyContent: 'center' }}>
           <Popupwithdrawmoney />
         </DialogContent>
         <DialogActions>
@@ -477,7 +501,33 @@ const CollaboratePost = () => {
         keepMounted
       >
         <DialogContent style={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
-          <Popupconvert /> {/* Gọi component PopupAdd */}
+          <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', mt: 5, textAlign: 'center' }}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{ marginBottom: '40px' }}>
+              Đổi Point
+            </Typography>
+
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField
+                  label="Nhập USD"
+                  type="number"
+                  fullWidth
+                  value={usdValue !== null ? usdValue : ''}
+                  onChange={handleInputChange}
+                  variant="outlined"
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <Typography variant="body1" color="textSecondary">
+                  Giá trị VND:
+                </Typography>
+                <Typography variant="h6" color="primary">
+                  {vndValue !== null ? vndValue.toLocaleString() : null} VND
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup2}>Hủy</Button>

@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
-import { Box, TextField, Typography, Button, Grid } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, TextField, Typography, Grid } from '@mui/material';
 
-const PopupConvert = () => {
-  const [usdValue, setUsdValue] = useState(0);
+interface PropsItem {
+  usdValue: number | null,
+  setUsdValue: React.Dispatch<React.SetStateAction<number | null>>
+}
+
+const PopupConvert = ({ usdValue, setUsdValue }: PropsItem) => {
+
   const conversionRate = 24000; // 1 USD = 24,000 VND (you can update this rate)
-  const vndValue = usdValue * conversionRate;
+  const [vndValue, SetVNDValue] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (usdValue !== null) {
+      SetVNDValue(usdValue * conversionRate)
+    }
+  }, [usdValue])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
     setUsdValue(value);
   };
+  console.log(usdValue);
 
   return (
     <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', mt: 5, textAlign: 'center' }}>
@@ -34,7 +46,7 @@ const PopupConvert = () => {
             Giá trị VND:
           </Typography>
           <Typography variant="h6" color="primary">
-            {vndValue.toLocaleString()} VND
+            {vndValue !== null && vndValue.toLocaleString()} VND
           </Typography>
         </Grid>
       </Grid>
