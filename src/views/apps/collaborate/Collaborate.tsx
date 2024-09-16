@@ -8,8 +8,10 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogTitle,
   Grid,
   IconButton,
+  Input,
   Tab,
   Typography,
   styled,
@@ -455,12 +457,51 @@ const CollaboratePost = () => {
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
-        maxWidth="lg"
-        // TransitionComponent={Transition}
-        keepMounted
+        maxWidth="sm"
+        fullWidth
       >
-        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
-          <Popupwithdrawmoney />
+        <DialogTitle
+          sx={{
+            m: 'auto',
+          }}
+        >
+          <Typography variant='h2'  >
+            Rút tiền
+          </Typography>
+        </DialogTitle>
+        <DialogContent >
+          <Grid container >
+            <Grid item xs={12} >
+              <Grid container xs={12}>
+                <Grid item xs={5}>
+                  <Typography variant='subtitle2' >
+
+                  </Typography>
+                </Grid>
+                <Grid item xs={2}>
+                  2
+                </Grid>
+                <Grid item xs={5}>
+                  3
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} >
+              <Grid container xs={12}>
+                <Grid item xs={5}>
+                  <Input
+                  
+                  />
+                </Grid>
+                <Grid item xs={2}>
+                  2
+                </Grid>
+                <Grid item xs={5}>
+                  3
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
