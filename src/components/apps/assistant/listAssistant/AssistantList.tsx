@@ -56,8 +56,9 @@ import BlankCard from '../AssistantEditor/BlankCard';
 // import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 // import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { SelectChangeEvent } from '@mui/material/Select';
-
-
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import SouthIcon from '@mui/icons-material/South';
+import NorthIcon from '@mui/icons-material/North';
 
 interface sellsData {
   product: string;
@@ -217,9 +218,7 @@ const dataRank: Irank[] = [
     sale: 50,
   },
 ];
-// interface ITopRank {
-//   title: string;
-// }
+
 const BCrumb = [
   {
     to: '/',
@@ -239,8 +238,6 @@ const FilmsData: FilmsData[] = [
 ];
 const AssistantList = () => {
   const theme = useTheme();
-  // Removed unused isLoading state
-  // chart color
   const secondary = theme.palette.secondary.main;
   const [month, setMonth] = React.useState('1');
   const successlight = theme.palette.success.light;
@@ -248,7 +245,6 @@ const AssistantList = () => {
     setMonth(event.target.value);
   };
 
-  // Removed useEffect that sets isLoading state
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
 
   const onHandleCheckOnOrOff = (rank: Irank) => {
@@ -259,17 +255,31 @@ const AssistantList = () => {
     );
   };
 
-  // const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [selectedItems, setSelectedItems] = useState<string>('');
 
-  // Xử lý khi chọn hoặc bỏ chọn các mục
-  const handleChange1 = (event: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = event;
-    setSelectedItems(typeof value === 'string' ? value.split(',') : value);
+  const handleChange1 = (event: SelectChangeEvent<string>) => {
+    setSelectedItems(event.target.value);
   };
 
+
+  const handleItemClick1 = (title: string) => {
+    if (selectedItems === title) {
+      setSelectedItems('');
+    } else {
+      setSelectedItems(title);
+    }
+  };
+  const [iconIndex, setIconIndex] = useState<number>(0);
+  const icons = [SwapVertIcon, SouthIcon, NorthIcon]
+
+
+  const handleClickIcon = () => {
+    setIconIndex((pre) => (pre + 1) % icons.length)
+    console.log(7 % 7);
+
+  }
+
+  const SelectedIcon = icons[iconIndex]
 
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
@@ -293,7 +303,7 @@ const AssistantList = () => {
               <Grid
                 container
                 width={{ sm: 600 }}
-                spacing={2}
+                spacing={1}
               >
                 <Grid item xs={6} sm={6} md={6}
                   sx={{
@@ -302,72 +312,38 @@ const AssistantList = () => {
                     alignItems: 'center'
                   }}
                 >
-                  {/* <Autocomplete
-                    multiple
-                    id="checkboxes-tags-demo"
-                    options={FilmsData}
-                    disableCloseOnSelect
-                    getOptionLabel={(option) => option.title}
-                    renderOption={(props, option, { selected }) => (
-                      <li
-                        {...props}
-                        style={{
-                          display: 'flex',           
-                          alignItems: 'center',      
-                          marginRight: '10px',    
-                          maxWidth: '20px'
-                        }}
-                      >
-                        <CustomCheckbox sx={{ ml: '-20px' }} checked={selected} />
-                        {option.title}
-                      </li>
-                    )}
-                    fullWidth
-                    sx={{
-                      width: '100%', // Điều chỉnh để `Autocomplete` rộng hơn
-                      '.MuiAutocomplete-listbox': {
-                        display: 'flex',             // Hiển thị danh sách theo hàng ngang
-                        flexDirection: 'row',        // Các lựa chọn được xếp theo hàng ngang
-                        flexWrap: 'wrap',            // Tự động xuống dòng khi hết chỗ
-                        overflowY: 'auto',           // Cho phép cuộn dọc nếu vượt quá chiều cao
-                      },
-                    }}
-                    renderInput={(params) => (
-                      <CustomTextField
-                        {...params}
-                        placeholder="Bộ Lọc"
-                        aria-label="Bộ Lọc"
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            padding: '1px',
-                          },
-                        }}
-                      />
-                    )}
-                  /> */}
-                  <IconButton aria-label="filter" sx={{mr: 1}}>
-                    <Badge badgeContent={selectedItems.length} color="primary">
+                  <IconButton aria-label="filter" sx={{ mr: 1 }}>
+                    <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
                       <FilterListIcon />
                     </Badge>
                   </IconButton>
                   <Select
-                    multiple
                     value={selectedItems}
                     onChange={handleChange1}
                     displayEmpty
-                    renderValue={(selected) =>
-                      selected.length === 0 ? 'Bộ Lọc' : `Bộ Lọc`
-                    }
-                    size='small'
+                    renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
+                    size="small"
                     style={{ minWidth: 50 }}
                   >
                     {FilmsData.map((film) => (
-                      <MenuItem key={film.title} value={film.title}>
-                        <Checkbox checked={selectedItems.indexOf(film.title) > -1} />
+                      <MenuItem
+                        key={film.title}
+                        value={film.title}
+                        onClick={() => handleItemClick1(film.title)}
+                      >
                         <ListItemText primary={film.title} />
                       </MenuItem>
                     ))}
                   </Select>
+                  <IconButton
+                    aria-label="filter"
+                    onClick={handleClickIcon}
+                    sx={{
+                      ml: 1
+                    }}
+                  >
+                    <SelectedIcon />
+                  </IconButton>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6}
                   sx={{
