@@ -32,7 +32,6 @@ export interface CustomerListTable {
   name: string; // họ tên
   email: string; // email
   phone: string; // SĐT
-
   createdAt: string;
   orderValue: string;
   channel: string;
@@ -47,7 +46,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Lâm Đình Khoa',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -61,7 +60,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Ngô Đình Toản',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
@@ -75,7 +74,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Ngô Đình Nhu',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -89,7 +88,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Ngô Đình Diệm',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
@@ -103,7 +102,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Ngô Đình Khải',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -117,7 +116,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Ngô Đình Chung',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
@@ -131,7 +130,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Nguyễn Đăng Hòa',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -145,7 +144,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Nguyễn Đăng Khánh',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
