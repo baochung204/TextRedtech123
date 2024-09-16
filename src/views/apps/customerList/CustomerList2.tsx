@@ -68,7 +68,6 @@ const CustomerList2 = () => {
 
   return (
     <PageContainer>
-      {/* Breadcrumb */}
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
@@ -79,8 +78,6 @@ const CustomerList2 = () => {
               sx={{ p: 0, border: 'none' }}
             >
               <Tab label="Danh sách khách hàng" value="1" sx={{ p: 0 }} />
-
-              {/* <Tab label="Tags" value="2" sx={{ p: 0 }} /> */}
             </TabList>
 
             <TabPanel value="1" sx={{ p: 0 }}>
@@ -129,26 +126,6 @@ const CustomerList2 = () => {
                     placeholder="Tìm kiếm"
                     size="small"
                   />
-
-                  {/* <CustomSelect
-                    labelId="column-filter"
-                    id="column-filter"
-                    size="small"
-                    value={1}
-                    sx={{ marginRight: '30px' }}
-                  >
-                    <MenuItem value={1}>Sửa đổi cột</MenuItem>
-                  </CustomSelect>
-
-                  <CustomSelect
-                    labelId="column-sort"
-                    id="column-sort"
-                    size="small"
-                    value={1}
-                    sx={{ marginRight: '20px' }}
-                  >
-                    <MenuItem value={1}>Bộ lọc</MenuItem>
-                  </CustomSelect> */}
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
@@ -179,10 +156,6 @@ const CustomerList2 = () => {
               </Box>
               <CustomerTable2 />
             </TabPanel>
-
-            {/* <TabPanel value="2" sx={{ p: 0 }}>
-              <Tags />
-            </TabPanel> */}
           </Box>
         </TabContext>
       </ChildCard>
@@ -199,12 +172,6 @@ const CustomerList2 = () => {
         <DialogContent>
           <PopupAddList2 />
         </DialogContent>
-        {/* <DialogActions>
-          <Button onClick={handleClosePopup}>Hủy</Button>
-          <Button onClick={handleClosePopup} variant="contained" color="primary">
-            Xác nhận
-          </Button>
-        </DialogActions> */}
       </Dialog>
     </PageContainer>
   );
