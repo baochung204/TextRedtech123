@@ -1,16 +1,17 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useState } from 'react';
+import { Avatar, Box, Button, Divider, IconButton, Menu, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, Menu, Avatar, Typography, Divider, Button, IconButton, Stack } from '@mui/material';
 import * as dropdownData from './data';
 
 import { IconMail } from '@tabler/icons-react';
 
-import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
+import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch } from 'src/store/Store';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -56,9 +57,7 @@ const Profile = () => {
           }}
         />
       </IconButton>
-      {/* ------------------------------------------- */}
-      {/* Message Dropdown */}
-      {/* ------------------------------------------- */}
+
       <Menu
         id="msgs-menu"
         anchorEl={anchorEl2}
@@ -72,6 +71,7 @@ const Profile = () => {
             width: '360px',
             px: 2,
             pt: 3,
+            overflow: 'hidden',
           },
         }}
       >
@@ -90,7 +90,7 @@ const Profile = () => {
               sx={{ gap: '2px' }}
             >
               <IconMail width={15} height={15} />
-              hoaace2003@gmail.com 
+              hoaace2003@gmail.com
             </Typography>
           </Box>
         </Stack>

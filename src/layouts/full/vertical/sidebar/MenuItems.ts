@@ -137,13 +137,13 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Tích hợp',
-    icon: IconMessage2Bolt,
+    icon: IconTerminal2,
     href: '/apps/integration',
   },
   {
     id: uniqueId(),
     title: 'Ticket hỗ trợ',
-    icon: IconTerminal2,
+    icon: IconMessage2Bolt,
     href: '/apps/chats',
   },
 

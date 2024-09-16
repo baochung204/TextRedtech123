@@ -459,7 +459,7 @@ const CollaboratePost = () => {
         // TransitionComponent={Transition}
         keepMounted
       >
-        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
+        <DialogContent style={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
           <Popupwithdrawmoney />
         </DialogContent>
         <DialogActions>
@@ -476,7 +476,7 @@ const CollaboratePost = () => {
         // TransitionComponent={Transition}
         keepMounted
       >
-        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
+        <DialogContent style={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
           <Popupconvert /> {/* Gọi component PopupAdd */}
         </DialogContent>
         <DialogActions>
