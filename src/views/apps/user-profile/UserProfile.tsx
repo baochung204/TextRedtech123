@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import { default as AccountInformation } from 'src/components/apps/userprofile/profile/AccountInformation';
+import BankInformation from 'src/components/apps/userprofile/profile/BankInformation';
 import BusinessInformation from 'src/components/apps/userprofile/profile/BusinessInformation';
 import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
 import PersonalInformation from 'src/components/apps/userprofile/profile/PersonalInformation';
@@ -32,6 +33,7 @@ const UserProfile = () => {
             {selecteds === 'personal' && <PersonalInformation />}
             {selecteds === 'account' && <AccountInformation />}
             {selecteds === 'business' && <BusinessInformation />}
+            {selecteds === 'bankking' && <BankInformation />}
             {selecteds === 'email' && <ReceiveEmail />}
             {selecteds === 'changepassword' && <ChangePassword />}
             {selecteds === 'twofactorsecurity' && <TwoFactorSecurity />}

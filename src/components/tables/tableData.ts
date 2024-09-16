@@ -17,21 +17,21 @@ export interface TableType {
 
 export interface EnTableType {
   id: string;
-  amount: number; // số tiền
-  numberPrice: number; // số tiền thanh toán
-  requestId: string; // id yêu cầu
-  createdAt: Date; //ngày thanh toán
-  completedAt: Date | null; //ngày hoàn tất thanh toán
-  status: number; // tình trạng
-  invoice: number; // hóa đơn
+  amount: number;
+  numberPrice: number;
+  requestId: string; 
+  createdAt: Date; 
+  completedAt: Date | null;
+  status: number; 
+  invoice: number; 
 }
 
 export interface CustomerListTable {
   id: string;
   assistant: string;
-  name: string; // họ tên
-  email: string; // email
-  phone: string; // SĐT
+  name: string; 
+  email: string; 
+  phone: string; 
   createdAt: string;
   orderValue: string;
   channel: string;
@@ -40,6 +40,35 @@ export interface CustomerListTable {
   note: string;
   imgsrc?: string;
 }
+export interface CustomerListAffiliateTable {
+  id: string;
+  name: string; 
+  email: string; 
+  phone: string; 
+  createdAt: string;
+  typeofcustomer: string
+  imgsrc?: string;
+}
+const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] =[
+  {
+    id: '1',
+    name: 'Lê Tài Đức',
+    email: 'duc.lt@redon.com',
+    phone: '0987654321',
+    createdAt: '2024-07-18',
+    typeofcustomer: 'Miễn phí',
+    imgsrc: img1,
+  },
+  {
+    id: '2',
+    name: 'Nguyễn Thùy Linh',
+    email: 'linh.nt@redon.com',
+    phone: '0965842361',
+    createdAt: '2024-07-19',
+    typeofcustomer: 'Trả phí',
+    imgsrc: img2,
+  },
+]
 const DataRowCustomerTable: CustomerListTable[] = [
   {
     id: '1',
@@ -340,4 +369,4 @@ const EnhancedTableData: EnTableType[] = [
     invoice: 1,
   },
 ];
-export { basicsTableData, EnhancedTableData, DataRowCustomerTable };
+export { basicsTableData, EnhancedTableData, DataRowCustomerTable,DataCustomerListAffiliateTable };

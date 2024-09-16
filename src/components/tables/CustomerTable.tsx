@@ -3,7 +3,6 @@ import {
   Box,
   FormControlLabel,
   Paper,
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -15,30 +14,30 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import CustomSwitch from '../forms/theme-elements/CustomSwitch';
-import { DataRowCustomerTable } from './tableData';
+import { DataCustomerListAffiliateTable } from './tableData';
 import useSortableData from 'src/views/apps/customerList/useSortableData';
 import Scrollbar_x from '../custom-scroll/Scrollbar_x'; // Import your Scrollbar_x component
 
 const CustomerTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [dense, setDense] = React.useState(false);
+  const [dense, setDense] = useState(false);
 
   const { sortedItems, sortBy, sortOrder, handleSortRequest } = useSortableData({
-    items: DataRowCustomerTable,
+    items: DataCustomerListAffiliateTable,
     initialSortBy: 'id',
     initialSortOrder: 'asc',
   });
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
+    newPage: number
   ) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: any) => {
-    setRowsPerPage(parseInt(event.target.value as string, 10));
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
@@ -63,33 +62,12 @@ const CustomerTable = () => {
                 {/* Table headers */}
                 <TableCell onClick={() => handleSortRequest('id')}>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Id Đơn Hàng {sortBy === 'id' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
-                  </Typography>
-                </TableCell>
-                <TableCell onClick={() => handleSortRequest('createdAt')}>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Ngày Tạo {sortBy === 'createdAt' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
-                  </Typography>
-                </TableCell>
-                <TableCell onClick={() => handleSortRequest('assistant')}>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Trợ Lý {sortBy === 'assistant' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
-                  </Typography>
-                </TableCell>
-                <TableCell onClick={() => handleSortRequest('orderValue')}>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Giá Trị Đơn Hàng{' '}
-                    {sortBy === 'orderValue' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
-                  </Typography>
-                </TableCell>
-                <TableCell onClick={() => handleSortRequest('channel')}>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Kênh (MTK) {sortBy === 'channel' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+                    STT {sortBy === 'id' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                   </Typography>
                 </TableCell>
                 <TableCell onClick={() => handleSortRequest('name')}>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Tên Khách Hàng {sortBy === 'name' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+                    Họ và tên {sortBy === 'name' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                   </Typography>
                 </TableCell>
                 <TableCell onClick={() => handleSortRequest('phone')}>
@@ -97,49 +75,34 @@ const CustomerTable = () => {
                     SĐT {sortBy === 'phone' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                   </Typography>
                 </TableCell>
-                <TableCell onClick={() => handleSortRequest('address')}>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Địa Chỉ {sortBy === 'address' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
-                  </Typography>
-                </TableCell>
                 <TableCell onClick={() => handleSortRequest('email')}>
                   <Typography variant="subtitle2" fontWeight={600}>
                     Email {sortBy === 'email' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                   </Typography>
                 </TableCell>
-                <TableCell onClick={() => handleSortRequest('orderInfo')}>
+                <TableCell onClick={() => handleSortRequest('createdAt')}>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Thông Tin Đơn Hàng{' '}
-                    {sortBy === 'orderInfo' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+                    Ngày đăng ký {sortBy === 'createdAt' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                   </Typography>
                 </TableCell>
-                <TableCell onClick={() => handleSortRequest('note')}>
+                <TableCell onClick={() => handleSortRequest('typeofcustomer')}>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Ghi Chú {sortBy === 'note' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+                    Loại khách hàng {sortBy === 'typeofcustomer' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                   </Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* Table data rows */}
               {paginatedRows.map((row) => (
                 <TableRow key={row.id}>
                   <TableCell>
                     <Typography variant="body2">{row.id}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">{row.createdAt}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="body2">{row.assistant}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="body2">{row.orderValue}</Typography>
-                  </TableCell>
-                  <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <img
                         src={row.imgsrc}
+                        alt={`${row.name}'s avatar`}
                         style={{
                           width: '50px',
                           height: '50px',
@@ -148,7 +111,7 @@ const CustomerTable = () => {
                         }}
                       />
                       <Box>
-                        <Typography variant="subtitle2">{row.channel}</Typography>
+                        {/* <Typography variant="subtitle2">{row.channel}</Typography> */}
                         <Typography style={{ fontSize: '12px', color: '#ccc' }}>
                           {'MKT000' + row.id}
                         </Typography>
@@ -156,34 +119,16 @@ const CustomerTable = () => {
                     </Box>
                   </TableCell>
                   <TableCell>
-                    <Stack direction="row" spacing={2}>
-                      <Avatar
-                        src={row.imgsrc}
-                        variant="rounded"
-                        alt={row.name}
-                        sx={{ width: 48, height: 48 }}
-                      />
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography variant="body2" fontWeight={500}>
-                          {row.name}
-                        </Typography>
-                      </Box>
-                    </Stack>
-                  </TableCell>
-                  <TableCell>
                     <Typography variant="body2">{row.phone}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="body2">{row.address}</Typography>
                   </TableCell>
                   <TableCell>
                     <Typography variant="body2">{row.email}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">{row.orderInfo}</Typography>
+                    <Typography variant="body2">{row.createdAt}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">{row.note}</Typography>
+                    <Typography variant="body2">{row.typeofcustomer}</Typography>
                   </TableCell>
                 </TableRow>
               ))}
@@ -205,7 +150,7 @@ const CustomerTable = () => {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={DataRowCustomerTable.length}
+        count={DataCustomerListAffiliateTable.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
