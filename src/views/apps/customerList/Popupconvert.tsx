@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Box, TextField, Typography, Grid } from '@mui/material';
+import { TextField, Typography, Grid, Box } from '@mui/material';
+import Point from 'src/assets/images/logos/R-Point.png';
 
 interface PropsItem {
   usdValue: number | null;
@@ -7,48 +8,91 @@ interface PropsItem {
 }
 
 const PopupConvert = ({ usdValue, setUsdValue }: PropsItem) => {
-  const conversionRate = 24000; // 1 USD = 24,000 VND (you can update this rate)
-  const [vndValue, SetVNDValue] = useState<number | null>(null);
+  const [currentBalance] = useState<number>(10000000); // Assume this is the current balance in VND
+  const conversionRate = 1 / 24000; // Conversion rate for points
+  const [vndValue, setVndValue] = useState<number | null>(null);
+  const [remainingBalance, setRemainingBalance] = useState<number>(currentBalance); // Ensure it's a number
 
+  // Update the VND value and remaining balance when usdValue changes
   useEffect(() => {
     if (usdValue !== null) {
-      SetVNDValue(usdValue * conversionRate);
+      setVndValue(usdValue * conversionRate);
+      setRemainingBalance(currentBalance - usdValue); // Calculate remaining balance
+    } else {
+      setVndValue(null);
+      setRemainingBalance(currentBalance);
     }
   }, [usdValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    setUsdValue(value);
+    const value = e.target.value;
+    if (value === '') {
+      setUsdValue(null);
+    } else {
+      const numericValue = parseFloat(value);
+      setUsdValue(numericValue);
+    }
   };
-  console.log(usdValue);
 
   return (
-    <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', mt: 5, textAlign: 'center' }}>
-      <Typography variant="h4" component="h1" gutterBottom sx={{ marginBottom: '40px' }}>
-        Đổi Point
-      </Typography>
+    <Box sx={{ p: 3 }}>
+      {/* Display the current balance */}
+      <Box mb={2}>
+        <Typography variant="body1" color="textSecondary">
+          Số dư hiện tại:
+        </Typography>
+        <Typography variant="h6" color="primary">
+          {currentBalance.toLocaleString()} VND
+        </Typography>
+      </Box>
 
       <Grid container spacing={2}>
+        {/* Input field for entering amount to convert */}
         <Grid item xs={6}>
           <TextField
-            label="Nhập số point"
+            label="Nhập số tiền"
             type="number"
             fullWidth
-            value={usdValue}
+            value={usdValue || ''}
             onChange={handleInputChange}
             variant="outlined"
           />
         </Grid>
 
         <Grid item xs={6}>
-          <Typography variant="body1" color="textSecondary">
-            Giá trị VND:
-          </Typography>
-          <Typography variant="h6" color="primary">
-            {vndValue !== null && vndValue.toLocaleString()} VND
-          </Typography>
+          <Box sx={{ marginTop: '-5px' }}>
+            <Typography variant="body1" color="textSecondary">
+              Số point:
+            </Typography>
+            <Typography variant="h6" color="primary">
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                {vndValue !== null && vndValue.toLocaleString()}{' '}
+                <img src={Point} alt="Point" style={{ width: '30px', height: '30px' }} />
+              </Box>
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
+
+      {/* Display remaining balance after conversion */}
+      <Box mt={2}>
+        <Typography variant="h6" color={remainingBalance >= 0 ? 'secondary' : 'error'}>
+          Số dư còn lại: {remainingBalance.toLocaleString()} VND
+        </Typography>
+      </Box>
+
+      {/* Error messages */}
+      {usdValue !== null && usdValue > currentBalance && (
+        <Typography variant="body2" color="error" sx={{ mb: 2 }}>
+          Số tiền rút vượt quá số tiền hiện có!
+        </Typography>
+      )}
+
+      {usdValue !== null && usdValue <= 0 && (
+        <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+          Số tiền muốn rút cần lớn hơn 0
+        </Typography>
+      )}
     </Box>
   );
 };
