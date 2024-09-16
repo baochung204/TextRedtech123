@@ -17,22 +17,16 @@ const currencies: CurrencyType[] = [
   { value: 'other', label: 'Khác' },
 ];
 
-// const channels: CurrencyType[] = [
-//   { value: 'mkt', label: 'MKT' },
-//   { value: 'zl', label: 'Zalo' },
-//   { value: 'fb', label: 'Facebook' },
-//   { value: 'inst', label: 'Instagram' },
-//   { value: 'other', label: 'Other' },
-// ];
 
-const PopupAddList2 = () => {
+
+const PopupAdd = () => {
   const [gender, setGender] = React.useState('');
-  // const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
-  // const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
+
+
 
   const [tags, setTags] = React.useState('');
   const [companyPhone, setCompanyPhone] = React.useState('');
-  // const [assistant, setAssistant] = React.useState('');
+
   const [thumbnailImage, setThumbnailImage] = useState<File | null>(null);
   const [productImage, setProductImage] = useState<File | null>(null);
 
@@ -55,9 +49,9 @@ const PopupAddList2 = () => {
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setter(event.target.value);
-    };
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setter(event.target.value);
+      };
 
   const renderImagePreview = (image: File | null) => {
     if (!image) return null;
@@ -76,16 +70,26 @@ const PopupAddList2 = () => {
         <Typography variant="h6" sx={{ fontSize: '1.2rem', mb: 2 }}>
           Thông tin chung
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item lg={6} md={12}>
-            <CustomFormLabel htmlFor="name-text">Tên sản phẩm</CustomFormLabel>
-            <CustomTextField
-              id="name-text"
-              variant="outlined"
-              fullWidth
-              value={tags}
-              onChange={handleChange(setTags)}
-            />
+        <Grid container spacing={2}>
+          <Grid item lg={4} md={12}>
+            <Box>
+              <CustomFormLabel htmlFor="name-text">Tên sản phẩm</CustomFormLabel>
+              <CustomTextField
+                id="name-text"
+                variant="outlined"
+                fullWidth
+                value={tags}
+                onChange={handleChange(setTags)}
+              />
+              <CustomFormLabel htmlFor="tags-text">Tags</CustomFormLabel>
+              <Tags />
+
+            </Box>
+
+
+          </Grid>
+
+          <Grid item lg={4} md={12}>
 
             <CustomFormLabel htmlFor="phone-text">Giá niêm yết</CustomFormLabel>
             <CustomTextField
@@ -110,12 +114,10 @@ const PopupAddList2 = () => {
                 </MenuItem>
               ))}
             </CustomSelect>
-            <CustomFormLabel htmlFor="tags-text">Tags</CustomFormLabel>
-            <Tags />
-          </Grid>
-
-          <Grid item lg={6} md={12}>
             {/* Ảnh thumbnail */}
+
+          </Grid>
+          <Grid item lg={4} md={12}>
             <Box>
               <CustomFormLabel htmlFor="thumbnail-image">Ảnh thumbnail</CustomFormLabel>
               <input
@@ -129,9 +131,10 @@ const PopupAddList2 = () => {
               {/* Khung hiển thị ảnh */}
               <Box
                 p={1}
+             
                 sx={{
-                  width: '300px', // Kích thước khung cố định
-                  height: '296px',
+                  width: '200px', // Kích thước khung cố định
+                  height: '100px',
                   border: '2px dashed #ddd',
                   borderRadius: '8px',
                   display: 'flex',
@@ -179,8 +182,8 @@ const PopupAddList2 = () => {
               id="title-text"
               variant="outlined"
               fullWidth
-              // value={title}
-              // onChange={handleChange(setTitle)}
+            // value={title}
+            // onChange={handleChange(setTitle)}
             />
 
             <CustomFormLabel htmlFor="description-text">Mô tả</CustomFormLabel>
@@ -188,8 +191,8 @@ const PopupAddList2 = () => {
               id="description-text"
               variant="outlined"
               fullWidth
-              // value={description}
-              // onChange={handleChange(setDescription)}
+            // value={description}
+            // onChange={handleChange(setDescription)}
             />
 
             <CustomFormLabel htmlFor="weight-text">Khối lượng</CustomFormLabel>
@@ -197,8 +200,8 @@ const PopupAddList2 = () => {
               id="weight-text"
               variant="outlined"
               fullWidth
-              // value={weight}
-              // onChange={handleChange(setWeight)}
+            // value={weight}
+            // onChange={handleChange(setWeight)}
             />
 
             <CustomFormLabel htmlFor="unit-text">Đơn vị tính</CustomFormLabel>
@@ -206,8 +209,8 @@ const PopupAddList2 = () => {
               id="unit-text"
               variant="outlined"
               fullWidth
-              // value={unit}
-              // onChange={handleChange(setUnit)}
+            // value={unit}
+            // onChange={handleChange(setUnit)}
             />
           </Grid>
 
@@ -217,8 +220,8 @@ const PopupAddList2 = () => {
               id="size-text"
               variant="outlined"
               fullWidth
-              // value={size}
-              // onChange={handleChange(setSize)}
+            // value={size}
+            // onChange={handleChange(setSize)}
             />
 
             <CustomFormLabel htmlFor="color-text">Màu sắc</CustomFormLabel>
@@ -226,8 +229,8 @@ const PopupAddList2 = () => {
               id="color-text"
               variant="outlined"
               fullWidth
-              // value={color}
-              // onChange={handleChange(setColor)}
+            // value={color}
+            // onChange={handleChange(setColor)}
             />
 
             <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
@@ -235,8 +238,8 @@ const PopupAddList2 = () => {
               id="material-text"
               variant="outlined"
               fullWidth
-              // value={material}
-              // onChange={handleChange(setMaterial)}
+            // value={material}
+            // onChange={handleChange(setMaterial)}
             />
 
             <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
@@ -244,8 +247,8 @@ const PopupAddList2 = () => {
               id="style-text"
               variant="outlined"
               fullWidth
-              // value={style}
-              // onChange={handleChange(setStyle)}
+            // value={style}
+            // onChange={handleChange(setStyle)}
             />
             {/* Ảnh sản phẩm */}
             <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel>
@@ -273,4 +276,4 @@ const PopupAddList2 = () => {
   );
 };
 
-export default PopupAddList2;
+export default PopupAdd;
