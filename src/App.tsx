@@ -6,6 +6,7 @@ import RTL from './layouts/full/shared/customizer/RTL';
 import ScrollToTop from './components/shared/ScrollToTop';
 import Router from './routers/Router';
 import { AppState } from './store/Store';
+import GlobalScrollbar from './components/custom-scroll/Globalscrollbar';
 
 function App() {
   const routing = useRoutes(Router);
@@ -16,7 +17,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <RTL direction={customizer.activeDir}>
         <CssBaseline />
-        <ScrollToTop>{routing}</ScrollToTop>
+        <GlobalScrollbar>
+          <ScrollToTop>{routing}</ScrollToTop>
+        </GlobalScrollbar>
       </RTL>
     </ThemeProvider>
   );
