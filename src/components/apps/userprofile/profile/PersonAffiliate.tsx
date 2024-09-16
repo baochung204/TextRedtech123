@@ -25,6 +25,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Rule from 'src/views/apps/contract/Affiliate';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const steps = ['Thỏa thuận hợp tác', 'Tài khoản cá nhân', 'Xác minh tài khoản'];
 
@@ -251,6 +252,23 @@ const PersonAffiliate = () => {
               <CustomFormLabel sx={{ marginTop: '25px' }} htmlFor="image1">
                 Hướng dẫn
               </CustomFormLabel>
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                <Typography>Chụp đủ mặt trước và mặt sau</Typography>
+              </Box>
+
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                <Typography>Chụp rõ nét không bị mất góc</Typography>
+              </Box>
+
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                <Typography>
+                  Chụp hình ảnh giấy tờ còn hạn, hình gốc, không scan hay photocopy
+                </Typography>
+              </Box>
+
               {/* Display instructions here */}
               <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
               <Box>
