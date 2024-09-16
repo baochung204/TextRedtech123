@@ -1,5 +1,5 @@
 import {
-  Autocomplete,
+  // Autocomplete,
   // Autocomplete,
   Avatar,
   Box,
@@ -15,6 +15,7 @@ import {
   TextField,
   Tooltip,
   Typography,
+  Select, MenuItem, Checkbox, ListItemText, IconButton, Badge
 } from '@mui/material';
 import { IconStackBack } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
@@ -42,7 +43,7 @@ import Iconchart from 'src/assets/images/chat/chartt.png';
 import PageContainer from 'src/components/container/PageContainer';
 // import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { IconArrowUpRight } from '@tabler/icons-react';
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 // import { useMediaQuery } from '@mui/material';
 // import { IconTable } from '@tabler/icons-react';
 
@@ -52,8 +53,13 @@ import { IconArrowUpRight } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import BlankCard from '../AssistantEditor/BlankCard';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+// import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+// import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { SelectChangeEvent } from '@mui/material/Select';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import SouthIcon from '@mui/icons-material/South';
+import NorthIcon from '@mui/icons-material/North';
+
 interface sellsData {
   product: string;
   percent: number;
@@ -212,9 +218,7 @@ const dataRank: Irank[] = [
     sale: 50,
   },
 ];
-// interface ITopRank {
-//   title: string;
-// }
+
 const BCrumb = [
   {
     to: '/',
@@ -234,8 +238,6 @@ const FilmsData: FilmsData[] = [
 ];
 const AssistantList = () => {
   const theme = useTheme();
-  // Removed unused isLoading state
-  // chart color
   const secondary = theme.palette.secondary.main;
   const [month, setMonth] = React.useState('1');
   const successlight = theme.palette.success.light;
@@ -243,7 +245,6 @@ const AssistantList = () => {
     setMonth(event.target.value);
   };
 
-  // Removed useEffect that sets isLoading state
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
 
   const onHandleCheckOnOrOff = (rank: Irank) => {
@@ -254,7 +255,31 @@ const AssistantList = () => {
     );
   };
 
-  // const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
+  const [selectedItems, setSelectedItems] = useState<string>('');
+
+  const handleChange1 = (event: SelectChangeEvent<string>) => {
+    setSelectedItems(event.target.value);
+  };
+
+
+  const handleItemClick1 = (title: string) => {
+    if (selectedItems === title) {
+      setSelectedItems('');
+    } else {
+      setSelectedItems(title);
+    }
+  };
+  const [iconIndex, setIconIndex] = useState<number>(0);
+  const icons = [SwapVertIcon, SouthIcon, NorthIcon]
+
+
+  const handleClickIcon = () => {
+    setIconIndex((pre) => (pre + 1) % icons.length)
+    console.log(7 % 7);
+
+  }
+
+  const SelectedIcon = icons[iconIndex]
 
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
@@ -276,40 +301,56 @@ const AssistantList = () => {
               </Box>
 
               <Grid
-                my={{ xs: '2px', sm: 0 }}
+                container
                 width={{ sm: 600 }}
-                display={'flex'}
-                justifyContent={'end'}
+                spacing={1}
               >
-                <Grid item xs={6} sm={6} md={3} mr={2}>
-                  <Autocomplete
-                    multiple
-                    id="checkboxes-tags-demo"
-                    options={FilmsData}
-                    disableCloseOnSelect
-                    getOptionLabel={(option) => option.title}
-                    renderOption={(props, option, { selected }) => (
-                      <li {...props}>
-                        <CustomCheckbox sx={{ ml: '-20px' }} checked={selected} />
-                        {option.title}
-                      </li>
-                    )}
-                    fullWidth
-                    renderInput={(params) => (
-                      <CustomTextField
-                        {...params}
-                        placeholder="Bộ Lọc"
-                        aria-label="Bộ Lọc"
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            padding: '1px',
-                          },
-                        }}
-                      />
-                    )}
-                  />
+                <Grid item xs={6} sm={6} md={6}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'end',
+                    alignItems: 'center'
+                  }}
+                >
+                  <IconButton aria-label="filter" sx={{ mr: 1 }}>
+                    <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
+                      <FilterListIcon />
+                    </Badge>
+                  </IconButton>
+                  <Select
+                    value={selectedItems}
+                    onChange={handleChange1}
+                    displayEmpty
+                    renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
+                    size="small"
+                    style={{ minWidth: 50 }}
+                  >
+                    {FilmsData.map((film) => (
+                      <MenuItem
+                        key={film.title}
+                        value={film.title}
+                        onClick={() => handleItemClick1(film.title)}
+                      >
+                        <ListItemText primary={film.title} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <IconButton
+                    aria-label="filter"
+                    onClick={handleClickIcon}
+                    sx={{
+                      ml: 1
+                    }}
+                  >
+                    <SelectedIcon />
+                  </IconButton>
                 </Grid>
-                <Grid item xs={6} sm={6} md={6}>
+                <Grid item xs={6} sm={6} md={6}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
