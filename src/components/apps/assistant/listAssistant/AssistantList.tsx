@@ -1,5 +1,5 @@
 import {
-  Autocomplete,
+  // Autocomplete,
   // Autocomplete,
   Avatar,
   Box,
@@ -15,6 +15,7 @@ import {
   TextField,
   Tooltip,
   Typography,
+  Select, MenuItem, Checkbox, ListItemText, IconButton, Badge
 } from '@mui/material';
 import { IconStackBack } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
@@ -42,7 +43,7 @@ import Iconchart from 'src/assets/images/chat/chartt.png';
 import PageContainer from 'src/components/container/PageContainer';
 // import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { IconArrowUpRight } from '@tabler/icons-react';
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 // import { useMediaQuery } from '@mui/material';
 // import { IconTable } from '@tabler/icons-react';
 
@@ -52,8 +53,12 @@ import { IconArrowUpRight } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import BlankCard from '../AssistantEditor/BlankCard';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+// import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+// import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { SelectChangeEvent } from '@mui/material/Select';
+
+
+
 interface sellsData {
   product: string;
   percent: number;
@@ -255,6 +260,16 @@ const AssistantList = () => {
   };
 
   // const iconFontSize = isXs ? '20px' : isSm ? '25px' : '20px';
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+  // Xử lý khi chọn hoặc bỏ chọn các mục
+  const handleChange1 = (event: SelectChangeEvent<string[]>) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedItems(typeof value === 'string' ? value.split(',') : value);
+  };
+
 
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
@@ -276,25 +291,47 @@ const AssistantList = () => {
               </Box>
 
               <Grid
-                my={{ xs: '2px', sm: 0 }}
+                container
                 width={{ sm: 600 }}
-                display={'flex'}
-                justifyContent={'end'}
+                spacing={2}
               >
-                <Grid item xs={6} sm={6} md={3} mr={2}>
-                  <Autocomplete
+                <Grid item xs={6} sm={6} md={6}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'end',
+                    alignItems: 'center'
+                  }}
+                >
+                  {/* <Autocomplete
                     multiple
                     id="checkboxes-tags-demo"
                     options={FilmsData}
                     disableCloseOnSelect
                     getOptionLabel={(option) => option.title}
                     renderOption={(props, option, { selected }) => (
-                      <li {...props}>
+                      <li
+                        {...props}
+                        style={{
+                          display: 'flex',           
+                          alignItems: 'center',      
+                          marginRight: '10px',    
+                          maxWidth: '20px'
+                        }}
+                      >
                         <CustomCheckbox sx={{ ml: '-20px' }} checked={selected} />
                         {option.title}
                       </li>
                     )}
                     fullWidth
+                    sx={{
+                      width: '100%', // Điều chỉnh để `Autocomplete` rộng hơn
+                      '.MuiAutocomplete-listbox': {
+                        display: 'flex',             // Hiển thị danh sách theo hàng ngang
+                        flexDirection: 'row',        // Các lựa chọn được xếp theo hàng ngang
+                        flexWrap: 'wrap',            // Tự động xuống dòng khi hết chỗ
+                        overflowY: 'auto',           // Cho phép cuộn dọc nếu vượt quá chiều cao
+                      },
+                    }}
                     renderInput={(params) => (
                       <CustomTextField
                         {...params}
@@ -307,9 +344,37 @@ const AssistantList = () => {
                         }}
                       />
                     )}
-                  />
+                  /> */}
+                  <IconButton aria-label="filter" sx={{mr: 1}}>
+                    <Badge badgeContent={selectedItems.length} color="primary">
+                      <FilterListIcon />
+                    </Badge>
+                  </IconButton>
+                  <Select
+                    multiple
+                    value={selectedItems}
+                    onChange={handleChange1}
+                    displayEmpty
+                    renderValue={(selected) =>
+                      selected.length === 0 ? 'Bộ Lọc' : `Bộ Lọc`
+                    }
+                    size='small'
+                    style={{ minWidth: 50 }}
+                  >
+                    {FilmsData.map((film) => (
+                      <MenuItem key={film.title} value={film.title}>
+                        <Checkbox checked={selectedItems.indexOf(film.title) > -1} />
+                        <ListItemText primary={film.title} />
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Grid>
-                <Grid item xs={6} sm={6} md={6}>
+                <Grid item xs={6} sm={6} md={6}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
