@@ -9,11 +9,13 @@ import Iconkey from 'src/assets/images/iconHeadrProfile/key.png';
 import ddIcon8 from 'src/assets/images/svgs/icon-dd-application.svg';
 import ddIcon2 from 'src/assets/images/svgs/icon-dd-cart.svg';
 import ddIcon1 from 'src/assets/images/svgs/icon-dd-chat.svg';
-import ddIcon4 from 'src/assets/images/svgs/icon-dd-date.svg';
+import ddIcon4 from 'src/assets/images/svgs/icon-dd-date.png';
 import ddIcon3 from 'src/assets/images/svgs/icon-dd-invoice.svg';
 import ddIcon6 from 'src/assets/images/svgs/icon-dd-lifebuoy.svg';
 import ddIcon7 from 'src/assets/images/svgs/icon-dd-message-box.svg';
 import ddIcon5 from 'src/assets/images/svgs/icon-dd-mobile.svg';
+// import ddIcon6 from 'src/assets/images/svgs/mastercard.sv';
+
 // Notifications dropdown
 
 interface notificationType {

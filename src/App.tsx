@@ -6,7 +6,7 @@ import RTL from './layouts/full/shared/customizer/RTL';
 import ScrollToTop from './components/shared/ScrollToTop';
 import Router from './routers/Router';
 import { AppState } from './store/Store';
-import GlobalScrollbar from './components/custom-scroll/Globalscrollbar';
+import GlobalScrollbar from 'src/components/custom-scroll/GlobalScrollbar';
 
 function App() {
   const routing = useRoutes(Router);

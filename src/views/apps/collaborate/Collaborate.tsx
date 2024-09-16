@@ -15,8 +15,9 @@ import {
   Tab,
   Typography,
   styled,
+  Tooltip,
 } from '@mui/material';
-import { IconPackage } from '@tabler/icons-react';
+import { IconInfoCircle, IconPackage } from '@tabler/icons-react';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
@@ -35,7 +36,7 @@ import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import React, { useEffect, useState } from 'react';
-import Popupconvert from '../customerList/Popupconvert';
+// import Popupconvert from '../customerList/Popupconvert';
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 
 interface cardType {
@@ -84,7 +85,7 @@ const CollaboratePost = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
   const [usdValue, setUsdValue] = useState<number | null>(null);
-  const [vndValue, SetVNDValue] = useState<number | null>(null)
+  const [vndValue, SetVNDValue] = useState<number | null>(null);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -114,8 +115,8 @@ const CollaboratePost = () => {
   };
 
   const handleClosePopup2 = () => {
-    setUsdValue(null)
-    SetVNDValue(null)
+    setUsdValue(null);
+    SetVNDValue(null);
     setIsPopupOpen2(false);
   };
 
@@ -325,13 +326,16 @@ const CollaboratePost = () => {
           <Box paddingTop="30px">
             <Grid container spacing={2}>
               {/* Left section - 3 columns */}
-              <Grid item xs={12} md={3} display="flex" justifyContent="center" alignItems="center">
+              <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
                 <Box
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center', // Center horizontally
                     justifyContent: 'center', // Center vertically
+                    backgroundColor: '#FDEDE8',
+                    padding: '20px',
+                    borderRadius: '14px',
                   }}
                 >
                   <ProfileImage>
@@ -363,7 +367,7 @@ const CollaboratePost = () => {
                 </Box>
               </Grid>
               {/* Left section - 9 columns */}
-              <Grid item xs={12} md={9}>
+              <Grid item xs={12} md={8}>
                 <Box
                   height="100%"
                   bgcolor="error.light"
@@ -396,7 +400,7 @@ const CollaboratePost = () => {
                       <Box
                         sx={{
                           width: '100%',
-                          maxWidth: '100px',
+                          maxWidth: '150px',
                           borderRadius: 1,
                           overflow: 'hidden',
                           mb: 1, // Margin below the image
@@ -408,33 +412,28 @@ const CollaboratePost = () => {
                           style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                         />
                       </Box>
+                    </Grid>
 
-                      {/* "Rank A" centered below the icon */}
+                    {/* Right Column */}
+                    <Grid item xs={4}>
                       <Typography
                         variant="h6"
-                        fontWeight={500}
+                        fontSize="30px"
                         sx={{
                           lineHeight: 1.5,
                           textAlign: 'center', // Center the paragraph
                         }}
                       >
                         Rank A
-                      </Typography>
-                    </Grid>
-
-                    {/* Right Column */}
-                    <Grid item xs={8}>
-                      <Typography
-                        variant="h6"
-                        fontWeight={500}
-                        sx={{
-                          lineHeight: 1.5,
-                          textAlign: 'center', // Center the paragraph
-                        }}
-                      >
-                        Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
+                        <Tooltip
+                          title="Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
                         tốt hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ
-                        đối tác chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn.
+                        đối tác chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn."
+                          placement="top"
+                          arrow
+                        >
+                          <IconInfoCircle />
+                        </Tooltip>
                       </Typography>
                     </Grid>
                   </Grid>
@@ -468,20 +467,13 @@ const CollaboratePost = () => {
         </TabContext>
       </Box>
 
-      <Dialog
-        open={isPopupOpen}
-        onClose={handleClosePopup}
-        maxWidth="xs"
-        fullWidth
-      >
+      <Dialog open={isPopupOpen} onClose={handleClosePopup} maxWidth="xs" fullWidth>
         <DialogTitle
           sx={{
-            m: 'auto'
+            m: 'auto',
           }}
         >
-          <Typography variant="h4" >
-            Rút tiền
-          </Typography>
+          <Typography variant="h4">Rút tiền</Typography>
         </DialogTitle>
         <DialogContent style={{ display: 'flex', justifyContent: 'center' }}>
           <Popupwithdrawmoney />

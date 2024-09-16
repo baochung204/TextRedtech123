@@ -47,7 +47,7 @@ const validationSchemas = [
     address: Yup.string().required('Địa chỉ công ty là bắt buộc'),
     representative: Yup.string()
       .matches(
-        /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẾẾỄỀỦỶỴýỳỷỹ\s]+$/,
+        /^[a-zA-ZaAáÁàÀảẢãÃạẠăĂắẮằẰẳẲẵẴặẶâÂấẤầẦẩẨẫẪậẬbBcCdDđĐeEéÉèÈẻẺẽẼẹẸêÊếẾềỀễỄệỆfFgGhHiIíÍìÌĩĨỉỈịỊjJkKlLmMnNoOóÓòÒỏỎõÕọỌôÔốỐồỒổỔỗỖộỘơƠớỚờỜởỞỡỠợỢpPqQrRsStTuUúÚùÙủỦũŨụỤưƯứỨừỪửỬữỮựỰvVwWxXyY\s]+$/,
         'Người đại diện chỉ chứa ký tự chữ.',
       )
       .required('Người đại diện là bắt buộc.'),
@@ -57,7 +57,7 @@ const validationSchemas = [
       .required('Chủ tài khoản là bắt buộc.'),
     accountNumber: Yup.string()
       .matches(/^\d+$/, 'Số tài khoản chỉ chứa ký tự số.')
-      .min(8, 'Số tài khoản tối thiểu 8 só.')
+      .min(8, 'Số tài khoản tối thiểu 8 số.')
       .required('Số tài khoản là bắt buộc.'),
     bank: Yup.string().required('Ngân hàng là bắt buộc.'),
     branch: Yup.string().required('Chi nhánh ngân hàng là bắt buộc.'),

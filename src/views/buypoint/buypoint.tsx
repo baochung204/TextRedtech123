@@ -119,7 +119,7 @@ const BuyPoint = () => {
               sx={{
                 backgroundColor: theme.palette.mode === 'dark' ? '#404759' : '#FEF3F4',
                 padding: 0.3,
-                overflow: 'hidden', 
+                overflow: 'hidden',
                 position: 'relative',
               }}
             >
@@ -252,7 +252,7 @@ const BuyPoint = () => {
             </Grid>
           ))}
         </Grid>
-        <Box
+        {/* <Box
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row', md: 'row' },
@@ -299,7 +299,7 @@ const BuyPoint = () => {
               </li>
             </ul>
           </Box>
-        </Box>
+        </Box> */}
         <Box
           sx={{
             display: 'flex',
@@ -350,7 +350,7 @@ const BuyPoint = () => {
                 },
               }}
             >
-              <Link to={'/pay/point'} style={{ color: 'white' }}>
+              <Link to={'/pay/point2'} style={{ color: 'white' }}>
                 Thanh toán ngay
               </Link>
             </Button>

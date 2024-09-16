@@ -36,11 +36,11 @@ const validationSchemas = [
   Yup.object({
     bankNumber: Yup.string()
       .matches(/^\d+$/, 'Số tài khoản chỉ chứa các ký tự số')
-      .max(16, 'Số tài khoản không được vượt quá 16 ký tự')
+      .min(8, 'Số tài khoản tối thiểu 8 số.')
       .required('Số tài khoản là bắt buộc'),
     accountName: Yup.string()
       .matches(
-        /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẾẾỄỀỦỶỴýỳỷỹ\s]+$/,
+        /^[a-zA-ZaAáÁàÀảẢãÃạẠăĂắẮằẰẳẲẵẴặẶâÂấẤầẦẩẨẫẪậẬbBcCdDđĐeEéÉèÈẻẺẽẼẹẸêÊếẾềỀễỄệỆfFgGhHiIíÍìÌĩĨỉỈịỊjJkKlLmMnNoOóÓòÒỏỎõÕọỌôÔốỐồỒổỔỗỖộỘơƠớỚờỜởỞỡỠợỢpPqQrRsStTuUúÚùÙủỦũŨụỤưƯứỨừỪửỬữỮựỰvVwWxXyY\s]+$/,
         'Người đại diện chỉ chứa ký tự chữ.',
       )
       .required('Chủ tài khoản là bắt buộc'),

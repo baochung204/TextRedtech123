@@ -16,7 +16,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
-import Tags from 'src/components/apps/sell/Tags';
+
+import Tags from 'src/components/apps/sell/layout/Tags';
+
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
