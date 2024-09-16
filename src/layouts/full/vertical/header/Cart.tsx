@@ -6,6 +6,7 @@ import { useSelector } from 'src/store/Store';
 import { Link } from 'react-router-dom';
 import CartItems from './CartItem';
 import { AppState } from 'src/store/Store';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 
 const Cart = () => {
   const Cartproduct = useSelector((state: AppState) => state.ecommerceReducer.cart);
@@ -63,8 +64,11 @@ const Cart = () => {
             borderRadius: '10px',
             padding: '14px 35px',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
-            maxHeight: '400px', // Set the maximum height of the dropdown
-            overflowY: 'auto', // Allow vertical scroll if content overflows
+            width: '400px',
+            // maxHeight: '400px',
+            // Set the maximum height of the dropdown
+            // overflowY: 'auto',
+            // Allow vertical scroll if content overflows
           }}
           onMouseLeave={handleMouseLeave}
         >
@@ -84,7 +88,9 @@ const Cart = () => {
           </Box>
 
           {/* Cart Items */}
-          <CartItems />
+          <Scrollbar sx={{ height: '300px', overflow: 'auto', maxHeight: '600px' }}>
+            <CartItems />
+          </Scrollbar>
 
           {/* Total and Checkout */}
           <Box mt={2}>

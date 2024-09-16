@@ -109,9 +109,29 @@ const CustomerTable2 = () => {
                 <TableCell sx={{ textAlign: 'center' }}>
                   <Typography variant="subtitle2">{row.assistant}</Typography>
                 </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.channel}</Typography>
+                <TableCell>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    {/* Avatar on the left */}
+                    <img
+                      src={row.imgsrc}
+                      style={{
+                        width: '50px',
+                        height: '50px',
+                        borderRadius: '50%',
+                        marginRight: '10px',
+                      }}
+                    />
+
+                    {/* Name and ID on the right */}
+                    <Box>
+                      <Typography variant="subtitle2">{row.channel}</Typography>
+                      <Typography style={{ fontSize: '12px', color: '#ccc' }}>
+                        {'MKT000' + row.id}
+                      </Typography>
+                    </Box>
+                  </Box>
                 </TableCell>
+
                 <TableCell sx={{ textAlign: 'center' }}>
                   <Typography variant="subtitle2">{row.orderInfo}</Typography>
                 </TableCell>
