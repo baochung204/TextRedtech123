@@ -56,7 +56,7 @@ const TwoFactorSecurity = () => {
             Ứng dụng xác thực
           </Typography>
           <Typography variant="body1" color={theme.palette.mode === 'dark' ? 'gray' : 'textSecondary'}>
-            Ứng dụng xác thực của Google
+          Google Authenticator
           </Typography>
         </Box>
         <Button variant="outlined" color="primary">
