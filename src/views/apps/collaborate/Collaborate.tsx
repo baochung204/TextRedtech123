@@ -125,12 +125,19 @@ const CollaboratePost = () => {
   useEffect(() => {
     if (usdValue !== null) {
       SetVNDValue(usdValue * conversionRate);
-    }
+    } else SetVNDValue(null)
   }, [usdValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    setUsdValue(value);
+    const value = e.target.value;
+    console.log(value);
+    if (value === '') {
+      setUsdValue(null)
+    }
+    else {
+      const numericValue = parseFloat(value);
+      setUsdValue(numericValue);
+    }
   };
 
   return (
