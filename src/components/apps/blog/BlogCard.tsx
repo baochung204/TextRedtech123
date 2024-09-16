@@ -20,7 +20,10 @@ import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import { useDispatch } from 'src/store/Store';
 import { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../shared/BlankCard';
-
+// import crown from 'src/assets/images/icon.png/crown.png';
+import crown from 'src/assets/images/icon.png/crown.png';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import { IconEye } from '@tabler/icons-react';
 interface Btype {
   post: BlogPostType;
   index?: number;
@@ -28,7 +31,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, category, author }: any = post;
+  const { coverImg, title, view, category, author, crowns }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')
@@ -64,18 +67,59 @@ const BlogCard = ({ post }: Btype) => {
               component={Link}
               to={`/apps/blog/detail/${linkTo}`}
               onClick={() => dispatch(fetchBlogPost(linkTo))}
+              style={{ position: 'relative' }}
             >
+              {' '}
+              <Stack
+                direction="row"
+                padding={'0px 5px'}
+                top={'10px'}
+                right={'20px'}
+                borderRadius={'20px'}
+                border={'2px solid transparent'}
+                position="absolute"
+                bgcolor={'white'}
+              >
+                <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                  <Typography
+                    variant="body2"
+                    style={{
+                      fontWeight: '900',
+                      color: 'black',
+                      fontSize: '12px ',
+                      paddingTop: '1px',
+                    }}
+                  >
+                    {crowns}
+                  </Typography>
+                  <img
+                    src={logoPoint}
+                    alt=""
+                    width={'12px'}
+                    height={'13px'}
+                    style={{ marginLeft: '2px' }}
+                  />
+                </Box>
+              </Stack>
+              <Stack
+                direction="row"
+                padding={'5px 3px'}
+                bottom={'10px'}
+                right={'20px'}
+                borderRadius={'20px'}
+                border={'2px solid transparent'}
+                position="absolute"
+              >
+                <Chip
+                  icon={<IconEye />}
+                  label={`${view} `}
+                  size="small"
+                  style={{ background: 'white' }}
+                ></Chip>
+              </Stack>
               <CardMedia component="img" height="240" image={coverImg} alt="green iguana" />
             </Typography>
             <CardContent>
-              <Stack direction="row" sx={{ marginTop: '-45px' }}>
-                <Chip
-                  sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                  label={`${view} lượt xem`}
-                  size="small"
-                ></Chip>
-              </Stack>
-
               <Box my={3}>
                 <Typography
                   gutterBottom
@@ -122,7 +166,7 @@ const BlogCard = ({ post }: Btype) => {
                 </Box>
 
                 <Stack direction="row" ml="auto" alignItems="center" width="30%">
-                  <small>09-09-2024</small>
+                  <small>01-09-2024</small>
                 </Stack>
               </Box>
             </CardContent>
