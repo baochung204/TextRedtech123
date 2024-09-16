@@ -51,10 +51,7 @@ const TableListOrder = () => {
     initialSortOrder: 'asc',
   });
 
-  const paginatedRows = sortedItems.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage,
-  );
+  const paginatedRows = sortedItems.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -82,12 +79,23 @@ const TableListOrder = () => {
         >
           <TableHead>
             <TableRow>
-              {['id', 'createdAt', 'assistant', 'channel', 'orderInfo', 'name', 'phone', 'address'].map((column) => (
+              {[
+                'id',
+                'createdAt',
+                'assistant',
+                'channel',
+                'orderInfo',
+                'name',
+                'phone',
+                'address',
+              ].map((column) => (
                 <TableCell key={column} sx={{ textAlign: 'center' }}>
                   <TableSortLabel
                     active={sortBy === column}
                     direction={sortBy === column ? sortOrder : 'asc'}
-                    onClick={() => handleSortRequest(column as keyof typeof DataRowCustomerTable[0])}
+                    onClick={() =>
+                      handleSortRequest(column as keyof (typeof DataRowCustomerTable)[0])
+                    }
                   >
                     <Typography variant="h6" fontWeight={600}>
                       {column === 'id' && 'Id Đơn Hàng'}
