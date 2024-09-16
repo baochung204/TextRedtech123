@@ -9,7 +9,7 @@ import {
   Fab,
 } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
-import PopupAddList2 from './PopupAddlist2';
+import PopupAdd from './PopupAdd';
 import { useState } from 'react';
 // import * as React from 'react';
 const AddDialog = () => {
@@ -53,7 +53,7 @@ const AddDialog = () => {
       >
         <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
         <DialogContent>
-          <PopupAddList2 /> {/* Gọi component PopupAdd */}
+          <PopupAdd /> {/* Gọi component PopupAdd */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>

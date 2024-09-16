@@ -82,6 +82,7 @@ const BlogPost: BlogPostType[] = [
     share: random(9999),
     category: 'Con người',
     featured: false,
+    crowns: 109,
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
       avatar: user1,
@@ -97,7 +98,7 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 7, hours: 3, minutes: 20 }),
     view: random(9999),
     share: random(9999),
-
+    crowns: 10,
     category: 'Đời sống',
 
     featured: false,
@@ -116,6 +117,7 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 5, hours: 2, minutes: 20 }),
     view: random(9999),
     share: random(9999),
+    crowns: 24,
     category: 'Thiết kế',
     featured: false,
     author: {
@@ -135,6 +137,7 @@ const BlogPost: BlogPostType[] = [
     share: random(9999),
     category: 'Design',
     featured: false,
+    crowns: 34,
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
       avatar: user4,
@@ -150,7 +153,7 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 4, hours: 6, minutes: 20 }),
     view: random(9999),
     share: random(9999),
-
+    crowns: 11,
     category: 'Đời sống',
 
     featured: false,
@@ -166,6 +169,7 @@ const BlogPost: BlogPostType[] = [
     title: 'Sức Mạnh Của AI: Đổi Mới Ngành Công Nghiệp Từng Thuật Toán',
     content: chance.paragraph({ sentences: 2 }),
     coverImg: s6,
+    crowns: 23,
     createdAt: sub(new Date(), { days: 2, hours: 6, minutes: 20 }),
     view: random(9999),
     share: random(9999),
@@ -186,6 +190,8 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 3, hours: 6, minutes: 20 }),
     view: random(9999),
     share: random(9999),
+    crowns: 247,
+
     category: 'Xã hội',
     featured: false,
     author: {
@@ -204,6 +210,7 @@ const BlogPost: BlogPostType[] = [
     view: random(9999),
     share: random(9999),
     category: 'Sức khỏe',
+    crowns: 64,
     featured: false,
     author: {
       id: chance.integer({ min: 1, max: 2000 }),
@@ -220,6 +227,7 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 5, hours: 3, minutes: 20 }),
     view: random(9999),
     share: random(9999),
+    crowns: 67,
     category: 'Con người',
     featured: true,
     author: {
@@ -237,6 +245,7 @@ const BlogPost: BlogPostType[] = [
     createdAt: sub(new Date(), { days: 0, hours: 1, minutes: 20 }),
     view: random(9999),
     share: random(9999),
+    crowns: 12,
     category: 'Trí tuệ',
     featured: true,
     author: {

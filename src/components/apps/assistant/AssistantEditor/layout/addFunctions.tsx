@@ -11,7 +11,7 @@ const AddFunction = () => {
     };
 
     return (
-        <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
+        <Paper elevation={3} sx={{ minHeight: '5%', p: 2  }}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} lg={6}>
                     <Box fontWeight={600} mt={0.5}>Functions</Box>

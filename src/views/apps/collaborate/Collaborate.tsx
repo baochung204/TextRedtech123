@@ -8,14 +8,16 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogTitle,
   Grid,
   IconButton,
+  TextField,
   Tab,
   Typography,
   styled,
+  Tooltip,
 } from '@mui/material';
-import { IconPackage } from '@tabler/icons-react';
-import React from 'react';
+import { IconInfoCircle, IconPackage } from '@tabler/icons-react';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
@@ -23,7 +25,6 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import icon1 from '../../../assets/images/svgs/icon-connect.svg';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import badge from 'src/assets/images/badge/badge2.png';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -34,8 +35,8 @@ import { FaChartLine } from 'react-icons/fa';
 import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
 import userimg from 'src/assets/images/profile/user-1.jpg';
-
-import Popupconvert from '../customerList/Popupconvert';
+import React, { useEffect, useState } from 'react';
+// import Popupconvert from '../customerList/Popupconvert';
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 
 interface cardType {
@@ -83,6 +84,8 @@ const CollaboratePost = () => {
   const [value2, setValue2] = React.useState<Dayjs | null>(null);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
+  const [usdValue, setUsdValue] = useState<number | null>(null);
+  const [vndValue, SetVNDValue] = useState<number | null>(null);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -111,9 +114,23 @@ const CollaboratePost = () => {
     setIsPopupOpen2(true);
   };
 
-  // Function đóng popup
   const handleClosePopup2 = () => {
+    setUsdValue(null);
+    SetVNDValue(null);
     setIsPopupOpen2(false);
+  };
+
+  const conversionRate = 24000; // 1 USD = 24,000 VND (you can update this rate)
+
+  useEffect(() => {
+    if (usdValue !== null) {
+      SetVNDValue(usdValue * conversionRate);
+    }
+  }, [usdValue]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(e.target.value);
+    setUsdValue(value);
   };
 
   return (
@@ -309,13 +326,16 @@ const CollaboratePost = () => {
           <Box paddingTop="30px">
             <Grid container spacing={2}>
               {/* Left section - 3 columns */}
-              <Grid item xs={12} md={3} display="flex" justifyContent="center" alignItems="center">
+              <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
                 <Box
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center', // Center horizontally
                     justifyContent: 'center', // Center vertically
+                    backgroundColor: '#FDEDE8',
+                    padding: '20px',
+                    borderRadius: '14px',
                   }}
                 >
                   <ProfileImage>
@@ -347,7 +367,7 @@ const CollaboratePost = () => {
                 </Box>
               </Grid>
               {/* Left section - 9 columns */}
-              <Grid item xs={12} md={9}>
+              <Grid item xs={12} md={8}>
                 <Box
                   height="100%"
                   bgcolor="error.light"
@@ -380,7 +400,7 @@ const CollaboratePost = () => {
                       <Box
                         sx={{
                           width: '100%',
-                          maxWidth: '100px',
+                          maxWidth: '150px',
                           borderRadius: 1,
                           overflow: 'hidden',
                           mb: 1, // Margin below the image
@@ -392,33 +412,28 @@ const CollaboratePost = () => {
                           style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                         />
                       </Box>
+                    </Grid>
 
-                      {/* "Rank A" centered below the icon */}
+                    {/* Right Column */}
+                    <Grid item xs={4}>
                       <Typography
                         variant="h6"
-                        fontWeight={500}
+                        fontSize="30px"
                         sx={{
                           lineHeight: 1.5,
                           textAlign: 'center', // Center the paragraph
                         }}
                       >
                         Rank A
-                      </Typography>
-                    </Grid>
-
-                    {/* Right Column */}
-                    <Grid item xs={8}>
-                      <Typography
-                        variant="h6"
-                        fontWeight={500}
-                        sx={{
-                          lineHeight: 1.5,
-                          textAlign: 'center', // Center the paragraph
-                        }}
-                      >
-                        Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
+                        <Tooltip
+                          title="Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
                         tốt hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ
-                        đối tác chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn.
+                        đối tác chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn."
+                          placement="top"
+                          arrow
+                        >
+                          <IconInfoCircle />
+                        </Tooltip>
                       </Typography>
                     </Grid>
                   </Grid>
@@ -452,14 +467,15 @@ const CollaboratePost = () => {
         </TabContext>
       </Box>
 
-      <Dialog
-        open={isPopupOpen}
-        onClose={handleClosePopup}
-        maxWidth="lg"
-        // TransitionComponent={Transition}
-        keepMounted
-      >
-        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
+      <Dialog open={isPopupOpen} onClose={handleClosePopup} maxWidth="xs" fullWidth>
+        <DialogTitle
+          sx={{
+            m: 'auto',
+          }}
+        >
+          <Typography variant="h4">Rút tiền</Typography>
+        </DialogTitle>
+        <DialogContent style={{ display: 'flex', justifyContent: 'center' }}>
           <Popupwithdrawmoney />
         </DialogContent>
         <DialogActions>
@@ -476,8 +492,34 @@ const CollaboratePost = () => {
         // TransitionComponent={Transition}
         keepMounted
       >
-        <DialogContent style={{ width: '600px', display: 'flex', justifyContent: 'center' }}>
-          <Popupconvert /> {/* Gọi component PopupAdd */}
+        <DialogContent style={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', mt: 5, textAlign: 'center' }}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{ marginBottom: '40px' }}>
+              Đổi Point
+            </Typography>
+
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField
+                  label="Nhập USD"
+                  type="number"
+                  fullWidth
+                  value={usdValue !== null ? usdValue : ''}
+                  onChange={handleInputChange}
+                  variant="outlined"
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <Typography variant="body1" color="textSecondary">
+                  Giá trị VND:
+                </Typography>
+                <Typography variant="h6" color="primary">
+                  {vndValue !== null ? vndValue.toLocaleString() : null} VND
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup2}>Hủy</Button>
