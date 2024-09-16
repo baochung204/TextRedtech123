@@ -45,7 +45,7 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 
 import { getProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { ProductType } from 'src/types/apps/eCommerce';
-import AddDialog from './addDialog';
+import AddDialog from './layout/addDialog';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -395,10 +395,10 @@ const PaginationTable = () => {
                         row.tags === 'di động'
                           ? 'success'
                           : row.tags === 'điện tử'
-                          ? 'warning'
-                          : row.tags === 'đời sống'
-                          ? 'error'
-                          : 'secondary'
+                            ? 'warning'
+                            : row.tags === 'đời sống'
+                              ? 'error'
+                              : 'secondary'
                       }
                       sx={{
                         borderRadius: '6px',

@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Tags from 'src/components/apps/sell/Tags';
+import Tags from 'src/components/apps/sell/layout/Tags';
 
 interface CurrencyType {
   value: string;

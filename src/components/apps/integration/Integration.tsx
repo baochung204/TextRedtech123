@@ -11,17 +11,17 @@ import {
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import CircleIcon from '@mui/icons-material/Circle';
 import React from 'react';
 import BlankCard from './BlankCard';
 
-import { IconMapPin, IconPlus } from '@tabler/icons-react';
+import { IconPlus } from '@tabler/icons-react';
 
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import img1 from 'src/assets/images/profile/user-1.jpg';
-import img2 from 'src/assets/images/profile/user-2.jpg';
-import img3 from 'src/assets/images/profile/user-3.jpg';
-import img4 from 'src/assets/images/profile/user-4.jpg';
-import img5 from 'src/assets/images/profile/user-5.jpg';
+
+import img1 from 'src/assets/images/badge/badge.png';
+import img2 from 'src/assets/images/badge/badge2.png';
+import img3 from 'src/assets/images/badge/badge3.png';
 import Develop from './Develop';
 interface Assistant {
   id: string;
@@ -68,7 +68,7 @@ const rows: Assistant[] = [
   {
     id: 'ORD - 0124060',
     model: 'GPT-3',
-    imgsrc: img4,
+    imgsrc: img1,
     name: 'Chatbot XKLĐ',
     connect: 'X',
     status: 'Completed',
@@ -78,7 +78,7 @@ const rows: Assistant[] = [
   {
     id: 'ORD - 0124568',
     model: 'GPT-4',
-    imgsrc: img5,
+    imgsrc: img2,
     name: 'Christopher Jamil',
     connect: 'Zalo',
     status: 'Pending',
@@ -108,7 +108,7 @@ const rows: Assistant[] = [
   {
     id: 'ORD - 0124060',
     model: 'GPT-3',
-    imgsrc: img4,
+    imgsrc: img3,
     name: 'Chat Room',
     connect: '457,000',
     status: 'Completed',
@@ -118,7 +118,7 @@ const rows: Assistant[] = [
   {
     id: 'ORD - 0124568',
     model: 'GPT-4',
-    imgsrc: img5,
+    imgsrc: img2,
     name: 'Christopher Jamil',
     connect: 'Telegram',
     status: 'Pending',
@@ -160,8 +160,8 @@ const Integration = () => {
 
             <TabPanel value="1" sx={{ padding: 'none' }}>
               <Tooltip title="Add" sx={{ mb: '15px' }}>
-                <Fab size="medium" color="secondary" aria-label="plus">
-                  <IconPlus width={20} />
+                <Fab size="small" color="secondary" aria-label="plus">
+                  <IconPlus width={18} />
                 </Fab>
               </Tooltip>
               <Grid container spacing={3}>
@@ -180,7 +180,7 @@ const Integration = () => {
                                 variant="caption"
                                 sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
                               >
-                                <IconMapPin size="14" />
+                                <CircleIcon sx={{ fontSize: '10px', color: `${profile.isConnected ? '#46AB5E' : '#e0e0e0'}` }} />
                                 {profile.id}
                               </Typography>
                             </Box>

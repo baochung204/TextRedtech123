@@ -1,7 +1,7 @@
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
 import React, { useState } from 'react';
-import CustomTextField from '../../forms/theme-elements/CustomTextField';
+import CustomTextField from '../../../forms/theme-elements/CustomTextField';
 import top100Films from './data';
 
 const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#FFBB33', '#33FFBB', '#BB33FF'];
@@ -55,7 +55,7 @@ const Tags = () => {
               backgroundColor: option.color,
               color: '#fff',
               height: 24,
-              margin: '0 4px',
+              margin: '0 1px',
             }}
           />
         ))
