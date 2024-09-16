@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, TextField, Button } from '@mui/material';
 
 const PopupWithdrawMoney = () => {
-  const [currentBalance, setCurrentBalance] = useState(10000000); // Số tiền hiện có
+  const [currentBalance, setCurrentBalance] = useState<number>(10000000); // Số tiền hiện có
   const [withdrawAmount, setWithdrawAmount] = useState(0); // Số tiền muốn rút
   const remainingBalance = currentBalance - withdrawAmount; // Số tiền còn lại
 
@@ -12,11 +12,8 @@ const PopupWithdrawMoney = () => {
   };
 
   return (
-    <Box sx={{ p: 3, maxWidth: 400, mx: 'auto', mt: 5, textAlign: 'center' }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Rút tiền
-      </Typography>
-
+    <Box
+    >
       <Box mb={2}>
         <Typography variant="body1" color="textSecondary">
           Số tiền hiện có:
@@ -41,7 +38,7 @@ const PopupWithdrawMoney = () => {
           Số tiền còn lại:
         </Typography>
         <Typography variant="h6" color={remainingBalance >= 0 ? 'secondary' : 'error'}>
-          {remainingBalance >= 0 ? remainingBalance.toLocaleString() : 0} VND
+          {remainingBalance >= 0 ? remainingBalance.toLocaleString() : currentBalance} VND
         </Typography>
       </Box>
 

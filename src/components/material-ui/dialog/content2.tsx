@@ -387,20 +387,6 @@ const Content2 = () => {
                               </div>
                             </div>
                           </CardContent>
-                          {/* <Box
-                              style={{
-                                position: 'absolute',
-                                top: '-15px',
-
-                                padding: '5px 10px',
-                                color: 'white',
-                                borderRadius: '0px 0px 10px 10px',
-                                fontWeight: 'bold',
-                              }}
-                              sx={{ right: { xs: '-15px', md: '45px' } }}
-                            >
-                              <img src={sale} alt="" style={{ width: '70px' }} />
-                            </Box> */}
                         </Card>
                       </Grid>
                     ))}
@@ -480,6 +466,11 @@ const Content2 = () => {
               </Stack>
             </Box>
           </ChildCard>
+          <Box textAlign={'center'} marginTop={'20px'}>
+            <Button component={Link} to="/apps/sell/product">
+              Tiếp tục
+            </Button>
+          </Box>
         </Box>
       </Box>
     </div>

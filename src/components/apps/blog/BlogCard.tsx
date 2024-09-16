@@ -3,26 +3,27 @@
 import React, { useEffect } from 'react';
 
 // third-party
-import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'src/store/Store';
 import {
-  CardContent,
-  Stack,
   Avatar,
-  Typography,
+  Box,
+  CardContent,
   CardMedia,
   Chip,
   Grid,
-  Tooltip,
-  Box,
   Skeleton,
+  Stack,
+  Tooltip,
+  Typography,
 } from '@mui/material';
-import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
-import BlankCard from '../../shared/BlankCard';
+import { useDispatch } from 'src/store/Store';
 import { BlogPostType } from 'src/types/apps/blog';
-
+import BlankCard from '../../shared/BlankCard';
+// import crown from 'src/assets/images/icon.png/crown.png';
+import crown from 'src/assets/images/icon.png/crown.png';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import { IconEye } from '@tabler/icons-react';
 interface Btype {
   post: BlogPostType;
   index?: number;
@@ -30,7 +31,7 @@ interface Btype {
 
 const BlogCard = ({ post }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+  const { coverImg, title, view, category, author, crowns }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')
@@ -66,21 +67,59 @@ const BlogCard = ({ post }: Btype) => {
               component={Link}
               to={`/apps/blog/detail/${linkTo}`}
               onClick={() => dispatch(fetchBlogPost(linkTo))}
+              style={{ position: 'relative' }}
             >
+              {' '}
+              <Stack
+                direction="row"
+                padding={'0px 5px'}
+                top={'10px'}
+                right={'20px'}
+                borderRadius={'20px'}
+                border={'2px solid transparent'}
+                position="absolute"
+                bgcolor={'white'}
+              >
+                <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                  <Typography
+                    variant="body2"
+                    style={{
+                      fontWeight: '900',
+                      color: 'black',
+                      fontSize: '12px ',
+                      paddingTop: '1px',
+                    }}
+                  >
+                    {crowns}
+                  </Typography>
+                  <img
+                    src={logoPoint}
+                    alt=""
+                    width={'12px'}
+                    height={'13px'}
+                    style={{ marginLeft: '2px' }}
+                  />
+                </Box>
+              </Stack>
+              <Stack
+                direction="row"
+                padding={'5px 3px'}
+                bottom={'10px'}
+                right={'20px'}
+                borderRadius={'20px'}
+                border={'2px solid transparent'}
+                position="absolute"
+              >
+                <Chip
+                  icon={<IconEye />}
+                  label={`${view} `}
+                  size="small"
+                  style={{ background: 'white' }}
+                ></Chip>
+              </Stack>
               <CardMedia component="img" height="240" image={coverImg} alt="green iguana" />
             </Typography>
             <CardContent>
-              <Stack direction="row" sx={{ marginTop: '-45px' }}>
-                <Tooltip title={author?.name} placement="top">
-                  <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
-                </Tooltip>
-                <Chip
-                  sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                  label="2 min Read"
-                  size="small"
-                ></Chip>
-              </Stack>
-              <Chip label={category} size="small" sx={{ marginTop: 2 }}></Chip>
               <Box my={3}>
                 <Typography
                   gutterBottom
@@ -94,19 +133,42 @@ const BlogCard = ({ post }: Btype) => {
                   {title}
                 </Typography>
               </Box>
-              <Stack direction="row" gap={3} alignItems="center">
-                <Stack direction="row" gap={1} alignItems="center">
-                  <IconEye size="18" /> {view}
-                </Stack>
-                <Stack direction="row" gap={1} alignItems="center">
-                  <IconMessage2 size="18" /> {comments?.length}
-                </Stack>
+              <Chip
+                label={category}
+                size="small"
+                sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 6 }}
+              />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  display: 'flex',
+                  alignItems: 'center',
+                  bottom: 0,
+                  width: '90%',
+                  // gap: '10px',
+                  py: 2,
+                }}
+              >
+                <Tooltip title={author?.name} placement="top">
+                  <Avatar aria-label="recipe" src={author?.avatar} />
+                </Tooltip>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginLeft: '10px',
+                    alignItems: 'center',
+                    width: '40%',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Typography variant="body2">Nguyễn Mạnh Cường</Typography>
+                </Box>
 
-                <Stack direction="row" ml="auto" alignItems="center">
-                  <IconPoint size="16" />
-                  <small>{format(new Date(createdAt), 'E, MMM d')}</small>
+                <Stack direction="row" ml="auto" alignItems="center" width="30%">
+                  <small>01-09-2024</small>
                 </Stack>
-              </Stack>
+              </Box>
             </CardContent>
           </>
         </BlankCard>
