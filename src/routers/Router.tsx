@@ -152,6 +152,9 @@ const HistoryBuyService = Loadable(
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 //list assistant
 const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
+const AssistantList = Loadable(
+  lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
+);
 // const AssistantList = Loadable(
 //   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 // );
@@ -260,6 +263,8 @@ const Router = [
       { path: '/widgets/cards', element: <WidgetCards /> },
       { path: '/widgets/banners', element: <WidgetBanners /> },
       { path: '/widgets/charts', element: <WidgetCharts /> },
+      { path: '/profile/assistant/list', element: <ListAssistant /> },
+      { path: '/assistant/list', element: <AssistantList /> },
       { path: '/buy/point', element: <BuyPoint /> },
       { path: '/pay/point', element: <PaymentPoint /> },
       { path: '/buy/service', element: <BuyPointService /> },
