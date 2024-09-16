@@ -35,7 +35,7 @@ import { GiClick } from 'react-icons/gi';
 import { PiPersonFill } from 'react-icons/pi';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import React, { useEffect, useState } from 'react';
-import Popupconvert from '../customerList/Popupconvert';
+// import Popupconvert from '../customerList/Popupconvert';
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 
 interface cardType {
