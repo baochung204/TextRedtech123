@@ -18,7 +18,9 @@ const PopupAdd = () => {
   const [selectedImages, setSelectedImages] = useState<Array<File>>([]);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [color, setColor] = useState<string>('#000000');
-
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
+  const [length, setLength] = useState('');
   const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
@@ -204,80 +206,59 @@ const PopupAdd = () => {
 
               </Grid>
 
+
             </Grid>
-  
+            {/* Ảnh sản phẩm */}
 
+            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+              <Grid item xs={12}>
+                <CustomFormLabel htmlFor="size-text">Kích thước</CustomFormLabel>
 
+                {/* Tạo hàng cho ba thuộc tính rộng, dài, cao */}
+                <Grid container spacing={2}> {/* Thêm container để sắp xếp hàng ngang */}
 
-            <CustomFormLabel htmlFor="size-text">Kích thước</CustomFormLabel>
-            <CustomTextField
-              id="size-text"
-              variant="outlined"
-              fullWidth
-            // value={size}
-            // onChange={handleChange(setSize)}
-            />
-
-
-
-
-
-          </Grid>
-
-          <Grid item lg={6} md={12}>
-            <Grid lg={12}>
-              <CustomFormLabel htmlFor="description-text">Mô tả</CustomFormLabel>
-              <CustomTextField
-                id="description-text"
-                variant="outlined"
-                fullWidth
-
-              // value={description}
-              // onChange={handleChange(setDescription)}
-              />
-            </Grid>
-
-
-
-            <CustomFormLabel htmlFor="color-text">Màu sắc</CustomFormLabel>
-            {/* <CustomTextField
-              id="color-text"
-              variant="outlined"
-              fullWidth
-            // value={color}
-            // onChange={handleChange(setColor)}
-            /> */}
-            <CustomTextField
-              fullWidth
-              value={color}
-              onChange={handleColorChange}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <input
-                      type="color"
-                      value={color}
-                      onChange={handleColorChange}
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        border: 'none',
-                        background: 'none',
-                        padding: '0',
-                      }}
+                  {/* Trường nhập cho chiều rộng */}
+                  <Grid item xs={12} sm={4} lg={4}>
+                    <CustomOutlinedInput
+                      id="width-text"
+                      variant="outlined"
+                      endAdornment={<InputAdornment position="end">cm</InputAdornment>}
+                      fullWidth
+                      placeholder="rộng"
                     />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
-            <CustomTextField
-              id="material-text"
-              variant="outlined"
-              fullWidth
-            // value={material}
-            // onChange={handleChange(setMaterial)}
-            />
+                  </Grid>
+
+                  {/* Trường nhập cho chiều dài */}
+                  <Grid item xs={12} sm={4} lg={4}>
+                    <CustomOutlinedInput
+                      id="length-text"
+                      variant="outlined"
+                      endAdornment={<InputAdornment position="end">cm</InputAdornment>}
+                      fullWidth
+                      placeholder="dài"
+                    />
+                  </Grid>
+
+                  {/* Trường nhập cho chiều cao */}
+                  <Grid item xs={12} sm={4} lg={4}>
+                    <CustomOutlinedInput
+                      id="height-text"
+                      variant="outlined"
+                      endAdornment={<InputAdornment position="end">cm</InputAdornment>}
+                      fullWidth
+                      placeholder="cao"
+                    />
+                  </Grid>
+
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+
+
+
 
             <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
             <CustomTextField
@@ -287,11 +268,78 @@ const PopupAdd = () => {
             // value={style}
             // onChange={handleChange(setStyle)}
             />
-            {/* Ảnh sản phẩm */}
+
+
+
 
           </Grid>
+
           <Grid item lg={6} md={12}>
-            <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel>
+
+            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+              <Grid item xs={12} sm={6} lg={6}>
+                <CustomFormLabel htmlFor="color-text">Màu sắc</CustomFormLabel>
+                <CustomTextField
+                  fullWidth
+                  value={color}
+                  onChange={handleColorChange}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <input
+                          type="color"
+                          value={color}
+                          onChange={handleColorChange}
+                          style={{
+                            width: '40px',
+                            height: '40px',
+                            border: 'none',
+                            background: 'none',
+                            padding: '0',
+                          }}
+                        />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+              </Grid>
+              <Grid item xs={12} sm={6} lg={6}>
+                <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
+                <CustomTextField
+                  id="material-text"
+                  variant="outlined"
+                  fullWidth
+                  placeholder='Nhập chất liệu . . .'
+
+                // value={material}
+                // onChange={handleChange(setMaterial)}
+                />
+
+              </Grid>
+
+
+            </Grid>
+
+
+
+
+            <Grid lg={12}>
+              <CustomFormLabel htmlFor="description-text">Mô tả</CustomFormLabel>
+              <CustomTextField
+                id="description-text"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={9.2}
+                placeholder='Nhập mô tả sản phẩm . . .'
+              // value={description}
+              // onChange={handleChange(setDescription)}
+              />
+            </Grid>
+          </Grid>
+          <Grid item lg={6} md={12}>
+            {/* <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel> */}
             <input
               type="file"
               id="product-images"
