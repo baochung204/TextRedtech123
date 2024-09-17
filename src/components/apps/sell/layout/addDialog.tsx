@@ -58,7 +58,7 @@ const AddDialog = () => {
         <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>
           <Button onClick={handleClosePopup} variant="contained" color="primary">
-            Xác nhận
+            Lưu
           </Button>
         </DialogActions>
       </Dialog>
