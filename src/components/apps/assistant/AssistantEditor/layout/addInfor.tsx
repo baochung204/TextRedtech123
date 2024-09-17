@@ -13,6 +13,7 @@ const AddInfor = () => {
 
     const [country, setCountry] = useState('1');
     const [language, setLanguage] = useState('1');
+    const [gender, setGender] = useState('1');
     const [level, setLevel] = useState('1');
 
     const handleChangeCountry = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -21,7 +22,9 @@ const AddInfor = () => {
     const handleChangeLanguage = (event: React.ChangeEvent<{ value: unknown }>) => {
         setLanguage(event.target.value as string);
     };
-
+    const handleChangeGender = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setGender(event.target.value as string);
+    };
     const handleLevel = (event: React.ChangeEvent<{ value: unknown }>) => {
         setLevel(event.target.value as string);
     };
@@ -99,8 +102,29 @@ const AddInfor = () => {
                     <Grid item xs={12} sm={6} lg={6}>
                         <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>Tên</CustomFormLabel>
                         <CustomTextField size="small" id="name" placeholder="Nhập tên trợ lý mong muốn " variant="outlined" fullWidth />
-                        <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Ngày sinh</CustomFormLabel>
-                        <DateTime />
+                        <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+                            <Grid item xs={12} sm={6} lg={7}>
+                                <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Ngày sinh</CustomFormLabel>
+                                <DateTime />
+                            </Grid>
+                            <Grid item xs={12} sm={6} lg={5}>
+                                <CustomFormLabel sx={{ mt: 3 }} htmlFor="demo-simple-select">Giới tính</CustomFormLabel>
+                                <CustomSelect
+                                    size="small"
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={gender}
+                                    onChange={handleChangeGender}
+                                    fullWidth
+                                >
+                                    <MenuItem value={1}>Nam</MenuItem>
+                                    <MenuItem value={2}>Nữ</MenuItem>
+
+                                </CustomSelect>
+                            </Grid>
+
+                        </Grid>
+                        
                         <CustomFormLabel sx={{ mt: 3 }} htmlFor="demo-simple-select">Trình độ học vẫn</CustomFormLabel>
                         <CustomSelect
                             size="small"
