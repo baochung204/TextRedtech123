@@ -1,6 +1,6 @@
 import React from 'react';
 
-const publishermanager = () => {
+const OrderProducts = () => {
   return (
     <>
       <h1>hello world</h1>
@@ -8,4 +8,4 @@ const publishermanager = () => {
   );
 };
 
-export default publishermanager;
+export default OrderProducts;
