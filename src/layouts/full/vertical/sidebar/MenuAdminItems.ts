@@ -36,130 +36,127 @@ const MenuAdminitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Dashboard',
-    icon: IconPresentationAnalytics,
-    href: '/admin/dashboard',
+    title: 'Trợ lý',
+    icon: IconHeadset,
+    href: '/admin/assistant',
   },
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Trợ lý',
-  //   icon: IconHeadset,
-  //   href: '/apps/assistant/',
-  //   children: [
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Tạo Trợ lý',
-  //       icon: IconPoint,
-  //       href: '/apps/assistant/add',
-  //     },
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Quản lý Trợ lý',
-  //       icon: IconPoint,
-  //       // href: '/apps/list-assistant',
-  //       href: '/assistant/list',
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Tài nguyên',
-  //   icon: IconArchive,
-  //   href: '/pages/faq',
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Bán hàng',
-  //   icon: IconPackage,
-  //   href: '/apps/collaborate/',
-  //   children: [
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Sản phẩm',
-  //       icon: IconPoint,
-  //       href: '/apps/sell/product',
-  //     },
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Đơn hàng',
-  //       icon: IconPoint,
-  //       href: '/apps/sell/order',
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Khách hàng',
-  //   icon: IconUsersGroup,
-  //   href: '/apps/collaborate/',
-  //   children: [
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Danh sách khách hàng',
-  //       icon: IconPoint,
-  //       href: '/apps/customerList2',
-  //     },
+  {
+    id: uniqueId(),
+    title: 'Khách hàng',
+    icon: IconUsersGroup,
+    href: '/admin/order',
+  },
+  {
+    id: uniqueId(),
+    title: 'Bán hàng',
+    icon: IconPackage,
+    href: '/admin/buy/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Sản phẩm',
+        icon: IconPoint,
+        href: '/admin/buy/products',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đơn hàng sản phẩm',
+        icon: IconPoint,
 
-  //     // {
-  //     //   id: uniqueId(),
-  //     //   title: 'Thỏa thuận hợp tác',
-  //     //   icon: IconPoint,
-  //     //   href: '/apps/contract-client',
-  //     // },
-  //   ],
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Cửa hàng',
-  //   icon: IconShoppingCart,
-  //   href: '/apps/ecommerce/shop',
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Affiliate',
-  //   icon: IconAffiliate,
-  //   href: '/apps/collaborate/',
-  //   children: [
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Tổng quan',
-  //       icon: IconPoint,
-  //       href: '/apps/collaborate/',
-  //     },
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Danh sách khách hàng',
-  //       icon: IconPoint,
-  //       href: '/apps/customerList',
-  //     },
-  //     {
-  //       id: uniqueId(),
-  //       title: 'Thỏa thuận hợp tác',
-  //       icon: IconPoint,
-  //       href: '/apps/contract-affiliate',
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Tích hợp',
-  //   icon: IconTerminal2,
-  //   href: '/apps/integration',
-  // },
-  // {
-  //   id: uniqueId(),
-  //   title: 'Ticket hỗ trợ',
-  //   icon: IconMessage2Bolt,
-  //   href: '/apps/chats',
-  // },
+        href: '/admin/buy/packagepoint',
+      },
+    ],
+  },
 
-  // {
-  //   id: uniqueId(),
-  //   title: 'Cập nhật',
-  //   icon: IconFilePencil,
-  //   href: '/apps/update',
-  // },
+  {
+    id: uniqueId(),
+    title: 'Affiliate',
+    icon: IconAffiliate,
+    href: '/admin/affiliate/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Sản phẩm',
+        icon: IconPoint,
+        href: '/admin/affiliate/publishers',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đơn hàng Affiliate',
+        icon: IconPoint,
+        href: '/admin/affiliate/affiliatepro',
+      },
+      {
+        id: uniqueId(),
+        title: 'Lịch sử rút tiền',
+        icon: IconPoint,
+        href: '/admin/affiliate/history',
+      },
+    ],
+  },
+
+  {
+    id: uniqueId(),
+    title: 'Nhân viên',
+    icon: IconShoppingCart,
+    href: '/admin/staff',
+  },
+  {
+    id: uniqueId(),
+    title: 'Tài nguyên',
+    icon: IconShoppingCart,
+    href: '/admin/resources',
+  },
+  {
+    id: uniqueId(),
+    title: 'Blog',
+    icon: IconShoppingCart,
+    href: '/admin/blog',
+  },
+  {
+    id: uniqueId(),
+    title: 'Tickket',
+    icon: IconShoppingCart,
+    href: '/admin/ticket',
+  },
+  {
+    id: uniqueId(),
+    title: 'Thông báo',
+    icon: IconShoppingCart,
+    href: '/admin/notification',
+  },
+  {
+    id: uniqueId(),
+    title: 'Kế toán',
+    icon: IconAffiliate,
+    href: '/admin/accountant/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Hợp đồng R-Point',
+        icon: IconPoint,
+        href: '/admin/accountant/contracPoint',
+      },
+      {
+        id: uniqueId(),
+        title: 'Hợp đồng Affiliate',
+        icon: IconPoint,
+        href: '/admin/accountant/contracAfflilate',
+      },
+      {
+        id: uniqueId(),
+        title: 'E-Invoice',
+        icon: IconPoint,
+        href: '/admin/accountant/feature',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Đề xuất tính năng',
+    icon: IconTerminal2,
+    href: '/admin/feature',
+  },
 ];
 
 export default MenuAdminitems;
