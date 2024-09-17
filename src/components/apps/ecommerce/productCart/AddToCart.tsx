@@ -235,9 +235,9 @@ const AddToCart = () => {
                 </Button>
               </Link>
 
-              <Button variant="contained" onClick={handleClick}>
-                <Afletpoint2> Thanh toán</Afletpoint2>
-              </Button>
+              <a onClick={handleClick}>
+                <Afletpoint2 row={''}> Thanh toán</Afletpoint2>
+              </a>
             </Stack>
             <Snackbar
               open={open}

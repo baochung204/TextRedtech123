@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { DataRowCustomerTable } from './tableData';
 import useSortableData from 'src/views/apps/customerList/useSortableData';
+import Scrollbar_x from '../custom-scroll/Scrollbar_x';
 
 // Định nghĩa kiểu cho dữ liệu bảng
 interface DataRow {
@@ -41,10 +42,7 @@ const CustomerTable2 = () => {
   });
 
   // Cắt dữ liệu để hiển thị theo trang
-  const paginatedRows = sortedItems.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage,
-  );
+  const paginatedRows = sortedItems.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   // Hàm xử lý thay đổi trang
   const handleChangePage = (
@@ -63,76 +61,107 @@ const CustomerTable2 = () => {
   return (
     <>
       <TableContainer component={Paper} sx={{ mt: '20px' }}>
-        <Table
-          aria-label="customer table"
-          size="medium"
-          sx={{
-            whiteSpace: 'nowrap',
-            '& th': { fontSize: '1.2rem', padding: '16px' },
-            '& td': { fontSize: '1.2rem', padding: '16px' },
-          }}
-        >
-          <TableHead>
-            <TableRow>
-              {['id', 'createdAt', 'assistant', 'channel', 'orderInfo', 'name', 'orderValue', 'phone', 'address'].map((column) => (
-                <TableCell key={column} sx={{ textAlign: 'center' }}>
-                  <TableSortLabel
-                    active={sortBy === column}
-                    direction={sortBy === column ? sortOrder : 'asc'}
-                    onClick={() => handleSortRequest(column as keyof DataRow)}
-                  >
-                    <Typography variant="h6" fontWeight={600}>
-                      {column === 'id' && 'Id Đơn Hàng'}
-                      {column === 'createdAt' && 'Ngày Tạo'}
-                      {column === 'assistant' && 'Trợ Lý'}
-                      {column === 'channel' && 'Kênh (MTK)'}
-                      {column === 'orderInfo' && 'Tags'}
-                      {column === 'name' && 'Tên Khách Hàng'}
-                      {column === 'orderValue' && 'Tổng Chi Tiêu'}
-                      {column === 'phone' && 'SĐT'}
-                      {column === 'address' && 'Địa Chỉ'}
-                    </Typography>
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {paginatedRows.map((row) => (
-              <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.id}</Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.createdAt}</Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.assistant}</Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.channel}</Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.orderInfo}</Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2" fontWeight={500}>
-                    {row.name}
-                  </Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.orderValue}</Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.phone}</Typography>
-                </TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle2">{row.address}</Typography>
-                </TableCell>
+        <Scrollbar_x sx={{ maxHeight: 400 }}>
+          <Table
+            aria-label="customer table"
+            size="medium"
+            sx={{
+              whiteSpace: 'nowrap',
+              '& th': { fontSize: '1.2rem', padding: '16px' },
+              '& td': { fontSize: '1.2rem', padding: '16px' },
+            }}
+          >
+            <TableHead>
+              <TableRow>
+                {[
+                  'id',
+                  'createdAt',
+                  'assistant',
+                  'channel',
+                  'orderInfo',
+                  'name',
+                  'orderValue',
+                  'phone',
+                  'address',
+                ].map((column) => (
+                  <TableCell key={column} sx={{ textAlign: 'center' }}>
+                    <TableSortLabel
+                      active={sortBy === column}
+                      direction={sortBy === column ? sortOrder : 'asc'}
+                      onClick={() => handleSortRequest(column as keyof DataRow)}
+                    >
+                      <Typography variant="h6" fontWeight={600}>
+                        {column === 'id' && 'ID khách hàng'}
+                        {column === 'createdAt' && 'Ngày Tạo'}
+                        {column === 'assistant' && 'Trợ Lý'}
+                        {column === 'channel' && 'Kênh (MTK)'}
+                        {column === 'orderInfo' && 'Tags'}
+                        {column === 'name' && 'Tên Khách Hàng'}
+                        {column === 'orderValue' && 'Tổng Chi Tiêu'}
+                        {column === 'phone' && 'SĐT'}
+                        {column === 'address' && 'Địa Chỉ'}
+                      </Typography>
+                    </TableSortLabel>
+                  </TableCell>
+                ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {paginatedRows.map((row) => (
+                <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.id}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.createdAt}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.assistant}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      {/* Avatar on the left */}
+                      <img
+                        src={row.imgsrc}
+                        style={{
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          marginRight: '10px',
+                        }}
+                      />
+
+                      <Box>
+                        <Typography variant="subtitle2">{row.channel}</Typography>
+                        <Typography style={{ fontSize: '12px', color: '#ccc' }}>
+                          {'MKT000' + row.id}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </TableCell>
+
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.orderInfo}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2" fontWeight={500}>
+                      {row.name}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.orderValue}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.phone}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.address}</Typography>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Scrollbar_x>
       </TableContainer>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: 2 }}>
         <TablePagination

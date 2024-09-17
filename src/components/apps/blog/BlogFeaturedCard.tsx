@@ -16,11 +16,12 @@ import {
   styled,
   Skeleton,
 } from '@mui/material';
-import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
-import { format } from 'date-fns';
+import { IconEye } from '@tabler/icons-react';
+import crown from 'src/assets/images/icon.png/crown.png';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import BlankCard from '../../shared/BlankCard';
 import { BlogPostType } from 'src/types/apps/blog';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 
 const CoverImgStyle = styled(CardContent)({
   position: 'absolute',
@@ -46,7 +47,7 @@ interface Btype {
 
 const BlogFeaturedCard = ({ post, index }: Btype) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, comments, category, author, createdAt }: any = post;
+  const { coverImg, title, view, category, author }: any = post;
   const linkTo = title
     .toLowerCase()
     .replace(/ /g, '-')
@@ -103,7 +104,7 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                   onClick={() => dispatch(fetchBlogPost(linkTo))}
                 >
                   <CoverBox
-                    sx={{ backgroundColor: (theme) => alpha(theme.palette.grey[900], 0.6) }}
+                    sx={{ backgroundColor: (theme) => alpha(theme.palette.grey[900], 0.1) }}
                   />
                 </Typography>
                 <CoverImgStyle>
@@ -113,17 +114,41 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                     justifyContent="space-between"
                     flexDirection="column"
                   >
-                    <Box>
-                      <Stack direction="row">
-                        <Tooltip title={author?.name} placement="top">
-                          <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
-                        </Tooltip>
-                        <Chip
-                          sx={{ marginLeft: 'auto' }}
-                          label={category}
-                          size="small"
-                          color="primary"
-                        ></Chip>
+                    <Box display={'flex'} justifyContent={'end'}>
+                      {' '}
+                      <Stack
+                        direction="row"
+                        bgcolor={'rgba(255, 255, 255 )'}
+                        padding={'0px 6px'}
+                        borderRadius={'20px'}
+                        border={'2px solid transparent'}
+                        style={{ opacity: 0.9 }}
+                        sx={{
+                          '&:hover': {
+                            borderColor: 'white', // Viền trắng khi hover
+                          },
+                        }}
+                      >
+                        <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                          <Typography
+                            variant="body2"
+                            style={{
+                              fontWeight: '900',
+                              color: 'black',
+                              fontSize: '13px ',
+                              paddingTop: '1px',
+                            }}
+                          >
+                            {/* {crowns} */} 1.024.03
+                          </Typography>
+                          <img
+                            src={logoPoint}
+                            alt=""
+                            width={'20px'}
+                            height={'20px'}
+                            style={{ marginLeft: '2px' }}
+                          />
+                        </Box>
                       </Stack>
                     </Box>
                     <Box>
@@ -140,17 +165,43 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                           {title}
                         </Typography>
                       </Box>
-                      <Stack direction="row" gap={3} alignItems="center">
-                        <Stack direction="row" gap={1} alignItems="center">
-                          <IconEye size="18" /> {view}
-                        </Stack>
-                        <Stack direction="row" gap={1} alignItems="center">
-                          <IconMessage2 size="18" /> {comments?.length}
-                        </Stack>
+                      <Stack direction="row" gap={3} alignItems="center" justifyContent={'end'}>
+                        <Box style={{ width: '70%' }} display={'flex'} gap={'20px'}>
+                          <Tooltip title={author?.name} placement="top">
+                            <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
+                          </Tooltip>
+                          <Box>
+                            <Stack>
+                              <Stack direction="row" gap={1} alignItems="center">
+                                Nguyễn Đăng Hòa
+                              </Stack>
+                              <Stack direction="row" alignItems="center" marginTop={'2px'}>
+                                <Chip label={category} size="small" color="primary" />
+                              </Stack>
+                            </Stack>
+                          </Box>
+                        </Box>
 
-                        <Stack direction="row" ml="auto" alignItems="center">
-                          <IconPoint size="16" />
-                          <small>{format(new Date(createdAt), 'E, MMM d')}</small>
+                        <Stack style={{ width: '40%' }}>
+                          {/* <small>{format(new Date(createdAt), 'E, MMM d')}</small> */}
+                          <Stack
+                            direction="row"
+                            gap={1}
+                            alignItems="center"
+                            justifyContent={'end'}
+                            width={'100%'}
+                          >
+                            09-09-2024
+                          </Stack>{' '}
+                          <Stack direction="row">
+                            <Chip
+                              sx={{ marginLeft: 'auto', backgroundColor: 'black' }}
+                              label={view}
+                              size="small"
+                              color="primary"
+                              icon={<IconEye />} // Adding the icon here
+                            />
+                          </Stack>
                         </Stack>
                       </Stack>
                     </Box>

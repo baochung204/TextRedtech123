@@ -83,16 +83,16 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Khách hàng',
+    title: 'Danh sách khách hàng',
     icon: IconUsersGroup,
-    href: '/apps/collaborate/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Danh sách khách hàng',
-        icon: IconPoint,
-        href: '/apps/customerList2',
-      },
+    href: '/apps/customerList2',
+    // children: [
+    //   {
+    //     id: uniqueId(),
+    //     title: 'Danh sách khách hàng',
+    //     icon: IconPoint,
+    //     href: '/apps/customerList2',
+    //   },
 
       // {
       //   id: uniqueId(),
@@ -100,7 +100,7 @@ const Menuitems: MenuitemsType[] = [
       //   icon: IconPoint,
       //   href: '/apps/contract-client',
       // },
-    ],
+    // ],
   },
   {
     id: uniqueId(),

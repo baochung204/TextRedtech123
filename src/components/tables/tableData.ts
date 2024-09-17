@@ -17,22 +17,21 @@ export interface TableType {
 
 export interface EnTableType {
   id: string;
-  amount: number; // số tiền
-  numberPrice: number; // số tiền thanh toán
-  requestId: string; // id yêu cầu
-  createdAt: Date; //ngày thanh toán
-  completedAt: Date | null; //ngày hoàn tất thanh toán
-  status: number; // tình trạng
-  invoice: number; // hóa đơn
+  amount: number;
+  numberPrice: number;
+  requestId: string; 
+  createdAt: Date; 
+  completedAt: Date | null;
+  status: number; 
+  invoice: number; 
 }
 
 export interface CustomerListTable {
   id: string;
   assistant: string;
-  name: string; // họ tên
-  email: string; // email
-  phone: string; // SĐT
-
+  name: string; 
+  email: string; 
+  phone: string; 
   createdAt: string;
   orderValue: string;
   channel: string;
@@ -41,13 +40,42 @@ export interface CustomerListTable {
   note: string;
   imgsrc?: string;
 }
+export interface CustomerListAffiliateTable {
+  id: string;
+  name: string; 
+  email: string; 
+  phone: string; 
+  createdAt: string;
+  typeofcustomer: string
+  imgsrc?: string;
+}
+const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] =[
+  {
+    id: '1',
+    name: 'Lê Tài Đức',
+    email: 'duc.lt@redon.com',
+    phone: '0987654321',
+    createdAt: '2024-07-18',
+    typeofcustomer: 'Miễn phí',
+    imgsrc: img1,
+  },
+  {
+    id: '2',
+    name: 'Nguyễn Thùy Linh',
+    email: 'linh.nt@redon.com',
+    phone: '0965842361',
+    createdAt: '2024-07-19',
+    typeofcustomer: 'Trả phí',
+    imgsrc: img2,
+  },
+]
 const DataRowCustomerTable: CustomerListTable[] = [
   {
     id: '1',
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Lâm Đình Khoa',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -61,7 +89,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Ngô Đình Toản',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
@@ -75,7 +103,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Ngô Đình Hòa',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -89,7 +117,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Ngô Đình Trường',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
@@ -103,7 +131,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Ngô Đình Khải',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -117,7 +145,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Ngô Đình Chung',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
@@ -131,7 +159,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-18',
     assistant: 'Nguyễn Văn A',
     orderValue: '70',
-    channel: 'MTK1',
+    channel: 'Nguyễn Đăng Hòa',
     name: 'Lê Tài Đức',
     phone: '0987654321',
     address: 'Hà Nội',
@@ -145,7 +173,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     createdAt: '2024-07-19',
     assistant: 'Trần Thị B',
     orderValue: '150',
-    channel: 'MTK2',
+    channel: 'Nguyễn Đăng Khánh',
     name: 'Nguyễn Thùy Linh',
     phone: '0965842361',
     address: 'Hồ Chí Minh',
@@ -341,4 +369,4 @@ const EnhancedTableData: EnTableType[] = [
     invoice: 1,
   },
 ];
-export { basicsTableData, EnhancedTableData, DataRowCustomerTable };
+export { basicsTableData, EnhancedTableData, DataRowCustomerTable,DataCustomerListAffiliateTable };
