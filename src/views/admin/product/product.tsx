@@ -1,5 +1,5 @@
 const ProductAdmin = () => {
-  return <h1>khai132</h1>;
+  return <h1>sản phẩm</h1>;
 };
 
 export default ProductAdmin;

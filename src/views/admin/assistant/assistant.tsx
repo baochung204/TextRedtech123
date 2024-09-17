@@ -1,5 +1,5 @@
 const AssistantAdmin = () => {
-  return <h1>khai132</h1>;
+  return <h1>AssistantAdmin</h1>;
 };
 
 export default AssistantAdmin;

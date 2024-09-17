@@ -1,8 +1,36 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
+import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
+import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
+import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
+import AllNotifications from 'src/layouts/full/vertical/header/AllNotification';
+import Affiliatepro from 'src/views/admin/affiliatepro/affiliatepro';
+import ContracAffilate from 'src/views/admin/contractAffilate/contracAffilata';
+import ContracPoint from 'src/views/admin/contractPoint/contracPoint';
+import EInvoice from 'src/views/admin/EInvoice/EInvoice';
+import Feature from 'src/views/admin/feature/feature';
+import History from 'src/views/admin/history/history';
+import Notification from 'src/views/admin/notification/notification';
+import OrderAdmin from 'src/views/admin/order/order';
+import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
+import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
+import ProductAdmin from 'src/views/admin/product/product';
+import Publishers from 'src/views/admin/publishers/publishers';
+import Staff from 'src/views/admin/staff/staff';
+import Ticket from 'src/views/admin/ticket/ticket';
+import VoucherAdmin from 'src/views/admin/voucher/voucher';
+import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
+import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
+import Update from 'src/views/apps/update/Update';
+import Fail from 'src/views/apps/user-profile/Fail';
+import Pending from 'src/views/apps/user-profile/Pending';
+import Success from 'src/views/apps/user-profile/Success';
+import FormRequest from 'src/views/forms/FormRequest';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
+import AssistantAdmin from '../views/admin/assistant/assistant';
+import Resources from 'src/views/admin/resources/resources';
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -86,21 +114,6 @@ const FormVertical = Loadable(lazy(() => import('../views/forms/FormVertical')))
 const FormWizard = Loadable(lazy(() => import('../views/forms/FormWizard')));
 const FormValidation = Loadable(lazy(() => import('../views/forms/FormValidation')));
 const QuillEditor = Loadable(lazy(() => import('../views/forms/quill-editor/QuillEditor')));
-import FormRequest from 'src/views/forms/FormRequest';
-import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
-import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
-import Success from 'src/views/apps/user-profile/Success';
-import Fail from 'src/views/apps/user-profile/Fail';
-import Pending from 'src/views/apps/user-profile/Pending';
-import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
-import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
-import Update from 'src/views/apps/update/Update';
-import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
-import AllNotifications from 'src/layouts/full/vertical/header/AllNotification';
-import AssistantAdmin from '../views/admin/assistant/assistant';
-import OrderAdmin from 'src/views/admin/order/order';
-import ProductAdmin from 'src/views/admin/product/product';
-import CustomerListAdmin from 'src/views/admin/customerList/customerList';
 
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
@@ -164,7 +177,8 @@ const AssistantList = Loadable(
 );
 // const AssistantList = Loadable(
 //   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
-// );
+// );import Blog from './../views/apps/blog/Blog';
+
 const Router = [
   {
     path: '/',
@@ -304,12 +318,25 @@ const Router = [
     children: [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
-
       { path: '/admin/assistant', element: <AssistantAdmin /> },
       { path: '/admin/order', element: <OrderAdmin /> },
+      { path: '/admin/buy/products', element: <ProductAdmin /> },
+      { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
+      { path: '/admin/pointdetail', element: <Pointdetail /> },
+      { path: '/admin/voucher', element: <VoucherAdmin /> },
+      { path: '/admin/affiliate/publishers', element: <Publishers /> },
+      { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
+      { path: '/admin/affiliate/history', element: <History /> },
+      { path: '/admin/staff', element: <Staff /> },
+      { path: '/admin/blog', element: <Blog /> },
+      { path: '/admin/ticket', element: <Ticket /> },
+      { path: '/admin/notification', element: <Notification /> },
+      { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
+      { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
+      { path: '/admin/resources', element: <Resources /> },
+      { path: '/admin/einvoice', element: <EInvoice /> },
 
-      { path: '/admin/products', element: <ProductAdmin /> },
-      { path: '/admin/customerList', element: <CustomerListAdmin /> },
+      { path: '/admin/accountant/feature', element: <Feature /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },
