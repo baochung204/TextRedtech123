@@ -1,4 +1,17 @@
+<<<<<<< HEAD
 import { IconAffiliate, IconTerminal2, IconUsersGroup } from '@tabler/icons-react';
+=======
+import {
+  IconAffiliate,
+  IconBellRinging,
+  IconBrandCodepen,
+  IconMessage2Bolt,
+  IconTerminal2,
+  IconUsers,
+  IconUsersGroup,
+} from '@tabler/icons-react';
+import { IconBrandEnvato } from '@tabler/icons-react';
+>>>>>>> 0d67a131fa0304ae6b321ac40f012f83f8c0162c
 
 import { IconPresentationAnalytics } from '@tabler/icons-react';
 
@@ -62,11 +75,37 @@ const MenuAdminitems: MenuitemsType[] = [
         title: 'Đơn hàng sản phẩm',
         icon: IconPoint,
 
-        href: '/admin/buy/packagepoint',
+        href: '/admin/buy/orderproducts',
       },
     ],
   },
+  {
+    id: uniqueId(),
+    title: 'R-Point',
+    icon: IconPackage,
+    href: '/admin/point/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Gói R-Point',
+        icon: IconPoint,
+        href: '/admin/point/packagepoint',
+      },
+      {
+        id: uniqueId(),
+        title: 'Đơn hàng R-Point',
+        icon: IconPoint,
 
+        href: '/admin/point/pointdetail',
+      },
+    ],
+  },
+  {
+    id: uniqueId(),
+    title: 'Mã khuyễn mãi',
+    icon: IconUsers,
+    href: '/admin/voucher',
+  },
   {
     id: uniqueId(),
     title: 'Affiliate',
@@ -75,7 +114,11 @@ const MenuAdminitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
+<<<<<<< HEAD
         title: 'Publishers',
+=======
+        title: 'Publisher',
+>>>>>>> 0d67a131fa0304ae6b321ac40f012f83f8c0162c
         icon: IconPoint,
         href: '/admin/publisher',
       },
@@ -97,31 +140,31 @@ const MenuAdminitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Nhân viên',
-    icon: IconShoppingCart,
+    icon: IconUsers,
     href: '/admin/staff',
   },
   {
     id: uniqueId(),
     title: 'Tài nguyên',
-    icon: IconShoppingCart,
+    icon: IconBrandEnvato,
     href: '/admin/resources',
   },
   {
     id: uniqueId(),
     title: 'Blog',
-    icon: IconShoppingCart,
+    icon: IconBrandCodepen,
     href: '/admin/blog',
   },
   {
     id: uniqueId(),
-    title: 'Tickket',
-    icon: IconShoppingCart,
+    title: 'Ticket',
+    icon: IconMessage2Bolt,
     href: '/admin/ticket',
   },
   {
     id: uniqueId(),
     title: 'Thông báo',
-    icon: IconShoppingCart,
+    icon: IconBellRinging,
     href: '/admin/notification',
   },
   {
@@ -146,7 +189,7 @@ const MenuAdminitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'E-Invoice',
         icon: IconPoint,
-        href: '/admin/accountant/feature',
+        href: '/admin/accountant/einvoice',
       },
     ],
   },

@@ -17,7 +17,7 @@ import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
 import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
 import ProductAdmin from 'src/views/admin/product/product';
 import Publishers from 'src/views/admin/publishers/publishers';
-import Staff from 'src/views/admin/staff/staff';
+import Staff from 'src/views/admin/staff';
 import Ticket from 'src/views/admin/ticket/ticket';
 import VoucherAdmin from 'src/views/admin/voucher/voucher';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
