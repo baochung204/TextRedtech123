@@ -1,9 +1,14 @@
 import React from 'react';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const historyaffiliate = () => {
+  const BCrumb = [
+    { to: '/', title: 'Trang Chủ' },
+    { to: '', title: 'Affiliate' },
+  ];
   return (
     <>
-      <h1>hello world</h1>
+      <BannerPage title="Lịch sử rút tiền" items={BCrumb} />
     </>
   );
 };

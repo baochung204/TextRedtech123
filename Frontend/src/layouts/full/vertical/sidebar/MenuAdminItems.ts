@@ -1,7 +1,6 @@
-import { IconAffiliate, IconArchive, IconTerminal2, IconUsersGroup } from '@tabler/icons-react';
-import { IconFilePencil } from '@tabler/icons-react';
+import { IconAffiliate, IconTerminal2, IconUsersGroup } from '@tabler/icons-react';
 
-import { IconMessage2Bolt, IconPresentationAnalytics } from '@tabler/icons-react';
+import { IconPresentationAnalytics } from '@tabler/icons-react';
 
 import {
   // IconAppWindow,
@@ -44,7 +43,7 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Khách hàng',
     icon: IconUsersGroup,
-    href: '/admin/order',
+    href: '',
   },
   {
     id: uniqueId(),
@@ -76,21 +75,21 @@ const MenuAdminitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Sản phẩm',
+        title: 'Publishers',
         icon: IconPoint,
-        href: '/admin/affiliate/publishers',
+        href: '/admin/publisher',
       },
       {
         id: uniqueId(),
         title: 'Đơn hàng Affiliate',
         icon: IconPoint,
-        href: '/admin/affiliate/affiliatepro',
+        href: '/admin/order',
       },
       {
         id: uniqueId(),
         title: 'Lịch sử rút tiền',
         icon: IconPoint,
-        href: '/admin/affiliate/history',
+        href: '/admin/history',
       },
     ],
   },
@@ -135,13 +134,13 @@ const MenuAdminitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Hợp đồng R-Point',
         icon: IconPoint,
-        href: '/admin/accountant/contracPoint',
+        href: '/admin/contactpoint',
       },
       {
         id: uniqueId(),
         title: 'Hợp đồng Affiliate',
         icon: IconPoint,
-        href: '/admin/accountant/contracAfflilate',
+        href: '/admin/contactaffiliate',
       },
       {
         id: uniqueId(),

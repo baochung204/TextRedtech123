@@ -13,7 +13,6 @@ import EInvoice from 'src/views/admin/EInvoice/EInvoice';
 import Feature from 'src/views/admin/feature/feature';
 import History from 'src/views/admin/history/history';
 import Notification from 'src/views/admin/notification/notification';
-import OrderAdmin from 'src/views/admin/order/order';
 import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
 import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
 import ProductAdmin from 'src/views/admin/product/product';
@@ -179,6 +178,13 @@ const AssistantList = Loadable(
 //   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 // );import Blog from './../views/apps/blog/Blog';
 
+//admin affiliate
+const OrderAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/orderaffiliate')));
+const Publisher = Loadable(lazy(() => import('../views/admin/management/publishermanager')));
+const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/historyaffiliate')));
+const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
+const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));
+
 const Router = [
   {
     path: '/',
@@ -319,7 +325,6 @@ const Router = [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
-      { path: '/admin/order', element: <OrderAdmin /> },
       { path: '/admin/buy/products', element: <ProductAdmin /> },
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
       { path: '/admin/pointdetail', element: <Pointdetail /> },
@@ -335,6 +340,12 @@ const Router = [
       { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
       { path: '/admin/resources', element: <Resources /> },
       { path: '/admin/einvoice', element: <EInvoice /> },
+      { path: '/admin/order', element: <OrderAffiliate /> },
+      { path: '/admin/contactaffiliate', element: <ContactAffiliate /> },
+      { path: '/admin/contactpoint', element: <ContactPoint /> },
+
+      { path: '/admin/publisher', element: <Publisher /> },
+      { path: '/admin/history', element: <HistoryAffiliate /> },
 
       { path: '/admin/accountant/feature', element: <Feature /> },
       { path: '*', element: <Navigate to="/auth/404" /> },

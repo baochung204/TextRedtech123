@@ -1,9 +1,14 @@
 import React from 'react';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const contactpoint = () => {
+  const BCrumb = [
+    { to: '/', title: 'Trang Chủ' },
+    { to: '', title: 'Quản lý hợp đồng' },
+  ];
   return (
     <>
-      <h1>hello world</h1>
+      <BannerPage title="Hợp đồng R-Point" items={BCrumb} />
     </>
   );
 };
