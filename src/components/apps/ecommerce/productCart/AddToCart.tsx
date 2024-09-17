@@ -236,7 +236,7 @@ const AddToCart = () => {
               </Link>
 
               <a onClick={handleClick}>
-                <Afletpoint2> Thanh toán</Afletpoint2>
+                <Afletpoint2 row={''}> Thanh toán</Afletpoint2>
               </a>
             </Stack>
             <Snackbar
