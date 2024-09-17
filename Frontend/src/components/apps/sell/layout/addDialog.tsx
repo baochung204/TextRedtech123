@@ -11,6 +11,7 @@ import {
 import { IconPlus } from '@tabler/icons-react';
 import PopupAdd from './PopupAdd';
 import { useState } from 'react';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 // import * as React from 'react';
 const AddDialog = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -51,16 +52,22 @@ const AddDialog = () => {
           },
         }}
       >
-        <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
-        <DialogContent>
-          <PopupAdd /> {/* Gọi component PopupAdd */}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClosePopup}>Hủy</Button>
-          <Button onClick={handleClosePopup} variant="contained" color="primary">
-            Lưu
-          </Button>
-        </DialogActions>
+        
+          <Box >
+            <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
+            <DialogContent>
+              <PopupAdd /> {/* Gọi component PopupAdd */}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClosePopup}>Hủy</Button>
+              <Button onClick={handleClosePopup} variant="contained" color="primary">
+                Lưu
+              </Button>
+            </DialogActions>
+          </Box>
+
+        
+
       </Dialog>
     </Box>
   );

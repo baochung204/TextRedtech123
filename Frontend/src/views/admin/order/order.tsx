@@ -1,5 +1,5 @@
 const OrderAdmin = () => {
-  return <h1>ĐƠn hàng</h1>;
+  return <h1> khách hàng</h1>;
 };
 
 export default OrderAdmin;
