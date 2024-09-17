@@ -114,17 +114,8 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                     justifyContent="space-between"
                     flexDirection="column"
                   >
-                    <Box display={'flex'} justifyContent={'space-between'}>
+                    <Box display={'flex'} justifyContent={'end'}>
                       {' '}
-                      <Stack direction="row">
-                        <Chip
-                          sx={{ marginLeft: 'auto', backgroundColor: 'black' }}
-                          label={view}
-                          size="small"
-                          color="primary"
-                          icon={<IconEye />} // Adding the icon here
-                        />
-                      </Stack>
                       <Stack
                         direction="row"
                         bgcolor={'rgba(255, 255, 255 )'}
@@ -174,24 +165,43 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                           {title}
                         </Typography>
                       </Box>
-                      <Stack direction="row" gap={3} alignItems="center">
-                        <Tooltip title={author?.name} placement="top">
-                          <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
-                        </Tooltip>
-                        <Box>
-                          <Stack direction="column" gap={1} alignItems="flex-start">
-                            <Stack direction="row" gap={1} alignItems="center">
-                              Nguyễn Đăng Hòa
+                      <Stack direction="row" gap={3} alignItems="center" justifyContent={'end'}>
+                        <Box style={{ width: '70%' }} display={'flex'} gap={'20px'}>
+                          <Tooltip title={author?.name} placement="top">
+                            <Avatar aria-label="recipe" src={author?.avatar}></Avatar>
+                          </Tooltip>
+                          <Box>
+                            <Stack>
+                              <Stack direction="row" gap={1} alignItems="center">
+                                Nguyễn Đăng Hòa
+                              </Stack>
+                              <Stack direction="row" alignItems="center" marginTop={'2px'}>
+                                <Chip label={category} size="small" color="primary" />
+                              </Stack>
                             </Stack>
-                            <Stack direction="row" alignItems="center">
-                              <Chip label={category} size="small" color="primary" />
-                            </Stack>
-                          </Stack>
+                          </Box>
                         </Box>
 
-                        <Stack direction="row" ml="auto" alignItems="center">
+                        <Stack style={{ width: '40%' }}>
                           {/* <small>{format(new Date(createdAt), 'E, MMM d')}</small> */}
-                          09-09-2024
+                          <Stack
+                            direction="row"
+                            gap={1}
+                            alignItems="center"
+                            justifyContent={'end'}
+                            width={'100%'}
+                          >
+                            09-09-2024
+                          </Stack>{' '}
+                          <Stack direction="row">
+                            <Chip
+                              sx={{ marginLeft: 'auto', backgroundColor: 'black' }}
+                              label={view}
+                              size="small"
+                              color="primary"
+                              icon={<IconEye />} // Adding the icon here
+                            />
+                          </Stack>
                         </Stack>
                       </Stack>
                     </Box>

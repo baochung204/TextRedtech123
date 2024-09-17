@@ -163,7 +163,6 @@ const PersonAffiliate = () => {
                 onChange={formik.handleChange}
                 color="primary"
                 inputProps={{ 'aria-label': 'checkbox with default color' }}
-
               />
               <span>Đồng ý với các điều khoản của chúng tôi</span>
 
@@ -247,117 +246,158 @@ const PersonAffiliate = () => {
         );
       case 2:
         return (
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              {/* Image Instructions */}
-              <CustomFormLabel sx={{ marginTop: '25px' }} htmlFor="image1">
-                Hướng dẫn
-              </CustomFormLabel>
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>Chụp đủ mặt trước và mặt sau</Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box
+              sx={{
+                border: '2px solid #000', // Adds a 2px solid black border
+                borderRadius: '8px', // Optional: Adds rounded corners
+                padding: '20px', // Optional: Adds padding inside the box
+                width: '500px',
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Optional: Adds a shadow for a polished look
+              }}
+            >
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <CustomFormLabel sx={{ marginTop: '25px' }} htmlFor="image1">
+                  <Typography sx={{ fontSize: '30px', fontWeight: 'bold' }}>Hướng dẫn</Typography>
+                </CustomFormLabel>
               </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>Chụp rõ nét không bị mất góc</Typography>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
-                <Typography>
-                  Chụp hình ảnh giấy tờ còn hạn, hình gốc, không scan hay photocopy
-                </Typography>
-              </Box>
-
-              {/* Display instructions here */}
-              <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
-              <Box>
-                <img
-                  style={{
-                    width: '500px',
-                    height: 'auto',
-                    objectFit: 'contain',
+              <Grid container spacing={2} justifyContent="center" alignItems="center">
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column', // Stack items vertically
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    maxWidth: '500px', // Restrict the width
+                    margin: '0 auto', // Centering horizontally
+                    padding: '20px',
                   }}
-                  src={Authenticate}
-                  alt="Authenticate"
-                />
-              </Box>
-              <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
-            </Grid>
+                >
+                  {/* Image Instructions Section */}
+                  <Box sx={{ width: '100%', padding: '10px' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                      <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                      <Typography>Chụp đủ mặt trước và mặt sau</Typography>
+                    </Box>
 
-            <Grid item xs={12} md={6}>
-              <Box>
-                {/* Front Image */}
-                {selectedImage1 && (
-                  <Box mb={2} position="relative">
-                    <Typography variant="subtitle1">Mặt trước căn cước công dân:</Typography>
-                    <img
-                      src={selectedImage1}
-                      alt="Selected 1"
-                      style={{ width: '100%', maxWidth: '100px', objectFit: 'contain' }}
-                    />
-                    <IconButton
-                      size="small"
-                      onClick={handleRemoveImage1}
-                      sx={{ position: 'absolute', top: 0, right: 0 }}
-                    >
-                      <CloseIcon />
-                    </IconButton>
-                  </Box>
-                )}
-                <CustomFormLabel htmlFor="frontImage">Mặt trước căn cước công dân</CustomFormLabel>
-                <Button variant="contained" component="label" color="primary">
-                  Tải tệp lên
-                  <Input
-                    id="frontImage"
-                    type="file"
-                    inputProps={{ accept: 'image/*' }}
-                    onChange={handleImage1Change}
-                    style={{ display: 'none' }}
-                  />
-                </Button>
-                {isSubmitting && formik.errors.frontImage && (
-                  <Typography color="error">{formik.errors.frontImage}</Typography>
-                )}
-              </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                      <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                      <Typography>Chụp rõ nét không bị mất góc</Typography>
+                    </Box>
 
-              <Box>
-                {/* Back Image */}
-                {selectedImage2 && (
-                  <Box mb={2} position="relative">
-                    <Typography variant="subtitle1">Mặt sau căn cước công dân:</Typography>
-                    <img
-                      src={selectedImage2}
-                      alt="Selected 2"
-                      style={{ width: '100%', maxWidth: '100px', objectFit: 'contain' }}
-                    />
-                    <IconButton
-                      size="small"
-                      onClick={handleRemoveImage2}
-                      sx={{ position: 'absolute', top: 0, right: 0 }}
-                    >
-                      <CloseIcon />
-                    </IconButton>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                      <CheckCircleIcon sx={{ color: 'green', marginRight: '8px' }} />
+                      <Typography>
+                        Chụp hình ảnh giấy tờ còn hạn, hình gốc, không scan hay photocopy
+                      </Typography>
+                    </Box>
+
+                    <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
+                    <Box>
+                      <img
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'contain',
+                        }}
+                        src={Authenticate}
+                        alt="Authenticate"
+                      />
+                    </Box>
+                    <Divider sx={{ marginTop: '10px', marginBottom: '10px' }} />
                   </Box>
-                )}
-                <CustomFormLabel htmlFor="backImage">Mặt sau căn cước công dân</CustomFormLabel>
-                <Button variant="contained" component="label" color="primary">
-                  Tải tệp lên
-                  <Input
-                    id="backImage"
-                    type="file"
-                    inputProps={{ accept: 'image/*' }}
-                    onChange={handleImage2Change}
-                    style={{ display: 'none' }}
-                  />
-                </Button>
-                {isSubmitting && formik.errors.backImage && (
-                  <Typography color="error">{formik.errors.backImage}</Typography>
-                )}
-              </Box>
-            </Grid>
-          </Grid>
+
+                  {/* Upload Images Section */}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center', // Align items vertically
+                      justifyContent: 'space-between', // Distribute space between form and image
+                      width: '100%',
+                      padding: '10px',
+                      flexWrap: 'wrap', // Ensure responsiveness for smaller screens
+                    }}
+                  >
+                    <Box sx={{ flex: '1' }}>
+                      {/* Front Image Upload Section */}
+                      <CustomFormLabel htmlFor="frontImage">
+                        Mặt trước căn cước công dân
+                      </CustomFormLabel>
+                      <Button variant="contained" component="label" color="primary">
+                        Tải tệp lên
+                        <Input
+                          id="frontImage"
+                          type="file"
+                          inputProps={{ accept: 'image/*' }}
+                          onChange={handleImage1Change}
+                          style={{ display: 'none' }}
+                        />
+                      </Button>
+                      {isSubmitting && formik.errors.frontImage && (
+                        <Typography color="error">{formik.errors.frontImage}</Typography>
+                      )}
+
+                      <CustomFormLabel htmlFor="backImage" sx={{ marginTop: '20px' }}>
+                        Mặt sau căn cước công dân
+                      </CustomFormLabel>
+                      <Button variant="contained" component="label" color="primary">
+                        Tải tệp lên
+                        <Input
+                          id="backImage"
+                          type="file"
+                          inputProps={{ accept: 'image/*' }}
+                          onChange={handleImage2Change}
+                          style={{ display: 'none' }}
+                        />
+                      </Button>
+                      {isSubmitting && formik.errors.backImage && (
+                        <Typography color="error">{formik.errors.backImage}</Typography>
+                      )}
+                    </Box>
+
+                    <Box sx={{ flex: '1', textAlign: 'right' }}>
+                      {/* Display uploaded images here */}
+                      {selectedImage1 && (
+                        <Box mb={2} position="relative">
+                          <Typography variant="subtitle1">Mặt trước:</Typography>
+                          <img
+                            src={selectedImage1}
+                            alt="Selected 1"
+                            style={{ width: '150px', objectFit: 'contain' }}
+                          />
+                          <IconButton
+                            size="small"
+                            onClick={handleRemoveImage1}
+                            sx={{ position: 'absolute', top: 0, right: 0 }}
+                          >
+                            <CloseIcon />
+                          </IconButton>
+                        </Box>
+                      )}
+
+                      {selectedImage2 && (
+                        <Box mb={2} position="relative">
+                          <Typography variant="subtitle1">Mặt sau:</Typography>
+                          <img
+                            src={selectedImage2}
+                            alt="Selected 2"
+                            style={{ width: '150px', objectFit: 'contain' }}
+                          />
+                          <IconButton
+                            size="small"
+                            onClick={handleRemoveImage2}
+                            sx={{ position: 'absolute', top: 0, right: 0 }}
+                          >
+                            <CloseIcon />
+                          </IconButton>
+                        </Box>
+                      )}
+                    </Box>
+                  </Box>
+                </Box>
+              </Grid>
+            </Box>
+          </Box>
         );
       default:
         return <div>Unknown step</div>;
@@ -425,7 +465,6 @@ const PersonAffiliate = () => {
                 setIsSubmitting(true);
                 formik.handleSubmit();
                 console.log(formik.errors);
-
               }}
               variant="contained"
               color="secondary"

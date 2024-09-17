@@ -5,15 +5,16 @@ import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
+const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
+
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
 /* ****Pages***** */
 const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
 const List = Loadable(lazy(() => import('../views/dashboard/List')));
 //  admin
-const Admin = Loadable(lazy(() => import('../views/apps/admin/dashboard/dashboard')));
-const Adminproducts = Loadable(lazy(() => import('../views/apps/admin/products/products')));
-const Adminuser = Loadable(lazy(() => import('../views/apps/admin/user/user')));
+const DashboardAdmin = Loadable(lazy(() => import('../views/admin/dashboard/dashboard')));
+
 /* ****Apps***** */
 const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
 const BlogDetail = Loadable(lazy(() => import('../views/apps/blog/BlogPost')));
@@ -96,6 +97,11 @@ import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import Update from 'src/views/apps/update/Update';
 import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
 import AllNotifications from 'src/layouts/full/vertical/header/AllNotification';
+import AssistantAdmin from '../views/admin/assistant/assistant';
+import OrderAdmin from 'src/views/admin/order/order';
+import ProductAdmin from 'src/views/admin/product/product';
+import CustomerListAdmin from 'src/views/admin/customerList/customerList';
+
 // pages
 const RollbaseCASL = Loadable(lazy(() => import('../views/pages/rollbaseCASL/RollbaseCASL')));
 const Treeview = Loadable(lazy(() => import('../views/pages/treeview/Treeview')));
@@ -165,7 +171,6 @@ const Router = [
     element: <FullLayout />,
     children: [
       { path: '/', element: <Navigate to="/dashboards/modern" /> },
-      { path: '/admin', element: <Navigate to="/admin/dashborard" /> },
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
@@ -173,7 +178,6 @@ const Router = [
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
-      // { path: '/apps/assistant/:id', element: <AssistantById /> },
       { path: '/apps/integration', element: <Integration /> },
       { path: '/apps/sell/product', element: <Product /> },
       { path: '/apps/sell/order', element: <CustomerListOrder /> },
@@ -183,11 +187,9 @@ const Router = [
       { path: '/apps/customerlist', element: <CustomerList /> },
       { path: '/apps/contract-client', element: <Client /> },
       { path: '/apps/contract-affiliate', element: <Aff /> },
-
-      // { path: '/admin', element: <Blog /> },
-      { path: '/admin/dashborard', element: <Admin /> },
-      { path: '/admin/products', element: <Adminproducts /> },
-      { path: '/admin/user', element: <Adminuser /> },
+      // { path: '/admin/dashborard', element: <Admin /> },
+      // { path: '/admin/products', element: <Adminproducts /> },
+      // { path: '/admin/user', element: <Adminuser /> },
       { path: '/apps/blog/posts', element: <Blog /> },
       { path: '/apps/blog/detail/:id', element: <BlogDetail /> },
       { path: '/apps/chats', element: <Chats /> },
@@ -244,7 +246,6 @@ const Router = [
       { path: '/forms/form-elements/slider', element: <MuiSlider /> },
       { path: '/forms/form-elements/date-time', element: <MuiDateTime /> },
       { path: '/forms/form-elements/switch', element: <MuiSwitch /> },
-      { path: '/forms/form-elements/switch', element: <MuiSwitch /> },
       { path: '/forms/form-layouts', element: <FormLayouts /> },
       { path: '/forms/form-custom', element: <FormCustom /> },
       { path: '/forms/form-wizard', element: <FormWizard /> },
@@ -294,8 +295,21 @@ const Router = [
       { path: '/auth/maintenance', element: <Maintenance /> },
       { path: '/auth/updating', element: <Updating /> },
       { path: '/landingpage', element: <Landingpage /> },
-      // { path: '/bill/:id', element: <Bill /> },
+      { path: '*', element: <Navigate to="/auth/404" /> },
+    ],
+  },
+  {
+    path: '/admin',
+    element: <Layouadmin />,
+    children: [
+      { path: '/admin', element: <DashboardAdmin /> },
+      { path: '/admin/dashboard', element: <AssistantAdmin /> },
 
+      { path: '/admin/assistant', element: <AssistantAdmin /> },
+      { path: '/admin/order', element: <OrderAdmin /> },
+
+      { path: '/admin/products', element: <ProductAdmin /> },
+      { path: '/admin/customerList', element: <CustomerListAdmin /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },
