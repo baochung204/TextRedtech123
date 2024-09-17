@@ -1,36 +1,14 @@
 import React, { useState } from "react";
-import { Badge, Box, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, SelectChangeEvent, Tab, TextField, Typography, styled } from '@mui/material';
+import { Badge, Box, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, SelectChangeEvent, Tab, TextField } from '@mui/material';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from "@tabler/icons-react";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PersonnelTab from './component/personnelTab'
+import TopCard from "src/components/widgets/cards/TopCard";
 
-
-
-const BoxStyled = styled(Box)(() => ({
-    padding: '30px',
-    transition: '0.1s ease-in',
-    cursor: 'pointer',
-    color: 'inherit',
-    '&:hover': {
-        transform: 'scale(1.03)',
-    },
-
-}));
-
-
-interface StyleProps {
-    bgColor: string;
-    color: string;
-    title: string;
-    total: string;
-    icons: JSX.Element;
-}
-
-
-const DataBox: StyleProps[] = [
+const dataSource = [
     {
         bgColor: 'primary.light',
         color: 'primary.main',
@@ -93,6 +71,7 @@ const FilmsData: FilmsData[] = [
 
 const Personnels = () => {
     const [value, setValue] = React.useState('1');
+    
     const [selectedItems, setSelectedItems] = useState<string>('');
 
     const [open, setOpen] = useState<boolean>(false)
@@ -100,6 +79,7 @@ const Personnels = () => {
     const handleChange1 = (event: SelectChangeEvent<string>) => {
         setSelectedItems(event.target.value);
     };
+
     const handleItemClick1 = (title: string) => {
         if (selectedItems === title) {
             setSelectedItems('');
@@ -107,42 +87,15 @@ const Personnels = () => {
             setSelectedItems(title);
         }
     };
+
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
+
     return (
         <Grid container rowSpacing={3} >
             <Grid item xs={12}>
-                <Grid container spacing={3}>
-                    {DataBox.map((items, index) => {
-                        return (
-                            <Grid item lg={3} sm={6} xs={12} key={index}>
-                                <BoxStyled
-                                    sx={{ backgroundColor: items.bgColor, color: items.color }}
-                                >
-                                    <Grid container >
-                                        <Grid
-                                            item
-                                            xs={3}
-                                            sx={{
-                                                display: 'flex',
-                                                alignItems: 'center'
-                                            }}
-                                        >
-                                            {items.icons}
-
-                                        </Grid>
-                                        <Grid item xs={9} >
-                                            <Typography variant="h4">{items.title}</Typography>
-                                            <Typography variant="h5">{items.total}</Typography>
-                                        </Grid>
-                                    </Grid>
-
-                                </BoxStyled>
-                            </Grid>
-                        )
-                    })}
-                </Grid>
+                <TopCard dataSource={dataSource} />
             </Grid>
             <Grid item xs={12} >
                 <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -204,7 +157,8 @@ const Personnels = () => {
                                 <IconButton
                                     color="primary"
                                     aria-label="Add to cart"
-                                    onClick={() => { setOpen(true); console.log(open);
+                                    onClick={() => {
+                                        setOpen(true); console.log(open);
                                     }}
                                     sx={{
                                         pr: 1.5
