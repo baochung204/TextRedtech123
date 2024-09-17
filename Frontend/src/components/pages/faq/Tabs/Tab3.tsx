@@ -12,6 +12,8 @@ import {
   Box,
   Typography,
   TablePagination,
+  Grid,
+  Button,
 } from '@mui/material';
 import DialogFile from '../dialog/DialogFile';
 
@@ -71,6 +73,11 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
                     Định dạng
                   </Typography>
                 </TableCell>
+                <TableCell>
+                  <Typography variant="h6" >
+                    Hoạt động
+                  </Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -100,6 +107,31 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
                     <Typography variant="subtitle2">
                       {items.formats}
                     </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Grid container spacing={2}>
+                      <Grid item >
+                        <Button
+                          variant="contained"
+
+                        // onClick={() => setCheckTest(!checkTest)}
+                        >
+                          Xem
+                        </Button>
+                      </Grid>
+                      {items.isCheck &&
+                        <Grid item >
+                          <Button
+                            variant="contained"
+                            color="error"
+                          // onClick={() => { setKey(`${item.idCode}`); setOpen(true) }}
+                          >
+                            Xoá
+                          </Button>
+                        </Grid>
+                      }
+
+                    </Grid>
                   </TableCell>
                 </TableRow>
               ))}
