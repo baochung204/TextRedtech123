@@ -80,7 +80,7 @@ const CustomerList = () => {
       >
         {/* Nút tạo đơn hàng và thanh tìm kiếm */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Tooltip title="Tạo đơn hàng">
+          {/* <Tooltip title="Tạo đơn hàng">
             <Fab
               color="primary"
               aria-label="add"
@@ -90,7 +90,7 @@ const CustomerList = () => {
             >
               <FaPlus />
             </Fab>
-          </Tooltip>
+          </Tooltip> */}
 
           {/* Thanh tìm kiếm với icon */}
           <TextField
@@ -116,7 +116,7 @@ const CustomerList = () => {
             size="small"
           />
 
-          <CustomSelect
+          {/* <CustomSelect
             labelId="column-filter"
             id="column-filter"
             size="small"
@@ -134,7 +134,7 @@ const CustomerList = () => {
             sx={{ marginRight: '20px' }}
           >
             <MenuItem value={1}>Bộ lọc</MenuItem>
-          </CustomSelect>
+          </CustomSelect> */}
         </Box>
 
         {/* Time Filter and Refresh Icon */}

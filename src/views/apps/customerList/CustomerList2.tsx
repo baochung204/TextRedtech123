@@ -6,14 +6,12 @@ import {
   // DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
   InputAdornment,
   Tab,
   TextField,
-  Typography,
+  Typography
 } from '@mui/material';
 import Fab from '@mui/material/Fab';
-import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -22,15 +20,13 @@ import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import CustomSelect from '../../../components/forms/theme-elements/CustomSelect';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 
 import { Slide } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [
@@ -68,7 +64,6 @@ const CustomerList2 = () => {
 
   return (
     <PageContainer>
-      {/* Breadcrumb */}
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
@@ -79,8 +74,6 @@ const CustomerList2 = () => {
               sx={{ p: 0, border: 'none' }}
             >
               <Tab label="Danh sách khách hàng" value="1" sx={{ p: 0 }} />
-
-              {/* <Tab label="Tags" value="2" sx={{ p: 0 }} /> */}
             </TabList>
 
             <TabPanel value="1" sx={{ p: 0 }}>
@@ -129,26 +122,6 @@ const CustomerList2 = () => {
                     placeholder="Tìm kiếm"
                     size="small"
                   />
-
-                  {/* <CustomSelect
-                    labelId="column-filter"
-                    id="column-filter"
-                    size="small"
-                    value={1}
-                    sx={{ marginRight: '30px' }}
-                  >
-                    <MenuItem value={1}>Sửa đổi cột</MenuItem>
-                  </CustomSelect>
-
-                  <CustomSelect
-                    labelId="column-sort"
-                    id="column-sort"
-                    size="small"
-                    value={1}
-                    sx={{ marginRight: '20px' }}
-                  >
-                    <MenuItem value={1}>Bộ lọc</MenuItem>
-                  </CustomSelect> */}
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
@@ -179,10 +152,6 @@ const CustomerList2 = () => {
               </Box>
               <CustomerTable2 />
             </TabPanel>
-
-            {/* <TabPanel value="2" sx={{ p: 0 }}>
-              <Tags />
-            </TabPanel> */}
           </Box>
         </TabContext>
       </ChildCard>
@@ -199,12 +168,6 @@ const CustomerList2 = () => {
         <DialogContent>
           <PopupAddList2 />
         </DialogContent>
-        {/* <DialogActions>
-          <Button onClick={handleClosePopup}>Hủy</Button>
-          <Button onClick={handleClosePopup} variant="contained" color="primary">
-            Xác nhận
-          </Button>
-        </DialogActions> */}
       </Dialog>
     </PageContainer>
   );

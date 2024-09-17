@@ -45,7 +45,7 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 
 import { getProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { ProductType } from 'src/types/apps/eCommerce';
-import AddDialog from './addDialog';
+import AddDialog from './layout/addDialog';
 interface TablePaginationActionsProps {
   count: number;
   page: number;

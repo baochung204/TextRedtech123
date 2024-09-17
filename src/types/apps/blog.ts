@@ -21,6 +21,7 @@ export interface BlogPostType {
   createdAt?: Date;
   view?: number;
   share?: number;
+  crowns?: number;
   category?: string;
   featured?: boolean;
   author?: Profile;

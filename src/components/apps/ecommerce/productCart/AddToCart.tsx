@@ -22,6 +22,8 @@ import { useDispatch, useSelector } from 'src/store/Store';
 import { decrement, deleteCart, increment } from '../../../../store/apps/eCommerce/ECommerceSlice';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+
 import { Alert } from '@mui/material';
 import { sum } from 'lodash';
 import { useState } from 'react';
@@ -29,6 +31,8 @@ import { useState } from 'react';
 import Slide from '@mui/material/Slide';
 import Snackbar from '@mui/material/Snackbar';
 import FirstStep from '../productCheckout/FirstStep';
+import Afletpoint2 from 'src/components/material-ui/dialog/Alertpoint2';
+// import Afletpoint from '../productCheckout/FinalStep';
 
 function SlideTransition(props: any) {
   return <Slide {...props} direction="left" />;
@@ -45,9 +49,9 @@ const AddToCart = () => {
 
   const handleClick = () => {
     setOpen(true);
-    setTimeout(() => {
-      navigate('/apps/ecommerce/shop');
-    }, 2000);
+    // setTimeout(() => {
+    //   navigate('/apps/ecommerce/shop');
+    // }, 2000);
   };
 
   const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
@@ -78,6 +82,9 @@ const AddToCart = () => {
               <Table>
                 <TableHead>
                   <TableRow>
+                    <TableCell align="center">
+                      <Typography variant="h6"></Typography>
+                    </TableCell>{' '}
                     <TableCell align="center">
                       <Typography variant="h6">Sản phẩm</Typography>
                     </TableCell>
@@ -113,7 +120,7 @@ const AddToCart = () => {
                               width: '90px',
                             }}
                           />
-                          <Box>
+                          {/* <Box>
                             <Typography variant="h6">{product.title}</Typography>{' '}
                             <Typography color="textSecondary" variant="body1">
                               {product.category}
@@ -125,10 +132,24 @@ const AddToCart = () => {
                             >
                               <IconTrash size="1rem" />
                             </IconButton>
-                          </Box>
+                          </Box> */}
                         </Stack>
                       </TableCell>
-
+                      <TableCell align="center">
+                        <Box>
+                          <Typography variant="h6">{product.title}</Typography>{' '}
+                          <Typography color="textSecondary" variant="body1">
+                            {product.category}
+                          </Typography>
+                          <IconButton
+                            size="small"
+                            color="error"
+                            onClick={() => dispatch(deleteCart(product.id))}
+                          >
+                            <IconTrash size="1rem" />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
                       <TableCell align="center">
                         <ButtonGroup size="small" color="success" aria-label="small button group">
                           <Button onClick={() => Decrease(product.id)} disabled={product.qty < 2}>
@@ -142,29 +163,63 @@ const AddToCart = () => {
                       </TableCell>
 
                       <TableCell align="center">
-                        <Typography variant="h6">
+                        <Typography
+                          variant="h6"
+                          display={'flex'}
+                          alignItems={'center'}
+                          justifyContent={'center'}
+                        >
                           {' '}
-                          {(product.price * product.qty).toLocaleString('vn-VN')} point
+                          {(product.price * product.qty).toLocaleString('vn-VN')}{' '}
+                          <img
+                            src={logoPoint}
+                            alt={logoPoint}
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
                         </Typography>
                       </TableCell>
 
                       <TableCell align="center">
-                        <Typography variant="h6">
+                        <Typography
+                          variant="h6"
+                          display={'flex'}
+                          alignItems={'center'}
+                          justifyContent={'center'}
+                        >
                           {(
                             product.salesPrice * product.qty -
                             product.price * product.qty
                           ).toLocaleString('vn-VN')}{' '}
-                          point
+                          <img
+                            src={logoPoint}
+                            alt={logoPoint}
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
                         </Typography>
                       </TableCell>
 
                       <TableCell align="center">
-                        <Typography variant="h6">
+                        <Typography
+                          variant="h6"
+                          display={'flex'}
+                          alignItems={'center'}
+                          justifyContent={'center'}
+                        >
                           {(
                             product.price * product.qty -
                             (product.salesPrice * product.qty - product.price * product.qty)
                           ).toLocaleString('vn-VN')}
-                          point
+                          <img
+                            src={logoPoint}
+                            alt={logoPoint}
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -180,9 +235,9 @@ const AddToCart = () => {
                 </Button>
               </Link>
 
-              <Button variant="contained" onClick={handleClick}>
-                Thanh toán
-              </Button>
+              <a onClick={handleClick}>
+                <Afletpoint2 row={''}> Thanh toán</Afletpoint2>
+              </a>
             </Stack>
             <Snackbar
               open={open}

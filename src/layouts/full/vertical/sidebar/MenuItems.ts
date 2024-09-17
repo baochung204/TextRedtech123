@@ -83,16 +83,16 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Khách hàng',
+    title: 'Danh sách khách hàng',
     icon: IconUsersGroup,
-    href: '/apps/collaborate/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Danh sách khách hàng',
-        icon: IconPoint,
-        href: '/apps/customerList2',
-      },
+    href: '/apps/customerList2',
+    // children: [
+    //   {
+    //     id: uniqueId(),
+    //     title: 'Danh sách khách hàng',
+    //     icon: IconPoint,
+    //     href: '/apps/customerList2',
+    //   },
 
       // {
       //   id: uniqueId(),
@@ -100,7 +100,7 @@ const Menuitems: MenuitemsType[] = [
       //   icon: IconPoint,
       //   href: '/apps/contract-client',
       // },
-    ],
+    // ],
   },
   {
     id: uniqueId(),
@@ -137,13 +137,13 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Tích hợp',
-    icon: IconMessage2Bolt,
+    icon: IconTerminal2,
     href: '/apps/integration',
   },
   {
     id: uniqueId(),
     title: 'Ticket hỗ trợ',
-    icon: IconTerminal2,
+    icon: IconMessage2Bolt,
     href: '/apps/chats',
   },
 

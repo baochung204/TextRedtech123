@@ -51,7 +51,7 @@ const ProfileTab = () => {
     {
       label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
-      to: '/assistant/list',
+      to: '/profile/assistant/list',
     },
     {
       label: 'Ticket',

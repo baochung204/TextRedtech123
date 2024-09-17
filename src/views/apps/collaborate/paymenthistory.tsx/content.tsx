@@ -27,14 +27,15 @@ import { Link } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'src/store/Store';
 import products2 from 'src/assets/images/products/s24.jpg';
 import products from 'src/assets/images/products/s25.jpg';
-import Countdown from 'src/components/countdown/countdown';
+// import Countdown from 'src/components/countdown/countdown';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
 
 const Content = () => {
   const packages = [
     {
       id: 7,
-      img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
+      img: products2,
       title: 'Chatbot thương mại điện tử',
       price: 520,
       discount: 499,
@@ -58,6 +59,10 @@ const Content = () => {
           <Table>
             <TableHead>
               <TableRow>
+                {' '}
+                <TableCell align="center">
+                  <Typography variant="h6"></Typography>
+                </TableCell>
                 <TableCell align="center">
                   <Typography variant="h6">Sản phẩm</Typography>
                 </TableCell>
@@ -92,15 +97,16 @@ const Content = () => {
                         width: '90px',
                       }}
                     />
-                    <Box>
-                      <Typography variant="h6">GTP-3</Typography>{' '}
-                      <Typography color="textSecondary" variant="body1">
-                        toys
-                      </Typography>
-                    </Box>
                   </Stack>
                 </TableCell>
-
+                <TableCell align="center">
+                  <Box>
+                    <Typography variant="h6">GTP-3</Typography>{' '}
+                    <Typography color="textSecondary" variant="body1">
+                      toys
+                    </Typography>
+                  </Box>
+                </TableCell>
                 <TableCell align="center">
                   <ButtonGroup size="small" color="success" aria-label="small button group">
                     {/* <Button>
@@ -114,17 +120,42 @@ const Content = () => {
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6">570 point</Typography>
+                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                    570
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50 }}
+                    />
+                  </Typography>
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6">
-                    120 point
+                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                    120{' '}
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50 }}
+                    />
                     {/* ${product.salesPrice * product.qty - product.price * product.qty} */}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
-                  <Typography variant="h6">450 point</Typography>
+                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                    450{' '}
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50 }}
+                    />
+                  </Typography>
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -142,15 +173,16 @@ const Content = () => {
                         width: '90px',
                       }}
                     />
-                    <Box>
-                      <Typography variant="h6">GTP-5</Typography>{' '}
-                      <Typography color="textSecondary" variant="body1">
-                        boys
-                      </Typography>
-                    </Box>
                   </Stack>
                 </TableCell>
-
+                <TableCell align="center">
+                  <Box>
+                    <Typography variant="h6">GTP-4</Typography>{' '}
+                    <Typography color="textSecondary" variant="body1">
+                      toys
+                    </Typography>
+                  </Box>
+                </TableCell>
                 <TableCell align="center">
                   <ButtonGroup size="small" color="success" aria-label="small button group">
                     {/* <Button>
@@ -164,17 +196,42 @@ const Content = () => {
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6">222 point</Typography>
+                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                    1022{' '}
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50 }}
+                    />
+                  </Typography>
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6">
-                    555 point
+                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                    255{' '}
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50 }}
+                    />
                     {/* ${product.salesPrice * product.qty - product.price * product.qty} */}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
-                  <Typography variant="h6">444 point</Typography>
+                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                    767{' '}
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50 }}
+                    />
+                  </Typography>
                 </TableCell>
               </TableRow>
             </TableBody>
@@ -267,20 +324,50 @@ const Content = () => {
                                   {pkg.title}
                                 </Typography>
 
-                                <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                                <div
+                                  style={{
+                                    display: 'flex',
+                                    gap: '10px',
+                                    marginTop: '10px',
+                                  }}
+                                >
                                   {' '}
                                   <Typography
                                     sx={{
-                                      fontWeight: 'bold',
                                       mb: 1,
-
+                                      color: '#888',
                                       fontSize: '14px',
+                                      display: 'flex',
+                                      justifyContent: 'center',
+                                      alignItems: 'center',
                                     }}
                                   >
-                                    {pkg.discount.toLocaleString()} point
+                                    <del>{pkg.discount.toLocaleString()} </del>
+                                    <img
+                                      src={logoPoint}
+                                      alt={logoPoint}
+                                      width={20}
+                                      height={20}
+                                      style={{ borderRadius: 50 }}
+                                    />
                                   </Typography>
-                                  <Typography sx={{ color: '#888', mb: 1 }}>
-                                    <del> {pkg.price.toLocaleString()} point</del>
+                                  <Typography
+                                    sx={{
+                                      fontWeight: 'bold',
+
+                                      display: 'flex',
+                                      justifyContent: 'center',
+                                    }}
+                                  >
+                                    {' '}
+                                    {pkg.price.toLocaleString()}
+                                    <img
+                                      src={logoPoint}
+                                      alt={logoPoint}
+                                      width={20}
+                                      height={20}
+                                      style={{ borderRadius: 50 }}
+                                    />
                                   </Typography>{' '}
                                 </div>
                                 <Box>
@@ -299,7 +386,6 @@ const Content = () => {
                                 </Box>
                               </div>
                             </div>
-                            <Box></Box>
                           </CardContent>
                           {/* <Box
                               style={{
@@ -322,8 +408,18 @@ const Content = () => {
                 </AccordionDetails>
                 <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
                   <Typography variant="h5">Tổng giá gói : </Typography>
-                  <Typography variant="h5" sx={{ paddingX: '3px' }}>
-                    1.023.900₫
+                  <Typography
+                    variant="h6"
+                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                  >
+                    499{' '}
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50 }}
+                    />
                   </Typography>
                 </Box>{' '}
               </Accordion>
@@ -331,15 +427,39 @@ const Content = () => {
                 <Typography variant="h6" fontWeight={400}>
                   Giá trị đơn hàng
                 </Typography>
-                <Typography variant="h6">900 point</Typography>
+                <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                  900{' '}
+                  <img
+                    src={logoPoint}
+                    alt={logoPoint}
+                    width={20}
+                    height={20}
+                    style={{ borderRadius: 50 }}
+                  />
+                </Typography>
               </Stack>
               {/* Giảm giá */}
               <Stack direction="row" justifyContent="space-between" mb={3}>
                 <Typography variant="h6" fontWeight={400}>
                   Khuyến mãi
                 </Typography>
-                <Typography variant="h6" color="error">
-                  -500 point
+                <Typography
+                  variant="h6"
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    color: 'error.main',
+                    alignItems: 'center',
+                  }}
+                >
+                  -500{' '}
+                  <img
+                    src={logoPoint}
+                    alt={logoPoint}
+                    width={20}
+                    height={20}
+                    style={{ borderRadius: 50 }}
+                  />
                 </Typography>
               </Stack>
               {/* Vận chuyển */}
@@ -347,8 +467,15 @@ const Content = () => {
               {/* Tổng cộng */}
               <Stack direction="row" justifyContent="space-between" mb={1}>
                 <Typography variant="h6">Tổng thanh toán</Typography>
-                <Typography variant="h5" color="success">
-                  400 point
+                <Typography variant="h5" color="success" display={'flex'} justifyContent={'center'}>
+                  400{' '}
+                  <img
+                    src={logoPoint}
+                    alt={logoPoint}
+                    width={20}
+                    height={20}
+                    style={{ borderRadius: 50 }}
+                  />
                 </Typography>
               </Stack>
             </Box>

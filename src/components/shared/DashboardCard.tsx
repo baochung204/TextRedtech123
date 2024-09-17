@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { useTheme } from '@mui/material/styles';
+import { SxProps, useTheme } from '@mui/material/styles';
 import { Card, CardContent, Typography, Stack, Box } from '@mui/material';
 import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
@@ -16,6 +16,7 @@ type Props = {
   headsubtitle?: string | JSX.Element;
   children?: JSX.Element;
   middlecontent?: string | JSX.Element;
+  sx?: SxProps;
 };
 
 const DashboardCard = ({
@@ -28,6 +29,7 @@ const DashboardCard = ({
   headtitle,
   headsubtitle,
   middlecontent,
+  sx,
 }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
@@ -41,14 +43,14 @@ const DashboardCard = ({
       variant={!customizer.isCardShadow ? 'outlined' : undefined}
     >
       {cardheading ? (
-        <CardContent>
+        <CardContent sx={{ padding: 'none' }}>
           <Typography variant="h5">{headtitle}</Typography>
           <Typography variant="subtitle2" color="textSecondary">
             {headsubtitle}
           </Typography>
         </CardContent>
       ) : (
-        <CardContent sx={{ p: '22px' }}>
+        <CardContent sx={{ p: '22px', ...sx }}>
           {title ? (
             <Stack
               direction="row"

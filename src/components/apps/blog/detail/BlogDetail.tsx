@@ -68,7 +68,7 @@ const BlogDetail = () => {
               </Tooltip>
               <Chip
                 sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                label="2,203 Lượt xem"
+                label="2,203 số lượt xem"
                 size="small"
               ></Chip>
             </Stack>

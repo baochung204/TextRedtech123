@@ -23,6 +23,8 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import Rule from 'src/views/apps/contract/Affiliate';
 
 const steps = [
   'Thỏa thuận hợp tác',
@@ -30,41 +32,47 @@ const steps = [
   'Xác minh doanh nghiệp',
   'Ký hợp đồng',
 ];
-
 const validationSchemas = [
   Yup.object({
-    agreeTerms: Yup.boolean().oneOf([true], 'Bạn phải đồng ý với các điều khoản'),
+    agreeTerms: Yup.boolean().oneOf([true], 'Bạn phải đồng ý với các điều khoản.'),
   }),
   Yup.object({
-    companyName: Yup.string().required('Tên công ty là bắt buộc'),
+    companyName: Yup.string().required('Tên công ty là bắt buộc.'),
     taxCode: Yup.string()
       .required('Mã số thuế là bắt buộc')
-      .matches(/^\d{10}|\d{13}$/, 'Mã số thuế phải chứa 10 hoặc 13 chữ số'),
-    companyEmail: Yup.string().email('Email không hợp lệ').required('Email công ty là bắt buộc'),
+      .min(10, 'Mã số thuế tối thiểu 10 số, tối đa 13 số')
+      .max(13, 'Mã số thuế tối thiểu 10 số, tối đa 13 số')
+      .matches(/^\d+$/, 'Số tài khoản chỉ chứa ký tự số.'),
+    companyEmail: Yup.string().email('Email không hợp lệ').required('Email công ty là bắt buộc.'),
     address: Yup.string().required('Địa chỉ công ty là bắt buộc'),
+    representative: Yup.string()
+      .matches(
+        /^[a-zA-ZaAáÁàÀảẢãÃạẠăĂắẮằẰẳẲẵẴặẶâÂấẤầẦẩẨẫẪậẬbBcCdDđĐeEéÉèÈẻẺẽẼẹẸêÊếẾềỀễỄệỆfFgGhHiIíÍìÌĩĨỉỈịỊjJkKlLmMnNoOóÓòÒỏỎõÕọỌôÔốỐồỒổỔỗỖộỘơƠớỚờỜởỞỡỠợỢpPqQrRsStTuUúÚùÙủỦũŨụỤưƯứỨừỪửỬữỮựỰvVwWxXyY\s]+$/,
+        'Người đại diện chỉ chứa ký tự chữ.',
+      )
+      .required('Người đại diện là bắt buộc.'),
+    position: Yup.string().required('Chức vụ là bắt buộc.'),
     accountName: Yup.string()
-      .matches(/^[a-zA-Z\s]+$/, 'Chủ tài khoản chỉ chứa ký tự chữ')
-      .required('Chủ tài khoản là bắt buộc'),
+      .matches(/^[a-zA-Z\s]+$/, 'Chủ tài khoản chỉ chứa ký tự chữ.')
+      .required('Chủ tài khoản là bắt buộc.'),
     accountNumber: Yup.string()
-      .matches(/^\d+$/, 'Số tài khoản chỉ chứa ký tự số')
-      .required('Số tài khoản là bắt buộc'),
-    bank: Yup.string().required('Ngân hàng là bắt buộc'),
-    branch: Yup.string().required('Chi nhánh ngân hàng là bắt buộc'),
+      .matches(/^\d+$/, 'Số tài khoản chỉ chứa ký tự số.')
+      .min(8, 'Số tài khoản tối thiểu 8 số.')
+      .required('Số tài khoản là bắt buộc.'),
+    bank: Yup.string().required('Ngân hàng là bắt buộc.'),
+    branch: Yup.string().required('Chi nhánh ngân hàng là bắt buộc.'),
   }),
   Yup.object({
-    fileName: Yup.string().required('Bạn phải tải lên giấy phép đăng ký kinh doanh'),
+    fileName: Yup.string().required('Bạn phải tải lên giấy phép đăng ký kinh doanh.'),
   }),
   Yup.object({}),
 ];
-
 const CompanyAffiliate = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set<number>());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
-  const [fileNameURL, setFileNameURL] = useState<string>('');
-  const [fileName, setFileName] = useState<string>('');
 
   const formik = useFormik({
     initialValues: {
@@ -79,9 +87,11 @@ const CompanyAffiliate = () => {
       branch: '',
       fileName: '',
       fileNameURL: '',
+      representative: '',
+      position: '',
     },
     validationSchema: validationSchemas[activeStep],
-    validateOnChange: false,
+    validateOnChange: true,
     validateOnBlur: false,
     onSubmit: async (values) => {
       if (activeStep === steps.length - 1) {
@@ -92,16 +102,6 @@ const CompanyAffiliate = () => {
     },
   });
 
-  function formatTaxCode(value: string): string {
-    const numericValue = value.replace(/[^a-zA-Z\s + ^0-9]/g, '');
-    console.log(numericValue.length);
-
-    if (numericValue.length > 10) {
-      return `${numericValue.slice(0, 10)}-${numericValue.slice(10, 13)}`;
-    }
-    return numericValue;
-  }
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
@@ -111,7 +111,7 @@ const CompanyAffiliate = () => {
     let filteredValue = value;
 
     if (id === 'taxCode') {
-      filteredValue = formatTaxCode(value);
+      filteredValue = value;
     } else if (id === 'accountNumber') {
       filteredValue = value.replace(/[^a-zA-Z\s + ^0-9]/g, '');
     } else if (id === 'accountName') {
@@ -120,9 +120,10 @@ const CompanyAffiliate = () => {
 
     formik.setFieldValue(id, type === 'checkbox' ? checked : filteredValue);
   };
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    console.log('test', file);
+
     if (file) {
       const validTypes = [
         'application/pdf',
@@ -134,8 +135,7 @@ const CompanyAffiliate = () => {
       }
 
       const fileURL = URL.createObjectURL(file);
-      setFileNameURL(fileURL);
-      setFileName(file.name);
+      console.log('URLLL: ', fileURL);
       formik.setFieldValue('fileName', file.name);
       formik.setFieldValue('fileNameURL', fileURL);
     }
@@ -167,23 +167,42 @@ const CompanyAffiliate = () => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
   const handleSteps = (step: number) => {
     switch (step) {
       case 0:
         return (
           <>
-            <Checkbox
-              id="agreeTerms"
-              checked={formik.values.agreeTerms}
-              onChange={handleChange}
-              color="primary"
-              inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
-            <span>Đồng ý với các điều khoản của chúng tôi</span>
-            {isSubmitting && formik.errors.agreeTerms && (
-              <Typography color="error">{formik.errors.agreeTerms}</Typography>
-            )}
+            <Box
+              sx={{
+                height: '700px',
+                display: 'flex',
+                flexDirection: 'column',
+                overflowY: 'hidden',
+                padding: '16px 16px 0 16px',
+                borderRadius: '8px',
+                marginTop: '20px',
+              }}
+            >
+              <Scrollbar sx={{ overflowY: 'auto', height: '700px' }}>
+                <Rule />
+              </Scrollbar>
+            </Box>
+            <Box>
+              <Checkbox
+                id="agreeTerms"
+                name="agreeTerms"
+                checked={formik.values.agreeTerms}
+                onChange={formik.handleChange}
+                color="primary"
+                inputProps={{ 'aria-label': 'checkbox with default color' }}
+              />
+              <span>Đồng ý với các điều khoản của chúng tôi</span>
+
+              {/* Show error if agreeTerms has validation error */}
+              {formik.errors.agreeTerms && (
+                <Typography color="error">{formik.errors.agreeTerms}</Typography>
+              )}
+            </Box>
           </>
         );
       case 1:
@@ -258,6 +277,32 @@ const CompanyAffiliate = () => {
                     onChange={handleChange}
                     error={isSubmitting && Boolean(formik.errors.address)}
                     helperText={isSubmitting && formik.errors.address}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="address">Người đại diện</CustomFormLabel>
+                  <CustomTextField
+                    id="representative"
+                    variant="outlined"
+                    placeholder="Nhập tên người đại diện"
+                    fullWidth
+                    value={formik.values.representative}
+                    onChange={handleChange}
+                    error={isSubmitting && Boolean(formik.errors.representative)}
+                    helperText={isSubmitting && formik.errors.representative}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CustomFormLabel htmlFor="address">Chức vụ</CustomFormLabel>
+                  <CustomTextField
+                    id="position"
+                    variant="outlined"
+                    placeholder="Nhập chức vụ"
+                    fullWidth
+                    value={formik.values.position}
+                    onChange={handleChange}
+                    error={isSubmitting && Boolean(formik.errors.position)}
+                    helperText={isSubmitting && formik.errors.position}
                   />
                 </Grid>
               </Grid>
@@ -374,24 +419,20 @@ const CompanyAffiliate = () => {
                     Tải lên
                   </Button>
                 </label>
-                {fileNameURL && (
+                {formik.values.fileNameURL && (
                   <>
                     <Typography variant="body2" sx={{ marginTop: '10px', color: '#555' }}>
-                      <a href={fileNameURL} target="_blank" rel="noopener noreferrer">
-                        Xem file đã tải lên: {fileName}
+                      <a href={formik.values.fileNameURL} target="_blank" rel="noopener noreferrer">
+                        Xem file đã tải lên: {formik.values.fileName}
                       </a>
                     </Typography>
                   </>
                 )}
+                {formik.errors.fileNameURL ? (
+                  <Typography color="error">{formik.errors.fileNameURL}</Typography>
+                ) : null}
               </Box>
             </Box>
-            {fileName && (
-              <Typography variant="body2" sx={{ marginTop: '10px', color: '#555' }}>
-                <a href={fileNameURL} target="_blank" rel="noopener noreferrer">
-                  Xem file đã tải lên: {fileName}
-                </a>
-              </Typography>
-            )}
           </Container>
         );
 
@@ -549,7 +590,7 @@ const CompanyAffiliate = () => {
                 sx={{ mr: 1 }}
               >
                 Quay lại
-              </Button> 
+              </Button>
               <Button
                 component={Link}
                 color="inherit"

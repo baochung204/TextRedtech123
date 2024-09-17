@@ -1,12 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
 import {
   Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
   Button,
-  Card,
-  CardContent,
   Dialog,
   DialogActions,
   DialogContent,
@@ -14,42 +10,38 @@ import {
   Grid,
   styled,
   TextField,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { IconChevronDown } from '@tabler/icons-react';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import sale from 'src/assets/images/icon.png/sale.png';
 
-const packages = [
-  {
-    id: 5,
-    img: 'http://localhost:5173/src/assets/images/products/s11.jpg',
-    title: 'Chatbot marketing',
-    price: 1055000,
-    discount: 1023900,
-    reward: 'Thưởng 10%',
-  },
-  {
-    id: 6,
-    img: 'http://localhost:5173/src/assets/images/products/s10.jpg',
-    title: 'Chatbot hỗ trợ khách hàng',
-    price: 2010000,
-    discount: 1995002,
-    reward: 'Thưởng 15%',
-  },
-  {
-    id: 7,
-    img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
-    title: 'Chatbot thương mại điện tử',
-    price: 5025000,
-    discount: 3935000,
-    reward: 'Thưởng 20%',
-  },
-];
+// const packages = [
+//   {
+//     id: 5,
+//     img: 'http://localhost:5173/src/assets/images/products/s11.jpg',
+//     title: 'Chatbot marketing',
+//     price: 1055000,
+//     discount: 1023900,
+//     reward: 'Thưởng 10%',
+//   },
+//   {
+//     id: 6,
+//     img: 'http://localhost:5173/src/assets/images/products/s10.jpg',
+//     title: 'Chatbot hỗ trợ khách hàng',
+//     price: 2010000,
+//     discount: 1995002,
+//     reward: 'Thưởng 15%',
+//   },
+//   {
+//     id: 7,
+//     img: 'http://localhost:5173/src/assets/images/products/s12.jpg',
+//     title: 'Chatbot thương mại điện tử',
+//     price: 5025000,
+//     discount: 3935000,
+//     reward: 'Thưởng 20%',
+//   },
+// ];
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {

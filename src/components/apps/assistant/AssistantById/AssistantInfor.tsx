@@ -766,7 +766,15 @@ const AssistantInfor = () => {
                     </Box>
                   </Grid>
                   <Grid item xs={8}>
-                    <Box sx={{ textAlign: 'center' }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center', // Center vertically
+                        justifyContent: 'center', // Center horizontally
+                        height: '100%',
+                        textAlign: 'center', // Ensure the Box takes full height of the parent Grid item
+                      }}
+                    >
                       <Typography
                         variant="h6"
                         fontWeight={500}
