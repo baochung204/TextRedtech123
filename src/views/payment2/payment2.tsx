@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Alert,
   Avatar,
   Box,
   Button,
@@ -12,6 +13,7 @@ import {
   Grid,
   InputAdornment,
   MenuItem,
+  Snackbar,
   Stack,
   Table,
   TableBody,
@@ -35,8 +37,10 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 import { styled } from '@mui/system';
 import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
 import logoVnpay from 'src/assets/images/logoPay/logoVnpay.png';
-import logoQr from 'src/assets/images/logoPay/qrcodeVnpay.jpg';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -76,14 +80,83 @@ const PayMentPonit2 = () => {
   const handleChange5 = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
-  const [checked, setChecked] = React.useState(false);
+  const navigate = useNavigate();
+  const [checked, setChecked] = useState<boolean>(false);
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
-  const [clickPaymentId, setClickPaymentId] = useState<string | null>(null);
-  const onHandleClinkPaymant = (id: string) => {
-    setClickPaymentId(id);
+  const [clickPaymentId, setClickPaymentId] = useState<number | null>(null);
+  const [paymentSelected, setPaymentSelected] = useState<boolean>(false);
+  const validateSchema = Yup.object().shape({
+    Payments: Yup.boolean().oneOf([true], 'Vui lòng hãy chọn phương thức thanh toán'),
+    ...(checked && {
+      CompanyName: Yup.string().required('Tên công ty bắt buộc nhập'),
+      TaxCode: Yup.string()
+        .required('Mã số thuế bắt buộc nhập')
+        .matches(/^\d+$/, 'Mã số thuế chỉ chứa số'),
+      RepresentativeName: Yup.string()
+        .matches(
+          /^[a-zA-ZaAáÁàÀảẢãÃạẠăĂắẮằẰẳẲẵẴặẶâÂấẤầẦẩẨẫẪậẬbBcCdDđĐeEéÉèÈẻẺẽẼẹẸêÊếẾềỀễỄệỆfFgGhHiIíÍìÌĩĨỉỈịỊjJkKlLmMnNoOóÓòÒỏỎõÕọỌôÔốỐồỒổỔỗỖộỘơƠớỚờỜởỞỡỠợỢpPqQrRsStTuUúÚùÙủỦũŨụỤưƯứỨừỪửỬữỮựỰvVwWxXyY\s]+$/,
+          'Người đại diện chỉ chứa ký tự chữ.',
+        )
+        .required('Người đại diện là bắt buộc'),
+      Position: Yup.string()
+        .matches(
+          /^[a-zA-ZaAáÁàÀảẢãÃạẠăĂắẮằẰẳẲẵẴặẶâÂấẤầẦẩẨẫẪậẬbBcCdDđĐeEéÉèÈẻẺẽẼẹẸêÊếẾềỀễỄệỆfFgGhHiIíÍìÌĩĨỉỈịỊjJkKlLmMnNoOóÓòÒỏỎõÕọỌôÔốỐồỒổỔỗỖộỘơƠớỚờỜởỞỡỠợỢpPqQrRsStTuUúÚùÙủỦũŨụỤưƯứỨừỪửỬữỮựỰvVwWxXyY\s]+$/,
+          'Người đại diện chỉ chứa ký tự chữ.',
+        )
+        .required('Chức vụ là bắt buộc'),
+      Address: Yup.string()
+        .required('Địa chỉ là bắt buộc')
+        .matches(
+          /^[a-zA-Z0-9\s,.-]+$/,
+          'Địa chỉ chỉ được chứa chữ, số, dấu cách, dấu phẩy, dấu chấm, và dấu gạch ngang.',
+        ),
+      email: Yup.string().required('Email là bắt buộc').email('Email không đúng định dạng'),
+    }),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      CompanyName: '',
+      TaxCode: '',
+      RepresentativeName: '',
+      Position: '',
+      Address: '',
+      email: '',
+      Payments: 'false',
+    },
+    validationSchema: validateSchema,
+    validateOnChange: true,
+    validateOnBlur: false,
+    onSubmit: (value) => {
+      console.log(value);
+    },
+  });
+  const [open, setOpen] = useState<boolean>(false);
+  const handleSubmitForm = () => {
+    if (!paymentSelected) {
+      setOpen(!open);
+      return;
+    }
+    if (checked) {
+      formik.validateForm().then((errors) => {
+        if (Object.keys(errors).length === 0) {
+          formik.handleSubmit();
+          navigate('/');
+        }
+      });
+    } else {
+      formik.handleSubmit();
+      navigate('/');
+    }
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOpen(false);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [open]);
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Thanh Toán" items={BCrumb} />
@@ -104,55 +177,71 @@ const PayMentPonit2 = () => {
                   >
                     {Payments?.map((p: IPayMent, index: number) => (
                       <Grid item xs={6} display="flex" alignItems="center" key={index + 1}>
-                        <Box
+                        <FormControl
+                          fullWidth
                           sx={{
                             borderWidth: 1,
                             borderStyle: 'solid',
                             color: 'primary.main',
                             display: 'flex',
-                            alignItems: 'center',
                             p: 2,
-                            gap: 1,
                             width: '100%',
                             height: 'auto',
-
                             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.055)',
-                            backgroundColor: clickPaymentId === p?.id ? '#FEEFF0' : '#F4F5F7',
-                            border: clickPaymentId === p?.id ? '2px solid #FBBDC1' : 'none',
+                            backgroundColor:
+                              clickPaymentId === index && paymentSelected ? '#FEEFF0' : '#F4F5F7',
+                            border:
+                              clickPaymentId === index && paymentSelected
+                                ? '2px solid #FBBDC1'
+                                : 'none',
                             ':hover': {
-                              backgroundColor: clickPaymentId === p?.id ? 'none' : '#E7E7E7',
+                              backgroundColor:
+                                clickPaymentId === index && paymentSelected ? 'none' : '#E7E7E7',
                             },
                           }}
-                          onClick={() => onHandleClinkPaymant(p?.id)}
+                          onClick={() => {
+                            setClickPaymentId(index);
+                            setPaymentSelected(clickPaymentId === index ? !paymentSelected : true);
+                            formik.setFieldValue('Payments', true);
+                          }}
                         >
                           <Box
                             sx={{
                               display: 'flex',
+                              gap: 1,
+                              justifyContent: 'flex-start ',
                               alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: '6px',
-                              padding: '0',
                             }}
                           >
-                            <img
-                              src={p.logo}
-                              alt=""
-                              width={40}
-                              height={40}
-                              style={{ objectFit: 'cover' }}
-                            />
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '6px',
+                                padding: '0',
+                              }}
+                            >
+                              <img
+                                src={p.logo}
+                                alt=""
+                                width={40}
+                                height={40}
+                                style={{ objectFit: 'cover' }}
+                              />
+                            </Box>
+                            <Typography
+                              sx={{
+                                color: 'black',
+                                paddingTop: '5px',
+                                fontWeight: 600,
+                                fontSize: 14,
+                              }}
+                            >
+                              {p.name}
+                            </Typography>
                           </Box>
-                          <Typography
-                            sx={{
-                              color: 'black',
-                              paddingTop: '5px',
-                              fontWeight: 600,
-                              fontSize: 14,
-                            }}
-                          >
-                            {p.name}
-                          </Typography>
-                        </Box>
+                        </FormControl>
                       </Grid>
                     ))}
                   </Grid>
@@ -665,13 +754,17 @@ const PayMentPonit2 = () => {
                         <FormControl fullWidth>
                           <CustomFormLabel sx={{ mt: 2 }}>Tên công ty</CustomFormLabel>
                           <CustomTextField
+                            name="CompanyName"
                             id="error-text-input"
                             variant="outlined"
                             placeholder="VD: Công ty TNHH ABC"
                             fullWidth
-                            required
+                            value={formik.values.CompanyName}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.CompanyName && Boolean(formik.errors.CompanyName)}
                           />
-                          <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống</p>
+                          <Typography color="error">{formik.errors.CompanyName}</Typography>
                         </FormControl>
                       </Grid>
 
@@ -682,10 +775,14 @@ const PayMentPonit2 = () => {
                             id="error-text-input"
                             variant="outlined"
                             placeholder="VD: 0123456789"
+                            name="TaxCode"
                             fullWidth
-                            required
+                            value={formik.values.TaxCode}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.TaxCode && Boolean(formik.errors.TaxCode)}
                           />
-                          <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống</p>
+                          <Typography color="error">{formik.errors.TaxCode}</Typography>
                         </FormControl>
                       </Grid>
 
@@ -696,10 +793,17 @@ const PayMentPonit2 = () => {
                             id="error-text-input"
                             variant="outlined"
                             placeholder="VD: Nguyen Van A"
+                            name="RepresentativeName"
                             fullWidth
-                            required
+                            value={formik.values.RepresentativeName}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={
+                              formik.touched.RepresentativeName &&
+                              Boolean(formik.errors.RepresentativeName)
+                            }
                           />
-                          <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống</p>
+                          <Typography color="error">{formik.errors.RepresentativeName}</Typography>
                         </FormControl>
                       </Grid>
 
@@ -710,10 +814,14 @@ const PayMentPonit2 = () => {
                             id="error-text-input"
                             variant="outlined"
                             placeholder="VD: Giám đốc"
+                            name="Position"
                             fullWidth
-                            required
+                            value={formik.values.Position}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.Position && Boolean(formik.errors.Position)}
                           />
-                          <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống</p>
+                          <Typography color="error">{formik.errors.Position}</Typography>
                         </FormControl>
                       </Grid>
                       <Grid item xs={6}>
@@ -723,10 +831,14 @@ const PayMentPonit2 = () => {
                             id="error-text-input"
                             variant="outlined"
                             placeholder="VD: 123 Đường ABC, Quận XYZ"
+                            name="Address"
                             fullWidth
-                            required
+                            value={formik.values.Address}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.Address && Boolean(formik.errors.Address)}
                           />
-                          <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống</p>
+                          <Typography color="error">{formik.errors.Address}</Typography>
                         </FormControl>
                       </Grid>
 
@@ -739,10 +851,12 @@ const PayMentPonit2 = () => {
                             id="error-text-input"
                             variant="outlined"
                             placeholder="VD: example@company.com"
+                            name="email"
                             fullWidth
-                            required
+                            onChange={formik.handleChange}
+                            value={formik.values.email}
                           />
-                          <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống</p>
+                          <Typography color="error">{formik.errors.email}</Typography>
                         </FormControl>
                       </Grid>
                     </Grid>
@@ -767,12 +881,22 @@ const PayMentPonit2 = () => {
                   backgroundColor: '#F22A51',
                 },
               }}
+              onClick={() => handleSubmitForm()}
             >
               Thanh toán
             </Button>
           </Box>
         </Grid>
       </Grid>
+      <Snackbar open={open} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert
+          variant="filled"
+          severity="error"
+          sx={{ width: '100%', display: 'flex', alignItems: 'center' }}
+        >
+          Vui lòng hãy chọn phương thức thanh toán
+        </Alert>
+      </Snackbar>
     </PageContainer>
   );
 };
