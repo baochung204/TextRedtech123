@@ -30,8 +30,6 @@ export default defineConfig({
       ],
     },
   },
-  // Thêm phần này để Vite xử lý file ảnh
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg'],
-
-  plugins: [svgr(), react()],
+  plugins: [react()],
 });
