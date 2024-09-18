@@ -22,7 +22,7 @@ const Sli = () => {
 
     return (
         <>
-            <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Tài nguyên</CustomFormLabel>
+            <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>Tài nguyên</CustomFormLabel>
             <Paper elevation={2} sx={{ minHeight: '4%', p: 2, backgroundColor: '#fafafa' }}>
                 <Grid container>
                     <Grid lg={6}>
@@ -65,7 +65,7 @@ const Sli = () => {
                     <Grid lg={6}>
                         <Box fontWeight={500}>
                             Dung lượng
-                            <Chip sx={{ ml: 1 }} size='small' label="100MB" color="primary" />
+                            <Chip sx={{ ml: 1 }} size='small' label="100000MB" color="primary" />
                         </Box>
                     </Grid>
                     <Grid lg={6}>
@@ -87,7 +87,7 @@ const Sli = () => {
                         step={1}
 
                         min={1}
-                        max={10000}
+                        max={100000}
                     />
                 </Box>
             </Paper>
