@@ -145,7 +145,7 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Blog',
     icon: IconBrandCodepen,
-    href: '/admin/blog',
+    href: '/admin/blogs',
   },
   {
     id: uniqueId(),
