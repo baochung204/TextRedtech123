@@ -169,7 +169,9 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
                         >
                           {headCells.map((cell: HeadCell) => (
                             <TableCell key={cell.dataIndex} align={cell.numeric ? 'right' : 'left'}>
-                              {row[cell.dataIndex] !== undefined && row[cell.dataIndex]}
+                              <Typography color="textSecondary" variant="subtitle2">
+                                {row[cell.dataIndex] !== undefined && row[cell.dataIndex]}
+                              </Typography>
                             </TableCell>
                           ))}
                         </TableRow>

@@ -15,7 +15,12 @@ import {
   TextField,
   Tooltip,
   Typography,
-  Select, MenuItem, Checkbox, ListItemText, IconButton, Badge
+  Select,
+  MenuItem,
+  Checkbox,
+  ListItemText,
+  IconButton,
+  Badge,
 } from '@mui/material';
 import { IconStackBack } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
@@ -238,12 +243,7 @@ const FilmsData: FilmsData[] = [
 ];
 const AssistantList = () => {
   const theme = useTheme();
-  const secondary = theme.palette.secondary.main;
-  const [month, setMonth] = React.useState('1');
   const successlight = theme.palette.success.light;
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
 
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
 
@@ -261,7 +261,6 @@ const AssistantList = () => {
     setSelectedItems(event.target.value);
   };
 
-
   const handleItemClick1 = (title: string) => {
     if (selectedItems === title) {
       setSelectedItems('');
@@ -270,16 +269,14 @@ const AssistantList = () => {
     }
   };
   const [iconIndex, setIconIndex] = useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon]
-
+  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
 
   const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length)
+    setIconIndex((pre) => (pre + 1) % icons.length);
     console.log(7 % 7);
+  };
 
-  }
-
-  const SelectedIcon = icons[iconIndex]
+  const SelectedIcon = icons[iconIndex];
 
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
@@ -300,16 +297,16 @@ const AssistantList = () => {
                 </Typography>
               </Box>
 
-              <Grid
-                container
-                width={{ sm: 600 }}
-                spacing={1}
-              >
-                <Grid item xs={6} sm={6} md={6}
+              <Grid container width={{ sm: 600 }} spacing={1}>
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  md={6}
                   sx={{
                     display: 'flex',
                     justifyContent: 'end',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}
                 >
                   <IconButton aria-label="filter" sx={{ mr: 1 }}>
@@ -339,16 +336,20 @@ const AssistantList = () => {
                     aria-label="filter"
                     onClick={handleClickIcon}
                     sx={{
-                      ml: 1
+                      ml: 1,
                     }}
                   >
                     <SelectedIcon />
                   </IconButton>
                 </Grid>
-                <Grid item xs={6} sm={6} md={6}
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  md={6}
                   sx={{
                     display: 'flex',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}
                 >
                   <TextField
