@@ -202,20 +202,4 @@ const Personnels = () => {
   );
 };
 
-<<<<<<< HEAD
-                            </Box>
-                        </Box>
-                        <TabPanel value="1"><PersonnelTab value={value} open={open} setOpen={setOpen} /></TabPanel>
-                        <TabPanel value="2">Item Two</TabPanel>
-                    </TabContext>
-                </Box>  
-            </Grid>
-
-        </Grid>
-    )
-}
-
 export default Personnels;
-=======
-export default Personnels;
->>>>>>> 2054b8c7959369c0aa7fedbc888262cc05ced2bc
