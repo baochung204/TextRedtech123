@@ -184,7 +184,6 @@ const AddInfor = () => {
                     </Grid>
                 </Grid>
                 {/* Số lượng file */}
-                <Sli />
             </Box>
         </Paper>
 

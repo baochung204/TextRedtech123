@@ -65,7 +65,7 @@ const Sli = () => {
                     <Grid lg={6}>
                         <Box fontWeight={500}>
                             Dung lượng
-                            <Chip sx={{ ml: 1 }} size='small' label="100MB" color="primary" />
+                            <Chip sx={{ ml: 1 }} size='small' label="100000MB" color="primary" />
                         </Box>
                     </Grid>
                     <Grid lg={6}>
@@ -87,7 +87,7 @@ const Sli = () => {
                         step={1}
 
                         min={1}
-                        max={10000}
+                        max={100000}
                     />
                 </Box>
             </Paper>

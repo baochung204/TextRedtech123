@@ -18,6 +18,7 @@ import AddFunction from '../layout/addFunctions';
 import AddInfor from '../layout/addInfor';
 import AddModel from '../layout/addModel';
 import AddSearch from '../layout/addSearch';
+import Sli from '../Sli';
 
 
 const AssistantEditor = () => {
@@ -69,6 +70,9 @@ const AssistantEditor = () => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} lg={12}>
                       <AddModel />
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={12}>
+                      <Sli />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={6}>
                       <AddSearch />

@@ -3,6 +3,7 @@ import { Box, Grid, MenuItem, Paper, TextField } from "@mui/material";
 import { useState } from "react";
 import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
 import CustomSelect from "src/components/forms/theme-elements/CustomSelect";
+import Sli from "../Sli";
 
 const AddModel = () => {
     const [model, setModel] = useState('1');
@@ -28,7 +29,7 @@ const AddModel = () => {
                         <MenuItem value={3}>GPT-4-TURBO</MenuItem>
                     </CustomSelect>
                 </Grid>
-                <Grid item xs={12} sm={6} lg={6}>
+                <Grid item xs={12} sm={6} lg={6} p={0}>
                     <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
                     <TextField
                         id="outlined-multiline-static"
@@ -59,6 +60,7 @@ const AddModel = () => {
                         }}
                     />
                 </Grid>
+                
                 <Grid item xs={12} sm={6} lg={6}>
 
                     <CustomFormLabel htmlFor="cname">Định nghĩa chuyển đổi</CustomFormLabel>
@@ -91,6 +93,7 @@ const AddModel = () => {
                         }}
                     />
                 </Grid>
+                
             </Grid>
 
 
