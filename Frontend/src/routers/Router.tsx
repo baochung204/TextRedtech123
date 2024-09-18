@@ -180,7 +180,7 @@ const AssistantList = Loadable(
 
 //admin affiliate
 const OrderAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/orderaffiliate')));
-const Publisher = Loadable(lazy(() => import('../views/admin/management/publishermanager')));
+const Publisher = Loadable(lazy(() => import('../views/admin/publishers/publishers')));
 const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/historyaffiliate')));
 const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
 const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));

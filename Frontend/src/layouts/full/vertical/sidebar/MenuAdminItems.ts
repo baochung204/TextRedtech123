@@ -1,17 +1,13 @@
-<<<<<<< HEAD
-import { IconAffiliate, IconTerminal2, IconUsersGroup } from '@tabler/icons-react';
-=======
 import {
   IconAffiliate,
   IconBellRinging,
   IconBrandCodepen,
+  IconBrandEnvato,
   IconMessage2Bolt,
   IconTerminal2,
   IconUsers,
   IconUsersGroup,
 } from '@tabler/icons-react';
-import { IconBrandEnvato } from '@tabler/icons-react';
->>>>>>> 0d67a131fa0304ae6b321ac40f012f83f8c0162c
 
 import { IconPresentationAnalytics } from '@tabler/icons-react';
 
@@ -20,7 +16,6 @@ import {
   IconHeadset,
   IconPackage,
   IconPoint,
-  IconShoppingCart,
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
@@ -114,11 +109,7 @@ const MenuAdminitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-<<<<<<< HEAD
         title: 'Publishers',
-=======
-        title: 'Publisher',
->>>>>>> 0d67a131fa0304ae6b321ac40f012f83f8c0162c
         icon: IconPoint,
         href: '/admin/publisher',
       },
