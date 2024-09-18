@@ -14,14 +14,17 @@ import {
 import React, { useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import useSortableData from './useSortableData';
-import img1 from 'src/assets/images/profile/user-1.jpg';
-import img2 from 'src/assets/images/profile/user-2.jpg';
+
+import fb from 'src/assets/images/socialmedia/facebook.png';
+import insta from 'src/assets/images/socialmedia/instagram.png';
+import logo from 'src/assets/images/logos/R-Point.png';
 
 const DataRowCustomerTable = [
   {
     id: 'ORD001',
     createdAt: '2024-09-01',
     assistant: 'Trợ lý A',
+    pricePoint: 100,
     channel: 'Ngô Đình Toản',
     name: 'Nguyễn Văn A',
     phone: '0123456789',
@@ -29,12 +32,13 @@ const DataRowCustomerTable = [
     email: 'a@example.com',
     orderInfo: 'Thông tin đơn hàng A',
     notes: 'Ghi chú A',
-    imgsrc: img1,
+    misc: fb,
   },
   {
     id: 'ORD002',
     createdAt: '2024-09-02',
     assistant: 'Trợ lý B',
+    pricePoint: 100,
     channel: 'Trần Dần',
     name: 'Trần Thị B',
     phone: '0987654321',
@@ -42,7 +46,7 @@ const DataRowCustomerTable = [
     email: 'b@example.com',
     orderInfo: 'Thông tin đơn hàng B',
     notes: 'Ghi chú B',
-    imgsrc: img2,
+    imgsrc: insta,
   },
   // Thêm dữ liệu mẫu nếu cần
 ];
@@ -89,6 +93,7 @@ const TableListOrder = () => {
                   'id',
                   'createdAt',
                   'assistant',
+                  'pricePoint',
                   'channel',
                   'orderInfo',
                   'name',
@@ -107,6 +112,7 @@ const TableListOrder = () => {
                         {column === 'id' && 'Id Đơn Hàng'}
                         {column === 'createdAt' && 'Ngày Tạo'}
                         {column === 'assistant' && 'Trợ Lý'}
+                        {column === 'pricePoint' && 'Giá trị đơn hàng'}
                         {column === 'channel' && 'Kênh (MTK)'}
                         {column === 'orderInfo' && 'Tags'}
                         {column === 'name' && 'Tên Khách Hàng'}
@@ -131,10 +137,19 @@ const TableListOrder = () => {
                   <TableCell sx={{ textAlign: 'center' }}>
                     <Typography variant="subtitle2">{row.assistant}</Typography>
                   </TableCell>
+                  <TableCell sx={{ textAlign: 'center' }}>
+                    <Typography variant="subtitle2">{row.pricePoint}
+                    <img
+                            src={logo}
+                            alt="Logo"
+                            style={{ width: '25px', height: '25px', marginLeft: '10px' }}
+                          />
+                    </Typography>
+                  </TableCell>
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <img
-                        src={row.imgsrc}
+                        src={row.misc}
                         style={{
                           width: '50px',
                           height: '50px',

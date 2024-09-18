@@ -174,7 +174,7 @@ const Personnels = () => {
                         <TabPanel value="1"><PersonnelTab value={value} open={open} setOpen={setOpen} /></TabPanel>
                         <TabPanel value="2">Item Two</TabPanel>
                     </TabContext>
-                </Box>
+                </Box>  
             </Grid>
 
         </Grid>
