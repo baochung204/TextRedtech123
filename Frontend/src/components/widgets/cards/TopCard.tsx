@@ -39,7 +39,10 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
     console.log(total);
 
     return (
-        <Grid container spacing={total}>
+        <Grid
+            container
+            spacing={total !== null ? total : 0}
+        >
             {dataSource.map((items, index) => {
                 return (
                     <Grid item lg={3} sm={6} xs={12} key={index}>
