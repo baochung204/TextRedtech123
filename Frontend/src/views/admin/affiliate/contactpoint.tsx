@@ -1,4 +1,7 @@
+import { Grid } from '@mui/material';
 import React from 'react';
+import ContactRPoint from 'src/components/admin/affiliate/ContactRPoint';
+import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const contactpoint = () => {
@@ -8,7 +11,14 @@ const contactpoint = () => {
   ];
   return (
     <>
-      <BannerPage title="Hợp đồng R-Point" items={BCrumb} />
+      <PageContainer title="Order" description="this is Order page">
+        <BannerPage title="Hợp đồng R-Point" items={BCrumb} />
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <ContactRPoint />
+          </Grid>
+        </Grid>
+      </PageContainer>
     </>
   );
 };

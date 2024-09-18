@@ -1,3 +1,5 @@
+import { Grid } from '@mui/material';
+import PublisherAffiliate from 'src/components/admin/affiliate/PublisherAffiliate';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const Publishers = () => {
   const BCrumb = [
@@ -7,6 +9,11 @@ const Publishers = () => {
   return (
     <>
       <BannerPage title="Quản lý Publisher" items={BCrumb} />
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <PublisherAffiliate />
+        </Grid>
+      </Grid>
     </>
   );
 };

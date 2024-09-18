@@ -7,8 +7,7 @@ import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAff
 import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
 import AllNotifications from 'src/layouts/full/vertical/header/AllNotification';
 import Affiliatepro from 'src/views/admin/affiliatepro/affiliatepro';
-import ContracAffilate from 'src/views/admin/contractAffilate/contracAffilata';
-import ContracPoint from 'src/views/admin/contractPoint/contracPoint';
+
 import EInvoice from 'src/views/admin/EInvoice/EInvoice';
 import Feature from 'src/views/admin/feature/feature';
 import History from 'src/views/admin/history/history';
@@ -336,8 +335,6 @@ const Router = [
       { path: '/admin/blog', element: <Blog /> },
       { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/notification', element: <Notification /> },
-      { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
-      { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
       { path: '/admin/resources', element: <Resources /> },
       { path: '/admin/einvoice', element: <EInvoice /> },
       { path: '/admin/order', element: <OrderAffiliate /> },

@@ -18,13 +18,14 @@ import React, { useState } from 'react';
 import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField'; // Ensure this component works as expected
 import TopCard from 'src/components/widgets/cards/TopCard';
-import PublisherTable from './component/PublisherTable';
+import ContractAffiliateTable from './component/ContractAffiliateTable';
+
 const dataSource = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
-    title: 'Publisher',
-    total: '1907',
+    title: 'Hợp đồng',
+    total: '190',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -36,8 +37,8 @@ const dataSource = [
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Đơn hàng',
-    total: '8386',
+    title: 'Từ chối',
+    total: '190',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -49,8 +50,8 @@ const dataSource = [
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Hoa hồng',
-    total: '123.456.789đ',
+    title: 'Đã ký',
+    total: '123',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -62,8 +63,8 @@ const dataSource = [
   {
     bgColor: 'error.light',
     color: 'error.main',
-    title: 'Chưa thanh toán',
-    total: '123.456.789đ',
+    title: 'Chờ ký',
+    total: '23',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -84,7 +85,7 @@ const FilmsData: FilmsData[] = [
   { title: 'Tổng doanh thu' },
 ];
 
-const PublisherAffiliate = () => {
+const ContactAffiliate = () => {
   const [expectvalue] = React.useState('1');
   const [value, setValue] = React.useState<Dayjs | null>(null);
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
@@ -219,7 +220,7 @@ const PublisherAffiliate = () => {
                 </Box>
               </Box>
             </TabContext>
-            <PublisherTable />
+            <ContractAffiliateTable />
           </Box>
         </Grid>
       </Grid>
@@ -227,4 +228,4 @@ const PublisherAffiliate = () => {
   );
 };
 
-export default PublisherAffiliate;
+export default ContactAffiliate;
