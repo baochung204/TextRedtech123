@@ -1,5 +1,4 @@
-import { Button, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 import TableList from 'src/components/ComponentTables/tableList';
 
 interface HeadCell {

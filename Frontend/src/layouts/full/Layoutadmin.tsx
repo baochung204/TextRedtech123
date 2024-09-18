@@ -1,13 +1,11 @@
+import { Box, Container, styled, useTheme } from '@mui/material';
 import { FC } from 'react';
-import { styled, Container, Box, useTheme } from '@mui/material';
-import { useSelector } from 'src/store/Store';
 import { Outlet } from 'react-router-dom';
-import { AppState } from 'src/store/Store';
-import Header from './vertical/header/Header';
-import Sidebar from './vertical/sidebar/Sidebar';
-import Customizer from './shared/customizer/Customizer';
-import Navigation from '../full/horizontal/navbar/Navigation';
+import { AppState, useSelector } from 'src/store/Store';
 import HorizontalHeader from '../full/horizontal/header/Header';
+import Navigation from '../full/horizontal/navbar/Navigation';
+import Customizer from './shared/customizer/Customizer';
+import Header from './vertical/header/Header';
 import SidebarAdmin from './vertical/sidebar/SidebarAdmin';
 
 const MainWrapper = styled('div')(() => ({

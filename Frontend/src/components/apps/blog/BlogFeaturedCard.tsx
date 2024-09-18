@@ -1,27 +1,26 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'src/store/Store';
 import {
-  CardContent,
-  Stack,
   Avatar,
-  Typography,
+  Box,
+  CardContent,
   Chip,
   Grid,
+  Skeleton,
+  Stack,
   Tooltip,
-  Box,
+  Typography,
   alpha,
   styled,
-  Skeleton,
 } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
-import crown from 'src/assets/images/icon.png/crown.png';
-import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
-import BlankCard from '../../shared/BlankCard';
-import { BlogPostType } from 'src/types/apps/blog';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
+import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
+import { useDispatch } from 'src/store/Store';
+import { BlogPostType } from 'src/types/apps/blog';
+import BlankCard from '../../shared/BlankCard';
 
 const CoverImgStyle = styled(CardContent)({
   position: 'absolute',

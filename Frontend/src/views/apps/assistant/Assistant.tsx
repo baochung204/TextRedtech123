@@ -1,14 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import PageContainer from 'src/components/container/PageContainer';
-import ProductTableList from 'src/components/apps/assistant/Assiatant/Assistant';
-import BlankCard from 'src/components/shared/BlankCard';
-import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { Button } from '@mui/material';
+import ProductTableList from 'src/components/apps/assistant/Assiatant/Assistant';
+import PageContainer from 'src/components/container/PageContainer';
+import BlankCard from 'src/components/shared/BlankCard';
 
 const Assistant = () => {
   const nav = useNavigate();

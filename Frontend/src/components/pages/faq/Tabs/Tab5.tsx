@@ -1,7 +1,20 @@
-import { Avatar, Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TablePagination, Checkbox } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Avatar,
+  Button,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  TablePagination,
+  Checkbox,
+} from '@mui/material';
+import React, { useState } from 'react';
 import DataTable5 from '../DataTable/TableTab5';
-import DialogImage from "../dialog/DialogImage";
+import DialogImage from '../dialog/DialogImage';
 
 interface PropsTab5 {
   value: string;
@@ -10,36 +23,35 @@ interface PropsTab5 {
 }
 
 interface HeadTable {
-  head: string,
+  head: string;
 }
 
 const headDate: HeadTable[] = [
   {
-    head: 'ID'
+    head: 'ID',
   },
   {
-    head: 'Ngày tạo'
+    head: 'Ngày tạo',
   },
   {
-    head: 'Hình ảnh'
+    head: 'Hình ảnh',
   },
   {
-    head: 'Tên ảnh'
+    head: 'Tên ảnh',
   },
   {
-    head: 'Mô tả'
+    head: 'Mô tả',
   },
   {
-    head: 'Tiêu đề'
+    head: 'Tiêu đề',
   },
   {
-    head: 'Hoạt động'
+    head: 'Hoạt động',
   },
-]
+];
 
 const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
-
-  const [key, setKey] = useState<string | null>(null)
+  const [key, setKey] = useState<string | null>(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<string[]>([]);
@@ -68,7 +80,10 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
     } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
     }
 
     setSelected(newSelected);
@@ -95,13 +110,11 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
                   sx={{ display: `${checkTest ? '' : 'none'}` }}
                 />
               </TableCell>
-              {headDate.map((item, index) =>
+              {headDate.map((item, index) => (
                 <TableCell key={index}>
-                  <Typography variant="h6">
-                    {item.head}
-                  </Typography>
+                  <Typography variant="h6">{item.head}</Typography>
                 </TableCell>
-              )}
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -115,19 +128,15 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
                       onChange={() => handleSelect(item.idCode)}
                       sx={{
                         border: '1px !important',
-                        display: `${checkTest ? '' : 'none'}`
+                        display: `${checkTest ? '' : 'none'}`,
                       }}
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2">
-                      {item.idCode}
-                    </Typography>
+                    <Typography variant="subtitle2">{item.idCode}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2">
-                      {item.createDate}
-                    </Typography>
+                    <Typography variant="subtitle2">{item.createDate}</Typography>
                   </TableCell>
                   <TableCell>
                     <Avatar
@@ -138,31 +147,28 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2">
-                      {item.imgName}
-                    </Typography>
+                    <Typography variant="subtitle2">{item.imgName}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2">
-                      {item.moTa}
-                    </Typography>
+                    <Typography variant="subtitle2">{item.moTa}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="subtitle2">
-                      {item.title}
-                    </Typography>
+                    <Typography variant="subtitle2">{item.title}</Typography>
                   </TableCell>
                   <TableCell>
                     <Grid container spacing={2}>
-                      <Grid item >
+                      <Grid item>
                         <Button
                           variant="contained"
-                          onClick={() => { setKey(`${item.idCode}`); setOpen(true) }}
+                          onClick={() => {
+                            setKey(`${item.idCode}`);
+                            setOpen(true);
+                          }}
                         >
                           Sửa
                         </Button>
                       </Grid>
-                      <Grid item >
+                      <Grid item>
                         <Button
                           variant="contained"
                           color="error"
@@ -184,7 +190,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
           count={DataTable5.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onPageChange={(event, newPage) => handleChangePage(newPage)}
+          onPageChange={(_event, newPage) => handleChangePage(newPage)}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
@@ -197,7 +203,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
         setSelectedItemId1={setKey}
       />
     </>
-  )
-}
+  );
+};
 
 export default Tab5;

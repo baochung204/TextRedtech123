@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Button,
   Checkbox,
   Dialog,
   DialogTitle,
@@ -24,8 +23,6 @@ const SimpleDialog: React.FC<PropsSearch> = ({ openSearch, setOpenSearch }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [fileName, setFileName] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-
 
   const handleClose = () => {
     setOpenSearch(false);
@@ -53,7 +50,6 @@ const SimpleDialog: React.FC<PropsSearch> = ({ openSearch, setOpenSearch }) => {
 
   return (
     <>
-
       <Typography variant="subtitle1" component="div">
         {selectedValues
           .join('\n')

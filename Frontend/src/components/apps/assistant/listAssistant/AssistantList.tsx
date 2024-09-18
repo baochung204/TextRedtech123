@@ -2,30 +2,29 @@ import {
   // Autocomplete,
   // Autocomplete,
   Avatar,
+  Badge,
   Box,
   Button,
   Card,
   CardContent,
   Chip,
   Grid,
+  IconButton,
   InputAdornment,
   LinearProgress,
+  ListItemText,
+  MenuItem,
   Paper,
+  Select,
   Stack,
   TextField,
   Tooltip,
   Typography,
-  Select,
-  MenuItem,
-  Checkbox,
-  ListItemText,
-  IconButton,
-  Badge,
 } from '@mui/material';
-import { IconStackBack } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
-import { IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import { IconEdit, IconPower, IconSearch, IconStackBack } from '@tabler/icons-react';
+import { useState } from 'react';
+import Iconchart from 'src/assets/images/chat/chartt.png';
 import avt1 from 'src/assets/images/profile/user-1.jpg';
 import avt10 from 'src/assets/images/profile/user-10.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
@@ -44,11 +43,10 @@ import rank6 from 'src/assets/images/rank/rank6.png';
 import rank7 from 'src/assets/images/rank/rank7.png';
 import rank8 from 'src/assets/images/rank/rank8.png';
 import rank9 from 'src/assets/images/rank/rank9.png';
-import Iconchart from 'src/assets/images/chat/chartt.png';
 import PageContainer from 'src/components/container/PageContainer';
 // import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { IconArrowUpRight } from '@tabler/icons-react';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { IconArrowUpRight } from '@tabler/icons-react';
 // import { useMediaQuery } from '@mui/material';
 // import { IconTable } from '@tabler/icons-react';
 
@@ -60,10 +58,10 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import BlankCard from '../AssistantEditor/BlankCard';
 // import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 // import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { SelectChangeEvent } from '@mui/material/Select';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import SouthIcon from '@mui/icons-material/South';
 import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import { SelectChangeEvent } from '@mui/material/Select';
 
 interface sellsData {
   product: string;

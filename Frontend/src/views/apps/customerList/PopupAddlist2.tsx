@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Grid, ListItemText, MenuItem, Typography, Button, useTheme } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -56,15 +55,15 @@ const PopupAddList2 = () => {
         .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ')
         .when('email', {
           is: (email: string) => !email, // Nếu email không có giá trị
-          then: Yup.string().required('Số điện thoại khách hàng là bắt buộc')
+          then: Yup.string().required('Số điện thoại khách hàng là bắt buộc'),
         }),
       gender: Yup.string(),
       email: Yup.string().required('Email là bắt buộc'),
-        // .email('Email không hợp lệ')
-        // .when('phone', {
-        //   is: (phone:string) => !phone, // Nếu phone không có giá trị
-        //   then: Yup.string().required('Email là bắt buộc')
-        // }),
+      // .email('Email không hợp lệ')
+      // .when('phone', {
+      //   is: (phone:string) => !phone, // Nếu phone không có giá trị
+      //   then: Yup.string().required('Email là bắt buộc')
+      // }),
       dob: Yup.date(),
       notes: Yup.string(),
       assistant: Yup.string(),
@@ -74,8 +73,10 @@ const PopupAddList2 = () => {
       companyAddress: Yup.string(),
       taxId: Yup.string(),
       companyEmail: Yup.string().email('Email không hợp lệ'),
-      companyPhone: Yup.string()
-        .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ'),
+      companyPhone: Yup.string().matches(
+        /^(0[3|5|7|8|9])+([0-9]{8})$/,
+        'Số điện thoại không hợp lệ',
+      ),
       companyWebsite: Yup.string().url('URL không hợp lệ'),
       facebookUrl: Yup.string().url('URL không hợp lệ'),
       zaloUrl: Yup.string().url('URL không hợp lệ'),
@@ -90,8 +91,26 @@ const PopupAddList2 = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       {/* Thông tin cá nhân */}
-      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
-        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
+      <Box
+        mb={4}
+        p={4}
+        sx={{
+          border: '1px solid #ddd',
+          borderRadius: '8px',
+          boxShadow: 2,
+          bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+          color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: '1.5rem',
+            mb: 2,
+            fontWeight: 'bold',
+            color: theme.palette.mode === 'dark' ? '#fff' : '#333',
+          }}
+        >
           Thông tin cá nhân
         </Typography>
         <Grid container spacing={2}>
@@ -107,7 +126,9 @@ const PopupAddList2 = () => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
             />
-            <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>Số điện thoại</CustomFormLabel>
+            <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>
+              Số điện thoại
+            </CustomFormLabel>
             <CustomTextField
               id="phone"
               variant="outlined"
@@ -118,7 +139,9 @@ const PopupAddList2 = () => {
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               helperText={formik.touched.phone && formik.errors.phone}
             />
-            <CustomFormLabel htmlFor="gender" sx={{ mt: 2 }}>Giới tính</CustomFormLabel>
+            <CustomFormLabel htmlFor="gender" sx={{ mt: 2 }}>
+              Giới tính
+            </CustomFormLabel>
             <CustomSelect
               id="gender"
               value={formik.values.gender}
@@ -134,7 +157,9 @@ const PopupAddList2 = () => {
               ))}
             </CustomSelect>
             {formik.touched.gender && Boolean(formik.errors.gender) && (
-              <Typography color="error" variant="body2">{formik.errors.gender}</Typography>
+              <Typography color="error" variant="body2">
+                {formik.errors.gender}
+              </Typography>
             )}
           </Grid>
           <Grid item xs={12} md={6}>
@@ -150,7 +175,9 @@ const PopupAddList2 = () => {
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
             />
-            <CustomFormLabel htmlFor="dob" sx={{ mt: 2 }}>Ngày sinh</CustomFormLabel>
+            <CustomFormLabel htmlFor="dob" sx={{ mt: 2 }}>
+              Ngày sinh
+            </CustomFormLabel>
             <CustomTextField
               id="dob"
               type="date"
@@ -163,7 +190,9 @@ const PopupAddList2 = () => {
               error={formik.touched.dob && Boolean(formik.errors.dob)}
               helperText={formik.touched.dob && formik.errors.dob}
             />
-            <CustomFormLabel htmlFor="notes" sx={{ mt: 2 }}>Ghi chú</CustomFormLabel>
+            <CustomFormLabel htmlFor="notes" sx={{ mt: 2 }}>
+              Ghi chú
+            </CustomFormLabel>
             <CustomTextField
               id="notes"
               variant="outlined"
@@ -181,8 +210,26 @@ const PopupAddList2 = () => {
       </Box>
 
       {/* Thông tin trợ lý và kênh */}
-      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
-        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
+      <Box
+        mb={4}
+        p={4}
+        sx={{
+          border: '1px solid #ddd',
+          borderRadius: '8px',
+          boxShadow: 2,
+          bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+          color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: '1.5rem',
+            mb: 2,
+            fontWeight: 'bold',
+            color: theme.palette.mode === 'dark' ? '#fff' : '#333',
+          }}
+        >
           Trợ lý và kênh
         </Typography>
         <Grid container spacing={2}>
@@ -198,7 +245,9 @@ const PopupAddList2 = () => {
               error={formik.touched.assistant && Boolean(formik.errors.assistant)}
               helperText={formik.touched.assistant && formik.errors.assistant}
             />
-            <CustomFormLabel htmlFor="tags" sx={{ mt: 2 }}>Tags</CustomFormLabel>
+            <CustomFormLabel htmlFor="tags" sx={{ mt: 2 }}>
+              Tags
+            </CustomFormLabel>
             <Tags />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -222,15 +271,35 @@ const PopupAddList2 = () => {
               ))}
             </CustomSelect>
             {formik.touched.selectedChannels && Boolean(formik.errors.selectedChannels) && (
-              <Typography color="error" variant="body2">{formik.errors.selectedChannels}</Typography>
+              <Typography color="error" variant="body2">
+                {formik.errors.selectedChannels}
+              </Typography>
             )}
           </Grid>
         </Grid>
       </Box>
 
       {/* Thông tin công ty */}
-      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
-        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
+      <Box
+        mb={4}
+        p={4}
+        sx={{
+          border: '1px solid #ddd',
+          borderRadius: '8px',
+          boxShadow: 2,
+          bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+          color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: '1.5rem',
+            mb: 2,
+            fontWeight: 'bold',
+            color: theme.palette.mode === 'dark' ? '#fff' : '#333',
+          }}
+        >
           Thông tin công ty
         </Typography>
         <Grid container spacing={2}>
@@ -246,7 +315,9 @@ const PopupAddList2 = () => {
               error={formik.touched.companyName && Boolean(formik.errors.companyName)}
               helperText={formik.touched.companyName && formik.errors.companyName}
             />
-            <CustomFormLabel htmlFor="companyAddress" sx={{ mt: 2 }}>Địa chỉ công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="companyAddress" sx={{ mt: 2 }}>
+              Địa chỉ công ty
+            </CustomFormLabel>
             <CustomTextField
               id="companyAddress"
               variant="outlined"
@@ -257,7 +328,9 @@ const PopupAddList2 = () => {
               error={formik.touched.companyAddress && Boolean(formik.errors.companyAddress)}
               helperText={formik.touched.companyAddress && formik.errors.companyAddress}
             />
-            <CustomFormLabel htmlFor="taxId" sx={{ mt: 2 }}>Mã số thuế</CustomFormLabel>
+            <CustomFormLabel htmlFor="taxId" sx={{ mt: 2 }}>
+              Mã số thuế
+            </CustomFormLabel>
             <CustomTextField
               id="taxId"
               variant="outlined"
@@ -282,7 +355,9 @@ const PopupAddList2 = () => {
               error={formik.touched.companyEmail && Boolean(formik.errors.companyEmail)}
               helperText={formik.touched.companyEmail && formik.errors.companyEmail}
             />
-            <CustomFormLabel htmlFor="companyPhone" sx={{ mt: 2 }}>Số điện thoại công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="companyPhone" sx={{ mt: 2 }}>
+              Số điện thoại công ty
+            </CustomFormLabel>
             <CustomTextField
               id="companyPhone"
               variant="outlined"
@@ -293,7 +368,9 @@ const PopupAddList2 = () => {
               error={formik.touched.companyPhone && Boolean(formik.errors.companyPhone)}
               helperText={formik.touched.companyPhone && formik.errors.companyPhone}
             />
-            <CustomFormLabel htmlFor="companyWebsite" sx={{ mt: 2 }}>Website công ty</CustomFormLabel>
+            <CustomFormLabel htmlFor="companyWebsite" sx={{ mt: 2 }}>
+              Website công ty
+            </CustomFormLabel>
             <CustomTextField
               id="companyWebsite"
               variant="outlined"
@@ -309,8 +386,26 @@ const PopupAddList2 = () => {
       </Box>
 
       {/* Thông tin mạng xã hội */}
-      <Box mb={4} p={4} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2, bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', color: theme.palette.mode === 'dark' ? '#fff' : '#000' }}>
-        <Typography variant="h6" sx={{ fontSize: '1.5rem', mb: 2, fontWeight: 'bold', color: theme.palette.mode === 'dark' ? '#fff' : '#333' }}>
+      <Box
+        mb={4}
+        p={4}
+        sx={{
+          border: '1px solid #ddd',
+          borderRadius: '8px',
+          boxShadow: 2,
+          bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
+          color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: '1.5rem',
+            mb: 2,
+            fontWeight: 'bold',
+            color: theme.palette.mode === 'dark' ? '#fff' : '#333',
+          }}
+        >
           Mạng xã hội
         </Typography>
         <Grid container spacing={2}>
@@ -369,6 +464,5 @@ const PopupAddList2 = () => {
     </form>
   );
 };
-
 
 export default PopupAddList2;
