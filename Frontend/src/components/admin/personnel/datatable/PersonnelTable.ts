@@ -20,16 +20,23 @@ interface PersonnelTable {
     articleCount: number;
     status: boolean;
     isActive: boolean;
-    avt: string
+    avt: string,
+    position: string
 }
 
 const images = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10];
+
+const position = ['Nhân viên', 'Giám độc', 'Sales', 'Kế toán']
 
 function getRandomImage() {
     const randomIndex = Math.floor(Math.random() * images.length);
     return images[randomIndex];
 }
 
+const getRandomPosition = () => {
+    const randomPosition = Math.floor(Math.random() * position.length)
+    return position[randomPosition]
+}
 const PersonnelTable: PersonnelTable[] = [
     {
         id: '1',
@@ -41,7 +48,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 5,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '2',
@@ -53,7 +61,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 3,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '3',
@@ -65,7 +74,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 8,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '4',
@@ -77,7 +87,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 2,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '5',
@@ -89,7 +100,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 10,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '6',
@@ -101,7 +113,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 4,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '7',
@@ -113,7 +126,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 6,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '8',
@@ -125,7 +139,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 7,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '9',
@@ -137,7 +152,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 2,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '10',
@@ -149,7 +165,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 9,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '11',
@@ -161,7 +178,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 3,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '12',
@@ -173,7 +191,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 5,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '13',
@@ -185,7 +204,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 8,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '14',
@@ -197,7 +217,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 2,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '15',
@@ -209,7 +230,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 10,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '16',
@@ -221,7 +243,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 4,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '17',
@@ -233,7 +256,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 6,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '18',
@@ -245,7 +269,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 7,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '19',
@@ -257,7 +282,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 2,
         status: false,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     },
     {
         id: '20',
@@ -269,7 +295,8 @@ const PersonnelTable: PersonnelTable[] = [
         articleCount: 9,
         status: true,
         isActive: true,
-        avt: getRandomImage()
+        avt: getRandomImage(),
+        position: getRandomPosition()
     }
 ];
 
