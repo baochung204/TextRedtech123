@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { styled } from '@mui/material/styles';
@@ -8,6 +8,7 @@ interface DialogProps {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     value: string;
+    keyOption: string
 }
 
 const VisuallyHiddenInput = styled('input')({
@@ -22,7 +23,7 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
+const DialogPersonel = ({ open, setOpen, value, keyOption }: DialogProps) => {
 
     const initialValues = {
         avtUrl: '',
@@ -58,6 +59,12 @@ const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
         }
     };
 
+    // useEffect(() => {
+    //     if (keyOption === null) {
+           
+    //    } 
+    // },[keyOption])
+
     return (
         <Dialog
             open={open && value === '1'}
@@ -65,6 +72,7 @@ const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             fullWidth
+            maxWidth='md'
         >
             <DialogTitle
                 id="alert-dialog-title"
@@ -74,20 +82,25 @@ const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
             >
                 Thêm nhân viên
             </DialogTitle>
-            <DialogContent>
+            <DialogContent
+                sx={{
+                    marginBottom: 2
+                }}
+            >
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                 >
-                    {({ isSubmitting, setFieldValue, values }) => (
+                    {({ setFieldValue, values }) => (
                         <Form>
                             <Grid container >
                                 <Grid item xs={12} >
                                     <Box
                                         sx={{
                                             display: 'flex',
-                                            justifyContent: 'center'
+                                            justifyContent: 'center',
+                                            paddingBottom: 3
                                         }}
                                     >
                                         <IconButton aria-label="upload">
@@ -97,14 +110,15 @@ const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
                                                     height: 150,
                                                     width: 150,
                                                     '&:hover': {
-                                                        backgroundColor: 'transparent',
+                                                        backgroundColor: '#C6D5FF',
                                                         boxShadow: 'none',
-                                                        borderColor: 'red',
+                                                        borderColor: '#5D87FF',
+                                                        color: '#5D87FF'
                                                     },
-                                                    // backgroundColor: 'transparent',
                                                     boxShadow: 'none',
-                                                    border: `${values.avtUrl === null ? '1px dashed black' : 'none'}`,
+                                                    border: `${values.avtUrl === '' ? '1px dashed black' : 'none'}`,
                                                     borderRadius: 999,
+                                                    color: 'black'
                                                 }}
                                             >
                                                 {values.avtUrl ? (
@@ -125,7 +139,7 @@ const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
                                         </IconButton>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sx={{ paddingLeft: 2 }}>
                                     <Grid container xs={12} spacing={2}>
                                         <Grid item xs={6}>
                                             <Typography variant='h6' >
@@ -142,7 +156,7 @@ const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
                                                     </ErrorMessage>
                                                 }
                                                 FormHelperTextProps={{
-                                                    sx: { ml: 0 } // Bỏ margin-left
+                                                    sx: { ml: 0 }
                                                 }}
                                             />
                                         </Grid>
@@ -245,9 +259,15 @@ const DialogPersonel = ({ open, setOpen, value }: DialogProps) => {
                                 </Grid>
                             </Grid>
                             <DialogActions>
-                                <Button onClick={() => setOpen(false)} disabled={isSubmitting}>Disagree</Button>
-                                <Button type="submit">
-                                    Agree
+                                <Button
+                                    onClick={() => setOpen(false)}
+                                    variant='contained'
+                                    color='error'>Đóng</Button>
+                                <Button
+                                    type="submit"
+                                    variant='contained'
+                                >
+                                    Thêm
                                 </Button>
                             </DialogActions>
                         </Form>

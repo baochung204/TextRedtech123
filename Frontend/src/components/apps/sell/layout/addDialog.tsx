@@ -7,6 +7,7 @@ import {
   Box,
   Tooltip,
   Fab,
+  Divider,
 } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
 import PopupAdd from './PopupAdd';
@@ -52,22 +53,17 @@ const AddDialog = () => {
           },
         }}
       >
-        
-          <Box >
-            <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
-            <DialogContent>
-              <PopupAdd /> {/* Gọi component PopupAdd */}
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClosePopup}>Hủy</Button>
-              <Button onClick={handleClosePopup} variant="contained" color="primary">
-                Lưu
-              </Button>
-            </DialogActions>
-          </Box>
 
-        
-
+        <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
+        <DialogContent>
+          <PopupAdd /> {/* Gọi component PopupAdd */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup}>Hủy</Button>
+          <Button onClick={handleClosePopup} variant="contained" color="primary">
+            Lưu
+          </Button>
+        </DialogActions>
       </Dialog>
     </Box>
   );

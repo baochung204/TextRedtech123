@@ -9,11 +9,10 @@ import React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import PopupAddList2 from 'src/views/apps/customerList/PopupAddlist2';
 import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
-import TableBlog from './_components/TableBlog';
 import AddBlog from './_components/AddBlog';
+import TableBlog from './_components/TableBlog';
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/apps/blog/posts', title: 'Danh sách bài viết' },

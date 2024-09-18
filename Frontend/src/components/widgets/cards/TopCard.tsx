@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, styled } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface StyleProps {
     bgColor: string;
@@ -11,6 +11,7 @@ interface StyleProps {
 
 interface TopCardProps {
     dataSource: StyleProps[];
+    totalColumn: string;
 }
 
 
@@ -25,9 +26,20 @@ const BoxStyled = styled(Box)(() => ({
 
 }));
 
-const TopCard = ({ dataSource }: TopCardProps) => {
+const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
+
+    const [total, setTotal] = useState<number | null>(null)
+
+    useEffect(() => {
+        if (totalColumn !== null) {
+            const tmp = parseInt(totalColumn);
+            setTotal(12 / tmp)
+        }
+    }, [totalColumn])
+    console.log(total);
+
     return (
-        <Grid container spacing={3}>
+        <Grid container spacing={total}>
             {dataSource.map((items, index) => {
                 return (
                     <Grid item lg={3} sm={6} xs={12} key={index}>
