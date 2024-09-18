@@ -22,7 +22,7 @@ const Sli = () => {
 
     return (
         <>
-            <CustomFormLabel htmlFor="name" sx={{ mt: 3 }}>Tài nguyên</CustomFormLabel>
+            <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>Tài nguyên</CustomFormLabel>
             <Paper elevation={2} sx={{ minHeight: '4%', p: 2, backgroundColor: '#fafafa' }}>
                 <Grid container>
                     <Grid lg={6}>

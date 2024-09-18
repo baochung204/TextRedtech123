@@ -14,7 +14,7 @@ const AddModel = () => {
 
     return (
         <Paper elevation={3} sx={{ maxHeight: '100%', overflowY: 'auto', px: 2, pb: 2 }}>
-            <Grid container spacing={2}>
+            <Grid container >
                 <Grid item xs={12} sm={12} lg={12}>
                     <Box fontWeight={600} mt={2} mb={1}>Model</Box>
                     <CustomSelect
@@ -29,7 +29,7 @@ const AddModel = () => {
                         <MenuItem value={3}>GPT-4-TURBO</MenuItem>
                     </CustomSelect>
                 </Grid>
-                <Grid item xs={12} sm={6} lg={6} p={0}>
+                <Grid item xs={12} sm={6} lg={12}>
                     <CustomFormLabel htmlFor="cname">Hướng dẫn</CustomFormLabel>
                     <TextField
                         id="outlined-multiline-static"
@@ -61,7 +61,7 @@ const AddModel = () => {
                     />
                 </Grid>
                 
-                <Grid item xs={12} sm={6} lg={6}>
+                <Grid item xs={12} sm={6} lg={12}>
 
                     <CustomFormLabel htmlFor="cname">Định nghĩa chuyển đổi</CustomFormLabel>
                     <TextField
