@@ -174,7 +174,8 @@ const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAss
 const AssistantList = Loadable(
   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 );
-const Text = Loadable(lazy(() => import('../views/admin/ticket/text')));
+const OrderRPoint = Loadable(lazy(() => import('../views/admin/orderRPoint/OrderRPoint')));
+const Ticket = Loadable(lazy(() => import('../views/admin/ticket/ticket')));
 // const AssistantList = Loadable(
 //   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 // );import Blog from './../views/apps/blog/Blog';
@@ -329,9 +330,9 @@ const Router = [
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
       { path: '/admin/blog', element: <Blog /> },
-      // { path: '/admin/ticket', element: <Ticket /> },
-      { path: '/admin/test', element: <Text /> },
+      { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/notification', element: <Notification /> },
+      { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
       { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
       { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
       { path: '/admin/resources', element: <Resources /> },

@@ -91,7 +91,7 @@ const MenuAdminitems: MenuitemsType[] = [
         title: 'Đơn hàng R-Point',
         icon: IconPoint,
 
-        href: '/admin/point/pointdetail',
+        href: '/admin/order/orderRPoint',
       },
     ],
   },

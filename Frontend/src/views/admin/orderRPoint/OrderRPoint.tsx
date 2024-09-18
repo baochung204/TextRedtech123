@@ -82,28 +82,83 @@ interface HeadCell {
 
 const headCells: HeadCell[] = [
   {
-    dataIndex: 'idTicket',
+    dataIndex: 'id',
     numeric: false,
     disablePadding: false,
-    label: 'ID Ticket',
+    label: 'ID',
   },
   {
-    dataIndex: 'creationTime',
+    dataIndex: 'rechargeDate',
     numeric: false,
     disablePadding: false,
-    label: 'Thời gian tạo',
+    label: 'Ngày nạp',
   },
   {
-    dataIndex: 'interaction',
+    dataIndex: 'customerName',
     numeric: false,
     disablePadding: false,
-    label: 'Tương tác gần đây',
+    label: 'Khách hàng',
   },
   {
-    dataIndex: 'rating',
+    dataIndex: 'email',
     numeric: false,
     disablePadding: false,
-    label: 'Đánh giá',
+    label: 'Email',
+  },
+
+  {
+    dataIndex: 'phoneNumber',
+    numeric: false,
+    disablePadding: false,
+    label: 'Số điện thoại',
+  },
+  {
+    dataIndex: 'packageName',
+    numeric: false,
+    disablePadding: false,
+    label: 'Tên gói ',
+  },
+  {
+    dataIndex: 'points',
+    numeric: false,
+    disablePadding: false,
+    label: 'Số point ',
+  },
+  {
+    dataIndex: 'listedPrice',
+    numeric: false,
+    disablePadding: false,
+    label: 'Giá niêm yết ',
+  },
+  {
+    dataIndex: 'promotionCode',
+    numeric: false,
+    disablePadding: false,
+    label: 'Mã khuyến mại',
+  },
+  {
+    dataIndex: 'paymentAmount',
+    numeric: false,
+    disablePadding: false,
+    label: 'Số tiền  ',
+  },
+  {
+    dataIndex: 'totalOrder',
+    numeric: false,
+    disablePadding: false,
+    label: 'Tổng đơn',
+  },
+  {
+    dataIndex: 'publisherId',
+    numeric: false,
+    disablePadding: false,
+    label: 'ID publisher',
+  },
+  {
+    dataIndex: 'affiliateCommission',
+    numeric: false,
+    disablePadding: false,
+    label: 'Hoa hồng Affiliate',
   },
   {
     dataIndex: 'status',
@@ -112,141 +167,145 @@ const headCells: HeadCell[] = [
     label: 'Trạng thái',
   },
   {
-    dataIndex: 'title',
+    dataIndex: 'invoice',
     numeric: false,
     disablePadding: false,
-    label: 'Tiêu đề',
+    label: 'Hóa đơn',
   },
   {
-    dataIndex: 'customerId',
+    dataIndex: 'details',
     numeric: false,
     disablePadding: false,
-    label: 'ID Khách hàng',
-  },
-  {
-    dataIndex: 'customerName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tên Khách hàng',
-  },
-  {
-    dataIndex: 'email',
-    numeric: false,
-    disablePadding: false,
-    label: 'Email',
-  },
-  {
-    dataIndex: 'phoneNumber',
-    numeric: false,
-    disablePadding: false,
-    label: 'Số điện thoại',
+    label: 'Chi tiết',
   },
 ];
-interface DataRow {
-  idTicket: string;
-  creationTime: string;
-  interaction: string;
-  rating: number;
-  status: JSX.Element;
-  title: string;
-  customerId: string;
-  customerName: string;
-  email: string;
-  phoneNumber: string;
+interface RechargeTransaction {
+  id: string; // ID giao dịch
+  rechargeDate: string; // Ngày nạp
+  customerName: string; // Tên khách hàng
+  email: string; // Email khách hàng
+  phoneNumber: string; // Số điện thoại
+  packageName: string; // Tên gói
+  points: number; // Số point
+  listedPrice: number; // Giá niêm yết
+  promotionCode?: string; // Mã khuyến mại (optional nếu có)
+  paymentAmount: number; // Số tiền
+  totalOrder: number; // Tổng đơn
+  publisherId: string; // ID publisher
+  affiliateCommission: number; // Hoa hồng Affiliate
+  status: string; // Trạng thái (ví dụ: Đã thanh toán, Chưa thanh toán)
+  invoice: string; // Hóa đơn
+  details: string; // Chi tiết giao dịch
 }
 
-const getStatusTextAndColor = (status: number) => {
-  switch (status) {
-    case 1:
-      return { text: 'Đã xử lý', color: '#13DEB9' };
-    case 2:
-      return { text: 'Chưa xử lý', color: '#ff9800' };
-    default:
-      return { text: 'Không xác định', color: '#000000' };
-  }
-};
-
-const renderStatus = (status: number) => {
-  const { text, color } = getStatusTextAndColor(status);
-  return (
-    <Typography style={{ color }} variant="subtitle2">
-      {text}
-    </Typography>
-  );
-};
-
-const dataRows: DataRow[] = [
+const dataRows: RechargeTransaction[] = [
   {
-    idTicket: 'TCK001',
-    creationTime: '2024-09-01 08:30',
-    interaction: 'Nhận yêu cầu',
-    rating: 4,
-    status: renderStatus(1),
-    title: 'Lỗi sản phẩm',
-    customerId: 'CUS001',
+    id: 'RT001',
+    rechargeDate: '2024-09-01',
     customerName: 'Nguyễn Văn A',
     email: 'nguyenvana@example.com',
     phoneNumber: '0123456789',
+    packageName: 'Gói cơ bản',
+    points: 100,
+    listedPrice: 200000,
+    promotionCode: 'PROMO10',
+    paymentAmount: 180000,
+    totalOrder: 1,
+    publisherId: 'PUB001',
+    affiliateCommission: 9000,
+    status: 'Đã thanh toán',
+    invoice: 'INV001',
+    details: 'Nạp gói cơ bản với khuyến mại 10% và nhận 100 điểm.',
   },
   {
-    idTicket: 'TCK002',
-    creationTime: '2024-09-02 09:15',
-    interaction: 'Gửi phản hồi',
-    rating: 5,
-    status: renderStatus(2),
-    title: 'Yêu cầu hỗ trợ kỹ thuật',
-    customerId: 'CUS002',
+    id: 'RT002',
+    rechargeDate: '2024-09-02',
     customerName: 'Trần Thị B',
     email: 'tranthib@example.com',
     phoneNumber: '0987654321',
+    packageName: 'Gói nâng cao',
+    points: 200,
+    listedPrice: 400000,
+    promotionCode: 'PROMO20',
+    paymentAmount: 320000,
+    totalOrder: 2,
+    publisherId: 'PUB002',
+    affiliateCommission: 16000,
+    status: 'Chưa thanh toán',
+    invoice: 'INV002',
+    details: 'Nạp gói nâng cao với khuyến mại 20% và nhận 200 điểm.',
   },
   {
-    idTicket: 'TCK003',
-    creationTime: '2024-09-03 10:45',
-    interaction: 'Gọi điện',
-    rating: 3,
-    status: renderStatus(1),
-    title: 'Vấn đề thanh toán',
-    customerId: 'CUS003',
+    id: 'RT003',
+    rechargeDate: '2024-09-03',
     customerName: 'Lê Văn C',
     email: 'levanc@example.com',
     phoneNumber: '0123987654',
+    packageName: 'Gói VIP',
+    points: 500,
+    listedPrice: 1000000,
+    promotionCode: '',
+    paymentAmount: 1000000,
+    totalOrder: 1,
+    publisherId: 'PUB003',
+    affiliateCommission: 50000,
+    status: 'Đã thanh toán',
+    invoice: 'INV003',
+    details: 'Nạp gói VIP không có khuyến mại và nhận 500 điểm.',
   },
   {
-    idTicket: 'TCK004',
-    creationTime: '2024-09-04 11:20',
-    interaction: 'Nhận yêu cầu',
-    rating: 2,
-    status: renderStatus(2),
-    title: 'Sản phẩm bị lỗi',
-    customerId: 'CUS004',
+    id: 'RT004',
+    rechargeDate: '2024-09-04',
     customerName: 'Hoàng Thị D',
     email: 'hoangthid@example.com',
     phoneNumber: '0234567890',
+    packageName: 'Gói khuyến mãi',
+    points: 150,
+    listedPrice: 300000,
+    promotionCode: 'PROMO15',
+    paymentAmount: 255000,
+    totalOrder: 1,
+    publisherId: 'PUB004',
+    affiliateCommission: 12750,
+    status: 'Đã thanh toán',
+    invoice: 'INV004',
+    details: 'Nạp gói khuyến mãi với khuyến mại 15% và nhận 150 điểm.',
   },
   {
-    idTicket: 'TCK005',
-    creationTime: '2024-09-05 14:05',
-    interaction: 'Gửi phản hồi',
-    rating: 4,
-    status: renderStatus(2),
-    title: 'Yêu cầu đổi hàng',
-    customerId: 'CUS005',
+    id: 'RT005',
+    rechargeDate: '2024-09-05',
     customerName: 'Phạm Văn E',
     email: 'phamvane@example.com',
     phoneNumber: '0345678901',
+    packageName: 'Gói thường',
+    points: 50,
+    listedPrice: 100000,
+    promotionCode: '',
+    paymentAmount: 100000,
+    totalOrder: 1,
+    publisherId: 'PUB005',
+    affiliateCommission: 5000,
+    status: 'Chưa thanh toán',
+    invoice: 'INV005',
+    details: 'Nạp gói thường không có khuyến mại và nhận 50 điểm.',
   },
   {
-    idTicket: 'TCK006',
-    creationTime: '2024-09-06 15:30',
-    interaction: 'Gọi điện',
-    rating: 5,
-    status: renderStatus(1),
-    title: 'Vấn đề bảo hành',
-    customerId: 'CUS006',
+    id: 'RT006',
+    rechargeDate: '2024-09-06',
     customerName: 'Ngô Thị F',
     email: 'ngothif@example.com',
     phoneNumber: '0456789012',
+    packageName: 'Gói đặc biệt',
+    points: 300,
+    listedPrice: 600000,
+    promotionCode: 'PROMO25',
+    paymentAmount: 450000,
+    totalOrder: 2,
+    publisherId: 'PUB006',
+    affiliateCommission: 22500,
+    status: 'Đã thanh toán',
+    invoice: 'INV006',
+    details: 'Nạp gói đặc biệt với khuyến mại 25% và nhận 300 điểm.',
   },
 ];
 
@@ -271,13 +330,13 @@ const FilmsData: FilmsData[] = [
   { id: 14, title: 'Chi phí/Khách hàng' },
   { id: 15, title: 'Chiến lược' },
 ];
-const Ticket = () => {
+const OrderRPoint = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
-      <BannerPage title="Quản lý ticket" items={BCrumb} />
+      <BannerPage title="Đơn hàng R-Point" items={BCrumb} />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={4} />
@@ -340,4 +399,4 @@ const Ticket = () => {
   );
 };
 
-export default Ticket;
+export default OrderRPoint;
