@@ -3,6 +3,8 @@ import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
+import fb from 'src/assets/images/socialmedia/facebook.png'
+import insta from 'src/assets/images/socialmedia/instagram.png'
 
 export interface TableType {
   id?: string;
@@ -82,7 +84,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'duc.lt@redon.com',
     orderInfo: 'Đơn hàng A',
     note: 'Ghi chú A',
-    imgsrc: img1,
+    imgsrc: fb,
   },
   {
     id: '2',
@@ -96,7 +98,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'linh.nt@redon.com',
     orderInfo: 'Đơn hàng B',
     note: 'Ghi chú B',
-    imgsrc: img2,
+    imgsrc: insta,
   },
   {
     id: '3',
@@ -110,7 +112,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'duc.lt@redon.com',
     orderInfo: 'Đơn hàng A',
     note: 'Ghi chú A',
-    imgsrc: img1,
+    imgsrc: fb,
   },
   {
     id: '4',
@@ -124,7 +126,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'linh.nt@redon.com',
     orderInfo: 'Đơn hàng B',
     note: 'Ghi chú B',
-    imgsrc: img2,
+    imgsrc: insta,
   },
   {
     id: '5',
@@ -138,7 +140,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'duc.lt@redon.com',
     orderInfo: 'Đơn hàng A',
     note: 'Ghi chú A',
-    imgsrc: img1,
+    imgsrc: fb,
   },
   {
     id: '6',
@@ -152,7 +154,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'linh.nt@redon.com',
     orderInfo: 'Đơn hàng B',
     note: 'Ghi chú B',
-    imgsrc: img2,
+    imgsrc: insta,
   },
   {
     id: '7',
@@ -166,7 +168,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'duc.lt@redon.com',
     orderInfo: 'Đơn hàng A',
     note: 'Ghi chú A',
-    imgsrc: img1,
+    imgsrc: fb,
   },
   {
     id: '8',
@@ -180,7 +182,7 @@ const DataRowCustomerTable: CustomerListTable[] = [
     email: 'linh.nt@redon.com',
     orderInfo: 'Đơn hàng B',
     note: 'Ghi chú B',
-    imgsrc: img2,
+    imgsrc: insta,
   },
 ];
 
