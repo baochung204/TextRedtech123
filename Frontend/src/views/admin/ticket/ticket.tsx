@@ -111,7 +111,7 @@ interface DataRow {
   creationTime: string;
   interaction: string;
   rating: number;
-  status: string;
+  status: number;
   title: string;
   customerId: string;
   customerName: string;
@@ -124,7 +124,7 @@ const dataRows: DataRow[] = [
     creationTime: '2024-09-01 08:30',
     interaction: 'Nhận yêu cầu',
     rating: 4,
-    status: 'Đang xử lý',
+    status: 1,
     title: 'Lỗi sản phẩm',
     customerId: 'CUS001',
     customerName: 'Nguyễn Văn A',
@@ -136,7 +136,7 @@ const dataRows: DataRow[] = [
     creationTime: '2024-09-02 09:15',
     interaction: 'Gửi phản hồi',
     rating: 5,
-    status: 'Hoàn thành',
+    status: 2,
     title: 'Yêu cầu hỗ trợ kỹ thuật',
     customerId: 'CUS002',
     customerName: 'Trần Thị B',
@@ -148,7 +148,7 @@ const dataRows: DataRow[] = [
     creationTime: '2024-09-03 10:45',
     interaction: 'Gọi điện',
     rating: 3,
-    status: 'Chờ phản hồi',
+    status: 2,
     title: 'Vấn đề thanh toán',
     customerId: 'CUS003',
     customerName: 'Lê Văn C',
@@ -160,7 +160,7 @@ const dataRows: DataRow[] = [
     creationTime: '2024-09-04 11:20',
     interaction: 'Nhận yêu cầu',
     rating: 2,
-    status: 'Đang xử lý',
+    status: 2,
     title: 'Sản phẩm bị lỗi',
     customerId: 'CUS004',
     customerName: 'Hoàng Thị D',
@@ -172,7 +172,7 @@ const dataRows: DataRow[] = [
     creationTime: '2024-09-05 14:05',
     interaction: 'Gửi phản hồi',
     rating: 4,
-    status: 'Hoàn thành',
+    status: 1,
     title: 'Yêu cầu đổi hàng',
     customerId: 'CUS005',
     customerName: 'Phạm Văn E',
@@ -184,7 +184,7 @@ const dataRows: DataRow[] = [
     creationTime: '2024-09-06 15:30',
     interaction: 'Gọi điện',
     rating: 5,
-    status: 'Chờ phản hồi',
+    status: 1,
     title: 'Vấn đề bảo hành',
     customerId: 'CUS006',
     customerName: 'Ngô Thị F',
@@ -364,7 +364,8 @@ const Ticket = () => {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelecteds = dataRows.map((n: any) => n.name);
@@ -406,11 +407,7 @@ const Ticket = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows.length) : 0;
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
@@ -467,27 +464,21 @@ const Ticket = () => {
               />
             </Grid>
             <Grid item xs={6}>
-              <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mt: 10 }}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     value={selectedStartDate}
-                    onChange={(newDate: date) => setSelectedStartDate(newDate)}
-                    renderInput={(params: any) => (
-                      <CustomTextField
-                        {...params}
-                        sx={{ marginRight: '10px', maxWidth: '170px' }}
-                      />
+                    onChange={setSelectedStartDate}
+                    renderInput={(params) => (
+                      <CustomTextField {...params} sx={{ marginRight: '10px' }} />
                     )}
                   />
                   <Typography sx={{ marginRight: '10px' }}>tới</Typography>
                   <DatePicker
                     value={selectedEndDate}
-                    onChange={(newDate: any) => setSelectedEndDate(newDate)}
-                    renderInput={(params: any) => (
-                      <CustomTextField
-                        {...params}
-                        sx={{ marginRight: '10px', maxWidth: '170px' }}
-                      />
+                    onChange={setSelectedEndDate}
+                    renderInput={(params) => (
+                      <CustomTextField {...params} sx={{ marginRight: '10px' }} />
                     )}
                   />
                 </LocalizationProvider>
@@ -526,7 +517,6 @@ const Ticket = () => {
                               tabIndex={-1}
                               key={row.idTicket}
                             >
-                              {/* Mã vé (idTicket) */}
                               <TableCell>
                                 <Stack spacing={2} direction="row">
                                   <Box>
@@ -536,7 +526,6 @@ const Ticket = () => {
                                   </Box>
                                 </Stack>
                               </TableCell>
-                              {/* Thời gian tạo (creationTime) */}
                               <TableCell>
                                 <Stack spacing={2} direction="row">
                                   <Box>
@@ -546,7 +535,6 @@ const Ticket = () => {
                                   </Box>
                                 </Stack>
                               </TableCell>
-                              {/* Tương tác (interaction) */}
                               <TableCell>
                                 <Stack spacing={2} direction="row">
                                   <Box>
@@ -556,7 +544,6 @@ const Ticket = () => {
                                   </Box>
                                 </Stack>
                               </TableCell>
-                              {/* Đánh giá (rating) */}
                               <TableCell>
                                 <Stack spacing={2} direction="row">
                                   <Box>
@@ -570,12 +557,11 @@ const Ticket = () => {
                                   </Box>
                                 </Stack>
                               </TableCell>
-                              {/* Trạng thái (status) */}
                               <TableCell>
                                 <Stack spacing={2} direction="row">
                                   <Box>
                                     <Typography color="textSecondary" variant="subtitle2">
-                                      {row?.status}
+                                      {getStatusTextAndColor(row?.status)}
                                     </Typography>
                                   </Box>
                                 </Stack>
@@ -589,7 +575,6 @@ const Ticket = () => {
                                   </Box>
                                 </Stack>
                               </TableCell>
-                              {/* Thông tin khách hàng (customerName) */}
                               <TableCell>
                                 <Stack spacing={2} direction="row">
                                   <Box>

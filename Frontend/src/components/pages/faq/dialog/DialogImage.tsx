@@ -86,9 +86,6 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
     };
 
     const handleSubmit = () => {
-        console.log('Tên file:', formData.name);
-        console.log('Tiêu đề:', formData.title);
-        console.log('Mô tả:', formData.moTa);
         handleClose();
         setOpen1(true);
         setTimeout(() => {
