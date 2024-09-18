@@ -17,7 +17,7 @@ import OrderAdmin from 'src/views/admin/order/order';
 import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
 import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
 import ProductAdmin from 'src/views/admin/product/product';
-import Publishers from 'src/views/admin/publishers/publishers';
+import Publishers from 'src/views/admin/rpoints/RPoints';
 import Staff from 'src/views/admin/staff';
 import Ticket from 'src/views/admin/ticket/ticket';
 import VoucherAdmin from 'src/views/admin/voucher/voucher';
@@ -31,7 +31,10 @@ import FormRequest from 'src/views/forms/FormRequest';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import AssistantAdmin from '../views/admin/assistant/assistant';
 import Resources from 'src/views/admin/resources/resources';
+import RPoints from 'src/views/admin/rpoints/RPoints';
 /* ***Layouts**** */
+
+
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
 
@@ -175,6 +178,7 @@ const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAss
 const AssistantList = Loadable(
   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 );
+
 // const AssistantList = Loadable(
 //   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 // );import Blog from './../views/apps/blog/Blog';
@@ -335,7 +339,7 @@ const Router = [
       { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
       { path: '/admin/resources', element: <Resources /> },
       { path: '/admin/einvoice', element: <EInvoice /> },
-
+      { path: '/admin/point/packagepoint', element: <RPoints /> },
       { path: '/admin/accountant/feature', element: <Feature /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],

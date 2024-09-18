@@ -94,7 +94,6 @@ const FilmsData: FilmsData[] = [
 const Personnels = () => {
     const [value, setValue] = React.useState('1');
     const [selectedItems, setSelectedItems] = useState<string>('');
-
     const [open, setOpen] = useState<boolean>(false)
 
     const handleChange1 = (event: SelectChangeEvent<string>) => {

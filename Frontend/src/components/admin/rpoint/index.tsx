@@ -1,56 +1,58 @@
-import { Avatar,  Grid,  IconButton, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TablePagination, Box, Grid, IconButton, TextField, InputAdornment } from '@mui/material';
 import React, { useState } from 'react'
-import PersonnelTable from '../datatable/PersonnelTable'
-import DialogPersonel from '../dialog/DialogPersonel'
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x'
-import { IconEye } from '@tabler/icons-react';
-import { IconTrash } from '@tabler/icons-react';
-interface PropsHeadTable {
-    head: string
+import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
+import PublisherTable from './datatable/Publisher';
+import icontext from 'src/assets/images/logos/R-Point.png';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { IconSearch } from '@tabler/icons-react';
+
+
+interface HeadProps {
+    head: string;
 }
 
-const HeadTable: PropsHeadTable[] = [
+const HeadTable: HeadProps[] = [
     {
         head: 'ID'
     },
     {
-        head: 'Ngày tạo'
+        head: 'Tên gói R-Point'
     },
     {
-        head: 'Nhân viên'
+        head: 'Tên Model'
     },
     {
-        head: 'Phòng ban'
+        head: 'Số Points'
     },
     {
-        head: 'Email'
+        head: 'Giá tiền'
     },
     {
-        head: 'Số điện thoại'
+        head: 'Số lượt mua'
     },
     {
-        head: 'Bài viết'
+        head: 'Function'
     },
     {
-        head: 'Trạng thái'
+        head: 'Chiến lược'
     },
     {
-        head: 'Hoạt động'
+        head: 'Files'
     },
+    {
+        head: 'Function (Slot)'
+    },
+    {
+        head: 'Ngày cập nhật'
+    },
+
 ]
 
-interface PropsItem {
-    value: string;
-    open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+const Publisher = () => {
 
-}
-
-const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [key, setKey] = useState<string | null>(null)
     const handleChangePage = (newPage: number) => {
         setPage(newPage);
     };
@@ -60,10 +62,53 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
         setPage(0);
     };
 
-    const paginatedData = PersonnelTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    const paginatedData = PublisherTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
+
 
     return (
         <>
+            <Grid container
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center'
+                }}
+            >
+                <Grid item>
+                    <IconButton
+                        color="primary"
+                        aria-label="Add to cart"
+                        // onClick={() => setOpen(true)}
+                        sx={{
+                            pr: 1.5,
+                        }}
+                    >
+                        <AddCircleIcon sx={{ fontSize: 30 }} />
+                    </IconButton>
+                </Grid>
+                <Grid item>
+                    <TextField
+                        id="outlined-search"
+                        placeholder="Tìm kiếm"
+                        size="small"
+                        type="search"
+                        variant="outlined"
+                        inputProps={{ 'aria-label': 'Search Followers' }}
+                        sx={{
+                            fontSize: { xs: '50px', sm: '50px', md: '50px' }
+                        }}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <IconSearch size="12" />
+                                </InputAdornment>
+                            ),
+                        }}
+                        fullWidth={true}
+                    />
+                </Grid>
+
+            </Grid >
             <TableContainer>
                 <Scrollbar_x>
                     <Table>
@@ -84,12 +129,9 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                         </TableHead>
                         <TableBody>
                             {paginatedData.map((item, index) => {
-                                // const isItemSelected = isSelected(item.id);
-                                // console.log(isItemSelected);
 
                                 return (
                                     <TableRow key={index}
-                                    // selected={isItemSelected}
                                     >
                                         <TableCell
                                             sx={{
@@ -105,14 +147,14 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                                                 whiteSpace: 'nowrap'
                                             }}>
                                             <Typography variant="subtitle2">
-                                                {item.createdAt.toLocaleDateString()}
+                                                {item.package}
                                             </Typography>
                                         </TableCell>
                                         <TableCell
                                             sx={{
                                                 whiteSpace: 'nowrap'
                                             }}>
-                                            <Stack direction='row' spacing={2}>
+                                            {/* <Stack direction='row' spacing={2}>
                                                 <Avatar
                                                     src={item.avt}
                                                     variant="rounded"
@@ -131,14 +173,34 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                                                         </Typography>
                                                     </Grid>
                                                 </Grid>
-                                            </Stack>
+                                            </Stack> */}
+                                            <Typography variant="subtitle2">
+                                                {item.model}
+                                            </Typography>
                                         </TableCell>
                                         <TableCell
                                             sx={{
                                                 whiteSpace: 'nowrap'
                                             }}>
+                                            <Box
+                                                sx={{
+                                                    display: 'flex',
+
+                                                }}
+                                            >
+                                                <Typography variant="subtitle2">
+                                                    {item.points}
+                                                </Typography>
+                                                <img src={icontext} alt='' width={20} />
+                                            </Box>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                whiteSpace: 'nowrap'
+                                            }}
+                                        >
                                             <Typography variant="subtitle2">
-                                                {item.department}
+                                                {item.money} VNĐ
                                             </Typography>
                                         </TableCell>
                                         <TableCell
@@ -147,7 +209,7 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                                             }}
                                         >
                                             <Typography variant="subtitle2">
-                                                {item.email}
+                                                {item.totalBuy}
                                             </Typography>
                                         </TableCell>
                                         <TableCell
@@ -156,7 +218,7 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                                             }}
                                         >
                                             <Typography variant="subtitle2">
-                                                {item.phoneNumber}
+                                                {item.function}
                                             </Typography>
                                         </TableCell>
                                         <TableCell
@@ -165,10 +227,37 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                                             }}
                                         >
                                             <Typography variant="subtitle2">
-                                                {item.articleCount}
+                                                {item.strategy}
                                             </Typography>
                                         </TableCell>
                                         <TableCell
+                                            sx={{
+                                                whiteSpace: 'nowrap'
+                                            }}
+                                        >
+                                            <Typography variant="subtitle2">
+                                                {item.files}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                whiteSpace: 'nowrap'
+                                            }}
+                                        >
+                                            <Typography variant="subtitle2">
+                                                {item.totalFunction}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                whiteSpace: 'nowrap'
+                                            }}
+                                        >
+                                            <Typography variant="subtitle2">
+                                                {item.createDate}
+                                            </Typography>
+                                        </TableCell>
+                                        {/* <TableCell
                                             sx={{
                                                 whiteSpace: 'nowrap'
                                             }}
@@ -180,21 +269,8 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                                                     Khóa
                                                 </Typography>}
                                             </Typography>
-                                        </TableCell>
-                                        <TableCell
-                                            sx={{
-                                                whiteSpace: 'nowrap'
-                                            }}
-                                        >
-                                            <IconButton
-                                                onClick={() => { setKey(item.id); setOpen(true) }}
-                                            >
-                                                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-                                            </IconButton>
-                                            <IconButton>
-                                                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-                                            </IconButton>
-                                        </TableCell>
+                                        </TableCell> */}
+
 
                                     </TableRow>
                                 );
@@ -205,21 +281,16 @@ const PersonnelTab = ({ value, open, setOpen, }: PropsItem) => {
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
-                    count={PersonnelTable.length}
+                    count={PublisherTable.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={(event, newPage) => handleChangePage(newPage)}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </TableContainer >
-            <DialogPersonel
-                open={open}
-                value={value}
-                setOpen={setOpen}
-                keyOption={key}
-            />
+
         </>
     )
 }
 
-export default PersonnelTab
+export default Publisher

@@ -4,8 +4,8 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
-import Products from 'src/components/apps/sell/Product';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import ProductAdmin from 'src/views/admin/product/product';
 const BCrumb = [
   {
     to: '/',
@@ -20,7 +20,7 @@ const Product = () => {
 
       <Grid container spacing={3}>
         <Grid item sm={12}>
-          <Products />
+          <ProductAdmin />
         </Grid>
       </Grid>
     </PageContainer>
