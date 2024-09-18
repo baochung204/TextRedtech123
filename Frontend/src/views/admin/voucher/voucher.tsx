@@ -7,9 +7,10 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import HistoryVoucher from 'src/components/admin/voucher/historyvoucher';
 import ListVoucher from 'src/components/admin/voucher/listvoucher';
 import PageContainer from 'src/components/container/PageContainer';
-import TopCard from 'src/components/widgets/cards/TopCard';
+
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FlashSale from './../../../components/admin/voucher/flashsale';
+import TopCard from 'src/components/widgets/cards/TopCard';
 // const BoxStyled = styled(Box)(() => ({
 //   padding: '24px',
 //   transition: '0.1s ease-in',
@@ -106,7 +107,6 @@ function CustomTabPanel(props: any) {
 const VoucherAdmin = () => {
   const [selected, setSelected] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
-  const [dense] = useState(false);
 
   const [value, setValue] = React.useState(0);
 
@@ -147,7 +147,7 @@ const VoucherAdmin = () => {
       <BannerPage title="Mã khuyến mãi" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} />
+          <TopCard dataSource={DataBox} totalColumn={''} />
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider', maxWidth: 'auto' }}>
