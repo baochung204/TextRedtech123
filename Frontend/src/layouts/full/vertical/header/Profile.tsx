@@ -11,7 +11,6 @@ import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
 import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch } from 'src/store/Store';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);

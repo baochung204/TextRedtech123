@@ -3,11 +3,9 @@ import { Box, Grid, Tab, Tabs } from '@mui/material';
 // import { styled } from '@mui/system';
 import React, { useState } from 'react';
 
-import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import HistoryVoucher from 'src/components/admin/voucher/historyvoucher';
 import ListVoucher from 'src/components/admin/voucher/listvoucher';
 import PageContainer from 'src/components/container/PageContainer';
-import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FlashSale from './../../../components/admin/voucher/flashsale';
 // const BoxStyled = styled(Box)(() => ({
@@ -27,60 +25,60 @@ const BCrumb = [
   { to: '/admin/personnel', title: 'Danh sách mã khuyến mãi' },
 ];
 
-const DataBox = [
-  {
-    bgColor: 'primary.light',
-    color: 'primary.main',
-    title: 'Mã khuyến mãi',
-    total: '620',
-    icons: (
-      <ConfirmationNumberIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
-  },
-  {
-    bgColor: 'warning.light',
-    color: 'warning.main',
-    title: 'Số lượng mã',
-    total: '3.455',
-    icons: (
-      <ConfirmationNumberIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Đã sử sử dụng',
-    total: '3.931',
-    icons: (
-      <ConfirmationNumberIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
-  },
-  {
-    bgColor: 'error.light',
-    color: 'error.main',
-    title: 'Tỉ lệ sử dụng',
-    total: '34.2%',
-    icons: (
-      <ConfirmationNumberIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
-  },
-];
+// const DataBox = [
+//   {
+//     bgColor: 'primary.light',
+//     color: 'primary.main',
+//     title: 'Mã khuyến mãi',
+//     total: '620',
+//     icons: (
+//       <ConfirmationNumberIcon
+//         sx={{
+//           fontSize: 40,
+//         }}
+//       />
+//     ),
+//   },
+//   {
+//     bgColor: 'warning.light',
+//     color: 'warning.main',
+//     title: 'Số lượng mã',
+//     total: '3.455',
+//     icons: (
+//       <ConfirmationNumberIcon
+//         sx={{
+//           fontSize: 40,
+//         }}
+//       />
+//     ),
+//   },
+//   {
+//     bgColor: 'success.light',
+//     color: 'success.main',
+//     title: 'Đã sử sử dụng',
+//     total: '3.931',
+//     icons: (
+//       <ConfirmationNumberIcon
+//         sx={{
+//           fontSize: 40,
+//         }}
+//       />
+//     ),
+//   },
+//   {
+//     bgColor: 'error.light',
+//     color: 'error.main',
+//     title: 'Tỉ lệ sử dụng',
+//     total: '34.2%',
+//     icons: (
+//       <ConfirmationNumberIcon
+//         sx={{
+//           fontSize: 40,
+//         }}
+//       />
+//     ),
+//   },
+// ];
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
@@ -105,8 +103,6 @@ function CustomTabPanel(props: any) {
 
 const VoucherAdmin = () => {
   const [selected, setSelected] = useState<readonly string[]>([]);
-  const [page, setPage] = useState(0);
-  const [dense] = useState(false);
 
   const [value, setValue] = React.useState(0);
 
@@ -138,16 +134,16 @@ const VoucherAdmin = () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event: unknown, newPage: number) => {
+  //   setPage(newPage);
+  // };
 
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Mã khuyến mãi" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} />
+          {/* <TopCard dataSource={DataBox} /> */}
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider', maxWidth: 'auto' }}>

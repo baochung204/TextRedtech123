@@ -1,48 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Button,
-  CardContent,
-  Drawer,
-  FormControl,
-  Grid,
-  Radio,
-  RadioGroup,
-  styled,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Drawer, Grid, Radio, RadioGroup, Typography } from '@mui/material';
 import React from 'react';
 
-import { IconChevronDown } from '@tabler/icons-react';
 import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
-import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import AppCard from 'src/components/shared/AppCard';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import Countdown from 'src/components/countdown/countdown';
 
-const CustomInput = styled((props: any) => <TextField {...props} />)(({ theme }) => ({
-  '& .MuiOutlinedInput-input::-webkit-input-placeholder': {
-    color: theme.palette.text.secondary,
-    opacity: '0.8',
-  },
-  '& .MuiOutlinedInput-input.Mui-disabled::-webkit-input-placeholder': {
-    color: theme.palette.text.secondary,
-    opacity: '1',
-  },
-  '& .Mui-disabled .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.grey[200],
-  },
-}));
 const BCrumb = [
   {
     to: '/',
@@ -52,10 +18,8 @@ const BCrumb = [
   { to: '/pay/point', title: 'Thanh Toán' },
 ];
 const PayMentPonit2 = () => {
-  const [checked, setChecked] = React.useState(false);
-  const handleCheckboxChange = () => {
-    setChecked(!checked);
-  };
+  const [checked] = React.useState(false);
+
   // const [selectedPackage, setSelectedPackage] = useState(null);
 
   // const packages = [

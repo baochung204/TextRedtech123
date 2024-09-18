@@ -2,25 +2,29 @@ import {
   // Autocomplete,
   // Autocomplete,
   Avatar,
+  Badge,
   Box,
   Button,
   Card,
   CardContent,
   Chip,
   Grid,
+  IconButton,
   InputAdornment,
   LinearProgress,
+  ListItemText,
+  MenuItem,
   Paper,
+  Select,
   Stack,
   TextField,
   Tooltip,
   Typography,
-  Select, MenuItem, Checkbox, ListItemText, IconButton, Badge
 } from '@mui/material';
-import { IconStackBack } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
-import { IconEdit, IconPower, IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import { IconEdit, IconPower, IconSearch, IconStackBack } from '@tabler/icons-react';
+import { useState } from 'react';
+import Iconchart from 'src/assets/images/chat/chartt.png';
 import avt1 from 'src/assets/images/profile/user-1.jpg';
 import avt10 from 'src/assets/images/profile/user-10.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
@@ -39,11 +43,10 @@ import rank6 from 'src/assets/images/rank/rank6.png';
 import rank7 from 'src/assets/images/rank/rank7.png';
 import rank8 from 'src/assets/images/rank/rank8.png';
 import rank9 from 'src/assets/images/rank/rank9.png';
-import Iconchart from 'src/assets/images/chat/chartt.png';
 import PageContainer from 'src/components/container/PageContainer';
 // import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { IconArrowUpRight } from '@tabler/icons-react';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { IconArrowUpRight } from '@tabler/icons-react';
 // import { useMediaQuery } from '@mui/material';
 // import { IconTable } from '@tabler/icons-react';
 
@@ -55,10 +58,10 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import BlankCard from '../AssistantEditor/BlankCard';
 // import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 // import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { SelectChangeEvent } from '@mui/material/Select';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import SouthIcon from '@mui/icons-material/South';
 import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import { SelectChangeEvent } from '@mui/material/Select';
 
 interface sellsData {
   product: string;
@@ -238,12 +241,7 @@ const FilmsData: FilmsData[] = [
 ];
 const AssistantList = () => {
   const theme = useTheme();
-  const secondary = theme.palette.secondary.main;
-  const [month, setMonth] = React.useState('1');
   const successlight = theme.palette.success.light;
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
 
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
 
@@ -261,7 +259,6 @@ const AssistantList = () => {
     setSelectedItems(event.target.value);
   };
 
-
   const handleItemClick1 = (title: string) => {
     if (selectedItems === title) {
       setSelectedItems('');
@@ -270,16 +267,14 @@ const AssistantList = () => {
     }
   };
   const [iconIndex, setIconIndex] = useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon]
-
+  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
 
   const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length)
+    setIconIndex((pre) => (pre + 1) % icons.length);
     console.log(7 % 7);
+  };
 
-  }
-
-  const SelectedIcon = icons[iconIndex]
+  const SelectedIcon = icons[iconIndex];
 
   return (
     <PageContainer title="User Profile" description="this is User Profile page">
@@ -300,16 +295,16 @@ const AssistantList = () => {
                 </Typography>
               </Box>
 
-              <Grid
-                container
-                width={{ sm: 600 }}
-                spacing={1}
-              >
-                <Grid item xs={6} sm={6} md={6}
+              <Grid container width={{ sm: 600 }} spacing={1}>
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  md={6}
                   sx={{
                     display: 'flex',
                     justifyContent: 'end',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}
                 >
                   <IconButton aria-label="filter" sx={{ mr: 1 }}>
@@ -339,16 +334,20 @@ const AssistantList = () => {
                     aria-label="filter"
                     onClick={handleClickIcon}
                     sx={{
-                      ml: 1
+                      ml: 1,
                     }}
                   >
                     <SelectedIcon />
                   </IconButton>
                 </Grid>
-                <Grid item xs={6} sm={6} md={6}
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  md={6}
                   sx={{
                     display: 'flex',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}
                 >
                   <TextField

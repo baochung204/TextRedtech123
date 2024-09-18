@@ -1,5 +1,4 @@
 import { Box, Grid, Typography, styled } from '@mui/material';
-import React from 'react';
 
 interface StyleProps {
   bgColor: string;

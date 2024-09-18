@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import {
   Accordion,
   AccordionDetails,
@@ -8,11 +7,8 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Chip,
   FormControl,
   Grid,
-  InputAdornment,
-  MenuItem,
   Snackbar,
   Stack,
   Table,
@@ -23,24 +19,25 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 // components
+import { IconChevronDown } from '@tabler/icons-react';
 import PageContainer from 'src/components/container/PageContainer';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { IconChevronDown } from '@tabler/icons-react';
 import BlankCard from 'src/components/shared/BlankCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
-import products from 'src/assets/images/products/s25.jpg';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
 import { styled } from '@mui/system';
-import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
-import logoVnpay from 'src/assets/images/logoPay/logoVnpay.png';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
+import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
+import logoVnpay from 'src/assets/images/logoPay/logoVnpay.png';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import products from 'src/assets/images/products/s25.jpg';
+import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+import * as Yup from 'yup';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
