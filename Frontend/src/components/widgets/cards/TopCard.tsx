@@ -11,7 +11,7 @@ interface StyleProps {
 
 interface TopCardProps {
     dataSource: StyleProps[];
-    totalColumn: string;
+    totalColumn: number;
 }
 
 
@@ -32,14 +32,13 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
 
     useEffect(() => {
         if (totalColumn !== null) {
-            const tmp = parseInt(totalColumn);
-            setTotal(12 / tmp)
+            setTotal(12 / totalColumn)
         }
     }, [totalColumn])
     console.log(total);
 
     return (
-        <Grid container spacing={total}>
+        <Grid container spacing={2}>
             {dataSource.map((items, index) => {
                 return (
                     <Grid item lg={3} sm={6} xs={12} key={index}>
