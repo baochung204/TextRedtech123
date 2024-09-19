@@ -1157,12 +1157,12 @@ const Main = () => {
       <Grid item xs={12}>
         <Box>
           {/* Hiển thị TopCard khi tab value là 1 */}
-          {value === '1' && <TopCard dataSource={Strategy} totalColumn={0} />}
-          {value === '2' && <TopCard dataSource={Function} totalColumn={0} />}
-          {value === '3' && <TopCard dataSource={Files} totalColumn={0} />}
-          {value === '4' && <TopCard dataSource={Model} totalColumn={0} />}
-          {value === '5' && <TopCard dataSource={Image} totalColumn={0} />}
-          {value === '6' && <TopCard dataSource={Url} totalColumn={0} />}
+          {value === '1' && <TopCard dataSource={Strategy} totalColumn={4} />}
+          {value === '2' && <TopCard dataSource={Function} totalColumn={4} />}
+          {value === '3' && <TopCard dataSource={Files} totalColumn={4} />}
+          {value === '4' && <TopCard dataSource={Model} totalColumn={4} />}
+          {value === '5' && <TopCard dataSource={Image} totalColumn={4} />}
+          {value === '6' && <TopCard dataSource={Url} totalColumn={4} />}
 
           <TabContext value={value}>
             <Box
