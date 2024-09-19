@@ -24,7 +24,7 @@ import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
 import TableBlog from './_components/TableBlog';
-import  TopCard  from 'src/components/widgets/cards/TopCard';
+import TopCard from 'src/components/widgets/cards/TopCard';
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/apps/blog/posts', title: 'Danh sách bài viết' },
@@ -43,59 +43,8 @@ interface StyleProps {
   icons: JSX.Element;
 }
 
-
 const DataBox: StyleProps[] = [
   {
-<<<<<<< HEAD
-      bgColor: 'primary.light',
-      color: 'primary.main',
-      title: 'Nhân viên',
-      total: '120',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
-  },
-  {
-      bgColor: 'warning.light',
-      color: 'warning.main',
-      title: 'Admin',
-      total: '5',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
-  },
-  {
-      bgColor: 'success.light',
-      color: 'success.main',
-      title: 'Hoạt động',
-      total: '52',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
-  },
-  {
-      bgColor: 'error.light',
-      color: 'error.main',
-      title: 'Khóa',
-      total: '12',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
-  }
-]
-=======
     bgColor: 'primary.light',
     color: 'primary.main',
     title: 'Bài viết',
@@ -148,7 +97,6 @@ const DataBox: StyleProps[] = [
     ),
   },
 ];
->>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
