@@ -1,3 +1,5 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import PersonIcon from '@mui/icons-material/Person';
 import {
   Avatar,
   Box,
@@ -6,16 +8,13 @@ import {
   Grid,
   IconButton,
   InputAdornment,
-  TextField,
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Tags from './Tags';
-import DeleteIcon from '@mui/icons-material/Delete';
-import PersonIcon from '@mui/icons-material/Person';
-import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
@@ -23,9 +22,7 @@ const PopupAdd = () => {
   const [selectedImages, setSelectedImages] = useState<Array<File>>([]);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [color, setColor] = useState<string>('#000000');
-  const [width, setWidth] = useState('');
-  const [height, setHeight] = useState('');
-  const [length, setLength] = useState('');
+
   const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
@@ -249,6 +246,8 @@ const PopupAdd = () => {
               id="style-text"
               variant="outlined"
               fullWidth
+              placeholder="Nhập kiểu dáng . . ."
+
               // value={style}
               // onChange={handleChange(setStyle)}
             />

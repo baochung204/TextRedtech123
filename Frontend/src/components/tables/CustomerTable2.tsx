@@ -15,13 +15,14 @@ import {
 import { DataRowCustomerTable } from './tableData';
 import useSortableData from 'src/views/apps/customerList/useSortableData';
 import Scrollbar_x from '../custom-scroll/Scrollbar_x';
-
+import logo from 'src/assets/images/logos/R-Point.png';
 // Định nghĩa kiểu cho dữ liệu bảng
 interface DataRow {
+  imgsrc?: string;
   id: string;
   createdAt: string;
   assistant: string;
-  channel: number;
+  channel: string;
   orderInfo: string;
   name: string;
   orderValue: string;
@@ -124,8 +125,8 @@ const CustomerTable2 = () => {
                       <img
                         src={row.imgsrc}
                         style={{
-                          width: '50px',
-                          height: '50px',
+                          width: '40px',
+                          height: '40px',
                           borderRadius: '50%',
                           marginRight: '10px',
                         }}
@@ -149,7 +150,14 @@ const CustomerTable2 = () => {
                     </Typography>
                   </TableCell>
                   <TableCell sx={{ textAlign: 'center' }}>
-                    <Typography variant="subtitle2">{row.orderValue}</Typography>
+                    <Typography variant="subtitle2">
+                      {row.orderValue}
+                      <img
+                        src={logo}
+                        alt="Logo"
+                        style={{ width: '25px', height: '25px', marginLeft: '10px' }}
+                      />
+                    </Typography>
                   </TableCell>
                   <TableCell sx={{ textAlign: 'center' }}>
                     <Typography variant="subtitle2">{row.phone}</Typography>

@@ -14,6 +14,7 @@ interface ItemTable3 {
     creationDate: Date;
     formats: string;
     idCode: string;
+    isCheck: boolean
 }
 
 const getRandomImage = (): string => {
@@ -37,7 +38,8 @@ const DataTable3: ItemTable3[] = [
         datas: '123Kb',
         creationDate: new Date('2024-09-01'),
         formats: 'PDF',
-        idCode: generateIdCode()
+        idCode: generateIdCode(),
+        isCheck: true
     },
     {
         images: getRandomImage(),
@@ -48,7 +50,8 @@ const DataTable3: ItemTable3[] = [
         datas: '453Kb',
         creationDate: new Date('2024-09-02'),
         formats: 'DOCX',
-        idCode: generateIdCode()
+        idCode: generateIdCode(),
+        isCheck: false
     },
     {
         images: getRandomImage(),
@@ -59,7 +62,8 @@ const DataTable3: ItemTable3[] = [
         datas: '863Kb',
         creationDate: new Date('2024-09-03'),
         formats: 'XLSX',
-        idCode: generateIdCode()
+        idCode: generateIdCode(),
+        isCheck: true
     },
     {
         images: getRandomImage(),
@@ -70,7 +74,8 @@ const DataTable3: ItemTable3[] = [
         datas: '533Kb',
         creationDate: new Date('2024-09-04'),
         formats: 'PPTX',
-        idCode: generateIdCode()
+        idCode: generateIdCode(),
+        isCheck: false
     },
     {
         images: getRandomImage(),
@@ -81,7 +86,8 @@ const DataTable3: ItemTable3[] = [
         datas: '243Kb',
         creationDate: new Date('2024-09-05'),
         formats: 'TXT',
-        idCode: generateIdCode()
+        idCode: generateIdCode(),
+        isCheck: true
     }
 ];
 
