@@ -1,4 +1,4 @@
-import { Box, Checkbox, Grid, ListItemText, MenuItem, Typography } from '@mui/material';
+import { Box, Grid, MenuItem } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -15,34 +15,22 @@ const currencies: CurrencyType[] = [
   // { value: 'other', label: 'Khác' },
 ];
 
-const channels: CurrencyType[] = [
-  { value: 'mkt', label: 'MKT' },
-  { value: 'zl', label: 'Zalo' },
-  { value: 'fb', label: 'Facebook' },
-  { value: 'inst', label: 'Instagram' },
-  { value: 'other', label: 'Other' },
-];
+// const channels: CurrencyType[] = [
+//   { value: 'mkt', label: 'MKT' },
+//   { value: 'zl', label: 'Zalo' },
+//   { value: 'fb', label: 'Facebook' },
+//   { value: 'inst', label: 'Instagram' },
+//   { value: 'other', label: 'Other' },
+// ];
 
 const AddVoucher = () => {
   const [gender, setGender] = React.useState(currencies[0]?.value || '');
-  const [selectedChannels, setSelectedChannels] = React.useState<string[]>([]);
   const [Name, setName] = React.useState('');
-  const [companyName, setCompanyName] = React.useState('');
-  const [companyAddress, setCompanyAddress] = React.useState('');
-  const [companyEmail, setCompanyEmail] = React.useState('');
+
   const [companyPhone, setCompanyPhone] = React.useState('');
-  const [companyWebsite, setCompanyWebsite] = React.useState('');
-  const [facebookUrl, setFacebookUrl] = React.useState('');
-  const [zaloUrl, setZaloUrl] = React.useState('');
-  const [instagramUrl, setInstagramUrl] = React.useState('');
-  const [assistant, setAssistant] = React.useState('');
 
   const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setGender(event.target.value as string);
-  };
-
-  const handleChannelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedChannels(event.target.value as string[]);
   };
 
   const handleChange =

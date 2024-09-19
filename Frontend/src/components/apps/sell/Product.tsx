@@ -34,6 +34,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import PageContainer from 'src/components/container/PageContainer';
 
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
@@ -41,10 +42,7 @@ import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from '../../../components/shared/BlankCard';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
 
-import { getProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import { ProductType } from 'src/types/apps/eCommerce';
 import AddDialog from './layout/addDialog';
 interface TablePaginationActionsProps {
   count: number;
@@ -286,23 +284,25 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [selected] = React.useState<readonly string[]>([]);
-
   const [search, setSearch] = React.useState('');
+  const [filteredRows, setFilteredRows] = React.useState(rows);
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const products = getProducts([]).payload as unknown as ProductType[];
-    const filteredRows: ProductType[] = products.filter((row) => {
-      return row.title.toLowerCase().includes(event.target.value);
-    });
-    setSearch(event.target.value);
-    setRows(filteredRows);
+    const value = event.target.value.toLowerCase();
+    setSearch(value);
+    const filtered = rows.filter(
+      (row) =>
+        row.name.toLowerCase().includes(value) ||
+        row.tags.toLowerCase().includes(value) ||
+        row.id.toLowerCase().includes(value),
+    );
+    setFilteredRows(filtered);
   };
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const handleChangePage = (event: any, newPage: any) => {
+
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
+
+  const handleChangePage = (_event: any, newPage: any) => {
     setPage(newPage);
   };
 
@@ -320,7 +320,7 @@ const PaginationTable = () => {
           <EnhancedTableToolbar
             numSelected={selected.length}
             search={search}
-            handleSearch={(event: any) => handleSearch(event)}
+            handleSearch={handleSearch}
           />
         </Box>
 
@@ -371,77 +371,76 @@ const PaginationTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {(rowsPerPage > 0
-                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : rows
-              ).map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell>
-                    <Typography variant="subtitle2">{row.id}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="row" spacing={2} alignItems="center">
-                      <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                    </Stack>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2" fontWeight="600">
-                      {row.name}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Chip
-                      color={
-                        row.tags === 'di động'
-                          ? 'success'
-                          : row.tags === 'điện tử'
-                          ? 'warning'
-                          : row.tags === 'đời sống'
-                          ? 'error'
-                          : 'secondary'
-                      }
-                      sx={{
-                        borderRadius: '6px',
-                      }}
-                      size="small"
-                      label={row.tags}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      {row.total}{' '}
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
+              {filteredRows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell>
+                      <Typography variant="subtitle2">{row.id}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Stack direction="row" spacing={2} alignItems="center">
+                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2" fontWeight="600">
+                        {row.name}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        color={
+                          row.tags === 'di động'
+                            ? 'success'
+                            : row.tags === 'điện tử'
+                            ? 'warning'
+                            : row.tags === 'đời sống'
+                            ? 'error'
+                            : 'secondary'
+                        }
+                        sx={{
+                          borderRadius: '6px',
+                        }}
+                        size="small"
+                        label={row.tags}
                       />
-                    </Typography>
-                  </TableCell>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        color="textSecondary"
+                        variant="subtitle2"
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {row.total}{' '}
+                        <img
+                          src={logoPoint}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+                    </TableCell>
 
-                  <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      {row.totalSales}{' '}
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    <TableCell>
+                      <Typography
+                        color="textSecondary"
+                        variant="subtitle2"
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {row.totalSales}{' '}
+                        <img
+                          src={logoPoint}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                ))}
 
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
@@ -474,6 +473,3 @@ const PaginationTable = () => {
 };
 
 export default PaginationTable;
-function setRows(_filteredRows: ProductType[]) {
-  throw new Error('Function not implemented.');
-}
