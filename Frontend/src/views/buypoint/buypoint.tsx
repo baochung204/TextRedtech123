@@ -1,7 +1,5 @@
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
 
-import ChildCard from 'src/components/shared/ChildCard';
 import {
   Box,
   Button,
@@ -13,20 +11,13 @@ import {
   styled,
   Typography,
 } from '@mui/material';
+import ChildCard from 'src/components/shared/ChildCard';
 
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
-import logoMatercard from 'src/assets/images/logoPay/materCard.png';
-import logoVP from 'src/assets/images/logoPay/VP.jpg';
-import logoBIDV from 'src/assets/images/logoPay/bidv.jpg';
-import logoVisa from 'src/assets/images/logoPay/visa.jpg';
-import logoACB from 'src/assets/images/logoPay/acb.png';
-import logoJCB from 'src/assets/images/logoPay/JCB.png';
-import logoMB from 'src/assets/images/logoPay/Mb.jpg';
-import logoTCB from 'src/assets/images/logoPay/TCB.jpg';
 import { useTheme } from '@mui/material';
 import { keyframes } from '@mui/system';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BoxStyled = styled(Box)(() => ({

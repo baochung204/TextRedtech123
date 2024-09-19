@@ -1,15 +1,14 @@
-import { useState } from 'react';
-import {
-  Box,
-  Typography,
-  Chip,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Chip,
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
 import PageContainer from 'src/components/container/PageContainer';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const Update = () => {

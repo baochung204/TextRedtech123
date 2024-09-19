@@ -1,18 +1,20 @@
 import {
-  Box,
-  Button,
   Dialog,
+  Button,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Fab,
+  Box,
   Tooltip,
+  Fab,
 } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
+
 import { useState } from 'react';
-import PopupAdd from './PopupAdd';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import PopupAdd from 'src/views/apps/customerList/PopupAdd';
 // import * as React from 'react';
-const AddDialog = () => {
+const AddDialogvoucher = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   // const [value, setValue] = useState('1');
 
@@ -51,19 +53,19 @@ const AddDialog = () => {
           },
         }}
       >
-        <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
-        <DialogContent>
-          <PopupAdd /> {/* Gọi component PopupAdd */}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClosePopup}>Hủy</Button>
-          <Button onClick={handleClosePopup} variant="contained" color="primary">
-            Lưu
-          </Button>
-        </DialogActions>
+        <Box>
+          <DialogTitle padding={'10px'}>Thêm Voucher</DialogTitle>
+          <DialogContent>{/* <PopupAdd /> Gọi component PopupAdd */}</DialogContent>
+          <DialogActions>
+            <Button onClick={handleClosePopup}>Hủy</Button>
+            <Button onClick={handleClosePopup} variant="contained" color="primary">
+              Lưu
+            </Button>
+          </DialogActions>
+        </Box>
       </Dialog>
     </Box>
   );
 };
 
-export default AddDialog;
+export default AddDialogvoucher;

@@ -2,25 +2,8 @@
 // @ts-ignore
 import React from 'react';
 
-import {
-  Box,
-  Grid,
-  LinearProgress,
-  Paper,
-  Rating,
-  Stack,
-  Tab,
-  Tabs,
-  Typography,
-} from '@mui/material';
+import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
 import ChildCard from 'src/components/shared/ChildCard';
-import StarIcon from '../../../../assets/images/icon.png/star.png';
-
-interface ProductCardProps {
-  like: number;
-  star: number;
-  value?: number;
-}
 
 interface TabProps {
   children: React.ReactNode;
@@ -29,30 +12,6 @@ interface TabProps {
 }
 
 // progress
-function ProgressBar({ like, star, value, ...others }: ProductCardProps) {
-  return (
-    <Box display={'flex'} alignItems="center" gap="20px">
-      <Box sx={{ minWidth: 50 }}>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          display={'flex'}
-          alignItems={'center'}
-          gap={'3px'}
-        >
-          <span>{`${Math.round(star)}`}</span>{' '}
-          <img src={StarIcon} alt="" width={20} style={{ paddingBottom: '5px' }} />
-        </Typography>
-      </Box>
-      <Box sx={{ width: '100%' }}>
-        <LinearProgress value={value} variant="determinate" color="primary" {...others} />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="subtitle2">{`(${Math.round(like)})`}</Typography>
-      </Box>
-    </Box>
-  );
-}
 
 const TabPanel = (props: TabProps) => {
   const { children, value, index, ...other } = props;
@@ -79,7 +38,6 @@ const a11yProps = (index: number) => {
 
 const ProductDesc = () => {
   const [value, setValue] = React.useState(0);
-  const [star, setStar] = React.useState<number | null>(2);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

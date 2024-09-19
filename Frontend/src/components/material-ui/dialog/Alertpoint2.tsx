@@ -7,9 +7,6 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 
-import CloseIcon from '@mui/icons-material/Close';
-
-import Bill from 'src/views/apps/collaborate/bill';
 import Content2 from './content2';
 // const BCrumb = [
 //   {
@@ -29,17 +26,13 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Afletpoint2 = ({ row }: any) => {
+const Afletpoint2 = () => {
   const [open, setOpen] = React.useState(false);
   const fullWidth = true; // Declare and initialize fullWidth variable
   const maxWidth = 'lg'; // Declare and initialize maxWidth variable
 
   const handleClickOpen = () => {
     setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (

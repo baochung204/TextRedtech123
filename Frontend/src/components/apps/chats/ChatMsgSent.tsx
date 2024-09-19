@@ -90,7 +90,11 @@ const ChatMsgSent = () => {
             id="upload-image"
             type="file"
             style={{ display: 'none' }}
-            onChange={(e) => console.log(e.target.files[0])} // Handle file upload here
+            onChange={(e) => {
+              if (e.target.files && e.target.files[0]) {
+                // console.log(e.target.files[0]);
+              }
+            }} // Handle file upload here
           />
           <IconButton component="span" aria-label="upload image">
             <IconPhoto stroke={1.5} size="20" />

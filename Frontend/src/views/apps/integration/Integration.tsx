@@ -1,12 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 import Integrations from 'src/components/apps/integration/Integration';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import ChildCard from 'src/components/shared/ChildCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/apps/integration', title: 'Tích hợp' },

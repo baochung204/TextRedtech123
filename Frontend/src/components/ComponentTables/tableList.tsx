@@ -74,19 +74,19 @@ interface TableListProps {
 
 const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<string>('id');
+  const [orderBy, setOrderBy] = useState<string | number>('id');
   const [selected, setSelected] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dense] = useState(false);
 
-  const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof DataRow) => {
+  const handleRequestSort = (_event: React.MouseEvent<unknown>, property: keyof DataRow) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+  const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
@@ -105,7 +105,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
@@ -114,7 +114,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
     setPage(0);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (dataRows?.length ?? 0)) : 0;
 
   return (
     <Grid item xs={12}>
@@ -129,7 +129,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
               >
                 <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
                   <TableRow>
-                    {headCells.map((headCell) => (
+                    {(headCells || []).map((headCell) => (
                       <TableCell
                         key={headCell.dataIndex}
                         align={headCell.numeric ? 'right' : 'left'}
@@ -151,7 +151,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {stableSort(dataRows, getComparator(order, orderBy))
+                  {stableSort(dataRows ?? [], getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row: DataRow) => {
                       const isItemSelected = selected.indexOf(row.id) !== -1;
@@ -167,9 +167,15 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
                           selected={isItemSelected}
                           sx={{ backgroundColor: rowColor }} // Áp dụng màu sắc
                         >
-                          {headCells.map((cell: HeadCell) => (
-                            <TableCell key={cell.dataIndex} align={cell.numeric ? 'right' : 'left'}>
-                              {row[cell.dataIndex] !== undefined && row[cell.dataIndex]}
+                          {(headCells ?? []).map((cell: HeadCell) => (
+                            <TableCell
+                              key={cell.dataIndex}
+                              align={cell.numeric ? 'right' : 'left'}
+                              sx={{ whiteSpace: 'nowrap' }}
+                            >
+                              <Typography color="textSecondary" variant="subtitle2">
+                                {row[cell.dataIndex] !== undefined && row[cell.dataIndex]}
+                              </Typography>
                             </TableCell>
                           ))}
                         </TableRow>
@@ -177,7 +183,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
                     })}
                   {emptyRows > 0 && (
                     <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                      <TableCell colSpan={headCells.length} />
+                      <TableCell colSpan={headCells?.length ?? 0} />
                     </TableRow>
                   )}
                 </TableBody>
@@ -187,7 +193,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={dataRows.length}
+            count={dataRows?.length ?? 0}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

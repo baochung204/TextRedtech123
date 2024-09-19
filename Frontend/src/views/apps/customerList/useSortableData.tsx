@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 interface UseSortableDataProps<T> {
   items: T[];
@@ -15,10 +15,10 @@ interface UseSortableDataResult<T> {
 
 function useSortableData<T>({
   items,
-  initialSortBy = 'id',
+  initialSortBy,
   initialSortOrder = 'asc',
 }: UseSortableDataProps<T>): UseSortableDataResult<T> {
-  const [sortBy, setSortBy] = useState<keyof T>(initialSortBy);
+  const [sortBy, setSortBy] = useState<keyof T>(initialSortBy as keyof T);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>(initialSortOrder);
 
   const handleSortRequest = (property: keyof T) => {
