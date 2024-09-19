@@ -1,4 +1,4 @@
-import { Box, Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import { Box, Fab, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import TableList from 'src/components/ComponentTables/tableList';
@@ -13,6 +13,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import { useState } from 'react';
+import { IconPlus } from '@tabler/icons-react';
 
 const BCrumb = [
   {
@@ -337,33 +338,35 @@ const Ticket = () => {
         </Grid>
         <Grid item xs={12}>
           <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Grid
-              item
-              xs={4}
-              sm={4}
-              md={4}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <TextField
-                id="outlined-search"
-                placeholder="Tìm kiếm trợ lý"
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ 'aria-label': 'Search Followers' }}
-                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="20" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth={true}
-              />
+            <Grid item xs={4} sm={4} md={4}>
+              <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Tooltip title="Thêm ticket mới" sx={{ mb: '15px' }} placement="top">
+                    <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
+                      <IconPlus width={18} />
+                    </Fab>
+                  </Tooltip>
+                </Grid>
+                <Grid item xs={10}>
+                  <TextField
+                    id="outlined-search"
+                    placeholder="Tìm kiếm trợ lý"
+                    size="small"
+                    type="search"
+                    variant="outlined"
+                    inputProps={{ 'aria-label': 'Search Followers' }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="20" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    fullWidth={true}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
 
             <Grid item xs={4}>

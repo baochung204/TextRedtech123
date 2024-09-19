@@ -16,7 +16,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -50,11 +50,20 @@ const DataBox: StyleProps[] = [
     title: 'Nhân viên',
     total: '120',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="primary.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -63,11 +72,20 @@ const DataBox: StyleProps[] = [
     title: 'Admin',
     total: '5',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="warning.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -76,11 +94,20 @@ const DataBox: StyleProps[] = [
     title: 'Hoạt động',
     total: '52',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="success.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -89,11 +116,20 @@ const DataBox: StyleProps[] = [
     title: 'Khóa',
     total: '12',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="error.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
 ];
@@ -133,79 +169,38 @@ const BlogAdmin = () => {
             </TabList>
 
             <TabPanel value="1" sx={{ p: 0 }}>
-              {' '}
-              <Box
-                className="actions-and-filters"
-                sx={{
-                  mt: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Tooltip title="Tạo đơn hàng">
-                    <Fab
-                      color="primary"
-                      aria-label="add"
-                      size="small"
-                      sx={{ marginRight: '30px' }}
-                      onClick={handleOpenPopup}
-                    >
-                      <FaPlus />
-                    </Fab>
-                  </Tooltip>
-
-                  <TextField
-                    sx={{
-                      width: '200px',
-                      marginRight: '40px',
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '10px',
-                        backgroundColor: '#fff',
-                        '&:hover fieldset': {
-                          borderColor: '#3f51b5',
-                        },
-                      },
-                    }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="1.1rem" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    placeholder="Tìm kiếm"
-                    size="small"
-                  />
-                </Box>
-
-                <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
-                  {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={selectedStartDate}
-                      onChange={(newDate) => setSelectedStartDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    />
-                    <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                    <DatePicker
-                      value={selectedEndDate}
-                      onChange={(newDate) => setSelectedEndDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    /> */}
-                  {/* </LocalizationProvider> */}
-                </Box>
-              </Box>
+              <Grid container sx={{ my: 2 }}>
+                <Grid item xs={4} sm={4} md={4}>
+                  <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Tooltip title="Thêm bài viết mới" sx={{ mb: '15px' }} placement="top">
+                        <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
+                          <IconPlus width={18} />
+                        </Fab>
+                      </Tooltip>
+                    </Grid>
+                    <Grid item xs={10}>
+                      <TextField
+                        id="outlined-search"
+                        placeholder="Tìm kiếm trợ lý"
+                        size="small"
+                        type="search"
+                        variant="outlined"
+                        inputProps={{ 'aria-label': 'Search Followers' }}
+                        sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <IconSearch size="20" />
+                            </InputAdornment>
+                          ),
+                        }}
+                        fullWidth={true}
+                      />
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
               <TableBlog />
             </TabPanel>
           </Box>
