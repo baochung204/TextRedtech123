@@ -44,7 +44,7 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
                 color: items.color,
               }}
             >
-              <Grid container spacing={2}>
+              <Grid container spacing={totalColumn >= 5 ? 6 : 1.5}>
                 <Grid
                   item
                   xs={3}
