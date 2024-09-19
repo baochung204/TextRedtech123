@@ -4,7 +4,16 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import TableList from 'src/components/ComponentTables/tableList';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { IconSearch } from '@tabler/icons-react';
+import {
+  IconCurrencySom,
+  IconElevator,
+  IconElevatorOff,
+  IconJson,
+  IconPasswordUser,
+  IconSearch,
+  IconTicket,
+  IconWashDrycleanOff,
+} from '@tabler/icons-react';
 import { useState } from 'react';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -30,7 +39,20 @@ const DataBox = [
     total: '2.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -41,7 +63,20 @@ const DataBox = [
     total: '1.369',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconPasswordUser color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -52,7 +87,20 @@ const DataBox = [
     total: '4.7/5',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconElevator color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -63,7 +111,20 @@ const DataBox = [
     total: '236',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconWashDrycleanOff color="white" size={30} />
+        </Box>
       </>
     ),
   },

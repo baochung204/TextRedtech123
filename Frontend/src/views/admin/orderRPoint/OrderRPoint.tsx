@@ -8,7 +8,15 @@ import icontext from 'src/assets/images/logos/R-Point.png';
 import TableList from 'src/components/ComponentTables/tableList';
 
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { IconSearch } from '@tabler/icons-react';
+import {
+  IconBox,
+  IconBrandProducthunt,
+  IconCarTurbine,
+  IconChartBar,
+  IconPasswordUser,
+  IconSearch,
+  IconZoomMoney,
+} from '@tabler/icons-react';
 import { useState } from 'react';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -30,44 +38,96 @@ const DataBox = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
-    title: 'Ticket',
-    total: '2.415',
+    title: 'Khách hàng',
+    total: '5.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconPasswordUser color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'secondary.light',
     color: 'secondary.main',
-    title: 'Khách hàng',
-    total: '1.369',
+    title: 'Đơn hàng',
+    total: '8.369',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconBox color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Đánh giá',
-    total: '4.7/5',
+    title: 'Doanh thu',
+    total: '235.635.592 ₫',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartBar color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Chưa xử lý',
-    total: '236',
+    title: 'Hoa hồng affiliate',
+    total: '120.369.235 ₫',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconZoomMoney color="white" size={30} />
+        </Box>
       </>
     ),
   },
