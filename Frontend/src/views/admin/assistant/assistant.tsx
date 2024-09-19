@@ -15,17 +15,19 @@ import {
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-
-import icontext from 'src/assets/images/logos/R-Point.png';
-
 import TableList from 'src/components/ComponentTables/tableList';
-
+import TopCard from 'src/components/widgets/cards/TopCard';
+import {
+  IconBox,
+  IconChartArcs,
+  IconChartBar,
+  IconPasswordUser,
+  IconReceipt,
+  IconSearch,
+} from '@tabler/icons-react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
-import TopCard from 'src/components/widgets/cards/TopCard';
-
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
@@ -51,7 +53,20 @@ const DataBox = [
     total: '2415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -62,7 +77,20 @@ const DataBox = [
     total: '25.18%',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartArcs color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -73,7 +101,20 @@ const DataBox = [
     total: '362.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconPasswordUser color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -84,7 +125,20 @@ const DataBox = [
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconBox color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -95,7 +149,20 @@ const DataBox = [
     total: '11.413.241.141₫',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartBar color="white" size={30} />
+        </Box>
       </>
     ),
   },

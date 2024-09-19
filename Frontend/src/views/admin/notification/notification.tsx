@@ -1,18 +1,14 @@
-import { Box, Grid, InputAdornment, TextField, Typography } from '@mui/material';
-// components
+import { Box, Fab, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-
-import icontext from 'src/assets/images/logos/R-Point.png';
-
 import TableList from 'src/components/ComponentTables/tableList';
-
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconNotification, IconPlus, IconSearch, IconTags } from '@tabler/icons-react';
 import { useState } from 'react';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import Point from 'src/assets/images/logos/R-Point.png';
+import { IconChartArea } from '@tabler/icons-react';
+
 const BCrumb = [
   {
     to: '/',
@@ -34,7 +30,20 @@ const DataBox = [
     total: '120',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconNotification color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -45,7 +54,20 @@ const DataBox = [
     total: '39',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTags color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -56,7 +78,20 @@ const DataBox = [
     total: '21.369',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconEye color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -67,7 +102,20 @@ const DataBox = [
     total: '236',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartArea color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -88,79 +136,73 @@ const headCells: HeadCell[] = [
     label: 'ID',
   },
   {
-    dataIndex: 'rechargeDate',
+    dataIndex: 'day',
     numeric: false,
     disablePadding: false,
     label: 'Ngày đăng',
   },
   {
-    dataIndex: 'customerName',
+    dataIndex: 'title',
     numeric: false,
     disablePadding: false,
     label: 'Tiêu đề',
   },
   {
-    dataIndex: 'email',
+    dataIndex: 'tags',
     numeric: false,
     disablePadding: false,
     label: 'Tags',
   },
 
   {
-    dataIndex: 'phoneNumber',
+    dataIndex: 'content',
     numeric: false,
     disablePadding: false,
     label: 'Nội dung thông báo',
   },
   {
-    dataIndex: 'packageName',
+    dataIndex: 'moreLink',
     numeric: false,
     disablePadding: false,
     label: 'Link xem thêm ',
   },
   {
-    dataIndex: 'points',
+    dataIndex: 'views',
     numeric: false,
     disablePadding: false,
     label: 'Lượt xem',
   },
   {
-    dataIndex: 'listedPrice',
+    dataIndex: 'interactions',
     numeric: false,
     disablePadding: false,
     label: 'Tương tác',
   },
   {
-    dataIndex: 'promotionCode',
+    dataIndex: 'status',
     numeric: false,
     disablePadding: false,
     label: 'Trạng thái',
   },
 ];
-interface RechargeTransaction {
-  id: string; // ID giao dịch
-  rechargeDate: string; // Ngày nạp
-  customerName: string; // Tên khách hàng
-  email: string; // Email khách hàng
-  phoneNumber: string; // Số điện thoại
-  packageName: string; // Tên gói
-  points: JSX.Element; // Số point
-  listedPrice: string; // Giá niêm yết
-  promotionCode?: string; // Mã khuyến mại (optional nếu có)
-  paymentAmount: string; // Số tiền
-  totalOrder: number; // Tổng đơn
-  publisherId: string; // ID publisher
-  affiliateCommission: string; // Hoa hồng Affiliate
-  status: JSX.Element; // Trạng thái (ví dụ: Đã thanh toán, Chưa thanh toán)
-  invoice: string; // Hóa đơn
+interface INotification {
+  id: string; // ID thông báo
+  day: string; // Ngày tạo thông báo
+  title: string; // Tiêu đề thông báo
+  tags: string[]; // Tags liên quan
+  content: string; // Nội dung thông báo
+  moreLink: string; // Link xem thêm
+  views: number; // Lượt xem
+  interactions: number; // Tương tác
+  status: JSX.Element; // Trạng thái của thông báo
 }
 
 const getStatusTextAndColor = (status: number) => {
   switch (status) {
     case 1:
-      return { text: 'Đã thanh toán', color: '#13DEB9' };
+      return { text: 'Đã đăng', color: '#13DEB9' };
     case 2:
-      return { text: 'Chưa thanh toán', color: '#ff9800' };
+      return { text: 'Nháp', color: '#ff9800' };
     default:
       return { text: 'Không xác định', color: '#000000' };
   }
@@ -174,138 +216,51 @@ const renderStatus = (status: number) => {
     </Typography>
   );
 };
-const dataRows: RechargeTransaction[] = [
+const dataRows: INotification[] = [
   {
-    id: 'RT001',
-    rechargeDate: '2024-09-01',
-    customerName: 'Nguyễn Văn A',
-    email: 'nguyenvana@example.com',
-    phoneNumber: '0123456789',
-    packageName: 'Gói cơ bản',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        100
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '20.000 ₫',
-    promotionCode: 'PROMO10',
-    paymentAmount: '180.000 ₫',
-    totalOrder: 1,
-    publisherId: 'PUB001',
-    affiliateCommission: '9.000 ₫',
+    id: '1',
+    day: '2024-09-01 08:30',
+    title: 'Cập nhật chính sách bảo mật',
+    tags: ['Chính sách', 'Bảo mật'],
+    content: 'Chúng tôi đã cập nhật chính sách bảo mật mới để bảo vệ quyền riêng tư của bạn.',
+    moreLink: 'https://example.com/chinh-sach-bao-mat',
+    views: 1200,
+    interactions: 340,
     status: renderStatus(2),
-    invoice: 'INV001',
   },
   {
-    id: 'RT002',
-    rechargeDate: '2024-09-02',
-    customerName: 'Trần Thị B',
-    email: 'tranthib@example.com',
-    phoneNumber: '0987654321',
-    packageName: 'Gói nâng cao',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        200
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '45.050 ₫',
-    promotionCode: 'PROMO20',
-    paymentAmount: '320.000 ₫',
-    totalOrder: 2,
-    publisherId: 'PUB002',
-    affiliateCommission: '16.000 ₫',
-    status: renderStatus(2),
-    invoice: 'INV002',
-  },
-  {
-    id: 'RT003',
-    rechargeDate: '2024-09-03',
-    customerName: 'Lê Văn C',
-    email: 'levanc@example.com',
-    phoneNumber: '0123987654',
-    packageName: 'Gói VIP',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        400
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '23.500 ₫',
-    promotionCode: '',
-    paymentAmount: '1.000.000 ₫',
-    totalOrder: 1,
-    publisherId: 'PUB003',
-    affiliateCommission: '50.000 ₫',
+    id: '2',
+    day: '2024-09-01 08:30',
+    title: 'Khai trương cửa hàng mới',
+    tags: ['Sự kiện', 'Cửa hàng'],
+    content:
+      'Cửa hàng mới của chúng tôi vừa khai trương tại trung tâm thành phố. Mời bạn đến tham quan!',
+    moreLink: 'https://example.com/cua-hang-moi',
+    views: 950,
+    interactions: 210,
     status: renderStatus(1),
-    invoice: 'INV003',
   },
   {
-    id: 'RT004',
-    rechargeDate: '2024-09-04',
-    customerName: 'Hoàng Thị D',
-    email: 'hoangthid@example.com',
-    phoneNumber: '0234567890',
-    packageName: 'Gói khuyến mãi',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        105
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '56.000 ₫',
-    promotionCode: 'PROMO15',
-    paymentAmount: '25.000.000',
-    totalOrder: 1,
-    publisherId: 'PUB004',
-    affiliateCommission: '1.000.500 ₫ ',
+    id: '3',
+    day: '2024-09-01 08:30',
+    title: 'Giảm giá cuối tuần',
+    tags: ['Khuyến mãi', 'Giảm giá'],
+    content: 'Cuối tuần này, giảm giá 50% toàn bộ sản phẩm. Nhanh tay mua sắm ngay!',
+    moreLink: 'https://example.com/giam-gia-cuoi-tuan',
+    views: 1500,
+    interactions: 450,
+    status: renderStatus(2),
+  },
+  {
+    id: '4',
+    day: '2024-09-01 08:30',
+    title: 'Thay đổi giờ làm việc',
+    tags: ['Thông báo', 'Giờ làm việc'],
+    content: 'Từ tháng sau, giờ làm việc sẽ thay đổi từ 8h sáng đến 6h chiều, từ Thứ 2 đến Thứ 6.',
+    moreLink: 'https://example.com/thay-doi-gio-lam-viec',
+    views: 600,
+    interactions: 120,
     status: renderStatus(1),
-    invoice: 'INV004',
-  },
-  {
-    id: 'RT005',
-    rechargeDate: '2024-09-05',
-    customerName: 'Phạm Văn E',
-    email: 'phamvane@example.com',
-    phoneNumber: '0345678901',
-    packageName: 'Gói thường',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        1200
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '252.000 ₫',
-    promotionCode: '',
-    paymentAmount: '500.000 ₫',
-    totalOrder: 1,
-    publisherId: 'PUB005',
-    affiliateCommission: '50.000 ₫',
-    status: renderStatus(2),
-    invoice: 'INV005',
-  },
-  {
-    id: 'RT006',
-    rechargeDate: '2024-09-06',
-    customerName: 'Ngô Thị F',
-    email: 'ngothif@example.com',
-    phoneNumber: '0456789012',
-    packageName: 'Gói đặc biệt',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        450
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '600.000 ₫',
-    promotionCode: 'PROMO25',
-    paymentAmount: '520.000 ₫',
-    totalOrder: 2,
-    publisherId: 'PUB006',
-    affiliateCommission: '25.000 ₫',
-    status: renderStatus(2),
-    invoice: 'INV006',
   },
 ];
 
@@ -343,33 +298,35 @@ const Notification = () => {
         </Grid>
         <Grid item xs={12}>
           <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Grid
-              item
-              xs={4}
-              sm={4}
-              md={4}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <TextField
-                id="outlined-search"
-                placeholder="Tìm kiếm trợ lý"
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ 'aria-label': 'Search Followers' }}
-                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="20" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth={true}
-              />
+            <Grid item xs={4} sm={4} md={4}>
+              <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
+                    <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
+                      <IconPlus width={18} />
+                    </Fab>
+                  </Tooltip>
+                </Grid>
+                <Grid item xs={10}>
+                  <TextField
+                    id="outlined-search"
+                    placeholder="Tìm kiếm trợ lý"
+                    size="small"
+                    type="search"
+                    variant="outlined"
+                    inputProps={{ 'aria-label': 'Search Followers' }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="20" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    fullWidth={true}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
 
             <Grid item xs={4}>
