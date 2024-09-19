@@ -38,15 +38,15 @@ const HeadTable: PropsHeadTable[] = [
 const TableBlog = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [key, setKey] = useState<string | null>(null);
+  // const [key, setKey] = useState<string | null>(null);
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
 
-  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setRowsPerPage(parseInt(event.target.value, 10));
-  //     setPage(0);
-  // };
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   const paginatedData = BlogTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
