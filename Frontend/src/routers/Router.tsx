@@ -17,7 +17,12 @@ import OrderAdmin from 'src/views/admin/order/order';
 import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
 import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
 import ProductAdmin from 'src/views/admin/product/product';
+<<<<<<< HEAD
 import Publishers from 'src/views/admin/rpoints/RPoints';
+=======
+import Publishers from 'src/views/admin/publishers/publishers';
+import Resources from 'src/views/admin/resources/resources';
+>>>>>>> 473ffd6b4fdd686526fbfac0bc0eeca8b5d4915b
 import Staff from 'src/views/admin/staff';
 import Ticket from 'src/views/admin/ticket/ticket';
 import VoucherAdmin from 'src/views/admin/voucher/voucher';
@@ -30,8 +35,12 @@ import Success from 'src/views/apps/user-profile/Success';
 import FormRequest from 'src/views/forms/FormRequest';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import AssistantAdmin from '../views/admin/assistant/assistant';
+<<<<<<< HEAD
 import Resources from 'src/views/admin/resources/resources';
 import RPoints from 'src/views/admin/rpoints/RPoints';
+=======
+import BlogAdmin from 'src/views/admin/blog/blog';
+>>>>>>> 473ffd6b4fdd686526fbfac0bc0eeca8b5d4915b
 /* ***Layouts**** */
 
 
@@ -332,7 +341,7 @@ const Router = [
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
-      { path: '/admin/blog', element: <Blog /> },
+      { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/notification', element: <Notification /> },
       { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
