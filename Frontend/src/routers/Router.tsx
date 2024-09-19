@@ -342,8 +342,8 @@ const Router = [
       { path: '/admin/notification', element: <Notification /> },
 
       { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
-      { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
-      { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
+      // { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
+      // { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
 
       { path: '/admin/resources', element: <Resources /> },
       { path: '/admin/einvoice', element: <EInvoice /> },
