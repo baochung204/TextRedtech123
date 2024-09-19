@@ -47,8 +47,8 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
-    title: 'Bài viết',
-    total: '2.326',
+    title: 'Nhân viên',
+    total: '120',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -58,10 +58,10 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'info.light',
-    color: 'info.main',
-    title: 'Lượt xem',
-    total: '18.369',
+    bgColor: 'warning.light',
+    color: 'warning.main',
+    title: 'Admin',
+    total: '5',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -73,8 +73,8 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Doanh thu',
-    total: '66.521',
+    title: 'Hoạt động',
+    total: '52',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -85,9 +85,9 @@ const DataBox: StyleProps[] = [
   },
   {
     bgColor: 'error.light',
-    color: 'warning.main',
-    title: 'Lượt like/tym',
-    total: '23.369',
+    color: 'error.main',
+    title: 'Khóa',
+    total: '12',
     icons: (
       <PeopleAltIcon
         sx={{
