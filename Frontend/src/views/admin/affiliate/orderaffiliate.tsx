@@ -1,14 +1,12 @@
-
 import { Grid } from '@mui/material';
 import OrderAffiliate from 'src/components/admin/affiliate/OrderAffiliate';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
-
-  const BCrumb = [
-    { to: '/', title: 'Trang Chủ' },
-    { to: '', title: 'Danh sách đơn hàng' },
-  ];
+const BCrumb = [
+  { to: '/', title: 'Trang Chủ' },
+  { to: '', title: 'Danh sách đơn hàng' },
+];
 const orderaffiliate = () => {
   return (
     <>
@@ -24,4 +22,4 @@ const orderaffiliate = () => {
   );
 };
 
-export default historyaffiliate;
+export default orderaffiliate;
