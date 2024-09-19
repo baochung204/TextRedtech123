@@ -32,7 +32,6 @@ import s23 from 'src/assets/images/products/s25.jpg';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
-import AddDflashsale from './add/addflashsale';
 
 interface DataRow3 {
   id: string;
@@ -483,8 +482,14 @@ const FlashSale = () => {
                             <TableCell sx={{ whiteSpace: 'nowrap' }}>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {(row?.listed).toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {(row?.listed).toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -492,8 +497,14 @@ const FlashSale = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.sale.toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {row?.sale.toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -501,8 +512,14 @@ const FlashSale = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.flashSale.toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {row?.flashSale.toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -528,7 +545,7 @@ const FlashSale = () => {
                                     gap={'2px'}
                                   >
                                     {row?.TypeVoucher.toLocaleString()}{' '}
-                                    <img src={icontext} alt="" width={20} />
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>

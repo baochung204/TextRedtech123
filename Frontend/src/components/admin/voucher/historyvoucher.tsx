@@ -1,5 +1,8 @@
 import {
   Box,
+
+  Chip,
+
   Fab,
   Grid,
   InputAdornment,
@@ -35,7 +38,7 @@ interface DataRow2 {
   user: string;
   email: string;
   phone: string;
-  expiry: number;
+  expiry: string;
   TypeVoucher: string;
   sale: number;
   ID_order: string;
@@ -49,8 +52,8 @@ const dataRows2: DataRow2[] = [
     user: 'Nguyễn văn Toản',
     email: 'toan2ho@gmail.com',
     phone: '08686759866',
-    expiry: 90,
-    TypeVoucher: '%',
+    expiry: '09/05/2024 10:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 23,
     ID_order: '#09341341',
   },
@@ -62,8 +65,8 @@ const dataRows2: DataRow2[] = [
     user: 'Trần Văn B',
     email: 'tranb@gmail.com',
     phone: '0987654321',
-    expiry: 60,
-    TypeVoucher: 'đ',
+    expiry: '09/03/2024 10:45:00',
+    TypeVoucher: 'đồng',
     sale: 99,
     ID_order: '#09341342',
   },
@@ -75,8 +78,8 @@ const dataRows2: DataRow2[] = [
     user: 'Lê Thị C',
     email: 'lec@gmail.com',
     phone: '0912345678',
-    expiry: 30,
-    TypeVoucher: '%',
+    expiry: '09/03/2024 10:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 10,
     ID_order: '#09341343',
   },
@@ -88,8 +91,8 @@ const dataRows2: DataRow2[] = [
     user: 'Phạm Văn D',
     email: 'phamd@gmail.com',
     phone: '0901234567',
-    expiry: 45,
-    TypeVoucher: 'đ',
+    expiry: '09/03/2024 10:45:00',
+    TypeVoucher: 'đồng',
     sale: 100,
     ID_order: '#09341344',
   },
@@ -101,8 +104,8 @@ const dataRows2: DataRow2[] = [
     user: 'Nguyễn Thị E',
     email: 'nguyene@gmail.com',
     phone: '0897654321',
-    expiry: 20,
-    TypeVoucher: '%',
+    expiry: '10/03/2025 00:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 20,
     ID_order: '#09341345',
   },
@@ -114,8 +117,8 @@ const dataRows2: DataRow2[] = [
     user: 'Trần Thị F',
     email: 'tranf@gmail.com',
     phone: '0887654321',
-    expiry: 10,
-    TypeVoucher: '%',
+    expiry: '09/03/2025 10:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 10,
     ID_order: '#09341346',
   },
@@ -497,7 +500,22 @@ const HistoryVoucher = () => {
                               <Stack spacing={2} direction="row">
                                 <Box>
                                   <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.TypeVoucher}
+                                    <Chip
+                                      sx={{
+                                        bgcolor:
+                                          row?.TypeVoucher === 'đồng'
+                                            ? 'primary.main'
+                                            : 'secondary.main',
+                                        color:
+                                          row?.TypeVoucher === 'đồng'
+                                            ? 'primary.contrastText'
+                                            : 'secondary.contrastText',
+
+                                        borderRadius: '8px',
+                                      }}
+                                      size="small"
+                                      label={row?.TypeVoucher}
+                                    />
                                   </Typography>
                                 </Box>
                               </Stack>

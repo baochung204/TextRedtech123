@@ -19,12 +19,12 @@ import { TransitionProps } from '@mui/material/transitions';
 import { IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
-import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
 import TableBlog from './_components/TableBlog';
+import  TopCard  from 'src/components/widgets/cards/TopCard';
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/apps/blog/posts', title: 'Danh sách bài viết' },
@@ -35,8 +35,67 @@ const Transition = React.forwardRef<
 >(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const dataSource = [
+interface StyleProps {
+  bgColor: string;
+  color: string;
+  title: string;
+  total: string;
+  icons: JSX.Element;
+}
+
+
+const DataBox: StyleProps[] = [
   {
+<<<<<<< HEAD
+      bgColor: 'primary.light',
+      color: 'primary.main',
+      title: 'Nhân viên',
+      total: '120',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  },
+  {
+      bgColor: 'warning.light',
+      color: 'warning.main',
+      title: 'Admin',
+      total: '5',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  },
+  {
+      bgColor: 'success.light',
+      color: 'success.main',
+      title: 'Hoạt động',
+      total: '52',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  },
+  {
+      bgColor: 'error.light',
+      color: 'error.main',
+      title: 'Khóa',
+      total: '12',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  }
+]
+=======
     bgColor: 'primary.light',
     color: 'primary.main',
     title: 'Bài viết',
@@ -89,6 +148,7 @@ const dataSource = [
     ),
   },
 ];
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
@@ -111,7 +171,7 @@ const BlogAdmin = () => {
     <PageContainer>
       <BannerPage title=" Quản lý blogs" items={BCrumb} />
       <Grid item xs={12}>
-        <TopCard dataSource={dataSource} totalColumn={0} />
+        <TopCard dataSource={DataBox} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
@@ -212,7 +272,7 @@ const BlogAdmin = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogTitle padding={'10px'}>Thêm blogs</DialogTitle>
+        <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle>
         <DialogContent>
           <AddBlog />
         </DialogContent>
