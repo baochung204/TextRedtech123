@@ -2,32 +2,44 @@
 // @ts-ignore
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
-import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
-import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
-import AllNotifications from 'src/layouts/full/vertical/header/AllNotification';
-import Affiliatepro from 'src/views/admin/affiliatepro/affiliatepro';
+const ChangePassword = Loadable(
+  lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
+);
+const CompanyAffiliate = Loadable(
+  lazy(() => import('src/components/apps/userprofile/profile/CompanyAffiliate')),
+);
+const PersonAffiliate = Loadable(
+  lazy(() => import('src/components/apps/userprofile/profile/PersonAffiliate')),
+);
+const AllNotifications = Loadable(
+  lazy(() => import('src/layouts/full/vertical/header/AllNotification')),
+);
+const Affiliatepro = Loadable(lazy(() => import('src/views/admin/affiliatepro/affiliatepro')));
 
-import EInvoice from 'src/views/admin/EInvoice/EInvoice';
-import Feature from 'src/views/admin/feature/feature';
-import History from 'src/views/admin/history/history';
-import Notification from 'src/views/admin/notification/notification';
-import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
-import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
-import ProductAdmin from 'src/views/admin/product/product';
-import Publishers from 'src/views/admin/publishers/publishers';
-import Resources from 'src/views/admin/resources/resources';
-import Staff from 'src/views/admin/staff';
-import VoucherAdmin from 'src/views/admin/voucher/voucher';
-import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
-import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
-import Update from 'src/views/apps/update/Update';
-import Fail from 'src/views/apps/user-profile/Fail';
-import Pending from 'src/views/apps/user-profile/Pending';
-import Success from 'src/views/apps/user-profile/Success';
-import FormRequest from 'src/views/forms/FormRequest';
+const EInvoice = Loadable(lazy(() => import('src/views/admin/EInvoice/EInvoice')));
+const Feature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
+const History = Loadable(lazy(() => import('src/views/admin/history/history')));
+const Notification = Loadable(lazy(() => import('src/views/admin/notification/notification')));
+const Packagepoint = Loadable(lazy(() => import('src/views/admin/packagepoint/packagepoint')));
+const Pointdetail = Loadable(lazy(() => import('src/views/admin/pointdetail/pointdetail')));
+const ProductAdmin = Loadable(lazy(() => import('src/views/admin/product/product')));
+const Publishers = Loadable(lazy(() => import('src/views/admin/publishers/publishers')));
+const Resources = Loadable(lazy(() => import('src/views/admin/resources/resources')));
+const Staff = Loadable(lazy(() => import('src/views/admin/staff')));
+const VoucherAdmin = Loadable(lazy(() => import('src/views/admin/voucher/voucher')));
+const CustomerList2 = Loadable(lazy(() => import('src/views/apps/customerList/CustomerList2')));
+const CustomerListOrder = Loadable(
+  lazy(() => import('src/views/apps/customerList/CustomerListOrder')),
+);
+const Update = Loadable(lazy(() => import('src/views/apps/update/Update')));
+const Fail = Loadable(lazy(() => import('src/views/apps/user-profile/Fail')));
+const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending')));
+const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
+const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
+const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
-import AssistantAdmin from '../views/admin/assistant/assistant';
+import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
+
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -355,7 +367,8 @@ const Router = [
       { path: '/admin/history', element: <HistoryAffiliate /> },
 
       { path: '/admin/accountant/feature', element: <Feature /> },
-      { path: '*', element: <Navigate to="/auth/404" /> },
+      { path: '/admin/auth/404', element: <ErrorAdmin /> },
+      { path: '*', element: <Navigate to="/admin/auth/404" /> },
     ],
   },
 ];

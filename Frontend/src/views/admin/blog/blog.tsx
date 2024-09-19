@@ -111,7 +111,7 @@ const BlogAdmin = () => {
     <PageContainer>
       <BannerPage title=" Quản lý blogs" items={BCrumb} />
       <Grid item xs={12}>
-        <TopCard dataSource={dataSource} totalColumn={0} />
+        <TopCard dataSource={dataSource} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
