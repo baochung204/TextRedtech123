@@ -281,7 +281,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   );
 };
 
-
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -296,14 +295,14 @@ const PaginationTable = () => {
       (row) =>
         row.name.toLowerCase().includes(value) ||
         row.tags.toLowerCase().includes(value) ||
-        row.id.toLowerCase().includes(value)
+        row.id.toLowerCase().includes(value),
     );
     setFilteredRows(filtered);
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
 
-  const handleChangePage = (event: any, newPage: any) => {
+  const handleChangePage = (_event: any, newPage: any) => {
     setPage(newPage);
   };
 
@@ -372,74 +371,76 @@ const PaginationTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell>
-                    <Typography variant="subtitle2">{row.id}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="row" spacing={2} alignItems="center">
-                      <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                    </Stack>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2" fontWeight="600">
-                      {row.name}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Chip
-                      color={
-                        row.tags === 'di động'
-                          ? 'success'
-                          : row.tags === 'điện tử'
-                          ? 'warning'
-                          : row.tags === 'đời sống'
-                          ? 'error'
-                          : 'secondary'
-                      }
-                      sx={{
-                        borderRadius: '6px',
-                      }}
-                      size="small"
-                      label={row.tags}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      {row.total}{' '}
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
+              {filteredRows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell>
+                      <Typography variant="subtitle2">{row.id}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Stack direction="row" spacing={2} alignItems="center">
+                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2" fontWeight="600">
+                        {row.name}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        color={
+                          row.tags === 'di động'
+                            ? 'success'
+                            : row.tags === 'điện tử'
+                            ? 'warning'
+                            : row.tags === 'đời sống'
+                            ? 'error'
+                            : 'secondary'
+                        }
+                        sx={{
+                          borderRadius: '6px',
+                        }}
+                        size="small"
+                        label={row.tags}
                       />
-                    </Typography>
-                  </TableCell>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        color="textSecondary"
+                        variant="subtitle2"
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {row.total}{' '}
+                        <img
+                          src={logoPoint}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+                    </TableCell>
 
-                  <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      {row.totalSales}{' '}
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    <TableCell>
+                      <Typography
+                        color="textSecondary"
+                        variant="subtitle2"
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {row.totalSales}{' '}
+                        <img
+                          src={logoPoint}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                ))}
 
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
@@ -472,4 +473,3 @@ const PaginationTable = () => {
 };
 
 export default PaginationTable;
-
