@@ -26,7 +26,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Afletpoint2 = () => {
+const Afletpoint2 = ({}) => {
   const [open, setOpen] = React.useState(false);
   const fullWidth = true; // Declare and initialize fullWidth variable
   const maxWidth = 'lg'; // Declare and initialize maxWidth variable
