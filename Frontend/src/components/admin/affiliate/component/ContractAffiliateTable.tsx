@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Button,
   Checkbox,
@@ -15,7 +14,7 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
-import { DataContactAffiliateTable, DataHistoryTable } from '../datatable/OrderTableData';
+import { DataContactAffiliateTable } from '../datatable/OrderTableData';
 
 interface PropsHeadTable {
   head: string;
@@ -23,52 +22,49 @@ interface PropsHeadTable {
 
 const HeadTable: PropsHeadTable[] = [
   {
-    head: 'ID thanh toán',
+    head: 'ID hợp đồng',
   },
   {
-    head: 'Khách hàng',
+    head: 'ID khách hàng',
   },
   {
-    head: 'Ngày yêu cầu',
+    head: 'Ngày tạo',
   },
   {
-    head: 'Ngày hoàn tất',
+    head: 'Ngày ký',
   },
   {
-    head: 'Email',
+    head: 'Loại tài khoản',
   },
   {
-    head: 'SĐT',
+    head: 'Tên công ty',
   },
   {
-    head: 'Số tiền rút',
+    head: 'Mã số thuế',
   },
   {
-    head: 'Số tài khoản',
+    head: 'Địa chỉ',
   },
   {
-    head: 'Ngân hàng',
+    head: 'Người đại diện',
   },
   {
-    head: 'Chủ tải khoản',
+    head: 'Chức vụ',
   },
   {
-    head: 'Chi nhánh',
+    head: 'SDT công ty',
   },
   {
-    head: 'Hóa đơn',
+    head: 'Email công ty',
   },
   {
     head: 'Trạng thái',
   },
   {
-    head: 'Duyệt hóa đơn',
+    head: 'Duyệt hồ sơ',
   },
   {
-    head: 'Đã thanh toán',
-  },
-  {
-    head: 'Thông báo',
+    head: 'Hợp đồng',
   },
 ];
 
@@ -88,6 +84,19 @@ const ContractAffiliateTable = () => {
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage,
   );
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Đã ký':
+        return 'success'; // Green for approved
+      case 'Chờ ký':
+        return 'warning'; // Yellow for pending approval
+      case 'Từ chối':
+        return 'error'; // Red for rejected
+      default:
+        return 'default'; // Gray for any unrecognized status
+    }
+  };
 
   return (
     <>
@@ -113,77 +122,79 @@ const ContractAffiliateTable = () => {
                 return (
                   <TableRow key={index}>
                     <TableCell>
-                      <Typography variant="subtitle2">{item.id_checkout}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          width: '200px',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <Avatar
-                          src={item.imgsrc}
-                          variant="rounded"
-                          alt={item.imgsrc}
-                          sx={{ width: 48, height: 48 }}
-                        />
-                        <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
-                          {item.name_publisher}
-                        </Typography>
-                      </Box>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">{item.date_request}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography style={{ width: '100px' }} variant="subtitle2">
-                        {item.date_done}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">{item.email}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">{item.phone_number}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">{item.bank_amount}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">{item.bank_number}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">{item.bank_name}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">{item.own_bank}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography style={{ width: '100px' }} variant="subtitle2">
-                        {item.branch}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">
-                        <Button style={{ width: '100px' }}>Tải xuống</Button>
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2">
-                        <Chip label={item.status} />
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Checkbox defaultChecked />
+                      <Typography variant="subtitle2">{item.id_contract}</Typography>
                     </TableCell>
 
                     <TableCell>
-                      <Checkbox defaultChecked />
+                      <Typography variant="subtitle2">{item.id_customer}</Typography>
                     </TableCell>
                     <TableCell>
-                      <Button style={{ width: '100px' }}>Gửi email</Button>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        {item.createdate}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        {item.confirmdate}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                          <Typography style={{ width: '200px' }} variant="subtitle2">
+                            <Chip
+                              label={item.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
+                              color={item.type_company ? 'success' : 'warning'}
+                              variant="outlined"
+                            />
+                          </Typography>
+                        </Box>
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2">{item.name_company}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2">{item.tax_code}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        {item.address}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '200px' }} variant="subtitle2">
+                        {item.representative}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        {item.position}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '150px' }} variant="subtitle2">
+                        {item.phone_number}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '200px' }} variant="subtitle2">
+                        {item.email}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        <Chip label={item.status} color={getStatusColor(item.status)} />
+                      </Typography>
+                    </TableCell>
+
+                    <TableCell>
+                      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Checkbox defaultChecked />
+                      </Box>
+                    </TableCell>
+                    <TableCell>
+                      <Button style={{ width: '100px' }}>Ký ngay</Button>
                     </TableCell>
                   </TableRow>
                 );

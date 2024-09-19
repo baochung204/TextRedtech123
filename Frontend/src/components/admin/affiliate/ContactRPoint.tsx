@@ -1,4 +1,3 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabContext } from '@mui/lab';
 import {
   Box,
@@ -12,7 +11,13 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch } from '@tabler/icons-react';
+import {
+  IconClipboard,
+  IconFileCheck,
+  IconFileOff,
+  IconFileReport,
+  IconSearch,
+} from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 import { Dayjs } from 'dayjs';
@@ -26,52 +31,28 @@ const dataSource = [
     color: 'primary.main',
     title: 'Hợp đồng',
     total: '190',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconClipboard />,
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'Từ chối',
     total: '190',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconFileOff />,
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Đã ký',
     total: '123',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconFileCheck />,
   },
   {
     bgColor: 'error.light',
     color: 'error.main',
     title: 'Chờ ký',
     total: '23',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconFileReport />,
   },
 ];
 

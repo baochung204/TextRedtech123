@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Chip,
   Table,
   TableBody,
   TableCell,
@@ -78,6 +79,21 @@ const HeadTable: PropsHeadTable[] = [
   },
 ];
 
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'Đã duyệt':
+      return 'success'; // Green for approved
+    case 'Chờ duyệt':
+      return 'warning'; // Yellow for pending approval
+    case 'Từ chối':
+      return 'error'; // Red for rejected
+    case 'Chưa gửi':
+      return 'default'; // Gray for not yet sent
+    default:
+      return 'default'; // Gray for any unrecognized status
+  }
+};
+
 const PublisherTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -149,7 +165,17 @@ const PublisherTable = () => {
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography variant="subtitle2">{item.type}</Typography>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                          <Typography style={{ width: '200px' }} variant="subtitle2">
+                            <Chip
+                              label={item.type ? 'Doanh nghiệp' : 'Cá nhân'}
+                              color={item.type ? 'success' : 'warning'}
+                              variant="outlined"
+                            />
+                          </Typography>
+                        </Box>
+                      </Typography>
                     </TableCell>
                     <TableCell>
                       <Typography variant="subtitle2">{item.create_date}</Typography>
@@ -162,11 +188,21 @@ const PublisherTable = () => {
                     </TableCell>
 
                     <TableCell>
-                      <Typography variant="subtitle2">{item.contract}</Typography>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        <Chip label={item.contract} color={getStatusColor(item.contract)} />
+                      </Typography>
                     </TableCell>
 
                     <TableCell>
-                      <Typography variant="subtitle2">{item.brief}</Typography>
+                      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Typography style={{ width: '100px' }} variant="subtitle2">
+                          <Chip
+                            label={item.brief ? 'Đã ký' : 'Chưa ký'}
+                            color={item.brief ? 'success' : 'warning'}
+                            variant="outlined"
+                          />
+                        </Typography>
+                      </Box>
                     </TableCell>
                     <TableCell>
                       <Typography style={{ width: '100px' }} variant="subtitle2">

@@ -50,7 +50,7 @@ export interface PublisherTable {
   create_date: string;
   type_account: string;
   rank: string;
-  brief: string;
+  brief: boolean;
   contract: string;
   total_commission: number;
   click: number;
@@ -112,7 +112,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'CEO',
     phone_number: 1234567890,
     email: 'contact@companya.com',
-    status: 'Confirmed',
+    status: 'Chờ ký',
   },
   {
     id_contract: 'CNT002',
@@ -128,7 +128,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Quản lý',
     phone_number: 2345678901,
     email: 'contact@companyb.com',
-    status: 'Pending',
+    status: 'Đã ký',
   },
   {
     id_contract: 'CNT003',
@@ -144,7 +144,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Kế toán',
     phone_number: 3456789012,
     email: 'contact@companyc.com',
-    status: 'Confirmed',
+    status: 'Chờ ký',
   },
   {
     id_contract: 'CNT004',
@@ -160,7 +160,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Tech leader',
     phone_number: 4567890123,
     email: 'contact@companyd.com',
-    status: 'Rejected',
+    status: 'Từ chối',
   },
   {
     id_contract: 'CNT005',
@@ -176,7 +176,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'CEO',
     phone_number: 5678901234,
     email: 'contact@companye.com',
-    status: 'Confirmed',
+    status: 'Chờ ký',
   },
   {
     id_contract: 'CNT006',
@@ -192,7 +192,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Trường phòng marketing',
     phone_number: 6789012345,
     email: 'contact@companyf.com',
-    status: 'Pending',
+    status: 'Đã ký',
   },
   {
     id_contract: 'CNT007',
@@ -208,7 +208,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Trưởng phòng kinh doanh',
     phone_number: 7890123456,
     email: 'contact@companyg.com',
-    status: 'Confirmed',
+    status: 'Đã ký',
   },
 ];
 
@@ -227,7 +227,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'CEO',
     phone_number: 1234567890,
     email: 'contact@companya.com',
-    status: 'Confirmed',
+    status: 'Chờ ký',
   },
   {
     id_contract: 'CNT002',
@@ -243,7 +243,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Quản lý',
     phone_number: 2345678901,
     email: 'contact@companyb.com',
-    status: 'Pending',
+    status: 'Đã ký',
   },
   {
     id_contract: 'CNT003',
@@ -259,7 +259,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Kế toán',
     phone_number: 3456789012,
     email: 'contact@companyc.com',
-    status: 'Confirmed',
+    status: 'Từ chối',
   },
   {
     id_contract: 'CNT004',
@@ -275,7 +275,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Tech leader',
     phone_number: 4567890123,
     email: 'contact@companyd.com',
-    status: 'Rejected',
+    status: 'Từ chối',
   },
   {
     id_contract: 'CNT005',
@@ -291,7 +291,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'CEO',
     phone_number: 5678901234,
     email: 'contact@companye.com',
-    status: 'Confirmed',
+    status: 'Đã ký',
   },
   {
     id_contract: 'CNT006',
@@ -307,7 +307,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Trường phòng marketing',
     phone_number: 6789012345,
     email: 'contact@companyf.com',
-    status: 'Pending',
+    status: 'Từ chối',
   },
   {
     id_contract: 'CNT007',
@@ -323,7 +323,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Trưởng phòng kinh doanh',
     phone_number: 7890123456,
     email: 'contact@companyg.com',
-    status: 'Confirmed',
+    status: 'Đã ký',
   },
 ];
 
@@ -338,8 +338,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-01-15',
     type_account: 'Standard',
     rank: 'Gold',
-    brief: 'Long-term partner with strong performance.',
-    contract: 'Contract A',
+    contract: 'Chờ duyệt', // Moved here
+    brief: true, // Moved here
     total_commission: 10000,
     click: 5000,
     customer: 'Customer A',
@@ -360,8 +360,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-02-10',
     type_account: 'Premium',
     rank: 'Silver',
-    brief: 'New partner with good potential.',
-    contract: 'Contract B',
+    contract: 'Đã duyệt', // Moved here
+    brief: true, // Moved here
     total_commission: 15000,
     click: 3000,
     customer: 'Customer B',
@@ -382,8 +382,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-03-05',
     type_account: 'Basic',
     rank: 'Bronze',
-    brief: 'Partner with moderate performance.',
-    contract: 'Contract C',
+    contract: 'Chờ duyệt', // Moved here
+    brief: false, // Moved here
     total_commission: 7000,
     click: 4000,
     customer: 'Customer C',
@@ -404,8 +404,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-04-18',
     type_account: 'Premium',
     rank: 'Gold',
-    brief: 'Top partner with excellent performance.',
-    contract: 'Contract D',
+    contract: 'Từ chối', // Moved here
+    brief: false, // Moved here
     total_commission: 20000,
     click: 7000,
     customer: 'Customer D',
@@ -426,8 +426,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-05-25',
     type_account: 'Standard',
     rank: 'Silver',
-    brief: 'Reliable partner with consistent performance.',
-    contract: 'Contract E',
+    contract: 'Từ chối', // Moved here
+    brief: false, // Moved here
     total_commission: 11000,
     click: 4500,
     customer: 'Customer E',
@@ -446,10 +446,10 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 6789012345,
     type: false,
     create_date: '2023-06-08',
-    type_account: 'Basic',
+    type_account: 'Từ chối',
     rank: 'Bronze',
-    brief: 'New partner with limited experience.',
-    contract: 'Contract F',
+    contract: 'Chưa gửi', // Moved here
+    brief: false, // Moved here
     total_commission: 5000,
     click: 2500,
     customer: 'Customer F',
@@ -470,8 +470,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-07-01',
     type_account: 'Standard',
     rank: 'Silver',
-    brief: 'Steady performer with growth potential.',
-    contract: 'Contract G',
+    contract: 'Từ chối', // Moved here
+    brief: false, // Moved here
     total_commission: 9000,
     click: 3200,
     customer: 'Customer G',
@@ -492,8 +492,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-08-15',
     type_account: 'Premium',
     rank: 'Gold',
-    brief: 'Top-tier partner with excellent reputation.',
-    contract: 'Contract H',
+    contract: 'Chưa gửi', // Moved here
+    brief: false, // Moved here
     total_commission: 18000,
     click: 6000,
     customer: 'Customer H',
@@ -514,8 +514,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-09-10',
     type_account: 'Basic',
     rank: 'Bronze',
-    brief: 'Partner with moderate success.',
-    contract: 'Contract I',
+    contract: 'Chưa gửi', // Moved here
+    brief: false, // Moved here
     total_commission: 6000,
     click: 3500,
     customer: 'Customer I',
@@ -536,8 +536,8 @@ const DataPublishersTable: PublisherTable[] = [
     create_date: '2023-10-05',
     type_account: 'Premium',
     rank: 'Silver',
-    brief: 'Strong partner with increasing market share.',
-    contract: 'Contract J',
+    contract: 'Đã duyệt', // Moved here
+    brief: true, // Moved here
     total_commission: 14000,
     click: 5500,
     customer: 'Customer J',

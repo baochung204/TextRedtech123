@@ -1,4 +1,3 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabContext } from '@mui/lab';
 import {
   Box,
@@ -12,7 +11,12 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch } from '@tabler/icons-react';
+import {
+  IconArrowsLeftRight,
+  IconReportMoney,
+  IconSearch,
+  IconZoomMoney,
+} from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 import { Dayjs } from 'dayjs';
@@ -26,52 +30,28 @@ const dataSource = [
     color: 'primary.main',
     title: 'Số ưu cầu',
     total: '1907',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconArrowsLeftRight />,
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'Số tiền rút',
     total: '190.720.030đ',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconReportMoney />,
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Đã xử lý',
     total: '123.456.789đ',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconZoomMoney />,
   },
   {
     bgColor: 'error.light',
     color: 'error.main',
     title: 'Chờ xử lý',
     total: '123.456.789đ',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconZoomMoney />,
   },
 ];
 

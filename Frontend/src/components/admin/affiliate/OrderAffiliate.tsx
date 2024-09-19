@@ -1,4 +1,3 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabContext } from '@mui/lab';
 import {
   Box,
@@ -12,13 +11,15 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch } from '@tabler/icons-react';
+import { IconCoin, IconPigMoney, IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
+import { IconTruckDelivery } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField'; // Ensure this component works as expected
 import TopCard from 'src/components/widgets/cards/TopCard';
 import OrderTable from './component/OrderTable';
+import RPoint from 'src/assets/images/logos/R-Point.png';
 
 const dataSource = [
   {
@@ -26,52 +27,28 @@ const dataSource = [
     color: 'primary.main',
     title: 'Đơn hàng',
     total: '1907',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconTruckDelivery />,
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'R-Point',
     total: '190.720.030',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <img src={RPoint} alt="RPoint" style={{ width: '24px', height: '24px' }} />,
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Doanh thu',
     total: '123.456.789đ',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconCoin />,
   },
   {
     bgColor: 'error.light',
     color: 'error.main',
     title: 'Hoa hồng',
     total: '123.456.789đ',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: <IconPigMoney />,
   },
 ];
 

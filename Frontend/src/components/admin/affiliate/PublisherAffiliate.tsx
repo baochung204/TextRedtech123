@@ -1,4 +1,3 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabContext } from '@mui/lab';
 import {
   Box,
@@ -9,15 +8,22 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
+  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch } from '@tabler/icons-react';
+import {
+  IconBusinessplan,
+  IconPigMoney,
+  IconSearch,
+  IconTruckDelivery,
+  IconUserDollar,
+} from '@tabler/icons-react';
 import React, { useState } from 'react';
 
+import { styled } from '@mui/system';
 import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField'; // Ensure this component works as expected
-import TopCard from 'src/components/widgets/cards/TopCard';
 import PublisherTable from './component/PublisherTable';
 const dataSource = [
   {
@@ -25,52 +31,28 @@ const dataSource = [
     color: 'primary.main',
     title: 'Publisher',
     total: '1907',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: IconUserDollar,
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'Đơn hàng',
     total: '8386',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: IconTruckDelivery,
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Hoa hồng',
     total: '123.456.789đ',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: IconPigMoney,
   },
   {
     bgColor: 'error.light',
     color: 'error.main',
     title: 'Chưa thanh toán',
     total: '123.456.789đ',
-    icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
-    ),
+    icons: IconBusinessplan,
   },
 ];
 
@@ -83,6 +65,16 @@ const FilmsData: FilmsData[] = [
   { title: 'Cấp Rank' },
   { title: 'Tổng doanh thu' },
 ];
+
+const BoxStyled = styled(Box)(() => ({
+  padding: '30px',
+  transition: '0.1s ease-in',
+  cursor: 'pointer',
+  color: 'inherit',
+  '&:hover': {
+    transform: 'scale(1.03)',
+  },
+}));
 
 const PublisherAffiliate = () => {
   const [expectvalue] = React.useState('1');
@@ -106,7 +98,40 @@ const PublisherAffiliate = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={dataSource} />
+          <Grid container spacing={3}>
+            {dataSource.map((items, index) => {
+              return (
+                <Grid item lg={3} sm={6} xs={12} key={index}>
+                  <BoxStyled
+                    sx={{
+                      backgroundColor: items.bgColor,
+                      color: items.color,
+                    }}
+                  >
+                    <Grid container>
+                      <Grid
+                        item
+                        xs={3}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
+                      >
+                        {/* Corrected here to render the icon component */}
+                        <items.icons />
+                      </Grid>
+                      <Grid item xs={9}>
+                        <Typography style={{ fontSize: '19px' }} variant="h4">
+                          {items.title}
+                        </Typography>
+                        <Typography variant="h5">{items.total}</Typography>
+                      </Grid>
+                    </Grid>
+                  </BoxStyled>
+                </Grid>
+              );
+            })}
+          </Grid>
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ width: '100%', typography: 'body1' }}>
