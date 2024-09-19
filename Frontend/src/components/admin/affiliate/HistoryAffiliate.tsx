@@ -15,6 +15,7 @@ import {
   IconArrowsLeftRight,
   IconReportMoney,
   IconSearch,
+  IconTicket,
   IconZoomMoney,
 } from '@tabler/icons-react';
 import React, { useState } from 'react';
@@ -30,28 +31,96 @@ const dataSource = [
     color: 'primary.main',
     title: 'Số ưu cầu',
     total: '1907',
-    icons: <IconArrowsLeftRight />,
+    icons: (
+      <>
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'Số tiền rút',
     total: '190.720.030đ',
-    icons: <IconReportMoney />,
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Đã xử lý',
     total: '123.456.789đ',
-    icons: <IconZoomMoney />,
+    icons: (
+      <>
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
   {
     bgColor: 'error.light',
     color: 'error.main',
     title: 'Chờ xử lý',
     total: '123.456.789đ',
-    icons: <IconZoomMoney />,
+    icons: (
+      <>
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
 ];
 
@@ -87,7 +156,7 @@ const HistoryAffiliate = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={dataSource} />
+          <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ width: '100%', typography: 'body1' }}>

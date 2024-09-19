@@ -146,7 +146,7 @@ const DataBox = [
     bgColor: 'error.light',
     color: 'error.main',
     title: 'GMV',
-    total: '11.413.241.141₫',
+    total: '1.413.241.141₫',
     icons: (
       <>
         <Box

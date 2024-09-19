@@ -1,6 +1,7 @@
 import {
   Box,
   Chip,
+  Fab,
   Grid,
   InputAdornment,
   Stack,
@@ -21,7 +22,7 @@ import { format } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconSearch } from '@tabler/icons-react';
+import { IconPlus, IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
@@ -337,99 +338,55 @@ const HistoryVoucher = () => {
       {' '}
       <Grid item xs={12}>
         <Grid container>
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                marginBottom: '20px',
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-              }}
-            >
-              {' '}
-              {/* <AddDialogvoucher /> */}
-              {/* Action Buttons and Filters */}
-              <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 5 }}>
-                {/* Add Order Button */}
-                {/* <Tooltip title="Tạo đơn hàng">
-      <Fab
-        color="primary"
-        aria-label="add"
-        size="small"
-        sx={{ marginRight: '30px' }}
-        onClick={handleOpenPopup}
-      >
-        <FaPlus />
-      </Fab>
-    </Tooltip> */}
-
-                {/* Search Bar */}
+          <Grid item xs={12} my={2}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid
+                item
+                xs={5}
+                sm={4}
+                md={5}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
                 <TextField
-                  sx={{
-                    width: '300px',
-                    height: '40px',
-                    marginRight: '40px',
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: '10px',
-                      backgroundColor: '#fff',
-                      '&:hover fieldset': {
-                        borderColor: '#3f51b5',
-                      },
-                    },
-                  }}
+                  id="outlined-search"
+                  placeholder="Tìm kiếm voucher"
+                  size="small"
+                  type="search"
+                  variant="outlined"
+                  inputProps={{ 'aria-label': 'Search Followers' }}
+                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <IconSearch size="1.1rem" />
+                        <IconSearch size="20" />
                       </InputAdornment>
                     ),
                   }}
-                  placeholder="Tìm kiếm "
-                  size="small"
+                  fullWidth={true}
                 />
+              </Grid>
 
-                {/* Column Filter and Sort */}
-                {/* <CustomSelect
-      labelId="column-filter"
-      id="column-filter"
-      size="small"
-      value={1}
-      sx={{ marginRight: '30px' }}
-    >
-      <MenuItem value={1}>Sửa đổi cột</MenuItem>
-    </CustomSelect>
-
-    <CustomSelect
-      labelId="column-sort"
-      id="column-sort"
-      size="small"
-      value={1}
-      sx={{ marginRight: '20px' }}
-    >
-      <MenuItem value={1}>Bộ lọc</MenuItem>
-    </CustomSelect> */}
-              </Box>
-              {/* Time Filter and Refresh Icon */}
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={selectedStartDate}
-                    onChange={setSelectedStartDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                  <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                  <DatePicker
-                    value={selectedEndDate}
-                    onChange={setSelectedEndDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Box>
+              <Grid item xs={5}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
