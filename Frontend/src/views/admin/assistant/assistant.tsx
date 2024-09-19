@@ -18,12 +18,11 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import TableList from 'src/components/ComponentTables/tableList';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import {
-  IconAirBalloon,
-  IconBattery4,
   IconBox,
   IconChartArcs,
   IconChartBar,
   IconPasswordUser,
+  IconReceipt,
   IconSearch,
 } from '@tabler/icons-react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -66,7 +65,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <Icon color="white" size={30} />
+          <IconReceipt color="white" size={30} />
         </Box>
       </>
     ),

@@ -329,8 +329,12 @@ const Router = [
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
-      { path: '/admin/blog', element: <Blog /> },
+
+      // { path: '/admin/test', element: <Text /> },
+
+      // { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
+
       { path: '/admin/notification', element: <Notification /> },
       { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
       { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
