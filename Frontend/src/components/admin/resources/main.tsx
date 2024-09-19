@@ -2,33 +2,33 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Grid, IconButton, InputAdornment, MenuItem, TextField, Typography } from '@mui/material';
+import { Grid, IconButton, InputAdornment, MenuItem, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Tab1 from './Tabs/Tab1';
-const renderStatus = (status: number) => {
-  const { text, color } = getStatusTextAndColor(status);
-  return (
-    <Typography style={{ color }} variant="subtitle2">
-      {text}
-    </Typography>
-  );
-};
-const getStatusTextAndColor = (status: number) => {
-  switch (status) {
-    case 1:
-      return { text: 'Đã xử lý', color: '#13DEB9' };
-    case 2:
-      return { text: 'Chưa xử lý', color: '#ff9800' };
-    default:
-      return { text: 'Không xác định', color: '#000000' };
-  }
-};
+// const renderStatus = (status: number) => {
+//   const { text, color } = getStatusTextAndColor(status);
+//   return (
+//     <Typography style={{ color }} variant="subtitle2">
+//       {text}
+//     </Typography>
+//   );
+// };
+// const getStatusTextAndColor = (status: number) => {
+//   switch (status) {
+//     case 1:
+//       return { text: 'Đã xử lý', color: '#13DEB9' };
+//     case 2:
+//       return { text: 'Chưa xử lý', color: '#ff9800' };
+//     default:
+//       return { text: 'Không xác định', color: '#000000' };
+//   }
+// };
 const Strategy = [
   {
     bgColor: 'primary.light',
@@ -74,7 +74,6 @@ const Strategy = [
       </>
     ),
   },
-
 ];
 const Function = [
   {
@@ -121,7 +120,6 @@ const Function = [
       </>
     ),
   },
-
 ];
 const Files = [
   {
@@ -168,7 +166,6 @@ const Files = [
       </>
     ),
   },
-
 ];
 const Model = [
   {
@@ -215,7 +212,6 @@ const Model = [
       </>
     ),
   },
-
 ];
 const Image = [
   {
@@ -262,7 +258,6 @@ const Image = [
       </>
     ),
   },
-
 ];
 const Url = [
   {
@@ -309,7 +304,6 @@ const Url = [
       </>
     ),
   },
-
 ];
 interface HeadCell {
   disablePadding: boolean;
@@ -319,7 +313,7 @@ interface HeadCell {
 }
 
 // const StrategyCells: HeadCell[] = [
-  
+
 //   {
 //     dataIndex: 'idTicket',
 //     numeric: false,
@@ -381,7 +375,6 @@ interface HeadCell {
 //     label: 'Số điện thoại',
 //   },
 // ];
-
 
 // const StrategyRows: DataRow[] = [
 //   {
@@ -577,7 +570,8 @@ const StrategyRows = [
     ownedCustomers: 30,
     appliedAssistants: 5,
     summary: 'Mở rộng thị trường tại Đông Nam Á',
-    content: 'Chiến lược tập trung vào việc xâm nhập và phát triển các kênh phân phối tại Đông Nam Á...',
+    content:
+      'Chiến lược tập trung vào việc xâm nhập và phát triển các kênh phân phối tại Đông Nam Á...',
     creator: 'Hoàng Thị D',
   },
   {
@@ -1100,7 +1094,7 @@ const UrlRows = [
     title: 'Chiến lược Tăng trưởng 2024',
     description: 'Tập trung vào thị trường mới',
     url: 'https://example.com/1',
-    click: 25
+    click: 25,
   },
   {
     id: 'STG002',
@@ -1109,7 +1103,7 @@ const UrlRows = [
     title: 'Chiến lược Giữ chân khách hàng',
     description: 'Cải thiện trải nghiệm khách hàng',
     url: 'https://example.com/2',
-    click: 15
+    click: 15,
   },
   {
     id: 'STG003',
@@ -1118,7 +1112,7 @@ const UrlRows = [
     title: 'Chiến lược Phát triển sản phẩm',
     description: 'Phát triển sản phẩm mới trong quý 4',
     url: 'https://example.com/3',
-    click: 10
+    click: 10,
   },
   {
     id: 'STG004',
@@ -1127,7 +1121,7 @@ const UrlRows = [
     title: 'Chiến lược Mở rộng thị trường',
     description: 'Mở rộng thị trường tại Đông Nam Á',
     url: 'https://example.com/4',
-    click: 30
+    click: 30,
   },
   {
     id: 'STG005',
@@ -1136,7 +1130,7 @@ const UrlRows = [
     title: 'Chiến lược Tối ưu hóa chi phí',
     description: 'Giảm thiểu chi phí sản xuất và vận hành',
     url: 'https://example.com/5',
-    click: 20
+    click: 20,
   },
   {
     id: 'STG006',
@@ -1145,17 +1139,17 @@ const UrlRows = [
     title: 'Chiến lược Nâng cao thương hiệu',
     description: 'Nâng cao nhận diện thương hiệu quốc tế',
     url: 'https://example.com/6',
-    click: 40
-  }
+    click: 40,
+  },
 ];
 
 const Main = () => {
   const [value, setValue] = React.useState('1');
-  const [open, setOpen] = useState<boolean>(false);
+  // const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
-    setOpen(false);
+    // setOpen(false);
   };
 
   return (
@@ -1163,12 +1157,12 @@ const Main = () => {
       <Grid item xs={12}>
         <Box>
           {/* Hiển thị TopCard khi tab value là 1 */}
-          {value === '1' && <TopCard dataSource={Strategy} totalColumn={4} />}
-          {value === '2' && <TopCard dataSource={Function} totalColumn={4} />}
-          {value === '3' && <TopCard dataSource={Files} totalColumn={4} />}
-          {value === '4' && <TopCard dataSource={Model} totalColumn={4} />}
-          {value === '5' && <TopCard dataSource={Image} totalColumn={4} />}
-          {value === '6' && <TopCard dataSource={Url} totalColumn={4} />}
+          {value === '1' && <TopCard dataSource={Strategy} />}
+          {value === '2' && <TopCard dataSource={Function} />}
+          {value === '3' && <TopCard dataSource={Files} />}
+          {value === '4' && <TopCard dataSource={Model} />}
+          {value === '5' && <TopCard dataSource={Image} />}
+          {value === '6' && <TopCard dataSource={Url} />}
 
           <TabContext value={value}>
             <Box
@@ -1180,7 +1174,7 @@ const Main = () => {
                 alignItems: 'center',
                 px: 1,
                 overflowX: 'auto',
-                mt:1
+                mt: 1,
               }}
             >
               <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -1231,7 +1225,7 @@ const Main = () => {
                       <IconButton
                         color="primary"
                         aria-label="Add to cart"
-                        onClick={() => setOpen(true)}
+                        // onClick={() => setOpen(true)}
                         sx={{
                           pr: 1.5,
                         }}
@@ -1250,7 +1244,6 @@ const Main = () => {
             </TabPanel>
             <TabPanel value="2">
               <Tab1 headCells={FunctionCells} dataRows={FunctionRows} />
-
             </TabPanel>
             <TabPanel value="3">
               <Tab1 headCells={FileCells} dataRows={FileRows} />
@@ -1259,21 +1252,17 @@ const Main = () => {
             </TabPanel>
             <TabPanel value="4">
               <Tab1 headCells={ModelCells} dataRows={ModelRows} />
-
             </TabPanel>
             <TabPanel value="5">
               <Tab1 headCells={ImageCells} dataRows={ImageRows} />
-
             </TabPanel>
             <TabPanel value="6">
               <Tab1 headCells={UrlCells} dataRows={UrlRows} />
-
             </TabPanel>
           </TabContext>
         </Box>
       </Grid>
     </Grid>
-
   );
 };
 
