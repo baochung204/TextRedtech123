@@ -5,7 +5,7 @@ import { AppState, useSelector } from 'src/store/Store';
 import HorizontalHeader from '../full/horizontal/header/Header';
 import Navigation from '../full/horizontal/navbar/Navigation';
 import Customizer from './shared/customizer/Customizer';
-import Header from './vertical/header/Header';
+import HeaderAdmin from './vertical/header/HeaderAdmin';
 import SidebarAdmin from './vertical/sidebar/SidebarAdmin';
 
 const MainWrapper = styled('div')(() => ({
@@ -49,7 +49,7 @@ const LayoutAdmin: FC = () => {
         {/* ------------------------------------------- */}
         {/* Header */}
         {/* ------------------------------------------- */}
-        {customizer.isHorizontal ? <HorizontalHeader /> : <Header />}
+        {customizer.isHorizontal ? <HorizontalHeader /> : <HeaderAdmin />}
         {/* PageContent */}
         {customizer.isHorizontal ? <Navigation /> : ''}
         <Container
