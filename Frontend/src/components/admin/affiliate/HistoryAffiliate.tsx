@@ -181,7 +181,7 @@ const HistoryAffiliate = () => {
             >
               <TextField
                 id="outlined-search"
-                placeholder="Tìm kiếm trợ lý"
+                placeholder="Tìm kiếm lịch sử rút tiền"
                 size="small"
                 type="search"
                 variant="outlined"

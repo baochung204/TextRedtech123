@@ -1,4 +1,3 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
@@ -18,13 +17,12 @@ import {
 import { TransitionProps } from '@mui/material/transitions';
 import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
 import React from 'react';
-import { FaPlus } from 'react-icons/fa';
+import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
 import TableBlog from './_components/TableBlog';
-import TopCard from 'src/components/widgets/cards/TopCard';
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/apps/blog/posts', title: 'Danh sách bài viết' },
@@ -182,7 +180,7 @@ const BlogAdmin = () => {
                     <Grid item xs={10}>
                       <TextField
                         id="outlined-search"
-                        placeholder="Tìm kiếm trợ lý"
+                        placeholder="Tìm kiếm bài viết"
                         size="small"
                         type="search"
                         variant="outlined"
