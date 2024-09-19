@@ -12,23 +12,26 @@ import {
   Typography,
 } from '@mui/material';
 // components
+import FilterListIcon from '@mui/icons-material/FilterList';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import FilterListIcon from '@mui/icons-material/FilterList';
-
-import icontext from 'src/assets/images/logos/R-Point.png';
-
 import TableList from 'src/components/ComponentTables/tableList';
-
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { IconPasswordUser, IconSearch } from '@tabler/icons-react';
-import { createElement, useState } from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import {
+  IconAirBalloon,
+  IconBattery4,
+  IconBox,
+  IconChartArcs,
+  IconChartBar,
+  IconPasswordUser,
+  IconSearch,
+} from '@tabler/icons-react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import SouthIcon from '@mui/icons-material/South';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { createElement, useState } from 'react';
 import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 
 const BCrumb = [
   {
@@ -63,7 +66,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <Icon color="white" size={30} />
         </Box>
       </>
     ),
@@ -87,7 +90,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <IconChartArcs color="white" size={30} />
         </Box>
       </>
     ),
@@ -135,7 +138,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <IconBox color="white" size={30} />
         </Box>
       </>
     ),
@@ -159,7 +162,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <IconChartBar color="white" size={30} />
         </Box>
       </>
     ),

@@ -26,7 +26,7 @@ import React, { useState } from 'react';
 
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import BlankCard from 'src/components/shared/BlankCard';
-import AddDialogvoucher from './addDialog';
+import AddDialogvoucher from './add/addDialog';
 interface DataRow {
   id: string;
   creationTime: string;
