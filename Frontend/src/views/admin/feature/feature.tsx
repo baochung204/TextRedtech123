@@ -1,13 +1,27 @@
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
-import { Box, Grid, InputAdornment, Slide, TextField } from '@mui/material';
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Fab,
+  Grid,
+  InputAdornment,
+  Slide,
+  TextField,
+  Tooltip,
+} from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { styled } from '@mui/system';
 import { IconSearch } from '@tabler/icons-react';
 import React from 'react';
+import { FaPlus } from 'react-icons/fa';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import TableFeature from './_components/TableFeature';
@@ -16,6 +30,23 @@ const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/admin/feature', title: 'Danh sách đề xuất' },
 ];
+
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const BoxStyled = styled(Box)(() => ({
+  padding: '30px',
+  transition: '0.1s ease-in',
+  cursor: 'pointer',
+  color: 'inherit',
+  '&:hover': {
+    transform: 'scale(1.03)',
+  },
+}));
 
 interface StyleProps {
   bgColor: string;
@@ -81,6 +112,8 @@ const DataBox: StyleProps[] = [
 ];
 
 const PageFeature = () => {
+  const [value] = React.useState('1');
+
   return (
     <PageContainer>
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
@@ -88,7 +121,7 @@ const PageFeature = () => {
         <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
-        <TabContext>
+        <TabContext value={value}>
           <Box>
             <TabPanel value="1" sx={{ p: 0 }}>
               <Box
