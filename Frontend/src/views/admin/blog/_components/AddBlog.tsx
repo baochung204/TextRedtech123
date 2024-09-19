@@ -269,7 +269,7 @@ const AddBlog = () => {
               helperText={formik.touched.status && formik.errors.status}
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
             <Tags
               value={formik.values.tags}
@@ -277,7 +277,7 @@ const AddBlog = () => {
               error={formik.touched.tags && Boolean(formik.errors.tags)}
               helperText={formik.touched.tags && formik.errors.tags}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
       <h1>test</h1>

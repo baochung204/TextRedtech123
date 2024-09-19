@@ -28,7 +28,7 @@ const CustomTextField: React.FC<{
 const CategoryInput: React.FC = () => {
   const [categories, setCategories] = useState<string[]>(['']);
   const [isEditing, setIsEditing] = useState<boolean>(true);
-  isEditing;
+  console.log(isEditing);
   const handleChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const newCategories = [...categories];
     newCategories[index] = event.target.value;
