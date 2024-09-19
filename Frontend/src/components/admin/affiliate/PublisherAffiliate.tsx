@@ -20,7 +20,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconPasswordUser, IconSearch, IconZoomMoney } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 
-import { styled } from '@mui/system';
 import { IconBox, IconWashDrycleanOff } from '@tabler/icons-react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import PublisherTable from './component/PublisherTable';
@@ -164,15 +163,15 @@ const DataBox = [
 //   { title: 'Tổng doanh thu' },
 // ];
 
-const BoxStyled = styled(Box)(() => ({
-  padding: '30px',
-  transition: '0.1s ease-in',
-  cursor: 'pointer',
-  color: 'inherit',
-  '&:hover': {
-    transform: 'scale(1.03)',
-  },
-}));
+// const BoxStyled = styled(Box)(() => ({
+//   padding: '30px',
+//   transition: '0.1s ease-in',
+//   cursor: 'pointer',
+//   color: 'inherit',
+//   '&:hover': {
+//     transform: 'scale(1.03)',
+//   },
+// }));
 interface FilmsData {
   id: number;
   title: string;
