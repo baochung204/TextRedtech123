@@ -340,33 +340,28 @@ const HistoryVoucher = () => {
         <Grid container>
           <Grid item xs={12} my={2}>
             <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Grid
-                item
-                xs={5}
-                sm={4}
-                md={5}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <TextField
-                  id="outlined-search"
-                  placeholder="Tìm kiếm voucher"
-                  size="small"
-                  type="search"
-                  variant="outlined"
-                  inputProps={{ 'aria-label': 'Search Followers' }}
-                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <IconSearch size="20" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  fullWidth={true}
-                />
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={10}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm trợ lý"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
 
               <Grid item xs={5}>

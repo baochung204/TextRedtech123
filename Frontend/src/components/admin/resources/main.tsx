@@ -5,7 +5,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import { Grid, IconButton, InputAdornment, MenuItem, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import { IconSearch } from '@tabler/icons-react';
+import { IconReceipt, IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -37,7 +37,20 @@ const Strategy = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -48,7 +61,20 @@ const Strategy = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -59,7 +85,20 @@ const Strategy = [
     total: '32.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -70,7 +109,20 @@ const Strategy = [
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -1163,7 +1215,6 @@ const Main = () => {
           {value === '4' && <TopCard dataSource={Model} totalColumn={4} />}
           {value === '5' && <TopCard dataSource={Image} totalColumn={4} />}
           {value === '6' && <TopCard dataSource={Url} totalColumn={4} />}
-         
 
           <TabContext value={value}>
             <Box

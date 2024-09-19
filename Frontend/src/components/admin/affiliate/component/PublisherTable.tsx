@@ -113,7 +113,7 @@ const PublisherTable = () => {
 
   return (
     <>
-      <TableContainer>
+      <TableContainer sx={{ px: 2 }}>
         <Scrollbar_x>
           <Table>
             <TableHead>

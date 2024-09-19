@@ -1,30 +1,27 @@
-import { TabContext } from '@mui/lab';
 import {
+  Badge,
   Box,
+  Checkbox,
   Grid,
+  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
-  SelectChangeEvent,
   TextField,
+  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconArrowsLeftRight,
-  IconReportMoney,
-  IconSearch,
-  IconTicket,
-  IconZoomMoney,
-} from '@tabler/icons-react';
-import React, { useState } from 'react';
+import { IconSearch, IconTicket } from '@tabler/icons-react';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import { createElement, useState } from 'react';
 
-import { Dayjs } from 'dayjs';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField'; // Ensure this component works as expected
 import TopCard from 'src/components/widgets/cards/TopCard';
 import HistoryTable from './component/HistoryTable';
-
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -125,31 +122,43 @@ const dataSource = [
 ];
 
 interface FilmsData {
+  id: number;
   title: string;
 }
-
 const FilmsData: FilmsData[] = [
-  { title: 'Tỉ lệ chuyển đổi' },
-  { title: 'Cấp Rank' },
-  { title: 'Tổng doanh thu' },
+  { id: 1, title: 'File' },
+  { id: 2, title: 'Dung lượng' },
+  { id: 3, title: 'Functions' },
+  { id: 4, title: 'Token huấn luyện' },
+  { id: 5, title: 'Ngày tạo' },
+  { id: 6, title: 'Vòng quay trung bình' },
+  { id: 7, title: 'khách hàng' },
+  { id: 8, title: 'Đơn hàng' },
+  { id: 9, title: 'CVR' },
+  { id: 10, title: 'GMV' },
+  { id: 11, title: 'Chi phí' },
+  { id: 12, title: 'Chi phí/Doanh thu' },
+  { id: 13, title: 'Chi phí/Đơn hàng' },
+  { id: 14, title: 'Chi phí/Khách hàng' },
+  { id: 15, title: 'Chiến lược' },
 ];
-
 const HistoryAffiliate = () => {
-  const [expectvalue] = React.useState('1');
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
-  const [selectedItems, setSelectedItems] = useState<string>('');
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
-  const handleChange1 = (event: SelectChangeEvent<string>) => {
-    setSelectedItems(event.target.value);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+
+  const handleItemClick = (id: number) => {
+    setSelectedItems((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+    );
   };
 
-  const handleItemClick1 = (title: string) => {
-    if (selectedItems === title) {
-      setSelectedItems('');
-    } else {
-      setSelectedItems(title);
-    }
+  const [iconIndex, setIconIndex] = useState<number>(0);
+  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+
+  const handleClickIcon = () => {
+    setIconIndex((pre) => (pre + 1) % icons.length);
   };
 
   return (
@@ -159,118 +168,100 @@ const HistoryAffiliate = () => {
           <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
-          <Box sx={{ width: '100%', typography: 'body1' }}>
-            <TabContext value={expectvalue}>
-              <Box
+          <Grid container>
+            <Grid
+              item
+              xs={4}
+              sm={4}
+              md={4}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm trợ lý"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch size="12" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth={true}
+              />
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              sx={{
+                display: 'flex',
+                justifyContent: 'end',
+                alignItems: 'center',
+              }}
+            >
+              <IconButton aria-label="filter" sx={{ mr: 2 }}>
+                <Badge badgeContent={selectedItems.length} color="primary">
+                  <FilterListIcon />
+                </Badge>
+              </IconButton>
+
+              <Select
+                multiple
+                value={selectedItems}
+                displayEmpty
+                renderValue={(selected) =>
+                  selected.length === 0 ? 'Sửa đổi cột' : `${selected.length} cột đã chọn`
+                }
+                size="small"
+                sx={{ minWidth: 150 }}
+              >
+                {FilmsData.map((film) => (
+                  <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
+                    <Checkbox checked={selectedItems.includes(film.id)} />
+                    <ListItemText primary={film.title} />
+                  </MenuItem>
+                ))}
+              </Select>
+
+              <IconButton
+                aria-label="filter"
+                onClick={handleClickIcon}
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+                  ml: 1,
                 }}
               >
-                <Box>
-                  {/* Ô tìm kiếm */}
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="12" />
-                        </InputAdornment>
-                      ),
-                    }}
+                {createElement(icons[iconIndex])}
+              </IconButton>
+            </Grid>
+
+            <Grid item xs={4}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={selectedStartDate}
+                    onChange={setSelectedStartDate}
+                    renderInput={(params: any) => <TextField {...params} />}
                   />
-                </Box>
-                <Box
-                  style={{
-                    display: 'flex',
-                    gap: '12px',
-                    alignItems: 'center',
-                    justifyContent: 'end',
-                  }}
-                >
-                  {/* lọc thời gian */}
-                  <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        value={value}
-                        onChange={(newValue) => {
-                          setValue(newValue);
-                        }}
-                        renderInput={(props) => (
-                          <CustomTextField
-                            {...props}
-                            fullWidth
-                            size="small"
-                            sx={{
-                              '& .MuiSvgIcon-root': {
-                                width: '18px',
-                                height: '18px',
-                              },
-                              '& .MuiFormHelperText-root': {
-                                display: 'none',
-                              },
-                            }}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                    tới
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        value={value1}
-                        onChange={(newValue) => {
-                          setValue1(newValue);
-                        }}
-                        renderInput={(props) => (
-                          <CustomTextField
-                            {...props}
-                            fullWidth
-                            size="small"
-                            sx={{
-                              '& .MuiSvgIcon-root': {
-                                width: '18px',
-                                height: '18px',
-                              },
-                              '& .MuiFormHelperText-root': {
-                                display: 'none',
-                              },
-                            }}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                  </Box>
-                  {/* Bộ lọc */}
-                  <Select
-                    value={selectedItems}
-                    onChange={handleChange1}
-                    displayEmpty
-                    renderValue={(selected) => (selected === '' ? 'Sửa đổi cột' : `Sửa đổi cột`)}
-                    size="small"
-                    style={{ maxWidth: 300, marginRight: '10px' }}
-                  >
-                    {FilmsData.map((film) => (
-                      <MenuItem
-                        key={film.title}
-                        value={film.title}
-                        onClick={() => handleItemClick1(film.title)}
-                      >
-                        <ListItemText primary={film.title} />
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </Box>
+                  <Typography>tới</Typography>
+                  <DatePicker
+                    value={selectedEndDate}
+                    onChange={setSelectedEndDate}
+                    renderInput={(params: any) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
               </Box>
-            </TabContext>
-            <HistoryTable />
-          </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <HistoryTable />
         </Grid>
       </Grid>
     </>

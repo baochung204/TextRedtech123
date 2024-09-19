@@ -346,38 +346,19 @@ const FlashSale = () => {
         <Grid container>
           <Grid item xs={12} my={2}>
             <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Grid
-                item
-                xs={5}
-                sm={4}
-                md={5}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Grid container>
-                  <Grid item xs={1} sx={{ my: 'auto' }}>
-                    <Tooltip
-                      title="Tạo đơn hàng"
-                      placement="top"
-                      sx={{ display: 'flex', my: 'auto' }}
-                    >
-                      <Fab
-                        color="primary"
-                        aria-label="add"
-                        size="small"
-                        sx={{ marginRight: '30px' }}
-                        // onClick={handleOpenPopup}
-                      >
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
+                      <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
                         <IconPlus width={18} />
                       </Fab>
                     </Tooltip>
                   </Grid>
-                  <Grid xs={11}>
+                  <Grid item xs={10}>
                     <TextField
                       id="outlined-search"
-                      placeholder="Tìm kiếm voucher"
+                      placeholder="Tìm kiếm trợ lý"
                       size="small"
                       type="search"
                       variant="outlined"
