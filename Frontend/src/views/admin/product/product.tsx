@@ -1,5 +1,11 @@
+import OrderProduct from "./_components/orderproduct/OrderProduct";
+
 const ProductAdmin = () => {
-  return <h1>sản phẩm</h1>;
+  return (
+  <>
+  <OrderProduct/>
+  </>
+  )
 };
 
 export default ProductAdmin;

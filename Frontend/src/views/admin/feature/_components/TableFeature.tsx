@@ -1,9 +1,9 @@
 import { Avatar, Button, Grid, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { Visibility, Favorite } from '@mui/icons-material';
 import React, { useState } from 'react';
-import BlogTable from '../data/datablog';
-import { IconEye, IconTrash } from '@tabler/icons-react';
-import { IconEdit } from '@tabler/icons-react';
+import DataFeature from '../data/DataFeuture';
+import { IconEdit, IconEye } from '@tabler/icons-react';
+import { IconTrash } from '@tabler/icons-react';
 
 interface PropsHeadTable {
     head: string;
@@ -12,21 +12,16 @@ interface PropsHeadTable {
 const HeadTable: PropsHeadTable[] = [
     { head: 'ID' },
     { head: 'Ngày tạo' },
-    { head: 'Ảnh' },
-    { head: 'Tiêu đề' },
-    { head: 'Tác giả' },
-    { head: 'Tags' },
-    { head: 'Đường dẫn url' },
-    { head: 'Mô tả' },
-    { head: 'Nội dung' },
-    { head: 'Giá Point' },
+    { head: 'Họ và tên' },
+    { head: 'Email' },
+    { head: 'Số điện thoại' },
+    { head: 'Nội dùng đề xuất' },
     { head: 'Trạng thái' },
-    { head: 'Lượt xem' },
-    { head: 'Lượt thích' },
-    { head: 'Thao tác' }
+    { head: 'Ghi chú' },
+    { head: 'Thao tác' },
 ];
 
-const TableBlog = () => {
+const TableFeature = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [key, setKey] = useState<string | null>(null)
@@ -39,7 +34,7 @@ const TableBlog = () => {
         setPage(0);
     };
 
-    const paginatedData = BlogTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    const paginatedData = DataFeature.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
     // Placeholder functions for button actions
     const handleView = (id: string) => {
@@ -83,77 +78,35 @@ const TableBlog = () => {
                                             {item.createdAt.toLocaleDateString()}
                                         </Typography>
                                     </TableCell>
-                                    <TableCell>
-                                        <Avatar
-                                            src={item.avt}
-                                            variant="rounded"
-                                            alt={item.avt}
-                                            sx={{ width: 48, height: 48 }}
-                                        />
-                                    </TableCell>
                                     <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                                         <Typography variant="subtitle2">
-                                            {item.title}
+                                            {item.name}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
                                         <Typography variant="subtitle2">
-                                            {item.author}
+                                            {item.email}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
                                         <Typography variant="subtitle2">
-                                            {item.tags}
+                                            {item.phone}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                         <Typography variant="subtitle2">
-                                            {item.url}
+                                            {item.contextFeature}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                                         <Typography variant="subtitle2">
-                                            {item.description}
+                                            {item.status}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                                         <Typography variant="subtitle2">
-                                            {item.content}
+                                            {item.note}
                                         </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.pricePoint}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.status}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Grid container alignItems="center" spacing={1}>
-                                            <Grid item>
-                                                <Visibility color="action" />
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography variant="subtitle2">
-                                                    {item.view}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Grid container alignItems="center" spacing={1}>
-                                            <Grid item>
-                                                <Favorite color="error" />
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography variant="subtitle2">
-                                                    {item.like}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
                                     </TableCell>
                                     <TableCell
                                             sx={{
@@ -182,4 +135,4 @@ const TableBlog = () => {
     );
 };
 
-export default TableBlog;
+export default TableFeature;

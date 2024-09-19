@@ -1,9 +1,9 @@
 import { Avatar, Button, Grid, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { Visibility, Favorite } from '@mui/icons-material';
 import React, { useState } from 'react';
-import BlogTable from '../data/datablog';
-import { IconEye, IconTrash } from '@tabler/icons-react';
-import { IconEdit } from '@tabler/icons-react';
+import { IconEdit, IconEye } from '@tabler/icons-react';
+import { IconTrash } from '@tabler/icons-react';
+import DataOrderProduct from '../../data/DataOrderProduct';
 
 interface PropsHeadTable {
     head: string;
@@ -11,22 +11,16 @@ interface PropsHeadTable {
 
 const HeadTable: PropsHeadTable[] = [
     { head: 'ID' },
-    { head: 'Ngày tạo' },
-    { head: 'Ảnh' },
-    { head: 'Tiêu đề' },
-    { head: 'Tác giả' },
-    { head: 'Tags' },
-    { head: 'Đường dẫn url' },
-    { head: 'Mô tả' },
-    { head: 'Nội dung' },
-    { head: 'Giá Point' },
-    { head: 'Trạng thái' },
-    { head: 'Lượt xem' },
-    { head: 'Lượt thích' },
-    { head: 'Thao tác' }
+    { head: 'Ngày mua' },
+    { head: 'ID khách hàng' },
+    { head: 'Tên khách hàng' },
+    { head: 'Giá niêm yết' },
+    { head: 'Khuyến mại' },
+    { head: 'Thanh toán' },
+    { head: 'Thao tác' },
 ];
 
-const TableBlog = () => {
+const TableOrderProduct = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [key, setKey] = useState<string | null>(null)
@@ -39,7 +33,7 @@ const TableBlog = () => {
         setPage(0);
     };
 
-    const paginatedData = BlogTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    const paginatedData = DataOrderProduct.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
     // Placeholder functions for button actions
     const handleView = (id: string) => {
@@ -75,7 +69,7 @@ const TableBlog = () => {
                                 <TableRow key={index}>
                                     <TableCell>
                                         <Typography variant="subtitle2">
-                                            {item.id}
+                                            {item.id_don_hang}
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
@@ -83,77 +77,30 @@ const TableBlog = () => {
                                             {item.createdAt.toLocaleDateString()}
                                         </Typography>
                                     </TableCell>
-                                    <TableCell>
-                                        <Avatar
-                                            src={item.avt}
-                                            variant="rounded"
-                                            alt={item.avt}
-                                            sx={{ width: 48, height: 48 }}
-                                        />
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
                                         <Typography variant="subtitle2">
-                                            {item.title}
+                                            {item.id_khach_hang}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
                                         <Typography variant="subtitle2">
-                                            {item.author}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
-                                        <Typography variant="subtitle2">
-                                            {item.tags}
+                                            {item.ten_khach_hang}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                         <Typography variant="subtitle2">
-                                            {item.url}
+                                            {item.gia_niem_yet}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                                         <Typography variant="subtitle2">
-                                            {item.description}
+                                            {item.khuyen_mai}
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                                         <Typography variant="subtitle2">
-                                            {item.content}
+                                            {item.thanh_toan}
                                         </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.pricePoint}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.status}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Grid container alignItems="center" spacing={1}>
-                                            <Grid item>
-                                                <Visibility color="action" />
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography variant="subtitle2">
-                                                    {item.view}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Grid container alignItems="center" spacing={1}>
-                                            <Grid item>
-                                                <Favorite color="error" />
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography variant="subtitle2">
-                                                    {item.like}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
                                     </TableCell>
                                     <TableCell
                                             sx={{
@@ -161,16 +108,11 @@ const TableBlog = () => {
                                             }}
                                         >
                                             <IconButton
-                                                onClick={() => setKey(item.id)}
+                                                onClick={() => setKey(item.id_don_hang)}
                                             >
                                                 <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
                                             </IconButton>
-                                            <IconButton>
-                                                <IconEdit    stroke={2} style={{ color: '#5D87FF' }} />
-                                            </IconButton>
-                                            <IconButton>
-                                                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-                                            </IconButton>
+                                            
                                         </TableCell>
                                 </TableRow>
                             );
@@ -182,4 +124,4 @@ const TableBlog = () => {
     );
 };
 
-export default TableBlog;
+export default TableOrderProduct;

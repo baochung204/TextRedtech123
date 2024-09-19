@@ -2,27 +2,43 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
-import { Box, Dialog, DialogContent, DialogTitle, Fab, Grid, InputAdornment, Slide, Tab, TextField, Tooltip } from '@mui/material';
+import { Box, Dialog, DialogContent, DialogTitle, Fab, Grid, InputAdornment, Slide, TextField, Tooltip } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
+import { styled } from '@mui/system';
 import { IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
+import PageContainer from 'src/components/container/PageContainer';
+import ChildCard from 'src/components/shared/ChildCard';
+import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import PageContainer from './../../../components/container/PageContainer';
-import ChildCard from './../../../components/shared/ChildCard';
-import AddBlog from './_components/AddBlog';
-import TableBlog from './_components/TableBlog';
-import  TopCard  from 'src/components/widgets/cards/TopCard';
+import AddBlog from 'src/views/admin/blog/_components/AddBlog';
+import TableFeature from 'src/views/admin/feature/_components/TableFeature';
+import TableOrderProduct from './TableOrderProduct';
+
 const BCrumb = [
-  { to: '/', title: 'Trang Chủ' },
-  { to: '/apps/blog/posts', title: 'Danh sách bài viết' },
+  { to: '/admin/dashboard', title: 'Trang Chủ' },
+  { to: '/admin/buy/orderproducts', title: 'Danh sách đơn hàng' },
 ];
-const Transition = React.forwardRef<
-  unknown,
-  TransitionProps & { children: React.ReactElement<any, any> }
->(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+
+const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement<any, any> }>(
+  function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  }
+);
+
+const BoxStyled = styled(Box)(() => ({
+  padding: '30px',
+  transition: '0.1s ease-in',
+  cursor: 'pointer',
+  color: 'inherit',
+  '&:hover': {
+      transform: 'scale(1.03)',
+  },
+
+}));
+
+
 interface StyleProps {
   bgColor: string;
   color: string;
@@ -36,8 +52,8 @@ const DataBox: StyleProps[] = [
   {
       bgColor: 'primary.light',
       color: 'primary.main',
-      title: 'Nhân viên',
-      total: '120',
+      title: 'Đơn hàng',
+      total: '12.567',
       icons:
           <PeopleAltIcon
               sx={{
@@ -46,10 +62,10 @@ const DataBox: StyleProps[] = [
           />
   },
   {
-      bgColor: 'warning.light',
-      color: 'warning.main',
-      title: 'Admin',
-      total: '5',
+      bgColor: 'info.light',
+      color: 'info.main',
+      title: 'Tổng giá trị',
+      total: '16.146.515 (Point)',
       icons:
           <PeopleAltIcon
               sx={{
@@ -60,8 +76,8 @@ const DataBox: StyleProps[] = [
   {
       bgColor: 'success.light',
       color: 'success.main',
-      title: 'Hoạt động',
-      total: '52',
+      title: 'Khuyến mại',
+      total: '5.432.234 (Point)',
       icons:
           <PeopleAltIcon
               sx={{
@@ -70,31 +86,40 @@ const DataBox: StyleProps[] = [
           />
   },
   {
-      bgColor: 'error.light',
-      color: 'error.main',
-      title: 'Khóa',
-      total: '12',
+      bgColor: 'warning.light',
+      color: 'warning.main',
+      title: 'Tổng thanh toán',
+      total: '12.423.423 (Point)',
       icons:
           <PeopleAltIcon
               sx={{
                   fontSize: 40
               }}
           />
-  }
+  },
+  {
+    bgColor: 'warning.light',
+    color: 'warning.main',
+    title: 'AOV',
+    total: '23.423 (Point)',
+    icons:
+        <PeopleAltIcon
+            sx={{
+                fontSize: 40
+            }}
+        />
+}
 ]
-const BlogAdmin = () => {
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
+
+const OrderProduct = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
-  // Function mở popup
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
   };
 
-  // Function đóng popup
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -105,7 +130,7 @@ const BlogAdmin = () => {
 
   return (
     <PageContainer>
-      <BannerPage title=" Quản lý blogs" items={BCrumb} />
+      <BannerPage title="Đơn hàng sản phẩm" items={BCrumb} />
       <Grid item xs={12}>
         <TopCard dataSource={DataBox} />
       </Grid>
@@ -117,11 +142,10 @@ const BlogAdmin = () => {
               aria-label="lab API tabs example"
               sx={{ p: 0, border: 'none' }}
             >
-              <Tab label="Danh sách blogs" value="1" sx={{ p: 0 }} />
+              {/* Optional: Add Tab components here if needed */}
             </TabList>
 
             <TabPanel value="1" sx={{ p: 0 }}>
-              {' '}
               <Box
                 className="actions-and-filters"
                 sx={{
@@ -167,38 +191,13 @@ const BlogAdmin = () => {
                     size="small"
                   />
                 </Box>
-
-                <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
-                  {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={selectedStartDate}
-                      onChange={(newDate) => setSelectedStartDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    />
-                    <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                    <DatePicker
-                      value={selectedEndDate}
-                      onChange={(newDate) => setSelectedEndDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    /> */}
-                  {/* </LocalizationProvider> */}
-                </Box>
               </Box>
-              <TableBlog />
+              <TableOrderProduct />
             </TabPanel>
           </Box>
         </TabContext>
       </ChildCard>
+
       {/* Popup Thêm blogs */}
       <Dialog
         open={isPopupOpen}
@@ -214,7 +213,7 @@ const BlogAdmin = () => {
         </DialogContent>
       </Dialog>
     </PageContainer>
-  )
-}
+  );
+};
 
-export default BlogAdmin
+export default OrderProduct;

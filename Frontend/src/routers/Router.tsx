@@ -32,6 +32,7 @@ import FormRequest from 'src/views/forms/FormRequest';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import AssistantAdmin from '../views/admin/assistant/assistant';
 import BlogAdmin from 'src/views/admin/blog/blog';
+import PageFeature from 'src/views/admin/feature/feature';
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -322,7 +323,7 @@ const Router = [
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
       { path: '/admin/order', element: <OrderAdmin /> },
-      { path: '/admin/buy/products', element: <ProductAdmin /> },
+      { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
@@ -330,14 +331,11 @@ const Router = [
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
-<<<<<<< HEAD
-      { path: '/admin/blog', element: <Blog /> },
-      // { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/test', element: <Text /> },
-=======
+      { path: '/admin/feature', element: <PageFeature /> },
+
       { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
->>>>>>> main
       { path: '/admin/notification', element: <Notification /> },
       { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
       { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },

@@ -1,5 +1,206 @@
-const Feature = () => {
-  return <h1>Feature</h1>;
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { TabList } from '@mui/lab';
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
+import { Box, Dialog, DialogContent, DialogTitle, Fab, Grid, InputAdornment, Slide, TextField, Tooltip } from '@mui/material';
+import { TransitionProps } from '@mui/material/transitions';
+import { styled } from '@mui/system';
+import { IconSearch } from '@tabler/icons-react';
+import React from 'react';
+import { FaPlus } from 'react-icons/fa';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import AddBlog from '../blog/_components/AddBlog';
+import PageContainer from './../../../components/container/PageContainer';
+import ChildCard from './../../../components/shared/ChildCard';
+import TableFeature from './_components/TableFeature';
+
+const BCrumb = [
+  { to: '/', title: 'Trang Chủ' },
+  { to: '/admin/feature', title: 'Danh sách đề xuất' },
+];
+
+const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement<any, any> }>(
+  function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  }
+);
+
+const BoxStyled = styled(Box)(() => ({
+  padding: '30px',
+  transition: '0.1s ease-in',
+  cursor: 'pointer',
+  color: 'inherit',
+  '&:hover': {
+      transform: 'scale(1.03)',
+  },
+
+}));
+
+
+interface StyleProps {
+  bgColor: string;
+  color: string;
+  title: string;
+  total: string;
+  icons: JSX.Element;
+}
+
+
+const DataBox: StyleProps[] = [
+  {
+      bgColor: 'primary.light',
+      color: 'primary.main',
+      title: 'Đề xuất',
+      total: '120',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  },
+  {
+      bgColor: 'info.light',
+      color: 'info.main',
+      title: 'Đánh dấu',
+      total: '5',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  },
+  {
+      bgColor: 'success.light',
+      color: 'success.main',
+      title: 'Chưa xem',
+      total: '52',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  },
+  {
+      bgColor: 'warning.light',
+      color: 'warning.main',
+      title: 'Cập nhập',
+      total: '12',
+      icons:
+          <PeopleAltIcon
+              sx={{
+                  fontSize: 40
+              }}
+          />
+  }
+]
+
+
+const PageFeature = () => {
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [value, setValue] = React.useState('1');
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
+  return (
+    <PageContainer>
+      <BannerPage title="Đề xuất tính năng" items={BCrumb} />
+      <Grid item xs={12}>
+        <TopCard dataSource={DataBox} />
+      </Grid>
+      <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
+        <TabContext value={value}>
+          <Box>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              sx={{ p: 0, border: 'none' }}
+            >
+              {/* Optional: Add Tab components here if needed */}
+            </TabList>
+
+            <TabPanel value="1" sx={{ p: 0 }}>
+              <Box
+                className="actions-and-filters"
+                sx={{
+                  mt: '20px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  {/* <Tooltip title="Tạo đơn hàng">
+                    <Fab
+                      color="primary"
+                      aria-label="add"
+                      size="small"
+                      sx={{ marginRight: '30px' }}
+                      onClick={handleOpenPopup}
+                    >
+                      <FaPlus />
+                    </Fab>
+                  </Tooltip> */}
+
+                  <TextField
+                    sx={{
+                      width: '200px',
+                      marginRight: '40px',
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: '10px',
+                        backgroundColor: '#fff',
+                        '&:hover fieldset': {
+                          borderColor: '#3f51b5',
+                        },
+                      },
+                    }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="1.1rem" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    placeholder="Tìm kiếm"
+                    size="small"
+                  />
+                </Box>
+              </Box>
+              <TableFeature />
+            </TabPanel>
+          </Box>
+        </TabContext>
+      </ChildCard>
+
+      {/* Popup Thêm blogs */}
+      {/* <Dialog
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        fullWidth
+        maxWidth="lg"
+        TransitionComponent={Transition}
+        keepMounted
+      >
+        <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle>
+        <DialogContent>
+          <AddBlog />
+        </DialogContent>
+      </Dialog> */}
+    </PageContainer>
+  );
 };
 
-export default Feature;
+export default PageFeature;

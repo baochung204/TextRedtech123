@@ -1,5 +1,5 @@
-import { Box, Grid, Typography, styled } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Box, Grid, Typography, styled } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 interface StyleProps {
     bgColor: string;
@@ -14,7 +14,6 @@ interface TopCardProps {
     totalColumn: string;
 }
 
-
 const BoxStyled = styled(Box)(() => ({
     padding: '30px',
     transition: '0.1s ease-in',
@@ -23,56 +22,57 @@ const BoxStyled = styled(Box)(() => ({
     '&:hover': {
         transform: 'scale(1.03)',
     },
-
 }));
 
 const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
-
-    const [total, setTotal] = useState<number | null>(null)
+    const [total, setTotal] = useState<number | null>(null);
 
     useEffect(() => {
-        if (totalColumn !== null) {
-            const tmp = parseInt(totalColumn);
-            setTotal(12 / tmp)
+        if (totalColumn) {
+            const parsedValue = parseInt(totalColumn, 10);
+            if (!isNaN(parsedValue) && parsedValue > 0) {
+                setTotal(12 / parsedValue);
+            } else {
+                setTotal(null); // Or set to a default value if needed
+            }
+        } else {
+            setTotal(null); // Or set to a default value if needed
         }
-    }, [totalColumn])
+    }, [totalColumn]);
+
     console.log(total);
 
     return (
-        <Grid container spacing={total}>
-            {dataSource.map((items, index) => {
-                return (
-                    <Grid item lg={3} sm={6} xs={12} key={index}>
-                        <BoxStyled
-                            sx={{
-                                backgroundColor: items.bgColor,
-                                color: items.color
-                            }}
-                        >
-                            <Grid container >
-                                <Grid
-                                    item
-                                    xs={3}
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'center'
-                                    }}
-                                >
-                                    {items.icons}
-
-                                </Grid>
-                                <Grid item xs={9} >
-                                    <Typography variant="h4">{items.title}</Typography>
-                                    <Typography variant="h5">{items.total}</Typography>
-                                </Grid>
+        <Grid container spacing={total ?? 2}>
+            {dataSource.map((item, index) => (
+                <Grid item lg={3} sm={6} xs={12} key={index}>
+                    <BoxStyled
+                        sx={{
+                            backgroundColor: item.bgColor,
+                            color: item.color
+                        }}
+                    >
+                        <Grid container>
+                            <Grid
+                                item
+                                xs={3}
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                {item.icons}
                             </Grid>
-
-                        </BoxStyled>
-                    </Grid>
-                )
-            })}
+                            <Grid item xs={9}>
+                                <Typography variant="h4">{item.title}</Typography>
+                                <Typography variant="h5">{item.total}</Typography>
+                            </Grid>
+                        </Grid>
+                    </BoxStyled>
+                </Grid>
+            ))}
         </Grid>
-    )
-}
+    );
+};
 
-export default TopCard
+export default TopCard;
