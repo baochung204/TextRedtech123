@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, styled } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface StyleProps {
   bgColor: string;
