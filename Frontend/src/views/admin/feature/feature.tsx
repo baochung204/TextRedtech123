@@ -2,7 +2,18 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
-import { Box, Dialog, DialogContent, DialogTitle, Fab, Grid, InputAdornment, Slide, TextField, Tooltip } from '@mui/material';
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Fab,
+  Grid,
+  InputAdornment,
+  Slide,
+  TextField,
+  Tooltip,
+} from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { styled } from '@mui/system';
 import { IconSearch } from '@tabler/icons-react';
@@ -20,11 +31,12 @@ const BCrumb = [
   { to: '/admin/feature', title: 'Danh sách đề xuất' },
 ];
 
-const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement<any, any> }>(
-  function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  }
-);
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
@@ -32,11 +44,9 @@ const BoxStyled = styled(Box)(() => ({
   cursor: 'pointer',
   color: 'inherit',
   '&:hover': {
-      transform: 'scale(1.03)',
+    transform: 'scale(1.03)',
   },
-
 }));
-
 
 interface StyleProps {
   bgColor: string;
@@ -46,58 +56,60 @@ interface StyleProps {
   icons: JSX.Element;
 }
 
-
 const DataBox: StyleProps[] = [
   {
-      bgColor: 'primary.light',
-      color: 'primary.main',
-      title: 'Đề xuất',
-      total: '120',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
+    bgColor: 'primary.light',
+    color: 'primary.main',
+    title: 'Đề xuất',
+    total: '120',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
   },
   {
-      bgColor: 'info.light',
-      color: 'info.main',
-      title: 'Đánh dấu',
-      total: '5',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
+    bgColor: 'info.light',
+    color: 'info.main',
+    title: 'Đánh dấu',
+    total: '5',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
   },
   {
-      bgColor: 'success.light',
-      color: 'success.main',
-      title: 'Chưa xem',
-      total: '52',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
+    bgColor: 'success.light',
+    color: 'success.main',
+    title: 'Chưa xem',
+    total: '52',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
   },
   {
-      bgColor: 'warning.light',
-      color: 'warning.main',
-      title: 'Cập nhập',
-      total: '12',
-      icons:
-          <PeopleAltIcon
-              sx={{
-                  fontSize: 40
-              }}
-          />
-  }
-]
-
+    bgColor: 'warning.light',
+    color: 'warning.main',
+    title: 'Cập nhập',
+    total: '12',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
+  },
+];
 
 const PageFeature = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
@@ -119,19 +131,11 @@ const PageFeature = () => {
     <PageContainer>
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
       <Grid item xs={12}>
-        <TopCard dataSource={DataBox} />
+        <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
           <Box>
-            <TabList
-              onChange={handleChange}
-              aria-label="lab API tabs example"
-              sx={{ p: 0, border: 'none' }}
-            >
-              {/* Optional: Add Tab components here if needed */}
-            </TabList>
-
             <TabPanel value="1" sx={{ p: 0 }}>
               <Box
                 className="actions-and-filters"
@@ -142,42 +146,27 @@ const PageFeature = () => {
                   alignItems: 'center',
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  {/* <Tooltip title="Tạo đơn hàng">
-                    <Fab
-                      color="primary"
-                      aria-label="add"
+                <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Grid item xs={4} sm={4} md={4}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm thông báo"
                       size="small"
-                      sx={{ marginRight: '30px' }}
-                      onClick={handleOpenPopup}
-                    >
-                      <FaPlus />
-                    </Fab>
-                  </Tooltip> */}
-
-                  <TextField
-                    sx={{
-                      width: '200px',
-                      marginRight: '40px',
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '10px',
-                        backgroundColor: '#fff',
-                        '&:hover fieldset': {
-                          borderColor: '#3f51b5',
-                        },
-                      },
-                    }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="1.1rem" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    placeholder="Tìm kiếm"
-                    size="small"
-                  />
-                </Box>
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
               </Box>
               <TableFeature />
             </TabPanel>

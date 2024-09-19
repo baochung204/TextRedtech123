@@ -237,7 +237,7 @@ const Personnels = () => {
 
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm nhân viên"
                   size="small"
                   type="search"
                   variant="outlined"

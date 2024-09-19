@@ -182,7 +182,7 @@ const BlogAdmin = () => {
                     <Grid item xs={10}>
                       <TextField
                         id="outlined-search"
-                        placeholder="Tìm kiếm trợ lý"
+                        placeholder="Tìm kiếm bài viết"
                         size="small"
                         type="search"
                         variant="outlined"
