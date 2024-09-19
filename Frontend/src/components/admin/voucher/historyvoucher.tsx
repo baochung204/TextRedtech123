@@ -1,7 +1,6 @@
 import {
   Box,
   Chip,
-  Fab,
   Grid,
   InputAdornment,
   Stack,
@@ -14,7 +13,6 @@ import {
   TableRow,
   TableSortLabel,
   TextField,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import { format } from 'date-fns';
@@ -23,7 +21,7 @@ import { format } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconPlus, IconSearch } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';

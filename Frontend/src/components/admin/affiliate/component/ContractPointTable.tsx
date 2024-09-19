@@ -209,7 +209,7 @@ const ContractPointTable = () => {
         count={DataContactAffiliateTable.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={(event, newPage) => handleChangePage(newPage)}
+        onPageChange={(_event, newPage) => handleChangePage(newPage)}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </>
