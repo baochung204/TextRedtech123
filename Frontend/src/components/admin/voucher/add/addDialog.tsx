@@ -11,8 +11,8 @@ import {
 import { IconPlus } from '@tabler/icons-react';
 
 import { useState } from 'react';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
-import PopupAdd from 'src/views/apps/customerList/PopupAdd';
+
+import AddVoucher from './Addvoucher';
 // import * as React from 'react';
 const AddDialogvoucher = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -54,8 +54,10 @@ const AddDialogvoucher = () => {
         }}
       >
         <Box>
-          <DialogTitle padding={'10px'}>Thêm Voucher</DialogTitle>
-          <DialogContent>{/* <PopupAdd /> Gọi component PopupAdd */}</DialogContent>
+          <DialogTitle padding={'10px'}>Tạo mã khuyến mãi</DialogTitle>
+          <DialogContent>
+            <AddVoucher />
+          </DialogContent>
           <DialogActions>
             <Button onClick={handleClosePopup}>Hủy</Button>
             <Button onClick={handleClosePopup} variant="contained" color="primary">

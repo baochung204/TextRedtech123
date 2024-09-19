@@ -14,6 +14,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import s24 from 'src/assets/images/products/s24.jpg';
 // components
 // import { styled } from '@mui/system';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -23,10 +24,15 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 
-import AddDialogvoucher from 'src/components/admin/voucher/addDialog';
+import AddDialogvoucher from 'src/components/admin/voucher/add/addDialog';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
+import s23 from 'src/assets/images/products/s25.jpg';
+import s25 from 'src/assets/images/products/s23.jpg';
+import s22 from 'src/assets/images/products/s22.jpg';
+import AddDflashsale from './add/addflashsale';
+
 interface DataRow3 {
   id: string;
   voucherName: string;
@@ -34,6 +40,7 @@ interface DataRow3 {
   product: string;
   listed: number;
   buy: number;
+  img: any;
   TypeVoucher: number;
   flashSale: number;
   sale: number;
@@ -47,6 +54,7 @@ const dataRows3: DataRow3[] = [
     product: 'chat bot AI',
     listed: 120000,
     buy: 1900,
+    img: s24,
     TypeVoucher: 19338000,
     flashSale: 28832,
     sale: 23,
@@ -59,6 +67,7 @@ const dataRows3: DataRow3[] = [
     product: 'dịch vụ SEO',
     listed: 150000,
     buy: 2500,
+    img: s23,
     TypeVoucher: 37500000,
     flashSale: 45000,
     sale: 30,
@@ -71,6 +80,8 @@ const dataRows3: DataRow3[] = [
     product: 'dịch vụ quảng cáo',
     listed: 200000,
     buy: 3000,
+    img: s22,
+
     TypeVoucher: 60000000,
     flashSale: 60000,
     sale: 25,
@@ -83,6 +94,8 @@ const dataRows3: DataRow3[] = [
     product: 'dịch vụ thiết kế',
     listed: 100000,
     buy: 1500,
+    img: s25,
+
     TypeVoucher: 15000000,
     flashSale: 15000,
     sale: 10,
@@ -95,6 +108,8 @@ const dataRows3: DataRow3[] = [
     product: 'dịch vụ hosting',
     listed: 50000,
     buy: 1000,
+    img: s23,
+
     TypeVoucher: 5000000,
     flashSale: 5000,
     sale: 15,
@@ -107,6 +122,8 @@ const dataRows3: DataRow3[] = [
     product: 'dịch vụ bảo trì',
     listed: 75000,
     buy: 1200,
+    img: s24,
+
     TypeVoucher: 9000000,
     flashSale: 9000,
     sale: 20,
@@ -336,7 +353,7 @@ const FlashSale = () => {
               }}
             >
               {' '}
-              <AddDialogvoucher />
+              <AddDflashsale />
               <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 1 }}>
                 <TextField
                   sx={{
@@ -448,14 +465,26 @@ const FlashSale = () => {
                             {/* Tương tác (interaction) */}
                             {/* Đánh giá (endTime) */}{' '}
                             <TableCell>
-                              <Stack spacing={2} direction="row">
+                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                {/* Avatar on the left */}
+                                <img
+                                  src={row.img}
+                                  style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '50%',
+                                    marginRight: '10px',
+                                  }}
+                                />
+
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.product}
+                                  <Typography variant="subtitle2">{row.product}</Typography>
+                                  <Typography style={{ fontSize: '12px', color: '#ccc' }}>
+                                    {'MKT000' + row.id}
                                   </Typography>
                                 </Box>
-                              </Stack>
-                            </TableCell>{' '}
+                              </Box>
+                            </TableCell>
                             <TableCell sx={{ whiteSpace: 'nowrap' }}>
                               <Stack spacing={2} direction="row">
                                 <Box>
