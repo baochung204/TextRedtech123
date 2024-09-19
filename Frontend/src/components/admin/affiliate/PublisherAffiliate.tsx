@@ -163,15 +163,6 @@ const DataBox = [
 //   { title: 'Tổng doanh thu' },
 // ];
 
-// const BoxStyled = styled(Box)(() => ({
-//   padding: '30px',
-//   transition: '0.1s ease-in',
-//   cursor: 'pointer',
-//   color: 'inherit',
-//   '&:hover': {
-//     transform: 'scale(1.03)',
-//   },
-// }));
 interface FilmsData {
   id: number;
   title: string;
