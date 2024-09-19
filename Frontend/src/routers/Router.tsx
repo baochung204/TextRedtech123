@@ -38,6 +38,7 @@ const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success'
 const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
+import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -366,7 +367,8 @@ const Router = [
       { path: '/admin/history', element: <HistoryAffiliate /> },
 
       { path: '/admin/accountant/feature', element: <Feature /> },
-      { path: '*', element: <Navigate to="/auth/404" /> },
+      { path: '/admin/auth/404', element: <ErrorAdmin /> },
+      { path: '*', element: <Navigate to="/admin/auth/404" /> },
     ],
   },
 ];

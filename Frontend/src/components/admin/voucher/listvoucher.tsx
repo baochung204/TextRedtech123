@@ -48,7 +48,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'JDEwJG5zZ3J1c2',
     quantity: 234,
-    customerId: 'đ',
+    customerId: 'Đồng',
     customerName: '19.000 đ',
     tag: 'chưa sử dụng',
     use: 23,
@@ -60,7 +60,7 @@ const dataRows: DataRow[] = [
     endTime: '2025-10-12 00:23',
     Mavoucher: 'DFG3554F3TT4F',
     quantity: 680,
-    customerId: 'đ',
+    customerId: 'Đồng',
     customerName: '99.000 đ',
     tag: 'đã sử dụng',
     use: 41,
@@ -72,7 +72,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'DG335534TTGGE',
     quantity: 32,
-    customerId: '%',
+    customerId: 'Phần trăm',
     customerName: '10%',
     tag: 'quá hạn',
     use: 21,
@@ -84,7 +84,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: '44FV43TG4V34G',
     quantity: 54,
-    customerId: 'đ',
+    customerId: 'Phần trăm',
     customerName: '100.000đ',
     tag: 'đã sử dụng',
     use: 3,
@@ -96,7 +96,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'DGH34T53167D5',
     quantity: 23,
-    customerId: '%',
+    customerId: 'Phần trăm',
     customerName: '20%',
     tag: 'quá hạn',
     use: 7,
@@ -108,7 +108,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'RH56YH563226TYB',
     quantity: 424,
-    customerId: '%',
+    customerId: 'Phần trăm',
     customerName: '10%',
     tag: 'đã sử dụng',
     use: 23,
@@ -500,8 +500,19 @@ const ListVoucher = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.customerId}
+                                  <Typography color="" variant="subtitle2">
+                                    <Chip
+                                      label={row?.customerId}
+                                      sx={{
+                                        bgcolor:
+                                          row?.customerId === 'Đồng'
+                                            ? 'primary.main'
+                                            : 'secondary.main',
+                                        color: row?.customerId === 'Đồng' ? 'white' : 'white',
+                                      }}
+                                      key={row?.customerId}
+                                      size="small"
+                                    />
                                   </Typography>
                                 </Box>
                               </Stack>

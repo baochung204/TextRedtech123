@@ -487,8 +487,14 @@ const FlashSale = () => {
                             <TableCell sx={{ whiteSpace: 'nowrap' }}>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {(row?.listed).toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {(row?.listed).toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -496,8 +502,14 @@ const FlashSale = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.sale.toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {row?.sale.toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -505,8 +517,14 @@ const FlashSale = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.flashSale.toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {row?.flashSale.toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -532,7 +550,7 @@ const FlashSale = () => {
                                     gap={'2px'}
                                   >
                                     {row?.TypeVoucher.toLocaleString()}{' '}
-                                    <img src={icontext} alt="" width={20} />
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
