@@ -1,8 +1,8 @@
+import { Favorite, Visibility } from '@mui/icons-material';
 import {
   Avatar,
   Button,
   Grid,
-  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -11,11 +11,8 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { Visibility, Favorite } from '@mui/icons-material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import BlogTable from '../data/datablog';
-import { IconEye, IconTrash } from '@tabler/icons-react';
-import { IconEdit } from '@tabler/icons-react';
 
 interface PropsHeadTable {
   head: string;

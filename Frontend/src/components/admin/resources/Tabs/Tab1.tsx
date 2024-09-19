@@ -117,15 +117,16 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (dataRows?.length ?? 0)) : 0;
 
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12} spacing={0}>
       <BlankCard>
-        <Box mb={2} sx={{ mb: 2 }}>
-          <TableContainer>
+        <Box >
+          <TableContainer sx={{px:2}}>
             <Scrollbar_x>
               <Table
-                sx={{ minWidth: 750 }}
+                sx={{ minWidth: 750, whiteSpace: 'nowrap' }}
                 aria-labelledby="tableTitle"
                 size={dense ? 'small' : 'medium'}
+                
               >
                 <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
                   <TableRow>
