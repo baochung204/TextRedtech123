@@ -2,12 +2,13 @@ import { Box, Grid, Tab, Tabs } from '@mui/material';
 // components
 // import { styled } from '@mui/system';
 import React, { useState } from 'react';
-
 import HistoryVoucher from 'src/components/admin/voucher/historyvoucher';
 import ListVoucher from 'src/components/admin/voucher/listvoucher';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FlashSale from './../../../components/admin/voucher/flashsale';
+import { Icon360 } from '@tabler/icons-react';
+import TopCard from 'src/components/widgets/cards/TopCard';
 // const BoxStyled = styled(Box)(() => ({
 //   padding: '24px',
 //   transition: '0.1s ease-in',
@@ -25,60 +26,52 @@ const BCrumb = [
   { to: '/admin/personnel', title: 'Danh sách mã khuyến mãi' },
 ];
 
-// const DataBox = [
-//   {
-//     bgColor: 'primary.light',
-//     color: 'primary.main',
-//     title: 'Mã khuyến mãi',
-//     total: '620',
-//     icons: (
-//       <ConfirmationNumberIcon
-//         sx={{
-//           fontSize: 40,
-//         }}
-//       />
-//     ),
-//   },
-//   {
-//     bgColor: 'warning.light',
-//     color: 'warning.main',
-//     title: 'Số lượng mã',
-//     total: '3.455',
-//     icons: (
-//       <ConfirmationNumberIcon
-//         sx={{
-//           fontSize: 40,
-//         }}
-//       />
-//     ),
-//   },
-//   {
-//     bgColor: 'success.light',
-//     color: 'success.main',
-//     title: 'Đã sử sử dụng',
-//     total: '3.931',
-//     icons: (
-//       <ConfirmationNumberIcon
-//         sx={{
-//           fontSize: 40,
-//         }}
-//       />
-//     ),
-//   },
-//   {
-//     bgColor: 'error.light',
-//     color: 'error.main',
-//     title: 'Tỉ lệ sử dụng',
-//     total: '34.2%',
-//     icons: (
-//       <ConfirmationNumberIcon
-//         sx={{
-//           fontSize: 40,
-//         }}
-//       />
-//     ),
-//   },
-// ];
+const DataBox = [
+  {
+    bgColor: 'primary.light',
+    color: 'primary.main',
+    title: 'Mã khuyến mãi',
+    total: '620',
+    icons: (
+      <>
+        <Icon360 size={30} />
+      </>
+    ),
+  },
+  {
+    bgColor: 'warning.light',
+    color: 'warning.main',
+    title: 'Số lượng mã',
+    total: '3.455',
+    icons: (
+      <>
+        <Icon360 size={30} />
+      </>
+    ),
+  },
+  {
+    bgColor: 'success.light',
+    color: 'success.main',
+    title: 'Đã sử sử dụng',
+    total: '3.931',
+    icons: (
+      <>
+        <Icon360 size={30} />
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
+    title: 'Tỉ lệ sử dụng',
+    total: '34.2%',
+    icons: (
+      <>
+        <Icon360 size={30} />
+      </>
+    ),
+  },
+];
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
@@ -143,7 +136,7 @@ const VoucherAdmin = () => {
       <BannerPage title="Mã khuyến mãi" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          {/* <TopCard dataSource={DataBox} /> */}
+          <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider', maxWidth: 'auto' }}>
