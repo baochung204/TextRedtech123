@@ -1,562 +1,208 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import * as React from 'react';
-
 import {
-  Avatar,
   Box,
-  Button,
-  Chip,
-  IconButton,
-  InputAdornment,
-  MenuItem,
-  Stack,
+  Grid,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableFooter,
   TableHead,
   TablePagination,
   TableRow,
-  TextField,
-  Toolbar,
-  Tooltip,
+  TableSortLabel,
   Typography,
 } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
-
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-
-import PageContainer from 'src/components/container/PageContainer';
-
-import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
-import img1 from 'src/assets/images/profile/user-1.jpg';
-import img2 from 'src/assets/images/profile/user-2.jpg';
-import img3 from 'src/assets/images/profile/user-3.jpg';
-import img4 from 'src/assets/images/profile/user-4.jpg';
-import img5 from 'src/assets/images/profile/user-5.jpg';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import { useState } from 'react';
 import BlankCard from 'src/components/shared/BlankCard';
+import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 
-import AddDialog from 'src/components/apps/sell/layout/addDialog';
-interface TablePaginationActionsProps {
-  count: number;
-  page: number;
-  rowsPerPage: number;
-  onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+// Hàm so sánh giảm dần
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
 }
 
-function TablePaginationActions(props: TablePaginationActionsProps) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
+// Kiểu dữ liệu Order
+type Order = 'asc' | 'desc';
 
-  const handleFirstPageButtonClick = (event: any) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event: any) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event: any) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event: any) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
+// Hàm so sánh theo thứ tự đã chọn
+function getComparator<Key extends keyof any>(
+  order: Order,
+  orderBy: Key,
+): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-interface OrderType {
-  id: string;
-  dateCreate: string;
-  badge: any;
-  teambadge: string;
-  level: string;
-  client: string;
-  assistant: string;
-  summary: string;
-  content: string;
-  creator: string;
+// Hàm sắp xếp ổn định
+function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
 }
 
-const rows: OrderType[] = [
-  {
-    id: 'ORD - 0120145',
-    dateCreate: '5',
-    badge: img1,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0120146',
-    dateCreate: '1',
-    badge: img2,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0120460',
-    dateCreate: '3',
-    badge: img3,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0124060',
-    dateCreate: '11',
-    badge: img4,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0124568',
-    dateCreate: '4',
-    badge: img5,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0120146',
-    dateCreate: '1',
-    badge: img2,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0120460',
-    dateCreate: '3',
-    badge: img3,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0124060',
-    dateCreate: '11',
-    badge: img4,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0124568',
-    dateCreate: '4',
-    badge: img5,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0120145',
-    dateCreate: '5',
-    badge: img1,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0124060',
-    dateCreate: '11',
-    badge: img4,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-  {
-    id: 'ORD - 0124568',
-    dateCreate: '4',
-    badge: img5,
-    teambadge: 'Chiến lược',
-    level: '1',
-    client: 'Giàng A báo',
-    assistant: 'ChatAi',
-    summary: 'Tóm tắt',
-    content: 'Nội dung',
-    creator: 'Phùng Thanh D',
-  },
-].sort((a, b) => (a.teambadge < b.teambadge ? -1 : 1));
-
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-  handleSearch: React.ChangeEvent<HTMLInputElement> | any;
-  search: string;
+// Hàm để xác định màu sắc của hàng
+function getRowColor(row: DataRow): string {
+  // Ví dụ: Thay đổi màu sắc dựa trên một giá trị trong dữ liệu hàng
+  return row.someValue > 100 ? 'lightcoral' : 'transparent';
 }
 
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-  const { numSelected, handleSearch, search } = props;
+interface HeadCell {
+  disablePadding: boolean;
+  dataIndex: string;
+  label: string;
+  numeric: boolean;
+}
 
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Box sx={{ flex: '1 1 100%' }}>
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconSearch size="1.1rem" />
-                </InputAdornment>
-              ),
-            }}
-            placeholder="Tìm kiếm sản phẩm"
-            size="small"
-            onChange={handleSearch}
-            value={search}
-          />
-        </Box>
-      )}
+interface DataRow {
+  [key: string]: any;
+}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <IconTrash width="18" />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <IconFilter size="1.2rem" />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
-  );
-};
+interface TableListProps {
+  headCells?: HeadCell[];
+  dataRows?: DataRow[];
+}
 
+const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
+  const [order, setOrder] = useState<Order>('asc');
+  const [orderBy, setOrderBy] = useState<string | number>('id');
+  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [dense] = useState(false);
 
-const PaginationTable = () => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [selected] = React.useState<readonly string[]>([]);
-  const [search, setSearch] = React.useState('');
-  const [filteredRows, setFilteredRows] = React.useState(rows);
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value.toLowerCase();
-    setSearch(value);
-    const filtered = rows.filter(
-      (row) =>
-        row.teambadge.toLowerCase().includes(value) ||
-        row.client.toLowerCase().includes(value) ||
-        row.id.toLowerCase().includes(value)
-    );
-    setFilteredRows(filtered);
+  const handleRequestSort = (_event: React.MouseEvent<unknown>, property: keyof DataRow) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
+  const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected: readonly string[] = [];
 
-  const handleChangePage = (event: any, newPage: any) => {
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
+    }
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: any) => {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  return (
-    <PageContainer title="Pagination Table" description="this is Pagination Table page">
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (dataRows?.length ?? 0)) : 0;
 
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        {/* Phần bên trái */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <AddDialog />
-          <EnhancedTableToolbar
-            numSelected={selected.length}
-            search={search}
-            handleSearch={handleSearch}
+  return (
+    <Grid item xs={12}>
+      <BlankCard>
+        <Box mb={2} sx={{ mb: 2 }}>
+          <TableContainer>
+            <Scrollbar_x>
+              <Table
+                sx={{ minWidth: 750 }}
+                aria-labelledby="tableTitle"
+                size={dense ? 'small' : 'medium'}
+              >
+                <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
+                  <TableRow>
+                    {(headCells || []).map((headCell) => (
+                      <TableCell
+                        key={headCell.dataIndex}
+                        align={headCell.numeric ? 'right' : 'left'}
+                        padding={headCell.disablePadding ? 'none' : 'normal'}
+                        sortDirection={orderBy === headCell.dataIndex ? order : false}
+                        sx={{ whiteSpace: 'nowrap' }}
+                      >
+                        <TableSortLabel
+                          active={orderBy === headCell.dataIndex}
+                          direction={orderBy === headCell.dataIndex ? order : 'asc'}
+                          onClick={(event) =>
+                            handleRequestSort(event, headCell.dataIndex as keyof DataRow)
+                          }
+                        >
+                          <Typography variant="h6">{headCell.label}</Typography>
+                        </TableSortLabel>
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {stableSort(dataRows ?? [], getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row: DataRow) => {
+                      const isItemSelected = selected.indexOf(row.id) !== -1;
+                      const rowColor = getRowColor(row); // Sử dụng hàm để lấy màu sắc hàng
+
+                      return (
+                        <TableRow
+                          hover
+                          onClick={(event) => handleClick(event, row.id)}
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={row.id}
+                          selected={isItemSelected}
+                          sx={{ backgroundColor: rowColor }} // Áp dụng màu sắc
+                        >
+                          {(headCells ?? []).map((cell: HeadCell) => (
+                            <TableCell
+                              key={cell.dataIndex}
+                              align={cell.numeric ? 'right' : 'left'}
+                              sx={{ whiteSpace: 'nowrap' }}
+                            >
+                              <Typography color="textSecondary" variant="subtitle2">
+                                {row[cell.dataIndex] !== undefined && row[cell.dataIndex]}
+                              </Typography>
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      );
+                    })}
+                  {emptyRows > 0 && (
+                    <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                      <TableCell colSpan={headCells?.length ?? 0} />
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </Scrollbar_x>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={dataRows?.length ?? 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Box>
-
-        {/* Phần bên phải */}
-        <Box sx={{ display: 'flex', aligndateCreate: 'center' }}>
-          <Button>Sửa đổi cột</Button>
-
-          <CustomSelect
-            labelId="column-filter"
-            id="column-filter"
-            size="small"
-            value={1} // Setting the first value as default
-            sx={{ marginLeft: '10px' }}
-          >
-            <MenuItem value={1}>Sắp xếp</MenuItem>
-          </CustomSelect>
-        </Box>
-      </Box>
-
-      <BlankCard>
-        <TableContainer>
-          <Table
-            aria-label="custom pagination table"
-            sx={{
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <Typography variant="h6">Id</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Ngày tạo</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Nhóm chiến lược</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Huy hiệu</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Tên chiến lược</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Level</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Khách hàng sở hữu(SL)</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Trợ lý áp dụng</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Tóm tắt</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Nội dung</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Người tạo</Typography>
-                </TableCell>
-
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell>
-                    <Typography variant="subtitle2">{row.id}</Typography>
-                  </TableCell>
-                  
-                  <TableCell>
-                    <Typography variant="subtitle2" fontWeight="600">
-                      {row.teambadge}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Chip
-                      color={
-                        row.client === 'di động'
-                          ? 'success'
-                          : row.client === 'điện tử'
-                            ? 'warning'
-                            : row.client === 'đời sống'
-                              ? 'error'
-                              : 'secondary'
-                      }
-                      sx={{
-                        borderRadius: '6px',
-                      }}
-                      size="small"
-                      label={row.client}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="row" spacing={2} alignItems="center">
-                      <Avatar src={row.badge} alt={row.badge} sx={{ width: 30, height: 30 }} />
-                    </Stack>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      // color="textSecondary"
-                      // variant="subtitle2"
-                      // sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      {row.level}{' '}
-                      {/* <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      /> */}
-                    </Typography>
-                  </TableCell>
-
-                  <TableCell>
-                    <Typography
-                      // color="textSecondary"
-                      // variant="subtitle2"
-                      // sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      {row.assistant}{' '}
-                      {/* <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      /> */}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2">
-                      {row.teambadge}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2">
-                      {row.teambadge}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2">
-                      {row.teambadge}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2">
-                      {row.teambadge}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2">
-                      {row.teambadge}
-                    </Typography>
-                  </TableCell>
-
-                </TableRow>
-              ))}
-
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TableFooter>
-          <TableRow
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end', // Căn hàng sang bên phải
-            }}
-          >
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              colSpan={3}
-              count={filteredRows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-
-
       </BlankCard>
-    </PageContainer>
+    </Grid>
   );
 };
 
-export default PaginationTable;
-
+export default TableList;

@@ -2,12 +2,12 @@ import {
   IconAffiliate,
   IconBellRinging,
   IconBrandCodepen,
+  IconBrandEnvato,
   IconMessage2Bolt,
   IconTerminal2,
   IconUsers,
   IconUsersGroup,
 } from '@tabler/icons-react';
-import { IconBrandEnvato } from '@tabler/icons-react';
 
 import { IconPresentationAnalytics } from '@tabler/icons-react';
 
@@ -16,7 +16,6 @@ import {
   IconHeadset,
   IconPackage,
   IconPoint,
-  IconShoppingCart,
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
@@ -92,7 +91,7 @@ const MenuAdminitems: MenuitemsType[] = [
         title: 'Đơn hàng R-Point',
         icon: IconPoint,
 
-        href: '/admin/point/pointdetail',
+        href: '/admin/order/orderRPoint',
       },
     ],
   },

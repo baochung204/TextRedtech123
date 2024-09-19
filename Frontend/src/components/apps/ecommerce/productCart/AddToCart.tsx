@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { IconMinus, IconPlus, IconTrash } from '@tabler/icons-react';
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
 import { useDispatch, useSelector } from 'src/store/Store';
 // import { ProductType } from 'src/types/apps/eCommerce';
@@ -30,8 +30,8 @@ import { useState } from 'react';
 
 import Slide from '@mui/material/Slide';
 import Snackbar from '@mui/material/Snackbar';
-import FirstStep from '../productCheckout/FirstStep';
 import Afletpoint2 from 'src/components/material-ui/dialog/Alertpoint2';
+import FirstStep from '../productCheckout/FirstStep';
 // import Afletpoint from '../productCheckout/FinalStep';
 
 function SlideTransition(props: any) {
@@ -44,8 +44,6 @@ const AddToCart = () => {
   const total = sum(checkout.map((product: any) => product.price * product.qty));
   const Discount = Math.round(total * (5 / 100));
   const [open, setOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleClick = () => {
     setOpen(true);
@@ -236,7 +234,7 @@ const AddToCart = () => {
               </Link>
 
               <a onClick={handleClick}>
-                <Afletpoint2 row={''}> Thanh toán</Afletpoint2>
+                <Afletpoint2> Thanh toán</Afletpoint2>
               </a>
             </Stack>
             <Snackbar

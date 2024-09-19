@@ -19,10 +19,10 @@ const BCrumb = [
     title: 'ADMIN',
   },
   {
-    title: 'THÔNG BÁO',
+    title: 'TRỢ LÝ',
   },
   {
-    title: 'QUẢN LÝ THÔNG BÁO',
+    title: 'QUẢN LÝ TRỢ LÝ',
   },
 ];
 
@@ -30,8 +30,8 @@ const DataBox = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
-    title: 'Thông báo',
-    total: '120',
+    title: 'Ticket',
+    total: '2.415',
     icons: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -41,8 +41,8 @@ const DataBox = [
   {
     bgColor: 'secondary.light',
     color: 'secondary.main',
-    title: 'Tags',
-    total: '39',
+    title: 'Khách hàng',
+    total: '1.369',
     icons: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -52,8 +52,8 @@ const DataBox = [
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Lượt xem',
-    total: '21.369',
+    title: 'Đánh giá',
+    total: '4.7/5',
     icons: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -63,7 +63,7 @@ const DataBox = [
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Tương tác',
+    title: 'Chưa xử lý',
     total: '236',
     icons: (
       <>
@@ -91,50 +91,92 @@ const headCells: HeadCell[] = [
     dataIndex: 'rechargeDate',
     numeric: false,
     disablePadding: false,
-    label: 'Ngày đăng',
+    label: 'Ngày nạp',
   },
   {
     dataIndex: 'customerName',
     numeric: false,
     disablePadding: false,
-    label: 'Tiêu đề',
+    label: 'Khách hàng',
   },
   {
     dataIndex: 'email',
     numeric: false,
     disablePadding: false,
-    label: 'Tags',
+    label: 'Email',
   },
 
   {
     dataIndex: 'phoneNumber',
     numeric: false,
     disablePadding: false,
-    label: 'Nội dung thông báo',
+    label: 'Số điện thoại',
   },
   {
     dataIndex: 'packageName',
     numeric: false,
     disablePadding: false,
-    label: 'Link xem thêm ',
+    label: 'Tên gói ',
   },
   {
     dataIndex: 'points',
     numeric: false,
     disablePadding: false,
-    label: 'Lượt xem',
+    label: 'Số point ',
   },
   {
     dataIndex: 'listedPrice',
     numeric: false,
     disablePadding: false,
-    label: 'Tương tác',
+    label: 'Giá niêm yết ',
   },
   {
     dataIndex: 'promotionCode',
     numeric: false,
     disablePadding: false,
+    label: 'Mã khuyến mại',
+  },
+  {
+    dataIndex: 'paymentAmount',
+    numeric: false,
+    disablePadding: false,
+    label: 'Số tiền  ',
+  },
+  {
+    dataIndex: 'totalOrder',
+    numeric: false,
+    disablePadding: false,
+    label: 'Tổng đơn',
+  },
+  {
+    dataIndex: 'publisherId',
+    numeric: false,
+    disablePadding: false,
+    label: 'ID publisher',
+  },
+  {
+    dataIndex: 'affiliateCommission',
+    numeric: false,
+    disablePadding: false,
+    label: 'Hoa hồng Affiliate',
+  },
+  {
+    dataIndex: 'status',
+    numeric: false,
+    disablePadding: false,
     label: 'Trạng thái',
+  },
+  {
+    dataIndex: 'invoice',
+    numeric: false,
+    disablePadding: false,
+    label: 'Hóa đơn',
+  },
+  {
+    dataIndex: 'details',
+    numeric: false,
+    disablePadding: false,
+    label: 'Chi tiết',
   },
 ];
 interface RechargeTransaction {
@@ -330,13 +372,13 @@ const FilmsData: FilmsData[] = [
   { id: 14, title: 'Chi phí/Khách hàng' },
   { id: 15, title: 'Chiến lược' },
 ];
-const Notification = () => {
+const OrderRPoint = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
-      <BannerPage title="Quản lý thông báo" items={BCrumb} />
+      <BannerPage title="Đơn hàng R-Point" items={BCrumb} />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={4} />
@@ -398,4 +440,5 @@ const Notification = () => {
     </PageContainer>
   );
 };
-export default Notification;
+
+export default OrderRPoint;
