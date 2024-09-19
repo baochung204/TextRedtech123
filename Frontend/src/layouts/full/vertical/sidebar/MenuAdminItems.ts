@@ -10,7 +10,7 @@ import {
 } from '@tabler/icons-react';
 
 import { IconPresentationAnalytics } from '@tabler/icons-react';
-
+import { IconTicket } from '@tabler/icons-react';
 import {
   // IconAppWindow,
   IconHeadset,
@@ -91,14 +91,14 @@ const MenuAdminitems: MenuitemsType[] = [
         title: 'Đơn hàng R-Point',
         icon: IconPoint,
 
-        href: '/admin/point/pointdetail',
+        href: '/admin/order/orderRPoint',
       },
     ],
   },
   {
     id: uniqueId(),
     title: 'Mã khuyễn mãi',
-    icon: IconUsers,
+    icon: IconTicket,
     href: '/admin/voucher',
   },
   {
@@ -144,7 +144,7 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Blog',
     icon: IconBrandCodepen,
-    href: '/admin/blog',
+    href: '/admin/blogs',
   },
   {
     id: uniqueId(),

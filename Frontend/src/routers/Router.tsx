@@ -16,8 +16,8 @@ import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
 import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
 import ProductAdmin from 'src/views/admin/product/product';
 import Publishers from 'src/views/admin/publishers/publishers';
+import Resources from 'src/views/admin/resources/resources';
 import Staff from 'src/views/admin/staff';
-import Ticket from 'src/views/admin/ticket/ticket';
 import VoucherAdmin from 'src/views/admin/voucher/voucher';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
@@ -28,7 +28,6 @@ import Success from 'src/views/apps/user-profile/Success';
 import FormRequest from 'src/views/forms/FormRequest';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import AssistantAdmin from '../views/admin/assistant/assistant';
-import Resources from 'src/views/admin/resources/resources';
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -173,6 +172,8 @@ const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAss
 const AssistantList = Loadable(
   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 );
+const OrderRPoint = Loadable(lazy(() => import('../views/admin/orderRPoint/OrderRPoint')));
+const Ticket = Loadable(lazy(() => import('../views/admin/ticket/ticket')));
 // const AssistantList = Loadable(
 //   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 // );import Blog from './../views/apps/blog/Blog';
@@ -332,9 +333,18 @@ const Router = [
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
-      { path: '/admin/blog', element: <Blog /> },
+
+      // { path: '/admin/test', element: <Text /> },
+
+      // { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
+
       { path: '/admin/notification', element: <Notification /> },
+
+      { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
+      { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
+      { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
+
       { path: '/admin/resources', element: <Resources /> },
       { path: '/admin/einvoice', element: <EInvoice /> },
       { path: '/admin/order', element: <OrderAffiliate /> },

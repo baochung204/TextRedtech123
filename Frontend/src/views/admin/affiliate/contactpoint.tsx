@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material';
-import React from 'react';
 import ContactRPoint from 'src/components/admin/affiliate/ContactRPoint';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';

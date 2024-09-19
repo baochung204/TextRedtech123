@@ -1,13 +1,15 @@
+
 import { Grid } from '@mui/material';
 import OrderAffiliate from 'src/components/admin/affiliate/OrderAffiliate';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
-const historyaffiliate = () => {
+
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
     { to: '', title: 'Danh sách đơn hàng' },
   ];
+const orderaffiliate = () => {
   return (
     <>
       <PageContainer title="Order" description="this is Order page">
