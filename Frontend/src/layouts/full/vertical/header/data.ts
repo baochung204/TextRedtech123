@@ -129,7 +129,7 @@ const profile: ProfileType[] = [
   {
     id: 2,
     href: '/admin',
-    title: 'Quản lý viên',
+    title: 'Quản trị viên',
     // subtitle: 'Account Settings',
     icon: icon1,
   },
