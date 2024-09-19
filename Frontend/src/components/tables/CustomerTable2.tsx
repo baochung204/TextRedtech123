@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   Box,
   Paper,
@@ -9,13 +8,13 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
   TableSortLabel,
+  Typography,
 } from '@mui/material';
-import { DataRowCustomerTable } from './tableData';
-import useSortableData from 'src/views/apps/customerList/useSortableData';
-import Scrollbar_x from '../custom-scroll/Scrollbar_x';
+import React, { useState } from 'react';
 import logo from 'src/assets/images/logos/R-Point.png';
+import useSortableData from 'src/views/apps/customerList/useSortableData';
+import { DataRowCustomerTable } from './tableData';
 // Định nghĩa kiểu cho dữ liệu bảng
 interface DataRow {
   imgsrc?: string;

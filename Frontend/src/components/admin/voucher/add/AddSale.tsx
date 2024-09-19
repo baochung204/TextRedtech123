@@ -1,35 +1,33 @@
 import { Box, Grid, MenuItem } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-interface CurrencyType {
-  value: string;
-  label: string;
-}
+// interface CurrencyType {
+//   value: string;
+//   label: string;
+// }
 
-const currencies: CurrencyType[] = [
-  { value: 'female', label: 'Đồng' },
-  { value: 'male', label: 'Phần trăm' },
-  // { value: 'other', label: 'Khác' },
-];
+// const currencies: CurrencyType[] = [
+//   { value: 'female', label: 'Đồng' },
+//   { value: 'male', label: 'Phần trăm' },
+//   // { value: 'other', label: 'Khác' },
+// ];
 
-const channels: CurrencyType[] = [
-  { value: 'mkt', label: 'MKT' },
-  { value: 'zl', label: 'Zalo' },
-  { value: 'fb', label: 'Facebook' },
-  { value: 'inst', label: 'Instagram' },
-  { value: 'other', label: 'Other' },
-];
+// const channels: CurrencyType[] = [
+//   { value: 'mkt', label: 'MKT' },
+//   { value: 'zl', label: 'Zalo' },
+//   { value: 'fb', label: 'Facebook' },
+//   { value: 'inst', label: 'Instagram' },
+//   { value: 'other', label: 'Other' },
+// ];
 const options = [
   { value: 'option1', label: 'Giá gốc' },
   { value: 'option2', label: 'Giá khuyến mãi' },
 ];
 
 const AddFlashSale = () => {
-  const [setGender] = React.useState(currencies[0]?.value || '');
   const [quatity, setQuantity] = React.useState<string>('');
   const [Name, setName] = React.useState('');
   const [Switch] = React.useState(true);

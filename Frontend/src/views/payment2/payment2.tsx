@@ -74,7 +74,7 @@ const Payments: IPayMent[] = [
 
 const PayMentPonit2 = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
-  const handleChange5 = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+  const handleChange5 = (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
   const navigate = useNavigate();

@@ -24,13 +24,12 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 
-import AddDialogvoucher from 'src/components/admin/voucher/add/addDialog';
+import s22 from 'src/assets/images/products/s22.jpg';
+import s25 from 'src/assets/images/products/s23.jpg';
+import s23 from 'src/assets/images/products/s25.jpg';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
-import s23 from 'src/assets/images/products/s25.jpg';
-import s25 from 'src/assets/images/products/s23.jpg';
-import s22 from 'src/assets/images/products/s22.jpg';
 import AddDflashsale from './add/addflashsale';
 
 interface DataRow3 {

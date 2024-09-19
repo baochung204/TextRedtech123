@@ -12,7 +12,6 @@ import { IconPlus } from '@tabler/icons-react';
 
 import { useState } from 'react';
 
-import AddVoucher from './Addvoucher';
 import AddFlashSale from './AddSale';
 // import * as React from 'react';
 const AddDflashsale = () => {
