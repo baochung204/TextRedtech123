@@ -1,5 +1,4 @@
 import { Box, Grid, Typography, styled } from '@mui/material';
-import { useEffect, useState } from 'react';
 
 interface StyleProps {
   bgColor: string;
@@ -11,11 +10,10 @@ interface StyleProps {
 
 interface TopCardProps {
   dataSource: StyleProps[];
-  totalColumn: number;
 }
 
 const BoxStyled = styled(Box)(() => ({
-  padding: '24px',
+  padding: '30px',
   transition: '0.1s ease-in',
   cursor: 'pointer',
   color: 'inherit',
@@ -24,27 +22,19 @@ const BoxStyled = styled(Box)(() => ({
   },
 }));
 
-const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
-  const [total, setTotal] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (totalColumn !== null) {
-      setTotal(12 / totalColumn);
-    }
-  }, [totalColumn]);
-
+const TopCard = ({ dataSource }: TopCardProps) => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       {dataSource.map((items, index) => {
         return (
-          <Grid item lg={total !== null ? total : 0} sm={6} xs={12} key={index}>
+          <Grid item lg={3} sm={6} xs={12} key={index}>
             <BoxStyled
               sx={{
                 backgroundColor: items.bgColor,
                 color: items.color,
               }}
             >
-              <Grid container spacing={totalColumn >= 5 ? 6 : 1.5}>
+              <Grid container>
                 <Grid
                   item
                   xs={3}
@@ -56,7 +46,7 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
                   {items.icons}
                 </Grid>
                 <Grid item xs={9}>
-                  <Typography variant="h6">{items.title}</Typography>
+                  <Typography variant="h4">{items.title}</Typography>
                   <Typography variant="h5">{items.total}</Typography>
                 </Grid>
               </Grid>
