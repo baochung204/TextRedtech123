@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import * as React from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import {
@@ -22,14 +20,9 @@ import {
   Typography,
 } from '@mui/material';
 import { alpha  } from '@mui/material/styles';
-
 import PageContainer from 'src/components/container/PageContainer';
-
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
-
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-
-
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import ProductTable from './ProductData';
 import AddDialog from 'src/components/apps/sell/layout/addDialog';
