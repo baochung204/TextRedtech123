@@ -21,9 +21,8 @@ import { useDispatch } from 'src/store/Store';
 import { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../shared/BlankCard';
 // import crown from 'src/assets/images/icon.png/crown.png';
-import crown from 'src/assets/images/icon.png/crown.png';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
 import { IconEye } from '@tabler/icons-react';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 interface Btype {
   post: BlogPostType;
   index?: number;

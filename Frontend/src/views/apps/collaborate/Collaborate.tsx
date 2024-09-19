@@ -85,7 +85,6 @@ const CollaboratePost = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
   const [usdValue, setUsdValue] = useState<number | null>(null);
-  const [vndValue, SetVNDValue] = useState<number | null>(null);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -116,7 +115,7 @@ const CollaboratePost = () => {
 
   const handleClosePopup2 = () => {
     setUsdValue(null);
-    SetVNDValue(null);
+
     setIsPopupOpen2(false);
   };
 

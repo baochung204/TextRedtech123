@@ -112,7 +112,6 @@ const CustomerListOrder = () => {
                     placeholder="Tìm kiếm"
                     size="small"
                   />
-
                   {/* Column Filter and Sort */}
                   {/* <CustomSelect
                     labelId="column-filter"

@@ -2,7 +2,19 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
-import { Box, Dialog, DialogContent, DialogTitle, Fab, Grid, InputAdornment, Slide, Tab, TextField, Tooltip } from '@mui/material';
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Fab,
+  Grid,
+  InputAdornment,
+  Slide,
+  Tab,
+  TextField,
+  Tooltip,
+} from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { IconSearch } from '@tabler/icons-react';
 import React from 'react';
@@ -34,6 +46,7 @@ interface StyleProps {
 
 const DataBox: StyleProps[] = [
   {
+<<<<<<< HEAD
       bgColor: 'primary.light',
       color: 'primary.main',
       title: 'Nhân viên',
@@ -82,10 +95,61 @@ const DataBox: StyleProps[] = [
           />
   }
 ]
+=======
+    bgColor: 'primary.light',
+    color: 'primary.main',
+    title: 'Bài viết',
+    total: '2.326',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
+  },
+  {
+    bgColor: 'info.light',
+    color: 'info.main',
+    title: 'Lượt xem',
+    total: '18.369',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
+  },
+  {
+    bgColor: 'success.light',
+    color: 'success.main',
+    title: 'Doanh thu',
+    total: '66.521',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'warning.main',
+    title: 'Lượt like/tym',
+    total: '23.369',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
+  },
+];
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
 const BlogAdmin = () => {
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
@@ -214,7 +278,7 @@ const BlogAdmin = () => {
         </DialogContent>
       </Dialog>
     </PageContainer>
-  )
-}
+  );
+};
 
-export default BlogAdmin
+export default BlogAdmin;

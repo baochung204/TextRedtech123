@@ -1,9 +1,7 @@
-import React from "react";
-
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import PageContainer from 'src/components/container/PageContainer';
 import { Grid } from '@mui/material';
-import Personnels from 'src/components/admin/personnel'
+import Personnels from 'src/components/admin/personnel';
+import PageContainer from 'src/components/container/PageContainer';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 
 const BCrumb = [
@@ -13,7 +11,6 @@ const BCrumb = [
   },
   { to: '/admin/personnel', title: 'Nhân viên' },
 ];
-
 
 const Staff = () => {
   return (
@@ -25,7 +22,7 @@ const Staff = () => {
         </Grid>
       </Grid>
     </PageContainer>
-  )
-}
+  );
+};
 
-export default Staff
+export default Staff;

@@ -2,37 +2,50 @@
 // @ts-ignore
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import ChangePassword from 'src/components/apps/userprofile/profile/ChangePassword';
-import CompanyAffiliate from 'src/components/apps/userprofile/profile/CompanyAffiliate';
-import PersonAffiliate from 'src/components/apps/userprofile/profile/PersonAffiliate';
-import AllNotifications from 'src/layouts/full/vertical/header/AllNotification';
-import Affiliatepro from 'src/views/admin/affiliatepro/affiliatepro';
-import ContracAffilate from 'src/views/admin/contractAffilate/contracAffilata';
-import ContracPoint from 'src/views/admin/contractPoint/contracPoint';
-import EInvoice from 'src/views/admin/EInvoice/EInvoice';
-import Feature from 'src/views/admin/feature/feature';
-import History from 'src/views/admin/history/history';
-import Notification from 'src/views/admin/notification/notification';
-import OrderAdmin from 'src/views/admin/order/order';
-import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
-import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
-import ProductAdmin from 'src/views/admin/product/product';
-import Publishers from 'src/views/admin/publishers/publishers';
-import Resources from 'src/views/admin/resources/resources';
-import Staff from 'src/views/admin/staff';
-import Ticket from 'src/views/admin/ticket/ticket';
-import VoucherAdmin from 'src/views/admin/voucher/voucher';
-import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
-import CustomerListOrder from 'src/views/apps/customerList/CustomerListOrder';
-import Update from 'src/views/apps/update/Update';
-import Fail from 'src/views/apps/user-profile/Fail';
-import Pending from 'src/views/apps/user-profile/Pending';
-import Success from 'src/views/apps/user-profile/Success';
-import FormRequest from 'src/views/forms/FormRequest';
+const ChangePassword = Loadable(
+  lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
+);
+const CompanyAffiliate = Loadable(
+  lazy(() => import('src/components/apps/userprofile/profile/CompanyAffiliate')),
+);
+const PersonAffiliate = Loadable(
+  lazy(() => import('src/components/apps/userprofile/profile/PersonAffiliate')),
+);
+const AllNotifications = Loadable(
+  lazy(() => import('src/layouts/full/vertical/header/AllNotification')),
+);
+const Affiliatepro = Loadable(lazy(() => import('src/views/admin/affiliatepro/affiliatepro')));
+
+const EInvoice = Loadable(lazy(() => import('src/views/admin/EInvoice/EInvoice')));
+const Feature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
+const History = Loadable(lazy(() => import('src/views/admin/history/history')));
+const Notification = Loadable(lazy(() => import('src/views/admin/notification/notification')));
+const Packagepoint = Loadable(lazy(() => import('src/views/admin/packagepoint/packagepoint')));
+const Pointdetail = Loadable(lazy(() => import('src/views/admin/pointdetail/pointdetail')));
+const ProductAdmin = Loadable(lazy(() => import('src/views/admin/product/product')));
+const Publishers = Loadable(lazy(() => import('src/views/admin/publishers/publishers')));
+const Resources = Loadable(lazy(() => import('src/views/admin/resources/resources')));
+const Staff = Loadable(lazy(() => import('src/views/admin/staff')));
+const VoucherAdmin = Loadable(lazy(() => import('src/views/admin/voucher/voucher')));
+const CustomerList2 = Loadable(lazy(() => import('src/views/apps/customerList/CustomerList2')));
+const CustomerListOrder = Loadable(
+  lazy(() => import('src/views/apps/customerList/CustomerListOrder')),
+);
+const Update = Loadable(lazy(() => import('src/views/apps/update/Update')));
+const Fail = Loadable(lazy(() => import('src/views/apps/user-profile/Fail')));
+const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending')));
+const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
+const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
+const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
+<<<<<<< HEAD
 import AssistantAdmin from '../views/admin/assistant/assistant';
 import BlogAdmin from 'src/views/admin/blog/blog';
 import PageFeature from 'src/views/admin/feature/feature';
+=======
+import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
+
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -177,10 +190,18 @@ const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAss
 const AssistantList = Loadable(
   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 );
-const Text = Loadable(lazy(() => import('../views/admin/ticket/text')));
+const OrderRPoint = Loadable(lazy(() => import('../views/admin/orderRPoint/OrderRPoint')));
+const Ticket = Loadable(lazy(() => import('../views/admin/ticket/ticket')));
 // const AssistantList = Loadable(
 //   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
 // );import Blog from './../views/apps/blog/Blog';
+
+//admin affiliate
+const OrderAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/orderaffiliate')));
+const Publisher = Loadable(lazy(() => import('../views/admin/publishers/publishers')));
+const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/historyaffiliate')));
+const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
+const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));
 
 const Router = [
   {
@@ -322,8 +343,12 @@ const Router = [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
+<<<<<<< HEAD
       { path: '/admin/order', element: <OrderAdmin /> },
       { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
+=======
+      { path: '/admin/buy/products', element: <ProductAdmin /> },
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
@@ -331,19 +356,38 @@ const Router = [
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
+<<<<<<< HEAD
       { path: '/admin/test', element: <Text /> },
       { path: '/admin/feature', element: <PageFeature /> },
 
       { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
+=======
+
+      // { path: '/admin/test', element: <Text /> },
+
+      // { path: '/admin/blogs', element: <BlogAdmin /> },
+      { path: '/admin/ticket', element: <Ticket /> },
+
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
       { path: '/admin/notification', element: <Notification /> },
-      { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
-      { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
+
+      { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
+      // { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
+      // { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
+
       { path: '/admin/resources', element: <Resources /> },
       { path: '/admin/einvoice', element: <EInvoice /> },
+      { path: '/admin/order', element: <OrderAffiliate /> },
+      { path: '/admin/contactaffiliate', element: <ContactAffiliate /> },
+      { path: '/admin/contactpoint', element: <ContactPoint /> },
+
+      { path: '/admin/publisher', element: <Publisher /> },
+      { path: '/admin/history', element: <HistoryAffiliate /> },
 
       { path: '/admin/accountant/feature', element: <Feature /> },
-      { path: '*', element: <Navigate to="/auth/404" /> },
+      { path: '/admin/auth/404', element: <ErrorAdmin /> },
+      { path: '*', element: <Navigate to="/admin/auth/404" /> },
     ],
   },
 ];

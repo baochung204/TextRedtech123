@@ -8,13 +8,11 @@ import {
   DialogContent,
   DialogContentText,
   Grid,
-  styled,
-  TextField,
   Typography,
 } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import React, { useState } from 'react';
+import React from 'react';
 
 // const packages = [
 //   {
@@ -52,28 +50,11 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const CustomInput = styled((props: any) => <TextField {...props} />)(({ theme }) => ({
-  '& .MuiOutlinedInput-root': {
-    borderRadius: '50px',
-  },
-  '& .MuiOutlinedInput-input::-webkit-input-placeholder': {
-    color: theme.palette.text.secondary,
-    opacity: '0.8',
-  },
-  '& .MuiOutlinedInput-input.Mui-disabled::-webkit-input-placeholder': {
-    color: theme.palette.text.secondary,
-    opacity: '1',
-  },
-  '& .Mui-disabled .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.grey[200],
-  },
-}));
-
 const Afletpoint1 = ({ row }: any) => {
   const [open, setOpen] = React.useState(false);
   const fullWidth = true;
   const maxWidth = 'lg';
-  const [selectedPackage, setSelectedPackage] = useState(null);
+
   // const [checked, setChecked] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -86,11 +67,6 @@ const Afletpoint1 = ({ row }: any) => {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleSelectPackage = (pkg: any) => {
-    setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
-    console.log(`Đã chọn gói ${pkg.amount}`);
   };
 
   return (
