@@ -7,7 +7,7 @@ import ListVoucher from 'src/components/admin/voucher/listvoucher';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FlashSale from './../../../components/admin/voucher/flashsale';
-import { Icon360 } from '@tabler/icons-react';
+import { Icon360, IconTicket } from '@tabler/icons-react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 // const BoxStyled = styled(Box)(() => ({
 //   padding: '24px',
@@ -34,7 +34,20 @@ const DataBox = [
     total: '620',
     icons: (
       <>
-        <Icon360 size={30} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -45,7 +58,20 @@ const DataBox = [
     total: '3.455',
     icons: (
       <>
-        <Icon360 size={30} />
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -56,7 +82,20 @@ const DataBox = [
     total: '3.931',
     icons: (
       <>
-        <Icon360 size={30} />
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -67,7 +106,20 @@ const DataBox = [
     total: '34.2%',
     icons: (
       <>
-        <Icon360 size={30} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconTicket color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -89,7 +141,7 @@ function CustomTabPanel(props: any) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -140,12 +192,7 @@ const VoucherAdmin = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider', maxWidth: 'auto' }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-              sx={{ padding: '0px 50px' }}
-            >
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="Danh sách mã khuyến mãi" {...a11yProps(0)} />
               <Tab label="Lịch sử Áp mã" {...a11yProps(1)} />
               <Tab label="Flash-Sale" {...a11yProps(2)} />

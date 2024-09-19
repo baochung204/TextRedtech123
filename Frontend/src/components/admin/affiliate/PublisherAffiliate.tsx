@@ -8,16 +8,20 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
-  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconBusinessplan,
+  IconChartArcs,
+  IconChartBar,
+  IconPasswordUser,
   IconPigMoney,
+  IconReceipt,
   IconSearch,
   IconTruckDelivery,
   IconUserDollar,
+  IconZoomMoney,
 } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
@@ -25,34 +29,136 @@ import { styled } from '@mui/system';
 import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField'; // Ensure this component works as expected
 import PublisherTable from './component/PublisherTable';
-const dataSource = [
+import TopCard from 'src/components/widgets/cards/TopCard';
+import { IconBox } from '@tabler/icons-react';
+import { IconWashDrycleanOff } from '@tabler/icons-react';
+// const dataSource = [
+//   {
+//     bgColor: 'primary.light',
+//     color: 'primary.main',
+//     title: 'Publisher',
+//     total: '1907',
+//     icons: IconUserDollar,
+//   },
+//   {
+//     bgColor: 'warning.light',
+//     color: 'warning.main',
+//     title: 'Đơn hàng',
+//     total: '8386',
+//     icons: IconTruckDelivery,
+//   },
+//   {
+//     bgColor: 'success.light',
+//     color: 'success.main',
+//     title: 'Hoa hồng',
+//     total: '123.456.789đ',
+//     icons: IconPigMoney,
+//   },
+//   {
+//     bgColor: 'error.light',
+//     color: 'error.main',
+//     title: 'Chưa thanh toán',
+//     total: '123.456.789đ',
+//     icons: IconBusinessplan,
+//   },
+// ];
+
+const DataBox = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
     title: 'Publisher',
     total: '1907',
-    icons: IconUserDollar,
+    icons: (
+      <>
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconPasswordUser color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'secondary.light',
+    color: 'secondary.main',
     title: 'Đơn hàng',
     total: '8386',
-    icons: IconTruckDelivery,
+    icons: (
+      <>
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconBox color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Hoa hồng',
-    total: '123.456.789đ',
-    icons: IconPigMoney,
+    total: '123.456.369 ₫',
+    icons: (
+      <>
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconZoomMoney color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'warning.light',
+    color: 'warning.main',
     title: 'Chưa thanh toán',
-    total: '123.456.789đ',
-    icons: IconBusinessplan,
+    total: '11.415.123 ₫',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconWashDrycleanOff color="white" size={30} />
+        </Box>
+      </>
+    ),
   },
 ];
 
@@ -98,7 +204,7 @@ const PublisherAffiliate = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             {dataSource.map((items, index) => {
               return (
                 <Grid item lg={3} sm={6} xs={12} key={index}>
@@ -117,7 +223,6 @@ const PublisherAffiliate = () => {
                           alignItems: 'center',
                         }}
                       >
-                        {/* Corrected here to render the icon component */}
                         <items.icons />
                       </Grid>
                       <Grid item xs={9}>
@@ -131,7 +236,8 @@ const PublisherAffiliate = () => {
                 </Grid>
               );
             })}
-          </Grid>
+          </Grid> */}
+          <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ width: '100%', typography: 'body1' }}>

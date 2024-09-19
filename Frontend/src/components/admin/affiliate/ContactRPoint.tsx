@@ -88,7 +88,7 @@ const ContactRPoint = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={dataSource} />
+          <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ width: '100%', typography: 'body1' }}>
