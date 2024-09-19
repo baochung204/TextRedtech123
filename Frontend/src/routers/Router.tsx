@@ -38,8 +38,14 @@ const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success'
 const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
+<<<<<<< HEAD
+import AssistantAdmin from '../views/admin/assistant/assistant';
+import BlogAdmin from 'src/views/admin/blog/blog';
+import PageFeature from 'src/views/admin/feature/feature';
+=======
 import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
 
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -337,7 +343,12 @@ const Router = [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
+<<<<<<< HEAD
+      { path: '/admin/order', element: <OrderAdmin /> },
+      { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
+=======
       { path: '/admin/buy/products', element: <ProductAdmin /> },
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
@@ -345,12 +356,20 @@ const Router = [
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
+<<<<<<< HEAD
+      { path: '/admin/test', element: <Text /> },
+      { path: '/admin/feature', element: <PageFeature /> },
+
+      { path: '/admin/blogs', element: <BlogAdmin /> },
+      { path: '/admin/ticket', element: <Ticket /> },
+=======
 
       // { path: '/admin/test', element: <Text /> },
 
       // { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
 
+>>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
       { path: '/admin/notification', element: <Notification /> },
 
       { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
