@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import { Avatar, Button, Grid, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import { Visibility, Favorite } from '@mui/icons-material';
-import React, { useState } from 'react';
-=======
-import { Favorite, Visibility } from '@mui/icons-material';
 import {
   Avatar,
   Button,
   Grid,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -16,8 +11,8 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
->>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
+import { Visibility, Favorite } from '@mui/icons-material';
+import React, { useState } from 'react';
 import BlogTable from '../data/datablog';
 import { IconEye, IconTrash } from '@tabler/icons-react';
 import { IconEdit } from '@tabler/icons-react';
@@ -44,21 +39,12 @@ const HeadTable: PropsHeadTable[] = [
 ];
 
 const TableBlog = () => {
-<<<<<<< HEAD
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [key, setKey] = useState<string | null>(null)
-    const handleChangePage = (newPage: number) => {
-        setPage(newPage);
-    };
-=======
-  const [page] = useState(0);
-  const [rowsPerPage] = useState(5);
-
-  // const handleChangePage = (newPage: number) => {
-  //     setPage(newPage);
-  // };
->>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [key, setKey] = useState<string | null>(null);
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
+  };
 
   // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
   //     setRowsPerPage(parseInt(event.target.value, 10));
@@ -80,134 +66,6 @@ const TableBlog = () => {
     console.log('Delete blog with ID:', id);
   };
 
-<<<<<<< HEAD
-    return (
-        <>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            {HeadTable.map((item, index) => (
-                                <TableCell key={index} sx={{ whiteSpace: 'nowrap' }}>
-                                    <Typography variant="h6">
-                                        {item.head}
-                                    </Typography>
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {paginatedData.map((item, index) => {
-                            return (
-                                <TableRow key={index}>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.id}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.createdAt.toLocaleDateString()}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Avatar
-                                            src={item.avt}
-                                            variant="rounded"
-                                            alt={item.avt}
-                                            sx={{ width: 48, height: 48 }}
-                                        />
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                                        <Typography variant="subtitle2">
-                                            {item.title}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
-                                        <Typography variant="subtitle2">
-                                            {item.author}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
-                                        <Typography variant="subtitle2">
-                                            {item.tags}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                        <Typography variant="subtitle2">
-                                            {item.url}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                                        <Typography variant="subtitle2">
-                                            {item.description}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell sx={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                                        <Typography variant="subtitle2">
-                                            {item.content}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.pricePoint}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2">
-                                            {item.status}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Grid container alignItems="center" spacing={1}>
-                                            <Grid item>
-                                                <Visibility color="action" />
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography variant="subtitle2">
-                                                    {item.view}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Grid container alignItems="center" spacing={1}>
-                                            <Grid item>
-                                                <Favorite color="error" />
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography variant="subtitle2">
-                                                    {item.like}
-                                                </Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </TableCell>
-                                    <TableCell
-                                            sx={{
-                                                whiteSpace: 'nowrap'
-                                            }}
-                                        >
-                                            <IconButton
-                                                onClick={() => setKey(item.id)}
-                                            >
-                                                <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-                                            </IconButton>
-                                            <IconButton>
-                                                <IconEdit    stroke={2} style={{ color: '#5D87FF' }} />
-                                            </IconButton>
-                                            <IconButton>
-                                                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-                                            </IconButton>
-                                        </TableCell>
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </>
-    );
-=======
   return (
     <>
       <TableContainer>
@@ -345,7 +203,6 @@ const TableBlog = () => {
       </TableContainer>
     </>
   );
->>>>>>> 9a4f29ca058ba07ba7cfccc2dd406ec1f657bef8
 };
 
 export default TableBlog;

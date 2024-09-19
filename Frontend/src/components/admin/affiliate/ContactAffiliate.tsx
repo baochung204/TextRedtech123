@@ -17,14 +17,7 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconChartBar,
-  IconClipboard,
-  IconFileCheck,
-  IconFileOff,
-  IconFileReport,
-  IconSearch,
-} from '@tabler/icons-react';
+import { IconChartBar, IconSearch } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import ContractAffiliateTable from './component/ContractAffiliateTable';

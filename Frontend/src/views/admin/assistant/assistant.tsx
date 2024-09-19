@@ -384,7 +384,7 @@ const AssistantAdmin = () => {
       <BannerPage title="Quản lý trợ lý" items={BCrumb} />
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} />
+          <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
         <Grid item xs={12}>
           <Grid container>
