@@ -1,4 +1,8 @@
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Badge,
@@ -14,17 +18,13 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
-import { createElement, useState } from 'react';
-
-import PersonnelTab from './component/personnelTab';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import { createElement, useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
+import PersonnelTab from './component/personnelTab';
 
 
 interface StyleProps {
@@ -150,7 +150,7 @@ const FilmsData: FilmsData[] = [
 
 const Personnels = () => {
   const [value, setValue] = useState('1');
-
+  const [selectedKey, setSelectedKey] = useState<string | null>(null)
   const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
@@ -281,21 +281,31 @@ const Personnels = () => {
                           <DatePicker
                             value={selectedStartDate}
                             onChange={setSelectedStartDate}
-                            renderInput={(params: any) => <TextField {...params} />}
+                            renderInput={(params) => <TextField {...params} />}
                           />
                           <Typography>tới</Typography>
                           <DatePicker
                             value={selectedEndDate}
                             onChange={setSelectedEndDate}
-                            renderInput={(params: any) => <TextField {...params} />}
+                            renderInput={(params) => <TextField {...params} />}
                           />
                         </LocalizationProvider>
+                        <IconButton
+                          color="primary"
+                          aria-label="Add to cart"
+                          onClick={() => { setOpen(true); setSelectedKey(null) }}
+                          sx={{
+                            pr: 0,
+                          }}
+                        >
+                          <AddCircleIcon sx={{ fontSize: 30 }} />
+                        </IconButton>
                       </Box>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <PersonnelTab value={value} open={open} setOpen={setOpen} />
+                  <PersonnelTab value={value} open={open} setOpen={setOpen} setSelectedKey={setSelectedKey} selectedKey={selectedKey} />
                 </Grid>
               </Grid>
             </TabPanel>

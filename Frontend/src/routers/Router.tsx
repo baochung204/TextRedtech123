@@ -45,6 +45,7 @@ import PageFeature from 'src/views/admin/feature/feature';
 import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
 import OrderAdmin from 'src/views/admin/order';
 import BuyPoints from 'src/views/admin/buyproduct';
+import OrderAdminPages from 'src/views/admin/order';
 /* ***Layouts**** */
 
 
@@ -359,7 +360,7 @@ const Router = [
       { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/notification', element: <Notification /> },
-
+      { path: '/admin/order/orderadminpage', element: <OrderAdminPages /> },
       { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
       // { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
       // { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
