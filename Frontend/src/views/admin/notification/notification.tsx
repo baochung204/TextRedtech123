@@ -1,24 +1,28 @@
 import { Box, Fab, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
-import PageContainer from 'src/components/container/PageContainer';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import TableList from 'src/components/ComponentTables/tableList';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import { IconEye, IconNotification, IconPlus, IconSearch, IconTags } from '@tabler/icons-react';
-import { useState } from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { IconChartArea } from '@tabler/icons-react';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import {
+  IconBellRinging,
+  IconEye,
+  IconPlus,
+  IconSearch,
+  IconTags,
+  IconWorldUpload,
+} from '@tabler/icons-react';
+import { useState } from 'react';
+import TableList from 'src/components/ComponentTables/tableList';
+import PageContainer from 'src/components/container/PageContainer';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
   {
-    to: '/',
-    title: 'ADMIN',
+    to: '/admin',
+    title: 'Trang chủ',
   },
+
   {
-    title: 'THÔNG BÁO',
-  },
-  {
-    title: 'QUẢN LÝ THÔNG BÁO',
+    title: 'Danh sách thông báo',
   },
 ];
 
@@ -35,14 +39,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconNotification color="white" size={30} />
+          <IconBellRinging color="white" size={30} />
         </Box>
       </>
     ),
@@ -59,8 +63,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -83,8 +87,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -107,14 +111,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconChartArea color="white" size={30} />
+          <IconWorldUpload color="white" size={30} />
         </Box>
       </>
     ),
@@ -292,7 +296,7 @@ const Notification = () => {
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Quản lý thông báo" items={BCrumb} />
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
@@ -335,13 +339,13 @@ const Notification = () => {
                   <DatePicker
                     value={selectedStartDate}
                     onChange={setSelectedStartDate}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    renderInput={(params) => <TextField {...params} />}
                   />
                   <Typography>tới</Typography>
                   <DatePicker
                     value={selectedEndDate}
                     onChange={setSelectedEndDate}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
               </Box>

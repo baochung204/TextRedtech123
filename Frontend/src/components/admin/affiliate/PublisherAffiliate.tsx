@@ -17,10 +17,10 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconPasswordUser, IconSearch, IconZoomMoney } from '@tabler/icons-react';
+import { IconBrandGoogleHome, IconCoinOff, IconCoins, IconSearch } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 
-import { IconBox, IconWashDrycleanOff } from '@tabler/icons-react';
+import { IconBox } from '@tabler/icons-react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import PublisherTable from './component/PublisherTable';
 // const dataSource = [
@@ -67,14 +67,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <IconBrandGoogleHome color="white" size={30} />
         </Box>
       </>
     ),
@@ -91,8 +91,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -107,7 +107,7 @@ const DataBox = [
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Hoa hồng',
-    total: '123.456.369 ₫',
+    total: '123.406.369 ₫',
     icons: (
       <>
         <Box
@@ -115,14 +115,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconZoomMoney color="white" size={30} />
+          <IconCoins color="white" size={30} />
         </Box>
       </>
     ),
@@ -139,14 +139,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconWashDrycleanOff color="white" size={30} />
+          <IconCoinOff color="white" size={30} />
         </Box>
       </>
     ),

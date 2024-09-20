@@ -17,7 +17,13 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import {
+  IconDevicesCancel,
+  IconFileText,
+  IconPencilDollar,
+  IconPencilSearch,
+  IconSearch,
+} from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import ContractPointTable from './component/ContractPointTable';
@@ -34,14 +40,14 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconFileText color="white" size={30} />
       </Box>
     ),
   },
@@ -56,14 +62,14 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconDevicesCancel color="white" size={30} />
       </Box>
     ),
   },
@@ -78,14 +84,14 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconPencilDollar color="white" size={30} />
       </Box>
     ),
   },
@@ -100,14 +106,14 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconPencilSearch color="white" size={30} />
       </Box>
     ),
   },

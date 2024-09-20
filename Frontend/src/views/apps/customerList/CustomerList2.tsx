@@ -1,12 +1,16 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
+  Badge,
   Box,
   // Button,
   Dialog,
   // DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
+  IconButton,
   InputAdornment,
+  Select,
   Tab,
   TextField,
   Typography,
@@ -16,7 +20,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconSearch } from '@tabler/icons-react';
+import { IconPlus, IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
@@ -76,81 +80,73 @@ const CustomerList2 = () => {
               <Tab label="Danh sách khách hàng" value="1" sx={{ p: 0 }} />
             </TabList>
 
-            <TabPanel value="1" sx={{ p: 0 }}>
-              {' '}
-              <Box
-                className="actions-and-filters"
-                sx={{
-                  mt: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Tooltip title="Tạo đơn hàng">
-                    <Fab
-                      color="primary"
-                      aria-label="add"
-                      size="small"
-                      sx={{ marginRight: '30px' }}
-                      onClick={handleOpenPopup}
-                    >
-                      <FaPlus />
-                    </Fab>
-                  </Tooltip>
+            <TabPanel value="1" sx={{ p: 0, mt: 2 }}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Grid item xs={4} sm={4} md={4}>
+                      <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Tooltip
+                            title="Thêm mới khách hàng"
+                            sx={{ mb: '15px' }}
+                            onClick={handleOpenPopup}
+                          >
+                            <Fab
+                              size="small"
+                              color="secondary"
+                              aria-label="plus"
+                              sx={{ my: 'auto' }}
+                            >
+                              <IconPlus width={18} />
+                            </Fab>
+                          </Tooltip>
+                        </Grid>
+                        <Grid item xs={10}>
+                          <TextField
+                            id="outlined-search"
+                            placeholder="Tìm kiếm khách hàng"
+                            size="small"
+                            type="search"
+                            variant="outlined"
+                            inputProps={{ 'aria-label': 'Search Followers' }}
+                            sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <IconSearch size="20" />
+                                </InputAdornment>
+                              ),
+                            }}
+                            fullWidth={true}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Grid>
 
-                  <TextField
-                    sx={{
-                      width: '200px',
-                      marginRight: '40px',
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '10px',
-                        backgroundColor: '#fff',
-                        '&:hover fieldset': {
-                          borderColor: '#3f51b5',
-                        },
-                      },
-                    }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="1.1rem" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    placeholder="Tìm kiếm"
-                    size="small"
-                  />
-                </Box>
-
-                <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={selectedStartDate}
-                      onChange={(newDate) => setSelectedStartDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    />
-                    <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                    <DatePicker
-                      value={selectedEndDate}
-                      onChange={(newDate) => setSelectedEndDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    />
-                  </LocalizationProvider>
-                </Box>
-              </Box>
-              <CustomerTable2 />
+                    <Grid item xs={4}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DatePicker
+                            value={selectedStartDate}
+                            onChange={setSelectedStartDate}
+                            renderInput={(params: any) => <TextField {...params} />}
+                          />
+                          <Typography>tới</Typography>
+                          <DatePicker
+                            value={selectedEndDate}
+                            onChange={setSelectedEndDate}
+                            renderInput={(params: any) => <TextField {...params} />}
+                          />
+                        </LocalizationProvider>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                  <CustomerTable2 />
+                </Grid>
+              </Grid>{' '}
             </TabPanel>
           </Box>
         </TabContext>

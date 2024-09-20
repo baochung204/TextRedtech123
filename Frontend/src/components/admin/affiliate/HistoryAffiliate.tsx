@@ -1,3 +1,7 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Badge,
   Box,
@@ -13,11 +17,13 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch, IconTicket } from '@tabler/icons-react';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
+import {
+  IconBrandCashapp,
+  IconBrandGumroad,
+  IconChartArcs,
+  IconNumber,
+  IconSearch,
+} from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -35,14 +41,14 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconNumber color="white" size={30} />
         </Box>
       </>
     ),
@@ -59,14 +65,14 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconBrandCashapp color="white" size={30} />
         </Box>
       </>
     ),
@@ -75,7 +81,7 @@ const dataSource = [
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Đã xử lý',
-    total: '123.456.789đ',
+    total: '123.406.789đ',
     icons: (
       <>
         <Box
@@ -83,14 +89,14 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconBrandGumroad color="white" size={30} />
         </Box>
       </>
     ),
@@ -99,7 +105,7 @@ const dataSource = [
     bgColor: 'error.light',
     color: 'error.main',
     title: 'Chờ xử lý',
-    total: '123.456.789đ',
+    total: '123.406.789đ',
     icons: (
       <>
         <Box
@@ -107,14 +113,14 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconChartArcs color="white" size={30} />
         </Box>
       </>
     ),

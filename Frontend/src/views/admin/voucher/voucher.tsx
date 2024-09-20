@@ -1,7 +1,12 @@
 import { Box, Grid, Tab, Tabs } from '@mui/material';
 // components
 // import { styled } from '@mui/system';
-import { IconTicket } from '@tabler/icons-react';
+import {
+  IconTicket,
+  IconBrandDeezer,
+  IconBrandDatabricks,
+  IconBrandCakephp,
+} from '@tabler/icons-react';
 import React, { useState } from 'react';
 import HistoryVoucher from 'src/components/admin/voucher/historyvoucher';
 import ListVoucher from 'src/components/admin/voucher/listvoucher';
@@ -20,8 +25,8 @@ import FlashSale from './../../../components/admin/voucher/flashsale';
 // }));
 const BCrumb = [
   {
-    to: '/',
-    title: 'Quản trị ',
+    to: '/admin',
+    title: 'Trang chủ',
   },
   { to: '/admin/personnel', title: 'Danh sách mã khuyến mãi' },
 ];
@@ -39,8 +44,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -55,7 +60,7 @@ const DataBox = [
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'Số lượng mã',
-    total: '3.455',
+    total: '3.405',
     icons: (
       <>
         <Box
@@ -63,14 +68,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconBrandDeezer color="white" size={30} />
         </Box>
       </>
     ),
@@ -78,7 +83,7 @@ const DataBox = [
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Đã sử sử dụng',
+    title: 'Đã sử dụng',
     total: '3.931',
     icons: (
       <>
@@ -87,14 +92,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconBrandCakephp color="white" size={30} />
         </Box>
       </>
     ),
@@ -111,14 +116,14 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconBrandDatabricks color="white" size={30} />
         </Box>
       </>
     ),

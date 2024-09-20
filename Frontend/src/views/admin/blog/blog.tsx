@@ -15,7 +15,14 @@ import {
   Tooltip,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
+import {
+  IconBrandStrava,
+  IconLockSquareRounded,
+  IconPasswordUser,
+  IconSearch,
+  IconUser,
+} from '@tabler/icons-react';
+import { IconPlus } from '@tabler/icons-react';
 import React from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -53,14 +60,14 @@ const DataBox: StyleProps[] = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconUser color="white" size={30} />
       </Box>
     ),
   },
@@ -75,14 +82,14 @@ const DataBox: StyleProps[] = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconPasswordUser color="white" size={30} />
       </Box>
     ),
   },
@@ -97,14 +104,14 @@ const DataBox: StyleProps[] = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconBrandStrava color="white" size={30} />
       </Box>
     ),
   },
@@ -119,14 +126,14 @@ const DataBox: StyleProps[] = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconLockSquareRounded color="white" size={30} />
       </Box>
     ),
   },
@@ -151,7 +158,7 @@ const BlogAdmin = () => {
 
   return (
     <PageContainer>
-      <BannerPage title=" Quản lý blogs" items={BCrumb} />
+      <BannerPage title=" Quản lý bài viết" items={BCrumb} />
       <Grid item xs={12}>
         <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>

@@ -285,7 +285,6 @@ const HistoryVoucher = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const [value, setValue] = React.useState(0);
   const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
@@ -337,7 +336,7 @@ const HistoryVoucher = () => {
       {' '}
       <Grid item xs={12}>
         <Grid container>
-          <Grid item xs={12} my={2}>
+          <Grid item xs={12} my={3}>
             <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Grid item xs={4} sm={4} md={4}>
                 <Grid container sx={{ display: 'flex', alignItems: 'center' }}>

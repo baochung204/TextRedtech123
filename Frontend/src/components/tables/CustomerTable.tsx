@@ -155,6 +155,7 @@ const CustomerTable = () => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage="Số hàng trên mỗi trang"
       />
       <Box ml={2}>
         <FormControlLabel

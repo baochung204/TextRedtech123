@@ -1,7 +1,3 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import { TabList } from '@mui/lab';
-import TabContext from '@mui/lab/TabContext';
-import TabPanel from '@mui/lab/TabPanel';
 import {
   Box,
   Dialog,
@@ -13,18 +9,17 @@ import {
   Slide,
   TextField,
   Tooltip,
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
 import React from 'react';
-import { FaPlus } from 'react-icons/fa';
+import iconPoint from 'src/assets/images/logos/R-Point.png';
 import PageContainer from 'src/components/container/PageContainer';
-import ChildCard from 'src/components/shared/ChildCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from 'src/views/admin/blog/_components/AddBlog';
 import TableOrderProduct from './TableOrderProduct';
-
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
   { to: '/admin/buy/orderproducts', title: 'Danh sách đơn hàng' },
@@ -51,7 +46,7 @@ interface StyleProps {
   bgColor: string;
   color: string;
   title: string;
-  total: string;
+  total: JSX.Element;
   icons: JSX.Element;
 }
 
@@ -60,72 +55,159 @@ const DataBox: StyleProps[] = [
     bgColor: 'primary.light',
     color: 'primary.main',
     title: 'Đơn hàng',
-    total: '12.567',
+    total: (
+      <>
+        <Typography variant="h6">1236</Typography>
+      </>
+    ),
     icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
+      <>
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartBar color="white" size={30} />
+        </Box>
+      </>
     ),
   },
   {
-    bgColor: 'info.light',
-    color: 'info.main',
+    bgColor: 'secondary.light',
+    color: 'secondary.main',
     title: 'Tổng giá trị',
-    total: '16.146.515 (Point)',
+    total: (
+      <>
+        <Box display="flex" alignItems="center" gap={0.4}>
+          <Typography variant="h6">16.146.515</Typography>
+          <img src={iconPoint} alt="" width={17} />
+        </Box>
+      </>
+    ),
     icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
+      <>
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartBar color="white" size={30} />
+        </Box>
+      </>
     ),
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Khuyến mại',
-    total: '5.432.234 (Point)',
+    total: (
+      <>
+        <Box display="flex" alignItems="center" gap={0.4}>
+          <Typography variant="h6">5.432.234</Typography>
+          <img src={iconPoint} alt="" width={17} />
+        </Box>
+      </>
+    ),
     icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
+      <>
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartBar color="white" size={30} />
+        </Box>
+      </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'Tổng thanh toán',
-    total: '12.423.423 (Point)',
+    total: (
+      <>
+        <Box display="flex" alignItems="center" gap={0.4}>
+          <Typography variant="h6">12.423.423 </Typography>
+          <img src={iconPoint} alt="" width={17} />
+        </Box>
+      </>
+    ),
     icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartBar color="white" size={30} />
+        </Box>
+      </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'AOV',
-    total: '23.423 (Point)',
+    total: (
+      <>
+        <Box display="flex" alignItems="center" gap={0.4}>
+          <Typography variant="h6">23.423 </Typography>
+          <img src={iconPoint} alt="" width={17} />
+        </Box>
+      </>
+    ),
     icons: (
-      <PeopleAltIcon
-        sx={{
-          fontSize: 40,
-        }}
-      />
+      <>
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconChartBar color="white" size={30} />
+        </Box>
+      </>
     ),
   },
 ];
 
 const OrderProduct = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value, setValue] = React.useState('1');
+  // const [value, setValue] = React.useState('1');
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -135,27 +217,65 @@ const OrderProduct = () => {
     setIsPopupOpen(false);
   };
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+  // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+  //   setValue(newValue);
+  // };
 
   return (
     <PageContainer>
       <BannerPage title="Đơn hàng sản phẩm" items={BCrumb} />
-      <Grid item xs={12}>
-        <TopCard dataSource={DataBox} totalColumn={5} />
+
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TopCard dataSource={DataBox} totalColumn={5} />
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Grid item xs={4} sm={4} md={4}>
+              <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
+                    <Fab
+                      size="small"
+                      color="secondary"
+                      aria-label="plus"
+                      sx={{ my: 'auto' }}
+                      onClick={handleOpenPopup}
+                    >
+                      <IconPlus width={18} />
+                    </Fab>
+                  </Tooltip>
+                </Grid>
+                <Grid item xs={10}>
+                  <TextField
+                    id="outlined-search"
+                    placeholder="Tìm kiếm đơn hàng"
+                    size="small"
+                    type="search"
+                    variant="outlined"
+                    inputProps={{ 'aria-label': 'Search Followers' }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="20" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    fullWidth={true}
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <TableOrderProduct />
+        </Grid>
       </Grid>
-      <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
+      {/* <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
           <Box>
-            <TabList
-              onChange={handleChange}
-              aria-label="lab API tabs example"
-              sx={{ p: 0, border: 'none' }}
-            >
-              {/* Optional: Add Tab components here if needed */}
-            </TabList>
-
             <TabPanel value="1" sx={{ p: 0 }}>
               <Box
                 className="actions-and-filters"
@@ -207,7 +327,7 @@ const OrderProduct = () => {
             </TabPanel>
           </Box>
         </TabContext>
-      </ChildCard>
+      </ChildCard> */}
 
       {/* Popup Thêm blogs */}
       <Dialog

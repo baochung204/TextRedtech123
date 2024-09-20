@@ -2,15 +2,36 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Grid, IconButton, InputAdornment, MenuItem, TextField } from '@mui/material';
+import { Grid, IconButton, InputAdornment, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import { IconReceipt, IconSearch } from '@tabler/icons-react';
+import {
+  IconBrandFlutter,
+  IconBrandSentry,
+  IconChessQueen,
+  IconClick,
+  IconDatabaseSmile,
+  IconFile,
+  IconFile3d,
+  IconFunction,
+  IconHandClick,
+  IconMessageChatbot,
+  IconPhoto,
+  IconPhotoScan,
+  IconSearch,
+  IconUnlink,
+  IconUsers,
+  IconUsersGroup,
+  IconUserStar,
+} from '@tabler/icons-react';
 import React from 'react';
+import img1 from 'src/assets/images/badge/badge.png';
+import img2 from 'src/assets/images/badge/badge2.png';
+import img3 from 'src/assets/images/badge/badge3.png';
 import icontext from 'src/assets/images/logos/R-Point.png';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Tab1 from './Tabs/Tab1';
+import Tab2 from './Tabs/Tab2';
 // const renderStatus = (status: number) => {
 //   const { text, color } = getStatusTextAndColor(status);
 //   return (
@@ -42,14 +63,14 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconChessQueen color="white" size={30} />
         </Box>
       </>
     ),
@@ -66,14 +87,14 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconBrandSentry color="white" size={30} />
         </Box>
       </>
     ),
@@ -90,14 +111,14 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUserStar color="white" size={30} />
         </Box>
       </>
     ),
@@ -114,14 +135,14 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconMessageChatbot color="white" size={30} />
         </Box>
       </>
     ),
@@ -135,7 +156,20 @@ const Function = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconFunction color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -146,29 +180,68 @@ const Function = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Khách hàng sở hữu',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconBrandFlutter color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Khách hàng sở hữu',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconUserStar color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconMessageChatbot color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -181,7 +254,20 @@ const Files = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconFile color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -192,29 +278,68 @@ const Files = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Dung lượng',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconUsers color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Dung lượng',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconDatabaseSmile color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconMessageChatbot color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -227,7 +352,20 @@ const Model = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconFile3d color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -238,29 +376,68 @@ const Model = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Khách hàng sở hữu',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconUsersGroup color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Khách hàng sở hữu',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconUserStar color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconMessageChatbot color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -273,7 +450,20 @@ const Image = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconPhotoScan color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -284,29 +474,68 @@ const Image = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Dung lượng',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconUsers color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Dung lượng',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconDatabaseSmile color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Hình ảnh/khách hàng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconPhoto color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -319,7 +548,20 @@ const Url = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconUnlink color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -330,29 +572,68 @@ const Url = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Click',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconUsers color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Click',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconHandClick color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Click/URL',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconClick color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -363,7 +644,6 @@ interface HeadCell {
   label: string;
   numeric: boolean;
 }
-
 
 const StrategyCells: HeadCell[] = [
   {
@@ -439,7 +719,11 @@ const StrategyRows = [
     id: 'STG001',
     creationTime: '2024-09-01 08:30',
     strategyGroup: 'Nhóm A',
-    badge: 'Gold',
+    badge: (
+      <>
+        <img src={img1} alt="" width={40} />
+      </>
+    ),
     strategyName: 'Chiến lược Tăng trưởng 2024',
     level: 'Cấp 1',
     ownedCustomers: 25,
@@ -452,7 +736,11 @@ const StrategyRows = [
     id: 'STG002',
     creationTime: '2024-09-02 09:15',
     strategyGroup: 'Nhóm B',
-    badge: 'Silver',
+    badge: (
+      <>
+        <img src={img2} alt="" width={40} />
+      </>
+    ),
     strategyName: 'Chiến lược Giữ chân khách hàng',
     level: 'Cấp 2',
     ownedCustomers: 15,
@@ -463,9 +751,13 @@ const StrategyRows = [
   },
   {
     id: 'STG003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03 10:40',
     strategyGroup: 'Nhóm A',
-    badge: 'Bronze',
+    badge: (
+      <>
+        <img src={img3} alt="" width={40} />
+      </>
+    ),
     strategyName: 'Chiến lược Phát triển sản phẩm',
     level: 'Cấp 1',
     ownedCustomers: 10,
@@ -478,7 +770,11 @@ const StrategyRows = [
     id: 'STG004',
     creationTime: '2024-09-04 11:20',
     strategyGroup: 'Nhóm C',
-    badge: 'Gold',
+    badge: (
+      <>
+        <img src={img2} alt="" width={40} />
+      </>
+    ),
     strategyName: 'Chiến lược Mở rộng thị trường',
     level: 'Cấp 3',
     ownedCustomers: 30,
@@ -492,7 +788,11 @@ const StrategyRows = [
     id: 'STG005',
     creationTime: '2024-09-05 14:05',
     strategyGroup: 'Nhóm B',
-    badge: 'Silver',
+    badge: (
+      <>
+        <img src={img1} alt="" width={40} />
+      </>
+    ),
     strategyName: 'Chiến lược Tối ưu hóa chi phí',
     level: 'Cấp 2',
     ownedCustomers: 20,
@@ -505,7 +805,11 @@ const StrategyRows = [
     id: 'STG006',
     creationTime: '2024-09-06 15:30',
     strategyGroup: 'Nhóm A',
-    badge: 'Gold',
+    badge: (
+      <>
+        <img src={img2} alt="" width={40} />
+      </>
+    ),
     strategyName: 'Chiến lược Nâng cao thương hiệu',
     level: 'Cấp 3',
     ownedCustomers: 40,
@@ -597,7 +901,7 @@ const FunctionRows = [
   },
   {
     id: 'FUNC003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03 10:40',
     functionGroup: 'Nhóm A',
     level: 'Cấp 1',
     ownedCustomers: 10,
@@ -725,7 +1029,7 @@ const FileRows = [
     fileName: 'Bản vẽ Kỹ thuật',
     customer: 'Công ty MNO',
     format: 'DWG',
-    size: 45.3,
+    size: 40.3,
     uploadDate: '2024-09-06',
   },
 ];
@@ -892,7 +1196,11 @@ const ImageRows = [
     id: 'IMG001',
     creationTime: '2024-09-01',
     creator: 'Nguyễn Văn A',
-    image: 'https://example.com/images/img001.jpg',
+    image: (
+      <>
+        <img src={icontext} alt="" width={40} />
+      </>
+    ),
     imageName: 'Ảnh sản phẩm A',
     title: 'Sản phẩm A - Ảnh chụp từ bên trái',
     description: 'Hình ảnh mô tả sản phẩm A từ góc nhìn bên trái',
@@ -903,7 +1211,11 @@ const ImageRows = [
     id: 'IMG002',
     creationTime: '2024-09-02',
     creator: 'Trần Thị B',
-    image: 'https://example.com/images/img002.jpg',
+    image: (
+      <>
+        <img src={icontext} alt="" width={40} />
+      </>
+    ),
     imageName: 'Ảnh sản phẩm B',
     title: 'Sản phẩm B - Ảnh chụp từ phía trước',
     description: 'Hình ảnh mô tả sản phẩm B từ góc nhìn chính diện',
@@ -914,7 +1226,11 @@ const ImageRows = [
     id: 'IMG003',
     creationTime: '2024-09-03',
     creator: 'Lê Văn C',
-    image: 'https://example.com/images/img003.jpg',
+    image: (
+      <>
+        <img src={icontext} alt="" width={40} />
+      </>
+    ),
     imageName: 'Ảnh sản phẩm C',
     title: 'Sản phẩm C - Ảnh chụp chi tiết',
     description: 'Hình ảnh cận cảnh sản phẩm C để thấy rõ chi tiết',
@@ -925,7 +1241,11 @@ const ImageRows = [
     id: 'IMG004',
     creationTime: '2024-09-04',
     creator: 'Hoàng Thị D',
-    image: 'https://example.com/images/img004.jpg',
+    image: (
+      <>
+        <img src={icontext} alt="" width={40} />
+      </>
+    ),
     imageName: 'Ảnh sản phẩm D',
     title: 'Sản phẩm D - Ảnh chụp từ bên phải',
     description: 'Hình ảnh sản phẩm D từ góc nhìn bên phải',
@@ -936,7 +1256,11 @@ const ImageRows = [
     id: 'IMG005',
     creationTime: '2024-09-05',
     creator: 'Phạm Văn E',
-    image: 'https://example.com/images/img005.jpg',
+    image: (
+      <>
+        <img src={icontext} alt="" width={40} />
+      </>
+    ),
     imageName: 'Ảnh sản phẩm E',
     title: 'Sản phẩm E - Ảnh chụp từ góc trên',
     description: 'Hình ảnh sản phẩm E từ góc nhìn trên xuống',
@@ -947,7 +1271,11 @@ const ImageRows = [
     id: 'IMG006',
     creationTime: '2024-09-06',
     creator: 'Ngô Thị F',
-    image: 'https://example.com/images/img006.jpg',
+    image: (
+      <>
+        <img src={`icontext`} alt="" width={40} />
+      </>
+    ),
     imageName: 'Ảnh sản phẩm F',
     title: 'Sản phẩm F - Ảnh chụp từ xa',
     description: 'Hình ảnh sản phẩm F từ góc xa để thấy toàn cảnh',
@@ -1021,7 +1349,7 @@ const UrlRows = [
   },
   {
     id: 'STG003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03 10:40',
     customerId: 'Lê Văn C',
     title: 'Chiến lược Phát triển sản phẩm',
     description: 'Phát triển sản phẩm mới trong quý 4',
@@ -1088,7 +1416,7 @@ const Main = () => {
                 alignItems: 'center',
                 px: 1,
                 overflowX: 'auto',
-                mt: 1,
+                mt: 3,
               }}
             >
               <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -1099,10 +1427,10 @@ const Main = () => {
                 <Tab label="Hình Ảnh" value="5" />
                 <Tab label="URL" value="6" />
               </TabList>
-              {(value === '3' || value === '5' || value === '6') && (
-                <Box>
-                  <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Grid item>
+              {/* {(value === '1' || value === '2') && ( */}
+              <Box display={'flex'} justifyContent={'end'}>
+                <Grid container sx={{ alignItems: 'center' }}>
+                  {/* <Grid item>
                       <CustomSelect
                         labelId="column-sort"
                         id="column-sort"
@@ -1113,64 +1441,66 @@ const Main = () => {
                         <MenuItem value={1}>Tất cả</MenuItem>
                         <MenuItem value={2}>ID</MenuItem>
                       </CustomSelect>
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        id="outlined-search"
-                        placeholder="Tìm kiếm"
-                        size="small"
-                        type="search"
-                        variant="outlined"
-                        inputProps={{ 'aria-label': 'Search Followers' }}
-                        sx={{
-                          fontSize: { xs: '50px', sm: '50px', md: '50px' },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <IconSearch size="12" />
-                            </InputAdornment>
-                          ),
-                        }}
-                        fullWidth={true}
-                      />
-                    </Grid>
+                    </Grid> */}
+                  <Grid item>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{
+                        fontSize: { xs: '50px', sm: '50px', md: '50px' },
+                      }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="12" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                  {(value === '1' || value === '2') && (
                     <Grid item>
                       <IconButton
                         color="primary"
                         aria-label="Add to cart"
                         // onClick={() => setOpen(true)}
                         sx={{
-                          pr: 1.5,
+                          pr: 0,
                         }}
                       >
                         <AddCircleIcon sx={{ fontSize: 30 }} />
                       </IconButton>
                     </Grid>
-                  </Grid>
-                </Box>
-              )}
+                  )}
+                </Grid>
+              </Box>
+              {/* )} */}
             </Box>
 
             {/* TabPanels */}
-            <TabPanel value="1">
+            <TabPanel sx={{ p: 0, pt: 2 }} value="1">
               <Tab1 headCells={StrategyCells} dataRows={StrategyRows} />
             </TabPanel>
-            <TabPanel value="2">
-              <Tab1 headCells={FunctionCells} dataRows={FunctionRows} />
+            <TabPanel sx={{ p: 0, pt: 2 }} value="2">
+              <Tab2 headCells={FunctionCells} dataRows={FunctionRows} />
             </TabPanel>
-            <TabPanel value="3">
+            <TabPanel sx={{ p: 0, pt: 2 }} value="3">
               <Tab1 headCells={FileCells} dataRows={FileRows} />
 
               {/* <Tab3 value={value} open={open} setOpen={setOpen} /> */}
             </TabPanel>
-            <TabPanel value="4">
+            <TabPanel sx={{ p: 0, pt: 2 }} value="4">
               <Tab1 headCells={ModelCells} dataRows={ModelRows} />
             </TabPanel>
-            <TabPanel value="5">
+            <TabPanel sx={{ p: 0, pt: 2 }} value="5">
               <Tab1 headCells={ImageCells} dataRows={ImageRows} />
             </TabPanel>
-            <TabPanel value="6">
+            <TabPanel sx={{ p: 0, pt: 2 }} value="6">
               <Tab1 headCells={UrlCells} dataRows={UrlRows} />
             </TabPanel>
           </TabContext>
