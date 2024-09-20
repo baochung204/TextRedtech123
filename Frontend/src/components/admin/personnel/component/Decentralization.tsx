@@ -110,7 +110,18 @@ const Decentralization = () => {
                 <DialogTitle sx={{ textAlign: 'center' }}>Chọn nhân viên</DialogTitle>
                 <DialogContent
                     sx={{
-                        maxHeight: 300
+                        maxHeight: 300,
+                        overflowY: 'auto',
+                        '&::-webkit-scrollbar': {
+                            width: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: '#C6C8CC',
+                            borderRadius: '4px',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                            backgroundColor: 'transparent',
+                        },
                     }}
                 >
                     <List>
@@ -128,7 +139,13 @@ const Decentralization = () => {
                     </List>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDialog}>Đóng</Button>
+                    <Button
+                        variant='contained'
+                        color='error'
+                        onClick={handleCloseDialog}
+                    >
+                        Đóng
+                    </Button>
                 </DialogActions>
             </Dialog>
 
@@ -143,7 +160,7 @@ const Decentralization = () => {
                     }>
                         <Typography variant="h4">Thông tin nhân viên</Typography>
                         {selectedEmployee.status ?
-                            <Box sx={{ backgroundColor: 'success.light', paddingY: 1.2, paddingX: 1 , borderRadius: 1.5}}>
+                            <Box sx={{ backgroundColor: 'success.light', paddingY: 1.2, paddingX: 1, borderRadius: 1.5 }}>
                                 <Typography color="success.dark" fontWeight={600} variant="subtitle2">
                                     Hoạt động
                                 </Typography>
@@ -157,7 +174,7 @@ const Decentralization = () => {
 
                         }
                     </Box>
-                    <Grid container sx={{marginY: 2}}>
+                    <Grid container sx={{ marginY: 2 }}>
                         <Grid
                             item
                             xs={4}
@@ -194,7 +211,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8} sx={{ display: 'flex' }}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.id}
+                                                        :{' '}{selectedEmployee.id}
                                                     </Typography>
 
                                                 </Grid>
@@ -209,7 +226,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.employeeName}
+                                                        :{' '} {selectedEmployee.employeeName}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -223,7 +240,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.position}
+                                                        :{' '} {selectedEmployee.position}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -237,7 +254,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.department}
+                                                        :{' '}{selectedEmployee.department}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -256,7 +273,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.email}
+                                                        :{' '} {selectedEmployee.email}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -270,7 +287,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.phoneNumber}
+                                                        :{' '} {selectedEmployee.phoneNumber}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -284,7 +301,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.createdAt.toLocaleDateString()}
+                                                        :{' '}  {selectedEmployee.createdAt.toLocaleDateString()}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -298,7 +315,7 @@ const Decentralization = () => {
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <Typography variant='h6' fontWeight={400}>
-                                                        {selectedEmployee.articleCount}
+                                                        :{' '}  {selectedEmployee.articleCount}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -308,7 +325,7 @@ const Decentralization = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Typography variant="h4" sx={{ mt: 3 , mb: 2}}>Phân quyền</Typography>
+                    <Typography variant="h4" sx={{ mt: 3, mb: 2 }}>Phân quyền</Typography>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
