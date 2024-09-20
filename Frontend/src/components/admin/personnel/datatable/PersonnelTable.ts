@@ -21,7 +21,7 @@ interface Permissions {
     [functionName: string]: ActionProps;
 }
 
-interface PersonnelTable {
+interface PersonnelTables {
     id: string;
     createdAt: Date;
     employeeName: string;
@@ -48,7 +48,7 @@ const getRandomPosition = () => {
     const randomPosition = Math.floor(Math.random() * position.length)
     return position[randomPosition]
 }
-const PersonnelTable: PersonnelTable[] = [
+const PersonnelTable: PersonnelTables[] = [
     {
         id: '1',
         createdAt: new Date('2023-11-22'),

@@ -1,9 +1,8 @@
 
-import React from "react";
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from 'src/components/container/PageContainer';
 import { Grid } from '@mui/material';
-import Publisher from "src/components/admin/rpoint";
+import RPointS from 'src/components/admin/rpoint';
 
 
 const BCrumb = [
@@ -21,7 +20,7 @@ const RPoints = () => {
       <BannerPage title="Gói R-Point" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Publisher />
+          <RPointS />
         </Grid>
       </Grid>
     </PageContainer>
