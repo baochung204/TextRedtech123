@@ -1,6 +1,5 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
-  Badge,
   Box,
   // Button,
   Dialog,
@@ -8,9 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  IconButton,
   InputAdornment,
-  Select,
   Tab,
   TextField,
   Typography,
@@ -22,9 +19,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
-import { FaPlus } from 'react-icons/fa';
 import CustomerTable2 from 'src/components/tables/CustomerTable2';
-import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 
 import { Slide } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
