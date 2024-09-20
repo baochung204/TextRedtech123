@@ -23,7 +23,6 @@ import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
 import Products from 'src/components/apps/sell/Product';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import ProductAdmin from 'src/views/admin/product/product';
 const BCrumb = [
   {
     to: '/',

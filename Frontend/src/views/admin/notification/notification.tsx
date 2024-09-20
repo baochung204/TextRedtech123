@@ -17,14 +17,12 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
   {
-    to: '/',
-    title: 'ADMIN',
+    to: '/admin',
+    title: 'Trang chủ',
   },
+
   {
-    title: 'THÔNG BÁO',
-  },
-  {
-    title: 'QUẢN LÝ THÔNG BÁO',
+    title: 'Danh sách thông báo',
   },
 ];
 

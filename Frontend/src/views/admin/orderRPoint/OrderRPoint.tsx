@@ -16,14 +16,11 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
   {
-    to: '/',
-    title: 'ADMIN',
+    to: '/admin',
+    title: 'Trang chủ',
   },
   {
-    title: 'TRỢ LÝ',
-  },
-  {
-    title: 'QUẢN LÝ TRỢ LÝ',
+    title: 'Quản lý đơn hàng',
   },
 ];
 

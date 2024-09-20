@@ -25,8 +25,8 @@ import FlashSale from './../../../components/admin/voucher/flashsale';
 // }));
 const BCrumb = [
   {
-    to: '/',
-    title: 'Quản trị ',
+    to: '/admin',
+    title: 'Trang chủ',
   },
   { to: '/admin/personnel', title: 'Danh sách mã khuyến mãi' },
 ];

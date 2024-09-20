@@ -158,7 +158,7 @@ const BlogAdmin = () => {
 
   return (
     <PageContainer>
-      <BannerPage title=" Quản lý blogs" items={BCrumb} />
+      <BannerPage title=" Quản lý bài viết" items={BCrumb} />
       <Grid item xs={12}>
         <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
