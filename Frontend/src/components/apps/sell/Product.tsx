@@ -7,6 +7,7 @@ import {
   Box,
   Chip,
   IconButton,
+  InputAdornment,
   Stack,
   Table,
   TableBody,
@@ -16,6 +17,9 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TextField,
+  Toolbar,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -34,6 +38,8 @@ import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import BlankCard from '../../../components/shared/BlankCard';
+import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
+import AddDialog from './layout/addDialog';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -213,83 +219,83 @@ const rows: OrderType[] = [
   },
 ].sort((a, b) => (a.name < b.name ? -1 : 1));
 
-// interface EnhancedTableToolbarProps {
-//   numSelected: number;
-//   handleSearch: React.ChangeEvent<HTMLInputElement> | any;
-//   search: string;
-// }
+interface EnhancedTableToolbarProps {
+  numSelected: number;
+  handleSearch: React.ChangeEvent<HTMLInputElement> | any;
+  search: string;
+}
 
-// const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-//   const { numSelected, handleSearch, search } = props;
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+  const { numSelected, handleSearch, search } = props;
 
-//   return (
-//     <Toolbar
-//       sx={{
-//         pl: { sm: 2 },
-//         pr: { xs: 1, sm: 1 },
-//         ...(numSelected > 0 && {
-//           bgcolor: (theme) =>
-//             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-//         }),
-//       }}
-//     >
-//       {numSelected > 0 ? (
-//         <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-//           {numSelected} selected
-//         </Typography>
-//       ) : (
-//         <Box sx={{ flex: '1 1 100%' }}>
-//           <TextField
-//             InputProps={{
-//               startAdornment: (
-//                 <InputAdornment position="start">
-//                   <IconSearch size="1.1rem" />
-//                 </InputAdornment>
-//               ),
-//             }}
-//             placeholder="Tìm kiếm sản phẩm"
-//             size="small"
-//             onChange={handleSearch}
-//             value={search}
-//           />
-//         </Box>
-//       )}
+  return (
+    <Toolbar
+      sx={{
+        pl: { sm: 2 },
+        pr: { xs: 1, sm: 1 },
+        ...(numSelected > 0 && {
+          bgcolor: (theme) =>
+            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+        }),
+      }}
+    >
+      {numSelected > 0 ? (
+        <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
+          {numSelected} selected
+        </Typography>
+      ) : (
+        <Box sx={{ flex: '1 1 100%' }}>
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconSearch size="1.1rem" />
+                </InputAdornment>
+              ),
+            }}
+            placeholder="Tìm kiếm sản phẩm"
+            size="small"
+            onChange={handleSearch}
+            value={search}
+          />
+        </Box>
+      )}
 
-//       {numSelected > 0 ? (
-//         <Tooltip title="Delete">
-//           <IconButton>
-//             <IconTrash width="18" />
-//           </IconButton>
-//         </Tooltip>
-//       ) : (
-//         <Tooltip title="Filter list">
-//           <IconButton>
-//             <IconFilter size="1.2rem" />
-//           </IconButton>
-//         </Tooltip>
-//       )}
-//     </Toolbar>
-//   );
-// };
+      {numSelected > 0 ? (
+        <Tooltip title="Delete">
+          <IconButton>
+            <IconTrash width="18" />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <Tooltip title="Filter list">
+          <IconButton>
+            <IconFilter size="1.2rem" />
+          </IconButton>
+        </Tooltip>
+      )}
+    </Toolbar>
+  );
+};
 
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [selected] = React.useState<readonly string[]>([]);
-  // const [search, setSearch] = React.useState('');
+  const [selected] = React.useState<readonly string[]>([]);
+  const [search, setSearch] = React.useState('');
   const [filteredRows] = React.useState(rows);
 
-  // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = event.target.value.toLowerCase();
-  //   setSearch(value);
-  //   const filtered = rows.filter(
-  //     (row) =>
-  //       row.name.toLowerCase().includes(value) ||
-  //       row.tags.toLowerCase().includes(value) ||
-  //       row.id.toLowerCase().includes(value),
-  //   );
-  //   setFilteredRows(filtered);
-  // };
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.toLowerCase();
+    setSearch(value);
+    const filtered = rows.filter(
+      (row) =>
+        row.name.toLowerCase().includes(value) ||
+        row.tags.toLowerCase().includes(value) ||
+        row.id.toLowerCase().includes(value),
+    );
+    setFilteredRows(filtered);
+  };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
 
@@ -304,6 +310,14 @@ const PaginationTable = () => {
 
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
+      {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <AddDialog />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          search={search}
+          handleSearch={handleSearch}
+        />
+      </Box> */}
       <BlankCard>
         <TableContainer>
           <Table

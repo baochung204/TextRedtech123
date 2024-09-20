@@ -243,8 +243,7 @@ const PopupAdd = () => {
 
 
 
-            <Grid item xs={12} sm={6} lg={12}>
-             
+            <Grid item xs={12} sm={6} lg={12}>             
               <Classify />
             </Grid>
           </Grid>
