@@ -211,6 +211,7 @@ const ContractAffiliateTable = () => {
         page={page}
         onPageChange={(_event, newPage) => handleChangePage(newPage)}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage="Số hàng trên mỗi trang"
       />
     </>
   );

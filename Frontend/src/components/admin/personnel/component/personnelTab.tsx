@@ -55,12 +55,14 @@ interface PropsItem {
   value: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedKey: string | null,
+  setSelectedKey: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const PersonnelTab = ({ value, open, setOpen }: PropsItem) => {
+const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [key, setKey] = useState<string>('');
+  const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
@@ -93,13 +95,9 @@ const PersonnelTab = ({ value, open, setOpen }: PropsItem) => {
             </TableHead>
             <TableBody>
               {paginatedData.map((item, index) => {
-                // const isItemSelected = isSelected(item.id);
-                // console.log(isItemSelected);
-
                 return (
                   <TableRow
                     key={index}
-                    // selected={isItemSelected}
                   >
                     <TableCell
                       sx={{
@@ -189,7 +187,7 @@ const PersonnelTab = ({ value, open, setOpen }: PropsItem) => {
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      <IconButton onClick={() => setKey(item.id)}>
+                      <IconButton onClick={() => { setSelectedKey(item.id); setOpen(true); setIsCheckFix(true) }}>
                         <IconEye stroke={2} style={{ color: '#5D87FF' }} />
                       </IconButton>
                       <IconButton>
@@ -210,9 +208,17 @@ const PersonnelTab = ({ value, open, setOpen }: PropsItem) => {
           page={page}
           onPageChange={(_event, newPage) => handleChangePage(newPage)}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên mỗi trang"
         />
       </TableContainer>
-      <DialogPersonel open={open} value={value} setOpen={setOpen} keyOption={key} />
+      <DialogPersonel
+        open={open}
+        value={value}
+        setOpen={setOpen}
+        keyOption={selectedKey}
+        isCheckFix={isCheckFix}
+        setIsCheckFix={setIsCheckFix}
+      />
     </>
   );
 };

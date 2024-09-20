@@ -5,8 +5,8 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const historyaffiliate = () => {
   const BCrumb = [
-    { to: '/', title: 'Trang Chủ' },
-    { to: '', title: 'Affiliate' },
+    { to: '/admin', title: 'Trang Chủ' },
+    { to: '', title: 'Lịch sử rút tiền' },
   ];
   return (
     <>

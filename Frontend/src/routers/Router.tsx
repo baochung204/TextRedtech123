@@ -23,7 +23,7 @@ const Notification = Loadable(lazy(() => import('src/views/admin/notification/no
 const Packagepoint = Loadable(lazy(() => import('src/views/admin/packagepoint/packagepoint')));
 const Pointdetail = Loadable(lazy(() => import('src/views/admin/pointdetail/pointdetail')));
 const ProductAdmin = Loadable(lazy(() => import('src/views/admin/product/product')));
-const Publishers = Loadable(lazy(() => import('src/views/admin/publishers/publishers')));
+// const Publishers = Loadable(lazy(() => import('src/views/admin/publishers/publishers')));
 const Resources = Loadable(lazy(() => import('src/views/admin/resources/resources')));
 const Staff = Loadable(lazy(() => import('src/views/admin/staff')));
 const VoucherAdmin = Loadable(lazy(() => import('src/views/admin/voucher/voucher')));
@@ -41,9 +41,13 @@ import Loadable from '../layouts/full/shared/loadable/Loadable';
 // import AssistantAdmin from '../views/admin/assistant/assistant';
 import BlogAdmin from 'src/views/admin/blog/blog';
 import PageFeature from 'src/views/admin/feature/feature';
-import OrderAdmin from 'src/views/admin/order/order';
 import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
+import OrderAdmin from 'src/views/admin/order';
+import BuyPoints from 'src/views/admin/buyproduct';
+import OrderAdminPages from 'src/views/admin/order';
 /* ***Layouts**** */
+
+
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
 
@@ -53,7 +57,7 @@ const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
 const List = Loadable(lazy(() => import('../views/dashboard/List')));
 //  admin
-const DashboardAdmin = Loadable(lazy(() => import('../views/admin/dashboard/dashboard')));
+const DashboardAdmin = Loadable(lazy(() => import('../views/admin/ChartsAdmin/dashboard')));
 
 /* ****Apps***** */
 const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
@@ -340,13 +344,13 @@ const Router = [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
-      { path: '/admin/order', element: <OrderAdmin /> },
+
       { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
-      { path: '/admin/buy/products', element: <ProductAdmin /> },
+      { path: '/admin/buy/products', element: <BuyPoints /> },
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
-      { path: '/admin/affiliate/publishers', element: <Publishers /> },
+      // { path: '/admin/affiliate/publishers', element: <Publishers /> },
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
@@ -355,7 +359,7 @@ const Router = [
       { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/notification', element: <Notification /> },
-
+      { path: '/admin/order/orderadminpage', element: <OrderAdminPages /> },
       { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
       // { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
       // { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },

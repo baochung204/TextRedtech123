@@ -51,7 +51,7 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Khách hàng',
     icon: IconUsersGroup,
-    href: '',
+    href: '/admin/order/orderadminpage'
   },
   {
     id: uniqueId(),
@@ -179,7 +179,7 @@ const MenuAdminitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'E-Invoice',
         icon: IconPoint,
-        href: '/admin/accountant/einvoice',
+        href: '/admin/einvoice',
       },
     ],
   },

@@ -3,7 +3,7 @@
 import PageContainer from 'src/components/container/PageContainer';
 
 // import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/AssistantEditor';
-import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/main';
+import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/main/main';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [

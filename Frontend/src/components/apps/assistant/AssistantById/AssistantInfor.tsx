@@ -686,41 +686,7 @@ const AssistantInfor = () => {
               </CardContent>
             </Card>
           </Grid>
-          {/* <Grid item xs={12} lg={4}>
-            <Box height="100%" bgcolor={'error.light'}>
-             
-              <DashboardCard title="Chiến lược của trợ lý">
-                <Box
-                  sx={{
-                    display: 'flex',
-                    height: '100%',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Grid container>
-                    <Grid item xs={7}>
-                      <Box sx={{ mt: 2 }}>
-                        <Typography variant="subtitle2" fontWeight={500}>
-                          Chiến lược Tích Hợp Dịch Vụ Bên Thứ Ba
-                        </Typography>
-                      </Box>
-                    </Grid>
-
-                    <Grid item xs={5} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <Box
-                        sx={{
-                          width: '100%',
-                          maxWidth: '100px',
-                        }}
-                      >
-                        <img src={bannercl} alt="Banner chiến lược" style={{ width: '100%' }} />
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </DashboardCard>
-            </Box>
-          </Grid> */}
+         
           <Grid item xs={12} lg={4}>
             <Box
               height="100%"
