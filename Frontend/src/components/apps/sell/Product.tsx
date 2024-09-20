@@ -2,12 +2,34 @@
 // @ts-ignore
 import * as React from 'react';
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
+
 import {
   Avatar,
   Box,
+  Button,
+  Checkbox,
   Chip,
+  FormControl,
   IconButton,
   InputAdornment,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
   Stack,
   Table,
   TableBody,
@@ -22,25 +44,26 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
+import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
 
 import PageContainer from 'src/components/container/PageContainer';
 
+import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from '../../../components/shared/BlankCard';
-import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
-import AddDialog from './layout/addDialog';
 
+import AddDialog from './layout/addDialog';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -101,13 +124,12 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 interface OrderType {
   id: string;
   items: string;
-  imgsrc: string;
+  imgsrc: any;
   name: string;
   total: string;
   tags: string;
   totalSales: string;
 }
-
 const rows: OrderType[] = [
   {
     id: 'ORD - 0120145',
@@ -281,18 +303,18 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 const PaginationTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  // const [value, setValue] = React.useState(1);
   const [selected] = React.useState<readonly string[]>([]);
   const [search, setSearch] = React.useState('');
-  const [filteredRows] = React.useState(rows);
-
+  const [filteredRows, setFilteredRows] = React.useState(rows);
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase();
     setSearch(value);
     const filtered = rows.filter(
       (row) =>
-        row.name.toLowerCase().includes(value) ||
-        row.tags.toLowerCase().includes(value) ||
-        row.id.toLowerCase().includes(value),
+       ( row.name.toLowerCase().includes(value), 
+        row.tags.toLowerCase().includes(value), 
+        row.id.toLowerCase().includes(value))
     );
     setFilteredRows(filtered);
   };
@@ -307,17 +329,66 @@ const PaginationTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  const [id, setId] = React.useState(true);
+  const [img, setImg] = React.useState(true);
+  const [name, setName] = React.useState(true);
+  const [Tags, setTags] = React.useState(true);
+  const [price, setPrice] = React.useState(true);
+  const [priceVD, setPriceVD] = React.useState(true);
+  const handle = () => {
+    setId(true);
+    setImg(true);
+    setName(true);
+    setTags(true);
+    setPrice(true);
+    setPriceVD(true);
+  };
+  const [personName, setPersonName] = React.useState<string[]>([]);
 
+  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(typeof value === 'string' ? value.split(',') : value);
+  };
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
-      {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <AddDialog />
-        <EnhancedTableToolbar
-          numSelected={selected.length}
-          search={search}
-          handleSearch={handleSearch}
-        />
-      </Box> */}
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {/* Phần bên trái */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <AddDialog />
+          <EnhancedTableToolbar
+            numSelected={selected.length}
+            search={search}
+            handleSearch={handleSearch}
+          />
+        </Box>
+
+        {/* Phần bên phải */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Button>Sửa đổi cột</Button>
+          <FormControl sx={{ m: 1, width: 100 }}>
+            <InputLabel id="demo-multiple-checkbox-label">Sắp xếp</InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={personName}
+              onChange={handleChange}
+              input={<OutlinedInput label="Sắp xếp" />}
+              renderValue={() => 'Sắp xếp'} // Hiển thị nội dung cố định
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={personName.includes(name)} />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
       <BlankCard>
         <TableContainer>
           <Table
@@ -328,24 +399,36 @@ const PaginationTable = () => {
           >
             <TableHead>
               <TableRow>
-                <TableCell>
-                  <Typography variant="h6">Id</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Ảnh</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Tên sản phẩm</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Tags</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Giá niêm yết</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Giá khuyến mãi</Typography>
-                </TableCell>
+                {id && (
+                  <TableCell>
+                    <Typography variant="h6">Id</Typography>
+                  </TableCell>
+                )}
+                {img && (
+                  <TableCell>
+                    <Typography variant="h6">Ảnh</Typography>
+                  </TableCell>
+                )}
+                {name && (
+                  <TableCell>
+                    <Typography variant="h6">Tên sản phẩm</Typography>
+                  </TableCell>
+                )}
+                {Tags && (
+                  <TableCell>
+                    <Typography variant="h6">Tags</Typography>
+                  </TableCell>
+                )}
+                {price && (
+                  <TableCell>
+                    <Typography variant="h6">Giá niêm yết</Typography>
+                  </TableCell>
+                )}
+                {priceVD && (
+                  <TableCell>
+                    <Typography variant="h6">Giá khuyến mãi</Typography>
+                  </TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -353,70 +436,85 @@ const PaginationTable = () => {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow key={row.id}>
-                    <TableCell>
-                      <Typography variant="subtitle2">{row.id}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2" fontWeight="600">
-                        {row.name}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        color={
-                          row.tags === 'di động'
-                            ? 'success'
-                            : row.tags === 'điện tử'
-                            ? 'warning'
-                            : row.tags === 'đời sống'
-                            ? 'error'
-                            : 'secondary'
-                        }
-                        sx={{
-                          borderRadius: '6px',
-                        }}
-                        size="small"
-                        label={row.tags}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Typography
-                        color="textSecondary"
-                        variant="subtitle2"
-                        sx={{ display: 'flex', gap: 0.5 }}
-                      >
-                        {row.total}{' '}
-                        <img
-                          src={logoPoint}
-                          alt=""
-                          width={20}
-                          height={20}
-                          style={{ borderRadius: 50 }}
+                    {id && (
+                      <TableCell>
+                        <Typography variant="subtitle2">{row.id}</Typography>
+                      </TableCell>
+                    )}
+                    {img && (
+                      <TableCell>
+                        <Stack direction="row" spacing={2} alignItems="center">
+                          <Avatar
+                            src={row.imgsrc}
+                            alt={row.imgsrc}
+                            sx={{ width: 30, height: 30 }}
+                          />
+                        </Stack>
+                      </TableCell>
+                    )}
+                    {name && (
+                      <TableCell>
+                        <Typography variant="subtitle2" fontWeight="600">
+                          {row.name}
+                        </Typography>
+                      </TableCell>
+                    )}
+                    {Tags && (
+                      <TableCell>
+                        <Chip
+                          color={
+                            row.tags === 'di động'
+                              ? 'success'
+                              : row.tags === 'điện tử'
+                                ? 'warning'
+                                : row.tags === 'đời sống'
+                                  ? 'error'
+                                  : 'secondary'
+                          }
+                          sx={{
+                            borderRadius: '6px',
+                          }}
+                          size="small"
+                          label={row.tags}
                         />
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell>
-                      <Typography
-                        color="textSecondary"
-                        variant="subtitle2"
-                        sx={{ display: 'flex', gap: 0.5 }}
-                      >
-                        {row.totalSales}{' '}
-                        <img
-                          src={logoPoint}
-                          alt=""
-                          width={20}
-                          height={20}
-                          style={{ borderRadius: 50 }}
-                        />
-                      </Typography>
-                    </TableCell>
+                      </TableCell>
+                    )}
+                    {price && (
+                      <TableCell>
+                        <Typography
+                          color="textSecondary"
+                          variant="subtitle2"
+                          sx={{ display: 'flex', gap: 0.5 }}
+                        >
+                          {row.total}{' '}
+                          <img
+                            src={logoPoint}
+                            alt=""
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
+                        </Typography>
+                      </TableCell>
+                    )}
+                    {priceVD && (
+                      <TableCell>
+                        <Typography
+                          color="textSecondary"
+                          variant="subtitle2"
+                          sx={{ display: 'flex', gap: 0.5 }}
+                        >
+                          {row.totalSales}{' '}
+                          <img
+                            src={logoPoint}
+                            alt=""
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
+                        </Typography>
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
 
