@@ -313,33 +313,6 @@ const PaginationTable = () => {
 
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        {/* Phần bên trái */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <AddDialog />
-          <EnhancedTableToolbar
-            numSelected={selected.length}
-            search={search}
-            handleSearch={handleSearch}
-          />
-        </Box>
-
-        {/* Phần bên phải */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button>Sửa đổi cột</Button>
-
-          <CustomSelect
-            labelId="column-filter"
-            id="column-filter"
-            size="small"
-            value={1} // Setting the first value as default
-            sx={{ marginLeft: '10px' }}
-          >
-            <MenuItem value={1}>Sắp xếp</MenuItem>
-          </CustomSelect>
-        </Box>
-      </Box>
-
       <BlankCard>
         <TableContainer>
           <Table

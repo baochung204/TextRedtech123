@@ -76,7 +76,7 @@ const TableListOrder = () => {
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ padding: 4 }}>
+      <TableContainer component={Paper} sx={{ padding: 2 }}>
         <Scrollbar_x sx={{ maxHeight: 400 }}>
           <Table
             aria-label="order table"
@@ -138,12 +138,13 @@ const TableListOrder = () => {
                     <Typography variant="subtitle2">{row.assistant}</Typography>
                   </TableCell>
                   <TableCell sx={{ textAlign: 'center' }}>
-                    <Typography variant="subtitle2">{row.pricePoint}
-                    <img
-                            src={logo}
-                            alt="Logo"
-                            style={{ width: '25px', height: '25px', marginLeft: '10px' }}
-                          />
+                    <Typography variant="subtitle2">
+                      {row.pricePoint}
+                      <img
+                        src={logo}
+                        alt="Logo"
+                        style={{ width: '25px', height: '25px', marginLeft: '10px' }}
+                      />
                     </Typography>
                   </TableCell>
                   <TableCell>
