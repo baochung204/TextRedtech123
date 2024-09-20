@@ -8,6 +8,7 @@ import {
   Badge,
   Box,
   Checkbox,
+  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -16,11 +17,12 @@ import {
   Select,
   Tab,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
@@ -209,6 +211,21 @@ const Personnels = () => {
                         alignItems: 'center',
                       }}
                     >
+                      {/* <IconButton
+                        color="primary"
+                        aria-label="Add to cart"
+                        onClick={() => { setOpen(true); setSelectedKey(null) }}
+                        sx={{
+                          pr: 0,
+                        }}
+                      >
+                        <Tooltip title="Thêm nhân viên mới" sx={{ mb: '15px' }}>
+                          <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto', mr: '10px' }}>
+                            <IconPlus width={18} />
+                          </Fab>
+                        </Tooltip>
+                      </IconButton>
+                      
                       <TextField
                         id="outlined-search"
                         placeholder="Tìm kiếm nhân viên "
@@ -225,7 +242,45 @@ const Personnels = () => {
                           ),
                         }}
                         fullWidth={true}
-                      />
+                      /> */}
+
+                      <Grid container spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
+                        <Grid item >
+                          <IconButton
+                            color="primary"
+                            aria-label="Add to cart"
+                            onClick={() => { setOpen(true); setSelectedKey(null) }}
+                            sx={{
+                              pr: 0,
+                            }}
+                          >
+                            <Tooltip title="Thêm nhân viên mới" sx={{ mb: '15px' }}>
+                              <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto', mr: '10px' }}>
+                                <IconPlus width={18} />
+                              </Fab>
+                            </Tooltip>
+                          </IconButton>
+                        </Grid>
+                        <Grid item >
+                          <TextField
+                            id="outlined-search"
+                            placeholder="Tìm kiếm nhân viên "
+                            size="small"
+                            type="search"
+                            variant="outlined"
+                            inputProps={{ 'aria-label': 'Search Followers' }}
+                            sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <IconSearch size="12" />
+                                </InputAdornment>
+                              ),
+                            }}
+                            fullWidth={true}
+                          />
+                        </Grid>
+                      </Grid>
                     </Grid>
                     <Grid
                       item
@@ -290,16 +345,7 @@ const Personnels = () => {
                             renderInput={(params) => <TextField {...params} />}
                           />
                         </LocalizationProvider>
-                        <IconButton
-                          color="primary"
-                          aria-label="Add to cart"
-                          onClick={() => { setOpen(true); setSelectedKey(null) }}
-                          sx={{
-                            pr: 0,
-                          }}
-                        >
-                          <AddCircleIcon sx={{ fontSize: 30 }} />
-                        </IconButton>
+                        
                       </Box>
                     </Grid>
                   </Grid>

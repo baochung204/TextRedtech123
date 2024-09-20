@@ -62,7 +62,7 @@ interface PropsItem {
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
+  const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
@@ -187,7 +187,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      <IconButton onClick={() => { setSelectedKey(item.id); setOpen(true) }}>
+                      <IconButton onClick={() => { setSelectedKey(item.id); setOpen(true); setIsCheckFix(true) }}>
                         <IconEye stroke={2} style={{ color: '#5D87FF' }} />
                       </IconButton>
                       <IconButton>
@@ -211,7 +211,14 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
           labelRowsPerPage="Số hàng trên mỗi trang"
         />
       </TableContainer>
-      <DialogPersonel open={open} value={value} setOpen={setOpen} keyOption={selectedKey} />
+      <DialogPersonel
+        open={open}
+        value={value}
+        setOpen={setOpen}
+        keyOption={selectedKey}
+        isCheckFix={isCheckFix}
+        setIsCheckFix={setIsCheckFix}
+      />
     </>
   );
 };
