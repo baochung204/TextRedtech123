@@ -56,6 +56,7 @@ const AddModel = () => {
                   '&::-webkit-scrollbar-thumb:hover': {
                     backgroundColor: '#e6e6e6',
                   },
+                  
                 },
               },
             }}

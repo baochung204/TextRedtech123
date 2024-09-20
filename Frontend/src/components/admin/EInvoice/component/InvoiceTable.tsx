@@ -1,7 +1,5 @@
 import {
-  Box,
   Button,
-  Checkbox,
   Chip,
   Table,
   TableBody,
@@ -14,7 +12,7 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
-import { DataContactAffiliateTable } from '../datatable/OrderTableData';
+import { DataInvoiceTable } from '../datatable/InvoiceTableData';
 
 interface PropsHeadTable {
   head: string;
@@ -22,16 +20,13 @@ interface PropsHeadTable {
 
 const HeadTable: PropsHeadTable[] = [
   {
-    head: 'ID hợp đồng',
+    head: 'ID hóa đơn',
   },
   {
-    head: 'ID khách hàng',
+    head: 'ID đơn hàng',
   },
   {
     head: 'Ngày tạo',
-  },
-  {
-    head: 'Ngày ký',
   },
   {
     head: 'Loại tài khoản',
@@ -43,6 +38,27 @@ const HeadTable: PropsHeadTable[] = [
     head: 'Mã số thuế',
   },
   {
+    head: 'Nội dung hóa đơn',
+  },
+  {
+    head: 'DVT',
+  },
+  {
+    head: 'Số lượng',
+  },
+  {
+    head: 'Đơn giá',
+  },
+  {
+    head: 'Thành tiền',
+  },
+  {
+    head: 'VAT',
+  },
+  {
+    head: 'Tổng(VAT)',
+  },
+  {
     head: 'Địa chỉ',
   },
   {
@@ -52,7 +68,7 @@ const HeadTable: PropsHeadTable[] = [
     head: 'Chức vụ',
   },
   {
-    head: 'SDT công ty',
+    head: 'SĐT công ty',
   },
   {
     head: 'Email công ty',
@@ -61,14 +77,11 @@ const HeadTable: PropsHeadTable[] = [
     head: 'Trạng thái',
   },
   {
-    head: 'Duyệt hồ sơ',
-  },
-  {
-    head: 'Hợp đồng',
+    head: 'Hóa đơn',
   },
 ];
 
-const ContractAffiliateTable = () => {
+const InvoiceTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const handleChangePage = (newPage: number) => {
@@ -80,24 +93,10 @@ const ContractAffiliateTable = () => {
     setPage(0);
   };
 
-  const paginatedData = DataContactAffiliateTable.slice(
+  const paginatedData = DataInvoiceTable.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage,
   );
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Đã ký':
-        return 'success'; // Green for approved
-      case 'Chờ ký':
-        return 'warning'; // Yellow for pending approval
-      case 'Từ chối':
-        return 'error'; // Red for rejected
-      default:
-        return 'default'; // Gray for any unrecognized status
-    }
-  };
-
   return (
     <>
       <TableContainer>
@@ -122,11 +121,10 @@ const ContractAffiliateTable = () => {
                 return (
                   <TableRow key={index}>
                     <TableCell>
-                      <Typography variant="subtitle2">{item.id_contract}</Typography>
+                      <Typography variant="subtitle2">{item.id_bill}</Typography>
                     </TableCell>
-
                     <TableCell>
-                      <Typography variant="subtitle2">{item.id_customer}</Typography>
+                      <Typography variant="subtitle2">{item.id_order}</Typography>
                     </TableCell>
                     <TableCell>
                       <Typography style={{ width: '100px' }} variant="subtitle2">
@@ -134,21 +132,12 @@ const ContractAffiliateTable = () => {
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography style={{ width: '100px' }} variant="subtitle2">
-                        {item.confirmdate}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography style={{ width: '100px' }} variant="subtitle2">
-                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                          <Typography style={{ width: '200px' }} variant="subtitle2">
-                            <Chip
-                              label={item.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
-                              color={item.type_company ? 'success' : 'warning'}
-                              variant="outlined"
-                            />
-                          </Typography>
-                        </Box>
+                      <Typography variant="subtitle2">
+                        <Chip
+                          label={item.type_account ? 'Doanh nghiệp' : 'Cá nhân'}
+                          color={item.type_account ? 'success' : 'warning'}
+                          variant="outlined"
+                        />
                       </Typography>
                     </TableCell>
                     <TableCell>
@@ -159,12 +148,40 @@ const ContractAffiliateTable = () => {
                     </TableCell>
                     <TableCell>
                       <Typography style={{ width: '100px' }} variant="subtitle2">
-                        {item.address}
+                        {item.content_bill}
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography style={{ width: '200px' }} variant="subtitle2">
-                        {item.representative}
+                      <Typography variant="subtitle2">{item.dvt}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2">{item.amount}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2">{item.price}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2">{item.into_money}</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        {item.vat}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        {item.total_vat}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
+                        {item.address}
+                      </Typography>
+                    </TableCell>
+
+                    <TableCell>
+                      <Typography style={{ width: '150px' }} variant="subtitle2">
+                        {item.presentative}
                       </Typography>
                     </TableCell>
                     <TableCell>
@@ -173,7 +190,7 @@ const ContractAffiliateTable = () => {
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography style={{ width: '150px' }} variant="subtitle2">
+                      <Typography style={{ width: '100px' }} variant="subtitle2">
                         {item.phone_number}
                       </Typography>
                     </TableCell>
@@ -183,18 +200,10 @@ const ContractAffiliateTable = () => {
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography style={{ width: '100px' }} variant="subtitle2">
-                        <Chip label={item.status} color={getStatusColor(item.status)} />
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell>
-                      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Checkbox defaultChecked />
-                      </Box>
+                      <Button style={{ width: '100px' }}>Xuất ngay</Button>
                     </TableCell>
                     <TableCell>
-                      <Button style={{ width: '100px' }}>Ký ngay</Button>
+                      <Button style={{ width: '100px' }}>Xuất ngay</Button>
                     </TableCell>
                   </TableRow>
                 );
@@ -206,7 +215,7 @@ const ContractAffiliateTable = () => {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={DataContactAffiliateTable.length}
+        count={DataInvoiceTable.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={(_event, newPage) => handleChangePage(newPage)}
@@ -217,4 +226,4 @@ const ContractAffiliateTable = () => {
   );
 };
 
-export default ContractAffiliateTable;
+export default InvoiceTable;

@@ -38,7 +38,6 @@ import Loadable from '../layouts/full/shared/loadable/Loadable';
 // import AssistantAdmin from '../views/admin/assistant/assistant';
 import BlogAdmin from 'src/views/admin/blog/blog';
 import PageFeature from 'src/views/admin/feature/feature';
-// import OrderAdmin from 'src/views/admin/order/order';
 import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
 import OrderAdmin from 'src/views/admin/order';
 import BuyPoints from 'src/views/admin/buyproduct';
@@ -56,7 +55,7 @@ const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
 const List = Loadable(lazy(() => import('../views/dashboard/List')));
 //  admin
-const DashboardAdmin = Loadable(lazy(() => import('../views/admin/dashboard/dashboard')));
+const DashboardAdmin = Loadable(lazy(() => import('../views/admin/ChartsAdmin/dashboard')));
 
 /* ****Apps***** */
 const Blog = Loadable(lazy(() => import('../views/apps/blog/Blog')));
@@ -343,7 +342,7 @@ const Router = [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
-      { path: '/admin/order', element: <OrderAdmin /> },
+
       { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
       { path: '/admin/buy/products', element: <BuyPoints /> },
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
