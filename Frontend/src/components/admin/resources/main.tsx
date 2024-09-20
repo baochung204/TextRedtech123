@@ -1394,6 +1394,7 @@ const Main = () => {
               sx={{
                 borderBottom: 1,
                 borderColor: 'divider',
+              
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
