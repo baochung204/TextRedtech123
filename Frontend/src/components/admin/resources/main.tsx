@@ -46,8 +46,8 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -70,8 +70,8 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -94,8 +94,8 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -118,8 +118,8 @@ const Strategy = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -139,7 +139,20 @@ const Function = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -150,29 +163,68 @@ const Function = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Khách hàng sở hữu',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Khách hàng sở hữu',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -185,7 +237,20 @@ const Files = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -196,29 +261,68 @@ const Files = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Dung lượng',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Dung lượng',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -231,7 +335,20 @@ const Model = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -242,29 +359,68 @@ const Model = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Khách hàng sở hữu',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Khách hàng sở hữu',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -277,7 +433,20 @@ const Image = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -288,29 +457,68 @@ const Image = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Dung lượng',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Dung lượng',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Hình ảnh/khách hàng',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -323,7 +531,20 @@ const Url = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -334,29 +555,68 @@ const Url = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
-      </>
-    ),
-  },
-  {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Click',
-    total: '32.415',
-    icons: (
-      <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
+    title: 'Click',
+    total: '32.415',
+    icons: (
+      <>
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Click/URL',
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="error.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -367,7 +627,6 @@ interface HeadCell {
   label: string;
   numeric: boolean;
 }
-
 
 const StrategyCells: HeadCell[] = [
   {
@@ -475,7 +734,7 @@ const StrategyRows = [
   },
   {
     id: 'STG003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03 10:40',
     strategyGroup: 'Nhóm A',
     badge: (
       <>
@@ -625,7 +884,7 @@ const FunctionRows = [
   },
   {
     id: 'FUNC003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03 10:40',
     functionGroup: 'Nhóm A',
     level: 'Cấp 1',
     ownedCustomers: 10,
@@ -753,7 +1012,7 @@ const FileRows = [
     fileName: 'Bản vẽ Kỹ thuật',
     customer: 'Công ty MNO',
     format: 'DWG',
-    size: 45.3,
+    size: 40.3,
     uploadDate: '2024-09-06',
   },
 ];
@@ -1073,7 +1332,7 @@ const UrlRows = [
   },
   {
     id: 'STG003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03 10:40',
     customerId: 'Lê Văn C',
     title: 'Chiến lược Phát triển sản phẩm',
     description: 'Phát triển sản phẩm mới trong quý 4',

@@ -39,8 +39,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -55,7 +55,7 @@ const DataBox = [
     bgColor: 'warning.light',
     color: 'warning.main',
     title: 'Số lượng mã',
-    total: '3.455',
+    total: '3.405',
     icons: (
       <>
         <Box
@@ -63,8 +63,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -87,8 +87,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -111,8 +111,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

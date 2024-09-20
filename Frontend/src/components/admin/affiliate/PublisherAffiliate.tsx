@@ -67,8 +67,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -91,8 +91,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -107,7 +107,7 @@ const DataBox = [
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Hoa hồng',
-    total: '123.456.369 ₫',
+    total: '123.406.369 ₫',
     icons: (
       <>
         <Box
@@ -115,8 +115,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -139,8 +139,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
