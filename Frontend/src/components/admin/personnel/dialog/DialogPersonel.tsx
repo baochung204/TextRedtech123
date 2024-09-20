@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { styled } from '@mui/material/styles';
@@ -27,7 +27,7 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 const DialogPersonel = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheckFix }: DialogProps) => {
-    const emptyInitialValues = {
+    const emptyInitialValues = useMemo(() => ({
         avtUrl: '',
         name: '',
         position: '',
@@ -35,7 +35,7 @@ const DialogPersonel = ({ open, setOpen, value, keyOption, setIsCheckFix, isChec
         email: '',
         numberPhone: '',
         password: ''
-    };
+    }), []);
 
     const [initialValues, setInitialValues] = useState(emptyInitialValues);
     const isViewMode = keyOption !== null;
@@ -93,11 +93,10 @@ const DialogPersonel = ({ open, setOpen, value, keyOption, setIsCheckFix, isChec
                     password: ''
                 });
             }
-
         }
 
-    }, [keyOption]);
-    console.log(keyOption);
+    }, [keyOption, emptyInitialValues]);
+    console.log(emptyInitialValues);
 
     return (
         <Dialog

@@ -341,13 +341,13 @@ const Notification = () => {
                   <DatePicker
                     value={selectedStartDate}
                     onChange={setSelectedStartDate}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    renderInput={(params) => <TextField {...params} />}
                   />
                   <Typography>tới</Typography>
                   <DatePicker
                     value={selectedEndDate}
                     onChange={setSelectedEndDate}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
               </Box>
