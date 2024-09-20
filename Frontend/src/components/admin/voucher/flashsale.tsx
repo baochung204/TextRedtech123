@@ -343,7 +343,7 @@ const FlashSale = () => {
       {' '}
       <Grid item xs={12}>
         <Grid container>
-          <Grid item xs={12} my={2}>
+          <Grid item xs={12} my={3}>
             <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Grid item xs={4} sm={4} md={4}>
                 <Grid container sx={{ display: 'flex', alignItems: 'center' }}>

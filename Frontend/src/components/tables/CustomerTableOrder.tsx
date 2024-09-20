@@ -199,6 +199,7 @@ const CustomerTableOrder = () => {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên mỗi trang"
         />
       </Box>
       <Box ml={2}>

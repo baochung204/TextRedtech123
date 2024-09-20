@@ -198,6 +198,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage="Hàng trên mỗi trang"
           />
         </Box>
       </BlankCard>

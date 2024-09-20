@@ -1,9 +1,13 @@
 import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Badge,
   Box,
   Checkbox,
+  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -12,27 +16,16 @@ import {
   Select,
   Tab,
   TextField,
+  Tooltip,
   Typography,
-  styled,
 } from '@mui/material';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
-import { createElement, useState } from 'react';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import PersonnelTab from './component/personnelTab';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-const BoxStyled = styled(Box)(() => ({
-  padding: '30px',
-  transition: '0.1s ease-in',
-  cursor: 'pointer',
-  color: 'inherit',
-  '&:hover': {
-    transform: 'scale(1.03)',
-  },
-}));
+import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
+import { createElement, useState } from 'react';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import Decentralization from './component/Decentralization';
+import PersonnelTab from './component/personnelTab';
 
 interface StyleProps {
   bgColor: string;
@@ -157,7 +150,7 @@ const FilmsData: FilmsData[] = [
 
 const Personnels = () => {
   const [value, setValue] = useState('1');
-
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
@@ -181,7 +174,7 @@ const Personnels = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
   return (
-    <Grid container rowSpacing={3}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
         <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
@@ -203,7 +196,7 @@ const Personnels = () => {
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ padding: 0 }}>
-              <Grid container spacing={2}>
+              <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Grid container>
                     <Grid
@@ -216,23 +209,51 @@ const Personnels = () => {
                         alignItems: 'center',
                       }}
                     >
-                      <TextField
-                        id="outlined-search"
-                        placeholder="Tìm kiếm nhân viên "
-                        size="small"
-                        type="search"
-                        variant="outlined"
-                        inputProps={{ 'aria-label': 'Search Followers' }}
-                        sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <IconSearch size="12" />
-                            </InputAdornment>
-                          ),
-                        }}
-                        fullWidth={true}
-                      />
+                      <Grid container spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid item>
+                          <IconButton
+                            color="primary"
+                            aria-label="Add to cart"
+                            onClick={() => {
+                              setOpen(true);
+                              setSelectedKey(null);
+                            }}
+                            sx={{
+                              pr: 0,
+                            }}
+                          >
+                            <Tooltip title="Thêm nhân viên mới" sx={{ mb: '15px' }}>
+                              <Fab
+                                size="small"
+                                color="secondary"
+                                aria-label="plus"
+                                sx={{ my: 'auto', mr: '10px' }}
+                              >
+                                <IconPlus width={18} />
+                              </Fab>
+                            </Tooltip>
+                          </IconButton>
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            id="outlined-search"
+                            placeholder="Tìm kiếm nhân viên "
+                            size="small"
+                            type="search"
+                            variant="outlined"
+                            inputProps={{ 'aria-label': 'Search Followers' }}
+                            sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <IconSearch size="12" />
+                                </InputAdornment>
+                              ),
+                            }}
+                            fullWidth={true}
+                          />
+                        </Grid>
+                      </Grid>
                     </Grid>
                     <Grid
                       item
@@ -288,13 +309,13 @@ const Personnels = () => {
                           <DatePicker
                             value={selectedStartDate}
                             onChange={setSelectedStartDate}
-                            renderInput={(params: any) => <TextField {...params} />}
+                            renderInput={(params) => <TextField {...params} />}
                           />
                           <Typography>tới</Typography>
                           <DatePicker
                             value={selectedEndDate}
                             onChange={setSelectedEndDate}
-                            renderInput={(params: any) => <TextField {...params} />}
+                            renderInput={(params) => <TextField {...params} />}
                           />
                         </LocalizationProvider>
                       </Box>
@@ -302,11 +323,19 @@ const Personnels = () => {
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <PersonnelTab value={value} open={open} setOpen={setOpen} />
+                  <PersonnelTab
+                    value={value}
+                    open={open}
+                    setOpen={setOpen}
+                    setSelectedKey={setSelectedKey}
+                    selectedKey={selectedKey}
+                  />
                 </Grid>
               </Grid>
             </TabPanel>
-            <TabPanel value="2">Item Two</TabPanel>
+            <TabPanel value="2">
+              <Decentralization />
+            </TabPanel>
           </TabContext>
         </Box>
       </Grid>

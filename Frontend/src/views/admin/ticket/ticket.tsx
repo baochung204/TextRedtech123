@@ -1,30 +1,28 @@
 import { Box, Fab, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
-import PageContainer from 'src/components/container/PageContainer';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import TableList from 'src/components/ComponentTables/tableList';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import {
-  IconElevator,
-  IconPasswordUser,
-  IconTicket,
-  IconWashDrycleanOff,
-} from '@tabler/icons-react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch } from '@tabler/icons-react';
+import {
+  IconPasswordUser,
+  IconPlus,
+  IconRefreshOff,
+  IconSearch,
+  IconStars,
+  IconTicket,
+} from '@tabler/icons-react';
 import { useState } from 'react';
-import { IconPlus } from '@tabler/icons-react';
+import TableList from 'src/components/ComponentTables/tableList';
+import PageContainer from 'src/components/container/PageContainer';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
   {
     to: '/',
-    title: 'ADMIN',
+    title: 'Trang chủ',
   },
+
   {
-    title: 'TRỢ LÝ',
-  },
-  {
-    title: 'QUẢN LÝ TRỢ LÝ',
+    title: 'Danh sách trợ lý',
   },
 ];
 
@@ -96,7 +94,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconElevator color="white" size={30} />
+          <IconStars color="white" size={30} />
         </Box>
       </>
     ),
@@ -120,7 +118,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconWashDrycleanOff color="white" size={30} />
+          <IconRefreshOff color="white" size={30} />
         </Box>
       </>
     ),
@@ -332,7 +330,7 @@ const Ticket = () => {
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Quản lý ticket" items={BCrumb} />
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
