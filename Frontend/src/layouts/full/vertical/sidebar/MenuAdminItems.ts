@@ -179,7 +179,7 @@ const MenuAdminitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'E-Invoice',
         icon: IconPoint,
-        href: '/admin/accountant/einvoice',
+        href: '/admin/einvoice',
       },
     ],
   },
