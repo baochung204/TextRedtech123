@@ -17,7 +17,13 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import {
+  IconDevicesCancel,
+  IconFileText,
+  IconPencilDollar,
+  IconPencilSearch,
+  IconSearch,
+} from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import ContractPointTable from './component/ContractPointTable';
@@ -41,7 +47,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconFileText color="white" size={30} />
       </Box>
     ),
   },
@@ -63,7 +69,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconDevicesCancel color="white" size={30} />
       </Box>
     ),
   },
@@ -85,7 +91,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconPencilDollar color="white" size={30} />
       </Box>
     ),
   },
@@ -107,7 +113,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconPencilSearch color="white" size={30} />
       </Box>
     ),
   },

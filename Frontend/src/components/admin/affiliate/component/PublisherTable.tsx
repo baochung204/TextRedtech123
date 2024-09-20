@@ -265,6 +265,7 @@ const PublisherTable = () => {
         page={page}
         onPageChange={(_event, newPage) => handleChangePage(newPage)}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage="Số dòng trên trang"
       />
     </>
   );

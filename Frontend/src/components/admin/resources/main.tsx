@@ -5,7 +5,13 @@ import TabPanel from '@mui/lab/TabPanel';
 import { Grid, IconButton, InputAdornment, MenuItem, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import { IconReceipt, IconSearch } from '@tabler/icons-react';
+import {
+  IconBrandSentry,
+  IconChessQueen,
+  IconMessageChatbot,
+  IconSearch,
+  IconUserStar,
+} from '@tabler/icons-react';
 import React from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -49,7 +55,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconChessQueen color="white" size={30} />
         </Box>
       </>
     ),
@@ -73,7 +79,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconBrandSentry color="white" size={30} />
         </Box>
       </>
     ),
@@ -97,7 +103,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUserStar color="white" size={30} />
         </Box>
       </>
     ),
@@ -121,7 +127,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconMessageChatbot color="white" size={30} />
         </Box>
       </>
     ),
@@ -363,7 +369,6 @@ interface HeadCell {
   label: string;
   numeric: boolean;
 }
-
 
 const StrategyCells: HeadCell[] = [
   {

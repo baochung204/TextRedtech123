@@ -39,10 +39,10 @@ const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 // import AssistantAdmin from '../views/admin/assistant/assistant';
-import BlogAdmin from 'src/views/admin/blog/blog';
-import PageFeature from 'src/views/admin/feature/feature';
-import OrderAdmin from 'src/views/admin/order/order';
-import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
+const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
+const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
+const OrderAdmin = Loadable(lazy(() => import('src/views/admin/order/order')));
+const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')));
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));

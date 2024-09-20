@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Badge,
   Box,
@@ -14,12 +16,15 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { IconSearch } from '@tabler/icons-react';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import {
+  IconBrandStrava,
+  IconLockSquareRounded,
+  IconPasswordUser,
+  IconSearch,
+  IconUser,
+} from '@tabler/icons-react';
+import React, { useState } from 'react';
 import PersonnelTab from './component/personnelTab';
-import { IconChartBar } from '@tabler/icons-react';
 
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
@@ -58,14 +63,14 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconUser color="white" size={30} />
       </Box>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Admin',
+    title: 'Quản trị',
     total: '5',
     icons: (
       <Box
@@ -80,7 +85,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconPasswordUser color="white" size={30} />
       </Box>
     ),
   },
@@ -102,7 +107,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconBrandStrava color="white" size={30} />
       </Box>
     ),
   },
@@ -124,7 +129,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconLockSquareRounded color="white" size={30} />
       </Box>
     ),
   },

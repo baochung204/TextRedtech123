@@ -1,3 +1,7 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Badge,
   Box,
@@ -13,11 +17,13 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch, IconTicket } from '@tabler/icons-react';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
+import {
+  IconBrandCashapp,
+  IconBrandGumroad,
+  IconChartArcs,
+  IconNumber,
+  IconSearch,
+} from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -42,7 +48,7 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconNumber color="white" size={30} />
         </Box>
       </>
     ),
@@ -66,7 +72,7 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconBrandCashapp color="white" size={30} />
         </Box>
       </>
     ),
@@ -90,7 +96,7 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconBrandGumroad color="white" size={30} />
         </Box>
       </>
     ),
@@ -114,7 +120,7 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <IconChartArcs color="white" size={30} />
         </Box>
       </>
     ),

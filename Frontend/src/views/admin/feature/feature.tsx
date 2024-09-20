@@ -1,80 +1,115 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import { Box, Grid, InputAdornment, TextField } from '@mui/material';
-import { IconSearch } from '@tabler/icons-react';
+import { IconAd2, IconEdit, IconEyeOff, IconFileStar, IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import TableFeature from './_components/TableFeature';
-import { TabList } from '@mui/lab';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/admin/feature', title: 'Danh sách đề xuất' },
 ];
 
-interface StyleProps {
-  bgColor: string;
-  color: string;
-  title: string;
-  total: string;
-  icons: JSX.Element;
-}
+// interface StyleProps {
+//   bgColor: string;
+//   color: string;
+//   title: string;
+//   total: string;
+//   icons: JSX.Element;
+// }
 
-const DataBox: StyleProps[] = [
+const dataSource = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
     title: 'Đề xuất',
-    total: '120',
+    total: '190',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="primary.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconAd2 color="white" size={30} />
+      </Box>
     ),
   },
   {
-    bgColor: 'info.light',
-    color: 'info.main',
+    bgColor: 'warning.light',
+    color: 'warning.main',
     title: 'Đánh dấu',
-    total: '5',
+    total: '190',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="warning.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconFileStar color="white" size={30} />
+      </Box>
     ),
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Chưa xem',
-    total: '52',
+    total: '123',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="success.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconEyeOff color="white" size={30} />
+      </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Cập nhập',
-    total: '12',
+    total: '23',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="error.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconEdit color="white" size={30} />
+      </Box>
     ),
   },
 ];
@@ -99,7 +134,7 @@ const PageFeature = () => {
     <PageContainer>
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
       <Grid item xs={12}>
-        <TopCard dataSource={DataBox} totalColumn={4} />
+        <TopCard dataSource={dataSource} totalColumn={4} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
