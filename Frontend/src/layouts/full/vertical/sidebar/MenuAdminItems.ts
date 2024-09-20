@@ -2,21 +2,20 @@ import {
   IconAffiliate,
   IconBellRinging,
   IconBrandCodepen,
+  IconBrandEnvato,
   IconMessage2Bolt,
   IconTerminal2,
   IconUsers,
   IconUsersGroup,
 } from '@tabler/icons-react';
-import { IconBrandEnvato } from '@tabler/icons-react';
 
 import { IconPresentationAnalytics } from '@tabler/icons-react';
-
+import { IconTicket } from '@tabler/icons-react';
 import {
   // IconAppWindow,
   IconHeadset,
   IconPackage,
   IconPoint,
-  IconShoppingCart,
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
@@ -52,7 +51,7 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Khách hàng',
     icon: IconUsersGroup,
-    href: '/admin/order',
+    href: '',
   },
   {
     id: uniqueId(),
@@ -70,7 +69,6 @@ const MenuAdminitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Đơn hàng sản phẩm',
         icon: IconPoint,
-
         href: '/admin/buy/orderproducts',
       },
     ],
@@ -92,14 +90,14 @@ const MenuAdminitems: MenuitemsType[] = [
         title: 'Đơn hàng R-Point',
         icon: IconPoint,
 
-        href: '/admin/point/pointdetail',
+        href: '/admin/order/orderRPoint',
       },
     ],
   },
   {
     id: uniqueId(),
     title: 'Mã khuyễn mãi',
-    icon: IconUsers,
+    icon: IconTicket,
     href: '/admin/voucher',
   },
   {
@@ -110,21 +108,21 @@ const MenuAdminitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Publisher',
+        title: 'Publishers',
         icon: IconPoint,
-        href: '/admin/affiliate/publishers',
+        href: '/admin/publisher',
       },
       {
         id: uniqueId(),
         title: 'Đơn hàng Affiliate',
         icon: IconPoint,
-        href: '/admin/affiliate/affiliatepro',
+        href: '/admin/order',
       },
       {
         id: uniqueId(),
         title: 'Lịch sử rút tiền',
         icon: IconPoint,
-        href: '/admin/affiliate/history',
+        href: '/admin/history',
       },
     ],
   },
@@ -169,13 +167,13 @@ const MenuAdminitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Hợp đồng R-Point',
         icon: IconPoint,
-        href: '/admin/accountant/contracPoint',
+        href: '/admin/contactpoint',
       },
       {
         id: uniqueId(),
         title: 'Hợp đồng Affiliate',
         icon: IconPoint,
-        href: '/admin/accountant/contracAfflilate',
+        href: '/admin/contactaffiliate',
       },
       {
         id: uniqueId(),

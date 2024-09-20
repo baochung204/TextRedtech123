@@ -25,9 +25,8 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
-import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-import BlankCard from '../../components/shared/BlankCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import BlankCard from '../../components/shared/BlankCard';
 
 const BCrumb = [
   {

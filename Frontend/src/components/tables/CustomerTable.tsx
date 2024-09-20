@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   FormControlLabel,
   Paper,
@@ -13,10 +12,10 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
-import CustomSwitch from '../forms/theme-elements/CustomSwitch';
-import { DataCustomerListAffiliateTable } from './tableData';
 import useSortableData from 'src/views/apps/customerList/useSortableData';
 import Scrollbar_x from '../custom-scroll/Scrollbar_x'; // Import your Scrollbar_x component
+import CustomSwitch from '../forms/theme-elements/CustomSwitch';
+import { DataCustomerListAffiliateTable } from './tableData';
 
 const CustomerTable = () => {
   const [page, setPage] = useState(0);
@@ -31,7 +30,7 @@ const CustomerTable = () => {
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
+    newPage: number,
   ) => {
     setPage(newPage);
   };
@@ -87,7 +86,8 @@ const CustomerTable = () => {
                 </TableCell>
                 <TableCell onClick={() => handleSortRequest('typeofcustomer')}>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Loại khách hàng {sortBy === 'typeofcustomer' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+                    Loại khách hàng{' '}
+                    {sortBy === 'typeofcustomer' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
                   </Typography>
                 </TableCell>
               </TableRow>
