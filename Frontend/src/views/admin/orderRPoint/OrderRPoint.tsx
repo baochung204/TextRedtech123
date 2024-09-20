@@ -1,8 +1,6 @@
 import { Box, Grid, InputAdornment, TextField, Typography } from '@mui/material';
-import PageContainer from 'src/components/container/PageContainer';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import TableList from 'src/components/ComponentTables/tableList';
-import TopCard from 'src/components/widgets/cards/TopCard';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconBox,
   IconChartBar,
@@ -11,9 +9,11 @@ import {
   IconZoomMoney,
 } from '@tabler/icons-react';
 import { useState } from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import Point from 'src/assets/images/logos/R-Point.png';
+import TableList from 'src/components/ComponentTables/tableList';
+import PageContainer from 'src/components/container/PageContainer';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
   {
     to: '/',
@@ -40,8 +40,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -64,8 +64,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -88,8 +88,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -112,8 +112,8 @@ const DataBox = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
