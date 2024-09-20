@@ -14,21 +14,18 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import {
-  IconBrandStrava,
-  IconLockSquareRounded,
-  IconPasswordUser,
-  IconSearch,
-  IconUser,
-} from '@tabler/icons-react';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import SouthIcon from '@mui/icons-material/South';
-import NorthIcon from '@mui/icons-material/North';
-import React, { createElement, useState } from 'react';
+import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import { createElement, useState } from 'react';
+
 import PersonnelTab from './component/personnelTab';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import TopCard from 'src/components/widgets/cards/TopCard';
+import Decentralization from './component/Decentralization';
+
 
 interface StyleProps {
   bgColor: string;
@@ -57,14 +54,14 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconUser color="white" size={30} />
+        <IconChartBar color="white" size={30} />
       </Box>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Quản trị',
+    title: 'Admin',
     total: '5',
     icons: (
       <Box
@@ -79,7 +76,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconPasswordUser color="white" size={30} />
+        <IconChartBar color="white" size={30} />
       </Box>
     ),
   },
@@ -101,7 +98,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconBrandStrava color="white" size={30} />
+        <IconChartBar color="white" size={30} />
       </Box>
     ),
   },
@@ -123,7 +120,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconLockSquareRounded color="white" size={30} />
+        <IconChartBar color="white" size={30} />
       </Box>
     ),
   },
@@ -302,7 +299,9 @@ const Personnels = () => {
                 </Grid>
               </Grid>
             </TabPanel>
-            <TabPanel value="2">Item Two</TabPanel>
+            <TabPanel value="2">
+              <Decentralization />
+            </TabPanel>
           </TabContext>
         </Box>
       </Grid>
