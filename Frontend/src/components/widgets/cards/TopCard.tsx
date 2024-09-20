@@ -5,7 +5,7 @@ interface StyleProps {
   bgColor: string;
   color: string;
   title: string;
-  total: string;
+  total: string | JSX.Element;
   icons: JSX.Element;
 }
 
@@ -44,7 +44,7 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
                 color: items.color,
               }}
             >
-              <Grid container spacing={totalColumn >= 5 ? 6 : 1.5}>
+              <Grid container spacing={totalColumn >= 5 ? 5.5 : 0}>
                 <Grid
                   item
                   xs={3}
@@ -56,8 +56,14 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
                   {items.icons}
                 </Grid>
                 <Grid item xs={9}>
-                  <Typography variant="h6">{items.title}</Typography>
-                  <Typography variant="h5">{items.total}</Typography>
+                  <Grid container spacing={0.4} sx={{ whiteSpace: 'nowrap' }}>
+                    <Grid item xs={12}>
+                      <Typography variant="h6">{items.title}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography variant="h6">{items.total}</Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </BoxStyled>
