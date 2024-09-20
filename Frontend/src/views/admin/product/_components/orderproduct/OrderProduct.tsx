@@ -24,7 +24,6 @@ import ChildCard from 'src/components/shared/ChildCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from 'src/views/admin/blog/_components/AddBlog';
-import TableFeature from 'src/views/admin/feature/_components/TableFeature';
 import TableOrderProduct from './TableOrderProduct';
 
 const BCrumb = [
@@ -38,16 +37,6 @@ const Transition = React.forwardRef<
 >(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
-const BoxStyled = styled(Box)(() => ({
-  padding: '30px',
-  transition: '0.1s ease-in',
-  cursor: 'pointer',
-  color: 'inherit',
-  '&:hover': {
-    transform: 'scale(1.03)',
-  },
-}));
 
 interface StyleProps {
   bgColor: string;

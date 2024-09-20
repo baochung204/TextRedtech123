@@ -135,11 +135,6 @@ const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
-  // Function mở popup
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-
   // Function đóng popup
   const handleClosePopup = () => {
     setIsPopupOpen(false);
