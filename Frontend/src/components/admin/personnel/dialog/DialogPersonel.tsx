@@ -10,6 +10,8 @@ interface DialogProps {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     value: string;
     keyOption: string | null;
+    setIsCheckFix: React.Dispatch<React.SetStateAction<boolean>>
+    isCheckFix: boolean
 }
 
 const VisuallyHiddenInput = styled('input')({
@@ -24,7 +26,7 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const DialogPersonel = ({ open, setOpen, value, keyOption }: DialogProps) => {
+const DialogPersonel = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheckFix }: DialogProps) => {
     const emptyInitialValues = {
         avtUrl: '',
         name: '',
@@ -37,7 +39,6 @@ const DialogPersonel = ({ open, setOpen, value, keyOption }: DialogProps) => {
 
     const [initialValues, setInitialValues] = useState(emptyInitialValues);
     const isViewMode = keyOption !== null;
-    const [isCheckFix, setIsCheckFix] = useState<boolean>(true);
     const validationSchema = Yup.object({
         avtUrl: Yup.string(),
         name: Yup.string().required('Tên nhân viên là bắt buộc'),
@@ -59,11 +60,11 @@ const DialogPersonel = ({ open, setOpen, value, keyOption }: DialogProps) => {
             resetForm();
             setOpen(false);
             console.log(values);
-            setIsCheckFix(true)
+            setIsCheckFix(false)
         }
     };
     const handleClose = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>, resetForm: () => void) => {
-        setIsCheckFix(true);
+        setIsCheckFix(false);
         setOpen(false);
         resetForm();
     };
