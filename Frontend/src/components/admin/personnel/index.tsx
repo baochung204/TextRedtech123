@@ -13,26 +13,19 @@ import {
   Tab,
   TextField,
   Typography,
-  styled,
 } from '@mui/material';
 import { IconChartBar, IconSearch } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
-import TopCard from 'src/components/widgets/cards/TopCard';
+
 import PersonnelTab from './component/personnelTab';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-const BoxStyled = styled(Box)(() => ({
-  padding: '30px',
-  transition: '0.1s ease-in',
-  cursor: 'pointer',
-  color: 'inherit',
-  '&:hover': {
-    transform: 'scale(1.03)',
-  },
-}));
+import TopCard from 'src/components/widgets/cards/TopCard';
+import Decentralization from './component/Decentralization';
+
 
 interface StyleProps {
   bgColor: string;
@@ -306,7 +299,9 @@ const Personnels = () => {
                 </Grid>
               </Grid>
             </TabPanel>
-            <TabPanel value="2">Item Two</TabPanel>
+            <TabPanel value="2">
+              <Decentralization />
+            </TabPanel>
           </TabContext>
         </Box>
       </Grid>

@@ -2,19 +2,36 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Grid, IconButton, InputAdornment, MenuItem, TextField } from '@mui/material';
+import { Grid, IconButton, InputAdornment, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import { IconReceipt, IconSearch } from '@tabler/icons-react';
+import {
+  IconBrandFlutter,
+  IconBrandSentry,
+  IconChessQueen,
+  IconClick,
+  IconDatabaseSmile,
+  IconFile,
+  IconFile3d,
+  IconFunction,
+  IconHandClick,
+  IconMessageChatbot,
+  IconPhoto,
+  IconPhotoScan,
+  IconSearch,
+  IconUnlink,
+  IconUsers,
+  IconUsersGroup,
+  IconUserStar,
+} from '@tabler/icons-react';
 import React from 'react';
-import icontext from 'src/assets/images/logos/R-Point.png';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import Tab1 from './Tabs/Tab1';
-import Tab2 from './Tabs/Tab2';
 import img1 from 'src/assets/images/badge/badge.png';
 import img2 from 'src/assets/images/badge/badge2.png';
 import img3 from 'src/assets/images/badge/badge3.png';
+import icontext from 'src/assets/images/logos/R-Point.png';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import Tab1 from './Tabs/Tab1';
+import Tab2 from './Tabs/Tab2';
 // const renderStatus = (status: number) => {
 //   const { text, color } = getStatusTextAndColor(status);
 //   return (
@@ -53,7 +70,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconChessQueen color="white" size={30} />
         </Box>
       </>
     ),
@@ -77,7 +94,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconBrandSentry color="white" size={30} />
         </Box>
       </>
     ),
@@ -101,7 +118,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUserStar color="white" size={30} />
         </Box>
       </>
     ),
@@ -125,7 +142,7 @@ const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconMessageChatbot color="white" size={30} />
         </Box>
       </>
     ),
@@ -151,7 +168,7 @@ const Function = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconFunction color="white" size={30} />
         </Box>
       </>
     ),
@@ -175,7 +192,7 @@ const Function = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconBrandFlutter color="white" size={30} />
         </Box>
       </>
     ),
@@ -199,7 +216,7 @@ const Function = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUserStar color="white" size={30} />
         </Box>
       </>
     ),
@@ -223,7 +240,7 @@ const Function = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconMessageChatbot color="white" size={30} />
         </Box>
       </>
     ),
@@ -249,7 +266,7 @@ const Files = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconFile color="white" size={30} />
         </Box>
       </>
     ),
@@ -273,7 +290,7 @@ const Files = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUsers color="white" size={30} />
         </Box>
       </>
     ),
@@ -297,7 +314,7 @@ const Files = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconDatabaseSmile color="white" size={30} />
         </Box>
       </>
     ),
@@ -321,7 +338,7 @@ const Files = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconMessageChatbot color="white" size={30} />
         </Box>
       </>
     ),
@@ -347,7 +364,7 @@ const Model = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconFile3d color="white" size={30} />
         </Box>
       </>
     ),
@@ -371,7 +388,7 @@ const Model = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUsersGroup color="white" size={30} />
         </Box>
       </>
     ),
@@ -395,7 +412,7 @@ const Model = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUserStar color="white" size={30} />
         </Box>
       </>
     ),
@@ -419,7 +436,7 @@ const Model = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconMessageChatbot color="white" size={30} />
         </Box>
       </>
     ),
@@ -445,7 +462,7 @@ const Image = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconPhotoScan color="white" size={30} />
         </Box>
       </>
     ),
@@ -469,7 +486,7 @@ const Image = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUsers color="white" size={30} />
         </Box>
       </>
     ),
@@ -493,7 +510,7 @@ const Image = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconDatabaseSmile color="white" size={30} />
         </Box>
       </>
     ),
@@ -517,7 +534,7 @@ const Image = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconPhoto color="white" size={30} />
         </Box>
       </>
     ),
@@ -543,7 +560,7 @@ const Url = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUnlink color="white" size={30} />
         </Box>
       </>
     ),
@@ -567,7 +584,7 @@ const Url = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconUsers color="white" size={30} />
         </Box>
       </>
     ),
@@ -591,7 +608,7 @@ const Url = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconHandClick color="white" size={30} />
         </Box>
       </>
     ),
@@ -615,7 +632,7 @@ const Url = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <IconClick color="white" size={30} />
         </Box>
       </>
     ),
@@ -1412,8 +1429,8 @@ const Main = () => {
               </TabList>
               {/* {(value === '1' || value === '2') && ( */}
               <Box display={'flex'} justifyContent={'end'}>
-                  <Grid container sx={{ alignItems: 'center' }}>
-                    {/* <Grid item>
+                <Grid container sx={{ alignItems: 'center' }}>
+                  {/* <Grid item>
                       <CustomSelect
                         labelId="column-sort"
                         id="column-sort"
@@ -1425,50 +1442,48 @@ const Main = () => {
                         <MenuItem value={2}>ID</MenuItem>
                       </CustomSelect>
                     </Grid> */}
-                    <Grid item>
-                      <TextField
-                        id="outlined-search"
-                        placeholder="Tìm kiếm"
-                        size="small"
-                        type="search"
-                        variant="outlined"
-                        inputProps={{ 'aria-label': 'Search Followers' }}
-                        sx={{
-                          fontSize: { xs: '50px', sm: '50px', md: '50px' },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <IconSearch size="12" />
-                            </InputAdornment>
-                          ),
-                        }}
-                        fullWidth={true}
-                      />
-                    </Grid>
-                    {(value === '1' || value === '2') && (
-                      <Grid item>
-                        <IconButton
-                          color="primary"
-                          aria-label="Add to cart"
-                          // onClick={() => setOpen(true)}
-                          sx={{
-                            pr: 0,
-                          }}
-                        >
-                          <AddCircleIcon sx={{ fontSize: 30 }} />
-                        </IconButton>
-                      </Grid>
-                    )}
-
+                  <Grid item>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{
+                        fontSize: { xs: '50px', sm: '50px', md: '50px' },
+                      }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="12" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
                   </Grid>
-                </Box>
+                  {(value === '1' || value === '2') && (
+                    <Grid item>
+                      <IconButton
+                        color="primary"
+                        aria-label="Add to cart"
+                        // onClick={() => setOpen(true)}
+                        sx={{
+                          pr: 0,
+                        }}
+                      >
+                        <AddCircleIcon sx={{ fontSize: 30 }} />
+                      </IconButton>
+                    </Grid>
+                  )}
+                </Grid>
+              </Box>
               {/* )} */}
-              
             </Box>
 
             {/* TabPanels */}
-            <TabPanel sx={{ p: 0,pt:2 }} value="1">
+            <TabPanel sx={{ p: 0, pt: 2 }} value="1">
               <Tab1 headCells={StrategyCells} dataRows={StrategyRows} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="2">

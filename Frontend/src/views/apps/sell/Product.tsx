@@ -16,6 +16,7 @@ import {
 import { createElement, useState } from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 
+<<<<<<< HEAD
 import FilterListIcon from '@mui/icons-material/FilterList';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
@@ -24,6 +25,10 @@ import { IconPlus, IconSearch } from '@tabler/icons-react';
 import Products from 'src/components/apps/sell/Product';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
+=======
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import ProductAdmin from 'src/views/admin/product/product';
+>>>>>>> main
 const BCrumb = [
   {
     to: '/',
@@ -168,7 +173,7 @@ const Product = () => {
           </Grid>
         </Grid>
         <Grid item sm={12}>
-          <Products />
+          <ProductAdmin />
         </Grid>
       </Grid>
     </PageContainer>

@@ -17,10 +17,10 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconPasswordUser, IconSearch, IconZoomMoney } from '@tabler/icons-react';
+import { IconBrandGoogleHome, IconCoinOff, IconCoins, IconSearch } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
 
-import { IconBox, IconWashDrycleanOff } from '@tabler/icons-react';
+import { IconBox } from '@tabler/icons-react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import PublisherTable from './component/PublisherTable';
 // const dataSource = [
@@ -74,7 +74,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <IconBrandGoogleHome color="white" size={30} />
         </Box>
       </>
     ),
@@ -122,7 +122,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconZoomMoney color="white" size={30} />
+          <IconCoins color="white" size={30} />
         </Box>
       </>
     ),
@@ -146,7 +146,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconWashDrycleanOff color="white" size={30} />
+          <IconCoinOff color="white" size={30} />
         </Box>
       </>
     ),
