@@ -18,13 +18,11 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
   {
     to: '/',
-    title: 'ADMIN',
+    title: 'Trang chủ',
   },
+
   {
-    title: 'TRỢ LÝ',
-  },
-  {
-    title: 'QUẢN LÝ TRỢ LÝ',
+    title: 'Danh sách trợ lý',
   },
 ];
 
@@ -332,7 +330,7 @@ const Ticket = () => {
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Quản lý ticket" items={BCrumb} />
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>

@@ -145,7 +145,7 @@ const PageFeature = () => {
   return (
     <PageContainer>
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
@@ -163,7 +163,7 @@ const PageFeature = () => {
             >
               <TextField
                 id="outlined-search"
-                placeholder="Tìm kiếm trợ lý"
+                placeholder="Tìm kiếm đề xuất tính năng "
                 size="small"
                 type="search"
                 variant="outlined"
