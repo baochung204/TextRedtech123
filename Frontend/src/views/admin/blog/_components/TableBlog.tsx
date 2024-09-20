@@ -36,12 +36,12 @@ const HeadTable: PropsHeadTable[] = [
 ];
 
 const TableBlog = () => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [page] = useState(0);
+  const [rowsPerPage] = useState(5);
   // const [key, setKey] = useState<string | null>(null);
-  const handleChangePage = (newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (newPage: number) => {
+  //   setPage(newPage);
+  // };
 
   // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setRowsPerPage(parseInt(event.target.value, 10));

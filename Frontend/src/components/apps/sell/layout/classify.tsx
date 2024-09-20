@@ -1,6 +1,6 @@
+import React, { useState, KeyboardEvent } from 'react';
+import { Grid, IconButton, InputBase, Typography, Box } from '@mui/material';
 import { Delete as DeleteIcon } from '@mui/icons-material';
-import { Box, Grid, IconButton, InputBase, Typography } from '@mui/material';
-import React, { KeyboardEvent, useState } from 'react';
 
 // CustomTextField component
 const CustomTextField: React.FC<{
@@ -28,7 +28,7 @@ const CustomTextField: React.FC<{
 const CategoryInput: React.FC = () => {
   const [categories, setCategories] = useState<string[]>(['']);
   const [isEditing, setIsEditing] = useState<boolean>(true);
-
+  console.log(isEditing);
   const handleChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const newCategories = [...categories];
     newCategories[index] = event.target.value;
@@ -61,7 +61,7 @@ const CategoryInput: React.FC = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography variant="h6">Phân loại {isEditing}</Typography>
+        <Typography variant="h6">Phân loại</Typography>
         {categories.map((category, index) => (
           <CustomTextField
             key={index}

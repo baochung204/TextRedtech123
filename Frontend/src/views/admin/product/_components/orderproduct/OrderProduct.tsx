@@ -15,7 +15,6 @@ import {
   Tooltip,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { styled } from '@mui/system';
 import { IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
@@ -38,6 +37,19 @@ const Transition = React.forwardRef<
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+<<<<<<< HEAD
+=======
+// const BoxStyled = styled(Box)(() => ({
+//   padding: '30px',
+//   transition: '0.1s ease-in',
+//   cursor: 'pointer',
+//   color: 'inherit',
+//   '&:hover': {
+//     transform: 'scale(1.03)',
+//   },
+// }));
+
+>>>>>>> f7f9881141679f68152a78a4d88cb61cb7668c8e
 interface StyleProps {
   bgColor: string;
   color: string;

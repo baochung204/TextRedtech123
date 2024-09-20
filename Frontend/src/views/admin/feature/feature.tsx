@@ -9,6 +9,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import TableFeature from './_components/TableFeature';
+import { TabList } from '@mui/lab';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -79,7 +80,20 @@ const DataBox: StyleProps[] = [
 ];
 
 const PageFeature = () => {
-  const [value] = React.useState('1');
+  // const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [value, setValue] = React.useState('1');
+
+  // const handleOpenPopup = () => {
+  //   setIsPopupOpen(true);
+  // };
+
+  // const handleClosePopup = () => {
+  //   setIsPopupOpen(false);
+  // };
+
+  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
 
   return (
     <PageContainer>
@@ -90,6 +104,14 @@ const PageFeature = () => {
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
           <Box>
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              sx={{ p: 0, border: 'none' }}
+            >
+              {/* Optional: Add Tab components here if needed */}
+            </TabList>
+
             <TabPanel value="1" sx={{ p: 0 }}>
               <Box
                 className="actions-and-filters"
@@ -100,27 +122,42 @@ const PageFeature = () => {
                   alignItems: 'center',
                 }}
               >
-                <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Grid item xs={4} sm={4} md={4}>
-                    <TextField
-                      id="outlined-search"
-                      placeholder="Tìm kiếm thông báo"
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  {/* <Tooltip title="Tạo đơn hàng">
+                    <Fab
+                      color="primary"
+                      aria-label="add"
                       size="small"
-                      type="search"
-                      variant="outlined"
-                      inputProps={{ 'aria-label': 'Search Followers' }}
-                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <IconSearch size="20" />
-                          </InputAdornment>
-                        ),
-                      }}
-                      fullWidth={true}
-                    />
-                  </Grid>
-                </Grid>
+                      sx={{ marginRight: '30px' }}
+                      onClick={handleOpenPopup}
+                    >
+                      <FaPlus />
+                    </Fab>
+                  </Tooltip> */}
+
+                  <TextField
+                    sx={{
+                      width: '200px',
+                      marginRight: '40px',
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: '10px',
+                        backgroundColor: '#fff',
+                        '&:hover fieldset': {
+                          borderColor: '#3f51b5',
+                        },
+                      },
+                    }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="1.1rem" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    placeholder="Tìm kiếm"
+                    size="small"
+                  />
+                </Box>
               </Box>
               <TableFeature />
             </TabPanel>

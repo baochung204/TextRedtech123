@@ -151,6 +151,73 @@ const AddBlog = () => {
               helperText={formik.touched.description && formik.errors.description}
             />
           </Grid>
+<<<<<<< HEAD
+=======
+          <Grid item xs={12}>
+            <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel>
+            <CustomTextField
+              id="content"
+              variant="outlined"
+              fullWidth
+              multiline
+              rows={6}
+              value={formik.values.content}
+              onChange={formik.handleChange}
+              name="content"
+              error={formik.touched.content && Boolean(formik.errors.content)}
+              helperText={formik.touched.content && formik.errors.content}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="thumbnail">Ảnh đại diện</CustomFormLabel>
+            <CustomTextField
+              id="thumbnail"
+              variant="outlined"
+              fullWidth
+              value={formik.values.thumbnail}
+              onChange={formik.handleChange}
+              name="thumbnail"
+              error={formik.touched.thumbnail && Boolean(formik.errors.thumbnail)}
+              helperText={formik.touched.thumbnail && formik.errors.thumbnail}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="pricePoint">Giá Point</CustomFormLabel>
+            <CustomTextField
+              id="pricePoint"
+              variant="outlined"
+              fullWidth
+              type="number"
+              value={formik.values.pricePoint}
+              onChange={formik.handleChange}
+              name="pricePoint"
+              error={formik.touched.pricePoint && Boolean(formik.errors.pricePoint)}
+              helperText={formik.touched.pricePoint && formik.errors.pricePoint}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="status">Trạng thái</CustomFormLabel>
+            <CustomTextField
+              id="status"
+              variant="outlined"
+              fullWidth
+              value={formik.values.status}
+              onChange={formik.handleChange}
+              name="status"
+              error={formik.touched.status && Boolean(formik.errors.status)}
+              helperText={formik.touched.status && formik.errors.status}
+            />
+          </Grid>
+          {/* <Grid item xs={12}>
+            <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
+            <Tags
+              value={formik.values.tags}
+              onChange={(tags: any) => formik.setFieldValue('tags', tags)}
+              error={formik.touched.tags && Boolean(formik.errors.tags)}
+              helperText={formik.touched.tags && formik.errors.tags}
+            />
+          </Grid> */}
+>>>>>>> f7f9881141679f68152a78a4d88cb61cb7668c8e
         </Grid>
       </Box>
 
