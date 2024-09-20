@@ -1,4 +1,3 @@
-import React from "react";
 
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from 'src/components/container/PageContainer';
@@ -9,7 +8,7 @@ import Personnels from 'src/components/admin/personnel'
 const BCrumb = [
   {
     to: '/',
-    title: 'Admin',
+    title: 'Trang chủ',
   },
   { to: '/admin/personnel', title: 'Nhân viên' },
 ];

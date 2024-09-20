@@ -13,12 +13,12 @@ import EInvoice from 'src/views/admin/EInvoice/EInvoice';
 import Feature from 'src/views/admin/feature/feature';
 import History from 'src/views/admin/history/history';
 import Notification from 'src/views/admin/notification/notification';
-import OrderAdmin from 'src/views/admin/order/order';
+import OrderAdmin from 'src/views/admin/order';
 import Packagepoint from 'src/views/admin/packagepoint/packagepoint';
 import Pointdetail from 'src/views/admin/pointdetail/pointdetail';
 import ProductAdmin from 'src/views/admin/product/product';
 // import Publishers from 'src/views/admin/publishers/publishers';
-import Publishers from 'src/views/admin/product/product';
+// import Publishers from 'src/views/admin/product/product';
 import Resources from 'src/views/admin/resources/resources';
 import Staff from 'src/views/admin/staff';
 import Ticket from 'src/views/admin/ticket/ticket';
@@ -330,7 +330,7 @@ const Router = [
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
-      { path: '/admin/affiliate/publishers', element: <Publishers /> },
+      // { path: '/admin/affiliate/publishers', element: <Publishers /> },
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },

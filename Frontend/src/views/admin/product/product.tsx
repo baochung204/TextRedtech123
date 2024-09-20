@@ -6,7 +6,6 @@ import {
   Button,
   IconButton,
   InputAdornment,
-  MenuItem,
   Table,
   TableBody,
   TableCell,
@@ -19,18 +18,19 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { alpha  } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import PageContainer from 'src/components/container/PageContainer';
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import ProductTable from './ProductData';
 import AddDialog from 'src/components/apps/sell/layout/addDialog';
-
+import TopCard from 'src/components/widgets/cards/TopCard';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
-  handleSearch: React.ChangeEvent<HTMLInputElement> | any;
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
   search: string;
 }
 
@@ -126,6 +126,84 @@ const HeadTable: HeadProps[] = [
     head: 'Tỉ trọng doanh thu'
   }
 ]
+interface StyleProps {
+  bgColor: string;
+  color: string;
+  title: string;
+  total: string;
+  icons: JSX.Element;
+}
+
+
+const DataBox: StyleProps[] = [
+  {
+    bgColor: 'primary.light',
+    color: 'primary.main',
+    title: 'Khách hàng',
+    total: '6251',
+    icons:
+      <PeopleAltIcon
+        sx={{
+          fontSize: 30
+        }}
+      />
+  },
+  {
+    bgColor: 'warning.light',
+    color: 'warning.main',
+    title: 'Khách trả phí',
+    total: '1204 (33%)',
+    icons:
+      <PeopleAltIcon
+        sx={{
+          fontSize: 30
+        }}
+      />
+  },
+  {
+    bgColor: 'success.light',
+    color: 'success.main',
+    title: 'CN/DN',
+    total: '3251/3000',
+    icons:
+      <PeopleAltIcon
+        sx={{
+          fontSize: 30
+        }}
+      />
+  },
+  {
+    bgColor: 'error.light',
+    color: 'error.main',
+    title: 'Doanh thu',
+    total: '15.126.422.555đ',
+    icons:
+      <PeopleAltIcon
+        sx={{
+          fontSize: 30
+        }}
+      />
+  },
+  {
+    bgColor: 'info.light',
+    color: 'info.main',
+    title: 'Số dư R-Point',
+    total: '52.126.422',
+    icons:
+      <PeopleAltIcon
+        sx={{
+          fontSize: 30
+        }}
+      />
+  }
+]
+const BCrumb = [
+  {
+    to: '/',
+    title: 'Trang chủ',
+  },
+  { to: 'admin/buy/products', title: 'Danh mục sản phẩm' },
+];
 
 const ProductAdmin = () => {
   const [page, setPage] = React.useState(0);
@@ -135,9 +213,9 @@ const ProductAdmin = () => {
 
   const [search, setSearch] = React.useState('');
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    
     setSearch(event.target.value);
   };
+
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
@@ -150,6 +228,8 @@ const ProductAdmin = () => {
   const paginatedData = ProductTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
+      <BannerPage title="Quản lý khách hàng" items={BCrumb} />
+      <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Phần bên trái */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -157,7 +237,7 @@ const ProductAdmin = () => {
           <EnhancedTableToolbar
             numSelected={selected.length}
             search={search}
-            handleSearch={(event: any) => handleSearch(event)}
+            handleSearch={handleSearch}
           />
         </Box>
 
@@ -165,15 +245,7 @@ const ProductAdmin = () => {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Button>Sửa đổi cột</Button>
 
-          <CustomSelect
-            labelId="column-filter"
-            id="column-filter"
-            size="small"
-            value={1} // Setting the first value as default
-            sx={{ marginLeft: '10px' }}
-          >
-            <MenuItem value={1}>Sắp xếp</MenuItem>
-          </CustomSelect>
+
         </Box>
       </Box>
       <TableContainer>
@@ -329,7 +401,7 @@ const ProductAdmin = () => {
           count={ProductTable.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onPageChange={(event, newPage) => handleChangePage(newPage)}
+          onPageChange={(_event, newPage) => handleChangePage(newPage)}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer >

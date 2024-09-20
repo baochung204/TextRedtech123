@@ -1,26 +1,80 @@
-import { Avatar, Grid, IconButton, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import PersonnelTable from '../datatable/PersonnelTable'
-import DialogPersonel from '../dialog/DialogPersonel'
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x'
-import { IconEye } from '@tabler/icons-react';
-import { IconTrash } from '@tabler/icons-react';
-interface PropsHeadTable {
-    head: string
+import { Box, Button, IconButton, InputAdornment, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Toolbar, Tooltip, Typography } from "@mui/material"
+import { IconEye, IconFilter, IconSearch, IconTrash } from "@tabler/icons-react";
+import { alpha } from '@mui/material/styles';
+import { useState } from "react";
+import Scrollbar_x from "src/components/custom-scroll/Scrollbar_x";
+import icontext from 'src/assets/images/logos/R-Point.png';
+import OrderData from "./data/OrderData";
+
+
+interface EnhancedTableToolbarProps {
+    numSelected: number;
+    handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    search: string;
+}
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+    const { numSelected, handleSearch, search } = props;
+
+    return (
+        <Toolbar
+            sx={{
+                pl: { xs: 0, sm: 0 },
+                pr: { xs: 1, sm: 1 },
+                ...(numSelected > 0 && {
+                    bgcolor: (theme) =>
+                        alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+                }),
+            }}
+        >
+            {numSelected > 0 ? (
+                <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
+                    {numSelected} selected
+                </Typography>
+            ) : (
+                <Box sx={{ flex: '1 1 100%' }}>
+                    <TextField
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <IconSearch size="1.1rem" />
+                                </InputAdornment>
+                            ),
+                        }}
+                        placeholder="Tìm kiếm sản phẩm"
+                        size="small"
+                        onChange={handleSearch}
+                        value={search}
+                    />
+                </Box>
+            )}
+
+            {numSelected > 0 ? (
+                <Tooltip title="Delete">
+                    <IconButton>
+                        <IconTrash width="18" />
+                    </IconButton>
+                </Tooltip>
+            ) : (
+                <Tooltip title="Filter list">
+                    <IconButton>
+                        <IconFilter size="1.2rem" />
+                    </IconButton>
+                </Tooltip>
+            )}
+        </Toolbar>
+    );
+};
+
+interface HeadProps {
+    head: string;
 }
 
-const HeadTable: PropsHeadTable[] = [
+const HeadTable: HeadProps[] = [
     {
         head: 'ID'
     },
     {
-        head: 'Ngày tạo'
-    },
-    {
-        head: 'Nhân viên'
-    },
-    {
-        head: 'Phòng ban'
+        head: 'Họ và tên'
     },
     {
         head: 'Email'
@@ -29,29 +83,32 @@ const HeadTable: PropsHeadTable[] = [
         head: 'Số điện thoại'
     },
     {
-        head: 'Bài viết'
+        head: 'Loại tài khoản'
     },
     {
-        head: 'Trạng thái'
+        head: 'Trợ lý'
     },
     {
-        head: 'Hoạt động'
+        head: 'Tổng nạp'
     },
+    {
+        head: 'Số dư'
+    },
+    {
+        head: 'Hành động'
+    }
 ]
 
-interface PropsItem {
-    value: string;
-    open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    selectedKey: string | null;
-    setSelectedKey: React.Dispatch<React.SetStateAction<string | null>>;
-}
 
-const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: PropsItem) => {
-
+const OrderAdminPage = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [selected] = useState<readonly string[]>([]);
+    const [search, setSearch] = useState('');
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 
+        setSearch(event.target.value);
+    };
     const handleChangePage = (newPage: number) => {
         setPage(newPage);
     };
@@ -60,21 +117,31 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
-    const paginatedData = PersonnelTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-    useEffect(() => {
-        console.log("Updated key:", selectedKey);
-    }, [selectedKey]);
-
+    const paginatedData = OrderData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     return (
         <>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+                    <EnhancedTableToolbar
+                        numSelected={selected.length}
+                        search={search}
+                        handleSearch={handleSearch}
+                    />
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Button>Sửa đổi cột</Button>
+
+
+                </Box>
+            </Box>
             <TableContainer>
                 <Scrollbar_x>
                     <Table>
                         <TableHead>
                             <TableRow>
                                 {HeadTable.map((item, index) =>
-                                    <TableCell key={index}
+                                    <TableCell
+                                        key={index}
                                         sx={{
                                             whiteSpace: 'nowrap'
                                         }}
@@ -88,12 +155,9 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                         </TableHead>
                         <TableBody>
                             {paginatedData.map((item, index) => {
-                                // const isItemSelected = isSelected(item.id);
-                                // console.log(isItemSelected);
 
                                 return (
                                     <TableRow key={index}
-                                    // selected={isItemSelected}
                                     >
                                         <TableCell
                                             sx={{
@@ -109,47 +173,13 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                                                 whiteSpace: 'nowrap'
                                             }}>
                                             <Typography variant="subtitle2">
-                                                {item.createdAt.toLocaleDateString()}
+                                                {item.name}
                                             </Typography>
                                         </TableCell>
                                         <TableCell
                                             sx={{
                                                 whiteSpace: 'nowrap'
                                             }}>
-                                            <Stack direction='row' spacing={2}>
-                                                <Avatar
-                                                    src={item.avt}
-                                                    variant="rounded"
-                                                    alt={item.avt}
-                                                    sx={{ width: 48, height: 48 }}
-                                                />
-                                                <Grid container>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant='h6'>
-                                                            {item.employeeName}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant='subtitle2'>
-                                                            {item.position}
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Stack>
-                                        </TableCell>
-                                        <TableCell
-                                            sx={{
-                                                whiteSpace: 'nowrap'
-                                            }}>
-                                            <Typography variant="subtitle2">
-                                                {item.department}
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell
-                                            sx={{
-                                                whiteSpace: 'nowrap'
-                                            }}
-                                        >
                                             <Typography variant="subtitle2">
                                                 {item.email}
                                             </Typography>
@@ -157,10 +187,37 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                                         <TableCell
                                             sx={{
                                                 whiteSpace: 'nowrap'
+                                            }}>
+
+                                            <Typography variant="subtitle2">
+                                                {item.phone}
+                                            </Typography>
+
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                whiteSpace: 'nowrap'
                                             }}
                                         >
+                                            <Box
+                                                sx={{
+                                                    display: 'flex',
+
+                                                }}
+                                            >
+                                                <Typography variant="subtitle2">
+                                                    {item.typeacc}
+                                                </Typography>
+                                            </Box>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                whiteSpace: 'nowrap'
+                                            }}
+                                        >
+
                                             <Typography variant="subtitle2">
-                                                {item.phoneNumber}
+                                                {item.troly}
                                             </Typography>
                                         </TableCell>
                                         <TableCell
@@ -169,7 +226,7 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                                             }}
                                         >
                                             <Typography variant="subtitle2">
-                                                {item.articleCount}
+                                                {item.tongnap} VNĐ
                                             </Typography>
                                         </TableCell>
                                         <TableCell
@@ -177,13 +234,17 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                                                 whiteSpace: 'nowrap'
                                             }}
                                         >
-                                            <Typography variant="subtitle2">
-                                                {item.status ? <Typography color="success.dark" variant="subtitle2">
-                                                    Hoạt động
-                                                </Typography> : <Typography color="error" variant="subtitle2">
-                                                    Khóa
-                                                </Typography>}
-                                            </Typography>
+                                            <Box
+                                                sx={{
+                                                    display: 'flex',
+
+                                                }}
+                                            >
+                                                <Typography variant="subtitle2">
+                                                    {item.sodu}
+                                                </Typography>
+                                                <img src={icontext} alt='' width={20} />
+                                            </Box>
                                         </TableCell>
                                         <TableCell
                                             sx={{
@@ -192,7 +253,7 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                                         >
                                             <IconButton
                                                 onClick={() => {
-                                                    setSelectedKey(item.id); setOpen(true); console.log(item.id);
+                                                    // setSelectedKey(item.id); setOpen(true); console.log(item.id);
                                                 }}
                                             >
                                                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
@@ -201,7 +262,6 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                                                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />
                                             </IconButton>
                                         </TableCell>
-
                                     </TableRow>
                                 );
                             })}
@@ -211,21 +271,15 @@ const PersonnelTab = ({ value, open, setOpen, selectedKey, setSelectedKey }: Pro
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
-                    count={PersonnelTable.length}
+                    count={OrderData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
-                    onPageChange={(event, newPage) => handleChangePage(newPage)}
+                    onPageChange={(_event, newPage) => handleChangePage(newPage)}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </TableContainer >
-            <DialogPersonel
-                open={open}
-                value={value}
-                setOpen={setOpen}
-                keyOption={selectedKey}
-            />
         </>
     )
 }
 
-export default PersonnelTab
+export default OrderAdminPage;

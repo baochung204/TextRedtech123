@@ -6,6 +6,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from "@tabler/icons-react";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PersonnelTab from './component/personnelTab'
+import Decentralization from "./component/Decentralization";
 
 
 
@@ -95,7 +96,7 @@ const Personnels = () => {
     const [value, setValue] = React.useState('1');
     const [selectedItems, setSelectedItems] = useState<string>('');
     const [open, setOpen] = useState<boolean>(false)
-
+    const [selectedKey, setSelectedKey] = useState<string | null>(null)
     const handleChange1 = (event: SelectChangeEvent<string>) => {
         setSelectedItems(event.target.value);
     };
@@ -204,7 +205,8 @@ const Personnels = () => {
                                     color="primary"
                                     aria-label="Add to cart"
                                     onClick={() => {
-                                        setOpen(true); console.log(open);
+                                        setOpen(true);
+                                        setSelectedKey(null)
                                     }}
                                     sx={{
                                         pr: 1.5
@@ -217,8 +219,18 @@ const Personnels = () => {
 
                             </Box>
                         </Box>
-                        <TabPanel value="1"><PersonnelTab value={value} open={open} setOpen={setOpen} /></TabPanel>
-                        <TabPanel value="2">Item Two</TabPanel>
+                        <TabPanel value="1">
+                            <PersonnelTab
+                                value={value}
+                                open={open}
+                                setOpen={setOpen}
+                                selectedKey={selectedKey}
+                                setSelectedKey={setSelectedKey}
+                            />
+                        </TabPanel>
+                        <TabPanel value="2">
+                            <Decentralization />
+                        </TabPanel>
                     </TabContext>
                 </Box>
             </Grid>
