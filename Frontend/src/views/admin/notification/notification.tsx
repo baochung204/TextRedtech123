@@ -1,13 +1,19 @@
 import { Box, Fab, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
-import PageContainer from 'src/components/container/PageContainer';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import TableList from 'src/components/ComponentTables/tableList';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import { IconEye, IconNotification, IconPlus, IconSearch, IconTags } from '@tabler/icons-react';
-import { useState } from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { IconChartArea } from '@tabler/icons-react';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import {
+  IconBellRinging,
+  IconEye,
+  IconPlus,
+  IconSearch,
+  IconTags,
+  IconWorldUpload,
+} from '@tabler/icons-react';
+import { useState } from 'react';
+import TableList from 'src/components/ComponentTables/tableList';
+import PageContainer from 'src/components/container/PageContainer';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
   {
@@ -42,7 +48,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconNotification color="white" size={30} />
+          <IconBellRinging color="white" size={30} />
         </Box>
       </>
     ),
@@ -114,7 +120,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartArea color="white" size={30} />
+          <IconWorldUpload color="white" size={30} />
         </Box>
       </>
     ),

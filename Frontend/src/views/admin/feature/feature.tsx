@@ -1,71 +1,76 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import TabContext from '@mui/lab/TabContext';
-import TabPanel from '@mui/lab/TabPanel';
-import { Box, Grid, InputAdornment, TextField } from '@mui/material';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  InputAdornment,
+  TextField,
+} from '@mui/material';
+import { IconAd2, IconEdit, IconEyeOff, IconFileStar, IconSearch } from '@tabler/icons-react';
 import React from 'react';
+import Slide from '@mui/material/Slide';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
-import ChildCard from './../../../components/shared/ChildCard';
 import TableFeature from './_components/TableFeature';
-import { TabList } from '@mui/lab';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/admin/feature', title: 'Danh sách đề xuất' },
 ];
 
-interface StyleProps {
-  bgColor: string;
-  color: string;
-  title: string;
-  total: string;
-  icons: JSX.Element;
-}
+// interface StyleProps {
+//   bgColor: string;
+//   color: string;
+//   title: string;
+//   total: string;
+//   icons: JSX.Element;
+// }
 
-const DataBox: StyleProps[] = [
+const dataSource = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
     title: 'Đề xuất',
-    total: '120',
+    total: '190',
     icons: (
       <Box
         bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
-          width: 40,
-          height: 40,
+          width: 45,
+          height: 45,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconAd2 color="white" size={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'warning.light',
+    color: 'warning.main',
     title: 'Đánh dấu',
-    total: '5',
+    total: '190',
     icons: (
       <Box
-        bgcolor="secondary.main"
+        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
-          width: 40,
-          height: 40,
+          width: 45,
+          height: 45,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconFileStar color="white" size={30} />
       </Box>
     ),
   },
@@ -73,43 +78,43 @@ const DataBox: StyleProps[] = [
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Chưa xem',
-    total: '52',
+    total: '123',
     icons: (
       <Box
         bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
-          width: 40,
-          height: 40,
+          width: 45,
+          height: 45,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconEyeOff color="white" size={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'error.light',
+    color: 'error.main',
     title: 'Cập nhập',
-    total: '12',
+    total: '23',
     icons: (
       <Box
-        bgcolor="warning.main"
+        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
-          width: 40,
-          height: 40,
+          width: 45,
+          height: 45,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconEdit color="white" size={30} />
       </Box>
     ),
   },
@@ -117,7 +122,7 @@ const DataBox: StyleProps[] = [
 
 const PageFeature = () => {
   // const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value, setValue] = React.useState('1');
+  // const [value, setValue] = React.useState('1');
 
   // const handleOpenPopup = () => {
   //   setIsPopupOpen(true);
@@ -127,16 +132,22 @@ const PageFeature = () => {
   //   setIsPopupOpen(false);
   // };
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+  // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+  //   setValue(newValue);
+  // };
+
+  const [isPopupOpen] = React.useState(false);
+
+  function handleClosePopup(_event: {}): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <PageContainer>
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={4} />
+          <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
           <Grid container>
@@ -176,19 +187,19 @@ const PageFeature = () => {
       </Grid>
 
       {/* Popup Thêm blogs */}
-      {/* <Dialog
+      <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
-        TransitionComponent={Transition}
+        TransitionComponent={Slide}
         keepMounted
       >
         <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle>
         <DialogContent>
           <AddBlog />
         </DialogContent>
-      </Dialog> */}
+      </Dialog>
     </PageContainer>
   );
 };
