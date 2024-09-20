@@ -13,12 +13,11 @@ import {
   IconDatabaseSmile,
   IconFile,
   IconFile3d,
-  IconFiles,
+  IconFunction,
   IconHandClick,
   IconMessageChatbot,
   IconPhoto,
   IconPhotoScan,
-  IconReceipt,
   IconSearch,
   IconUnlink,
   IconUsers,
@@ -33,7 +32,6 @@ import icontext from 'src/assets/images/logos/R-Point.png';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Tab1 from './Tabs/Tab1';
 import Tab2 from './Tabs/Tab2';
-import { IconFunction } from '@tabler/icons-react';
 // const renderStatus = (status: number) => {
 //   const { text, color } = getStatusTextAndColor(status);
 //   return (
