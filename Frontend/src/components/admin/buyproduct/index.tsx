@@ -233,12 +233,12 @@ const FilmsData: FilmsData[] = [
 const BuyProduct = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [selected] = React.useState<readonly string[]>([]);
+  // const [selected] = React.useState<readonly string[]>([]);
 
-  const [search, setSearch] = React.useState('');
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
+  // const [search, setSearch] = React.useState('');
+  // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearch(event.target.value);
+  // };
 
   const handleChangePage = (newPage: number) => {
     setPage(newPage);

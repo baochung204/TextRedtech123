@@ -18,9 +18,6 @@ import * as React from 'react';
 import CustomerTable from 'src/components/tables/CustomerTable';
 import PopupAdd from './PopupAdd';
 // import { TabPanel } from '@mui/lab';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
@@ -65,20 +62,20 @@ const CustomerList = () => {
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   // const [filterColumn, setFilterColumn] = React.useState('');
   // const [searchText, setSearchText] = React.useState('');
-  const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+  // const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
 
-  const handleItemClick = (id: number) => {
-    setSelectedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-    );
-  };
+  // const handleItemClick = (id: number) => {
+  //   setSelectedItems((prev) =>
+  //     prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+  //   );
+  // };
 
-  const [iconIndex, setIconIndex] = React.useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+  // const [iconIndex, setIconIndex] = React.useState<number>(0);
+  // const icons = [SwapVertIcon, SouthIcon, NorthIcon];
 
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
+  // const handleClickIcon = () => {
+  //   setIconIndex((pre) => (pre + 1) % icons.length);
+  // };
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
   // Function mở popup

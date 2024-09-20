@@ -1,7 +1,10 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Badge,
   Box,
-  Button,
   Checkbox,
   Grid,
   IconButton,
@@ -17,77 +20,70 @@ import {
   TablePagination,
   TableRow,
   TextField,
-  Toolbar,
-  Tooltip,
   Typography,
 } from '@mui/material';
-import { IconEye, IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
-import { alpha } from '@mui/material/styles';
+import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { createElement, useState } from 'react';
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import icontext from 'src/assets/images/logos/R-Point.png';
+import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import OrderData from './data/OrderData';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  search: string;
-}
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-  const { numSelected, handleSearch, search } = props;
+// interface EnhancedTableToolbarProps {
+//   numSelected: number;
+//   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+//   search: string;
+// }
+// const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+//   const { numSelected, handleSearch, search } = props;
 
-  return (
-    <Toolbar
-      sx={{
-        pl: { xs: 0, sm: 0 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Box sx={{ flex: '1 1 100%' }}>
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconSearch size="1.1rem" />
-                </InputAdornment>
-              ),
-            }}
-            placeholder="Tìm kiếm sản phẩm"
-            size="small"
-            onChange={handleSearch}
-            value={search}
-          />
-        </Box>
-      )}
+//   return (
+//     <Toolbar
+//       sx={{
+//         pl: { xs: 0, sm: 0 },
+//         pr: { xs: 1, sm: 1 },
+//         ...(numSelected > 0 && {
+//           bgcolor: (theme) =>
+//             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+//         }),
+//       }}
+//     >
+//       {numSelected > 0 ? (
+//         <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
+//           {numSelected} selected
+//         </Typography>
+//       ) : (
+//         <Box sx={{ flex: '1 1 100%' }}>
+//           <TextField
+//             InputProps={{
+//               startAdornment: (
+//                 <InputAdornment position="start">
+//                   <IconSearch size="1.1rem" />
+//                 </InputAdornment>
+//               ),
+//             }}
+//             placeholder="Tìm kiếm sản phẩm"
+//             size="small"
+//             onChange={handleSearch}
+//             value={search}
+//           />
+//         </Box>
+//       )}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <IconTrash width="18" />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <IconFilter size="1.2rem" />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
-  );
-};
+//       {numSelected > 0 ? (
+//         <Tooltip title="Delete">
+//           <IconButton>
+//             <IconTrash width="18" />
+//           </IconButton>
+//         </Tooltip>
+//       ) : (
+//         <Tooltip title="Filter list">
+//           <IconButton>
+//             <IconFilter size="1.2rem" />
+//           </IconButton>
+//         </Tooltip>
+//       )}
+//     </Toolbar>
+//   );
+// };
 
 interface HeadProps {
   head: string;
@@ -146,11 +142,11 @@ const FilmsData: FilmsData[] = [
 const OrderAdminPage = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [selected] = useState<readonly string[]>([]);
-  const [search, setSearch] = useState('');
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
+  // const [selected] = useState<readonly string[]>([]);
+  // const [search, setSearch] = useState('');
+  // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearch(event.target.value);
+  // };
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
