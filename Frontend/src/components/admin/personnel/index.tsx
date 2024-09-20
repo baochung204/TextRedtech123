@@ -28,7 +28,6 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
 import PersonnelTab from './component/personnelTab';
 
-
 interface StyleProps {
   bgColor: string;
   color: string;
@@ -152,7 +151,7 @@ const FilmsData: FilmsData[] = [
 
 const Personnels = () => {
   const [value, setValue] = useState('1');
-  const [selectedKey, setSelectedKey] = useState<string | null>(null)
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
@@ -176,7 +175,7 @@ const Personnels = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
   return (
-    <Grid container rowSpacing={3}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
         <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
@@ -198,7 +197,7 @@ const Personnels = () => {
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ padding: 0 }}>
-              <Grid container spacing={2}>
+              <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <Grid container>
                     <Grid
@@ -244,24 +243,32 @@ const Personnels = () => {
                         fullWidth={true}
                       /> */}
 
-                      <Grid container spacing={1} sx={{display: 'flex', alignItems: 'center'}}>
-                        <Grid item >
+                      <Grid container spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid item>
                           <IconButton
                             color="primary"
                             aria-label="Add to cart"
-                            onClick={() => { setOpen(true); setSelectedKey(null) }}
+                            onClick={() => {
+                              setOpen(true);
+                              setSelectedKey(null);
+                            }}
                             sx={{
                               pr: 0,
                             }}
                           >
                             <Tooltip title="Thêm nhân viên mới" sx={{ mb: '15px' }}>
-                              <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto', mr: '10px' }}>
+                              <Fab
+                                size="small"
+                                color="secondary"
+                                aria-label="plus"
+                                sx={{ my: 'auto', mr: '10px' }}
+                              >
                                 <IconPlus width={18} />
                               </Fab>
                             </Tooltip>
                           </IconButton>
                         </Grid>
-                        <Grid item >
+                        <Grid item>
                           <TextField
                             id="outlined-search"
                             placeholder="Tìm kiếm nhân viên "
@@ -345,13 +352,18 @@ const Personnels = () => {
                             renderInput={(params) => <TextField {...params} />}
                           />
                         </LocalizationProvider>
-                        
                       </Box>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <PersonnelTab value={value} open={open} setOpen={setOpen} setSelectedKey={setSelectedKey} selectedKey={selectedKey} />
+                  <PersonnelTab
+                    value={value}
+                    open={open}
+                    setOpen={setOpen}
+                    setSelectedKey={setSelectedKey}
+                    selectedKey={selectedKey}
+                  />
                 </Grid>
               </Grid>
             </TabPanel>

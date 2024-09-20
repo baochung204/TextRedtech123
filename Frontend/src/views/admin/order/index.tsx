@@ -149,8 +149,8 @@ const OrderAdminPages = () => {
     <PageContainer title="Personnel" description="this is Personnel page">
       <BannerPage title="Quản lý khách hàng" items={BCrumb} />
       <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
+      <Grid container>
+        <Grid item xs={12} mt={3}>
           <OrderAdminPage />
         </Grid>
       </Grid>
