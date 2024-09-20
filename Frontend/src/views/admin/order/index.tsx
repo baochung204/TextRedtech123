@@ -86,7 +86,7 @@ const DataBox: StyleProps[] = [
   }
 ]
 
-const OrderAdmin = () => {
+const OrderAdminPages = () => {
   return (
     <PageContainer title="Personnel" description="this is Personnel page">
       <BannerPage title="Quản lý khách hàng" items={BCrumb} />
@@ -100,4 +100,4 @@ const OrderAdmin = () => {
   );
 };
 
-export default OrderAdmin;
+export default OrderAdminPages;
