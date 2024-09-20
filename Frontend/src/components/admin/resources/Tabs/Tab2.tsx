@@ -119,16 +119,15 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
   return (
     <Grid item xs={12} spacing={0}>
       <BlankCard>
-        <Box >
+        <Box>
           <TableContainer sx={{ px: 2 }}>
             <Scrollbar_x>
               <Table
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
                 size={dense ? 'small' : 'medium'}
-
               >
-                <TableHead sx={{ overflowX: 'auto'}}>
+                <TableHead sx={{ overflowX: 'auto' }}>
                   <TableRow>
                     {(headCells || []).map((headCell) => (
                       <TableCell
@@ -199,6 +198,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage="Số dòng trên trang"
           />
         </Box>
       </BlankCard>
