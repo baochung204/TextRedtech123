@@ -1,10 +1,12 @@
-import * as React from 'react';
-import icontext from 'src/assets/images/logos/R-Point.png';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Avatar,
   Badge,
   Box,
-  Button,
   Checkbox,
   Grid,
   IconButton,
@@ -20,82 +22,74 @@ import {
   TablePagination,
   TableRow,
   TextField,
-  Toolbar,
   Tooltip,
   Typography,
 } from '@mui/material';
-import { alpha } from '@mui/material/styles';
+import { IconSearch } from '@tabler/icons-react';
+import * as React from 'react';
+import icontext from 'src/assets/images/logos/R-Point.png';
 import PageContainer from 'src/components/container/PageContainer';
-import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
-import ProductTable from './ProductData';
-import AddDialog from 'src/components/apps/sell/layout/addDialog';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  search: string;
-}
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-  const { numSelected, handleSearch, search } = props;
+import ProductTable from './ProductData';
+// interface EnhancedTableToolbarProps {
+//     numSelected: number;
+//     handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+//     search: string;
+// }
+// const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+//     const { numSelected, handleSearch, search } = props;
 
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Box sx={{ flex: '1 1 100%' }}>
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconSearch size="1.1rem" />
-                </InputAdornment>
-              ),
-            }}
-            placeholder="Tìm kiếm sản phẩm"
-            size="small"
-            onChange={handleSearch}
-            value={search}
-          />
-        </Box>
-      )}
+//     return (
+//         <Toolbar
+//             sx={{
+//                 pl: { sm: 2 },
+//                 pr: { xs: 1, sm: 1 },
+//                 ...(numSelected > 0 && {
+//                     bgcolor: (theme) =>
+//                         alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+//                 }),
+//             }}
+//         >
+//             {numSelected > 0 ? (
+//                 <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
+//                     {numSelected} selected
+//                 </Typography>
+//             ) : (
+//                 <Box sx={{ flex: '1 1 100%' }}>
+//                     <TextField
+//                         InputProps={{
+//                             startAdornment: (
+//                                 <InputAdornment position="start">
+//                                     <IconSearch size="1.1rem" />
+//                                 </InputAdornment>
+//                             ),
+//                         }}
+//                         placeholder="Tìm kiếm sản phẩm"
+//                         size="small"
+//                         onChange={handleSearch}
+//                         value={search}
+//                     />
+//                 </Box>
+//             )}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <IconTrash width="18" />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <IconFilter size="1.2rem" />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
-  );
-};
+//             {numSelected > 0 ? (
+//                 <Tooltip title="Delete">
+//                     <IconButton>
+//                         <IconTrash width="18" />
+//                     </IconButton>
+//                 </Tooltip>
+//             ) : (
+//                 <Tooltip title="Filter list">
+//                     <IconButton>
+//                         <IconFilter size="1.2rem" />
+//                     </IconButton>
+//                 </Tooltip>
+//             )}
+//         </Toolbar>
+//     );
+// };
 interface HeadProps {
   head: string;
 }

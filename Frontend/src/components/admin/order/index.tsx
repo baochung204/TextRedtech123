@@ -179,7 +179,7 @@ const OrderAdminPage = () => {
       {' '}
       <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Grid item xs={12}>
-          <Grid container>
+          <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Grid
               item
               xs={4}

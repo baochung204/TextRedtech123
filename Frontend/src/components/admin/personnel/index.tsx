@@ -1,4 +1,3 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
@@ -210,39 +209,6 @@ const Personnels = () => {
                         alignItems: 'center',
                       }}
                     >
-                      {/* <IconButton
-                        color="primary"
-                        aria-label="Add to cart"
-                        onClick={() => { setOpen(true); setSelectedKey(null) }}
-                        sx={{
-                          pr: 0,
-                        }}
-                      >
-                        <Tooltip title="Thêm nhân viên mới" sx={{ mb: '15px' }}>
-                          <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto', mr: '10px' }}>
-                            <IconPlus width={18} />
-                          </Fab>
-                        </Tooltip>
-                      </IconButton>
-                      
-                      <TextField
-                        id="outlined-search"
-                        placeholder="Tìm kiếm nhân viên "
-                        size="small"
-                        type="search"
-                        variant="outlined"
-                        inputProps={{ 'aria-label': 'Search Followers' }}
-                        sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <IconSearch size="12" />
-                            </InputAdornment>
-                          ),
-                        }}
-                        fullWidth={true}
-                      /> */}
-
                       <Grid container spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
                         <Grid item>
                           <IconButton
