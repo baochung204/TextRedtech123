@@ -16,14 +16,11 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
   {
-    to: '/',
-    title: 'ADMIN',
+    to: '/admin',
+    title: 'Trang chủ',
   },
   {
-    title: 'TRỢ LÝ',
-  },
-  {
-    title: 'QUẢN LÝ TRỢ LÝ',
+    title: 'Quản lý đơn hàng',
   },
 ];
 
@@ -432,7 +429,7 @@ const OrderRPoint = () => {
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Đơn hàng R-Point" items={BCrumb} />
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
