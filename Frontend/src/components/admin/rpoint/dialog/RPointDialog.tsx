@@ -1,6 +1,5 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, InputAdornment, OutlinedInput, TextField, Typography } from "@mui/material"
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, InputAdornment, TextField, Typography } from "@mui/material"
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik"
-import { useState } from "react"
 import * as Yup from 'yup';
 import icontext from 'src/assets/images/logos/R-Point.png';
 
@@ -35,7 +34,7 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
         function2: '',
         createDate: ''
     }
-    const [initialValues, setInitialValues] = useState(emptyInitialValues);
+    // const [initialValues, setInitialValues] = useState(emptyInitialValues);
 
     const validateSchema = Yup.object({
         name: Yup.string()
@@ -56,7 +55,7 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
             .required('Hành động là bắt buộc.')
     })
 
-    const handleSubmit = (values: typeof initialValues, { resetForm }: FormikHelpers<typeof initialValues>) => {
+    const handleSubmit = (values: typeof emptyInitialValues, { resetForm }: FormikHelpers<typeof emptyInitialValues>) => {
         const now = new Date();
         const day = String(now.getDate()).padStart(2, '0');
         const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -101,7 +100,7 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
             <DialogContent >
                 <Formik
                     enableReinitialize
-                    initialValues={initialValues}
+                    initialValues={emptyInitialValues}
                     validationSchema={validateSchema}
                     onSubmit={handleSubmit}
                     validateOnChange={true}
