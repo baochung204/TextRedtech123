@@ -151,8 +151,6 @@ const AddBlog = () => {
               helperText={formik.touched.description && formik.errors.description}
             />
           </Grid>
-<<<<<<< HEAD
-=======
           <Grid item xs={12}>
             <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel>
             <CustomTextField
@@ -217,7 +215,6 @@ const AddBlog = () => {
               helperText={formik.touched.tags && formik.errors.tags}
             />
           </Grid> */}
->>>>>>> f7f9881141679f68152a78a4d88cb61cb7668c8e
         </Grid>
       </Box>
 

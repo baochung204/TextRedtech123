@@ -37,8 +37,6 @@ const Transition = React.forwardRef<
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-<<<<<<< HEAD
-=======
 // const BoxStyled = styled(Box)(() => ({
 //   padding: '30px',
 //   transition: '0.1s ease-in',
@@ -49,7 +47,6 @@ const Transition = React.forwardRef<
 //   },
 // }));
 
->>>>>>> f7f9881141679f68152a78a4d88cb61cb7668c8e
 interface StyleProps {
   bgColor: string;
   color: string;
