@@ -1,5 +1,6 @@
 import {
   Box,
+  Fab,
   Grid,
   InputAdornment,
   Stack,
@@ -12,6 +13,7 @@ import {
   TableRow,
   TableSortLabel,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import s24 from 'src/assets/images/products/s24.jpg';
@@ -20,7 +22,7 @@ import s24 from 'src/assets/images/products/s24.jpg';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconSearch } from '@tabler/icons-react';
+import { IconPlus, IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 
@@ -30,7 +32,6 @@ import s23 from 'src/assets/images/products/s25.jpg';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
-import AddDflashsale from './add/addflashsale';
 
 interface DataRow3 {
   id: string;
@@ -342,63 +343,57 @@ const FlashSale = () => {
       {' '}
       <Grid item xs={12}>
         <Grid container>
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                marginBottom: '20px',
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-              }}
-            >
-              {' '}
-              <AddDflashsale />
-              <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 1 }}>
-                <TextField
-                  sx={{
-                    width: '300px',
-                    height: '40px',
-                    marginRight: '40px',
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: '10px',
-                      backgroundColor: '#fff',
-                      '&:hover fieldset': {
-                        borderColor: '#3f51b5',
-                      },
-                    },
-                  }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <IconSearch size="1.1rem" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  placeholder="Tìm kiếm"
-                  size="small"
-                />
-              </Box>
-              {/* Time Filter and Refresh Icon */}
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={selectedStartDate}
-                    onChange={setSelectedStartDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                  <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                  <DatePicker
-                    value={selectedEndDate}
-                    onChange={setSelectedEndDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Box>
+          <Grid item xs={12} my={2}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
+                      <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
+                        <IconPlus width={18} />
+                      </Fab>
+                    </Tooltip>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm Flash-Sale"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={5}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -487,8 +482,14 @@ const FlashSale = () => {
                             <TableCell sx={{ whiteSpace: 'nowrap' }}>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {(row?.listed).toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {(row?.listed).toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -496,8 +497,14 @@ const FlashSale = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.sale.toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {row?.sale.toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -505,8 +512,14 @@ const FlashSale = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.flashSale.toLocaleString()}
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    display={'flex'}
+                                    gap={'2px'}
+                                  >
+                                    {row?.flashSale.toLocaleString()}{' '}
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>
@@ -532,7 +545,7 @@ const FlashSale = () => {
                                     gap={'2px'}
                                   >
                                     {row?.TypeVoucher.toLocaleString()}{' '}
-                                    <img src={icontext} alt="" width={20} />
+                                    <img src={icontext} alt="" width={22} />
                                   </Typography>
                                 </Box>
                               </Stack>

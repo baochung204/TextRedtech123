@@ -1,20 +1,51 @@
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
-import { Box, Grid, InputAdornment, TextField } from '@mui/material';
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Fab,
+  Grid,
+  InputAdornment,
+  Slide,
+  TextField,
+  Tooltip,
+} from '@mui/material';
+import { TransitionProps } from '@mui/material/transitions';
 import { IconSearch } from '@tabler/icons-react';
 import React from 'react';
+import { FaPlus } from 'react-icons/fa';
+import PageContainer from 'src/components/container/PageContainer';
+import ChildCard from 'src/components/shared/ChildCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import PageContainer from './../../../components/container/PageContainer';
-import ChildCard from './../../../components/shared/ChildCard';
-import TableFeature from './_components/TableFeature';
-import { TabList } from '@mui/lab';
+import AddBlog from 'src/views/admin/blog/_components/AddBlog';
+import TableOrderProduct from './TableOrderProduct';
 
 const BCrumb = [
-  { to: '/', title: 'Trang Chủ' },
-  { to: '/admin/feature', title: 'Danh sách đề xuất' },
+  { to: '/admin/dashboard', title: 'Trang Chủ' },
+  { to: '/admin/buy/orderproducts', title: 'Danh sách đơn hàng' },
 ];
+
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+// const BoxStyled = styled(Box)(() => ({
+//   padding: '30px',
+//   transition: '0.1s ease-in',
+//   cursor: 'pointer',
+//   color: 'inherit',
+//   '&:hover': {
+//     transform: 'scale(1.03)',
+//   },
+// }));
 
 interface StyleProps {
   bgColor: string;
@@ -28,8 +59,8 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
-    title: 'Đề xuất',
-    total: '120',
+    title: 'Đơn hàng',
+    total: '12.567',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -41,8 +72,8 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'info.light',
     color: 'info.main',
-    title: 'Đánh dấu',
-    total: '5',
+    title: 'Tổng giá trị',
+    total: '16.146.515 (Point)',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -54,8 +85,8 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Chưa xem',
-    total: '52',
+    title: 'Khuyến mại',
+    total: '5.432.234 (Point)',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -67,8 +98,21 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Cập nhập',
-    total: '12',
+    title: 'Tổng thanh toán',
+    total: '12.423.423 (Point)',
+    icons: (
+      <PeopleAltIcon
+        sx={{
+          fontSize: 40,
+        }}
+      />
+    ),
+  },
+  {
+    bgColor: 'warning.light',
+    color: 'warning.main',
+    title: 'AOV',
+    total: '23.423 (Point)',
     icons: (
       <PeopleAltIcon
         sx={{
@@ -79,17 +123,17 @@ const DataBox: StyleProps[] = [
   },
 ];
 
-const PageFeature = () => {
-  // const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+const OrderProduct = () => {
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [value, setValue] = React.useState('1');
 
-  // const handleOpenPopup = () => {
-  //   setIsPopupOpen(true);
-  // };
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
 
-  // const handleClosePopup = () => {
-  //   setIsPopupOpen(false);
-  // };
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -97,9 +141,9 @@ const PageFeature = () => {
 
   return (
     <PageContainer>
-      <BannerPage title="Đề xuất tính năng" items={BCrumb} />
+      <BannerPage title="Đơn hàng sản phẩm" items={BCrumb} />
       <Grid item xs={12}>
-        <TopCard dataSource={DataBox} totalColumn={4} />
+        <TopCard dataSource={DataBox} totalColumn={5} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
@@ -123,7 +167,7 @@ const PageFeature = () => {
                 }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  {/* <Tooltip title="Tạo đơn hàng">
+                  <Tooltip title="Tạo đơn hàng">
                     <Fab
                       color="primary"
                       aria-label="add"
@@ -133,7 +177,7 @@ const PageFeature = () => {
                     >
                       <FaPlus />
                     </Fab>
-                  </Tooltip> */}
+                  </Tooltip>
 
                   <TextField
                     sx={{
@@ -159,14 +203,14 @@ const PageFeature = () => {
                   />
                 </Box>
               </Box>
-              <TableFeature />
+              <TableOrderProduct />
             </TabPanel>
           </Box>
         </TabContext>
       </ChildCard>
 
       {/* Popup Thêm blogs */}
-      {/* <Dialog
+      <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
         fullWidth
@@ -178,9 +222,9 @@ const PageFeature = () => {
         <DialogContent>
           <AddBlog />
         </DialogContent>
-      </Dialog> */}
+      </Dialog>
     </PageContainer>
   );
 };
 
-export default PageFeature;
+export default OrderProduct;

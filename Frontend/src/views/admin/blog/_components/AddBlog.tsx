@@ -1,85 +1,39 @@
 import { Box, Button, Grid, Typography, useTheme } from '@mui/material';
 import { useFormik } from 'formik';
-import Tags from 'src/components/apps/sell/layout/Tags';
+// import Tags from 'src/components/apps/sell/layout/Tags';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import * as Yup from 'yup';
-
-// interface CurrencyType {
-//   value: string;
-//   label: string;
-// }
-
-// const currencies: CurrencyType[] = [
-//   { value: 'female', label: 'Nữ' },
-//   { value: 'male', label: 'Nam' },
-//   { value: 'other', label: 'Khác' },
-// ];
-
-// const channels: CurrencyType[] = [
-//   { value: 'Makerting', label: 'MKT' },
-//   { value: 'Zalo', label: 'Zalo' },
-//   { value: 'Facebook', label: 'Facebook' },
-//   { value: 'Instagram', label: 'Instagram' },
-//   // { value: 'other', label: 'Other' },
-// ];
 
 const AddBlog = () => {
   const theme = useTheme();
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      title: '',
+      url: '',
       phone: '',
+      description: '',
+      content: '',
       gender: '',
-      email: '',
       dob: '',
-      notes: '',
+      tags: [],
+      thumbnail: '',
+      pricePoint: '',
+      status: '',
       assistant: '',
-      tags: '',
-      selectedChannels: [],
-      companyName: '',
-      companyAddress: '',
-      taxId: '',
-      companyEmail: '',
-      companyPhone: '',
-      companyWebsite: '',
-      facebookUrl: '',
       zaloUrl: '',
-      instagramUrl: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required('Tên khách hàng là bắt buộc'),
+      title: Yup.string().required('Tiêu đề là bắt buộc'),
       phone: Yup.string()
         .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ')
-        .when('email', {
-          is: (email: string) => !email, // Nếu email không có giá trị
-          then: Yup.string().required('Số điện thoại khách hàng là bắt buộc'),
-        }),
+        .required('Số điện thoại là bắt buộc'),
       gender: Yup.string(),
-      email: Yup.string().required('Email là bắt buộc'),
-      // .email('Email không hợp lệ')
-      // .when('phone', {
-      //   is: (phone:string) => !phone, // Nếu phone không có giá trị
-      //   then: Yup.string().required('Email là bắt buộc')
-      // }),
+      url: Yup.string().url('URL không hợp lệ'),
       dob: Yup.date(),
-      notes: Yup.string(),
-      assistant: Yup.string(),
-      tags: Yup.string(),
-      selectedChannels: Yup.array().min(1, 'Chọn ít nhất một kênh'),
-      companyName: Yup.string(),
-      companyAddress: Yup.string(),
-      taxId: Yup.string(),
-      companyEmail: Yup.string().email('Email không hợp lệ'),
-      companyPhone: Yup.string().matches(
-        /^(0[3|5|7|8|9])+([0-9]{8})$/,
-        'Số điện thoại không hợp lệ',
-      ),
-      companyWebsite: Yup.string().url('URL không hợp lệ'),
-      facebookUrl: Yup.string().url('URL không hợp lệ'),
-      zaloUrl: Yup.string().url('URL không hợp lệ'),
-      instagramUrl: Yup.string().url('URL không hợp lệ'),
+      zaloUrl: Yup.string().url('URL Zalo không hợp lệ'),
+      tags: Yup.string().required('Tags là bắt buộc'),
     }),
     onSubmit: (values) => {
       // Xử lý gửi dữ liệu
@@ -112,22 +66,24 @@ const AddBlog = () => {
         >
           Thông tin cá nhân
         </Typography>
+
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="name">Tên khách hàng</CustomFormLabel>
+            <CustomFormLabel htmlFor="title">Tiêu đề</CustomFormLabel>
             <CustomTextField
-              id="name"
+              id="title"
               variant="outlined"
               fullWidth
-              value={formik.values.name}
+              value={formik.values.title}
               onChange={formik.handleChange}
-              name="name"
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              helperText={formik.touched.name && formik.errors.name}
+              name="title"
+              error={formik.touched.title && Boolean(formik.errors.title)}
+              helperText={formik.touched.title && formik.errors.title}
             />
-            <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>
-              Số điện thoại
-            </CustomFormLabel>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="phone">Số điện thoại</CustomFormLabel>
             <CustomTextField
               id="phone"
               variant="outlined"
@@ -138,35 +94,12 @@ const AddBlog = () => {
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               helperText={formik.touched.phone && formik.errors.phone}
             />
-            <Grid item xs={12} md={6}>
-              <CustomFormLabel htmlFor="assistant">Trợ lý</CustomFormLabel>
-              <CustomTextField
-                id="assistant"
-                variant="outlined"
-                fullWidth
-                value={formik.values.assistant}
-                onChange={formik.handleChange}
-                name="assistant"
-                error={formik.touched.assistant && Boolean(formik.errors.assistant)}
-                helperText={formik.touched.assistant && formik.errors.assistant}
-              />
-              <CustomFormLabel htmlFor="tags" sx={{ mt: 2 }}>
-                Tags
-              </CustomFormLabel>
-              <Tags />
-            </Grid>
-            {formik.touched.gender && Boolean(formik.errors.gender) && (
-              <Typography color="error" variant="body2">
-                {formik.errors.gender}
-              </Typography>
-            )}
           </Grid>
-          <Grid item xs={12} md={4}>
-            <CustomFormLabel htmlFor="zaloUrl">Zalo</CustomFormLabel>
+
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="zaloUrl">Zalo URL</CustomFormLabel>
             <CustomTextField
-              placeholder="https://www.zalo.com/abc"
               id="zaloUrl"
-              type="url"
               variant="outlined"
               fullWidth
               value={formik.values.zaloUrl}
@@ -176,22 +109,9 @@ const AddBlog = () => {
               helperText={formik.touched.zaloUrl && formik.errors.zaloUrl}
             />
           </Grid>
+
           <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
-            <CustomTextField
-              id="email"
-              type="email"
-              variant="outlined"
-              fullWidth
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              name="email"
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-            <CustomFormLabel htmlFor="dob" sx={{ mt: 2 }}>
-              Ngày sinh
-            </CustomFormLabel>
+            <CustomFormLabel htmlFor="dob">Ngày sinh</CustomFormLabel>
             <CustomTextField
               id="dob"
               type="date"
@@ -204,25 +124,100 @@ const AddBlog = () => {
               error={formik.touched.dob && Boolean(formik.errors.dob)}
               helperText={formik.touched.dob && formik.errors.dob}
             />
-            <CustomFormLabel htmlFor="notes" sx={{ mt: 2 }}>
-              Ghi chú
-            </CustomFormLabel>
+          </Grid>
+
+          {/* <Grid item xs={12}>
+            <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
+            <Tags
+              value={formik.values.tags}
+              onChange={(tags: string[]) => formik.setFieldValue('tags', tags)}
+              error={formik.touched.tags && Boolean(formik.errors.tags)}
+              helperText={formik.touched.tags ? formik.errors.tags : ''}
+            />
+          </Grid> */}
+
+          <Grid item xs={12}>
+            <CustomFormLabel htmlFor="description">Ghi chú</CustomFormLabel>
             <CustomTextField
-              id="notes"
+              id="description"
               variant="outlined"
               fullWidth
               multiline
-              rows={3}
-              value={formik.values.notes}
+              rows={4}
+              value={formik.values.description}
               onChange={formik.handleChange}
-              name="notes"
-              error={formik.touched.notes && Boolean(formik.errors.notes)}
-              helperText={formik.touched.notes && formik.errors.notes}
+              name="description"
+              error={formik.touched.description && Boolean(formik.errors.description)}
+              helperText={formik.touched.description && formik.errors.description}
             />
           </Grid>
+          <Grid item xs={12}>
+            <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel>
+            <CustomTextField
+              id="content"
+              variant="outlined"
+              fullWidth
+              multiline
+              rows={6}
+              value={formik.values.content}
+              onChange={formik.handleChange}
+              name="content"
+              error={formik.touched.content && Boolean(formik.errors.content)}
+              helperText={formik.touched.content && formik.errors.content}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="thumbnail">Ảnh đại diện</CustomFormLabel>
+            <CustomTextField
+              id="thumbnail"
+              variant="outlined"
+              fullWidth
+              value={formik.values.thumbnail}
+              onChange={formik.handleChange}
+              name="thumbnail"
+              error={formik.touched.thumbnail && Boolean(formik.errors.thumbnail)}
+              helperText={formik.touched.thumbnail && formik.errors.thumbnail}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="pricePoint">Giá Point</CustomFormLabel>
+            <CustomTextField
+              id="pricePoint"
+              variant="outlined"
+              fullWidth
+              type="number"
+              value={formik.values.pricePoint}
+              onChange={formik.handleChange}
+              name="pricePoint"
+              error={formik.touched.pricePoint && Boolean(formik.errors.pricePoint)}
+              helperText={formik.touched.pricePoint && formik.errors.pricePoint}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CustomFormLabel htmlFor="status">Trạng thái</CustomFormLabel>
+            <CustomTextField
+              id="status"
+              variant="outlined"
+              fullWidth
+              value={formik.values.status}
+              onChange={formik.handleChange}
+              name="status"
+              error={formik.touched.status && Boolean(formik.errors.status)}
+              helperText={formik.touched.status && formik.errors.status}
+            />
+          </Grid>
+          {/* <Grid item xs={12}>
+            <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
+            <Tags
+              value={formik.values.tags}
+              onChange={(tags: any) => formik.setFieldValue('tags', tags)}
+              error={formik.touched.tags && Boolean(formik.errors.tags)}
+              helperText={formik.touched.tags && formik.errors.tags}
+            />
+          </Grid> */}
         </Grid>
       </Box>
-      <h1>test</h1>
+
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
         <Button type="submit" variant="contained" color="primary">
           Lưu thông tin

@@ -1,5 +1,6 @@
 import {
   Box,
+  Chip,
   Grid,
   InputAdornment,
   Stack,
@@ -33,7 +34,7 @@ interface DataRow2 {
   user: string;
   email: string;
   phone: string;
-  expiry: number;
+  expiry: string;
   TypeVoucher: string;
   sale: number;
   ID_order: string;
@@ -47,8 +48,8 @@ const dataRows2: DataRow2[] = [
     user: 'Nguyễn văn Toản',
     email: 'toan2ho@gmail.com',
     phone: '08686759866',
-    expiry: 90,
-    TypeVoucher: '%',
+    expiry: '09/05/2024 10:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 23,
     ID_order: '#09341341',
   },
@@ -60,8 +61,8 @@ const dataRows2: DataRow2[] = [
     user: 'Trần Văn B',
     email: 'tranb@gmail.com',
     phone: '0987654321',
-    expiry: 60,
-    TypeVoucher: 'đ',
+    expiry: '09/03/2024 10:45:00',
+    TypeVoucher: 'đồng',
     sale: 99,
     ID_order: '#09341342',
   },
@@ -73,8 +74,8 @@ const dataRows2: DataRow2[] = [
     user: 'Lê Thị C',
     email: 'lec@gmail.com',
     phone: '0912345678',
-    expiry: 30,
-    TypeVoucher: '%',
+    expiry: '09/03/2024 10:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 10,
     ID_order: '#09341343',
   },
@@ -86,8 +87,8 @@ const dataRows2: DataRow2[] = [
     user: 'Phạm Văn D',
     email: 'phamd@gmail.com',
     phone: '0901234567',
-    expiry: 45,
-    TypeVoucher: 'đ',
+    expiry: '09/03/2024 10:45:00',
+    TypeVoucher: 'đồng',
     sale: 100,
     ID_order: '#09341344',
   },
@@ -99,8 +100,8 @@ const dataRows2: DataRow2[] = [
     user: 'Nguyễn Thị E',
     email: 'nguyene@gmail.com',
     phone: '0897654321',
-    expiry: 20,
-    TypeVoucher: '%',
+    expiry: '10/03/2025 00:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 20,
     ID_order: '#09341345',
   },
@@ -112,8 +113,8 @@ const dataRows2: DataRow2[] = [
     user: 'Trần Thị F',
     email: 'tranf@gmail.com',
     phone: '0887654321',
-    expiry: 10,
-    TypeVoucher: '%',
+    expiry: '09/03/2025 10:45:00',
+    TypeVoucher: 'phân trăm',
     sale: 10,
     ID_order: '#09341346',
   },
@@ -284,7 +285,6 @@ const HistoryVoucher = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const [value, setValue] = React.useState(0);
   const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
@@ -336,99 +336,50 @@ const HistoryVoucher = () => {
       {' '}
       <Grid item xs={12}>
         <Grid container>
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                marginBottom: '20px',
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-              }}
-            >
-              {' '}
-              {/* <AddDialogvoucher /> */}
-              {/* Action Buttons and Filters */}
-              <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 5 }}>
-                {/* Add Order Button */}
-                {/* <Tooltip title="Tạo đơn hàng">
-      <Fab
-        color="primary"
-        aria-label="add"
-        size="small"
-        sx={{ marginRight: '30px' }}
-        onClick={handleOpenPopup}
-      >
-        <FaPlus />
-      </Fab>
-    </Tooltip> */}
+          <Grid item xs={12} my={2}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={10}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm lịch sử"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
 
-                {/* Search Bar */}
-                <TextField
-                  sx={{
-                    width: '300px',
-                    height: '40px',
-                    marginRight: '40px',
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: '10px',
-                      backgroundColor: '#fff',
-                      '&:hover fieldset': {
-                        borderColor: '#3f51b5',
-                      },
-                    },
-                  }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <IconSearch size="1.1rem" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  placeholder="Tìm kiếm "
-                  size="small"
-                />
-
-                {/* Column Filter and Sort */}
-                {/* <CustomSelect
-      labelId="column-filter"
-      id="column-filter"
-      size="small"
-      value={1}
-      sx={{ marginRight: '30px' }}
-    >
-      <MenuItem value={1}>Sửa đổi cột</MenuItem>
-    </CustomSelect>
-
-    <CustomSelect
-      labelId="column-sort"
-      id="column-sort"
-      size="small"
-      value={1}
-      sx={{ marginRight: '20px' }}
-    >
-      <MenuItem value={1}>Bộ lọc</MenuItem>
-    </CustomSelect> */}
-              </Box>
-              {/* Time Filter and Refresh Icon */}
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={selectedStartDate}
-                    onChange={setSelectedStartDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                  <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                  <DatePicker
-                    value={selectedEndDate}
-                    onChange={setSelectedEndDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Box>
+              <Grid item xs={5}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -544,7 +495,22 @@ const HistoryVoucher = () => {
                               <Stack spacing={2} direction="row">
                                 <Box>
                                   <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.TypeVoucher}
+                                    <Chip
+                                      sx={{
+                                        bgcolor:
+                                          row?.TypeVoucher === 'đồng'
+                                            ? 'primary.main'
+                                            : 'secondary.main',
+                                        color:
+                                          row?.TypeVoucher === 'đồng'
+                                            ? 'primary.contrastText'
+                                            : 'secondary.contrastText',
+
+                                        borderRadius: '8px',
+                                      }}
+                                      size="small"
+                                      label={row?.TypeVoucher}
+                                    />
                                   </Typography>
                                 </Box>
                               </Stack>

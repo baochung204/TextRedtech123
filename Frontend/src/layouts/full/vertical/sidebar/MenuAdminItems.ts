@@ -69,7 +69,6 @@ const MenuAdminitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Đơn hàng sản phẩm',
         icon: IconPoint,
-
         href: '/admin/buy/orderproducts',
       },
     ],

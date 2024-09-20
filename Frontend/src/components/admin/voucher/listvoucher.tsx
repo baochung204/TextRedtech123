@@ -1,6 +1,7 @@
 import {
   Box,
   Chip,
+  Fab,
   Grid,
   InputAdornment,
   Stack,
@@ -13,6 +14,7 @@ import {
   TableRow,
   TableSortLabel,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { format } from 'date-fns';
@@ -21,12 +23,11 @@ import { format } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconSearch } from '@tabler/icons-react';
+import { IconPlus, IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import BlankCard from 'src/components/shared/BlankCard';
-import AddDialogvoucher from './add/addDialog';
 interface DataRow {
   id: string;
   creationTime: string;
@@ -48,7 +49,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'JDEwJG5zZ3J1c2',
     quantity: 234,
-    customerId: 'đ',
+    customerId: 'Đồng',
     customerName: '19.000 đ',
     tag: 'chưa sử dụng',
     use: 23,
@@ -60,7 +61,7 @@ const dataRows: DataRow[] = [
     endTime: '2025-10-12 00:23',
     Mavoucher: 'DFG3554F3TT4F',
     quantity: 680,
-    customerId: 'đ',
+    customerId: 'Đồng',
     customerName: '99.000 đ',
     tag: 'đã sử dụng',
     use: 41,
@@ -72,7 +73,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'DG335534TTGGE',
     quantity: 32,
-    customerId: '%',
+    customerId: 'Phần trăm',
     customerName: '10%',
     tag: 'quá hạn',
     use: 21,
@@ -84,7 +85,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: '44FV43TG4V34G',
     quantity: 54,
-    customerId: 'đ',
+    customerId: 'Phần trăm',
     customerName: '100.000đ',
     tag: 'đã sử dụng',
     use: 3,
@@ -96,7 +97,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'DGH34T53167D5',
     quantity: 23,
-    customerId: '%',
+    customerId: 'Phần trăm',
     customerName: '20%',
     tag: 'quá hạn',
     use: 7,
@@ -108,7 +109,7 @@ const dataRows: DataRow[] = [
     endTime: '2024-09-03 10:45',
     Mavoucher: 'RH56YH563226TYB',
     quantity: 424,
-    customerId: '%',
+    customerId: 'Phần trăm',
     customerName: '10%',
     tag: 'đã sử dụng',
     use: 23,
@@ -326,91 +327,64 @@ const ListVoucher = () => {
       {' '}
       <Grid item xs={12}>
         <Grid container>
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                marginBottom: '20px',
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-              }}
-            >
-              {' '}
-              <AddDialogvoucher />
-              {/* Action Buttons and Filters */}
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginLeft: 1,
-                }}
-              >
-                {/* Add Order Button */}
-                {/* <Tooltip title="Tạo đơn hàng">
-      <Fab
-        color="primary"
-        aria-label="add"
-        size="small"
-        sx={{ marginRight: '30px' }}
-        onClick={handleOpenPopup}
-      >
-        <FaPlus />
-      </Fab>
-    </Tooltip> */}
+          <Grid item xs={12} my={2}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
+                      <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
+                        <IconPlus width={18} />
+                      </Fab>
+                    </Tooltip>
+                  </Grid>
+                  <Grid item xs={10}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm mã khuyến mại"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
 
-                {/* Search Bar */}
-                <TextField
-                  sx={{
-                    width: '300px',
-
-                    marginRight: '40px',
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: '10px',
-                      backgroundColor: '#fff',
-                      '&:hover fieldset': {
-                        borderColor: '#3f51b5',
-                      },
-                    },
-                  }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <IconSearch size="1.1rem" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  placeholder="Tìm kiếm voucher"
-                  size="small"
-                />
-              </Box>
-              {/* Time Filter and Refresh Icon */}
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={selectedStartDate}
-                    onChange={setSelectedStartDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                  <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                  <DatePicker
-                    value={selectedEndDate}
-                    onChange={setSelectedEndDate}
-                    renderInput={(params: any) => (
-                      <TextField {...params} sx={{ marginRight: '10px' }} />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Box>
+              <Grid item xs={5}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params: any) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
           <Box mb={2} sx={{ mb: 2 }}>
-            <TableContainer>
+            <TableContainer sx={{ p: 2 }}>
               <Scrollbar_x>
                 <Table
                   sx={{ minWidth: 750 }}
@@ -500,8 +474,19 @@ const ListVoucher = () => {
                             <TableCell>
                               <Stack spacing={2} direction="row">
                                 <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.customerId}
+                                  <Typography color="" variant="subtitle2">
+                                    <Chip
+                                      label={row?.customerId}
+                                      sx={{
+                                        bgcolor:
+                                          row?.customerId === 'Đồng'
+                                            ? 'primary.main'
+                                            : 'secondary.main',
+                                        color: row?.customerId === 'Đồng' ? 'white' : 'white',
+                                      }}
+                                      key={row?.customerId}
+                                      size="small"
+                                    />
                                   </Typography>
                                 </Box>
                               </Stack>

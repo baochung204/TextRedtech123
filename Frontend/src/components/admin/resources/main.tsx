@@ -5,7 +5,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import { Grid, IconButton, InputAdornment, MenuItem, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import { IconSearch } from '@tabler/icons-react';
+import { IconReceipt, IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -37,7 +37,20 @@ const Strategy = [
     total: '52',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="primary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -48,7 +61,20 @@ const Strategy = [
     total: '189',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="secondary.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -59,7 +85,20 @@ const Strategy = [
     total: '32.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="success.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -70,7 +109,20 @@ const Strategy = [
     total: '11.415',
     icons: (
       <>
-        <img src={icontext} alt="" width={40} />
+        <Box
+          bgcolor="warning.main"
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <IconReceipt color="white" size={30} />
+        </Box>
       </>
     ),
   },
@@ -312,144 +364,6 @@ interface HeadCell {
   numeric: boolean;
 }
 
-// const StrategyCells: HeadCell[] = [
-
-//   {
-//     dataIndex: 'idTicket',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'ID Ticket',
-//   },
-//   {
-//     dataIndex: 'creationTime',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Thời gian tạo',
-//   },
-//   {
-//     dataIndex: 'interaction',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Tương tác gần đây',
-//   },
-//   {
-//     dataIndex: 'rating',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Đánh giá',
-//   },
-//   {
-//     dataIndex: 'status',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Trạng thái',
-//   },
-//   {
-//     dataIndex: 'title',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Tiêu đề',
-//   },
-//   {
-//     dataIndex: 'customerId',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'ID Khách hàng',
-//   },
-//   {
-//     dataIndex: 'customerName',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Tên Khách hàng',
-//   },
-//   {
-//     dataIndex: 'email',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Email',
-//   },
-//   {
-//     dataIndex: 'phoneNumber',
-//     numeric: false,
-//     disablePadding: false,
-//     label: 'Số điện thoại',
-//   },
-// ];
-
-// const StrategyRows: DataRow[] = [
-//   {
-//     idTicket: 'TCK001',
-//     creationTime: '2024-09-01 08:30',
-//     interaction: 'Nhận yêu cầu',
-//     rating: 4,
-//     status: renderStatus(1),
-//     title: 'Lỗi sản phẩm',
-//     customerId: 'CUS001',
-//     customerName: 'Nguyễn Văn A',
-//     email: 'nguyenvana@example.com',
-//     phoneNumber: '0123456789',
-//   },
-//   {
-//     idTicket: 'TCK002',
-//     creationTime: '2024-09-02 09:15',
-//     interaction: 'Gửi phản hồi',
-//     rating: 5,
-//     status: renderStatus(2),
-//     title: 'Yêu cầu hỗ trợ kỹ thuật',
-//     customerId: 'CUS002',
-//     customerName: 'Trần Thị B',
-//     email: 'tranthib@example.com',
-//     phoneNumber: '0987654321',
-//   },
-//   {
-//     idTicket: 'TCK003',
-//     creationTime: '2024-09-03 10:45',
-//     interaction: 'Gọi điện',
-//     rating: 3,
-//     status: renderStatus(1),
-//     title: 'Vấn đề thanh toán',
-//     customerId: 'CUS003',
-//     customerName: 'Lê Văn C',
-//     email: 'levanc@example.com',
-//     phoneNumber: '0123987654',
-//   },
-//   {
-//     idTicket: 'TCK004',
-//     creationTime: '2024-09-04 11:20',
-//     interaction: 'Nhận yêu cầu',
-//     rating: 2,
-//     status: renderStatus(2),
-//     title: 'Sản phẩm bị lỗi',
-//     customerId: 'CUS004',
-//     customerName: 'Hoàng Thị D',
-//     email: 'hoangthid@example.com',
-//     phoneNumber: '0234567890',
-//   },
-//   {
-//     idTicket: 'TCK005',
-//     creationTime: '2024-09-05 14:05',
-//     interaction: 'Gửi phản hồi',
-//     rating: 4,
-//     status: renderStatus(2),
-//     title: 'Yêu cầu đổi hàng',
-//     customerId: 'CUS005',
-//     customerName: 'Phạm Văn E',
-//     email: 'phamvane@example.com',
-//     phoneNumber: '0345678901',
-//   },
-//   {
-//     idTicket: 'TCK006',
-//     creationTime: '2024-09-06 15:30',
-//     interaction: 'Gọi điện',
-//     rating: 5,
-//     status: renderStatus(1),
-//     title: 'Vấn đề bảo hành',
-//     customerId: 'CUS006',
-//     customerName: 'Ngô Thị F',
-//     email: 'ngothif@example.com',
-//     phoneNumber: '0456789012',
-//   },
-// ];
 
 const StrategyCells: HeadCell[] = [
   {
@@ -1157,13 +1071,12 @@ const Main = () => {
       <Grid item xs={12}>
         <Box>
           {/* Hiển thị TopCard khi tab value là 1 */}
-          {/* {value === '1' && <TopCard dataSource={Strategy} />}
-          {value === '2' && <TopCard dataSource={Function} />}
-          {value === '3' && <TopCard dataSource={Files} />}
-          {value === '4' && <TopCard dataSource={Model} />}
-          {value === '5' && <TopCard dataSource={Image} />}
-          {value === '6' && <TopCard dataSource={Url} />} */}
-          <TopCard dataSource={Strategy} totalColumn={4} />
+          {value === '1' && <TopCard dataSource={Strategy} totalColumn={4} />}
+          {value === '2' && <TopCard dataSource={Function} totalColumn={4} />}
+          {value === '3' && <TopCard dataSource={Files} totalColumn={4} />}
+          {value === '4' && <TopCard dataSource={Model} totalColumn={4} />}
+          {value === '5' && <TopCard dataSource={Image} totalColumn={4} />}
+          {value === '6' && <TopCard dataSource={Url} totalColumn={4} />}
 
           <TabContext value={value}>
             <Box

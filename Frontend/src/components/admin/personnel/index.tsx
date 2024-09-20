@@ -14,12 +14,12 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from '@tabler/icons-react';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PersonnelTab from './component/personnelTab';
+import { IconChartBar } from '@tabler/icons-react';
 
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
@@ -46,11 +46,20 @@ const DataBox: StyleProps[] = [
     title: 'Nhân viên',
     total: '120',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="primary.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -59,11 +68,20 @@ const DataBox: StyleProps[] = [
     title: 'Admin',
     total: '5',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="warning.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -72,11 +90,20 @@ const DataBox: StyleProps[] = [
     title: 'Hoạt động',
     total: '52',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="success.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -85,11 +112,20 @@ const DataBox: StyleProps[] = [
     title: 'Khóa',
     total: '12',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="error.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
 ];
@@ -201,7 +237,7 @@ const Personnels = () => {
 
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm nhân viên"
                   size="small"
                   type="search"
                   variant="outlined"

@@ -120,7 +120,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
     <Grid item xs={12}>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
-          <TableContainer>
+          <TableContainer sx={{ px: 2 }}>
             <Scrollbar_x>
               <Table
                 sx={{ minWidth: 750 }}
@@ -155,7 +155,7 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row: DataRow) => {
                       const isItemSelected = selected.indexOf(row.id) !== -1;
-                      const rowColor = getRowColor(row); // Sử dụng hàm để lấy màu sắc hàng
+                      const rowColor = getRowColor(row);
 
                       return (
                         <TableRow

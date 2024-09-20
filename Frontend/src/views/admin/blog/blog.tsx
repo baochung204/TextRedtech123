@@ -1,4 +1,3 @@
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
@@ -16,9 +15,8 @@ import {
   Tooltip,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
 import React from 'react';
-import { FaPlus } from 'react-icons/fa';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
@@ -35,57 +33,101 @@ const Transition = React.forwardRef<
 >(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const dataSource = [
+interface StyleProps {
+  bgColor: string;
+  color: string;
+  title: string;
+  total: string;
+  icons: JSX.Element;
+}
+
+const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
-    title: 'Bài viết',
-    total: '2.326',
+    title: 'Nhân viên',
+    total: '120',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="primary.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
-    bgColor: 'info.light',
-    color: 'info.main',
-    title: 'Lượt xem',
-    total: '18.369',
+    bgColor: 'warning.light',
+    color: 'warning.main',
+    title: 'Admin',
+    total: '5',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="warning.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Doanh thu',
-    total: '66.521',
+    title: 'Hoạt động',
+    total: '52',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="success.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
     bgColor: 'error.light',
-    color: 'warning.main',
-    title: 'Lượt like/tym',
-    total: '23.369',
+    color: 'error.main',
+    title: 'Khóa',
+    total: '12',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="error.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
 ];
@@ -94,9 +136,9 @@ const BlogAdmin = () => {
   const [value, setValue] = React.useState('1');
 
   // Function mở popup
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
+  // const handleOpenPopup = () => {
+  //   setIsPopupOpen(true);
+  // };
 
   // Function đóng popup
   const handleClosePopup = () => {
@@ -111,7 +153,7 @@ const BlogAdmin = () => {
     <PageContainer>
       <BannerPage title=" Quản lý blogs" items={BCrumb} />
       <Grid item xs={12}>
-        <TopCard dataSource={dataSource} totalColumn={0} />
+        <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
@@ -125,79 +167,38 @@ const BlogAdmin = () => {
             </TabList>
 
             <TabPanel value="1" sx={{ p: 0 }}>
-              {' '}
-              <Box
-                className="actions-and-filters"
-                sx={{
-                  mt: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Tooltip title="Tạo đơn hàng">
-                    <Fab
-                      color="primary"
-                      aria-label="add"
-                      size="small"
-                      sx={{ marginRight: '30px' }}
-                      onClick={handleOpenPopup}
-                    >
-                      <FaPlus />
-                    </Fab>
-                  </Tooltip>
-
-                  <TextField
-                    sx={{
-                      width: '200px',
-                      marginRight: '40px',
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '10px',
-                        backgroundColor: '#fff',
-                        '&:hover fieldset': {
-                          borderColor: '#3f51b5',
-                        },
-                      },
-                    }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="1.1rem" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    placeholder="Tìm kiếm"
-                    size="small"
-                  />
-                </Box>
-
-                <Box sx={{ display: 'flex', alignItems: 'center', maxWidth: '500px' }}>
-                  {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={selectedStartDate}
-                      onChange={(newDate) => setSelectedStartDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    />
-                    <Typography sx={{ marginRight: '10px' }}>tới</Typography>
-                    <DatePicker
-                      value={selectedEndDate}
-                      onChange={(newDate) => setSelectedEndDate(newDate)}
-                      renderInput={(params) => (
-                        <CustomTextField
-                          {...params}
-                          sx={{ marginRight: '10px', maxWidth: '170px' }}
-                        />
-                      )}
-                    /> */}
-                  {/* </LocalizationProvider> */}
-                </Box>
-              </Box>
+              <Grid container sx={{ my: 2 }}>
+                <Grid item xs={4} sm={4} md={4}>
+                  <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Tooltip title="Thêm bài viết mới" sx={{ mb: '15px' }} placement="top">
+                        <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
+                          <IconPlus width={18} />
+                        </Fab>
+                      </Tooltip>
+                    </Grid>
+                    <Grid item xs={10}>
+                      <TextField
+                        id="outlined-search"
+                        placeholder="Tìm kiếm bài viết"
+                        size="small"
+                        type="search"
+                        variant="outlined"
+                        inputProps={{ 'aria-label': 'Search Followers' }}
+                        sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <IconSearch size="20" />
+                            </InputAdornment>
+                          ),
+                        }}
+                        fullWidth={true}
+                      />
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
               <TableBlog />
             </TabPanel>
           </Box>
@@ -212,7 +213,7 @@ const BlogAdmin = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogTitle padding={'10px'}>Thêm blogs</DialogTitle>
+        <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle>
         <DialogContent>
           <AddBlog />
         </DialogContent>

@@ -15,13 +15,13 @@ import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Tags from './Tags';
-
+// import Classify from 'src/components/apps/sell/layout/classify';
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
 
   const [selectedImages, setSelectedImages] = useState<Array<File>>([]);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-  const [color, setColor] = useState<string>('#000000');
+  // const [color, setColor] = useState<string>('#000000');
 
   const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -34,9 +34,9 @@ const PopupAdd = () => {
     setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
-  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(event.target.value);
-  };
+  // const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setColor(event.target.value);
+  // };
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
@@ -254,46 +254,7 @@ const PopupAdd = () => {
           </Grid>
 
           <Grid item lg={6} md={12}>
-            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
-              <Grid item xs={12} sm={6} lg={6}>
-                <CustomFormLabel htmlFor="color-text">Màu sắc</CustomFormLabel>
-                <CustomTextField
-                  fullWidth
-                  value={color}
-                  onChange={handleColorChange}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <input
-                          type="color"
-                          value={color}
-                          onChange={handleColorChange}
-                          style={{
-                            width: '40px',
-                            height: '40px',
-                            border: 'none',
-                            background: 'none',
-                            padding: '0',
-                          }}
-                        />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} lg={6}>
-                <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
-                <CustomTextField
-                  id="material-text"
-                  variant="outlined"
-                  fullWidth
-                  placeholder="Nhập chất liệu . . ."
-
-                  // value={material}
-                  // onChange={handleChange(setMaterial)}
-                />
-              </Grid>
-            </Grid>
+            
 
             <Grid lg={12}>
               <CustomFormLabel htmlFor="description-text">Mô tả</CustomFormLabel>
@@ -307,6 +268,29 @@ const PopupAdd = () => {
                 // value={description}
                 // onChange={handleChange(setDescription)}
               />
+            </Grid>
+            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+              <Grid item xs={12} sm={6} lg={6}>
+                <CustomFormLabel htmlFor="color-text">Phân loại</CustomFormLabel>
+                <CustomTextField
+                  fullWidth
+                 
+                />
+                {/* <Classify/> */}
+              </Grid>
+
+              <Grid item xs={12} sm={6} lg={6}>
+                <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
+                <CustomTextField
+                  id="material-text"
+                  variant="outlined"
+                  fullWidth
+                  placeholder="Nhập chất liệu . . ."
+
+                  // value={material}
+                  // onChange={handleChange(setMaterial)}
+                />
+              </Grid>
             </Grid>
           </Grid>
           <Grid item lg={6} md={12}>
