@@ -2,7 +2,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import { Box, Grid, InputAdornment, TextField } from '@mui/material';
-import { IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -31,24 +31,42 @@ const DataBox: StyleProps[] = [
     title: 'Đề xuất',
     total: '120',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="primary.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 40,
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
-    bgColor: 'info.light',
-    color: 'info.main',
+    bgColor: 'secondary.light',
+    color: 'secondary.main',
     title: 'Đánh dấu',
     total: '5',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="secondary.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 40,
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -57,11 +75,20 @@ const DataBox: StyleProps[] = [
     title: 'Chưa xem',
     total: '52',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="success.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 40,
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
   {
@@ -70,11 +97,20 @@ const DataBox: StyleProps[] = [
     title: 'Cập nhập',
     total: '12',
     icons: (
-      <PeopleAltIcon
+      <Box
+        bgcolor="warning.main"
+        textAlign="center"
+        padding={1}
         sx={{
-          fontSize: 40,
+          width: 40,
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-      />
+      >
+        <IconChartBar color="white" size={30} />
+      </Box>
     ),
   },
 ];
@@ -98,72 +134,46 @@ const PageFeature = () => {
   return (
     <PageContainer>
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
-      <Grid item xs={12}>
-        <TopCard dataSource={DataBox} totalColumn={4} />
-      </Grid>
-      <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
-        <TabContext value={value}>
-          <Box>
-            <TabList
-              onChange={handleChange}
-              aria-label="lab API tabs example"
-              sx={{ p: 0, border: 'none' }}
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TopCard dataSource={DataBox} totalColumn={4} />
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container>
+            <Grid
+              item
+              xs={4}
+              sm={4}
+              md={4}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
             >
-              {/* Optional: Add Tab components here if needed */}
-            </TabList>
-
-            <TabPanel value="1" sx={{ p: 0 }}>
-              <Box
-                className="actions-and-filters"
-                sx={{
-                  mt: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm trợ lý"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch size="12" />
+                    </InputAdornment>
+                  ),
                 }}
-              >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  {/* <Tooltip title="Tạo đơn hàng">
-                    <Fab
-                      color="primary"
-                      aria-label="add"
-                      size="small"
-                      sx={{ marginRight: '30px' }}
-                      onClick={handleOpenPopup}
-                    >
-                      <FaPlus />
-                    </Fab>
-                  </Tooltip> */}
-
-                  <TextField
-                    sx={{
-                      width: '200px',
-                      marginRight: '40px',
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '10px',
-                        backgroundColor: '#fff',
-                        '&:hover fieldset': {
-                          borderColor: '#3f51b5',
-                        },
-                      },
-                    }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="1.1rem" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    placeholder="Tìm kiếm"
-                    size="small"
-                  />
-                </Box>
-              </Box>
-              <TableFeature />
-            </TabPanel>
-          </Box>
-        </TabContext>
-      </ChildCard>
+                fullWidth={true}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <TableFeature />
+        </Grid>
+      </Grid>
 
       {/* Popup Thêm blogs */}
       {/* <Dialog
