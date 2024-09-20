@@ -210,6 +210,7 @@ const PersonnelTab = ({ value, open, setOpen }: PropsItem) => {
           page={page}
           onPageChange={(_event, newPage) => handleChangePage(newPage)}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên mỗi trang"
         />
       </TableContainer>
       <DialogPersonel open={open} value={value} setOpen={setOpen} keyOption={key} />

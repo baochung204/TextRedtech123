@@ -13,26 +13,22 @@ import {
   Tab,
   TextField,
   Typography,
-  styled,
 } from '@mui/material';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
-import { createElement, useState } from 'react';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import PersonnelTab from './component/personnelTab';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
+import {
+  IconBrandStrava,
+  IconLockSquareRounded,
+  IconPasswordUser,
+  IconSearch,
+  IconUser,
+} from '@tabler/icons-react';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import SouthIcon from '@mui/icons-material/South';
+import NorthIcon from '@mui/icons-material/North';
+import React, { createElement, useState } from 'react';
+import PersonnelTab from './component/personnelTab';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-const BoxStyled = styled(Box)(() => ({
-  padding: '30px',
-  transition: '0.1s ease-in',
-  cursor: 'pointer',
-  color: 'inherit',
-  '&:hover': {
-    transform: 'scale(1.03)',
-  },
-}));
+import TopCard from 'src/components/widgets/cards/TopCard';
 
 interface StyleProps {
   bgColor: string;
@@ -61,14 +57,14 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconUser color="white" size={30} />
       </Box>
     ),
   },
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Admin',
+    title: 'Quản trị',
     total: '5',
     icons: (
       <Box
@@ -83,7 +79,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconPasswordUser color="white" size={30} />
       </Box>
     ),
   },
@@ -105,7 +101,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconBrandStrava color="white" size={30} />
       </Box>
     ),
   },
@@ -127,7 +123,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <IconLockSquareRounded color="white" size={30} />
       </Box>
     ),
   },

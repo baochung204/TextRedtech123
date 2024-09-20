@@ -6,7 +6,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
   {
     to: '/',
-    title: 'Admin',
+    title: 'Quản trị ',
   },
   { to: '/admin/personnel', title: 'Nhân viên' },
 ];
