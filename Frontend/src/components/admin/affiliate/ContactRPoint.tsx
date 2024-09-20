@@ -40,8 +40,8 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -62,8 +62,8 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -84,8 +84,8 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -106,8 +106,8 @@ const dataSource = [
         textAlign="center"
         padding={1}
         sx={{
-          width: 45,
-          height: 45,
+          width: 40,
+          height: 40,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',

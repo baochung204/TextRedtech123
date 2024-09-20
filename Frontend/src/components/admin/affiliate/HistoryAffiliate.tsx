@@ -41,8 +41,8 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -65,8 +65,8 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -81,7 +81,7 @@ const dataSource = [
     bgColor: 'success.light',
     color: 'success.main',
     title: 'Đã xử lý',
-    total: '123.456.789đ',
+    total: '123.406.789đ',
     icons: (
       <>
         <Box
@@ -89,8 +89,8 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -105,7 +105,7 @@ const dataSource = [
     bgColor: 'error.light',
     color: 'error.main',
     title: 'Chờ xử lý',
-    total: '123.456.789đ',
+    total: '123.406.789đ',
     icons: (
       <>
         <Box
@@ -113,8 +113,8 @@ const dataSource = [
           textAlign="center"
           padding={1}
           sx={{
-            width: 45,
-            height: 45,
+            width: 40,
+            height: 40,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
