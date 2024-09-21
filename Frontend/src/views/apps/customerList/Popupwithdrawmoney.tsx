@@ -63,7 +63,7 @@ const PopupWithdrawMoney = () => {
       {/* Cảnh báo khi số tiền muốn rút nhỏ hơn 2 triệu */}
       {withdrawAmount !== null && withdrawAmount < 2000000 && (
         <Typography variant="body2" color="error" sx={{ mb: 2 }}>
-          Số tiền muốn rút cần lớn hơn 2 triệu
+          Số tiền muốn rút cần ≥ 2 triệu
         </Typography>
       )}
     </Box>

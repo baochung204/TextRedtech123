@@ -77,7 +77,7 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'R-Point',
     icon: IconPackage,
-    href: '/admin/point/',
+    href: '/admin/rpoint',
     children: [
       {
         id: uniqueId(),

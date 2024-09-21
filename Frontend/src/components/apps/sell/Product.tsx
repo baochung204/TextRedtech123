@@ -1,7 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
-
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import { IconRepeat } from '@tabler/icons-react';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -64,6 +67,7 @@ import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from '../../../components/shared/BlankCard';
 
 import AddDialog from './layout/addDialog';
+import { Margin } from '@mui/icons-material';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -299,8 +303,16 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     </Toolbar>
   );
 };
-
+const FilmsData: any = [
+  { id: 2, title: 'Ảnh' },
+  { id: 3, title: '	Tên sản phẩm' },
+  { id: 4, title: 'Tags' },
+  { id: 5, title: '	Giá niêm yết' },
+  { id: 6, title: 'Giá khuyến mãi' },
+];
 const PaginationTable = () => {
+  const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // const [value, setValue] = React.useState(1);
@@ -311,10 +323,18 @@ const PaginationTable = () => {
     const value = event.target.value.toLowerCase();
     setSearch(value);
     const filtered = rows.filter(
+<<<<<<< HEAD
       (row) =>
       (row.name.toLowerCase().includes(value),
         row.tags.toLowerCase().includes(value),
         row.id.toLowerCase().includes(value))
+=======
+      (row) => (
+        row.name.toLowerCase().includes(value),
+        row.tags.toLowerCase().includes(value),
+        row.id.toLowerCase().includes(value)
+      ),
+>>>>>>> 7ca8c1a954cca1434da67e40573a096b76dd2e40
     );
     setFilteredRows(filtered);
   };
@@ -329,12 +349,13 @@ const PaginationTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const [id, setId] = React.useState(true);
-  const [img, setImg] = React.useState(true);
-  const [name, setName] = React.useState(true);
-  const [Tags, setTags] = React.useState(true);
-  const [price, setPrice] = React.useState(true);
-  const [priceVD, setPriceVD] = React.useState(true);
+  const [ID, setId] = React.useState(true);
+  const [IMG, setImg] = React.useState(true);
+  const [NAME, setName] = React.useState(true);
+  const [TAGS, setTags] = React.useState(true);
+  const [PRICE, setPrice] = React.useState(true);
+
+  const [PRICEVD, setPriceVD] = React.useState(true);
   const handle = () => {
     setId(true);
     setImg(true);
@@ -343,14 +364,34 @@ const PaginationTable = () => {
     setPrice(true);
     setPriceVD(true);
   };
-  const [personName, setPersonName] = React.useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(typeof value === 'string' ? value.split(',') : value);
+  const handleItemClick = (id: number) => {
+    setSelectedItems((prev: any) =>
+      prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
+    );
+
+    if (id === 2) {
+      setImg(!IMG);
+    }
+    if (id === 3) {
+      setName(!NAME);
+    }
+    if (id === 4) {
+      setTags(!TAGS);
+    }
+    if (id === 5) {
+      setPrice(!PRICE);
+    }
+    if (id === 6) {
+      setPriceVD(!PRICEVD);
+    }
   };
+  const handleClickIcon = () => {
+    setIconIndex((pre) => (pre + 1) % icons.length);
+  };
+  const [iconIndex, setIconIndex] = React.useState<number>(0);
+  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -365,28 +406,34 @@ const PaginationTable = () => {
         </Box>
 
         {/* Phần bên phải */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button>Sửa đổi cột</Button>
-          <FormControl sx={{ m: 1, width: 100 }}>
-            <InputLabel id="demo-multiple-checkbox-label">Sắp xếp</InputLabel>
-            <Select
-              labelId="demo-multiple-checkbox-label"
-              id="demo-multiple-checkbox"
-              multiple
-              value={personName}
-              onChange={handleChange}
-              input={<OutlinedInput label="Sắp xếp" />}
-              renderValue={() => 'Sắp xếp'} // Hiển thị nội dung cố định
-              MenuProps={MenuProps}
-            >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox checked={personName.includes(name)} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+          <Select
+            multiple
+            value={selectedItems}
+            displayEmpty
+            renderValue={(selected) =>
+              selected.length === 0 ? 'Sửa đổi cột' : `${selected.length} cột đã chọn`
+            }
+            size="small"
+            sx={{ minWidth: 150 }}
+          >
+            {FilmsData.map((film: any) => (
+              <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
+                <Checkbox checked={selectedItems.includes(film.id)} />
+                <ListItemText primary={film.title} />
+              </MenuItem>
+            ))}
+          </Select>
+
+          <IconButton
+            aria-label="filter"
+            onClick={handleClickIcon}
+            sx={{
+              ml: 1,
+            }}
+          >
+            {React.createElement(icons[iconIndex])}
+          </IconButton>
         </Box>
       </Box>
       <BlankCard>
@@ -399,32 +446,31 @@ const PaginationTable = () => {
           >
             <TableHead>
               <TableRow>
-                {id && (
-                  <TableCell>
-                    <Typography variant="h6">Id</Typography>
-                  </TableCell>
-                )}
-                {img && (
+                <TableCell>
+                  <Typography variant="h6">Id</Typography>
+                </TableCell>
+
+                {IMG && (
                   <TableCell>
                     <Typography variant="h6">Ảnh</Typography>
                   </TableCell>
                 )}
-                {name && (
+                {NAME && (
                   <TableCell>
                     <Typography variant="h6">Tên sản phẩm</Typography>
                   </TableCell>
                 )}
-                {Tags && (
+                {TAGS && (
                   <TableCell>
                     <Typography variant="h6">Tags</Typography>
                   </TableCell>
                 )}
-                {price && (
+                {PRICE && (
                   <TableCell>
                     <Typography variant="h6">Giá niêm yết</Typography>
                   </TableCell>
                 )}
-                {priceVD && (
+                {PRICEVD && (
                   <TableCell>
                     <Typography variant="h6">Giá khuyến mãi</Typography>
                   </TableCell>
@@ -436,12 +482,12 @@ const PaginationTable = () => {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow key={row.id}>
-                    {id && (
+                    {ID && (
                       <TableCell>
                         <Typography variant="subtitle2">{row.id}</Typography>
                       </TableCell>
                     )}
-                    {img && (
+                    {IMG && (
                       <TableCell>
                         <Stack direction="row" spacing={2} alignItems="center">
                           <Avatar
@@ -452,24 +498,24 @@ const PaginationTable = () => {
                         </Stack>
                       </TableCell>
                     )}
-                    {name && (
+                    {NAME && (
                       <TableCell>
                         <Typography variant="subtitle2" fontWeight="600">
                           {row.name}
                         </Typography>
                       </TableCell>
                     )}
-                    {Tags && (
+                    {TAGS && (
                       <TableCell>
                         <Chip
                           color={
                             row.tags === 'di động'
                               ? 'success'
                               : row.tags === 'điện tử'
-                                ? 'warning'
-                                : row.tags === 'đời sống'
-                                  ? 'error'
-                                  : 'secondary'
+                              ? 'warning'
+                              : row.tags === 'đời sống'
+                              ? 'error'
+                              : 'secondary'
                           }
                           sx={{
                             borderRadius: '6px',
@@ -479,7 +525,7 @@ const PaginationTable = () => {
                         />
                       </TableCell>
                     )}
-                    {price && (
+                    {PRICE && (
                       <TableCell>
                         <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
                           <Typography
@@ -502,7 +548,7 @@ const PaginationTable = () => {
 
                       </TableCell>
                     )}
-                    {priceVD && (
+                    {PRICEVD && (
                       <TableCell>
                         <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
                           <Typography
@@ -546,6 +592,7 @@ const PaginationTable = () => {
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}
                   ActionsComponent={TablePaginationActions}
+                  labelRowsPerPage="Số hàng trên trang:"
                 />
               </TableRow>
             </TableFooter>

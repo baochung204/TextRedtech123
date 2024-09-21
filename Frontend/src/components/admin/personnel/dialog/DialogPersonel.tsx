@@ -57,10 +57,11 @@ const DialogPersonel = ({ open, setOpen, value, keyOption, setIsCheckFix, isChec
         if (isCheckFix) {
             setIsCheckFix(false)
         } else {
-            resetForm();
             setOpen(false);
             console.log(values);
             setIsCheckFix(false)
+            resetForm();
+
         }
     };
     const handleClose = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>, resetForm: () => void) => {
@@ -119,7 +120,7 @@ const DialogPersonel = ({ open, setOpen, value, keyOption, setIsCheckFix, isChec
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
-                    validateOnChange={false}
+                    validateOnChange={true}
                     validateOnBlur={false}
                     context={{ isViewMode }}
                 >
