@@ -28,6 +28,8 @@ import React, { useState } from 'react';
 
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import BlankCard from 'src/components/shared/BlankCard';
+import AddVoucher from './add/Addvoucher';
+import AddDialogvoucher from './add/addDialog';
 interface DataRow {
   id: string;
   creationTime: string;
@@ -333,9 +335,7 @@ const ListVoucher = () => {
                 <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
                   <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                     <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
-                      <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
-                        <IconPlus width={18} />
-                      </Fab>
+                      <AddDialogvoucher />
                     </Tooltip>
                   </Grid>
                   <Grid item xs={10}>
