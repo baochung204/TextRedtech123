@@ -120,7 +120,7 @@ const DialogPersonel = ({ open, setOpen, value, keyOption, setIsCheckFix, isChec
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
-                    validateOnChange={true}
+                    validateOnChange={false}
                     validateOnBlur={false}
                     context={{ isViewMode }}
                 >
