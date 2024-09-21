@@ -2,9 +2,7 @@
 // @ts-ignore
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-const ChangePassword = Loadable(
-  lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
-);
+const ChangePassword = Loadable(lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')));
 const CompanyAffiliate = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/CompanyAffiliate')),
 );
@@ -23,7 +21,6 @@ const Notification = Loadable(lazy(() => import('src/views/admin/notification/no
 const Packagepoint = Loadable(lazy(() => import('src/views/admin/packagepoint/packagepoint')));
 const Pointdetail = Loadable(lazy(() => import('src/views/admin/pointdetail/pointdetail')));
 const ProductAdmin = Loadable(lazy(() => import('src/views/admin/product/product')));
-// const Publishers = Loadable(lazy(() => import('src/views/admin/publishers/publishers')));
 const Resources = Loadable(lazy(() => import('src/views/admin/resources/resources')));
 const Staff = Loadable(lazy(() => import('src/views/admin/staff')));
 const VoucherAdmin = Loadable(lazy(() => import('src/views/admin/voucher/voucher')));
@@ -45,6 +42,7 @@ import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
 import OrderAdmin from 'src/views/admin/order';
 import BuyPoints from 'src/views/admin/buyproduct';
 import OrderAdminPages from 'src/views/admin/order';
+import RPoints from 'src/views/admin/rpoints/RPoints';
 /* ***Layouts**** */
 
 
@@ -355,7 +353,7 @@ const Router = [
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
       { path: '/admin/feature', element: <PageFeature /> },
-
+      { path: '/admin/point/packagepoint', element: <RPoints /> },
       { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/notification', element: <Notification /> },

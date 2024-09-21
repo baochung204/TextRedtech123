@@ -104,13 +104,6 @@ const HeadTable: HeadProps[] = [
 const OrderAdminPage = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    // const [selected] = useState<readonly string[]>([]);
-    // const [search, setSearch] = useState('');
-    // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-    //     setSearch(event.target.value);
-    // };
-
     const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
     const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
     const handleChangePage = (newPage: number) => {
