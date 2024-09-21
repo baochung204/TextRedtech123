@@ -323,11 +323,18 @@ const PaginationTable = () => {
     const value = event.target.value.toLowerCase();
     setSearch(value);
     const filtered = rows.filter(
+<<<<<<< HEAD
+      (row) =>
+      (row.name.toLowerCase().includes(value),
+        row.tags.toLowerCase().includes(value),
+        row.id.toLowerCase().includes(value))
+=======
       (row) => (
         row.name.toLowerCase().includes(value),
         row.tags.toLowerCase().includes(value),
         row.id.toLowerCase().includes(value)
       ),
+>>>>>>> 7ca8c1a954cca1434da67e40573a096b76dd2e40
     );
     setFilteredRows(filtered);
   };
@@ -520,38 +527,46 @@ const PaginationTable = () => {
                     )}
                     {PRICE && (
                       <TableCell>
-                        <Typography
-                          color="textSecondary"
-                          variant="subtitle2"
-                          sx={{ display: 'flex', gap: 0.5 }}
-                        >
-                          {row.total}{' '}
-                          <img
-                            src={logoPoint}
-                            alt=""
-                            width={20}
-                            height={20}
-                            style={{ borderRadius: 50 }}
-                          />
-                        </Typography>
+                        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                          <Typography
+                            color="textSecondary"
+                            variant="subtitle2"
+
+                            sx={{ display: 'flex', gap: 0.5 }}
+                          >
+                            {row.total}{' '}
+                            <img
+                              src={logoPoint}
+                              alt=""
+                              width={20}
+                              height={20}
+                              style={{ borderRadius: 50 }}
+                            />
+                          </Typography>
+
+                        </Box>
+
                       </TableCell>
                     )}
                     {PRICEVD && (
                       <TableCell>
-                        <Typography
-                          color="textSecondary"
-                          variant="subtitle2"
-                          sx={{ display: 'flex', gap: 0.5 }}
-                        >
-                          {row.totalSales}{' '}
-                          <img
-                            src={logoPoint}
-                            alt=""
-                            width={20}
-                            height={20}
-                            style={{ borderRadius: 50 }}
-                          />
-                        </Typography>
+                        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                          <Typography
+                            color="textSecondary"
+                            variant="subtitle2"
+                            sx={{ display: 'flex', gap: 0.5 }}
+                          >
+                            {row.totalSales}{' '}
+                            <img
+                              src={logoPoint}
+                              alt=""
+                              width={20}
+                              height={20}
+                              style={{ borderRadius: 50 }}
+                            />
+                          </Typography>
+                        </Box>
+
                       </TableCell>
                     )}
                   </TableRow>

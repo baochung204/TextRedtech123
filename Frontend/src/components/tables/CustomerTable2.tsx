@@ -150,15 +150,28 @@ const CustomerTable2 = () => {
                       {row.name}
                     </Typography>
                   </TableCell>
-                  <TableCell sx={{ textAlign: 'center' }}>
-                    <Typography variant="subtitle2">
-                      {row.orderValue}
-                      <img
-                        src={logo}
-                        alt="Logo"
-                        style={{ width: '25px', height: '25px', marginLeft: '10px' }}
-                      />
-                    </Typography>
+
+                  <TableCell>
+                    <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                      <Typography
+                        color="textSecondary"
+                        variant="subtitle2"
+
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {row.orderValue}
+                        {' '}
+                        <img
+                          src={logo}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+
+                    </Box>
+
                   </TableCell>
                   <TableCell sx={{ textAlign: 'center' }}>
                     <Typography variant="subtitle2">{row.phone}</Typography>
