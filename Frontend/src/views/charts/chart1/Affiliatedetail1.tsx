@@ -136,7 +136,7 @@ const Affiliatedetail = () => {
     // </PageContainer>
     <DashboardCard>
       <>
-        <Box sx={{ marginTop: '-15px' }}>
+        <Box>
           <Typography variant="h4">Chi tiêu trợ lý</Typography>
           {/* <Typography variant="subtitle2" color="textSecondary" mb={2}>
             kinh doanh
