@@ -16,6 +16,33 @@ const dataFilter1 = [
   { value: 4, label: 'CVR' },
 ];
 
+const dataFilter2 = [
+  { value: 1, label: 'Tổng chi phí' },
+  { value: 2, label: 'Tổng Tokens' },
+  { value: 3, label: 'Chi phí Input' },
+  { value: 4, label: 'Chi phí Output' },
+  { value: 2, label: 'Tokens Input' },
+  { value: 2, label: 'Tokens Output' },
+];
+
+const dataFilter3 = [
+  { value: 1, label: 'Doanh thu' },
+  { value: 2, label: 'Khách hàng' },
+  { value: 3, label: 'Đơn hàng' },
+  { value: 4, label: 'Số dư R-Point' },
+];
+
+const dataFilter4 = [
+  { value: 1, label: 'Publisher' },
+  { value: 2, label: 'Khách hàng' },
+  { value: 3, label: 'Đơn hàng' },
+  { value: 4, label: 'Doanh thu' },
+  { value: 1, label: 'Hoa hồng' },
+  { value: 2, label: 'Số dư' },
+  { value: 3, label: 'Yêu cầu rút tiền' },
+  { value: 4, label: 'Số tiền rút' },
+];
+
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -922,7 +949,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={8}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'Token'} menuItems={dataFilter2} />
             </Grid>
             <Grid item xs={12} lg={4}>
               <Box sx={{ marginLeft: '20px' }}>
@@ -1011,7 +1038,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'R-Point'} menuItems={dataFilter3} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={1} />
@@ -1021,7 +1048,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'Affiliate'} menuItems={} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={1} />
