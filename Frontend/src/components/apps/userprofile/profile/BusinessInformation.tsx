@@ -11,7 +11,9 @@ function SlideTransition(props: any) {
 const BusinessInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
+    null,
+  );
 
   // Sử dụng Formik để quản lý form và Yup để xác thực
   const formik = useFormik({
@@ -68,7 +70,11 @@ const BusinessInformation = () => {
 
     return (
       <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          sx={{ width: '150px', whiteSpace: 'nowrap', mr: 4 }}
+        >
           {label}:
         </Typography>
         {editing === field ? (
@@ -87,7 +93,7 @@ const BusinessInformation = () => {
                 formik.errors[field as keyof typeof formik.errors]
               }
               onKeyDown={handleKeyDown}
-              sx={{ flexGrow: 1, mr: 1 }}
+              sx={{ flexGrow: 1 }}
               size="small"
             />
             <IconButton onClick={() => formik.handleSubmit()}>
