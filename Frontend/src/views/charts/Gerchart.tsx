@@ -135,16 +135,16 @@ const GerChart = () => {
       data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
     },
   ];
-  const [month, setMonth] = React.useState('1');
+  // const [month, setMonth] = React.useState('1');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
 
   // chart color
 
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  // const [value, setValue] = React.useState<Dayjs | null>(null);
+  // const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     // <PageContainer title="Gredient Chart" description="this is innerpage">
     //   {/* breadcrumb */}
@@ -154,12 +154,12 @@ const GerChart = () => {
     // </PageContainer>
     <DashboardCard>
       <>
-        <Box sx={{ marginTop: '0px' }}>
+        <Box sx={{}}>
           <Typography variant="h4">Báo cáo công việc</Typography>
 
-          <Typography variant="subtitle2" color="textSecondary" mb={2}></Typography>
+          {/* <Typography variant="subtitle2" color="textSecondary" mb={2}></Typography> */}
 
-          <Box
+          {/* <Box
             style={{
               display: 'flex',
               gap: '12px',
@@ -230,7 +230,7 @@ const GerChart = () => {
                 />
               </LocalizationProvider>
             </Box>
-          </Box>
+          </Box> */}
         </Box>
         <Chart
           options={optionsgredientchart}

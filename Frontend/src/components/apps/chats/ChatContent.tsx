@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Typography,
   Divider,
@@ -27,14 +25,27 @@ import { vi } from 'date-fns/locale';
 interface ChatContentProps {
   toggleChatSidebar: () => void;
 }
+interface Message {
+  text: string;
+  sender: 'user' | 'bot';
+}
 
 const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
 
   const chatDetails: ChatsType = useSelector(
     (state) => state.chatReducer.chats[state.chatReducer.chatContent - 1],
   );
+
+  const messagesEndRef = useRef<HTMLDivElement>(null); // This ref will point to the last message
+
+  useEffect(() => {
+    // Scroll to the last message whenever the messages array changes
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [chatDetails?.messages]); // Trigger scrolling on messages change
 
   return (
     <Box>
@@ -84,7 +95,7 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
 
           <Box display="flex">
             {/* ------------------------------------------- */}
-            {/* Chat msges */}
+            {/* Chat messages */}
             {/* ------------------------------------------- */}
 
             <Box width="100%">
@@ -94,48 +105,46 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                     return (
                       <Box key={chat.id + chat.msg + chat.createdAt}>
                         {chatDetails.id === chat.senderId ? (
-                          <>
-                            <Box display="flex">
-                              <ListItemAvatar>
-                                <Avatar
-                                  alt={chatDetails.name}
-                                  src={chatDetails.thumb}
-                                  sx={{ width: 40, height: 40 }}
-                                />
-                              </ListItemAvatar>
-                              <Box>
-                                {chat.createdAt ? (
-                                  <Typography variant="body2" color="grey.400" mb={1}>
-                                    {chatDetails.name},{' '}
-                                    {formatDistanceToNowStrict(new Date(chat.createdAt), {
-                                      addSuffix: true,
-                                      locale: vi, // Use Vietnamese locale
-                                    })}{' '}
-                                  </Typography>
-                                ) : null}
+                          <Box display="flex">
+                            <ListItemAvatar>
+                              <Avatar
+                                alt={chatDetails.name}
+                                src={chatDetails.thumb}
+                                sx={{ width: 40, height: 40 }}
+                              />
+                            </ListItemAvatar>
+                            <Box>
+                              {chat.createdAt && (
+                                <Typography variant="body2" color="grey.400" mb={1}>
+                                  {chatDetails.name},{' '}
+                                  {formatDistanceToNowStrict(new Date(chat.createdAt), {
+                                    addSuffix: true,
+                                    locale: vi, // Use Vietnamese locale
+                                  })}{' '}
+                                </Typography>
+                              )}
 
-                                {chat.type === 'text' ? (
-                                  <Box
-                                    mb={2}
-                                    sx={{
-                                      p: 1,
-                                      backgroundColor: 'grey.100',
-                                      mr: 'auto',
-                                      maxWidth: '320px',
-                                    }}
-                                  >
-                                    {chat.msg}
-                                  </Box>
-                                ) : null}
+                              {chat.type === 'text' && (
+                                <Box
+                                  mb={2}
+                                  sx={{
+                                    p: 1,
+                                    backgroundColor: 'grey.100',
+                                    mr: 'auto',
+                                    maxWidth: '320px',
+                                  }}
+                                >
+                                  {chat.msg}
+                                </Box>
+                              )}
 
-                                {chat.type === 'image' ? (
-                                  <Box mb={1} sx={{ overflow: 'hidden', lineHeight: '0px' }}>
-                                    <img src={chat.msg} alt="attach" width="150" />
-                                  </Box>
-                                ) : null}
-                              </Box>
+                              {chat.type === 'image' && (
+                                <Box mb={1} sx={{ overflow: 'hidden', lineHeight: '0px' }}>
+                                  <img src={chat.msg} alt="attach" width="150" />
+                                </Box>
+                              )}
                             </Box>
-                          </>
+                          </Box>
                         ) : (
                           <Box
                             mb={1}
@@ -144,12 +153,12 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                             flexDirection="row-reverse"
                           >
                             <Box alignItems="flex-end" display="flex" flexDirection={'column'}>
-                              {chat.createdAt ? (
+                              {chat.createdAt && (
                                 <Typography variant="body2" color="grey.400" mb={1}>
                                   trước
                                 </Typography>
-                              ) : null}
-                              {chat.type === 'text' ? (
+                              )}
+                              {chat.type === 'text' && (
                                 <Box
                                   mb={1}
                                   key={chat.id}
@@ -162,18 +171,20 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                                 >
                                   {chat.msg}
                                 </Box>
-                              ) : null}
-                              {chat.type === 'image' ? (
+                              )}
+                              {chat.type === 'image' && (
                                 <Box mb={1} sx={{ overflow: 'hidden', lineHeight: '0px' }}>
                                   <img src={chat.msg} alt="attach" width="250" />
                                 </Box>
-                              ) : null}
+                              )}
                             </Box>
                           </Box>
                         )}
                       </Box>
                     );
                   })}
+                  {/* The invisible div at the end of the message list to ensure scroll */}
+                  <div ref={messagesEndRef} />
                 </Box>
               </Scrollbar>
             </Box>

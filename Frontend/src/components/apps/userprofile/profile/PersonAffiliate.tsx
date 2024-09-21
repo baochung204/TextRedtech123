@@ -249,11 +249,11 @@ const PersonAffiliate = () => {
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box
               sx={{
-                border: '2px solid #000', // Adds a 2px solid black border
-                borderRadius: '8px', // Optional: Adds rounded corners
-                padding: '20px', // Optional: Adds padding inside the box
+                // border: '2px solid #000',
+                borderRadius: '8px',
+                padding: '20px',
                 width: '500px',
-                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Optional: Adds a shadow for a polished look
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
               }}
             >
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -265,11 +265,10 @@ const PersonAffiliate = () => {
                 <Box
                   sx={{
                     display: 'flex',
-                    flexDirection: 'column', // Stack items vertically
-                    alignItems: 'center',
+                    flexDirection: 'column',
                     justifyContent: 'center',
-                    maxWidth: '500px', // Restrict the width
-                    margin: '0 auto', // Centering horizontally
+                    maxWidth: '500px',
+                    margin: '0 auto',
                     padding: '20px',
                   }}
                 >
@@ -320,9 +319,7 @@ const PersonAffiliate = () => {
                   >
                     <Box sx={{ flex: '1' }}>
                       {/* Front Image Upload Section */}
-                      <CustomFormLabel htmlFor="frontImage">
-                        Mặt trước căn cước công dân
-                      </CustomFormLabel>
+                      <CustomFormLabel htmlFor="frontImage">Mặt trước CCCD</CustomFormLabel>
                       <Button variant="contained" component="label" color="primary">
                         Tải tệp lên
                         <Input
@@ -338,7 +335,7 @@ const PersonAffiliate = () => {
                       )}
 
                       <CustomFormLabel htmlFor="backImage" sx={{ marginTop: '20px' }}>
-                        Mặt sau căn cước công dân
+                        Mặt sau CCCD
                       </CustomFormLabel>
                       <Button variant="contained" component="label" color="primary">
                         Tải tệp lên

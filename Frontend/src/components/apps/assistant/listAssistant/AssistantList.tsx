@@ -280,98 +280,98 @@ const AssistantList = () => {
     <PageContainer title="User Profile" description="this is User Profile page">
       <BannerPage title="Danh sách trợ lý " items={BCrumb} />
       <Grid container spacing={3}>
-        <Grid item sm={12}>
-          <Grid item sm={12} lg={12}>
-            <Stack
-              direction="row"
-              alignItems="center"
-              mt={{ xs: 0.5, md: 2 }}
-              sx={{ display: { xs: 'block', sm: 'flex' }, justifyContent: 'space-between' }}
-            >
-              <Box sx={{}}>
+        <Grid item sm={12} lg={12} sx={{ marginTop: '-24px' }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            mt={{ xs: 0.5, md: 2 }}
+            sx={{ display: { xs: 'block', sm: 'flex' }, justifyContent: 'end' }}
+          >
+            {/* <Box sx={{}}>
                 <Typography variant="h3" sx={{ fontSize: { xs: '18px', sm: '20px' } }}>
                   Danh sách trợ lý &nbsp;
                   <Chip label="20" color="secondary" size="small" />
                 </Typography>
-              </Box>
+              </Box> */}
 
-              <Grid container width={{ sm: 600 }} spacing={1}>
-                <Grid
-                  item
-                  xs={6}
-                  sm={6}
-                  md={6}
+            <Grid container width={{ sm: 600 }} spacing={1}>
+              <Grid
+                item
+                xs={6}
+                sm={6}
+                md={6}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'end',
+                  alignItems: 'center',
+                }}
+              >
+                <IconButton aria-label="filter" sx={{ mr: 1 }}>
+                  <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
+                    <FilterListIcon />
+                  </Badge>
+                </IconButton>
+                <Select
+                  value={selectedItems}
+                  onChange={handleChange1}
+                  displayEmpty
+                  renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
+                  size="small"
+                  style={{ minWidth: 50 }}
+                >
+                  {FilmsData.map((film) => (
+                    <MenuItem
+                      key={film.title}
+                      value={film.title}
+                      onClick={() => handleItemClick1(film.title)}
+                    >
+                      <ListItemText primary={film.title} />
+                    </MenuItem>
+                  ))}
+                </Select>
+                <IconButton
+                  aria-label="filter"
+                  onClick={handleClickIcon}
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'end',
-                    alignItems: 'center',
+                    ml: 1,
                   }}
                 >
-                  <IconButton aria-label="filter" sx={{ mr: 1 }}>
-                    <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
-                      <FilterListIcon />
-                    </Badge>
-                  </IconButton>
-                  <Select
-                    value={selectedItems}
-                    onChange={handleChange1}
-                    displayEmpty
-                    renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
-                    size="small"
-                    style={{ minWidth: 50 }}
-                  >
-                    {FilmsData.map((film) => (
-                      <MenuItem
-                        key={film.title}
-                        value={film.title}
-                        onClick={() => handleItemClick1(film.title)}
-                      >
-                        <ListItemText primary={film.title} />
-                      </MenuItem>
-                    ))}
-                  </Select>
-                  <IconButton
-                    aria-label="filter"
-                    onClick={handleClickIcon}
-                    sx={{
-                      ml: 1,
-                    }}
-                  >
-                    <SelectedIcon />
-                  </IconButton>
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sm={6}
-                  md={6}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="12" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth={true}
-                  />
-                </Grid>
+                  <SelectedIcon />
+                </IconButton>
               </Grid>
-            </Stack>
-          </Grid>
-          <Grid container mt={2} spacing={2}>
+              <Grid
+                item
+                xs={6}
+                sm={6}
+                md={6}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <TextField
+                  id="outlined-search"
+                  placeholder="Tìm kiếm trợ lý"
+                  size="small"
+                  type="search"
+                  variant="outlined"
+                  inputProps={{ 'aria-label': 'Search Followers' }}
+                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <IconSearch size="12" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth={true}
+                />
+              </Grid>
+            </Grid>
+          </Stack>
+        </Grid>
+        <Grid item sm={12}>
+          <Grid container spacing={2}>
             {dataRank?.map((rank, index) => (
               <Grid item xs={12} sm={12} md={6} key={index}>
                 <Card
@@ -431,7 +431,7 @@ const AssistantList = () => {
                       <Typography
                         variant="h6"
                         mb={0.5}
-                        sx={{ fontSize: { xs: '20px', sm: '18px', md: '16px', lg: '18px' } }}
+                        sx={{ fontSize: { xs: '20px', sm: '18px', md: '16px', lg: '16px' } }}
                       >
                         {rank.fullName}
                       </Typography>
@@ -478,7 +478,7 @@ const AssistantList = () => {
                             },
                             boxShadow: 'none',
                             color: 'white',
-                            fontWeight: '5px 17px',
+                            padding: '2px 12px',
                             fontSize: '12px',
                             minWidth: 'auto',
                           }}
@@ -493,7 +493,7 @@ const AssistantList = () => {
                           variant="contained"
                           style={{
                             background: '#2196F3',
-                            padding: '5px 17px',
+                            padding: '2px 12px',
                             fontSize: '12px',
                             minWidth: 'auto',
                           }}
@@ -507,7 +507,7 @@ const AssistantList = () => {
                           variant="contained"
                           style={{
                             background: '#FFC107',
-                            padding: '5px 17px',
+                            padding: '2px 12px',
                             fontSize: '12px',
                             minWidth: 'auto',
                           }}
@@ -528,17 +528,14 @@ const AssistantList = () => {
                             <CardContent sx={{ padding: '18px !important' }}>
                               <Grid container spacing={3} alignItems="center">
                                 <Grid item xs={8}>
-                                  <Typography variant="h5">Tỉ lệ chuyển đổi</Typography>
+                                  <Typography variant="h6">Tỉ lệ chuyển đổi</Typography>
                                   <Stack direction="row" spacing={1} mt={1} alignItems="center">
-                                    <Typography variant="h3" mt={1} fontWeight={600}>
+                                    <Typography variant="h4" mt={1} fontWeight={600}>
                                       50%
                                     </Typography>
                                     <Avatar sx={{ bgcolor: successlight, width: 27, height: 27 }}>
                                       <IconArrowUpRight width={20} color="#39B69A" />
                                     </Avatar>
-                                    <Typography variant="subtitle2" color="textSecondary">
-                                      +9%
-                                    </Typography>
                                   </Stack>
                                 </Grid>
                                 <Grid item xs={4} container justifyContent="flex-end">
@@ -548,8 +545,6 @@ const AssistantList = () => {
                             </CardContent>
                           </BlankCard>
                         </Grid>
-
-                        {/* Nested Grid for Buttons */}
                         <Grid item xs={12} spacing={2}>
                           <Grid container spacing={2}>
                             <Grid item xs={6} sm={6}>
@@ -561,7 +556,7 @@ const AssistantList = () => {
                                       color="primary"
                                       sx={{
                                         width: '100%',
-                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 12 },
                                         px: { md: '10px', lg: '15px' },
                                       }}
                                     >
@@ -579,7 +574,7 @@ const AssistantList = () => {
                                       color="secondary"
                                       sx={{
                                         width: '100%',
-                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 12 },
                                         px: { md: '10px', lg: '15px' },
                                       }}
                                     >
@@ -599,7 +594,7 @@ const AssistantList = () => {
                                       color="error"
                                       sx={{
                                         width: '100%',
-                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 12 },
                                         px: { md: '10px', lg: '15px' },
                                       }}
                                     >
@@ -614,7 +609,7 @@ const AssistantList = () => {
                                       color="warning"
                                       sx={{
                                         width: '100%',
-                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 14 },
+                                        fontSize: { xs: 12, sm: 14, md: 10, lg: 12 },
                                         px: { md: '10px', lg: '5px' },
                                       }}
                                     >
@@ -626,7 +621,6 @@ const AssistantList = () => {
                             </Grid>
                           </Grid>
                         </Grid>
-
                         <Grid item xs={12}>
                           <Paper
                             sx={{
@@ -650,9 +644,6 @@ const AssistantList = () => {
                                     >
                                       <Box>
                                         <Typography variant="h6">Kinh nghiệm</Typography>
-                                        <Typography variant="subtitle2" color="textSecondary">
-                                          {/* {sell.total} */}
-                                        </Typography>
                                       </Box>
                                       <Chip
                                         sx={{
