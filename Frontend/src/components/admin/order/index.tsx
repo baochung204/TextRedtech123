@@ -273,19 +273,27 @@ const OrderAdminPage = () => {
                     >
                       <Typography variant="subtitle2">{item.tongnap} VNĐ</Typography>
                     </TableCell>
-                    <TableCell
-                      sx={{
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: 'flex',
-                        }}
-                      >
-                        <Typography variant="subtitle2">{item.sodu}</Typography>
-                        <img src={icontext} alt="" width={20} />
+                   
+                    <TableCell>
+                      <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                        <Typography
+                          color="textSecondary"
+                          variant="subtitle2"
+
+                          sx={{ display: 'flex', gap: 0.5 }}
+                        >
+                          {item.sodu}{' '}
+                          <img
+                            src={icontext}
+                            alt=""
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
+                        </Typography>
+
                       </Box>
+
                     </TableCell>
                     <TableCell
                       sx={{
