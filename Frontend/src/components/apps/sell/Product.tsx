@@ -63,11 +63,11 @@ import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+
 import BlankCard from '../../../components/shared/BlankCard';
 
 import AddDialog from './layout/addDialog';
-import { Margin } from '@mui/icons-material';
+
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -349,14 +349,6 @@ const PaginationTable = () => {
   const [PRICE, setPrice] = React.useState(true);
 
   const [PRICEVD, setPriceVD] = React.useState(true);
-  const handle = () => {
-    setId(true);
-    setImg(true);
-    setName(true);
-    setTags(true);
-    setPrice(true);
-    setPriceVD(true);
-  };
 
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>
@@ -412,7 +404,12 @@ const PaginationTable = () => {
           >
             {FilmsData.map((film: any) => (
               <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
-                <Checkbox checked={selectedItems.includes(film.id)} />
+                <Checkbox
+                  checked={selectedItems.includes(film.id)}
+                  sx={{
+                    color: selectedItems.length === FilmsData.length ? 'green' : undefined,
+                  }}
+                />
                 <ListItemText primary={film.title} />
               </MenuItem>
             ))}
