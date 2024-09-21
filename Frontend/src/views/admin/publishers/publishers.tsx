@@ -3,7 +3,7 @@ import PublisherAffiliate from 'src/components/admin/affiliate/PublisherAffiliat
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const Publishers = () => {
   const BCrumb = [
-    { to: '/', title: 'Trang Chủ' },
+    { to: '/admin', title: 'Trang Chủ' },
     { to: '', title: 'Danh sách Publisher' },
   ];
   return (

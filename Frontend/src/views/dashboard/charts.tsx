@@ -21,17 +21,18 @@ import Affilatechart24 from '../charts/chart2/Affilatechart24';
 import Affilatechart23 from '../charts/chart2/Affilatechart23';
 
 const Charts = () => {
-  const [month, setMonth] = React.useState('1');
-  const [value, setValue] = React.useState<any | null>(null);
-  const [value1, setValue1] = React.useState<any | null>(null);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
+  const [month] = React.useState('1');
+  // const [month, setMonth] = React.useState('1');
+  // const [value, setValue] = React.useState<any | null>(null);
+  // const [value1, setValue1] = React.useState<any | null>(null);
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
   return (
     <>
-      <Grid item xs={12} lg={12}>
+      {/*<Grid item xs={12} lg={12}>
         {' '}
-        <Typography variant="h3" sx={{ margin: '20px 0px' }}>
+        <Typography variant="h3" sx={{}}>
           Báo cáo chi tiêu{' '}
         </Typography>
         <Box display="flex" justifyContent="space-between">
@@ -98,8 +99,8 @@ const Charts = () => {
               />
             </LocalizationProvider>
           </Box>
-        </Box>
-      </Grid>
+        </Box> 
+      </Grid>*/}
       {month == '1' && (
         <React.Fragment>
           <Grid item xs={12} lg={8}>

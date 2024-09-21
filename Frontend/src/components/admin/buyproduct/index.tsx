@@ -214,21 +214,17 @@ interface FilmsData {
   title: string;
 }
 const FilmsData: FilmsData[] = [
-  { id: 1, title: 'File' },
-  { id: 2, title: 'Dung lượng' },
-  { id: 3, title: 'Functions' },
-  { id: 4, title: 'Token huấn luyện' },
-  { id: 5, title: 'Ngày tạo' },
-  { id: 6, title: 'Vòng quay trung bình' },
-  { id: 7, title: 'khách hàng' },
-  { id: 8, title: 'Đơn hàng' },
-  { id: 9, title: 'CVR' },
-  { id: 10, title: 'GMV' },
-  { id: 11, title: 'Chi phí' },
-  { id: 12, title: 'Chi phí/Doanh thu' },
-  { id: 13, title: 'Chi phí/Đơn hàng' },
-  { id: 14, title: 'Chi phí/Khách hàng' },
-  { id: 15, title: 'Chiến lược' },
+  { id: 1, title: 'ID' },
+  { id: 2, title: 'Danh mục' },
+  { id: 3, title: 'Ảnh' },
+  { id: 4, title: 'Tên sản phẩm' },
+  { id: 5, title: 'Giá niêm yết' },
+  { id: 6, title: 'Giá khuyến mãi' },
+  { id: 7, title: 'Level' },
+  { id: 8, title: 'Tags' },
+  { id: 9, title: 'Số lượng mua' },
+  { id: 10, title: 'Tổng doanh thu' },
+  { id: 11, title: 'Tỉ trọng doanh thu' },
 ];
 const BuyProduct = () => {
   const [page, setPage] = React.useState(0);
@@ -248,16 +244,62 @@ const BuyProduct = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  //   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  //   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-
-  const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+  const [ID, setID] = React.useState(true);
+  const [DanhMuc, setDanhMuc] = React.useState(true);
+  const [Anh, setAnh] = React.useState(true);
+  const [TenSanPham, setTenSanPham] = React.useState(true);
+  const [GiaNiemYet, setGiaNiemYet] = React.useState(true);
+  const [GiaKhuyenMai, setGiaKhuyenMai] = React.useState(true);
+  const [Level, setLevel] = React.useState(true);
+  const [Tags, setTags] = React.useState(true);
+  const [SoLuongMua, setSoLuongMua] = React.useState(true);
+  const [TongDoanhThu, setTongDoanhThu] = React.useState(true);
+  const [TiTrongDoanhThu, setTiTrongDoanhThu] = React.useState(true);
 
   const handleItemClick = (id: number) => {
-    setSelectedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+    setSelectedItems((prev: any) =>
+      prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
     );
+
+    switch (id) {
+      case 1:
+        setID(!ID);
+        break;
+      case 2:
+        setDanhMuc(!DanhMuc);
+        break;
+      case 3:
+        setAnh(!Anh);
+        break;
+      case 4:
+        setTenSanPham(!TenSanPham);
+        break;
+      case 5:
+        setGiaNiemYet(!GiaNiemYet);
+        break;
+      case 6:
+        setGiaKhuyenMai(!GiaKhuyenMai);
+        break;
+      case 7:
+        setLevel(!Level);
+        break;
+      case 8:
+        setTags(!Tags);
+        break;
+      case 9:
+        setSoLuongMua(!SoLuongMua);
+        break;
+      case 10:
+        setTongDoanhThu(!TongDoanhThu);
+        break;
+      case 11:
+        setTiTrongDoanhThu(!TiTrongDoanhThu);
+        break;
+      default:
+        break;
+    }
   };
+  const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
 
   const [iconIndex, setIconIndex] = React.useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
@@ -271,87 +313,91 @@ const BuyProduct = () => {
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
 
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Grid
-              item
-              xs={4}
-              sm={4}
-              md={4}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
+      <Grid item xs={12}>
+        <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
+      </Grid>
+      <Grid item xs={12}>
+        <Grid
+          container
+          sx={{ display: 'flex', justifyContent: 'space-between', margin: '20px 0px' }}
+        >
+          <Grid
+            item
+            xs={4}
+            sm={4}
+            md={4}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <TextField
+              id="outlined-search"
+              placeholder="Tìm kiếm sản phẩm"
+              size="small"
+              type="search"
+              variant="outlined"
+              inputProps={{ 'aria-label': 'Search Followers' }}
+              sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <IconSearch size="12" />
+                  </InputAdornment>
+                ),
               }}
-            >
-              <TextField
-                id="outlined-search"
-                placeholder="Tìm kiếm sản phẩm"
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ 'aria-label': 'Search Followers' }}
-                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="12" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth={true}
-              />
-            </Grid>
-            <Grid
-              item
-              xs={4}
-              sx={{
-                display: 'flex',
-                justifyContent: 'end',
-                alignItems: 'center',
-              }}
-            >
-              <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
-                  <FilterListIcon />
-                </Badge>
-              </IconButton>
+              fullWidth={true}
+            />
+          </Grid>
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: 'flex',
+              justifyContent: 'end',
+              alignItems: 'center',
+            }}
+          >
+            <IconButton aria-label="filter" sx={{ mr: 2 }}>
+              <Badge badgeContent={selectedItems.length} color="primary">
+                <FilterListIcon />
+              </Badge>
+            </IconButton>
 
-              <Select
-                multiple
-                value={selectedItems}
-                displayEmpty
-                renderValue={(selected) =>
-                  selected.length === 0 ? 'Sửa đổi cột' : `${selected.length} cột đã chọn`
-                }
-                size="small"
-                sx={{ minWidth: 150 }}
-              >
+            <Select
+              multiple
+              value={selectedItems}
+              displayEmpty
+              renderValue={(selected) =>
+                selected.length === 0 ? 'Sửa đổi cột' : `${selected.length} cột đã chọn`
+              }
+              size="small"
+              sx={{ minWidth: 150 }}
+            >
+              <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                 {FilmsData.map((film) => (
                   <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
                     <Checkbox checked={selectedItems.includes(film.id)} />
                     <ListItemText primary={film.title} />
                   </MenuItem>
                 ))}
-              </Select>
+              </div>
+            </Select>
 
-              <Tooltip title="Sắp xếp" placement="top">
-                <IconButton
-                  aria-label="filter"
-                  onClick={handleClickIcon}
-                  sx={{
-                    ml: 1,
-                  }}
-                >
-                  {React.createElement(icons[iconIndex])}
-                </IconButton>
-              </Tooltip>
-            </Grid>
+            <Tooltip title="Sắp xếp" placement="top">
+              <IconButton
+                aria-label="filter"
+                onClick={handleClickIcon}
+                sx={{
+                  ml: 1,
+                }}
+              >
+                {React.createElement(icons[iconIndex])}
+              </IconButton>
+            </Tooltip>
+          </Grid>
 
-            {/* <Grid item xs={4}>
+          {/* <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
@@ -368,7 +414,6 @@ const BuyProduct = () => {
                 </LocalizationProvider>
               </Box>
             </Grid> */}
-          </Grid>
         </Grid>
         <Grid item xs={12}>
           <TableContainer>
@@ -376,115 +421,226 @@ const BuyProduct = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    {HeadTable.map((item, index) => (
+                    {ID && (
                       <TableCell
-                        key={index}
                         sx={{
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        <Typography variant="h6">{item.head}</Typography>
+                        <Typography variant="h6">ID</Typography>
                       </TableCell>
-                    ))}
+                    )}
+                    {DanhMuc && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Danh mục</Typography>
+                      </TableCell>
+                    )}
+                    {Anh && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Ảnh</Typography>
+                      </TableCell>
+                    )}
+                    {TenSanPham && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Tên sản phẩm</Typography>
+                      </TableCell>
+                    )}
+                    {GiaNiemYet && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Giá niêm yết</Typography>
+                      </TableCell>
+                    )}
+                    {GiaKhuyenMai && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Giá khuyến mãi</Typography>
+                      </TableCell>
+                    )}
+                    {Level && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Level</Typography>
+                      </TableCell>
+                    )}
+                    {Tags && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Tags</Typography>
+                      </TableCell>
+                    )}
+                    {SoLuongMua && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Số lượng mua</Typography>
+                      </TableCell>
+                    )}
+                    {TongDoanhThu && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Tổng doanh thu</Typography>
+                      </TableCell>
+                    )}
+                    {TiTrongDoanhThu && (
+                      <TableCell
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <Typography variant="h6">Tỉ trọng doanh thu</Typography>
+                      </TableCell>
+                    )}
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {paginatedData.map((item, index) => {
                     return (
                       <TableRow key={index}>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.id}</Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.danhmuc}</Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">
-                            <Avatar src={item.anh} alt={item.anh} />
-                          </Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.tensanpham}</Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Box
+                        {ID && (
+                          <TableCell
                             sx={{
-                              display: 'flex',
+                              whiteSpace: 'nowrap',
                             }}
                           >
-                            <Typography variant="subtitle2">{item.gianiemyet}</Typography>
-                            <img src={icontext} alt="" width={20} />
-                          </Box>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Box
+                            <Typography variant="subtitle2">{item.id}</Typography>
+                          </TableCell>
+                        )}
+                        {DanhMuc && (
+                          <TableCell
                             sx={{
-                              display: 'flex',
+                              whiteSpace: 'nowrap',
                             }}
                           >
-                            <Typography variant="subtitle2">{item.giakhuyenmai}</Typography>
-                            <img src={icontext} alt="" width={20} />
-                          </Box>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.level}</Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.tags}</Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.soluongmua}</Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.tongdoanhthu}</Typography>
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          <Typography variant="subtitle2">{item.titrongdoanthu}</Typography>
-                        </TableCell>
+                            <Typography variant="subtitle2">{item.danhmuc}</Typography>
+                          </TableCell>
+                        )}
+                        {Anh && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Typography variant="subtitle2">
+                              <Avatar src={item.anh} alt={item.anh} />
+                            </Typography>
+                          </TableCell>
+                        )}
+                        {TenSanPham && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Typography variant="subtitle2">{item.tensanpham}</Typography>
+                          </TableCell>
+                        )}
+                        {GiaNiemYet && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                display: 'flex',
+                              }}
+                            >
+                              <Typography variant="subtitle2">{item.gianiemyet}</Typography>
+                              <img src={icontext} alt="" width={20} />
+                            </Box>
+                          </TableCell>
+                        )}
+                        {GiaKhuyenMai && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                display: 'flex',
+                              }}
+                            >
+                              <Typography variant="subtitle2">{item.giakhuyenmai}</Typography>
+                              <img src={icontext} alt="" width={20} />
+                            </Box>
+                          </TableCell>
+                        )}
+                        {Level && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Typography variant="subtitle2">{item.level}</Typography>
+                          </TableCell>
+                        )}
+                        {Tags && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Typography variant="subtitle2">{item.tags}</Typography>
+                          </TableCell>
+                        )}
+                        {SoLuongMua && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Typography variant="subtitle2">{item.soluongmua}</Typography>
+                          </TableCell>
+                        )}
+                        {TongDoanhThu && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Typography variant="subtitle2">{item.tongdoanhthu}</Typography>
+                          </TableCell>
+                        )}
+                        {TiTrongDoanhThu && (
+                          <TableCell
+                            sx={{
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            <Typography variant="subtitle2">{item.titrongdoanthu}</Typography>
+                          </TableCell>
+                        )}
                       </TableRow>
                     );
                   })}
@@ -499,6 +655,7 @@ const BuyProduct = () => {
               page={page}
               onPageChange={(_event, newPage) => handleChangePage(newPage)}
               onRowsPerPageChange={handleChangeRowsPerPage}
+              labelRowsPerPage="Số hàng trên mỗi trang"
             />
           </TableContainer>
         </Grid>
