@@ -4,6 +4,7 @@
 import {
   Box,
   Button,
+  Grid,
   Stack,
   Table,
   TableBody,
@@ -26,7 +27,9 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { EnhancedTableData, EnTableType } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import BlankCard from '../../components/shared/BlankCard';
+
+import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
+import BlankCard from 'src/components/shared/BlankCard';
 
 const BCrumb = [
   {
@@ -205,7 +208,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 //   numSelected: number;
 // }
 
-const HistoryBuyPoint = () => {
+const HistoryBuyPointInProfile = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -281,197 +284,207 @@ const HistoryBuyPoint = () => {
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
-      <BannerPage title="Lịch sử quy đổi R-Point" items={BCrumb} />
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '12px',
-          alignItems: 'center',
-          justifyContent: 'end',
-          my: 3,
-        }}
-      >
-        <Box style={{ width: '35%' }} display={'flex'} alignItems={'center'} gap="5px">
+      <Grid container>
+        <Grid item xs={12}>
+          <ProfileBanner />
+        </Grid>
+        <Grid item xs={12}>
           {' '}
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
+          <Box
+            sx={{
+              display: 'flex',
+              gap: '12px',
+              alignItems: 'center',
+              justifyContent: 'end',
+              my: 3,
+            }}
+          >
+            <Box style={{ width: '35%' }} display={'flex'} alignItems={'center'} gap="5px">
+              {' '}
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
                   }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
                 />
-              )}
-            />
-          </LocalizationProvider>
-          tới
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value1}
-              onChange={(newValue) => {
-                setValue1(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
+              </LocalizationProvider>
+              tới
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value1}
+                  onChange={(newValue) => {
+                    setValue1(newValue);
                   }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
                 />
-              )}
-            />
-          </LocalizationProvider>
-        </Box>
-      </Box>
-      <BlankCard>
-        <Box>
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
-            >
-              <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-              />
-              <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any) => {
-                    // const isItemSelected = isSelected(row.name);
-                    // const labelId = `enhanced-table-checkbox-${index}`;
+              </LocalizationProvider>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          {' '}
+          <BlankCard>
+            <Box>
+              <TableContainer>
+                <Table
+                  sx={{ minWidth: 750 }}
+                  aria-labelledby="tableTitle"
+                  size={dense ? 'small' : 'medium'}
+                >
+                  <EnhancedTableHead
+                    numSelected={selected.length}
+                    order={order}
+                    orderBy={orderBy}
+                    onSelectAllClick={handleSelectAllClick}
+                    onRequestSort={handleRequestSort}
+                    rowCount={rows.length}
+                  />
+                  <TableBody>
+                    {stableSort(rows, getComparator(order, orderBy))
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row: any) => {
+                        // const isItemSelected = isSelected(row.name);
+                        // const labelId = `enhanced-table-checkbox-${index}`;
 
-                    return (
+                        return (
+                          <TableRow
+                            hover
+                            onClick={(event) => handleClick(event, row.name)}
+                            role="checkbox"
+                            // aria-checked={isItemSelected}
+                            tabIndex={-1}
+                            key={row.id}
+                            // selected={isItemSelected}
+                          >
+                            <TableCell>
+                              <Stack spacing={2} direction="row">
+                                <Box>
+                                  <Typography color="textSecondary" variant="subtitle2">
+                                    {format(new Date(row.createdAt), 'MM/dd/yyyy HH:mm:ss')}
+                                  </Typography>
+                                </Box>
+                              </Stack>
+                            </TableCell>
+                            <TableCell>
+                              <Stack spacing={2} direction="row">
+                                <Box>
+                                  <Typography color="textSecondary" variant="subtitle2">
+                                    {format(new Date(row.completedAt), 'MM/dd/yyyy HH:mm:ss')}
+                                  </Typography>
+                                </Box>
+                              </Stack>
+                            </TableCell>
+                            <TableCell>
+                              <Stack spacing={2} direction="row">
+                                <Box>
+                                  <Typography color="textSecondary" variant="subtitle2">
+                                    {row.requestId}
+                                  </Typography>
+                                </Box>
+                              </Stack>
+                            </TableCell>
+
+                            <TableCell>
+                              <Stack spacing={2} direction="row">
+                                <Box>
+                                  <Typography
+                                    color="textSecondary"
+                                    variant="subtitle2"
+                                    sx={{ display: 'flex', gap: 0.5 }}
+                                  >
+                                    {row.numberPrice}{' '}
+                                    <img
+                                      src={logoPoint}
+                                      alt=""
+                                      width={20}
+                                      height={20}
+                                      style={{ borderRadius: 50 }}
+                                    />
+                                  </Typography>
+                                </Box>
+                              </Stack>
+                            </TableCell>
+                            <TableCell>
+                              <Stack spacing={2} direction="row">
+                                <Box>
+                                  <Typography color="textSecondary" variant="subtitle2">
+                                    {row.amount} ₫
+                                  </Typography>
+                                </Box>
+                              </Stack>
+                            </TableCell>
+                            <TableCell>
+                              <Stack spacing={2} direction="row">
+                                <Box>{getStatusTextAndColor(row.status)}</Box>
+                              </Stack>
+                            </TableCell>
+                            <TableCell>
+                              <Stack spacing={2} direction="row">
+                                <Box>{getInvoiceTextAndColor(row.invoice)}</Box>
+                              </Stack>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    {emptyRows > 0 && (
                       <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        // aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        // selected={isItemSelected}
+                        style={{
+                          height: (dense ? 33 : 53) * emptyRows,
+                        }}
                       >
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.createdAt), 'MM/dd/yyyy HH:mm:ss')}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.completedAt), 'MM/dd/yyyy HH:mm:ss')}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.requestId}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography
-                                color="textSecondary"
-                                variant="subtitle2"
-                                sx={{ display: 'flex', gap: 0.5 }}
-                              >
-                                {row.numberPrice}{' '}
-                                <img
-                                  src={logoPoint}
-                                  alt=""
-                                  width={20}
-                                  height={20}
-                                  style={{ borderRadius: 50 }}
-                                />
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount} ₫
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>{getStatusTextAndColor(row.status)}</Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>{getInvoiceTextAndColor(row.invoice)}</Box>
-                          </Stack>
-                        </TableCell>
+                        <TableCell colSpan={6} />
                       </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Box>
-      </BlankCard>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </Box>
+          </BlankCard>
+        </Grid>
+      </Grid>
     </PageContainer>
   );
 };
 
-export default HistoryBuyPoint;
+export default HistoryBuyPointInProfile;

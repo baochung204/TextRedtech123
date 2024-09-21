@@ -1,9 +1,20 @@
-import { Avatar, Box, Button, CardContent, Fab, Grid, Paper, Stack, Tooltip, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  CardContent,
+  Fab,
+  Grid,
+  Paper,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import { IconMapPin, IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import BlankCard from 'src/components/apps/integration/BlankCard';
-import FacebookIcon from '@mui/icons-material/Facebook';
+// import FacebookIcon from '@mui/icons-material/Facebook';
 
 const Integration = () => {
   const [connect, setConnect] = useState<boolean>(false);
@@ -15,8 +26,8 @@ const Integration = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} lg={7}>
           <Box display="flex" alignItems="center">
-            <FacebookIcon fontSize='large' color="info" />
-            <Box fontWeight={600} ml={1}>Tích hợp Facebook</Box>
+            {/* <FacebookIcon fontSize='large' color="info" /> */}
+            <Box fontWeight={600}>Tích hợp Facebook</Box>
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} lg={5} display={'flex'} justifyContent={'end'}>
@@ -59,7 +70,6 @@ const Integration = () => {
         </BlankCard>
       </Grid>
     </Paper>
-
   );
 };
 export default Integration;

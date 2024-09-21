@@ -15,7 +15,7 @@ const tablepayment: tablepayment[] = [
     id: '1',
     MHD: '#603244',
     amount: 1000000,
-    point: 100,
+    point: 10000,
     requestId: '1000003537254534',
     createdAt: new Date('2024-07-18T18:47:28'),
     completedAt: new Date('2024-07-18T18:47:36'),
