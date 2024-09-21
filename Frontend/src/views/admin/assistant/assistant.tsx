@@ -341,21 +341,12 @@ interface FilmsData {
   title: string;
 }
 const FilmsData: FilmsData[] = [
-  { id: 1, title: 'File' },
-  { id: 2, title: 'Dung lượng' },
-  { id: 3, title: 'Functions' },
-  { id: 4, title: 'Token huấn luyện' },
-  { id: 5, title: 'Ngày tạo' },
-  { id: 6, title: 'Vòng quay trung bình' },
-  { id: 7, title: 'khách hàng' },
-  { id: 8, title: 'Đơn hàng' },
-  { id: 9, title: 'CVR' },
-  { id: 10, title: 'GMV' },
-  { id: 11, title: 'Chi phí' },
-  { id: 12, title: 'Chi phí/Doanh thu' },
-  { id: 13, title: 'Chi phí/Đơn hàng' },
-  { id: 14, title: 'Chi phí/Khách hàng' },
-  { id: 15, title: 'Chiến lược' },
+  { id: 1, title: 'ID trợ lý' },
+  { id: 2, title: 'ID khách hàng  ' },
+  { id: 3, title: 'Ảnh Trợ lý ' },
+  { id: 4, title: 'Tên trợ lý' },
+  { id: 5, title: 'Level' },
+  { id: 6, title: 'Experience' },
 ];
 const AssistantAdmin = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
@@ -438,12 +429,18 @@ const AssistantAdmin = () => {
                 size="small"
                 sx={{ minWidth: 150 }}
               >
-                {FilmsData.map((film) => (
-                  <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
-                    <Checkbox checked={selectedItems.includes(film.id)} />
-                    <ListItemText primary={film.title} />
-                  </MenuItem>
-                ))}
+                <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                  {FilmsData.map((film) => (
+                    <MenuItem
+                      key={film.id}
+                      value={film.id}
+                      onClick={() => handleItemClick(film.id)}
+                    >
+                      <Checkbox checked={selectedItems.includes(film.id)} />
+                      <ListItemText primary={film.title} />
+                    </MenuItem>
+                  ))}
+                </div>
               </Select>
 
               <IconButton

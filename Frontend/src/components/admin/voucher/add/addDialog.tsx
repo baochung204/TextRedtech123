@@ -32,7 +32,7 @@ const AddDialogvoucher = () => {
   // };
   return (
     <Box>
-      <Tooltip title="Thêm">
+      <Tooltip title="Thêm thông báo mới">
         <Fab size="small" color="secondary" aria-label="plus" onClick={handleOpenPopup}>
           <IconPlus width={18} />
         </Fab>

@@ -4,7 +4,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
-  { to: '/', title: 'Trang Chủ' },
+  { to: '/admin', title: 'Trang Chủ' },
   { to: '', title: 'E-Invoice' },
 ];
 

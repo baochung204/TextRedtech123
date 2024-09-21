@@ -2,7 +2,9 @@
 // @ts-ignore
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-const ChangePassword = Loadable(lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')));
+const ChangePassword = Loadable(
+  lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
+);
 const CompanyAffiliate = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/CompanyAffiliate')),
 );
@@ -36,15 +38,15 @@ const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 // import AssistantAdmin from '../views/admin/assistant/assistant';
-import BlogAdmin from 'src/views/admin/blog/blog';
-import PageFeature from 'src/views/admin/feature/feature';
-import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
-import OrderAdmin from 'src/views/admin/order';
-import BuyPoints from 'src/views/admin/buyproduct';
-import OrderAdminPages from 'src/views/admin/order';
-import RPoints from 'src/views/admin/rpoints/RPoints';
-/* ***Layouts**** */
+const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
+const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
+const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')));
+// const OrderAdmin = Loadable(lazy(() => import('src/views/admin/order')));
+const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')));
+const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')));
+const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')));
 
+/* ***Layouts**** */
 
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
