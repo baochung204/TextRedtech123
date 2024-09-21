@@ -87,16 +87,6 @@ const Affilatechart1 = () => {
   };
 
   return (
-    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-    //   <Grid container spacing={3}>
-    //     <Grid item lg={6} md={12} xs={12}>
-
-    //     </Grid>
-    //   </Grid>
-    // </PageContainer>
     <Affilatec1 title=" Đơn hàng" description={''}>
       <Chart
         options={optionsdoughnutchart}

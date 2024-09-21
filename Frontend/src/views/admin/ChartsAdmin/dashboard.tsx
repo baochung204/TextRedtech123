@@ -9,11 +9,65 @@ import GenChartAdmin from './GenChartAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadmin from './Topcardadmin';
 
-const dataFilter1 = [
+const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },
   { value: 2, label: 'Doanh thu' },
   { value: 3, label: 'Đơn hàng' },
   { value: 4, label: 'CVR' },
+];
+
+const dataFilter_token = [
+  { value: 1, label: 'Tổng chi phí' },
+  { value: 2, label: 'Tổng Tokens' },
+  { value: 3, label: 'Chi phí Input' },
+  { value: 4, label: 'Chi phí Output' },
+  { value: 2, label: 'Tokens Input' },
+  { value: 2, label: 'Tokens Output' },
+];
+
+const dataFilter_rpoint = [
+  { value: 1, label: 'Doanh thu' },
+  { value: 2, label: 'Khách hàng' },
+  { value: 3, label: 'Đơn hàng' },
+  { value: 4, label: 'Số dư R-Point' },
+];
+
+const dataFilter_affliate = [
+  { value: 1, label: 'Publisher' },
+  { value: 2, label: 'Khách hàng' },
+  { value: 3, label: 'Đơn hàng' },
+  { value: 4, label: 'Doanh thu' },
+  { value: 1, label: 'Hoa hồng' },
+  { value: 2, label: 'Số dư' },
+  { value: 3, label: 'Yêu cầu rút tiền' },
+  { value: 4, label: 'Số tiền rút' },
+];
+
+const dataFilter_sale = [
+  { value: 1, label: 'Lượt áp mã' },
+  { value: 2, label: 'Số tiền giảm' },
+  { value: 3, label: 'Lượt mua Flash-sale' },
+  { value: 4, label: 'Doanh thu Flash-sale' },
+  { value: 1, label: 'Tỉ lệ mua Flash-sale' },
+];
+
+const dataFilter_order_bill = [
+  { value: 1, label: 'Họp đồng R-Point' },
+  { value: 2, label: 'Hợp đồng Affiliate' },
+  { value: 3, label: 'E-Invoice' },
+];
+
+const dataFilter_blog = [
+  { value: 1, label: 'Lượt xem' },
+  { value: 2, label: 'Doanh thu' },
+  { value: 3, label: 'Số cảm xúc' },
+];
+
+const dataFilter_ticket = [
+  { value: 1, label: 'Tickets' },
+  { value: 2, label: 'Khách hàng' },
+  { value: 3, label: 'Đánh giá > 3*' },
+  { value: 4, label: 'Đánh giá < 3*' },
 ];
 
 const dataSource = [
@@ -899,7 +953,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin text={'Kinh doanh'} menuItems={dataFilter1} />
+              <GenChartAdmin text={'Kinh doanh'} menuItems={dataFilter_bussiness} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={2} />
@@ -922,7 +976,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={8}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'Token'} menuItems={dataFilter_token} />
             </Grid>
             <Grid item xs={12} lg={4}>
               <Box sx={{ marginLeft: '20px' }}>
@@ -1011,7 +1065,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'R-Point'} menuItems={dataFilter_rpoint} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={1} />
@@ -1021,7 +1075,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'Affiliate'} menuItems={dataFilter_affliate} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={1} />
@@ -1092,7 +1146,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'Mã khuyến mãi'} menuItems={dataFilter_sale} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={1} />
@@ -1103,7 +1157,7 @@ const DashboardAdmin = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={7} lg={7}>
               <Box sx={{ width: '700px' }}>
-                <GenChartAdmin />
+                <GenChartAdmin text={'Hợp đồng - Hóa đơn'} menuItems={dataFilter_order_bill} />
               </Box>
             </Grid>
             <Grid item xs={12} md={5} lg={5}>
@@ -1116,7 +1170,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'Blog'} menuItems={dataFilter_blog} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={1} />
@@ -1126,7 +1180,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={7}>
-              <GenChartAdmin />
+              <GenChartAdmin text={'Ticket hỗ trợ'} menuItems={dataFilter_ticket} />
             </Grid>
             <Grid item xs={12} lg={5}>
               <Topcardadmin dataSource={dataSource} totalColumn={1} />
