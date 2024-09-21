@@ -596,3 +596,17 @@ const FlashSale = () => {
 };
 
 export default FlashSale;
+//Khai dan khai dan khai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai 

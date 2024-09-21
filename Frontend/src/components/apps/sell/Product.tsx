@@ -312,8 +312,8 @@ const PaginationTable = () => {
     setSearch(value);
     const filtered = rows.filter(
       (row) =>
-       ( row.name.toLowerCase().includes(value), 
-        row.tags.toLowerCase().includes(value), 
+      (row.name.toLowerCase().includes(value),
+        row.tags.toLowerCase().includes(value),
         row.id.toLowerCase().includes(value))
     );
     setFilteredRows(filtered);
@@ -481,38 +481,46 @@ const PaginationTable = () => {
                     )}
                     {price && (
                       <TableCell>
-                        <Typography
-                          color="textSecondary"
-                          variant="subtitle2"
-                          sx={{ display: 'flex', gap: 0.5 }}
-                        >
-                          {row.total}{' '}
-                          <img
-                            src={logoPoint}
-                            alt=""
-                            width={20}
-                            height={20}
-                            style={{ borderRadius: 50 }}
-                          />
-                        </Typography>
+                        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                          <Typography
+                            color="textSecondary"
+                            variant="subtitle2"
+
+                            sx={{ display: 'flex', gap: 0.5 }}
+                          >
+                            {row.total}{' '}
+                            <img
+                              src={logoPoint}
+                              alt=""
+                              width={20}
+                              height={20}
+                              style={{ borderRadius: 50 }}
+                            />
+                          </Typography>
+
+                        </Box>
+
                       </TableCell>
                     )}
                     {priceVD && (
                       <TableCell>
-                        <Typography
-                          color="textSecondary"
-                          variant="subtitle2"
-                          sx={{ display: 'flex', gap: 0.5 }}
-                        >
-                          {row.totalSales}{' '}
-                          <img
-                            src={logoPoint}
-                            alt=""
-                            width={20}
-                            height={20}
-                            style={{ borderRadius: 50 }}
-                          />
-                        </Typography>
+                        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                          <Typography
+                            color="textSecondary"
+                            variant="subtitle2"
+                            sx={{ display: 'flex', gap: 0.5 }}
+                          >
+                            {row.totalSales}{' '}
+                            <img
+                              src={logoPoint}
+                              alt=""
+                              width={20}
+                              height={20}
+                              style={{ borderRadius: 50 }}
+                            />
+                          </Typography>
+                        </Box>
+
                       </TableCell>
                     )}
                   </TableRow>
