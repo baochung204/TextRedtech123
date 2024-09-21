@@ -1,4 +1,4 @@
-import { Alert, Box, Grid, IconButton, InputAdornment, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from "@mui/material"
+import { Alert, Box, Chip, Grid, IconButton, InputAdornment, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from "@mui/material"
 import { IconEye, IconSearch, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 import Scrollbar_x from "src/components/custom-scroll/Scrollbar_x";
@@ -71,6 +71,11 @@ const OrderAdminPage = () => {
                 setOpen1(false);
                 setIDTrash(null)
             }, 3000);
+            // const intervalId = setInterval(() => {
+            //     setOpen1(false);
+            //     setIDTrash(null);
+            //     clearInterval(intervalId);
+            // }, 3000);
         }
     }
     const paginatedData = OrderData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -196,9 +201,18 @@ const OrderAdminPage = () => {
 
                                                 }}
                                             >
-                                                <Typography variant="subtitle2">
+                                                {/* <Typography variant="subtitle2">
                                                     {item.typeacc}
-                                                </Typography>
+                                                </Typography> */}
+                                                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                                    <Typography variant="subtitle2">
+                                                        <Chip
+                                                            label={item.typeacc === 'Doanh nghiệp' ? 'Doanh nghiệp' : 'Cá nhân'}
+                                                            color={item.typeacc === 'Doanh nghiệp' ? 'success' : 'warning'}
+                                                            variant="outlined"
+                                                        />
+                                                    </Typography>
+                                                </Box>
                                             </Box>
                                         </TableCell>
                                         <TableCell
