@@ -46,11 +46,8 @@ const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')));
 const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')));
 const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')));
 
-<<<<<<< HEAD
-=======
 /* ***Layouts**** */
 
->>>>>>> main
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
 

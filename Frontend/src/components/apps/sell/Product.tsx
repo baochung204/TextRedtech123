@@ -57,17 +57,11 @@ import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
-<<<<<<< HEAD
-import BlankCard from '../../../components/shared/BlankCard';
-
-import AddDialog from './layout/addDialog';
-=======
 
 import BlankCard from '../../../components/shared/BlankCard';
 
 import AddDialog from './layout/addDialog';
 
->>>>>>> main
 interface TablePaginationActionsProps {
   count: number;
   page: number;
