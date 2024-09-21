@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Box, Divider } from '@mui/material';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ChatContent from 'src/components/apps/chats/ChatContent';
 import ChatMsgSent from 'src/components/apps/chats/ChatMsgSent';
 import ChatSidebar from 'src/components/apps/chats/ChatSidebar';
@@ -20,7 +20,6 @@ const BCrumb = [
 ];
 const Chats = () => {
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-
   return (
     <PageContainer title="Chat ui" description="this is Chat page">
       {/* <Breadcrumb title="Chat app" subtitle="Messenger" /> */}

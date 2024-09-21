@@ -403,7 +403,7 @@ const CompanyAffiliate = () => {
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Typography sx={{ maxWidth: '500px' }}>
                   Vui lòng tải lên giấy phép đăng ký kinh doanh để tiến hành xác minh doanh nghiệp
-                  của bạn trước khi ký hợp đồng. File hợp lệ là pdf hoặc docx.
+                  của bạn trước khi ký hợp đồng. File hợp lệ là JPG, PNG hoặc PDF.
                 </Typography>
               </Box>
               <Box sx={{ marginTop: '30px' }}>

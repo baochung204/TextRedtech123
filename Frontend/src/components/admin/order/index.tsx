@@ -24,63 +24,6 @@ import OrderData from './data/OrderData';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-// interface EnhancedTableToolbarProps {
-//     numSelected: number;
-//     handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-//     search: string;
-// }
-// const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-//     const { numSelected, handleSearch, search } = props;
-
-//     return (
-//         <Toolbar
-//             sx={{
-//                 pl: { xs: 0, sm: 0 },
-//                 pr: { xs: 1, sm: 1 },
-//                 ...(numSelected > 0 && {
-//                     bgcolor: (theme) =>
-//                         alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-//                 }),
-//             }}
-//         >
-//             {numSelected > 0 ? (
-//                 <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-//                     {numSelected} selected
-//                 </Typography>
-//             ) : (
-//                 <Box sx={{ flex: '1 1 100%' }}>
-//                     <TextField
-//                         InputProps={{
-//                             startAdornment: (
-//                                 <InputAdornment position="start">
-//                                     <IconSearch size="1.1rem" />
-//                                 </InputAdornment>
-//                             ),
-//                         }}
-//                         placeholder="Tìm kiếm sản phẩm"
-//                         size="small"
-//                         onChange={handleSearch}
-//                         value={search}
-//                     />
-//                 </Box>
-//             )}
-
-//             {numSelected > 0 ? (
-//                 <Tooltip title="Delete">
-//                     <IconButton>
-//                         <IconTrash width="18" />
-//                     </IconButton>
-//                 </Tooltip>
-//             ) : (
-//                 <Tooltip title="Filter list">
-//                     <IconButton>
-//                         <IconFilter size="1.2rem" />
-//                     </IconButton>
-//                 </Tooltip>
-//             )}
-//         </Toolbar>
-//     );
-// };
 
 interface HeadProps {
   head: string;
@@ -117,6 +60,7 @@ const HeadTable: HeadProps[] = [
 ];
 
 const OrderAdminPage = () => {
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
@@ -124,6 +68,7 @@ const OrderAdminPage = () => {
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
+
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -170,6 +115,7 @@ const OrderAdminPage = () => {
               </Grid>
             </Grid>
           </Grid>
+
 
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -317,5 +263,6 @@ const OrderAdminPage = () => {
     </>
   );
 };
+
 
 export default OrderAdminPage;

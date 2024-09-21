@@ -1,26 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import {
-  Badge,
-  Checkbox,
-  Fab,
-  Grid,
-  IconButton,
-  InputAdornment,
-  ListItemText,
-  MenuItem,
-  Select,
-  TextField,
-  Tooltip,
-} from '@mui/material';
-import { createElement, useState } from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { IconPlus, IconSearch } from '@tabler/icons-react';
 import Products from 'src/components/apps/sell/Product';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
