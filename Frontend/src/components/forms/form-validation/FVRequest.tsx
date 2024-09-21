@@ -39,7 +39,7 @@ const FVReques = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={4}>
           <Box>
             <CustomFormLabel htmlFor="username">Họ và Tên</CustomFormLabel>
             <CustomTextField
@@ -55,7 +55,7 @@ const FVReques = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={4}>
           <Box>
             <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
             <CustomTextField
@@ -72,7 +72,7 @@ const FVReques = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={4}>
           <Box>
             <CustomFormLabel htmlFor="phone">Số điện thoại</CustomFormLabel>
             <CustomTextField

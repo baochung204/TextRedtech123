@@ -670,7 +670,7 @@ const AssistantInfor = () => {
                               </span>
                             </Typography>
                             <Typography variant="subtitle1" whiteSpace="nowrap">
-                              CR
+                              CVR
                             </Typography>
                           </Box>
                         </Tooltip>
@@ -686,7 +686,6 @@ const AssistantInfor = () => {
               </CardContent>
             </Card>
           </Grid>
-         
           <Grid item xs={12} lg={4}>
             <Box
               height="100%"

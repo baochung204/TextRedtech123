@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from 'src/store/Store';
 import { fetchProducts, addToCart } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';
 // import { ProductType } from 'src/types/apps/eCommerce';
+import logo from 'src/assets/images/logos/R-Point.png';
 
 const ProductDetail = () => {
   const theme = useTheme();
@@ -74,15 +75,47 @@ const ProductDetail = () => {
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Box component="span">{product.price - 10} point</Box>
+              {/* <Box component="span">{product.price - 10} point</Box> */}
               <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography variant="h3">{product.price}</Typography>
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: '25px', height: '25px', marginLeft: '10px' }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography
+                  color="textSecondary"
+                  variant="h6"
+                  ml={1}
+                  sx={{ textDecoration: 'line-through', opacity: 0.6 }}
+                >
+                  {product.salesPrice}{' '}
+                </Typography>
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: '18px', height: '18px', marginLeft: '5px' }}
+                />
+              </Box>
+              {/* <Box
                 component="small"
                 color={theme.palette.text.secondary}
                 sx={{ textDecoration: 'line-through' }}
               >
-                {/* Display the original price */}
                 {product.price} point
-              </Box>
+              </Box> */}
             </Box>
           </Typography>
           {/* Ratings */}
@@ -102,10 +135,6 @@ const ProductDetail = () => {
                 </Button> */}
               </ButtonGroup>
               <Button key="two">{count} MB</Button>
-              <Button sx={{ margin: '0 10px' }} key="two">
-                600 MB
-              </Button>
-              <Button key="two">700 MB</Button>
             </Box>
           </Stack>
           <Divider />

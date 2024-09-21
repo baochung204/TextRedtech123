@@ -95,7 +95,7 @@ const PopupAddList2 = () => {
         mb={4}
         p={4}
         sx={{
-          border: '1px solid #ddd',
+          border: 'none',
           borderRadius: '8px',
           boxShadow: 2,
           bgcolor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
@@ -114,56 +114,144 @@ const PopupAddList2 = () => {
           Thông tin cá nhân
         </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="name">Tên khách hàng</CustomFormLabel>
-            <CustomTextField
-              id="name"
-              variant="outlined"
-              fullWidth
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              name="name"
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              helperText={formik.touched.name && formik.errors.name}
-            />
-            <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>
-              Số điện thoại
-            </CustomFormLabel>
-            <CustomTextField
-              id="phone"
-              variant="outlined"
-              fullWidth
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-              name="phone"
-              error={formik.touched.phone && Boolean(formik.errors.phone)}
-              helperText={formik.touched.phone && formik.errors.phone}
-            />
-            <CustomFormLabel htmlFor="gender" sx={{ mt: 2 }}>
-              Giới tính
-            </CustomFormLabel>
-            <CustomSelect
-              id="gender"
-              value={formik.values.gender}
-              onChange={formik.handleChange}
-              name="gender"
-              fullWidth
-              variant="outlined"
-            >
-              {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </CustomSelect>
-            {formik.touched.gender && Boolean(formik.errors.gender) && (
-              <Typography color="error" variant="body2">
-                {formik.errors.gender}
-              </Typography>
-            )}
+          <Grid item xs={6}>
+            <Grid container>
+              <Grid item xs={12} md={12}>
+                <CustomFormLabel htmlFor="name">Tên khách hàng</CustomFormLabel>
+                <CustomTextField
+                  id="name"
+                  variant="outlined"
+                  fullWidth
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  name="name"
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
+                />
+              </Grid>
+              <Grid item xs={12} md={12}>
+                <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>
+                  Số điện thoại
+                </CustomFormLabel>
+                <CustomTextField
+                  id="phone"
+                  variant="outlined"
+                  fullWidth
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  name="phone"
+                  error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  helperText={formik.touched.phone && formik.errors.phone}
+                />
+              </Grid>
+              <Grid item xs={12} md={12}>
+                <CustomFormLabel htmlFor="gender" sx={{ mt: 2 }}>
+                  Giới tính
+                </CustomFormLabel>
+                <CustomSelect
+                  id="gender"
+                  value={formik.values.gender}
+                  onChange={formik.handleChange}
+                  name="gender"
+                  fullWidth
+                  variant="outlined"
+                >
+                  {currencies.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </CustomSelect>
+                {formik.touched.gender && Boolean(formik.errors.gender) && (
+                  <Typography color="error" variant="body2">
+                    {formik.errors.gender}
+                  </Typography>
+                )}
+              </Grid>
+              <Grid item xs={12} md={12}>
+                <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
+                <CustomTextField
+                  id="email"
+                  type="email"
+                  variant="outlined"
+                  fullWidth
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  name="email"
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                />
+              </Grid>
+              <Grid item xs={12} md={12}>
+                <CustomFormLabel htmlFor="dob" sx={{ mt: 2 }}>
+                  Ngày sinh
+                </CustomFormLabel>
+                <CustomTextField
+                  id="dob"
+                  type="date"
+                  variant="outlined"
+                  fullWidth
+                  InputLabelProps={{ shrink: true }}
+                  value={formik.values.dob}
+                  onChange={formik.handleChange}
+                  name="dob"
+                  error={formik.touched.dob && Boolean(formik.errors.dob)}
+                  helperText={formik.touched.dob && formik.errors.dob}
+                />
+              </Grid>
+              {/* <Grid item xs={12} md={12}>
+                <CustomFormLabel htmlFor="name">Tên khách hàng</CustomFormLabel>
+                <CustomTextField
+                  id="name"
+                  variant="outlined"
+                  fullWidth
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  name="name"
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
+                />
+                <CustomFormLabel htmlFor="phone" sx={{ mt: 2 }}>
+                  Số điện thoại
+                </CustomFormLabel>
+                <CustomTextField
+                  id="phone"
+                  variant="outlined"
+                  fullWidth
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  name="phone"
+                  error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  helperText={formik.touched.phone && formik.errors.phone}
+                />
+                <CustomFormLabel htmlFor="gender" sx={{ mt: 2 }}>
+                  Giới tính
+                </CustomFormLabel>
+                <CustomSelect
+                  id="gender"
+                  value={formik.values.gender}
+                  onChange={formik.handleChange}
+                  name="gender"
+                  fullWidth
+                  variant="outlined"
+                >
+                  {currencies.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </CustomSelect>
+                {formik.touched.gender && Boolean(formik.errors.gender) && (
+                  <Typography color="error" variant="body2">
+                    {formik.errors.gender}
+                  </Typography>
+                )}
+              </Grid> */}
+            </Grid>
           </Grid>
+
           <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
+            {/* <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
             <CustomTextField
               id="email"
               type="email"
@@ -199,6 +287,21 @@ const PopupAddList2 = () => {
               fullWidth
               multiline
               rows={3}
+              value={formik.values.notes}
+              onChange={formik.handleChange}
+              name="notes"
+              error={formik.touched.notes && Boolean(formik.errors.notes)}
+              helperText={formik.touched.notes && formik.errors.notes}
+            /> */}
+            <CustomFormLabel htmlFor="notes" sx={{ mt: 2 }}>
+              Ghi chú
+            </CustomFormLabel>
+            <CustomTextField
+              id="notes"
+              variant="outlined"
+              fullWidth
+              multiline
+              rows={18.3}
               value={formik.values.notes}
               onChange={formik.handleChange}
               name="notes"

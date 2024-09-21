@@ -46,8 +46,11 @@ const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')));
 const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')));
 const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')));
 
+<<<<<<< HEAD
+=======
 /* ***Layouts**** */
 
+>>>>>>> main
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
 
@@ -180,6 +183,9 @@ const BuyPoint = Loadable(lazy(() => import('../views/buypoint/buypoint')));
 const BuyPointService = Loadable(lazy(() => import('../views/buyservicepackage/buyservice')));
 // history
 const HistoryBuyPoint = Loadable(lazy(() => import('../views/historybuypoint/historybuypoint')));
+const HistoryBuyPointInProfile = Loadable(
+  lazy(() => import('../views/apps/user-profile/historyBuyPointInProfile')),
+);
 const HistoryBuyService = Loadable(
   lazy(() => import('../views/historybuyservice/historybuyservice')),
 );
@@ -311,6 +317,7 @@ const Router = [
       { path: '/pay/point2', element: <PaymentPoint2 /> },
       { path: '/buy/service', element: <BuyPointService /> },
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
+      { path: '/history/buy-point-in-frofile', element: <HistoryBuyPointInProfile /> },
       { path: '/history/buy-service', element: <HistoryBuyService /> },
       { path: '/assistant/list', element: <ListAssistant /> },
       { path: '/notifications', element: <AllNotifications /> },

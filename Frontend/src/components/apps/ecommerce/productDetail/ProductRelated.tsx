@@ -1,10 +1,11 @@
-import { Box, CardContent, Grid, Rating, Skeleton, Stack, Typography } from '@mui/material';
+import { Box, CardContent, Chip, Grid, Rating, Skeleton, Stack, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'src/store/Store';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { ProductType } from 'src/types/apps/eCommerce';
 import BlankCard from '../../../shared/BlankCard';
+import logo from 'src/assets/images/logos/R-Point.png';
 
 const ProductRelated = () => {
   const dispatch = useDispatch();
@@ -61,13 +62,71 @@ const ProductRelated = () => {
               <CardContent sx={{ p: 3, pt: 2 }}>
                 <Typography fontWeight={600}>{product.title}</Typography>
                 <Stack direction="column" spacing={1} mt={1}>
-                  <Stack direction="row" alignItems="center" justifyContent="space-between">
+                  {/* <Stack direction="row" alignItems="center" justifyContent="space-between">
                     <Typography variant="h5">{product.price.toLocaleString()} point</Typography>
                     <Typography color={'GrayText'} ml={1} sx={{ textDecoration: 'line-through' }}>
                       {product.salesPrice.toLocaleString()} point
                     </Typography>
+                  </Stack> */}
+                  {/* <Rating name="read-only" size="small" value={product.rating} readOnly /> */}
+                  <Stack direction="row" alignItems="center" justifyContent="space-between">
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Typography variant="h6">{product.price}</Typography>
+                      <img
+                        src={logo}
+                        alt="Logo"
+                        style={{ width: '22px', height: '22px', marginLeft: '10px' }}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Typography
+                        color="textSecondary"
+                        ml={1}
+                        sx={{ textDecoration: 'line-through' }}
+                      >
+                        {product.salesPrice}{' '}
+                      </Typography>
+                      <img
+                        src={logo}
+                        alt="Logo"
+                        style={{ width: '18px', height: '18px', marginLeft: '5px' }}
+                      />
+                    </Box>
+                    {/* <Typography
+                          color="textSecondary"
+                          ml={1}
+                          sx={{ textDecoration: 'line-through' }}
+                        >
+                          {product.salesPrice}{' '}
+                        </Typography> */}
                   </Stack>
-                  <Rating name="read-only" size="small" value={product.rating} readOnly />
+                  <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <Chip
+                        sx={{
+                          backgroundColor: '#13DEB9',
+                          width: '100px',
+                          textAlign: 'center',
+                          overflow: 'hidden',
+                          whiteSpace: 'nowrap',
+                          color: 'white',
+                          display: 'block', // Ensures each Chip is on a new line
+                        }}
+                        label="Smart"
+                        size="small"
+                      />
+                    </Stack>
+                  </Stack>
                 </Stack>
               </CardContent>
             </BlankCard>

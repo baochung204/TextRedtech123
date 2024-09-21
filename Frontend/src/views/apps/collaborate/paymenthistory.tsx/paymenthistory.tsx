@@ -356,7 +356,7 @@ const Paymenthistory = () => {
                         </TableCell>
                         <TableCell style={{ width: '25%' }}>
                           <Stack spacing={2} direction="row">
-                            <Box>
+                            {/* <Box >
                               <Typography
                                 color="textSecondary"
                                 variant="subtitle2"
@@ -365,6 +365,22 @@ const Paymenthistory = () => {
                                 alignItems={'center'}
                               >
                                 {row.point} <img src={pointimg} alt="" width={'20px'} />
+                              </Typography>
+                            </Box> */}
+                            <Box width={'60px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                              <Typography
+                                color="textSecondary"
+                                variant="subtitle2"
+                                sx={{ display: 'flex', gap: 0.5 }}
+                              >
+                                {row.point}{' '}
+                                <img
+                                  src={pointimg}
+                                  alt=""
+                                  width={20}
+                                  height={20}
+                                  style={{ borderRadius: 50 }}
+                                />
                               </Typography>
                             </Box>
                           </Stack>

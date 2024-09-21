@@ -1,10 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import * as React from 'react';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { IconRepeat } from '@tabler/icons-react';
+import * as React from 'react';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -21,18 +20,13 @@ const names = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', '
 import {
   Avatar,
   Box,
-  Button,
   Checkbox,
   Chip,
-  FormControl,
   IconButton,
   InputAdornment,
-  InputLabel,
   ListItemText,
   MenuItem,
-  OutlinedInput,
   Select,
-  SelectChangeEvent,
   Stack,
   Table,
   TableBody,
@@ -50,9 +44,9 @@ import {
 import { alpha, useTheme } from '@mui/material/styles';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
-import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
 
 import PageContainer from 'src/components/container/PageContainer';
 
@@ -63,11 +57,17 @@ import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
+<<<<<<< HEAD
+import BlankCard from '../../../components/shared/BlankCard';
+
+import AddDialog from './layout/addDialog';
+=======
 
 import BlankCard from '../../../components/shared/BlankCard';
 
 import AddDialog from './layout/addDialog';
 
+>>>>>>> main
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -521,7 +521,6 @@ const PaginationTable = () => {
                           <Typography
                             color="textSecondary"
                             variant="subtitle2"
-
                             sx={{ display: 'flex', gap: 0.5 }}
                           >
                             {row.total}{' '}
@@ -533,9 +532,7 @@ const PaginationTable = () => {
                               style={{ borderRadius: 50 }}
                             />
                           </Typography>
-
                         </Box>
-
                       </TableCell>
                     )}
                     {PRICEVD && (
@@ -556,7 +553,6 @@ const PaginationTable = () => {
                             />
                           </Typography>
                         </Box>
-
                       </TableCell>
                     )}
                   </TableRow>
