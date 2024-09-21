@@ -1,12 +1,38 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import { IconRepeat } from '@tabler/icons-react';
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
 
 import {
   Avatar,
   Box,
+  Button,
+  Checkbox,
   Chip,
+  FormControl,
   IconButton,
+  InputAdornment,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
   Stack,
   Table,
   TableBody,
@@ -16,25 +42,32 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TextField,
+  Toolbar,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import FirstPageIcon from '@mui/icons-material/FirstPage';
+import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
 
 import PageContainer from 'src/components/container/PageContainer';
 
+import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from '../../../components/shared/BlankCard';
 
+import AddDialog from './layout/addDialog';
+import { Margin } from '@mui/icons-material';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -95,13 +128,12 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 interface OrderType {
   id: string;
   items: string;
-  imgsrc: string;
+  imgsrc: any;
   name: string;
   total: string;
   tags: string;
   totalSales: string;
 }
-
 const rows: OrderType[] = [
   {
     id: 'ORD - 0120145',
@@ -213,83 +245,92 @@ const rows: OrderType[] = [
   },
 ].sort((a, b) => (a.name < b.name ? -1 : 1));
 
-// interface EnhancedTableToolbarProps {
-//   numSelected: number;
-//   handleSearch: React.ChangeEvent<HTMLInputElement> | any;
-//   search: string;
-// }
+interface EnhancedTableToolbarProps {
+  numSelected: number;
+  handleSearch: React.ChangeEvent<HTMLInputElement> | any;
+  search: string;
+}
 
-// const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-//   const { numSelected, handleSearch, search } = props;
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+  const { numSelected, handleSearch, search } = props;
 
-//   return (
-//     <Toolbar
-//       sx={{
-//         pl: { sm: 2 },
-//         pr: { xs: 1, sm: 1 },
-//         ...(numSelected > 0 && {
-//           bgcolor: (theme) =>
-//             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-//         }),
-//       }}
-//     >
-//       {numSelected > 0 ? (
-//         <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-//           {numSelected} selected
-//         </Typography>
-//       ) : (
-//         <Box sx={{ flex: '1 1 100%' }}>
-//           <TextField
-//             InputProps={{
-//               startAdornment: (
-//                 <InputAdornment position="start">
-//                   <IconSearch size="1.1rem" />
-//                 </InputAdornment>
-//               ),
-//             }}
-//             placeholder="Tìm kiếm sản phẩm"
-//             size="small"
-//             onChange={handleSearch}
-//             value={search}
-//           />
-//         </Box>
-//       )}
+  return (
+    <Toolbar
+      sx={{
+        pl: { sm: 2 },
+        pr: { xs: 1, sm: 1 },
+        ...(numSelected > 0 && {
+          bgcolor: (theme) =>
+            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+        }),
+      }}
+    >
+      {numSelected > 0 ? (
+        <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
+          {numSelected} selected
+        </Typography>
+      ) : (
+        <Box sx={{ flex: '1 1 100%' }}>
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconSearch size="1.1rem" />
+                </InputAdornment>
+              ),
+            }}
+            placeholder="Tìm kiếm sản phẩm"
+            size="small"
+            onChange={handleSearch}
+            value={search}
+          />
+        </Box>
+      )}
 
-//       {numSelected > 0 ? (
-//         <Tooltip title="Delete">
-//           <IconButton>
-//             <IconTrash width="18" />
-//           </IconButton>
-//         </Tooltip>
-//       ) : (
-//         <Tooltip title="Filter list">
-//           <IconButton>
-//             <IconFilter size="1.2rem" />
-//           </IconButton>
-//         </Tooltip>
-//       )}
-//     </Toolbar>
-//   );
-// };
-
+      {numSelected > 0 ? (
+        <Tooltip title="Delete">
+          <IconButton>
+            <IconTrash width="18" />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <Tooltip title="Filter list">
+          <IconButton>
+            <IconFilter size="1.2rem" />
+          </IconButton>
+        </Tooltip>
+      )}
+    </Toolbar>
+  );
+};
+const FilmsData: any = [
+  { id: 2, title: 'Ảnh' },
+  { id: 3, title: '	Tên sản phẩm' },
+  { id: 4, title: 'Tags' },
+  { id: 5, title: '	Giá niêm yết' },
+  { id: 6, title: 'Giá khuyến mãi' },
+];
 const PaginationTable = () => {
+  const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [selected] = React.useState<readonly string[]>([]);
-  // const [search, setSearch] = React.useState('');
-  const [filteredRows] = React.useState(rows);
-
-  // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = event.target.value.toLowerCase();
-  //   setSearch(value);
-  //   const filtered = rows.filter(
-  //     (row) =>
-  //       row.name.toLowerCase().includes(value) ||
-  //       row.tags.toLowerCase().includes(value) ||
-  //       row.id.toLowerCase().includes(value),
-  //   );
-  //   setFilteredRows(filtered);
-  // };
+  // const [value, setValue] = React.useState(1);
+  const [selected] = React.useState<readonly string[]>([]);
+  const [search, setSearch] = React.useState('');
+  const [filteredRows, setFilteredRows] = React.useState(rows);
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.toLowerCase();
+    setSearch(value);
+    const filtered = rows.filter(
+      (row) => (
+        row.name.toLowerCase().includes(value),
+        row.tags.toLowerCase().includes(value),
+        row.id.toLowerCase().includes(value)
+      ),
+    );
+    setFilteredRows(filtered);
+  };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
 
@@ -301,9 +342,93 @@ const PaginationTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  const [ID, setId] = React.useState(true);
+  const [IMG, setImg] = React.useState(true);
+  const [NAME, setName] = React.useState(true);
+  const [TAGS, setTags] = React.useState(true);
+  const [PRICE, setPrice] = React.useState(true);
+
+  const [PRICEVD, setPriceVD] = React.useState(true);
+  const handle = () => {
+    setId(true);
+    setImg(true);
+    setName(true);
+    setTags(true);
+    setPrice(true);
+    setPriceVD(true);
+  };
+
+  const handleItemClick = (id: number) => {
+    setSelectedItems((prev: any) =>
+      prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
+    );
+
+    if (id === 2) {
+      setImg(!IMG);
+    }
+    if (id === 3) {
+      setName(!NAME);
+    }
+    if (id === 4) {
+      setTags(!TAGS);
+    }
+    if (id === 5) {
+      setPrice(!PRICE);
+    }
+    if (id === 6) {
+      setPriceVD(!PRICEVD);
+    }
+  };
+  const handleClickIcon = () => {
+    setIconIndex((pre) => (pre + 1) % icons.length);
+  };
+  const [iconIndex, setIconIndex] = React.useState<number>(0);
+  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
 
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {/* Phần bên trái */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <AddDialog />
+          <EnhancedTableToolbar
+            numSelected={selected.length}
+            search={search}
+            handleSearch={handleSearch}
+          />
+        </Box>
+
+        {/* Phần bên phải */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+          <Select
+            multiple
+            value={selectedItems}
+            displayEmpty
+            renderValue={(selected) =>
+              selected.length === 0 ? 'Sửa đổi cột' : `${selected.length} cột đã chọn`
+            }
+            size="small"
+            sx={{ minWidth: 150 }}
+          >
+            {FilmsData.map((film: any) => (
+              <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
+                <Checkbox checked={selectedItems.includes(film.id)} />
+                <ListItemText primary={film.title} />
+              </MenuItem>
+            ))}
+          </Select>
+
+          <IconButton
+            aria-label="filter"
+            onClick={handleClickIcon}
+            sx={{
+              ml: 1,
+            }}
+          >
+            {React.createElement(icons[iconIndex])}
+          </IconButton>
+        </Box>
+      </Box>
       <BlankCard>
         <TableContainer>
           <Table
@@ -317,21 +442,32 @@ const PaginationTable = () => {
                 <TableCell>
                   <Typography variant="h6">Id</Typography>
                 </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Ảnh</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Tên sản phẩm</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Tags</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Giá niêm yết</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">Giá khuyến mãi</Typography>
-                </TableCell>
+
+                {IMG && (
+                  <TableCell>
+                    <Typography variant="h6">Ảnh</Typography>
+                  </TableCell>
+                )}
+                {NAME && (
+                  <TableCell>
+                    <Typography variant="h6">Tên sản phẩm</Typography>
+                  </TableCell>
+                )}
+                {TAGS && (
+                  <TableCell>
+                    <Typography variant="h6">Tags</Typography>
+                  </TableCell>
+                )}
+                {PRICE && (
+                  <TableCell>
+                    <Typography variant="h6">Giá niêm yết</Typography>
+                  </TableCell>
+                )}
+                {PRICEVD && (
+                  <TableCell>
+                    <Typography variant="h6">Giá khuyến mãi</Typography>
+                  </TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -339,70 +475,85 @@ const PaginationTable = () => {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow key={row.id}>
-                    <TableCell>
-                      <Typography variant="subtitle2">{row.id}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="subtitle2" fontWeight="600">
-                        {row.name}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        color={
-                          row.tags === 'di động'
-                            ? 'success'
-                            : row.tags === 'điện tử'
-                            ? 'warning'
-                            : row.tags === 'đời sống'
-                            ? 'error'
-                            : 'secondary'
-                        }
-                        sx={{
-                          borderRadius: '6px',
-                        }}
-                        size="small"
-                        label={row.tags}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Typography
-                        color="textSecondary"
-                        variant="subtitle2"
-                        sx={{ display: 'flex', gap: 0.5 }}
-                      >
-                        {row.total}{' '}
-                        <img
-                          src={logoPoint}
-                          alt=""
-                          width={20}
-                          height={20}
-                          style={{ borderRadius: 50 }}
+                    {ID && (
+                      <TableCell>
+                        <Typography variant="subtitle2">{row.id}</Typography>
+                      </TableCell>
+                    )}
+                    {IMG && (
+                      <TableCell>
+                        <Stack direction="row" spacing={2} alignItems="center">
+                          <Avatar
+                            src={row.imgsrc}
+                            alt={row.imgsrc}
+                            sx={{ width: 30, height: 30 }}
+                          />
+                        </Stack>
+                      </TableCell>
+                    )}
+                    {NAME && (
+                      <TableCell>
+                        <Typography variant="subtitle2" fontWeight="600">
+                          {row.name}
+                        </Typography>
+                      </TableCell>
+                    )}
+                    {TAGS && (
+                      <TableCell>
+                        <Chip
+                          color={
+                            row.tags === 'di động'
+                              ? 'success'
+                              : row.tags === 'điện tử'
+                              ? 'warning'
+                              : row.tags === 'đời sống'
+                              ? 'error'
+                              : 'secondary'
+                          }
+                          sx={{
+                            borderRadius: '6px',
+                          }}
+                          size="small"
+                          label={row.tags}
                         />
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell>
-                      <Typography
-                        color="textSecondary"
-                        variant="subtitle2"
-                        sx={{ display: 'flex', gap: 0.5 }}
-                      >
-                        {row.totalSales}{' '}
-                        <img
-                          src={logoPoint}
-                          alt=""
-                          width={20}
-                          height={20}
-                          style={{ borderRadius: 50 }}
-                        />
-                      </Typography>
-                    </TableCell>
+                      </TableCell>
+                    )}
+                    {PRICE && (
+                      <TableCell>
+                        <Typography
+                          color="textSecondary"
+                          variant="subtitle2"
+                          sx={{ display: 'flex', gap: 0.5 }}
+                        >
+                          {row.total}{' '}
+                          <img
+                            src={logoPoint}
+                            alt=""
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
+                        </Typography>
+                      </TableCell>
+                    )}
+                    {PRICEVD && (
+                      <TableCell>
+                        <Typography
+                          color="textSecondary"
+                          variant="subtitle2"
+                          sx={{ display: 'flex', gap: 0.5 }}
+                        >
+                          {row.totalSales}{' '}
+                          <img
+                            src={logoPoint}
+                            alt=""
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
+                        </Typography>
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
 
@@ -426,6 +577,7 @@ const PaginationTable = () => {
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}
                   ActionsComponent={TablePaginationActions}
+                  labelRowsPerPage="Số hàng trên trang:"
                 />
               </TableRow>
             </TableFooter>
