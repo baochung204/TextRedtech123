@@ -323,18 +323,11 @@ const PaginationTable = () => {
     const value = event.target.value.toLowerCase();
     setSearch(value);
     const filtered = rows.filter(
-<<<<<<< HEAD
-      (row) =>
-      (row.name.toLowerCase().includes(value),
-        row.tags.toLowerCase().includes(value),
-        row.id.toLowerCase().includes(value))
-=======
       (row) => (
         row.name.toLowerCase().includes(value),
         row.tags.toLowerCase().includes(value),
         row.id.toLowerCase().includes(value)
       ),
->>>>>>> 7ca8c1a954cca1434da67e40573a096b76dd2e40
     );
     setFilteredRows(filtered);
   };
