@@ -2,6 +2,7 @@
 // @ts-ignore
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
+import Loadable from '../layouts/full/shared/loadable/Loadable';
 const ChangePassword = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
 );
@@ -37,16 +38,13 @@ const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending'
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
-import Loadable from '../layouts/full/shared/loadable/Loadable';
 // import AssistantAdmin from '../views/admin/assistant/assistant';
 import BlogAdmin from 'src/views/admin/blog/blog';
-import PageFeature from 'src/views/admin/feature/feature';
-import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
-import OrderAdmin from 'src/views/admin/order';
 import BuyPoints from 'src/views/admin/buyproduct';
+import PageFeature from 'src/views/admin/feature/feature';
 import OrderAdminPages from 'src/views/admin/order';
+import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
 /* ***Layouts**** */
-
 
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));

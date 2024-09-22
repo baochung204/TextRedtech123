@@ -11,9 +11,10 @@ type Props = {
   description?: string;
   footer?: string | JSX.Element;
   children: JSX.Element;
+  text: string;
 };
 
-const Affilatec = ({ children, footer }: Props) => {
+const Affilatec = ({ children, footer, text }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
@@ -33,7 +34,8 @@ const Affilatec = ({ children, footer }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
-        <h2>Tỉ trọng chi phí /doanh thu </h2>
+        <h2>{text}</h2>
+        {/* Chi phí / Doanh thu  */}
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (

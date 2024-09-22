@@ -1,23 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { Box } from '@mui/material';
 import Chart, { Props } from 'react-apexcharts';
-import Affilatec1 from 'src/components/shared/Affilatec1';
+import Affilatec2 from 'src/components/shared/Affilatec2';
 
-const Affilatechart1 = () => {
-  const seriesdoughnutchart = [55, 45];
+const Affilatechartadmin8 = () => {
+  const seriesdoughnutchart = [41, 59];
 
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#0000000',
-
+      foreColor: '#000000',
       events: {
         mounted: (chart: any) => {
           chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
           const maxValue = Math.max(...seriesdoughnutchart);
           const maxIndex = seriesdoughnutchart.indexOf(maxValue);
-          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] + '%' : '';
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] : '';
 
           // Custom label for center text
           chart.updateOptions({
@@ -64,47 +64,26 @@ const Affilatechart1 = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#f45c43', '#fd1d1d'],
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shade: 'light',
-        type: 'vertical',
-        shadeIntensity: 0.5,
-        gradientToColors: ['#feb47b', '#ff7e5f'],
-        inverseColors: true,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100],
-      },
-    },
+    colors: ['#fe8c00', '#f2c94c'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Chi phí', 'Đơn hàng'],
+    labels: ['Cá nhân', 'Doanh nghiệp'],
   };
 
   return (
-    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-    //   <Grid container spacing={3}>
-    //     <Grid item lg={6} md={12} xs={12}>
-
-    //     </Grid>
-    //   </Grid>
-    // </PageContainer>
-    <Affilatec1 title=" Đơn hàng" text="Chi phí / Đơn hàng" description={''}>
-      <Chart
-        options={optionsdoughnutchart}
-        series={seriesdoughnutchart}
-        type="donut"
-        height="300px"
-      />
-    </Affilatec1>
+    <Affilatec2 title="Cuộc trò chuyện" description={''}>
+      <Box>
+        <Chart
+          options={optionsdoughnutchart}
+          series={seriesdoughnutchart}
+          type="donut"
+          height="300px"
+        />
+      </Box>
+    </Affilatec2>
   );
 };
 
-export default Affilatechart1;
+export default Affilatechartadmin8;
