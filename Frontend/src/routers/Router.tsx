@@ -24,7 +24,6 @@ const Notification = Loadable(lazy(() => import('src/views/admin/notification/no
 const Packagepoint = Loadable(lazy(() => import('src/views/admin/packagepoint/packagepoint')));
 const Pointdetail = Loadable(lazy(() => import('src/views/admin/pointdetail/pointdetail')));
 const ProductAdmin = Loadable(lazy(() => import('src/views/admin/product/product')));
-// const Publishers = Loadable(lazy(() => import('src/views/admin/publishers/publishers')));
 const Resources = Loadable(lazy(() => import('src/views/admin/resources/resources')));
 const Staff = Loadable(lazy(() => import('src/views/admin/staff')));
 const VoucherAdmin = Loadable(lazy(() => import('src/views/admin/voucher/voucher')));
@@ -39,12 +38,16 @@ const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success'
 const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 // import AssistantAdmin from '../views/admin/assistant/assistant';
-import BlogAdmin from 'src/views/admin/blog/blog';
-import BuyPoints from 'src/views/admin/buyproduct';
-import PageFeature from 'src/views/admin/feature/feature';
-import OrderAdminPages from 'src/views/admin/order';
-import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
+const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
+const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
+const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')));
+// const OrderAdmin = Loadable(lazy(() => import('src/views/admin/order')));
+const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')));
+const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')));
+const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')));
+
 /* ***Layouts**** */
+
 
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -178,6 +181,9 @@ const BuyPoint = Loadable(lazy(() => import('../views/buypoint/buypoint')));
 const BuyPointService = Loadable(lazy(() => import('../views/buyservicepackage/buyservice')));
 // history
 const HistoryBuyPoint = Loadable(lazy(() => import('../views/historybuypoint/historybuypoint')));
+const HistoryBuyPointInProfile = Loadable(
+  lazy(() => import('../views/apps/user-profile/historyBuyPointInProfile')),
+);
 const HistoryBuyService = Loadable(
   lazy(() => import('../views/historybuyservice/historybuyservice')),
 );
@@ -309,6 +315,7 @@ const Router = [
       { path: '/pay/point2', element: <PaymentPoint2 /> },
       { path: '/buy/service', element: <BuyPointService /> },
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
+      { path: '/history/buy-point-in-frofile', element: <HistoryBuyPointInProfile /> },
       { path: '/history/buy-service', element: <HistoryBuyService /> },
       { path: '/assistant/list', element: <ListAssistant /> },
       { path: '/notifications', element: <AllNotifications /> },
@@ -353,7 +360,7 @@ const Router = [
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
       { path: '/admin/feature', element: <PageFeature /> },
-
+      { path: '/admin/point/packagepoint', element: <RPoints /> },
       { path: '/admin/blogs', element: <BlogAdmin /> },
       { path: '/admin/ticket', element: <Ticket /> },
       { path: '/admin/notification', element: <Notification /> },

@@ -63,6 +63,21 @@ const HeadTable: PropsTable[] = [
     },
 ]
 
+const InfoRow: React.FC<{ label: string; value: string | number }> = ({ label, value }) => (
+    <Grid item xs={12}>
+        <Grid container xs={12}>
+            <Grid item xs={4}>
+                <Typography variant='h6'>{label}</Typography>
+            </Grid>
+            <Grid item xs={8}>
+                <Typography variant='h6' fontWeight={400}>
+                    :{' '} {value}
+                </Typography>
+            </Grid>
+        </Grid>
+    </Grid>
+);
+
 const Decentralization = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
@@ -151,7 +166,7 @@ const Decentralization = () => {
 
             {selectedEmployee && (
                 <Box sx={{ mt: 2 }}>
-                    <Box sx={
+                    {/* <Box sx={
                         {
                             display: 'flex',
                             justifyContent: 'space-between',
@@ -324,7 +339,104 @@ const Decentralization = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                    </Grid> */}
+                    <Box sx={{ mt: 2 }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Typography variant="h4">Thông tin nhân viên</Typography>
+
+                            {selectedEmployee.status ? (
+                                <Box
+                                    sx={{
+                                        backgroundColor: 'success.light',
+                                        paddingY: 1.2,
+                                        paddingX: 1,
+                                        borderRadius: 1.5
+                                    }}
+                                >
+                                    <Typography color="success.dark" fontWeight={600} variant="subtitle2">
+                                        Hoạt động
+                                    </Typography>
+                                </Box>
+                            ) : (
+                                <Box
+                                    sx={{
+                                        backgroundColor: 'error.light',
+                                        padding: 1,
+                                        paddingX: 1,
+                                        borderRadius: 1.5
+                                    }}
+                                >
+                                    <Typography color="error.dark" fontWeight={600} variant="subtitle2">
+                                        Khóa
+                                    </Typography>
+                                </Box>
+                            )}
+                        </Box>
+
+                        <Grid container sx={{ marginY: 2 }}>
+                            <Grid
+                                item
+                                xs={4}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Avatar
+                                    variant="square"
+                                    src={selectedEmployee.avt}
+                                    sx={{
+                                        width: 200,
+                                        height: 200,
+                                        borderRadius: 4
+                                    }}
+                                />
+                            </Grid>
+
+                            <Grid
+                                item
+                                xs={8}
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <Grid container xs={12}>
+                                    {/* Left Column */}
+                                    <Grid item xs={6}>
+                                        <Grid container rowSpacing={2}>
+                                            <InfoRow label="ID" value={selectedEmployee.id} />
+                                            <InfoRow label="Tên nhân viên" value={selectedEmployee.employeeName} />
+                                            <InfoRow label="Chức vụ" value={selectedEmployee.position} />
+                                            <InfoRow label="Phòng ban" value={selectedEmployee.department} />
+                                        </Grid>
+                                    </Grid>
+
+                                    {/* Right Column */}
+                                    <Grid item xs={6}>
+                                        <Grid container rowSpacing={2}>
+                                            <InfoRow label="Email" value={selectedEmployee.email} />
+                                            <InfoRow label="Số điện thoại" value={selectedEmployee.phoneNumber} />
+                                            <InfoRow
+                                                label="Ngày tạo"
+                                                value={selectedEmployee.createdAt.toLocaleDateString()}
+                                            />
+                                            <InfoRow label="Bài viết" value={selectedEmployee.articleCount} />
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Box>
+
                     <Typography variant="h4" sx={{ mt: 3, mb: 2 }}>Phân quyền</Typography>
                     <TableContainer component={Paper}>
                         <Table>
@@ -385,6 +497,7 @@ const Decentralization = () => {
                     </Box>
                 </Box>
             )}
+
         </div>
     );
 };

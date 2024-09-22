@@ -283,26 +283,15 @@ const HistoryBuyPoint = () => {
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       <BannerPage title="Lịch sử quy đổi R-Point" items={BCrumb} />
       <Box
-        style={{
+        sx={{
           display: 'flex',
           gap: '12px',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'end',
+          my: 3,
         }}
       >
-        {' '}
-        <Box sx={{}}>
-          <Typography variant="h3" sx={{ fontSize: { xs: '18px', sm: '20px' } }}>
-            Lịch sử nạp R-Point
-          </Typography>
-        </Box>
-        <Box
-          style={{ width: '35%' }}
-          display={'flex'}
-          alignItems={'center'}
-          gap="5px"
-          sx={{ my: 2 }}
-        >
+        <Box style={{ width: '35%' }} display={'flex'} alignItems={'center'} gap="5px">
           {' '}
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
@@ -356,7 +345,7 @@ const HistoryBuyPoint = () => {
         </Box>
       </Box>
       <BlankCard>
-        <Box mb={2} sx={{ mb: 2 }}>
+        <Box>
           <TableContainer>
             <Table
               sx={{ minWidth: 750 }}

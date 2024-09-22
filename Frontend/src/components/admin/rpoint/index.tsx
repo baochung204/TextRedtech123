@@ -1,10 +1,11 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TablePagination, Box, Grid, IconButton, TextField, InputAdornment } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TablePagination, Box, Grid, TextField, InputAdornment, Tooltip, Fab } from '@mui/material';
 import React, { useState } from 'react'
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import PublisherTable from './datatable/Publisher';
 import icontext from 'src/assets/images/logos/R-Point.png';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from '@tabler/icons-react';
+import { IconPlus } from '@tabler/icons-react';
+import RPointDialog from './dialog/RPointDialog';
 
 
 interface HeadProps {
@@ -48,7 +49,7 @@ const HeadTable: HeadProps[] = [
 
 ]
 
-const Publisher = () => {
+const RPointS = () => {
 
 
     const [page, setPage] = useState(0);
@@ -56,7 +57,7 @@ const Publisher = () => {
     const handleChangePage = (newPage: number) => {
         setPage(newPage);
     };
-
+    const [open, setOpen] = useState<boolean>(false);
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
@@ -75,16 +76,16 @@ const Publisher = () => {
                 }}
             >
                 <Grid item>
-                    <IconButton
-                        color="primary"
-                        aria-label="Add to cart"
-                        // onClick={() => setOpen(true)}
-                        sx={{
-                            pr: 1.5,
-                        }}
-                    >
-                        <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton>
+                    <Tooltip title="Thêm gói R-Point mới" sx={{ mb: '15px' }}>
+                        <Fab size="small"
+                            color="secondary"
+                            aria-label="plus"
+                            sx={{ my: 'auto', mr: 2 }}
+                            onClick={() => setOpen(true)}
+                        >
+                            <IconPlus width={18} />
+                        </Fab>
+                    </Tooltip>
                 </Grid>
                 <Grid item>
                     <TextField
@@ -154,26 +155,6 @@ const Publisher = () => {
                                             sx={{
                                                 whiteSpace: 'nowrap'
                                             }}>
-                                            {/* <Stack direction='row' spacing={2}>
-                                                <Avatar
-                                                    src={item.avt}
-                                                    variant="rounded"
-                                                    alt={item.avt}
-                                                    sx={{ width: 48, height: 48 }}
-                                                />
-                                                <Grid container>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant='h6'>
-                                                            {item.employeeName}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant='subtitle2'>
-                                                            {item.position}
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Stack> */}
                                             <Typography variant="subtitle2">
                                                 {item.model}
                                             </Typography>
@@ -257,21 +238,6 @@ const Publisher = () => {
                                                 {item.createDate}
                                             </Typography>
                                         </TableCell>
-                                        {/* <TableCell
-                                            sx={{
-                                                whiteSpace: 'nowrap'
-                                            }}
-                                        >
-                                            <Typography variant="subtitle2">
-                                                {item.status ? <Typography color="success.dark" variant="subtitle2">
-                                                    Hoạt động
-                                                </Typography> : <Typography color="error" variant="subtitle2">
-                                                    Khóa
-                                                </Typography>}
-                                            </Typography>
-                                        </TableCell> */}
-
-
                                     </TableRow>
                                 );
                             })}
@@ -284,13 +250,16 @@ const Publisher = () => {
                     count={PublisherTable.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
-                    onPageChange={(event, newPage) => handleChangePage(newPage)}
+                    onPageChange={(_event, newPage) => handleChangePage(newPage)}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </TableContainer >
-
+            <RPointDialog
+                open={open}
+                setOpen={setOpen}
+            />
         </>
     )
 }
 
-export default Publisher
+export default RPointS

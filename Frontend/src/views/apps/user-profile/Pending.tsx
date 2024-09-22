@@ -49,7 +49,9 @@ const Pending = () => {
           <Box
             sx={{
               textAlign: 'center',
-              border: `2px solid ${isDarkMode ? '#555' : '#ddd'}`,
+              border: `2px solid ${isDarkMode ? '#555' : 'none'}`,
+              boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+
               borderRadius: '10px',
               padding: '20px',
               color: isDarkMode ? '#fff' : '#000',

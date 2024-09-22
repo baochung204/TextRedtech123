@@ -9,20 +9,13 @@ interface OrderProps {
     sodu: string,
 }
 
-const typeacc = ['Cá nhân', 'Doanh nghiệp'];
-
-const randomType = () => {
-    const index = Math.floor(Math.random() * typeacc.length)
-    return typeacc[index]
-}
-
 const OrderData: OrderProps[] = [
     {
         id: '1',
         name: 'Phạm Thùy Trang',
         email: 'trangpt@gmail.com',
         phone: '0928424211',
-        typeacc: randomType(),
+        typeacc: 'Doanh nghiệp',
         troly: '100',
         tongnap: '24.224.552',
         sodu: '424.222',
@@ -32,7 +25,7 @@ const OrderData: OrderProps[] = [
         name: 'Nguyễn Văn An',
         email: 'anngv@gmail.com',
         phone: '0987654321',
-        typeacc: randomType(),
+        typeacc: 'Cá nhân',
         troly: '150',
         tongnap: '50.000.000',
         sodu: '100.000',
@@ -42,7 +35,7 @@ const OrderData: OrderProps[] = [
         name: 'Trần Thị Mai',
         email: 'maitt@gmail.com',
         phone: '0934567890',
-        typeacc: randomType(),
+        typeacc: 'Doanh nghiệp',
         troly: '200',
         tongnap: '30.000.000',
         sodu: '250.000',
@@ -52,7 +45,7 @@ const OrderData: OrderProps[] = [
         name: 'Lê Thị Lan',
         email: 'lanlt@gmail.com',
         phone: '0912345678',
-        typeacc: randomType(),
+        typeacc: 'Cá nhân',
         troly: '120',
         tongnap: '15.000.000',
         sodu: '300.000',
@@ -62,7 +55,7 @@ const OrderData: OrderProps[] = [
         name: 'Bùi Minh Tuấn',
         email: 'tuamb@gmail.com',
         phone: '0909876543',
-        typeacc: randomType(),
+        typeacc: 'Doanh nghiệp',
         troly: '180',
         tongnap: '40.000.000',
         sodu: '200.000',
@@ -72,7 +65,7 @@ const OrderData: OrderProps[] = [
         name: 'Vũ Thị Hương',
         email: 'huongvt@gmail.com',
         phone: '0922334455',
-        typeacc: randomType(),
+        typeacc: 'Cá nhân',
         troly: '140',
         tongnap: '25.000.000',
         sodu: '180.000',
@@ -82,7 +75,7 @@ const OrderData: OrderProps[] = [
         name: 'Đặng Quang Hòa',
         email: 'hoadq@gmail.com',
         phone: '0933344556',
-        typeacc: randomType(),
+        typeacc: 'Cá nhân',
         troly: '160',
         tongnap: '35.000.000',
         sodu: '220.000',
@@ -92,7 +85,7 @@ const OrderData: OrderProps[] = [
         name: 'Phan Thanh Phúc',
         email: 'phuctp@gmail.com',
         phone: '0911223344',
-        typeacc: randomType(),
+        typeacc: 'Doanh nghiệp',
         troly: '110',
         tongnap: '10.000.000',
         sodu: '150.000',
@@ -102,7 +95,7 @@ const OrderData: OrderProps[] = [
         name: 'Ngô Thị Thu',
         email: 'thutn@gmail.com',
         phone: '0944556677',
-        typeacc: randomType(),
+        typeacc: 'Cá nhân',
         troly: '130',
         tongnap: '28.000.000',
         sodu: '190.000',
@@ -112,7 +105,7 @@ const OrderData: OrderProps[] = [
         name: 'Hoàng Trung Dũng',
         email: 'dunght@gmail.com',
         phone: '0922334455',
-        typeacc: randomType(),
+        typeacc: 'Doanh nghiệp',
         troly: '170',
         tongnap: '45.000.000',
         sodu: '280.000',
@@ -122,7 +115,7 @@ const OrderData: OrderProps[] = [
         name: 'Mai Thị Lệ',
         email: 'lemt@gmail.com',
         phone: '0912333445',
-        typeacc: randomType(),
+        typeacc: 'Cá nhân',     
         troly: '90',
         tongnap: '12.000.000',
         sodu: '120.000',

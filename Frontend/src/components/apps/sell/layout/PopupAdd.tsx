@@ -1,21 +1,18 @@
-import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import {
   Avatar,
   Box,
-  Button,
   Divider,
   Grid,
-  IconButton,
   InputAdornment,
-  Typography,
+  Typography
 } from '@mui/material';
 import React, { useState } from 'react';
+import Classify from 'src/components/apps/sell/layout/classify';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Tags from './Tags';
-// import Classify from 'src/components/apps/sell/layout/classify';
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
 
@@ -57,7 +54,7 @@ const PopupAdd = () => {
       {/* Thông tin cá nhân */}
       <Divider sx={{ mx: '-24px' }} />
 
-      <Box mb={3} pt={2} sx={{}}>
+      <Box mb={3} pt={2} >
         <Grid container spacing={2}>
           <Grid item lg={4} md={12}>
             <Box sx={{ textAlign: 'center', justifyContent: 'center', mt: { md: 2 }, mb: '20px' }}>
@@ -112,7 +109,7 @@ const PopupAdd = () => {
             </Box>
           </Grid>
           <Grid item lg={4} md={12}>
-            <Box>
+            <Grid item xs={12} sm={6} lg={12}>
               <CustomFormLabel htmlFor="name-text">Tên sản phẩm</CustomFormLabel>
               <CustomTextField
                 id="name-text"
@@ -122,15 +119,18 @@ const PopupAdd = () => {
                 value={tags}
                 onChange={handleChange(setTags)}
               />
-              <CustomFormLabel htmlFor="tags-text">Tags</CustomFormLabel>
-              <Tags />
-            </Box>
+              <CustomFormLabel htmlFor="tags-text">Nhãn</CustomFormLabel>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={12}>
+
+                <Tags />
+              </Grid>
           </Grid>
 
           <Grid item lg={4} md={12}>
             <CustomFormLabel htmlFor="phone-text">Giá niêm yết</CustomFormLabel>
             <CustomOutlinedInput
-              endAdornment={<InputAdornment position="end">POINT</InputAdornment>}
+              endAdornment={<InputAdornment position="end">đ</InputAdornment>}
               id="gender-select"
               fullWidth
               variant="outlined"
@@ -139,7 +139,7 @@ const PopupAdd = () => {
 
             <CustomFormLabel htmlFor="gender-select">Giá khuyến mãi</CustomFormLabel>
             <CustomOutlinedInput
-              endAdornment={<InputAdornment position="end">POINT</InputAdornment>}
+              endAdornment={<InputAdornment position="end">đ</InputAdornment>}
               id="gender-select"
               fullWidth
               variant="outlined"
@@ -199,7 +199,7 @@ const PopupAdd = () => {
             </Grid>
             {/* Ảnh sản phẩm */}
 
-            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+            <Grid container item xs={12} sm={12} lg={12} >
               <Grid item xs={12}>
                 <CustomFormLabel htmlFor="size-text">Kích thước</CustomFormLabel>
 
@@ -239,66 +239,21 @@ const PopupAdd = () => {
                   </Grid>
                 </Grid>
               </Grid>
+              <Grid item xs={12}>
+                <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
+                <CustomTextField
+                  id="style-text"
+                  variant="outlined"
+                  fullWidth
+                  placeholder="Nhập kiểu dáng . . ."
+
+                // value={style}
+                // onChange={handleChange(setStyle)}
+                />
+              </Grid>
             </Grid>
 
-            <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
-            <CustomTextField
-              id="style-text"
-              variant="outlined"
-              fullWidth
-              placeholder="Nhập kiểu dáng . . ."
 
-            // value={style}
-            // onChange={handleChange(setStyle)}
-            />
-            <Grid item mt={2}>
-              {/* <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel> */}
-              <input
-                type="file"
-                id="product-images"
-                multiple
-                style={{ display: 'none' }}
-                onChange={handleFilesChange}
-                accept="image/*" // Chỉ cho phép chọn ảnh
-              />
-              <Button variant="contained" color="primary" component="label" htmlFor="product-images">
-                Chọn ảnh sản phẩm
-              </Button>
-
-              {selectedImages.length > 0 && (
-                <div>
-                  <h4>Ảnh đã chọn:</h4>
-                  <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                    {selectedImages.map((image, index) => (
-                      <div key={index} style={{ position: 'relative', margin: '10px' }}>
-                        <img
-                          src={URL.createObjectURL(image)}
-                          alt={`preview ${index}`}
-                          style={{
-                            width: '100px',
-                            height: '100px',
-                            objectFit: 'cover',
-                            borderRadius: '5px',
-                          }}
-                        />
-                        <IconButton
-                          onClick={() => handleRemoveImage(index)}
-                          style={{
-                            position: 'absolute',
-                            top: '0',
-                            right: '0',
-                            background: 'rgba(255, 255, 255, 0.7)',
-                            borderRadius: '50%',
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </Grid>
           </Grid>
 
           <Grid item lg={6} md={12}>
@@ -311,7 +266,7 @@ const PopupAdd = () => {
                 variant="outlined"
                 fullWidth
                 multiline
-                rows={4.3}
+                rows={9.2}
                 placeholder="Nhập mô tả sản phẩm . . ."
               // value={description}
               // onChange={handleChange(setDescription)}
@@ -328,20 +283,62 @@ const PopupAdd = () => {
               // value={material}
               // onChange={handleChange(setMaterial)}
               />
+
             </Grid>
-            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
-              <Grid item xs={12} sm={6} lg={12}>
-                <CustomFormLabel htmlFor="color-text">Phân loại</CustomFormLabel>
-                <CustomTextField
-                  fullWidth
-                  placeholder='Nhập kiểu phân loại . . . '
+            {/* <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+
+              <Grid item mt={2}>
+                <input
+                  type="file"
+                  id="product-images"
+                  multiple
+                  style={{ display: 'none' }}
+                  onChange={handleFilesChange}
+                  accept="image/*" // Chỉ cho phép chọn ảnh
                 />
-                {/* <Classify/> */}
+                <Button variant="contained" color="primary" component="label" htmlFor="product-images">
+                  Chọn ảnh sản phẩm
+                </Button>
+
+                {selectedImages.length > 0 && (
+                  <div>
+                    <h4>Ảnh đã chọn:</h4>
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                      {selectedImages.map((image, index) => (
+                        <div key={index} style={{ position: 'relative', margin: '10px' }}>
+                          <img
+                            src={URL.createObjectURL(image)}
+                            alt={`preview ${index}`}
+                            style={{
+                              width: '100px',
+                              height: '100px',
+                              objectFit: 'cover',
+                              borderRadius: '5px',
+                            }}
+                          />
+                          <IconButton
+                            onClick={() => handleRemoveImage(index)}
+                            style={{
+                              position: 'absolute',
+                              top: '0',
+                              right: '0',
+                              background: 'rgba(255, 255, 255, 0.7)',
+                              borderRadius: '50%',
+                            }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </Grid>
-
-            </Grid>
+            </Grid> */}
           </Grid>
-
+          <Grid item lg={12} md={12}>
+            <Classify />
+          </Grid>
         </Grid>
       </Box>
     </Box>

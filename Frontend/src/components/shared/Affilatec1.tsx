@@ -34,8 +34,10 @@ const Affilatec1 = ({ children, footer, text }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
+
         <h2>{text}</h2>
         {/* Chi phí / Đơn hàng */}
+
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (

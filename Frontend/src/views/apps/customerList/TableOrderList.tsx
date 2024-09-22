@@ -137,15 +137,27 @@ const TableListOrder = () => {
                   <TableCell sx={{ textAlign: 'center' }}>
                     <Typography variant="subtitle2">{row.assistant}</Typography>
                   </TableCell>
-                  <TableCell sx={{ textAlign: 'center' }}>
-                    <Typography variant="subtitle2">
-                      {row.pricePoint}
-                      <img
-                        src={logo}
-                        alt="Logo"
-                        style={{ width: '25px', height: '25px', marginLeft: '10px' }}
-                      />
-                    </Typography>
+                 
+                  <TableCell>
+                    <Box width={'90px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                      <Typography
+                        color="textSecondary"
+                        variant="subtitle2"
+
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {row.pricePoint}{' '}
+                        <img
+                          src={logo}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+
+                    </Box>
+
                   </TableCell>
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>

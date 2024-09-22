@@ -71,7 +71,9 @@ const Affilatechart = () => {
   };
 
   return (
+
     <Affilatec title="Tỉ trọng chi phí / doanh thu" text="Chi phí / Doanh thu" description={''}>
+
       <Chart
         options={optionsdoughnutchart}
         series={seriesdoughnutchart}
