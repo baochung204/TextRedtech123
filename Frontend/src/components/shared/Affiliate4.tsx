@@ -14,7 +14,7 @@ type Props = {
   text: string;
 };
 
-const Affilatec = ({ children, footer, text }: Props) => {
+const Affiliate4 = ({ children, footer, text }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
@@ -34,10 +34,8 @@ const Affilatec = ({ children, footer, text }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
-
         <h2>{text}</h2>
         {/* Chi phí / Doanh thu  */}
-
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (
@@ -52,4 +50,4 @@ const Affilatec = ({ children, footer, text }: Props) => {
   );
 };
 
-export default Affilatec;
+export default Affiliate4;

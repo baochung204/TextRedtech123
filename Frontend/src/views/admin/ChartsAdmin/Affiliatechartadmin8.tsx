@@ -1,9 +1,11 @@
-// import React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { Box } from '@mui/material';
 import Chart, { Props } from 'react-apexcharts';
-import Affilatec from 'src/components/shared/Affilatec';
+import Affilatec2 from 'src/components/shared/Affilatec2';
 
-const Affilatechart = () => {
-  const seriesdoughnutchart = [35, 65];
+const Affilatechartadmin8 = () => {
+  const seriesdoughnutchart = [41, 59];
 
   const optionsdoughnutchart: Props = {
     chart: {
@@ -62,26 +64,26 @@ const Affilatechart = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#4cb8c4', '#3cd3ad'],
+    colors: ['#fe8c00', '#f2c94c'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Chi phí', 'Doanh thu'],
+    labels: ['Cá nhân', 'Doanh nghiệp'],
   };
 
   return (
-
-    <Affilatec title="Tỉ trọng chi phí / doanh thu" text="Chi phí / Doanh thu" description={''}>
-
-      <Chart
-        options={optionsdoughnutchart}
-        series={seriesdoughnutchart}
-        type="donut"
-        height="300px"
-      />
-    </Affilatec>
+    <Affilatec2 title="Cuộc trò chuyện" description={''}>
+      <Box>
+        <Chart
+          options={optionsdoughnutchart}
+          series={seriesdoughnutchart}
+          type="donut"
+          height="300px"
+        />
+      </Box>
+    </Affilatec2>
   );
 };
 
-export default Affilatechart;
+export default Affilatechartadmin8;

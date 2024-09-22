@@ -1,9 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { Box, MenuItem } from '@mui/material';
+import React from 'react';
 import Chart, { Props } from 'react-apexcharts';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec1 from 'src/components/shared/Affilatec1';
 
-const Affilatechart1 = () => {
+const Affilatechartadmin1 = ({ menuItems }) => {
   const seriesdoughnutchart = [55, 45];
 
   const optionsdoughnutchart: Props = {
@@ -82,29 +85,52 @@ const Affilatechart1 = () => {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Chi phí', 'Đơn hàng'],
+    labels: ['Cá nhân', 'Doanh nghiệp'],
+  };
+
+  const [month, setMonth] = React.useState('1');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
   };
 
   return (
-    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-    //   <Grid container spacing={3}>
-    //     <Grid item lg={6} md={12} xs={12}>
-
-    //     </Grid>
-    //   </Grid>
-    // </PageContainer>
-    <Affilatec1 title=" Đơn hàng" text="Chi phí / Đơn hàng" description={''}>
-      <Chart
-        options={optionsdoughnutchart}
-        series={seriesdoughnutchart}
-        type="donut"
-        height="300px"
-      />
+    <Affilatec1 title="Loại tài khoản" text="Loại tài khoản" description={''}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <CustomSelect
+          labelId="month-dd"
+          id="month-dd"
+          size="small"
+          value={month}
+          onChange={handleChange}
+          sx={{ marginBottom: '20px' }}
+        >
+          {menuItems && Array.isArray(menuItems) ? (
+            menuItems.map((item) => (
+              <MenuItem key={item.value} value={item.value}>
+                {item.label}
+              </MenuItem>
+            ))
+          ) : (
+            <MenuItem disabled>No options available</MenuItem>
+          )}
+        </CustomSelect>
+        <Chart
+          options={optionsdoughnutchart}
+          series={seriesdoughnutchart}
+          type="donut"
+          height="300px"
+        />
+      </Box>
     </Affilatec1>
   );
 };
 
-export default Affilatechart1;
+export default Affilatechartadmin1;

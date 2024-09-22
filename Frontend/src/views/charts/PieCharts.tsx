@@ -54,8 +54,8 @@ const PieCharts = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <Modarm title="Nguồn khách hàng " description="">
-      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
+    <Modarm title="Nguồn khách hàng" text="Nguồn khách hàng" description="">
+      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="350px" />
     </Modarm>
   );
 };

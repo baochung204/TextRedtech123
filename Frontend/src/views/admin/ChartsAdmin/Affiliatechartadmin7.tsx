@@ -1,11 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { useTheme } from '@mui/material/styles';
+// import React from 'react';
+import { Box, MenuItem } from '@mui/material';
+import React from 'react';
 import Chart, { Props } from 'react-apexcharts';
-import Affilatec2 from 'src/components/shared/Affilatec2';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import Affilatec from 'src/components/shared/Affilatec';
 
-const Affilatechart2 = () => {
-  const seriesdoughnutchart = [41, 59];
+const Affilatechartadmin7 = ({ menuItems }) => {
+  const seriesdoughnutchart = [35, 65];
 
   const optionsdoughnutchart: Props = {
     chart: {
@@ -64,35 +65,57 @@ const Affilatechart2 = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#fe8c00', '#f2c94c'],
+    colors: ['#4cb8c4', '#3cd3ad'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Chi phí', 'Cuộc trò chuyện'],
+    labels: ['Chi phí token', 'Khách hàng'],
+  };
+
+  const [month, setMonth] = React.useState('1');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
   };
 
   return (
-    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-    //   <Grid container spacing={3}>
-    //     <Grid item lg={6} md={12} xs={12}>
-
-    //     </Grid>
-    //   </Grid>
-    // </PageContainer>
-    <Affilatec2 title="Cuộc trò chuyện" description={''}>
-      <Chart
-        options={optionsdoughnutchart}
-        series={seriesdoughnutchart}
-        type="donut"
-        height="300px"
-        // style={{ position: 'relative' }}
-      />
-    </Affilatec2>
+    <Affilatec title="Khách hàng" text="Tỉ trọng" description={''}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <CustomSelect
+          labelId="month-dd"
+          id="month-dd"
+          size="small"
+          value={month}
+          onChange={handleChange}
+          sx={{ marginBottom: '20px' }}
+        >
+          {menuItems && Array.isArray(menuItems) ? (
+            menuItems.map((item) => (
+              <MenuItem key={item.value} value={item.value}>
+                {item.label}
+              </MenuItem>
+            ))
+          ) : (
+            <MenuItem disabled>No options available</MenuItem>
+          )}
+        </CustomSelect>
+        <Chart
+          options={optionsdoughnutchart}
+          series={seriesdoughnutchart}
+          type="donut"
+          height="300px"
+        />
+      </Box>
+    </Affilatec>
   );
 };
 
-export default Affilatechart2;
+export default Affilatechartadmin7;
