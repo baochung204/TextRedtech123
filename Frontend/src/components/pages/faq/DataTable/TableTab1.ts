@@ -43,7 +43,7 @@ const DataTab1: ItemTab1[] = Array.from({ length: 20 }, (_, index) => {
         strategy: strategyNames[index % strategyNames.length],
         strategyLevel: level,
         strategyID: getRandomID(),
-        isActive: true
+        isActive: Math.random() < 0.5
     };
 });
 

@@ -1,17 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Chart from 'react-apexcharts';
-import { useTheme } from '@mui/material/styles';
-
 import { Props } from 'react-apexcharts';
-
-import { Dayjs } from 'dayjs';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import { Box, MenuItem, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Dayjs } from 'dayjs';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
 const monthsInVietnamese = [
@@ -29,7 +27,7 @@ const monthsInVietnamese = [
   'Tháng 12',
 ];
 
-const GenChartAdmin = ({ text, menuItems }) => {
+const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -167,7 +165,7 @@ const GenChartAdmin = ({ text, menuItems }) => {
               onChange={handleChange}
             >
               {menuItems &&
-                menuItems.map((item) => (
+                menuItems.map((item: any) => (
                   <MenuItem key={item.value} value={item.value}>
                     {item.label}
                   </MenuItem>

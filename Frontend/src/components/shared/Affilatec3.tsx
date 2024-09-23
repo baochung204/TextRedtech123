@@ -1,11 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
+import { Box, Card, CardContent, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, Divider, Box } from '@mui/material';
-import { useSelector } from 'src/store/Store';
-import { AppState } from 'src/store/Store';
-import { string } from 'yup';
+import { AppState, useSelector } from 'src/store/Store';
 
 type Props = {
   title: string;

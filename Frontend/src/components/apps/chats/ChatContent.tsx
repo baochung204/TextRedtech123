@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 import { IconDotsVertical, IconMenu2 } from '@tabler/icons-react';
 import { useSelector } from 'src/store/Store';
-
 import { ChatsType } from 'src/types/apps/chat';
 import ChatInsideSidebar from './ChatInsideSidebar';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
@@ -25,10 +24,10 @@ import { vi } from 'date-fns/locale';
 interface ChatContentProps {
   toggleChatSidebar: () => void;
 }
-interface Message {
-  text: string;
-  sender: 'user' | 'bot';
-}
+// interface Message {
+//   text: string;
+//   sender: 'user' | 'bot';
+// }
 
 const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
   const [open, setOpen] = useState(false);

@@ -1,7 +1,6 @@
 import { Box, Grid, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Point from 'src/assets/images/logos/R-Point.png';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 
 interface PropsItem {
   usdValue: number | null;

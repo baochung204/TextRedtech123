@@ -192,6 +192,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
           page={page}
           onPageChange={(_event, newPage) => handleChangePage(newPage)}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên mỗi trang"
         />
       </TableContainer>
 

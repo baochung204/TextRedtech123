@@ -1,9 +1,20 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Avatar,
+  Badge,
   Box,
   Button,
   Checkbox,
   Chip,
+  Grid,
+  IconButton,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
   Table,
   TableBody,
   TableCell,
@@ -11,83 +22,17 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
-} from '@mui/material';
-import React, { useState } from 'react';
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
-import { DataHistoryTable } from '../datatable/OrderTableData';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import {
-  Badge,
-  Grid,
-  IconButton,
-  InputAdornment,
-  ListItemText,
-  MenuItem,
-  Select,
   TextField,
+  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
-import { createElement } from 'react';
-interface PropsHeadTable {
-  head: string;
-}
+import React, { createElement, useState } from 'react';
+import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
+import { DataHistoryTable } from '../datatable/OrderTableData';
 
-const HeadTable: PropsHeadTable[] = [
-  {
-    head: 'ID thanh toán',
-  },
-  {
-    head: 'Khách hàng',
-  },
-  {
-    head: 'Ngày yêu cầu',
-  },
-  {
-    head: 'Ngày hoàn tất',
-  },
-  {
-    head: 'Email',
-  },
-  {
-    head: 'SĐT',
-  },
-  {
-    head: 'Số tiền rút',
-  },
-  {
-    head: 'Số tài khoản',
-  },
-  {
-    head: 'Ngân hàng',
-  },
-  {
-    head: 'Chủ tải khoản',
-  },
-  {
-    head: 'Chi nhánh',
-  },
-  {
-    head: 'Hóa đơn',
-  },
-  {
-    head: 'Trạng thái',
-  },
-  {
-    head: 'Duyệt hóa đơn',
-  },
-  {
-    head: 'Đã thanh toán',
-  },
-  {
-    head: 'Thông báo',
-  },
-];
+
 interface FilmsData {
   id: number;
   title: string;

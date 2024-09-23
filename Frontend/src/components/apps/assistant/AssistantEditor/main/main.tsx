@@ -18,6 +18,7 @@ import AddSearch from '../layout/addSearch';
 import ChatBot from '../layout/ChatBot';
 import Integration from '../layout/Integration';
 import Strategy from '../layout/Strategy';
+import AddText from '../layout/addText';
 import Sli from '../Sli';
 
 const AssistantEditor = () => {
@@ -68,6 +69,9 @@ const AssistantEditor = () => {
                   <Grid container>
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddModel />
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={12}>
+                      <AddText/>
                     </Grid>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6} lg={6}>

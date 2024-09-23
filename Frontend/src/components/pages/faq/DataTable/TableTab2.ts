@@ -44,7 +44,7 @@ const DataTab2: ItemTab2[] = Array.from({ length: 20 }, (_, index) => {
         functions: functionNames[index % functionNames.length],
         functionsLevel: level,
         functionsID: getRandomID(),
-        isActive: false
+        isActive: Math.random() < 0.5
     };
 });
 

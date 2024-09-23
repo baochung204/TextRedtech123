@@ -1,3 +1,7 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Badge,
   Box,
@@ -20,19 +24,13 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { IconSearch } from '@tabler/icons-react';
 import React, { createElement, useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { DataContactAffiliateTable } from '../datatable/OrderTableData';
-import { IconSearch } from '@tabler/icons-react';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import FilterListIcon from '@mui/icons-material/FilterList';
-interface PropsHeadTable {
-  head: string;
-}
+
 interface FilmsData {
   id: number;
   title: string;

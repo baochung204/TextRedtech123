@@ -6,7 +6,7 @@ import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec2 from 'src/components/shared/Affilatec2';
 
-const Affilatechartadmin5 = ({ menuItems }) => {
+const Affilatechartadmin5 = ({ menuItems }: { menuItems: any }) => {
   const seriesdoughnutchart = [41, 59];
 
   const optionsdoughnutchart: Props = {

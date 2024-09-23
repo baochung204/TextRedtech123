@@ -33,6 +33,7 @@ interface PersonnelTables {
     isActive: boolean;
     avt: string,
     position: string,
+    isValidate: boolean,
     permissions: Permissions
 }
 
@@ -61,6 +62,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: true, sua: false, xoa: true, khong: false },
             'Chức năng 2': { xem: true, them: true, sua: false, xoa: false, khong: true }
@@ -78,6 +80,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: false },
             'Chức năng 2': { xem: true, them: true, sua: false, xoa: true, khong: false }
@@ -95,6 +98,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: true },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: true }
@@ -112,6 +116,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -129,6 +134,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -146,6 +152,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -163,6 +170,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -180,6 +188,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -197,6 +206,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -214,6 +224,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -231,6 +242,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -248,6 +260,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -265,6 +278,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -282,6 +296,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -299,6 +314,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -316,6 +332,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -333,6 +350,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -350,6 +368,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -367,6 +386,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -384,6 +404,7 @@ const PersonnelTable: PersonnelTables[] = [
         isActive: true,
         avt: getRandomImage(),
         position: getRandomPosition(),
+        isValidate: true,
         permissions: {
             'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
             'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }

@@ -52,11 +52,15 @@ const Update = () => {
             sx={{ display: 'flex', alignItems: 'center' }} // Ensure the content is aligned
           >
             <Box sx={{ display: 'flex', flexGrow: 1, alignItems: 'center' }}>
-              <Typography sx={{ fontWeight: 'bold', mr: 1 }}>07-09-2024</Typography> |
+              <Typography sx={{ fontWeight: 'bold', mr: 1, display: { xs: 'none', md: 'block' } }}>
+                07-09-2024 |
+              </Typography>
+
               <Typography variant="h6" sx={{ fontWeight: 'bold', ml: 1 }}>
                 Cập nhật tính năng tạo tính cách cho Trợ lý
               </Typography>
             </Box>
+
             <Box sx={{ ml: 2 }}>
               <Chip
                 label="Tính năng mới"
@@ -67,7 +71,7 @@ const Update = () => {
             </Box>
           </AccordionSummary>
           <AccordionDetails>
-            <Box mb={4} textAlign="right">
+            <Box mb={4} textAlign="start">
               <Typography>
                 Tính năng tạo tính cách Trợ lý cho phép người dùng tạo tính cách cho trợ lý tùy theo
                 sở thích và mục đích sử dụng. Điều này sẽ giúp trợ lý hiểu rõ bản thân, ngữ cảnh
