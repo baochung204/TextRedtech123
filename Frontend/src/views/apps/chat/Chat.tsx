@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Box, Divider } from '@mui/material';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import ChatContent from 'src/components/apps/chats/ChatContent';
 import ChatMsgSent from 'src/components/apps/chats/ChatMsgSent';
 import ChatSidebar from 'src/components/apps/chats/ChatSidebar';

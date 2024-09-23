@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
 import Affilatec1 from 'src/components/shared/Affilatec1';
 

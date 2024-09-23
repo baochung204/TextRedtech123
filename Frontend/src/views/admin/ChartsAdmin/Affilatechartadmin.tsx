@@ -5,7 +5,7 @@ import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec from 'src/components/shared/Affilatec';
 
-const Affilatechartadmin = ({ menuItems }) => {
+const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
   const seriesdoughnutchart = [35, 65];
 
   const optionsdoughnutchart: Props = {
@@ -98,7 +98,7 @@ const Affilatechartadmin = ({ menuItems }) => {
           sx={{ marginBottom: '20px' }}
         >
           {menuItems &&
-            menuItems.map((item) => (
+            menuItems.map((item: any) => (
               <MenuItem key={item.value} value={item.value}>
                 {item.label}
               </MenuItem>

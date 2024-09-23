@@ -12,7 +12,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import ParentCard from 'src/components/shared/ParentCard';
 
-const RadialbarChartAdmin = ({ menuItems }) => {
+const RadialbarChartAdmin = ({ menuItems }: { menuItems: any }) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;

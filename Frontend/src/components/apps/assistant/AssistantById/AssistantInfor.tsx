@@ -53,8 +53,6 @@ import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Affilatec from 'src/components/shared/Affilatec';
-import Affilatec1 from 'src/components/shared/Affilatec1';
 import Affilatec2 from 'src/components/shared/Affilatec2';
 import Affilatec3 from 'src/components/shared/Affilatec3';
 import Modarm from 'src/components/shared/moderm';
@@ -558,35 +556,35 @@ const AssistantInfor = () => {
       data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
-  const optionsdoughnutchart3: Props = {
-    chart: {
-      id: 'donut-chart',
-      fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    plotOptions: {
-      pie: {
-        donut: {
-          size: '70px',
-        },
-      },
-    },
-    legend: {
-      show: true,
-      position: 'bottom',
-      width: '50px',
-    },
-    colors: ['#ff416c', '#ff4b2b'],
-    tooltip: {
-      theme: 'dark',
-      fillSeriesColor: false,
-    },
-    labels: ['Chi phí', 'Doanh thu'],
-  };
-  const seriesdoughnutchart3 = [65, 35];
+  // const optionsdoughnutchart3: Props = {
+  //   chart: {
+  //     id: 'donut-chart',
+  //     fontFamily: "'Plus Jakarta Sans', sans-serif",
+  //     foreColor: '#adb0bb',
+  //   },
+  //   dataLabels: {
+  //     enabled: false,
+  //   },
+  //   plotOptions: {
+  //     pie: {
+  //       donut: {
+  //         size: '70px',
+  //       },
+  //     },
+  //   },
+  //   legend: {
+  //     show: true,
+  //     position: 'bottom',
+  //     width: '50px',
+  //   },
+  //   colors: ['#ff416c', '#ff4b2b'],
+  //   tooltip: {
+  //     theme: 'dark',
+  //     fillSeriesColor: false,
+  //   },
+  //   labels: ['Chi phí', 'Doanh thu'],
+  // };
+  // const seriesdoughnutchart3 = [65, 35];
   const optionsdoughnutchart4: Props = {
     chart: {
       id: 'donut-chart',
@@ -1353,24 +1351,24 @@ const AssistantInfor = () => {
           </Grid>{' '}
           {/* column */}
           <Grid item xs={12} lg={4}>
-            <Affilatec title="Tỉ trọng chi phí /doanh thu ">
+            {/* <Affilatec title="Tỉ trọng chi phí /doanh thu ">
               <Chart
                 options={optionsdoughnutchart3}
                 series={seriesdoughnutchart3}
                 type="donut"
                 height="300px"
               />
-            </Affilatec>
+            </Affilatec> */}
           </Grid>
           <Grid item xs={12} lg={4}>
-            <Affilatec1 title=" Đơn hàng">
+            {/* <Affilatec1 title=" Đơn hàng">
               <Chart
                 options={optionsdoughnutchart3}
                 series={seriesdoughnutchart3}
                 type="donut"
                 height="300px"
               />
-            </Affilatec1>
+            </Affilatec1> */}
           </Grid>{' '}
           <Grid item xs={12} lg={4}>
             <Affilatec2 title="Cuộc trò chuyện">

@@ -7,11 +7,11 @@ import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
 
 type Props = {
-  title: string;
+  title?: string;
   description?: string;
   footer?: string | JSX.Element;
-  children: JSX.Element;
-  text: string;
+  children?: JSX.Element;
+  text?: string;
 };
 
 const Affilatec = ({ children, footer, text }: Props) => {
@@ -34,10 +34,8 @@ const Affilatec = ({ children, footer, text }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
-
         <h2>{text}</h2>
         {/* Chi phí / Doanh thu  */}
-
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (
