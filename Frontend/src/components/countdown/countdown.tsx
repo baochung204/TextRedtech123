@@ -35,7 +35,6 @@ const Countdown = ({ initialSeconds }: { initialSeconds: number }) => {
       alignItems="center"
       height={100}
       sx={{ textAlign: 'center' }}
-      bgcolor={'error.light'}
     >
       <Box display="flex" flexDirection="column" alignItems="center">
         <Typography color={'error'}>Khuyến mãi còn lại</Typography>

@@ -63,37 +63,7 @@ const AddModel = () => {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6} lg={12}>
-          <CustomFormLabel htmlFor="cname">Định nghĩa chuyển đổi</CustomFormLabel>
-          <TextField
-            id="outlined-multiline-static"
-            multiline
-            rows={6}
-            fullWidth
-            placeholder="Nhập đoạn văn . . ."
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                padding: 0,
-                '& textarea': {
-                  // Custom scrollbar styles
-                  '&::-webkit-scrollbar': {
-                    width: '10px',
-                  },
-                  '&::-webkit-scrollbar-track': {
-                    backgroundColor: 'none',
-                  },
-                  '&::-webkit-scrollbar-thumb': {
-                    backgroundColor: '#f1f1f1',
-                    borderRadius: '10px',
-                  },
-                  '&::-webkit-scrollbar-thumb:hover': {
-                    backgroundColor: '#e6e6e6',
-                  },
-                },
-              },
-            }}
-          />
-        </Grid>
+       
       </Grid>
     </Paper>
   );
