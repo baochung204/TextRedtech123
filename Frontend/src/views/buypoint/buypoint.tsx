@@ -104,8 +104,8 @@ const BuyPoint = () => {
 
       {/* <Breadcrumb title="Quy Đổi R-Point  " items={BCrumb} /> */}
       <ChildCard>
-        <Grid container spacing={7}>
-          <Grid item lg={10} sm={6} xs={12} sx={{}}>
+        <Grid container spacing={2}>
+          <Grid item xs={9}>
             <Box
               sx={{
                 backgroundColor: theme.palette.mode === 'dark' ? '#404759' : '#FEF3F4',
@@ -135,7 +135,7 @@ const BuyPoint = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid item lg={2} sm={6} xs={12}>
+          <Grid item lg={2} sm={6} xs={3}>
             <Link
               to={'/history/buy-point'}
               style={{
