@@ -2,8 +2,10 @@
 // @ts-ignore
 import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
-import PageContainer from '../../components/container/PageContainer';
-import ParentCard from '../../components/shared/ParentCard';
+import PageContainer from 'src/components/container/PageContainer';
+// import Breadcrumb from '../../layouts/full/shared/breadcrumb/Breadcrumb';
+// import ParentCard from '../../components/shared/ParentCard';
+import ParentCard from 'src/components/shared/ParentCard';
 
 // const BCrumb = [
 //   {

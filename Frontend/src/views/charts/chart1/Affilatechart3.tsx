@@ -1,5 +1,5 @@
-import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
+import Chart from 'react-apexcharts';
 import Affilatec3 from 'src/components/shared/Affilatec3';
 
 const Affilatechart3 = () => {
@@ -77,7 +77,7 @@ const Affilatechart3 = () => {
   const seriesradialchart = [93.27]; // Giá trị hiển thị trên đồng hồ
 
   return (
-    <Affilatec3 title="Tỉ trọng chi phí /vòng quay" description={''}>
+    <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
       <Chart
         options={optionsradialchart}
         series={seriesradialchart}

@@ -5,7 +5,7 @@ import Chart from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec3 from 'src/components/shared/Affilatec3';
 
-const Affilatechartadmin3 = ({ menuItems }) => {
+const Affilatechartadmin3 = ({ menuItems }: { menuItems: any }) => {
   // chart color
   const theme = useTheme();
   const success = '#1AC45F';

@@ -4,18 +4,18 @@ import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import * as React from 'react';
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
+// const ITEM_HEIGHT = 48;
+// const ITEM_PADDING_TOP = 8;
+// const MenuProps = {
+//   PaperProps: {
+//     style: {
+//       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+//       width: 250,
+//     },
+//   },
+// };
 
-const names = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
+// const names = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
 
 import {
   Avatar,
@@ -39,7 +39,7 @@ import {
   TextField,
   Toolbar,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 
@@ -61,8 +61,6 @@ import img5 from 'src/assets/images/profile/user-5.jpg';
 import BlankCard from '../../../components/shared/BlankCard';
 
 import AddDialog from './layout/addDialog';
-
-
 
 interface TablePaginationActionsProps {
   count: number;
@@ -124,7 +122,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 interface OrderType {
   id: string;
   items: string;
-  imgsrc: any;
+  imgsrc: string;
   name: string;
   total: string;
   tags: string;
@@ -338,7 +336,8 @@ const PaginationTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const [ID, setId] = React.useState(true);
+  // const [ID, setId] = React.useState(true);
+  const [ID] = React.useState(true);
   const [IMG, setImg] = React.useState(true);
   const [NAME, setName] = React.useState(true);
   const [TAGS, setTags] = React.useState(true);

@@ -1,6 +1,5 @@
 import {
   Box,
-  Fab,
   Grid,
   InputAdornment,
   Stack,
@@ -14,7 +13,7 @@ import {
   TableSortLabel,
   TextField,
   Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
 import s24 from 'src/assets/images/products/s24.jpg';
 // components
@@ -22,7 +21,7 @@ import s24 from 'src/assets/images/products/s24.jpg';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconPlus, IconSearch } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 

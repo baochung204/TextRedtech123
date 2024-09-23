@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
@@ -14,8 +14,6 @@ import GerChart from '../charts/Gerchart';
 import PieCharts from '../charts/PieCharts';
 
 import Charts from './charts';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { ChangeEvent, useState } from 'react';
 
 const Modern = () => {
   return (

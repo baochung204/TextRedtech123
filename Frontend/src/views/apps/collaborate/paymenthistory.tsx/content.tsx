@@ -30,8 +30,6 @@ import products from 'src/assets/images/products/s25.jpg';
 // import Countdown from 'src/components/countdown/countdown';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
-import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 const Content = () => {
   const packages = [

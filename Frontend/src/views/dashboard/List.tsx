@@ -15,8 +15,8 @@ import Projects from 'src/components/dashboards/modern/Projects';
 import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
 import WeeklyStats from 'src/components/dashboards/modern/WeeklyStats';
 import YearlyBreakup from 'src/components/dashboards/modern/YearlyBreakup';
-import ItemTable1 from './table/itemTable1';
-import ItemTable2 from './table/itemTable2';
+// import ItemTable1 from './table/itemTable1';
+// import ItemTable2 from './table/itemTable2';
 
 const List = () => {
   return (
@@ -74,11 +74,11 @@ const List = () => {
             </Grid>
             <Grid item xs={12} sm={6} lg={12}>
               {' '}
-              <ItemTable1 />{' '}
+              {/* <ItemTable1 />{' '} */}
             </Grid>
             <Grid item xs={12} lg={12}>
               {' '}
-              <ItemTable2 />{' '}
+              {/* <ItemTable2 />{' '} */}
             </Grid>
           </Grid>
         </Box>

@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import fs from 'fs/promises';
 import svgr from '@svgr/rollup';
+import viteCompression from 'vite-plugin-compression'; // Thêm plugin
 
 export default defineConfig({
   resolve: {
@@ -31,5 +32,18 @@ export default defineConfig({
     },
   },
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg'],
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteCompression({
+      algorithm: 'brotliCompress', // Nén Brotli
+      ext: '.br',
+      threshold: 10240, // Chỉ nén file lớn hơn 10KB
+    }),
+    viteCompression({
+      algorithm: 'gzip', // Nén Gzip
+      ext: '.gz',
+      threshold: 10240,
+    }),
+    svgr(),
+  ],
 });
