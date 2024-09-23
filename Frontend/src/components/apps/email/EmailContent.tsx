@@ -23,7 +23,7 @@ import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-import '../../../views/forms/quill-editor/Quill.css';
+// import '../../../views/forms/quill-editor/Quill.css';
 
 const EmailContent = () => {
   const emailDetails: EmailType = useSelector(
