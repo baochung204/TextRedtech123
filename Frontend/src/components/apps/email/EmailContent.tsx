@@ -22,13 +22,8 @@ import { starEmail, importantEmail, deleteEmail } from '../../../store/apps/emai
 import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-<<<<<<< HEAD
-// import '../../../views/forms/quill-editor/Quill.css';
-import '@/views/forms/quill-editor/Quill.css';
-=======
 
 // import '../../../views/forms/quill-editor/Quill.css';
->>>>>>> de31bc84c891d6e445cbd164fb669a9e7eed2708
 
 const EmailContent = () => {
   const emailDetails: EmailType = useSelector(

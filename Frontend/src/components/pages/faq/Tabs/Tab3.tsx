@@ -145,6 +145,7 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
             page={page}
             onPageChange={() => handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage="Số hàng trên mỗi trang"
           />
         </TableContainer>
       </Box>
