@@ -19,6 +19,7 @@ import {
   TableHead,
   TableRow,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import { IconChevronDown } from '@tabler/icons-react';
 import { useState } from 'react';
@@ -47,6 +48,7 @@ const Content2 = () => {
   const handleSelectPackage = (pkg: any) => {
     setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
   };
+  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
   return (
     <div>
@@ -306,12 +308,25 @@ const Content2 = () => {
                           >
                             <div style={{ display: 'flex', gap: '20px' }}>
                               <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
-                                <img
-                                  src={pkg.img}
-                                  alt={''}
-                                  width="120"
-                                  style={{ borderRadius: '10px' }}
-                                />
+                                {lgUp ? (
+                                  <img
+                                    src={pkg.img}
+                                    alt={''}
+                                    style={{
+                                      borderRadius: '10px',
+                                      width: '100px',
+                                    }}
+                                  />
+                                ) : (
+                                  <img
+                                    src={pkg.img}
+                                    alt={''}
+                                    style={{
+                                      borderRadius: '10px',
+                                      width: '60px',
+                                    }}
+                                  />
+                                )}
                               </Typography>
                               <div>
                                 <Typography
@@ -324,13 +339,7 @@ const Content2 = () => {
                                   {pkg.title}
                                 </Typography>
 
-                                <div
-                                  style={{
-                                    display: 'flex',
-                                    gap: '10px',
-                                    marginTop: '10px',
-                                  }}
-                                >
+                                <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                                   {' '}
                                   <Typography
                                     sx={{
@@ -338,8 +347,6 @@ const Content2 = () => {
                                       color: '#888',
                                       fontSize: '14px',
                                       display: 'flex',
-                                      justifyContent: 'center',
-                                      alignItems: 'center',
                                     }}
                                   >
                                     <del>{pkg.discount.toLocaleString()} </del>
@@ -353,14 +360,13 @@ const Content2 = () => {
                                   </Typography>
                                   <Typography
                                     sx={{
-                                      fontWeight: 'bold',
-
+                                      mb: 1,
                                       display: 'flex',
-                                      justifyContent: 'center',
+                                      fontWeight: 'bold',
                                     }}
                                   >
                                     {' '}
-                                    {pkg.price.toLocaleString()}
+                                    {pkg.price.toLocaleString()}{' '}
                                     <img
                                       src={logoPoint}
                                       alt={logoPoint}
@@ -386,28 +392,51 @@ const Content2 = () => {
                                 </Box>
                               </div>
                             </div>
+                            <Box>
+                              {/* {lgUp ? <Countdown initialSeconds={pkg.timeFlash} /> : null} */}
+                              <Button
+                                variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
+                                color="warning"
+                                sx={{
+                                  display: { xs: 'none', md: 'block' },
+                                  width: '123.86px',
+                                  backgroundImage:
+                                    selectedPackage === pkg.id
+                                      ? 'linear-gradient(45deg, #ff6f61, #ff9a76)'
+                                      : 'none',
+                                  borderColor:
+                                    selectedPackage === pkg.id ? 'transparent' : '#FFD60A',
+                                }}
+                              >
+                                {selectedPackage === pkg.id ? 'Đã chọn' : 'Chọn Mua'}
+                              </Button>
+                            </Box>
                           </CardContent>
+                          {/* <Box
+                              style={{
+                                position: 'absolute',
+                                top: '-15px',
+
+                                padding: '5px 10px',
+                                color: 'white',
+                                borderRadius: '0px 0px 10px 10px',
+                                fontWeight: 'bold',
+                              }}
+                              sx={{ right: { xs: '-15px', md: '45px' } }}
+                            >
+                              <img src={sale} alt="" style={{ width: '70px' }} />
+                            </Box> */}
                         </Card>
                       </Grid>
                     ))}
                   </Grid>
                 </AccordionDetails>
-                <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography variant="h5">Tổng giá gói : </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                  >
-                    499{' '}
-                    <img
-                      src={logoPoint}
-                      alt={logoPoint}
-                      width={20}
-                      height={20}
-                      style={{ borderRadius: 50 }}
-                    />
-                  </Typography>
-                </Box>{' '}
+                {/* <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+                <Typography variant="h5">Tổng giá Flash-sale : </Typography>
+                <Typography variant="h5" sx={{ paddingX: '3px' }}>
+                  1.023.900point
+                </Typography>
+              </Box>{' '} */}
               </Accordion>
               <Stack direction="row" justifyContent="space-between" mb={3}>
                 <Typography variant="h6" fontWeight={400}>
