@@ -25,10 +25,10 @@ import { vi } from 'date-fns/locale';
 interface ChatContentProps {
   toggleChatSidebar: () => void;
 }
-interface Message {
-  text: string;
-  sender: 'user' | 'bot';
-}
+// interface Message {
+//   text: string;
+//   sender: 'user' | 'bot';
+// }
 
 const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
   const [open, setOpen] = useState(false);
