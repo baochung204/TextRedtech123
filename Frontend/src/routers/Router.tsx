@@ -35,7 +35,7 @@ const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending'
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
-import Loadable from '../layouts/full/shared/loadable/Loadable';
+// import Loadable from '../layouts/full/shared/loadable/Loadable';
 import BlogAdmin from 'src/views/admin/blog/blog';
 import PageFeature from 'src/views/admin/feature/feature';
 import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
