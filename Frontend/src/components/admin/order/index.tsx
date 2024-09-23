@@ -60,17 +60,7 @@ const HeadTable: HeadProps[] = [
 ];
 
 const OrderAdminPage = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-    // const [selected] = useState<readonly string[]>([]);
-    // const [search, setSearch] = useState('');
-    // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-=======
-=======
 
->>>>>>> ca0c9030095a04f03a6d3809b74a0526d65adbd5
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
@@ -78,7 +68,7 @@ const OrderAdminPage = () => {
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
->>>>>>> 7ca8c1a954cca1434da67e40573a096b76dd2e40
+
 
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -242,7 +232,7 @@ const OrderAdminPage = () => {
                             style={{ borderRadius: 50 }}
                           />
                         </Typography>
-                        </Box>
+                      </Box>
                     </TableCell>
 
 

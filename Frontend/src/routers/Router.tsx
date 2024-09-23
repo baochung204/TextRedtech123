@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import Loadable from '../layouts/full/shared/loadable/Loadable';
 const ChangePassword = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
 );
@@ -198,9 +197,9 @@ const Router = [
       { path: '/purchasehistory', element: <Purchasehistory /> },
       { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
-     
+
       { path: '/pages/faq', element: <Faq /> },
-    
+
       { path: '/profile/assistant/list', element: <ListAssistant /> },
       { path: '/assistant/list', element: <AssistantList /> },
       { path: '/buy/point', element: <BuyPoint /> },
