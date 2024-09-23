@@ -12,17 +12,6 @@ interface PropsDialog {
 
 const RPointDialog = ({ open, setOpen }: PropsDialog) => {
 
-    // const emptyInitialValues = useMemo(() => ({
-    //     name: '',
-    //     point: '',
-    //     money: '',
-    //     model: '',
-    //     function: '',
-    //     stagety: '',
-    //     files: '',
-    //     function2: '',
-    //     createDate: ''
-    // }))
     const emptyInitialValues = {
         name: '',
         point: '',
