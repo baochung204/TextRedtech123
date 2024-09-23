@@ -213,7 +213,7 @@ const OrderAdminPage = () => {
                       <Typography variant="subtitle2">{item.tongnap} VNĐ</Typography>
                     </TableCell>
 
-                   
+
                     <TableCell>
                       <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
                         <Typography
@@ -231,6 +231,8 @@ const OrderAdminPage = () => {
                             style={{ borderRadius: 50 }}
                           />
                         </Typography>
+                        </Box>
+                    </TableCell>
 
 
                     <TableCell
