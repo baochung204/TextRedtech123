@@ -22,8 +22,13 @@ import { starEmail, importantEmail, deleteEmail } from '../../../store/apps/emai
 import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+<<<<<<< HEAD
 // import '../../../views/forms/quill-editor/Quill.css';
 import '@/views/forms/quill-editor/Quill.css';
+=======
+
+// import '../../../views/forms/quill-editor/Quill.css';
+>>>>>>> de31bc84c891d6e445cbd164fb669a9e7eed2708
 
 const EmailContent = () => {
   const emailDetails: EmailType = useSelector(
@@ -117,7 +122,6 @@ const EmailContent = () => {
           <Divider />
           <Box p={3}>
             <Typography variant="h6">Attachments ({emailDetails?.attchments?.length})</Typography>
-
             <Grid container spacing={3}>
               {emailDetails.attchments?.map((attach) => {
                 return (

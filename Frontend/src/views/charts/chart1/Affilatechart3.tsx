@@ -1,6 +1,7 @@
 import { useTheme } from '@mui/material/styles';
 import Chart from 'react-apexcharts';
 import Affilatec3 from 'src/components/shared/Affilatec3';
+
 const Affilatechart3 = () => {
   // chart color
   const theme = useTheme();
