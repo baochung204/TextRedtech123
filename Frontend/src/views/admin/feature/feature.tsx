@@ -6,15 +6,18 @@ import {
   Grid,
   InputAdornment,
   TextField,
+  Typography,
 } from '@mui/material';
 import { IconAd2, IconEdit, IconEyeOff, IconFileStar, IconSearch } from '@tabler/icons-react';
-import React from 'react';
+import React, { useState } from 'react';
 import Slide from '@mui/material/Slide';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
 import TableFeature from './_components/TableFeature';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -137,6 +140,8 @@ const PageFeature = () => {
   // };
 
   const [isPopupOpen] = React.useState(false);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   function handleClosePopup(_event: {}): void {
     throw new Error('Function not implemented.');
@@ -150,17 +155,8 @@ const PageFeature = () => {
           <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
-          <Grid container>
-            <Grid
-              item
-              xs={4}
-              sm={4}
-              md={4}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
+          <Grid container alignItems="center">
+            <Grid item xs={4}>
               <TextField
                 id="outlined-search"
                 placeholder="Tìm kiếm đề xuất tính năng "
@@ -176,8 +172,33 @@ const PageFeature = () => {
                     </InputAdornment>
                   ),
                 }}
-                fullWidth={true}
+                fullWidth
               />
+            </Grid>
+            <Grid item xs={8} container spacing={2} justifyContent="flex-end">
+              <Grid item>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    label="Ngày bắt đầu"
+                    value={startDate}
+                    onChange={(newValue) => setStartDate(newValue)}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Grid>
+              <Grid item>
+                <Typography sx={{ margin: '0 10px' }}>tới</Typography>
+              </Grid>
+              <Grid item>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    label="Ngày kết thúc"
+                    value={endDate}
+                    onChange={(newValue) => setEndDate(newValue)}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

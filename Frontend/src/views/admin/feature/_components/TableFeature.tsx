@@ -5,11 +5,12 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   Typography,
 } from '@mui/material';
 import { IconEdit, IconEye, IconTrash } from '@tabler/icons-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DataFeature from '../data/DataFeuture';
 
 interface PropsHeadTable {
@@ -29,8 +30,8 @@ const HeadTable: PropsHeadTable[] = [
 ];
 
 const TableFeature = () => {
-  const [page] = useState(0);
-  const [rowsPerPage] = useState(5);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [key, setKey] = useState<string | null>(null);
   key && console.log(key);
   // const handleChangePage = (newPage: number) => {
@@ -44,18 +45,14 @@ const TableFeature = () => {
 
   const paginatedData = DataFeature.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
-  // // Placeholder functions for button actions
-  // const handleView = (id: string) => {
-  //     console.log('View blog with ID:', id);
-  // };
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
+  };
 
-  // const handleEdit = (id: string) => {
-  //     console.log('Edit blog with ID:', id);
-  // };
-
-  // const handleDelete = (id: string) => {
-  //     console.log('Delete blog with ID:', id);
-  // };
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <>
@@ -141,6 +138,16 @@ const TableFeature = () => {
             })}
           </TableBody>
         </Table>
+        <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={DataFeature.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={(_event, newPage) => handleChangePage(newPage)}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              labelRowsPerPage="Số hàng trên mỗi trang"
+            />
       </TableContainer>
     </>
   );

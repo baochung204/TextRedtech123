@@ -16,7 +16,6 @@ import { toggleMobileSidebar, toggleSidebar } from 'src/store/customizer/Customi
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import Cart from './Cart';
 import Language from './Language';
-import MobileRightSidebar from './MobileRightSidebar';
 import Navigation from './Navigation';
 import Notifications from './Notification';
 import Profile from './Profile';
@@ -74,8 +73,7 @@ const Header = () => {
           <Box
             sx={{
               display: 'flex',
-              gap: 1,
-              px: '15px',
+
               py: '3px',
               alignItems: 'center',
               // borderRadius: '5px',
@@ -102,11 +100,11 @@ const Header = () => {
                 width: '100%',
                 height: 'auto',
                 maxWidth: { xs: '20px', sm: '20px', md: '30px' },
-                p: '2px',
+                p: { xs: '2px', sm: '2px', md: '2px', lg: '2px' },
               }}
             />
           </Box>
-          <Box sx={{ p: '12px' }}>
+          <Box sx={{ px: '15px', py: '12px' }}>
             <Link to={'/buy/point'}>
               <Button
                 sx={{
@@ -121,23 +119,35 @@ const Header = () => {
               </Button>
             </Link>
           </Box>
-          <Language />
+          {lgDown ? null : <Language />}
           {/* ------------------------------------------- */}
           {/* Ecommerce Dropdown */}
           {/* ------------------------------------------- */}
-          <Box component={RouterLink} to="/apps/ecommerce/eco-checkout" sx={{ cursor: 'pointer' }}>
+          <Box
+            component={RouterLink}
+            to="/apps/ecommerce/eco-checkout"
+            sx={{
+              cursor: 'pointer',
+              transform: { xs: 'translateX(-30px)', md: 'translateX(0px)' },
+            }}
+          >
             <Cart />
           </Box>
 
           {/* ------------------------------------------- */}
           {/* End Ecommerce Dropdown */}
           {/* ------------------------------------------- */}
-          <Notifications />
+
+          <Box sx={{ transform: { xs: 'translateX(-40px)', md: 'translateX(0px)' } }}>
+            <Notifications />
+          </Box>
           {/* ------------------------------------------- */}
           {/* Toggle Right Sidebar for mobile */}
           {/* ------------------------------------------- */}
-          {lgDown ? <MobileRightSidebar /> : null}
-          <Profile />
+          {/* {lgDown ? <MobileRightSidebar /> : null} */}
+          <Box sx={{ transform: { xs: 'translateX(-43px)', md: 'translateX(0px)' } }}>
+            <Profile />
+          </Box>
         </Stack>
       </ToolbarStyled>
     </AppBarStyled>
