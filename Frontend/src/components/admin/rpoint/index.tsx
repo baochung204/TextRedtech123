@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
-import CustomTable from './CustomTable';
+import CustomTable from '../../ComponentTables/CustomTable';
 import PublisherTable from './datatable/Publisher';
 
 // interface PropsTable {

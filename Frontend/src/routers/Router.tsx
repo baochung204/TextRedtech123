@@ -41,7 +41,6 @@ import BuyPoints from 'src/views/admin/buyproduct';
 import OrderAdminPages from 'src/views/admin/order';
 import RPoints from 'src/views/admin/rpoints/RPoints';
 
-
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
 
@@ -95,7 +94,6 @@ const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport'))
 // ui components
 
 const Faq = Loadable(lazy(() => import('../views/pages/faq/Faq')));
-
 
 // charts
 
