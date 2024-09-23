@@ -1,9 +1,5 @@
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { Box, Grid } from '@mui/material';
 import { IconBrandGoogleHome, IconCoinOff, IconCoins } from '@tabler/icons-react';
-import { useState } from 'react';
 
 import { IconBox } from '@tabler/icons-react';
 import TopCard from 'src/components/widgets/cards/TopCard';

@@ -90,44 +90,8 @@ import ProductTable from './ProductData';
 //         </Toolbar>
 //     );
 // };
-interface HeadProps {
-  head: string;
-}
-const HeadTable: HeadProps[] = [
-  {
-    head: 'ID',
-  },
-  {
-    head: 'Danh mục',
-  },
-  {
-    head: 'Ảnh',
-  },
-  {
-    head: 'Tên sản phẩm',
-  },
-  {
-    head: 'Giá niêm yết',
-  },
-  {
-    head: 'Giá khuyến mãi',
-  },
-  {
-    head: 'Level',
-  },
-  {
-    head: 'Tags',
-  },
-  {
-    head: 'Số lượng mua',
-  },
-  {
-    head: 'Tổng doanh thu',
-  },
-  {
-    head: 'Tỉ trọng doanh thu',
-  },
-];
+
+
 interface StyleProps {
   bgColor: string;
   color: string;

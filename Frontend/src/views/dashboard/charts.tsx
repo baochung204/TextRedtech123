@@ -1,24 +1,20 @@
-import { Box, Grid, MenuItem, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
-import Affiliatedetail from '../charts/chart1/Affiliatedetail1';
-import Affilatechart3 from '../charts/chart1/Affilatechart3';
 import Affilatechart from '../charts/chart1/Affilatechart';
 import Affilatechart1 from '../charts/chart1/Affilatechart1';
 import Affilatechart2 from '../charts/chart1/Affilatechart2';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import Affiliatedetail2 from '../charts/chart2/Affiliatedetail2';
-import Affiliatedetail3 from '../charts/chart3/Affiliatedetail3';
-import Affilatechart33 from '../charts/chart3/Affilatechart33';
-import Affilatechart30 from '../charts/chart3/Affilatechart30';
-import Affilatechart31 from '../charts/chart3/Affilatechart31';
-import Affilatechart32 from '../charts/chart3/Affilatechart32';
-import Affilatechart22 from '../charts/chart2/Affilatechart22';
-import Affilatechart21 from '../charts/chart2/Affilatechart21';
-import Affilatechart24 from '../charts/chart2/Affilatechart24';
-import Affilatechart23 from '../charts/chart2/Affilatechart23';
+import Affilatechart3 from '../charts/chart1/Affilatechart3';
+import Affiliatedetail from '../charts/chart1/Affiliatedetail1';
+// import Affilatechart21 from '../charts/chart2/Affilatechart21';
+// import Affilatechart22 from '../charts/chart2/Affilatechart22';
+// import Affilatechart23 from '../charts/chart2/Affilatechart23';
+// import Affilatechart24 from '../charts/chart2/Affilatechart24';
+// import Affiliatedetail2 from '../charts/chart2/Affiliatedetail2';
+// import Affilatechart30 from '../charts/chart3/Affilatechart30';
+// import Affilatechart31 from '../charts/chart3/Affilatechart31';
+// import Affilatechart32 from '../charts/chart3/Affilatechart32';
+// import Affilatechart33 from '../charts/chart3/Affilatechart33';
+// import Affiliatedetail3 from '../charts/chart3/Affiliatedetail3';
 
 const Charts = () => {
   const [month] = React.useState('1');
@@ -120,7 +116,7 @@ const Charts = () => {
           </Grid>
         </React.Fragment>
       )}
-      {month == '2' && (
+      {/* {month == '2' && (
         <React.Fragment>
           <Grid item xs={12} lg={8}>
             <Affiliatedetail2 />
@@ -138,8 +134,8 @@ const Charts = () => {
             <Affilatechart24 />
           </Grid>
         </React.Fragment>
-      )}
-      {month == '3' && (
+      )} */}
+      {/* {month == '3' && (
         <React.Fragment>
           <Grid item xs={12} lg={8}>
             <Affiliatedetail3 />
@@ -157,7 +153,7 @@ const Charts = () => {
             <Affilatechart32 />
           </Grid>
         </React.Fragment>
-      )}
+      )} */}
     </>
   );
 };

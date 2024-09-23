@@ -1,7 +1,19 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Avatar,
+  Badge,
+  Box,
+  Checkbox,
+  Fab,
   Grid,
   IconButton,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
   Stack,
   Table,
   TableBody,
@@ -10,66 +22,20 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography,
-} from '@mui/material';
-import { IconEye, IconTrash } from '@tabler/icons-react';
-import React, { useState } from 'react';
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
-import PersonnelTable from '../datatable/PersonnelTable';
-import DialogPersonel from '../dialog/DialogPersonel';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import {
-  Badge,
-  Box,
-  Checkbox,
-  Fab,
-  InputAdornment,
-  ListItemText,
-  MenuItem,
-  Select,
   TextField,
   Tooltip,
+  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconPlus, IconSearch } from '@tabler/icons-react';
-import { createElement } from 'react';
-interface PropsHeadTable {
-  head: string;
-}
+import { IconEye, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
+import React, { createElement, useState } from 'react';
+import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
+import PersonnelTable from '../datatable/PersonnelTable';
+import DialogPersonel from '../dialog/DialogPersonel';
 
-const HeadTable: PropsHeadTable[] = [
-  {
-    head: 'ID',
-  },
-  {
-    head: 'Ngày tạo',
-  },
-  {
-    head: 'Nhân viên',
-  },
-  {
-    head: 'Phòng ban',
-  },
-  {
-    head: 'Email',
-  },
-  {
-    head: 'Số điện thoại',
-  },
-  {
-    head: 'Bài viết',
-  },
-  {
-    head: 'Trạng thái',
-  },
-  {
-    head: 'Hoạt động',
-  },
-];
+
+
 interface FilmsData {
   id: number;
   title: string;
