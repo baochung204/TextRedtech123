@@ -5,15 +5,17 @@ import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, Divider, Box } from '@mui/material';
 import { useSelector } from 'src/store/Store';
 import { AppState } from 'src/store/Store';
+import { string } from 'yup';
 
 type Props = {
   title: string;
   description?: string;
   footer?: string | JSX.Element;
   children: JSX.Element;
+  text?: string;
 };
 
-const Affilatec3 = ({ children, footer }: Props) => {
+const Affilatec3 = ({ children, footer, text }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
@@ -33,7 +35,8 @@ const Affilatec3 = ({ children, footer }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
-        <h2>Vòng quay trung bình </h2>
+        <h2>{text}</h2>
+        {/* Vòng quay trung bình */}
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (

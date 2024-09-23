@@ -3,8 +3,8 @@ import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
-import fb from 'src/assets/images/socialmedia/facebook.png'
-import insta from 'src/assets/images/socialmedia/instagram.png'
+import fb from 'src/assets/images/socialmedia/facebook.png';
+import insta from 'src/assets/images/socialmedia/instagram.png';
 
 export interface TableType {
   id?: string;
@@ -21,19 +21,19 @@ export interface EnTableType {
   id: string;
   amount: number;
   numberPrice: number;
-  requestId: string; 
-  createdAt: Date; 
+  requestId: string;
+  createdAt: Date;
   completedAt: Date | null;
-  status: number; 
-  invoice: number; 
+  status: number;
+  invoice: number;
 }
 
 export interface CustomerListTable {
   id: string;
   assistant: string;
-  name: string; 
-  email: string; 
-  phone: string; 
+  name: string;
+  email: string;
+  phone: string;
   createdAt: string;
   orderValue: string;
   channel: string;
@@ -44,14 +44,14 @@ export interface CustomerListTable {
 }
 export interface CustomerListAffiliateTable {
   id: string;
-  name: string; 
-  email: string; 
-  phone: string; 
+  name: string;
+  email: string;
+  phone: string;
   createdAt: string;
-  typeofcustomer: string
+  typeofcustomer: string;
   imgsrc?: string;
 }
-const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] =[
+const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
   {
     id: '1',
     name: 'Lê Tài Đức',
@@ -70,7 +70,7 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] =[
     typeofcustomer: 'Trả phí',
     imgsrc: img2,
   },
-]
+];
 const DataRowCustomerTable: CustomerListTable[] = [
   {
     id: '1',
@@ -295,8 +295,8 @@ const EnhancedTableData: EnTableType[] = [
     amount: 70,
     numberPrice: 21.0,
     requestId: '10000017392941114415106834',
-    createdAt: new Date('2024-07-18T18:47:28'),
-    completedAt: new Date('2024-07-18T18:47:36'),
+    createdAt: new Date('2024-07-18'),
+    completedAt: new Date('2024-07-18'),
     status: 1,
     invoice: 1,
   },
@@ -305,8 +305,8 @@ const EnhancedTableData: EnTableType[] = [
     amount: 150,
     numberPrice: 33.0,
     requestId: '10000017392941114415106835',
-    createdAt: new Date('2024-07-19T10:15:12'),
-    completedAt: new Date('2024-07-19T10:20:30'),
+    createdAt: new Date('2024-07-19'),
+    completedAt: new Date('2024-07-19'),
     status: 2,
     invoice: 2,
   },
@@ -315,8 +315,8 @@ const EnhancedTableData: EnTableType[] = [
     amount: 120,
     numberPrice: 44.0,
     requestId: '10000017392941114415106836',
-    createdAt: new Date('2024-07-20T14:35:48'),
-    completedAt: new Date('2024-07-20T14:40:20'),
+    createdAt: new Date('2024-07-20'),
+    completedAt: new Date('2024-07-20'),
     status: 3,
     invoice: 3,
   },
@@ -325,8 +325,8 @@ const EnhancedTableData: EnTableType[] = [
     amount: 200,
     numberPrice: 21.555,
     requestId: '10000017392941114415106837',
-    createdAt: new Date('2024-07-21T16:00:00'),
-    completedAt: new Date('2024-07-21T16:05:10'),
+    createdAt: new Date('2024-07-21'),
+    completedAt: new Date('2024-07-21'),
     status: 3,
     invoice: 3,
   },
@@ -335,8 +335,8 @@ const EnhancedTableData: EnTableType[] = [
     amount: 90,
     numberPrice: 66.0,
     requestId: '10000017392941114415106838',
-    createdAt: new Date('2024-07-22T09:45:22'),
-    completedAt: new Date('2024-07-22T09:50:58'),
+    createdAt: new Date('2024-07-22'),
+    completedAt: new Date('2024-07-22'),
     status: 1,
     invoice: 1,
   },
@@ -345,8 +345,8 @@ const EnhancedTableData: EnTableType[] = [
     amount: 110,
     numberPrice: 777.0,
     requestId: '10000017392941114415106839',
-    createdAt: new Date('2024-07-23T11:11:11'),
-    completedAt: new Date('2024-07-23T11:15:45'),
+    createdAt: new Date('2024-07-23'),
+    completedAt: new Date('2024-07-23'),
     status: 2,
     invoice: 2,
   },
@@ -355,8 +355,8 @@ const EnhancedTableData: EnTableType[] = [
     amount: 80,
     numberPrice: 777.0,
     requestId: '10000017392941114415106840',
-    createdAt: new Date('2024-07-24T13:30:10'),
-    completedAt: new Date('2024-07-24T13:35:50'),
+    createdAt: new Date('2024-07-24'),
+    completedAt: new Date('2024-07-24'),
     status: 2,
     invoice: 2,
   },
@@ -365,10 +365,10 @@ const EnhancedTableData: EnTableType[] = [
     amount: 50,
     numberPrice: 99.0,
     requestId: '10000017392941114415106843',
-    createdAt: new Date('2024-07-27T18:00:00'),
-    completedAt: new Date('2024-07-27T18:05:15'),
+    createdAt: new Date('2024-07-27'),
+    completedAt: new Date('2024-07-27'),
     status: 1,
     invoice: 1,
   },
 ];
-export { basicsTableData, EnhancedTableData, DataRowCustomerTable,DataCustomerListAffiliateTable };
+export { basicsTableData, EnhancedTableData, DataRowCustomerTable, DataCustomerListAffiliateTable };

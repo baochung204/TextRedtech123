@@ -9,11 +9,12 @@ import { AppState } from 'src/store/Store';
 type Props = {
   title?: string;
   description?: string;
+  text?: string;
   footer?: string | JSX.Element;
   children?: JSX.Element;
 };
 
-const Modarm = ({ children, footer }: Props) => {
+const Modarm = ({ children, footer, text }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
@@ -33,7 +34,7 @@ const Modarm = ({ children, footer }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
-        <h2>Nguồn khách hàng </h2>
+        <h2>{text}</h2>
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (

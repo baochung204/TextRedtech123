@@ -45,7 +45,7 @@ const CustomerList2 = () => {
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value, setValue] = React.useState('1');
+  // const [value, setValue] = React.useState('1');
 
   // Function mở popup
   const handleOpenPopup = () => {
@@ -57,23 +57,24 @@ const CustomerList2 = () => {
     setIsPopupOpen(false);
   };
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+  // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+  //   setValue(newValue);
+  // };
 
   return (
     <PageContainer>
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
-        <TabContext value={value}>
+        {/* <TabContext value={value}> */}
+        <TabContext value="1">
           <Box>
-            <TabList
+            {/* <TabList
               onChange={handleChange}
               aria-label="lab API tabs example"
               sx={{ p: 0, border: 'none' }}
             >
               <Tab label="Danh sách khách hàng" value="1" sx={{ p: 0 }} />
-            </TabList>
+            </TabList> */}
 
             <TabPanel value="1" sx={{ p: 0, mt: 2 }}>
               <Grid container>

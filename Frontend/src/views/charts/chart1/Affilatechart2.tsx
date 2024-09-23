@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
 import Affilatec2 from 'src/components/shared/Affilatec2';
 
@@ -83,7 +82,7 @@ const Affilatechart2 = () => {
     //     </Grid>
     //   </Grid>
     // </PageContainer>
-    <Affilatec2 title="Cuộc trò chuyện" description={''}>
+    <Affilatec2 title="Cuộc trò chuyện" text="Chi phí / Cuộc trò chuyện" description={''}>
       <Chart
         options={optionsdoughnutchart}
         series={seriesdoughnutchart}

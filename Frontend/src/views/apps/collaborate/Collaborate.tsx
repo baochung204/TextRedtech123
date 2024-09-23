@@ -285,11 +285,11 @@ const CollaboratePost = () => {
           </Box>
 
           <Box padding="0px 5px">
-            <Typography variant="h3" margin="20px 0">
+            <Typography variant="h3" margin="15px 0">
               Liên kết giới thiệu
             </Typography>
             <Grid container spacing={1}>
-              <Grid item xs={8}>
+              <Grid item xs={10}>
                 <CustomOutlinedInput
                   id="http"
                   placeholder="http://s"
@@ -298,11 +298,11 @@ const CollaboratePost = () => {
                   fullWidth
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={2}>
                 <Button
                   variant="contained"
                   color="primary"
-                  style={{ padding: '10px', width: '70%' }}
+                  style={{ padding: '10px', width: '100%' }}
                 >
                   SAO CHÉP
                 </Button>
@@ -312,7 +312,7 @@ const CollaboratePost = () => {
           <Box paddingTop="30px">
             <Grid container spacing={2}>
               {/* Left section - 3 columns */}
-              <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
+              <Grid item xs={12} md={4}>
                 <Box
                   sx={{
                     display: 'flex',
