@@ -1,23 +1,9 @@
+import { Box } from '@mui/material';
 import React from 'react';
+import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomTable from './CustomTable';
 import PublisherTable from './datatable/Publisher';
-import icontext from 'src/assets/images/logos/R-Point.png';
-import { Box, Button, Grid } from '@mui/material';
 
-
-interface PropsTable {
-    id: string;
-    package: string;
-    model: string;
-    points: string;
-    money: string;
-    totalBuy: string;
-    function: string;
-    strategy: string;
-    files: string;
-    totalFunction: string,
-    createDate: string;
-}
 
 const PublisherTablePage: React.FC = () => {
     const columns = [

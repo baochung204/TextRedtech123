@@ -16,20 +16,20 @@ import Tags from './Tags';
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
 
-  const [selectedImages, setSelectedImages] = useState<Array<File>>([]);
+  // const [selectedImages, setSelectedImages] = useState<Array<File>>([]);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   // const [color, setColor] = useState<string>('#000000');
 
-  const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
-      setSelectedImages((prevImages) => [...prevImages, ...Array.from(files)]);
-    }
-  };
+  // const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = event.target.files;
+  //   if (files) {
+  //     setSelectedImages((prevImages) => [...prevImages, ...Array.from(files)]);
+  //   }
+  // };
 
-  const handleRemoveImage = (index: number) => {
-    setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  };
+  // const handleRemoveImage = (index: number) => {
+  //   setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  // };
 
   // const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setColor(event.target.value);
