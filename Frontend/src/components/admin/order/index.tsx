@@ -196,9 +196,6 @@ const OrderAdminPage = () => {
 
                                                 }}
                                             >
-                                                {/* <Typography variant="subtitle2">
-                                                    {item.typeacc}
-                                                </Typography> */}
                                                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                                                     <Typography variant="subtitle2">
                                                         <Chip
