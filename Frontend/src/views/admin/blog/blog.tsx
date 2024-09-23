@@ -14,6 +14,8 @@ import {
   Typography
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconBrandStrava,
   IconLockSquareRounded,
@@ -29,8 +31,6 @@ import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
 import TableBlog from './_components/TableBlog';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -144,7 +144,7 @@ const DataBox: StyleProps[] = [
 
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [value, setValue] = useState('1');
+  const [value] = useState('1');
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
@@ -152,9 +152,9 @@ const BlogAdmin = () => {
     setIsPopupOpen(false);
   };
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+  // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
+  //   setValue(newValue);
+  // };
 
   return (
     <PageContainer>

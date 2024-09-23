@@ -1,6 +1,6 @@
-import mock from '../mock';
 import { sub } from 'date-fns';
 import user1 from 'src/assets/images/profile/user-1.jpg';
+import user10 from 'src/assets/images/profile/user-10.jpg';
 import user2 from 'src/assets/images/profile/user-2.jpg';
 import user3 from 'src/assets/images/profile/user-3.jpg';
 import user4 from 'src/assets/images/profile/user-4.jpg';
@@ -9,9 +9,14 @@ import user6 from 'src/assets/images/profile/user-6.jpg';
 import user7 from 'src/assets/images/profile/user-7.jpg';
 import user8 from 'src/assets/images/profile/user-8.jpg';
 import user9 from 'src/assets/images/profile/user-9.jpg';
-import user10 from 'src/assets/images/profile/user-10.jpg';
+import mock from '../mock';
 
+import { Chance } from 'chance';
+import { uniqueId } from 'lodash';
 import s1 from 'src/assets/images/products/s1.jpg';
+import s10 from 'src/assets/images/products/s10.jpg';
+import s11 from 'src/assets/images/products/s11.jpg';
+import s12 from 'src/assets/images/products/s12.jpg';
 import s2 from 'src/assets/images/products/s2.jpg';
 import s3 from 'src/assets/images/products/s3.jpg';
 import s4 from 'src/assets/images/products/s4.jpg';
@@ -20,11 +25,6 @@ import s6 from 'src/assets/images/products/s6.jpg';
 import s7 from 'src/assets/images/products/s7.jpg';
 import s8 from 'src/assets/images/products/s8.jpg';
 import s9 from 'src/assets/images/products/s9.jpg';
-import s10 from 'src/assets/images/products/s10.jpg';
-import s11 from 'src/assets/images/products/s11.jpg';
-import s12 from 'src/assets/images/products/s12.jpg';
-import { Chance } from 'chance';
-import { uniqueId } from 'lodash';
 import type { userType } from 'src/types/apps/users';
 
 const chance = new Chance();

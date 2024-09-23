@@ -96,7 +96,7 @@ const ProductClassification: React.FC = () => {
 
       {/* Hiển thị các kiểu phân loại và ô nhập chi tiết */}
       <Paper elevation={3}>
-        <Grid container pl={2} mb={1} mt={1}>
+        <Grid container xs={12} sm={12} lg={12} pl={2} mb={1} mt={1}>
           {classifications.map((classification, classificationIndex) => (
             <Grid item xs={12} key={classificationIndex}>
               <Divider sx={{ mr: 1 }} />
@@ -205,13 +205,16 @@ const ProductClassification: React.FC = () => {
 
       {/* Kiểm tra để hiển thị ô nhập hoặc nút thêm */}
       {!showAddButton ? (
-        <TextField
-          sx={{ width: '49%' }}
+        
+          <TextField
+          sx={{ width: '100%' }}
           value={newClassification}
           onChange={(e) => setNewClassification(e.target.value)}
           onKeyDown={handleAddClassification}
           placeholder="Nhập kiểu phân loại, sau đó nhấn Enter"
         />
+        
+        
       ) : (
         <Button sx={{ p: 0.9 }} startIcon={<AddIcon />} onClick={() => setShowAddButton(false)}>
           Thêm phân loại
