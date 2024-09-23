@@ -34,12 +34,12 @@ const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending'
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
-import BlogAdmin from 'src/views/admin/blog/blog';
-import PageFeature from 'src/views/admin/feature/feature';
-import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
-import BuyPoints from 'src/views/admin/buyproduct';
-import OrderAdminPages from 'src/views/admin/order';
-import RPoints from 'src/views/admin/rpoints/RPoints';
+const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')))
+const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')))
+const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')))
+const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')))
+const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')))
+const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')))
 
 
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));

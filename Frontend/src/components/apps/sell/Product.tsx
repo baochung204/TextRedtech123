@@ -4,10 +4,6 @@ import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import * as React from 'react';
-<<<<<<< HEAD
-
-
-=======
 // const ITEM_HEIGHT = 48;
 // const ITEM_PADDING_TOP = 8;
 // const MenuProps = {
@@ -20,7 +16,6 @@ import * as React from 'react';
 // };
 
 // const names = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
->>>>>>> 48411c0a4d2e7a0e38357abf02a0586f21727556
 
 import {
   Avatar,
