@@ -6,7 +6,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
 import React from 'react';
-import TableHistoryBuyPoint from 'src/components/apps/historyBuyPoint/TableHistoryBuyPoint/TableHistoryBuyPoint';
+import TableHistoryBuyPoint from 'src/components/apps/historyBuyPoint/TableHistoryBuyPoint';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';

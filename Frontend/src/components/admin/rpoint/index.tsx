@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import CustomTable from './CustomTable';
+// import CustomTable from './CustomTable';
 import PublisherTable from './datatable/Publisher';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import { Box, Button, Grid, InputAdornment, TextField, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { IconSearch } from '@tabler/icons-react';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 
 interface PropsTable {
   id: string;
@@ -75,26 +76,26 @@ const columns = [
     title: 'Ngày tạo',
     dataIndex: 'createDate',
   },
-  {
-    title: 'Hành động',
-    // dataIndex: 'hanhdong',
-    render: (row: PropsTable) => {
-      return (
-        <Grid container spacing={7}>
-          <Grid item xs={6}>
-            <Button variant="contained" onClick={() => console.log(row.id)}>
-              V
-            </Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Button variant="contained" color="error">
-              X
-            </Button>
-          </Grid>
-        </Grid>
-      );
-    },
-  },
+  // {
+  //   title: 'Hành động',
+  //   // dataIndex: 'hanhdong',
+  //   render: (row: PropsTable) => {
+  //     return (
+  //       <Grid container spacing={7}>
+  //         <Grid item xs={6}>
+  //           <Button variant="contained" onClick={() => console.log(row.id)}>
+  //             V
+  //           </Button>
+  //         </Grid>
+  //         <Grid item xs={6}>
+  //           <Button variant="contained" color="error">
+  //             X
+  //           </Button>
+  //         </Grid>
+  //       </Grid>
+  //     );
+  //   },
+  // },
 ];
 
 const PublisherTablePage: React.FC = () => {

@@ -8,13 +8,17 @@ import {
   TableRow,
   TablePagination,
   Typography,
+  Box,
+  IconButton,
 } from '@mui/material';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 
 interface Column {
   title: string;
-  dataIndex: string;
+  dataIndex?: string;
   render?: (value: any, record: any, rowIndex: number) => React.ReactNode;
+  sort?: boolean;
 }
 
 interface CustomTableProps {
@@ -52,17 +56,29 @@ const CustomTable: React.FC<CustomTableProps> = ({
           <TableHead>
             <TableRow>
               {columns.map((column, index) => (
-                <TableCell key={index} sx={{ whiteSpace: 'nowrap' }}>
-                  <Typography variant="h6">{column.title}</Typography>
+                <TableCell key={index}>
+                  <Box
+                    sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                  >
+                    <Typography variant="h6" sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}>
+                      {column.title}
+                    </Typography>
+                    {column.sort && (
+                      <IconButton>
+                        <SwapVertIcon />
+                      </IconButton>
+                    )}
+                  </Box>
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
+
           <TableBody>
             {paginatedData.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => {
-                  const value = row[column.dataIndex];
+                  const value = column.dataIndex ? row[column.dataIndex] : undefined;
                   return (
                     <TableCell key={colIndex} sx={{ whiteSpace: 'nowrap' }}>
                       <Typography variant="subtitle2">

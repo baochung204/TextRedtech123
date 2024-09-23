@@ -4,21 +4,24 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
-import TableData from '../data/data';
+import TableData from './data/data';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
 const TableHistoryBuyPoint = () => {
   const columns = [
     {
       title: 'ID',
       dataIndex: 'id',
+      sort: true,
     },
     {
       title: 'Thời gian tạo',
       dataIndex: 'createdAt',
+      sort: true,
     },
     {
       title: 'Thời gian hoàn tất',
       dataIndex: 'completedAt',
+      sort: true,
     },
     {
       title: 'ID Yêu cầu',
@@ -32,6 +35,7 @@ const TableHistoryBuyPoint = () => {
           {value} <img src={IconPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
         </Box>
       ),
+      sort: true,
     },
     {
       title: 'Thanh toán',
@@ -62,6 +66,7 @@ const TableHistoryBuyPoint = () => {
           )}
         </Box>
       ),
+      sort: true,
     },
     {
       title: 'Hóa đơn',
