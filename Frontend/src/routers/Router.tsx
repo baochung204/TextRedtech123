@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 const ChangePassword = Loadable(lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')));
@@ -35,15 +33,12 @@ const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success'
 const FormRequest = Loadable(lazy(() => import('src/views/forms/FormRequest')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 import Loadable from '../layouts/full/shared/loadable/Loadable';
-// import AssistantAdmin from '../views/admin/assistant/assistant';
 import BlogAdmin from 'src/views/admin/blog/blog';
 import PageFeature from 'src/views/admin/feature/feature';
 import ErrorAdmin from 'src/views/authentication/ErrorAdmin';
-import OrderAdmin from 'src/views/admin/order';
 import BuyPoints from 'src/views/admin/buyproduct';
 import OrderAdminPages from 'src/views/admin/order';
 import RPoints from 'src/views/admin/rpoints/RPoints';
-/* ***Layouts**** */
 
 
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -89,7 +84,6 @@ const Followers = Loadable(lazy(() => import('../views/apps/user-profile/Followe
 const Friends = Loadable(lazy(() => import('../views/apps/user-profile/Friends')));
 const Gallery = Loadable(lazy(() => import('../views/apps/user-profile/Gallery')));
 const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
-// const Bill = Loadable(lazy(() => import('../views/apps/collaborate/bill')));
 
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
@@ -342,13 +336,11 @@ const Router = [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
-
       { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
       { path: '/admin/buy/products', element: <BuyPoints /> },
       { path: '/admin/buy/packagepoint', element: <Packagepoint /> },
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
-      // { path: '/admin/affiliate/publishers', element: <Publishers /> },
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
       { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
@@ -359,18 +351,13 @@ const Router = [
       { path: '/admin/notification', element: <Notification /> },
       { path: '/admin/order/orderadminpage', element: <OrderAdminPages /> },
       { path: '/admin/order/orderRPoint', element: <OrderRPoint /> },
-      // { path: '/admin/accountant/contracPoint', element: <ContracPoint /> },
-      // { path: '/admin/accountant/contracAfflilate', element: <ContracAffilate /> },
-
       { path: '/admin/resources', element: <Resources /> },
       { path: '/admin/einvoice', element: <EInvoice /> },
       { path: '/admin/order', element: <OrderAffiliate /> },
       { path: '/admin/contactaffiliate', element: <ContactAffiliate /> },
       { path: '/admin/contactpoint', element: <ContactPoint /> },
-
       { path: '/admin/publisher', element: <Publisher /> },
       { path: '/admin/history', element: <HistoryAffiliate /> },
-
       { path: '/admin/accountant/feature', element: <Feature /> },
       { path: '/admin/auth/404', element: <ErrorAdmin /> },
       { path: '*', element: <Navigate to="/admin/auth/404" /> },

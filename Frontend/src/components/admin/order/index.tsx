@@ -71,11 +71,6 @@ const OrderAdminPage = () => {
                 setOpen1(false);
                 setIDTrash(null)
             }, 3000);
-            // const intervalId = setInterval(() => {
-            //     setOpen1(false);
-            //     setIDTrash(null);
-            //     clearInterval(intervalId);
-            // }, 3000);
         }
     }
     const paginatedData = OrderData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
