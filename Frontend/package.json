@@ -22,6 +22,7 @@
     "@mui/utils": "^5.16.6",
     "@mui/x-date-pickers": "^5.0.20",
     "@mui/x-tree-view": "^6.17.0",
+    "@preact/preset-vite": "^2.9.1",
     "@reduxjs/toolkit": "1.8.3",
     "@svgr/rollup": "^8.1.0",
     "@tabler/icons-react": "^2.38.0",
@@ -80,9 +81,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "file-loader": "^6.2.0",
+    "rollup-plugin-visualizer": "^5.12.0",
     "source-map-explorer": "^2.5.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
+    "vite-plugin-bundle-analyzer": "^0.0.1",
     "vite-plugin-compression": "^0.5.1",
     "webpack-bundle-analyzer": "^4.10.2"
   }

@@ -16,9 +16,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddOrder from './PopupAdd2';
@@ -48,20 +45,20 @@ const CustomerListOrder = () => {
   const handleClosePopup = () => setIsPopupOpen(false);
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+  // const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
 
-  const handleItemClick = (id: number) => {
-    setSelectedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-    );
-  };
+  // const handleItemClick = (id: number) => {
+  //   setSelectedItems((prev) =>
+  //     prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+  //   );
+  // };
 
-  const [iconIndex, setIconIndex] = React.useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+  // const [iconIndex, setIconIndex] = React.useState<number>(0);
+  // const icons = [SwapVertIcon, SouthIcon, NorthIcon];
 
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
+  // const handleClickIcon = () => {
+  //   setIconIndex((pre) => (pre + 1) % icons.length);
+  // };
   // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
   //   setValue(newValue);
   // };

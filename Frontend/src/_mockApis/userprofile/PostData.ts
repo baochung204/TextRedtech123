@@ -1,15 +1,14 @@
-import mock from '../mock';
 import image1 from 'src/assets/images/products/s1.jpg';
 import image2 from 'src/assets/images/products/s2.jpg';
 import image4 from 'src/assets/images/products/s4.jpg';
+import mock from '../mock';
 
-import user1 from 'src/assets/images/profile/user-1.jpg';
+import { Chance } from 'chance';
+import { default as user1, default as user6 } from 'src/assets/images/profile/user-1.jpg';
 import user2 from 'src/assets/images/profile/user-2.jpg';
 import user3 from 'src/assets/images/profile/user-3.jpg';
 import user4 from 'src/assets/images/profile/user-4.jpg';
 import user5 from 'src/assets/images/profile/user-5.jpg';
-import user6 from 'src/assets/images/profile/user-1.jpg';
-import { Chance } from 'chance';
 import { PostType } from 'src/types/apps/userProfile';
 
 const chance = new Chance();
