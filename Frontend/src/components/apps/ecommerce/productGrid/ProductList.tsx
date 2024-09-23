@@ -136,7 +136,12 @@ const ProductList = ({ onClick }: Props) => {
         {lgUp ? (
           <Typography variant="h5">Sản phẩm</Typography>
         ) : (
-          <Fab onClick={onClick} color="primary" size="small">
+          <Fab
+            onClick={onClick}
+            color="primary"
+            size="small"
+            sx={{ margin: '0px 5px', width: '40px', height: '20px' }}
+          >
             <IconMenu2 width="16" />
           </Fab>
         )}
