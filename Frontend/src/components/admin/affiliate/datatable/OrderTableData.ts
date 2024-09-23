@@ -336,8 +336,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 1234567890,
     type: true,
     create_date: '2023-01-15',
-    type_account: 'Standard',
-    rank: 'Gold',
+    type_account: 'Hoạt động',
+    rank: 'Rank C',
     contract: 'Chờ duyệt', // Moved here
     brief: true, // Moved here
     total_commission: 10000,
@@ -358,8 +358,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 2345678901,
     type: false,
     create_date: '2023-02-10',
-    type_account: 'Premium',
-    rank: 'Silver',
+    type_account: 'Chờ duyệt',
+    rank: 'Rank B',
     contract: 'Đã duyệt', // Moved here
     brief: true, // Moved here
     total_commission: 15000,
@@ -380,8 +380,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 3456789012,
     type: true,
     create_date: '2023-03-05',
-    type_account: 'Basic',
-    rank: 'Bronze',
+    type_account: 'Chờ duyệt',
+    rank: 'Rank A',
     contract: 'Chờ duyệt', // Moved here
     brief: false, // Moved here
     total_commission: 7000,
@@ -402,8 +402,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 4567890123,
     type: false,
     create_date: '2023-04-18',
-    type_account: 'Premium',
-    rank: 'Gold',
+    type_account: 'Chưa đăng ký',
+    rank: 'Rank A',
     contract: 'Từ chối', // Moved here
     brief: false, // Moved here
     total_commission: 20000,
@@ -424,8 +424,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 5678901234,
     type: true,
     create_date: '2023-05-25',
-    type_account: 'Standard',
-    rank: 'Silver',
+    type_account: 'Chưa đăng ký',
+    rank: 'Rank C',
     contract: 'Từ chối', // Moved here
     brief: false, // Moved here
     total_commission: 11000,
@@ -446,8 +446,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 6789012345,
     type: false,
     create_date: '2023-06-08',
-    type_account: 'Từ chối',
-    rank: 'Bronze',
+    type_account: 'Chưa đăng ký',
+    rank: 'Rank A',
     contract: 'Chưa gửi', // Moved here
     brief: false, // Moved here
     total_commission: 5000,
@@ -468,8 +468,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 7890123456,
     type: true,
     create_date: '2023-07-01',
-    type_account: 'Standard',
-    rank: 'Silver',
+    type_account: 'Từ chối',
+    rank: 'Rank D',
     contract: 'Từ chối', // Moved here
     brief: false, // Moved here
     total_commission: 9000,
@@ -490,8 +490,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 8901234567,
     type: false,
     create_date: '2023-08-15',
-    type_account: 'Premium',
-    rank: 'Gold',
+    type_account: 'Từ chối',
+    rank: 'Rank C',
     contract: 'Chưa gửi', // Moved here
     brief: false, // Moved here
     total_commission: 18000,
@@ -512,8 +512,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 9012345678,
     type: true,
     create_date: '2023-09-10',
-    type_account: 'Basic',
-    rank: 'Bronze',
+    type_account: 'Hoạt động',
+    rank: 'Rank B',
     contract: 'Chưa gửi', // Moved here
     brief: false, // Moved here
     total_commission: 6000,
@@ -534,8 +534,8 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 1234567890,
     type: false,
     create_date: '2023-10-05',
-    type_account: 'Premium',
-    rank: 'Silver',
+    type_account: 'Từ chối',
+    rank: 'Rank A',
     contract: 'Đã duyệt', // Moved here
     brief: true, // Moved here
     total_commission: 14000,
@@ -566,7 +566,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 70,
     value: 70000,
     commission: 5000,
-    status: 'Active',
+    status: 'Hoạt động',
   },
   {
     id_order: '2',
@@ -583,7 +583,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 150,
     value: 150000,
     commission: 10000,
-    status: 'Pending',
+    status: 'Hoạt động',
   },
   {
     id_order: '3',
@@ -600,7 +600,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 70,
     value: 70000,
     commission: 5000,
-    status: 'Active',
+    status: 'Chờ duyệt',
   },
   {
     id_order: '4',
@@ -617,7 +617,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 150,
     value: 150000,
     commission: 10000,
-    status: 'Pending',
+    status: 'Từ chối',
   },
   {
     id_order: '5',
@@ -634,7 +634,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 70,
     value: 70000,
     commission: 5000,
-    status: 'Active',
+    status: 'Chưa đăng ký',
   },
   {
     id_order: '6',
@@ -651,7 +651,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 150,
     value: 150000,
     commission: 10000,
-    status: 'Pending',
+    status: 'Chưa đăng ký',
   },
   {
     id_order: '7',
@@ -668,7 +668,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 70,
     value: 70000,
     commission: 5000,
-    status: 'Active',
+    status: 'Từ chối',
   },
   {
     id_order: '8',
@@ -685,7 +685,7 @@ const DataAffiliateTable: AffiliateTable[] = [
     numberpoint: 150,
     value: 150000,
     commission: 10000,
-    status: 'Pending',
+    status: 'Hoạt động',
   },
 ];
 

@@ -7,6 +7,7 @@ import {
   Badge,
   Box,
   Checkbox,
+  Chip,
   Grid,
   IconButton,
   InputAdornment,
@@ -29,6 +30,8 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { createElement, useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { DataAffiliateTable } from '../datatable/OrderTableData';
+import Point from 'src/assets/images/logos/R-Point.png';
+
 // interface PropsHeadTable {
 //   head: string;
 // }
@@ -200,6 +203,22 @@ const OrderTable = () => {
         break;
     }
   };
+
+  const getStatusAccountColor = (status: string) => {
+    switch (status) {
+      case 'Hoạt động':
+        return 'success'; // Green for approved
+      case 'Chờ duyệt':
+        return 'warning'; // Yellow for pending approval
+      case 'Từ chối':
+        return 'error'; // Red for rejected
+      case 'Chưa đăng ký':
+        return 'default'; // Gray for not yet sent
+      default:
+        return 'default'; // Gray for any unrecognized status
+    }
+  };
+
   const [iconIndex, setIconIndex] = useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
 
@@ -407,7 +426,9 @@ const OrderTable = () => {
                     )}
                     {SDT && (
                       <TableCell>
-                        <Typography variant="subtitle2">{item.name_publisher}</Typography>
+                        <Typography style={{ width: '150px' }} variant="subtitle2">
+                          {item.name_publisher}
+                        </Typography>
                       </TableCell>
                     )}
                     {LoaiHinh && (
@@ -458,7 +479,10 @@ const OrderTable = () => {
                     )}
                     {TongHoaHong && (
                       <TableCell>
-                        <Typography variant="subtitle2">{item.numberpoint}</Typography>
+                        <Box sx={{ display: 'flex' }}>
+                          <Typography variant="subtitle2">{item.numberpoint}</Typography>
+                          <img style={{ width: '20px', height: '20px' }} src={Point} />
+                        </Box>
                       </TableCell>
                     )}
                     {Click && (
@@ -473,7 +497,7 @@ const OrderTable = () => {
                     )}
                     {DonHang && (
                       <TableCell>
-                        <Typography variant="subtitle2">{item.status}</Typography>
+                        <Chip label={item.status} color={getStatusAccountColor(item.status)} />
                       </TableCell>
                     )}
                   </TableRow>

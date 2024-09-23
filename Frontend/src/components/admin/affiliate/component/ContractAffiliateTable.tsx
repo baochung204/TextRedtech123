@@ -541,7 +541,9 @@ const ContractAffiliateTable = () => {
                       </TableCell>
                     )}
                     <TableCell>
-                      <Button style={{ width: '100px' }}>Ký ngay</Button>
+                      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button style={{ width: '100px' }}>Ký ngay</Button>
+                      </Box>
                     </TableCell>
                   </TableRow>
                 );
