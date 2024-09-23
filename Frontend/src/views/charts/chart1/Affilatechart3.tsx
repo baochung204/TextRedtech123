@@ -78,15 +78,13 @@ const Affilatechart3 = () => {
   const seriesradialchart = [93.27]; // Giá trị hiển thị trên đồng hồ
 
   return (
-    <Affilatec3 title="Tỉ trọng chi phí /vòng quay" description={''}>
-      <Box>
-        <Chart
-          options={optionsradialchart}
-          series={seriesradialchart}
-          type="radialBar"
-          height="300px"
-        />
-      </Box>
+    <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
+      <Chart
+        options={optionsradialchart}
+        series={seriesradialchart}
+        type="radialBar"
+        height="300px"
+      />
     </Affilatec3>
   );
 };
