@@ -488,7 +488,9 @@ const HistoryTable = () => {
                     )}
                     {ChuTaiKhoan && (
                       <TableCell>
-                        <Typography variant="subtitle2">{item.own_bank}</Typography>
+                        <Typography style={{ width: '150px' }} variant="subtitle2">
+                          {item.own_bank}
+                        </Typography>
                       </TableCell>
                     )}
                     {ChiNhanh && (
@@ -514,12 +516,16 @@ const HistoryTable = () => {
                     )}
                     {DuyetHoaDon && (
                       <TableCell>
-                        <Checkbox defaultChecked />
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                          <Checkbox defaultChecked />
+                        </Box>
                       </TableCell>
                     )}
                     {DaThanhToan && (
                       <TableCell>
-                        <Checkbox defaultChecked />
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                          <Checkbox defaultChecked />
+                        </Box>
                       </TableCell>
                     )}
                     {ThongBao && (
