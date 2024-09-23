@@ -128,7 +128,7 @@ const CollaboratePost = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
-            margin: '10px 0',
+            margin: '20px 10px 20px 0',
           }}
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -259,7 +259,13 @@ const CollaboratePost = () => {
         </Box>
 
         <Box width={{ xs: '100%', md: '70%' }}>
-          <Box display="flex" justifyContent="space-between" flexWrap="wrap" padding="10px">
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            flexWrap="wrap"
+            padding="10px"
+            marginTop="-10px"
+          >
             <Grid container display={'flex'} justifyContent={'space-between'} gap={'2px'}>
               {topcards.map((topcard, i) => (
                 <Grid item xs={12} sm={12} lg={3} xl={2} key={i}>
