@@ -1,26 +1,12 @@
 import React, { useState } from 'react';
 // import CustomTable from './CustomTable';
-import PublisherTable from './datatable/Publisher';
-import icontext from 'src/assets/images/logos/R-Point.png';
-import { Box, Button, Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import { Box, Grid, InputAdornment, TextField, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { IconSearch } from '@tabler/icons-react';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { IconSearch } from '@tabler/icons-react';
+import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-
-interface PropsTable {
-  id: string;
-  package: string;
-  model: string;
-  points: string;
-  money: string;
-  totalBuy: string;
-  function: string;
-  strategy: string;
-  files: string;
-  totalFunction: string;
-  createDate: string;
-}
+import PublisherTable from './datatable/Publisher';
 
 const columns = [
   {

@@ -22,7 +22,6 @@ import {
   Box,
   Checkbox,
   Chip,
-  Grid,
   IconButton,
   InputAdornment,
   ListItemText,
@@ -62,7 +61,6 @@ import img5 from 'src/assets/images/profile/user-5.jpg';
 import BlankCard from '../../../components/shared/BlankCard';
 
 import AddDialog from './layout/addDialog';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
 
 interface TablePaginationActionsProps {
   count: number;
