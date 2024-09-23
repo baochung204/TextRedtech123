@@ -1,30 +1,13 @@
-import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
-  Badge,
   Box,
-  Checkbox,
-  Grid,
-  IconButton,
-  InputAdornment,
-  ListItemText,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
+  Grid
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconDevicesCancel,
   IconFileText,
   IconPencilDollar,
-  IconPencilSearch,
-  IconSearch,
+  IconPencilSearch
 } from '@tabler/icons-react';
-import { createElement, useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import ContractPointTable from './component/ContractPointTable';
 
@@ -120,23 +103,9 @@ const dataSource = [
 ];
 
 const ContactRPoint = () => {
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
-  const handleItemClick = (id: number) => {
-    setSelectedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-    );
-  };
-
-  const [iconIndex, setIconIndex] = useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
+  
   return (
     <>
       <Grid container rowSpacing={3}>
