@@ -1,4 +1,3 @@
-import { TabList } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import {
@@ -10,36 +9,40 @@ import {
   Grid,
   InputAdornment,
   Slide,
-  Tab,
   TextField,
   Tooltip,
+  Typography
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import {
   IconBrandStrava,
   IconLockSquareRounded,
   IconPasswordUser,
+  IconPlus,
   IconSearch,
   IconUser,
 } from '@tabler/icons-react';
-import { IconPlus } from '@tabler/icons-react';
-import React from 'react';
+import React, { useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
 import TableBlog from './_components/TableBlog';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/apps/blog/posts', title: 'Danh sách bài viết' },
 ];
-const Transition = React.forwardRef<
-  unknown,
-  TransitionProps & { children: React.ReactElement<any, any> }
->(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+
+const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement<any, any> }>(
+  function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  }
+);
+
 interface StyleProps {
   bgColor: string;
   color: string;
@@ -138,16 +141,13 @@ const DataBox: StyleProps[] = [
     ),
   },
 ];
+
 const BlogAdmin = () => {
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [value, setValue] = React.useState('1');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [value, setValue] = useState('1');
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
-  // Function mở popup
-  // const handleOpenPopup = () => {
-  //   setIsPopupOpen(true);
-  // };
-
-  // Function đóng popup
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -158,24 +158,16 @@ const BlogAdmin = () => {
 
   return (
     <PageContainer>
-      <BannerPage title=" Quản lý bài viết" items={BCrumb} />
+      <BannerPage title="Quản lý bài viết" items={BCrumb} />
       <Grid item xs={12}>
         <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value={value}>
           <Box>
-            <TabList
-              onChange={handleChange}
-              aria-label="lab API tabs example"
-              sx={{ p: 0, border: 'none' }}
-            >
-              <Tab label="Danh sách blogs" value="1" sx={{ p: 0 }} />
-            </TabList>
-
             <TabPanel value="1" sx={{ p: 0 }}>
-              <Grid container sx={{ my: 2 }}>
-                <Grid item xs={4} sm={4} md={4}>
+              <Grid container sx={{ my: 2, alignItems: 'center' }}>
+                <Grid item xs={4}>
                   <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
                     <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                       <Tooltip title="Thêm bài viết mới" sx={{ mb: '15px' }} placement="top">
@@ -203,6 +195,32 @@ const BlogAdmin = () => {
                         fullWidth={true}
                       />
                     </Grid>
+                  </Grid>
+                </Grid>
+                {/* lịch */}
+                <Grid item xs={8} container spacing={2} justifyContent="flex-end">
+                  <Grid item>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        label="Ngày bắt đầu"
+                        value={startDate}
+                        onChange={(newValue) => setStartDate(newValue)}
+                        renderInput={(params) => <TextField {...params} fullWidth />}
+                      />
+                    </LocalizationProvider>
+                  </Grid>
+                  <Grid item>
+                    <Typography sx={{ margin: '0 10px' }}>tới</Typography>
+                  </Grid>
+                  <Grid item>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        label="Ngày kết thúc"
+                        value={endDate}
+                        onChange={(newValue) => setEndDate(newValue)}
+                        renderInput={(params) => <TextField {...params} fullWidth />}
+                      />
+                    </LocalizationProvider>
                   </Grid>
                 </Grid>
               </Grid>
