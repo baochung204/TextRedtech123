@@ -1,6 +1,7 @@
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 import Affilatec3 from 'src/components/shared/Affilatec3';
+import { Box } from '@mui/material';
 
 const Affilatechart3 = () => {
   // chart color
@@ -78,12 +79,14 @@ const Affilatechart3 = () => {
 
   return (
     <Affilatec3 title="Tỉ trọng chi phí /vòng quay" description={''}>
-      <Chart
-        options={optionsradialchart}
-        series={seriesradialchart}
-        type="radialBar"
-        height="300px"
-      />
+      <Box>
+        <Chart
+          options={optionsradialchart}
+          series={seriesradialchart}
+          type="radialBar"
+          height="300px"
+        />
+      </Box>
     </Affilatec3>
   );
 };
