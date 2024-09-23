@@ -24,63 +24,6 @@ import OrderData from './data/OrderData';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-// interface EnhancedTableToolbarProps {
-//     numSelected: number;
-//     handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-//     search: string;
-// }
-// const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-//     const { numSelected, handleSearch, search } = props;
-
-//     return (
-//         <Toolbar
-//             sx={{
-//                 pl: { xs: 0, sm: 0 },
-//                 pr: { xs: 1, sm: 1 },
-//                 ...(numSelected > 0 && {
-//                     bgcolor: (theme) =>
-//                         alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-//                 }),
-//             }}
-//         >
-//             {numSelected > 0 ? (
-//                 <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-//                     {numSelected} selected
-//                 </Typography>
-//             ) : (
-//                 <Box sx={{ flex: '1 1 100%' }}>
-//                     <TextField
-//                         InputProps={{
-//                             startAdornment: (
-//                                 <InputAdornment position="start">
-//                                     <IconSearch size="1.1rem" />
-//                                 </InputAdornment>
-//                             ),
-//                         }}
-//                         placeholder="Tìm kiếm sản phẩm"
-//                         size="small"
-//                         onChange={handleSearch}
-//                         value={search}
-//                     />
-//                 </Box>
-//             )}
-
-//             {numSelected > 0 ? (
-//                 <Tooltip title="Delete">
-//                     <IconButton>
-//                         <IconTrash width="18" />
-//                     </IconButton>
-//                 </Tooltip>
-//             ) : (
-//                 <Tooltip title="Filter list">
-//                     <IconButton>
-//                         <IconFilter size="1.2rem" />
-//                     </IconButton>
-//                 </Tooltip>
-//             )}
-//         </Toolbar>
-//     );
-// };
 
 interface HeadProps {
   head: string;
@@ -118,27 +61,25 @@ const HeadTable: HeadProps[] = [
 
 const OrderAdminPage = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     // const [selected] = useState<readonly string[]>([]);
     // const [search, setSearch] = useState('');
     // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 =======
+=======
+
+>>>>>>> ca0c9030095a04f03a6d3809b74a0526d65adbd5
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  // const [selected] = useState<readonly string[]>([]);
-  // const [search, setSearch] = useState('');
-  // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-  //     setSearch(event.target.value);
-  // };
-
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
 >>>>>>> 7ca8c1a954cca1434da67e40573a096b76dd2e40
+
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -185,6 +126,7 @@ const OrderAdminPage = () => {
               </Grid>
             </Grid>
           </Grid>
+
 
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -281,20 +223,27 @@ const OrderAdminPage = () => {
                     >
                       <Typography variant="subtitle2">{item.tongnap} VNĐ</Typography>
                     </TableCell>
-                    <TableCell
-                      sx={{
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: 'flex',
-                        }}
-                      >
-                        <Typography variant="subtitle2">{item.sodu}</Typography>
-                        <img src={icontext} alt="" width={20} />
-                      </Box>
-                    </TableCell>
+
+                   
+                    <TableCell>
+                      <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                        <Typography
+                          color="textSecondary"
+                          variant="subtitle2"
+
+                          sx={{ display: 'flex', gap: 0.5 }}
+                        >
+                          {item.sodu}{' '}
+                          <img
+                            src={icontext}
+                            alt=""
+                            width={20}
+                            height={20}
+                            style={{ borderRadius: 50 }}
+                          />
+                        </Typography>
+
+
                     <TableCell
                       sx={{
                         whiteSpace: 'nowrap',
@@ -330,5 +279,6 @@ const OrderAdminPage = () => {
     </>
   );
 };
+
 
 export default OrderAdminPage;

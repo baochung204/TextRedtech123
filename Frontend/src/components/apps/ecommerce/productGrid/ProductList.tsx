@@ -28,7 +28,7 @@ import BlankCard from '../../../shared/BlankCard';
 import AlertCart from '../productCart/AlertCart';
 import ProductSearch from './ProductSearch';
 import ProductSelect from './ProductSelect';
-import logo from '../../../../assets/images/logos/R-Point.png';
+import logo from 'src/assets/images/logos/R-Point.png';
 
 interface Props {
   onClick: (event: React.SyntheticEvent | Event) => void;
@@ -201,16 +201,35 @@ const ProductList = ({ onClick }: Props) => {
                           <img
                             src={logo}
                             alt="Logo"
-                            style={{ width: '25px', height: '25px', marginLeft: '10px' }}
+                            style={{ width: '22px', height: '22px', marginLeft: '10px' }}
                           />
                         </Box>
-                        <Typography
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Typography
+                            color="textSecondary"
+                            ml={1}
+                            sx={{ textDecoration: 'line-through' }}
+                          >
+                            {product.salesPrice}{' '}
+                          </Typography>
+                          <img
+                            src={logo}
+                            alt="Logo"
+                            style={{ width: '18px', height: '18px', marginLeft: '5px' }}
+                          />
+                        </Box>
+                        {/* <Typography
                           color="textSecondary"
                           ml={1}
                           sx={{ textDecoration: 'line-through' }}
                         >
                           {product.salesPrice}{' '}
-                        </Typography>
+                        </Typography> */}
                       </Stack>
                       <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
                         {product.category.map((category, index) => (

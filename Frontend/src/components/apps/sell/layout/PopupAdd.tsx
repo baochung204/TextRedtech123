@@ -1,21 +1,18 @@
-import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import {
   Avatar,
   Box,
-  Button,
   Divider,
   Grid,
-  IconButton,
   InputAdornment,
-  Typography,
+  Typography
 } from '@mui/material';
 import React, { useState } from 'react';
+import Classify from 'src/components/apps/sell/layout/classify';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Tags from './Tags';
-import Classify from 'src/components/apps/sell/layout/classify';
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
 
@@ -57,7 +54,7 @@ const PopupAdd = () => {
       {/* Thông tin cá nhân */}
       <Divider sx={{ mx: '-24px' }} />
 
-      <Box mb={3} pt={2} sx={{}}>
+      <Box mb={3} pt={2} >
         <Grid container spacing={2}>
           <Grid item lg={4} md={12}>
             <Box sx={{ textAlign: 'center', justifyContent: 'center', mt: { md: 2 }, mb: '20px' }}>
@@ -112,7 +109,7 @@ const PopupAdd = () => {
             </Box>
           </Grid>
           <Grid item lg={4} md={12}>
-            <Box>
+            <Grid item xs={12} sm={6} lg={12}>
               <CustomFormLabel htmlFor="name-text">Tên sản phẩm</CustomFormLabel>
               <CustomTextField
                 id="name-text"
@@ -122,9 +119,12 @@ const PopupAdd = () => {
                 value={tags}
                 onChange={handleChange(setTags)}
               />
-              <CustomFormLabel htmlFor="tags-text">Tags</CustomFormLabel>
-              <Tags />
-            </Box>
+              <CustomFormLabel htmlFor="tags-text">Nhãn</CustomFormLabel>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={12}>
+
+                <Tags />
+              </Grid>
           </Grid>
 
           <Grid item lg={4} md={12}>
@@ -199,7 +199,7 @@ const PopupAdd = () => {
             </Grid>
             {/* Ảnh sản phẩm */}
 
-            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+            <Grid container item xs={12} sm={12} lg={12} >
               <Grid item xs={12}>
                 <CustomFormLabel htmlFor="size-text">Kích thước</CustomFormLabel>
 
@@ -239,13 +239,21 @@ const PopupAdd = () => {
                   </Grid>
                 </Grid>
               </Grid>
+              <Grid item xs={12}>
+                <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
+                <CustomTextField
+                  id="style-text"
+                  variant="outlined"
+                  fullWidth
+                  placeholder="Nhập kiểu dáng . . ."
+
+                // value={style}
+                // onChange={handleChange(setStyle)}
+                />
+              </Grid>
             </Grid>
 
 
-
-            <Grid item xs={12} sm={6} lg={12}>             
-              <Classify />
-            </Grid>
           </Grid>
 
           <Grid item lg={6} md={12}>
@@ -258,7 +266,7 @@ const PopupAdd = () => {
                 variant="outlined"
                 fullWidth
                 multiline
-                rows={4.3}
+                rows={9.2}
                 placeholder="Nhập mô tả sản phẩm . . ."
               // value={description}
               // onChange={handleChange(setDescription)}
@@ -275,21 +283,11 @@ const PopupAdd = () => {
               // value={material}
               // onChange={handleChange(setMaterial)}
               />
-              <CustomFormLabel htmlFor="style-text">Kiểu dáng</CustomFormLabel>
-              <CustomTextField
-                id="style-text"
-                variant="outlined"
-                fullWidth
-                placeholder="Nhập kiểu dáng . . ."
 
-              // value={style}
-              // onChange={handleChange(setStyle)}
-              />
             </Grid>
-            <Grid container item xs={12} sm={12} lg={12} spacing={2}>
+            {/* <Grid container item xs={12} sm={12} lg={12} spacing={2}>
 
               <Grid item mt={2}>
-                {/* <CustomFormLabel htmlFor="product-image">Ảnh sản phẩm</CustomFormLabel> */}
                 <input
                   type="file"
                   id="product-images"
@@ -336,9 +334,11 @@ const PopupAdd = () => {
                   </div>
                 )}
               </Grid>
-            </Grid>
+            </Grid> */}
           </Grid>
-
+          <Grid item lg={12} md={12}>
+            <Classify />
+          </Grid>
         </Grid>
       </Box>
     </Box>

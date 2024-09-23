@@ -63,8 +63,8 @@ const Tags = () => {
       renderInput={(params) => (
         <CustomTextField
           {...params}
-          placeholder="Tag . . ."
-          aria-label="Tag . . ."
+          placeholder="Nhập nhãn . . ."
+          aria-label="Nhập nhãn . . ."
           onKeyDown={handleKeyDown}
           sx={{
             height: 40, // Thay đổi chiều cao của CustomTextField

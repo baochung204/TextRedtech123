@@ -1,8 +1,11 @@
-import Chart from 'react-apexcharts';
+import { Box, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
+import Chart from 'react-apexcharts';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec3 from 'src/components/shared/Affilatec3';
 
-const Affilatechart3 = () => {
+const Affilatechartadmin3 = ({ menuItems }) => {
   // chart color
   const theme = useTheme();
   const success = '#1AC45F';
@@ -76,16 +79,49 @@ const Affilatechart3 = () => {
   };
   const seriesradialchart = [93.27]; // Giá trị hiển thị trên đồng hồ
 
+  const [month, setMonth] = React.useState('1');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
+
   return (
     <Affilatec3 title="Tỉ trọng chi phí /vòng quay" description={''}>
-      <Chart
-        options={optionsradialchart}
-        series={seriesradialchart}
-        type="radialBar"
-        height="300px"
-      />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <CustomSelect
+          labelId="month-dd"
+          id="month-dd"
+          size="small"
+          value={month}
+          onChange={handleChange}
+          sx={{ marginBottom: '20px' }}
+        >
+          {menuItems && Array.isArray(menuItems) ? (
+            menuItems.map((item) => (
+              <MenuItem key={item.value} value={item.value}>
+                {item.label}
+              </MenuItem>
+            ))
+          ) : (
+            <MenuItem disabled>No options available</MenuItem>
+          )}
+        </CustomSelect>
+        <Chart
+          options={optionsradialchart}
+          series={seriesradialchart}
+          type="radialBar"
+          height="300px"
+        />
+      </Box>
     </Affilatec3>
   );
 };
 
-export default Affilatechart3;
+export default Affilatechartadmin3;

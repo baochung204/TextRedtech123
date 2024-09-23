@@ -30,6 +30,8 @@ import products from 'src/assets/images/products/s25.jpg';
 // import Countdown from 'src/components/countdown/countdown';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 const Content = () => {
   const packages = [
@@ -83,9 +85,6 @@ const Content = () => {
 
             <TableBody>
               <TableRow>
-                {/* ------------------------------------------- */}
-                {/* Hình ảnh và tiêu đề sản phẩm */}
-                {/* ------------------------------------------- */}
                 <TableCell align="center">
                   <Stack direction="row" alignItems="center" gap={2}>
                     <Avatar
@@ -120,42 +119,59 @@ const Content = () => {
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
-                    570
-                    <img
-                      src={logoPoint}
-                      alt={logoPoint}
-                      width={20}
-                      height={20}
-                      style={{ borderRadius: 50 }}
-                    />
-                  </Typography>
+                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
+                      123
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
+                    </Typography>
+                  </Box>
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
-                    120{' '}
-                    <img
-                      src={logoPoint}
-                      alt={logoPoint}
-                      width={20}
-                      height={20}
-                      style={{ borderRadius: 50 }}
-                    />
-                    {/* ${product.salesPrice * product.qty - product.price * product.qty} */}
-                  </Typography>
+                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
+                      123
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
+                    </Typography>
+                  </Box>
                 </TableCell>
                 <TableCell align="center">
-                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
-                    450{' '}
-                    <img
-                      src={logoPoint}
-                      alt={logoPoint}
-                      width={20}
-                      height={20}
-                      style={{ borderRadius: 50 }}
-                    />
-                  </Typography>
+                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
+                      12321
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
+                    </Typography>
+                  </Box>
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -196,7 +212,26 @@ const Content = () => {
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
+                      12321
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
+                    </Typography>
+                  </Box>
+                  {/* <Typography
+                    variant="h6"
+                    sx={{ display: 'flex', justifyContent: 'end', gap: 0.5 }}
+                  >
                     1022{' '}
                     <img
                       src={logoPoint}
@@ -205,11 +240,11 @@ const Content = () => {
                       height={20}
                       style={{ borderRadius: 50 }}
                     />
-                  </Typography>
+                  </Typography> */}
                 </TableCell>
 
                 <TableCell align="center">
-                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                  {/* <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
                     255{' '}
                     <img
                       src={logoPoint}
@@ -218,11 +253,27 @@ const Content = () => {
                       height={20}
                       style={{ borderRadius: 50 }}
                     />
-                    {/* ${product.salesPrice * product.qty - product.price * product.qty} */}
-                  </Typography>
+                     ${product.salesPrice * product.qty - product.price * product.qty} 
+                  </Typography> */}
+                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
+                      1232
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
+                    </Typography>
+                  </Box>
                 </TableCell>
                 <TableCell align="center">
-                  <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                  {/* <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
                     767{' '}
                     <img
                       src={logoPoint}
@@ -231,7 +282,23 @@ const Content = () => {
                       height={20}
                       style={{ borderRadius: 50 }}
                     />
-                  </Typography>
+                  </Typography> */}
+                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      sx={{ display: 'flex', gap: 0.5 }}
+                    >
+                      1232
+                      <img
+                        src={logoPoint}
+                        alt=""
+                        width={20}
+                        height={20}
+                        style={{ borderRadius: 50 }}
+                      />
+                    </Typography>
+                  </Box>
                 </TableCell>
               </TableRow>
             </TableBody>
@@ -240,7 +307,7 @@ const Content = () => {
         <Box my={3}>
           <ChildCard>
             <Box p={2}>
-              <Typography variant="h5" fontWeight={600} mb={3}>
+              <Typography variant="h5" fontWeight={600} mb={0}>
                 Đơn hàng
               </Typography>
               {/* Tổng cộng */}
@@ -324,37 +391,18 @@ const Content = () => {
                                   {pkg.title}
                                 </Typography>
 
-                                <div
-                                  style={{
+                                <Box
+                                  sx={{
                                     display: 'flex',
-                                    gap: '10px',
+                                    gap: 1.5,
                                     marginTop: '10px',
                                   }}
                                 >
-                                  {' '}
                                   <Typography
-                                    sx={{
-                                      mb: 1,
-                                      color: '#888',
-                                      fontSize: '14px',
-                                      display: 'flex',
-                                      justifyContent: 'center',
-                                      alignItems: 'center',
-                                    }}
-                                  >
-                                    <del>{pkg.discount.toLocaleString()} </del>
-                                    <img
-                                      src={logoPoint}
-                                      alt={logoPoint}
-                                      width={20}
-                                      height={20}
-                                      style={{ borderRadius: 50 }}
-                                    />
-                                  </Typography>
-                                  <Typography
+                                    variant="h6"
                                     sx={{
                                       fontWeight: 'bold',
-
+                                      gap: 1,
                                       display: 'flex',
                                       justifyContent: 'center',
                                     }}
@@ -369,7 +417,27 @@ const Content = () => {
                                       style={{ borderRadius: 50 }}
                                     />
                                   </Typography>{' '}
-                                </div>
+                                  <Typography
+                                    sx={{
+                                      mb: 1,
+                                      color: '#888',
+                                      fontSize: '12px',
+                                      display: 'flex',
+                                      justifyContent: 'center',
+                                      alignItems: 'center',
+                                      gap: 1,
+                                    }}
+                                  >
+                                    <del>{pkg.discount.toLocaleString()} </del>
+                                    <img
+                                      src={logoPoint}
+                                      alt={logoPoint}
+                                      width={20}
+                                      height={20}
+                                      style={{ borderRadius: 50 }}
+                                    />
+                                  </Typography>
+                                </Box>
                                 <Box>
                                   <Button
                                     variant={'outlined'}
@@ -423,11 +491,11 @@ const Content = () => {
                   </Typography>
                 </Box>{' '}
               </Accordion>
-              <Stack direction="row" justifyContent="space-between" mb={3}>
+              <Stack direction="row" justifyContent="space-between" mb={2}>
                 <Typography variant="h6" fontWeight={400}>
-                  Giá trị đơn hàng
+                  Giá trị đơn hàng :
                 </Typography>
-                <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
                   900{' '}
                   <img
                     src={logoPoint}
@@ -439,9 +507,9 @@ const Content = () => {
                 </Typography>
               </Stack>
               {/* Giảm giá */}
-              <Stack direction="row" justifyContent="space-between" mb={3}>
+              <Stack direction="row" justifyContent="space-between" mb={2}>
                 <Typography variant="h6" fontWeight={400}>
-                  Khuyến mãi
+                  Khuyến mãi :
                 </Typography>
                 <Typography
                   variant="h6"
@@ -450,6 +518,7 @@ const Content = () => {
                     justifyContent: 'center',
                     color: 'error.main',
                     alignItems: 'center',
+                    gap: 1,
                   }}
                 >
                   -500{' '}
@@ -466,8 +535,17 @@ const Content = () => {
 
               {/* Tổng cộng */}
               <Stack direction="row" justifyContent="space-between" mb={1}>
-                <Typography variant="h6">Tổng thanh toán</Typography>
-                <Typography variant="h5" color="success" display={'flex'} justifyContent={'center'}>
+                <Typography variant="h6">Tổng thanh toán :</Typography>
+                <Typography
+                  variant="h5"
+                  color="success"
+                  sx={{
+                    gap: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   400{' '}
                   <img
                     src={logoPoint}

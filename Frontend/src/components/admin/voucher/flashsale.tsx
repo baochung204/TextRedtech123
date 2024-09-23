@@ -32,6 +32,7 @@ import s23 from 'src/assets/images/products/s25.jpg';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
+import AddDflashsale from './add/addflashsale';
 
 interface DataRow3 {
   id: string;
@@ -349,9 +350,7 @@ const FlashSale = () => {
                 <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
                   <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                     <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
-                      <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
-                        <IconPlus width={18} />
-                      </Fab>
+                      <AddDflashsale />
                     </Tooltip>
                   </Grid>
                   <Grid item xs={10}>
@@ -596,3 +595,17 @@ const FlashSale = () => {
 };
 
 export default FlashSale;
+//Khai dan khai dan khai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
+//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai 

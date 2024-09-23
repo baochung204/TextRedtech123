@@ -9,11 +9,12 @@ import { AppState } from 'src/store/Store';
 type Props = {
   title: string;
   description?: string;
+  text: string;
   footer?: string | JSX.Element;
   children: JSX.Element;
 };
 
-const Affilatec1 = ({ children, footer }: Props) => {
+const Affilatec1 = ({ children, footer, text }: Props) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
   const theme = useTheme();
@@ -33,7 +34,10 @@ const Affilatec1 = ({ children, footer }: Props) => {
       {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
-        <h2>Tỉ trọng chi phí / Đơn hàng </h2>
+
+        <h2>{text}</h2>
+        {/* Chi phí / Đơn hàng */}
+
       </Box>
       <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
       {footer ? (
