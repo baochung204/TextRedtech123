@@ -1,8 +1,6 @@
-import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
+import Chart from 'react-apexcharts';
 import Affilatec3 from 'src/components/shared/Affilatec3';
-import { Box } from '@mui/material';
-
 const Affilatechart3 = () => {
   // chart color
   const theme = useTheme();
