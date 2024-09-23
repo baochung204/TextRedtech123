@@ -1,21 +1,18 @@
-import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import {
   Avatar,
   Box,
-  Button,
   Divider,
   Grid,
-  IconButton,
   InputAdornment,
-  Typography,
+  Typography
 } from '@mui/material';
 import React, { useState } from 'react';
+import Classify from 'src/components/apps/sell/layout/classify';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Tags from './Tags';
-import Classify from 'src/components/apps/sell/layout/classify';
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
 
