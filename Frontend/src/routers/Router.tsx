@@ -33,6 +33,7 @@ const Fail = Loadable(lazy(() => import('src/views/apps/user-profile/Fail')));
 const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending')));
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
+
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')))
 const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')))

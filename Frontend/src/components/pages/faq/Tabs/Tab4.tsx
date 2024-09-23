@@ -103,6 +103,7 @@ const Tab4 = () => {
           page={page}
           onPageChange={() => handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên mỗi trang"
         />
       </TableContainer>
     </Box>

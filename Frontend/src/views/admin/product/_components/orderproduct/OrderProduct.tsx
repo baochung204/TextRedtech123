@@ -13,13 +13,15 @@ import {
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { IconChartBar, IconPlus, IconSearch } from '@tabler/icons-react';
-import React from 'react';
+import React, { useState } from 'react';
 import iconPoint from 'src/assets/images/logos/R-Point.png';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from 'src/views/admin/blog/_components/AddBlog';
 import TableOrderProduct from './TableOrderProduct';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
   { to: '/admin/buy/orderproducts', title: 'Danh sách đơn hàng' },
@@ -207,6 +209,9 @@ const DataBox: StyleProps[] = [
 
 const OrderProduct = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+
   // const [value, setValue] = React.useState('1');
 
   const handleOpenPopup = () => {
@@ -233,7 +238,7 @@ const OrderProduct = () => {
           <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Grid item xs={4} sm={4} md={4}>
               <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                {/* <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                   <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
                     <Fab
                       size="small"
@@ -245,7 +250,7 @@ const OrderProduct = () => {
                       <IconPlus width={18} />
                     </Fab>
                   </Tooltip>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -265,6 +270,31 @@ const OrderProduct = () => {
                     fullWidth={true}
                   />
                 </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={8} container spacing={2} justifyContent="flex-end">
+              <Grid item>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    label="Ngày bắt đầu"
+                    value={startDate}
+                    onChange={(newValue) => setStartDate(newValue)}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Grid>
+              <Grid item>
+                <Typography sx={{ margin: '0 10px' }}>tới</Typography>
+              </Grid>
+              <Grid item>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    label="Ngày kết thúc"
+                    value={endDate}
+                    onChange={(newValue) => setEndDate(newValue)}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
               </Grid>
             </Grid>
           </Grid>
