@@ -70,6 +70,7 @@ const OrderAdminPage = () => {
   };
 
 
+
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -231,7 +232,7 @@ const OrderAdminPage = () => {
                             style={{ borderRadius: 50 }}
                           />
                         </Typography>
-                        </Box>
+                      </Box>
                     </TableCell>
 
 

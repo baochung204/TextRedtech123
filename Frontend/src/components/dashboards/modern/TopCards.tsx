@@ -1,16 +1,15 @@
 import { Box, CardContent, Grid, MenuItem, TextField, Typography } from '@mui/material';
 
-import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-import icon2 from '../../../assets/images/svgs/icon-user-male.svg';
-import icon3 from '../../../assets/images/svgs/icon-briefcase.svg';
-import icon4 from '../../../assets/images/svgs/icon-mailbox.svg';
-import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
-import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { ChangeEvent, useState } from 'react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { max } from 'lodash';
+import { ChangeEvent, useState } from 'react';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import icon3 from '../../../assets/images/svgs/icon-briefcase.svg';
+import icon1 from '../../../assets/images/svgs/icon-connect.svg';
+import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
+import icon4 from '../../../assets/images/svgs/icon-mailbox.svg';
+import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
+import icon2 from '../../../assets/images/svgs/icon-user-male.svg';
 
 interface cardType {
   icon: string;

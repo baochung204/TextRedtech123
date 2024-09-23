@@ -1,12 +1,5 @@
 import PersonIcon from '@mui/icons-material/Person';
-import {
-  Avatar,
-  Box,
-  Divider,
-  Grid,
-  InputAdornment,
-  Typography
-} from '@mui/material';
+import { Avatar, Box, Divider, Grid, InputAdornment, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import Classify from 'src/components/apps/sell/layout/classify';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
@@ -16,20 +9,20 @@ import Tags from './Tags';
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
 
-  const [selectedImages, setSelectedImages] = useState<Array<File>>([]);
+  // const [selectedImages, setSelectedImages] = useState<Array<File>>([]);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   // const [color, setColor] = useState<string>('#000000');
 
-  const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
-      setSelectedImages((prevImages) => [...prevImages, ...Array.from(files)]);
-    }
-  };
+  // const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = event.target.files;
+  //   if (files) {
+  //     setSelectedImages((prevImages) => [...prevImages, ...Array.from(files)]);
+  //   }
+  // };
 
-  const handleRemoveImage = (index: number) => {
-    setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  };
+  // const handleRemoveImage = (index: number) => {
+  //   setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  // };
 
   // const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setColor(event.target.value);
@@ -37,9 +30,9 @@ const PopupAdd = () => {
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        setter(event.target.value);
-      };
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
+    };
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -54,7 +47,7 @@ const PopupAdd = () => {
       {/* Thông tin cá nhân */}
       <Divider sx={{ mx: '-24px' }} />
 
-      <Box mb={3} pt={2} >
+      <Box mb={3} pt={2}>
         <Grid container spacing={2}>
           <Grid item lg={4} md={12}>
             <Box sx={{ textAlign: 'center', justifyContent: 'center', mt: { md: 2 }, mb: '20px' }}>
@@ -122,9 +115,8 @@ const PopupAdd = () => {
               <CustomFormLabel htmlFor="tags-text">Nhãn</CustomFormLabel>
             </Grid>
             <Grid item xs={12} sm={6} lg={12}>
-
-                <Tags />
-              </Grid>
+              <Tags />
+            </Grid>
           </Grid>
 
           <Grid item lg={4} md={12}>
@@ -167,8 +159,8 @@ const PopupAdd = () => {
                 fullWidth
                 placeholder="Nhập tiêu đề . . ."
 
-              // value={title}
-              // onChange={handleChange(setTitle)}
+                // value={title}
+                // onChange={handleChange(setTitle)}
               />
             </Grid>
             <Grid container item xs={12} sm={12} lg={12} spacing={2}>
@@ -180,8 +172,8 @@ const PopupAdd = () => {
                   variant="outlined"
                   fullWidth
                   placeholder="Nhập khối lượng . . ."
-                // value={weight}
-                // onChange={handleChange(setWeight)}
+                  // value={weight}
+                  // onChange={handleChange(setWeight)}
                 />
               </Grid>
               <Grid item xs={12} sm={6} lg={6}>
@@ -192,14 +184,14 @@ const PopupAdd = () => {
                   fullWidth
                   placeholder="Nhập đơn vị . . ."
 
-                // value={unit}
-                // onChange={handleChange(setUnit)}
+                  // value={unit}
+                  // onChange={handleChange(setUnit)}
                 />
               </Grid>
             </Grid>
             {/* Ảnh sản phẩm */}
 
-            <Grid container item xs={12} sm={12} lg={12} >
+            <Grid container item xs={12} sm={12} lg={12}>
               <Grid item xs={12}>
                 <CustomFormLabel htmlFor="size-text">Kích thước</CustomFormLabel>
 
@@ -247,18 +239,14 @@ const PopupAdd = () => {
                   fullWidth
                   placeholder="Nhập kiểu dáng . . ."
 
-                // value={style}
-                // onChange={handleChange(setStyle)}
+                  // value={style}
+                  // onChange={handleChange(setStyle)}
                 />
               </Grid>
             </Grid>
-
-
           </Grid>
 
           <Grid item lg={6} md={12}>
-
-
             <Grid lg={12}>
               <CustomFormLabel htmlFor="description-text">Mô tả</CustomFormLabel>
               <CustomTextField
@@ -268,8 +256,8 @@ const PopupAdd = () => {
                 multiline
                 rows={9.2}
                 placeholder="Nhập mô tả sản phẩm . . ."
-              // value={description}
-              // onChange={handleChange(setDescription)}
+                // value={description}
+                // onChange={handleChange(setDescription)}
               />
             </Grid>
             <Grid item xs={12} sm={6} lg={12}>
@@ -280,10 +268,9 @@ const PopupAdd = () => {
                 fullWidth
                 placeholder="Nhập chất liệu . . ."
 
-              // value={material}
-              // onChange={handleChange(setMaterial)}
+                // value={material}
+                // onChange={handleChange(setMaterial)}
               />
-
             </Grid>
             {/* <Grid container item xs={12} sm={12} lg={12} spacing={2}>
 

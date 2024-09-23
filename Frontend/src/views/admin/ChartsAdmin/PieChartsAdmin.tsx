@@ -7,7 +7,7 @@ import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Modarm from 'src/components/shared/moderm';
 
-const PieChartsAdmin = ({ menuItems }) => {
+const PieChartsAdmin = ({ menuItems }: { menuItems: any }) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;

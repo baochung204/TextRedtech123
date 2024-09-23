@@ -2,7 +2,17 @@ import { Add as AddIcon } from '@mui/icons-material';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ClearIcon from '@mui/icons-material/Clear';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Box, Button, Divider, Grid, IconButton, InputAdornment, Paper, TextField, Tooltip } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Paper,
+  TextField,
+  Tooltip,
+} from '@mui/material';
 import React, { useState } from 'react';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -51,7 +61,7 @@ const ProductClassification: React.FC = () => {
   const handleValueChange = (
     classificationIndex: number,
     valueIndex: number,
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const newClassifications = [...classifications];
     newClassifications[classificationIndex].values[valueIndex] = event.target.value;
@@ -65,7 +75,7 @@ const ProductClassification: React.FC = () => {
   const handleImageChange = (
     classificationIndex: number,
     valueIndex: number,
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0] || null;
     const newClassifications = [...classifications];
@@ -92,7 +102,13 @@ const ProductClassification: React.FC = () => {
               <Divider sx={{ mr: 1 }} />
               <Box mb={2}>
                 {/* Hiển thị tên kiểu phân loại và nút xóa */}
-                <Box display={'flex'} alignItems="center" justifyContent="space-between" mb={1} mt={1}>
+                <Box
+                  display={'flex'}
+                  alignItems="center"
+                  justifyContent="space-between"
+                  mb={1}
+                  mt={1}
+                >
                   <strong>{classification.label}</strong>
                   <IconButton onClick={() => handleRemoveClassification(classificationIndex)}>
                     <ClearIcon sx={{ fontSize: 15, opacity: 0.8 }} />
@@ -106,7 +122,9 @@ const ProductClassification: React.FC = () => {
                         <input
                           type="file"
                           style={{ display: 'none' }}
-                          onChange={(event) => handleImageChange(classificationIndex, valueIndex, event)}
+                          onChange={(event) =>
+                            handleImageChange(classificationIndex, valueIndex, event)
+                          }
                           id={`upload-button-${classificationIndex}-${valueIndex}`}
                         />
                         <Tooltip title="Thêm ảnh">
@@ -130,7 +148,9 @@ const ProductClassification: React.FC = () => {
                             }}
                             onClick={() =>
                               document
-                                .getElementById(`upload-button-${classificationIndex}-${valueIndex}`)
+                                .getElementById(
+                                  `upload-button-${classificationIndex}-${valueIndex}`,
+                                )
                                 ?.click()
                             }
                           >
@@ -143,7 +163,9 @@ const ProductClassification: React.FC = () => {
                       <CustomTextField
                         fullWidth
                         value={value}
-                        onChange={(event) => handleValueChange(classificationIndex, valueIndex, event)}
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                          handleValueChange(classificationIndex, valueIndex, event)
+                        }
                         placeholder={`Nhập ${classification.label.toLowerCase()} . . .`}
                       />
                     </Grid>
@@ -154,7 +176,14 @@ const ProductClassification: React.FC = () => {
                         placeholder="Nhập giá . . ."
                       />
                     </Grid>
-                    <Grid item xs={1} mb={1} display="flex" alignItems="center" justifyContent="center">
+                    <Grid
+                      item
+                      xs={1}
+                      mb={1}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <IconButton sx={{ p: 1 }} onClick={() => handleAddValue(classificationIndex)}>
                         <AddIcon />
                       </IconButton>
