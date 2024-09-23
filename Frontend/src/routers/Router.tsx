@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import Loadable from '../layouts/full/shared/loadable/Loadable';
+// import Loadable from '../layouts/full/shared/loadable/Loadable';
 const ChangePassword = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
 );
