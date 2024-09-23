@@ -1,17 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
+import Chart from 'react-apexcharts';
 
 import { Props } from 'react-apexcharts';
 
-import { Dayjs } from 'dayjs';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { Box, MenuItem, Typography } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Box, Typography } from '@mui/material';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
 // const BCrumb = [
