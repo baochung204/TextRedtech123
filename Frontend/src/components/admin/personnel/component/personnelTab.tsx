@@ -34,8 +34,6 @@ import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
 
-
-
 interface FilmsData {
   id: number;
   title: string;
@@ -86,7 +84,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   const [SoDienThoai, setSoDienThoai] = useState(true);
   const [BaiViet, setBaiViet] = useState(true);
   const [TrangThai, setTrangThai] = useState(true);
-  const [HoatDong, setHoatDong] = useState(true);
+  // const [HoatDong, setHoatDong] = useState(true);
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>
       prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
