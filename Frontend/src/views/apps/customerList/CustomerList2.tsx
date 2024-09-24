@@ -136,8 +136,8 @@ const CustomerList2 = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
-        <DialogContent>
+       
+        <DialogContent sx={{paddingTop: '10px'}}>
           <PopupAddList2 />
         </DialogContent>
       </Dialog>
