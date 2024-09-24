@@ -23,7 +23,7 @@ import {
 import React, { createElement, useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
@@ -57,6 +57,7 @@ const FilmsData: FilmsData[] = [
   { id: 16, title: 'SĐT công ty' },
   { id: 17, title: 'Email công ty' },
   { id: 18, title: 'Trạng thái' },
+  { id: 19, title: 'Hoạt động' },
 ];
 
 const InvoiceTable = () => {
@@ -112,6 +113,8 @@ const InvoiceTable = () => {
   const [SDT, setSDT] = useState(true);
   const [EMAIL, setEMAIL] = useState(true);
   const [TTT, setTTT] = useState(true);
+  const [action, setAction] = useState(true);
+  const [position, setPosition] = useState(true);
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>
       prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
@@ -171,6 +174,12 @@ const InvoiceTable = () => {
     }
     if (id === 18) {
       setTTT(!TTT);
+    }
+    if (id === 19) {
+      setAction(!action);
+    }
+    if (id === 20) {
+      setPosition(!position);
     }
   };
 
@@ -354,6 +363,11 @@ const InvoiceTable = () => {
                     <Typography variant="h6">Người đại diện</Typography>
                   </TableCell>
                 )}
+                {position && (
+                  <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                    <Typography variant="h6">Chức vụ</Typography>
+                  </TableCell>
+                )}
                 {SDT && (
                   <TableCell sx={{ whiteSpace: 'nowrap' }}>
                     <Typography variant="h6">SĐT công ty</Typography>
@@ -371,6 +385,9 @@ const InvoiceTable = () => {
                 )}
                 <TableCell sx={{ whiteSpace: 'nowrap' }}>
                   <Typography variant="h6">Hóa đơn</Typography>
+                </TableCell>
+                <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                  <Typography variant="h6">Hoạt động</Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -416,7 +433,7 @@ const InvoiceTable = () => {
                       <Typography variant="subtitle2">{item.amount}</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography variant="subtitle2">{item.price}</Typography>
+                      <Typography variant="subtitle2">{item.price}đ</Typography>
                     </TableCell>
                     <TableCell>
                       <Typography variant="subtitle2">{item.into_money}</Typography>
@@ -458,10 +475,28 @@ const InvoiceTable = () => {
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Button style={{ width: '100px' }}>Xuất ngay</Button>
+                      <Typography
+                        sx={{
+                          color: item.status ? 'success.main' : 'warning.main',
+                        }}
+                        variant="subtitle2"
+                      >
+                        {item.status ? 'Đã xuất' : 'Chưa xuất'}
+                      </Typography>
                     </TableCell>
                     <TableCell>
                       <Button style={{ width: '100px' }}>Xuất ngay</Button>
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        whiteSpace: 'nowrap',
+                        display: 'flex',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <IconButton>
+                        <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 );
