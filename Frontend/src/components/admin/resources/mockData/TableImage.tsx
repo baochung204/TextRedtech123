@@ -125,7 +125,7 @@ export const ImageCells: HeadCell[] = [
         dataIndex: 'creator',
         numeric: false,
         disablePadding: false,
-        label: 'Người tạo (Khách hàng)',
+        label: 'Người tạo',
     },
     {
         dataIndex: 'image',
@@ -145,17 +145,17 @@ export const ImageCells: HeadCell[] = [
         disablePadding: false,
         label: 'Tiêu đề',
     },
-    {
-        dataIndex: 'description',
-        numeric: false,
-        disablePadding: false,
-        label: 'Mô tả',
-    },
+    // {
+    //     dataIndex: 'description',
+    //     numeric: false,
+    //     disablePadding: false,
+    //     label: 'Mô tả',
+    // },
     {
         dataIndex: 'size',
         numeric: true,
         disablePadding: false,
-        label: 'Dung lượng (MB)',
+        label: 'Dung lượng',
     },
     {
         dataIndex: 'url',
@@ -183,7 +183,7 @@ export const ImageRows = [
         ),
         imageName: 'Ảnh sản phẩm A',
         title: 'Sản phẩm A - Ảnh chụp từ bên trái',
-        description: 'Hình ảnh mô tả sản phẩm A từ góc nhìn bên trái',
+        // description: 'Hình ảnh mô tả sản phẩm A từ góc nhìn bên trái',
         size: 1.5,
         url: 'https://example.com/images/img001.jpg',
         actions: (
@@ -208,7 +208,7 @@ export const ImageRows = [
         ),
         imageName: 'Ảnh sản phẩm B',
         title: 'Sản phẩm B - Ảnh chụp từ phía trước',
-        description: 'Hình ảnh mô tả sản phẩm B từ góc nhìn chính diện',
+        // description: 'Hình ảnh mô tả sản phẩm B từ góc nhìn chính diện',
         size: 2.1,
         url: 'https://example.com/images/img002.jpg',
         actions: (
@@ -233,7 +233,7 @@ export const ImageRows = [
         ),
         imageName: 'Ảnh sản phẩm C',
         title: 'Sản phẩm C - Ảnh chụp chi tiết',
-        description: 'Hình ảnh cận cảnh sản phẩm C để thấy rõ chi tiết',
+        // description: 'Hình ảnh cận cảnh sản phẩm C để thấy rõ chi tiết',
         size: 1.8,
         url: 'https://example.com/images/img003.jpg',
         actions: (
@@ -257,7 +257,7 @@ export const ImageRows = [
         ),
         imageName: 'Ảnh sản phẩm D',
         title: 'Sản phẩm D - Ảnh chụp từ bên phải',
-        description: 'Hình ảnh sản phẩm D từ góc nhìn bên phải',
+        // description: 'Hình ảnh sản phẩm D từ góc nhìn bên phải',
         size: 2.3,
         url: 'https://example.com/images/img004.jpg',
         actions: (
@@ -282,7 +282,7 @@ export const ImageRows = [
         ),
         imageName: 'Ảnh sản phẩm E',
         title: 'Sản phẩm E - Ảnh chụp từ góc trên',
-        description: 'Hình ảnh sản phẩm E từ góc nhìn trên xuống',
+        // description: 'Hình ảnh sản phẩm E từ góc nhìn trên xuống',
         size: 1.6,
         url: 'https://example.com/images/img005.jpg',
         actions: (
@@ -306,7 +306,7 @@ export const ImageRows = [
         ),
         imageName: 'Ảnh sản phẩm F',
         title: 'Sản phẩm F - Ảnh chụp từ xa',
-        description: 'Hình ảnh sản phẩm F từ góc xa để thấy toàn cảnh',
+        // description: 'Hình ảnh sản phẩm F từ góc xa để thấy toàn cảnh',
         size: 2.5,
         url: 'https://example.com/images/img006.jpg',
         actions: (
