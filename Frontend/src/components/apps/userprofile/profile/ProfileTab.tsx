@@ -109,61 +109,6 @@ const ProfileTab = () => {
           })}
         </Tabs>
 
-        {/* Dropdown menu for Lịch sử giao dịch
-        <Menu
-          id="lich-su-giao-dich-menu"
-          anchorEl={anchorElTransaction}
-          open={Boolean(anchorElTransaction)}
-          onClose={handleCloseTransaction}
-          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-          transformOrigin={{ horizontal: 'left', vertical: 'top' }}
-          PaperProps={{
-            sx: {
-              borderRadius: '8px',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-              minWidth: '200px',
-              bgcolor: 'background.paper',
-            },
-          }}
-        >
-          <MenuItem
-            component={Link}
-            to="/purchasehistory"
-            onClick={handleCloseTransaction}
-            sx={{
-              padding: '10px 20px',
-              borderRadius: '8px',
-              '&:hover': {
-                bgcolor: 'primary.main',
-                color: 'white',
-              },
-            }}
-          >
-            <IconShoppingCart size="20" style={{ marginRight: '8px' }} />
-            <Typography variant="body1" fontWeight="500">
-              Lịch sử mua hàng
-            </Typography>
-          </MenuItem>
-          <MenuItem
-            component={Link}
-            to="/pointhistory"
-            onClick={handleCloseTransaction}
-            sx={{
-              padding: '10px 20px',
-              borderRadius: '8px',
-              '&:hover': {
-                bgcolor: 'primary.main',
-                color: 'white',
-              },
-            }}
-          >
-            <IconCoin size="20" style={{ marginRight: '8px' }} />
-            <Typography variant="body1" fontWeight="500">
-              Lịch sử nạp Point
-            </Typography>
-          </MenuItem>
-        </Menu> */}
-
         {/* Dropdown menu for Hợp đồng */}
         <Menu
           id="hop-dong-menu"
@@ -183,7 +128,7 @@ const ProfileTab = () => {
         >
           <MenuItem
             component={Link}
-            to="/contracthistory"
+            to="/apps/contractaffiliate"
             onClick={handleCloseContract}
             sx={{
               padding: '10px 20px',
@@ -201,7 +146,7 @@ const ProfileTab = () => {
           </MenuItem>
           <MenuItem
             component={Link}
-            to="/contracthistory"
+            to="/apps/contractorder"
             onClick={handleCloseContract}
             sx={{
               padding: '10px 20px',

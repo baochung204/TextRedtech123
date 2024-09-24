@@ -347,14 +347,11 @@ const PaginationTable = () => {
   const [NAME, setName] = React.useState(true);
   const [TAGS, setTags] = React.useState(true);
   const [PRICE, setPrice] = React.useState(true);
-
   const [PRICEVD, setPriceVD] = React.useState(true);
-
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>
       prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
     );
-
     if (id === 2) {
       setImg(!IMG);
     }
