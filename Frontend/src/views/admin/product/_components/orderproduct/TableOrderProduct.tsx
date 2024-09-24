@@ -5,13 +5,14 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   Typography,
 } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DataOrderProduct from '../../data/DataOrderProduct';
-
+import point from 'src/assets/images/logos/R-Point.png'
 interface PropsHeadTable {
   head: string;
 }
@@ -28,8 +29,8 @@ const HeadTable: PropsHeadTable[] = [
 ];
 
 const TableOrderProduct = () => {
-  const [page] = useState(0);
-  const [rowsPerPage] = useState(5);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [key, setKey] = useState<string | null>(null);
   key && console.log(key);
   // const handleChangePage = (newPage: number) => {
@@ -46,19 +47,14 @@ const TableOrderProduct = () => {
     page * rowsPerPage + rowsPerPage,
   );
 
-  // // Placeholder functions for button actions
-  // const handleView = (id: string) => {
-  //     console.log('View blog with ID:', id);
-  // };
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
+  };
 
-  // const handleEdit = (id: string) => {
-  //     console.log('Edit blog with ID:', id);
-  // };
-
-  // const handleDelete = (id: string) => {
-  //     console.log('Delete blog with ID:', id);
-  // };
-
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
   return (
     <>
       <TableContainer>
@@ -90,29 +86,25 @@ const TableOrderProduct = () => {
                   <TableCell sx={{ maxWidth: 100, overflow: 'hidden' }}>
                     <Typography variant="subtitle2">{item.ten_khach_hang}</Typography>
                   </TableCell>
-                  <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    <Typography variant="subtitle2">{item.gia_niem_yet}</Typography>
+                  <TableCell>
+                    <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+                      {item.gia_niem_yet}
+                      <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+                    </Typography>
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      maxWidth: 150,
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    <Typography variant="subtitle2">{item.khuyen_mai}</Typography>
+                  <TableCell>
+                    <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+                      {item.khuyen_mai}
+                      <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+                    </Typography>
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      maxWidth: 200,
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    <Typography variant="subtitle2">{item.thanh_toan}</Typography>
+                  <TableCell>
+                    <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+                      {item.thanh_toan}
+                      <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+                    </Typography>
                   </TableCell>
+
                   <TableCell
                     sx={{
                       whiteSpace: 'nowrap',
@@ -127,6 +119,16 @@ const TableOrderProduct = () => {
             })}
           </TableBody>
         </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={DataOrderProduct.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={(_event, newPage) => handleChangePage(newPage)}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên mỗi trang"
+        />
       </TableContainer>
     </>
   );

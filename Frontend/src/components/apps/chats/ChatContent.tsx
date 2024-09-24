@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 import { IconDotsVertical, IconMenu2 } from '@tabler/icons-react';
 import { useSelector } from 'src/store/Store';
-
 import { ChatsType } from 'src/types/apps/chat';
 import ChatInsideSidebar from './ChatInsideSidebar';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';

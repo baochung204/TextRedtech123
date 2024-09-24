@@ -36,6 +36,12 @@ import SavingsImg from 'src/assets/images/backgrounds/piggy.png';
 import icon5Img from 'src/assets/images/svgs/icon-account.svg';
 import icon3 from 'src/assets/images/svgs/icon-briefcase.svg';
 // import icon1 from 'src/assets/images/svgs/icon-connect.svg';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { Dayjs } from 'dayjs';
+import badge from 'src/assets/images/badge/badge2.png';
+import iconExpense from 'src/assets/images/icon.png/expense.png';
+import iconRotation from 'src/assets/images/icon.png/rotation.png';
 import icon5 from 'src/assets/images/svgs/icon-favorites.svg';
 import icon4 from 'src/assets/images/svgs/icon-mailbox.svg';
 import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
@@ -43,18 +49,10 @@ import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
 import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
 import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
 import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
-import iconExpense from 'src/assets/images/icon.png/expense.png';
-import iconRotation from 'src/assets/images/icon.png/rotation.png';
-import badge from 'src/assets/images/badge/badge2.png';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { Dayjs } from 'dayjs';
 // import bannercl from 'src/assets/images/banner/banner_assistant.png';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Affilatec from 'src/components/shared/Affilatec';
-import Affilatec1 from 'src/components/shared/Affilatec1';
 import Affilatec2 from 'src/components/shared/Affilatec2';
 import Affilatec3 from 'src/components/shared/Affilatec3';
 import Modarm from 'src/components/shared/moderm';
@@ -558,35 +556,35 @@ const AssistantInfor = () => {
       data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
-  const optionsdoughnutchart3: Props = {
-    chart: {
-      id: 'donut-chart',
-      fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    plotOptions: {
-      pie: {
-        donut: {
-          size: '70px',
-        },
-      },
-    },
-    legend: {
-      show: true,
-      position: 'bottom',
-      width: '50px',
-    },
-    colors: ['#ff416c', '#ff4b2b'],
-    tooltip: {
-      theme: 'dark',
-      fillSeriesColor: false,
-    },
-    labels: ['Chi phí', 'Doanh thu'],
-  };
-  const seriesdoughnutchart3 = [65, 35];
+  // const optionsdoughnutchart3: Props = {
+  //   chart: {
+  //     id: 'donut-chart',
+  //     fontFamily: "'Plus Jakarta Sans', sans-serif",
+  //     foreColor: '#adb0bb',
+  //   },
+  //   dataLabels: {
+  //     enabled: false,
+  //   },
+  //   plotOptions: {
+  //     pie: {
+  //       donut: {
+  //         size: '70px',
+  //       },
+  //     },
+  //   },
+  //   legend: {
+  //     show: true,
+  //     position: 'bottom',
+  //     width: '50px',
+  //   },
+  //   colors: ['#ff416c', '#ff4b2b'],
+  //   tooltip: {
+  //     theme: 'dark',
+  //     fillSeriesColor: false,
+  //   },
+  //   labels: ['Chi phí', 'Doanh thu'],
+  // };
+  // const seriesdoughnutchart3 = [65, 35];
   const optionsdoughnutchart4: Props = {
     chart: {
       id: 'donut-chart',
@@ -1353,24 +1351,24 @@ const AssistantInfor = () => {
           </Grid>{' '}
           {/* column */}
           <Grid item xs={12} lg={4}>
-            <Affilatec title="Tỉ trọng chi phí /doanh thu ">
+            {/* <Affilatec title="Tỉ trọng chi phí /doanh thu ">
               <Chart
                 options={optionsdoughnutchart3}
                 series={seriesdoughnutchart3}
                 type="donut"
                 height="300px"
               />
-            </Affilatec>
+            </Affilatec> */}
           </Grid>
           <Grid item xs={12} lg={4}>
-            <Affilatec1 title=" Đơn hàng">
+            {/* <Affilatec1 title=" Đơn hàng">
               <Chart
                 options={optionsdoughnutchart3}
                 series={seriesdoughnutchart3}
                 type="donut"
                 height="300px"
               />
-            </Affilatec1>
+            </Affilatec1> */}
           </Grid>{' '}
           <Grid item xs={12} lg={4}>
             <Affilatec2 title="Cuộc trò chuyện">

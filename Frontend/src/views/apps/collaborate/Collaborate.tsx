@@ -15,8 +15,9 @@ import {
   Typography,
   styled,
   Tooltip,
+  useMediaQuery,
 } from '@mui/material';
-import { IconInfoCircle, IconPackage } from '@tabler/icons-react';
+import { IconCopy, IconInfoCircle, IconPackage } from '@tabler/icons-react';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
@@ -79,6 +80,8 @@ const topcards: cardType[] = [
   },
 ];
 const CollaboratePost = () => {
+  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
+
   const [value, setValue] = React.useState('1');
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   const [value2, setValue2] = React.useState<Dayjs | null>(null);
@@ -310,7 +313,7 @@ const CollaboratePost = () => {
                   color="primary"
                   style={{ padding: '10px', width: '100%' }}
                 >
-                  SAO CHÉP
+                  {lgUp ? 'Sao chép' : <IconCopy stroke={2} />}
                 </Button>
               </Grid>
             </Grid>

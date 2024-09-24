@@ -114,7 +114,7 @@ export const StrategyCells: HeadCell[] = [
         dataIndex: 'id',
         numeric: false,
         disablePadding: false,
-        label: 'ID Chiến lược',
+        label: 'ID',
     },
     {
         dataIndex: 'creationTime',
@@ -150,13 +150,13 @@ export const StrategyCells: HeadCell[] = [
         dataIndex: 'ownedCustomers',
         numeric: false,
         disablePadding: false,
-        label: 'Khách hàng sở hữu (sl)',
+        label: 'Khách hàng sở hữu',
     },
     {
         dataIndex: 'appliedAssistants',
         numeric: false,
         disablePadding: false,
-        label: 'Trợ lý áp dụng (sl)',
+        label: 'Trợ lý áp dụng',
     },
     {
         dataIndex: 'summary',

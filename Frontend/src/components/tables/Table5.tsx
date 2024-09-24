@@ -20,6 +20,9 @@ import { basicsTableData, TableType } from './tableData';
 
 const basics: TableType[] = basicsTableData;
 
+
+
+
 const Table5 = () => {
   return (
     <BlankCard>
@@ -89,7 +92,6 @@ const Table5 = () => {
                   </Stack>
                 </TableCell>
                 <TableCell>
-                  {/* <Chip chipcolor={basic.status == 'Active' ? 'success' : basic.status == 'Pending' ? 'warning' : basic.status == 'Completed' ? 'primary' : basic.status == 'Cancel' ? 'error' : 'secondary'} */}
                   <Chip
                     sx={{
                       bgcolor:

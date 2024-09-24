@@ -30,9 +30,7 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { createElement, useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { DataHistoryTable, DataPublishersTable } from '../datatable/OrderTableData';
-interface PropsHeadTable {
-  head: string;
-}
+
 
 // const HeadTable: PropsHeadTable[] = [
 //   {

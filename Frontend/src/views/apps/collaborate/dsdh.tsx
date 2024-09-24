@@ -86,9 +86,9 @@ const Danhsachdh = () => {
   //     data: [30, 25, 35, 20, 30],
   //   },
   // ];
-  const data = '0974943593';
-  const phone = data.slice(0, 3) + '####' + data.slice(7, 10);
-  console.log(phone);
+  // const data = '0974943593';
+  // const phone = data.slice(0, 3) + '####' + data.slice(7, 10);
+  // console.log(phone);
   // chart 2
   // const optionsrow2chart: Props = {
   //   chart: {
@@ -211,7 +211,7 @@ const Danhsachdh = () => {
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <DashboardCard title="" action={''}>
-      <Box>
+      <>
         <Box
           style={{
             display: 'flex',
@@ -286,7 +286,7 @@ const Danhsachdh = () => {
           </Box>
         </Box>
         <CustomerTable3 />
-      </Box>
+      </>
     </DashboardCard>
   );
 };

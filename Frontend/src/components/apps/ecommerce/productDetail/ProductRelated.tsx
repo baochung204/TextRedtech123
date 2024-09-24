@@ -1,11 +1,11 @@
-import { Box, CardContent, Chip, Grid, Rating, Skeleton, Stack, Typography } from '@mui/material';
+import { Box, CardContent, Chip, Grid, Skeleton, Stack, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import logo from 'src/assets/images/logos/R-Point.png';
 import { useDispatch, useSelector } from 'src/store/Store';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { ProductType } from 'src/types/apps/eCommerce';
 import BlankCard from '../../../shared/BlankCard';
-import logo from 'src/assets/images/logos/R-Point.png';
 
 const ProductRelated = () => {
   const dispatch = useDispatch();

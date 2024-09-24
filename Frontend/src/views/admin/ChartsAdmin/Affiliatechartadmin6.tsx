@@ -1,9 +1,6 @@
-import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
+import Chart from 'react-apexcharts';
 import Affilatec3 from 'src/components/shared/Affilatec3';
-import { Box, MenuItem } from '@mui/material';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import React from 'react';
 
 const Affilatechartadmin6 = () => {
   // chart color

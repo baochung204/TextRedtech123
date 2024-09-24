@@ -16,7 +16,7 @@ const ChatInsideSidebar = ({ isInSidebar }: chatType) => {
   const [openChartAlert, setOpenChartAlert] = useState(false); // State to control alert visibility
 
   // Function to handle rating change
-  const handleRatingChange = (event: React.SyntheticEvent, newValue: number | null) => {
+  const handleRatingChange = (_event: React.SyntheticEvent, newValue: number | null) => {
     setValue(newValue);
     if (newValue !== null) {
       setOpenChartAlert(true); // Show alert when rating is selected
@@ -24,7 +24,7 @@ const ChatInsideSidebar = ({ isInSidebar }: chatType) => {
   };
 
   // Function to handle alert close
-  const handleCloseAlert = (event: React.SyntheticEvent | any) => {
+  const handleCloseAlert = (_event: React.SyntheticEvent | any) => {
     setOpenChartAlert(false); // Close alert
   };
 
