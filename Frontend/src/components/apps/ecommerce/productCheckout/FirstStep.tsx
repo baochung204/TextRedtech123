@@ -1,25 +1,26 @@
 import {
-  Box,
-  Typography,
-  Stack,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
-  Grid,
+  AccordionSummary,
+  Box,
+  Button,
   Card,
   CardContent,
-  Button,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useState } from 'react';
-import ChildCard from '../../../shared/ChildCard';
 import { IconChevronDown } from '@tabler/icons-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Countdown from 'src/components/countdown/countdown';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';
 import products from 'src/assets/images/products/s25.jpg';
+import Countdown from 'src/components/countdown/countdown';
+import ChildCard from '../../../shared/ChildCard';
 interface Props {
   total: number;
   Discount: number;
@@ -45,6 +46,9 @@ const packages = [
   },
 ];
 const FirstStep = ({ total, Discount }: Props) => {
+  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
+
+  // const theme = useTheme();
   const [selectedPackage, setSelectedPackage] = useState(null);
   const handleSelectPackage = (pkg: any) => {
     setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
@@ -53,7 +57,7 @@ const FirstStep = ({ total, Discount }: Props) => {
     <>
       <Box my={3}>
         <ChildCard>
-          <Box p={2}>
+          <Box p={{ sx: 0, md: 2 }}>
             <Typography variant="h5" fontWeight={600} mb={3}>
               Đơn hàng
             </Typography>
@@ -119,12 +123,25 @@ const FirstStep = ({ total, Discount }: Props) => {
                         >
                           <div style={{ display: 'flex', gap: '20px' }}>
                             <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
-                              <img
-                                src={pkg.img}
-                                alt={''}
-                                width="120"
-                                style={{ borderRadius: '10px' }}
-                              />
+                              {lgUp ? (
+                                <img
+                                  src={pkg.img}
+                                  alt={''}
+                                  style={{
+                                    borderRadius: '10px',
+                                    width: '100px',
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src={pkg.img}
+                                  alt={''}
+                                  style={{
+                                    borderRadius: '10px',
+                                    width: '60px',
+                                  }}
+                                />
+                              )}
                             </Typography>
                             <div>
                               <Typography
@@ -191,7 +208,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                             </div>
                           </div>
                           <Box>
-                            <Countdown initialSeconds={pkg.timeFlash} />
+                            {lgUp ? <Countdown initialSeconds={pkg.timeFlash} /> : null}
                             <Button
                               variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
                               color="warning"
@@ -228,12 +245,12 @@ const FirstStep = ({ total, Discount }: Props) => {
                   ))}
                 </Grid>
               </AccordionDetails>
-              <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+              {/* <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
                 <Typography variant="h5">Tổng giá Flash-sale : </Typography>
                 <Typography variant="h5" sx={{ paddingX: '3px' }}>
                   1.023.900point
                 </Typography>
-              </Box>{' '}
+              </Box>{' '} */}
             </Accordion>
             {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={3}>

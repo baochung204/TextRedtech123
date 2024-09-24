@@ -1,4 +1,3 @@
-
 import {
   Avatar,
   Grid,
@@ -41,7 +40,7 @@ import { createElement } from 'react';
 interface FilmsData {
   dataIndex: string;
   title: string;
-  validate: boolean
+  validate: boolean;
 }
 const FilmsData: FilmsData[] = [
   { dataIndex: 'id', title: 'ID', validate: true },
@@ -91,7 +90,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   const [BaiViet, setBaiViet] = useState(true);
   const [TrangThai, setTrangThai] = useState(true);
   const [HoatDong, setHoatDong] = useState(true);
-
 
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>
@@ -217,7 +215,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               sx={{ minWidth: 150 }}
             >
               <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
-                {FilmsData.map((film) => (
+                {FilmsData.map((film: any) => (
                   <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
                     <Checkbox checked={selectedItems.includes(film.id)} />
                     <ListItemText primary={film.title} />
@@ -334,7 +332,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                   </TableCell>
                 )}
 
-                {HoatDong &&
+                {HoatDong && (
                   <TableCell
                     sx={{
                       whiteSpace: 'nowrap',
@@ -342,7 +340,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                   >
                     <Typography variant="h6">Hoạt động</Typography>
                   </TableCell>
-                }
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -449,7 +447,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                       </TableCell>
                     )}
 
-                    {HoatDong &&
+                    {HoatDong && (
                       <TableCell
                         sx={{
                           whiteSpace: 'nowrap',
@@ -468,7 +466,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                           <IconTrash stroke={2} style={{ color: '#FA896B' }} />
                         </IconButton>
                       </TableCell>
-                    }
+                    )}
                   </TableRow>
                 );
               })}

@@ -34,13 +34,14 @@ const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending'
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 
+
 import Loadable from '../layouts/full/shared/loadable/Loadable';
-const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')))
-const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')))
-const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')))
-const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')))
-const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')))
-const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')))
+const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
+const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
+const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')));
+const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')));
+const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')));
+const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')));
 
 
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -97,7 +98,6 @@ const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport'))
 
 const Faq = Loadable(lazy(() => import('../views/pages/faq/Faq')));
 
-
 // charts
 
 // tables
@@ -130,9 +130,8 @@ const HistoryBuyPointInProfile = Loadable(
 const PaymentPoint = Loadable(lazy(() => import('../views/payment/payment')));
 const PaymentPoint2 = Loadable(lazy(() => import('../views/payment2/payment2')));
 //list assistant
-const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
-const AssistantList = Loadable(
-  lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
+const ListAssistantInProfile = Loadable(
+  lazy(() => import('../views/apps/user-profile/ListAssistantInProfile')),
 );
 const OrderRPoint = Loadable(lazy(() => import('../views/admin/orderRPoint/OrderRPoint')));
 const Ticket = Loadable(lazy(() => import('../views/admin/ticket/ticket')));
@@ -146,6 +145,16 @@ const Publisher = Loadable(lazy(() => import('../views/admin/publishers/publishe
 const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/historyaffiliate')));
 const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
 const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));
+const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
+
+//history of contract
+
+const ContractAffiliateUser = Loadable(
+  lazy(() => import('../views/apps/historycontract/contractaffiliateuser')),
+);
+const ContractOrderUser = Loadable(
+  lazy(() => import('../views/apps/historycontract/contractorderuser')),
+);
 
 const Router = [
   {
@@ -154,6 +163,8 @@ const Router = [
     children: [
       { path: '/', element: <Navigate to="/dashboards/modern" /> },
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
+      { path: '/apps/contractaffiliate', exact: true, element: <ContractAffiliateUser /> },
+      { path: '/apps/contractorder', exact: true, element: <ContractOrderUser /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/list-assistant', element: <Assistant /> },
@@ -201,8 +212,8 @@ const Router = [
 
       { path: '/pages/faq', element: <Faq /> },
 
-      { path: '/profile/assistant/list', element: <ListAssistant /> },
-      { path: '/assistant/list', element: <AssistantList /> },
+      { path: '/profile/assistant/list', element: <ListAssistantInProfile /> },
+      { path: '/assistant/list', element: <ListAssistant /> },
       { path: '/buy/point', element: <BuyPoint /> },
       { path: '/pay/point', element: <PaymentPoint /> },
       { path: '/pay/point2', element: <PaymentPoint2 /> },
