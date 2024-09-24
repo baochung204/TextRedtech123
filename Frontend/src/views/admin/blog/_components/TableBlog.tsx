@@ -44,9 +44,11 @@ const TableBlog = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const paginatedData = BlogTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-  const getColorForTag = (index: number) => {
-    return tagColors[index % tagColors.length]; // Cycle through the colors
-  };
+
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * tagColors.length);
+    return tagColors[randomIndex];
+}
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
@@ -96,7 +98,7 @@ const TableBlog = () => {
                   <Chip
                     key={tagIndex}
                     label={tag}
-                    sx={{ backgroundColor: getColorForTag(tagIndex), color: '#fff', margin: '2px' }}
+                    sx={{ backgroundColor: getRandomColor(tagIndex), color: '#fff', margin: '2px' }}
                   />
                 ))}
               </TableCell>
