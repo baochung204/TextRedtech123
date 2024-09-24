@@ -16,6 +16,7 @@ import {
   Button,
 } from '@mui/material';
 import DialogFile from '../dialog/DialogFile';
+import CustomTable from 'src/components/admin/rpoint/CustomTable';
 
 interface PropsTab3 {
   value: string;
@@ -23,28 +24,33 @@ interface PropsTab3 {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const Columns = [
+  {
+    title: 'ID',
+    dataIndex: 'id'
+  }
+]
+
+
 const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
-  // Pagination state
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  // const [page, setPage] = useState(0);
+  // const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  // Handle pagination
-  const handleChangePage = (newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (newPage: number) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
 
-  // Slice the data based on the current page and rows per page
-  const paginatedData = DataTable3.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  // const paginatedData = DataTable3.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <>
       <Box sx={{ width: '100%' }}>
-        <TableContainer component={Paper}>
+        {/* <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -147,7 +153,8 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
             onRowsPerPageChange={handleChangeRowsPerPage}
             labelRowsPerPage="Số hàng trên mỗi trang"
           />
-        </TableContainer>
+        </TableContainer> */}
+        <CustomTable dataSource={DataTable3} columns={} />
       </Box>
       <DialogFile open={open} setOpen={setOpen} value={value} />
     </>

@@ -10,6 +10,10 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Typography, Box, TextField, Snackbar, Alert } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import DataTable5 from '../DataTable/TableTab5';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
+
 
 interface PropsDialog {
     open: boolean;
@@ -32,6 +36,9 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItemId1, setSelectedItemId1 }) => {
+    const theme = useTheme();
+    const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
     const [fileUrl, setFileUrl] = React.useState<string | undefined>('');
     const [formData, setFormData] = React.useState({
         name: '',
@@ -112,11 +119,10 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
             >
                 <DialogTitle sx={{
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+
                 }}>
                     <Box sx={{
-                        borderBottom: '1px solid #E6EAEF',
-                        paddingX: 25,
                         paddingBottom: 2
                     }}>
                         <Typography fontWeight={600} variant='h3'>
@@ -155,11 +161,25 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                 <Grid item sm={12}>
                                     <Grid container direction="column" sx={{ justifyContent: 'center' }} sm={12}>
                                         <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <img src={fileUrl} alt="" width={300} />
+                                            <Box
+                                                component="img"
+                                                src={fileUrl}
+                                                alt="Your Image"
+                                                sx={{
+                                                    width: { xs: '150px', md: '200px' },
+                                                    height: 'auto',
+                                                }}
+                                            />
                                         </Grid>
 
                                         <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2, width: '100%', pb: '8%' }}>
-                                            <Box component="form" width={400}>
+                                            <Box
+                                                component="form"
+                                                sx={{
+                                                    width: { xs: '300px', md: '200px' },
+                                                }}
+
+                                            >
                                                 <Typography fontWeight={600}>Tên file</Typography>
                                                 <TextField
                                                     name="name"
@@ -199,7 +219,7 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                     </Grid>
                                 </Grid>
                             )}
-                            
+
                         </Grid>
                     </DialogContentText>
                 </DialogContent>

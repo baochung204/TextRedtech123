@@ -14,22 +14,90 @@ import { Grid, IconButton, TextField, InputAdornment, MenuItem } from '@mui/mate
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from '@tabler/icons-react';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 
 const Faq = () => {
   const [value, setValue] = React.useState('1');
   const [open, setOpen] = useState<boolean>(false);
-
+  const theme = useTheme();
+  const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     setOpen(false);
   };
+  const [search, setSearch] = useState<boolean>(false);
+
+  const handleSearch = () => {
+    setSearch(!search);
+  }
+
+  const searchSection = (
+    <Box>
+      <Grid container sx={{ display: 'flex', alignItems: 'center', paddingTop: 2 }}>
+        <Grid item>
+          <CustomSelect
+            labelId="column-sort"
+            id="column-sort"
+            size="small"
+            value={1}
+            sx={{ marginRight: '20px' }}
+          >
+            <MenuItem value={1}>Tất cả</MenuItem>
+            <MenuItem value={2}>ID</MenuItem>
+          </CustomSelect>
+        </Grid>
+        <Grid item>
+          <TextField
+            id="outlined-search"
+            placeholder="Tìm kiếm"
+            size="small"
+            type="search"
+            variant="outlined"
+            inputProps={{ 'aria-label': 'Search Followers' }}
+            sx={{
+              fontSize: { xs: '24px', sm: '35px', md: '50px' },
+              maxWidth: { xs: search ? '150px' : '40px', md: '700px' },
+              transition: 'max-width 0.5s ease-in-out',
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconSearch
+                    onClick={() => handleSearch()}
+                    size="12"
+                  />
+                </InputAdornment>
+              ),
+            }}
+            fullWidth={true}
+          />
+        </Grid>
+        <Grid item>
+          <IconButton
+            color="primary"
+            aria-label="Add to cart"
+            onClick={() => setOpen(true)}
+            sx={{
+              pr: 1.5,
+            }}
+          >
+            <AddCircleIcon sx={{ fontSize: 30 }} />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </Box>
+  );
 
   return (
-    <Grid container xs={12}>
+    <Grid container>
       <Grid item xs={12}>
         <Box>
-          <TabContext value={value}>
+          <TabContext
+            value={value}
+
+          >
             <Box
               sx={{
                 borderBottom: 1,
@@ -39,68 +107,33 @@ const Faq = () => {
                 alignItems: 'center',
                 px: 1,
                 overflowX: 'auto',
+                width: '100%'
               }}
             >
-              <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab label="Chiến Lược" value="1" />
+              <TabList
+                onChange={handleChange}
+                variant="scrollable"
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+
+              >
+                <Tab
+                  label="Chiến Lược"
+                  value="1"
+                  sx={{
+                    fontSize: 15,
+                    fontWeight: 600
+                  }}
+                />
                 <Tab label="Function" value="2" />
                 <Tab label="Files" value="3" />
                 <Tab label="Model" value="4" />
                 <Tab label="Hình Ảnh" value="5" />
                 <Tab label="URL" value="6" />
               </TabList>
-              {(value === '3' || value === '5' || value === '6') && (
-                <Box>                  
-                  <Grid container sx={{display: 'flex', alignItems: 'center'}} >
-                    <Grid item>
-                      <CustomSelect
-                        labelId="column-sort"
-                        id="column-sort"
-                        size="small"
-                        value={1}
-                        sx={{ marginRight: '20px' }}
-                      >
-                        <MenuItem value={1}>Tất cả</MenuItem>
-                        <MenuItem value={2}>ID</MenuItem>
-                      </CustomSelect>
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        id="outlined-search"
-                        placeholder="Tìm kiếm"
-                        size="small"
-                        type="search"
-                        variant="outlined"
-                        inputProps={{ 'aria-label': 'Search Followers' }}
-                        sx={{
-                          fontSize: { xs: '50px', sm: '50px', md: '50px' }
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <IconSearch size="12" />
-                            </InputAdornment>
-                          ),
-                        }}
-                        fullWidth={true}
-                      />
-                    </Grid>
-                    <Grid item>
-                      <IconButton
-                        color="primary"
-                        aria-label="Add to cart"
-                        onClick={() => setOpen(true)}
-                        sx={{
-                          pr: 1.5,
-                        }}
-                      >
-                        <AddCircleIcon sx={{ fontSize: 30 }} />
-                      </IconButton>
-                    </Grid>
-                  </Grid>
-                </Box>
-              )}
+              {!isXsScreen && (value === '3' || value === '5' || value === '6') && searchSection}
             </Box>
+            {isXsScreen && (value === '3' || value === '5' || value === '6') && searchSection}
             <TabPanel value="1">
               <Tab1 />
             </TabPanel>

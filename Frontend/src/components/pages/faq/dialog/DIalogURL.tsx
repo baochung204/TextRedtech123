@@ -70,8 +70,6 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 >
                     <Box
                         sx={{
-                            borderBottom: '1px solid #E6EAEF',
-                            paddingX: 25,
                             paddingBottom: 2
                         }}
                     >
@@ -86,7 +84,11 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                             <Grid item sm={12}>
                                 <Grid container direction="column" sx={{ justifyContent: 'center' }} sm={12}>
                                     <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2, width: '100%', pb: '8%' }}>
-                                        <Box component="form" width={400}>
+                                        <Box component="form"
+                                            sx={{
+                                                width: { xs: '300px', md: '200px' },
+                                            }}
+                                        >
                                             <Typography fontWeight={600}>URL</Typography>
                                             <TextField
                                                 name="url"
