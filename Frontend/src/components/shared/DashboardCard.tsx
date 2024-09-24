@@ -38,7 +38,11 @@ const DashboardCard = ({
 
   return (
     <Card
-      sx={{ padding: 0, border: !customizer.isCardShadow ? `1px solid ${borderColor}` : 'none' }}
+      sx={{
+        padding: 0,
+        border: !customizer.isCardShadow ? `1px solid ${borderColor}` : 'none',
+        height: '100%',
+      }}
       elevation={customizer.isCardShadow ? 9 : 0}
       variant={!customizer.isCardShadow ? 'outlined' : undefined}
     >
