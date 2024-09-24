@@ -48,7 +48,6 @@ const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')));
 
 /* ***Layouts**** */
 
-
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
 
@@ -208,13 +207,23 @@ const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/hi
 const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
 const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));
 
+//history of contract
+
+const ContractAffiliateUser = Loadable(
+  lazy(() => import('../views/apps/historycontract/contractaffiliateuser')),
+);
+const ContractOrderUser = Loadable(
+  lazy(() => import('../views/apps/historycontract/contractorderuser')),
+);
+
 const Router = [
   {
     path: '/',
     element: <FullLayout />,
     children: [
       { path: '/', element: <Navigate to="/dashboards/modern" /> },
-      { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
+      { path: '/apps/contractaffiliate', exact: true, element: <ContractAffiliateUser /> },
+      { path: '/apps/contractorder', exact: true, element: <ContractOrderUser /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/list-assistant', element: <Assistant /> },

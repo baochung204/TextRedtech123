@@ -18,7 +18,7 @@ const AlertCart = ({ handleClose, openCartAlert }: Props) => {
         onClose={handleClose}
       >
         <Alert severity="success" variant="filled" sx={{ width: '100%', color: 'white' }}>
-          Item Added to the Cart!!!
+          Thêm sản phẩm thành công!!!
         </Alert>
       </Snackbar>
     </React.Fragment>
