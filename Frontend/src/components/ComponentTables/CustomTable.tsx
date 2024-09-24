@@ -50,7 +50,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const paginatedData = dataSource.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <TableContainer>
+    <TableContainer sx={{ px: 2 }}>
       <Scrollbar_x>
         <Table>
           <TableHead>
