@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as React from 'react';
-import { Snackbar, Alert, AlertTitle } from '@mui/material';
+import { Snackbar, Alert, AlertTitle, Box, Typography } from '@mui/material';
 
 const Welcome = () => {
   const [open, setOpen] = React.useState(false);
@@ -39,8 +39,10 @@ const Welcome = () => {
           variant="filled"
           sx={{ width: '100%', color: 'white' }}
         >
-          <AlertTitle>Welcome To Modernize</AlertTitle>
-          Easy to customize the Template!!!
+          <AlertTitle>Chào mừng bạn đã đến với </AlertTitle>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Typography>RedTech</Typography>
+          </Box>
         </Alert>
       </Snackbar>
     </React.Fragment>

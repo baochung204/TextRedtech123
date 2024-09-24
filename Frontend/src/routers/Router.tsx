@@ -34,6 +34,7 @@ const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending'
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 
+
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')))
 const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')))
@@ -41,6 +42,7 @@ const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdm
 const BuyPoints = Loadable(lazy(() => import('src/views/admin/buyproduct')))
 const OrderAdminPages = Loadable(lazy(() => import('src/views/admin/order')))
 const RPoints = Loadable(lazy(() => import('src/views/admin/rpoints/RPoints')))
+
 
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const Layouadmin = Loadable(lazy(() => import('../layouts/full/Layoutadmin')));
@@ -145,6 +147,15 @@ const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/hi
 const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
 const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));
 
+//history of contract
+
+const ContractAffiliateUser = Loadable(
+  lazy(() => import('../views/apps/historycontract/contractaffiliateuser')),
+);
+const ContractOrderUser = Loadable(
+  lazy(() => import('../views/apps/historycontract/contractorderuser')),
+);
+
 const Router = [
   {
     path: '/',
@@ -152,6 +163,8 @@ const Router = [
     children: [
       { path: '/', element: <Navigate to="/dashboards/modern" /> },
       { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
+      { path: '/apps/contractaffiliate', exact: true, element: <ContractAffiliateUser /> },
+      { path: '/apps/contractorder', exact: true, element: <ContractOrderUser /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
       { path: '/dashboards/list', exact: true, element: <List /> },
       { path: '/apps/list-assistant', element: <Assistant /> },
