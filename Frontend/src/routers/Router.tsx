@@ -222,6 +222,7 @@ const Router = [
     element: <FullLayout />,
     children: [
       { path: '/', element: <Navigate to="/dashboards/modern" /> },
+      { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
       { path: '/apps/contractaffiliate', exact: true, element: <ContractAffiliateUser /> },
       { path: '/apps/contractorder', exact: true, element: <ContractOrderUser /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
