@@ -131,7 +131,8 @@ const CollaboratePost = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
-            margin: '20px 10px 20px 0',
+            // margin: '20px 10px 20px 0',
+            paddingBottom: 24,
           }}
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -266,7 +267,7 @@ const CollaboratePost = () => {
             display="flex"
             justifyContent="space-between"
             flexWrap="wrap"
-            padding="10px"
+            paddingTop="10px"
             marginTop="-10px"
           >
             <Grid container display={'flex'} justifyContent={'space-between'} gap={'2px'}>
@@ -294,10 +295,10 @@ const CollaboratePost = () => {
           </Box>
 
           <Box padding="0px 5px">
-            <Typography variant="h3" margin="15px 0">
+            <Typography variant="h3" marginTop="35px">
               Liên kết giới thiệu
             </Typography>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} sx={{ marginTop: '10px' }}>
               <Grid item xs={10}>
                 <CustomOutlinedInput
                   id="http"
@@ -447,9 +448,9 @@ const CollaboratePost = () => {
             </TabList>
           </Box>
 
-          <TabPanel value="1">
+          <TabPanel value="1" sx={{ px: 0 }}>
             {' '}
-            <Grid item xs={12} lg={8} style={{ height: 'auto' }}>
+            <Grid item xs={12} lg={8} sx={{ height: 'auto' }}>
               <Danhsachdh />
             </Grid>
           </TabPanel>

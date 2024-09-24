@@ -108,48 +108,50 @@ export const Files = [
   },
 ];
 export const FileCells: HeadCell[] = [
-  {
-    dataIndex: 'id',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID File',
-  },
-  {
-    dataIndex: 'fileName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tên File',
-  },
-  {
-    dataIndex: 'customer',
-    numeric: false,
-    disablePadding: false,
-    label: 'Khách hàng',
-  },
-  {
-    dataIndex: 'format',
-    numeric: false,
-    disablePadding: false,
-    label: 'Định dạng',
-  },
-  {
-    dataIndex: 'size',
-    numeric: false,
-    disablePadding: false,
-    label: 'Dung lượng  (MB)',
-  },
-  {
-    dataIndex: 'uploadDate',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ngày tải',
-  },
-  {
-    dataIndex: 'actions',
-    numeric: false,
-    disablePadding: false,
-    label: 'Hoạt động',
-  },
+
+    {
+        dataIndex: 'id',
+        numeric: false,
+        disablePadding: false,
+        label: 'ID',
+    },
+    {
+        dataIndex: 'fileName',
+        numeric: false,
+        disablePadding: false,
+        label: 'Tên file',
+    },
+    {
+        dataIndex: 'customer',
+        numeric: false,
+        disablePadding: false,
+        label: 'Khách hàng',
+    },
+    {
+        dataIndex: 'format',
+        numeric: false,
+        disablePadding: false,
+        label: 'Định dạng',
+    },
+    {
+        dataIndex: 'size',
+        numeric: false,
+        disablePadding: false,
+        label: 'Dung lượng',
+    },
+    {
+        dataIndex: 'uploadDate',
+        numeric: false,
+        disablePadding: false,
+        label: 'Ngày tải',
+    },
+    {
+        dataIndex: 'actions',
+        numeric: false,
+        disablePadding: false,
+        label: 'Hoạt động',
+    },
+
 ];
 
 export const FileRows = [

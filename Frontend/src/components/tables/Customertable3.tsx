@@ -1,7 +1,6 @@
 import {
   Avatar,
   Box,
-  FormControlLabel,
   Paper,
   Stack,
   Table,
@@ -15,14 +14,13 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import { tabledh } from 'src/components/tables/tabledh';
-import CustomSwitch from '../forms/theme-elements/CustomSwitch';
 import Scrollbar_x from '../custom-scroll/Scrollbar_x';
 
 const CustomerTable3 = () => {
   // State quản lý phân trang và số lượng hàng trên mỗi trang
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [dense, setDense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
   // Hàm xử lý thay đổi trang
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -39,9 +37,9 @@ const CustomerTable3 = () => {
 
   // Cắt dữ liệu để hiển thị theo trang
   const paginatedRows = tabledh.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
+  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDense(event.target.checked);
+  // };
   return (
     <>
       <TableContainer component={Paper} sx={{ padding: 2 }}>
@@ -167,12 +165,12 @@ const CustomerTable3 = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Box>
-      <Box ml={2}>
+      {/* <Box ml={2}>
         <FormControlLabel
           control={<CustomSwitch checked={dense} onChange={handleChangeDense} />}
           label="Dense padding"
         />
-      </Box>
+      </Box> */}
     </>
   );
 };

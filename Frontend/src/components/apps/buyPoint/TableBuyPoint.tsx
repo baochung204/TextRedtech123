@@ -174,62 +174,6 @@ const TableBuyPoint = () => {
             </Button>
           </Grid>
         </Grid>
-        {/* <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'end',
-            gap: '25px',
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 1,
-              alignItems: 'center',
-              mt: { xs: 1, sm: 5, md: 5 },
-              xs: { alignContent: 'center' },
-            }}
-          >
-            <Typography variant="h3" sx={{ fontWeight: 600, fontSize: 18 }}>
-              Tổng tiền :
-            </Typography>
-            <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              {typeof totalPrice === 'number' ? (
-                totalPrice.toLocaleString('vi-VN')
-              ) : (
-                <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
-              )}
-              ₫
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              mt: 5,
-              justifyContent: { xs: 'center', sm: 'flex-start' },
-            }}
-          >
-            <Button
-              variant="contained"
-              disableElevation
-              sx={{
-                px: 7,
-                py: 1,
-                backgroundColor: '#FC2032',
-                fontWeight: 700,
-                fontSize: 18,
-                ':hover': {
-                  backgroundColor: '#F22A51',
-                },
-              }}
-            >
-              <Link to={'/pay/point2'} style={{ color: 'white' }}>
-                Thanh toán ngay
-              </Link>
-            </Button>
-          </Box>
-        </Box> */}
       </Grid>
     </Grid>
   );

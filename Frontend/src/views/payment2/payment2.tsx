@@ -3,20 +3,11 @@ import {
   AccordionDetails,
   AccordionSummary,
   Alert,
-  Avatar,
   Box,
   Button,
-  ButtonGroup,
   FormControl,
   Grid,
   Snackbar,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
@@ -35,7 +26,6 @@ import { useNavigate } from 'react-router';
 import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
 import logoVnpay from 'src/assets/images/logoPay/logoVnpay.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import products from 'src/assets/images/products/s25.jpg';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import * as Yup from 'yup';
 const BoxStyled = styled(Box)(() => ({
@@ -384,7 +374,7 @@ const PayMentPonit2 = () => {
             </Grid>
           </BlankCard>
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <BlankCard>
             <TableContainer>
               <Table
@@ -591,7 +581,7 @@ const PayMentPonit2 = () => {
               </Table>
             </TableContainer>
           </BlankCard>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <BoxStyled
             sx={{

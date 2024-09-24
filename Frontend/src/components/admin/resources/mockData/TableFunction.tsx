@@ -112,7 +112,7 @@ export const FunctionCells: HeadCell[] = [
         dataIndex: 'id',
         numeric: false,
         disablePadding: false,
-        label: 'ID Function',
+        label: 'ID',
     },
     {
         dataIndex: 'creationTime',
@@ -124,7 +124,7 @@ export const FunctionCells: HeadCell[] = [
         dataIndex: 'functionGroup',
         numeric: false,
         disablePadding: false,
-        label: 'Nhóm Function',
+        label: 'Nhóm function',
     },
     {
         dataIndex: 'level',
@@ -136,13 +136,13 @@ export const FunctionCells: HeadCell[] = [
         dataIndex: 'ownedCustomers',
         numeric: false,
         disablePadding: false,
-        label: 'Khách hàng sở hữu (sl)',
+        label: 'Khách hàng sở hữu',
     },
     {
         dataIndex: 'appliedAssistants',
         numeric: false,
         disablePadding: false,
-        label: 'Trợ lý áp dụng (sl)',
+        label: 'Trợ lý áp dụng',
     },
     {
         dataIndex: 'summary',
@@ -154,7 +154,7 @@ export const FunctionCells: HeadCell[] = [
         dataIndex: 'functionCode',
         numeric: false,
         disablePadding: false,
-        label: 'Code Function',
+        label: 'Code function',
     },
     {
         dataIndex: 'creator',

@@ -7,7 +7,7 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -93,19 +93,16 @@ const CustomerListOrder = () => {
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value="1">
           <Box>
-            <TabPanel value="1" sx={{ p: 0, mt: 2 }}>
+            <TabPanel value="1" sx={{ p: 0, mt: 0.5 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+                  >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        {/* <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Tooltip title="Thêm mới khách hàng" onClick={handleClosePopup}>
-                            <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
-                              <IconPlus width={18} />
-                            </Fab>
-                          </Tooltip>
-                        </Grid> */}
                         <Grid item xs={10}>
                           <TextField
                             id="outlined-search"
@@ -131,13 +128,17 @@ const CustomerListOrder = () => {
                           <DatePicker
                             value={selectedStartDate}
                             onChange={setSelectedStartDate}
-                            renderInput={(params) => <TextField {...params} size="small" fullWidth />}
+                            renderInput={(params) => (
+                              <TextField {...params} size="small" fullWidth />
+                            )}
                           />
                           <Typography>tới</Typography>
                           <DatePicker
                             value={selectedEndDate}
                             onChange={setSelectedEndDate}
-                            renderInput={(params) => <TextField {...params} size="small" fullWidth />}
+                            renderInput={(params) => (
+                              <TextField {...params} size="small" fullWidth />
+                            )}
                           />
                         </LocalizationProvider>
                       </Box>
