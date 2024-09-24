@@ -213,7 +213,7 @@ const Danhsachdh = () => {
     <DashboardCard title="" action={''}>
       <>
         <Box
-          style={{
+          sx={{
             display: 'flex',
             gap: '12px',
             alignItems: 'center',

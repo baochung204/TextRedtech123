@@ -253,6 +253,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
+        minHeight: { sm: 0 },
         ...(numSelected > 0 && {
           bgcolor: (theme) =>
             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
@@ -277,6 +278,9 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
             size="small"
             onChange={handleSearch}
             value={search}
+            sx={{
+              width: '100%',
+            }}
           />
         </Box>
       )}
@@ -297,6 +301,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     </Toolbar>
   );
 };
+
 const FilmsData: any = [
   { id: 2, title: 'Ảnh' },
   { id: 3, title: '	Tên sản phẩm' },
@@ -342,14 +347,11 @@ const PaginationTable = () => {
   const [NAME, setName] = React.useState(true);
   const [TAGS, setTags] = React.useState(true);
   const [PRICE, setPrice] = React.useState(true);
-
   const [PRICEVD, setPriceVD] = React.useState(true);
-
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>
       prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
     );
-
     if (id === 2) {
       setImg(!IMG);
     }
@@ -374,8 +376,14 @@ const PaginationTable = () => {
 
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        {/* Phần bên trái */}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          pb: '24px',
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <AddDialog />
           <EnhancedTableToolbar
@@ -385,7 +393,6 @@ const PaginationTable = () => {
           />
         </Box>
 
-        {/* Phần bên phải */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
           <Select
             multiple
