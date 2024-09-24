@@ -112,13 +112,13 @@ export const FileCells: HeadCell[] = [
         dataIndex: 'id',
         numeric: false,
         disablePadding: false,
-        label: 'ID File',
+        label: 'ID',
     },
     {
         dataIndex: 'fileName',
         numeric: false,
         disablePadding: false,
-        label: 'Tên File',
+        label: 'Tên file',
     },
     {
         dataIndex: 'customer',
@@ -136,7 +136,7 @@ export const FileCells: HeadCell[] = [
         dataIndex: 'size',
         numeric: false,
         disablePadding: false,
-        label: 'Dung lượng (MB)',
+        label: 'Dung lượng',
     },
     {
         dataIndex: 'uploadDate',
