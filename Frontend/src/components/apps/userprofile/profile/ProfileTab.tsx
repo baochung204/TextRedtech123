@@ -10,7 +10,6 @@ const ProfileTab = () => {
   // const [anchorElTransaction, setAnchorElTransaction] = useState<null | HTMLElement>(null);
   const [anchorElContract, setAnchorElContract] = useState<null | HTMLElement>(null);
   const [menuHistory, setMenuHistory] = useState<null | HTMLElement>(null);
-
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
