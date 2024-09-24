@@ -129,7 +129,7 @@ export const UrlCells: HeadCell[] = [
         dataIndex: 'customerId',
         numeric: false,
         disablePadding: false,
-        label: 'ID Khách hàng',
+        label: 'ID khách hàng',
     },
     {
         dataIndex: 'title',

@@ -5,9 +5,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import { Grid, IconButton, InputAdornment, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import {
-  IconSearch
-} from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import React from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { FileCells, FileRows, Files } from './mockData/TableFile';
