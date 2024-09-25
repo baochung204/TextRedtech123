@@ -110,14 +110,6 @@ const headCells: HeadCell[] = [
     disablePadding: false,
     label: 'Số point',
   },
-
-  // {
-  //   id: 'status',
-  //   numeric: false,
-  //   disablePadding: false,
-  //   label: 'Trạng thái',
-  // },
-
   {
     id: 'detail',
     numeric: false,

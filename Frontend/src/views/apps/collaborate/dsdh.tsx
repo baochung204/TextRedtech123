@@ -1,18 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {
-  MenuItem,
   Box,
-  // Avatar,
-  // Chip,
-  // Stack,
-  // Table,
-  // TableBody,
-  // TableCell,
-  // TableContainer,
-  // TableHead,
-  // TableRow,
-  // Typography,
+  Grid,
+  MenuItem,
 } from '@mui/material';
 // import { useTheme } from '@mui/material/styles';
 import React from 'react';
@@ -21,17 +12,52 @@ import React from 'react';
 // import DashboardCard from '../../shared/DashboardCard';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
-// import img1 from 'src/assets/images/products/s6.jpg';
-// import img2 from 'src/assets/images/products/s5.jpg';
-// import img3 from 'src/assets/images/products/s7.jpg';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import CustomSelect from './../../../components/forms/theme-elements/CustomSelect';
 import DashboardCard from './../../../components/shared/DashboardCard';
-import CustomerTable3 from 'src/components/tables/Customertable3';
+import { tabledh } from 'src/components/tables/tabledh';
 
+const columns = [
+  {
+    title: 'STT',
+    dataIndex: 'id',
+  },
+  {
+    title: "Mã đơn hàng",
+    dataIndex: 'MHD'
+  },
+  {
+    title: 'Khách hàng',
+    dataIndex: 'username'
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email'
+  },
+  {
+    title: 'Số điện thoại',
+    dataIndex: 'phone'
+  },
+  {
+    title: 'Ngày đặt hàng',
+    dataIndex: 'createdAt',
+    render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
+  },
+  {
+    title: 'Giá trị đơn hàng',
+    dataIndex: 'amount',
+    render: (value: number) => `${value.toLocaleString()} VND`,
+  },
+  {
+    title: 'Hoa hồng',
+    dataIndex: 'money',
+    render: (value: number) => `${value.toLocaleString()} VND`,
+  }
+]
 const Danhsachdh = () => {
   // for select
   const [month, setMonth] = React.useState('1');
@@ -40,173 +66,7 @@ const Danhsachdh = () => {
     setMonth(event.target.value);
   };
 
-  // chart color
-  // const theme = useTheme();
-  // const primary = theme.palette.primary.main;
-  // const grey = theme.palette.grey[300];
-  // const primarylight = theme.palette.primary.light;
-  // const greylight = theme.palette.grey[100];
-
-  //   // chart 1
-  // const optionsrow1chart: Props = {
-  //   chart: {
-  //     type: 'area',
-  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
-  //     foreColor: '#adb0bb',
-  //     toolbar: {
-  //       show: false,
-  //     },
-  //     height: 35,
-  //     width: 100,
-  //     sparkline: {
-  //       enabled: true,
-  //     },
-  //     group: 'sparklines',
-  //   },
-  //   stroke: {
-  //     curve: 'smooth',
-  //     width: 2,
-  //   },
-  //   fill: {
-  //     colors: [primarylight],
-  //     type: 'solid',
-  //     opacity: 0.05,
-  //   },
-  //   markers: {
-  //     size: 0,
-  //   },
-  //   tooltip: {
-  //     enabled: false,
-  //   },
-  // };
-  // const seriesrow1chart = [
-  //   {
-  //     name: 'Customers',
-  //     color: primary,
-  //     data: [30, 25, 35, 20, 30],
-  //   },
-  // ];
-  // const data = '0974943593';
-  // const phone = data.slice(0, 3) + '####' + data.slice(7, 10);
-  // console.log(phone);
-  // chart 2
-  // const optionsrow2chart: Props = {
-  //   chart: {
-  //     type: 'area',
-  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
-  //     foreColor: '#adb0bb',
-  //     toolbar: {
-  //       show: false,
-  //     },
-  //     height: 35,
-  //     width: 100,
-  //     sparkline: {
-  //       enabled: true,
-  //     },
-  //     group: 'sparklines',
-  //   },
-  //   stroke: {
-  //     curve: 'smooth',
-  //     width: 2,
-  //   },
-  //   fill: {
-  //     colors: [greylight],
-  //     type: 'solid',
-  //     opacity: 0.05,
-  //   },
-  //   markers: {
-  //     size: 0,
-  //   },
-  //   tooltip: {
-  //     enabled: false,
-  //   },
-  // };
-  // const seriesrow2chart = [
-  //   {
-  //     name: 'Customers',
-  //     color: grey,
-  //     data: [30, 25, 35, 20, 30],
-  //   },
-  // ];
-
-  // // chart 3
-  // const optionsrow3chart: Props = {
-  //   chart: {
-  //     type: 'area',
-  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
-  //     foreColor: '#adb0bb',
-  //     toolbar: {
-  //       show: false,
-  //     },
-  //     height: 35,
-  //     width: 100,
-  //     sparkline: {
-  //       enabled: true,
-  //     },
-  //     group: 'sparklines',
-  //   },
-  //   stroke: {
-  //     curve: 'smooth',
-  //     width: 2,
-  //   },
-  //   fill: {
-  //     colors: [primarylight],
-  //     type: 'solid',
-  //     opacity: 0.05,
-  //   },
-  //   markers: {
-  //     size: 0,
-  //   },
-  //   tooltip: {
-  //     enabled: false,
-  //   },
-  // };
-  // const seriesrow3chart = [
-  //   {
-  //     name: 'Customers',
-  //     color: primary,
-  //     data: [30, 25, 35, 20, 30],
-  //   },
-  // ];
-
-  // // chart 4
-  // const optionsrow4chart: Props = {
-  //   chart: {
-  //     type: 'area',
-  //     fontFamily: "'Plus Jakarta Sans', sans-serif;",
-  //     foreColor: '#adb0bb',
-  //     toolbar: {
-  //       show: false,
-  //     },
-  //     height: 35,
-  //     width: 100,
-  //     sparkline: {
-  //       enabled: true,
-  //     },
-  //     group: 'sparklines',
-  //   },
-  //   stroke: {
-  //     curve: 'smooth',
-  //     width: 2,
-  //   },
-  //   fill: {
-  //     colors: [greylight],
-  //     type: 'solid',
-  //     opacity: 0.05,
-  //   },
-  //   markers: {
-  //     size: 0,
-  //   },
-  //   tooltip: {
-  //     enabled: false,
-  //   },
-  // };
-  // const seriesrow4chart = [
-  //   {
-  //     color: grey,
-  //     data: [30, 25, 35, 20, 30],
-  //   },
-  // ];
+  
   const [value, setValue] = React.useState<Dayjs | null>(null);
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
@@ -285,7 +145,9 @@ const Danhsachdh = () => {
             </LocalizationProvider>
           </Box>
         </Box>
-        <CustomerTable3 />
+        <Grid item xs={12}>
+        <CustomTable columns={columns} dataSource={tabledh} />;
+      </Grid>
       </>
     </DashboardCard>
   );

@@ -199,7 +199,7 @@ const ProfileTab = () => {
           </MenuItem>
           <MenuItem
             component={Link}
-            to="/contracthistory"
+            to="/history/purchase-history-point-in-frofile"
             onClick={handleCloseHistory}
             sx={{
               padding: '10px 20px',

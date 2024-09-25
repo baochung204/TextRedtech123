@@ -134,14 +134,14 @@ const profile: ProfileType[] = [
     icon: icon1,
   },
   {
-    id: 3,
-    href: '/purchasehistory',
+    id: 4,
+    href: '/history/buy-point-in-frofile',
     title: 'Lịch sử giao dịch',
     // subtitle: 'Account Settings',
     icon: ddIcon4,
   },
   {
-    id: 4,
+    id: 5,
     href: '/user-profile',
     title: 'Đổi mật khẩu',
     // subtitle: 'Account Settings',

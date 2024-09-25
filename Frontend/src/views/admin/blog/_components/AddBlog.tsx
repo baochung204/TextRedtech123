@@ -1,39 +1,37 @@
-import { Box, Button, Grid, Typography, useTheme } from '@mui/material';
+import { Box, Button, Grid, Typography, useTheme, FormControl, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { useFormik } from 'formik';
-// import Tags from 'src/components/apps/sell/layout/Tags';
+import { useState } from 'react';
+import Tags from 'src/components/apps/sell/layout/Tags';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import * as Yup from 'yup';
+import ReactQuill from 'react-quill';
 
 const AddBlog = () => {
   const theme = useTheme();
+  const [content, setContent] = useState('');
+  const [thumbnailPreview, setThumbnailPreview] = useState('');
 
   const formik = useFormik({
     initialValues: {
       title: '',
       url: '',
-      phone: '',
       description: '',
       content: '',
-      gender: '',
-      dob: '',
       tags: [],
       thumbnail: '',
       pricePoint: '',
       status: '',
-      assistant: '',
-      zaloUrl: '',
     },
     validationSchema: Yup.object({
       title: Yup.string().required('Tiêu đề là bắt buộc'),
-      phone: Yup.string()
-        .matches(/^(0[3|5|7|8|9])+([0-9]{8})$/, 'Số điện thoại không hợp lệ')
-        .required('Số điện thoại là bắt buộc'),
-      gender: Yup.string(),
-      url: Yup.string().url('URL không hợp lệ'),
-      dob: Yup.date(),
-      zaloUrl: Yup.string().url('URL Zalo không hợp lệ'),
-      tags: Yup.string().required('Tags là bắt buộc'),
+      url: Yup.string().url('URL không hợp lệ').required('URL là bắt buộc'),
+      description: Yup.string().required('Mô tả là bắt buộc'),
+      content: Yup.string().required('Nội dung là bắt buộc'),
+      thumbnail: Yup.string().required('Ảnh đại diện là bắt buộc'),
+      pricePoint: Yup.number().required('Điểm giá là bắt buộc').positive('Điểm giá phải là số dương'),
+      status: Yup.string().required('Trạng thái là bắt buộc'),
+      tags: Yup.array().min(1, 'Tags là bắt buộc').required('Tags là bắt buộc'),
     }),
     onSubmit: (values) => {
       // Xử lý gửi dữ liệu
@@ -41,9 +39,25 @@ const AddBlog = () => {
     },
   });
 
+  const handleContentChange = (value: string) => {
+    setContent(value);
+    formik.setFieldValue('content', value);
+  };
+
+  const handleThumbnailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setThumbnailPreview(reader.result as string);
+        formik.setFieldValue('thumbnail', file.name);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <form onSubmit={formik.handleSubmit}>
-      {/* Thông tin cá nhân */}
       <Box
         mb={4}
         p={4}
@@ -59,16 +73,16 @@ const AddBlog = () => {
           variant="h6"
           sx={{
             fontSize: '1.5rem',
-            mb: 2,
+            mb: 3,
             fontWeight: 'bold',
             color: theme.palette.mode === 'dark' ? '#fff' : '#333',
           }}
         >
-          Thông tin cá nhân
+          Thêm Bài Viết Mới
         </Typography>
 
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <CustomFormLabel htmlFor="title">Tiêu đề</CustomFormLabel>
             <CustomTextField
               id="title"
@@ -82,62 +96,8 @@ const AddBlog = () => {
             />
           </Grid>
 
-          <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="phone">Số điện thoại</CustomFormLabel>
-            <CustomTextField
-              id="phone"
-              variant="outlined"
-              fullWidth
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-              name="phone"
-              error={formik.touched.phone && Boolean(formik.errors.phone)}
-              helperText={formik.touched.phone && formik.errors.phone}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="zaloUrl">Zalo URL</CustomFormLabel>
-            <CustomTextField
-              id="zaloUrl"
-              variant="outlined"
-              fullWidth
-              value={formik.values.zaloUrl}
-              onChange={formik.handleChange}
-              name="zaloUrl"
-              error={formik.touched.zaloUrl && Boolean(formik.errors.zaloUrl)}
-              helperText={formik.touched.zaloUrl && formik.errors.zaloUrl}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="dob">Ngày sinh</CustomFormLabel>
-            <CustomTextField
-              id="dob"
-              type="date"
-              variant="outlined"
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-              value={formik.values.dob}
-              onChange={formik.handleChange}
-              name="dob"
-              error={formik.touched.dob && Boolean(formik.errors.dob)}
-              helperText={formik.touched.dob && formik.errors.dob}
-            />
-          </Grid>
-
-          {/* <Grid item xs={12}>
-            <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
-            <Tags
-              value={formik.values.tags}
-              onChange={(tags: string[]) => formik.setFieldValue('tags', tags)}
-              error={formik.touched.tags && Boolean(formik.errors.tags)}
-              helperText={formik.touched.tags ? formik.errors.tags : ''}
-            />
-          </Grid> */}
-
           <Grid item xs={12}>
-            <CustomFormLabel htmlFor="description">Ghi chú</CustomFormLabel>
+            <CustomFormLabel htmlFor="description">Mô tả</CustomFormLabel>
             <CustomTextField
               id="description"
               variant="outlined"
@@ -151,34 +111,42 @@ const AddBlog = () => {
               helperText={formik.touched.description && formik.errors.description}
             />
           </Grid>
+
           <Grid item xs={12}>
             <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel>
+            <ReactQuill
+              value={content}
+              onChange={handleContentChange}
+              theme="snow"
+              placeholder="Nhập nội dung bài viết..."
+              style={{ height: '300px', paddingBottom: '10px' }}
+            />
+            {formik.touched.content && formik.errors.content && (
+              <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                {formik.errors.content}
+              </Typography>
+            )}
+          </Grid>
+
+          <Grid item xs={12}>
+            <CustomFormLabel htmlFor="url">Đường link URL</CustomFormLabel>
             <CustomTextField
-              id="content"
+              id="url"
               variant="outlined"
               fullWidth
-              multiline
-              rows={6}
-              value={formik.values.content}
+              value={formik.values.url}
               onChange={formik.handleChange}
-              name="content"
-              error={formik.touched.content && Boolean(formik.errors.content)}
-              helperText={formik.touched.content && formik.errors.content}
+              name="url"
+              error={formik.touched.url && Boolean(formik.errors.url)}
+              helperText={formik.touched.url && formik.errors.url}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="thumbnail">Ảnh đại diện</CustomFormLabel>
-            <CustomTextField
-              id="thumbnail"
-              variant="outlined"
-              fullWidth
-              value={formik.values.thumbnail}
-              onChange={formik.handleChange}
-              name="thumbnail"
-              error={formik.touched.thumbnail && Boolean(formik.errors.thumbnail)}
-              helperText={formik.touched.thumbnail && formik.errors.thumbnail}
-            />
+
+          <Grid item xs={12}>
+            <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
+            <Tags />
           </Grid>
+
           <Grid item xs={12} md={6}>
             <CustomFormLabel htmlFor="pricePoint">Giá Point</CustomFormLabel>
             <CustomTextField
@@ -193,28 +161,58 @@ const AddBlog = () => {
               helperText={formik.touched.pricePoint && formik.errors.pricePoint}
             />
           </Grid>
+
           <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="status">Trạng thái</CustomFormLabel>
-            <CustomTextField
-              id="status"
-              variant="outlined"
-              fullWidth
-              value={formik.values.status}
-              onChange={formik.handleChange}
-              name="status"
-              error={formik.touched.status && Boolean(formik.errors.status)}
-              helperText={formik.touched.status && formik.errors.status}
-            />
+            <CustomFormLabel>Trạng thái</CustomFormLabel>
+            <FormControl component="fieldset" error={formik.touched.status && Boolean(formik.errors.status)}>
+              <RadioGroup
+                row
+                aria-label="status"
+                name="status"
+                value={formik.values.status}
+                onChange={formik.handleChange}
+              >
+                <FormControlLabel value="published" control={<Radio />} label="Đăng" />
+                <FormControlLabel value="draft" control={<Radio />} label="Nháp" />
+              </RadioGroup>
+              {formik.touched.status && formik.errors.status && (
+                <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                  {formik.errors.status}
+                </Typography>
+              )}
+            </FormControl>
           </Grid>
-          {/* <Grid item xs={12}>
-            <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
-            <Tags
-              value={formik.values.tags}
-              onChange={(tags: any) => formik.setFieldValue('tags', tags)}
-              error={formik.touched.tags && Boolean(formik.errors.tags)}
-              helperText={formik.touched.tags && formik.errors.tags}
+
+          <Grid item xs={12}>
+            <CustomFormLabel htmlFor="thumbnail">Ảnh đại diện</CustomFormLabel>
+            <input
+              type="file"
+              id="thumbnail"
+              accept="image/*"
+              onChange={handleThumbnailChange}
+              style={{ display: 'none' }}
             />
-          </Grid> */}
+            <label htmlFor="thumbnail">
+              <Button variant="outlined" component="span">
+                Chọn ảnh
+              </Button>
+            </label>
+            {thumbnailPreview && (
+              <Box mt={2}>
+                <Typography variant="body2">Ảnh đã chọn:</Typography>
+                <img
+                  src={thumbnailPreview}
+                  alt="Preview"
+                  style={{ width: '100%', maxHeight: '200px', objectFit: 'cover', marginTop: '8px' }}
+                />
+              </Box>
+            )}
+            {formik.touched.thumbnail && formik.errors.thumbnail && (
+              <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                {formik.errors.thumbnail}
+              </Typography>
+            )}
+          </Grid>
         </Grid>
       </Box>
 

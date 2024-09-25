@@ -14,7 +14,7 @@ import {
   TableSortLabel,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import { format } from 'date-fns';
 // components
@@ -28,6 +28,7 @@ import React, { useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import BlankCard from 'src/components/shared/BlankCard';
 import AddDialogvoucher from './add/addDialog';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 interface DataRow {
   id: string;
   creationTime: string;
@@ -86,7 +87,7 @@ const dataRows: DataRow[] = [
     Mavoucher: '44FV43TG4V34G',
     quantity: 54,
     customerId: 'Phần trăm',
-    customerName: '100.000đ',
+    customerName: '10%',
     tag: 'đã sử dụng',
     use: 3,
   },
@@ -122,66 +123,69 @@ interface HeadCell {
   numeric: boolean;
 }
 
-const headCells: HeadCell[] = [
+const headCells: any = [
   {
     id: 'id',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID',
+    title: 'ID',
+    dataIndex: 'id',
   },
   {
     id: 'voucherName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tên chiến dịch',
+    title: 'Tên chiến dịch',
+    dataIndex: 'voucherName',
   },
   {
     id: 'creationTime',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ngày tạo',
+    title: 'Ngày tạo',
+    dataIndex: 'creationTime',
   },
   {
     id: 'endTime',
-    numeric: false,
-    disablePadding: false,
-    label: 'Hạn sửa dụng',
+    title: 'Hạn sửa dụng',
+    dataIndex: 'endTime',
   },
   {
     id: 'Mavoucher',
-    numeric: false,
-    disablePadding: false,
-    label: 'Mã khuyến mãi',
+    title: 'Mã khuyến mãi',
+    dataIndex: 'Mavoucher',
   },
   {
     id: 'quantity',
-    numeric: false,
-    disablePadding: false,
-    label: 'Số lượng mã',
+    title: 'Số lượng mã',
+    dataIndex: 'quantity',
   },
   {
     id: 'customerId',
-    numeric: false,
-    disablePadding: false,
-    label: 'Loại giảm giá',
+    title: 'Loại giảm giá',
+    dataIndex: 'customerId',
+    render: (value: any) => {
+      return <Chip label={value} color={value === 'Đồng' ? 'primary' : 'secondary'} />;
+    },
   },
   {
     id: 'customerName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Giá trị giảm',
+    title: 'Giá trị giảm',
+    dataIndex: 'customerName',
   },
   {
     id: 'tag',
-    numeric: false,
-    disablePadding: false,
-    label: 'Trạng thái',
+    title: 'Trạng thái',
+    dataIndex: 'tag',
+    render: (value: any) => {
+      return (
+        <Chip
+          label={value}
+          color={
+            value === 'chưa sử dụng' ? 'primary' : value === 'đã sử dụng' ? 'success' : 'error'
+          }
+        />
+      );
+    },
   },
   {
     id: 'use',
-    numeric: false,
-    disablePadding: false,
-    label: 'Đã sử dụng',
+    title: 'Đã sử dụng',
+    dataIndex: 'use',
   },
 ];
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -197,14 +201,14 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
 type Order = 'asc' | 'desc';
 
-function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key,
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
+// function getComparator<Key extends keyof any>(
+//   order: Order,
+//   orderBy: Key,
+// ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+//   return order === 'desc'
+//     ? (a, b) => descendingComparator(a, b, orderBy)
+//     : (a, b) => -descendingComparator(a, b, orderBy);
+// }
 interface EnhancedTableProps {
   numSelected: number;
   order: 'asc' | 'desc';
@@ -249,79 +253,79 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
+// function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
+//   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+//   stabilizedThis.sort((a, b) => {
+//     const order = comparator(a[0], b[0]);
+//     if (order !== 0) {
+//       return order;
+//     }
 
-    return a[1] - b[1];
-  });
+//     return a[1] - b[1];
+//   });
 
-  return stabilizedThis.map((el) => el[0]);
-}
+//   return stabilizedThis.map((el) => el[0]);
+// }
 
 const ListVoucher = () => {
-  type Order = 'asc' | 'desc';
+  // type Order = 'asc' | 'desc';
 
-  const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<any>('calories');
-  const [selected, setSelected] = useState<readonly string[]>([]);
-  const [page, setPage] = useState(0);
-  const [dense] = useState(false);
+  // const [order, setOrder] = useState<Order>('asc');
+  // const [orderBy, setOrderBy] = useState<any>('calories');
+  // const [selected, setSelected] = useState<readonly string[]>([]);
+  // const [page, setPage] = useState(0);
+  // const [dense] = useState(false);
   // const [dense, setDense] = useState(false);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  // const [rowsPerPage, setRowsPerPage] = useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const [value, setValue] = React.useState(0);
-  const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
+  // const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
+  //   const selectedIndex = selected.indexOf(name);
+  //   let newSelected: readonly string[] = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+  //   if (selectedIndex === -1) {
+  //     newSelected = newSelected.concat(selected, name);
+  //   } else if (selectedIndex === 0) {
+  //     newSelected = newSelected.concat(selected.slice(1));
+  //   } else if (selectedIndex === selected.length - 1) {
+  //     newSelected = newSelected.concat(selected.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelected = newSelected.concat(
+  //       selected.slice(0, selectedIndex),
+  //       selected.slice(selectedIndex + 1),
+  //     );
+  //   }
 
-    setSelected(newSelected);
-  };
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  //   setSelected(newSelected);
+  // };
+  // const handleChangePage = (_event: unknown, newPage: number) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-  const handleRequestSort = (_event: React.MouseEvent<unknown>, property: string) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
+  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
+  // const handleRequestSort = (_event: React.MouseEvent<unknown>, property: string) => {
+  //   const isAsc = orderBy === property && order === 'asc';
+  //   setOrder(isAsc ? 'desc' : 'asc');
+  //   setOrderBy(property);
+  // };
 
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelecteds = dataRows.map((n: any) => n.name);
-      setSelected(newSelecteds);
+  // const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.checked) {
+  //     const newSelecteds = dataRows.map((n: any) => n.name);
+  //     setSelected(newSelecteds);
 
-      return;
-    }
-    setSelected([]);
-  };
+  //     return;
+  //   }
+  //   setSelected([]);
+  // };
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows.length) : 0;
+  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows.length) : 0;
   return (
     <div>
       {' '}
@@ -381,181 +385,7 @@ const ListVoucher = () => {
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
-          <Box mb={2} sx={{ mb: 2 }}>
-            <TableContainer sx={{ p: 2 }}>
-              <Scrollbar_x>
-                <Table
-                  sx={{ minWidth: 750 }}
-                  aria-labelledby="tableTitle"
-                  size={dense ? 'small' : 'medium'}
-                >
-                  <EnhancedTableHead
-                    numSelected={selected.length}
-                    order={order}
-                    orderBy={orderBy}
-                    onSelectAllClick={handleSelectAllClick}
-                    onRequestSort={handleRequestSort}
-                    rowCount={dataRows.length}
-                  />
-                  <TableBody>
-                    {stableSort(dataRows, getComparator(order, orderBy))
-                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                      .map((row: any) => {
-                        return (
-                          <TableRow
-                            hover
-                            onClick={(event) => handleClick(event, row.name)}
-                            role="checkbox"
-                            tabIndex={-1}
-                            key={row.idTicket}
-                          >
-                            {/* Mã vé (idTicket) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.id}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Thời gian tạo (creationTime) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.voucherName}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {format(new Date(row?.creationTime), 'MM/dd/yyyy HH:mm:ss')}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Tương tác (interaction) */}
-                            {/* Đánh giá (endTime) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {format(new Date(row?.endTime), 'MM/dd/yyyy HH:mm:ss')}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Trạng thái (Mavoucher) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.Mavoucher}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.quantity}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Thông tin khách hàng (customerName) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="" variant="subtitle2">
-                                    <Chip
-                                      label={row?.customerId}
-                                      sx={{
-                                        bgcolor:
-                                          row?.customerId === 'Đồng'
-                                            ? 'primary.main'
-                                            : 'secondary.main',
-                                        color: row?.customerId === 'Đồng' ? 'white' : 'white',
-                                      }}
-                                      key={row?.customerId}
-                                      size="small"
-                                    />
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.customerName}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Chip
-                                    color={
-                                      row?.tag === 'đã sử dụng'
-                                        ? 'success'
-                                        : row.tag === 'chưa sử dụng'
-                                        ? 'warning'
-                                        : row.tag === 'quá hạn'
-                                        ? 'error'
-                                        : 'secondary'
-                                    }
-                                    sx={{
-                                      borderRadius: '6px',
-                                    }}
-                                    size="small"
-                                    label={row?.tag}
-                                  />
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.use}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    {emptyRows > 0 && (
-                      <TableRow
-                        style={{
-                          height: (dense ? 33 : 53) * emptyRows,
-                        }}
-                      >
-                        <TableCell colSpan={6} />
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </Scrollbar_x>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={dataRows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              labelRowsPerPage="Số hàng trên mỗi trang"
-            />
-          </Box>
+          <CustomTable columns={headCells} dataSource={dataRows} />
         </BlankCard>
       </Grid>
     </div>

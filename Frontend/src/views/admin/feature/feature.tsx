@@ -1,23 +1,12 @@
-import {
-  Box,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Grid,
-  InputAdornment,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { IconAd2, IconEdit, IconEyeOff, IconFileStar, IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import { Box, Dialog, DialogContent, DialogTitle, Grid } from '@mui/material';
 import Slide from '@mui/material/Slide';
+import { IconAd2, IconEdit, IconEyeOff, IconFileStar } from '@tabler/icons-react';
+import React from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
 import TableFeature from './_components/TableFeature';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -140,8 +129,6 @@ const PageFeature = () => {
   // };
 
   const [isPopupOpen] = React.useState(false);
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
 
   function handleClosePopup(_event: {}): void {
     throw new Error('Function not implemented.');
@@ -154,54 +141,7 @@ const PageFeature = () => {
         <Grid item xs={12}>
           <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
-        <Grid item xs={12}>
-          <Grid container alignItems="center">
-            <Grid item xs={4}>
-              <TextField
-                id="outlined-search"
-                placeholder="Tìm kiếm đề xuất tính năng "
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ 'aria-label': 'Search Followers' }}
-                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="12" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={8} container spacing={2} justifyContent="flex-end">
-              <Grid item>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Ngày bắt đầu"
-                    value={startDate}
-                    onChange={(newValue) => setStartDate(newValue)}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ margin: '0 10px' }}>tới</Typography>
-              </Grid>
-              <Grid item>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Ngày kết thúc"
-                    value={endDate}
-                    onChange={(newValue) => setEndDate(newValue)}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+
         <Grid item xs={12}>
           <TableFeature />
         </Grid>

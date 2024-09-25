@@ -11,7 +11,7 @@ import {
   Slide,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -31,17 +31,19 @@ import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
 import TableBlog from './_components/TableBlog';
+import BlankCard from 'src/components/shared/BlankCard';
 
 const BCrumb = [
-  { to: '/', title: 'Trang Chủ' },
-  { to: '/apps/blog/posts', title: 'Danh sách bài viết' },
+  { to: '/admin', title: 'Trang Chủ' },
+  { to: '/admin/blogs', title: 'Danh sách bài viết' },
 ];
 
-const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement<any, any> }>(
-  function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  }
-);
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 interface StyleProps {
   bgColor: string;
@@ -147,14 +149,12 @@ const BlogAdmin = () => {
   const [value] = useState('1');
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
-
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-
-  // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-  //   setValue(newValue);
-  // };
 
   return (
     <PageContainer>
@@ -171,7 +171,13 @@ const BlogAdmin = () => {
                   <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
                     <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                       <Tooltip title="Thêm bài viết mới" sx={{ mb: '15px' }} placement="top">
-                        <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
+                        <Fab 
+                          size="small" 
+                          color="secondary" 
+                          aria-label="plus" 
+                          sx={{ my: 'auto' }} 
+                          onClick={handleOpenPopup} // Thêm sự kiện onClick
+                        >
                           <IconPlus width={18} />
                         </Fab>
                       </Tooltip>
@@ -224,7 +230,9 @@ const BlogAdmin = () => {
                   </Grid>
                 </Grid>
               </Grid>
-              <TableBlog />
+              <BlankCard>
+                <TableBlog />
+              </BlankCard>
             </TabPanel>
           </Box>
         </TabContext>
@@ -238,7 +246,7 @@ const BlogAdmin = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle>
+        {/* <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle> */}
         <DialogContent>
           <AddBlog />
         </DialogContent>

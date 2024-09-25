@@ -24,6 +24,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "Router.tsx"],
+  "include": ["src", "Router.tsx", "src/views/apps/allTransactionHistory/purchaseHistory.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

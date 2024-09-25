@@ -18,14 +18,81 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
-import CustomerTable2 from 'src/components/tables/CustomerTable2';
-
+import Point from 'src/assets/images/icon.png/point.png';
 import { Slide } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
+import { DataRowCustomerTable } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PopupAddList2 from './PopupAddlist2';
+
+const columns = [
+  {
+    title: 'ID khách hàng',
+    dataIndex: 'id',
+  },
+
+  {
+    title: 'Ngày tạo',
+    dataIndex: 'createdAt',
+  },
+  {
+    title: 'Trợ lý',
+    dataIndex: 'assistant',
+  },
+  {
+    title: 'Kênh(MKT)',
+    dataIndex: 'createdAt',
+    render: (row, value: any) => (
+      // console.log( value.imgsrc)
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={value?.imgsrc}
+          alt=""
+          style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
+        />
+        <Box>
+          <Typography>{value.name}</Typography>
+          <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography>
+        </Box>
+      </Box>
+    ),
+  },
+  {
+    title: 'Tags',
+    dataIndex: 'orderInfo',
+  },
+  {
+    title: 'Tên khách hàng',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Tổng chi tiêu',
+    dataIndex: 'orderValue',
+    render: (row, value: any) => (
+      // console.log( value.imgsrc)
+
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Typography>{value.orderValue}</Typography>
+        <img
+          src={Point}
+          alt=""
+          style={{ width: '25px', height: '25px', borderRadius: '50%', marginRight: '10px' }}
+        />
+      </Box>
+    ),
+  },
+  {
+    title: 'SĐT',
+    dataIndex: 'phone',
+  },
+  {
+    title: 'Địa chỉ',
+    dataIndex: 'address',
+  },
+];
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -132,7 +199,7 @@ const CustomerList2 = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <CustomerTable2 />
+                  <CustomTable columns={columns} dataSource={DataRowCustomerTable} />;
                 </Grid>
               </Grid>
             </TabPanel>
@@ -149,8 +216,8 @@ const CustomerList2 = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogTitle padding={'10px'}>Thêm khách hàng</DialogTitle>
-        <DialogContent>
+       
+        <DialogContent sx={{paddingTop: '10px'}}>
           <PopupAddList2 />
         </DialogContent>
       </Dialog>
