@@ -99,10 +99,8 @@ const Tab4 = () => {
           displayEmpty
           onChange={handleColumnChange}
           renderValue={() => 'Bộ Lọc'}
-          sx={{}}
         >
           {column.map((header: any) => {
-            console.log('header.isValids', header.isValids);
 
             // const isValidColumn = header.isValids ?? true;
             // const isSelected =
