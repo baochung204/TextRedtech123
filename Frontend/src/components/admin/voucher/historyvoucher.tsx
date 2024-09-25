@@ -26,6 +26,7 @@ import React, { useState } from 'react';
 
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import BlankCard from 'src/components/shared/BlankCard';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 interface DataRow2 {
   id: string;
   creationTime: string;
@@ -125,73 +126,72 @@ interface HeadCell2 {
   label: string;
   numeric: boolean;
 }
-const headCells2: HeadCell2[] = [
+const headCells2: any = [
   {
     id: 'id',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID',
+    title: 'ID',
+    dataIndex: 'id',
   },
-
   {
     id: 'creationTime',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ngày áp mã',
+    title: 'Ngày áp mã',
+    dataIndex: 'creationTime',
   },
   {
     id: 'user',
-    numeric: false,
-    disablePadding: false,
-    label: 'Khách hàng',
+    title: 'Khách hàng',
+    dataIndex: 'user',
   },
   {
     id: 'email',
-    numeric: false,
-    disablePadding: false,
-    label: 'Email',
+    title: 'Email',
+    dataIndex: 'email',
   },
   {
     id: 'phone',
-    numeric: false,
-    disablePadding: false,
-    label: 'Số điện thoại',
+    title: 'Số điện thoại',
+    dataIndex: 'phone',
   },
   {
     id: 'voucherName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tên chiến dịch',
+    title: 'Tên chiến dịch',
+    dataIndex: 'voucherName',
   },
   {
     id: 'startTime',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ngày tạo',
+    title: 'Ngày tạo',
+    dataIndex: 'startTime',
   },
   {
     id: 'expiry',
-    numeric: false,
-    disablePadding: false,
-    label: 'Hạn sửa dụng',
+    title: 'Hạn sửa dụng',
+    dataIndex: 'expiry',
   },
   {
     id: 'TypeVoucher',
-    numeric: false,
-    disablePadding: false,
-    label: 'Loại giảm giá ',
+    title: 'Loại giảm giá',
+    dataIndex: 'TypeVoucher',
+    render: (value: any) => {
+      return (
+        <Chip
+          label={value}
+          sx={{
+            color: 'white',
+            backgroundColor: value === 'phân trăm' ? 'success.main' : 'error.main',
+          }}
+        />
+      );
+    },
   },
   {
     id: 'sale',
-    numeric: false,
-    disablePadding: false,
-    label: 'Giá trị giảm',
+    title: 'Giá trị giảm',
+    dataIndex: 'sale',
   },
   {
     id: 'ID_order',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID đơn hàng',
+    title: 'ID đơn hàng',
+    dataIndex: 'ID_order',
   },
 ];
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -385,181 +385,7 @@ const HistoryVoucher = () => {
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
-          <Box mb={2} sx={{ mb: 2 }}>
-            <TableContainer>
-              <Scrollbar_x>
-                <Table
-                  sx={{ minWidth: 750 }}
-                  aria-labelledby="tableTitle"
-                  size={dense ? 'small' : 'medium'}
-                >
-                  <EnhancedTableHead2
-                    numSelected={selected.length}
-                    order={order}
-                    orderBy={orderBy}
-                    onSelectAllClick={handleSelectAllClick}
-                    onRequestSort={handleRequestSort}
-                    rowCount={dataRows2.length}
-                  />
-                  <TableBody>
-                    {stableSort2(dataRows2, getComparator(order, orderBy))
-                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                      .map((row: any) => {
-                        return (
-                          <TableRow
-                            hover
-                            onClick={(event) => handleClick(event, row.name)}
-                            role="checkbox"
-                            tabIndex={-1}
-                            key={row.id}
-                          >
-                            {/* Mã vé (idTicket) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.id}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Thời gian tạo (creationTime) */}{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {format(new Date(row?.creationTime), 'MM/dd/yyyy HH:mm:ss')}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.user}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Tương tác (interaction) */}
-                            {/* Đánh giá (endTime) */}{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.email}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.phone}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.voucherName}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {format(new Date(row?.startTime), 'MM/dd/yyyy HH:mm:ss')}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Trạng thái (Mavoucher) */}
-                            {/* Thông tin khách hàng (customerName) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.expiry}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    <Chip
-                                      sx={{
-                                        bgcolor:
-                                          row?.TypeVoucher === 'đồng'
-                                            ? 'primary.main'
-                                            : 'secondary.main',
-                                        color:
-                                          row?.TypeVoucher === 'đồng'
-                                            ? 'primary.contrastText'
-                                            : 'secondary.contrastText',
-
-                                        borderRadius: '8px',
-                                      }}
-                                      size="small"
-                                      label={row?.TypeVoucher}
-                                    />
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.sale}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.ID_order}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    {emptyRows > 0 && (
-                      <TableRow
-                        style={{
-                          height: (dense ? 33 : 53) * emptyRows,
-                        }}
-                      >
-                        <TableCell colSpan={6} />
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </Scrollbar_x>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={dataRows2.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              labelRowsPerPage="Số hàng trên mỗi trang"
-            />
-          </Box>
+          <CustomTable columns={headCells2} dataSource={dataRows2} />
         </BlankCard>
       </Grid>
     </div>

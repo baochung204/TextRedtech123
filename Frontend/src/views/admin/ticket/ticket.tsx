@@ -10,8 +10,10 @@ import {
   IconTicket,
 } from '@tabler/icons-react';
 import { useState } from 'react';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TableList from 'src/components/ComponentTables/tableList';
 import PageContainer from 'src/components/container/PageContainer';
+import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
@@ -126,72 +128,50 @@ const DataBox = [
 ];
 
 interface HeadCell {
-  disablePadding: boolean;
   dataIndex: string;
-  label: string;
-  numeric: boolean;
+  title: string;
 }
 
 const headCells: HeadCell[] = [
   {
     dataIndex: 'idTicket',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID Ticket',
+    title: 'ID Ticket',
   },
   {
     dataIndex: 'creationTime',
-    numeric: false,
-    disablePadding: false,
-    label: 'Thời gian tạo',
+    title: 'Thời gian tạo',
   },
   {
     dataIndex: 'interaction',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tương tác gần đây',
+    title: 'Tương tác gần đây',
   },
   {
     dataIndex: 'rating',
-    numeric: false,
-    disablePadding: false,
-    label: 'Đánh giá',
+    title: 'Đánh giá',
   },
   {
     dataIndex: 'status',
-    numeric: false,
-    disablePadding: false,
-    label: 'Trạng thái',
+    title: 'Trạng thái',
   },
   {
     dataIndex: 'title',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tiêu đề',
+    title: 'Tiêu đề',
   },
   {
     dataIndex: 'customerId',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID Khách hàng',
+    title: 'ID Khách hàng',
   },
   {
     dataIndex: 'customerName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tên Khách hàng',
+    title: 'Tên Khách hàng',
   },
   {
     dataIndex: 'email',
-    numeric: false,
-    disablePadding: false,
-    label: 'Email',
+    title: 'Email',
   },
   {
     dataIndex: 'phoneNumber',
-    numeric: false,
-    disablePadding: false,
-    label: 'Số điện thoại',
+    title: 'Số điện thoại',
   },
 ];
 interface DataRow {
@@ -387,7 +367,9 @@ const Ticket = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <TableList headCells={headCells} dataRows={dataRows} />
+          <BlankCard>
+            <CustomTable columns={headCells} dataSource={dataRows} />
+          </BlankCard>
         </Grid>
       </Grid>
     </PageContainer>

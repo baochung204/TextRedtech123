@@ -14,7 +14,8 @@ import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import { Model, ModelCells, ModelRows } from './mockData/TableModel';
 import { Strategy, StrategyCells, StrategyRows } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
-import Tab1 from './Tabs/Tab1';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import BlankCard from 'src/components/shared/BlankCard';
 
 const Main = () => {
   const [value, setValue] = React.useState('1');
@@ -116,24 +117,43 @@ const Main = () => {
 
             {/* TabPanels */}
             <TabPanel sx={{ p: 0, pt: 2 }} value="1">
-              <Tab1 headCells={StrategyCells} dataRows={StrategyRows} />
+              {/* <Tab1 headCells={StrategyCells} dataRows={StrategyRows} /> */}
+              <BlankCard>
+                <CustomTable columns={StrategyCells} dataSource={StrategyRows} />
+              </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="2">
-              <Tab1 headCells={FunctionCells} dataRows={FunctionRows} />
+              {/* <Tab1 headCells={FunctionCells} dataRows={FunctionRows} /> */}
+              <BlankCard>
+                <CustomTable columns={FunctionCells} dataSource={FunctionRows} />
+              </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">
-              <Tab1 headCells={FileCells} dataRows={FileRows} />
+              {/* <Tab1 headCells={FileCells} dataRows={FileRows} /> */}
+              <BlankCard>
+                <CustomTable columns={FileCells} dataSource={FileRows} />
+              </BlankCard>
 
               {/* <Tab3 value={value} open={open} setOpen={setOpen} /> */}
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="4">
-              <Tab1 headCells={ModelCells} dataRows={ModelRows} />
+              {/* <Tab1 headCells={ModelCells} dataRows={ModelRows} /> */}
+              <BlankCard>
+                <CustomTable columns={ModelCells} dataSource={ModelRows} />
+              </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="5">
-              <Tab1 headCells={ImageCells} dataRows={ImageRows} />
+              {/* <Tab1 headCells={ImageCells} dataRows={ImageRows} />
+               */}
+              <BlankCard>
+                <CustomTable columns={ImageCells} dataSource={ImageRows} />
+              </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="6">
-              <Tab1 headCells={UrlCells} dataRows={UrlRows} />
+              {/* <Tab1 headCells={UrlCells} dataRows={UrlRows} /> */}
+              <BlankCard>
+                <CustomTable columns={UrlCells} dataSource={UrlRows} />
+              </BlankCard>
             </TabPanel>
           </TabContext>
         </Box>
