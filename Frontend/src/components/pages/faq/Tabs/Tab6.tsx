@@ -1,114 +1,113 @@
-import React, { useState } from 'react';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    Box,
-    Typography,
-    TablePagination,
-} from '@mui/material';
+
 import DataRow from '../DataTable/TableTab6';
 import DialogURL from '../dialog/DIalogURL';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { Checkbox, Grid, IconButton, ListItemText, MenuItem, Select } from '@mui/material';
+import { IconTrash } from '@tabler/icons-react';
+import { useState } from 'react';
 
 interface PropsTab6 {
     value: string;
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+const column = [
+    {
+        title: 'ID',
+        dataIndex: 'idCode'
+    },
+    {
+        title: 'Tiêu đề URL',
+        dataIndex: 'titleurl'
+    },
+    {
+        title: 'Mô tả URL',
+        dataIndex: 'descriptionurl'
+    },
+    {
+        title: 'URL',
+        dataIndex: 'url',
+    },
+    {
+        title: 'Hành động',
+        dataIndex: 'idCode',
+        render: (value: string) =>
+        (
+            <IconButton
+                onClick={() => console.log(value)}
+            >
+                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+        )
+
+    }
+]
 
 const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(6);
 
-    const handleChangePage = (newPage: number) => {
-        setPage(newPage);
+    const [dataSelect, setDataSelect] = useState<string[]>([]);
+    const handleColumnChange = (event: any) => {
+        const {
+            target: { value },
+        } = event;
+        console.log('test: ', event);
+        if (value)
+            setDataSelect(typeof value === 'string' ? value.split(',') : value);
     };
-
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
-    const paginatedData = DataRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
     return (
-        <>
-            <Box>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
+        <Grid container spacing={2}>
+            <Grid
+                item
+                xs={12}
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'end',
+                }}
+            >
+                <Select
+                    multiple
+                    value={dataSelect}
+                    displayEmpty
+                    onChange={handleColumnChange}
+                    renderValue={() => 'Bộ Lọc'}
+                    sx={{}}
+                >
+                    {column.map((header: any) => {
+                        console.log('header.isValids', header.isValids);
 
-                                <TableCell>
-                                    <Typography variant="h6" >
-                                        ID
-                                    </Typography>
-                                </TableCell>
-                                <TableCell>
-                                    <Typography variant="h6" >
-                                        Tiêu đề URL
-                                    </Typography>
-                                </TableCell>
-                                <TableCell>
-                                    <Typography variant="h6" >
-                                        Mô tả URL
-                                    </Typography>
-                                </TableCell>
-                                <TableCell>
-                                    <Typography variant="h6" >
-                                        URL
-                                    </Typography>
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {paginatedData.map((items) => (
-                                <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        // const isValidColumn = header.isValids ?? true;
+                        // const isSelected =
+                        // isValidColumn ? !dataSelect.includes(header.dataIndex) : dataSelect.includes(header.dataIndex);
+                        const isValidColumn = header.isValids !== undefined ? header.isValids : true;
 
-                                    <TableCell component="th" scope="row">
-                                        <Typography variant="subtitle2" >
-                                            {items.idCode}
-                                        </Typography>
-                                    </TableCell>
+                        const isSelected = isValidColumn
+                            ? !dataSelect.includes(header.dataIndex)
+                            : dataSelect.includes(header.dataIndex);
 
-                                    <TableCell>
-                                        <Typography variant="subtitle2" >
-                                            {items.titleurl}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2" >
-                                            {items.descriptionurl}
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography variant="subtitle2" >
-                                            {items.url}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                        return (
+                            <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                                <Checkbox checked={isSelected} />
+                                <ListItemText primary={header.title} />
+                            </MenuItem>
+                        );
+                    })}
+                </Select>
+            </Grid>
+            <Grid item xs={12}>
+                <CustomTable
+                    dataSource={DataRow}
+                    columns={column}
+                    dataSelect={dataSelect}
+                />
+            </Grid>
 
-                    <TablePagination
-                        rowsPerPageOptions={[6, 12, 18]}
-                        component="div"
-                        count={DataRow.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={() => handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                        labelRowsPerPage="Số hàng trên mỗi trang"
-                    />
-                </TableContainer>
-            </Box>
-            <DialogURL open={open} setOpen={setOpen} value={value} />
-        </>
+            <DialogURL
+                open={open}
+                setOpen={setOpen}
+                value={value}
+            />
+        </Grid>
     );
 };
 

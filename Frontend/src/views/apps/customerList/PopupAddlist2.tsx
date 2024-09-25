@@ -273,10 +273,10 @@ const PopupAddList2 = () => {
                 error={formik.touched.assistant && Boolean(formik.errors.assistant)}
                 helperText={formik.touched.assistant && formik.errors.assistant}
               />
-              <CustomFormLabel htmlFor="tags" sx={{ mt: 2 }}>
-                Tags
-              </CustomFormLabel>
-              <Tags />
+              <Grid item xs={12}>
+                <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
+                <Tags />
+              </Grid>
             </Grid>
             <Grid item xs={12} md={6}>
               <CustomFormLabel htmlFor="selectedChannels">Kênh</CustomFormLabel>

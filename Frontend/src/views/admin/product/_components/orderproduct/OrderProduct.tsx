@@ -7,7 +7,7 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -210,19 +210,9 @@ const OrderProduct = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
-  // const [value, setValue] = React.useState('1');
-
-  // const handleOpenPopup = () => {
-  //   setIsPopupOpen(true);
-  // };
-
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-
-  // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-  //   setValue(newValue);
-  // };
 
   return (
     <PageContainer>
@@ -236,19 +226,6 @@ const OrderProduct = () => {
           <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Grid item xs={4} sm={4} md={4}>
               <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                {/* <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Tooltip title="Thêm thông báo mới" sx={{ mb: '15px' }}>
-                    <Fab
-                      size="small"
-                      color="secondary"
-                      aria-label="plus"
-                      sx={{ my: 'auto' }}
-                      onClick={handleOpenPopup}
-                    >
-                      <IconPlus width={18} />
-                    </Fab>
-                  </Tooltip>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -301,61 +278,6 @@ const OrderProduct = () => {
           <TableOrderProduct />
         </Grid>
       </Grid>
-      {/* <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
-        <TabContext value={value}>
-          <Box>
-            <TabPanel value="1" sx={{ p: 0 }}>
-              <Box
-                className="actions-and-filters"
-                sx={{
-                  mt: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Tooltip title="Tạo đơn hàng">
-                    <Fab
-                      color="primary"
-                      aria-label="add"
-                      size="small"
-                      sx={{ marginRight: '30px' }}
-                      onClick={handleOpenPopup}
-                    >
-                      <FaPlus />
-                    </Fab>
-                  </Tooltip>
-
-                  <TextField
-                    sx={{
-                      width: '200px',
-                      marginRight: '40px',
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '10px',
-                        backgroundColor: '#fff',
-                        '&:hover fieldset': {
-                          borderColor: '#3f51b5',
-                        },
-                      },
-                    }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="1.1rem" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    placeholder="Tìm kiếm"
-                    size="small"
-                  />
-                </Box>
-              </Box>
-              <TableOrderProduct />
-            </TabPanel>
-          </Box>
-        </TabContext>
-      </ChildCard> */}
 
       {/* Popup Thêm blogs */}
       <Dialog

@@ -10,6 +10,7 @@ import TicketReducer from './apps/tickets/TicketSlice';
 import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
+import productReducer from './apps/products/Products';
 
 import {
   TypedUseSelectorHook,
@@ -17,7 +18,7 @@ import {
   useSelector as useAppSelector,
 } from 'react-redux';
 import { combineReducers } from 'redux';
-import CustomerReducer from './apps/customer/CustomerSlice';
+import CustomerReducer from './apps/customer/customerSlice';
 
 export const store = configureStore({
   reducer: {
@@ -32,7 +33,8 @@ export const store = configureStore({
     blogReducer: BlogReducer,
     selectReducer: SelectedReducer,
     integration: integrationReducer,
-    customer: CustomerReducer
+    customer: CustomerReducer,
+    product: productReducer,
   },
 });
 

@@ -32,6 +32,7 @@ import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
 import AddDflashsale from './add/addflashsale';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 
 interface DataRow3 {
   id: string;
@@ -131,73 +132,133 @@ const dataRows3: DataRow3[] = [
   },
 ];
 interface HeadCell3 {
-  disablePadding: boolean;
-  id: string;
+  id: keyof DataRow3;
   label: string;
-  numeric: boolean;
+  dataIndex?: string;
 }
-const headCells3: HeadCell3[] = [
+const headCells3: any = [
   {
     id: 'id',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID',
+    title: 'ID',
+    dataIndex: 'id',
   },
   {
     id: 'voucherName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tên chiến dịch',
+    title: 'Tên chiến dịch',
+    dataIndex: 'voucherName',
   },
   {
     id: 'quantityFS',
-    numeric: false,
-    disablePadding: false,
-    label: 'Số lượng FS',
+    title: 'Số lượng FS',
+    dataIndex: 'quantityFS',
   },
   {
     id: 'product',
-    numeric: false,
-    disablePadding: false,
-    label: 'Sản phẩm',
-  },
+    title: 'Sản phẩm',
+    dataIndex: 'product',
+    render: (text: any, value: any) => (
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        {/* Avatar on the left */}
+        <img
+          src={value.img}
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            marginRight: '10px',
+          }}
+        />
 
+        <Box>
+          <Typography variant="subtitle2">{value.product}</Typography>
+          <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography>
+        </Box>
+      </Box>
+    ),
+  },
   {
     id: 'listed',
-    numeric: false,
-    disablePadding: false,
-    label: 'Giá niêm yết',
+    title: 'Giá niêm yết',
+    dataIndex: 'listed',
+    render: (text: any, value: any) => (
+      <Typography
+        color="textSecondary"
+        variant="subtitle2"
+        display={'flex'}
+        gap={'2px'}
+        style={{ whiteSpace: 'nowrap' }}
+      >
+        {value.listed.toLocaleString()} <img src={icontext} alt="" width={22} />
+      </Typography>
+    ),
   },
   {
     id: 'sale',
-    numeric: false,
-    disablePadding: false,
-    label: 'Giảm giá',
+    title: 'Giảm giá',
+    dataIndex: 'sale',
+    render: (text: any, value: any) => (
+      <Typography
+        color="textSecondary"
+        variant="subtitle2"
+        display={'flex'}
+        gap={'2px'}
+        style={{ whiteSpace: 'nowrap' }}
+      >
+        {value.sale.toLocaleString()} <img src={icontext} alt="" width={22} />
+      </Typography>
+    ),
   },
-
   {
     id: 'flashSale',
-    numeric: false,
-    disablePadding: false,
-    label: 'Giá Flash-Sale',
+    title: 'Giá Flash-Sale',
+    dataIndex: 'flashSale',
+    render: (text: any, value: any) => (
+      <Typography
+        color="textSecondary"
+        variant="subtitle2"
+        display={'flex'}
+        gap={'2px'}
+        style={{ whiteSpace: 'nowrap' }}
+      >
+        {value.flashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
+      </Typography>
+    ),
   },
   {
     id: 'buy',
-    numeric: false,
-    disablePadding: false,
-    label: 'Số lượt mua',
+    title: 'Số lượt mua',
+    dataIndex: 'buy',
+    render: (text: any, value: any) => (
+      <Typography color="textSecondary" variant="subtitle2">
+        {value.buy.toLocaleString()}
+      </Typography>
+    ),
   },
   {
     id: 'TypeVoucher',
-    numeric: false,
-    disablePadding: false,
-    label: 'Doanh thu',
+    title: 'Doanh thu',
+    dataIndex: 'TypeVoucher',
+    render: (text: any, value: any) => (
+      <Typography
+        color="textSecondary"
+        variant="subtitle2"
+        display={'flex'}
+        gap={'2px'}
+        style={{ whiteSpace: 'nowrap' }}
+      >
+        {value.TypeVoucher.toLocaleString()} <img src={icontext} alt="" width={22} />
+      </Typography>
+    ),
   },
   {
     id: 'status',
-    numeric: false,
-    disablePadding: false,
-    label: 'Trạng thái',
+    title: 'Trạng thái',
+    dataIndex: 'status',
+    render: (text: any, value: any) => (
+      <Typography color="textSecondary" variant="subtitle2">
+        <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
+      </Typography>
+    ),
   },
 ];
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -228,55 +289,6 @@ interface EnhancedTableProps {
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
   rowCount: number;
-}
-
-function EnhancedTableHead3(props: EnhancedTableProps) {
-  const { order, orderBy, onRequestSort } = props;
-  const createSortHandler = (property: string) => (event: React.MouseEvent<unknown>) => {
-    onRequestSort(event, property);
-  };
-  return (
-    <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
-      <TableRow>
-        {headCells3.map((headCell: any) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ whiteSpace: 'nowrap' }}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              <Typography variant="h6">{headCell.label}</Typography>
-              {/* {orderBy === headCell.id ? (
-                  <Box component="span">
-                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                  </Box>
-                ) : null} */}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
-}
-
-function stableSort3<T>(array: any[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-
-    return a[1] - b[1];
-  });
-
-  return stabilizedThis.map((el) => el[0]);
 }
 
 const FlashSale = () => {
@@ -397,196 +409,7 @@ const FlashSale = () => {
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
-          <Box mb={2} sx={{ mb: 2 }}>
-            <TableContainer>
-              <Scrollbar_x>
-                <Table
-                  sx={{ minWidth: 750 }}
-                  aria-labelledby="tableTitle"
-                  size={dense ? 'small' : 'medium'}
-                >
-                  <EnhancedTableHead3
-                    numSelected={selected.length}
-                    order={order}
-                    orderBy={orderBy}
-                    onSelectAllClick={handleSelectAllClick}
-                    onRequestSort={handleRequestSort}
-                    rowCount={dataRows3.length}
-                  />
-                  <TableBody>
-                    {stableSort3(dataRows3, getComparator(order, orderBy))
-                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                      .map((row: any) => {
-                        return (
-                          <TableRow
-                            hover
-                            onClick={(event) => handleClick(event, row.name)}
-                            role="checkbox"
-                            tabIndex={-1}
-                            key={row.id}
-                          >
-                            {/* Mã vé (idTicket) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.id}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Thời gian tạo (creationTime) */}{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.voucherName}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.quantityFS}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Tương tác (interaction) */}
-                            {/* Đánh giá (endTime) */}{' '}
-                            <TableCell>
-                              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {/* Avatar on the left */}
-                                <img
-                                  src={row.img}
-                                  style={{
-                                    width: '40px',
-                                    height: '40px',
-                                    borderRadius: '50%',
-                                    marginRight: '10px',
-                                  }}
-                                />
-
-                                <Box>
-                                  <Typography variant="subtitle2">{row.product}</Typography>
-                                  <Typography style={{ fontSize: '12px', color: '#ccc' }}>
-                                    {'MKT000' + row.id}
-                                  </Typography>
-                                </Box>
-                              </Box>
-                            </TableCell>
-                            <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography
-                                    color="textSecondary"
-                                    variant="subtitle2"
-                                    display={'flex'}
-                                    gap={'2px'}
-                                  >
-                                    {(row?.listed).toLocaleString()}{' '}
-                                    <img src={icontext} alt="" width={22} />
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography
-                                    color="textSecondary"
-                                    variant="subtitle2"
-                                    display={'flex'}
-                                    gap={'2px'}
-                                  >
-                                    {row?.sale.toLocaleString()}{' '}
-                                    <img src={icontext} alt="" width={22} />
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography
-                                    color="textSecondary"
-                                    variant="subtitle2"
-                                    display={'flex'}
-                                    gap={'2px'}
-                                  >
-                                    {row?.flashSale.toLocaleString()}{' '}
-                                    <img src={icontext} alt="" width={22} />
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            {/* Trạng thái (Mavoucher) */}
-                            {/* Thông tin khách hàng (customerName) */}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row?.buy.toLocaleString()}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography
-                                    color="textSecondary"
-                                    variant="subtitle2"
-                                    display={'flex'}
-                                    gap={'2px'}
-                                  >
-                                    {row?.TypeVoucher.toLocaleString()}{' '}
-                                    <img src={icontext} alt="" width={22} />
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Box>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    <CustomSwitch
-                                      color="primary"
-                                      defaultChecked={row?.status ? true : false}
-                                    />
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>{' '}
-                          </TableRow>
-                        );
-                      })}
-                    {emptyRows > 0 && (
-                      <TableRow
-                        style={{
-                          height: (dense ? 33 : 53) * emptyRows,
-                        }}
-                      >
-                        <TableCell colSpan={6} />
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </Scrollbar_x>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={dataRows3.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              labelRowsPerPage="Số hàng trên mỗi trang"
-            />
-          </Box>
+          <CustomTable columns={headCells3} dataSource={dataRows3} />
         </BlankCard>
       </Grid>
     </div>

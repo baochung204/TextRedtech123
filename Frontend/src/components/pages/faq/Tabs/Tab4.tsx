@@ -1,112 +1,134 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  TablePagination,
-} from '@mui/material';
+
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DataTable4 from '../DataTable/TableTab4';
+import { Checkbox, Grid, IconButton, ListItemText, MenuItem, Select } from '@mui/material';
+import { IconEye, IconTrash } from '@tabler/icons-react';
+import { useState } from 'react';
+
+
+interface ItemTable4 {
+  images: string;
+  modelName: string;
+  modelLocal: string;
+  creationDate: Date;
+  trainedTokens: string;
+  idCode: string;
+}
+const column = [
+
+  {
+    title: 'ID',
+    dataIndex: 'idCode'
+  },
+  {
+    title: 'Ngày tạo',
+    dataIndex: 'creationDate',
+    render: (value: Date) => {
+      return new Date(value).toLocaleDateString();
+    }
+  },
+  {
+    title: 'Tên model',
+    dataIndex: 'modelName'
+  },
+  {
+    title: 'Model gốc',
+    dataIndex: 'modelLocal'
+  },
+  {
+    title: 'Token huấn luyện',
+    dataIndex: 'trainedTokens'
+  },
+  {
+    title: 'Hành động',
+    dataIndex: 'isCheck',
+    render: (row: ItemTable4, value: ItemTable4) => {
+      console.log(row);
+      console.log(value);
+
+      return (
+
+        <Grid container >
+          <Grid item xs={4}>
+            <IconButton
+              onClick={() => {
+                console.log(value.idCode);
+              }}
+            >
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+          </Grid>
+          <Grid item xs={4}>
+            <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+          </Grid>
+        </Grid>
+
+
+      )
+    }
+  }
+]
 
 const Tab4 = () => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
 
-  const handleChangePage = (newPage: number) => {
-    setPage(newPage);
+  const handleColumnChange = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    console.log('test: ', event);
+    if (value)
+      setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const paginatedData = DataTable4.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <Box>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <Typography variant="h6">
-                  ID
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">
-                  Ngày tạo
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">
-                  Tên model
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h6">
-                  Model gốc
-                </Typography>
-              </TableCell>
-              
-              <TableCell>
-                <Typography variant="h6">
-                  Token huấn luyện
-                </Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {paginatedData.map((items) => (
-              <TableRow key={items.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell>
-                  <Typography variant="subtitle2">
-                    {items.idCode}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2">
-                    {items.creationDate.toLocaleDateString()}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2">
-                    {items.modelName}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2">
-                    {items.modelLocal}
-                  </Typography>
-                </TableCell>
-               
-                <TableCell>
-                  <Typography variant="subtitle2">
-                    {items.trainedTokens}
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={DataTable4.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={() => handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage="Số hàng trên mỗi trang"
+    <Grid container>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: 'flex',
+          justifyContent: 'end',
+        }}
+      >
+        <Select
+          multiple
+          value={dataSelect}
+          displayEmpty
+          onChange={handleColumnChange}
+          renderValue={() => 'Bộ Lọc'}
+        >
+          {column.map((header: any) => {
+
+            // const isValidColumn = header.isValids ?? true;
+            // const isSelected =
+            // isValidColumn ? !dataSelect.includes(header.dataIndex) : dataSelect.includes(header.dataIndex);
+            const isValidColumn = header.isValids !== undefined ? header.isValids : true;
+
+            const isSelected = isValidColumn
+              ? !dataSelect.includes(header.dataIndex)
+              : dataSelect.includes(header.dataIndex);
+
+            return (// Nếu isValids là false
+              <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                <Checkbox checked={isSelected} />
+                <ListItemText primary={header.title} />
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </Grid>
+      <Grid item xs={12}>
+        <CustomTable
+          dataSource={DataTable4}
+          columns={column}
+          dataSelect={dataSelect}
         />
-      </TableContainer>
-    </Box>
+
+      </Grid>
+    </Grid>
   );
 };
 

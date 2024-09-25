@@ -4,12 +4,14 @@
 import {
   Box,
   Button,
+  Grid,
   MenuItem,
+  TableContainer,
   TableHead,
+  TableRow,
   Typography
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { format } from 'date-fns';
 import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -27,9 +29,47 @@ import { tabledh } from 'src/components/tables/tabledh';
 //   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
 //   { title: 'Lịch sử quy đổi ' },
 // ];
+
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 // import { useTheme } from '@emotion/react';
+const columns = [
+  {
+    title: 'ID thanh toán',
+    dataIndex: 'id'
+  },
+  {
+    title: 'Ngày yêu cầu',
+    dataIndex: 'createdAt',
+    render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
+  },
+  {
+    title: 'Ngày hoàn tất',
+    dataIndex: 'completedAt',
+    render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
+  },
+  {
+    title: "Số tiền",
+    dataIndex: 'amount',
+    render: (value: number) => `${value.toLocaleString()} VND`,
+  },
+  {
+    title: 'Trạng thái',
+    dataIndex: 'status',
+    render: (status: boolean) => status 
+      ? <Typography color="#13DEB9">Đã thanh toán</Typography> 
+      : <Typography color="#ff9800">Chờ xử lý</Typography>,
+  },
+  {
+    title: 'Hóa đơn',
+    dataIndex: 'invoice',
+    render: (invoiceUrl: string) => (
+      <Button color="success" onClick={() => window.open(invoiceUrl, '_blank')}>
+        Tải về
+      </Button>
+    ),
+  },
+];
 
 // function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 //   if (b[orderBy] < a[orderBy]) {
@@ -68,12 +108,59 @@ type Order = 'asc' | 'desc';
 //   return stabilizedThis.map((el) => el[0]);
 // }
 
+
 // interface HeadCell {
 //   disablePadding: boolean;
 //   id: any;
 //   label: string;
 //   numeric: boolean;
 // }
+// const headCells: HeadCell[] = [
+//   {
+//     id: 'requestId',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'ID thanh toán',
+//   },
+//   {
+//     id: 'createdAt',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Ngày yêu cầu',
+//   },
+//   {
+//     id: 'completedAt',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Ngày hoàn tất',
+//   },
+
+//   {
+//     id: 'amount',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Số tiền',
+//   },
+//   {
+//     id: 'status',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Trạng thái',
+//   },
+//   {
+//     id: 'invoice',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Tải hóa đơn',
+//   },
+// ];
+
+interface HeadCell {
+  disablePadding: boolean;
+  id: any;
+  label: string;
+  numeric: boolean;
+}
 const FilmsData: any = [
   {
     id: 1,
@@ -116,6 +203,7 @@ const FilmsData: any = [
     render: (value: any) => <Button color="success">{value ? 'tải về' : ''}</Button>,
   },
 ];
+
 
 interface EnhancedTableProps {
   numSelected: number;
