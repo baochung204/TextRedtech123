@@ -1,25 +1,22 @@
 import {
-  Dialog,
+  Box,
   Button,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Box,
-  Tooltip,
   Fab,
   Grid,
-  MenuItem,
-  useTheme,
   Paper,
+  Tooltip,
+  useTheme,
 } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
 
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import ParentCard from 'src/components/shared/ParentCard';
 interface CurrencyType {
   value: string;
   label: string;
@@ -50,14 +47,8 @@ const AddNotification = () => {
   // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
   //   setValue(newValue);
   // };
-  const [gender, setGender] = useState(currencies[0]?.value || '');
+
   const [Name, setName] = useState('');
-
-  const [companyPhone, setCompanyPhone] = useState('');
-
-  const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setGender(event.target.value as string);
-  };
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
