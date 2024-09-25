@@ -9,7 +9,7 @@ interface PropsTab3 {
   value: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  dataSelected?: string[]
+  dataSelected?: string[];
 }
 interface ItemTable3 {
   fileName: string;
@@ -17,7 +17,7 @@ interface ItemTable3 {
   creationDate: Date;
   formats: string;
   idCode: string;
-  isCheck: boolean
+  isCheck: boolean;
 }
 
 const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
@@ -30,12 +30,11 @@ const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
     },
     {
       title: 'Tên file',
-      dataIndex: 'fileName'
+      dataIndex: 'fileName',
     },
     {
       title: 'Dung lượng',
       dataIndex: 'datas',
-
     },
     {
       title: 'Ngày tải',
@@ -46,7 +45,7 @@ const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
     },
     {
       title: 'Định dạng',
-      dataIndex: 'formats'
+      dataIndex: 'formats',
     },
     {
       title: 'Hành động',
@@ -55,9 +54,9 @@ const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
         console.log(value, row);
         return (
           <>
-            <Grid container >
+            <Grid container>
               <Grid item xs={4}>
-                {value &&
+                {value && (
                   <IconButton
                     onClick={() => {
                       console.log(row.idCode);
@@ -65,7 +64,7 @@ const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
                   >
                     <IconEye stroke={2} style={{ color: '#5D87FF' }} />
                   </IconButton>
-                }
+                )}
               </Grid>
               <Grid item xs={4}>
                 <IconButton>
@@ -73,21 +72,18 @@ const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
                 </IconButton>
               </Grid>
             </Grid>
-
-
           </>
-        )
-      }
-    }
-  ]
+        );
+      },
+    },
+  ];
 
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
     } = event;
     console.log('test: ', event);
-    if (value)
-      setDataSelect(typeof value === 'string' ? value.split(',') : value);
+    if (value) setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
   return (
@@ -112,14 +108,14 @@ const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
             {column.map((header: any) => {
               console.log('header.isValids', header.isValids);
 
-             
               const isValidColumn = header.isValids !== undefined ? header.isValids : true;
 
               const isSelected = isValidColumn
                 ? !dataSelect.includes(header.dataIndex)
                 : dataSelect.includes(header.dataIndex);
 
-              return (// Nếu isValids là false
+              return (
+                // Nếu isValids là false
                 <MenuItem key={header.dataIndex} value={header.dataIndex}>
                   <Checkbox checked={isSelected} />
                   <ListItemText primary={header.title} />
@@ -129,23 +125,16 @@ const Tab3 = ({ value, open, setOpen, dataSelected }: PropsTab3) => {
           </Select>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable
-            dataSource={DataTable3}
-            columns={column}
-            dataSelect={dataSelect}
-          />
+          <CustomTable dataSource={DataTable3} columns={column} dataSelect={dataSelect} />
         </Grid>
 
         <DialogFile open={open} setOpen={setOpen} value={value} />
       </Grid>
-
     </>
   );
 };
 
 export default Tab3;
-
-
 
 // import React, { useState } from 'react';
 
@@ -304,7 +293,6 @@ export default Tab3;
 // };
 
 // export default Tab3;
-
 
 // import React, { useState, useEffect, useMemo } from 'react';
 // import DataTable3 from '../DataTable/TableTab3';
