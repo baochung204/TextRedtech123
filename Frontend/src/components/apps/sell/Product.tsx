@@ -27,15 +27,6 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
   TextField,
   Toolbar,
   Tooltip,
@@ -60,6 +51,7 @@ import img5 from 'src/assets/images/profile/user-5.jpg';
 
 import BlankCard from '../../../components/shared/BlankCard';
 
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import AddDialog from './layout/addDialog';
 
 interface TablePaginationActionsProps {
@@ -238,7 +230,63 @@ const rows: OrderType[] = [
     totalSales: '100,000',
   },
 ].sort((a, b) => (a.name < b.name ? -1 : 1));
-
+const FilmsData: any = [
+  { id: 1, title: 'Id', dataIndex: 'id' },
+  {
+    id: 2,
+    title: 'Ảnh',
+    dataIndex: 'imgsrc',
+    render: (row: any) => <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />,
+  },
+  { id: 3, title: '	Tên sản phẩm', dataIndex: 'name' },
+  {
+    id: 4,
+    title: 'Tags',
+    dataIndex: 'tags',
+    render: (row: any) => (
+      <Chip
+        color={
+          row === 'di động'
+            ? 'success'
+            : row === 'điện tử'
+            ? 'warning'
+            : row === 'đời sống'
+            ? 'error'
+            : 'secondary'
+        }
+        sx={{
+          borderRadius: '6px',
+        }}
+        size="small"
+        label={row}
+      />
+    ),
+  },
+  {
+    id: 5,
+    title: '	Giá niêm yết',
+    dataIndex: 'total',
+    render: (row: any) => (
+      <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+          {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    id: 6,
+    title: 'Giá khuyến mãi',
+    dataIndex: 'totalSales',
+    render: (row: any) => (
+      <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+          {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+        </Typography>
+      </Box>
+    ),
+  },
+];
 interface EnhancedTableToolbarProps {
   numSelected: number;
   handleSearch: React.ChangeEvent<HTMLInputElement> | any;
@@ -302,21 +350,8 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   );
 };
 
-const FilmsData: any = [
-  { id: 2, title: 'Ảnh' },
-  { id: 3, title: '	Tên sản phẩm' },
-  { id: 4, title: 'Tags' },
-  { id: 5, title: '	Giá niêm yết' },
-  { id: 6, title: 'Giá khuyến mãi' },
-];
 const PaginationTable = () => {
   const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [value, setValue] = React.useState(1);
-  const [selected] = React.useState<readonly string[]>([]);
-  const [search, setSearch] = React.useState('');
   const [filteredRows, setFilteredRows] = React.useState(rows);
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase();
@@ -330,43 +365,33 @@ const PaginationTable = () => {
     );
     setFilteredRows(filtered);
   };
+  const [search, setSearch] = React.useState('');
+  // const [page, setPage] = React.useState(0);
+  // const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  // const [value, setValue] = React.useState(1);
+  const [selected] = React.useState<readonly string[]>([]);
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
+  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
 
-  const handleChangePage = (_event: any, newPage: any) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (_event: any, newPage: any) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event: any) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-  // const [ID, setId] = React.useState(true);
-  const [ID] = React.useState(true);
-  const [IMG, setImg] = React.useState(true);
-  const [NAME, setName] = React.useState(true);
-  const [TAGS, setTags] = React.useState(true);
-  const [PRICE, setPrice] = React.useState(true);
-  const [PRICEVD, setPriceVD] = React.useState(true);
+  // const handleChangeRowsPerPage = (event: any) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
+  // // const [ID, setId] = React.useState(true);
+  // const [ID] = React.useState(true);
+  // const [IMG, setImg] = React.useState(true);
+  // const [NAME, setName] = React.useState(true);
+  // const [TAGS, setTags] = React.useState(true);
+  // const [PRICE, setPrice] = React.useState(true);
+  // const [PRICEVD, setPriceVD] = React.useState(true);
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>
       prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
     );
-    if (id === 2) {
-      setImg(!IMG);
-    }
-    if (id === 3) {
-      setName(!NAME);
-    }
-    if (id === 4) {
-      setTags(!TAGS);
-    }
-    if (id === 5) {
-      setPrice(!PRICE);
-    }
-    if (id === 6) {
-      setPriceVD(!PRICEVD);
-    }
   };
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
@@ -429,163 +454,7 @@ const PaginationTable = () => {
         </Box>
       </Box>
       <BlankCard>
-        <TableContainer>
-          <Table
-            aria-label="custom pagination table"
-            sx={{
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <Typography variant="h6">Id</Typography>
-                </TableCell>
-
-                {IMG && (
-                  <TableCell>
-                    <Typography variant="h6">Ảnh</Typography>
-                  </TableCell>
-                )}
-                {NAME && (
-                  <TableCell>
-                    <Typography variant="h6">Tên sản phẩm</Typography>
-                  </TableCell>
-                )}
-                {TAGS && (
-                  <TableCell>
-                    <Typography variant="h6">Tags</Typography>
-                  </TableCell>
-                )}
-                {PRICE && (
-                  <TableCell>
-                    <Typography variant="h6">Giá niêm yết</Typography>
-                  </TableCell>
-                )}
-                {PRICEVD && (
-                  <TableCell>
-                    <Typography variant="h6">Giá khuyến mãi</Typography>
-                  </TableCell>
-                )}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredRows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => (
-                  <TableRow key={row.id}>
-                    {ID && (
-                      <TableCell>
-                        <Typography variant="subtitle2">{row.id}</Typography>
-                      </TableCell>
-                    )}
-                    {IMG && (
-                      <TableCell>
-                        <Stack direction="row" spacing={2} alignItems="center">
-                          <Avatar
-                            src={row.imgsrc}
-                            alt={row.imgsrc}
-                            sx={{ width: 30, height: 30 }}
-                          />
-                        </Stack>
-                      </TableCell>
-                    )}
-                    {NAME && (
-                      <TableCell>
-                        <Typography variant="subtitle2" fontWeight="600">
-                          {row.name}
-                        </Typography>
-                      </TableCell>
-                    )}
-                    {TAGS && (
-                      <TableCell>
-                        <Chip
-                          color={
-                            row.tags === 'di động'
-                              ? 'success'
-                              : row.tags === 'điện tử'
-                              ? 'warning'
-                              : row.tags === 'đời sống'
-                              ? 'error'
-                              : 'secondary'
-                          }
-                          sx={{
-                            borderRadius: '6px',
-                          }}
-                          size="small"
-                          label={row.tags}
-                        />
-                      </TableCell>
-                    )}
-                    {PRICE && (
-                      <TableCell>
-                        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                          <Typography
-                            color="textSecondary"
-                            variant="subtitle2"
-                            sx={{ display: 'flex', gap: 0.5 }}
-                          >
-                            {row.total}{' '}
-                            <img
-                              src={logoPoint}
-                              alt=""
-                              width={20}
-                              height={20}
-                              style={{ borderRadius: 50 }}
-                            />
-                          </Typography>
-                        </Box>
-                      </TableCell>
-                    )}
-                    {PRICEVD && (
-                      <TableCell>
-                        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                          <Typography
-                            color="textSecondary"
-                            variant="subtitle2"
-                            sx={{ display: 'flex', gap: 0.5 }}
-                          >
-                            {row.totalSales}{' '}
-                            <img
-                              src={logoPoint}
-                              alt=""
-                              width={20}
-                              height={20}
-                              style={{ borderRadius: 50 }}
-                            />
-                          </Typography>
-                        </Box>
-                      </TableCell>
-                    )}
-                  </TableRow>
-                ))}
-
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                  colSpan={6}
-                  count={rows.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  SelectProps={{
-                    native: true,
-                  }}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={TablePaginationActions}
-                  labelRowsPerPage="Số hàng trên trang:"
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
+        <CustomTable columns={FilmsData} dataSource={filteredRows} />
       </BlankCard>
     </PageContainer>
   );

@@ -178,7 +178,7 @@ const ProductDetail = () => {
                 size="large"
                 fullWidth
                 variant="contained"
-                sx={{ width: '200px' }}
+                // sx={{ width: '200px' }}
                 onClick={() => dispatch(addToCart(product as any)) && handleClick()}
               >
                 Thêm giỏ hàng

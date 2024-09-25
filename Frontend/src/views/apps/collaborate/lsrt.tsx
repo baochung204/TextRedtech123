@@ -31,7 +31,10 @@ import { tabledh } from 'src/components/tables/tabledh';
 // ];
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+<<<<<<< HEAD
 import dayjs from 'dayjs';
+=======
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 // import { useTheme } from '@emotion/react';
 const columns = [
@@ -109,6 +112,7 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
   return stabilizedThis.map((el) => el[0]);
 }
 
+<<<<<<< HEAD
 // interface HeadCell {
 //   disablePadding: boolean;
 //   id: any;
@@ -154,6 +158,56 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
 //     label: 'Tải hóa đơn',
 //   },
 // ];
+=======
+interface HeadCell {
+  disablePadding: boolean;
+  id: any;
+  label: string;
+  numeric: boolean;
+}
+const FilmsData: any = [
+  {
+    id: 1,
+    title: 'ID thanh toán',
+    dataIndex: 'MHD',
+  },
+  {
+    id: 2,
+    title: 'Ngày yêu cầu',
+    dataIndex: 'createdAt',
+    render: (value: any) => format(new Date(value), 'dd/MM/yyyy  HH:mm'),
+  },
+  {
+    id: 3,
+    title: 'Ngày hoàn tất',
+    dataIndex: 'completedAt',
+    render: (value: any) => format(new Date(value), 'dd/MM/yyyy  HH:mm'),
+  },
+  {
+    id: 4,
+    title: 'Số tiền',
+    dataIndex: 'money',
+    render: (value: any) => `${value} đ`,
+  },
+  {
+    id: 5,
+    title: 'Trạng thái',
+    dataIndex: 'status',
+    render: (value: any) => (
+      <Typography color={value ? '#13DEB9' : '#ba8b02'} variant="subtitle2" fontWeight={'24px'}>
+        {value ? 'đã thanh toán' : 'Chờ xử lý'}
+      </Typography>
+    ),
+  },
+
+  {
+    id: 7,
+    title: 'Hành động',
+    dataIndex: 'status',
+    render: (value: any) => <Button color="success">{value ? 'tải về' : ''}</Button>,
+  },
+];
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
 
 interface EnhancedTableProps {
   numSelected: number;
@@ -208,9 +262,37 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
   return (
     <TableHead>
+<<<<<<< HEAD
       <TableRow>
        
       </TableRow>
+=======
+      {/* <TableRow>
+        {headCells.map((headCell) => (
+          <TableCell
+            key={headCell.id}
+            align={headCell.numeric ? 'right' : 'left'}
+            padding={headCell.disablePadding ? 'none' : 'normal'}
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
+            >
+              <Typography variant="subtitle1" fontWeight="700">
+                {headCell.label}
+              </Typography>
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </TableRow> */}
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
     </TableHead>
   );
 }
@@ -374,12 +456,16 @@ const HistoryMoney = () => {
       </Box>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
+<<<<<<< HEAD
           <TableContainer>
           <Grid item xs={12}>
         <CustomTable columns={columns} dataSource={tabledh} />;
       </Grid>
           </TableContainer>
           
+=======
+          <CustomTable columns={FilmsData} dataSource={tabledh} />
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
         </Box>
       </BlankCard>
     </PageContainer>
