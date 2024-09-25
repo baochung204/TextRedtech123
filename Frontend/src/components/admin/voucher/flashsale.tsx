@@ -13,7 +13,7 @@ import {
   TableSortLabel,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import s24 from 'src/assets/images/products/s24.jpg';
 // components
@@ -594,17 +594,3 @@ const FlashSale = () => {
 };
 
 export default FlashSale;
-//Khai dan khai dan khai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai
-//dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai dankhai 

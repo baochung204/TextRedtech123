@@ -1,3 +1,4 @@
+import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import {
   IconDatabaseSmile,
@@ -7,8 +8,6 @@ import {
   IconTrash,
   IconUsers,
 } from '@tabler/icons-react';
-import { HeadCell } from '../types/HeadCell';
-import { IconButton } from '@mui/material';
 export const Files = [
   {
     bgColor: 'primary.light',
@@ -107,51 +106,35 @@ export const Files = [
     ),
   },
 ];
-export const FileCells: HeadCell[] = [
-
-    {
-        dataIndex: 'id',
-        numeric: false,
-        disablePadding: false,
-        label: 'ID',
-    },
-    {
-        dataIndex: 'fileName',
-        numeric: false,
-        disablePadding: false,
-        label: 'Tên file',
-    },
-    {
-        dataIndex: 'customer',
-        numeric: false,
-        disablePadding: false,
-        label: 'Khách hàng',
-    },
-    {
-        dataIndex: 'format',
-        numeric: false,
-        disablePadding: false,
-        label: 'Định dạng',
-    },
-    {
-        dataIndex: 'size',
-        numeric: false,
-        disablePadding: false,
-        label: 'Dung lượng',
-    },
-    {
-        dataIndex: 'uploadDate',
-        numeric: false,
-        disablePadding: false,
-        label: 'Ngày tải',
-    },
-    {
-        dataIndex: 'actions',
-        numeric: false,
-        disablePadding: false,
-        label: 'Hoạt động',
-    },
-
+export const FileCells: any = [
+  {
+    dataIndex: 'id',
+    title: 'ID',
+  },
+  {
+    dataIndex: 'fileName',
+    title: 'Tên file',
+  },
+  {
+    dataIndex: 'customer',
+    title: 'Khách hàng',
+  },
+  {
+    dataIndex: 'format',
+    title: 'Định dạng',
+  },
+  {
+    dataIndex: 'size',
+    title: 'Dung lượng',
+  },
+  {
+    dataIndex: 'uploadDate',
+    title: 'Ngày tải',
+  },
+  {
+    dataIndex: 'actions',
+    title: 'Hoạt động',
+  },
 ];
 
 export const FileRows = [

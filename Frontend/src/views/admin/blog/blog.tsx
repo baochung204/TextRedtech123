@@ -11,7 +11,7 @@ import {
   Slide,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -31,17 +31,19 @@ import PageContainer from './../../../components/container/PageContainer';
 import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
 import TableBlog from './_components/TableBlog';
+import BlankCard from 'src/components/shared/BlankCard';
 
 const BCrumb = [
-  { to: '/', title: 'Trang Chủ' },
-  { to: '/apps/blog/posts', title: 'Danh sách bài viết' },
+  { to: '/admin', title: 'Trang Chủ' },
+  { to: '/admin/blogs', title: 'Danh sách bài viết' },
 ];
 
-const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement<any, any> }>(
-  function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  }
-);
+const Transition = React.forwardRef<
+  unknown,
+  TransitionProps & { children: React.ReactElement<any, any> }
+>(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 interface StyleProps {
   bgColor: string;
@@ -224,7 +226,9 @@ const BlogAdmin = () => {
                   </Grid>
                 </Grid>
               </Grid>
-              <TableBlog />
+              <BlankCard>
+                <TableBlog />
+              </BlankCard>
             </TabPanel>
           </Box>
         </TabContext>
