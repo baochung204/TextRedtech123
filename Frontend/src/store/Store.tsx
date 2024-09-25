@@ -12,6 +12,8 @@ import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/Products';
 
+import UrlSlice from './apps/resources/url/UrlSlice';
+
 import {
   TypedUseSelectorHook,
   useDispatch as useAppDispatch,
@@ -34,6 +36,7 @@ export const store = configureStore({
     selectReducer: SelectedReducer,
     integration: integrationReducer,
     customer: CustomerReducer,
+    urlReducer: UrlSlice,
     product: productReducer,
   },
 });
@@ -50,7 +53,8 @@ const rootReducer = combineReducers({
   blogReducer: BlogReducer,
   selectReducer: SelectedReducer,
   integration: integrationReducer,
-  customer: CustomerReducer
+  customer: CustomerReducer,
+  urlReducer: UrlSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
