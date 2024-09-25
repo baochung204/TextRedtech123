@@ -1,4 +1,61 @@
 {
+<<<<<<< HEAD
+  "products": [
+    {
+      "product_id": 1,
+      "quantity": 2
+    },
+    {
+      "product_id": 2,
+      "quantity": 1
+    }
+  ],
+  "url": [
+    {
+      "id": 1,
+      "tilte": "Amazing Landscape",
+      "describe": "Discover the beauty of nature with this stunning landscape.",
+      "user_id": "#059424",
+      "url": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 2,
+      "tilte": "Urban Exploration",
+      "describe": "Explore the heart of the city through its hidden gems.",
+      "user_id": "#123456",
+      "url": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 3,
+      "tilte": "Wildlife Adventure",
+      "describe": "Get up close with wildlife in their natural habitat.",
+      "user_id": "#789012",
+      "url": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 4,
+      "tilte": "Mountain Peaks",
+      "describe": "Experience the thrill of conquering the highest mountains.",
+      "user_id": "#345678",
+      "url": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 5,
+      "tilte": "Ocean Wonders",
+      "describe": "Dive into the depths of the ocean to discover its secrets.",
+      "user_id": "#901234",
+      "url": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 6,
+      "tilte": "Desert Dunes",
+      "describe": "Feel the heat and beauty of the vast desert landscapes.",
+      "user_id": "#567890",
+      "url": "https://picsum.photos/300/300"
+    }
+  ]
+}
+=======
     "products": [
         {
             "shopProductId": 101,
@@ -32,3 +89,4 @@
         }
     ]
 }
+>>>>>>> 78148bd8d10412f6f033cdb15168a139e9df85d2
