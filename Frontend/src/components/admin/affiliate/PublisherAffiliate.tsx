@@ -1,14 +1,13 @@
 import { Avatar, Box, Chip, Grid, InputAdornment, TextField, Typography } from '@mui/material';
 import { IconBrandGoogleHome, IconCoinOff, IconCoins, IconSearch } from '@tabler/icons-react';
 
-import { IconBox } from '@tabler/icons-react';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import PublisherTable from './component/PublisherTable';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import { DataPublishersTable } from './datatable/OrderTableData';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { IconBox } from '@tabler/icons-react';
 import React from 'react';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import { DataPublishersTable } from './datatable/OrderTableData';
 
 const DataBox = [
   {
@@ -275,7 +274,7 @@ const PublisherAffiliate = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={4} />
+          <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
 
         <Grid item xs={12}>
