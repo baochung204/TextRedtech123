@@ -10,15 +10,21 @@ import Tab2 from './Tabs/Tab2';
 import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
-import { Grid, IconButton, TextField, InputAdornment, MenuItem, Checkbox, Select, ListItemText } from '@mui/material';
+import {
+  Grid,
+  IconButton,
+  TextField,
+  InputAdornment,
+  MenuItem,
+  Checkbox,
+  Select,
+  ListItemText,
+} from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from '@tabler/icons-react';
 // import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
-
-
 
 const Faq = () => {
   const [value, setValue] = useState<string>('1');
@@ -34,14 +40,11 @@ const Faq = () => {
 
   const handleSearch = () => {
     setSearch(!search);
-  }
-
-
+  };
 
   const searchSection = (
     <Box>
       <Grid container sx={{ display: 'flex', alignItems: 'center', paddingTop: 2 }}>
-
         <Grid item>
           <TextField
             id="outlined-search"
@@ -80,7 +83,6 @@ const Faq = () => {
       </Grid>
     </Box>
   );
-
 
   // const searchSection = (
   //   <Box>
@@ -143,10 +145,7 @@ const Faq = () => {
     <Grid container>
       <Grid item xs={12}>
         <Box>
-          <TabContext
-            value={value}
-
-          >
+          <TabContext value={value}>
             <Box
               sx={{
                 borderBottom: 1,
@@ -156,7 +155,7 @@ const Faq = () => {
                 alignItems: 'center',
                 px: 1,
                 overflowX: 'auto',
-                width: '100%'
+                width: '100%',
               }}
             >
               <TabList
@@ -164,13 +163,8 @@ const Faq = () => {
                 variant="scrollable"
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
-
               >
-                <Tab
-                  label="Chiến Lược"
-                  value="1"
-                  
-                />
+                <Tab label="Chiến Lược" value="1" />
                 <Tab label="Function" value="2" />
                 <Tab label="Files" value="3" />
                 <Tab label="Model" value="4" />
@@ -183,19 +177,19 @@ const Faq = () => {
             <TabPanel value="1">
               <Tab1 />
             </TabPanel>
-            <TabPanel value="2">
+            <TabPanel value="2" sx={{ px: 0 }}>
               <Tab2 />
             </TabPanel>
-            <TabPanel value="3">
+            <TabPanel value="3" sx={{ px: 0 }}>
               <Tab3 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
-            <TabPanel value="4">
+            <TabPanel value="4" sx={{ px: 0 }}>
               <Tab4 />
             </TabPanel>
-            <TabPanel value="5">
+            <TabPanel value="5" sx={{ px: 0 }}>
               <Tab5 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
-            <TabPanel value="6">
+            <TabPanel value="6" sx={{ px: 0 }}>
               <Tab6 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
           </TabContext>
