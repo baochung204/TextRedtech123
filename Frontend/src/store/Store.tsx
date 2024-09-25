@@ -22,6 +22,8 @@ import {
 import { combineReducers } from 'redux';
 import CustomerReducer from './apps/customer/customerSlice';
 
+import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
+
 export const store = configureStore({
   reducer: {
     customizer: CustomizerReducer,
@@ -38,6 +40,7 @@ export const store = configureStore({
     customer: CustomerReducer,
     urlReducer: UrlSlice,
     product: productReducer,
+    customeraffiliate: CustomerAffiliate,
   },
 });
 
@@ -55,6 +58,7 @@ const rootReducer = combineReducers({
   integration: integrationReducer,
   customer: CustomerReducer,
   urlReducer: UrlSlice,
+  customeraffiliate: CustomerAffiliate,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
