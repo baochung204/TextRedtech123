@@ -10,6 +10,7 @@ import {
   Typography,
   Box,
   IconButton,
+  Paper
 } from '@mui/material';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
@@ -19,22 +20,24 @@ interface Column {
   dataIndex?: string;
   render?: (value: any, record: any, rowIndex: number) => React.ReactNode;
   sort?: boolean;
+  isValids?: boolean;
 }
 
 interface CustomTableProps {
   columns: Column[];
   dataSource: any[];
   rowsPerPageOptions?: number[];
+  dataSelect?: string[];
 }
 
 const CustomTable: React.FC<CustomTableProps> = ({
   columns,
   dataSource,
   rowsPerPageOptions = [5, 10, 25],
+  dataSelect = []
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[0]);
-
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
@@ -50,41 +53,54 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const paginatedData = dataSource.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <TableContainer sx={{ px: 2 }}>
+    <TableContainer component={Paper} sx={{ px: 2 }}>
       <Scrollbar_x>
         <Table>
           <TableHead>
             <TableRow>
-              {columns.map((column, index) => (
-                <TableCell key={index}>
-                  <Box
-                    sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                  >
-                    <Typography variant="h6" sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}>
-                      {column.title}
-                    </Typography>
-                    {column.sort && (
-                      <IconButton>
-                        <SwapVertIcon />
-                      </IconButton>
+              {columns.map((column, index) => {
+                const isColumnVisible = !dataSelect.includes(column.dataIndex ?? '');
+                const isSortable = column.sort ?? false;
+                console.log(`isColumnVisible ${column.title}`, isColumnVisible);
+
+
+                return (
+                  <>
+                    {isColumnVisible && (
+                      <TableCell key={index}>
+                        <Box
+                          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                        >
+                          <Typography variant="h6" sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}>
+                            {column.title}
+                          </Typography>
+                          {isSortable && (
+                            <IconButton>
+                              <SwapVertIcon />
+                            </IconButton>
+                          )}
+                        </Box>
+                      </TableCell>
                     )}
-                  </Box>
-                </TableCell>
-              ))}
+                  </>
+                );
+              })}
             </TableRow>
           </TableHead>
-
           <TableBody>
             {paginatedData.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => {
                   const value = column.dataIndex ? row[column.dataIndex] : undefined;
+                  const isColumnVisible = !dataSelect.includes(column.dataIndex ?? '');
                   return (
-                    <TableCell key={colIndex} sx={{ whiteSpace: 'nowrap' }}>
-                      <Typography variant="subtitle2">
-                        {column.render ? column.render(value, row, rowIndex) : value}
-                      </Typography>
-                    </TableCell>
+                    isColumnVisible && (
+                      <TableCell key={colIndex} sx={{ whiteSpace: 'nowrap' }}>
+                        <Typography variant="subtitle2">
+                          {column.render ? column.render(value, row, rowIndex) : value}
+                        </Typography>
+                      </TableCell>
+                    )
                   );
                 })}
               </TableRow>
@@ -100,7 +116,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-        labelRowsPerPage="Số hàng trên trang "
+        labelRowsPerPage="Số hàng trên trang"
         labelDisplayedRows={({ from, to, count }) =>
           `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
         }

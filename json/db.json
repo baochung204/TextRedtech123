@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "products": [
     {
       "product_id": 1,
@@ -54,3 +55,38 @@
     }
   ]
 }
+=======
+    "products": [
+        {
+            "shopProductId": 101,
+            "shopProductName": "Áo thun trắng",
+            "shopProductImageUrl": "https://example.com/product1.png",
+            "price": 150000,
+            "optionPrice": 99000,
+            "productTag": [
+                {
+                    "tagId": 12,
+                    "tagName": "Fashion"
+                },
+                {
+                    "tagId": 15,
+                    "tagName": "Summer Collection"
+                }
+            ]
+        },
+        {
+            "shopProductId": 102,
+            "shopProductName": "Áo sơ mi xanh",
+            "shopProductImageUrl": "https://example.com/product2.png",
+            "price": 45000,
+            "optionPrice": 39000,
+            "productTag": [
+                {
+                    "tagId": 13,
+                    "tagName": "Business Casual"
+                }
+            ]
+        }
+    ]
+}
+>>>>>>> 78148bd8d10412f6f033cdb15168a139e9df85d2

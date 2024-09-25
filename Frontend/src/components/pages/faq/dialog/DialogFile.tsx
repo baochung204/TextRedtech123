@@ -52,7 +52,7 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     return (
         <>
             <Dialog
-                fullWidth={true}
+                fullWidth
                 maxWidth='sm'
                 open={value === '3' && open ? true : false}
                 onClose={handleClose}
@@ -62,8 +62,6 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     justifyContent: 'center'
                 }}>
                     <Box sx={{
-                        borderBottom: '1px solid #E6EAEF',
-                        paddingX: 25,
                         paddingBottom: 2
                     }}>
                         <Typography fontWeight={600} variant='h3'>

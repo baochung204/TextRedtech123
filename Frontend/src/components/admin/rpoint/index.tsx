@@ -67,18 +67,18 @@ const columns = [
   //   // dataIndex: 'hanhdong',
   //   render: (row: PropsTable) => {
   //     return (
-  //       <Grid container spacing={7}>
-  //         <Grid item xs={6}>
-  //           <Button variant="contained" onClick={() => console.log(row.id)}>
-  //             V
-  //           </Button>
-  //         </Grid>
-  //         <Grid item xs={6}>
-  //           <Button variant="contained" color="error">
-  //             X
-  //           </Button>
-  //         </Grid>
-  //       </Grid>
+        // <Grid container spacing={7}>
+        //   <Grid item xs={6}>
+        //     <Button variant="contained" onClick={() => console.log(row.id)}>
+        //       V
+        //     </Button>
+        //   </Grid>
+        //   <Grid item xs={6}>
+        //     <Button variant="contained" color="error">
+        //       X
+        //     </Button>
+        //   </Grid>
+        // </Grid>
   //     );
   //   },
   // },
