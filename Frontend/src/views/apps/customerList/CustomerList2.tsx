@@ -9,7 +9,7 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
@@ -26,11 +26,11 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import { fetchCustomer } from 'src/store/apps/customer/CustomerSlice';
+import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import PopupAddList2 from './PopupAddlist2';
 
-const columns =  [
+const columns = [
   {
     title: 'ID khách hàng',
     dataIndex: 'ID_customer',
@@ -73,7 +73,7 @@ const columns =  [
   {
     title: 'Tổng chi tiêu',
     dataIndex: 'total_spend',
-    render: ( value: any) => (
+    render: (value: any) => (
       // console.log( value.imgsrc)
 
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -114,8 +114,8 @@ const CustomerList2 = () => {
 
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   // const [value, setValue] = React.useState('1');
-  const dispatch = useDispatch<AppDispatch>()
-  const dataCustomer = useSelector((state: AppState) => (state.customer.data))
+  const dispatch = useDispatch<AppDispatch>();
+  const dataCustomer = useSelector((state: AppState) => state.customer.data);
   // Function mở popup
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -130,8 +130,8 @@ const CustomerList2 = () => {
   //   setValue(newValue);
   // };
   useEffect(() => {
-    dispatch(fetchCustomer())
-  },[dispatch])
+    dispatch(fetchCustomer());
+  }, [dispatch]);
   return (
     <PageContainer>
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
@@ -221,7 +221,6 @@ const CustomerList2 = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-
         <DialogContent sx={{ paddingTop: '10px' }}>
           <PopupAddList2 />
         </DialogContent>

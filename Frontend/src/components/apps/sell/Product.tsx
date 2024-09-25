@@ -34,7 +34,6 @@ import {
 } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 
-
 import PageContainer from 'src/components/container/PageContainer';
 
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';

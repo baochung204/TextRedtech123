@@ -17,11 +17,14 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
-import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import { fetchCustomer } from 'src/store/apps/customer/customerSliceAffiliate';
+import { AppDispatch, AppState } from 'src/store/Store';
 import PopupAdd from './PopupAdd';
 
 const columns = [
@@ -32,7 +35,7 @@ const columns = [
   {
     title: 'Họ và tên',
     dataIndex: 'name',
-    render: ( value: any) => (
+    render: (value: any) => (
       // console.log( value.imgsrc)
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <img
@@ -73,7 +76,7 @@ const Transition = React.forwardRef<unknown, TransitionProps & { children: React
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
-  { to: '/apps/blog/posts', title: 'Danh sách khách hàng' },
+  { to: '', title: 'Danh sách khách hàng' },
 ];
 
 const CustomerList = () => {
@@ -85,6 +88,12 @@ const CustomerList = () => {
     setIsPopupOpen(false);
   };
 
+  const dispatch = useDispatch<AppDispatch>();
+  const dataCustomer = useSelector((state: AppState) => state.customeraffiliate.data);
+
+  useEffect(() => {
+    dispatch(fetchCustomer());
+  }, [dispatch]);
   return (
     <PageContainer>
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
@@ -145,7 +154,7 @@ const CustomerList = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <CustomTable columns={columns} dataSource={DataCustomerListAffiliateTable} />;
+                  <CustomTable columns={columns} dataSource={dataCustomer} />;
                 </Grid>
               </Grid>
             </TabPanel>
