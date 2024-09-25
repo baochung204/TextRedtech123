@@ -15,7 +15,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from '@tabler/icons-react';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 
-
 const Faq = () => {
   const [value, setValue] = React.useState('1');
   const [open, setOpen] = useState<boolean>(false);
@@ -50,8 +49,8 @@ const Faq = () => {
                 <Tab label="URL" value="6" />
               </TabList>
               {(value === '3' || value === '5' || value === '6') && (
-                <Box>                  
-                  <Grid container sx={{display: 'flex', alignItems: 'center'}} >
+                <Box>
+                  <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
                     <Grid item>
                       <CustomSelect
                         labelId="column-sort"
@@ -73,7 +72,7 @@ const Faq = () => {
                         variant="outlined"
                         inputProps={{ 'aria-label': 'Search Followers' }}
                         sx={{
-                          fontSize: { xs: '50px', sm: '50px', md: '50px' }
+                          fontSize: { xs: '50px', sm: '50px', md: '50px' },
                         }}
                         InputProps={{
                           startAdornment: (
@@ -101,22 +100,22 @@ const Faq = () => {
                 </Box>
               )}
             </Box>
-            <TabPanel value="1">
+            <TabPanel value="1" sx={{ px: 0 }}>
               <Tab1 />
             </TabPanel>
-            <TabPanel value="2">
+            <TabPanel value="2" sx={{ px: 0 }}>
               <Tab2 />
             </TabPanel>
-            <TabPanel value="3">
+            <TabPanel value="3" sx={{ px: 0 }}>
               <Tab3 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
-            <TabPanel value="4">
+            <TabPanel value="4" sx={{ px: 0 }}>
               <Tab4 />
             </TabPanel>
-            <TabPanel value="5">
+            <TabPanel value="5" sx={{ px: 0 }}>
               <Tab5 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
-            <TabPanel value="6">
+            <TabPanel value="6" sx={{ px: 0 }}>
               <Tab6 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
           </TabContext>
