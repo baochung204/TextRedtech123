@@ -1,13 +1,12 @@
 {
-    "files":[
+    "files": [
         {
             "id": "FILE001",
             "fileName": "Báo cáo Tài chính 2024",
             "customer": "Công ty ABC",
             "format": "PDF",
             "size": "25.5 mb",
-            "uploadDate": "2024-09-01",
-            "actions": "View | Delete"
+            "uploadDate": "2024-09-01"
         },
         {
             "id": "FILE002",
@@ -15,8 +14,7 @@
             "customer": "Công ty XYZ",
             "format": "DOCX",
             "size": "25.5 mb",
-            "uploadDate": "2024-09-02",
-            "actions": "View | Delete"
+            "uploadDate": "2024-09-02"
         },
         {
             "id": "FILE003",
@@ -24,8 +22,7 @@
             "customer": "Công ty DEF",
             "format": "XLSX",
             "size": "25.5 mb",
-            "uploadDate": "2024-09-03",
-            "actions": "View | Delete"
+            "uploadDate": "2024-09-03"
         },
         {
             "id": "FILE004",
@@ -33,8 +30,7 @@
             "customer": "Công ty GHI",
             "format": "PDF",
             "size": "25.5 mb",
-            "uploadDate": "2024-09-04",
-            "actions": "View | Delete"
+            "uploadDate": "2024-09-04"
         },
         {
             "id": "FILE005",
@@ -42,8 +38,7 @@
             "customer": "Công ty JKL",
             "format": "DOCX",
             "size": "25.5 mb",
-            "uploadDate": "2024-09-05",
-            "actions": "View | Delete"
+            "uploadDate": "2024-09-05"
         },
         {
             "id": "FILE006",
@@ -51,8 +46,30 @@
             "customer": "Công ty MNO",
             "format": "DWG",
             "size": "25.5 mb",
-            "uploadDate": "2024-09-06",
-            "actions": "View | Delete"
+            "uploadDate": "2024-09-06"
+        }
+    ],
+    "integration": [
+        {
+            "id": "123456789012345",
+            "name": "Cửa hàng ABC"
+        },
+        {
+            "id": "987654321098765",
+            "name": "Dịch vụ XYZ"
+        }
+    ],
+    "customer": [
+        {
+            "name_customer": "Lê Tài Đức",
+            "datetime": "2024-01-02",
+            "ID_customer": "1",
+            "assistant": "Nguyễn Văn A",
+            "channel": "Lâm Đình Khoa",
+            "tag": "Đơn hàng A",
+            "total_spend": 70,
+            "phone_number": "0987654321",
+            "address": "Hà Nội"
         }
     ]
 }

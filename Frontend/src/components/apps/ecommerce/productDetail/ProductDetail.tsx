@@ -17,6 +17,7 @@ import { fetchProducts, addToCart } from '../../../../store/apps/eCommerce/EComm
 import AlertCart from '../productCart/AlertCart';
 // import { ProductType } from 'src/types/apps/eCommerce';
 import logo from 'src/assets/images/logos/R-Point.png';
+import { IconMinus, IconPlus } from '@tabler/icons-react';
 
 const ProductDetail = () => {
   const theme = useTheme();
@@ -33,7 +34,9 @@ const ProductDetail = () => {
 
   // Set qty
   // const [count, setCount] = useState(500);
-  const count = 500;
+  const count_data = 500;
+
+  const [count, setCount] = useState(1);
 
   // For alert when added something to cart
   const [cartalert, setCartalert] = useState(false);
@@ -123,7 +126,7 @@ const ProductDetail = () => {
             <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
           </Stack>
           <Divider />
-          {/* Qty */}
+
           <Stack direction="row" alignItems="center" pb={5}>
             <Typography variant="h6" mt={4} mr={4}>
               Dung lượng:
@@ -134,7 +137,23 @@ const ProductDetail = () => {
                   <IconMinus size="1.1rem" />
                 </Button> */}
               </ButtonGroup>
-              <Button key="two">{count} MB</Button>
+              <Button key="two">{count_data} MB</Button>
+            </Box>
+          </Stack>
+          <Stack direction="row" alignItems="center" pb={5}>
+            <Typography variant="h6" mr={4}>
+              Số lượng:
+            </Typography>
+            <Box>
+              <ButtonGroup size="small" color="secondary" aria-label="small button group">
+                <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
+                  <IconMinus size="1.1rem" />
+                </Button>
+                <Button key="two">{count}</Button>
+                <Button key="three" onClick={() => setCount(count + 1)}>
+                  <IconPlus size="1.1rem" />
+                </Button>
+              </ButtonGroup>
             </Box>
           </Stack>
           <Divider />
@@ -159,7 +178,7 @@ const ProductDetail = () => {
                 size="large"
                 fullWidth
                 variant="contained"
-                sx={{ width: '200px' }}
+                // sx={{ width: '200px' }}
                 onClick={() => dispatch(addToCart(product as any)) && handleClick()}
               >
                 Thêm giỏ hàng

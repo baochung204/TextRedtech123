@@ -1,4 +1,4 @@
-import { Box, Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Chip, Grid, InputAdornment, TextField, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -401,6 +401,131 @@ const dataRows: RechargeTransaction[] = [
   },
 ];
 
+const columns = [
+  {
+    title: 'ID Publisher',
+    dataIndex: 'id_publisher',
+  },
+
+  {
+    title: 'Đối tác',
+    render: (row, value: any) => (
+      <Box
+        sx={{
+          display: 'flex',
+          width: '200px',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar
+          src={value.imgsrc}
+          variant="rounded"
+          alt={value.imgsrc}
+          sx={{ width: 48, height: 48 }}
+        />
+        <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
+          {value.name_partner}
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+  },
+  {
+    title: 'SĐT',
+    dataIndex: 'phone_number',
+  },
+  {
+    title: 'Loại hình',
+    dataIndex: 'email_publisher',
+    render: (row, value: any) => (
+      <Typography style={{ width: '100px' }} variant="subtitle2">
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography style={{ width: '200px' }} variant="subtitle2">
+            <Chip
+              label={value.type ? 'Doanh nghiệp' : 'Cá nhân'}
+              color={value.type ? 'success' : 'warning'}
+              variant="outlined"
+            />
+          </Typography>
+        </Box>
+      </Typography>
+    ),
+  },
+  {
+    title: 'Ngày đăng ký',
+    dataIndex: 'create_date',
+  },
+  {
+    title: 'Trạng thái tài khoản',
+  },
+  {
+    title: 'Rank',
+    dataIndex: 'rank',
+  },
+  {
+    title: 'Hồ sơ',
+
+    render: (row, value: any) => (
+      <Typography style={{ width: '100px' }} variant="subtitle2">
+        {/* <Chip label={value.contract} color={getStatusColor(value.contract)} /> */}
+      </Typography>
+    ),
+  },
+  {
+    title: 'Hợp đồng Affiliate',
+    render: (row, value: any) => (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Typography style={{ width: '100px' }} variant="subtitle2">
+          <Chip
+            label={value.brief ? 'Đã ký' : 'Chưa ký'}
+            color={value.brief ? 'success' : 'warning'}
+            variant="outlined"
+          />
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    title: 'Tổng hoa hồng',
+    dataIndex: 'total_commission',
+  },
+  {
+    title: 'Click',
+    dataIndex: 'click',
+  },
+  {
+    title: 'Khách hàng',
+    dataIndex: 'customer',
+  },
+  {
+    title: 'Đơn hàng',
+    dataIndex: 'order',
+  },
+  {
+    title: 'Doanh thu',
+    dataIndex: 'revenue',
+  },
+  {
+    title: 'CVR',
+    dataIndex: 'cvr',
+  },
+  {
+    title: 'Số dư ví',
+    dataIndex: 'account_balance',
+  },
+  {
+    title: 'Đang xử lý',
+    dataIndex: 'processing',
+  },
+  {
+    title: 'Đã hoàn thành',
+    dataIndex: 'paid',
+  },
+];
+
 interface FilmsData {
   id: number;
   title: string;
@@ -485,6 +610,7 @@ const OrderRPoint = () => {
         </Grid>
         <Grid item xs={12}>
           <TableList headCells={headCells} dataRows={dataRows} />
+          {/* <CustomTable columns={columns} dataSource={DataAffiliateTable} /> */}
         </Grid>
       </Grid>
     </PageContainer>

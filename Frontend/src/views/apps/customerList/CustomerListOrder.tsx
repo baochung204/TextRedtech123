@@ -1,5 +1,6 @@
 import {
   Box,
+  Chip,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -7,7 +8,7 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -19,17 +20,195 @@ import * as React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddOrder from './PopupAdd2';
-import TableListOrder from './TableOrderList';
 // import Tags from 'src/components/apps/sell/Tags';
 import { TabContext, TabPanel } from '@mui/lab';
+import fb from 'src/assets/images/socialmedia/facebook.png';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
-
 // const BCrumb = [
 //   { to: '/', title: 'Home' },
 //   { to: '/apps/blog/posts', title: 'Blog' },
 //   { title: 'Blog post' },
 // ];
+import IconPoint from 'src/assets/images/logos/R-Point.png';
 
+interface PropsTable {
+  id: string;
+  createdAt: string;
+  assistant: string;
+  pricePoint: number;
+  channel: string;
+  name: string;
+  phone: string;
+  address: string;
+  email: string;
+  orderInfo: string;
+  notes: string;
+  misc?: string;
+}
+
+// const generateIdCode = () => {
+//   const randomNumber = Math.floor(Math.random() * 1000000);
+//   return `#${randomNumber.toString().padStart(6, '0')}`;
+// };
+
+const TableData: PropsTable[] = [
+  {
+    id: 'ORD001',
+    createdAt: '2024-09-01',
+    assistant: 'Trợ lý A',
+    pricePoint: 150000,
+    channel: 'Ngô Đình Toản',
+    name: 'Nguyễn Văn A',
+    phone: '0123456789',
+    address: 'Hà Nội',
+    email: 'a@example.com',
+    orderInfo: 'Thông tin đơn hàng A',
+    notes: 'Ghi chú A',
+    misc: fb,
+  },
+  {
+    id: 'ORD002',
+    createdAt: '2024-09-02',
+    assistant: 'Trợ lý B',
+    pricePoint: 10000,
+    channel: 'Trần Dần',
+    name: 'Trần Thị B',
+    phone: '0987654321',
+    address: 'Hồ Chí Minh',
+    email: 'b@example.com',
+    orderInfo: 'Thông tin đơn hàng B',
+    notes: 'Ghi chú B',
+    misc: fb,
+  },
+  // Dữ liệu mẫu mới
+  {
+    id: 'ORD003',
+    createdAt: '2024-09-03',
+    assistant: 'Trợ lý C',
+    pricePoint: 150000,
+    channel: 'Nguyễn Văn Bình',
+    name: 'Phạm Văn C',
+    phone: '0981234567',
+    address: 'Đà Nẵng',
+    email: 'c@example.com',
+    orderInfo: 'Thông tin đơn hàng C',
+    notes: 'Ghi chú C',
+    misc: fb,
+  },
+  {
+    id: 'ORD004',
+    createdAt: '2024-09-04',
+    assistant: 'Trợ lý D',
+    pricePoint: 20250,
+    channel: 'Lê Văn Dũng',
+    name: 'Hoàng Thị D',
+    phone: '0912345678',
+    address: 'Cần Thơ',
+    email: 'd@example.com',
+    orderInfo: 'Thông tin đơn hàng D',
+    notes: 'Ghi chú D',
+    misc: fb,
+  },
+];
+const columns = [
+  {
+    title: 'Mã đơn hàng',
+    dataIndex: 'id',
+    sort: true,
+  },
+  {
+    title: 'Thời gian tạo',
+    dataIndex: 'createdAt',
+    sort: true,
+  },
+  {
+    title: 'Trợ lý',
+    dataIndex: 'assistant',
+    sort: true,
+  },
+  {
+    title: 'Giá trị đơn hàng',
+    dataIndex: 'pricePoint',
+    sort: true,
+    render: (value: string) => (
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'end',
+          gap: 0.5,
+          maxWidth: 150,
+          px: 2,
+        }}
+      >
+        {value}{' '}
+        <Box
+          component="img"
+          src={IconPoint}
+          alt=""
+          width={20}
+          height={20}
+          sx={{ borderRadius: '50%' }}
+        />
+      </Box>
+    ),
+  },
+  {
+    title: 'Kênh marketing',
+    dataIndex: 'misc',
+    render: (value: string) => (
+      <>
+        <Grid container spacing={3}>
+          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box
+              component="img"
+              src={value}
+              alt=""
+              width={38}
+              height={38}
+              sx={{
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography variant="subtitle1"> Facebook</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="subtitle2" fontSize={12}>
+                  {' '}
+                  #123456
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </>
+    ),
+  },
+  {
+    title: 'Tags',
+    dataIndex: 'channel',
+    render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
+  },
+  {
+    title: 'Tên khách hàng',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Số điện thoại',
+    dataIndex: 'phone',
+  },
+  {
+    title: 'Địa chỉ',
+    dataIndex: 'address',
+  },
+];
 const Transition = React.forwardRef<
   unknown,
   TransitionProps & { children: React.ReactElement<any, any> }
@@ -93,19 +272,16 @@ const CustomerListOrder = () => {
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value="1">
           <Box>
-            <TabPanel value="1" sx={{ p: 0, mt: 2 }}>
+            <TabPanel value="1" sx={{ p: 0, mt: 0.5 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+                  >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        {/* <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Tooltip title="Thêm mới khách hàng" onClick={handleClosePopup}>
-                            <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
-                              <IconPlus width={18} />
-                            </Fab>
-                          </Tooltip>
-                        </Grid> */}
                         <Grid item xs={10}>
                           <TextField
                             id="outlined-search"
@@ -131,13 +307,17 @@ const CustomerListOrder = () => {
                           <DatePicker
                             value={selectedStartDate}
                             onChange={setSelectedStartDate}
-                            renderInput={(params) => <TextField {...params} size="small" fullWidth />}
+                            renderInput={(params) => (
+                              <TextField {...params} size="small" fullWidth />
+                            )}
                           />
                           <Typography>tới</Typography>
                           <DatePicker
                             value={selectedEndDate}
                             onChange={setSelectedEndDate}
-                            renderInput={(params) => <TextField {...params} size="small" fullWidth />}
+                            renderInput={(params) => (
+                              <TextField {...params} size="small" fullWidth />
+                            )}
                           />
                         </LocalizationProvider>
                       </Box>
@@ -145,8 +325,10 @@ const CustomerListOrder = () => {
                   </Grid>
                 </Grid>
 
-                <Grid item xs={12}>
-                  <TableListOrder />
+                <Grid item xs={12} mx={0.3}>
+                  <BlankCard>
+                    <CustomTable columns={columns} dataSource={TableData} />
+                  </BlankCard>
                 </Grid>
               </Grid>
             </TabPanel>

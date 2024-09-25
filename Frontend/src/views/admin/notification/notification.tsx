@@ -10,10 +10,11 @@ import {
   IconWorldUpload,
 } from '@tabler/icons-react';
 import { useState } from 'react';
-import TableList from 'src/components/ComponentTables/tableList';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import BlankCard from '../../../components/shared/BlankCard';
 
 const BCrumb = [
   {
@@ -126,67 +127,46 @@ const DataBox = [
 ];
 
 interface HeadCell {
-  disablePadding: boolean;
+  title: string;
   dataIndex: string;
-  label: string;
-  numeric: boolean;
 }
 
 const headCells: HeadCell[] = [
   {
     dataIndex: 'id',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID',
+    title: 'ID',
   },
   {
     dataIndex: 'day',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ngày đăng',
+    title: 'Ngày đăng',
   },
   {
     dataIndex: 'title',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tiêu đề',
+    title: 'Tiêu đề',
   },
   {
     dataIndex: 'tags',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tags',
+    title: 'Tags',
   },
-
   {
     dataIndex: 'content',
-    numeric: false,
-    disablePadding: false,
-    label: 'Nội dung thông báo',
+    title: 'Nội dung thông báo',
   },
   {
     dataIndex: 'moreLink',
-    numeric: false,
-    disablePadding: false,
-    label: 'Link xem thêm ',
+    title: 'Link xem thêm',
   },
   {
     dataIndex: 'views',
-    numeric: false,
-    disablePadding: false,
-    label: 'Lượt xem',
+    title: 'Lượt xem',
   },
   {
     dataIndex: 'interactions',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tương tác',
+    title: 'Tương tác',
   },
   {
     dataIndex: 'status',
-    numeric: false,
-    disablePadding: false,
-    label: 'Trạng thái',
+    title: 'Trạng thái',
   },
 ];
 interface INotification {
@@ -353,7 +333,10 @@ const Notification = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <TableList headCells={headCells} dataRows={dataRows} />
+          <BlankCard>
+            {/* <TableList headCells={headCells} dataRows={dataRows} /> */}
+            <CustomTable columns={headCells} dataSource={dataRows} />
+          </BlankCard>
         </Grid>
       </Grid>
     </PageContainer>

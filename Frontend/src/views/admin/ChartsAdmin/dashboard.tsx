@@ -1090,7 +1090,7 @@ const DashboardAdmin = () => {
               <GenChartAdmin text={'Kinh doanh'} menuItems={dataFilter_bussiness} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource} totalColumn={2} />
+              <Topcardadmin dataSource={dataSource} totalColumn={1} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
@@ -1202,7 +1202,7 @@ const DashboardAdmin = () => {
               <GenChartAdmin text={'R-Point'} menuItems={dataFilter_rpoint} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_rpoint} totalColumn={2} />
+              <Topcardadmin dataSource={dataSource_rpoint} totalColumn={2} itemsPerColumn={5} />
             </Grid>
           </Grid>
         </Box>
@@ -1212,7 +1212,7 @@ const DashboardAdmin = () => {
               <GenChartAdmin text={'Affiliate'} menuItems={dataFilter_affliate} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_affiliate} totalColumn={2} />
+              <Topcardadmin dataSource={dataSource_affiliate} totalColumn={2} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
@@ -1297,7 +1297,7 @@ const DashboardAdmin = () => {
               <GenChartAdmin text={'Mã khuyến mãi'} menuItems={dataFilter_sale} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_sale} totalColumn={2} />
+              <Topcardadmin dataSource={dataSource_sale} totalColumn={2} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
@@ -1321,7 +1321,7 @@ const DashboardAdmin = () => {
               <GenChartAdmin text={'Blog'} menuItems={dataFilter_blog} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_blog} totalColumn={2} />
+              <Topcardadmin dataSource={dataSource_blog} totalColumn={2} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
@@ -1331,7 +1331,7 @@ const DashboardAdmin = () => {
               <GenChartAdmin text={'Ticket hỗ trợ'} menuItems={dataFilter_ticket} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_ticket} totalColumn={2} />
+              <Topcardadmin dataSource={dataSource_ticket} totalColumn={2} itemsPerColumn={5} />
             </Grid>
           </Grid>
         </Box>

@@ -1,11 +1,24 @@
 import {
+  Avatar,
   Box,
-  Grid
+  Button,
+  Chip,
+  Grid,
+  InputAdornment,
+  TextField,
+  Typography,
 } from '@mui/material';
-import { IconBox, IconChartBar, IconZoomMoney } from '@tabler/icons-react';
+
+import { IconBox, IconChartBar, IconSearch, IconZoomMoney } from '@tabler/icons-react';
 import RPoint from 'src/assets/images/logos/R-Point.png';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import OrderTable from './component/OrderTable';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { DataAffiliateTable } from './datatable/OrderTableData';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import React from 'react';
+import Point from 'src/assets/images/icon.png/point.png';
 
 const dataSource = [
   {
@@ -103,28 +116,112 @@ const dataSource = [
   },
 ];
 
-interface FilmsData {
-  id: number;
-  title: string;
-}
-const FilmsData: FilmsData[] = [
-  { id: 1, title: 'ID đơn hàng' },
-  { id: 2, title: 'ID Publisher' },
-  { id: 3, title: 'Ngày mua' },
-  { id: 4, title: 'Tên Publisher' },
-  { id: 5, title: 'Email Publisher' },
-  { id: 6, title: 'SĐT Publisher' },
-  { id: 7, title: 'Khách hàng' },
-  { id: 8, title: 'Email' },
-  { id: 9, title: 'SĐT' },
-  { id: 10, title: 'Tên gói nạp' },
-  { id: 11, title: 'Số point' },
-  { id: 12, title: 'Giá trị đơn hàng' },
-  { id: 13, title: 'Hoa hồng' },
-  { id: 14, title: 'Trạng thái' },
-];
+const getStatusAccountColor = (status: string) => {
+  switch (status) {
+    case 'Hoạt động':
+      return 'success'; // Green for approved
+    case 'Chờ duyệt':
+      return 'warning'; // Yellow for pending approval
+    case 'Từ chối':
+      return 'error'; // Red for rejected
+    case 'Chưa đăng ký':
+      return 'default'; // Gray for not yet sent
+    default:
+      return 'default'; // Gray for any unrecognized status
+  }
+};
 
+const columns = [
+  {
+    title: 'ID đơn hàng',
+    dataIndex: 'id_order',
+  },
+
+  {
+    title: 'ID Publisher',
+    dataIndex: 'id_publisher',
+  },
+  {
+    title: 'Ngày mua',
+    dataIndex: 'createdate',
+  },
+  {
+    title: 'Tên Publisher',
+    dataIndex: 'name_publisher',
+  },
+  {
+    title: 'Email Publisher',
+    dataIndex: 'email_publisher',
+  },
+  {
+    title: 'SĐT Publisher',
+    dataIndex: 'phonenumber_publisher',
+  },
+  {
+    title: 'Khách hàng',
+
+    render: (row, value: any) => (
+      <Box
+        sx={{
+          display: 'flex',
+          width: '200px',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar
+          src={value.imgsrc}
+          variant="rounded"
+          alt={value.imgsrc}
+          sx={{ width: 48, height: 48 }}
+        />
+        <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
+          {value.name_customer}
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email_customer',
+  },
+  {
+    title: 'SDT',
+    dataIndex: 'phonenumber_customer',
+  },
+  {
+    title: 'Tên gói nạp',
+    dataIndex: 'package',
+  },
+  {
+    title: 'Số point',
+    dataIndex: 'branch',
+
+    render: (row, value: any) => (
+      <Box sx={{ display: 'flex' }}>
+        <Typography variant="subtitle2">{value.numberpoint}</Typography>
+        <img style={{ width: '20px', height: '20px' }} src={Point} />
+      </Box>
+    ),
+  },
+  {
+    title: 'Giá trị đơn hàng',
+    dataIndex: 'value',
+  },
+  {
+    title: 'Hoa hồng',
+    dataIndex: 'commission',
+  },
+  {
+    title: 'Đơn hàng',
+
+    render: (row, value: any) => (
+      <Chip label={value.status} color={getStatusAccountColor(value.status)} />
+    ),
+  },
+];
 const OrderAffiliate = () => {
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
     <>
       <Grid container rowSpacing={3}>
@@ -134,7 +231,55 @@ const OrderAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <OrderTable />
+          <Grid item xs={12}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm thông báo"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={4}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12}>
+          <CustomTable columns={columns} dataSource={DataAffiliateTable} />
         </Grid>
       </Grid>
     </>

@@ -1,39 +1,14 @@
-import { Box, Grid } from '@mui/material';
-import { IconBrandGoogleHome, IconCoinOff, IconCoins } from '@tabler/icons-react';
+import { Avatar, Box, Chip, Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import { IconBrandGoogleHome, IconCoinOff, IconCoins, IconSearch } from '@tabler/icons-react';
 
 import { IconBox } from '@tabler/icons-react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import PublisherTable from './component/PublisherTable';
-// const dataSource = [
-//   {
-//     bgColor: 'primary.light',
-//     color: 'primary.main',
-//     title: 'Publisher',
-//     total: '1907',
-//     icons: IconUserDollar,
-//   },
-//   {
-//     bgColor: 'warning.light',
-//     color: 'warning.main',
-//     title: 'Đơn hàng',
-//     total: '8386',
-//     icons: IconTruckDelivery,
-//   },
-//   {
-//     bgColor: 'success.light',
-//     color: 'success.main',
-//     title: 'Hoa hồng',
-//     total: '123.456.789đ',
-//     icons: IconPigMoney,
-//   },
-//   {
-//     bgColor: 'error.light',
-//     color: 'error.main',
-//     title: 'Chưa thanh toán',
-//     total: '123.456.789đ',
-//     icons: IconBusinessplan,
-//   },
-// ];
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { DataPublishersTable } from './datatable/OrderTableData';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import React from 'react';
 
 const DataBox = [
   {
@@ -134,84 +109,225 @@ const DataBox = [
   },
 ];
 
-// interface FilmsData {
-//   title: string;
-// }
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'Đã duyệt':
+      return 'success'; // Green for approved
+    case 'Chờ duyệt':
+      return 'warning'; // Yellow for pending approval
+    case 'Từ chối':
+      return 'error'; // Red for rejected
+    case 'Chưa gửi':
+      return 'default'; // Gray for not yet sent
+    default:
+      return 'default'; // Gray for any unrecognized status
+  }
+};
 
-// const FilmsData: FilmsData[] = [
-//   { title: 'Tỉ lệ chuyển đổi' },
-//   { title: 'Cấp Rank' },
-//   { title: 'Tổng doanh thu' },
-// ];
+const getStatusAccountColor = (status: string) => {
+  switch (status) {
+    case 'Hoạt động':
+      return 'success'; // Green for approved
+    case 'Chờ duyệt':
+      return 'warning'; // Yellow for pending approval
+    case 'Từ chối':
+      return 'error'; // Red for rejected
+    case 'Chưa đăng ký':
+      return 'default'; // Gray for not yet sent
+    default:
+      return 'default'; // Gray for any unrecognized status
+  }
+};
 
-interface FilmsData {
-  id: number;
-  title: string;
-}
-const FilmsData: FilmsData[] = [
-  { id: 1, title: 'ID publisher' },
-  { id: 2, title: 'Đối tác' },
-  { id: 3, title: 'Email' },
-  { id: 4, title: 'SĐT' },
-  { id: 5, title: 'Loại hình' },
-  { id: 6, title: 'Ngày đăng ký' },
-  { id: 7, title: 'Trạng thái tài khoản' },
-  { id: 8, title: 'Rank' },
-  { id: 9, title: 'Hồ sơ' },
-  { id: 10, title: 'Hợp đồng Affiliate' },
-  { id: 11, title: 'Tổng hoa hồng' },
-  { id: 12, title: 'Click' },
-  { id: 13, title: 'Khách hàng' },
-  { id: 14, title: 'Đơn hàng' },
-  { id: 15, title: 'Doanh thu' },
-  { id: 16, title: 'CVR' },
-  { id: 17, title: 'Số dư ví' },
-  { id: 18, title: 'Đang xử lý' },
-  { id: 19, title: 'Đã hoàn thành' },
+const columns = [
+  {
+    title: 'ID Publisher',
+    dataIndex: 'id_publisher',
+  },
+
+  {
+    title: 'Đối tác',
+    render: (row, value: any) => (
+      <Box
+        sx={{
+          display: 'flex',
+          width: '200px',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar
+          src={value.imgsrc}
+          variant="rounded"
+          alt={value.imgsrc}
+          sx={{ width: 48, height: 48 }}
+        />
+        <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
+          {value.name_partner}
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+  },
+  {
+    title: 'SĐT',
+    dataIndex: 'phone_number',
+  },
+  {
+    title: 'Loại hình',
+    dataIndex: 'email_publisher',
+    render: (row, value: any) => (
+      <Typography style={{ width: '100px' }} variant="subtitle2">
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography style={{ width: '200px' }} variant="subtitle2">
+            <Chip
+              label={value.type ? 'Doanh nghiệp' : 'Cá nhân'}
+              color={value.type ? 'success' : 'warning'}
+              variant="outlined"
+            />
+          </Typography>
+        </Box>
+      </Typography>
+    ),
+  },
+  {
+    title: 'Ngày đăng ký',
+    dataIndex: 'create_date',
+  },
+  {
+    title: 'Trạng thái tài khoản',
+
+    render: (row, value: any) => (
+      <Chip label={value.type_account} color={getStatusAccountColor(value.type_account)} />
+    ),
+  },
+  {
+    title: 'Rank',
+    dataIndex: 'rank',
+  },
+  {
+    title: 'Hồ sơ',
+
+    render: (row, value: any) => (
+      <Typography style={{ width: '100px' }} variant="subtitle2">
+        <Chip label={value.contract} color={getStatusColor(value.contract)} />
+      </Typography>
+    ),
+  },
+  {
+    title: 'Hợp đồng Affiliate',
+    render: (row, value: any) => (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Typography style={{ width: '100px' }} variant="subtitle2">
+          <Chip
+            label={value.brief ? 'Đã ký' : 'Chưa ký'}
+            color={value.brief ? 'success' : 'warning'}
+            variant="outlined"
+          />
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    title: 'Tổng hoa hồng',
+    dataIndex: 'total_commission',
+  },
+  {
+    title: 'Click',
+    dataIndex: 'click',
+  },
+  {
+    title: 'Khách hàng',
+    dataIndex: 'customer',
+  },
+  {
+    title: 'Đơn hàng',
+    dataIndex: 'order',
+  },
+  {
+    title: 'Doanh thu',
+    dataIndex: 'revenue',
+  },
+  {
+    title: 'CVR',
+    dataIndex: 'cvr',
+  },
+  {
+    title: 'Số dư ví',
+    dataIndex: 'account_balance',
+  },
+  {
+    title: 'Đang xử lý',
+    dataIndex: 'processing',
+  },
+  {
+    title: 'Đã hoàn thành',
+    dataIndex: 'paid',
+  },
 ];
+
 const PublisherAffiliate = () => {
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          {/* <Grid container spacing={3}>
-            {dataSource.map((items, index) => {
-              return (
-                <Grid item lg={3} sm={6} xs={12} key={index}>
-                  <BoxStyled
-                    sx={{
-                      backgroundColor: items.bgColor,
-                      color: items.color,
-                    }}
-                  >
-                    <Grid container>
-                      <Grid
-                        item
-                        xs={3}
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <items.icons />
-                      </Grid>
-                      <Grid item xs={9}>
-                        <Typography style={{ fontSize: '19px' }} variant="h4">
-                          {items.title}
-                        </Typography>
-                        <Typography variant="h5">{items.total}</Typography>
-                      </Grid>
-                    </Grid>
-                  </BoxStyled>
-                </Grid>
-              );
-            })}
-          </Grid> */}
           <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
 
         <Grid item xs={12}>
-          <PublisherTable />
+          <Grid item xs={12}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm thông báo"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={4}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12}>
+          <CustomTable columns={columns} dataSource={DataPublishersTable} />
         </Grid>
       </Grid>
     </>
