@@ -70,6 +70,42 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
     typeofcustomer: 'Trả phí',
     imgsrc: img2,
   },
+  {
+    id: '3',
+    name: 'Lê Tài Đức',
+    email: 'duc.lt@redon.com',
+    phone: '0987654321',
+    createdAt: '2024-07-18',
+    typeofcustomer: 'Miễn phí',
+    imgsrc: img1,
+  },
+  {
+    id: '4',
+    name: 'Nguyễn Thùy Linh',
+    email: 'linh.nt@redon.com',
+    phone: '0965842361',
+    createdAt: '2024-07-19',
+    typeofcustomer: 'Trả phí',
+    imgsrc: img2,
+  },
+  {
+    id: '5',
+    name: 'Lê Tài Đức',
+    email: 'duc.lt@redon.com',
+    phone: '0987654321',
+    createdAt: '2024-07-18',
+    typeofcustomer: 'Miễn phí',
+    imgsrc: img1,
+  },
+  {
+    id: '6',
+    name: 'Nguyễn Thùy Linh',
+    email: 'linh.nt@redon.com',
+    phone: '0965842361',
+    createdAt: '2024-07-19',
+    typeofcustomer: 'Trả phí',
+    imgsrc: img2,
+  },
 ];
 const DataRowCustomerTable: CustomerListTable[] = [
   {
