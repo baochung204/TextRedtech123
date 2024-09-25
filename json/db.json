@@ -1,12 +1,34 @@
 {
     "products": [
         {
-            "product_id": 1,
-            "quantity": 2
+            "shopProductId": 101,
+            "shopProductName": "Áo thun trắng",
+            "shopProductImageUrl": "https://example.com/product1.png",
+            "price": 150000,
+            "optionPrice": 99000,
+            "productTag": [
+                {
+                    "tagId": 12,
+                    "tagName": "Fashion"
+                },
+                {
+                    "tagId": 15,
+                    "tagName": "Summer Collection"
+                }
+            ]
         },
         {
-            "product_id": 2,
-            "quantity": 1
+            "shopProductId": 102,
+            "shopProductName": "Áo sơ mi xanh",
+            "shopProductImageUrl": "https://example.com/product2.png",
+            "price": 45000,
+            "optionPrice": 39000,
+            "productTag": [
+                {
+                    "tagId": 13,
+                    "tagName": "Business Casual"
+                }
+            ]
         }
     ]
 }
