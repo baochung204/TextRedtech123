@@ -10,7 +10,6 @@ import u9 from 'src/assets/images/profile/user-9.jpg';
 import u10 from 'src/assets/images/profile/user-10.jpg';
 
 interface DataTable5 {
-    id: string;
     images: string;
     imgName: string;
     createDate: string;
@@ -34,11 +33,10 @@ const generateRandomDate = () => {
     return randomDate.toISOString().split('T')[0]; 
 };
 const generateIdCode = () => {
-    const randomNumber = Math.floor(Math.random() * 1000000); // Random number between 0 and 999999
-    return `#${randomNumber.toString().padStart(6, '0')}`; // Pad with leading zeros if necessary
+    const randomNumber = Math.floor(Math.random() * 1000000); 
+    return `#${randomNumber.toString().padStart(6, '0')}`; 
 }
 const DataTable5: DataTable5[] = Array.from({ length: 20 }, (_, index) => ({
-    id: (index + 1).toString(),
     images: imageSources[Math.floor(Math.random() * imageSources.length)],
     imgName: generateRandomImageName(),
     createDate: generateRandomDate(),
