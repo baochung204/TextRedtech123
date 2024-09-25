@@ -91,7 +91,6 @@ import ProductTable from './ProductData';
 //     );
 // };
 
-
 interface StyleProps {
   bgColor: string;
   color: string;
@@ -193,12 +192,6 @@ const FilmsData: FilmsData[] = [
 const BuyProduct = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [selected] = React.useState<readonly string[]>([]);
-
-  // const [search, setSearch] = React.useState('');
-  // const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearch(event.target.value);
-  // };
 
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
@@ -360,24 +353,6 @@ const BuyProduct = () => {
               </IconButton>
             </Tooltip>
           </Grid>
-
-          {/* <Grid item xs={4}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={selectedStartDate}
-                    onChange={setSelectedStartDate}
-                    renderInput={(params: any) => <TextField {...params} />}
-                  />
-                  <Typography>tới</Typography>
-                  <DatePicker
-                    value={selectedEndDate}
-                    onChange={setSelectedEndDate}
-                    renderInput={(params: any) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Grid> */}
         </Grid>
         <Grid item xs={12}>
           <TableContainer>

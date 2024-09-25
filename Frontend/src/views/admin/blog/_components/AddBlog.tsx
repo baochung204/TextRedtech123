@@ -1,12 +1,16 @@
-import { Box, Button, Grid, Typography, useTheme } from '@mui/material';
+import { Box, Button, Grid, Typography, useTheme, FormControl, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import Tags from 'src/components/apps/sell/layout/Tags';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import * as Yup from 'yup';
+import ReactQuill from 'react-quill';
 
 const AddBlog = () => {
   const theme = useTheme();
+  const [content, setContent] = useState('');
+  const [thumbnailPreview, setThumbnailPreview] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -35,6 +39,23 @@ const AddBlog = () => {
     },
   });
 
+  const handleContentChange = (value: string) => {
+    setContent(value);
+    formik.setFieldValue('content', value);
+  };
+
+  const handleThumbnailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setThumbnailPreview(reader.result as string);
+        formik.setFieldValue('thumbnail', file.name);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <Box
@@ -52,7 +73,7 @@ const AddBlog = () => {
           variant="h6"
           sx={{
             fontSize: '1.5rem',
-            mb: 2,
+            mb: 3,
             fontWeight: 'bold',
             color: theme.palette.mode === 'dark' ? '#fff' : '#333',
           }}
@@ -93,18 +114,18 @@ const AddBlog = () => {
 
           <Grid item xs={12}>
             <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel>
-            <CustomTextField
-              id="content"
-              variant="outlined"
-              fullWidth
-              multiline
-              rows={6}
-              value={formik.values.content}
-              onChange={formik.handleChange}
-              name="content"
-              error={formik.touched.content && Boolean(formik.errors.content)}
-              helperText={formik.touched.content && formik.errors.content}
+            <ReactQuill
+              value={content}
+              onChange={handleContentChange}
+              theme="snow"
+              placeholder="Nhập nội dung bài viết..."
+              style={{ height: '300px', paddingBottom: '10px' }}
             />
+            {formik.touched.content && formik.errors.content && (
+              <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                {formik.errors.content}
+              </Typography>
+            )}
           </Grid>
 
           <Grid item xs={12}>
@@ -127,20 +148,6 @@ const AddBlog = () => {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="thumbnail">Ảnh đại diện</CustomFormLabel>
-            <CustomTextField
-              id="thumbnail"
-              variant="outlined"
-              fullWidth
-              value={formik.values.thumbnail}
-              onChange={formik.handleChange}
-              name="thumbnail"
-              error={formik.touched.thumbnail && Boolean(formik.errors.thumbnail)}
-              helperText={formik.touched.thumbnail && formik.errors.thumbnail}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
             <CustomFormLabel htmlFor="pricePoint">Giá Point</CustomFormLabel>
             <CustomTextField
               id="pricePoint"
@@ -156,17 +163,55 @@ const AddBlog = () => {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <CustomFormLabel htmlFor="status">Trạng thái</CustomFormLabel>
-            <CustomTextField
-              id="status"
-              variant="outlined"
-              fullWidth
-              value={formik.values.status}
-              onChange={formik.handleChange}
-              name="status"
-              error={formik.touched.status && Boolean(formik.errors.status)}
-              helperText={formik.touched.status && formik.errors.status}
+            <CustomFormLabel>Trạng thái</CustomFormLabel>
+            <FormControl component="fieldset" error={formik.touched.status && Boolean(formik.errors.status)}>
+              <RadioGroup
+                row
+                aria-label="status"
+                name="status"
+                value={formik.values.status}
+                onChange={formik.handleChange}
+              >
+                <FormControlLabel value="published" control={<Radio />} label="Đăng" />
+                <FormControlLabel value="draft" control={<Radio />} label="Nháp" />
+              </RadioGroup>
+              {formik.touched.status && formik.errors.status && (
+                <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                  {formik.errors.status}
+                </Typography>
+              )}
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={12}>
+            <CustomFormLabel htmlFor="thumbnail">Ảnh đại diện</CustomFormLabel>
+            <input
+              type="file"
+              id="thumbnail"
+              accept="image/*"
+              onChange={handleThumbnailChange}
+              style={{ display: 'none' }}
             />
+            <label htmlFor="thumbnail">
+              <Button variant="outlined" component="span">
+                Chọn ảnh
+              </Button>
+            </label>
+            {thumbnailPreview && (
+              <Box mt={2}>
+                <Typography variant="body2">Ảnh đã chọn:</Typography>
+                <img
+                  src={thumbnailPreview}
+                  alt="Preview"
+                  style={{ width: '100%', maxHeight: '200px', objectFit: 'cover', marginTop: '8px' }}
+                />
+              </Box>
+            )}
+            {formik.touched.thumbnail && formik.errors.thumbnail && (
+              <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                {formik.errors.thumbnail}
+              </Typography>
+            )}
           </Grid>
         </Grid>
       </Box>

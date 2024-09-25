@@ -4,21 +4,14 @@
 import {
   Box,
   Button,
+  Grid,
   MenuItem,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
-  TableSortLabel,
-  Typography,
+  Typography
 } from '@mui/material';
-import { visuallyHidden } from '@mui/utils';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { format } from 'date-fns';
 import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -36,8 +29,51 @@ import { tabledh } from 'src/components/tables/tabledh';
 //   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
 //   { title: 'Lịch sử quy đổi ' },
 // ];
+
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+<<<<<<< HEAD
+import dayjs from 'dayjs';
+=======
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 // import { useTheme } from '@emotion/react';
+const columns = [
+  {
+    title: 'ID thanh toán',
+    dataIndex: 'id'
+  },
+  {
+    title: 'Ngày yêu cầu',
+    dataIndex: 'createdAt',
+    render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
+  },
+  {
+    title: 'Ngày hoàn tất',
+    dataIndex: 'completedAt',
+    render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
+  },
+  {
+    title: "Số tiền",
+    dataIndex: 'amount',
+    render: (value: number) => `${value.toLocaleString()} VND`,
+  },
+  {
+    title: 'Trạng thái',
+    dataIndex: 'status',
+    render: (status: boolean) => status 
+      ? <Typography color="#13DEB9">Đã thanh toán</Typography> 
+      : <Typography color="#ff9800">Chờ xử lý</Typography>,
+  },
+  {
+    title: 'Hóa đơn',
+    dataIndex: 'invoice',
+    render: (invoiceUrl: string) => (
+      <Button color="success" onClick={() => window.open(invoiceUrl, '_blank')}>
+        Tải về
+      </Button>
+    ),
+  },
+];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -76,51 +112,102 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
   return stabilizedThis.map((el) => el[0]);
 }
 
+<<<<<<< HEAD
+// interface HeadCell {
+//   disablePadding: boolean;
+//   id: any;
+//   label: string;
+//   numeric: boolean;
+// }
+// const headCells: HeadCell[] = [
+//   {
+//     id: 'requestId',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'ID thanh toán',
+//   },
+//   {
+//     id: 'createdAt',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Ngày yêu cầu',
+//   },
+//   {
+//     id: 'completedAt',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Ngày hoàn tất',
+//   },
+
+//   {
+//     id: 'amount',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Số tiền',
+//   },
+//   {
+//     id: 'status',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Trạng thái',
+//   },
+//   {
+//     id: 'invoice',
+//     numeric: false,
+//     disablePadding: false,
+//     label: 'Tải hóa đơn',
+//   },
+// ];
+=======
 interface HeadCell {
   disablePadding: boolean;
   id: any;
   label: string;
   numeric: boolean;
 }
-const headCells: HeadCell[] = [
+const FilmsData: any = [
   {
-    id: 'requestId',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID thanh toán',
+    id: 1,
+    title: 'ID thanh toán',
+    dataIndex: 'MHD',
   },
   {
-    id: 'createdAt',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ngày yêu cầu',
+    id: 2,
+    title: 'Ngày yêu cầu',
+    dataIndex: 'createdAt',
+    render: (value: any) => format(new Date(value), 'dd/MM/yyyy  HH:mm'),
   },
   {
-    id: 'completedAt',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ngày hoàn tất',
+    id: 3,
+    title: 'Ngày hoàn tất',
+    dataIndex: 'completedAt',
+    render: (value: any) => format(new Date(value), 'dd/MM/yyyy  HH:mm'),
+  },
+  {
+    id: 4,
+    title: 'Số tiền',
+    dataIndex: 'money',
+    render: (value: any) => `${value} đ`,
+  },
+  {
+    id: 5,
+    title: 'Trạng thái',
+    dataIndex: 'status',
+    render: (value: any) => (
+      <Typography color={value ? '#13DEB9' : '#ba8b02'} variant="subtitle2" fontWeight={'24px'}>
+        {value ? 'đã thanh toán' : 'Chờ xử lý'}
+      </Typography>
+    ),
   },
 
   {
-    id: 'amount',
-    numeric: false,
-    disablePadding: false,
-    label: 'Số tiền',
-  },
-  {
-    id: 'status',
-    numeric: false,
-    disablePadding: false,
-    label: 'Trạng thái',
-  },
-  {
-    id: 'invoice',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tải hóa đơn',
+    id: 7,
+    title: 'Hành động',
+    dataIndex: 'status',
+    render: (value: any) => <Button color="success">{value ? 'tải về' : ''}</Button>,
   },
 ];
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
 
 interface EnhancedTableProps {
   numSelected: number;
@@ -175,7 +262,12 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
   return (
     <TableHead>
+<<<<<<< HEAD
       <TableRow>
+       
+      </TableRow>
+=======
+      {/* <TableRow>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -199,7 +291,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             </TableSortLabel>
           </TableCell>
         ))}
-      </TableRow>
+      </TableRow> */}
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
     </TableHead>
   );
 }
@@ -363,226 +456,16 @@ const HistoryMoney = () => {
       </Box>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
+<<<<<<< HEAD
           <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
-            >
-              <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-              />
-              <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any) => {
-                    // const isItemSelected = isSelected(row.name);
-                    // const labelId = `enhanced-table-checkbox-${index}`;
-
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        // aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        // selected={isItemSelected}
-                      >
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.requestId}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.createdAt), 'MM/dd/yyyy HH:mm:ss')}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.completedAt), 'MM/dd/yyyy HH:mm:ss')}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount} đ
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Box
-                              sx={{
-                                color: row.status ? '#13DEB9' : '#ff9800',
-                                fontWeight: 'bold',
-                              }}
-                            >
-                              {row.status ? 'Đã thanh toán' : 'Chờ xử lý'}
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Button color="success">Tải về</Button>
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-              {/* <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index) => {
-                    const isItemSelected = isSelected(row.name);
-                    const labelId = `enhanced-table-checkbox-${index}`;
-
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        selected={isItemSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <CustomCheckbox
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={2} direction="row">
-                            <Avatar
-                              alt="text"
-                              src={row.imgsrc}
-                              sx={{
-                                width: '35px',
-                                height: '35px',
-                              }}
-                            />
-                            <Box>
-                              <Typography variant="h6" fontWeight="600">
-                                {row.name}
-                              </Typography>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.email}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
-                            {row.pname}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Stack direction="row">
-                            <AvatarGroup>
-                              {row.teams.map((team: any) => (
-                                <Avatar
-                                  key={team.id}
-                                  sx={{
-                                    width: '35px',
-                                    height: '35px',
-                                    bgcolor: team.color,
-                                  }}
-                                >
-                                  {team.text}
-                                </Avatar>
-                              ))}
-                            </AvatarGroup>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Stack spacing={1} direction="row" alignItems="center">
-                            <Badge
-                              color={
-                                row.status === 'Active'
-                                  ? 'success'
-                                  : row.status === 'Pending'
-                                  ? 'warning'
-                                  : row.status === 'Completed'
-                                  ? 'primary'
-                                  : row.status === 'Cancel'
-                                  ? 'error'
-                                  : 'secondary'
-                              }
-                              variant="dot"
-                            ></Badge>
-                            <Typography color="textSecondary" variant="body1">
-                              {row.status}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          <Typography color="textSecondary" variant="body1">
-                            {row.weeks}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="h6">${row.budget}k</Typography>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody> */}
-            </Table>
+          <Grid item xs={12}>
+        <CustomTable columns={columns} dataSource={tabledh} />;
+      </Grid>
           </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Hàng trên mỗi trang"
-          />
+          
+=======
+          <CustomTable columns={FilmsData} dataSource={tabledh} />
+>>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
         </Box>
       </BlankCard>
     </PageContainer>

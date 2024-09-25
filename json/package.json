@@ -7,7 +7,7 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start": "json-server --watch db.json",
+    "server": "json-server --watch db.json --port 9999",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

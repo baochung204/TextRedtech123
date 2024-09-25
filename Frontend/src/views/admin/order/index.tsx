@@ -1,9 +1,24 @@
-import { Box, Grid } from '@mui/material';
-import { IconBellRinging } from '@tabler/icons-react';
+import {
+  Avatar,
+  Box,
+  Chip,
+  Grid,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { IconBellRinging, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
+import React from 'react';
 import OrderAdminPage from 'src/components/admin/order';
+import OrderData from 'src/components/admin/order/data/OrderData';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import icontext from 'src/assets/images/logos/R-Point.png';
 
 const BCrumb = [
   {
@@ -144,17 +159,134 @@ const DataBox: StyleProps[] = [
   },
 ];
 
+const columns = [
+  {
+    title: 'ID',
+    dataIndex: 'id',
+  },
+
+  {
+    title: 'Họ và tên',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+  },
+  {
+    title: 'Số điện thoại',
+    dataIndex: 'phone',
+  },
+  {
+    title: 'Loại tài khoản',
+    dataIndex: 'typeacc',
+  },
+  {
+    title: 'Trợ lý',
+    dataIndex: 'troly',
+  },
+
+  {
+    title: 'Tổng nạp',
+    dataIndex: 'tongnap',
+  },
+  {
+    title: 'Số dư',
+
+    render: (row, value: any) => (
+      <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+          {value.sodu}{' '}
+          <img src={icontext} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    title: 'Hành động',
+
+    render: (row, value: any) => (
+      <>
+        <IconButton
+          onClick={() => {
+            // setSelectedKey(item.id); setOpen(true); console.log(item.id);
+          }}
+        >
+          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+        </IconButton>
+        <IconButton>
+          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+        </IconButton>
+      </>
+    ),
+  },
+];
+
 const OrderAdminPages = () => {
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
+
   return (
-    <PageContainer title="Personnel" description="this is Personnel page">
+    <>
       <BannerPage title="Quản lý khách hàng" items={BCrumb} />
-      <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
-      <Grid container>
-        <Grid item xs={12} mt={3}>
-          <OrderAdminPage />
+
+      <Grid container rowSpacing={3}>
+        {/* Top Card Section */}
+        <Grid item xs={12}>
+          <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
+        </Grid>
+
+        {/* Search and DatePicker Section */}
+        <Grid item xs={12}>
+          <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            {/* Search Field */}
+            <Grid item xs={12} sm={6} md={4}>
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm thông báo"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch size="20" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth
+              />
+            </Grid>
+
+            {/* Date Picker */}
+            <Grid item xs={12} sm={6} md={4}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={selectedStartDate}
+                    onChange={setSelectedStartDate}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                  <Typography>tới</Typography>
+                  <DatePicker
+                    value={selectedEndDate}
+                    onChange={setSelectedEndDate}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        {/* Table Section */}
+        <Grid item xs={12}>
+          <CustomTable columns={columns} dataSource={OrderData} />
         </Grid>
       </Grid>
-    </PageContainer>
+    </>
   );
 };
 

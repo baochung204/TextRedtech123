@@ -1,4 +1,4 @@
-import { Box, Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Chip, Grid, InputAdornment, TextField, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -10,6 +10,7 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import Point from 'src/assets/images/logos/R-Point.png';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TableList from 'src/components/ComponentTables/tableList';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -126,7 +127,7 @@ const DataBox = [
 interface HeadCell {
   disablePadding: boolean;
   dataIndex: string;
-  label: string;
+  title: string;
   numeric: boolean;
 }
 
@@ -135,98 +136,98 @@ const headCells: HeadCell[] = [
     dataIndex: 'id',
     numeric: false,
     disablePadding: false,
-    label: 'ID',
+    title: 'ID',
   },
   {
     dataIndex: 'rechargeDate',
     numeric: false,
     disablePadding: false,
-    label: 'Ngày nạp',
+    title: 'Ngày nạp',
   },
   {
     dataIndex: 'customerName',
     numeric: false,
     disablePadding: false,
-    label: 'Khách hàng',
+    title: 'Khách hàng',
   },
   {
     dataIndex: 'email',
     numeric: false,
     disablePadding: false,
-    label: 'Email',
+    title: 'Email',
   },
 
   {
     dataIndex: 'phoneNumber',
     numeric: false,
     disablePadding: false,
-    label: 'Số điện thoại',
+    title: 'Số điện thoại',
   },
   {
     dataIndex: 'packageName',
     numeric: false,
     disablePadding: false,
-    label: 'Tên gói ',
+    title: 'Tên gói ',
   },
   {
     dataIndex: 'points',
     numeric: false,
     disablePadding: false,
-    label: 'Số point ',
+    title: 'Số point ',
   },
   {
     dataIndex: 'listedPrice',
     numeric: false,
     disablePadding: false,
-    label: 'Giá niêm yết ',
+    title: 'Giá niêm yết ',
   },
   {
     dataIndex: 'promotionCode',
     numeric: false,
     disablePadding: false,
-    label: 'Mã khuyến mại',
+    title: 'Mã khuyến mại',
   },
   {
     dataIndex: 'paymentAmount',
     numeric: false,
     disablePadding: false,
-    label: 'Số tiền  ',
+    title: 'Số tiền  ',
   },
   {
     dataIndex: 'totalOrder',
     numeric: false,
     disablePadding: false,
-    label: 'Tổng đơn',
+    title: 'Tổng đơn',
   },
   {
     dataIndex: 'publisherId',
     numeric: false,
     disablePadding: false,
-    label: 'ID publisher',
+    title: 'ID publisher',
   },
   {
     dataIndex: 'affiliateCommission',
     numeric: false,
     disablePadding: false,
-    label: 'Hoa hồng Affiliate',
+    title: 'Hoa hồng Affiliate',
   },
   {
     dataIndex: 'status',
     numeric: false,
     disablePadding: false,
-    label: 'Trạng thái',
+    title: 'Trạng thái',
   },
   {
     dataIndex: 'invoice',
     numeric: false,
     disablePadding: false,
-    label: 'Hóa đơn',
+    title: 'Hóa đơn',
   },
   {
     dataIndex: 'details',
     numeric: false,
     disablePadding: false,
-    label: 'Chi tiết',
+    title: 'Chi tiết',
   },
 ];
 interface RechargeTransaction {
@@ -401,6 +402,131 @@ const dataRows: RechargeTransaction[] = [
   },
 ];
 
+// const columns = [
+//   {
+//     title: 'ID Publisher',
+//     dataIndex: 'id_publisher',
+//   },
+
+//   {
+//     title: 'Đối tác',
+//     render: (row, value: any) => (
+//       <Box
+//         sx={{
+//           display: 'flex',
+//           width: '200px',
+//           alignItems: 'center',
+//         }}
+//       >
+//         <Avatar
+//           src={value.imgsrc}
+//           variant="rounded"
+//           alt={value.imgsrc}
+//           sx={{ width: 48, height: 48 }}
+//         />
+//         <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
+//           {value.name_partner}
+//         </Typography>
+//       </Box>
+//     ),
+//   },
+//   {
+//     title: 'Email',
+//     dataIndex: 'email',
+//   },
+//   {
+//     title: 'SĐT',
+//     dataIndex: 'phone_number',
+//   },
+//   {
+//     title: 'Loại hình',
+//     dataIndex: 'email_publisher',
+//     render: (row, value: any) => (
+//       <Typography style={{ width: '100px' }} variant="subtitle2">
+//         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+//           <Typography style={{ width: '200px' }} variant="subtitle2">
+//             <Chip
+//               label={value.type ? 'Doanh nghiệp' : 'Cá nhân'}
+//               color={value.type ? 'success' : 'warning'}
+//               variant="outlined"
+//             />
+//           </Typography>
+//         </Box>
+//       </Typography>
+//     ),
+//   },
+//   {
+//     title: 'Ngày đăng ký',
+//     dataIndex: 'create_date',
+//   },
+//   {
+//     title: 'Trạng thái tài khoản',
+//   },
+//   {
+//     title: 'Rank',
+//     dataIndex: 'rank',
+//   },
+//   {
+//     title: 'Hồ sơ',
+
+//     render: (row: any, value: any) => (
+//       <Typography style={{ width: '100px' }} variant="subtitle2">
+//         {/* <Chip label={value.contract} color={getStatusColor(value.contract)} /> */}
+//       </Typography>
+//     ),
+//   },
+//   {
+//     title: 'Hợp đồng Affiliate',
+//     render: (row: any, value: any) => (
+//       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+//         <Typography style={{ width: '100px' }} variant="subtitle2">
+//           <Chip
+//             label={value.brief ? 'Đã ký' : 'Chưa ký'}
+//             color={value.brief ? 'success' : 'warning'}
+//             variant="outlined"
+//           />
+//         </Typography>
+//       </Box>
+//     ),
+//   },
+//   {
+//     title: 'Tổng hoa hồng',
+//     dataIndex: 'total_commission',
+//   },
+//   {
+//     title: 'Click',
+//     dataIndex: 'click',
+//   },
+//   {
+//     title: 'Khách hàng',
+//     dataIndex: 'customer',
+//   },
+//   {
+//     title: 'Đơn hàng',
+//     dataIndex: 'order',
+//   },
+//   {
+//     title: 'Doanh thu',
+//     dataIndex: 'revenue',
+//   },
+//   {
+//     title: 'CVR',
+//     dataIndex: 'cvr',
+//   },
+//   {
+//     title: 'Số dư ví',
+//     dataIndex: 'account_balance',
+//   },
+//   {
+//     title: 'Đang xử lý',
+//     dataIndex: 'processing',
+//   },
+//   {
+//     title: 'Đã hoàn thành',
+//     dataIndex: 'paid',
+//   },
+// ];
+
 interface FilmsData {
   id: number;
   title: string;
@@ -484,7 +610,9 @@ const OrderRPoint = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <TableList headCells={headCells} dataRows={dataRows} />
+          {/* <TableList headCells={headCells} dataRows={dataRows} /> */}
+          <CustomTable columns={headCells} dataSource={dataRows} />
+          {/* <CustomTable columns={columns} dataSource={DataAffiliateTable} /> */}
         </Grid>
       </Grid>
     </PageContainer>
