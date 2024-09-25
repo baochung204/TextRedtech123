@@ -4,6 +4,7 @@ import DialogURL from '../dialog/DIalogURL';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { Checkbox, Grid, IconButton, ListItemText, MenuItem, Select } from '@mui/material';
 import { IconTrash } from '@tabler/icons-react';
+import { useState } from 'react';
 
 interface PropsTab6 {
     value: string;
@@ -43,7 +44,7 @@ const column = [
 ]
 
 const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
-    
+
     const [dataSelect, setDataSelect] = useState<string[]>([]);
     const handleColumnChange = (event: any) => {
         const {
@@ -95,7 +96,7 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
             </Grid>
             <Grid item xs={12}>
                 <CustomTable
-                    dataSource={DataTable6}
+                    dataSource={DataRow}
                     columns={column}
                     dataSelect={dataSelect}
                 />
