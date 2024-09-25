@@ -1,13 +1,27 @@
-import { Box, Grid } from '@mui/material';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Chip,
+  Grid,
+  InputAdornment,
+  TextField,
+  Typography,
+} from '@mui/material';
 import {
   IconDevicesCancel,
   IconFileText,
   IconPencilDollar,
   IconPencilSearch,
+  IconSearch,
 } from '@tabler/icons-react';
 
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import React from 'react';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import ContractAffiliateTable from './component/ContractAffiliateTable';
+import { DataContactAffiliateTable } from './datatable/OrderTableData';
 
 const dataSource = [
   {
@@ -100,7 +114,109 @@ const dataSource = [
   },
 ];
 
+const columns = [
+  {
+    title: 'Mã hợp đồng',
+    dataIndex: 'id_contract',
+  },
+
+  {
+    title: 'Mã khách hàng',
+    dataIndex: 'id_customer',
+  },
+  {
+    title: 'Ngày tạo',
+    dataIndex: 'createdate',
+  },
+
+  {
+    title: 'Ngày ký',
+    dataIndex: 'confirmdate',
+  },
+  {
+    title: 'Loại tài khoản',
+    dataIndex: 'type_company',
+    render: (row, value: any) => (
+      <Typography style={{ width: '150px' }} variant="subtitle2">
+        <Chip
+          label={value.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
+          color={value.type_company ? 'success' : 'warning'}
+          variant="outlined"
+        />
+      </Typography>
+    ),
+  },
+  {
+    title: 'Tên công ty',
+    dataIndex: 'name_company',
+  },
+  {
+    title: 'Mã số thuế',
+    dataIndex: 'tax_code',
+  },
+  {
+    title: 'Địa chỉ',
+    dataIndex: 'address',
+  },
+  {
+    title: 'Người đại diện',
+    dataIndex: 'representative',
+  },
+  {
+    title: 'Chức vụ',
+    dataIndex: 'position',
+  },
+  {
+    title: 'Số điện thoại',
+    dataIndex: 'phone_number',
+  },
+  {
+    title: 'Email công ty',
+    dataIndex: 'email',
+  },
+  {
+    title: 'Trạng thái',
+    dataIndex: 'status',
+    render: (row, value: any) => (
+      <Typography style={{ width: '100px' }} variant="subtitle2">
+        <Chip label={value.status} color={getStatusColor(value.status)} />
+      </Typography>
+    ),
+  },
+  {
+    title: 'Duyệt hồ sơ',
+    render: (row, value: any) => (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Checkbox defaultChecked />
+      </Box>
+    ),
+  },
+  {
+    title: 'Hợp đồng',
+    render: (row, value: any) => (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button style={{ width: '100px' }}>Ký ngay</Button>
+      </Box>
+    ),
+  },
+];
+
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'Đã ký':
+      return 'success'; // Green for approved
+    case 'Chờ ký':
+      return 'warning'; // Yellow for pending approval
+    case 'Từ chối':
+      return 'error'; // Red for rejected
+    default:
+      return 'default'; // Gray for any unrecognized status
+  }
+};
+
 const ContactAffiliate = () => {
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
     <>
       <Grid container rowSpacing={3}>
@@ -109,8 +225,54 @@ const ContactAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          {' '}
-          <ContractAffiliateTable />
+          <Grid item xs={12}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm thông báo"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={4}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <CustomTable columns={columns} dataSource={DataContactAffiliateTable} />
         </Grid>
       </Grid>
     </>
