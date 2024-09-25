@@ -44,18 +44,13 @@ import PageContainer from 'src/components/container/PageContainer';
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import img1 from 'src/assets/images/profile/user-1.jpg';
-import img2 from 'src/assets/images/profile/user-2.jpg';
-import img3 from 'src/assets/images/profile/user-3.jpg';
-import img4 from 'src/assets/images/profile/user-4.jpg';
-import img5 from 'src/assets/images/profile/user-5.jpg';
 
 import BlankCard from '../../../components/shared/BlankCard';
 
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import AddDialog from './layout/addDialog';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { fetchProducts } from './../../../store/apps/products/Products';
+import AddDialog from './layout/addDialog';
 
 interface TablePaginationActionsProps {
   count: number;
