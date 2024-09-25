@@ -17,16 +17,7 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-interface CurrencyType {
-  value: string;
-  label: string;
-}
 
-const currencies: CurrencyType[] = [
-  { value: 'female', label: 'Đồng' },
-  { value: 'male', label: 'Phần trăm' },
-  // { value: 'other', label: 'Khác' },
-];
 // import * as React from 'react';
 const AddNotification = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);

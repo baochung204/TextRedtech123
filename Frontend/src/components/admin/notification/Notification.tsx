@@ -1,10 +1,9 @@
-import { Box, Fab, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
+import { Box, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconBellRinging,
   IconEye,
-  IconPlus,
   IconSearch,
   IconTags,
   IconWorldUpload,
