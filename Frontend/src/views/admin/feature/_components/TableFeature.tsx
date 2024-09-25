@@ -4,9 +4,8 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import DataFeature from '../data/DataFeuture';
 import BlankCard from 'src/components/shared/BlankCard';
-import { render } from 'react-dom';
+import DataFeature from '../data/DataFeuture';
 const FilmsData: any = [
   { title: 'ID', dataIndex: 'id' },
   { title: 'Ngày tạo', dataIndex: 'createdAt', render: (value: any) => value.toLocaleDateString() },

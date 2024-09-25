@@ -32,7 +32,7 @@ const columns = [
   {
     title: 'Họ và tên',
     dataIndex: 'name',
-    render: (row, value: any) => (
+    render: ( value: any) => (
       // console.log( value.imgsrc)
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <img

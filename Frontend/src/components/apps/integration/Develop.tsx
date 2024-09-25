@@ -16,9 +16,9 @@ const Develop = () => {
           src={develop}
           alt="404"
           sx={{
-            width: '100%',
+            width: '80%',
             maxWidth: '200px',
-            borderRadius:'50%'
+            
           }}
         />
         <br />

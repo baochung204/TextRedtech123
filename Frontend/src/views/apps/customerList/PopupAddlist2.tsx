@@ -1,10 +1,10 @@
-import { Box, Grid, ListItemText, MenuItem, Typography, Button, useTheme, DialogTitle } from '@mui/material';
+import { Box, Button, Grid, ListItemText, MenuItem, Typography, useTheme } from '@mui/material';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import Tags from 'src/components/apps/sell/layout/Tags';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import Tags from 'src/components/apps/sell/layout/Tags';
+import * as Yup from 'yup';
 
 interface CurrencyType {
   value: string;

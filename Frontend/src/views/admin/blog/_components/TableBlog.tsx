@@ -1,12 +1,11 @@
+import { Favorite, Visibility } from '@mui/icons-material';
 import { Avatar, Chip, IconButton, Typography } from '@mui/material';
+import { IconEdit, IconEye, IconTrash } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlogTable from '../data/datablog';
-import { Favorite, Visibility } from '@mui/icons-material';
-import { IconEdit, IconEye } from '@tabler/icons-react';
-import { IconTrash } from '@tabler/icons-react';
 import BlankCard from 'src/components/shared/BlankCard';
+import BlogTable from '../data/datablog';
 
 const tagColors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFC300', '#DAF7A6', '#C70039'];
 const FilmsData: any = [

@@ -10,7 +10,6 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import Point from 'src/assets/images/logos/R-Point.png';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TableList from 'src/components/ComponentTables/tableList';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';

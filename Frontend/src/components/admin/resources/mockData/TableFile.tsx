@@ -134,116 +134,17 @@ export const FileCells: any = [
   {
     dataIndex: 'actions',
     title: 'Hoạt động',
+    render: () => (
+      <Box>
+        <IconButton>
+          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+        </IconButton>
+        <IconButton>
+          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+        </IconButton>
+      </Box>
+    ),
   },
 ];
 
-export const FileRows = [
-  {
-    id: 'FILE001',
-    fileName: 'Báo cáo Tài chính 2024',
-    customer: 'Công ty ABC',
-    format: 'PDF',
-    size: 25.5,
-    uploadDate: '2024-09-01',
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
-  },
-  {
-    id: 'FILE002',
-    fileName: 'Kế hoạch Marketing',
-    customer: 'Công ty XYZ',
-    format: 'DOCX',
-    size: 10.2,
-    uploadDate: '2024-09-02',
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
-  },
-  {
-    id: 'FILE003',
-    fileName: 'Chiến lược Kinh doanh Q3',
-    customer: 'Công ty DEF',
-    format: 'XLSX',
-    size: 18.7,
-    uploadDate: '2024-09-03',
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
-  },
-  {
-    id: 'FILE004',
-    fileName: 'Báo cáo Nhân sự',
-    customer: 'Công ty GHI',
-    format: 'PDF',
-    size: 12.8,
-    uploadDate: '2024-09-04',
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
-  },
-  {
-    id: 'FILE005',
-    fileName: 'Đánh giá Sản phẩm',
-    customer: 'Công ty JKL',
-    format: 'DOCX',
-    size: 7.4,
-    uploadDate: '2024-09-05',
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
-  },
-  {
-    id: 'FILE006',
-    fileName: 'Bản vẽ Kỹ thuật',
-    customer: 'Công ty MNO',
-    format: 'DWG',
-    size: 40.3,
-    uploadDate: '2024-09-06',
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
-  },
-];
+

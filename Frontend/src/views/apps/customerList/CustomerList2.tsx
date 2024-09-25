@@ -5,38 +5,40 @@ import {
   Dialog,
   // DialogActions,
   DialogContent,
-  DialogTitle,
   Grid,
   InputAdornment,
+  Slide,
   TextField,
-  Typography,
+  Typography
 } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
+import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Point from 'src/assets/images/icon.png/point.png';
-import { Slide } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
-import { DataRowCustomerTable } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import { fetchCustomer } from 'src/store/apps/customer/CustomerSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 import PopupAddList2 from './PopupAddlist2';
 
-const columns = [
+const columns =  [
   {
     title: 'ID khách hàng',
-    dataIndex: 'id',
+    dataIndex: 'ID_customer',
   },
 
   {
     title: 'Ngày tạo',
-    dataIndex: 'createdAt',
+    dataIndex: 'datetime',
   },
   {
     title: 'Trợ lý',
@@ -44,8 +46,8 @@ const columns = [
   },
   {
     title: 'Kênh(MKT)',
-    dataIndex: 'createdAt',
-    render: (row, value: any) => (
+    dataIndex: 'channel',
+    render: (value: any) => (
       // console.log( value.imgsrc)
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <img
@@ -62,16 +64,16 @@ const columns = [
   },
   {
     title: 'Tags',
-    dataIndex: 'orderInfo',
+    dataIndex: 'tag',
   },
   {
     title: 'Tên khách hàng',
-    dataIndex: 'name',
+    dataIndex: 'name_customer',
   },
   {
     title: 'Tổng chi tiêu',
-    dataIndex: 'orderValue',
-    render: (row, value: any) => (
+    dataIndex: 'total_spend',
+    render: ( value: any) => (
       // console.log( value.imgsrc)
 
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -86,7 +88,7 @@ const columns = [
   },
   {
     title: 'SĐT',
-    dataIndex: 'phone',
+    dataIndex: 'phone_number',
   },
   {
     title: 'Địa chỉ',
@@ -112,7 +114,8 @@ const CustomerList2 = () => {
 
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   // const [value, setValue] = React.useState('1');
-
+  const dispatch = useDispatch<AppDispatch>()
+  const dataCustomer = useSelector((state: AppState) => (state.customer.data))
   // Function mở popup
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -126,7 +129,9 @@ const CustomerList2 = () => {
   // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
   //   setValue(newValue);
   // };
-
+  useEffect(() => {
+    dispatch(fetchCustomer())
+  },[dispatch])
   return (
     <PageContainer>
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
@@ -199,7 +204,7 @@ const CustomerList2 = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <CustomTable columns={columns} dataSource={DataRowCustomerTable} />;
+                  <CustomTable columns={columns} dataSource={dataCustomer} />;
                 </Grid>
               </Grid>
             </TabPanel>
@@ -216,8 +221,8 @@ const CustomerList2 = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-       
-        <DialogContent sx={{paddingTop: '10px'}}>
+
+        <DialogContent sx={{ paddingTop: '10px' }}>
           <PopupAddList2 />
         </DialogContent>
       </Dialog>
