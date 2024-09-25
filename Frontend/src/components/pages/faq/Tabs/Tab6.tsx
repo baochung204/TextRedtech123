@@ -85,7 +85,7 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
                             ? !dataSelect.includes(header.dataIndex)
                             : dataSelect.includes(header.dataIndex);
 
-                        return (// Nếu isValids là false
+                        return (
                             <MenuItem key={header.dataIndex} value={header.dataIndex}>
                                 <Checkbox checked={isSelected} />
                                 <ListItemText primary={header.title} />

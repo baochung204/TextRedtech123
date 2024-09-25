@@ -19,126 +19,29 @@ import { useTheme } from '@mui/material/styles';
 
 
 
-const tableHeaders = {
-  "1": [],
-  "2": [],
-  "3": [
-    {
-      title: 'ID',
-      dataIndex: 'idCode',
-    },
-    {
-      title: 'Tên file',
-      dataIndex: 'fileName'
-    },
-    {
-      title: 'Dung lượng',
-      dataIndex: 'datas'
-    },
-    {
-      title: 'Ngày tải',
-      dataIndex: 'creationDate',
-    },
-    {
-      title: 'Định dạng',
-      dataIndex: 'formats'
-    },
-    {
-      title: 'Hành động',
-      dataIndex: 'isCheck',
-    }
-  ],
-  "4": [],
-  "5": [
-    {
-      title: 'ID',
-      dataIndex: 'idCode'
-    },
-    {
-      title: 'Ngày tạo',
-      dataIndex: 'createDate'
-    },
-    {
-      title: 'Hình ảnh',
-      dataIndex: 'images',
-    },
-    {
-      title: 'Tên ảnh',
-      dataIndex: 'imgName'
-    },
-    {
-      title: 'Mô tả',
-      dataIndex: 'moTa'
-    },
-    {
-      title: 'Tiêu đề',
-      dataIndex: 'title'
-    },
-    {
-      title: 'Hoạt động',
-      dataIndex: 'action',
-    }
-   
-  ],
-  "6": [],
-};
 
 const Faq = () => {
-  const [value, setValue] = useState<'1' | '2' | '3' | '4' | '5' | '6'>('1');
+  const [value, setValue] = useState<string>('1');
   const [open, setOpen] = useState<boolean>(false);
   const theme = useTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    if (["1", "2", "3", "4", "5", "6"].includes(newValue)) {
-      setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
-      setOpen(false);
-      setDataSelect([]); // Reset selected data
-    }
+    setValue(newValue);
+    setOpen(false);
   };
   const [search, setSearch] = useState<boolean>(false);
 
   const handleSearch = () => {
     setSearch(!search);
   }
-  const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
-    console.log("aasas", value);
-    
-    setDataSelect(
-      typeof value === 'string' ? value.split(',') : value
-    );
-    console.log(dataSelect);
-    
-  };
+
 
 
   const searchSection = (
     <Box>
       <Grid container sx={{ display: 'flex', alignItems: 'center', paddingTop: 2 }}>
-        <Grid item>
-          <Select
-            multiple
-            value={dataSelect}
-            onChange={handleColumnChange}
-            renderValue={() => 'Bộ lọc'}
-            sx={{
-              minWidth: 100
-            }}
-          >
-            {tableHeaders[value]?.map((header: { title: string; dataIndex: string }) => {
-              console.log('header: ', header.dataIndex);
 
-              return (
-                <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                  <Checkbox checked={!dataSelect.includes(header.dataIndex)} />
-                  <ListItemText primary={header.title} />
-                </MenuItem>
-              )
-            })}
-          </Select>
-        </Grid>
         <Grid item>
           <TextField
             id="outlined-search"
@@ -266,10 +169,7 @@ const Faq = () => {
                 <Tab
                   label="Chiến Lược"
                   value="1"
-                  sx={{
-                    fontSize: 15,
-                    fontWeight: 600
-                  }}
+                  
                 />
                 <Tab label="Function" value="2" />
                 <Tab label="Files" value="3" />
@@ -287,13 +187,13 @@ const Faq = () => {
               <Tab2 />
             </TabPanel>
             <TabPanel value="3">
-              <Tab3 value={value} open={open} setOpen={setOpen} dataSelected={dataSelect} />
+              <Tab3 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
             <TabPanel value="4">
               <Tab4 />
             </TabPanel>
             <TabPanel value="5">
-              <Tab5 value={value} open={open} setOpen={setOpen} dataSelected={dataSelect} />
+              <Tab5 value={value} open={open} setOpen={setOpen} />
             </TabPanel>
             <TabPanel value="6">
               <Tab6 value={value} open={open} setOpen={setOpen} />
