@@ -10,18 +10,58 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
-import CustomerTable from 'src/components/tables/CustomerTable';
+import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PopupAdd from './PopupAdd';
+
+const columns = [
+  {
+    title: 'STT',
+    dataIndex: 'id',
+  },
+  {
+    title: 'Họ và tên',
+    dataIndex: 'name',
+    render: (row, value: any) => (
+      // console.log( value.imgsrc)
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={value?.imgsrc}
+          alt=""
+          style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
+        />
+        <Typography>{value.name}</Typography>
+      </Box>
+    ),
+  },
+
+  {
+    title: 'SĐT',
+    dataIndex: 'phone',
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+  },
+  {
+    title: 'Ngày đăng ký',
+    dataIndex: 'createdAt',
+  },
+  {
+    title: 'Loại khách hàng',
+    dataIndex: 'typeofcustomer',
+  },
+];
 
 const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement }>(
   (props, ref) => (
@@ -54,16 +94,13 @@ const CustomerList = () => {
             <TabPanel value="1" sx={{ p: 0, mt: 2 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+                  >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        {/* <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
-                          <Tooltip title="Thêm mới khách hàng" onClick={handleClosePopup}>
-                            <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
-                              <IconPlus width={18} />
-                            </Fab>
-                          </Tooltip>
-                        </Grid> */}
                         <Grid item xs={10}>
                           <TextField
                             id="outlined-search"
@@ -89,13 +126,17 @@ const CustomerList = () => {
                           <DatePicker
                             value={selectedStartDate}
                             onChange={setSelectedStartDate}
-                            renderInput={(params) => <TextField {...params} size="small" fullWidth />}
+                            renderInput={(params) => (
+                              <TextField {...params} size="small" fullWidth />
+                            )}
                           />
                           <Typography>tới</Typography>
                           <DatePicker
                             value={selectedEndDate}
                             onChange={setSelectedEndDate}
-                            renderInput={(params) => <TextField {...params} size="small" fullWidth />}
+                            renderInput={(params) => (
+                              <TextField {...params} size="small" fullWidth />
+                            )}
                           />
                         </LocalizationProvider>
                       </Box>
@@ -104,7 +145,7 @@ const CustomerList = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <CustomerTable />
+                  <CustomTable columns={columns} dataSource={DataCustomerListAffiliateTable} />;
                 </Grid>
               </Grid>
             </TabPanel>

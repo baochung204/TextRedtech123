@@ -1,16 +1,28 @@
 import {
   Box,
-  Grid
+  Button,
+  Checkbox,
+  Chip,
+  Grid,
+  InputAdornment,
+  TextField,
+  Typography,
 } from '@mui/material';
 import {
   IconBrandCashapp,
   IconBrandGumroad,
   IconChartArcs,
-  IconNumber
+  IconNumber,
+  IconSearch,
 } from '@tabler/icons-react';
 
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import React from 'react';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import HistoryTable from './component/HistoryTable';
+import { DataHistoryTable } from './datatable/OrderTableData';
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -110,29 +122,105 @@ const dataSource = [
   },
 ];
 
-interface FilmsData {
-  id: number;
-  title: string;
-}
-const FilmsData: FilmsData[] = [
-  { id: 1, title: 'File' },
-  { id: 2, title: 'Dung lượng' },
-  { id: 3, title: 'Functions' },
-  { id: 4, title: 'Token huấn luyện' },
-  { id: 5, title: 'Ngày tạo' },
-  { id: 6, title: 'Vòng quay trung bình' },
-  { id: 7, title: 'khách hàng' },
-  { id: 8, title: 'Đơn hàng' },
-  { id: 9, title: 'CVR' },
-  { id: 10, title: 'GMV' },
-  { id: 11, title: 'Chi phí' },
-  { id: 12, title: 'Chi phí/Doanh thu' },
-  { id: 13, title: 'Chi phí/Đơn hàng' },
-  { id: 14, title: 'Chi phí/Khách hàng' },
-  { id: 15, title: 'Chiến lược' },
-];
-const HistoryAffiliate = () => {
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'Chờ duyệt':
+      return 'warning'; // Yellow or custom color
+    case 'Từ chối':
+      return 'error'; // Red or custom color
+    case 'Đã đi tiền':
+      return 'success'; // Green or custom color
+    default:
+      return 'default'; // Gray or default color
+  }
+};
 
+const columns = [
+  {
+    title: 'ID thanh toán',
+    dataIndex: 'id_checkout',
+  },
+
+  {
+    title: 'Khách hàng',
+    dataIndex: 'name_publisher',
+  },
+  {
+    title: 'Ngày yêu cầu',
+    dataIndex: 'date_request',
+  },
+  {
+    title: 'Ngày hoàn tất',
+    dataIndex: 'date_done',
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+  },
+  {
+    title: 'SĐT',
+    dataIndex: 'phone_number',
+  },
+  {
+    title: 'Số tiền rút',
+    dataIndex: 'bank_amount',
+  },
+  {
+    title: 'Số tài khoản',
+    dataIndex: 'bank_number',
+  },
+  {
+    title: 'Ngân hàng',
+    dataIndex: 'bank_name',
+  },
+  {
+    title: 'Chủ tài khoản',
+    dataIndex: 'own_bank',
+  },
+  {
+    title: 'Chi nhánh',
+    dataIndex: 'branch',
+  },
+
+  {
+    title: 'Hóa đơn',
+    dataIndex: 'vat',
+    render: (row, value: any) => <Button>Tải xuống</Button>,
+  },
+  {
+    title: 'Trạng thái',
+
+    render: (row, value: any) => (
+      <Typography variant="subtitle2">
+        <Chip label={value.status} color={getStatusColor(value.status)} />
+      </Typography>
+    ),
+  },
+  {
+    title: 'Duyệt hóa đơn',
+    render: (row, value: any) => (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Checkbox defaultChecked />
+      </Box>
+    ),
+  },
+  {
+    title: 'Đã thanh toán',
+    render: (row, value: any) => (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Checkbox defaultChecked />
+      </Box>
+    ),
+  },
+  {
+    title: 'Thông báo',
+    render: (row, value: any) => <Button>Gửi email</Button>,
+  },
+];
+
+const HistoryAffiliate = () => {
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
     <>
       <Grid container rowSpacing={3}>
@@ -141,7 +229,55 @@ const HistoryAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <HistoryTable />
+          <Grid item xs={12}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Grid item xs={4} sm={4} md={4}>
+                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm thông báo"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="20" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={4}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={selectedStartDate}
+                      onChange={setSelectedStartDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                    <Typography>tới</Typography>
+                    <DatePicker
+                      value={selectedEndDate}
+                      onChange={setSelectedEndDate}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12}>
+          <CustomTable columns={columns} dataSource={DataHistoryTable} />
         </Grid>
       </Grid>
     </>
