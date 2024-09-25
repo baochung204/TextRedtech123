@@ -14,11 +14,9 @@ import React, { useEffect, useState } from 'react';
 
 // components
 import { IconChevronDown } from '@tabler/icons-react';
-import PageContainer from 'src/components/container/PageContainer';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
-import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 import { styled } from '@mui/system';
 import { useFormik } from 'formik';
@@ -37,18 +35,7 @@ const BoxStyled = styled(Box)(() => ({
   //   transform: 'scale(1.03)',
   // },
 }));
-const BCrumb = [
-  {
-    to: '/',
-    title: 'Home',
-  },
-  {
-    title: 'Quy Đổi R-Point',
-  },
-  {
-    title: 'Thanh Toán',
-  },
-];
+
 interface IPayMent {
   id: string;
   name: string;
@@ -596,7 +583,6 @@ const OrderInformation = () => {
                           <Typography color="error">{formik.errors.RepresentativeName}</Typography>
                         </FormControl>
                       </Grid>
-
                       <Grid item xs={6}>
                         <FormControl fullWidth>
                           <CustomFormLabel sx={{ mt: 2 }}>Chức vụ</CustomFormLabel>
