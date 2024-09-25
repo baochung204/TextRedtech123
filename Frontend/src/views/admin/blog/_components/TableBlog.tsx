@@ -115,17 +115,21 @@ const TableBlog = () => {
   const getRandomColor = () => {
     const randomIndex = Math.floor(Math.random() * tagColors.length);
     return tagColors[randomIndex];
+
   };
+
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
 
   return (
+
     <>
       <BlankCard>
         <CustomTable columns={FilmsData} dataSource={BlogTable} />
       </BlankCard>
     </>
+
   );
 };
 
