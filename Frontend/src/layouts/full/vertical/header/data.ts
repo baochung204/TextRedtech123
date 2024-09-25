@@ -135,7 +135,7 @@ const profile: ProfileType[] = [
   },
   {
     id: 4,
-    href: '/profile/allHistory',
+    href: '/history/buy-point-in-frofile',
     title: 'Lịch sử giao dịch',
     // subtitle: 'Account Settings',
     icon: ddIcon4,
