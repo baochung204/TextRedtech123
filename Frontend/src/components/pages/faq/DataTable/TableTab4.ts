@@ -5,7 +5,6 @@ import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 
 interface ItemTable4 {
-    id: string;
     images: string;
     modelName: string;
     modelLocal: string;
@@ -35,7 +34,6 @@ const generateCreationDate = () => {
 
 const DataTable4: ItemTable4[] = [
     {
-        id: '1',
         images: img1,
         modelName: 'GPT-0',
         modelLocal: 'Chat GPT',
@@ -44,7 +42,6 @@ const DataTable4: ItemTable4[] = [
         idCode: generateIdCode('Model S')
     },
     {
-        id: '2',
         images: img2,
         modelName: 'GPT-1',
         modelLocal: 'Chat GPT 1',
@@ -53,7 +50,6 @@ const DataTable4: ItemTable4[] = [
         idCode: generateIdCode('Mustang')
     },
     {
-        id: '3',
         images: img3,
         modelName: 'GPT-2',
         modelLocal: 'Chat GPT 2',
@@ -62,7 +58,6 @@ const DataTable4: ItemTable4[] = [
         idCode: generateIdCode('Corolla')
     },
     {
-        id: '4',
         images: img4,
         modelName: 'GPT-3',
         modelLocal: 'Chat GPT 3',
@@ -71,7 +66,6 @@ const DataTable4: ItemTable4[] = [
         idCode: generateIdCode('i8')
     },
     {
-        id: '5',
         images: img5,
         modelName: 'GPT-4',
         modelLocal: 'Chat GPT 4',

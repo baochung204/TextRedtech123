@@ -10,6 +10,10 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Typography, Box, TextField, Snackbar, Alert } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import DataTable5 from '../DataTable/TableTab5';
+// import useMediaQuery from '@mui/material/useMediaQuery';
+// import { useTheme } from '@mui/material/styles';
+
+
 
 interface PropsDialog {
     open: boolean;
@@ -32,8 +36,13 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItemId1, setSelectedItemId1 }) => {
-    const [fileUrl, setFileUrl] = React.useState<string | undefined>('');
-    const [formData, setFormData] = React.useState({
+
+    // const theme = useTheme();
+    // const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const [fileUrl, setFileUrl] = useState<string | undefined>('');
+    const [check, setCheck] = useState<boolean>(true);
+    const [formData, setFormData] = useState({
         name: '',
         title: '',
         moTa: '',
@@ -80,17 +89,27 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
     };
 
     const handleClose = () => {
+        setCheck(true)
         setOpen(false);
         resetForm();
         setSelectedItemId1(null);
     };
 
     const handleSubmit = () => {
-        handleClose();
-        setOpen1(true);
-        setTimeout(() => {
-            setOpen1(false);
-        }, 3000);
+        if (check) {
+            setCheck(false)
+        } else {
+            handleClose();
+            setOpen1(true);
+            setTimeout(() => {
+                setOpen1(false);
+            }, 3000);
+        }
+        // handleClose();
+        // setOpen1(true);
+        // setTimeout(() => {
+        //     setOpen1(false);
+        // }, 3000);
     };
 
     const resetForm = () => {
@@ -112,11 +131,10 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
             >
                 <DialogTitle sx={{
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+
                 }}>
                     <Box sx={{
-                        borderBottom: '1px solid #E6EAEF',
-                        paddingX: 25,
                         paddingBottom: 2
                     }}>
                         <Typography fontWeight={600} variant='h3'>
@@ -155,11 +173,28 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                 <Grid item sm={12}>
                                     <Grid container direction="column" sx={{ justifyContent: 'center' }} sm={12}>
                                         <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <img src={fileUrl} alt="" width={300} />
+                                            <Box
+                                                component="img"
+                                                src={fileUrl}
+                                                alt="Your Image"
+                                                sx={{
+                                                    width: { xs: '150px', md: '250px' },
+                                                    height: 'auto',
+                                                }}
+                                            />
                                         </Grid>
 
                                         <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2, width: '100%', pb: '8%' }}>
-                                            <Box component="form" width={400}>
+                                            <Box
+                                                component="form"
+                                                sx={{
+                                                    width: {
+                                                        xs: '200px',
+                                                        md: '400px'
+                                                    },
+                                                }}
+
+                                            >
                                                 <Typography fontWeight={600}>Tên file</Typography>
                                                 <TextField
                                                     name="name"
@@ -167,6 +202,9 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                                     onChange={handleInputChange}
                                                     fullWidth
                                                     margin="normal"
+                                                    InputProps={{
+                                                        readOnly: check
+                                                    }}
                                                 />
                                                 <Typography fontWeight={600}>Tiêu đề</Typography>
                                                 <TextField
@@ -175,6 +213,9 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                                     onChange={handleInputChange}
                                                     fullWidth
                                                     margin="normal"
+                                                    InputProps={{
+                                                        readOnly: check
+                                                    }}
                                                 />
                                                 <Typography fontWeight={600}>Mô tả</Typography>
                                                 <TextField
@@ -185,6 +226,9 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                                     margin="none"
                                                     minRows={3}
                                                     multiline
+                                                    InputProps={{
+                                                        readOnly: check
+                                                    }}
                                                     sx={{
                                                         '& .MuiInputBase-input': {
                                                             padding: 0,
@@ -199,7 +243,7 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                                     </Grid>
                                 </Grid>
                             )}
-                            
+
                         </Grid>
                     </DialogContentText>
                 </DialogContent>
@@ -208,9 +252,9 @@ const DialogImage: React.FC<PropsDialog> = ({ value, open, setOpen, selectedItem
                     <Button
                         color="primary"
                         variant="contained"
-                        onClick={handleSubmit}
+                        onClick={() => handleSubmit()}
                     >
-                        {selectedItemId1 === null ? 'Thêm' : 'Sửa'}
+                        {selectedItemId1 === null ? 'Thêm' : check ? 'Sửa' : 'Lưu'}
                     </Button>
                     <Button onClick={handleClose}>Đóng</Button>
                 </DialogActions>
