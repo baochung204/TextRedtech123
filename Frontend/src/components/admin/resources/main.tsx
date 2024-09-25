@@ -8,9 +8,10 @@ import Tab from '@mui/material/Tab';
 import {
   IconSearch
 } from '@tabler/icons-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { FileCells, FileRows, Files } from './mockData/TableFile';
+import { GetFiles } from './Api/files';
+import { FileCells, Files } from './mockData/TableFile';
 import { Function, FunctionCells, FunctionRows } from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import { Model, ModelCells, ModelRows } from './mockData/TableModel';
@@ -19,13 +20,20 @@ import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
 import Tab1 from './Tabs/Tab1';
 
 const Main = () => {
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = useState('1');
+  const [data, setData] = useState([]);
   // const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     // setOpen(false);
   };
+  useEffect(() => {
+    setTimeout(() => {
+      GetFiles(setData);
+
+    }, 2000)
+  })
 
   return (
     <Grid container xs={12}>
@@ -53,7 +61,12 @@ const Main = () => {
                 mt: 3,
               }}
             >
-              <TabList onChange={handleChange} aria-label="lab API tabs example">
+              <TabList
+                onChange={handleChange}
+                aria-label="lab API tabs example"
+                variant="scrollable"
+                scrollButtons="auto"
+              >
                 <Tab label="Chiến Lược" value="1" />
                 <Tab label="Function" value="2" />
                 <Tab label="Files" value="3" />
@@ -124,7 +137,7 @@ const Main = () => {
               <Tab1 headCells={FunctionCells} dataRows={FunctionRows} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">
-              <Tab1 headCells={FileCells} dataRows={FileRows} />
+              <Tab1 headCells={FileCells} dataRows={data} />
 
               {/* <Tab3 value={value} open={open} setOpen={setOpen} /> */}
             </TabPanel>

@@ -22,6 +22,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 import img1 from 'src/assets/images/badge/badge.png';
 import img2 from 'src/assets/images/badge/badge2.png';
 import img3 from 'src/assets/images/badge/badge3.png';
+import img4 from 'src/assets/images/blog/blog-img1.jpg';
 import Develop from './Develop';
 interface Assistant {
   id: string;
@@ -38,7 +39,7 @@ const rows: Assistant[] = [
   {
     id: 'ORD - 0120145',
     model: 'GPT-3.5',
-    imgsrc: img1,
+    imgsrc: img4,
     name: 'botHello',
     connect: 'Facebook',
     status: 'Completed',
@@ -150,7 +151,10 @@ const Integration = () => {
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <TabList onChange={handleChange} aria-label="lab API tabs example">
+              <TabList onChange={handleChange} 
+                aria-label="lab API tabs example"
+                variant="scrollable"
+                scrollButtons="auto">
                 <Tab label="Facebook" value="1" />
                 <Tab label="Zalo" value="2" />
                 <Tab label="Telegram" value="3" />
@@ -171,7 +175,7 @@ const Integration = () => {
                       <BlankCard>
                         <CardContent>
                           <Stack direction={'row'} gap={2} alignItems="center">
-                            <Avatar alt="Remy Sharp" src={profile.imgsrc} />
+                            <Avatar sx={{borderRadius:'50%'}} alt="Remy Sharp" src={profile.imgsrc} />
                             <Box>
                               <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
                                 {profile.name}
