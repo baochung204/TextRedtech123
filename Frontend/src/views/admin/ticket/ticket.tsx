@@ -1,4 +1,17 @@
-import { Badge, Box, Checkbox, Fab, Grid, InputAdornment, ListItemText, MenuItem, Select, TextField, Tooltip, Typography } from '@mui/material';
+import {
+  Badge,
+  Box,
+  Checkbox,
+  Fab,
+  Grid,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -16,7 +29,6 @@ import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
 
 const BCrumb = [
   {
@@ -127,8 +139,6 @@ const DataBox = [
     ),
   },
 ];
-
-
 
 interface DataRow {
   idTicket: string;
@@ -269,58 +279,61 @@ const FilmsData: FilmsData[] = [
 const Ticket = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-  const column = useMemo<Column[]>(() => [
-    {
-      dataIndex: 'idTicket',
-      title: 'ID Ticket',
-    },
-    {
-      dataIndex: 'creationTime',
-      title: 'Thời gian tạo',
-    },
-    {
-      dataIndex: 'interaction',
-      title: 'Tương tác gần đây',
-    },
-    {
-      dataIndex: 'rating',
-      title: 'Đánh giá',
-    },
-    {
-      dataIndex: 'status',
-      title: 'Trạng thái',
-    },
-    {
-      dataIndex: 'title',
-      title: 'Tiêu đề',
-    },
-    {
-      dataIndex: 'customerId',
-      title: 'ID Khách hàng',
-    },
-    {
-      dataIndex: 'customerName',
-      title: 'Tên Khách hàng',
-    },
-    {
-      dataIndex: 'email',
-      title: 'Email',
-    },
-    {
-      dataIndex: 'phoneNumber',
-      title: 'Số điện thoại',
-    },
-  ], [])
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        dataIndex: 'idTicket',
+        title: 'ID Ticket',
+      },
+      {
+        dataIndex: 'creationTime',
+        title: 'Thời gian tạo',
+      },
+      {
+        dataIndex: 'interaction',
+        title: 'Tương tác gần đây',
+      },
+      {
+        dataIndex: 'rating',
+        title: 'Đánh giá',
+      },
+      {
+        dataIndex: 'status',
+        title: 'Trạng thái',
+      },
+      {
+        dataIndex: 'title',
+        title: 'Tiêu đề',
+      },
+      {
+        dataIndex: 'customerId',
+        title: 'ID Khách hàng',
+      },
+      {
+        dataIndex: 'customerName',
+        title: 'Tên Khách hàng',
+      },
+      {
+        dataIndex: 'email',
+        title: 'Email',
+      },
+      {
+        dataIndex: 'phoneNumber',
+        title: 'Số điện thoại',
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -328,10 +341,11 @@ const Ticket = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
 
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
@@ -343,39 +357,31 @@ const Ticket = () => {
         <Grid item xs={12}>
           <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Grid item xs={4} sm={4} md={4}>
-              <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Tooltip title="Thêm ticket mới" sx={{ mb: '15px' }} placement="top">
-                    <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
-                      <IconPlus width={18} />
-                    </Fab>
-                  </Tooltip>
-                </Grid>
-                <Grid item xs={10}>
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Tìm kiếm ticket"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="20" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth={true}
-                  />
-                </Grid>
-              </Grid>
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm ticket"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch size="20" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth={true}
+              />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                <Badge
+                  badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                  color={dataSelect.length !== 0 ? 'primary' : undefined}
+                >
                   <FilterListIcon color="action" />
                 </Badge>
                 <Select
@@ -384,7 +390,7 @@ const Ticket = () => {
                   displayEmpty
                   onChange={handleColumnChange}
                   renderValue={() => 'Sửa đổi cột'}
-                  size='small'
+                  size="small"
                   MenuProps={{
                     PaperProps: {
                       sx: {
@@ -416,8 +422,7 @@ const Ticket = () => {
                   }}
                 >
                   {column.map((header: any) => {
-
-                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                     const isSelected = dataSelect.includes(header.dataIndex);
 

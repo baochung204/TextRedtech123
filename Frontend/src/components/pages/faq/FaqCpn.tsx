@@ -110,23 +110,23 @@ const Faq = () => {
       '5': [
         {
           title: 'ID',
-          dataIndex: 'idCode',
+          dataIndex: 'id',
         },
         {
           title: 'Ngày tạo',
-          dataIndex: 'createDate',
+          dataIndex: 'dateTime',
         },
         {
           title: 'Hình ảnh',
-          dataIndex: 'images',
+          dataIndex: 'imageURL',
         },
         {
           title: 'Tên ảnh',
-          dataIndex: 'imgName',
+          dataIndex: 'name',
         },
         {
           title: 'Mô tả',
-          dataIndex: 'moTa',
+          dataIndex: 'description',
         },
         {
           title: 'Tiêu đề',
