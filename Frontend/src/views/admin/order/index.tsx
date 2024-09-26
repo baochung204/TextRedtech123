@@ -1,8 +1,13 @@
 import {
+  Badge,
   Box,
+  Checkbox,
   Grid,
   IconButton,
   InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from '@mui/material';
@@ -15,6 +20,9 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import icontext from 'src/assets/images/logos/R-Point.png';
+import FilterListIcon from '@mui/icons-material/FilterList';
+
+
 
 const BCrumb = [
   {
@@ -283,9 +291,33 @@ const OrderAdminPages = () => {
               />
             </Grid>
 
-            {/* Date Picker */}
             <Grid item xs={12} sm={6} md={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <FilterListIcon color="action" />
+                </Badge>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size='small'
+                >
+                  {column.map((header: any) => {
+
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                    const isSelected = dataSelect.includes(header.dataIndex);
+
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     value={selectedStartDate}
@@ -304,9 +336,12 @@ const OrderAdminPages = () => {
           </Grid>
         </Grid>
 
-        {/* Table Section */}
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={OrderData}  dataSelect={dataSelect}/>
+          <CustomTable
+            columns={column}
+            dataSource={OrderData}
+            dataSelect={dataSelect}
+          />
         </Grid>
       </Grid>
     </>
