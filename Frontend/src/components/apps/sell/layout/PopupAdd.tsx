@@ -30,9 +30,9 @@ const PopupAdd = () => {
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        setter(event.target.value);
-      };
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
+    };
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -165,7 +165,9 @@ const PopupAdd = () => {
               </Grid>
               <Grid container item xs={12} spacing={2}>
                 <Grid item xs={6}>
-                  <Box fontWeight={600} mb={1} mt={1}>Khối lượng</Box>
+                  <Box fontWeight={600} mb={1} mt={1}>
+                    Khối lượng
+                  </Box>
                   <CustomOutlinedInput
                     endAdornment={<InputAdornment position="end">g</InputAdornment>}
                     id="weight-text"
@@ -175,7 +177,9 @@ const PopupAdd = () => {
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  <Box fontWeight={600} mb={1} mt={1}>Đơn vị tính</Box>
+                  <Box fontWeight={600} mb={1} mt={1}>
+                    Đơn vị tính
+                  </Box>
                   <CustomTextField
                     id="unit-text"
                     variant="outlined"
@@ -186,7 +190,9 @@ const PopupAdd = () => {
               </Grid>
 
               <Grid item xs={12}>
-                <Box fontWeight={600} mt={1} mb={'10px'}>Kích thước</Box>
+                <Box fontWeight={600} mt={1} mb={'10px'}>
+                  Kích thước
+                </Box>
 
                 {/* Tạo hàng cho ba thuộc tính rộng, dài, cao */}
                 <Grid container spacing={2}>
@@ -225,15 +231,17 @@ const PopupAdd = () => {
                 </Grid>
               </Grid>
               <Grid item xs={12}>
-                <Box fontWeight={600} mt={'10px'} mb={1}>Kiểu dáng</Box>
+                <Box fontWeight={600} mt={'10px'} mb={1}>
+                  Kiểu dáng
+                </Box>
                 <CustomTextField
                   id="style-text"
                   variant="outlined"
                   fullWidth
                   placeholder="Nhập kiểu dáng . . ."
 
-                // value={style}
-                // onChange={handleChange(setStyle)}
+                  // value={style}
+                  // onChange={handleChange(setStyle)}
                 />
               </Grid>
             </Grid>
@@ -269,7 +277,6 @@ const PopupAdd = () => {
             <Classify />
           </Grid>
         </Grid>
-
       </Box>
     </Box>
   );

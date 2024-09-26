@@ -1,18 +1,18 @@
 import { GeneralIcon } from './icon';
 
 export interface ProductType {
-  title: string;
-  price: number;
+  name: string;
+  point: number;
   discount: number;
   related: boolean;
   salesPrice: number;
-  category: string[];
+  tag: string[];
   gender: string;
   rating: number;
   stock: boolean;
   qty: number;
   colors: string[];
-  photo: string;
+  thumbnailUrl: string;
   id: number | string;
   created: Date;
   description: string;
