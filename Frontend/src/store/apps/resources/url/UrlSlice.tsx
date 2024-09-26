@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { GetAllUrl, RemoveUrl } from './UrlApi';
+import { GetAllUrl } from './UrlApi';
 
 interface UrlsState {
   urls: any[];
@@ -18,10 +18,10 @@ export const fetchUrls = createAsyncThunk('urls/fetchUrls', async () => {
   return data;
 });
 
-export const removeUrl = createAsyncThunk('urls/removeUrl', async (id: string) => {
-  await RemoveUrl(id);
-  return id;
-});
+// export const removeUrl = createAsyncThunk('urls/removeUrl', async (id: string) => {
+//   await RemoveUrl(id);
+//   return id;
+// });
 
 const urlsSlice = createSlice({
   name: 'urls',

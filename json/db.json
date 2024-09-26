@@ -2,63 +2,63 @@
   "urls": [
     {
       "id": "#862815",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862821",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862125",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862825",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862225",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862345",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862355",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862555",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
     },
     {
       "id": "#862225",
-      "tilte": "Urban Exploration",
+      "title": "Urban Exploration",
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
@@ -130,13 +130,13 @@
       ]
     }
   ],
-  "userpersonalinformation":[
+  "userpersonalinformation": [
     {
-        "id": "1",
-        "name": "Lê Tài Đức",
-        "address": "Hà Nội",
-        "dateOfBirth": "1990-01-02",
-        "gender": "Nam"
+      "id": "1",
+      "name": "Lê Tài Đức",
+      "address": "Hà Nội",
+      "dateOfBirth": "1990-01-02",
+      "gender": "Nam"
     }
   ]
 }

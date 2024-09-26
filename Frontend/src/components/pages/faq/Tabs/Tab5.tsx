@@ -87,6 +87,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect }) => {
       },
     },
   ];
+  console.log(dataImages);
 
   return (
     <Box

@@ -2,10 +2,11 @@ import { Box, IconButton } from '@mui/material';
 import { IconTrash } from '@tabler/icons-react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import DialogURL from 'src/components/admin/resources/dialog/DIalogURL';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { fetchUrls } from 'src/store/apps/resources/url/UrlSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
-import DialogURL from '../dialog/DialogURL';
+// import DialogURL from '../dialog/DialogURL';
 
 interface PropsTab6 {
   value: string;
@@ -48,6 +49,7 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
       title: 'ID',
       dataIndex: 'id',
     },
+
     {
       title: 'Tiêu đề URL',
       dataIndex: 'title',
