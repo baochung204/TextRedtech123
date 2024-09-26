@@ -10,28 +10,30 @@ import {
   ListItemText,
   MenuItem,
   Select,
+  Slide,
   TextField,
   Typography,
 } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
+import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import Point from 'src/assets/images/icon.png/point.png';
-import { Slide } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
-import { DataRowCustomerTable } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+// import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
+// import { AppDispatch, AppState } from 'src/store/Store';
 import PopupAddList2 from './PopupAddlist2';
 import { useState, useEffect, useMemo } from 'react';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
+import { DataRowCustomerTable } from 'src/components/tables/tableData';
 
 
 const BCrumb = [
@@ -146,7 +148,6 @@ const CustomerList2 = () => {
     const { target: { value } } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
 
   return (
     <PageContainer>
@@ -266,7 +267,6 @@ const CustomerList2 = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-
         <DialogContent sx={{ paddingTop: '10px' }}>
           <PopupAddList2 />
         </DialogContent>

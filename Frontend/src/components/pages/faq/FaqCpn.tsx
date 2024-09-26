@@ -266,10 +266,7 @@ const Faq = () => {
     <Grid container>
       <Grid item xs={12}>
         <Box>
-          <TabContext
-            value={value}
-
-          >
+          <TabContext value={value}>
             <Box
               sx={{
                 borderBottom: 1,
@@ -279,7 +276,7 @@ const Faq = () => {
                 alignItems: 'center',
                 px: 1,
                 overflowX: 'auto',
-                width: '100%'
+                width: '100%',
               }}
             >
               <TabList
@@ -287,7 +284,6 @@ const Faq = () => {
                 variant="scrollable"
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
-
               >
                 <Tab
                   label="Chiến Lược"
@@ -306,7 +302,7 @@ const Faq = () => {
             <TabPanel value="1">
               <Tab1 />
             </TabPanel>
-            <TabPanel value="2">
+            <TabPanel value="2" sx={{ px: 0 }}>
               <Tab2 />
             </TabPanel>
             <TabPanel value="3">

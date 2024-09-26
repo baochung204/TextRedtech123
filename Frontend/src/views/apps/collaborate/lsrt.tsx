@@ -31,10 +31,6 @@ import { tabledh } from 'src/components/tables/tabledh';
 // ];
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-<<<<<<< HEAD
-import dayjs from 'dayjs';
-=======
->>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 // import { useTheme } from '@emotion/react';
 const columns = [
@@ -75,44 +71,44 @@ const columns = [
   },
 ];
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
+// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 const rows: any = tabledh;
 
 type Order = 'asc' | 'desc';
 
-function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key,
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
+// function getComparator<Key extends keyof any>(
+//   order: Order,
+//   orderBy: Key,
+// ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+//   return order === 'desc'
+//     ? (a, b) => descendingComparator(a, b, orderBy)
+//     : (a, b) => -descendingComparator(a, b, orderBy);
+// }
 
-function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
+// function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
+//   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+//   stabilizedThis.sort((a, b) => {
+//     const order = comparator(a[0], b[0]);
+//     if (order !== 0) {
+//       return order;
+//     }
 
-    return a[1] - b[1];
-  });
+//     return a[1] - b[1];
+//   });
 
-  return stabilizedThis.map((el) => el[0]);
-}
+//   return stabilizedThis.map((el) => el[0]);
+// }
 
-<<<<<<< HEAD
+
 // interface HeadCell {
 //   disablePadding: boolean;
 //   id: any;
@@ -158,7 +154,7 @@ function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
 //     label: 'Tải hóa đơn',
 //   },
 // ];
-=======
+
 interface HeadCell {
   disablePadding: boolean;
   id: any;
@@ -207,7 +203,7 @@ const FilmsData: any = [
     render: (value: any) => <Button color="success">{value ? 'tải về' : ''}</Button>,
   },
 ];
->>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
+
 
 interface EnhancedTableProps {
   numSelected: number;
@@ -262,11 +258,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
   return (
     <TableHead>
-<<<<<<< HEAD
-      <TableRow>
-       
-      </TableRow>
-=======
       {/* <TableRow>
         {headCells.map((headCell) => (
           <TableCell
@@ -292,7 +283,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
           </TableCell>
         ))}
       </TableRow> */}
->>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
     </TableHead>
   );
 }
@@ -456,16 +446,7 @@ const HistoryMoney = () => {
       </Box>
       <BlankCard>
         <Box mb={2} sx={{ mb: 2 }}>
-<<<<<<< HEAD
-          <TableContainer>
-          <Grid item xs={12}>
-        <CustomTable columns={columns} dataSource={tabledh} />;
-      </Grid>
-          </TableContainer>
-          
-=======
           <CustomTable columns={FilmsData} dataSource={tabledh} />
->>>>>>> 4776821300ee1d0e4afc657acce8d7e1491d1b5e
         </Box>
       </BlankCard>
     </PageContainer>

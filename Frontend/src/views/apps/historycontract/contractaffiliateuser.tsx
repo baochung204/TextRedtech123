@@ -1,26 +1,25 @@
 import { useTheme } from '@emotion/react';
-import { Avatar, Box, Button, Grid, styled, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import certificate from 'src/assets/images/certificate/certificate.png';
-import userimg from 'src/assets/images/profile/user-1.jpg';
 
-const ProfileImage = styled(Box)(() => ({
-  backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
-  borderRadius: '50%',
-  width: '110px',
-  height: '110px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  margin: '0 auto',
-}));
+// const ProfileImage = styled(Box)(() => ({
+//   backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
+//   borderRadius: '50%',
+//   width: '110px',
+//   height: '110px',
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   margin: '0 auto',
+// }));
 
-const SuccessMessageWrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1e4620' : '#f0fff4',
-  padding: '20px',
-  borderRadius: '8px',
-  border: `2px solid ${theme.palette.success.main}`,
-  marginTop: '20px',
-}));
+// const SuccessMessageWrapper = styled(Box)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === 'dark' ? '#1e4620' : '#f0fff4',
+//   padding: '20px',
+//   borderRadius: '8px',
+//   border: `2px solid ${theme.palette.success.main}`,
+//   marginTop: '20px',
+// }));
 const contractaffiliateuser = () => {
   const theme = useTheme(); // Get theme to check dark/light mode
   const isDarkMode = theme.palette.mode === 'dark';

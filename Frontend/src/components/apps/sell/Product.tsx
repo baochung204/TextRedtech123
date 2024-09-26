@@ -15,7 +15,7 @@ import * as React from 'react';
 //   },
 // };
 
-// const names = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
+// const shopProductNames = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
 
 import {
   Avatar,
@@ -32,205 +32,188 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
-
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
+import { alpha } from '@mui/material/styles';
 
 import PageContainer from 'src/components/container/PageContainer';
 
 import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import img1 from 'src/assets/images/profile/user-1.jpg';
-import img2 from 'src/assets/images/profile/user-2.jpg';
-import img3 from 'src/assets/images/profile/user-3.jpg';
-import img4 from 'src/assets/images/profile/user-4.jpg';
-import img5 from 'src/assets/images/profile/user-5.jpg';
 
 import BlankCard from '../../../components/shared/BlankCard';
 
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { fetchProducts } from './../../../store/apps/products/Products';
 import AddDialog from './layout/addDialog';
 
-interface TablePaginationActionsProps {
-  count: number;
-  page: number;
-  rowsPerPage: number;
-  onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
-}
+// interface TablePaginationActionsProps {
+//   count: number;
+//   page: number;
+//   rowsPerPage: number;
+//   onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+// }
 
-function TablePaginationActions(props: TablePaginationActionsProps) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
+// function TablePaginationActions(props: TablePaginationActionsProps) {
+//   const theme = useTheme();
+//   const { count, page, rowsPerPage, onPageChange } = props;
 
-  const handleFirstPageButtonClick = (event: any) => {
-    onPageChange(event, 0);
-  };
+//   const handleFirstPageButtonClick = (event: any) => {
+//     onPageChange(event, 0);
+//   };
 
-  const handleBackButtonClick = (event: any) => {
-    onPageChange(event, page - 1);
-  };
+//   const handleBackButtonClick = (event: any) => {
+//     onPageChange(event, page - 1);
+//   };
 
-  const handleNextButtonClick = (event: any) => {
-    onPageChange(event, page + 1);
-  };
+//   const handleNextButtonClick = (event: any) => {
+//     onPageChange(event, page + 1);
+//   };
 
-  const handleLastPageButtonClick = (event: any) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
+//   const handleLastPageButtonClick = (event: any) => {
+//     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+//   };
 
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
+//   return (
+//     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+//       <IconButton
+//         onClick={handleFirstPageButtonClick}
+//         disabled={page === 0}
+//         aria-label="first page"
+//       >
+//         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+//       </IconButton>
+//       <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
+//         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+//       </IconButton>
+//       <IconButton
+//         onClick={handleNextButtonClick}
+//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+//         aria-label="next page"
+//       >
+//         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+//       </IconButton>
+//       <IconButton
+//         onClick={handleLastPageButtonClick}
+//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+//         aria-label="last page"
+//       >
+//         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+//       </IconButton>
+//     </Box>
+//   );
+// }
+
+interface ProductTag {
+  tagId: number;
+  tagName: string;
 }
 
 interface OrderType {
-  id: string;
+  tags: any;
+  shopProductId: number;
   items: string;
-  imgsrc: string;
-  name: string;
-  total: string;
-  tags: string;
-  totalSales: string;
+  shopProductImageUrl: string;
+  shopProductName: string;
+  price: number;
+  productTag: ProductTag[];
+  optionPrice: number;
 }
 const rows: OrderType[] = [
   {
-    id: 'ORD - 0120145',
+    shopProductId: 123,
     items: '5',
-    imgsrc: img1,
-    name: 'Chatbot Marketing',
-    total: '550,000',
-    tags: 'đồ chơi',
-    totalSales: '500,000',
+    shopProductImageUrl: img1,
+    shopProductName: 'Chatbot Marketing',
+    price: 550000,
+    tags: '',
+    productTag: [
+      {
+        tagId: 12,
+        tagName: 'Fashion',
+      },
+      {
+        tagId: 15,
+        tagName: 'Summer Collection',
+      },
+    ],
+    optionPrice: 500000,
   },
   {
-    id: 'ORD - 0120146',
-    items: '1',
-    imgsrc: img2,
-    name: 'ChatAI',
-    total: '45,000',
-    tags: 'quần áo',
-    totalSales: '40,000',
-  },
-  {
-    id: 'ORD - 0120460',
-    items: '3',
-    imgsrc: img3,
-    name: 'ChatOpenAi',
-    total: '57,000',
-    tags: 'phụ kiện',
-    totalSales: '50,000',
-  },
-  {
-    id: 'ORD - 0124060',
-    items: '11',
-    imgsrc: img4,
-    name: 'ChatBot Chicken',
-    total: '457,000',
-    tags: 'di động',
-    totalSales: '450,000',
-  },
-  {
-    id: 'ORD - 0124568',
-    items: '4',
-    imgsrc: img5,
-    name: 'SaleBot',
-    total: '120,000',
-    tags: 'đời sống',
-    totalSales: '110,000',
-  },
-  {
-    id: 'ORD - 0120146',
-    items: '1',
-    imgsrc: img2,
-    name: 'GameBot',
-    total: '45,000',
-    tags: 'điện tử',
-    totalSales: '40,000',
-  },
-  {
-    id: 'ORD - 0120460',
-    items: '3',
-    imgsrc: img3,
-    name: 'LifeBot',
-    total: '57,000',
-    tags: 'điện tử',
-    totalSales: '50,000',
-  },
-  {
-    id: 'ORD - 0124060',
-    items: '11',
-    imgsrc: img4,
-    name: 'ChatBot BĐS',
-    total: '457,000',
-    tags: 'điện tử',
-    totalSales: '450,000',
-  },
-  {
-    id: 'ORD - 0124568',
-    items: '4',
-    imgsrc: img5,
-    name: 'ChatBot BĐS',
-    total: '120,000',
-    tags: 'điện tử',
-    totalSales: '110,000',
-  },
-  {
-    id: 'ORD - 0120145',
+    shopProductId: 13,
     items: '5',
-    imgsrc: img1,
-    name: 'ChatBot BĐS',
-    total: '550,000',
-    tags: 'thể thao',
-    totalSales: '530,000',
+    shopProductImageUrl: img1,
+    shopProductName: 'Chatbot Marketing',
+    price: 550000,
+    tags: '',
+    productTag: [
+      {
+        tagId: 12,
+        tagName: 'Fashion',
+      },
+      {
+        tagId: 15,
+        tagName: 'Summer Collection',
+      },
+    ],
+    optionPrice: 500000,
   },
-  {
-    id: 'ORD - 0124060',
-    items: '11',
-    imgsrc: img4,
-    name: 'ChatBot Tỉ số bóng đá',
-    total: '457,000',
-    tags: 'thể thao',
-    totalSales: '450,000',
-  },
-  {
-    id: 'ORD - 0124568',
-    items: '4',
-    imgsrc: img5,
-    name: 'ChatBot Y tế',
-    total: '120,000',
-    tags: 'đời sống',
-    totalSales: '100,000',
-  },
-].sort((a, b) => (a.name < b.name ? -1 : 1));
+].sort((a, b) => (a.shopProductName < b.shopProductName ? -1 : 1));
 
+const FilmsData: any = [
+  { id: 1, title: 'ID', dataIndex: 'shopProductId' },
+  {
+    id: 2,
+    title: 'Ảnh',
+    dataIndex: 'shopProductImageUrl',
+    render: (row: any) => <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />,
+  },
+  { id: 3, title: '	Tên sản phẩm', dataIndex: 'shopProductName' },
+  {
+    id: 4,
+    title: 'Tags',
+    dataIndex: 'productTag',
+    render: (row: any) => (
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        {row.map((tag: any) => (
+          <Box>
+            <Chip
+              key={tag.tagId}
+              label={tag.tagName}
+              size="small"
+              color="primary"
+              sx={{ width: '100px' }}
+            />
+          </Box>
+        ))}
+      </Box>
+    ),
+  },
+  {
+    id: 5,
+    title: '	Giá niêm yết',
+    dataIndex: 'price',
+    render: (row: any) => (
+      <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+          {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+        </Typography>
+      </Box>
+    ),
+  },
+  {
+    id: 6,
+    title: 'Giá khuyến mãi',
+    dataIndex: 'optionPrice',
+    render: (row: any) => (
+      <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+          {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+        </Typography>
+      </Box>
+    ),
+  },
+];
 interface EnhancedTableToolbarProps {
   numSelected: number;
   handleSearch: React.ChangeEvent<HTMLInputElement> | any;
@@ -246,6 +229,11 @@ interface Column {
 const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const { numSelected, handleSearch, search } = props;
 
+  // if (!data || data.length === 0) {
+  //   console.log('No data to display');
+  // } else {
+  //   console.log('Data to be passed to CustomTable:', data);
+  // }
   return (
     <Toolbar
       sx={{
@@ -308,9 +296,9 @@ const PaginationTable = () => {
     setSearch(value);
     const filtered = rows.filter(
       (row) => (
-        row.name.toLowerCase().includes(value),
+        row.shopProductName.toLowerCase().includes(value),
         row.tags.toLowerCase().includes(value),
-        row.id.toLowerCase().includes(value)
+        row.shopProductId.toString().toLowerCase().includes(value)
       ),
     );
     setFilteredRows(filtered);
@@ -389,6 +377,27 @@ const PaginationTable = () => {
       setDataSelect([]);
     }
   }, [FilmsData]);
+
+  // const handleChangeRowsPerPage = (event: any) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
+  // // const [ID, setId] = React.useState(true);
+  // const [ID] = React.useState(true);
+  // const [IMG, setImg] = React.useState(true);
+  // const [shopProductName, setshopProductName] = React.useState(true);
+  // const [TAGS, setTags] = React.useState(true);
+  // const [PRICE, setPrice] = React.useState(true);
+  // const [PRICEVD, setPriceVD] = React.useState(true);
+  const dispatch = useDispatch();
+  const { product, loading, error } = useSelector((state: any) => state);
+
+  // Gọi fetchProducts khi component được mount
+  React.useEffect(() => {
+    dispatch(fetchProducts() as any);
+  }, [dispatch]);
+
+  const data = product?.products;
 
   const handleItemClick = (id: number) => {
     setSelectedItems((prev: any) =>

@@ -1,22 +1,28 @@
 import { configureStore } from '@reduxjs/toolkit';
-import CustomizerReducer from './customizer/CustomizerSlice';
-import EcommerceReducer from './apps/eCommerce/ECommerceSlice';
-import ChatsReducer from './apps/chat/ChatSlice';
-import NotesReducer from './apps/notes/NotesSlice';
-import EmailReducer from './apps/email/EmailSlice';
-import TicketReducer from './apps/tickets/TicketSlice';
-import ContactsReducer from './apps/contacts/ContactSlice';
-import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import BlogReducer from './apps/blog/BlogSlice';
+import ChatsReducer from './apps/chat/ChatSlice';
+import ContactsReducer from './apps/contacts/ContactSlice';
+import EcommerceReducer from './apps/eCommerce/ECommerceSlice';
+import EmailReducer from './apps/email/EmailSlice';
+import integrationReducer from './apps/integration/integrationSlice';
+import NotesReducer from './apps/notes/NotesSlice';
+import TicketReducer from './apps/tickets/TicketSlice';
+import UserProfileReducer from './apps/userProfile/UserProfileSlice';
+import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
+import productReducer from './apps/products/Products';
 
+import UrlSlice from './apps/resources/url/UrlSlice';
 
-import { combineReducers } from 'redux';
 import {
+  TypedUseSelectorHook,
   useDispatch as useAppDispatch,
   useSelector as useAppSelector,
-  TypedUseSelectorHook,
 } from 'react-redux';
+import { combineReducers } from 'redux';
+import CustomerReducer from './apps/customer/customerSlice';
+
+import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
 
 export const store = configureStore({
   reducer: {
@@ -29,7 +35,12 @@ export const store = configureStore({
     ticketReducer: TicketReducer,
     userpostsReducer: UserProfileReducer,
     blogReducer: BlogReducer,
-    selectReducer: SelectedReducer
+    selectReducer: SelectedReducer,
+    integration: integrationReducer,
+    customer: CustomerReducer,
+    urlReducer: UrlSlice,
+    product: productReducer,
+    customeraffiliate: CustomerAffiliate,
   },
 });
 
@@ -43,7 +54,11 @@ const rootReducer = combineReducers({
   ticketReducer: TicketReducer,
   userpostsReducer: UserProfileReducer,
   blogReducer: BlogReducer,
-  selectReducer: SelectedReducer
+  selectReducer: SelectedReducer,
+  integration: integrationReducer,
+  customer: CustomerReducer,
+  urlReducer: UrlSlice,
+  customeraffiliate: CustomerAffiliate,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

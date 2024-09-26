@@ -22,14 +22,17 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
-import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+// import { fetchCustomer } from 'src/store/apps/customer/customerSliceAffiliate';
+// import { AppDispatch, AppState } from 'src/store/Store';
 import PopupAdd from './PopupAdd';
 import { useEffect, useState, useMemo } from 'react';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
 
 
 
@@ -43,7 +46,7 @@ const Transition = React.forwardRef<unknown, TransitionProps & { children: React
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
-  { to: '/apps/blog/posts', title: 'Danh sách khách hàng' },
+  { to: '', title: 'Danh sách khách hàng' },
 ];
 interface Column {
   title: string;

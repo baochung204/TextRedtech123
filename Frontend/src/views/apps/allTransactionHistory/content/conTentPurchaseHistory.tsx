@@ -21,9 +21,9 @@ import {
 import { IconChevronDown } from '@tabler/icons-react';
 import { useState } from 'react'; // Correctly importing useState
 import { Link } from 'react-router-dom';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';
 import products from 'src/assets/images/products/s25.jpg';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
 
 const ContentPurchaseHistory = () => {

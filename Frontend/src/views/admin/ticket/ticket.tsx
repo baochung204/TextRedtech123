@@ -11,7 +11,6 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import TableList from 'src/components/ComponentTables/tableList';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';

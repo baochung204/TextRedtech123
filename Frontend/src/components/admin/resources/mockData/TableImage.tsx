@@ -9,7 +9,7 @@ import {
 } from '@tabler/icons-react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import { HeadCell } from '../types/HeadCell';
-import { IconButton } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 export const Image = [
   {
     bgColor: 'primary.light',
@@ -108,7 +108,7 @@ export const Image = [
     ),
   },
 ];
-export const ImageCells: any = [
+export const ImageCells: HeadCell[] = [
   {
     dataIndex: 'id',
     title: 'ID',
@@ -139,7 +139,6 @@ export const ImageCells: any = [
   // },
   {
     dataIndex: 'size',
-    numeric: true,
     title: 'Dung lượng',
   },
   {

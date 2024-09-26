@@ -1,4 +1,3 @@
-
 import DataRow from '../DataTable/TableTab6';
 import DialogURL from '../dialog/DIalogURL';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
