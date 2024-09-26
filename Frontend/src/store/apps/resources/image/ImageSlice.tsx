@@ -41,9 +41,9 @@ const imagesSlice = createSlice({
       .addCase(removeImage.fulfilled, (state, action) => {
         state.images = state.images.filter((image) => image.id !== action.payload);
       })
-      .addCase(removeUrl.rejected, (state, action) => {
+      .addCase(removeImage.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Failed to delete URLs';
+        state.error = action.error.message || 'Failed to delete Images';
       });
   },
 });

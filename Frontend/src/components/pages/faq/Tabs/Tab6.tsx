@@ -57,6 +57,15 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
       setShowAlert({ type: 'error', message: 'Xóa URL thất bại!' });
       setSnackbarOpen(true);
     }
+    dispatch(removeUrl(id))
+      .then(() => {
+        setShowAlert({ type: 'success', message: 'Xóa URL thành công!' });
+        setSnackbarOpen(true);
+      })
+      .catch(() => 
+        setShowAlert({ type: 'error', message: 'Xóa URL thất bại!' });
+        setSnackbarOpen(true);
+      });
   };
 
   const handleCloseSnackbar = (_event: any, reason?: string) => {
@@ -135,7 +144,7 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen }) => {
 
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={2000}
+        autoHideDuration={6000}
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         TransitionComponent={SlideTransition}

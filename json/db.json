@@ -129,5 +129,14 @@
         }
       ]
     }
+  ],
+  "userpersonalinformation":[
+    {
+        "id": "1",
+        "name": "Lê Tài Đức",
+        "address": "Hà Nội",
+        "dateOfBirth": "1990-01-02",
+        "gender": "Nam"
+    }
   ]
 }

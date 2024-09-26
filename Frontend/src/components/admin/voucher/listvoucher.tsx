@@ -1,34 +1,33 @@
 import {
+  Badge,
   Box,
+  Checkbox,
   Chip,
   Grid,
   InputAdornment,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
+
+  ListItemText,
+
+  MenuItem,
+
+  Select,
+
   TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
-import { format } from 'date-fns';
-// components
-// import { styled } from '@mui/system';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
-
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
+import React, { useEffect, useMemo, useState } from 'react';
 import BlankCard from 'src/components/shared/BlankCard';
 import AddDialogvoucher from './add/addDialog';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import FilterListIcon from '@mui/icons-material/FilterList';
+
+
+
 interface DataRow {
   id: string;
   creationTime: string;
@@ -116,90 +115,26 @@ const dataRows: DataRow[] = [
     use: 23,
   },
 ];
-interface HeadCell {
-  disablePadding: boolean;
-  id: string;
-  label: string;
-  numeric: boolean;
+
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
 }
 
-const headCells: any = [
-  {
-    id: 'id',
-    title: 'ID',
-    dataIndex: 'id',
-  },
-  {
-    id: 'voucherName',
-    title: 'Tên chiến dịch',
-    dataIndex: 'voucherName',
-  },
-  {
-    id: 'creationTime',
-    title: 'Ngày tạo',
-    dataIndex: 'creationTime',
-  },
-  {
-    id: 'endTime',
-    title: 'Hạn sửa dụng',
-    dataIndex: 'endTime',
-  },
-  {
-    id: 'Mavoucher',
-    title: 'Mã khuyến mãi',
-    dataIndex: 'Mavoucher',
-  },
-  {
-    id: 'quantity',
-    title: 'Số lượng mã',
-    dataIndex: 'quantity',
-  },
-  {
-    id: 'customerId',
-    title: 'Loại giảm giá',
-    dataIndex: 'customerId',
-    render: (value: any) => {
-      return <Chip label={value} color={value === 'Đồng' ? 'primary' : 'secondary'} />;
-    },
-  },
-  {
-    id: 'customerName',
-    title: 'Giá trị giảm',
-    dataIndex: 'customerName',
-  },
-  {
-    id: 'tag',
-    title: 'Trạng thái',
-    dataIndex: 'tag',
-    render: (value: any) => {
-      return (
-        <Chip
-          label={value}
-          color={
-            value === 'chưa sử dụng' ? 'primary' : value === 'đã sử dụng' ? 'success' : 'error'
-          }
-        />
-      );
-    },
-  },
-  {
-    id: 'use',
-    title: 'Đã sử dụng',
-    dataIndex: 'use',
-  },
-];
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
+// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
-type Order = 'asc' | 'desc';
+// type Order = 'asc' | 'desc';
 
 // function getComparator<Key extends keyof any>(
 //   order: Order,
@@ -209,123 +144,134 @@ type Order = 'asc' | 'desc';
 //     ? (a, b) => descendingComparator(a, b, orderBy)
 //     : (a, b) => -descendingComparator(a, b, orderBy);
 // }
-interface EnhancedTableProps {
-  numSelected: number;
-  order: 'asc' | 'desc';
-  orderBy: string;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
-  rowCount: number;
-}
-
-function EnhancedTableHead(props: EnhancedTableProps) {
-  const { order, orderBy, onRequestSort } = props;
-  const createSortHandler = (property: keyof DataRow) => (event: React.MouseEvent<unknown>) => {
-    onRequestSort(event, property);
-  };
-  return (
-    <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
-      <TableRow>
-        {headCells.map((headCell: any) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ whiteSpace: 'nowrap' }}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              <Typography variant="h6">{headCell.label}</Typography>
-              {/* {orderBy === headCell.id ? (
-                    <Box component="span">
-                      {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                    </Box>
-                  ) : null} */}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
-}
-
-// function stableSort<T>(array: any[], comparator: (a: T, b: T) => number) {
-//   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-//   stabilizedThis.sort((a, b) => {
-//     const order = comparator(a[0], b[0]);
-//     if (order !== 0) {
-//       return order;
-//     }
-
-//     return a[1] - b[1];
-//   });
-
-//   return stabilizedThis.map((el) => el[0]);
+// interface EnhancedTableProps {
+//   numSelected: number;
+//   order: 'asc' | 'desc';
+//   orderBy: string;
+//   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+//   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
+//   rowCount: number;
 // }
 
+// function EnhancedTableHead(props: EnhancedTableProps) {
+//   const { order, orderBy, onRequestSort } = props;
+//   const createSortHandler = (property: keyof DataRow) => (event: React.MouseEvent<unknown>) => {
+//     onRequestSort(event, property);
+//   };
+//   return (
+//     <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
+//       <TableRow>
+//         {headCells.map((headCell: any) => (
+//           <TableCell
+//             key={headCell.id}
+//             align={headCell.numeric ? 'right' : 'left'}
+//             padding={headCell.disablePadding ? 'none' : 'normal'}
+//             sortDirection={orderBy === headCell.id ? order : false}
+//             sx={{ whiteSpace: 'nowrap' }}
+//           >
+//             <TableSortLabel
+//               active={orderBy === headCell.id}
+//               direction={orderBy === headCell.id ? order : 'asc'}
+//               onClick={createSortHandler(headCell.id)}
+//             >
+//               <Typography variant="h6">{headCell.label}</Typography>
+//               {/* {orderBy === headCell.id ? (
+//                     <Box component="span">
+//                       {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+//                     </Box>
+//                   ) : null} */}
+//             </TableSortLabel>
+//           </TableCell>
+//         ))}
+//       </TableRow>
+//     </TableHead>
+//   );
+// }
+
+
 const ListVoucher = () => {
-  // type Order = 'asc' | 'desc';
-
-  // const [order, setOrder] = useState<Order>('asc');
-  // const [orderBy, setOrderBy] = useState<any>('calories');
-  // const [selected, setSelected] = useState<readonly string[]>([]);
-  // const [page, setPage] = useState(0);
-  // const [dense] = useState(false);
-  // const [dense, setDense] = useState(false);
-  // const [rowsPerPage, setRowsPerPage] = useState(5);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const [value, setValue] = React.useState(0);
-  // const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
-  //   const selectedIndex = selected.indexOf(name);
-  //   let newSelected: readonly string[] = [];
-
-  //   if (selectedIndex === -1) {
-  //     newSelected = newSelected.concat(selected, name);
-  //   } else if (selectedIndex === 0) {
-  //     newSelected = newSelected.concat(selected.slice(1));
-  //   } else if (selectedIndex === selected.length - 1) {
-  //     newSelected = newSelected.concat(selected.slice(0, -1));
-  //   } else if (selectedIndex > 0) {
-  //     newSelected = newSelected.concat(
-  //       selected.slice(0, selectedIndex),
-  //       selected.slice(selectedIndex + 1),
-  //     );
-  //   }
-
-  //   setSelected(newSelected);
-  // };
-  // const handleChangePage = (_event: unknown, newPage: number) => {
-  //   setPage(newPage);
-  // };
-
-  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setRowsPerPage(parseInt(event.target.value, 10));
-  //   setPage(0);
-  // };
-  // const handleRequestSort = (_event: React.MouseEvent<unknown>, property: string) => {
-  //   const isAsc = orderBy === property && order === 'asc';
-  //   setOrder(isAsc ? 'desc' : 'asc');
-  //   setOrderBy(property);
-  // };
-
-  // const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.checked) {
-  //     const newSelecteds = dataRows.map((n: any) => n.name);
-  //     setSelected(newSelecteds);
-
-  //     return;
-  //   }
-  //   setSelected([]);
-  // };
+  
+ 
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const column = useMemo<Column[]>(() => [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+    },
+    {
+      title: 'Tên chiến dịch',
+      dataIndex: 'voucherName',
+    },
+    {
+      title: 'Ngày tạo',
+      dataIndex: 'creationTime',
+    },
+    {
+      title: 'Hạn sửa dụng',
+      dataIndex: 'endTime',
+    },
+    {
+      title: 'Mã khuyến mãi',
+      dataIndex: 'Mavoucher',
+    },
+    {
+      title: 'Số lượng mã',
+      dataIndex: 'quantity',
+    },
+    {
+      title: 'Loại giảm giá',
+      dataIndex: 'customerId',
+      render: (value: any) => {
+        return <Chip label={value} color={value === 'Đồng' ? 'primary' : 'secondary'} />;
+      },
+    },
+    {
+      title: 'Giá trị giảm',
+      dataIndex: 'customerName',
+    },
+    {
+      title: 'Trạng thái',
+      dataIndex: 'tag',
+      render: (value: any) => {
+        return (
+          <Chip
+            label={value}
+            color={
+              value === 'chưa sử dụng' ? 'primary' : value === 'đã sử dụng' ? 'success' : 'error'
+            }
+          />
+        );
+      },
+    },
+    {
+      title: 'Đã sử dụng',
+      dataIndex: 'use',
+    },
+  ], [])
+  
 
-  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows.length) : 0;
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
+
+
   return (
     <div>
       {' '}
@@ -364,6 +310,31 @@ const ListVoucher = () => {
 
               <Grid item xs={5}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                    <FilterListIcon color="action" />
+                  </Badge>
+                  <Select
+                    multiple
+                    value={dataSelect}
+                    displayEmpty
+                    onChange={handleColumnChange}
+                    renderValue={() => 'Sửa đổi cột'}
+                    size='small'
+                  >
+                    {column.map((header: any) => {
+
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                      const isSelected = dataSelect.includes(header.dataIndex);
+
+                      return (
+                        <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                          <Checkbox checked={!isSelected} />
+                          <ListItemText primary={header.title} />
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       value={selectedStartDate}
@@ -385,7 +356,7 @@ const ListVoucher = () => {
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
-          <CustomTable columns={headCells} dataSource={dataRows} />
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect}/>
         </BlankCard>
       </Grid>
     </div>
