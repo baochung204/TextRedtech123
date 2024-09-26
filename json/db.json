@@ -154,6 +154,147 @@
       ]
     }
   ],
+  "integration": [
+    {
+      "id": "123456789012345",
+      "name": "Cửa hàng ABC"
+    },
+    {
+      "id": "987654321098765",
+      "name": "Dịch vụ XYZ"
+    }
+  ],
+  "customer": [
+    {
+      "nameCustomer": "Lê Tài Đức",
+      "dateTime": "2024-01-02",
+      "idCustomer": "1",
+      "assistant": "ABC",
+      "pageName": "Lâm Đình Khoa",
+      "iconImageUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "tag": "Đơn hàng A",
+      "totalSpend": "70",
+      "phoneNumber": "0987654321",
+      "address": "Hà Nội"
+    },
+    {
+      "nameCustomer": "Nguyễn Văn B",
+      "dateTime": "2024-01-03",
+      "idCustomer": "2",
+      "assistant": "XYZ",
+      "pageName": "Nguyễn Đình Hùng",
+      "iconImageUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "tag": "Đơn hàng B",
+      "totalSpend": "150",
+      "phoneNumber": "0987654322",
+      "address": "TP Hồ Chí Minh"
+    }
+  ],
+  "customer_affiliate": [
+    {
+      "id": "1",
+      "name": "Lê Tài Đức",
+      "email": "duc.lt@redon.com",
+      "phone": "0987654321",
+      "createdAt": "2024-07-18",
+      "typeofcustomer": "Miễn phí",
+      "imgsrc": "img1"
+    },
+    {
+      "id": "2",
+      "name": "Nguyễn Thùy Linh",
+      "email": "linh.nt@redon.com",
+      "phone": "0965842361",
+      "createdAt": "2024-07-19",
+      "typeofcustomer": "Trả phí",
+      "imgsrc": "img2"
+    },
+    {
+      "id": "3",
+      "name": "Lê Tài Đức",
+      "email": "duc.lt@redon.com",
+      "phone": "0987654321",
+      "createdAt": "2024-07-18",
+      "typeofcustomer": "Miễn phí",
+      "imgsrc": "img1"
+    },
+    {
+      "id": "4",
+      "name": "Nguyễn Thùy Linh",
+      "email": "linh.nt@redon.com",
+      "phone": "0965842361",
+      "createdAt": "2024-07-19",
+      "typeofcustomer": "Trả phí",
+      "imgsrc": "img2"
+    },
+    {
+      "id": "5",
+      "name": "Lê Tài Đức",
+      "email": "duc.lt@redon.com",
+      "phone": "0987654321",
+      "createdAt": "2024-07-18",
+      "typeofcustomer": "Miễn phí",
+      "imgsrc": "img1"
+    },
+    {
+      "id": "6",
+      "name": "Nguyễn Thùy Linh B",
+      "email": "linh.nt@redon.com",
+      "phone": "0965842361",
+      "createdAt": "2024-07-20",
+      "typeofcustomer": "Trả phí",
+      "imgsrc": "img2"
+    }
+  ],
+  "campaign": [
+    {
+      "content": "Tăng trưởng",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "productId": "#SI3QT",
+      "level": "Cấp 1"
+    },
+    {
+      "content": "Phát triển thị trường",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "productId": "#AB2XY",
+      "level": "Cấp 2"
+    }
+  ],
+  "function": [
+    {
+      "id": "#FCU4C",
+      "name": "Tăng trưởng thị trường",
+      "level": "Cấp 1",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png"
+    },
+    {
+      "id": "#D2X8P",
+      "name": "Phát triển doanh nghiệp",
+      "level": "Cấp 2",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png"
+    }
+  ],
+  "file": [
+   {
+    "id": 15,
+    "name": "hello",
+    "size": "5 B",
+    "url": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/hello.txt",
+    "dateTime": "2024-09-26T14:44:49",
+    "typeFile": "TXT",
+    "delete": true 
+  },
+  {
+    "id": 16,
+    "name": "hello",
+    "size": "5 B",
+    "url": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/hello.txt",
+    "dateTime": "2024-09-26T14:44:49",
+    "typeFile": "TXT",
+    "delete": true 
+  }
+  ],
+ 
   "userpersonalinformation": [
     {
       "id": "1",

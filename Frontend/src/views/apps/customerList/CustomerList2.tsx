@@ -21,9 +21,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
-import * as React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import Point from 'src/assets/images/icon.png/point.png';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
@@ -31,9 +29,12 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 // import { AppDispatch, AppState } from 'src/store/Store';
 import PopupAddList2 from './PopupAddlist2';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, forwardRef } from 'react';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { DataRowCustomerTable } from 'src/components/tables/tableData';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
+
 
 
 const BCrumb = [
@@ -41,7 +42,7 @@ const BCrumb = [
   { to: '/apps/blog/posts', title: 'Danh Sách Khách Hàng' },
 ];
 
-const Transition = React.forwardRef<
+const Transition = forwardRef<
   unknown,
   TransitionProps & { children: React.ReactElement<any, any> }
 >(function Transition(props, ref) {
@@ -58,15 +59,20 @@ const CustomerList2 = () => {
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataCustomer = useSelector((state: AppState) => state.customer.data);
+  useEffect(()=> {
+    dispatch(fetchCustomer())
+  },[dispatch])
   const column = useMemo<Column[]>(() => [
     {
       title: 'ID khách hàng',
-      dataIndex: 'id',
+      dataIndex: 'idCustomer',
     },
 
     {
       title: 'Ngày tạo',
-      dataIndex: 'createdAt',
+      dataIndex: 'dateTime',
     },
     {
       title: 'Trợ lý',
@@ -74,46 +80,42 @@ const CustomerList2 = () => {
     },
     {
       title: 'Kênh(MKT)',
-      dataIndex: 'createdAt',
+      dataIndex: 'pageName',
       render: (_row, value: any) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <img
-            src={value?.imgsrc}
+            src={value?.iconImageUrl}
             alt=""
             style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
           />
           <Box>
-            <Typography>{value.name}</Typography>
-            <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography>
+            <Typography>{value.pageName}</Typography>
+            {/* <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography> */}
           </Box>
         </Box>
       ),
     },
     {
       title: 'Tags',
-      dataIndex: 'orderInfo',
+      dataIndex: 'tag',
     },
     {
       title: 'Tên khách hàng',
-      dataIndex: 'name',
+      dataIndex: 'nameCustomer',
     },
     {
       title: 'Tổng chi tiêu',
       dataIndex: 'orderValue',
       render: (_row: any, value: any) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Typography>{value.orderValue}</Typography>
-          <img
-            src={Point}
-            alt=""
-            style={{ width: '25px', height: '25px', borderRadius: '50%', marginRight: '10px' }}
-          />
+          <Typography>{value.totalSpend} đ</Typography>
+          
         </Box>
       ),
     },
     {
       title: 'SĐT',
-      dataIndex: 'phone',
+      dataIndex: 'phoneNumber',
     },
     {
       title: 'Địa chỉ',
@@ -248,7 +250,7 @@ const CustomerList2 = () => {
                 <Grid item xs={12}>
                   <CustomTable
                     columns={column}
-                    dataSource={DataRowCustomerTable}
+                    dataSource={dataCustomer}
                     dataSelect={dataSelect}
                   />;
                 </Grid>
