@@ -1,15 +1,16 @@
 import instance from '../instance';
-export const GetAllUrl = async () => {
+
+export const GetAllImage = async () => {
   try {
-    const response = await instance.get('/urls');
+    const response = await instance.get('/images');
     return response.data;
   } catch (error) {
     console.log(error);
   }
 };
-export const RemoveUrl = async (id: string | number) => {
+export const RemoveImage = async (id: string) => {
   try {
-    const response = await instance.delete(`/urls/${id}`);
+    const response = await instance.delete(`/images/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);

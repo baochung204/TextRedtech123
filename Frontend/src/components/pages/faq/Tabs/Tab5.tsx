@@ -1,18 +1,11 @@
-
-import React, { useEffect, useState } from 'react';
-import {
-  Grid,
-  Box,
-  IconButton,
-  Select,
-  MenuItem,
-  Checkbox,
-  ListItemText,
-} from '@mui/material';
-import DialogImage from '../dialog/DialogImage';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { Box, Checkbox, Grid, IconButton, ListItemText, MenuItem, Select } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
-import DataTable5 from '../DataTable/TableTab5';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { fetchImages } from 'src/store/apps/resources/image/ImageSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogImage from '../dialog/DialogImage';
 
 interface PropsTab5 {
   value: string;
@@ -24,37 +17,39 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
   const [key, setKey] = useState<string | null>(null);
   const [checkTest, setCheckTest] = useState<boolean>(false);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
-
+  const dispatch = useDispatch<AppDispatch>();
+  const dataImages = useSelector((state: AppState) => state.imageResources.images);
+  useEffect(() => {
+    dispatch(fetchImages());
+  }, [dispatch]);
 
   const column = [
     {
       title: 'ID',
-      dataIndex: 'idCode',
+      dataIndex: 'id',
     },
     {
       title: 'Ngày tạo',
-      dataIndex: 'createDate',
+      dataIndex: 'dateTime',
     },
     {
       title: 'Hình ảnh',
-      dataIndex: 'images',
+      dataIndex: 'imageURL',
       render: (value: string) => {
         return <Box component="img" src={value} alt="" width={50} />;
       },
     },
     {
       title: 'Tên ảnh',
-      dataIndex: 'imgName',
+      dataIndex: 'name',
     },
     {
       title: 'Mô tả',
-      dataIndex: 'moTa',
+      dataIndex: 'description',
     },
     {
       title: 'Tiêu đề',
       dataIndex: 'title',
-      isValids: false,
     },
     {
       title: 'Hoạt động',
@@ -83,12 +78,10 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
     },
   ];
 
-
-
   useEffect(() => {
     const hiddenColumns = column
-      .filter(col => col.isValids === false)
-      .map(col => col.dataIndex || '');
+      .filter((col) => col.isValids === false)
+      .map((col) => col.dataIndex || '');
 
     setDataSelect(hiddenColumns);
   }, []);
@@ -118,8 +111,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
           renderValue={() => 'Bộ Lọc'}
         >
           {column.map((header: any) => {
-
-            console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+            console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
             const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -133,11 +125,7 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
         </Select>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable
-          dataSource={DataTable5}
-          columns={column}
-          dataSelect={dataSelect}
-        />
+        <CustomTable dataSource={dataImages} columns={column} dataSelect={dataSelect} />
       </Grid>
 
       <DialogImage

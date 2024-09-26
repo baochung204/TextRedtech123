@@ -1,16 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { GetAllUrl } from './UrlApi';
+import { GetAllUrl, RemoveUrl } from './UrlApi';
 
+interface UrlsState {
+  urls: any[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: UrlsState = {
+  urls: [],
+  loading: false,
+  error: null,
+};
+export const removeUrl = createAsyncThunk('urls/removeUrl', async (id: string | number) => {
+  await RemoveUrl(id);
+  return id;
+});
 export const fetchUrls = createAsyncThunk('urls/fetchUrls', async () => {
   const data = await GetAllUrl();
   return data;
 });
-
-const initialState = {
-  urls: [],
-  loading: false,
-  error: null as string | null,
-};
 
 const urlsSlice = createSlice({
   name: 'urls',
@@ -27,7 +36,14 @@ const urlsSlice = createSlice({
       })
       .addCase(fetchUrls.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Failed to fetch integrations';
+        state.error = action.error.message || 'Failed to fetch URLs';
+      })
+      .addCase(removeUrl.fulfilled, (state, action) => {
+        state.urls = state.urls.filter((url) => url.id !== action.payload);
+      })
+      .addCase(removeUrl.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Failed to delete URLs';
       });
   },
 });

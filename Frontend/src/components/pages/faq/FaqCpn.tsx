@@ -1,30 +1,21 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import Tab6 from './Tabs/Tab6';
+import { Grid, IconButton, InputAdornment, TextField } from '@mui/material';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import { IconSearch } from '@tabler/icons-react';
+import React, { useState } from 'react';
 import Tab1 from './Tabs/Tab1';
 import Tab2 from './Tabs/Tab2';
 import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
-import {
-  Grid,
-  IconButton,
-  TextField,
-  InputAdornment,
-  MenuItem,
-  Checkbox,
-  Select,
-  ListItemText,
-} from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { IconSearch } from '@tabler/icons-react';
+import Tab6 from './Tabs/Tab6';
 // import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Faq = () => {
   const [value, setValue] = useState<string>('1');
