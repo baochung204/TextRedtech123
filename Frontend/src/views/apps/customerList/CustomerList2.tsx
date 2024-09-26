@@ -109,7 +109,7 @@ const Transition = React.forwardRef<
 });
 
 const CustomerList2 = () => {
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
+  const [ selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
