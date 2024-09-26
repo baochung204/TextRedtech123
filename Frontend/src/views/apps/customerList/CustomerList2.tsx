@@ -18,10 +18,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
-import * as React from 'react';
-import { useEffect } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Point from 'src/assets/images/icon.png/point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
@@ -33,12 +31,12 @@ import PopupAddList2 from './PopupAddlist2';
 const columns = [
   {
     title: 'ID khách hàng',
-    dataIndex: 'ID_customer',
+    dataIndex: 'idCustomer',
   },
 
   {
     title: 'Ngày tạo',
-    dataIndex: 'datetime',
+    dataIndex: 'dateTime',
   },
   {
     title: 'Trợ lý',
@@ -46,18 +44,17 @@ const columns = [
   },
   {
     title: 'Kênh(MKT)',
-    dataIndex: 'channel',
-    render: (value: any) => (
+    dataIndex: 'pageName',
+    render: (a: any, value: any) => (
       // console.log( value.imgsrc)
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <img
-          src={value?.imgsrc}
+          src={value?.iconImageUrl}
           alt=""
-          style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
+          style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px', objectFit: 'cover' }}
         />
         <Box>
-          <Typography>{value.name}</Typography>
-          <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography>
+          <Typography>{value.pageName}</Typography>
         </Box>
       </Box>
     ),
@@ -68,27 +65,23 @@ const columns = [
   },
   {
     title: 'Tên khách hàng',
-    dataIndex: 'name_customer',
+    dataIndex: 'nameCustomer',
   },
   {
     title: 'Tổng chi tiêu',
-    dataIndex: 'total_spend',
-    render: (value: any) => (
+    dataIndex: 'totalSpend',
+    render: (a: any, value: any) => (
       // console.log( value.imgsrc)
 
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography>{value.orderValue}</Typography>
-        <img
-          src={Point}
-          alt=""
-          style={{ width: '25px', height: '25px', borderRadius: '50%', marginRight: '10px' }}
-        />
+        <Typography>{value.totalSpend} đ</Typography>
+
       </Box>
     ),
   },
   {
     title: 'SĐT',
-    dataIndex: 'phone_number',
+    dataIndex: 'phoneNumber',
   },
   {
     title: 'Địa chỉ',
@@ -101,7 +94,7 @@ const BCrumb = [
   { to: '/apps/blog/posts', title: 'Danh Sách Khách Hàng' },
 ];
 
-const Transition = React.forwardRef<
+const Transition = forwardRef<
   unknown,
   TransitionProps & { children: React.ReactElement<any, any> }
 >(function Transition(props, ref) {
@@ -109,11 +102,11 @@ const Transition = React.forwardRef<
 });
 
 const CustomerList2 = () => {
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  // const [value, setValue] = React.useState('1');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
   const dispatch = useDispatch<AppDispatch>();
   const dataCustomer = useSelector((state: AppState) => state.customer.data);
   // Function mở popup

@@ -105,15 +105,28 @@
   ],
   "customer": [
     {
-      "name_customer": "Lê Tài Đức",
-      "datetime": "2024-01-02",
-      "ID_customer": "1",
-      "assistant": "Đinh Văn Thanh Phước Khoa",
-      "channel": "Lâm Đình Khoa",
+      "nameCustomer": "Lê Tài Đức",
+      "dateTime": "2024-01-02",
+      "idCustomer": "1",
+      "assistant": "ABC",
+      "pageName": "Lâm Đình Khoa",
+      "iconImageUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
       "tag": "Đơn hàng A",
-      "total_spend": 70,
-      "phone_number": "0987654321",
+      "totalSpend": "70",
+      "phoneNumber": "0987654321",
       "address": "Hà Nội"
+    },
+    {
+      "nameCustomer": "Nguyễn Văn B",
+      "dateTime": "2024-01-03",
+      "idCustomer": "2",
+      "assistant": "XYZ",
+      "pageName": "Nguyễn Đình Hùng",
+      "iconImageUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "tag": "Đơn hàng B",
+      "totalSpend": "150",
+      "phoneNumber": "0987654322",
+      "address": "TP Hồ Chí Minh"
     }
   ],
   "customer_affiliate": [
@@ -171,5 +184,19 @@
       "typeofcustomer": "Trả phí",
       "imgsrc": "img2"
     }
+  ],
+  "function":[
+      {
+        "id": "#FCU4C",
+        "name": "Tăng trưởng thị trường",
+        "level": "Cấp 1",
+        "badgeUrl": ""
+      },
+      {
+        "id": "#D2X8P",
+        "name": "Phát triển doanh nghiệp",
+        "level": "Cấp 2",
+        "badgeUrl": ""
+      }
   ]
 }
