@@ -41,27 +41,51 @@
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
+
+    }
+  ],
+  "products": [
+    {
+      "id": 5,
+      "tilte": "Ocean Wonders",
+      "describe": "Dive into the depths of the ocean to discover its secrets.",
+      "user_id": "#901234",
+      "url": "https://picsum.photos/300/300",
+      "shopProductId": 101,
+      "shopProductName": "Áo thun trắng",
+      "shopProductImageUrl": "https://example.com/product1.png",
+      "price": 150000,
+      "optionPrice": 99000,
+      "productTag": [
+        {
+          "tagId": 12,
+          "tagName": "Fashion"
+        },
+        {
+          "tagId": 15,
+          "tagName": "Summer Collection"
+        }
+      ]
     },
     {
-      "id": "#862355",
-      "title": "Urban Exploration",
-      "describe": "Explore the heart of the city through its hidden gems.",
-      "user_id": "#123456",
-      "url": "https://picsum.photos/300/300"
-    },
-    {
-      "id": "#862555",
-      "title": "Urban Exploration",
-      "describe": "Explore the heart of the city through its hidden gems.",
-      "user_id": "#123456",
-      "url": "https://picsum.photos/300/300"
-    },
-    {
-      "id": "#862225",
-      "title": "Urban Exploration",
-      "describe": "Explore the heart of the city through its hidden gems.",
-      "user_id": "#123456",
-      "url": "https://picsum.photos/300/300"
+      "id": 6,
+      "tilte": "Desert Dunes",
+      "describe": "Feel the heat and beauty of the vast desert landscapes.",
+      "user_id": "#567890",
+      "url": "https://picsum.photos/300/300",
+      "shopProductId": 102,
+      "shopProductName": "Áo sơ mi xanh",
+      "shopProductImageUrl": "https://example.com/product2.png",
+      "price": 45000,
+      "optionPrice": 39000,
+      "productTag": [
+        {
+          "tagId": 13,
+          "tagName": "Business Casual"
+        }
+      ]
+
+   
     }
   ],
   "images": [
@@ -130,6 +154,147 @@
       ]
     }
   ],
+  "integration": [
+    {
+      "id": "123456789012345",
+      "name": "Cửa hàng ABC"
+    },
+    {
+      "id": "987654321098765",
+      "name": "Dịch vụ XYZ"
+    }
+  ],
+  "customer": [
+    {
+      "nameCustomer": "Lê Tài Đức",
+      "dateTime": "2024-01-02",
+      "idCustomer": "1",
+      "assistant": "ABC",
+      "pageName": "Lâm Đình Khoa",
+      "iconImageUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "tag": "Đơn hàng A",
+      "totalSpend": "70",
+      "phoneNumber": "0987654321",
+      "address": "Hà Nội"
+    },
+    {
+      "nameCustomer": "Nguyễn Văn B",
+      "dateTime": "2024-01-03",
+      "idCustomer": "2",
+      "assistant": "XYZ",
+      "pageName": "Nguyễn Đình Hùng",
+      "iconImageUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "tag": "Đơn hàng B",
+      "totalSpend": "150",
+      "phoneNumber": "0987654322",
+      "address": "TP Hồ Chí Minh"
+    }
+  ],
+  "customer_affiliate": [
+    {
+      "id": "1",
+      "name": "Lê Tài Đức",
+      "email": "duc.lt@redon.com",
+      "phone": "0987654321",
+      "createdAt": "2024-07-18",
+      "typeofcustomer": "Miễn phí",
+      "imgsrc": "img1"
+    },
+    {
+      "id": "2",
+      "name": "Nguyễn Thùy Linh",
+      "email": "linh.nt@redon.com",
+      "phone": "0965842361",
+      "createdAt": "2024-07-19",
+      "typeofcustomer": "Trả phí",
+      "imgsrc": "img2"
+    },
+    {
+      "id": "3",
+      "name": "Lê Tài Đức",
+      "email": "duc.lt@redon.com",
+      "phone": "0987654321",
+      "createdAt": "2024-07-18",
+      "typeofcustomer": "Miễn phí",
+      "imgsrc": "img1"
+    },
+    {
+      "id": "4",
+      "name": "Nguyễn Thùy Linh",
+      "email": "linh.nt@redon.com",
+      "phone": "0965842361",
+      "createdAt": "2024-07-19",
+      "typeofcustomer": "Trả phí",
+      "imgsrc": "img2"
+    },
+    {
+      "id": "5",
+      "name": "Lê Tài Đức",
+      "email": "duc.lt@redon.com",
+      "phone": "0987654321",
+      "createdAt": "2024-07-18",
+      "typeofcustomer": "Miễn phí",
+      "imgsrc": "img1"
+    },
+    {
+      "id": "6",
+      "name": "Nguyễn Thùy Linh B",
+      "email": "linh.nt@redon.com",
+      "phone": "0965842361",
+      "createdAt": "2024-07-20",
+      "typeofcustomer": "Trả phí",
+      "imgsrc": "img2"
+    }
+  ],
+  "campaign": [
+    {
+      "content": "Tăng trưởng",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "productId": "#SI3QT",
+      "level": "Cấp 1"
+    },
+    {
+      "content": "Phát triển thị trường",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "productId": "#AB2XY",
+      "level": "Cấp 2"
+    }
+  ],
+  "function": [
+    {
+      "id": "#FCU4C",
+      "name": "Tăng trưởng thị trường",
+      "level": "Cấp 1",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png"
+    },
+    {
+      "id": "#D2X8P",
+      "name": "Phát triển doanh nghiệp",
+      "level": "Cấp 2",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png"
+    }
+  ],
+  "file": [
+   {
+    "id": 15,
+    "name": "hello",
+    "size": "5 B",
+    "url": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/hello.txt",
+    "dateTime": "2024-09-26T14:44:49",
+    "typeFile": "TXT",
+    "delete": true 
+  },
+  {
+    "id": 16,
+    "name": "hello",
+    "size": "5 B",
+    "url": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/hello.txt",
+    "dateTime": "2024-09-26T14:44:49",
+    "typeFile": "TXT",
+    "delete": true 
+  }
+  ],
+ 
   "userpersonalinformation": [
     {
       "id": "1",
@@ -137,6 +302,384 @@
       "address": "Hà Nội",
       "dateOfBirth": "1990-01-02",
       "gender": "Nam"
+    }
+  ],
+  "productshop": [
+    {
+      "name": "MediGPT",
+      "point": 275,
+      "discount": 25,
+      "related": false,
+      "salesPrice": 350,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": "Men",
+      "rating": 1,
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#1890FF"
+      ],
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+      "id": 1,
+      "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "EduGPT",
+      "point": 89,
+      "discount": 10,
+      "related": true,
+      "salesPrice": 99,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "gender": "Women",
+      "rating": 4,
+      "category": [
+        "Đồ chơi"
+      ],
+      "stock": false,
+      "qty": 1,
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FF4842"
+      ],
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+      "id": 2,
+      "created": "sub(new Date(), { days: 10, hours: 8, minutes: 69 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "FinGPT",
+      "point": 125,
+      "discount": 12,
+      "related": false,
+      "salesPrice": 137,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": "Kids",
+      "rating": 3,
+      "stock": true,
+      "qty": 3,
+      "colors": [
+        "#FF4842",
+        "#1890FF",
+        "#94D82D"
+      ],
+      "thumbnailUrl": "s3",
+      "id": 3,
+      "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "CodeGPT",
+      "point": 50,
+      "discount": 15,
+      "related": true,
+      "salesPrice": 65,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": "Men",
+      "rating": 1,
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FFC107"
+      ],
+      "thumbnailUrl": "s4",
+      "id": 4,
+      "created": "sub(new Date(), { days: 4, hours: 9, minutes: 40 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "LegalGPT",
+      "point": 650,
+      "discount": 250,
+      "related": true,
+      "salesPrice": 900,
+      "tag": [
+        "fashion"
+      ],
+      "gender": "Women",
+      "rating": 5,
+      "stock": false,
+      "qty": 1,
+      "category": [
+        "Đồ chơi"
+      ],
+      "colors": [
+        "#00AB55",
+        "#000000"
+      ],
+      "thumbnailUrl": "s5",
+      "id": 5,
+      "created": "sub(new Date(), { days: 2, hours: 5, minutes: 50 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "GPT-2.0",
+      "point": 25,
+      "discount": 6,
+      "related": true,
+      "salesPrice": 31,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "gender": "Men",
+      "rating": 3,
+      "category": [
+        "Đồ chơi"
+      ],
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#FFC0CB",
+        "#FF4842"
+      ],
+      "thumbnailUrl": "s6",
+      "id": 6,
+      "created": "sub(new Date(), { days: 2, hours: 9, minutes: 45 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "GPT-2.0",
+      "point": 150,
+      "discount": 50,
+      "related": false,
+      "salesPrice": 200,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "gender": "Women",
+      "rating": 4,
+      "category": [
+        "Đồ chơi"
+      ],
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#FF4842",
+        "#1890FF",
+        "#94D82D"
+      ],
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
+      "id": 7,
+      "created": "sub(new Date(), { days: 6, hours: 10, minutes: 0 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "GPT-2",
+      "point": 300,
+      "discount": 80,
+      "related": false,
+      "salesPrice": 380,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "gender": "Women",
+      "rating": 3,
+      "category": [
+        "Đồ chơi"
+      ],
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FFC107"
+      ],
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+      "id": 8,
+      "created": "sub(new Date(), { days: 7, hours: 5, minutes: 20 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "GPT-2 for Kids",
+      "point": 175,
+      "discount": 25,
+      "related": false,
+      "salesPrice": 200,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "gender": "Women",
+      "rating": 3,
+      "stock": true,
+      "category": [
+        "Đồ chơi"
+      ],
+      "qty": 1,
+      "colors": [
+        "#00AB55",
+        "#000000"
+      ],
+      "thumbnailUrl": "s9",
+      "id": 9,
+      "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "GPT-5",
+      "point": 210,
+      "discount": 40,
+      "related": false,
+      "salesPrice": 250,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "gender": "Kids",
+      "rating": 3,
+      "category": [
+        "Đồ chơi"
+      ],
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#FFC0CB",
+        "#FF4842"
+      ],
+      "thumbnailUrl": "s10",
+      "id": 10,
+      "created": "sub(new Date(), { days: 6, hours: 6, minutes: 20 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "GPT-3",
+      "point": 285,
+      "discount": 60,
+      "related": false,
+      "category": [
+        "Đồ chơi"
+      ],
+      "salesPrice": 345,
+      "tag": [
+        "toys"
+      ],
+      "gender": "Kids",
+      "rating": 3,
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#FF4842",
+        "#1890FF",
+        "#94D82D"
+      ],
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+      "id": 11,
+      "created": "sub(new Date(), { days: 1, hours: 6, minutes: 20 })",
+      "description": "chance.paragraph({ sentences: 2 })"
+    },
+    {
+      "name": "GPT-3 for Kids",
+      "point": 10,
+      "discount": 5,
+      "related": false,
+      "salesPrice": 10,
+      "tag": [
+        {
+          "tagId": 101,
+          "tagName": "Mới"
+        },
+        {
+          "tagId": 102,
+          "tagName": "Khuyến mãi"
+        }
+      ],
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": "Kids",
+      "rating": 3,
+      "stock": true,
+      "qty": 1,
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FFC107"
+      ],
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+      "id": 12,
+      "created": "sub(new Date(), { days: 9, hours: 6, minutes: 20 })",
+      "description": "chance.paragraph({ sentences: 2 })"
     }
   ]
 }
