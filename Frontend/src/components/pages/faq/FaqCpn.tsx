@@ -1,23 +1,31 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import Tab6 from './Tabs/Tab6';
+import {
+  Badge,
+  Checkbox,
+  Grid,
+  IconButton,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
+import Tab from '@mui/material/Tab';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { IconSearch } from '@tabler/icons-react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Tab1 from './Tabs/Tab1';
 import Tab2 from './Tabs/Tab2';
 import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
-import { Grid, IconButton, TextField, InputAdornment, MenuItem, Checkbox, Select, ListItemText, Badge } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { IconSearch } from '@tabler/icons-react';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import FilterListIcon from '@mui/icons-material/FilterList';
-
-
+import Tab6 from './Tabs/Tab6';
 
 interface Column {
   title: string;
@@ -25,7 +33,6 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-
 
 const Faq = () => {
   const [value, setValue] = useState<'1' | '2' | '3' | '4' | '5' | '6'>('1');
@@ -41,127 +48,128 @@ const Faq = () => {
 
   const handleSearch = () => {
     setSearch(!search);
-  }
+  };
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
-  const column: { [key: string]: Column[] } = useMemo(() => ({
-    '1': [],
-    '2': [],
-    '3': [
-      {
-        title: 'ID',
-        dataIndex: 'idCode',
-      },
-      {
-        title: 'Tên file',
-        dataIndex: 'fileName'
-      },
-      {
-        title: 'Dung lượng',
-        dataIndex: 'datas',
-      },
-      {
-        title: 'Ngày tải',
-        dataIndex: 'creationDate',
-      },
-      {
-        title: 'Định dạng',
-        dataIndex: 'formats'
-      },
-      {
-        title: 'Hành động',
-        dataIndex: 'isCheck',
-      }
-    ],
-    '4': [
-      {
-        title: 'ID',
-        dataIndex: 'idCode'
-      },
-      {
-        title: 'Ngày tạo',
-        dataIndex: 'creationDate',
-      },
-      {
-        title: 'Tên model',
-        dataIndex: 'modelName'
-      },
-      {
-        title: 'Model gốc',
-        dataIndex: 'modelLocal'
-      },
-      {
-        title: 'Token huấn luyện',
-        dataIndex: 'trainedTokens'
-      },
-      {
-        title: 'Hành động',
-        dataIndex: 'isCheck',
-      }
-    ],
-    '5': [
-      {
-        title: 'ID',
-        dataIndex: 'idCode',
-      },
-      {
-        title: 'Ngày tạo',
-        dataIndex: 'createDate',
-      },
-      {
-        title: 'Hình ảnh',
-        dataIndex: 'images',
-      },
-      {
-        title: 'Tên ảnh',
-        dataIndex: 'imgName',
-      },
-      {
-        title: 'Mô tả',
-        dataIndex: 'moTa',
-      },
-      {
-        title: 'Tiêu đề',
-        dataIndex: 'title',
-      },
-      {
-        title: 'Hoạt động',
-        dataIndex: 'action',
-      },
-    ],
-    '6': [
-      {
-        title: 'ID',
-        dataIndex: 'idCode'
-      },
-      {
-        title: 'Tiêu đề URL',
-        dataIndex: 'titleurl'
-      },
-      {
-        title: 'Mô tả URL',
-        dataIndex: 'descriptionurl'
-      },
-      {
-        title: 'URL',
-        dataIndex: 'url',
-      },
-      {
-        title: 'Hành động',
-        dataIndex: 'action',
-      }
-    ]
-  }), []);
-
+  const column: { [key: string]: Column[] } = useMemo(
+    () => ({
+      '1': [],
+      '2': [],
+      '3': [
+        {
+          title: 'ID',
+          dataIndex: 'idCode',
+        },
+        {
+          title: 'Tên file',
+          dataIndex: 'fileName',
+        },
+        {
+          title: 'Dung lượng',
+          dataIndex: 'datas',
+        },
+        {
+          title: 'Ngày tải',
+          dataIndex: 'creationDate',
+        },
+        {
+          title: 'Định dạng',
+          dataIndex: 'formats',
+        },
+        {
+          title: 'Hành động',
+          dataIndex: 'isCheck',
+        },
+      ],
+      '4': [
+        {
+          title: 'ID',
+          dataIndex: 'idCode',
+        },
+        {
+          title: 'Ngày tạo',
+          dataIndex: 'creationDate',
+        },
+        {
+          title: 'Tên model',
+          dataIndex: 'modelName',
+        },
+        {
+          title: 'Model gốc',
+          dataIndex: 'modelLocal',
+        },
+        {
+          title: 'Token huấn luyện',
+          dataIndex: 'trainedTokens',
+        },
+        {
+          title: 'Hành động',
+          dataIndex: 'isCheck',
+        },
+      ],
+      '5': [
+        {
+          title: 'ID',
+          dataIndex: 'idCode',
+        },
+        {
+          title: 'Ngày tạo',
+          dataIndex: 'createDate',
+        },
+        {
+          title: 'Hình ảnh',
+          dataIndex: 'images',
+        },
+        {
+          title: 'Tên ảnh',
+          dataIndex: 'imgName',
+        },
+        {
+          title: 'Mô tả',
+          dataIndex: 'moTa',
+        },
+        {
+          title: 'Tiêu đề',
+          dataIndex: 'title',
+        },
+        {
+          title: 'Hoạt động',
+          dataIndex: 'action',
+        },
+      ],
+      '6': [
+        {
+          title: 'ID',
+          dataIndex: 'id',
+        },
+        {
+          title: 'Tiêu đề URL',
+          dataIndex: 'tilte',
+        },
+        {
+          title: 'Mô tả URL',
+          dataIndex: 'describe',
+        },
+        {
+          title: 'URL',
+          dataIndex: 'url',
+        },
+        {
+          title: 'Hành động',
+          dataIndex: 'action',
+        },
+      ],
+    }),
+    [],
+  );
 
   useEffect(() => {
-
     const selectedColumns = column[value] || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -169,21 +177,23 @@ const Faq = () => {
   }, [value, column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
-
-
 
   const searchSection = (
     <Box>
       <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
-        {(value === '3' || value === '4' || value === '5' || value === '6') &&
+        {(value === '3' || value === '4' || value === '5' || value === '6') && (
           <Grid item>
             <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
               <Grid item>
-                <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                <Badge
+                  badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                  color={dataSelect.length !== 0 ? 'primary' : undefined}
+                >
                   <FilterListIcon color="action" />
                 </Badge>
               </Grid>
@@ -194,11 +204,10 @@ const Faq = () => {
                   displayEmpty
                   onChange={handleColumnChange}
                   renderValue={() => 'Sửa đổi cột'}
-                  size='small'
+                  size="small"
                 >
                   {column[value].map((header: Column) => {
-
-                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                     const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -213,9 +222,8 @@ const Faq = () => {
               </Grid>
             </Grid>
           </Grid>
-
-        }
-        {(value === '3' || value === '5' || value === '6') &&
+        )}
+        {(value === '3' || value === '5' || value === '6') && (
           <Grid item>
             <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
               <Grid item>
@@ -255,12 +263,10 @@ const Faq = () => {
               </Grid>
             </Grid>
           </Grid>
-        }
-
+        )}
       </Grid>
     </Box>
   );
-
 
   return (
     <Grid container>
@@ -285,11 +291,7 @@ const Faq = () => {
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
               >
-                <Tab
-                  label="Chiến Lược"
-                  value="1"
-
-                />
+                <Tab label="Chiến Lược" value="1" />
                 <Tab label="Function" value="2" />
                 <Tab label="Files" value="3" />
                 <Tab label="Model" value="4" />

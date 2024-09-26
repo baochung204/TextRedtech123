@@ -21,8 +21,8 @@ import {
 } from 'react-redux';
 import { combineReducers } from 'redux';
 import CustomerReducer from './apps/customer/customerSlice';
-
 import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
+import ImageSlice from './apps/resources/image/ImageSlice';
 
 export const store = configureStore({
   reducer: {
@@ -38,7 +38,8 @@ export const store = configureStore({
     selectReducer: SelectedReducer,
     integration: integrationReducer,
     customer: CustomerReducer,
-    urlReducer: UrlSlice,
+    urlResources: UrlSlice,
+    imageResources: ImageSlice,
     product: productReducer,
     customeraffiliate: CustomerAffiliate,
   },
@@ -57,7 +58,8 @@ const rootReducer = combineReducers({
   selectReducer: SelectedReducer,
   integration: integrationReducer,
   customer: CustomerReducer,
-  urlReducer: UrlSlice,
+  urlResources: UrlSlice,
+  imageResources: ImageSlice,
   customeraffiliate: CustomerAffiliate,
 });
 
