@@ -1,4 +1,4 @@
-import { Box, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
+import { Badge, Box, Checkbox, Grid, InputAdornment, ListItemText, MenuItem, Select, TextField, Tooltip, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -8,11 +8,13 @@ import {
   IconTags,
   IconWorldUpload,
 } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
+import FilterListIcon from '@mui/icons-material/FilterList';
+
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -112,49 +114,10 @@ const DataBox = [
   },
 ];
 
-interface HeadCell {
-  title: string;
-  dataIndex: string;
-}
 
-const headCells: HeadCell[] = [
-  {
-    dataIndex: 'id',
-    title: 'ID',
-  },
-  {
-    dataIndex: 'day',
-    title: 'Ngày đăng',
-  },
-  {
-    dataIndex: 'title',
-    title: 'Tiêu đề',
-  },
-  {
-    dataIndex: 'tags',
-    title: 'Tags',
-  },
-  {
-    dataIndex: 'content',
-    title: 'Nội dung thông báo',
-  },
-  {
-    dataIndex: 'moreLink',
-    title: 'Link xem thêm',
-  },
-  {
-    dataIndex: 'views',
-    title: 'Lượt xem',
-  },
-  {
-    dataIndex: 'interactions',
-    title: 'Tương tác',
-  },
-  {
-    dataIndex: 'status',
-    title: 'Trạng thái',
-  },
-];
+
+
+
 interface INotification {
   id: string; // ID thông báo
   day: string; // Ngày tạo thông báo
@@ -255,9 +218,76 @@ const FilmsData: FilmsData[] = [
   { id: 14, title: 'Chi phí/Khách hàng' },
   { id: 15, title: 'Chiến lược' },
 ];
+
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
+
 const ContentNotification = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const column = useMemo<Column[]>(() => [
+    {
+      dataIndex: 'id',
+      title: 'ID',
+    },
+    {
+      dataIndex: 'day',
+      title: 'Ngày đăng',
+    },
+    {
+      dataIndex: 'title',
+      title: 'Tiêu đề',
+    },
+    {
+      dataIndex: 'tags',
+      title: 'Tags',
+    },
+    {
+      dataIndex: 'content',
+      title: 'Nội dung thông báo',
+    },
+    {
+      dataIndex: 'moreLink',
+      title: 'Link xem thêm',
+    },
+    {
+      dataIndex: 'views',
+      title: 'Lượt xem',
+    },
+    {
+      dataIndex: 'interactions',
+      title: 'Tương tác',
+    },
+    {
+      dataIndex: 'status',
+      title: 'Trạng thái',
+    },
+  ], [])
+
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
+
 
   return (
     <Grid container spacing={3}>
@@ -297,6 +327,60 @@ const ContentNotification = () => {
 
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                <FilterListIcon color="action" />
+              </Badge>
+              <Select
+                multiple
+                value={dataSelect}
+                displayEmpty
+                onChange={handleColumnChange}
+                renderValue={() => 'Sửa đổi cột'}
+                size='small'
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      marginTop: 1,
+                      maxHeight: 400,
+                      '&::-webkit-scrollbar': {
+                        width: '4px',
+                      },
+                      '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: '#D2D2D2',
+                        borderRadius: '10px',
+                      },
+                      '&::-webkit-scrollbar-thumb:hover': {
+                        backgroundColor: '#C6C8CC',
+                      },
+                      '&::-webkit-scrollbar-track': {
+                        backgroundColor: '#f1f1f1',
+                      },
+                    },
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                  },
+                }}
+              >
+                {column.map((header: any) => {
+
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                  const isSelected = dataSelect.includes(header.dataIndex);
+
+                  return (
+                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                      <Checkbox checked={!isSelected} />
+                      <ListItemText primary={header.title} />
+                    </MenuItem>
+                  );
+                })}
+              </Select>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   value={selectedStartDate}
@@ -316,7 +400,7 @@ const ContentNotification = () => {
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
-          <CustomTable columns={headCells} dataSource={dataRows} />
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect}/>
         </BlankCard>
       </Grid>
     </Grid>

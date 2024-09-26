@@ -27,10 +27,7 @@ import AddOrder from './PopupAdd2';
 // import Tags from 'src/components/apps/sell/Tags';
 import { TabContext, TabPanel } from '@mui/lab';
 import fb from 'src/assets/images/socialmedia/facebook.png';
-<<<<<<< HEAD
-=======
 import CustomTable from 'src/components/ComponentTables/CustomTable';
->>>>>>> main
 import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 // const BCrumb = [

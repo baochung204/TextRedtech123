@@ -13,13 +13,6 @@ const BCrumb = [
   { to: '/admin/feature', title: 'Danh sách đề xuất' },
 ];
 
-// interface StyleProps {
-//   bgColor: string;
-//   color: string;
-//   title: string;
-//   total: string;
-//   icons: JSX.Element;
-// }
 
 const dataSource = [
   {
@@ -113,20 +106,6 @@ const dataSource = [
 ];
 
 const PageFeature = () => {
-  // const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  // const [value, setValue] = React.useState('1');
-
-  // const handleOpenPopup = () => {
-  //   setIsPopupOpen(true);
-  // };
-
-  // const handleClosePopup = () => {
-  //   setIsPopupOpen(false);
-  // };
-
-  // const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-  //   setValue(newValue);
-  // };
 
   const [isPopupOpen] = React.useState(false);
 
