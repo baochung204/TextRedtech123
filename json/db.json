@@ -185,18 +185,59 @@
       "imgsrc": "img2"
     }
   ],
-  "function":[
-      {
-        "id": "#FCU4C",
-        "name": "Tăng trưởng thị trường",
-        "level": "Cấp 1",
-        "badgeUrl": ""
-      },
-      {
-        "id": "#D2X8P",
-        "name": "Phát triển doanh nghiệp",
-        "level": "Cấp 2",
-        "badgeUrl": ""
-      }
+  "campaign": [
+    {
+      "content": "Tăng trưởng",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "productId": "#SI3QT",
+      "level": "Cấp 1"
+    },
+    {
+      "content": "Phát triển thị trường",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png",
+      "productId": "#AB2XY",
+      "level": "Cấp 2"
+    }
+  ],
+  "function": [
+    {
+      "id": "#FCU4C",
+      "name": "Tăng trưởng thị trường",
+      "level": "Cấp 1",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png"
+    },
+    {
+      "id": "#D2X8P",
+      "name": "Phát triển doanh nghiệp",
+      "level": "Cấp 2",
+      "badgeUrl": "https://png.pngtree.com/element_our/png_detail/20181011/facebook-social-media-icon-design-template-vector-png_127003.png"
+    }
+  ],
+  "file": [
+    {
+      "id": "045323", 
+      "name": "file1.pdf", 
+      "size": "123Kb", 
+      "dateTime": "1/9/2024", 
+      "type": "PDF",
+      "isDelete": "true" 
+    },
+    {
+      "id": "045324", 
+      "name": "file2.pdf",
+      "size": "124Kb", 
+      "dateTime": "2/9/2024", 
+      "type": "PDF",
+      "isDelete": "true"
+    }
+  ],
+  "userpersonalinformation": [
+    {
+      "id": "1",
+      "name": "Lê Tài Đức",
+      "address": "Hà Nội",
+      "dateOfBirth": "1990-01-02",
+      "gender": "Nam"
+    }
   ]
 }

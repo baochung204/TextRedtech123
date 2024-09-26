@@ -151,6 +151,10 @@ import DialogFile from '../dialog/DialogFile';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { Checkbox, Grid, IconButton, ListItemText, MenuItem, Select } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchFile } from 'src/store/apps/resources/file/fileSlice';
 
 interface PropsTab3 {
   value: string;
@@ -177,7 +181,11 @@ interface Column {
 
 const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
+  const dispatch = useDispatch<AppDispatch>()
+  const dataFile = useSelector((state: AppState)=> state.file.data)
+  useEffect(()=>{
+    dispatch(fetchFile())
+  },[dispatch])
   const column = useMemo<Column[]>(() => [
     {
       title: 'ID',
