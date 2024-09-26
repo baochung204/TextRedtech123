@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -10,24 +10,31 @@ import Tab2 from './Tabs/Tab2';
 import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
-import { Grid, IconButton, TextField, InputAdornment, MenuItem, Checkbox, Select, ListItemText } from '@mui/material';
+import { Grid, IconButton, TextField, InputAdornment, MenuItem, Checkbox, Select, ListItemText, Badge } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { IconSearch } from '@tabler/icons-react';
-// import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 
+
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 
 
 const Faq = () => {
-  const [value, setValue] = useState<string>('1');
+  const [value, setValue] = useState<'1' | '2' | '3' | '4' | '5' | '6'>('1');
   const [open, setOpen] = useState<boolean>(false);
   const theme = useTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+    setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
     setOpen(false);
   };
   const [search, setSearch] = useState<boolean>(false);
@@ -35,109 +42,225 @@ const Faq = () => {
   const handleSearch = () => {
     setSearch(!search);
   }
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  const column: { [key: string]: Column[] } = useMemo(() => ({
+    '1': [],
+    '2': [],
+    '3': [
+      {
+        title: 'ID',
+        dataIndex: 'idCode',
+      },
+      {
+        title: 'Tên file',
+        dataIndex: 'fileName'
+      },
+      {
+        title: 'Dung lượng',
+        dataIndex: 'datas',
+      },
+      {
+        title: 'Ngày tải',
+        dataIndex: 'creationDate',
+      },
+      {
+        title: 'Định dạng',
+        dataIndex: 'formats'
+      },
+      {
+        title: 'Hành động',
+        dataIndex: 'isCheck',
+      }
+    ],
+    '4': [
+      {
+        title: 'ID',
+        dataIndex: 'idCode'
+      },
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'creationDate',
+      },
+      {
+        title: 'Tên model',
+        dataIndex: 'modelName'
+      },
+      {
+        title: 'Model gốc',
+        dataIndex: 'modelLocal'
+      },
+      {
+        title: 'Token huấn luyện',
+        dataIndex: 'trainedTokens'
+      },
+      {
+        title: 'Hành động',
+        dataIndex: 'isCheck',
+      }
+    ],
+    '5': [
+      {
+        title: 'ID',
+        dataIndex: 'idCode',
+      },
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'createDate',
+      },
+      {
+        title: 'Hình ảnh',
+        dataIndex: 'images',
+      },
+      {
+        title: 'Tên ảnh',
+        dataIndex: 'imgName',
+      },
+      {
+        title: 'Mô tả',
+        dataIndex: 'moTa',
+      },
+      {
+        title: 'Tiêu đề',
+        dataIndex: 'title',
+      },
+      {
+        title: 'Hoạt động',
+        dataIndex: 'action',
+      },
+    ],
+    '6': [
+      {
+        title: 'ID',
+        dataIndex: 'idCode'
+      },
+      {
+        title: 'Tiêu đề URL',
+        dataIndex: 'titleurl'
+      },
+      {
+        title: 'Mô tả URL',
+        dataIndex: 'descriptionurl'
+      },
+      {
+        title: 'URL',
+        dataIndex: 'url',
+      },
+      {
+        title: 'Hành động',
+        dataIndex: 'action',
+      }
+    ]
+  }), []);
+
+
+  useEffect(() => {
+
+    const selectedColumns = column[value] || [];
+    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [value, column]);
+
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
+
 
 
 
   const searchSection = (
     <Box>
-      <Grid container sx={{ display: 'flex', alignItems: 'center', paddingTop: 2 }}>
+      <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
+        {(value === '3' || value === '4' || value === '5' || value === '6') &&
+          <Grid item>
+            <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
+              <Grid item>
+                <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <FilterListIcon color="action" />
+                </Badge>
+              </Grid>
+              <Grid item>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size='small'
+                >
+                  {column[value].map((header: Column) => {
 
-        <Grid item>
-          <TextField
-            id="outlined-search"
-            placeholder="Tìm kiếm"
-            size="small"
-            type="search"
-            variant="outlined"
-            inputProps={{ 'aria-label': 'Search Followers' }}
-            sx={{
-              fontSize: { xs: '24px', sm: '35px', md: '50px' },
-              maxWidth: { xs: search ? '150px' : '40px', md: '700px' },
-              transition: 'max-width 0.5s ease-in-out',
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconSearch onClick={() => handleSearch()} size="12" />
-                </InputAdornment>
-              ),
-            }}
-            fullWidth={true}
-          />
-        </Grid>
-        <Grid item>
-          <IconButton
-            color="primary"
-            aria-label="Add to cart"
-            onClick={() => setOpen(true)}
-            sx={{
-              pr: 1.5,
-            }}
-          >
-            <AddCircleIcon sx={{ fontSize: 30 }} />
-          </IconButton>
-        </Grid>
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                    const isSelected = dataSelect.includes(header.dataIndex);
+
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </Grid>
+            </Grid>
+          </Grid>
+
+        }
+        {(value === '3' || value === '5' || value === '6') &&
+          <Grid item>
+            <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+              <Grid item>
+                <TextField
+                  id="outlined-search"
+                  placeholder="Tìm kiếm"
+                  size="small"
+                  type="search"
+                  variant="outlined"
+                  inputProps={{ 'aria-label': 'Search Followers' }}
+                  sx={{
+                    fontSize: { xs: '24px', sm: '35px', md: '50px' },
+                    maxWidth: { xs: search ? '150px' : '40px', md: '700px' },
+                    transition: 'max-width 0.5s ease-in-out',
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <IconSearch onClick={() => handleSearch()} size="12" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item>
+                <IconButton
+                  color="primary"
+                  aria-label="Add to cart"
+                  onClick={() => setOpen(true)}
+                  sx={{
+                    pr: 1.5,
+                  }}
+                >
+                  <AddCircleIcon sx={{ fontSize: 30 }} />
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Grid>
+        }
+
       </Grid>
     </Box>
   );
 
-
-  // const searchSection = (
-  //   <Box>
-  //     <Grid container sx={{ display: 'flex', alignItems: 'center', paddingTop: 2 }}>
-  //       <Grid item>
-  //         <CustomSelect
-  //           labelId="column-sort"
-  //           id="column-sort"
-  //           size="small"
-  //           value={1}
-  //           sx={{ marginRight: '20px' }}
-  //         >
-  //           <MenuItem value={1}>Tất cả</MenuItem>
-  //           <MenuItem value={2}>ID</MenuItem>
-  //         </CustomSelect>
-  //       </Grid>
-  //       <Grid item>
-  //         <TextField
-  //           id="outlined-search"
-  //           placeholder="Tìm kiếm"
-  //           size="small"
-  //           type="search"
-  //           variant="outlined"
-  //           inputProps={{ 'aria-label': 'Search Followers' }}
-  //           sx={{
-  //             fontSize: { xs: '24px', sm: '35px', md: '50px' },
-  //             maxWidth: { xs: search ? '150px' : '40px', md: '700px' },
-  //             transition: 'max-width 0.5s ease-in-out',
-  //           }}
-  //           InputProps={{
-  //             startAdornment: (
-  //               <InputAdornment position="start">
-  //                 <IconSearch
-  //                   onClick={() => handleSearch()}
-  //                   size="12"
-  //                 />
-  //               </InputAdornment>
-  //             ),
-  //           }}
-  //           fullWidth={true}
-  //         />
-  //       </Grid>
-  //       <Grid item>
-  //         <IconButton
-  //           color="primary"
-  //           aria-label="Add to cart"
-  //           onClick={() => setOpen(true)}
-  //           sx={{
-  //             pr: 1.5,
-  //           }}
-  //         >
-  //           <AddCircleIcon sx={{ fontSize: 30 }} />
-  //         </IconButton>
-  //       </Grid>
-  //     </Grid>
-  //   </Box>
-  // );
 
   return (
     <Grid container>
@@ -169,7 +292,7 @@ const Faq = () => {
                 <Tab
                   label="Chiến Lược"
                   value="1"
-                  
+
                 />
                 <Tab label="Function" value="2" />
                 <Tab label="Files" value="3" />
@@ -177,9 +300,9 @@ const Faq = () => {
                 <Tab label="Hình Ảnh" value="5" />
                 <Tab label="URL" value="6" />
               </TabList>
-              {!isXsScreen && (value === '3' || value === '5' || value === '6') && searchSection}
+              {!isXsScreen && searchSection}
             </Box>
-            {isXsScreen && (value === '3' || value === '5' || value === '6') && searchSection}
+            {isXsScreen && searchSection}
             <TabPanel value="1">
               <Tab1 />
             </TabPanel>
@@ -187,16 +310,16 @@ const Faq = () => {
               <Tab2 />
             </TabPanel>
             <TabPanel value="3">
-              <Tab3 value={value} open={open} setOpen={setOpen} />
+              <Tab3 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel value="4">
-              <Tab4 />
+              <Tab4 dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel value="5">
-              <Tab5 value={value} open={open} setOpen={setOpen} />
+              <Tab5 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel value="6">
-              <Tab6 value={value} open={open} setOpen={setOpen} />
+              <Tab6 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
           </TabContext>
         </Box>

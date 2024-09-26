@@ -1,13 +1,18 @@
 import { TabContext, TabPanel } from '@mui/lab';
 import {
+  Badge,
   Box,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
   InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
   Slide,
   TextField,
   Typography,
@@ -23,45 +28,10 @@ import ChildCard from 'src/components/shared/ChildCard';
 import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PopupAdd from './PopupAdd';
+import { useEffect, useState, useMemo } from 'react';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
-const columns = [
-  {
-    title: 'STT',
-    dataIndex: 'id',
-  },
-  {
-    title: 'Họ và tên',
-    dataIndex: 'name',
-    render: (row, value: any) => (
-      // console.log( value.imgsrc)
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <img
-          src={value?.imgsrc}
-          alt=""
-          style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
-        />
-        <Typography>{value.name}</Typography>
-      </Box>
-    ),
-  },
 
-  {
-    title: 'SĐT',
-    dataIndex: 'phone',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-  {
-    title: 'Ngày đăng ký',
-    dataIndex: 'createdAt',
-  },
-  {
-    title: 'Loại khách hàng',
-    dataIndex: 'typeofcustomer',
-  },
-];
 
 const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement }>(
   (props, ref) => (
@@ -75,14 +45,78 @@ const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/apps/blog/posts', title: 'Danh sách khách hàng' },
 ];
-
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 const CustomerList = () => {
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
+  };
+
+  const column = useMemo<Column[]>(() => [
+    {
+      title: 'STT',
+      dataIndex: 'id',
+    },
+    {
+      title: 'Họ và tên',
+      dataIndex: 'name',
+      render: (_row, value: any) => (
+        // console.log( value.imgsrc)
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <img
+            src={value?.imgsrc}
+            alt=""
+            style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
+          />
+          <Typography>{value.name}</Typography>
+        </Box>
+      ),
+    },
+
+    {
+      title: 'SĐT',
+      dataIndex: 'phone',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+    },
+    {
+      title: 'Ngày đăng ký',
+      dataIndex: 'createdAt',
+    },
+    {
+      title: 'Loại khách hàng',
+      dataIndex: 'typeofcustomer',
+    },
+  ], [])
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
   return (
@@ -122,6 +156,31 @@ const CustomerList = () => {
 
                     <Grid item xs={10} sm={4}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                          <FilterListIcon color="action" />
+                        </Badge>
+                        <Select
+                          multiple
+                          value={dataSelect}
+                          displayEmpty
+                          onChange={handleColumnChange}
+                          renderValue={() => 'Sửa đổi cột'}
+                          size='small'
+                        >
+                          {column.map((header: any) => {
+
+                            console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                            const isSelected = dataSelect.includes(header.dataIndex);
+
+                            return (
+                              <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                                <Checkbox checked={!isSelected} />
+                                <ListItemText primary={header.title} />
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
                             value={selectedStartDate}
@@ -145,7 +204,11 @@ const CustomerList = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <CustomTable columns={columns} dataSource={DataCustomerListAffiliateTable} />;
+                  <CustomTable
+                    columns={column}
+                    dataSource={DataCustomerListAffiliateTable}
+                    dataSelect={dataSelect}
+                  />;
                 </Grid>
               </Grid>
             </TabPanel>
