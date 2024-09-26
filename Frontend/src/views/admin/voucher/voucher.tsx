@@ -1,6 +1,4 @@
 import { Box, Grid, Tab, Tabs } from '@mui/material';
-// components
-// import { styled } from '@mui/system';
 import {
   IconTicket,
   IconBrandDeezer,
@@ -14,15 +12,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FlashSale from './../../../components/admin/voucher/flashsale';
-// const BoxStyled = styled(Box)(() => ({
-//   padding: '24px',
-//   transition: '0.1s ease-in',
-//   cursor: 'pointer',
-//   color: 'inherit',
-//   // '&:hover': {
-//   //   transform: 'scale(1.03)',
-//   // },
-// }));
+
 const BCrumb = [
   {
     to: '/admin',
