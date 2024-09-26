@@ -140,15 +140,15 @@ const Faq = () => {
       '6': [
         {
           title: 'ID',
-          dataIndex: 'idCode',
+          dataIndex: 'id',
         },
         {
           title: 'Tiêu đề URL',
-          dataIndex: 'titleurl',
+          dataIndex: 'tilte',
         },
         {
           title: 'Mô tả URL',
-          dataIndex: 'descriptionurl',
+          dataIndex: 'describe',
         },
         {
           title: 'URL',
