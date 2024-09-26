@@ -1,24 +1,28 @@
 import {
-  Avatar,
+  Badge,
   Box,
-  Chip,
+  Checkbox,
   Grid,
   IconButton,
   InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconBellRinging, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
-import React from 'react';
-import OrderAdminPage from 'src/components/admin/order';
+import React, { useEffect, useMemo, useState } from 'react';
 import OrderData from 'src/components/admin/order/data/OrderData';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import icontext from 'src/assets/images/logos/R-Point.png';
+import FilterListIcon from '@mui/icons-material/FilterList';
+
+
 
 const BCrumb = [
   {
@@ -158,73 +162,100 @@ const DataBox: StyleProps[] = [
     ),
   },
 ];
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 
-const columns = [
-  {
-    title: 'ID',
-    dataIndex: 'id',
-  },
-
-  {
-    title: 'Họ và tên',
-    dataIndex: 'name',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-  {
-    title: 'Số điện thoại',
-    dataIndex: 'phone',
-  },
-  {
-    title: 'Loại tài khoản',
-    dataIndex: 'typeacc',
-  },
-  {
-    title: 'Trợ lý',
-    dataIndex: 'troly',
-  },
-
-  {
-    title: 'Tổng nạp',
-    dataIndex: 'tongnap',
-  },
-  {
-    title: 'Số dư',
-
-    render: (row, value: any) => (
-      <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-          {value.sodu}{' '}
-          <img src={icontext} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-        </Typography>
-      </Box>
-    ),
-  },
-  {
-    title: 'Hành động',
-
-    render: (row, value: any) => (
-      <>
-        <IconButton
-          onClick={() => {
-            // setSelectedKey(item.id); setOpen(true); console.log(item.id);
-          }}
-        >
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
-  },
-];
 
 const OrderAdminPages = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
+  const column = useMemo<Column[]>(() => [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+    },
+
+    {
+      title: 'Họ và tên',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+    },
+    {
+      title: 'Số điện thoại',
+      dataIndex: 'phone',
+    },
+    {
+      title: 'Loại tài khoản',
+      dataIndex: 'typeacc',
+    },
+    {
+      title: 'Trợ lý',
+      dataIndex: 'troly',
+    },
+
+    {
+      title: 'Tổng nạp',
+      dataIndex: 'tongnap',
+    },
+    {
+      title: 'Số dư',
+      dataIndex: 'sodu',
+      render: (_row, value: any) => (
+        <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+            {value.sodu}{' '}
+            <img src={icontext} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+          </Typography>
+        </Box>
+      ),
+    },
+    {
+      title: 'Hành động',
+      dataIndex: 'action',
+      render: (_row, _value: any) => (
+        <>
+          <IconButton
+            onClick={() => {
+              // setSelectedKey(item.id); setOpen(true); console.log(item.id);
+            }}
+          >
+            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+          </IconButton>
+          <IconButton>
+            <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+          </IconButton>
+        </>
+      ),
+    },
+  ], [])
+
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
 
   return (
     <>
@@ -260,9 +291,33 @@ const OrderAdminPages = () => {
               />
             </Grid>
 
-            {/* Date Picker */}
             <Grid item xs={12} sm={6} md={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <FilterListIcon color="action" />
+                </Badge>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size='small'
+                >
+                  {column.map((header: any) => {
+
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                    const isSelected = dataSelect.includes(header.dataIndex);
+
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     value={selectedStartDate}
@@ -281,9 +336,12 @@ const OrderAdminPages = () => {
           </Grid>
         </Grid>
 
-        {/* Table Section */}
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={OrderData} />
+          <CustomTable
+            columns={column}
+            dataSource={OrderData}
+            dataSelect={dataSelect}
+          />
         </Grid>
       </Grid>
     </>

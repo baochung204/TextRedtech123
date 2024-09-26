@@ -219,6 +219,12 @@ interface EnhancedTableToolbarProps {
   handleSearch: React.ChangeEvent<HTMLInputElement> | any;
   search: string;
 }
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 
 const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const { numSelected, handleSearch, search } = props;
@@ -298,16 +304,79 @@ const PaginationTable = () => {
     setFilteredRows(filtered);
   };
   const [search, setSearch] = React.useState('');
-  // const [page, setPage] = React.useState(0);
-  // const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [value, setValue] = React.useState(1);
+
   const [selected] = React.useState<readonly string[]>([]);
+  const [dataSelect, setDataSelect] = React.useState<string[]>([]);
+  const FilmsData = React.useMemo<Column[]>(() => [
+    { title: 'Id', dataIndex: 'id' },
+    {
 
-  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filteredRows.length) : 0;
+      title: 'Ảnh',
+      dataIndex: 'imgsrc',
+      render: (row: any) => <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />,
+    },
+    { title: '	Tên sản phẩm', dataIndex: 'name' },
+    {
 
-  // const handleChangePage = (_event: any, newPage: any) => {
-  //   setPage(newPage);
-  // };
+      title: 'Tags',
+      dataIndex: 'tags',
+      render: (row: any) => (
+        <Chip
+          color={
+            row === 'di động'
+              ? 'success'
+              : row === 'điện tử'
+                ? 'warning'
+                : row === 'đời sống'
+                  ? 'error'
+                  : 'secondary'
+          }
+          sx={{
+            borderRadius: '6px',
+          }}
+          size="small"
+          label={row}
+        />
+      ),
+    },
+    {
+
+      title: '	Giá niêm yết',
+      dataIndex: 'total',
+      render: (row: any) => (
+        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+            {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+          </Typography>
+        </Box>
+      ),
+    },
+    {
+
+      title: 'Giá khuyến mãi',
+      dataIndex: 'totalSales',
+      render: (row: any) => (
+        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
+            {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+          </Typography>
+        </Box>
+      ),
+    },
+  ], [])
+
+  React.useEffect(() => {
+    const hasIsValids = FilmsData.some(col => 'isValids' in col);
+    if (hasIsValids) {
+      const hiddenColumns = FilmsData
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [FilmsData]);
 
   // const handleChangeRowsPerPage = (event: any) => {
   //   setRowsPerPage(parseInt(event.target.value, 10));
@@ -340,8 +409,10 @@ const PaginationTable = () => {
   };
   const [iconIndex, setIconIndex] = React.useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
       <Box
@@ -364,25 +435,24 @@ const PaginationTable = () => {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
           <Select
             multiple
-            value={selectedItems}
+            value={dataSelect}
             displayEmpty
-            renderValue={(selected) =>
-              selected.length === 0 ? 'Sửa đổi cột' : `${selected.length} cột đã chọn`
-            }
-            size="small"
-            sx={{ minWidth: 150 }}
+            onChange={handleColumnChange}
+            renderValue={() => 'Sửa đổi cột'}
           >
-            {FilmsData.map((film: any) => (
-              <MenuItem key={film.id} value={film.id} onClick={() => handleItemClick(film.id)}>
-                <Checkbox
-                  checked={selectedItems.includes(film.id)}
-                  sx={{
-                    color: selectedItems.length === FilmsData.length ? 'green' : undefined,
-                  }}
-                />
-                <ListItemText primary={film.title} />
-              </MenuItem>
-            ))}
+            {FilmsData.map((header: any) => {
+
+              console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+              const isSelected = dataSelect.includes(header.dataIndex);
+
+              return (
+                <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                  <Checkbox checked={!isSelected} />
+                  <ListItemText primary={header.title} />
+                </MenuItem>
+              );
+            })}
           </Select>
 
           <IconButton
@@ -397,7 +467,7 @@ const PaginationTable = () => {
         </Box>
       </Box>
       <BlankCard>
-        <CustomTable columns={FilmsData} dataSource={data} />
+        <CustomTable columns={FilmsData} dataSource={filteredRows} dataSelect={dataSelect} />
       </BlankCard>
     </PageContainer>
   );
