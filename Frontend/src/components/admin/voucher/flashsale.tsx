@@ -7,15 +7,6 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
   TextField,
   Tooltip,
   Typography,
@@ -23,21 +14,20 @@ import {
 import s24 from 'src/assets/images/products/s24.jpg';
 // components
 // import { styled } from '@mui/system';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import s22 from 'src/assets/images/products/s22.jpg';
 import s25 from 'src/assets/images/products/s23.jpg';
 import s23 from 'src/assets/images/products/s25.jpg';
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
 import AddDflashsale from './add/addflashsale';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
 
 interface DataRow3 {
   id: string;
@@ -233,138 +223,143 @@ const FlashSale = () => {
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
-  const column = useMemo<Column[]>(() => [
-    {
-      id: 'id',
-      title: 'ID',
-      dataIndex: 'id',
-    },
-    {
-      id: 'voucherName',
-      title: 'Tên chiến dịch',
-      dataIndex: 'voucherName',
-    },
-    {
-      id: 'quantityFS',
-      title: 'Số lượng FS',
-      dataIndex: 'quantityFS',
-    },
-    {
-      id: 'product',
-      title: 'Sản phẩm',
-      dataIndex: 'product',
-      render: (text: any, value: any) => (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {/* Avatar on the left */}
-          <img
-            src={value.img}
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              marginRight: '10px',
-            }}
-          />
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        id: 'id',
+        title: 'ID',
+        dataIndex: 'id',
+      },
+      {
+        id: 'voucherName',
+        title: 'Tên chiến dịch',
+        dataIndex: 'voucherName',
+      },
+      {
+        id: 'quantityFS',
+        title: 'Số lượng FS',
+        dataIndex: 'quantityFS',
+      },
+      {
+        id: 'product',
+        title: 'Sản phẩm',
+        dataIndex: 'product',
+        render: (text: any, value: any) => (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {/* Avatar on the left */}
+            <img
+              src={value.img}
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                marginRight: '10px',
+              }}
+            />
 
-          <Box>
-            <Typography variant="subtitle2">{value.product}</Typography>
-            <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography>
+            <Box>
+              <Typography variant="subtitle2">{value.product}</Typography>
+              <Typography style={{ fontSize: '12px', color: '#ccc' }}>
+                {'MKT000' + value.id}
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-      ),
-    },
-    {
-      id: 'listed',
-      title: 'Giá niêm yết',
-      dataIndex: 'listed',
-      render: (text: any, value: any) => (
-        <Typography
-          color="textSecondary"
-          variant="subtitle2"
-          display={'flex'}
-          gap={'2px'}
-          style={{ whiteSpace: 'nowrap' }}
-        >
-          {value.listed.toLocaleString()} <img src={icontext} alt="" width={22} />
-        </Typography>
-      ),
-    },
-    {
-      id: 'sale',
-      title: 'Giảm giá',
-      dataIndex: 'sale',
-      render: (text: any, value: any) => (
-        <Typography
-          color="textSecondary"
-          variant="subtitle2"
-          display={'flex'}
-          gap={'2px'}
-          style={{ whiteSpace: 'nowrap' }}
-        >
-          {value.sale.toLocaleString()} <img src={icontext} alt="" width={22} />
-        </Typography>
-      ),
-    },
-    {
-      id: 'flashSale',
-      title: 'Giá Flash-Sale',
-      dataIndex: 'flashSale',
-      render: (text: any, value: any) => (
-        <Typography
-          color="textSecondary"
-          variant="subtitle2"
-          display={'flex'}
-          gap={'2px'}
-          style={{ whiteSpace: 'nowrap' }}
-        >
-          {value.flashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
-        </Typography>
-      ),
-    },
-    {
-      id: 'buy',
-      title: 'Số lượt mua',
-      dataIndex: 'buy',
-      render: (text: any, value: any) => (
-        <Typography color="textSecondary" variant="subtitle2">
-          {value.buy.toLocaleString()}
-        </Typography>
-      ),
-    },
-    {
-      id: 'TypeVoucher',
-      title: 'Doanh thu',
-      dataIndex: 'TypeVoucher',
-      render: (text: any, value: any) => (
-        <Typography
-          color="textSecondary"
-          variant="subtitle2"
-          display={'flex'}
-          gap={'2px'}
-          style={{ whiteSpace: 'nowrap' }}
-        >
-          {value.TypeVoucher.toLocaleString()} <img src={icontext} alt="" width={22} />
-        </Typography>
-      ),
-    },
-    {
-      id: 'status',
-      title: 'Trạng thái',
-      dataIndex: 'status',
-      render: (text: any, value: any) => (
-        <Typography color="textSecondary" variant="subtitle2">
-          <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
-        </Typography>
-      ),
-    },
-  ], [])
+        ),
+      },
+      {
+        id: 'listed',
+        title: 'Giá niêm yết',
+        dataIndex: 'listed',
+        render: (text: any, value: any) => (
+          <Typography
+            color="textSecondary"
+            variant="subtitle2"
+            display={'flex'}
+            gap={'2px'}
+            style={{ whiteSpace: 'nowrap' }}
+          >
+            {value.listed.toLocaleString()} <img src={icontext} alt="" width={22} />
+          </Typography>
+        ),
+      },
+      {
+        id: 'sale',
+        title: 'Giảm giá',
+        dataIndex: 'sale',
+        render: (text: any, value: any) => (
+          <Typography
+            color="textSecondary"
+            variant="subtitle2"
+            display={'flex'}
+            gap={'2px'}
+            style={{ whiteSpace: 'nowrap' }}
+          >
+            {value.sale.toLocaleString()} <img src={icontext} alt="" width={22} />
+          </Typography>
+        ),
+      },
+      {
+        id: 'flashSale',
+        title: 'Giá Flash-Sale',
+        dataIndex: 'flashSale',
+        render: (text: any, value: any) => (
+          <Typography
+            color="textSecondary"
+            variant="subtitle2"
+            display={'flex'}
+            gap={'2px'}
+            style={{ whiteSpace: 'nowrap' }}
+          >
+            {value.flashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
+          </Typography>
+        ),
+      },
+      {
+        id: 'buy',
+        title: 'Số lượt mua',
+        dataIndex: 'buy',
+        render: (text: any, value: any) => (
+          <Typography color="textSecondary" variant="subtitle2">
+            {value.buy.toLocaleString()}
+          </Typography>
+        ),
+      },
+      {
+        id: 'TypeVoucher',
+        title: 'Doanh thu',
+        dataIndex: 'TypeVoucher',
+        render: (text: any, value: any) => (
+          <Typography
+            color="textSecondary"
+            variant="subtitle2"
+            display={'flex'}
+            gap={'2px'}
+            style={{ whiteSpace: 'nowrap' }}
+          >
+            {value.TypeVoucher.toLocaleString()} <img src={icontext} alt="" width={22} />
+          </Typography>
+        ),
+      },
+      {
+        id: 'status',
+        title: 'Trạng thái',
+        dataIndex: 'status',
+        render: (text: any, value: any) => (
+          <Typography color="textSecondary" variant="subtitle2">
+            <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
+          </Typography>
+        ),
+      },
+    ],
+    [],
+  );
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -372,7 +367,9 @@ const FlashSale = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows3.length) : 0;
@@ -412,9 +409,12 @@ const FlashSale = () => {
                 </Grid>
               </Grid>
 
-              <Grid item xs={5}>
+              <Grid item xs={6}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <Badge
+                    badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                    color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  >
                     <FilterListIcon color="action" />
                   </Badge>
                   <Select
@@ -423,7 +423,7 @@ const FlashSale = () => {
                     displayEmpty
                     onChange={handleColumnChange}
                     renderValue={() => 'Sửa đổi cột'}
-                    size='small'
+                    size="small"
                     MenuProps={{
                       PaperProps: {
                         sx: {
@@ -455,8 +455,7 @@ const FlashSale = () => {
                     }}
                   >
                     {column.map((header: any) => {
-
-                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                       const isSelected = dataSelect.includes(header.dataIndex);
 
