@@ -52,19 +52,19 @@ const ProductList = ({ onClick }: Props) => {
     if (sortBy === 'newest') {
       products = orderBy(products, ['created'], ['desc']);
     }
-    if (sortBy === 'priceDesc') {
-      products = orderBy(products, ['price'], ['desc']);
+    if (sortBy === 'pointDesc') {
+      products = orderBy(products, ['point'], ['desc']);
     }
-    if (sortBy === 'priceAsc') {
-      products = orderBy(products, ['price'], ['asc']);
+    if (sortBy === 'pointAsc') {
+      products = orderBy(products, ['point'], ['asc']);
     }
     if (sortBy === 'discount') {
       products = orderBy(products, ['discount'], ['desc']);
     }
 
     // FILTER PRODUCTS
-    if (filters.category !== 'All') {
-      products = products.filter((_product) => _product.category.includes(filters.category));
+    if (filters.tag !== 'All') {
+      products = products.filter((_product) => _product.tag.includes(filters.tag));
     }
 
     // FILTER PRODUCTS BY GENDER
@@ -80,15 +80,15 @@ const ProductList = ({ onClick }: Props) => {
     // FILTER PRODUCTS BY SEARCH
     if (search !== '') {
       products = products.filter((_product) =>
-        _product.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+        _product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
       );
     }
 
     // FILTER PRODUCTS BY PRICE
-    if (filters.price !== 'All') {
-      const minMax = filters.price ? filters.price.split('-') : '';
+    if (filters.point !== 'All') {
+      const minMax = filters.point ? filters.point.split('-') : '';
       products = products.filter((_product) =>
-        filters.price ? _product.price >= minMax[0] && _product.price <= minMax[1] : true,
+        filters.point ? _product.point >= minMax[0] && _product.point <= minMax[1] : true,
       );
     }
 
@@ -180,7 +180,7 @@ const ProductList = ({ onClick }: Props) => {
               ) : (
                 <BlankCard className="hoverCard" sx={{ position: 'relative' }}>
                   <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
-                    <img src={product.photo} alt={product.title} width="100%" />
+                    <img src={product.thumbnailUrl} alt={product.name} width="100%" />
                   </Typography>
                   <CardContent
                     sx={{
@@ -192,7 +192,7 @@ const ProductList = ({ onClick }: Props) => {
                     }}
                   >
                     <Typography variant="h6" sx={{ fontSize: '20px' }}>
-                      {product.title}
+                      {product.name}
                     </Typography>
                     <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -202,7 +202,7 @@ const ProductList = ({ onClick }: Props) => {
                             alignItems: 'center',
                           }}
                         >
-                          <Typography variant="h6">{product.price}</Typography>
+                          <Typography variant="h6">{product.point}</Typography>
                           <img
                             src={logo}
                             alt="Logo"
@@ -220,7 +220,7 @@ const ProductList = ({ onClick }: Props) => {
                             ml={1}
                             sx={{ textDecoration: 'line-through' }}
                           >
-                            {product.salesPrice}{' '}
+                            {product.discount}{' '}
                           </Typography>
                           <img
                             src={logo}
@@ -237,7 +237,7 @@ const ProductList = ({ onClick }: Props) => {
                         </Typography> */}
                       </Stack>
                       <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
-                        {product.category.map((category, index) => (
+                        {product.tag.map((tag: any, index) => (
                           <Stack direction="row" spacing={1} alignItems="center" key={index}>
                             <Chip
                               sx={{
@@ -249,7 +249,7 @@ const ProductList = ({ onClick }: Props) => {
                                 color: 'white',
                                 display: 'block', // Ensures each Chip is on a new line
                               }}
-                              label={category}
+                              label={tag.tagName || tag}
                               size="small"
                             />
                             {index === 0 && (

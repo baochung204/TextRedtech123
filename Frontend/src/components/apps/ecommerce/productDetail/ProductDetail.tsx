@@ -65,11 +65,18 @@ const ProductDetail = () => {
         <>
           <Box display="flex" alignItems="center">
             {/* Badge and category */}
-            <Chip label={product.category} color="success" size="small" />
+            {product.tag.map((item: any) => (
+              <Chip
+                label={item.tagName || item}
+                color="success"
+                size="small"
+                sx={{ marginX: '2px' }}
+              />
+            ))}
           </Box>
           {/* Title and description */}
           <Typography fontWeight="600" variant="h4" mt={1}>
-            {product.title}
+            {product.name}
           </Typography>
           <Typography variant="subtitle2" mt={1} color={theme.palette.text.secondary}>
             Superintelligent AI: Là AI thông minh hơn con người trong mọi lĩnh vực. Đây là một khái
@@ -85,7 +92,7 @@ const ProductDetail = () => {
                   alignItems: 'center',
                 }}
               >
-                <Typography variant="h3">{product.price}</Typography>
+                <Typography variant="h3">{product.point}</Typography>
                 <img
                   src={logo}
                   alt="Logo"
@@ -104,7 +111,7 @@ const ProductDetail = () => {
                   ml={1}
                   sx={{ textDecoration: 'line-through', opacity: 0.6 }}
                 >
-                  {product.salesPrice}{' '}
+                  {product.discount}{' '}
                 </Typography>
                 <img
                   src={logo}

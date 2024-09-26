@@ -196,7 +196,7 @@ const FilmsData: any = [
     render: (row: any) => (
       <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
         <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-          {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+          {row.toLocaleString()} đ
         </Typography>
       </Box>
     ),
@@ -208,7 +208,7 @@ const FilmsData: any = [
     render: (row: any) => (
       <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
         <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-          {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+          {row.toLocaleString()} đ
         </Typography>
       </Box>
     ),
