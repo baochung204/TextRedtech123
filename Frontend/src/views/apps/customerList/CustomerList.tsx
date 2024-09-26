@@ -72,7 +72,6 @@ const CustomerList = () => {
       title: 'Họ và tên',
       dataIndex: 'name',
       render: (_row, value: any) => (
-        // console.log( value.imgsrc)
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <img
             src={value?.imgsrc}

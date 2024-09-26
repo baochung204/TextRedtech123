@@ -25,7 +25,8 @@ import { IconEye, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
 import React, { createElement, useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PersonnelTable from '../datatable/PersonnelTable';
-import BlankCard from 'src/components/shared/BlankCard';
+import DialogPersonel from '../dialog/DialogPersonel';
+// import DialogPersonel from '../dialog/DialogPersonel';
 
 interface PropsItem {
   value: string;
@@ -40,20 +41,13 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-const PersonnelTab = ({ setOpen, setSelectedKey }: PropsItem) => {
+const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [iconIndex, setIconIndex] = useState<number>(0);
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
 
-  // const [selectedItems, setSelectedItems] = useState<number[]>([]);
-
-  // const handleItemClick = (id: number) => {
-  //   setSelectedItems((prev: any) =>
-  //     prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
-  //   );
-  // };
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
@@ -113,10 +107,14 @@ const PersonnelTab = ({ setOpen, setSelectedKey }: PropsItem) => {
       dataIndex: 'isActive',
       title: 'Hoạt động',
       validate: true,
-      render: () => (
+      render: (_value, row: any) => (
         <>
           <IconButton
-
+            onClick={() => {
+              setSelectedKey(row.id);
+              setOpen(true);
+              setIsCheckFix(true);
+}}
           >
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
@@ -127,8 +125,6 @@ const PersonnelTab = ({ setOpen, setSelectedKey }: PropsItem) => {
       ),
     },
   ], [])
-
-
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
@@ -310,9 +306,18 @@ const PersonnelTab = ({ setOpen, setSelectedKey }: PropsItem) => {
           </Grid>
         </Grid>
       </Grid>
-      <BlankCard>
-        <CustomTable columns={column} dataSource={PersonnelTable} dataSelect={dataSelect} />
-      </BlankCard>
+      <CustomTable
+        columns={column}
+        dataSource={PersonnelTable}
+        dataSelect={dataSelect} />
+      <DialogPersonel
+        open={open}
+        value={value}
+        setOpen={setOpen}
+        keyOption={selectedKey}
+        isCheckFix={isCheckFix}
+        setIsCheckFix={setIsCheckFix}
+      />
     </>
   );
 };
