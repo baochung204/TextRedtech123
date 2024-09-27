@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DataTable3 from '../DataTable/TableTab3';
 import DialogFile from '../dialog/DialogFile';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import { Box,  Grid, IconButton} from '@mui/material';
+import { Box, Grid, IconButton } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchFile } from 'src/store/apps/resources/file/fileSlice';
 
 interface PropsTab3 {
   value: string;
@@ -22,41 +26,46 @@ interface ItemTable3 {
 }
 
 
-const Tab3 = ({ value, open, setOpen ,dataSelect }: PropsTab3) => {
-
-  const column =  [
+const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const dispatch = useDispatch<AppDispatch>()
+  const dataFile = useSelector((state: AppState) => state.file.data)
+  useEffect(() => {
+    dispatch(fetchFile())
+  }, [dispatch])
+  const column = [
     {
       title: 'ID',
-      dataIndex: 'idCode',
+      dataIndex: 'id',
     },
     {
       title: 'Tên file',
-      dataIndex: 'fileName'
+      dataIndex: 'name'
     },
     {
       title: 'Dung lượng',
-      dataIndex: 'datas',
+      dataIndex: 'size',
     },
     {
       title: 'Ngày tải',
-      dataIndex: 'creationDate',
+      dataIndex: 'dateTime',
       render: (value: Date) => new Date(value).toLocaleDateString(),
     },
     {
       title: 'Định dạng',
-      dataIndex: 'formats'
+      dataIndex: 'typeFile'
     },
     {
       title: 'Hành động',
       dataIndex: 'isCheck',
-      render: (value: ItemTable3, row: ItemTable3) => (
+      render: (value: ItemTable3, row: any) => (
         <Grid container>
           <Grid item xs={4}>
-            {value && (
-              <IconButton onClick={() => console.log(row.idCode)}>
-                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-              </IconButton>
-            )}
+
+            <IconButton onClick={() => window.open(row.url, '_blank')}>
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+
           </Grid>
           <Grid item xs={4}>
             <IconButton>
@@ -78,7 +87,7 @@ const Tab3 = ({ value, open, setOpen ,dataSelect }: PropsTab3) => {
     >
 
       <CustomTable
-        dataSource={DataTable3}
+        dataSource={dataFile}
         columns={column}
         dataSelect={dataSelect}
       />

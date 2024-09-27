@@ -1,60 +1,65 @@
-import React, {  useState } from 'react';
-import {
-  Grid,
-  Box,
-  IconButton,
-} from '@mui/material';
-import DialogImage from '../dialog/DialogImage';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { Box, Grid, IconButton } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
-import DataTable5 from '../DataTable/TableTab5';
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import {
+  fetchImageById,
+  fetchImages,
+  removeImage,
+} from 'src/store/apps/resources/image/ImageSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogImage from '../dialog/DialogImage';
 
 interface PropsTab5 {
   value: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  dataSelect: string[],
-
-}
-
-
-interface PropsData {
-  images: string;
-  imgName: string;
-  createDate: string;
-  idCode: string,
-  title: string,
-  moTa: string
+  dataSelect: string[];
 }
 
 const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect }) => {
   const [key, setKey] = useState<string | null>(null);
-  const [checkTest, setCheckTest] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataImages = useSelector((state: AppState) => state.imageResources.images);
 
-  const column =  [
+  useEffect(() => {
+    dispatch(fetchImages());
+  }, [dispatch]);
+
+  const onHandleOpenImageById = (id: string) => {
+    dispatch(fetchImageById(id));
+    setKey(id);
+    setOpen(true);
+  };
+
+  const onHandleRemove = (id: string) => {
+    // console.log(id);
+
+    dispatch(removeImage(id));
+  };
+
+  const column = [
     {
       title: 'ID',
-      dataIndex: 'idCode',
+      dataIndex: 'id',
     },
     {
       title: 'Ngày tạo',
-      dataIndex: 'createDate',
+      dataIndex: 'dateTime',
     },
     {
       title: 'Hình ảnh',
-      dataIndex: 'images',
-      render: (value: string) => {
-        return <Box component="img" src={value} alt="" width={50} />;
-      },
+      dataIndex: 'imageURL',
+      render: (value: string) => <Box component="img" src={value} alt="" width={50} />,
     },
     {
       title: 'Tên ảnh',
-      dataIndex: 'imgName',
+      dataIndex: 'name',
     },
     {
       title: 'Mô tả',
-      dataIndex: 'moTa',
+      dataIndex: 'description',
     },
     {
       title: 'Tiêu đề',
@@ -63,48 +68,33 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect }) => {
     {
       title: 'Hoạt động',
       dataIndex: 'action',
-      render: (_row: PropsData, value: PropsData) => {
-        return (
-          <Grid container>
-            <Grid item xs={4}>
-              <IconButton
-                onClick={() => {
-                  setKey(`${value.idCode}`);
-                  setOpen(true);
-                }}
-              >
-                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-              </IconButton>
-            </Grid>
-            <Grid item xs={4}>
-              <IconButton onClick={() => setCheckTest(!checkTest)}>
-                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-              </IconButton>
-            </Grid>
+      render: (_row: any, value: any) => (
+        <Grid container>
+          <Grid item xs={4}>
+            <IconButton onClick={() => onHandleOpenImageById(value.id)}>
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
           </Grid>
-        );
-      },
+          <Grid item xs={4}>
+            <IconButton onClick={() => onHandleRemove(value.id)}>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+          </Grid>
+        </Grid>
+      ),
     },
-  ]
+  ];
 
   return (
-    <Box
-      sx={{
-        paddingTop: 1
-      }}
-    >
-      <CustomTable
-        dataSource={DataTable5}
-        columns={column}
-        dataSelect={dataSelect}
-      />
-
+    <Box sx={{ paddingTop: 1 }}>
+      <CustomTable dataSource={dataImages} columns={column} dataSelect={dataSelect} />
       <DialogImage
         open={open}
         setOpen={setOpen}
         value={value}
         selectedItemId1={key}
         setSelectedItemId1={setKey}
+        dataImages={dataImages}
       />
     </Box>
   );

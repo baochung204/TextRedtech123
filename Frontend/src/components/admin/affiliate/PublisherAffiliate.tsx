@@ -1,4 +1,17 @@
-import { Avatar, Badge, Box, Checkbox, Chip, Grid, InputAdornment, ListItemText, MenuItem, Select, TextField, Typography } from '@mui/material';
+import {
+  Avatar,
+  Badge,
+  Box,
+  Checkbox,
+  Chip,
+  Grid,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { IconBrandGoogleHome, IconCoinOff, IconCoins, IconSearch } from '@tabler/icons-react';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -9,7 +22,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataPublishersTable } from './datatable/OrderTableData';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
 
 const DataBox = [
   {
@@ -151,144 +163,147 @@ const PublisherAffiliate = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
-  const column = useMemo<Column[]>(() => [
-    {
-      title: 'ID Publisher',
-      dataIndex: 'id_publisher',
-    },
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        title: 'ID Publisher',
+        dataIndex: 'id_publisher',
+      },
 
-    {
-      title: 'Đối tác',
-      dataIndex: 'doitac',
-      render: (row, value: any) => (
-        <Box
-          sx={{
-            display: 'flex',
-            width: '200px',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar
-            src={value.imgsrc}
-            variant="rounded"
-            alt={value.imgsrc}
-            sx={{ width: 48, height: 48 }}
-          />
-          <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
-            {value.name_partner}
+      {
+        title: 'Đối tác',
+        dataIndex: 'doitac',
+        render: (_row: any, value: any) => (
+          <Box
+            sx={{
+              display: 'flex',
+              width: '200px',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar
+              src={value.imgsrc}
+              variant="rounded"
+              alt={value.imgsrc}
+              sx={{ width: 48, height: 48 }}
+            />
+            <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
+              {value.name_partner}
+            </Typography>
+          </Box>
+        ),
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+      },
+      {
+        title: 'SĐT',
+        dataIndex: 'phone_number',
+      },
+      {
+        title: 'Loại hình',
+        dataIndex: 'email_publisher',
+        render: (_row: any, value: any) => (
+          <Typography style={{ width: '100px' }} variant="subtitle2">
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Typography style={{ width: '200px' }} variant="subtitle2">
+                <Chip
+                  label={value.type ? 'Doanh nghiệp' : 'Cá nhân'}
+                  color={value.type ? 'success' : 'warning'}
+                  variant="outlined"
+                />
+              </Typography>
+            </Box>
           </Typography>
-        </Box>
-      ),
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-    },
-    {
-      title: 'SĐT',
-      dataIndex: 'phone_number',
-    },
-    {
-      title: 'Loại hình',
-      dataIndex: 'email_publisher',
-      render: (row, value: any) => (
-        <Typography style={{ width: '100px' }} variant="subtitle2">
+        ),
+      },
+      {
+        title: 'Ngày đăng ký',
+        dataIndex: 'create_date',
+      },
+      {
+        title: 'Trạng thái tài khoản',
+        dataIndex: '',
+        render: (_row: any, value: any) => (
+          <Chip label={value.type_account} color={getStatusAccountColor(value.type_account)} />
+        ),
+      },
+      {
+        title: 'Rank',
+        dataIndex: 'rank',
+      },
+      {
+        title: 'Hồ sơ',
+        dataIndex: '',
+        render: (row, value: any) => (
+          <Typography style={{ width: '100px' }} variant="subtitle2">
+            <Chip label={value.contract} color={getStatusColor(value.contract)} />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Hợp đồng Affiliate',
+        render: (row, value: any) => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography style={{ width: '200px' }} variant="subtitle2">
+            <Typography style={{ width: '100px' }} variant="subtitle2">
               <Chip
-                label={value.type ? 'Doanh nghiệp' : 'Cá nhân'}
-                color={value.type ? 'success' : 'warning'}
+                label={value.brief ? 'Đã ký' : 'Chưa ký'}
+                color={value.brief ? 'success' : 'warning'}
                 variant="outlined"
               />
             </Typography>
           </Box>
-        </Typography>
-      ),
-    },
-    {
-      title: 'Ngày đăng ký',
-      dataIndex: 'create_date',
-    },
-    {
-      title: 'Trạng thái tài khoản',
-
-      render: (row, value: any) => (
-        <Chip label={value.type_account} color={getStatusAccountColor(value.type_account)} />
-      ),
-    },
-    {
-      title: 'Rank',
-      dataIndex: 'rank',
-    },
-    {
-      title: 'Hồ sơ',
-
-      render: (row, value: any) => (
-        <Typography style={{ width: '100px' }} variant="subtitle2">
-          <Chip label={value.contract} color={getStatusColor(value.contract)} />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Hợp đồng Affiliate',
-      render: (row, value: any) => (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Typography style={{ width: '100px' }} variant="subtitle2">
-            <Chip
-              label={value.brief ? 'Đã ký' : 'Chưa ký'}
-              color={value.brief ? 'success' : 'warning'}
-              variant="outlined"
-            />
-          </Typography>
-        </Box>
-      ),
-    },
-    {
-      title: 'Tổng hoa hồng',
-      dataIndex: 'total_commission',
-    },
-    {
-      title: 'Click',
-      dataIndex: 'click',
-    },
-    {
-      title: 'Khách hàng',
-      dataIndex: 'customer',
-    },
-    {
-      title: 'Đơn hàng',
-      dataIndex: 'order',
-    },
-    {
-      title: 'Doanh thu',
-      dataIndex: 'revenue',
-    },
-    {
-      title: 'CVR',
-      dataIndex: 'cvr',
-    },
-    {
-      title: 'Số dư ví',
-      dataIndex: 'account_balance',
-    },
-    {
-      title: 'Đang xử lý',
-      dataIndex: 'processing',
-    },
-    {
-      title: 'Đã hoàn thành',
-      dataIndex: 'paid',
-    },
-  ], [])
+        ),
+      },
+      {
+        title: 'Tổng hoa hồng',
+        dataIndex: 'total_commission',
+      },
+      {
+        title: 'Click',
+        dataIndex: 'click',
+      },
+      {
+        title: 'Khách hàng',
+        dataIndex: 'customer',
+      },
+      {
+        title: 'Đơn hàng',
+        dataIndex: 'order',
+      },
+      {
+        title: 'Doanh thu',
+        dataIndex: 'revenue',
+      },
+      {
+        title: 'CVR',
+        dataIndex: 'cvr',
+      },
+      {
+        title: 'Số dư ví',
+        dataIndex: 'account_balance',
+      },
+      {
+        title: 'Đang xử lý',
+        dataIndex: 'processing',
+      },
+      {
+        title: 'Đã hoàn thành',
+        dataIndex: 'paid',
+      },
+    ],
+    [],
+  );
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -296,7 +311,9 @@ const PublisherAffiliate = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   return (
@@ -310,32 +327,31 @@ const PublisherAffiliate = () => {
           <Grid item xs={12}>
             <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Grid item xs={4} sm={4} md={4}>
-                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Grid item xs={7}>
-                    <TextField
-                      id="outlined-search"
-                      placeholder="Tìm kiếm thông báo"
-                      size="small"
-                      type="search"
-                      variant="outlined"
-                      inputProps={{ 'aria-label': 'Search Followers' }}
-                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <IconSearch size="20" />
-                          </InputAdornment>
-                        ),
-                      }}
-                      fullWidth={true}
-                    />
-                  </Grid>
-                </Grid>
+                <TextField
+                  id="outlined-search"
+                  placeholder="Tìm kiếm thông báo"
+                  size="small"
+                  type="search"
+                  variant="outlined"
+                  inputProps={{ 'aria-label': 'Search Followers' }}
+                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <IconSearch size="20" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth={true}
+                />
               </Grid>
 
-              <Grid item xs={7}>
+              <Grid item xs={6}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <Badge
+                    badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                    color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  >
                     <FilterListIcon color="action" />
                   </Badge>
                   <Select
@@ -344,12 +360,12 @@ const PublisherAffiliate = () => {
                     displayEmpty
                     onChange={handleColumnChange}
                     renderValue={() => 'Sửa đổi cột'}
-                    size='small'
+                    size="small"
                     MenuProps={{
                       PaperProps: {
                         sx: {
                           marginTop: 1,
-                          maxHeight: 400, 
+                          maxHeight: 400,
                           '&::-webkit-scrollbar': {
                             width: '4px',
                           },
@@ -367,17 +383,16 @@ const PublisherAffiliate = () => {
                       },
                       anchorOrigin: {
                         vertical: 'bottom',
-                        horizontal: 'right', 
+                        horizontal: 'right',
                       },
                       transformOrigin: {
                         vertical: 'top',
-                        horizontal: 'right', 
+                        horizontal: 'right',
                       },
                     }}
                   >
                     {column.map((header: any) => {
-
-                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                       const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -409,11 +424,7 @@ const PublisherAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable
-            columns={column}
-            dataSource={DataPublishersTable}
-            dataSelect={dataSelect}
-          />
+          <CustomTable columns={column} dataSource={DataPublishersTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </>

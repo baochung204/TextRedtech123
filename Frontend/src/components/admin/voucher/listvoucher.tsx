@@ -5,13 +5,9 @@ import {
   Chip,
   Grid,
   InputAdornment,
-
   ListItemText,
-
   MenuItem,
-
   Select,
-
   TextField,
   Tooltip,
   Typography,
@@ -25,8 +21,6 @@ import BlankCard from 'src/components/shared/BlankCard';
 import AddDialogvoucher from './add/addDialog';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
-
 
 interface DataRow {
   id: string;
@@ -188,78 +182,77 @@ interface Column {
 //   );
 // }
 
-
 const ListVoucher = () => {
-  
- 
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-  const column = useMemo<Column[]>(() => [
-    {
-      title: 'ID',
-      dataIndex: 'id',
-    },
-    {
-      title: 'Tên chiến dịch',
-      dataIndex: 'voucherName',
-    },
-    {
-      title: 'Ngày tạo',
-      dataIndex: 'creationTime',
-    },
-    {
-      title: 'Hạn sửa dụng',
-      dataIndex: 'endTime',
-    },
-    {
-      title: 'Mã khuyến mãi',
-      dataIndex: 'Mavoucher',
-    },
-    {
-      title: 'Số lượng mã',
-      dataIndex: 'quantity',
-    },
-    {
-      title: 'Loại giảm giá',
-      dataIndex: 'customerId',
-      render: (value: any) => {
-        return <Chip label={value} color={value === 'Đồng' ? 'primary' : 'secondary'} />;
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        title: 'ID',
+        dataIndex: 'id',
       },
-    },
-    {
-      title: 'Giá trị giảm',
-      dataIndex: 'customerName',
-    },
-    {
-      title: 'Trạng thái',
-      dataIndex: 'tag',
-      render: (value: any) => {
-        return (
-          <Chip
-            label={value}
-            color={
-              value === 'chưa sử dụng' ? 'primary' : value === 'đã sử dụng' ? 'success' : 'error'
-            }
-          />
-        );
+      {
+        title: 'Tên chiến dịch',
+        dataIndex: 'voucherName',
       },
-    },
-    {
-      title: 'Đã sử dụng',
-      dataIndex: 'use',
-    },
-  ], [])
-  
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'creationTime',
+      },
+      {
+        title: 'Hạn sửa dụng',
+        dataIndex: 'endTime',
+      },
+      {
+        title: 'Mã khuyến mãi',
+        dataIndex: 'Mavoucher',
+      },
+      {
+        title: 'Số lượng mã',
+        dataIndex: 'quantity',
+      },
+      {
+        title: 'Loại giảm giá',
+        dataIndex: 'customerId',
+        render: (value: any) => {
+          return <Chip label={value} color={value === 'Đồng' ? 'primary' : 'secondary'} />;
+        },
+      },
+      {
+        title: 'Giá trị giảm',
+        dataIndex: 'customerName',
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'tag',
+        render: (value: any) => {
+          return (
+            <Chip
+              label={value}
+              color={
+                value === 'chưa sử dụng' ? 'primary' : value === 'đã sử dụng' ? 'success' : 'error'
+              }
+            />
+          );
+        },
+      },
+      {
+        title: 'Đã sử dụng',
+        dataIndex: 'use',
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -267,10 +260,11 @@ const ListVoucher = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
 
   return (
     <div>
@@ -308,9 +302,12 @@ const ListVoucher = () => {
                 </Grid>
               </Grid>
 
-              <Grid item xs={5}>
+              <Grid item xs={6}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <Badge
+                    badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                    color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  >
                     <FilterListIcon color="action" />
                   </Badge>
                   <Select
@@ -319,7 +316,7 @@ const ListVoucher = () => {
                     displayEmpty
                     onChange={handleColumnChange}
                     renderValue={() => 'Sửa đổi cột'}
-                    size='small'
+                    size="small"
                     MenuProps={{
                       PaperProps: {
                         sx: {
@@ -351,8 +348,7 @@ const ListVoucher = () => {
                     }}
                   >
                     {column.map((header: any) => {
-
-                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                       const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -385,7 +381,7 @@ const ListVoucher = () => {
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
-          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect}/>
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
     </div>

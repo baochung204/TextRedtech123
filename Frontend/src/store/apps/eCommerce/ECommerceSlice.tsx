@@ -3,13 +3,14 @@ import { filter, map } from 'lodash';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch } from 'src/store/Store';
 
-const API_URL = '/api/data/eCommerce/ProductsData';
+const API_URL = 'http://localhost:9999/productshop';
 
 interface Product {
   id: string;
   name: string;
-  price: number;
+  point: number;
   qty: number;
+  tag: string;
   category: string;
   color: string;
   gender: string;
@@ -17,10 +18,11 @@ interface Product {
 }
 
 interface Filters {
+  tag: string;
   category: string;
   color: string;
   gender: string;
-  price: string;
+  point: string;
   rating: string;
 }
 
@@ -41,10 +43,11 @@ const initialState: StateType = {
   cart: [],
   total: 0,
   filters: {
+    tag: 'All',
     category: 'All',
     color: 'All',
     gender: 'All',
-    price: 'All',
+    point: 'All',
     rating: '',
   },
   error: '',
@@ -84,8 +87,8 @@ export const EcommerceSlice = createSlice({
     },
 
     // SORT BY PRICE
-    sortByPrice(state, action: PayloadAction<{ price: string }>) {
-      state.filters.price = action.payload.price;
+    sortByPrice(state, action: PayloadAction<{ point: string }>) {
+      state.filters.point = action.payload.point;
     },
 
     // FILTER PRODUCTS
@@ -95,10 +98,10 @@ export const EcommerceSlice = createSlice({
 
     // FILTER RESET
     filterReset(state) {
-      state.filters.category = 'All';
+      state.filters.tag = 'All';
       state.filters.color = 'All';
       state.filters.gender = 'All';
-      state.filters.price = 'All';
+      state.filters.point = 'All';
       state.sortBy = 'newest';
     },
 
