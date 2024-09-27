@@ -80,32 +80,50 @@ const AddFunction = () => {
         height: 230,
         border: `1px solid ${borderColor}`,
         position: 'relative',
-        overflow: 'visible',
+        overflow: 'hidden', // Loại bỏ scrollbar gốc
       }}
     >
-      <Scrollbar_y>
-        <List dense role="list" sx={{}}>
-          {items.map((value) => {
-            const labelId = `transfer-list-item-${value}-label`;
-            return (
-              <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
-                <ListItemIcon>
-                  <CustomCheckbox
-                    tabIndex={-1}
-                    disableRipple
-                    checked={checked.indexOf(value) !== -1}
-                    inputProps={{
-                      'aria-labelledby': labelId,
-                    }}
-                  />
-                </ListItemIcon>
-                <ListItemText id={labelId} primary={`List item ${value + 1}`} />
-              </ListItem>
-            );
-          })}
-          <ListItem />
-        </List>
-      </Scrollbar_y>
+      <List
+        dense
+        role="list"
+        sx={{
+          overflowY: 'auto',
+          height: '100%',
+          '&::-webkit-scrollbar': {
+            width: '8 px',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: 'none',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#f1f1f1',
+            borderRadius: '10px',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: '#e6e6e6',
+          },
+        }}
+      >
+        {items.map((value) => {
+          const labelId = `transfer-list-item-${value}-label`;
+          return (
+            <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
+              <ListItemIcon>
+                <CustomCheckbox
+                  tabIndex={-1}
+                  disableRipple
+                  checked={checked.indexOf(value) !== -1}
+                  inputProps={{
+                    'aria-labelledby': labelId,
+                  }}
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
+            </ListItem>
+          );
+        })}
+        <ListItem />
+      </List>
     </Paper>
   );
 
@@ -164,7 +182,9 @@ const AddFunction = () => {
                 </Button>
               </Grid>
             </Grid>
-            <Grid item>{customList(right)}</Grid>
+            <Grid sx={{}} item>
+              {customList(right)}
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
