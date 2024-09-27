@@ -69,7 +69,13 @@ const ProductClassification: React.FC = () => {
   const handleRemoveClassification = (classificationIndex: number) => {
     const newClassifications = classifications.filter((_, index) => index !== classificationIndex);
     setClassifications(newClassifications);
+
+    // Nếu không còn phân loại nào, hiển thị lại ô nhập kiểu phân loại
+    if (newClassifications.length === 0) {
+      setShowAddButton(false);
+    }
   };
+
   // Xử lý sự kiện khi chọn ảnh
   const handleImageChange = (
     classificationIndex: number,
@@ -203,8 +209,8 @@ const ProductClassification: React.FC = () => {
       </Paper>
 
       {/* Kiểm tra để hiển thị ô nhập hoặc nút thêm */}
-      {!showAddButton ? (
-
+      {/* Kiểm tra để hiển thị ô nhập hoặc nút thêm */}
+      {!showAddButton && (
         <TextField
           sx={{ width: '100%' }}
           value={newClassification}
@@ -212,17 +218,8 @@ const ProductClassification: React.FC = () => {
           onKeyDown={handleAddClassification}
           placeholder="Nhập kiểu phân loại, sau đó nhấn Enter"
         />
+      )}
 
-
-      )
-        :
-        (
-          // <Button sx={{ p: 0.9 }} startIcon={<AddIcon />} onClick={() => setShowAddButton(false)}>
-          //   Thêm phân loại
-          // </Button>
-          <></>
-        )
-      }
     </Box>
   );
 };
