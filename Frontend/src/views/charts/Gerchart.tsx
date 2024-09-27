@@ -34,8 +34,8 @@ const monthsInVietnamese = [
 const GerChart = () => {
   // chart color
   const theme = useTheme();
-  const primary = theme.palette.primary.main;
-
+  const primary = theme.palette.primary.start;
+  const primary2 = theme.palette.primary.main;
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -93,7 +93,9 @@ const GerChart = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: ['#a8ff78'],
+        // gradientToColors: [''],
+        gradientToColors: [primary],
+
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
