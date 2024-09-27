@@ -41,7 +41,6 @@
       "describe": "Explore the heart of the city through its hidden gems.",
       "user_id": "#123456",
       "url": "https://picsum.photos/300/300"
-
     }
   ],
   "products": [
@@ -84,8 +83,6 @@
           "tagName": "Business Casual"
         }
       ]
-
-   
     }
   ],
   "images": [
@@ -122,7 +119,7 @@
       "imageURL": "https://picsum.photos/300/300"
     }
   ],
-  "products": [
+  "productsSP": [
     {
       "shopProductId": 101,
       "shopProductName": "Áo thun trắng",
@@ -256,7 +253,7 @@
         "#1890FF",
         "#94D82D"
       ],
-      "thumbnailUrl": "s3",
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
       "id": 3,
       "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
       "description": "chance.paragraph({ sentences: 2 })"
@@ -289,7 +286,7 @@
         "#94D82D",
         "#FFC107"
       ],
-      "thumbnailUrl": "s4",
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 4,
       "created": "sub(new Date(), { days: 4, hours: 9, minutes: 40 })",
       "description": "chance.paragraph({ sentences: 2 })"
@@ -314,7 +311,7 @@
         "#00AB55",
         "#000000"
       ],
-      "thumbnailUrl": "s5",
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
       "id": 5,
       "created": "sub(new Date(), { days: 2, hours: 5, minutes: 50 })",
       "description": "chance.paragraph({ sentences: 2 })"
@@ -346,7 +343,7 @@
         "#FFC0CB",
         "#FF4842"
       ],
-      "thumbnailUrl": "s6",
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 6,
       "created": "sub(new Date(), { days: 2, hours: 9, minutes: 45 })",
       "description": "chance.paragraph({ sentences: 2 })"
@@ -444,7 +441,7 @@
         "#00AB55",
         "#000000"
       ],
-      "thumbnailUrl": "s9",
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 9,
       "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
       "description": "chance.paragraph({ sentences: 2 })"
@@ -476,7 +473,7 @@
         "#FFC0CB",
         "#FF4842"
       ],
-      "thumbnailUrl": "s10",
+      "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 10,
       "created": "sub(new Date(), { days: 6, hours: 6, minutes: 20 })",
       "description": "chance.paragraph({ sentences: 2 })"

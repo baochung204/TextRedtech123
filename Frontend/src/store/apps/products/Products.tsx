@@ -1,9 +1,8 @@
 import axios from '../../../utils/axios';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch } from 'src/store/Store';
-import { products } from 'src/assets/images/products/s25.jpg';
 
-const API_URL = 'http://localhost:9999/products';
+const API_URL = 'http://localhost:9999/productsSP';
 
 interface StateType {
   productss: any[];
