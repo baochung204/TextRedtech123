@@ -49,7 +49,7 @@ const NavCollapse = ({
   pathWithoutLastPart,
   pathDirect,
   hideMenu,
-  onClick
+  onClick,
 }: NavCollapseProps) => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const Icon = menu?.icon;
@@ -64,7 +64,6 @@ const NavCollapse = ({
     setOpen(!open);
   };
 
-  // menu collapse for sub-levels
   React.useEffect(() => {
     setOpen(false);
     menu?.children?.forEach((item: any) => {
@@ -78,13 +77,11 @@ const NavCollapse = ({
     marginBottom: '2px',
     padding: '8px 10px',
     paddingLeft: hideMenu ? '10px' : level > 2 ? `${level * 15}px` : '10px',
-    backgroundColor: open && level < 2 ? theme.palette.primary.main : '',
+    backgroundColor: open && level < 2 ? '#ff3333' : '',
     whiteSpace: 'nowrap',
     '&:hover': {
-      backgroundColor: pathname.includes(menu.href) || open
-        ? theme.palette.primary.main
-        : theme.palette.primary.light,
-      color: pathname.includes(menu.href) || open ? 'white' : theme.palette.primary.main,
+      backgroundColor: pathname.includes(menu.href) || open ? '#ffebeb' : '#ffebeb',
+      color: pathname.includes(menu.href) || open ? '#ff3333' : '#ff3333',
     },
     color:
       open && level < 2
