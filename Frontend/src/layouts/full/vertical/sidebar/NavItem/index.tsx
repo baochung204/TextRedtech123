@@ -58,18 +58,20 @@ const NavItem = ({ item, level, pathDirect, hideMenu, onClick }: ItemType) => {
     borderRadius: `${customizer.borderRadius}px`,
     backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
     color:
-      level > 1 && pathDirect === item?.href ? `#ff3333 !important` : theme.palette.text.secondary,
+      level > 1 && pathDirect === item?.href
+        ? `${theme.palette.primary.main}!important`
+        : theme.palette.text.secondary,
     paddingLeft: hideMenu ? '10px' : level > 2 ? `${level * 15}px` : '10px',
     '&:hover': {
-      backgroundColor: '#ffebeb',
-      color: '#ff3333',
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.primary.main,
     },
     '&.Mui-selected': {
-      color: '#ffebeb',
-      backgroundColor: '#ff3333',
+      color: 'white',
+      backgroundColor: theme.palette.primary.main,
       '&:hover': {
-        backgroundColor: '#ffebeb',
-        color: '#ff3333',
+        backgroundColor: theme.palette.primary.main,
+        color: 'white',
       },
     },
   }));
@@ -98,7 +100,10 @@ const NavItem = ({ item, level, pathDirect, hideMenu, onClick }: ItemType) => {
           sx={{
             minWidth: '36px',
             p: '3px 0',
-            color: level > 1 && pathDirect === item?.href ? `#ff3333 !important` : 'inherit',
+            color:
+              level > 1 && pathDirect === item?.href
+                ? `${theme.palette.primary.main}!important`
+                : 'inherit',
           }}
         >
           {itemIcon}

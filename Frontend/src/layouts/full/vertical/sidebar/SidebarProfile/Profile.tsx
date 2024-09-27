@@ -11,7 +11,12 @@ export const Profile = () => {
   const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
 
   return (
-    <Box display={'flex'} alignItems="center" gap={2} sx={{ m: 3, p: 2, bgcolor: '#ffebeb' }}>
+    <Box
+      display={'flex'}
+      alignItems="center"
+      gap={2}
+      sx={{ m: 3, p: 2, bgcolor: `${'secondary.light'}` }}
+    >
       {!hideMenu ? (
         <>
           <Avatar alt="Remy Sharp" src={img1} />
@@ -23,7 +28,7 @@ export const Profile = () => {
           <Box sx={{ ml: 'auto' }}>
             <Tooltip title="Logout" placement="top">
               <IconButton
-                sx={{ color: '#ff3333' }}
+                color="primary"
                 component={Link}
                 to="auth/login"
                 aria-label="logout"
