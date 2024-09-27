@@ -1,10 +1,14 @@
 import {
+  Badge,
   Box,
   Button,
   Checkbox,
   Chip,
   Grid,
   InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from '@mui/material';
@@ -18,10 +22,11 @@ import {
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataContactAffiliateTable } from './datatable/OrderTableData';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 const dataSource = [
   {
@@ -114,93 +119,6 @@ const dataSource = [
   },
 ];
 
-const columns = [
-  {
-    title: 'Mã hợp đồng',
-    dataIndex: 'id_contract',
-  },
-
-  {
-    title: 'Mã khách hàng',
-    dataIndex: 'id_customer',
-  },
-  {
-    title: 'Ngày tạo',
-    dataIndex: 'createdate',
-  },
-
-  {
-    title: 'Ngày ký',
-    dataIndex: 'confirmdate',
-  },
-  {
-    title: 'Loại tài khoản',
-    dataIndex: 'type_company',
-    render: (row, value: any) => (
-      <Typography style={{ width: '150px' }} variant="subtitle2">
-        <Chip
-          label={value.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
-          color={value.type_company ? 'success' : 'warning'}
-          variant="outlined"
-        />
-      </Typography>
-    ),
-  },
-  {
-    title: 'Tên công ty',
-    dataIndex: 'name_company',
-  },
-  {
-    title: 'Mã số thuế',
-    dataIndex: 'tax_code',
-  },
-  {
-    title: 'Địa chỉ',
-    dataIndex: 'address',
-  },
-  {
-    title: 'Người đại diện',
-    dataIndex: 'representative',
-  },
-  {
-    title: 'Chức vụ',
-    dataIndex: 'position',
-  },
-  {
-    title: 'Số điện thoại',
-    dataIndex: 'phone_number',
-  },
-  {
-    title: 'Email công ty',
-    dataIndex: 'email',
-  },
-  {
-    title: 'Trạng thái',
-    dataIndex: 'status',
-    render: (row, value: any) => (
-      <Typography style={{ width: '100px' }} variant="subtitle2">
-        <Chip label={value.status} color={getStatusColor(value.status)} />
-      </Typography>
-    ),
-  },
-  {
-    title: 'Duyệt hồ sơ',
-    render: (row, value: any) => (
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Checkbox defaultChecked />
-      </Box>
-    ),
-  },
-  {
-    title: 'Hợp đồng',
-    render: (row, value: any) => (
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Button style={{ width: '100px' }}>Ký ngay</Button>
-      </Box>
-    ),
-  },
-];
-
 const getStatusColor = (status: string) => {
   switch (status) {
     case 'Đã ký':
@@ -213,10 +131,131 @@ const getStatusColor = (status: string) => {
       return 'default'; // Gray for any unrecognized status
   }
 };
-
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 const ContactAffiliate = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
+
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        title: 'Mã hợp đồng',
+        dataIndex: 'id_contract',
+      },
+
+      {
+        title: 'Mã khách hàng',
+        dataIndex: 'id_customer',
+      },
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'createdate',
+      },
+
+      {
+        title: 'Ngày ký',
+        dataIndex: 'confirmdate',
+      },
+      {
+        title: 'Loại tài khoản',
+        dataIndex: 'type_company',
+        render: (_row: any, value: any) => (
+          <Typography style={{ width: '150px' }} variant="subtitle2">
+            <Chip
+              label={value.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
+              color={value.type_company ? 'success' : 'warning'}
+              variant="outlined"
+            />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Tên công ty',
+        dataIndex: 'name_company',
+      },
+      {
+        title: 'Mã số thuế',
+        dataIndex: 'tax_code',
+      },
+      {
+        title: 'Địa chỉ',
+        dataIndex: 'address',
+      },
+      {
+        title: 'Người đại diện',
+        dataIndex: 'representative',
+      },
+      {
+        title: 'Chức vụ',
+        dataIndex: 'position',
+      },
+      {
+        title: 'Số điện thoại',
+        dataIndex: 'phone_number',
+      },
+      {
+        title: 'Email công ty',
+        dataIndex: 'email',
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'status',
+        render: (_row: any, value: any) => (
+          <Typography style={{ width: '100px' }} variant="subtitle2">
+            <Chip label={value.status} color={getStatusColor(value.status)} />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Duyệt hồ sơ',
+        dataIndex: '',
+        // render: (_row: any, value: any) => (
+        render: () => (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Checkbox defaultChecked />
+          </Box>
+        ),
+      },
+      {
+        title: 'Hợp đồng',
+        dataIndex: '',
+        // render: (_row: any, value: any) => (
+        render: () => (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Button style={{ width: '100px' }}>Ký ngay</Button>
+          </Box>
+        ),
+      },
+    ],
+    [],
+  );
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
+
   return (
     <>
       <Grid container rowSpacing={3}>
@@ -253,6 +292,62 @@ const ContactAffiliate = () => {
 
               <Grid item xs={4}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <Badge
+                    badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                    color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  >
+                    <FilterListIcon color="action" />
+                  </Badge>
+                  <Select
+                    multiple
+                    value={dataSelect}
+                    displayEmpty
+                    onChange={handleColumnChange}
+                    renderValue={() => 'Sửa đổi cột'}
+                    size="small"
+                    MenuProps={{
+                      PaperProps: {
+                        sx: {
+                          marginTop: 1,
+                          maxHeight: 400,
+                          '&::-webkit-scrollbar': {
+                            width: '4px',
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: '#D2D2D2',
+                            borderRadius: '10px',
+                          },
+                          '&::-webkit-scrollbar-thumb:hover': {
+                            backgroundColor: '#C6C8CC',
+                          },
+                          '&::-webkit-scrollbar-track': {
+                            backgroundColor: '#f1f1f1',
+                          },
+                        },
+                      },
+                      anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                      },
+                      transformOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                      },
+                    }}
+                  >
+                    {column.map((header: any) => {
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                      const isSelected = dataSelect.includes(header.dataIndex);
+
+                      return (
+                        <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                          <Checkbox checked={!isSelected} />
+                          <ListItemText primary={header.title} />
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       value={selectedStartDate}
@@ -272,7 +367,11 @@ const ContactAffiliate = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={DataContactAffiliateTable} />
+          <CustomTable
+            columns={column}
+            dataSource={DataContactAffiliateTable}
+            dataSelect={dataSelect}
+          />
         </Grid>
       </Grid>
     </>

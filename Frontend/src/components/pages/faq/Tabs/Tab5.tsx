@@ -1,153 +1,102 @@
-
-import React, { useEffect, useState } from 'react';
-import {
-  Grid,
-  Box,
-  IconButton,
-  Select,
-  MenuItem,
-  Checkbox,
-  ListItemText,
-} from '@mui/material';
-import DialogImage from '../dialog/DialogImage';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { Box, Grid, IconButton } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
-import DataTable5 from '../DataTable/TableTab5';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import {
+  fetchImageById,
+  fetchImages,
+  removeImage,
+} from 'src/store/apps/resources/image/ImageSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogImage from '../dialog/DialogImage';
 
 interface PropsTab5 {
   value: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  dataSelect: string[];
 }
 
-const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen }) => {
+const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect }) => {
   const [key, setKey] = useState<string | null>(null);
-  const [checkTest, setCheckTest] = useState<boolean>(false);
-  const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataImages = useSelector((state: AppState) => state.imageResources.images);
 
+  useEffect(() => {
+    dispatch(fetchImages());
+  }, [dispatch]);
 
+  const onHandleOpenImageById = (id: string) => {
+    dispatch(fetchImageById(id));
+    setKey(id);
+    setOpen(true);
+  };
+
+  const onHandleRemove = (id: string) => {
+    // console.log(id);
+
+    dispatch(removeImage(id));
+  };
 
   const column = [
     {
       title: 'ID',
-      dataIndex: 'idCode',
+      dataIndex: 'id',
     },
     {
       title: 'Ngày tạo',
-      dataIndex: 'createDate',
+      dataIndex: 'dateTime',
     },
     {
       title: 'Hình ảnh',
-      dataIndex: 'images',
-      render: (value: string) => {
-        return <Box component="img" src={value} alt="" width={50} />;
-      },
+      dataIndex: 'imageURL',
+      render: (value: string) => <Box component="img" src={value} alt="" width={50} />,
     },
     {
       title: 'Tên ảnh',
-      dataIndex: 'imgName',
+      dataIndex: 'name',
     },
     {
       title: 'Mô tả',
-      dataIndex: 'moTa',
+      dataIndex: 'description',
     },
     {
       title: 'Tiêu đề',
       dataIndex: 'title',
-      isValids: false,
     },
     {
       title: 'Hoạt động',
       dataIndex: 'action',
-      render: (_row: any, value: any) => {
-        return (
-          <Grid container>
-            <Grid item xs={4}>
-              <IconButton
-                onClick={() => {
-                  setKey(`${value.idCode}`);
-                  setOpen(true);
-                }}
-              >
-                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-              </IconButton>
-            </Grid>
-            <Grid item xs={4}>
-              <IconButton onClick={() => setCheckTest(!checkTest)}>
-                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-              </IconButton>
-            </Grid>
+      render: (_row: any, value: any) => (
+        <Grid container>
+          <Grid item xs={4}>
+            <IconButton onClick={() => onHandleOpenImageById(value.id)}>
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
           </Grid>
-        );
-      },
+          <Grid item xs={4}>
+            <IconButton onClick={() => onHandleRemove(value.id)}>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+          </Grid>
+        </Grid>
+      ),
     },
   ];
 
-
-
-  useEffect(() => {
-    const hiddenColumns = column
-      .filter(col => col.isValids === false)
-      .map(col => col.dataIndex || '');
-
-    setDataSelect(hiddenColumns);
-  }, []);
-
-  const handleColumnChange = (event: any) => {
-    const {
-      target: { value },
-    } = event;
-    setDataSelect(typeof value === 'string' ? value.split(',') : value);
-  };
-
   return (
-    <Grid container spacing={2}>
-      <Grid
-        item
-        xs={12}
-        sx={{
-          display: 'flex',
-          justifyContent: 'end',
-        }}
-      >
-        <Select
-          multiple
-          value={dataSelect}
-          displayEmpty
-          onChange={handleColumnChange}
-          renderValue={() => 'Bộ Lọc'}
-        >
-          {column.map((header: any) => {
-
-            console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
-
-            const isSelected = dataSelect.includes(header.dataIndex);
-
-            return (
-              <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                <Checkbox checked={!isSelected} />
-                <ListItemText primary={header.title} />
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </Grid>
-      <Grid item xs={12}>
-        <CustomTable
-          dataSource={DataTable5}
-          columns={column}
-          dataSelect={dataSelect}
-        />
-      </Grid>
-
+    <Box sx={{ paddingTop: 1 }}>
+      <CustomTable dataSource={dataImages} columns={column} dataSelect={dataSelect} />
       <DialogImage
         open={open}
         setOpen={setOpen}
         value={value}
         selectedItemId1={key}
         setSelectedItemId1={setKey}
+        dataImages={dataImages}
       />
-    </Grid>
+    </Box>
   );
 };
 

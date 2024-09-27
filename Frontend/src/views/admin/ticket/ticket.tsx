@@ -1,15 +1,26 @@
-import { Box, Fab, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import {
+  Badge,
+  Box,
+  Checkbox,
+  Grid,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+  Typography
+} from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconPasswordUser,
-  IconPlus,
   IconRefreshOff,
   IconSearch,
   IconStars,
-  IconTicket,
+  IconTicket
 } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
@@ -126,53 +137,6 @@ const DataBox = [
   },
 ];
 
-interface HeadCell {
-  dataIndex: string;
-  title: string;
-}
-
-const headCells: HeadCell[] = [
-  {
-    dataIndex: 'idTicket',
-    title: 'ID Ticket',
-  },
-  {
-    dataIndex: 'creationTime',
-    title: 'Thời gian tạo',
-  },
-  {
-    dataIndex: 'interaction',
-    title: 'Tương tác gần đây',
-  },
-  {
-    dataIndex: 'rating',
-    title: 'Đánh giá',
-  },
-  {
-    dataIndex: 'status',
-    title: 'Trạng thái',
-  },
-  {
-    dataIndex: 'title',
-    title: 'Tiêu đề',
-  },
-  {
-    dataIndex: 'customerId',
-    title: 'ID Khách hàng',
-  },
-  {
-    dataIndex: 'customerName',
-    title: 'Tên Khách hàng',
-  },
-  {
-    dataIndex: 'email',
-    title: 'Email',
-  },
-  {
-    dataIndex: 'phoneNumber',
-    title: 'Số điện thoại',
-  },
-];
 interface DataRow {
   idTicket: string;
   creationTime: string;
@@ -205,7 +169,7 @@ const renderStatus = (status: number) => {
     </Typography>
   );
 };
-
+// datasource
 const dataRows: DataRow[] = [
   {
     idTicket: 'TCK001',
@@ -285,6 +249,13 @@ interface FilmsData {
   id: number;
   title: string;
 }
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
+
 const FilmsData: FilmsData[] = [
   { id: 1, title: 'File' },
   { id: 2, title: 'Dung lượng' },
@@ -305,6 +276,73 @@ const FilmsData: FilmsData[] = [
 const Ticket = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        dataIndex: 'idTicket',
+        title: 'ID Ticket',
+      },
+      {
+        dataIndex: 'creationTime',
+        title: 'Thời gian tạo',
+      },
+      {
+        dataIndex: 'interaction',
+        title: 'Tương tác gần đây',
+      },
+      {
+        dataIndex: 'rating',
+        title: 'Đánh giá',
+      },
+      {
+        dataIndex: 'status',
+        title: 'Trạng thái',
+      },
+      {
+        dataIndex: 'title',
+        title: 'Tiêu đề',
+      },
+      {
+        dataIndex: 'customerId',
+        title: 'ID Khách hàng',
+      },
+      {
+        dataIndex: 'customerName',
+        title: 'Tên Khách hàng',
+      },
+      {
+        dataIndex: 'email',
+        title: 'Email',
+      },
+      {
+        dataIndex: 'phoneNumber',
+        title: 'Số điện thoại',
+      },
+    ],
+    [],
+  );
+
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
 
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
@@ -316,38 +354,83 @@ const Ticket = () => {
         <Grid item xs={12}>
           <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Grid item xs={4} sm={4} md={4}>
-              <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Tooltip title="Thêm ticket mới" sx={{ mb: '15px' }} placement="top">
-                    <Fab size="small" color="secondary" aria-label="plus" sx={{ my: 'auto' }}>
-                      <IconPlus width={18} />
-                    </Fab>
-                  </Tooltip>
-                </Grid>
-                <Grid item xs={10}>
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Tìm kiếm ticket"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="20" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth={true}
-                  />
-                </Grid>
-              </Grid>
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm ticket"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch size="20" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth={true}
+              />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Badge
+                  badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                  color={dataSelect.length !== 0 ? 'primary' : undefined}
+                >
+                  <FilterListIcon color="action" />
+                </Badge>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size="small"
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        marginTop: 1,
+                        maxHeight: 400,
+                        '&::-webkit-scrollbar': {
+                          width: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: '#D2D2D2',
+                          borderRadius: '10px',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                          backgroundColor: '#C6C8CC',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                          backgroundColor: '#f1f1f1',
+                        },
+                      },
+                    },
+                    anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    },
+                    transformOrigin: {
+                      vertical: 'top',
+                      horizontal: 'right',
+                    },
+                  }}
+                >
+                  {column.map((header: any) => {
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                    const isSelected = dataSelect.includes(header.dataIndex);
+
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     value={selectedStartDate}
@@ -367,7 +450,7 @@ const Ticket = () => {
         </Grid>
         <Grid item xs={12}>
           <BlankCard>
-            <CustomTable columns={headCells} dataSource={dataRows} />
+            <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
           </BlankCard>
         </Grid>
       </Grid>

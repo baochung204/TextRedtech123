@@ -1,8 +1,10 @@
-import { CardContent, Box, Stack, Avatar, Grid, Button, Typography, TablePagination } from '@mui/material';
+import { Avatar, Box, Button, CardContent, Grid, Stack, TablePagination, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import BlankCard from 'src/components/shared/BlankCard';
+import { fetchFunction } from 'src/store/apps/resources/function/functionSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 import DataTab2 from '../DataTable/TableTab2';
-import CircleIcon from '@mui/icons-material/Circle';
-import { useState } from 'react';
 
 
 
@@ -10,7 +12,8 @@ const Tab2 = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
-
+  const dispatch = useDispatch<AppDispatch>()
+  const dataFunction = useSelector((state: AppState) => state.function.data)
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -20,55 +23,57 @@ const Tab2 = () => {
     setPage(0);
   };
 
-  const paginatedData = DataTab2.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  // const paginatedData = DataTab2.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  useEffect(() => {
+    dispatch(fetchFunction())
+  }, [dispatch])
 
-
-  return (
-    <>
-      <Grid container spacing={2}>
-        {paginatedData.map((items) => {
-          return (
-            <Grid item xs={12} sm={6} md={4} key={items.id}>
-              <BlankCard>
-                <CardContent>
-                  <Stack direction={'row'} gap={2} alignItems="center">
-                    <Avatar alt="Remy Sharp" src={items.images} />
-                    <Box>
-                      <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                        {items.functions}
-                      </Typography>
-                      <Typography
-                        variant="caption"
-                        sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
-                      >
-                        <CircleIcon sx={{ fontSize: '13px', color: `${items.isActive ? '#46AB5E' : '#C6C8CC'}` }} />
-                        {items.functionsLevel}
-                      </Typography>
-                    </Box>
-                    <Box ml="auto">
-                      <Button variant="outlined" color="primary" size="small">
-                        {items.functionsID}
-                      </Button>
-                    </Box>
-                  </Stack>
-                </CardContent>
-              </BlankCard>
-            </Grid>
-          );
-        })}
-      </Grid>
-      <TablePagination
-        rowsPerPageOptions={[15,18,21]}
-        component="div"
-        count={DataTab2.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        labelRowsPerPage="Số hàng trên mỗi trang"
-      />
-    </>
-  );
+return (
+  <>
+    <Grid container spacing={2}>
+      {dataFunction.map((items) => {
+        return (
+          <Grid item xs={12} sm={6} md={4} key={items.id}>
+            <BlankCard>
+              <CardContent>
+                <Stack direction={'row'} gap={2} alignItems="center">
+                  <Avatar alt="Remy Sharp" src={items.badgeUrl} />
+                  <Box>
+                    <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
+                      {items.name}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                    >
+                      {/* <CircleIcon sx={{ fontSize: '13px', color: `${items.isActive ? '#46AB5E' : '#C6C8CC'}` }} /> */}
+                      {items.level}
+                    </Typography>
+                  </Box>
+                  <Box ml="auto">
+                    <Button variant="outlined" color="primary" size="small">
+                      {items.id}
+                    </Button>
+                  </Box>
+                </Stack>
+              </CardContent>
+            </BlankCard>
+          </Grid>
+        );
+      })}
+    </Grid>
+    <TablePagination
+      rowsPerPageOptions={[15, 18, 21]}
+      component="div"
+      count={DataTab2.length}
+      rowsPerPage={rowsPerPage}
+      page={page}
+      onPageChange={handleChangePage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+      labelRowsPerPage="Số hàng trên mỗi trang"
+    />
+  </>
+);
 };
 
 export default Tab2;

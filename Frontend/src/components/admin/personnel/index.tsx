@@ -105,37 +105,15 @@ const DataBox: StyleProps[] = [
   },
 ];
 
-interface FilmsData {
-  id: number;
-  title: string;
-}
-const FilmsData: FilmsData[] = [
-  { id: 1, title: 'File' },
-  { id: 2, title: 'Dung lượng' },
-  { id: 3, title: 'Functions' },
-  { id: 4, title: 'Token huấn luyện' },
-  { id: 5, title: 'Ngày tạo' },
-  { id: 6, title: 'Vòng quay trung bình' },
-  { id: 7, title: 'khách hàng' },
-  { id: 8, title: 'Đơn hàng' },
-  { id: 9, title: 'CVR' },
-  { id: 10, title: 'GMV' },
-  { id: 11, title: 'Chi phí' },
-  { id: 12, title: 'Chi phí/Doanh thu' },
-  { id: 13, title: 'Chi phí/Đơn hàng' },
-  { id: 14, title: 'Chi phí/Khách hàng' },
-  { id: 15, title: 'Chiến lược' },
-];
-
 const Personnels = () => {
   const [value, setValue] = useState('1');
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  // const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>

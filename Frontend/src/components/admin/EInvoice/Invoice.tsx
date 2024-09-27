@@ -1,21 +1,27 @@
 import {
+  Badge,
   Box,
   Button,
+  Checkbox,
   Chip,
   Grid,
   IconButton,
   InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconBox, IconChartBar, IconEye, IconSearch, IconZoomMoney } from '@tabler/icons-react';
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import RPoint from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataInvoiceTable } from './datatable/InvoiceTableData';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 const dataSource = [
   {
@@ -112,130 +118,162 @@ const dataSource = [
     ),
   },
 ];
-
-const columns = [
-  {
-    title: 'ID hóa đơn',
-    dataIndex: 'id_bill',
-  },
-
-  {
-    title: 'ID đơn hàng',
-    dataIndex: 'id_order',
-  },
-  {
-    title: 'Ngày tạo',
-    dataIndex: 'createdate',
-  },
-
-  {
-    title: 'Loại tài khoản',
-    render: (row, value: any) => (
-      <Typography variant="subtitle2">
-        <Chip
-          label={value.type_account ? 'Doanh nghiệp' : 'Cá nhân'}
-          color={value.type_account ? 'success' : 'warning'}
-          variant="outlined"
-        />
-      </Typography>
-    ),
-  },
-  {
-    title: 'Tên công ty',
-    dataIndex: 'name_company',
-  },
-  {
-    title: 'Mã số thuế',
-    dataIndex: 'tax_code',
-  },
-  {
-    title: 'Nội dung hóa đơn',
-    dataIndex: 'content_bill',
-  },
-  {
-    title: 'DVT',
-    dataIndex: 'dvt',
-  },
-  {
-    title: 'Số lượng',
-    dataIndex: 'amount',
-  },
-  {
-    title: 'Đơn giá',
-    dataIndex: 'price',
-  },
-  {
-    title: 'Thành tiền',
-    dataIndex: 'into_money',
-  },
-
-  {
-    title: 'VAT',
-    dataIndex: 'vat',
-  },
-  {
-    title: 'Tổng(VAT)',
-    dataIndex: 'total_vat',
-  },
-  {
-    title: 'Địa chỉ',
-    dataIndex: 'address',
-  },
-  {
-    title: 'Người đại diện',
-    dataIndex: 'presentative',
-  },
-  {
-    title: 'Chức vụ',
-    dataIndex: 'position',
-  },
-  {
-    title: 'SĐT công ty',
-    dataIndex: 'phone_number',
-  },
-  {
-    title: 'Email công ty',
-    dataIndex: 'email',
-  },
-  {
-    title: 'Trạng thái',
-    dataIndex: 'position',
-    render: (row, value: any) => (
-      <Typography
-        sx={{
-          color: value.status ? 'success.main' : 'warning.main',
-        }}
-        variant="subtitle2"
-      >
-        {value.status ? 'Đã xuất' : 'Chưa xuất'}
-      </Typography>
-    ),
-  },
-
-  {
-    title: 'Hóa đơn',
-    dataIndex: 'phone_number',
-    render: (row, value: any) => <Button>Xuất ngay</Button>,
-  },
-  {
-    title: 'Hoạt động',
-    dataIndex: 'phone_number',
-    render: (row, value: any) => (
-      <IconButton>
-        <IconEye stroke={2} />
-      </IconButton>
-    ),
-  },
-];
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 
 const Invoice = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
+
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        title: 'ID hóa đơn',
+        dataIndex: 'id_bill',
+      },
+
+      {
+        title: 'ID đơn hàng',
+        dataIndex: 'id_order',
+      },
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'createdate',
+      },
+
+      {
+        title: 'Loại tài khoản',
+        dataIndex: 'loai',
+        render: (_row: any, value: any) => (
+          <Typography variant="subtitle2">
+            <Chip
+              label={value.type_account ? 'Doanh nghiệp' : 'Cá nhân'}
+              color={value.type_account ? 'success' : 'warning'}
+              variant="outlined"
+            />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Tên công ty',
+        dataIndex: 'name_company',
+      },
+      {
+        title: 'Mã số thuế',
+        dataIndex: 'tax_code',
+      },
+      {
+        title: 'Nội dung hóa đơn',
+        dataIndex: 'content_bill',
+      },
+      {
+        title: 'DVT',
+        dataIndex: 'dvt',
+      },
+      {
+        title: 'Số lượng',
+        dataIndex: 'amount',
+      },
+      {
+        title: 'Đơn giá',
+        dataIndex: 'price',
+      },
+      {
+        title: 'Thành tiền',
+        dataIndex: 'into_money',
+      },
+
+      {
+        title: 'VAT',
+        dataIndex: 'vat',
+      },
+      {
+        title: 'Tổng(VAT)',
+        dataIndex: 'total_vat',
+      },
+      {
+        title: 'Địa chỉ',
+        dataIndex: 'address',
+      },
+      {
+        title: 'Người đại diện',
+        dataIndex: 'presentative',
+      },
+      {
+        title: 'Chức vụ',
+        dataIndex: 'position',
+      },
+      {
+        title: 'SĐT công ty',
+        dataIndex: 'phone_number',
+      },
+      {
+        title: 'Email công ty',
+        dataIndex: 'email',
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'position',
+        render: (_row: any, value: any) => (
+          <Typography
+            sx={{
+              color: value.status ? 'success.main' : 'warning.main',
+            }}
+            variant="subtitle2"
+          >
+            {value.status ? 'Đã xuất' : 'Chưa xuất'}
+          </Typography>
+        ),
+      },
+
+      {
+        title: 'Hóa đơn',
+        dataIndex: 'phone_number',
+        // render: (_row:any, value: any) => <Button>Xuất ngay</Button>,
+        render: () => <Button>Xuất ngay</Button>,
+      },
+      {
+        title: 'Hoạt động',
+        dataIndex: 'phone_number',
+        // render: (_row:any, value: any) => (
+        render: () => (
+          <IconButton>
+            <IconEye stroke={2} />
+          </IconButton>
+        ),
+      },
+    ],
+    [],
+  );
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
   return (
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          {/* <TopCard dataSource={dataSource} totalColumn={4} /> */}
           <TopCard dataSource={dataSource} totalColumn={4} />
         </Grid>
 
@@ -268,6 +306,62 @@ const Invoice = () => {
 
               <Grid item xs={4}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <Badge
+                    badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                    color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  >
+                    <FilterListIcon color="action" />
+                  </Badge>
+                  <Select
+                    multiple
+                    value={dataSelect}
+                    displayEmpty
+                    onChange={handleColumnChange}
+                    renderValue={() => 'Sửa đổi cột'}
+                    size="small"
+                    MenuProps={{
+                      PaperProps: {
+                        sx: {
+                          marginTop: 1,
+                          maxHeight: 400,
+                          '&::-webkit-scrollbar': {
+                            width: '4px',
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: '#D2D2D2',
+                            borderRadius: '10px',
+                          },
+                          '&::-webkit-scrollbar-thumb:hover': {
+                            backgroundColor: '#C6C8CC',
+                          },
+                          '&::-webkit-scrollbar-track': {
+                            backgroundColor: '#f1f1f1',
+                          },
+                        },
+                      },
+                      anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                      },
+                      transformOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                      },
+                    }}
+                  >
+                    {column.map((header: any) => {
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                      const isSelected = dataSelect.includes(header.dataIndex);
+
+                      return (
+                        <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                          <Checkbox checked={!isSelected} />
+                          <ListItemText primary={header.title} />
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       value={selectedStartDate}
@@ -288,7 +382,7 @@ const Invoice = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={DataInvoiceTable} />
+          <CustomTable columns={column} dataSource={DataInvoiceTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </>

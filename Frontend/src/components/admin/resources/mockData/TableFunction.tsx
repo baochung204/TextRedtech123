@@ -1,3 +1,4 @@
+import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import {
   IconBrandFlutter,
@@ -7,8 +8,6 @@ import {
   IconTrash,
   IconUserStar,
 } from '@tabler/icons-react';
-import { HeadCell } from '../types/HeadCell';
-import { IconButton } from '@mui/material';
 export const Function = [
   {
     bgColor: 'primary.light',

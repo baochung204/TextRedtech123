@@ -2,8 +2,8 @@
 // @ts-ignore
 import { Box, CardContent, Chip, LinearProgress, Paper, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import SavingsImg from '../../../assets/images/backgrounds/piggy.png';
-
+// import SavingsImg from '../../../assets/images/backgrounds/piggy.png';
+import Banner from 'src/assets/images/banner/trangbịtroly.png';
 interface sellsData {
   product: string;
   parameter: number;
@@ -39,9 +39,16 @@ const SellingProducts = () => {
   const secondary = theme.palette.secondary.main;
   const primary = theme.palette.primary.main;
   const borderColor = theme.palette.divider;
-
   return (
-    <Paper sx={{ bgcolor: 'primary.main', border: `1px solid ${borderColor}` }} variant="outlined">
+    <Paper
+      sx={{
+        backgroundImage: `url(${Banner})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        border: `1px solid ${borderColor}`,
+      }}
+      variant="outlined"
+    >
       <CardContent>
         <Typography variant="h5" color="white">
           Trang bị trợ lý
@@ -49,12 +56,17 @@ const SellingProducts = () => {
         <Typography variant="subtitle1" color="white">
           Cấu hình
         </Typography>
-
-        <Box textAlign="center" mt={2} mb="-90px">
-          <img src={SavingsImg} alt={SavingsImg} width={'300px'} />
-        </Box>
       </CardContent>
-      <Paper sx={{ overflow: 'hidden', zIndex: '1', position: 'relative', margin: '10px' }}>
+      <Paper
+        sx={{
+          overflow: 'hidden',
+          zIndex: '1',
+          position: 'relative',
+          mx: '10px',
+          mt: '160px',
+          mb: '10px',
+        }}
+      >
         <Box p={3}>
           <Stack spacing={3}>
             {sells.map((sell: any, i: number) => (

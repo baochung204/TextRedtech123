@@ -10,7 +10,7 @@ import TicketReducer from './apps/tickets/TicketSlice';
 import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
-import productReducer from './apps/products/Products';
+import productReducer from './apps/products/productsSlice';
 
 import UrlSlice from './apps/resources/url/UrlSlice';
 
@@ -21,9 +21,13 @@ import {
 } from 'react-redux';
 import { combineReducers } from 'redux';
 import CustomerReducer from './apps/customer/customerSlice';
-
 import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
-import OrderUser from './apps/order/orderuserslice';
+
+import StrReducer from './apps/resources/str/strSlice';
+import functionReducer from './apps/resources/function/functionSlice';
+import fileReducer from './apps/resources/file/fileSlice';
+import ImageSlice from './apps/resources/image/ImageSlice';
+
 
 export const store = configureStore({
   reducer: {
@@ -39,10 +43,15 @@ export const store = configureStore({
     selectReducer: SelectedReducer,
     integration: integrationReducer,
     customer: CustomerReducer,
-    urlReducer: UrlSlice,
+    urlResources: UrlSlice,
+    imageResources: ImageSlice,
     product: productReducer,
     customeraffiliate: CustomerAffiliate,
-    OrderUser: OrderUser,
+
+    str: StrReducer,
+    function: functionReducer,
+    file: fileReducer
+
   },
 });
 
@@ -59,9 +68,15 @@ const rootReducer = combineReducers({
   selectReducer: SelectedReducer,
   integration: integrationReducer,
   customer: CustomerReducer,
-  urlReducer: UrlSlice,
+  urlResources: UrlSlice,
+  imageResources: ImageSlice,
   customeraffiliate: CustomerAffiliate,
-  OrderUser: OrderUser,
+
+  product: productReducer,
+  str: StrReducer,
+  function: functionReducer,
+  file: fileReducer
+
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

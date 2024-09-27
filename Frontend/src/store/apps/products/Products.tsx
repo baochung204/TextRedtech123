@@ -2,13 +2,13 @@ import axios from '../../../utils/axios';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppDispatch } from 'src/store/Store';
 
-const API_URL = 'http://localhost:9999/products';
+const API_URL = 'http://localhost:9999/productsSP';
 
-interface StateType {
-  productss: any[];
-  currentFilter: string;
-  productSearch: string;
-}
+// interface StateType {
+//   productss: any[];
+//   currentFilter: string;
+//   productSearch: string;
+// }
 
 const initialState: any = {
   products: [],
@@ -33,6 +33,9 @@ export const ProductSlice = createSlice({
     // DeleteProduct: (state: StateType, action) => {
     //   const index = state.products.findIndex((product) => product.Id === action.payload);
     //   state.products.splice(index, 1);
+    // },
+    // AddProduct: (state: StateType, action) => {
+    //   state.products.push(action.payload);
     // },
   },
 });

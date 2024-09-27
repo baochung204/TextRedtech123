@@ -1,53 +1,74 @@
-import { Grid, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { Badge, Checkbox, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import DataFeature from '../data/DataFeuture';
-const FilmsData: any = [
-  { title: 'ID', dataIndex: 'id' },
-  { title: 'Ngày tạo', dataIndex: 'createdAt', render: (value: any) => value.toLocaleDateString() },
-  { title: 'Họ và tên', dataIndex: 'name' },
-  { title: 'Email', dataIndex: 'email' },
-  { title: 'Số điện thoại', dataIndex: 'phone' },
-  {
-    title: 'Nội dùng đề xuất',
-    dataIndex: 'contextFeature',
-  },
-  { title: 'Trạng thái', dataIndex: 'status' },
-  { title: 'Ghi chú', dataIndex: 'note' },
-  {
-    title: 'Thao tác',
-    dataIndex: 'action',
-    render: (value: any) => (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-        </IconButton>
-        <IconButton>
-          <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-      </>
-    ),
-  },
-];
+
+
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 
 const TableFeature = () => {
-  // const handleChangePage = (newPage: number) => {
-  //     setPage(newPage);
-  // };
 
-  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setRowsPerPage(parseInt(event.target.value, 10));
-  //     setPage(0);
-  // };
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+  const column = useMemo<Column[]>(() => [
+    { title: 'ID', dataIndex: 'id' },
+    { title: 'Ngày tạo', dataIndex: 'createdAt', render: (value: any) => value.toLocaleDateString() },
+    { title: 'Họ và tên', dataIndex: 'name' },
+    { title: 'Email', dataIndex: 'email' },
+    { title: 'Số điện thoại', dataIndex: 'phone' },
+    {
+      title: 'Nội dùng đề xuất',
+      dataIndex: 'contextFeature',
+    },
+    { title: 'Trạng thái', dataIndex: 'status' },
+    { title: 'Ghi chú', dataIndex: 'note' },
+    {
+      title: 'Thao tác',
+      dataIndex: 'action',
+      render: () => (
+        <>
+          <IconButton>
+            <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+          </IconButton>
+          <IconButton>
+            <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
+          </IconButton>
+          <IconButton>
+            <IconTrash stroke={2} style={{ color: '#5D87FF' }} />
+          </IconButton>
+        </>
+      ),
+    },
+  ], [])
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
 
   return (
     <>
@@ -75,6 +96,62 @@ const TableFeature = () => {
           </Grid>
           <Grid item xs={8} container spacing={2} justifyContent="flex-end" alignItems={'center'}>
             <Grid item>
+              <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                <FilterListIcon color="action" />
+              </Badge>
+              <Select
+                multiple
+                value={dataSelect}
+                displayEmpty
+                onChange={handleColumnChange}
+                renderValue={() => 'Sửa đổi cột'}
+                size='small'
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      marginTop: 1,
+                      maxHeight: 400,
+                      '&::-webkit-scrollbar': {
+                        width: '4px',
+                      },
+                      '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: '#D2D2D2',
+                        borderRadius: '10px',
+                      },
+                      '&::-webkit-scrollbar-thumb:hover': {
+                        backgroundColor: '#C6C8CC',
+                      },
+                      '&::-webkit-scrollbar-track': {
+                        backgroundColor: '#f1f1f1',
+                      },
+                    },
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                  },
+                }}
+              >
+                {column.map((header: any) => {
+
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                  const isSelected = dataSelect.includes(header.dataIndex);
+
+                  return (
+                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                      <Checkbox checked={!isSelected} />
+                      <ListItemText primary={header.title} />
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </Grid>
+            <Grid item>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   label="Ngày bắt đầu"
@@ -101,7 +178,7 @@ const TableFeature = () => {
         </Grid>
       </Grid>
       <BlankCard>
-        <CustomTable columns={FilmsData} dataSource={DataFeature} />
+        <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect}/>
       </BlankCard>
     </>
   );
