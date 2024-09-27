@@ -44,7 +44,7 @@ const ProductRelated = () => {
       </Typography>
       <Grid container spacing={3}>
         {Relatedproducts.map((product) => (
-          <Grid item xs={12} lg={3} sm={4} display="flex" alignItems="stretch" key={product.title}>
+          <Grid item xs={12} lg={3} sm={4} display="flex" alignItems="stretch" key={product.id}>
             {/* Product Card */}
             <BlankCard sx={{ p: 0 }} className="hoverCard">
               <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
@@ -56,11 +56,11 @@ const ProductRelated = () => {
                     height={270}
                   ></Skeleton>
                 ) : (
-                  <img src={product.photo} alt="img" width="100%" />
+                  <img src={product.thumbnailUrl} alt="img" width="100%" />
                 )}
               </Typography>
               <CardContent sx={{ p: 3, pt: 2 }}>
-                <Typography fontWeight={600}>{product.title}</Typography>
+                <Typography fontWeight={600}>{product.name}</Typography>
                 <Stack direction="column" spacing={1} mt={1}>
                   {/* <Stack direction="row" alignItems="center" justifyContent="space-between">
                     <Typography variant="h5">{product.price.toLocaleString()} point</Typography>
@@ -76,7 +76,7 @@ const ProductRelated = () => {
                         alignItems: 'center',
                       }}
                     >
-                      <Typography variant="h6">{product.price}</Typography>
+                      <Typography variant="h6">{product.point}</Typography>
                       <img
                         src={logo}
                         alt="Logo"

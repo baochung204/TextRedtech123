@@ -18,7 +18,7 @@ import {
   Slide,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -46,7 +46,6 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 import { Favorite, Visibility } from '@mui/icons-material';
 import BlogTable from './data/datablog';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -176,110 +175,128 @@ const BlogAdmin = () => {
     setIsPopupOpen(false);
   };
   const tagColors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFC300', '#DAF7A6', '#C70039'];
-  const column = useMemo<Column[]>(() => [
-    { title: 'ID', dataIndex: 'id' },
-    { title: 'Ngày tạo', dataIndex: 'createdAt', render: (value: any) => value.toLocaleDateString() },
-    { title: 'Ảnh', dataIndex: 'avt', render: (value: any) => <Avatar src={value} /> },
-    { title: 'Tác giả', dataIndex: 'author' },
-    {
-      title: 'Tiêu đề',
-      dataIndex: 'title',
-      render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
-    },
-    {
-      title: 'Tags',
-      dataIndex: 'tags',
-      render: (value: any) => {
-        return value.split(',').map((tag: any, tagIndex: any) => (
-          <Chip
-            key={tagIndex}
-            label={tag}
-            sx={{
-              backgroundColor: tagColors[tagIndex % tagColors.length],
-              color: '#fff',
-              margin: '2px',
-            }}
-          />
-        ));
+  const column = useMemo<Column[]>(
+    () => [
+      { title: 'ID', dataIndex: 'id' },
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'createdAt',
+        render: (value: any) => value.toLocaleDateString(),
       },
-    },
-    { title: 'Đường dẫn url', dataIndex: 'url' },
-    {
-      title: 'Mô tả',
-      dataIndex: 'description',
-      render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
-    },
-    { title: 'Nội dung', dataIndex: 'content' },
-    {
-      title: 'Giá Point',
-      dataIndex: 'pricePoint',
-      render: (value: any) => (
-        <Typography variant="subtitle2" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          {value} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Trạng thái',
-      dataIndex: 'status',
-      render: (value: any) => (
-        <Typography
-          variant="subtitle2"
-          style={{
-            color: value === 'Đã đăng' ? '#00bf8f' : value === 'Đã ẩn' ? '#ff3d71' : '#ffbd2e',
-          }}
-        >
-          {value}
-        </Typography>
-      ),
-    },
-    {
-      title: 'Lượt xem',
-      dataIndex: 'view',
-      render: (value: any) => (
-        <Typography variant="subtitle2" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          {value} <Visibility color="action" />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Lượt thích',
-      dataIndex: 'like',
-      render: (value: any) => (
-        <Typography variant="subtitle2" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          {value}
-          <Favorite color="error" />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Thao tác',
-      dataIndex: 'action',
-      render: (value: any) => (
-        <>
-          <IconButton>
-            <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-          </IconButton>
-          <IconButton>
-            <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
-          </IconButton>
-          <IconButton>
-            <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-          </IconButton>
-        </>
-      ),
-    },
-  ], [])
+      { title: 'Ảnh', dataIndex: 'avt', render: (value: any) => <Avatar src={value} /> },
+      { title: 'Tác giả', dataIndex: 'author' },
+      {
+        title: 'Tiêu đề',
+        dataIndex: 'title',
+        render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
+      },
+      {
+        title: 'Tags',
+        dataIndex: 'tags',
+        render: (value: any) => {
+          return value.split(',').map((tag: any, tagIndex: any) => (
+            <Chip
+              key={tagIndex}
+              label={tag}
+              sx={{
+                backgroundColor: tagColors[tagIndex % tagColors.length],
+                color: '#fff',
+                margin: '2px',
+              }}
+            />
+          ));
+        },
+      },
+      { title: 'Đường dẫn url', dataIndex: 'url' },
+      {
+        title: 'Mô tả',
+        dataIndex: 'description',
+        render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
+      },
+      { title: 'Nội dung', dataIndex: 'content' },
+      {
+        title: 'Giá Point',
+        dataIndex: 'pricePoint',
+        render: (value: any) => (
+          <Typography
+            variant="subtitle2"
+            style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+          >
+            {value}{' '}
+            <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'status',
+        render: (value: any) => (
+          <Typography
+            variant="subtitle2"
+            style={{
+              color: value === 'Đã đăng' ? '#00bf8f' : value === 'Đã ẩn' ? '#ff3d71' : '#ffbd2e',
+            }}
+          >
+            {value}
+          </Typography>
+        ),
+      },
+      {
+        title: 'Lượt xem',
+        dataIndex: 'view',
+        render: (value: any) => (
+          <Typography
+            variant="subtitle2"
+            style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+          >
+            {value} <Visibility color="action" />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Lượt thích',
+        dataIndex: 'like',
+        render: (value: any) => (
+          <Typography
+            variant="subtitle2"
+            style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+          >
+            {value}
+            <Favorite color="error" />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Thao tác',
+        dataIndex: 'action',
+        // render: (value: any) => (
+        render: () => (
+          <>
+            <IconButton>
+              <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+            </IconButton>
+            <IconButton>
+              <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+            <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+          </>
+        ),
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -287,7 +304,9 @@ const BlogAdmin = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -341,7 +360,10 @@ const BlogAdmin = () => {
                 {/* lịch */}
                 <Grid item xs={8} container spacing={2} justifyContent="flex-end">
                   <Grid item>
-                    <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                    <Badge
+                      badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                      color={dataSelect.length !== 0 ? 'primary' : undefined}
+                    >
                       <FilterListIcon color="action" />
                     </Badge>
                     <Select
@@ -350,7 +372,7 @@ const BlogAdmin = () => {
                       displayEmpty
                       onChange={handleColumnChange}
                       renderValue={() => 'Sửa đổi cột'}
-                      size='small'
+                      size="small"
                       MenuProps={{
                         PaperProps: {
                           sx: {
@@ -382,8 +404,7 @@ const BlogAdmin = () => {
                       }}
                     >
                       {column.map((header: any) => {
-
-                        console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                        console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                         const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -422,7 +443,7 @@ const BlogAdmin = () => {
                 </Grid>
               </Grid>
               <BlankCard>
-                <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect}/>
+                <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect} />
               </BlankCard>
             </TabPanel>
           </Box>

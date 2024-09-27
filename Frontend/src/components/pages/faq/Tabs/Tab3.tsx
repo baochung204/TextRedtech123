@@ -23,14 +23,14 @@ interface ItemTable3 {
   isCheck: boolean;
 }
 
-
 const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
-  const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const dispatch = useDispatch<AppDispatch>()
-  const dataFile = useSelector((state: AppState) => state.file.data)
+  // const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const [dataSelect] = useState<string[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataFile = useSelector((state: AppState) => state.file.data);
   useEffect(() => {
-    dispatch(fetchFile())
-  }, [dispatch])
+    dispatch(fetchFile());
+  }, [dispatch]);
   const column = [
     {
       title: 'ID',
@@ -38,7 +38,7 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
     },
     {
       title: 'Tên file',
-      dataIndex: 'name'
+      dataIndex: 'name',
     },
     {
       title: 'Dung lượng',
@@ -51,19 +51,17 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
     },
     {
       title: 'Định dạng',
-      dataIndex: 'typeFile'
+      dataIndex: 'typeFile',
     },
     {
       title: 'Hành động',
       dataIndex: 'isCheck',
-      render: (value: ItemTable3, row: any) => (
+      render: (_value: ItemTable3, row: any) => (
         <Grid container>
           <Grid item xs={4}>
-
             <IconButton onClick={() => window.open(row.url, '_blank')}>
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-
           </Grid>
           <Grid item xs={4}>
             <IconButton>
@@ -71,24 +69,17 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
             </IconButton>
           </Grid>
         </Grid>
-      )
-    }
-  ]
-
-
+      ),
+    },
+  ];
 
   return (
     <Box
       sx={{
-        paddingTop: 1
+        paddingTop: 1,
       }}
     >
-
-      <CustomTable
-        dataSource={dataFile}
-        columns={column}
-        dataSelect={dataSelect}
-      />
+      <CustomTable dataSource={dataFile} columns={column} dataSelect={dataSelect} />
 
       <DialogFile open={open} setOpen={setOpen} value={value} />
     </Box>

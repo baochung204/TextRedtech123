@@ -4,11 +4,11 @@ import axios from '../../../utils/axios';
 
 const API_URL = 'http://localhost:9999/products';
 
-interface StateType {
-  productss: any[];
-  currentFilter: string;
-  productSearch: string;
-}
+// interface StateType {
+//   productss: any[];
+//   currentFilter: string;
+//   productSearch: string;
+// }
 
 const initialState: any = {
   products: [],
