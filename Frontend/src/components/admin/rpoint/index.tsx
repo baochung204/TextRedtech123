@@ -154,7 +154,6 @@ const PublisherTablePage: React.FC = () => {
                 displayEmpty
                 onChange={handleColumnChange}
                 renderValue={() => 'Sửa đổi cột'}
-<<<<<<< HEAD
                 size='small'
                 MenuProps={{
                   PaperProps: {
@@ -185,9 +184,6 @@ const PublisherTablePage: React.FC = () => {
                     horizontal: 'right',
                   },
                 }}
-=======
-                size="small"
->>>>>>> main
               >
                 {column.map((header: any) => {
                   console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));

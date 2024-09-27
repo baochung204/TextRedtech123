@@ -484,7 +484,6 @@ const OrderRPoint = () => {
                   displayEmpty
                   onChange={handleColumnChange}
                   renderValue={() => 'Sửa đổi cột'}
-<<<<<<< HEAD
                   size='small'
                   MenuProps={{
                     PaperProps: {
@@ -515,9 +514,6 @@ const OrderRPoint = () => {
                       horizontal: 'right',
                     },
                   }}
-=======
-                  size="small"
->>>>>>> main
                 >
                   {column.map((header: any) => {
                     console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
