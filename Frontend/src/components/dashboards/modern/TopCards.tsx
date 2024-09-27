@@ -1,11 +1,11 @@
 import { Box, CardContent, Grid, Typography } from '@mui/material';
 
-import icon3 from '../../../assets/images/svgs/icon-briefcase.svg';
-import icon1 from '../../../assets/images/svgs/icon-connect.svg';
-import icon5 from '../../../assets/images/svgs/icon-favorites.svg';
-import icon4 from '../../../assets/images/svgs/icon-mailbox.svg';
-import icon6 from '../../../assets/images/svgs/icon-speech-bubble.svg';
-import icon2 from '../../../assets/images/svgs/icon-user-male.svg';
+import icon3 from '../../../assets/ICON/khách hàng.png';
+import icon1 from '../../../assets/ICON/cvr.png';
+import icon5 from '../../../assets/ICON/aov.png';
+import icon4 from '../../../assets/ICON/dơn hang.png';
+import icon6 from '../../../assets/ICON/gmv.png';
+import icon2 from '../../../assets/ICON/khach hang.png';
 
 interface cardType {
   icon: string;
@@ -67,7 +67,7 @@ const TopCards = () => {
         <Grid item xs={12} sm={4} lg={2} key={i}>
           <Box textAlign="center" sx={{ backgroundColor: '#ffebeb' }}>
             <CardContent>
-              <img src={topcard.icon} alt={topcard.icon} width="50" />
+              <img src={topcard.icon} alt={topcard.icon} height={40}  />
               <Typography
                 color={topcard.bgcolor + '.main'}
                 mt={1}
