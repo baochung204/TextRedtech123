@@ -155,21 +155,76 @@
     },
     {
       "id": "5",
-      "name": "Lê Tài Đức",
+      "name": "Lê Tài Đức Quốc Xã",
       "email": "duc.lt@redon.com",
       "phone": "0987654321",
       "createdAt": "2024-07-18",
       "typeofcustomer": "Miễn phí",
       "imgsrc": "img1"
+    }
+  ],
+  "orderuser": [
+    {
+      "id": "ORD001",
+      "createdAt": "2024-09-01",
+      "assistant": "Trợ lý A",
+      "pricePoint": 150000,
+      "channel": "Ngô Đình Toản",
+      "name": "Nguyễn Văn A",
+      "phone": "0123456789",
+      "address": "Hà Nội",
+      "email": "a@example.com",
+      "orderInfo": "Thông tin đơn hàng A",
+      "notes": "Ghi chú A",
+      "misc": "fb"
     },
     {
-      "id": "6",
-      "name": "Nguyễn Thùy Linh B",
-      "email": "linh.nt@redon.com",
-      "phone": "0965842361",
-      "createdAt": "2024-07-20",
-      "typeofcustomer": "Trả phí",
-      "imgsrc": "img2"
+      "id": "ORD002",
+      "createdAt": "2024-09-02",
+      "assistant": "Trợ lý B",
+      "pricePoint": 10000,
+      "channel": "Trần Dần",
+      "name": "Trần Thị B",
+      "phone": "0987654321",
+      "address": "Hồ Chí Minh",
+      "email": "b@example.com",
+      "orderInfo": "Thông tin đơn hàng B",
+      "notes": "Ghi chú B",
+      "misc": "fb"
+    },
+    {
+      "id": "ORD003",
+      "createdAt": "2024-09-03",
+      "assistant": "Trợ lý C",
+      "pricePoint": 150000,
+      "channel": "Nguyễn Văn Bình",
+      "name": "Phạm Văn C",
+      "phone": "0981234567",
+      "address": "Đà Nẵng",
+      "email": "c@example.com",
+      "orderInfo": "Thông tin đơn hàng C",
+      "notes": "Ghi chú C",
+      "misc": "fb"
+    },
+    {
+      "id": "ORD004",
+      "createdAt": "2024-09-04",
+      "assistant": "Trợ lý D",
+      "pricePoint": 20250,
+      "channel": "Lê Văn Dũng",
+      "name": "Hoàng Thị D",
+      "phone": "0912345678",
+      "address": "Cần Thơ",
+      "email": "d@example.com",
+      "orderInfo": "Thông tin đơn hàng D",
+      "notes": "Ghi chú D",
+      "misc": "fb"
+    }
+  ],
+  "status": [
+    {
+      "id": "1",
+      "is_check": true
     }
   ]
 }

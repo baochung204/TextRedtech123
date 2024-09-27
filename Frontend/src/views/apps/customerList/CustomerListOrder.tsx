@@ -16,102 +16,18 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
-
 import PageContainer from 'src/components/container/PageContainer';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddOrder from './PopupAdd2';
-// import Tags from 'src/components/apps/sell/Tags';
 import { TabContext, TabPanel } from '@mui/lab';
-import fb from 'src/assets/images/socialmedia/facebook.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
-// const BCrumb = [
-//   { to: '/', title: 'Home' },
-//   { to: '/apps/blog/posts', title: 'Blog' },
-//   { title: 'Blog post' },
-// ];
+import { useSelector } from 'react-redux';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchOrderUser } from 'src/store/apps/order/orderuserslice';
 
-interface PropsTable {
-  id: string;
-  createdAt: string;
-  assistant: string;
-  pricePoint: number;
-  channel: string;
-  name: string;
-  phone: string;
-  address: string;
-  email: string;
-  orderInfo: string;
-  notes: string;
-  misc?: string;
-}
-
-// const generateIdCode = () => {
-//   const randomNumber = Math.floor(Math.random() * 1000000);
-//   return `#${randomNumber.toString().padStart(6, '0')}`;
-// };
-
-const TableData: PropsTable[] = [
-  {
-    id: 'ORD001',
-    createdAt: '2024-09-01',
-    assistant: 'Trợ lý A',
-    pricePoint: 150000,
-    channel: 'Ngô Đình Toản',
-    name: 'Nguyễn Văn A',
-    phone: '0123456789',
-    address: 'Hà Nội',
-    email: 'a@example.com',
-    orderInfo: 'Thông tin đơn hàng A',
-    notes: 'Ghi chú A',
-    misc: fb,
-  },
-  {
-    id: 'ORD002',
-    createdAt: '2024-09-02',
-    assistant: 'Trợ lý B',
-    pricePoint: 10000,
-    channel: 'Trần Dần',
-    name: 'Trần Thị B',
-    phone: '0987654321',
-    address: 'Hồ Chí Minh',
-    email: 'b@example.com',
-    orderInfo: 'Thông tin đơn hàng B',
-    notes: 'Ghi chú B',
-    misc: fb,
-  },
-  // Dữ liệu mẫu mới
-  {
-    id: 'ORD003',
-    createdAt: '2024-09-03',
-    assistant: 'Trợ lý C',
-    pricePoint: 150000,
-    channel: 'Nguyễn Văn Bình',
-    name: 'Phạm Văn C',
-    phone: '0981234567',
-    address: 'Đà Nẵng',
-    email: 'c@example.com',
-    orderInfo: 'Thông tin đơn hàng C',
-    notes: 'Ghi chú C',
-    misc: fb,
-  },
-  {
-    id: 'ORD004',
-    createdAt: '2024-09-04',
-    assistant: 'Trợ lý D',
-    pricePoint: 20250,
-    channel: 'Lê Văn Dũng',
-    name: 'Hoàng Thị D',
-    phone: '0912345678',
-    address: 'Cần Thơ',
-    email: 'd@example.com',
-    orderInfo: 'Thông tin đơn hàng D',
-    notes: 'Ghi chú D',
-    misc: fb,
-  },
-];
 const columns = [
   {
     title: 'Mã đơn hàng',
@@ -218,29 +134,11 @@ const Transition = React.forwardRef<
 
 const CustomerListOrder = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  // const [value, setValue] = React.useState('1');
-
-  // const handleOpenPopup = () => setIsPopupOpen(true);
   const handleClosePopup = () => setIsPopupOpen(false);
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  // const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+  const dataOrder = useSelector((state: AppState) => state.OrderUser.data);
 
-  // const handleItemClick = (id: number) => {
-  //   setSelectedItems((prev) =>
-  //     prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-  //   );
-  // };
-
-  // const [iconIndex, setIconIndex] = React.useState<number>(0);
-  // const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-
-  // const handleClickIcon = () => {
-  //   setIconIndex((pre) => (pre + 1) % icons.length);
-  // };
-  // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-  //   setValue(newValue);
-  // };
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
     { to: '/apps/blog/posts', title: 'Đơn hàng' },
@@ -266,6 +164,10 @@ const CustomerListOrder = () => {
     { id: 14, title: 'Chi phí/Khách hàng' },
     { id: 15, title: 'Chiến lược' },
   ];
+
+  React.useEffect(() => {
+    dispatch(fetchOrderUser());
+  }, [dispatch]);
   return (
     <PageContainer>
       <BannerPage title="Đơn hàng" items={BCrumb} />
@@ -327,7 +229,7 @@ const CustomerListOrder = () => {
 
                 <Grid item xs={12} mx={0.3}>
                   <BlankCard>
-                    <CustomTable columns={columns} dataSource={TableData} />
+                    <CustomTable columns={columns} dataSource={dataOrder} />
                   </BlankCard>
                 </Grid>
               </Grid>
@@ -349,13 +251,6 @@ const CustomerListOrder = () => {
         <DialogContent>
           <AddOrder />
         </DialogContent>
-        {/* Uncomment if you want to use dialog actions */}
-        {/* <DialogActions>
-          <Button onClick={handleClosePopup}>Hủy</Button>
-          <Button onClick={handleClosePopup} variant="contained" color="primary">
-            Xác nhận
-          </Button>
-        </DialogActions> */}
       </Dialog>
     </PageContainer>
   );
