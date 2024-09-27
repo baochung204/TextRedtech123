@@ -27,11 +27,10 @@ import {
   IconSearch,
 } from '@tabler/icons-react';
 import { createElement, useEffect, useMemo, useState } from 'react';
-import TableList from 'src/components/ComponentTables/tableList';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
 
 const BCrumb = [
   {
@@ -315,13 +314,13 @@ const AssistantAdmin = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [selectedItems] = useState<number[]>([]);
 
-  const handleItemClick = (id: number) => {
-    setSelectedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-    );
-  };
+  // const handleItemClick = (id: number) => {
+  //   setSelectedItems((prev) =>
+  //     prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+  //   );
+  // };
 
   const [iconIndex, setIconIndex] = useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];

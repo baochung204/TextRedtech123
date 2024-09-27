@@ -285,7 +285,7 @@ const HistoryMoney = () => {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('calories');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const [page, setPage] = React.useState(0);
+  // const [ setPage] = React.useState(0);
   // const [dense, setDense] = React.useState(false);
   
 
@@ -330,9 +330,9 @@ const HistoryMoney = () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event: unknown, newPage: number) => {
+  //   setPage(newPage);
+  // };
 
   // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setRowsPerPage(parseInt(event.target.value, 10));

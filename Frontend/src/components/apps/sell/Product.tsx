@@ -46,7 +46,6 @@ import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import { fetchProduct } from '../../../store/apps/products/productsSlice';
 import AddDialog from './layout/addDialog';
 
-
 // function TablePaginationActions(props: TablePaginationActionsProps) {
 //   const theme = useTheme();
 //   const { count, page, rowsPerPage, onPageChange } = props;
@@ -96,118 +95,6 @@ import AddDialog from './layout/addDialog';
 //     </Box>
 //   );
 // }
-
-interface ProductTag {
-  tagId: number;
-  tagName: string;
-}
-
-interface OrderType {
-  tags: any;
-  shopProductId: number;
-  items: string;
-  shopProductImageUrl: string;
-  shopProductName: string;
-  price: number;
-  productTag: ProductTag[];
-  optionPrice: number;
-}
-const rows: OrderType[] = [
-  {
-    shopProductId: 123,
-    items: '5',
-    shopProductImageUrl: img1,
-    shopProductName: 'Chatbot Marketing',
-    price: 550000,
-    tags: '',
-    productTag: [
-      {
-        tagId: 12,
-        tagName: 'Fashion',
-      },
-      {
-        tagId: 15,
-        tagName: 'Summer Collection',
-      },
-    ],
-    optionPrice: 500000,
-  },
-  {
-    shopProductId: 13,
-    items: '5',
-    shopProductImageUrl: img1,
-    shopProductName: 'Chatbot Marketing',
-    price: 550000,
-    tags: '',
-    productTag: [
-      {
-        tagId: 12,
-        tagName: 'Fashion',
-      },
-      {
-        tagId: 15,
-        tagName: 'Summer Collection',
-      },
-    ],
-    optionPrice: 500000,
-  },
-].sort((a, b) => (a.shopProductName < b.shopProductName ? -1 : 1));
-
-
-const FilmsData: any = [
-  { id: 1, title: 'ID', dataIndex: 'shopProductId' },
-  {
-    id: 2,
-    title: 'Ảnh',
-    dataIndex: 'shopProductImageUrl',
-    render: (row: any) => <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />,
-  },
-  { id: 3, title: '	Tên sản phẩm', dataIndex: 'shopProductName' },
-  {
-    id: 4,
-    title: 'Tags',
-    dataIndex: 'productTag',
-    render: (row: any) => (
-      <Box sx={{ display: 'flex', gap: 1 }}>
-        {row.map((tag: any) => (
-          <Box>
-            <Chip
-              key={tag.tagId}
-              label={tag.tagName}
-              size="small"
-              color="primary"
-              sx={{ width: '100px' }}
-            />
-          </Box>
-        ))}
-      </Box>
-    ),
-  },
-  {
-    id: 5,
-    title: '	Giá niêm yết',
-    dataIndex: 'price',
-    render: (row: any) => (
-      <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-          {row.toLocaleString()} đ
-        </Typography>
-      </Box>
-    ),
-  },
-  {
-    id: 6,
-    title: 'Giá khuyến mãi',
-    dataIndex: 'optionPrice',
-    render: (row: any) => (
-      <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-        <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-          {row.toLocaleString()} đ
-        </Typography>
-      </Box>
-    ),
-  },
-];
 
 // const FilmsData: any = [
 //   { id: 1, title: 'ID', dataIndex: 'shopProductId' },
@@ -285,9 +172,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   //   console.log('Data to be passed to CustomTable:', data);
   // }
 
-  
-
-
   return (
     <Toolbar
       sx={{
@@ -343,75 +227,77 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 };
 
 const PaginationTable = () => {
-
-
   const [selected] = React.useState<readonly string[]>([]);
   const [dataSelect, setDataSelect] = React.useState<string[]>([]);
-  const FilmsData = React.useMemo<Column[]>(() => [
-    {
-      title: 'Id',
-      dataIndex: 'shopProductId'
-    },
-    {
-
-      title: 'Ảnh',
-      dataIndex: 'shopProductImageUrl',
-      render: (row: any) => (
-        <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />
-      )
-    },
-    {
-      title: '	Tên sản phẩm',
-      dataIndex: 'shopProductName'
-    },
-    {
-
-      title: 'Tags',
-      dataIndex: 'tags',
-      render: (row: any) => (
-        <Chip
-          
-          sx={{
-            borderRadius: '6px',
-            color: '#ff3333'
-          }}
-          size="small"
-          label={row}
-        />
-      ),
-    },
-    {
-
-      title: '	Giá niêm yết',
-      dataIndex: 'price',
-      render: (row: any) => (
-        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-          <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-            {row} đ
-          </Typography>
-        </Box>
-      ),
-    },
-    {
-
-      title: 'Giá khuyến mãi',
-      dataIndex: 'discount',
-      render: (row: any) => (
-        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-          <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-            {row} đ
-          </Typography>
-        </Box>
-      ),
-    },
-  ], [])
+  const FilmsData = React.useMemo<Column[]>(
+    () => [
+      {
+        title: 'Id',
+        dataIndex: 'shopProductId',
+      },
+      {
+        title: 'Ảnh',
+        dataIndex: 'shopProductImageUrl',
+        render: (row: any) => <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />,
+      },
+      {
+        title: '	Tên sản phẩm',
+        dataIndex: 'shopProductName',
+      },
+      {
+        title: 'Tags',
+        dataIndex: 'tags',
+        render: (row: any) => (
+          <Chip
+            sx={{
+              borderRadius: '6px',
+              color: '#ff3333',
+            }}
+            size="small"
+            label={row}
+          />
+        ),
+      },
+      {
+        title: '	Giá niêm yết',
+        dataIndex: 'price',
+        render: (row: any) => (
+          <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+            <Typography
+              color="textSecondary"
+              variant="subtitle2"
+              sx={{ display: 'flex', gap: 0.5 }}
+            >
+              {row} đ
+            </Typography>
+          </Box>
+        ),
+      },
+      {
+        title: 'Giá khuyến mãi',
+        dataIndex: 'discount',
+        render: (row: any) => (
+          <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+            <Typography
+              color="textSecondary"
+              variant="subtitle2"
+              sx={{ display: 'flex', gap: 0.5 }}
+            >
+              {row} đ
+            </Typography>
+          </Box>
+        ),
+      },
+    ],
+    [],
+  );
 
   React.useEffect(() => {
-    const hasIsValids = FilmsData.some(col => 'isValids' in col);
+    const hasIsValids = FilmsData.some((col) => 'isValids' in col);
     if (hasIsValids) {
-      const hiddenColumns = FilmsData
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+      const hiddenColumns = FilmsData.filter((col) => col.isValids === false).map(
+        (col) => col.dataIndex || '',
+      );
 
       setDataSelect(hiddenColumns);
     } else {
@@ -419,20 +305,21 @@ const PaginationTable = () => {
     }
   }, [FilmsData]);
 
-
-  const dispatch = useDispatch()
-  const dataProduct = useSelector((state: AppState) => state.product.data)
+  const dispatch = useDispatch();
+  const dataProduct = useSelector((state: AppState) => state.product.data);
 
   React.useEffect(() => {
-    dispatch(fetchProduct())
-  }, [dispatch])
+    dispatch(fetchProduct());
+  }, [dispatch]);
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
   const [iconIndex, setIconIndex] = React.useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   return (
@@ -449,8 +336,8 @@ const PaginationTable = () => {
           <AddDialog />
           <EnhancedTableToolbar
             numSelected={selected.length}
-          // search={search}
-          // handleSearch={handleSearch}
+            // search={search}
+            // handleSearch={handleSearch}
           />
         </Box>
 
@@ -461,7 +348,7 @@ const PaginationTable = () => {
             displayEmpty
             onChange={handleColumnChange}
             renderValue={() => 'Sửa đổi cột'}
-            size='small'
+            size="small"
             MenuProps={{
               PaperProps: {
                 sx: {
@@ -493,8 +380,7 @@ const PaginationTable = () => {
             }}
           >
             {FilmsData.map((header: any) => {
-
-              console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+              console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
               const isSelected = dataSelect.includes(header.dataIndex);
 
