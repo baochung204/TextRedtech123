@@ -65,18 +65,13 @@ const TopCards = () => {
     <Grid container spacing={3}>
       {topcards.map((topcard, i) => (
         <Grid item xs={12} sm={4} lg={2} key={i}>
-          <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
+          <Box textAlign="center" sx={{ backgroundColor: '#ffebeb' }}>
             <CardContent>
               <img src={topcard.icon} alt={topcard.icon} width="50" />
-              <Typography
-                color={topcard.bgcolor + '.main'}
-                mt={1}
-                variant="subtitle1"
-                fontWeight={600}
-              >
+              <Typography color={'#ff3333'} mt={1} variant="subtitle1" fontWeight={600}>
                 {topcard.title}
               </Typography>
-              <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+              <Typography color={'#ff3333'} variant="h4" fontWeight={600}>
                 {topcard.digits}
                 {topcard.title == 'AOV'
                   ? 'k'
