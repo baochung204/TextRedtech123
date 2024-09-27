@@ -2,6 +2,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import avt from 'src/assets/images/icon/avt.jpg';
 import {
   // Autocomplete,
   // Autocomplete,
@@ -170,19 +171,20 @@ const ListAssistant = () => {
                 sx={{
                   display: 'flex',
                   flexDirection: { xs: 'column', sm: 'row' },
-                  p: { xs: 1, sm: 2 },
                   justifyContent: { xs: 'center' },
                   alignItems: { xs: 'center' },
+                  p: 1,
                 }}
               >
                 <Box
                   sx={{
                     position: 'relative',
-                    display: 'inline-block',
-                    width: { xs: '280px', sm: '370px', md: '420px', lg: '400px' },
-                    height: { xs: '260px', sm: '230px', md: '212px', lg: '220px' },
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '70%',
                     px: 2,
-                    py: 1,
                   }}
                 >
                   <Box
@@ -191,38 +193,33 @@ const ListAssistant = () => {
                     alt=""
                     sx={{
                       width: '100%',
-                      height: '100%',
-                      marginTop: { sm: '-70px', md: '-50px', lg: '-50px' },
+                      height: 'auto',
                       zIndex: 99,
+                      mt: 2,
                       position: 'relative',
                     }}
                   />
                   <Box
+                    component="img"
+                    src={avt}
                     sx={{
                       position: 'absolute',
-                      top: { xs: '48%', sm: '17%', md: '23%', lg: '25%' },
-                      left: '50%',
+                      top: '35.5%',
+                      left: '50.1%',
                       transform: 'translate(-50%, -50%)',
                       borderRadius: '50%',
                       overflow: 'hidden',
-                      width: { xs: '41%', sm: '40%', md: '42%', lg: '40%' },
-                      height: { xs: '41%', sm: '40%', md: '42%', lg: '40%' },
+                      height: { xs: '50%', sm: '45%' },
+                      border: '3px solid #fff',
+                      boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
                     }}
-                  >
-                    <img
-                      src={rank.avatar}
-                      alt=""
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                      }}
-                    />
-                  </Box>
-                  <Box sx={{ textAlign: 'center', mt: { xs: 1, sm: 2, md: 0.2, lg: '1%' } }}>
+                  />
+
+                  <Box sx={{ textAlign: 'center' }}>
                     <Typography
                       variant="h6"
-                      mb={0.5}
+                      mb={1}
+                      mt={1.3}
                       sx={{ fontSize: { xs: '20px', sm: '18px', md: '16px', lg: '16px' } }}
                     >
                       {rank.fullName}
@@ -233,24 +230,19 @@ const ListAssistant = () => {
                       mb={0.5}
                       sx={{
                         fontSize: { xs: '14px', sm: '14px', md: '12px', lg: '14px' },
-                        mt: { xs: 1, sm: 1, md: 0.5, lg: 1 },
                       }}
                     >
                       {rank.model}
                     </Typography>
                   </Box>
+
                   <Grid
                     container
-                    columnSpacing={{
-                      xs: -1,
-                      sm: 2,
-                      md: 5,
-                      lg: 1,
-                    }}
+                    columnSpacing={{ xs: -1, sm: 2, md: 5, lg: 1 }}
                     sx={{
                       mt: { xs: 1, sm: 1.7, md: 0.5, lg: 1 },
-                      mb: { xs: 5 },
-                      ml: { xs: 1.8, sm: -2, md: -7, lg: 0 },
+                      mb: { xs: 1 },
+                      ml: { xs: 1.8, sm: -2, md: -7, lg: 1 },
                     }}
                   >
                     <Grid item xs={4}>
@@ -260,8 +252,8 @@ const ListAssistant = () => {
                           backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
                           display: 'flex',
                           alignItems: 'center',
-                          height: '100%',
                           justifyContent: 'center',
+                          height: '100%',
                           ':hover': {
                             backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
                             boxShadow: 'none',
@@ -274,18 +266,18 @@ const ListAssistant = () => {
                         }}
                       >
                         <IconPower color="white" />
-                        {/* {checkedRanks.includes(rank.id) ? 'ON' : 'OFF'} */}
                       </Button>
                     </Grid>
 
                     <Grid item xs={4}>
                       <Button
                         variant="contained"
-                        style={{
-                          background: '#2196F3',
+                        sx={{
+                          backgroundColor: '#2196F3',
                           padding: '2px 12px',
                           fontSize: '12px',
                           minWidth: 'auto',
+                          ':hover': { backgroundColor: '#1976D2' },
                         }}
                       >
                         <IconEdit color="white" />
@@ -295,14 +287,15 @@ const ListAssistant = () => {
                     <Grid item xs={4}>
                       <Button
                         variant="contained"
-                        style={{
-                          background: '#FFC107',
+                        sx={{
+                          backgroundColor: '#FFC107',
                           padding: '2px 12px',
                           fontSize: '12px',
                           minWidth: 'auto',
+                          ':hover': { backgroundColor: '#FFB300' },
                         }}
                         component={Link}
-                        to="/apps/assistant/:id"
+                        to={`/apps/assistant/${rank.id}`}
                       >
                         <IconStackBack stroke={2} />
                       </Button>
@@ -310,7 +303,7 @@ const ListAssistant = () => {
                   </Grid>
                 </Box>
 
-                <Box sx={{ width: '100%', px: 2, py: 1, mt: { xs: 12, sm: 0 } }}>
+                <Box sx={{ width: '100%', px: 1, mt: { xs: 12, sm: 0 } }}>
                   <Box>
                     <Grid container spacing={2}>
                       <Grid item xs={6} sm={6} md={12}>
