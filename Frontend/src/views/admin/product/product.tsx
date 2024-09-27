@@ -182,11 +182,18 @@ const DataBox = [
   },
 ];
 
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
+
 const ProductAdmin = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
-  const column = useMemo(
+  const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
@@ -211,7 +218,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Giá niêm yết',
-
+        dataIndex: 'gianiemyet',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.gia_niem_yet}
@@ -221,7 +228,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Khuyến mại',
-
+        dataIndex: 'khuyenmai',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.khuyen_mai}
@@ -231,6 +238,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Thanh toán',
+        dataIndex: 'thanhtoan',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.thanh_toan}
@@ -240,6 +248,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Thao tác',
+        dataIndex: 'thaotac',
         render: () => (
           <IconButton>
             <IconEye stroke={2} style={{ color: '#b1ffb3' }} />

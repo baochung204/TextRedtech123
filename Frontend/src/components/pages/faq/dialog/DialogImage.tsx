@@ -74,7 +74,7 @@ const DialogImage: React.FC<PropsDialog> = ({
   return (
     <>
       <Dialog fullWidth={true} maxWidth="sm" open={value === '5' && open} onClose={handleClose}>
-        <DialogTitle>
+        <DialogTitle sx={{ textAlign: 'center' }}>
           <Typography fontWeight={600} variant="h3">
             Thêm Ảnh
           </Typography>
@@ -109,7 +109,15 @@ const DialogImage: React.FC<PropsDialog> = ({
               )}
               {fileUrl && (
                 <Grid item sm={12}>
-                  <Box component="img" src={fileUrl} alt="Preview" width="100%" />
+                  <Box component="img" src={fileUrl} alt="Preview" width={400}
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      position: 'relative',
+                      margin: 'auto',
+                    }}
+                  />
                   <TextField
                     fullWidth
                     label="Tên ảnh"
@@ -134,7 +142,15 @@ const DialogImage: React.FC<PropsDialog> = ({
                     rows={4}
                     value={formData.moTa}
                     onChange={(e) => setFormData({ ...formData, moTa: e.target.value })}
-                    sx={{ mt: 2, px: 0 }}
+                    sx={{
+                      mt: 2,
+                      '& .MuiInputBase-input': {
+                        padding: 0,
+                      },
+                      '& .MuiInputBase-root': {
+                        padding: '12px 14px',
+                      },
+                    }}
                   />
                 </Grid>
               )}
@@ -143,7 +159,7 @@ const DialogImage: React.FC<PropsDialog> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Hủy</Button>
-          <Button onClick={() => {}}>Lưu</Button>
+          <Button onClick={() => { }}>Lưu</Button>
         </DialogActions>
       </Dialog>
     </>

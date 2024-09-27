@@ -35,7 +35,6 @@ import ChildCard from 'src/components/shared/ChildCard';
 //   { to: '/apps/blog/posts', title: 'Blog' },
 //   { title: 'Blog post' },
 // ];
-import IconPoint from 'src/assets/images/logos/R-Point.png';
 
 interface PropsTable {
   id: string;
@@ -210,15 +209,7 @@ const CustomerListOrder = () => {
             px: 2,
           }}
         >
-          {value}{' '}
-          <Box
-            component="img"
-            src={IconPoint}
-            alt=""
-            width={20}
-            height={20}
-            sx={{ borderRadius: '50%' }}
-          />
+          {value} đ
         </Box>
       ),
     },
@@ -349,6 +340,35 @@ const CustomerListOrder = () => {
                           marginRight: 2,
                         }}
                         size='small'
+                        MenuProps={{
+                          PaperProps: {
+                            sx: {
+                              marginTop: 1,
+                              maxHeight: 400,
+                              '&::-webkit-scrollbar': {
+                                width: '4px',
+                              },
+                              '&::-webkit-scrollbar-thumb': {
+                                backgroundColor: '#D2D2D2',
+                                borderRadius: '10px',
+                              },
+                              '&::-webkit-scrollbar-thumb:hover': {
+                                backgroundColor: '#C6C8CC',
+                              },
+                              '&::-webkit-scrollbar-track': {
+                                backgroundColor: '#f1f1f1',
+                              },
+                            },
+                          },
+                          anchorOrigin: {
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                          },
+                          transformOrigin: {
+                            vertical: 'top',
+                            horizontal: 'right',
+                          },
+                        }}
                       >
                         {columns.map((header: any) => {
 
