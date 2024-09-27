@@ -58,23 +58,23 @@ const Faq = () => {
       '3': [
         {
           title: 'ID',
-          dataIndex: 'idCode',
+          dataIndex: 'id',
         },
         {
           title: 'Tên file',
-          dataIndex: 'fileName',
+          dataIndex: 'name',
         },
         {
           title: 'Dung lượng',
-          dataIndex: 'datas',
+          dataIndex: 'size',
         },
         {
           title: 'Ngày tải',
-          dataIndex: 'creationDate',
+          dataIndex: 'dateTime',
         },
         {
           title: 'Định dạng',
-          dataIndex: 'formats',
+          dataIndex: 'typeFile',
         },
         {
           title: 'Hành động',

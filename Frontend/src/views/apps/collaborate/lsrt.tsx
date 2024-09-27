@@ -73,7 +73,7 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 
 //   return 0;
 // }
-const rows: any = tabledh;
+
 
 type Order = 'asc' | 'desc';
 
@@ -287,9 +287,8 @@ const HistoryMoney = () => {
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   // const [dense, setDense] = React.useState(false);
-  const [dense] = React.useState(false);
+  
 
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof []) => {
@@ -347,7 +346,6 @@ const HistoryMoney = () => {
   // const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
   const [month, setMonth] = React.useState('1');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

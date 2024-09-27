@@ -35,7 +35,6 @@ import ChildCard from 'src/components/shared/ChildCard';
 //   { to: '/apps/blog/posts', title: 'Blog' },
 //   { title: 'Blog post' },
 // ];
-import IconPoint from 'src/assets/images/logos/R-Point.png';
 
 interface PropsTable {
   id: string;
@@ -210,15 +209,7 @@ const CustomerListOrder = () => {
             px: 2,
           }}
         >
-          {value}{' '}
-          <Box
-            component="img"
-            src={IconPoint}
-            alt=""
-            width={20}
-            height={20}
-            sx={{ borderRadius: '50%' }}
-          />
+          {value} đ
         </Box>
       ),
     },
