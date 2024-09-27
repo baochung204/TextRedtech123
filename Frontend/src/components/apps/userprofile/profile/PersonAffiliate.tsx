@@ -118,6 +118,7 @@ const PersonAffiliate = () => {
     setIsSubmitting(true);
     try {
       const errors = await formik.validateForm();
+      console.log('testttt: ', errors);
 
       if (Object.keys(errors).length === 0) {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -135,9 +136,109 @@ const PersonAffiliate = () => {
       setIsSubmitting(false);
     }
   };
+  const handleNext1 = async () => {
+    console.log('Thành công');
+
+    setIsSubmitting(true);
+    try {
+      const errors = await formik1.validateForm();
+      console.log('testttt: ', errors);
+
+      if (Object.keys(errors).length === 0) {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped((prevSkipped) => {
+          const newSkipped = new Set(prevSkipped);
+          newSkipped.delete(activeStep);
+          return newSkipped;
+        });
+      } else {
+        formik1.setErrors(errors);
+      }
+    } catch (error) {
+      console.error('Validation failed:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  // Sử dụng Formik để quản lý form
+  const [currentId] = useState(1);
+
+  const formik1 = useFormik({
+    initialValues: {
+      agreeTerms1: false,
+    },
+    validationSchema: Yup.object({
+      agreeTerms1: Yup.boolean().oneOf([true], 'Bạn cần đồng ý với các điều khoản'),
+    }),
+    onSubmit: (values) => {
+      if (activeStep === steps.length - 1) {
+        console.log('Final values:', values);
+      } else {
+        handleNext1();
+      }
+    },
+  });
+
+  // const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const isChecked = event.target.checked;
+  //   console.log('132123', isChecked);
+  //   // Get the checkbox state (true/false)
+  //   formik1.setFieldValue('agreeTerms1', isChecked); // Update Formik's value for agreeTerms
+
+  //   // JSON data with the current state of agreeTerms
+  //   const jsonData = JSON.stringify({
+  //     id: currentId,
+  //     is_check: isChecked, // The value will be true or false based on the checkbox state
+  //   });
+
+  //   // Send the updated checkbox value immediately to the API
+  //   fetch(`http://localhost:9999/status/1`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: jsonData,
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('Success:', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // };
+  const handleCheckboxChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = event.target.checked;
+
+    // Get the checkbox state (true/false)
+    formik1.setFieldValue('agreeTerms1', isChecked); // Update Formik's value for agreeTerms
+    console.log('agreeTerms1', formik1.values.agreeTerms1);
+    // JSON data with the current state of agreeTerms
+    const jsonData = JSON.stringify({
+      id: currentId,
+      is_check: isChecked,
+    });
+
+    // Send the updated checkbox value immediately to the API
+    fetch(`http://localhost:9999/status/1`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   const handleSteps = (step: number) => {
@@ -160,20 +261,24 @@ const PersonAffiliate = () => {
                 <Rule />
               </Scrollbar>
             </Box>
-            <Box>
-              <Checkbox
-                id="agreeTerms"
-                name="agreeTerms"
-                checked={formik.values.agreeTerms}
-                onChange={formik.handleChange}
-                color="primary"
-                inputProps={{ 'aria-label': 'checkbox with default color' }}
-              />
-              <span>Đồng ý với các điều khoản của chúng tôi</span>
 
-              {/* Show error if agreeTerms has validation error */}
-              {formik.errors.agreeTerms && (
-                <Typography color="error">{formik.errors.agreeTerms}</Typography>
+            <Box>
+              {/* Form for checkbox */}
+              <form>
+                <Checkbox
+                  id="agreeTerms"
+                  name="agreeTerms"
+                  checked={formik1.values.agreeTerms1}
+                  onChange={handleCheckboxChange1}
+                  color="primary"
+                  inputProps={{ 'aria-label': 'checkbox with default color' }}
+                />
+                <span>Đồng ý với các điều khoản của chúng tôi</span>
+              </form>
+
+              {/* Show validation error if agreeTerms has an error */}
+              {formik1.errors.agreeTerms1 && (
+                <Typography color="error">{formik1.errors.agreeTerms1}</Typography>
               )}
             </Box>
           </>
@@ -408,7 +513,7 @@ const PersonAffiliate = () => {
 
   const handleButtonClick = () => {
     setIsSubmitting(true);
-    formik.handleSubmit();
+    formik1.handleSubmit();
     console.log(formik.values.frontImage);
     console.log(formik.values.backImage);
     if (formik.values.backImage !== null && formik.values.frontImage !== null) {
@@ -465,8 +570,8 @@ const PersonAffiliate = () => {
             <Button
               onClick={() => {
                 setIsSubmitting(true);
-                formik.handleSubmit();
-                console.log(formik.errors);
+                formik1.handleSubmit();
+                console.log(formik1.errors);
               }}
               variant="contained"
               color="secondary"

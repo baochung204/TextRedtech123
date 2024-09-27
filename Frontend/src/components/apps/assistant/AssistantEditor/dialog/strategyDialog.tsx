@@ -8,9 +8,9 @@ import {
   Typography
 } from '@mui/material';
 import { useState } from 'react';
-import rank1 from 'src/assets/images/rank/rank1.png';
-import rank2 from 'src/assets/images/rank/rank2.png';
-import rank3 from 'src/assets/images/rank/rank3.png';
+import rank1 from 'src/assets/huy hiu/0.png';
+import rank2 from 'src/assets/huy hiu/1.png';
+import rank3 from 'src/assets/huy hiu/2.png';
 
 interface Ranks {
   rankName: string;
