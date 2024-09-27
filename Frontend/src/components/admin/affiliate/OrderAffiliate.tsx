@@ -228,7 +228,7 @@ const OrderAffiliate = () => {
       {
         title: 'Đơn hàng',
         dataIndex: '',
-        render: (row, value: any) => (
+        render: (_row: any, value: any) => (
           <Chip label={value.status} color={getStatusAccountColor(value.status)} />
         ),
       },

@@ -215,7 +215,8 @@ const HistoryAffiliate = () => {
       {
         title: 'Duyệt hóa đơn',
         dataIndex: '',
-        render: (row, value: any) => (
+        // render: (_row:any, value: any) => (
+        render: () => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Checkbox defaultChecked />
           </Box>
@@ -223,7 +224,9 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'Đã thanh toán',
-        render: (row, value: any) => (
+        dataIndex: '',
+        // render: (row, value: any) => (
+        render: () => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Checkbox defaultChecked />
           </Box>
@@ -231,7 +234,9 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'Thông báo',
-        render: (row, value: any) => <Button>Gửi email</Button>,
+        dataIndex: '',
+        // render: (row, value: any) => <Button>Gửi email</Button>,
+        render: () => <Button>Gửi email</Button>,
       },
     ],
     [],

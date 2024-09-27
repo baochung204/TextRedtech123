@@ -134,16 +134,16 @@ interface Column {
   isValids?: boolean;
 }
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
+// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
 // type Order = 'asc' | 'desc';
 
@@ -244,7 +244,7 @@ const FlashSale = () => {
         id: 'product',
         title: 'Sản phẩm',
         dataIndex: 'product',
-        render: (text: any, value: any) => (
+        render: (_text: any, value: any) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {/* Avatar on the left */}
             <img
@@ -270,7 +270,7 @@ const FlashSale = () => {
         id: 'listed',
         title: 'Giá niêm yết',
         dataIndex: 'listed',
-        render: (text: any, value: any) => (
+        render: (_text: any, value: any) => (
           <Typography
             color="textSecondary"
             variant="subtitle2"
@@ -286,7 +286,7 @@ const FlashSale = () => {
         id: 'sale',
         title: 'Giảm giá',
         dataIndex: 'sale',
-        render: (text: any, value: any) => (
+        render: (_text: any, value: any) => (
           <Typography
             color="textSecondary"
             variant="subtitle2"
@@ -302,7 +302,7 @@ const FlashSale = () => {
         id: 'flashSale',
         title: 'Giá Flash-Sale',
         dataIndex: 'flashSale',
-        render: (text: any, value: any) => (
+        render: (_text: any, value: any) => (
           <Typography
             color="textSecondary"
             variant="subtitle2"
@@ -318,7 +318,7 @@ const FlashSale = () => {
         id: 'buy',
         title: 'Số lượt mua',
         dataIndex: 'buy',
-        render: (text: any, value: any) => (
+        render: (_text: any, value: any) => (
           <Typography color="textSecondary" variant="subtitle2">
             {value.buy.toLocaleString()}
           </Typography>
@@ -328,7 +328,7 @@ const FlashSale = () => {
         id: 'TypeVoucher',
         title: 'Doanh thu',
         dataIndex: 'TypeVoucher',
-        render: (text: any, value: any) => (
+        render: (_text: any, value: any) => (
           <Typography
             color="textSecondary"
             variant="subtitle2"
@@ -344,7 +344,7 @@ const FlashSale = () => {
         id: 'status',
         title: 'Trạng thái',
         dataIndex: 'status',
-        render: (text: any, value: any) => (
+        render: (_text: any, value: any) => (
           <Typography color="textSecondary" variant="subtitle2">
             <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
           </Typography>
@@ -372,7 +372,7 @@ const FlashSale = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows3.length) : 0;
+  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows3.length) : 0;
   return (
     <div>
       {' '}
