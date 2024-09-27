@@ -321,6 +321,35 @@ const BuyPoints = () => {
                     onChange={handleColumnChange}
                     renderValue={() => 'Sửa đổi cột'}
                     size='small'
+                    MenuProps={{
+                      PaperProps: {
+                        sx: {
+                          marginTop: 1,
+                          maxHeight: 400,
+                          '&::-webkit-scrollbar': {
+                            width: '4px',
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: '#D2D2D2',
+                            borderRadius: '10px',
+                          },
+                          '&::-webkit-scrollbar-thumb:hover': {
+                            backgroundColor: '#C6C8CC',
+                          },
+                          '&::-webkit-scrollbar-track': {
+                            backgroundColor: '#f1f1f1',
+                          },
+                        },
+                      },
+                      anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                      },
+                      transformOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                      },
+                    }}
                   >
                     {column.map((header: any) => {
 
