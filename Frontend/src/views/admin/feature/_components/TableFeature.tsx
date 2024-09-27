@@ -1,3 +1,4 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { Badge, Checkbox, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -6,7 +7,6 @@ import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import DataFeature from '../data/DataFeuture';
-import FilterListIcon from '@mui/icons-material/FilterList';
 
 
 interface Column {
@@ -35,7 +35,7 @@ const TableFeature = () => {
     {
       title: 'Thao tác',
       dataIndex: 'action',
-      render: (value: any) => (
+      render: () => (
         <>
           <IconButton>
             <IconEye stroke={2} style={{ color: '#b1ffb3' }} />

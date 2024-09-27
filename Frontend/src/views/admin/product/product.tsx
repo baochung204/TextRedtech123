@@ -1,4 +1,17 @@
-import { Badge, Box, Checkbox, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField, Typography } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import {
+  Badge,
+  Box,
+  Checkbox,
+  Grid,
+  IconButton,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconChartBar, IconEye, IconSearch } from '@tabler/icons-react';
@@ -8,8 +21,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DataOrderProduct from './data/DataOrderProduct';
-import FilterListIcon from '@mui/icons-material/FilterList';
-
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -171,81 +182,92 @@ const DataBox = [
   },
 ];
 
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 
 const ProductAdmin = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
 
-  const column = useMemo(() => [
-    {
-      title: 'ID',
-      dataIndex: 'id_don_hang',
-    },
-    {
-      title: 'Ngày mua',
-      dataIndex: 'createdAt',
-      render: (row, value: any) => (
-        <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-          {value.createdAt.toLocaleDateString()}
-        </Typography>
-      ),
-    },
-    {
-      title: 'ID khách hàng',
-      dataIndex: 'id_khach_hang',
-    },
-    {
-      title: 'Tên khách hàng',
-      dataIndex: 'ten_khach_hang',
-    },
-    {
-      title: 'Giá niêm yết',
-
-      render: (row, value: any) => (
-        <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-          {value.gia_niem_yet}
-          <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Khuyến mại',
-
-      render: (row, value: any) => (
-        <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-          {value.khuyen_mai}
-          <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Thanh toán',
-      render: (row, value: any) => (
-        <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-          {value.thanh_toan}
-          <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Thao tác',
-      render: (row, value: any) => (
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-        </IconButton>
-      ),
-    },
-  ], [])
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        title: 'ID',
+        dataIndex: 'id_don_hang',
+      },
+      {
+        title: 'Ngày mua',
+        dataIndex: 'createdAt',
+        render: (_row: any, value: any) => (
+          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+            {value.createdAt.toLocaleDateString()}
+          </Typography>
+        ),
+      },
+      {
+        title: 'ID khách hàng',
+        dataIndex: 'id_khach_hang',
+      },
+      {
+        title: 'Tên khách hàng',
+        dataIndex: 'ten_khach_hang',
+      },
+      {
+        title: 'Giá niêm yết',
+        dataIndex: 'gianiemyet',
+        render: (_row: any, value: any) => (
+          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+            {value.gia_niem_yet}
+            <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Khuyến mại',
+        dataIndex: 'khuyenmai',
+        render: (_row: any, value: any) => (
+          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+            {value.khuyen_mai}
+            <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Thanh toán',
+        dataIndex: 'thanhtoan',
+        render: (_row: any, value: any) => (
+          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+            {value.thanh_toan}
+            <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Thao tác',
+        dataIndex: 'thaotac',
+        render: () => (
+          <IconButton>
+            <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+          </IconButton>
+        ),
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -253,7 +275,9 @@ const ProductAdmin = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -269,32 +293,31 @@ const ProductAdmin = () => {
           <Grid item xs={12}>
             <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Grid item xs={4} sm={4} md={4}>
-                <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Grid item xs={12}>
-                    <TextField
-                      id="outlined-search"
-                      placeholder="Tìm kiếm thông báo"
-                      size="small"
-                      type="search"
-                      variant="outlined"
-                      inputProps={{ 'aria-label': 'Search Followers' }}
-                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <IconSearch size="20" />
-                          </InputAdornment>
-                        ),
-                      }}
-                      fullWidth={true}
-                    />
-                  </Grid>
-                </Grid>
+                <TextField
+                  id="outlined-search"
+                  placeholder="Tìm kiếm thông báo"
+                  size="small"
+                  type="search"
+                  variant="outlined"
+                  inputProps={{ 'aria-label': 'Search Followers' }}
+                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <IconSearch size="20" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth={true}
+                />
               </Grid>
 
-              <Grid item xs={4}>
+              <Grid item xs={6}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <Badge
+                    badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                    color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  >
                     <FilterListIcon color="action" />
                   </Badge>
                   <Select
@@ -303,11 +326,10 @@ const ProductAdmin = () => {
                     displayEmpty
                     onChange={handleColumnChange}
                     renderValue={() => 'Sửa đổi cột'}
-                    size='small'
+                    size="small"
                   >
                     {column.map((header: any) => {
-
-                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                       const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -339,11 +361,7 @@ const ProductAdmin = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable
-            columns={column}
-            dataSource={DataOrderProduct}
-            dataSelect={dataSelect}
-          />
+          <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </>

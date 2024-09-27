@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   CardContent,
   Fab,
@@ -7,11 +6,10 @@ import {
   Stack,
   Tab,
   Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import CircleIcon from '@mui/icons-material/Circle';
 import React, { useEffect } from 'react';
 import BlankCard from './BlankCard';
 
@@ -24,9 +22,9 @@ import { useDispatch, useSelector } from 'react-redux';
 // import img2 from 'src/assets/images/badge/badge2.png';
 // import img3 from 'src/assets/images/badge/badge3.png';
 // import img4 from 'src/assets/images/blog/blog-img1.jpg';
-import Develop from './Develop';
-import {fetchIntegrations}  from 'src/store/apps/integration/integrationSlice';
+import { fetchIntegrations } from 'src/store/apps/integration/integrationSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
+import Develop from './Develop';
 // import { Api } from 'src/store/apps/integration/integrationSlice';
 
 // interface Assistant {

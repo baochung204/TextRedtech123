@@ -1,10 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import * as React from 'react';
-import { alpha, useTheme } from '@mui/material/styles';
-import { format } from 'date-fns';
 import {
+  Avatar,
   Box,
+  FormControlLabel,
+  IconButton,
+  InputAdornment,
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -13,23 +15,21 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-  Toolbar,
-  IconButton,
-  Tooltip,
-  FormControlLabel,
-  Typography,
-  Avatar,
   TextField,
-  InputAdornment,
-  Paper,
+  Toolbar,
+  Tooltip,
+  Typography,
 } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
-import { useSelector, useDispatch } from 'src/store/Store';
+import { IconDotsVertical, IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
+import { format } from 'date-fns';
+import * as React from 'react';
+import { useDispatch, useSelector } from 'src/store/Store';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import { ProductType } from 'src/types/apps/eCommerce';
 import CustomCheckbox from '../../../forms/theme-elements/CustomCheckbox';
 import CustomSwitch from '../../../forms/theme-elements/CustomSwitch';
-import { IconDotsVertical, IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
-import { ProductType } from 'src/types/apps/eCommerce';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -256,7 +256,8 @@ const ProductTableList = () => {
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredRows: ProductType[] = getProducts.filter((row) => {
-      return row.title.toLowerCase().includes(event.target.value);
+      // return row.title.toLowerCase().includes(event.target.value);
+      return row.name.toLowerCase().includes(event.target.value);
     });
     setSearch(event.target.value);
     setRows(filteredRows);

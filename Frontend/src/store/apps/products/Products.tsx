@@ -4,11 +4,11 @@ import { AppDispatch } from 'src/store/Store';
 
 const API_URL = 'http://localhost:9999/productsSP';
 
-interface StateType {
-  productss: any[];
-  currentFilter: string;
-  productSearch: string;
-}
+// interface StateType {
+//   productss: any[];
+//   currentFilter: string;
+//   productSearch: string;
+// }
 
 const initialState: any = {
   products: [],

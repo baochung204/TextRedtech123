@@ -65,7 +65,7 @@ const TopCards = () => {
     <Grid container spacing={3}>
       {topcards.map((topcard, i) => (
         <Grid item xs={12} sm={4} lg={2} key={i}>
-          <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
+          <Box textAlign="center" sx={{ backgroundColor: '#ffebeb' }}>
             <CardContent>
               <img src={topcard.icon} alt={topcard.icon} width="50" />
               <Typography

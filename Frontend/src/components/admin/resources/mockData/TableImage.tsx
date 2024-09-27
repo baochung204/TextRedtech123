@@ -1,3 +1,4 @@
+import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import {
   IconDatabaseSmile,
@@ -9,7 +10,6 @@ import {
 } from '@tabler/icons-react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import { HeadCell } from '../types/HeadCell';
-import { IconButton, Typography } from '@mui/material';
 export const Image = [
   {
     bgColor: 'primary.light',

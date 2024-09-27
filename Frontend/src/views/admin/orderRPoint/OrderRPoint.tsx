@@ -1,4 +1,15 @@
-import { Badge, Box, Checkbox, Grid, InputAdornment, ListItemText, MenuItem, Select, TextField, Typography } from '@mui/material';
+import {
+  Badge,
+  Box,
+  Checkbox,
+  Grid,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -15,7 +26,6 @@ import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
 
 const BCrumb = [
   {
@@ -132,7 +142,6 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-
 
 interface RechargeTransaction {
   id: string; // ID giao dịch
@@ -330,84 +339,86 @@ const FilmsData: FilmsData[] = [
 const OrderRPoint = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-  const column = useMemo<Column[]>(() => [
-    {
-      dataIndex: 'id',
-      title: 'ID',
-    },
-    {
-      dataIndex: 'rechargeDate',
-      title: 'Ngày nạp',
-    },
-    {
-      dataIndex: 'customerName',
-      title: 'Khách hàng',
-    },
-    {
-      dataIndex: 'email',
-      title: 'Email',
-    },
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        dataIndex: 'id',
+        title: 'ID',
+      },
+      {
+        dataIndex: 'rechargeDate',
+        title: 'Ngày nạp',
+      },
+      {
+        dataIndex: 'customerName',
+        title: 'Khách hàng',
+      },
+      {
+        dataIndex: 'email',
+        title: 'Email',
+      },
 
-    {
-      dataIndex: 'phoneNumber',
-      title: 'Số điện thoại',
-    },
-    {
-      dataIndex: 'packageName',
-      title: 'Tên gói ',
-    },
-    {
-      dataIndex: 'points',
-      title: 'Số point ',
-    },
-    {
-      dataIndex: 'listedPrice',
-      title: 'Giá niêm yết ',
-    },
-    {
-      dataIndex: 'promotionCode',
-      title: 'Mã khuyến mại',
-    },
-    {
-      dataIndex: 'paymentAmount',
-      title: 'Số tiền  ',
-    },
-    {
-      dataIndex: 'totalOrder',
-      title: 'Tổng đơn',
-    },
-    {
-      dataIndex: 'publisherId',
-      title: 'ID publisher',
-    },
-    {
-      dataIndex: 'affiliateCommission',
-      title: 'Hoa hồng Affiliate',
-    },
-    {
-      dataIndex: 'status',
-      title: 'Trạng thái',
-    },
-    {
-      dataIndex: 'invoice',
-      title: 'Hóa đơn',
-    },
-    {
-      dataIndex: 'details',
-      title: 'Chi tiết',
-    },
-  ], [])
-
+      {
+        dataIndex: 'phoneNumber',
+        title: 'Số điện thoại',
+      },
+      {
+        dataIndex: 'packageName',
+        title: 'Tên gói ',
+      },
+      {
+        dataIndex: 'points',
+        title: 'Số point ',
+      },
+      {
+        dataIndex: 'listedPrice',
+        title: 'Giá niêm yết ',
+      },
+      {
+        dataIndex: 'promotionCode',
+        title: 'Mã khuyến mại',
+      },
+      {
+        dataIndex: 'paymentAmount',
+        title: 'Số tiền  ',
+      },
+      {
+        dataIndex: 'totalOrder',
+        title: 'Tổng đơn',
+      },
+      {
+        dataIndex: 'publisherId',
+        title: 'ID publisher',
+      },
+      {
+        dataIndex: 'affiliateCommission',
+        title: 'Hoa hồng Affiliate',
+      },
+      {
+        dataIndex: 'status',
+        title: 'Trạng thái',
+      },
+      {
+        dataIndex: 'invoice',
+        title: 'Hóa đơn',
+      },
+      {
+        dataIndex: 'details',
+        title: 'Chi tiết',
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -415,11 +426,11 @@ const OrderRPoint = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
-
 
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
@@ -459,9 +470,12 @@ const OrderRPoint = () => {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                <Badge
+                  badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                  color={dataSelect.length !== 0 ? 'primary' : undefined}
+                >
                   <FilterListIcon color="action" />
                 </Badge>
                 <Select
@@ -471,15 +485,41 @@ const OrderRPoint = () => {
                   onChange={handleColumnChange}
                   renderValue={() => 'Sửa đổi cột'}
                   size='small'
-                 
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        marginTop: 1,
+                        maxHeight: 400,
+                        '&::-webkit-scrollbar': {
+                          width: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: '#D2D2D2',
+                          borderRadius: '10px',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                          backgroundColor: '#C6C8CC',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                          backgroundColor: '#f1f1f1',
+                        },
+                      },
+                    },
+                    anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    },
+                    transformOrigin: {
+                      vertical: 'top',
+                      horizontal: 'right',
+                    },
+                  }}
                 >
                   {column.map((header: any) => {
-
-                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
                     const isSelected = dataSelect.includes(header.dataIndex);
                     return (
-                      <MenuItem
-                        key={header.dataIndex} value={header.dataIndex}>
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
                         <Checkbox checked={!isSelected} />
                         <ListItemText primary={header.title} />
                       </MenuItem>
@@ -504,11 +544,7 @@ const OrderRPoint = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable
-            columns={column}
-            dataSource={dataRows}
-            dataSelect={dataSelect}
-          />
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </PageContainer>
