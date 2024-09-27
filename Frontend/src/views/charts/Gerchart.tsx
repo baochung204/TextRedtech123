@@ -41,7 +41,7 @@ const GerChart = () => {
       height: 350,
       type: 'line',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: 'primary',
       toolbar: {
         show: false,
       },
@@ -93,7 +93,7 @@ const GerChart = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: ['#a8ff78'],
+        gradientToColors: ['#ffcc99'],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,

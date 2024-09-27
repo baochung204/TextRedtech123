@@ -64,7 +64,7 @@ const Customizer: FC = () => {
   const thColors: colors[] = [
     {
       id: 1,
-      bgColor: '#5D87FF',
+      bgColor: '#ff3333',
       disp: 'BLUE_THEME',
     },
     {

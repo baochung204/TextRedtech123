@@ -35,9 +35,8 @@ const Welcome = () => {
       >
         <Alert
           onClose={handleClose}
-          severity="info"
           variant="filled"
-          sx={{ width: '100%', color: 'white' }}
+          sx={{ width: '100%', color: 'white', backgroundColor: 'primary.main' }}
         >
           <AlertTitle>Chào mừng bạn đã đến với </AlertTitle>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>

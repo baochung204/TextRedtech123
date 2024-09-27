@@ -25,31 +25,31 @@ const topcards: cardType[] = [
     icon: icon3,
     title: 'Khách hàng',
     digits: '3,650',
-    bgcolor: 'warning',
+    bgcolor: 'primary',
   },
   {
     icon: icon4,
     title: 'Đơn hàng',
     digits: '356',
-    bgcolor: 'secondary',
+    bgcolor: 'primary',
   },
   {
     icon: icon5,
     title: 'AOV',
     digits: '696',
-    bgcolor: 'error',
+    bgcolor: 'primary',
   },
   {
     icon: icon6,
     title: 'GMV',
     digits: '96',
-    bgcolor: 'success',
+    bgcolor: 'primary',
   },
   {
     icon: icon1,
     title: 'CVR',
     digits: '59',
-    bgcolor: 'info',
+    bgcolor: 'primary',
   },
 ];
 
