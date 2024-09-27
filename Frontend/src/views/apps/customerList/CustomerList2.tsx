@@ -28,12 +28,11 @@ import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 // import { AppDispatch, AppState } from 'src/store/Store';
-import PopupAddList2 from './PopupAddlist2';
-import { useState, useEffect, useMemo, forwardRef } from 'react';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { DataRowCustomerTable } from 'src/components/tables/tableData';
+import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
+import PopupAddList2 from './PopupAddlist2';
 
 
 
