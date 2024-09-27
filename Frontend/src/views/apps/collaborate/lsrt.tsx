@@ -4,11 +4,7 @@
 import {
   Box,
   Button,
-  Grid,
   MenuItem,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -31,45 +27,46 @@ import { tabledh } from 'src/components/tables/tabledh';
 // ];
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import format from 'date-fns/format/index.js';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 // import { useTheme } from '@emotion/react';
-const columns = [
-  {
-    title: 'ID thanh toán',
-    dataIndex: 'id'
-  },
-  {
-    title: 'Ngày yêu cầu',
-    dataIndex: 'createdAt',
-    render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
-  },
-  {
-    title: 'Ngày hoàn tất',
-    dataIndex: 'completedAt',
-    render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
-  },
-  {
-    title: "Số tiền",
-    dataIndex: 'amount',
-    render: (value: number) => `${value.toLocaleString()} VND`,
-  },
-  {
-    title: 'Trạng thái',
-    dataIndex: 'status',
-    render: (status: boolean) => status 
-      ? <Typography color="#13DEB9">Đã thanh toán</Typography> 
-      : <Typography color="#ff9800">Chờ xử lý</Typography>,
-  },
-  {
-    title: 'Hóa đơn',
-    dataIndex: 'invoice',
-    render: (invoiceUrl: string) => (
-      <Button color="success" onClick={() => window.open(invoiceUrl, '_blank')}>
-        Tải về
-      </Button>
-    ),
-  },
-];
+// const columns = [
+//   {
+//     title: 'ID thanh toán',
+//     dataIndex: 'id'
+//   },
+//   {
+//     title: 'Ngày yêu cầu',
+//     dataIndex: 'createdAt',
+//     render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
+//   },
+//   {
+//     title: 'Ngày hoàn tất',
+//     dataIndex: 'completedAt',
+//     render: (value: any) => value ? dayjs(value).format('DD/MM/YYYY') : '',
+//   },
+//   {
+//     title: "Số tiền",
+//     dataIndex: 'amount',
+//     render: (value: number) => `${value.toLocaleString()} VND`,
+//   },
+//   {
+//     title: 'Trạng thái',
+//     dataIndex: 'status',
+//     render: (status: boolean) => status 
+//       ? <Typography color="#13DEB9">Đã thanh toán</Typography> 
+//       : <Typography color="#ff9800">Chờ xử lý</Typography>,
+//   },
+//   {
+//     title: 'Hóa đơn',
+//     dataIndex: 'invoice',
+//     render: (invoiceUrl: string) => (
+//       <Button color="success" onClick={() => window.open(invoiceUrl, '_blank')}>
+//         Tải về
+//       </Button>
+//     ),
+//   },
+// ];
 
 // function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 //   if (b[orderBy] < a[orderBy]) {
@@ -155,12 +152,12 @@ type Order = 'asc' | 'desc';
 //   },
 // ];
 
-interface HeadCell {
-  disablePadding: boolean;
-  id: any;
-  label: string;
-  numeric: boolean;
-}
+// interface HeadCell {
+//   disablePadding: boolean;
+//   id: any;
+//   label: string;
+//   numeric: boolean;
+// }
 const FilmsData: any = [
   {
     id: 1,
@@ -205,14 +202,14 @@ const FilmsData: any = [
 ];
 
 
-interface EnhancedTableProps {
-  numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof []) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
-  orderBy: string;
-  rowCount: number;
-}
+// interface EnhancedTableProps {
+//   numSelected: number;
+//   onRequestSort: (event: React.MouseEvent<unknown>, property: keyof []) => void;
+//   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+//   order: Order;
+//   orderBy: string;
+//   rowCount: number;
+// }
 // const getStatusTextAndColor = (status: any) => {
 //   switch (status) {
 //     case 1:
@@ -250,42 +247,42 @@ interface EnhancedTableProps {
 //   }
 // };
 
-function EnhancedTableHead(props: EnhancedTableProps) {
-  const { order, orderBy, onRequestSort } = props;
-  const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
-    onRequestSort(event, property);
-  };
+// function EnhancedTableHead(props: EnhancedTableProps) {
+//   const { order, orderBy, onRequestSort } = props;
+//   const createSortHandler = (property: keyof []) => (event: React.MouseEvent<unknown>) => {
+//     onRequestSort(event, property);
+//   };
 
-  return (
-    <TableHead>
-      {/* <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              <Typography variant="subtitle1" fontWeight="700">
-                {headCell.label}
-              </Typography>
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow> */}
-    </TableHead>
-  );
-}
+//   return (
+//     <TableHead>
+//       {/* <TableRow>
+//         {headCells.map((headCell) => (
+//           <TableCell
+//             key={headCell.id}
+//             align={headCell.numeric ? 'right' : 'left'}
+//             padding={headCell.disablePadding ? 'none' : 'normal'}
+//             sortDirection={orderBy === headCell.id ? order : false}
+//           >
+//             <TableSortLabel
+//               active={orderBy === headCell.id}
+//               direction={orderBy === headCell.id ? order : 'asc'}
+//               onClick={createSortHandler(headCell.id)}
+//             >
+//               <Typography variant="subtitle1" fontWeight="700">
+//                 {headCell.label}
+//               </Typography>
+//               {orderBy === headCell.id ? (
+//                 <Box component="span" sx={visuallyHidden}>
+//                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+//                 </Box>
+//               ) : null}
+//             </TableSortLabel>
+//           </TableCell>
+//         ))}
+//       </TableRow> */}
+//     </TableHead>
+//   );
+// }
 
 // interface EnhancedTableToolbarProps {
 //   numSelected: number;
@@ -308,15 +305,15 @@ const HistoryMoney = () => {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n: any) => n.name);
-      setSelected(newSelecteds);
+  // const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.checked) {
+  //     const newSelecteds = rows.map((n: any) => n.name);
+  //     setSelected(newSelecteds);
 
-      return;
-    }
-    setSelected([]);
-  };
+  //     return;
+  //   }
+  //   setSelected([]);
+  // };
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
@@ -345,10 +342,10 @@ const HistoryMoney = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
 
   // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setDense(event.target.checked);

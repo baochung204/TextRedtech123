@@ -42,15 +42,13 @@
 
 // export default Tab1;
 
-import { CardContent, Box, Stack, Avatar, Grid, Button, Typography, TablePagination } from '@mui/material';
-import BlankCard from 'src/components/shared/BlankCard';
-import CircleIcon from '@mui/icons-material/Circle';
-import DataTab1 from '../DataTable/TableTab1';
+import { Avatar, Box, Button, CardContent, Grid, Stack, TablePagination, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import BlankCard from 'src/components/shared/BlankCard';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DataTab1 from '../DataTable/TableTab1';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
