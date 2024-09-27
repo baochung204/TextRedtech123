@@ -334,7 +334,6 @@ const BuyPoints = () => {
                     displayEmpty
                     onChange={handleColumnChange}
                     renderValue={() => 'Sửa đổi cột'}
-<<<<<<< HEAD
                     size='small'
                     MenuProps={{
                       PaperProps: {
@@ -365,9 +364,6 @@ const BuyPoints = () => {
                         horizontal: 'right',
                       },
                     }}
-=======
-                    size="small"
->>>>>>> main
                   >
                     {column.map((header: any) => {
                       console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));

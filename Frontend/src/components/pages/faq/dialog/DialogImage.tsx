@@ -142,7 +142,15 @@ const DialogImage: React.FC<PropsDialog> = ({
                     rows={4}
                     value={formData.moTa}
                     onChange={(e) => setFormData({ ...formData, moTa: e.target.value })}
-                    sx={{ mt: 2, px: 0 }}
+                    sx={{
+                      mt: 2,
+                      '& .MuiInputBase-input': {
+                        padding: 0,
+                      },
+                      '& .MuiInputBase-root': {
+                        padding: '12px 14px',
+                      },
+                    }}
                   />
                 </Grid>
               )}

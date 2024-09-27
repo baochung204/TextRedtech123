@@ -236,7 +236,7 @@ const PublisherAffiliate = () => {
       {
         title: 'Hồ sơ',
         dataIndex: '',
-        render: (row, value: any) => (
+        render: (_row: any, value: any) => (
           <Typography style={{ width: '100px' }} variant="subtitle2">
             <Chip label={value.contract} color={getStatusColor(value.contract)} />
           </Typography>
@@ -244,7 +244,8 @@ const PublisherAffiliate = () => {
       },
       {
         title: 'Hợp đồng Affiliate',
-        render: (row, value: any) => (
+        dataIndex: '',
+        render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Typography style={{ width: '100px' }} variant="subtitle2">
               <Chip

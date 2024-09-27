@@ -10,7 +10,6 @@ import {
 import img1 from 'src/assets/images/badge/badge.png';
 import img2 from 'src/assets/images/badge/badge2.png';
 import img3 from 'src/assets/images/badge/badge3.png';
-import { HeadCell } from '../types/HeadCell';
 export const Strategy = [
   {
     bgColor: 'primary.light',

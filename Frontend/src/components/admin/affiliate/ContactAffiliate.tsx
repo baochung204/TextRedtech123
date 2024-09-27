@@ -225,7 +225,7 @@ const ContactAffiliate = () => {
         title: 'Hợp đồng',
         dataIndex: '',
         // render: (_row: any, value: any) => (
-        render: (_row: any, value: any) => (
+        render: () => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Button style={{ width: '100px' }}>Ký ngay</Button>
           </Box>

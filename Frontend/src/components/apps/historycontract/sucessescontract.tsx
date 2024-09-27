@@ -1,4 +1,3 @@
-import React from 'react';
 import certificate from 'src/assets/images/certificate/certificate.png';
 
 const sucessescontract = () => {

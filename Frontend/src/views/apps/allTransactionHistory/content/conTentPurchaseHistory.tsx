@@ -353,7 +353,7 @@ const ContentPurchaseHistory = () => {
 
                             transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
                           }}
-                          onClick={() => handleSelectPackage(pkg)}
+                          onClick={() => handleSelectPackage(pkg.id)}
                         >
                           <CardContent
                             sx={{
