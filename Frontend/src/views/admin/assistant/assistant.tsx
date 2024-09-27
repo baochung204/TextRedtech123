@@ -26,11 +26,12 @@ import {
   IconReceipt,
   IconSearch,
 } from '@tabler/icons-react';
-import { createElement, useState } from 'react';
+import { createElement, useEffect, useMemo, useState } from 'react';
 import TableList from 'src/components/ComponentTables/tableList';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 
 const BCrumb = [
   {
@@ -165,52 +166,14 @@ const DataBox = [
   },
 ];
 
-interface HeadCell {
-  disablePadding: boolean;
+interface Column {
+  title: string;
   dataIndex: string;
-  label: string;
-  numeric: boolean;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
 }
 
-const headCells: HeadCell[] = [
-  {
-    dataIndex: 'assistantId',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID trợ lý',
-  },
-  {
-    dataIndex: 'customerId',
-    numeric: false,
-    disablePadding: false,
-    label: 'ID khách hàng',
-  },
-  {
-    dataIndex: 'assistantImage',
-    numeric: false,
-    disablePadding: false,
-    label: 'Ảnh trợ lý',
-  },
-  {
-    dataIndex: 'assistantName',
-    numeric: false,
-    disablePadding: false,
-    label: 'Tên trợ lý',
-  },
 
-  {
-    dataIndex: 'level',
-    numeric: false,
-    disablePadding: false,
-    label: 'Level',
-  },
-  {
-    dataIndex: 'experience',
-    numeric: false,
-    disablePadding: false,
-    label: 'Experience',
-  },
-];
 interface AssistantData {
   assistantId: string; // ID trợ lý
   customerId: string; // ID khách hàng
@@ -366,7 +329,52 @@ const AssistantAdmin = () => {
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
+  const column = useMemo<Column[]>(() => [
+    {
+      dataIndex: 'assistantId',
+      title: 'ID trợ lý',
+    },
+    {
+      dataIndex: 'customerId',
+      title: 'ID khách hàng',
+    },
+    {
+      dataIndex: 'assistantImage',
+      title: 'Ảnh trợ lý',
+    },
+    {
+      dataIndex: 'assistantName',
+      title: 'Tên trợ lý',
+    },
 
+    {
+      dataIndex: 'level',
+      title: 'Level',
+    },
+    {
+      dataIndex: 'experience',
+      title: 'Experience',
+    },
+  ],[])
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  useEffect(() => {
+    const selectedColumns = column || [];
+    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter(col => col.isValids === false)
+        .map(col => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const { target: { value } } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Quản lý trợ lý" items={BCrumb} />
@@ -421,26 +429,54 @@ const AssistantAdmin = () => {
 
               <Select
                 multiple
-                value={selectedItems}
+                value={dataSelect}
                 displayEmpty
-                renderValue={(selected) =>
-                  selected.length === 0 ? 'Sửa đổi cột' : `${selected.length} cột đã chọn`
-                }
-                size="small"
-                sx={{ minWidth: 150 }}
+                onChange={handleColumnChange}
+                renderValue={() => 'Sửa đổi cột'}
+                size='small'
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      marginTop: 1,
+                      maxHeight: 400,
+                      '&::-webkit-scrollbar': {
+                        width: '4px',
+                      },
+                      '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: '#D2D2D2',
+                        borderRadius: '10px',
+                      },
+                      '&::-webkit-scrollbar-thumb:hover': {
+                        backgroundColor: '#C6C8CC',
+                      },
+                      '&::-webkit-scrollbar-track': {
+                        backgroundColor: '#f1f1f1',
+                      },
+                    },
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                  },
+                }}
               >
-                <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
-                  {FilmsData.map((film) => (
-                    <MenuItem
-                      key={film.id}
-                      value={film.id}
-                      onClick={() => handleItemClick(film.id)}
-                    >
-                      <Checkbox checked={selectedItems.includes(film.id)} />
-                      <ListItemText primary={film.title} />
+                {column.map((header: any) => {
+
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+
+                  const isSelected = dataSelect.includes(header.dataIndex);
+
+                  return (
+                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                      <Checkbox checked={!isSelected} />
+                      <ListItemText primary={header.title} />
                     </MenuItem>
-                  ))}
-                </div>
+                  );
+                })}
               </Select>
 
               <IconButton
@@ -474,7 +510,7 @@ const AssistantAdmin = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <TableList headCells={headCells} dataRows={dataRows} />
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect}/>
         </Grid>
       </Grid>
     </PageContainer>
