@@ -1,3 +1,4 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
   Box,
@@ -20,7 +21,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DataOrderProduct from './data/DataOrderProduct';
-import FilterListIcon from '@mui/icons-material/FilterList';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -195,7 +195,7 @@ const ProductAdmin = () => {
       {
         title: 'Ngày mua',
         dataIndex: 'createdAt',
-        render: (row, value: any) => (
+        render: (_row, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.createdAt.toLocaleDateString()}
           </Typography>
@@ -212,7 +212,7 @@ const ProductAdmin = () => {
       {
         title: 'Giá niêm yết',
 
-        render: (row, value: any) => (
+        render: (_row, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.gia_niem_yet}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
@@ -222,7 +222,7 @@ const ProductAdmin = () => {
       {
         title: 'Khuyến mại',
 
-        render: (row, value: any) => (
+        render: (_row, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.khuyen_mai}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
@@ -231,7 +231,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Thanh toán',
-        render: (row, value: any) => (
+        render: (_row, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.thanh_toan}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
@@ -240,7 +240,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Thao tác',
-        render: (row, value: any) => (
+        render: () => (
           <IconButton>
             <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
           </IconButton>
