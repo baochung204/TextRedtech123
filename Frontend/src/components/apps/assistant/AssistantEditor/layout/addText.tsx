@@ -16,7 +16,6 @@ import {
   IconChevronsRight,
 } from '@tabler/icons-react';
 import { useState } from 'react';
-import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 function not(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => b.indexOf(value) === -1);

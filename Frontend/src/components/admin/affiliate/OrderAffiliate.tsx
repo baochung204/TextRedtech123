@@ -172,8 +172,9 @@ const OrderAffiliate = () => {
       },
       {
         title: 'Khách hàng',
+        dataIndex: 'number',
 
-        render: (_row, value: any) => (
+        render: (_row: any, value: any) => (
           <Box
             sx={{
               display: 'flex',
@@ -209,7 +210,7 @@ const OrderAffiliate = () => {
         title: 'Số point',
         dataIndex: 'branch',
 
-        render: (row, value: any) => (
+        render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex' }}>
             <Typography variant="subtitle2">{value.numberpoint}</Typography>
             <img style={{ width: '20px', height: '20px' }} src={Point} />
@@ -226,7 +227,7 @@ const OrderAffiliate = () => {
       },
       {
         title: 'Đơn hàng',
-
+        dataIndex: '',
         render: (row, value: any) => (
           <Chip label={value.status} color={getStatusAccountColor(value.status)} />
         ),

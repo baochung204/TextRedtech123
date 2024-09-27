@@ -145,104 +145,107 @@ interface Column {
   isValids?: boolean;
 }
 
-
 const HistoryAffiliate = () => {
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  
-  const column = useMemo<Column[]>(() => [
-    {
-      title: 'ID thanh toán',
-      dataIndex: 'id_checkout',
-    },
 
-    {
-      title: 'Khách hàng',
-      dataIndex: 'name_publisher',
-    },
-    {
-      title: 'Ngày yêu cầu',
-      dataIndex: 'date_request',
-    },
-    {
-      title: 'Ngày hoàn tất',
-      dataIndex: 'date_done',
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-    },
-    {
-      title: 'SĐT',
-      dataIndex: 'phone_number',
-    },
-    {
-      title: 'Số tiền rút',
-      dataIndex: 'bank_amount',
-    },
-    {
-      title: 'Số tài khoản',
-      dataIndex: 'bank_number',
-    },
-    {
-      title: 'Ngân hàng',
-      dataIndex: 'bank_name',
-    },
-    {
-      title: 'Chủ tài khoản',
-      dataIndex: 'own_bank',
-    },
-    {
-      title: 'Chi nhánh',
-      dataIndex: 'branch',
-    },
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        title: 'ID thanh toán',
+        dataIndex: 'id_checkout',
+      },
 
-    {
-      title: 'Hóa đơn',
-      dataIndex: 'vat',
-      render: (row, value: any) => <Button>Tải xuống</Button>,
-    },
-    {
-      title: 'Trạng thái',
+      {
+        title: 'Khách hàng',
+        dataIndex: 'name_publisher',
+      },
+      {
+        title: 'Ngày yêu cầu',
+        dataIndex: 'date_request',
+      },
+      {
+        title: 'Ngày hoàn tất',
+        dataIndex: 'date_done',
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+      },
+      {
+        title: 'SĐT',
+        dataIndex: 'phone_number',
+      },
+      {
+        title: 'Số tiền rút',
+        dataIndex: 'bank_amount',
+      },
+      {
+        title: 'Số tài khoản',
+        dataIndex: 'bank_number',
+      },
+      {
+        title: 'Ngân hàng',
+        dataIndex: 'bank_name',
+      },
+      {
+        title: 'Chủ tài khoản',
+        dataIndex: 'own_bank',
+      },
+      {
+        title: 'Chi nhánh',
+        dataIndex: 'branch',
+      },
 
-      render: (row, value: any) => (
-        <Typography variant="subtitle2">
-          <Chip label={value.status} color={getStatusColor(value.status)} />
-        </Typography>
-      ),
-    },
-    {
-      title: 'Duyệt hóa đơn',
-      render: (row, value: any) => (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Checkbox defaultChecked />
-        </Box>
-      ),
-    },
-    {
-      title: 'Đã thanh toán',
-      render: (row, value: any) => (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Checkbox defaultChecked />
-        </Box>
-      ),
-    },
-    {
-      title: 'Thông báo',
-      render: (row, value: any) => <Button>Gửi email</Button>,
-    },
-  ], [])
-
+      {
+        title: 'Hóa đơn',
+        dataIndex: 'vat',
+        // render: (row: any, value: any) => <Button>Tải xuống</Button>,
+        render: () => <Button>Tải xuống</Button>,
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: '',
+        render: (_row: any, value: any) => (
+          <Typography variant="subtitle2">
+            <Chip label={value.status} color={getStatusColor(value.status)} />
+          </Typography>
+        ),
+      },
+      {
+        title: 'Duyệt hóa đơn',
+        dataIndex: '',
+        render: (row, value: any) => (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Checkbox defaultChecked />
+          </Box>
+        ),
+      },
+      {
+        title: 'Đã thanh toán',
+        render: (row, value: any) => (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Checkbox defaultChecked />
+          </Box>
+        ),
+      },
+      {
+        title: 'Thông báo',
+        render: (row, value: any) => <Button>Gửi email</Button>,
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -250,7 +253,9 @@ const HistoryAffiliate = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -290,7 +295,10 @@ const HistoryAffiliate = () => {
 
               <Grid item xs={7}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                  <Badge
+                    badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                    color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  >
                     <FilterListIcon color="action" />
                   </Badge>
                   <Select
@@ -299,7 +307,7 @@ const HistoryAffiliate = () => {
                     displayEmpty
                     onChange={handleColumnChange}
                     renderValue={() => 'Sửa đổi cột'}
-                    size='small'
+                    size="small"
                     MenuProps={{
                       PaperProps: {
                         sx: {
@@ -331,8 +339,7 @@ const HistoryAffiliate = () => {
                     }}
                   >
                     {column.map((header: any) => {
-
-                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                      console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                       const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -364,7 +371,7 @@ const HistoryAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={DataHistoryTable}  dataSelect={dataSelect}/>
+          <CustomTable columns={column} dataSource={DataHistoryTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </>

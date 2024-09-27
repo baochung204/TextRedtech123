@@ -173,7 +173,7 @@ const PublisherAffiliate = () => {
       {
         title: 'Đối tác',
         dataIndex: 'doitac',
-        render: (row, value: any) => (
+        render: (_row: any, value: any) => (
           <Box
             sx={{
               display: 'flex',
@@ -204,7 +204,7 @@ const PublisherAffiliate = () => {
       {
         title: 'Loại hình',
         dataIndex: 'email_publisher',
-        render: (row, value: any) => (
+        render: (_row: any, value: any) => (
           <Typography style={{ width: '100px' }} variant="subtitle2">
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Typography style={{ width: '200px' }} variant="subtitle2">
@@ -224,8 +224,8 @@ const PublisherAffiliate = () => {
       },
       {
         title: 'Trạng thái tài khoản',
-
-        render: (row, value: any) => (
+        dataIndex: '',
+        render: (_row: any, value: any) => (
           <Chip label={value.type_account} color={getStatusAccountColor(value.type_account)} />
         ),
       },
@@ -235,7 +235,7 @@ const PublisherAffiliate = () => {
       },
       {
         title: 'Hồ sơ',
-
+        dataIndex: '',
         render: (row, value: any) => (
           <Typography style={{ width: '100px' }} variant="subtitle2">
             <Chip label={value.contract} color={getStatusColor(value.contract)} />
