@@ -1,12 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import {
-  Box,
-  Button,
-  MenuItem,
-  Typography
-} from '@mui/material';
+import { Box, Button, MenuItem, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
@@ -53,8 +48,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 //   {
 //     title: 'Trạng thái',
 //     dataIndex: 'status',
-//     render: (status: boolean) => status 
-//       ? <Typography color="#13DEB9">Đã thanh toán</Typography> 
+//     render: (status: boolean) => status
+//       ? <Typography color="#13DEB9">Đã thanh toán</Typography>
 //       : <Typography color="#ff9800">Chờ xử lý</Typography>,
 //   },
 //   {
@@ -104,7 +99,6 @@ type Order = 'asc' | 'desc';
 
 //   return stabilizedThis.map((el) => el[0]);
 // }
-
 
 // interface HeadCell {
 //   disablePadding: boolean;
@@ -200,7 +194,6 @@ const FilmsData: any = [
     render: (value: any) => <Button color="success">{value ? 'tải về' : ''}</Button>,
   },
 ];
-
 
 // interface EnhancedTableProps {
 //   numSelected: number;

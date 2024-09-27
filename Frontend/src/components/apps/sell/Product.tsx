@@ -289,7 +289,8 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 };
 
 const PaginationTable = () => {
-  const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+  // const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+  // const [ setSelectedItems] = React.useState<number[]>([]);
   const [filteredRows, setFilteredRows] = React.useState(rows);
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase();
@@ -307,70 +308,79 @@ const PaginationTable = () => {
 
   const [selected] = React.useState<readonly string[]>([]);
   const [dataSelect, setDataSelect] = React.useState<string[]>([]);
-  const FilmsData = React.useMemo<Column[]>(() => [
-    { title: 'Id', dataIndex: 'id' },
-    {
-
-      title: 'Ảnh',
-      dataIndex: 'imgsrc',
-      render: (row: any) => <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />,
-    },
-    { title: '	Tên sản phẩm', dataIndex: 'name' },
-    {
-
-      title: 'Tags',
-      dataIndex: 'tags',
-      render: (row: any) => (
-        <Chip
-          color={
-            row === 'di động'
-              ? 'success'
-              : row === 'điện tử'
+  const FilmsData = React.useMemo<Column[]>(
+    () => [
+      { title: 'Id', dataIndex: 'id' },
+      {
+        title: 'Ảnh',
+        dataIndex: 'imgsrc',
+        render: (row: any) => <Avatar src={row} alt={row} sx={{ width: 30, height: 30 }} />,
+      },
+      { title: '	Tên sản phẩm', dataIndex: 'name' },
+      {
+        title: 'Tags',
+        dataIndex: 'tags',
+        render: (row: any) => (
+          <Chip
+            color={
+              row === 'di động'
+                ? 'success'
+                : row === 'điện tử'
                 ? 'warning'
                 : row === 'đời sống'
-                  ? 'error'
-                  : 'secondary'
-          }
-          sx={{
-            borderRadius: '6px',
-          }}
-          size="small"
-          label={row}
-        />
-      ),
-    },
-    {
-
-      title: '	Giá niêm yết',
-      dataIndex: 'total',
-      render: (row: any) => (
-        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-          <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-            {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-          </Typography>
-        </Box>
-      ),
-    },
-    {
-
-      title: 'Giá khuyến mãi',
-      dataIndex: 'totalSales',
-      render: (row: any) => (
-        <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-          <Typography color="textSecondary" variant="subtitle2" sx={{ display: 'flex', gap: 0.5 }}>
-            {row} <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-          </Typography>
-        </Box>
-      ),
-    },
-  ], [])
+                ? 'error'
+                : 'secondary'
+            }
+            sx={{
+              borderRadius: '6px',
+            }}
+            size="small"
+            label={row}
+          />
+        ),
+      },
+      {
+        title: '	Giá niêm yết',
+        dataIndex: 'total',
+        render: (row: any) => (
+          <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+            <Typography
+              color="textSecondary"
+              variant="subtitle2"
+              sx={{ display: 'flex', gap: 0.5 }}
+            >
+              {row}{' '}
+              <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+            </Typography>
+          </Box>
+        ),
+      },
+      {
+        title: 'Giá khuyến mãi',
+        dataIndex: 'totalSales',
+        render: (row: any) => (
+          <Box width={'100px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+            <Typography
+              color="textSecondary"
+              variant="subtitle2"
+              sx={{ display: 'flex', gap: 0.5 }}
+            >
+              {row}{' '}
+              <img src={logoPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+            </Typography>
+          </Box>
+        ),
+      },
+    ],
+    [],
+  );
 
   React.useEffect(() => {
-    const hasIsValids = FilmsData.some(col => 'isValids' in col);
+    const hasIsValids = FilmsData.some((col) => 'isValids' in col);
     if (hasIsValids) {
-      const hiddenColumns = FilmsData
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+      const hiddenColumns = FilmsData.filter((col) => col.isValids === false).map(
+        (col) => col.dataIndex || '',
+      );
 
       setDataSelect(hiddenColumns);
     } else {
@@ -390,27 +400,29 @@ const PaginationTable = () => {
   // const [PRICE, setPrice] = React.useState(true);
   // const [PRICEVD, setPriceVD] = React.useState(true);
   const dispatch = useDispatch();
-  const { product, loading, error } = useSelector((state: any) => state);
+  // const { product, loading, error } = useSelector((state: any) => state);
 
   // Gọi fetchProducts khi component được mount
   React.useEffect(() => {
     dispatch(fetchProducts() as any);
   }, [dispatch]);
 
-  const data = product?.products;
+  // const data = product?.products;
 
-  const handleItemClick = (id: number) => {
-    setSelectedItems((prev: any) =>
-      prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
-    );
-  };
+  // const handleItemClick = (id: number) => {
+  //   setSelectedItems((prev: any) =>
+  //     prev.includes(id) ? prev.filter((item: any) => item !== id) : [...prev, id],
+  //   );
+  // };
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
   const [iconIndex, setIconIndex] = React.useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   return (
@@ -441,8 +453,7 @@ const PaginationTable = () => {
             renderValue={() => 'Sửa đổi cột'}
           >
             {FilmsData.map((header: any) => {
-
-              console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+              console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
               const isSelected = dataSelect.includes(header.dataIndex);
 

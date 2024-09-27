@@ -89,7 +89,7 @@ const AddFunction = () => {
           overflowY: 'auto',
           height: '100%',
           '&::-webkit-scrollbar': {
-            width: '8 px',
+            width: '8px',
           },
           '&::-webkit-scrollbar-track': {
             backgroundColor: 'none',
@@ -134,9 +134,7 @@ const AddFunction = () => {
             Định nghĩa chuyển đổi
           </Box>
           <Grid container spacing={2} justifyContent="center" alignItems="center">
-            <Grid item sx={{}}>
-              {customList(left)}
-            </Grid>
+            <Grid item>{customList(left)}</Grid>
             <Grid item>
               <Grid container direction="column" alignItems="center">
                 <Button
@@ -181,9 +179,7 @@ const AddFunction = () => {
                 </Button>
               </Grid>
             </Grid>
-            <Grid sx={{}} item>
-              {customList(right)}
-            </Grid>
+            <Grid item>{customList(right)}</Grid>
           </Grid>
         </Grid>
       </Grid>

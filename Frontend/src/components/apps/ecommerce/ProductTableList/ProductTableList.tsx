@@ -256,7 +256,8 @@ const ProductTableList = () => {
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredRows: ProductType[] = getProducts.filter((row) => {
-      return row.title.toLowerCase().includes(event.target.value);
+      // return row.title.toLowerCase().includes(event.target.value);
+      return row.name.toLowerCase().includes(event.target.value);
     });
     setSearch(event.target.value);
     setRows(filteredRows);

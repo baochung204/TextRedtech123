@@ -195,7 +195,7 @@ const ProductAdmin = () => {
       {
         title: 'Ngày mua',
         dataIndex: 'createdAt',
-        render: (_row, value: any) => (
+        render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.createdAt.toLocaleDateString()}
           </Typography>
@@ -212,7 +212,7 @@ const ProductAdmin = () => {
       {
         title: 'Giá niêm yết',
 
-        render: (_row, value: any) => (
+        render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.gia_niem_yet}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
@@ -222,7 +222,7 @@ const ProductAdmin = () => {
       {
         title: 'Khuyến mại',
 
-        render: (_row, value: any) => (
+        render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.khuyen_mai}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
@@ -231,7 +231,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Thanh toán',
-        render: (_row, value: any) => (
+        render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.thanh_toan}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
