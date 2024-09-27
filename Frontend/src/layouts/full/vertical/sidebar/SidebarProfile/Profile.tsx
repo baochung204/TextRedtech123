@@ -11,12 +11,7 @@ export const Profile = () => {
   const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
 
   return (
-    <Box
-      display={'flex'}
-      alignItems="center"
-      gap={2}
-      sx={{ m: 3, p: 2, bgcolor: `${'secondary.light'}` }}
-    >
+    <Box display={'flex'} alignItems="center" gap={2} sx={{ m: 3, p: 2, bgcolor: '#FFEBEB' }}>
       {!hideMenu ? (
         <>
           <Avatar alt="Remy Sharp" src={img1} />
