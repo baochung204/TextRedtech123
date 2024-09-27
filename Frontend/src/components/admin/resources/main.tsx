@@ -7,16 +7,16 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { GetFiles } from './Api/files';
-import { FileCells, Files, FileRows } from './mockData/TableFile';
+import { FileCells, Files } from './mockData/TableFile';
 import { Function, FunctionCells, FunctionRows } from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import { Model, ModelCells, ModelRows } from './mockData/TableModel';
 import { Strategy, StrategyCells, StrategyRows } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 
 const Main = () => {
   const [value, setValue] = useState('1');
@@ -30,9 +30,8 @@ const Main = () => {
   useEffect(() => {
     setTimeout(() => {
       GetFiles(setData);
-
-    }, 2000)
-  })
+    }, 2000);
+  });
 
   return (
     <Grid container xs={12}>
