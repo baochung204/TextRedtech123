@@ -18,7 +18,7 @@ const BannerPage = ({ subtitle, items, title, children }: BreadCrumbType) => (
   <Grid
     container
     sx={{
-      backgroundColor: 'primary.light',
+      backgroundColor: '#FFEBEB',
       borderRadius: (theme: Theme) => theme.shape.borderRadius / 4,
       p: '30px 25px 20px',
       marginBottom: '30px',

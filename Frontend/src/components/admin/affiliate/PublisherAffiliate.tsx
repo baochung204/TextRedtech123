@@ -265,18 +265,18 @@ const PublisherAffiliate = () => {
         title: 'Click',
         dataIndex: 'click',
       },
-      {
-        title: 'Khách hàng',
-        dataIndex: 'customer',
-      },
-      {
-        title: 'Đơn hàng',
-        dataIndex: 'order',
-      },
-      {
-        title: 'Doanh thu',
-        dataIndex: 'revenue',
-      },
+      // {
+      //   title: 'Khách hàng',
+      //   dataIndex: 'customer',
+      // },
+      // {
+      //   title: 'Số đơn hàng',
+      //   dataIndex: 'order',
+      // },
+      // {
+      //   title: 'Doanh thu',
+      //   dataIndex: 'revenue',
+      // },
       {
         title: 'CVR',
         dataIndex: 'cvr',
