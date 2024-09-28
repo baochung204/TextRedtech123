@@ -35,13 +35,13 @@ const GerChart = () => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
-
+  const primary2 = theme.palette.primary.start;
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
       type: 'line',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: 'primary',
+      foreColor: '#fa3434',
       toolbar: {
         show: false,
       },
@@ -93,12 +93,24 @@ const GerChart = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: ['#ffcc99'],
+        gradientToColors: [primary2],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
         opacityTo: 0.9,
         stops: [0, 100, 100, 100],
+        colorStops: [
+          {
+            offset: 0,
+            color: primary2,
+            opacity: 1
+          },
+          {
+            offset: 100,
+            color: primary, 
+            opacity: 0.9
+          }
+        ]
       },
     },
     markers: {
@@ -129,102 +141,14 @@ const GerChart = () => {
       data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
     },
   ];
-  // const [month, setMonth] = React.useState('1');
-
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setMonth(event.target.value);
-  // };
-
-  // chart color
-
-  // const [value, setValue] = React.useState<Dayjs | null>(null);
-  // const [value1, setValue1] = React.useState<Dayjs | null>(null);
+  
   return (
-    // <PageContainer title="Gredient Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Gradient Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-
-    // </PageContainer>
+   
     <DashboardCard>
       <>
         <Box sx={{}}>
           <Typography variant="h4">Báo cáo công việc</Typography>
 
-          {/* <Typography variant="subtitle2" color="textSecondary" mb={2}></Typography> */}
-
-          {/* <Box
-            style={{
-              display: 'flex',
-              gap: '12px',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <CustomSelect
-              labelId="month-dd"
-              id="month-dd"
-              size="small"
-              value={month}
-              onChange={handleChange}
-            >
-              <MenuItem value={1}>Doanh thu</MenuItem>
-              <MenuItem value={2}>Khách hàng </MenuItem>
-              <MenuItem value={3}>Đơn Hàng </MenuItem>
-            </CustomSelect>
-            <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
-              {' '}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-            </Box>
-          </Box> */}
         </Box>
         <Chart
           options={optionsgredientchart}

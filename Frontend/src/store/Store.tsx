@@ -11,7 +11,6 @@ import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/productsSlice';
-
 import UrlSlice from './apps/resources/url/UrlSlice';
 
 import {
