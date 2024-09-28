@@ -1,12 +1,10 @@
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import {
-  IconClick,
   IconEye,
-  IconHandClick,
   IconTrash,
   IconUnlink,
-  IconUsers,
+  IconUsers
 } from '@tabler/icons-react';
 export const Url = [
   {

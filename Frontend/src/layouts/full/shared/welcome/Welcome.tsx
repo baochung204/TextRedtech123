@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { Alert, AlertTitle, Snackbar } from '@mui/material';
 import * as React from 'react';
-import { Snackbar, Alert, AlertTitle, Box, Typography } from '@mui/material';
 
 const Welcome = () => {
   const [open, setOpen] = React.useState(false);
