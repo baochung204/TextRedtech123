@@ -330,22 +330,22 @@ const Faq = () => {
               {!isXsScreen && searchSection}
             </Box>
             {isXsScreen && searchSection}
-            <TabPanel value="1">
+            <TabPanel value="1" sx={{ px: 0 }}>
               <Tab1 />
             </TabPanel>
             <TabPanel value="2" sx={{ px: 0 }}>
               <Tab2 />
             </TabPanel>
-            <TabPanel value="3">
+            <TabPanel value="3" sx={{ px: 0 }}>
               <Tab3 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
-            <TabPanel value="4">
+            <TabPanel value="4" sx={{ px: 0 }}>
               <Tab4 dataSelect={dataSelect} />
             </TabPanel>
-            <TabPanel value="5">
+            <TabPanel value="5" sx={{ px: 0 }}>
               <Tab5 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
-            <TabPanel value="6">
+            <TabPanel value="6" sx={{ px: 0 }}>
               <Tab6 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
           </TabContext>
