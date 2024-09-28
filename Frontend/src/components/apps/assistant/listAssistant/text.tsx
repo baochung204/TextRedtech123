@@ -1,4 +1,4 @@
-<Card
+{/* <Card
   sx={{
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
@@ -227,4 +227,4 @@
       </Grid>
     </Grid>
   </Box>
-</Card>;
+</Card>; */}

@@ -7,11 +7,10 @@ import * as dropdownData from './data';
 
 import { IconMail } from '@tabler/icons-react';
 
-import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
+import Banner from 'src/assets/ICON/shopping.png';
 import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch } from 'src/store/Store';
-import Banner from 'src/assets/ICON/shopping.png';
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
