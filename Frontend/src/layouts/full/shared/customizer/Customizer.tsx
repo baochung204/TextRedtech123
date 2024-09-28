@@ -61,38 +61,38 @@ const Customizer: FC = () => {
     },
   }));
 
-  const thColors: colors[] = [
-    {
-      id: 1,
-      bgColor: '#ff3333',
-      disp: 'BLUE_THEME',
-    },
-    {
-      id: 2,
-      bgColor: '#0074BA',
-      disp: 'AQUA_THEME',
-    },
-    {
-      id: 3,
-      bgColor: '#763EBD',
-      disp: 'PURPLE_THEME',
-    },
-    {
-      id: 4,
-      bgColor: '#0A7EA4',
-      disp: 'GREEN_THEME',
-    },
-    {
-      id: 5,
-      bgColor: '#01C0C8',
-      disp: 'CYAN_THEME',
-    },
-    {
-      id: 6,
-      bgColor: '#FA896B',
-      disp: 'ORANGE_THEME',
-    },
-  ];
+  // const thColors: colors[] = [
+  //   {
+  //     id: 1,
+  //     bgColor: '#ff3333',
+  //     disp: 'BLUE_THEME',
+  //   },
+  //   {
+  //     id: 2,
+  //     bgColor: '#0074BA',
+  //     disp: 'AQUA_THEME',
+  //   },
+  //   {
+  //     id: 3,
+  //     bgColor: '#763EBD',
+  //     disp: 'PURPLE_THEME',
+  //   },
+  //   {
+  //     id: 4,
+  //     bgColor: '#0A7EA4',
+  //     disp: 'GREEN_THEME',
+  //   },
+  //   {
+  //     id: 5,
+  //     bgColor: '#01C0C8',
+  //     disp: 'CYAN_THEME',
+  //   },
+  //   {
+  //     id: 6,
+  //     bgColor: '#FA896B',
+  //     disp: 'ORANGE_THEME',
+  //   },
+  // ];
 
   return (
     <div>
@@ -182,7 +182,7 @@ const Customizer: FC = () => {
             <Typography variant="h6" gutterBottom>
               Theme Colors
             </Typography>
-            <Grid container spacing={2}>
+            {/* <Grid container spacing={2}>
               {thColors.map((thcolor) => (
                 <Grid item xs={4} key={thcolor.id}>
                   <StyledBox onClick={() => dispatch(setTheme(thcolor.disp))}>
@@ -206,7 +206,7 @@ const Customizer: FC = () => {
                   </StyledBox>
                 </Grid>
               ))}
-            </Grid>
+            </Grid> */}
             <Box pt={4} />
             {/* ------------------------------------------- */}
             {/* ------------ Layout Horizontal / Vertical ------------- */}
