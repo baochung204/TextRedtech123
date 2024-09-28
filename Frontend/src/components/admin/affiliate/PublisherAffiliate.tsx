@@ -321,7 +321,7 @@ const PublisherAffiliate = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
+          <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
 
         <Grid item xs={12}>
