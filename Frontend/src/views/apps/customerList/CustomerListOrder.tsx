@@ -531,9 +531,7 @@ const CustomerListOrder = () => {
 
                 <Grid item xs={12} mx={0.3}>
                   <BlankCard>
-<!-- <<<<<<< hoand2
-                    <CustomTable columns={columns} dataSource={dataOrder} />
-======= -->
+
                     <CustomTable columns={columns} dataSource={TableData} dataSelect={dataSelect}/>
 
                   </BlankCard>
