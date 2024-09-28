@@ -11,6 +11,7 @@ import unlimitedImg from 'src/assets/images/backgrounds/unlimited-bg.png';
 import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch } from 'src/store/Store';
+import Banner from 'src/assets/ICON/shopping.png';
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -140,23 +141,30 @@ const Profile = () => {
         ))}
 
         <Box my={'15px'}>
-          <Box bgcolor="primary.light" p={3} mb={3} overflow="hidden" position="relative">
+          <Box
+            p={3}
+            mb={3}
+            overflow="hidden"
+            position="relative"
+            sx={{
+              backgroundImage: `url(${Banner})`,
+              backgroundSize: 'cover', // This will make the image cover the entire area
+              backgroundPosition: 'center', // Center the image
+              backgroundRepeat: 'no-repeat', // Prevent the image from repeating
+            }}
+          >
             <Box display="flex" justifyContent="space-between">
               <Box>
                 <Typography variant="h5" mb={2}>
                   Giúp trợ lý của bạn <br />
-                  thông minh hơn !
+                  thông minh hơn!
                 </Typography>
                 <Button variant="contained" color="primary" onClick={handleButtonClick2}>
-                  Shopping ngay !
+                  Shopping ngay!
                 </Button>
               </Box>
-              <img
-                style={{ width: '45%' }}
-                src={unlimitedImg}
-                alt="unlimited"
-                className="signup-bg"
-              ></img>
+              {/* You can remove this img tag since the image is now in the background */}
+              {/* <img style={{ width: '45%' }} src={unlimitedImg} alt="unlimited" className="signup-bg" /> */}
             </Box>
           </Box>
           <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>

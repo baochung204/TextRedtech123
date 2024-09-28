@@ -102,12 +102,12 @@ const GerChart = () => {
         colorStops: [
           {
             offset: 0,
-            color: primary2, // Màu đỏ
+            color: primary2,
             opacity: 1
           },
           {
             offset: 100,
-            color: primary, // Màu vàng
+            color: primary, 
             opacity: 0.9
           }
         ]
