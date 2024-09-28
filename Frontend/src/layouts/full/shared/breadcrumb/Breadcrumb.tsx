@@ -10,20 +10,20 @@ interface BreadCrumbType {
   children?: JSX.Element;
 }
 
-const Breadcrumb = ({children }: BreadCrumbType) => (
+const Breadcrumb = ({ children }: BreadCrumbType) => (
   <Grid
     container
     sx={{
-      backgroundColor: 'primary.light',
+      backgroundColor: '#FFEBEB',
       borderRadius: (theme: Theme) => theme.shape.borderRadius / 4,
       p: '30px 25px 20px',
       marginBottom: '30px',
       position: 'relative',
       overflow: 'hidden',
-      justifyContent: 'center', 
+      justifyContent: 'center',
       alignItems: 'center',
     }}
-  > 
+  >
     <Grid item xs={12} sm={12} lg={12} display="flex" justifyContent="center">
       <Box sx={{ textAlign: 'center' }}>
         {children ? (
