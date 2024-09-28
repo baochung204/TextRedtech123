@@ -1,4 +1,4 @@
-import { Box, CardContent, Grid, Typography } from '@mui/material';
+import { Box, CardContent, Grid, Typography} from '@mui/material';
 
 import icon3 from '../../../assets/ICON/khách hàng.png';
 import icon1 from '../../../assets/ICON/cvr.png';
@@ -19,37 +19,37 @@ const topcards: cardType[] = [
     icon: icon2,
     title: 'Trợ lý',
     digits: '96',
-    bgcolor: 'primary',
+    bgcolor: 'error.light',
   },
   {
     icon: icon3,
     title: 'Khách hàng',
     digits: '3,650',
-    bgcolor: 'primary',
+    bgcolor: 'error.light',
   },
   {
     icon: icon4,
     title: 'Đơn hàng',
     digits: '356',
-    bgcolor: 'primary',
+    bgcolor: 'error.light',
   },
   {
     icon: icon5,
     title: 'AOV',
     digits: '696',
-    bgcolor: 'primary',
+    bgcolor: 'error.light',
   },
   {
     icon: icon6,
     title: 'GMV',
     digits: '96',
-    bgcolor: 'primary',
+    bgcolor: 'error.light',
   },
   {
     icon: icon1,
     title: 'CVR',
     digits: '59',
-    bgcolor: 'primary',
+    bgcolor: 'error.light',
   },
 ];
 
@@ -60,12 +60,11 @@ const TopCards = () => {
   // };
   // const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   // const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
   return (
     <Grid container spacing={3}>
       {topcards.map((topcard, i) => (
         <Grid item xs={12} sm={4} lg={2} key={i}>
-          <Box textAlign="center" sx={{ backgroundColor: '#ffebeb' }}>
+          <Box textAlign="center" sx={{ backgroundColor: topcard.bgcolor }}>
             <CardContent>
               <img src={topcard.icon} alt={topcard.icon} height={40}  />
               <Typography

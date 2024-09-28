@@ -31,7 +31,6 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
-
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
