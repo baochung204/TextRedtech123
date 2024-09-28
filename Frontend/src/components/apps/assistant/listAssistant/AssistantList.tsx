@@ -192,8 +192,10 @@ const ListAssistant = () => {
                     src={rank.rankImage}
                     alt=""
                     sx={{
-                      width: '100%',
-                      height: 'auto',
+                      // width: '100%', chịu Chung
+                      // height: 'auto',
+                      maxWidth: '250px',
+                      height: '200px',
                       zIndex: 99,
                       mt: 2,
                       position: 'relative',

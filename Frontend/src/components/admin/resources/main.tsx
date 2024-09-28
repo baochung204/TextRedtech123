@@ -43,7 +43,7 @@ const Main = () => {
           {value === '3' && <TopCard dataSource={Files} totalColumn={4} />}
           {value === '4' && <TopCard dataSource={Model} totalColumn={4} />}
           {value === '5' && <TopCard dataSource={Image} totalColumn={4} />}
-          {value === '6' && <TopCard dataSource={Url} totalColumn={4} />}
+          {value === '6' && <TopCard dataSource={Url} totalColumn={2} />}
 
           <TabContext value={value}>
             <Box

@@ -170,7 +170,7 @@ const TableData: PropsTable[] = [
     email: 'a@example.com',
     orderInfo: 'Thông tin đơn hàng A',
     notes: 'Ghi chú A',
-    misc: fb,
+    misc: 'fb',
   },
   {
     id: 'ORD002',
@@ -184,7 +184,7 @@ const TableData: PropsTable[] = [
     email: 'b@example.com',
     orderInfo: 'Thông tin đơn hàng B',
     notes: 'Ghi chú B',
-    misc: fb,
+    misc: 'fb',
   },
   // Dữ liệu mẫu mới
   {
@@ -199,7 +199,7 @@ const TableData: PropsTable[] = [
     email: 'c@example.com',
     orderInfo: 'Thông tin đơn hàng C',
     notes: 'Ghi chú C',
-    misc: fb,
+    misc: 'fb',
   },
   {
     id: 'ORD004',
@@ -213,7 +213,7 @@ const TableData: PropsTable[] = [
     email: 'd@example.com',
     orderInfo: 'Thông tin đơn hàng D',
     notes: 'Ghi chú D',
-    misc: fb,
+    misc: 'fb',
   },
 ];
 
@@ -531,9 +531,9 @@ const CustomerListOrder = () => {
 
                 <Grid item xs={12} mx={0.3}>
                   <BlankCard>
-<!-- <<<<<<< hoand2
-                    <CustomTable columns={columns} dataSource={dataOrder} />
-======= -->
+
+                    {/* <CustomTable columns={columns} dataSource={dataOrder} /> */}
+
                     <CustomTable columns={columns} dataSource={TableData} dataSelect={dataSelect}/>
 
                   </BlankCard>
