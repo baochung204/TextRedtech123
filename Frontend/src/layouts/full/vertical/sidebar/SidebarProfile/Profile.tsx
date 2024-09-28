@@ -4,14 +4,16 @@ import img1 from 'src/assets/images/profile/user-1.jpg';
 import { IconPower } from '@tabler/icons-react';
 import { AppState } from 'src/store/Store';
 import { Link } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
+
 
 export const Profile = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
-
+  const theme = useTheme();
   return (
-    <Box display={'flex'} alignItems="center" gap={2} sx={{ m: 3, p: 2, bgcolor: '#FFEBEB' }}>
+    <Box display={'flex'} alignItems="center" gap={2} sx={{ m: 3, p: 2, bgcolor: 'error.light' }}>
       {!hideMenu ? (
         <>
           <Avatar alt="Remy Sharp" src={img1} />
