@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Chart from 'react-apexcharts';
-
+import { useTheme } from '@mui/material/styles';
 import { Props } from 'react-apexcharts';
 
 import { Box, Typography } from '@mui/material';
@@ -24,12 +24,15 @@ const monthsInVietnamese = [
   'Tháng 12',
 ];
 const Affiliatedetail = () => {
+  const theme = useTheme();
+  const primary = theme.palette.primary.main;
+  const primary2 = theme.palette.primary.start;
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
       type: 'line',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: primary,
       toolbar: {
         show: false,
       },
@@ -81,18 +84,30 @@ const Affiliatedetail = () => {
       type: 'gradient',
       gradient: {
         shade: 'dark',
-        gradientToColors: ['#6dd5fa'],
+        gradientToColors: [primary2],
         shadeIntensity: 1,
         type: 'horizontal',
         opacityFrom: 1,
         opacityTo: 0.9,
         stops: [0, 100, 100, 100],
+        colorStops: [
+          {
+            offset: 0,
+            color: primary2,
+            opacity: 1
+          },
+          {
+            offset: 100,
+            color: primary,
+            opacity: 0.9
+          }
+        ]
       },
     },
     markers: {
       size: 4,
       opacity: 0.9,
-      colors: ['#FFA41B'],
+      colors: [primary],
       strokeColor: '#fff',
       strokeWidth: 2,
 

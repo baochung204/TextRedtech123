@@ -41,7 +41,7 @@ const GerChart = () => {
       height: 350,
       type: 'line',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#fa3434',
+      foreColor: primary,
       toolbar: {
         show: false,
       },
