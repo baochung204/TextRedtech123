@@ -29,7 +29,7 @@ const BoxStyled = styled(Box)(() => ({
   },
 }));
 
-const Topcardadmin = ({ dataSource, totalColumn, itemsPerColumn }: TopCardProps) => {
+const Topcardadminvertical = ({ dataSource, totalColumn, itemsPerColumn }: TopCardProps) => {
   const [total, setTotal] = useState<number | null>(null);
 
   useEffect(() => {
@@ -87,4 +87,4 @@ const Topcardadmin = ({ dataSource, totalColumn, itemsPerColumn }: TopCardProps)
   );
 };
 
-export default Topcardadmin;
+export default Topcardadminvertical;

@@ -16,7 +16,9 @@ import Affilatechartadmin8 from './Affiliatechartadmin8';
 import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
-import Topcardadmin from './Topcardadmin';
+import Topcardadmin from './Topcardadminvertical';
+import Topcardadminhorizontal from './topcardadminhorizontal';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },
@@ -1021,6 +1023,17 @@ const dataSource_ticket = [
 const DashboardAdmin = () => {
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   const [value2, setValue2] = React.useState<Dayjs | null>(null);
+  const [selectedValue1, setSelectedValue1] = React.useState<string>('1');
+  const [selectedValue, setSelectedValue] = React.useState<string>('1');
+
+  const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectedValue(event.target.value as string);
+  };
+
+  const handleSelectChange1 = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectedValue1(event.target.value as string);
+  };
+
   return (
     <PageContainer title="Modern Dashboard" description="this is Modern Dashboard page">
       <div style={{ display: 'flex', justifyContent: 'end' }}>
@@ -1085,12 +1098,10 @@ const DashboardAdmin = () => {
       </div>
       <Box>
         <Box sx={{ margin: '30px 0px' }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={7}>
+          <Grid>
+            <Grid item xs={12}>
+              <Topcardadminhorizontal dataSource={dataSource} totalColumn={4} />
               <GenChartAdmin text={'Kinh doanh'} menuItems={dataFilter_bussiness} />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource} totalColumn={1} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
@@ -1197,22 +1208,18 @@ const DashboardAdmin = () => {
           </Grid>
         </Box>
         <Box sx={{ margin: '30px 0px' }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={7}>
+          <Grid>
+            <Grid item xs={12}>
+              <Topcardadminhorizontal dataSource={dataSource_rpoint} totalColumn={6} />
               <GenChartAdmin text={'R-Point'} menuItems={dataFilter_rpoint} />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_rpoint} totalColumn={2} itemsPerColumn={5} />
             </Grid>
           </Grid>
         </Box>
         <Box sx={{ margin: '30px 0px' }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={7}>
+          <Grid>
+            <Grid item xs={12}>
+              <Topcardadminhorizontal dataSource={dataSource_affiliate} totalColumn={8} />
               <GenChartAdmin text={'Affiliate'} menuItems={dataFilter_affliate} />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_affiliate} totalColumn={2} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
@@ -1237,17 +1244,18 @@ const DashboardAdmin = () => {
                   >
                     Loại tài khoản
                   </Typography>
-                  <Select defaultValue="" sx={{ minWidth: '200px' }}>
-                    {dataFilter_type && Array.isArray(dataFilter_type) ? (
-                      dataFilter_type.map((item) => (
+                  <CustomSelect
+                    value={selectedValue1}
+                    onChange={handleSelectChange1}
+                    sx={{ minWidth: '200px' }}
+                  >
+                    {dataFilter_type &&
+                      dataFilter_type.map((item: any) => (
                         <MenuItem key={item.value} value={item.value}>
                           {item.label}
                         </MenuItem>
-                      ))
-                    ) : (
-                      <MenuItem disabled>No options available</MenuItem>
-                    )}
-                  </Select>
+                      ))}
+                  </CustomSelect>
                 </Box>
 
                 <Box sx={{ width: '50%' }}>
@@ -1260,13 +1268,13 @@ const DashboardAdmin = () => {
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                   border: '1px solid #ccc',
                   padding: '16px',
                   borderRadius: '8px',
                   height: '100%', // Ensures both boxes have the same height
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                 }}
               >
                 <Box>
@@ -1275,17 +1283,22 @@ const DashboardAdmin = () => {
                   >
                     Loại tài khoản
                   </Typography>
-                  <Select defaultValue="" sx={{ minWidth: '200px' }}>
-                    {dataFilter_density2 && Array.isArray(dataFilter_density2) ? (
-                      dataFilter_density2.map((item) => (
+                  <CustomSelect
+                    value={selectedValue}
+                    onChange={handleSelectChange}
+                    sx={{ minWidth: '200px' }}
+                  >
+                    {dataFilter_density2 &&
+                      dataFilter_density2.map((item: any) => (
                         <MenuItem key={item.value} value={item.value}>
                           {item.label}
                         </MenuItem>
-                      ))
-                    ) : (
-                      <MenuItem disabled>No options available</MenuItem>
-                    )}
-                  </Select>
+                      ))}
+                  </CustomSelect>
+                </Box>
+
+                <Box sx={{ width: '50%' }}>
+                  <Affilatechartadmin8 />
                 </Box>
               </Box>
             </Grid>
@@ -1293,11 +1306,9 @@ const DashboardAdmin = () => {
         </Box>
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} lg={7}>
+            <Grid item xs={12}>
+              <Topcardadminhorizontal dataSource={dataSource_sale} totalColumn={8} />
               <GenChartAdmin text={'Mã khuyến mãi'} menuItems={dataFilter_sale} />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_sale} totalColumn={2} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
@@ -1316,22 +1327,18 @@ const DashboardAdmin = () => {
           </Grid>
         </Box>
         <Box sx={{ margin: '30px 0px' }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={7}>
+          <Grid>
+            <Grid item xs={12}>
+              <Topcardadminhorizontal dataSource={dataSource_blog} totalColumn={7} />
               <GenChartAdmin text={'Blog'} menuItems={dataFilter_blog} />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_blog} totalColumn={2} itemsPerColumn={4} />
             </Grid>
           </Grid>
         </Box>
         <Box sx={{ margin: '30px 0px' }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={7}>
+          <Grid>
+            <Grid item xs={12}>
+              <Topcardadminhorizontal dataSource={dataSource_ticket} totalColumn={6} />
               <GenChartAdmin text={'Ticket hỗ trợ'} menuItems={dataFilter_ticket} />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <Topcardadmin dataSource={dataSource_ticket} totalColumn={2} itemsPerColumn={5} />
             </Grid>
           </Grid>
         </Box>
