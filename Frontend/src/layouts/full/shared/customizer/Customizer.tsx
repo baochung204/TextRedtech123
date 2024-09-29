@@ -175,13 +175,11 @@ const Customizer: FC = () => {
               </StyledBox>
             </Stack>
 
-            <Box pt={3} />
+            {/* <Box pt={3} /> */}
             {/* ------------------------------------------- */}
             {/* ------------ Theme Color setting ------------- */}
             {/* ------------------------------------------- */}
-            <Typography variant="h6" gutterBottom>
-              Theme Colors
-            </Typography>
+           
             {/* <Grid container spacing={2}>
               {thColors.map((thcolor) => (
                 <Grid item xs={4} key={thcolor.id}>
