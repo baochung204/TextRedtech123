@@ -9,7 +9,6 @@ export const Profile = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const hideMenu = lgUp ? customizer.isCollapse && !customizer.isSidebarHover : '';
-  // const theme = useTheme();
   return (
     <Box display={'flex'} alignItems="center" gap={2} sx={{ m: 3, p: 2, bgcolor: 'error.light' }}>
       {!hideMenu ? (
