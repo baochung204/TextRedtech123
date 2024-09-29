@@ -204,7 +204,7 @@ const Faq = () => {
                   displayEmpty
                   onChange={handleColumnChange}
                   renderValue={() => 'Sửa đổi cột'}
-                  size='small'
+                  size="small"
                   MenuProps={{
                     PaperProps: {
                       sx: {
@@ -252,7 +252,7 @@ const Faq = () => {
             </Grid>
           </Grid>
         )}
-        {(value === '3' || value === '5' || value === '6') && (
+        {(value === '3' || value === '4' || value === '5' || value === '6') && (
           <Grid item>
             <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
               <Grid item>

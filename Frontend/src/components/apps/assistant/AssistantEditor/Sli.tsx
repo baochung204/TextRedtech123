@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, Paper, Slider, Typography } from '@mui/material';
+import { Box, Button, Chip, Grid, Paper, Slider, Typography } from '@mui/material';
 import { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 
@@ -20,64 +20,77 @@ const Sli = () => {
 
   return (
     <>
-      <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>
-        Tài nguyên
-      </CustomFormLabel>
-      <Paper elevation={2} sx={{ minHeight: '4%', p: 2, backgroundColor: '#fafafa' }}>
-        <Grid container>
-          <Grid lg={6}>
-            <Box fontWeight={500}>
-              Số File tri thức
-              <Chip sx={{ ml: 1 }} size="small" label="3" color="primary" />
-            </Box>
+      <Paper elevation={3} sx={{ minHeight: '5%', p: 2 }}>
+        <Grid container my={2}>
+          <Grid item xs={6}>
+            <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>
+              Tài nguyên
+            </CustomFormLabel>
           </Grid>
-          <Grid lg={6}>
-            <Box mr={1} display={'flex'} justifyContent={'end'}>
-              <Typography variant="subtitle2">{fileCount}</Typography>
-            </Box>
+          <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end' }}>
+            {' '}
+            <Button variant="contained" color="primary" sx={{ p: 0 }}>
+              Lưu
+            </Button>
           </Grid>
         </Grid>
-        {/* Số File tri thức */}
 
-        <Box sx={{ width: '99%', mt: 1 }}>
-          <Slider
-            aria-label="File Count"
-            value={fileCount}
-            onChange={handleFileCountChange}
-            getAriaValueText={valuetext}
-            valueLabelDisplay="auto"
-            step={1}
-            min={0}
-            max={100}
-          />
-        </Box>
+        <Paper elevation={2} sx={{ minHeight: '4%', p: 2, backgroundColor: '#fafafa' }}>
+          <Grid container>
+            <Grid lg={6}>
+              <Box fontWeight={500}>
+                Số File tri thức
+                <Chip sx={{ ml: 1 }} size="small" label="3" color="primary" />
+              </Box>
+            </Grid>
+            <Grid lg={6}>
+              <Box mr={1} display={'flex'} justifyContent={'end'}>
+                <Typography variant="subtitle2">{fileCount}</Typography>
+              </Box>
+            </Grid>
+          </Grid>
+          {/* Số File tri thức */}
 
-        {/* Dung lượng */}
-        <Grid container>
-          <Grid lg={6}>
-            <Box fontWeight={500}>
-              Dung lượng
-              <Chip sx={{ ml: 1 }} size="small" label="100000MB" color="primary" />
-            </Box>
+          <Box sx={{ width: '99%', mt: 1 }}>
+            <Slider
+              aria-label="File Count"
+              value={fileCount}
+              onChange={handleFileCountChange}
+              getAriaValueText={valuetext}
+              valueLabelDisplay="auto"
+              step={1}
+              min={0}
+              max={100}
+            />
+          </Box>
+
+          {/* Dung lượng */}
+          <Grid container>
+            <Grid lg={6}>
+              <Box fontWeight={500}>
+                Dung lượng
+                <Chip sx={{ ml: 1 }} size="small" label="100000MB" color="primary" />
+              </Box>
+            </Grid>
+            <Grid lg={6}>
+              <Box mr={1} display={'flex'} justifyContent={'end'}>
+                <Typography variant="subtitle2">{storage}MB</Typography>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid lg={6}>
-            <Box mr={1} display={'flex'} justifyContent={'end'}>
-              <Typography variant="subtitle2">{storage}MB</Typography>
-            </Box>
-          </Grid>
-        </Grid>
-        <Box sx={{ width: '99%', mt: 1 }}>
-          <Slider
-            aria-label="Storage"
-            value={storage}
-            onChange={handleStorageChange}
-            getAriaValueText={valuetext}
-            valueLabelDisplay="auto"
-            step={1}
-            min={1}
-            max={100000}
-          />
-        </Box>
+          <Box sx={{ width: '99%', mt: 1 }}>
+            <Slider
+              aria-label="Storage"
+              value={storage}
+              onChange={handleStorageChange}
+              getAriaValueText={valuetext}
+              valueLabelDisplay="auto"
+              step={1}
+              min={1}
+              max={100000}
+            />
+          </Box>
+        </Paper>
       </Paper>
     </>
   );

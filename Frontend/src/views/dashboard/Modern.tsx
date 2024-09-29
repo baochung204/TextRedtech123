@@ -18,15 +18,17 @@ import GerChart from '../charts/Gerchart';
 import PieCharts from '../charts/PieCharts';
 
 import Charts from './charts';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { Dayjs } from 'dayjs';
 
 const Modern = () => {
   const [month, setMonth] = useState('1');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <PageContainer title="Modern Dashboard" description="this is Modern Dashboard page">
       <Box>
@@ -42,7 +44,7 @@ const Modern = () => {
                   size="small"
                   value={month}
                   onChange={handleChange}
-                  sx={{ py: 0.5 }}
+                  // sx={{ py: 0.5 }}
                 >
                   <MenuItem value={1}>Tất cả</MenuItem>
                   <MenuItem value={2}>Assistant 1</MenuItem>
@@ -53,15 +55,51 @@ const Modern = () => {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      value={selectedStartDate}
-                      onChange={setSelectedStartDate}
-                      renderInput={(params: any) => <TextField {...params} />}
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
                     />
-                    <Typography>tới</Typography>
+                  </LocalizationProvider>
+                  tới
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      value={selectedEndDate}
-                      onChange={setSelectedEndDate}
-                      renderInput={(params: any) => <TextField {...params} />}
+                      value={value1}
+                      onChange={(newValue) => {
+                        setValue1(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
                     />
                   </LocalizationProvider>
                 </Box>

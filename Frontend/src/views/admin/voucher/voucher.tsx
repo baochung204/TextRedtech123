@@ -1,11 +1,11 @@
 import { Box, Grid, Tab, Tabs } from '@mui/material';
 import {
-  IconTicket,
-  IconBrandDeezer,
-  IconBrandDatabricks,
   IconBrandCakephp,
+  IconBrandDatabricks,
+  IconBrandDeezer,
+  IconTicket,
 } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React from 'react';
 import HistoryVoucher from 'src/components/admin/voucher/historyvoucher';
 import ListVoucher from 'src/components/admin/voucher/listvoucher';
 import PageContainer from 'src/components/container/PageContainer';
@@ -142,7 +142,7 @@ function CustomTabPanel(props: any) {
 }
 
 const VoucherAdmin = () => {
-  const [selected, setSelected] = useState<readonly string[]>([]);
+  // const [selected, setSelected] = useState<readonly string[]>([]);
 
   const [value, setValue] = React.useState(0);
 
@@ -152,25 +152,25 @@ const VoucherAdmin = () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
+  // const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+  //   const selectedIndex = selected.indexOf(name);
+  //   let newSelected: readonly string[] = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+  //   if (selectedIndex === -1) {
+  //     newSelected = newSelected.concat(selected, name);
+  //   } else if (selectedIndex === 0) {
+  //     newSelected = newSelected.concat(selected.slice(1));
+  //   } else if (selectedIndex === selected.length - 1) {
+  //     newSelected = newSelected.concat(selected.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelected = newSelected.concat(
+  //       selected.slice(0, selectedIndex),
+  //       selected.slice(selectedIndex + 1),
+  //     );
+  //   }
 
-    setSelected(newSelected);
-  };
+  //   setSelected(newSelected);
+  // };
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

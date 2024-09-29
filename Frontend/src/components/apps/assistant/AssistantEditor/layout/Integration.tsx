@@ -5,12 +5,14 @@ import {
   CardContent,
   Fab,
   Grid,
+  IconButton,
   Paper,
   Stack,
   Tooltip,
   Typography,
+  useTheme,
 } from '@mui/material';
-import { IconMapPin, IconPlus } from '@tabler/icons-react';
+import { IconPlus, IconPower, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import BlankCard from 'src/components/apps/integration/BlankCard';
@@ -21,6 +23,7 @@ const Integration = () => {
   const handleConnection = () => {
     setConnect((prevConnect) => !prevConnect);
   };
+  const theme = useTheme();
   return (
     <Paper elevation={3} sx={{ minHeight: '4%', p: 2, mt: 2 }}>
       <Grid container spacing={2}>
@@ -32,7 +35,7 @@ const Integration = () => {
         </Grid>
         <Grid item xs={12} sm={6} lg={5} display={'flex'} justifyContent={'end'}>
           <Tooltip title="Thêm">
-            <Fab size="small" color="secondary" aria-label="plus">
+            <Fab size="small" color="primary" aria-label="plus">
               <IconPlus width={18} />
             </Fab>
           </Tooltip>
@@ -51,19 +54,42 @@ const Integration = () => {
                   variant="caption"
                   sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
                 >
-                  <IconMapPin size="14" />
+                  <Box
+                    sx={{
+                      backgroundColor: connect ? theme.palette.success.main : 'gray',
+                      borderRadius: '100%',
+                      height: '10px',
+                      width: '10px',
+                    }}
+                  />
                   565835121
                 </Typography>
               </Box>
               <Box ml="auto">
-                <Button
+                {/* <Button
                   variant={connect ? 'contained' : 'outlined'}
                   color="primary"
                   size="small"
                   onClick={handleConnection}
-                >
-                  {connect ? 'Đã kết nối' : 'Kết nối'}
-                </Button>
+                > */}
+                {/* {connect ? 'Đã kết nối' : 'Kết nối'} */} {/* </Button> */}
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Tooltip title={connect ? 'Đã kết nối' : 'Tắt kết nối'} placement="top">
+                      <IconButton onClick={handleConnection}>
+                        <IconPower
+                          style={{ cursor: 'pointer' }}
+                          color={connect ? 'black' : 'gray'}
+                        />
+                      </IconButton>
+                    </Tooltip>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <IconButton>
+                      <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+                    </IconButton>
+                  </Grid>
+                </Grid>
               </Box>
             </Stack>
           </CardContent>

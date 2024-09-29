@@ -1,9 +1,7 @@
-
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from 'src/components/container/PageContainer';
 import { Grid } from '@mui/material';
 import RPointS from 'src/components/admin/rpoint';
-
 
 const BCrumb = [
   {
@@ -12,7 +10,6 @@ const BCrumb = [
   },
   { to: '/admin/point/packagepoint', title: 'Danh sách gói nạp' },
 ];
-
 
 const RPoints = () => {
   return (
@@ -24,7 +21,7 @@ const RPoints = () => {
         </Grid>
       </Grid>
     </PageContainer>
-  )
+  );
 };
 
 export default RPoints;

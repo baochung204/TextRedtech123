@@ -10,7 +10,7 @@ interface TableDH {
   requestId: string;
   createdAt: Date;
   completedAt: Date;
-  status: boolean;
+  status: number;
   invoice: number;
   // paymentMethod: string; // add this
   // numberPrice: number;
@@ -29,7 +29,7 @@ const tabledh: TableDH[] = [
     requestId: '1000003537254534',
     createdAt: new Date('2024-07-18T18:47:28'),
     completedAt: new Date('2024-07-18T18:47:36'),
-    status: true,
+    status: 1,
     invoice: 1,
   },
   {
@@ -44,7 +44,7 @@ const tabledh: TableDH[] = [
     requestId: '1000002672542535',
     createdAt: new Date('2024-07-19T10:15:12'),
     completedAt: new Date('2024-07-19T10:20:30'),
-    status: false,
+    status: 2,
     invoice: 2,
   },
   {
@@ -59,7 +59,7 @@ const tabledh: TableDH[] = [
     requestId: '1000002362564366',
     createdAt: new Date('2024-07-20T14:35:48'),
     completedAt: new Date('2024-07-20T14:40:20'),
-    status: false,
+    status: 3,
     invoice: 3,
   },
   {
@@ -74,8 +74,8 @@ const tabledh: TableDH[] = [
     requestId: '10000034539151068',
     createdAt: new Date('2024-07-21T16:00:00'),
     completedAt: new Date('2024-07-21T16:05:10'),
-    status: false,
-    invoice: 3,
+    status: 4,
+    invoice: 4,
   },
   {
     id: '5',
@@ -89,8 +89,8 @@ const tabledh: TableDH[] = [
     requestId: '10000034539151069',
     createdAt: new Date('2024-07-22T09:45:22'),
     completedAt: new Date('2024-07-22T09:50:58'),
-    status: true,
-    invoice: 1,
+    status: 2,
+    invoice: 2,
   },
   {
     id: '6',
@@ -104,8 +104,8 @@ const tabledh: TableDH[] = [
     requestId: '1000003468272345',
     createdAt: new Date('2024-07-23T11:11:11'),
     completedAt: new Date('2024-07-23T11:15:45'),
-    status: true,
-    invoice: 2,
+    status: 3,
+    invoice: 3,
   },
   {
     id: '7',
@@ -119,8 +119,8 @@ const tabledh: TableDH[] = [
     requestId: '1000003457254688',
     createdAt: new Date('2024-07-24T13:30:10'),
     completedAt: new Date('2024-07-24T13:35:50'),
-    status: false,
-    invoice: 2,
+    status: 4,
+    invoice: 4,
   },
   {
     id: '10',
@@ -134,8 +134,8 @@ const tabledh: TableDH[] = [
     requestId: '100000086904503',
     createdAt: new Date('2024-07-27T18:00:00'),
     completedAt: new Date('2024-07-27T18:05:15'),
-    status: true,
-    invoice: 1,
+    status: 3,
+    invoice: 3,
   },
 ];
 

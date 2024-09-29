@@ -22,6 +22,7 @@ import {
   Box,
   Checkbox,
   Chip,
+  Grid,
   IconButton,
   InputAdornment,
   ListItemText,
@@ -227,7 +228,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 };
 
 const PaginationTable = () => {
-  const [selected] = React.useState<readonly string[]>([]);
+  // const [selected] = React.useState<readonly string[]>([]);
   const [dataSelect, setDataSelect] = React.useState<string[]>([]);
   const FilmsData = React.useMemo<Column[]>(
     () => [
@@ -324,7 +325,7 @@ const PaginationTable = () => {
   };
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
-      <Box
+      {/*  <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -334,12 +335,12 @@ const PaginationTable = () => {
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <AddDialog />
-          <EnhancedTableToolbar
+          {/* <EnhancedTableToolbar
             numSelected={selected.length}
             // search={search}
             // handleSearch={handleSearch}
-          />
-        </Box>
+          /> */}
+      {/* </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
           <Select
@@ -403,7 +404,110 @@ const PaginationTable = () => {
             {React.createElement(icons[iconIndex])}
           </IconButton>
         </Box>
-      </Box>
+      </Box> */}
+
+      <Grid
+        container
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          // pb: '24px',
+        }}
+      >
+        <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+          <Grid container>
+            <Grid item xs={2}>
+              {' '}
+              <AddDialog />
+            </Grid>
+            <Grid item xs={10}>
+              {' '}
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm trợ lý"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch size="12" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth={true}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+            <Select
+              multiple
+              value={dataSelect}
+              displayEmpty
+              onChange={handleColumnChange}
+              renderValue={() => 'Sửa đổi cột'}
+              size="small"
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    marginTop: 1,
+                    maxHeight: 400,
+                    '&::-webkit-scrollbar': {
+                      width: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#D2D2D2',
+                      borderRadius: '10px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                      backgroundColor: '#C6C8CC',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                      backgroundColor: '#f1f1f1',
+                    },
+                  },
+                },
+                anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                },
+                transformOrigin: {
+                  vertical: 'top',
+                  horizontal: 'right',
+                },
+              }}
+            >
+              {FilmsData.map((header: any) => {
+                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                const isSelected = dataSelect.includes(header.dataIndex);
+
+                return (
+                  <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                    <Checkbox checked={!isSelected} />
+                    <ListItemText primary={header.title} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+
+            <IconButton
+              aria-label="filter"
+              onClick={handleClickIcon}
+              sx={{
+                ml: 1,
+              }}
+            >
+              {React.createElement(icons[iconIndex])}
+            </IconButton>
+          </Box>
+        </Grid>
+      </Grid>
       <BlankCard>
         <CustomTable columns={FilmsData} dataSource={dataProduct} dataSelect={dataSelect} />
       </BlankCard>
