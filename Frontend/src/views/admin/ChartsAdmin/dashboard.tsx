@@ -1168,7 +1168,9 @@ const DashboardAdmin = () => {
                       <Typography variant="subtitle1" color="textSecondary">
                         987.654.321đ
                       </Typography>
-                      <Typography variant="h5">123.456.789 tokens</Typography>
+                      <Typography variant="h5" fontSize={'15px'}>
+                        123.456.789 tokens
+                      </Typography>
                     </Box>
                   </Stack>
                   <Stack direction="row" spacing={2}>
@@ -1186,7 +1188,9 @@ const DashboardAdmin = () => {
                       <Typography variant="subtitle1" color="textSecondary">
                         123.456.789đ
                       </Typography>
-                      <Typography variant="h5">190.720.030 tokens</Typography>
+                      <Typography variant="h5" fontSize={'15px'}>
+                        190.720.030 tokens
+                      </Typography>
                     </Box>
                   </Stack>
                 </Stack>

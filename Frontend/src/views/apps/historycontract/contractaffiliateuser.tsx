@@ -73,7 +73,7 @@ const contractaffiliateuser = () => {
               <Typography variant="body2" sx={{ color: isDarkMode ? '#ccc' : '#555' }}>
                 Tải về hợp đồng tại đây.
               </Typography>
-              <Button style={{ margin: '20px 0' }}>Tải về</Button>
+              <Button style={{ margin: '20px 0' }}>Ký hợp đồng ngay</Button>
             </Grid>
           </Box>
         </Grid>

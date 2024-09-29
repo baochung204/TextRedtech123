@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem, TextField, Typography } from '@mui/material';
+import { Box, Grid, MenuItem } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -17,9 +17,9 @@ import Welcome from 'src/layouts/full/shared/welcome/Welcome';
 import GerChart from '../charts/Gerchart';
 import PieCharts from '../charts/PieCharts';
 
-import Charts from './charts';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import Charts from './charts';
 
 const Modern = () => {
   const [month, setMonth] = useState('1');
@@ -109,10 +109,6 @@ const Modern = () => {
           <Grid item xs={12} lg={12}>
             <TopCards />
           </Grid>
-          {/* column */}
-          {/* <Grid item xs={12} lg={8}>
-            <RevenueUpdates />
-          </Grid> */}
           <Grid item xs={12} lg={8}>
             <GerChart />
           </Grid>
@@ -120,31 +116,17 @@ const Modern = () => {
             {' '}
             <PieCharts />
           </Grid>
-          {/* column */}
-          {/* <Grid item xs={12} lg={4}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6} lg={12}>
-                <YearlyBreakup />
-              </Grid>
-              <Grid item xs={12} sm={6} lg={12}>
-                <MonthlyEarnings />
-              </Grid>
-            </Grid>
-          </Grid> */}
-          {/* column */}{' '}
           <Grid item xs={12} lg={4}>
             <SellingProducts />
           </Grid>
           <Grid item xs={12} lg={4}>
             <PaymentGateways />
           </Grid>{' '}
-          {/* column */}
           <Grid item xs={12} lg={4}>
             <WeeklyStats />
           </Grid>
           <Charts />
         </Grid>
-        {/* column */}
         <Welcome />
       </Box>
     </PageContainer>
