@@ -201,7 +201,7 @@ const HistoryAffiliate = () => {
         title: 'Hóa đơn',
         dataIndex: 'vat',
         // render: (row: any, value: any) => <Button>Tải xuống</Button>,
-        render: () => <Button>Tải lên</Button>,
+        render: () => <Button color="success">Tải Xuống</Button>,
       },
       {
         title: 'Trạng thái',

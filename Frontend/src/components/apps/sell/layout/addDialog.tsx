@@ -31,7 +31,7 @@ const AddDialog = () => {
   return (
     <Box>
       <Tooltip title="Thêm">
-        <Fab size="small" color="secondary" aria-label="plus" onClick={handleOpenPopup}>
+        <Fab size="small" color="primary" aria-label="plus" onClick={handleOpenPopup}>
           <IconPlus width={18} />
         </Fab>
       </Tooltip>

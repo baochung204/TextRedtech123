@@ -1,12 +1,15 @@
 import {
+  Badge,
   Box,
   CardContent,
   Fab,
   Grid,
+  IconButton,
   Stack,
   Tab,
   Tooltip,
-  Typography
+  Typography,
+  useMediaQuery,
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -25,6 +28,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchIntegrations } from 'src/store/apps/integration/integrationSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import Develop from './Develop';
+import { useTheme } from '@emotion/react';
 // import { Api } from 'src/store/apps/integration/integrationSlice';
 
 // interface Assistant {
@@ -144,7 +148,7 @@ import Develop from './Develop';
 const Integration = () => {
   const [value, setValue] = React.useState('1');
   const dispatch = useDispatch<AppDispatch>();
-  const dataIntegration = useSelector((state: AppState ) => state.integration.data);
+  const dataIntegration = useSelector((state: AppState) => state.integration.data);
   useEffect(() => {
     dispatch(fetchIntegrations());
   }, [dispatch]);
@@ -153,37 +157,71 @@ const Integration = () => {
   // useEffect(() => {
   //   console.log('Fetched data:', dataIntegration);
   // }, [dataIntegration]);
-
-
-
+  // const theme = useTheme();
+  // const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+  const searchSection = (
+    <Box>
+      <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
+        {value === '1' && (
+          <Grid item>
+            <IconButton
+              color="primary"
+              aria-label="Add to cart"
+              sx={{
+                pr: 1.5,
+              }}
+            >
+              <Fab size="small" color="primary" aria-label="plus">
+                <IconPlus width={18} />
+              </Fab>
+            </IconButton>
+          </Grid>
+        )}
+      </Grid>
+    </Box>
+  );
 
   return (
     <>
       <Grid container spacing={3}>
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <TabList onChange={handleChange}
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: 'divider',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                px: 1,
+                overflowX: 'auto',
+                width: '100%',
+              }}
+            >
+              <TabList
+                onChange={handleChange}
                 aria-label="lab API tabs example"
                 variant="scrollable"
-                scrollButtons="auto">
+                scrollButtons="auto"
+              >
                 <Tab label="Facebook" value="1" />
                 <Tab label="Zalo" value="2" />
                 <Tab label="Telegram" value="3" />
                 <Tab label="Viber" value="4" />
               </TabList>
+              {searchSection}
             </Box>
 
-            <TabPanel value="1" sx={{ padding: 'none' }}>
-              <Tooltip title="Add" sx={{ mb: '15px' }}>
-                <Fab size="small" color="secondary" aria-label="plus">
+            <TabPanel value="1" sx={{ paddingX: 0 }}>
+              {/* <Tooltip title="Add" sx={{ mb: '15px' }}>
+                <Fab size="small" color="primary" aria-label="plus">
                   <IconPlus width={18} />
                 </Fab>
-              </Tooltip>
+              </Tooltip> */}
               <Grid container spacing={3}>
                 {dataIntegration.map((integration) => {
                   return (

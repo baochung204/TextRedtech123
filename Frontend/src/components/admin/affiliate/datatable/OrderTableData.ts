@@ -48,7 +48,7 @@ export interface PublisherTable {
   phone_number: number;
   type: boolean;
   create_date: string;
-  type_account: string;
+  type_account: number;
   rank: string;
   brief: boolean;
   contract: string;
@@ -61,6 +61,8 @@ export interface PublisherTable {
   account_balance: number;
   processing: number;
   paid: number;
+  total_Customers: number;
+  total_Order: number;
 }
 
 export interface ContactAffiliateTable {
@@ -77,7 +79,7 @@ export interface ContactAffiliateTable {
   position: string;
   phone_number: number;
   email: string;
-  status: string;
+  status: number;
 }
 
 export interface ContactPointTable {
@@ -227,7 +229,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'CEO',
     phone_number: 1234567890,
     email: 'contact@companya.com',
-    status: 'Chờ ký',
+    status: 1,
   },
   {
     id_contract: 'CNT002',
@@ -243,7 +245,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Quản lý',
     phone_number: 2345678901,
     email: 'contact@companyb.com',
-    status: 'Đã ký',
+    status: 2,
   },
   {
     id_contract: 'CNT003',
@@ -259,7 +261,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Kế toán',
     phone_number: 3456789012,
     email: 'contact@companyc.com',
-    status: 'Từ chối',
+    status: 3,
   },
   {
     id_contract: 'CNT004',
@@ -275,7 +277,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Tech leader',
     phone_number: 4567890123,
     email: 'contact@companyd.com',
-    status: 'Từ chối',
+    status: 4,
   },
   {
     id_contract: 'CNT005',
@@ -291,7 +293,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'CEO',
     phone_number: 5678901234,
     email: 'contact@companye.com',
-    status: 'Đã ký',
+    status: 2,
   },
   {
     id_contract: 'CNT006',
@@ -307,7 +309,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Trường phòng marketing',
     phone_number: 6789012345,
     email: 'contact@companyf.com',
-    status: 'Từ chối',
+    status: 3,
   },
   {
     id_contract: 'CNT007',
@@ -323,7 +325,7 @@ const DataContactAffiliateTable: ContactAffiliateTable[] = [
     position: 'Trưởng phòng kinh doanh',
     phone_number: 7890123456,
     email: 'contact@companyg.com',
-    status: 'Đã ký',
+    status: 1,
   },
 ];
 
@@ -336,7 +338,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 1234567890,
     type: true,
     create_date: '2023-01-15',
-    type_account: 'Hoạt động',
+    type_account: 1,
     rank: 'Rank C',
     contract: 'Chờ duyệt', // Moved here
     brief: true, // Moved here
@@ -349,6 +351,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 2000,
     processing: 500,
     paid: 1500,
+    total_Customers: 50,
+    total_Order: 150,
   },
   {
     id_publisher: 'PUB002',
@@ -358,7 +362,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 2345678901,
     type: false,
     create_date: '2023-02-10',
-    type_account: 'Chờ duyệt',
+    type_account: 2,
     rank: 'Rank B',
     contract: 'Đã duyệt', // Moved here
     brief: true, // Moved here
@@ -371,6 +375,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 3000,
     processing: 1000,
     paid: 2000,
+    total_Customers: 10,
+    total_Order: 100,
   },
   {
     id_publisher: 'PUB003',
@@ -380,7 +386,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 3456789012,
     type: true,
     create_date: '2023-03-05',
-    type_account: 'Chờ duyệt',
+    type_account: 3,
     rank: 'Rank A',
     contract: 'Chờ duyệt', // Moved here
     brief: false, // Moved here
@@ -393,6 +399,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 1200,
     processing: 600,
     paid: 800,
+    total_Customers: 30,
+    total_Order: 30,
   },
   {
     id_publisher: 'PUB004',
@@ -402,7 +410,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 4567890123,
     type: false,
     create_date: '2023-04-18',
-    type_account: 'Chưa đăng ký',
+    type_account: 1,
     rank: 'Rank A',
     contract: 'Từ chối', // Moved here
     brief: false, // Moved here
@@ -415,6 +423,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 5000,
     processing: 1500,
     paid: 3500,
+    total_Customers: 40,
+    total_Order: 50,
   },
   {
     id_publisher: 'PUB005',
@@ -424,7 +434,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 5678901234,
     type: true,
     create_date: '2023-05-25',
-    type_account: 'Chưa đăng ký',
+    type_account: 2,
     rank: 'Rank C',
     contract: 'Từ chối', // Moved here
     brief: false, // Moved here
@@ -437,6 +447,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 2500,
     processing: 800,
     paid: 1700,
+    total_Customers: 60,
+    total_Order: 150,
   },
   {
     id_publisher: 'PUB006',
@@ -446,7 +458,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 6789012345,
     type: false,
     create_date: '2023-06-08',
-    type_account: 'Chưa đăng ký',
+    type_account: 3,
     rank: 'Rank A',
     contract: 'Chưa gửi', // Moved here
     brief: false, // Moved here
@@ -459,6 +471,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 800,
     processing: 300,
     paid: 500,
+    total_Customers: 10,
+    total_Order: 50,
   },
   {
     id_publisher: 'PUB007',
@@ -468,7 +482,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 7890123456,
     type: true,
     create_date: '2023-07-01',
-    type_account: 'Từ chối',
+    type_account: 3,
     rank: 'Rank D',
     contract: 'Từ chối', // Moved here
     brief: false, // Moved here
@@ -481,6 +495,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 1700,
     processing: 500,
     paid: 1200,
+    total_Customers: 20,
+    total_Order: 40,
   },
   {
     id_publisher: 'PUB008',
@@ -490,7 +506,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 8901234567,
     type: false,
     create_date: '2023-08-15',
-    type_account: 'Từ chối',
+    type_account: 2,
     rank: 'Rank C',
     contract: 'Chưa gửi', // Moved here
     brief: false, // Moved here
@@ -503,6 +519,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 4000,
     processing: 1200,
     paid: 2800,
+    total_Customers: 30,
+    total_Order: 40,
   },
   {
     id_publisher: 'PUB009',
@@ -512,7 +530,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 9012345678,
     type: true,
     create_date: '2023-09-10',
-    type_account: 'Hoạt động',
+    type_account: 2,
     rank: 'Rank B',
     contract: 'Chưa gửi', // Moved here
     brief: false, // Moved here
@@ -525,6 +543,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 1000,
     processing: 400,
     paid: 600,
+    total_Customers: 20,
+    total_Order: 40,
   },
   {
     id_publisher: 'PUB010',
@@ -534,7 +554,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 1234567890,
     type: false,
     create_date: '2023-10-05',
-    type_account: 'Từ chối',
+    type_account: 3,
     rank: 'Rank A',
     contract: 'Đã duyệt', // Moved here
     brief: true, // Moved here
@@ -547,6 +567,8 @@ const DataPublishersTable: PublisherTable[] = [
     account_balance: 3500,
     processing: 1000,
     paid: 2500,
+    total_Customers: 50,
+    total_Order: 150,
   },
 ];
 
