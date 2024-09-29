@@ -76,10 +76,7 @@ const PurchaseHistoryInProfile = () => {
         </Box>
       ),
     },
-    {
-      dataIndex: 'quantity',
-      title: 'Số lượng',
-    },
+
     {
       title: 'Chi tiết',
       dataIndex: 'invoice',

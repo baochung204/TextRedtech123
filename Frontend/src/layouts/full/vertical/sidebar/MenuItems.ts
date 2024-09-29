@@ -1,12 +1,21 @@
-import { IconAffiliate, IconArchive, IconTerminal2, IconUsersGroup } from '@tabler/icons-react';
-import { IconFilePencil } from '@tabler/icons-react';
+import {
+  IconAffiliate,
+  IconArchive,
+  IconFilePencil,
+  IconTerminal2,
+  IconUsersGroup,
+} from '@tabler/icons-react';
 
-import { IconMessage2Bolt, IconPresentationAnalytics } from '@tabler/icons-react';
+import {
+  IconBrandOpenai,
+  IconFileInvoice,
+  IconMessage2Bolt,
+  IconPresentationAnalytics,
+} from '@tabler/icons-react';
 
 import {
   // IconAppWindow,
   IconHeadset,
-  IconPackage,
   IconPoint,
   IconShoppingCart,
 } from '@tabler/icons-react';
@@ -63,44 +72,21 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Bán hàng',
-    icon: IconPackage,
-    href: '/apps/collaborate/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Sản phẩm',
-        icon: IconPoint,
-        href: '/apps/sell/product',
-      },
-      {
-        id: uniqueId(),
-        title: 'Đơn hàng',
-        icon: IconPoint,
-        href: '/apps/sell/order',
-      },
-    ],
+    title: 'Sản phẩm',
+    icon: IconBrandOpenai,
+    href: '/apps/sell/product',
   },
   {
     id: uniqueId(),
-    title: 'Danh sách khách hàng',
+    title: 'Chuyển đổi',
+    icon: IconFileInvoice,
+    href: '/apps/sell/order',
+  },
+  {
+    id: uniqueId(),
+    title: 'Khách hàng',
     icon: IconUsersGroup,
     href: '/apps/customerList2',
-    // children: [
-    //   {
-    //     id: uniqueId(),
-    //     title: 'Danh sách khách hàng',
-    //     icon: IconPoint,
-    //     href: '/apps/customerList2',
-    //   },
-
-    // {
-    //   id: uniqueId(),
-    //   title: 'Thỏa thuận hợp tác',
-    //   icon: IconPoint,
-    //   href: '/apps/contract-client',
-    // },
-    // ],
   },
   {
     id: uniqueId(),
