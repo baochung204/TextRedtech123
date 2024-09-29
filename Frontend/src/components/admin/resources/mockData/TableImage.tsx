@@ -117,10 +117,10 @@ export const ImageCells: HeadCell[] = [
     dataIndex: 'creationTime',
     title: 'Ngày tạo',
   },
-  {
-    dataIndex: 'creator',
-    title: 'Người tạo',
-  },
+  // {
+  //   dataIndex: 'creator',
+  //   title: 'Người tạo',
+  // },
   {
     dataIndex: 'image',
     title: 'Hình ảnh',
@@ -155,7 +155,7 @@ export const ImageRows = [
   {
     id: 'IMG001',
     creationTime: '2024-09-01',
-    creator: 'Nguyễn Văn A',
+    // creator: 'Nguyễn Văn A',
     image: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -180,7 +180,7 @@ export const ImageRows = [
   {
     id: 'IMG002',
     creationTime: '2024-09-02',
-    creator: 'Trần Thị B',
+    // creator: 'Trần Thị B',
     image: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -205,7 +205,7 @@ export const ImageRows = [
   {
     id: 'IMG003',
     creationTime: '2024-09-03',
-    creator: 'Lê Văn C',
+    // creator: 'Lê Văn C',
     image: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -230,7 +230,7 @@ export const ImageRows = [
   {
     id: 'IMG004',
     creationTime: '2024-09-04',
-    creator: 'Hoàng Thị D',
+    // creator: 'Hoàng Thị D',
     image: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -255,7 +255,7 @@ export const ImageRows = [
   {
     id: 'IMG005',
     creationTime: '2024-09-05',
-    creator: 'Phạm Văn E',
+    // creator: 'Phạm Văn E',
     image: (
       <>
         <img src={icontext} alt="" width={40} />
@@ -280,7 +280,7 @@ export const ImageRows = [
   {
     id: 'IMG006',
     creationTime: '2024-09-06',
-    creator: 'Ngô Thị F',
+    // creator: 'Ngô Thị F',
     image: (
       <>
         <img src={`icontext`} alt="" width={40} />

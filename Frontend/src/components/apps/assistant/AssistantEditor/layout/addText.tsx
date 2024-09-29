@@ -17,28 +17,74 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-function not(a: readonly number[], b: readonly number[]) {
-  return a.filter((value) => b.indexOf(value) === -1);
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+
+function not(a: readonly any[], b: readonly any[]) {
+  return a.filter((value) => !b.some((item) => item.id === value.id));
 }
 
-function intersection(a: readonly number[], b: readonly number[]) {
-  return a.filter((value) => b.indexOf(value) !== -1);
+function intersection(a: readonly any[], b: readonly any[]) {
+  return a.filter((value) => b.some((item) => item.id === value.id));
 }
+
+// Danh sách các mục
+const items: any = [
+  {
+    id: 1,
+    title: 'Họ và tên',
+  },
+  {
+    id: 2,
+    title: 'Số điện thoại',
+  },
+  {
+    id: 3,
+    title: ' Địa chỉ',
+  },
+  {
+    id: 4,
+    title: 'Email',
+  },
+  {
+    id: 5,
+    title: 'Tên sản phẩm',
+  },
+  {
+    id: 6,
+    title: 'Đơn giá',
+  },
+  {
+    id: 7,
+    title: 'Số lượng',
+  },
+  {
+    id: 8,
+    title: 'Thành tiền tổng',
+  },
+
+  {
+    id: 9,
+    title: 'Đáng giá',
+  },
+  {
+    id: 10,
+    title: 'Ghi chú',
+  },
+];
 
 const AddFunction = () => {
-  const [checked, setChecked] = useState<readonly number[]>([]);
-  const [left, setLeft] = useState<readonly number[]>([0, 1, 2, 3]);
-  const [right, setRight] = useState<readonly number[]>([4, 5, 6, 7]);
-
+  const [checked, setChecked] = useState<readonly any[]>([]);
+  const [left, setLeft] = useState<readonly any[]>(items.slice(0, 5));
+  const [right, setRight] = useState<readonly any[]>(items.slice(5));
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
+  const handleToggle = (item: any) => () => {
+    const currentIndex = checked.findIndex((i) => i.id === item.id);
     const newChecked = [...checked];
 
     if (currentIndex === -1) {
-      newChecked.push(value);
+      newChecked.push(item);
     } else {
       newChecked.splice(currentIndex, 1);
     }
@@ -71,7 +117,7 @@ const AddFunction = () => {
   const theme = useTheme();
   const borderColor = theme.palette.divider;
 
-  const customList = (items: readonly number[]) => (
+  const customList = (items: readonly any[]) => (
     <Paper
       variant="outlined"
       sx={{
@@ -79,7 +125,7 @@ const AddFunction = () => {
         height: 230,
         border: `1px solid ${borderColor}`,
         position: 'relative',
-        overflow: 'hidden', // Loại bỏ scrollbar gốc
+        overflow: 'hidden',
       }}
     >
       <List
@@ -103,21 +149,21 @@ const AddFunction = () => {
           },
         }}
       >
-        {items.map((value) => {
-          const labelId = `transfer-list-item-${value}-label`;
+        {items.map((item) => {
+          const labelId = `transfer-list-item-${item.id}-label`;
           return (
-            <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
+            <ListItem key={item.id} role="listitem" button onClick={handleToggle(item)}>
               <ListItemIcon>
                 <CustomCheckbox
                   tabIndex={-1}
                   disableRipple
-                  checked={checked.indexOf(value) !== -1}
+                  checked={checked.some((i) => i.id === item.id)}
                   inputProps={{
                     'aria-labelledby': labelId,
                   }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
+              <ListItemText id={labelId} primary={item.title} />
             </ListItem>
           );
         })}
@@ -130,9 +176,21 @@ const AddFunction = () => {
     <Paper elevation={3} sx={{ minHeight: '5%', p: 2, mt: 2 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} lg={12}>
-          <Box fontWeight="600" mb={1}>
-            Định nghĩa chuyển đổi
-          </Box>
+          <Grid container>
+            <Grid item xs={6}>
+              <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>
+                Định nghĩa chuyển đổi
+              </CustomFormLabel>
+            </Grid>
+            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end' }}>
+              {' '}
+              <Button variant="contained" color="primary" sx={{ p: 0 }}>
+                Lưu
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
           <Grid container spacing={2} justifyContent="center" alignItems="center">
             <Grid item>{customList(left)}</Grid>
             <Grid item>

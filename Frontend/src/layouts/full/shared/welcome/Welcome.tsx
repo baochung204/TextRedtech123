@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { Alert, AlertTitle, Snackbar } from '@mui/material';
 import * as React from 'react';
-import { Snackbar, Alert, AlertTitle, Box, Typography } from '@mui/material';
 
 const Welcome = () => {
   const [open, setOpen] = React.useState(false);
@@ -30,18 +30,26 @@ const Welcome = () => {
       <Snackbar
         open={open}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        autoHideDuration={6000}
+        autoHideDuration={2000}
         onClose={handleClose}
+        sx={{
+          '@media (min-width: 600px)': {
+            top: '15px',
+            right: '15px',
+            left: 'auto',
+          },
+        }}
       >
+
         <Alert
           onClose={handleClose}
           variant="filled"
-          sx={{ width: '100%', color: 'white', backgroundColor: 'primary.main' }}
+          sx={{ width: '100%', color: 'white', backgroundColor: 'primary.main', textAlign: 'center'  }}
         >
-          <AlertTitle>Chào mừng bạn đã đến với </AlertTitle>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography>RedTech</Typography>
-          </Box>
+          <AlertTitle>Chào mừng đến với<br />  RedTech </AlertTitle>
+          {/* <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Typography></Typography>
+          </Box> */}
         </Alert>
       </Snackbar>
     </React.Fragment>

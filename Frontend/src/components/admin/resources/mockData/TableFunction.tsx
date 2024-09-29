@@ -139,10 +139,10 @@ export const FunctionCells: any = [
     dataIndex: 'functionCode',
     title: 'Code function',
   },
-  {
-    dataIndex: 'creator',
-    title: 'Người tạo',
-  },
+  // {
+  //   dataIndex: 'creator',
+  //   title: 'Người tạo',
+  // },
   {
     dataIndex: 'actions',
     title: 'Hoạt động',
@@ -159,7 +159,7 @@ export const FunctionRows = [
     appliedAssistants: 3,
     summary: 'Hỗ trợ phân tích dữ liệu',
     functionCode: 'analyzeData2024()',
-    creator: 'Nguyễn Văn A',
+    // creator: 'Nguyễn Văn A',
     actions: (
       <>
         <IconButton>
@@ -180,7 +180,7 @@ export const FunctionRows = [
     appliedAssistants: 4,
     summary: 'Quản lý khách hàng tự động',
     functionCode: 'autoManageCustomer()',
-    creator: 'Trần Thị B',
+    // creator: 'Trần Thị B',
     actions: (
       <>
         <IconButton>
@@ -201,7 +201,7 @@ export const FunctionRows = [
     appliedAssistants: 2,
     summary: 'Phân tích và dự đoán xu hướng',
     functionCode: 'trendPrediction()',
-    creator: 'Lê Văn C',
+    // creator: 'Lê Văn C',
     actions: (
       <>
         <IconButton>
@@ -222,7 +222,7 @@ export const FunctionRows = [
     appliedAssistants: 5,
     summary: 'Phát triển kênh phân phối',
     functionCode: 'channelDevelopment()',
-    creator: 'Hoàng Thị D',
+    // creator: 'Hoàng Thị D',
     actions: (
       <>
         <IconButton>
@@ -243,7 +243,7 @@ export const FunctionRows = [
     appliedAssistants: 3,
     summary: 'Tối ưu hóa quy trình vận hành',
     functionCode: 'optimizeOperation()',
-    creator: 'Phạm Văn E',
+    // creator: 'Phạm Văn E',
     actions: (
       <>
         <IconButton>
@@ -264,7 +264,7 @@ export const FunctionRows = [
     appliedAssistants: 6,
     summary: 'Nâng cao thương hiệu',
     functionCode: 'enhanceBranding()',
-    creator: 'Ngô Thị F',
+    // creator: 'Ngô Thị F',
     actions: (
       <>
         <IconButton>
