@@ -131,7 +131,7 @@ const TableData: PropsTable[] = [
   {
     id: '8',
     fullName: 'Nguyen Van G',
-    rankImage: rank9,
+    rankImage: rank8,
     avatar: avt2,
     model: 'GTA-1',
     gmv: 100000,
