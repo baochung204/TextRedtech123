@@ -1,12 +1,10 @@
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import {
-  IconClick,
   IconEye,
-  IconHandClick,
   IconTrash,
   IconUnlink,
-  IconUsers,
+  IconUsers
 } from '@tabler/icons-react';
 export const Url = [
   {
@@ -57,54 +55,54 @@ export const Url = [
       </>
     ),
   },
-  {
-    bgColor: 'warning.light',
-    color: 'warning.main',
-    title: 'Click',
-    total: '32.415',
-    icons: (
-      <>
-        <Box
-          bgcolor="warning.main"
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <IconHandClick color="white" size={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'error.light',
-    color: 'error.main',
-    title: 'Click/URL',
-    total: '11.415',
-    icons: (
-      <>
-        <Box
-          bgcolor="error.main"
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <IconClick color="white" size={30} />
-        </Box>
-      </>
-    ),
-  },
+  // {
+  //   bgColor: 'warning.light',
+  //   color: 'warning.main',
+  //   title: 'Click',
+  //   total: '32.415',
+  //   icons: (
+  //     <>
+  //       <Box
+  //         bgcolor="warning.main"
+  //         textAlign="center"
+  //         padding={1}
+  //         sx={{
+  //           width: 40,
+  //           height: 40,
+  //           display: 'flex',
+  //           justifyContent: 'center',
+  //           alignItems: 'center',
+  //         }}
+  //       >
+  //         <IconHandClick color="white" size={30} />
+  //       </Box>
+  //     </>
+  //   ),
+  // },
+  // {
+  //   bgColor: 'error.light',
+  //   color: 'error.main',
+  //   title: 'Click/URL',
+  //   total: '11.415',
+  //   icons: (
+  //     <>
+  //       <Box
+  //         bgcolor="error.main"
+  //         textAlign="center"
+  //         padding={1}
+  //         sx={{
+  //           width: 40,
+  //           height: 40,
+  //           display: 'flex',
+  //           justifyContent: 'center',
+  //           alignItems: 'center',
+  //         }}
+  //       >
+  //         <IconClick color="white" size={30} />
+  //       </Box>
+  //     </>
+  //   ),
+  // },
 ];
 
 export const UrlCells: any = [

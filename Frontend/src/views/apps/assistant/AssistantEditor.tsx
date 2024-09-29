@@ -18,18 +18,7 @@ const BCrumb = [
 ];
 
 const AssistantEditor = () => {
-  // return (
-  //   <PageContainer title="Tạo Assistant" description="this is Shop List page">
-  //     {/* breadcrumb */}
-  //     <Breadcrumb title="Tạo Assistant" items={BCrumb} />
-  //     {/* <BlankCard> */}
-  //     {/* ------------------------------------------- */}
-  //     {/* Left part */}
-  //     {/* ------------------------------------------- */}
-  //     <Assistant_Add />
-  //     {/* </BlankCard> */}
-  //   </PageContainer>
-  // );
+  
   return (
     <PageContainer title="Tạo Assistant" description="this is Shop List page">
       <BannerPage title="Tạo Assistant" items={BCrumb} />

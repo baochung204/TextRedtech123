@@ -22,10 +22,10 @@ import AddText from '../layout/addText';
 import Sli from '../Sli';
 
 const AssistantEditor = () => {
-  const [expanded, setExpanded] = React.useState<string | false>(false); // Set initial state to 'false'
+  const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange4 = (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
-    setExpanded(newExpanded ? panel : false); // Set to 'false' to close
+    setExpanded(newExpanded ? panel : false);
   };
 
   return (
@@ -40,7 +40,7 @@ const AssistantEditor = () => {
         >
           <Stack spacing={1} direction="row"></Stack>
           <Stack direction="row" spacing={1}>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="primary">
               Lưu
             </Button>
           </Stack>
@@ -71,7 +71,7 @@ const AssistantEditor = () => {
                       <AddModel />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
-                      <AddText/>
+                      <AddText />
                     </Grid>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6} lg={6}>

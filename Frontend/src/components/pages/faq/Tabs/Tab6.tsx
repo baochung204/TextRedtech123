@@ -67,9 +67,11 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
       dataIndex: 'action',
       render: () => (
         // <IconButton onClick={() => onHandleRemove(urls.id)}>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <IconButton>
+            <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+          </IconButton>
+        </Box>
       ),
     },
   ];

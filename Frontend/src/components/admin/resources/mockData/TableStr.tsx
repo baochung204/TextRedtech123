@@ -114,11 +114,11 @@ export const StrategyCells: any = [
 
     title: 'ID',
   },
-  {
-    dataIndex: 'creationTime',
+  // {
+  //   dataIndex: 'creationTime',
 
-    title: 'Ngày tạo',
-  },
+  //   title: 'Ngày tạo',
+  // },
   {
     dataIndex: 'strategyGroup',
 
@@ -159,11 +159,11 @@ export const StrategyCells: any = [
 
     title: 'Nội dung',
   },
-  {
-    dataIndex: 'creator',
+  // {
+  //   dataIndex: 'creator',
 
-    title: 'Người tạo',
-  },
+  //   title: 'Người tạo',
+  // },
   {
     dataIndex: 'actions',
 
@@ -183,7 +183,7 @@ export const StrategyRows = [
     appliedAssistants: 3,
     summary: 'Tập trung vào thị trường mới',
     content: 'Chiến lược nhằm tăng cường sự hiện diện tại các thị trường mới nổi...',
-    creator: 'Nguyễn Văn A',
+    // creator: 'Nguyễn Văn A',
     actions: (
       <>
         <IconButton>
@@ -206,7 +206,7 @@ export const StrategyRows = [
     appliedAssistants: 4,
     summary: 'Cải thiện trải nghiệm khách hàng',
     content: 'Chiến lược này tập trung vào việc nâng cao dịch vụ sau bán hàng...',
-    creator: 'Trần Thị B',
+    // creator: 'Trần Thị B',
     actions: (
       <>
         <IconButton>
@@ -229,7 +229,7 @@ export const StrategyRows = [
     appliedAssistants: 2,
     summary: 'Phát triển sản phẩm mới trong quý 4',
     content: 'Tập trung vào việc ra mắt các sản phẩm mới nhằm đáp ứng nhu cầu thị trường...',
-    creator: 'Lê Văn C',
+    // creator: 'Lê Văn C',
     actions: (
       <>
         <IconButton>
@@ -253,7 +253,7 @@ export const StrategyRows = [
     summary: 'Mở rộng thị trường tại Đông Nam Á',
     content:
       'Chiến lược tập trung vào việc xâm nhập và phát triển các kênh phân phối tại Đông Nam Á...',
-    creator: 'Hoàng Thị D',
+    // creator: 'Hoàng Thị D',
     actions: (
       <>
         <IconButton>
@@ -276,7 +276,7 @@ export const StrategyRows = [
     appliedAssistants: 3,
     summary: 'Giảm thiểu chi phí sản xuất và vận hành',
     content: 'Tối ưu hóa quy trình sản xuất và cắt giảm các chi phí không cần thiết...',
-    creator: 'Phạm Văn E',
+    // creator: 'Phạm Văn E',
     actions: (
       <>
         <IconButton>
@@ -299,7 +299,7 @@ export const StrategyRows = [
     appliedAssistants: 6,
     summary: 'Nâng cao nhận diện thương hiệu quốc tế',
     content: 'Chiến lược này tập trung vào việc xây dựng hình ảnh thương hiệu mạnh mẽ...',
-    creator: 'Ngô Thị F',
+    // creator: 'Ngô Thị F',
     actions: (
       <>
         <IconButton>

@@ -122,33 +122,31 @@ const DataBox = [
   },
 ];
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case 'Đã duyệt':
-      return 'success'; // Green for approved
-    case 'Chờ duyệt':
-      return 'warning'; // Yellow for pending approval
-    case 'Từ chối':
-      return 'error'; // Red for rejected
-    case 'Chưa gửi':
-      return 'default'; // Gray for not yet sent
-    default:
-      return 'default'; // Gray for any unrecognized status
-  }
-};
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case 'Đã duyệt':
+//       return 'success'; // Green for approved
+//     case 'Chờ duyệt':
+//       return 'warning'; // Yellow for pending approval
+//     case 'Từ chối':
+//       return 'error'; // Red for rejected
+//     case 'Chưa gửi':
+//       return 'default'; // Gray for not yet sent
+//     default:
+//       return 'default'; // Gray for any unrecognized status
+//   }
+// };
 
-const getStatusAccountColor = (status: string) => {
+const getStatusAccountColor = (status: number) => {
   switch (status) {
-    case 'Hoạt động':
+    case 1:
       return 'success'; // Green for approved
-    case 'Chờ duyệt':
+    case 2:
       return 'warning'; // Yellow for pending approval
-    case 'Từ chối':
+    case 3:
       return 'error'; // Red for rejected
-    case 'Chưa đăng ký':
-      return 'default'; // Gray for not yet sent
     default:
-      return 'default'; // Gray for any unrecognized status
+      return 'default'; // Default color for unknown statuses
   }
 };
 
@@ -226,7 +224,18 @@ const PublisherAffiliate = () => {
         title: 'Trạng thái tài khoản',
         dataIndex: '',
         render: (_row: any, value: any) => (
-          <Chip label={value.type_account} color={getStatusAccountColor(value.type_account)} />
+          <Chip
+            label={
+              value.type_account === 1
+                ? 'Hoạt động'
+                : value.type_account === 2
+                ? 'Chờ duyệt'
+                : value.type_account === 3
+                ? 'Bị từ chối'
+                : ''
+            }
+            color={getStatusAccountColor(value.type_account)}
+          />
         ),
       },
       {
@@ -234,29 +243,37 @@ const PublisherAffiliate = () => {
         dataIndex: 'rank',
       },
       {
-        title: 'Hồ sơ',
-        dataIndex: '',
-        render: (_row: any, value: any) => (
-          <Typography style={{ width: '100px' }} variant="subtitle2">
-            <Chip label={value.contract} color={getStatusColor(value.contract)} />
-          </Typography>
-        ),
+        title: 'Số lượng khách hàng',
+        dataIndex: 'total_Customers',
       },
       {
-        title: 'Hợp đồng Affiliate',
-        dataIndex: '',
-        render: (_row: any, value: any) => (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography style={{ width: '100px' }} variant="subtitle2">
-              <Chip
-                label={value.brief ? 'Đã ký' : 'Chưa ký'}
-                color={value.brief ? 'success' : 'warning'}
-                variant="outlined"
-              />
-            </Typography>
-          </Box>
-        ),
+        title: 'Số lượng đơn hàng',
+        dataIndex: 'total_Order',
       },
+      // {
+      //   title: 'Hồ sơ',
+      //   dataIndex: '',
+      //   render: (_row: any, value: any) => (
+      //     <Typography style={{ width: '100px' }} variant="subtitle2">
+      //       <Chip label={value.contract} color={getStatusColor(value.contract)} />
+      //     </Typography>
+      //   ),
+      // },
+      // {
+      //   title: 'Hợp đồng Affiliate',
+      //   dataIndex: '',
+      //   render: (_row: any, value: any) => (
+      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      //       <Typography style={{ width: '100px' }} variant="subtitle2">
+      //         <Chip
+      //           label={value.brief ? 'Đã ký' : 'Chưa ký'}
+      //           color={value.brief ? 'success' : 'warning'}
+      //           variant="outlined"
+      //         />
+      //       </Typography>
+      //     </Box>
+      //   ),
+      // },
       {
         title: 'Tổng hoa hồng',
         dataIndex: 'total_commission',
@@ -265,18 +282,18 @@ const PublisherAffiliate = () => {
         title: 'Click',
         dataIndex: 'click',
       },
-      {
-        title: 'Khách hàng',
-        dataIndex: 'customer',
-      },
-      {
-        title: 'Đơn hàng',
-        dataIndex: 'order',
-      },
-      {
-        title: 'Doanh thu',
-        dataIndex: 'revenue',
-      },
+      // {
+      //   title: 'Khách hàng',
+      //   dataIndex: 'customer',
+      // },
+      // {
+      //   title: 'Số đơn hàng',
+      //   dataIndex: 'order',
+      // },
+      // {
+      //   title: 'Doanh thu',
+      //   dataIndex: 'revenue',
+      // },
       {
         title: 'CVR',
         dataIndex: 'cvr',
@@ -321,7 +338,7 @@ const PublisherAffiliate = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
+          <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
 
         <Grid item xs={12}>

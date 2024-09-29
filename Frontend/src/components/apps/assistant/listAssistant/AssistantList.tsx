@@ -82,86 +82,80 @@ const ListAssistant = () => {
   return (
     <Grid container spacing={3}>
       <Grid item sm={12} lg={12}>
-        <Stack
-          direction="row"
-          alignItems="center"
-          sx={{ display: { xs: 'block', sm: 'flex' }, justifyContent: 'end' }}
-        >
-          <Grid container width={{ sm: 600 }} spacing={1}>
-            <Grid
-              item
-              xs={6}
-              sm={6}
-              md={6}
-              sx={{
-                display: 'flex',
-                justifyContent: 'end',
-                alignItems: 'center',
+        <Grid container>
+          <Grid
+            item
+            xs={4}
+            sm={4}
+            md={4}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <TextField
+              id="outlined-search"
+              placeholder="Tìm kiếm trợ lý"
+              size="small"
+              type="search"
+              variant="outlined"
+              inputProps={{ 'aria-label': 'Search Followers' }}
+              sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <IconSearch size="12" />
+                  </InputAdornment>
+                ),
               }}
-            >
-              <IconButton aria-label="filter" sx={{ mr: 1 }}>
-                <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
-                  <FilterListIcon />
-                </Badge>
-              </IconButton>
-              <Select
-                value={selectedItems}
-                onChange={handleChange1}
-                displayEmpty
-                renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
-                size="small"
-                style={{ minWidth: 50 }}
-              >
-                {FilmsData.map((film) => (
-                  <MenuItem
-                    key={film.title}
-                    value={film.title}
-                    onClick={() => handleItemClick1(film.title)}
-                  >
-                    <ListItemText primary={film.title} />
-                  </MenuItem>
-                ))}
-              </Select>
-              <IconButton
-                aria-label="filter"
-                onClick={handleClickIcon}
-                sx={{
-                  ml: 1,
-                }}
-              >
-                <SelectedIcon />
-              </IconButton>
-            </Grid>
-            <Grid
-              item
-              xs={6}
-              sm={6}
-              md={6}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <TextField
-                id="outlined-search"
-                placeholder="Tìm kiếm trợ lý"
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ 'aria-label': 'Search Followers' }}
-                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' }, p: 0 }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="12" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth={true}
-              />
-            </Grid>
+              fullWidth={true}
+            />
           </Grid>
-        </Stack>
+          <Grid
+            item
+            xs={6}
+            sm={6}
+            md={8}
+            sx={{
+              display: 'flex',
+              justifyContent: 'end',
+              alignItems: 'center',
+            }}
+          >
+            <IconButton aria-label="filter" sx={{ mr: 1 }}>
+              <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
+                <FilterListIcon />
+              </Badge>
+            </IconButton>
+            <Select
+              value={selectedItems}
+              onChange={handleChange1}
+              displayEmpty
+              renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
+              size="small"
+              style={{ minWidth: 50 }}
+            >
+              {FilmsData.map((film) => (
+                <MenuItem
+                  key={film.title}
+                  value={film.title}
+                  onClick={() => handleItemClick1(film.title)}
+                >
+                  <ListItemText primary={film.title} />
+                </MenuItem>
+              ))}
+            </Select>
+            <IconButton
+              aria-label="filter"
+              onClick={handleClickIcon}
+              sx={{
+                ml: 1,
+              }}
+            >
+              <SelectedIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item sm={12}>
         <Grid container spacing={2}>
@@ -192,8 +186,10 @@ const ListAssistant = () => {
                     src={rank.rankImage}
                     alt=""
                     sx={{
-                      width: '100%',
-                      height: 'auto',
+                      // width: '100%', chịu Chung
+                      // height: 'auto',
+                      maxWidth: '250px',
+                      height: '200px',
                       zIndex: 99,
                       mt: 2,
                       position: 'relative',

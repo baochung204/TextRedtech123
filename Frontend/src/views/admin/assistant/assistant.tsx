@@ -31,6 +31,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { Dayjs } from 'dayjs';
 
 const BCrumb = [
   {
@@ -172,7 +174,6 @@ interface Column {
   isValids?: boolean;
 }
 
-
 interface AssistantData {
   assistantId: string; // ID trợ lý
   customerId: string; // ID khách hàng
@@ -311,9 +312,6 @@ const FilmsData: FilmsData[] = [
   { id: 6, title: 'Experience' },
 ];
 const AssistantAdmin = () => {
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
   const [selectedItems] = useState<number[]>([]);
 
   // const handleItemClick = (id: number) => {
@@ -328,50 +326,56 @@ const AssistantAdmin = () => {
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
-  const column = useMemo<Column[]>(() => [
-    {
-      dataIndex: 'assistantId',
-      title: 'ID trợ lý',
-    },
-    {
-      dataIndex: 'customerId',
-      title: 'ID khách hàng',
-    },
-    {
-      dataIndex: 'assistantImage',
-      title: 'Ảnh trợ lý',
-    },
-    {
-      dataIndex: 'assistantName',
-      title: 'Tên trợ lý',
-    },
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        dataIndex: 'assistantId',
+        title: 'ID trợ lý',
+      },
+      {
+        dataIndex: 'customerId',
+        title: 'ID khách hàng',
+      },
+      {
+        dataIndex: 'assistantImage',
+        title: 'Ảnh trợ lý',
+      },
+      {
+        dataIndex: 'assistantName',
+        title: 'Tên trợ lý',
+      },
 
-    {
-      dataIndex: 'level',
-      title: 'Level',
-    },
-    {
-      dataIndex: 'experience',
-      title: 'Experience',
-    },
-  ],[])
+      {
+        dataIndex: 'level',
+        title: 'Level',
+      },
+      {
+        dataIndex: 'experience',
+        title: 'Experience',
+      },
+    ],
+    [],
+  );
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
     }
   }, [column]);
-
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   return (
@@ -432,7 +436,7 @@ const AssistantAdmin = () => {
                 displayEmpty
                 onChange={handleColumnChange}
                 renderValue={() => 'Sửa đổi cột'}
-                size='small'
+                size="small"
                 MenuProps={{
                   PaperProps: {
                     sx: {
@@ -464,8 +468,7 @@ const AssistantAdmin = () => {
                 }}
               >
                 {column.map((header: any) => {
-
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -488,20 +491,55 @@ const AssistantAdmin = () => {
                 {createElement(icons[iconIndex])}
               </IconButton>
             </Grid>
-
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
-                    value={selectedStartDate}
-                    onChange={setSelectedStartDate}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(props) => (
+                      <CustomTextField
+                        {...props}
+                        fullWidth
+                        size="small"
+                        sx={{
+                          '& .MuiSvgIcon-root': {
+                            width: '18px',
+                            height: '18px',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            display: 'none',
+                          },
+                        }}
+                      />
+                    )}
                   />
-                  <Typography>tới</Typography>
+                </LocalizationProvider>
+                tới
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
-                    value={selectedEndDate}
-                    onChange={setSelectedEndDate}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    value={value1}
+                    onChange={(newValue) => {
+                      setValue1(newValue);
+                    }}
+                    renderInput={(props) => (
+                      <CustomTextField
+                        {...props}
+                        fullWidth
+                        size="small"
+                        sx={{
+                          '& .MuiSvgIcon-root': {
+                            width: '18px',
+                            height: '18px',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            display: 'none',
+                          },
+                        }}
+                      />
+                    )}
                   />
                 </LocalizationProvider>
               </Box>
@@ -509,7 +547,7 @@ const AssistantAdmin = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect}/>
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </PageContainer>

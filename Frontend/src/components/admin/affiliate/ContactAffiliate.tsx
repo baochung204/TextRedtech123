@@ -119,16 +119,16 @@ const dataSource = [
   },
 ];
 
-const getStatusColor = (status: string) => {
+const getStatusColor = (status: number) => {
   switch (status) {
-    case 'Đã ký':
-      return 'success'; // Green for approved
-    case 'Chờ ký':
-      return 'warning'; // Yellow for pending approval
-    case 'Từ chối':
-      return 'error'; // Red for rejected
+    case 1:
+      return 'success';
+    case 2:
+      return 'warning';
+    case 3:
+      return 'error';
     default:
-      return 'default'; // Gray for any unrecognized status
+      return 'default';
   }
 };
 interface Column {
@@ -206,9 +206,18 @@ const ContactAffiliate = () => {
         title: 'Trạng thái',
         dataIndex: 'status',
         render: (_row: any, value: any) => (
-          <Typography style={{ width: '100px' }} variant="subtitle2">
-            <Chip label={value.status} color={getStatusColor(value.status)} />
-          </Typography>
+          <Chip
+            label={
+              value.status === 1
+                ? 'Đã ký'
+                : value.status === 2
+                ? 'Ký một chiều'
+                : value.status === 3
+                ? 'Bị từ chối'
+                : 'Chưa ký'
+            }
+            color={getStatusColor(value.status)}
+          />
         ),
       },
       {
@@ -223,11 +232,20 @@ const ContactAffiliate = () => {
       },
       {
         title: 'Hợp đồng',
-        dataIndex: '',
-        // render: (_row: any, value: any) => (
-        render: () => (
+        dataIndex: 'status',
+        render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Button style={{ width: '100px' }}>Ký ngay</Button>
+            {value.status === 1 ? (
+              <Button color="success" variant="contained" style={{ width: '100px' }}>
+                Xem
+              </Button>
+            ) : value.status === 2 ? (
+              <Button color="warning" variant="text" style={{ width: '100px' }}>
+                Ký ngay
+              </Button>
+            ) : (
+              <span style={{ width: '100px', textAlign: 'center' }}>—</span>
+            )}
           </Box>
         ),
       },

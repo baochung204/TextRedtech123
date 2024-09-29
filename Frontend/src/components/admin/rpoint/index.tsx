@@ -4,17 +4,20 @@ import {
   Badge,
   Box,
   Checkbox,
+  Fab,
   Grid,
+  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PublisherTable from './datatable/Publisher';
@@ -85,6 +88,27 @@ const PublisherTablePage: React.FC = () => {
         title: 'Ngày tạo',
         dataIndex: 'createDate',
       },
+      {
+        dataIndex: 'isActive',
+        title: 'Hoạt động',
+        validate: true,
+        render: () => (
+          <>
+            <IconButton
+              onClick={() => {
+                // setSelectedKey(row.id);
+                // setOpen(true);
+                // setIsCheckFix(true);
+              }}
+            >
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+            <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+          </>
+        ),
+      },
     ],
     [],
   );
@@ -116,12 +140,12 @@ const PublisherTablePage: React.FC = () => {
         item
         xs={12}
         sx={{
-          paddingY: 3,
+          paddingBottom: 3,
         }}
       >
         <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Grid item xs={4} sm={4} md={4}>
-            <TextField
+            {/* <TextField
               id="outlined-search"
               placeholder="Tìm kiếm thông báo"
               size="small"
@@ -137,7 +161,37 @@ const PublisherTablePage: React.FC = () => {
                 ),
               }}
               fullWidth={true}
-            />
+            /> */}
+            <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+              <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                <Tooltip title="Thêm gói R-Point" sx={{ mb: '15px' }}>
+                  {/* <AddDialogvoucher /> */}
+
+                  <Fab size="small" color="primary" aria-label="plus" sx={{ my: 'auto' }}>
+                    <IconPlus width={18} />
+                  </Fab>
+                </Tooltip>
+              </Grid>
+              <Grid item xs={10}>
+                <TextField
+                  id="outlined-search"
+                  placeholder="Tìm kiếm mã khuyến mại"
+                  size="small"
+                  type="search"
+                  variant="outlined"
+                  inputProps={{ 'aria-label': 'Search Followers' }}
+                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <IconSearch size="20" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth={true}
+                />
+              </Grid>
+            </Grid>
           </Grid>
 
           <Grid item xs={6}>
@@ -154,7 +208,7 @@ const PublisherTablePage: React.FC = () => {
                 displayEmpty
                 onChange={handleColumnChange}
                 renderValue={() => 'Sửa đổi cột'}
-                size='small'
+                size="small"
                 MenuProps={{
                   PaperProps: {
                     sx: {
@@ -216,7 +270,7 @@ const PublisherTablePage: React.FC = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={PublisherTable} dataSelect={dataSelect} />;
+        <CustomTable columns={column} dataSource={PublisherTable} dataSelect={dataSelect} />
       </Grid>
     </Grid>
   );

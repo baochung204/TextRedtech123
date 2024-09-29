@@ -71,7 +71,7 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
     color: 'primary.main',
-    title: 'Nhân viên',
+    title: 'Bài viết ',
     total: '120',
     icons: (
       <Box
@@ -93,7 +93,7 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'warning.light',
     color: 'warning.main',
-    title: 'Admin',
+    title: 'Lượt xem',
     total: '5',
     icons: (
       <Box
@@ -115,8 +115,8 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'success.light',
     color: 'success.main',
-    title: 'Hoạt động',
-    total: '52',
+    title: 'Doanh thu',
+    total: '52.200.200 ₫ ',
     icons: (
       <Box
         bgcolor="success.main"
@@ -137,8 +137,8 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'error.light',
     color: 'error.main',
-    title: 'Khóa',
-    total: '12',
+    title: 'Lượt tim',
+    total: '120',
     icons: (
       <Box
         bgcolor="error.main"
