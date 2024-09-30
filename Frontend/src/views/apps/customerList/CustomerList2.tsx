@@ -1,6 +1,5 @@
 import { TabContext, TabPanel } from '@mui/lab';
 import {
-  Badge,
   Box,
   Checkbox,
   Dialog,
@@ -28,13 +27,10 @@ import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 // import { AppDispatch, AppState } from 'src/store/Store';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 import PopupAddList2 from './PopupAddlist2';
-
-
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -60,67 +56,69 @@ const CustomerList2 = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const dataCustomer = useSelector((state: AppState) => state.customer.data);
-  useEffect(()=> {
-    dispatch(fetchCustomer())
-  },[dispatch])
-  const column = useMemo<Column[]>(() => [
-    {
-      title: 'ID khách hàng',
-      dataIndex: 'idCustomer',
-    },
+  useEffect(() => {
+    dispatch(fetchCustomer());
+  }, [dispatch]);
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        title: 'ID khách hàng',
+        dataIndex: 'idCustomer',
+      },
 
-    {
-      title: 'Ngày tạo',
-      dataIndex: 'dateTime',
-    },
-    {
-      title: 'Trợ lý',
-      dataIndex: 'assistant',
-    },
-    {
-      title: 'Kênh(MKT)',
-      dataIndex: 'pageName',
-      render: (_row, value: any) => (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src={value?.iconImageUrl}
-            alt=""
-            style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
-          />
-          <Box>
-            <Typography>{value.pageName}</Typography>
-            {/* <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography> */}
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'dateTime',
+      },
+      {
+        title: 'Trợ lý',
+        dataIndex: 'assistant',
+      },
+      // {
+      //   title: 'Kênh(MKT)',
+      //   dataIndex: 'pageName',
+      //   render: (_row, value: any) => (
+      //     <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      //       <img
+      //         src={value?.iconImageUrl}
+      //         alt=""
+      //         style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
+      //       />
+      //       <Box>
+      //         <Typography>{value.pageName}</Typography>
+      //         {/* <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography> */}
+      //       </Box>
+      //     </Box>
+      //   ),
+      // },
+      {
+        title: 'Tags',
+        dataIndex: 'tag',
+      },
+      {
+        title: 'Tên khách hàng',
+        dataIndex: 'nameCustomer',
+      },
+      {
+        title: 'Tổng chi tiêu',
+        dataIndex: 'orderValue',
+        render: (_row: any, value: any) => (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography>{value.totalSpend} đ</Typography>
           </Box>
-        </Box>
-      ),
-    },
-    {
-      title: 'Tags',
-      dataIndex: 'tag',
-    },
-    {
-      title: 'Tên khách hàng',
-      dataIndex: 'nameCustomer',
-    },
-    {
-      title: 'Tổng chi tiêu',
-      dataIndex: 'orderValue',
-      render: (_row: any, value: any) => (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Typography>{value.totalSpend} đ</Typography>
-          
-        </Box>
-      ),
-    },
-    {
-      title: 'SĐT',
-      dataIndex: 'phoneNumber',
-    },
-    {
-      title: 'Địa chỉ',
-      dataIndex: 'address',
-    },
-  ],[])
+        ),
+      },
+      {
+        title: 'SĐT',
+        dataIndex: 'phoneNumber',
+      },
+      {
+        title: 'Địa chỉ',
+        dataIndex: 'address',
+      },
+    ],
+    [],
+  );
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -132,13 +130,12 @@ const CustomerList2 = () => {
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
-
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -146,7 +143,9 @@ const CustomerList2 = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -168,12 +167,7 @@ const CustomerList2 = () => {
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
                         <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Tooltip title="Thêm mới khách hàng" onClick={handleOpenPopup}>
-                            <Fab
-                              size="small"
-                              color="secondary"
-                              aria-label="plus"
-                              sx={{ my: 'auto' }}
-                            >
+                            <Fab size="small" color="primary" aria-label="plus" sx={{ my: 'auto' }}>
                               <IconPlus width={18} />
                             </Fab>
                           </Tooltip>
@@ -197,9 +191,12 @@ const CustomerList2 = () => {
                       </Grid>
                     </Grid>
 
-                    <Grid item xs={10} sm={4}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+                    <Grid item xs={5.83}>
+                      {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Badge
+                          badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                          color={dataSelect.length !== 0 ? 'primary' : undefined}
+                        >
                           <FilterListIcon color="action" />
                         </Badge>
                         <Select
@@ -208,11 +205,13 @@ const CustomerList2 = () => {
                           displayEmpty
                           onChange={handleColumnChange}
                           renderValue={() => 'Sửa đổi cột'}
-                          size='small'
+                          size="small"
                         >
                           {column.map((header: any) => {
-
-                            console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                            console.log(
+                              `check ${header.title}`,
+                              dataSelect.includes(header.dataIndex),
+                            );
 
                             const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -224,6 +223,7 @@ const CustomerList2 = () => {
                             );
                           })}
                         </Select>
+
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
                             value={selectedStartDate}
@@ -241,17 +241,115 @@ const CustomerList2 = () => {
                             )}
                           />
                         </LocalizationProvider>
+                      </Box> */}
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        {/* <Select
+                          multiple
+                          value={dataSelect}
+                          displayEmpty
+                          onChange={handleColumnChange}
+                          renderValue={() => 'Sửa đổi cột'}
+                          size="small"
+                        >
+                          {column.map((header: any) => {
+                            // console.log(
+                            //   `check ${header.title}`,
+                            //   dataSelect.includes(header.dataIndex),
+                            // );
+
+                            const isSelected = dataSelect.includes(header.dataIndex);
+
+                            return (
+                              <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                                <Checkbox checked={!isSelected} />
+                                <ListItemText primary={header.title} />
+                              </MenuItem>
+                            );
+                          })}
+                        </Select> */}
+                        <Select
+                          multiple
+                          value={dataSelect}
+                          displayEmpty
+                          onChange={handleColumnChange}
+                          renderValue={() => 'Sửa đổi cột'}
+                          sx={{
+                            marginRight: 2,
+                          }}
+                          size="small"
+                          MenuProps={{
+                            PaperProps: {
+                              sx: {
+                                marginTop: 1,
+                                maxHeight: 400,
+                                '&::-webkit-scrollbar': {
+                                  width: '4px',
+                                },
+                                '&::-webkit-scrollbar-thumb': {
+                                  backgroundColor: '#D2D2D2',
+                                  borderRadius: '10px',
+                                },
+                                '&::-webkit-scrollbar-thumb:hover': {
+                                  backgroundColor: '#C6C8CC',
+                                },
+                                '&::-webkit-scrollbar-track': {
+                                  backgroundColor: '#f1f1f1',
+                                },
+                              },
+                            },
+                            anchorOrigin: {
+                              vertical: 'bottom',
+                              horizontal: 'right',
+                            },
+                            transformOrigin: {
+                              vertical: 'top',
+                              horizontal: 'right',
+                            },
+                          }}
+                        >
+                          {column.map((header: any) => {
+                            console.log(
+                              `check ${header.title}`,
+                              dataSelect.includes(header.dataIndex),
+                            );
+
+                            const isSelected = dataSelect.includes(header.dataIndex);
+
+                            return (
+                              <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                                <Checkbox checked={!isSelected} />
+                                <ListItemText primary={header.title} />
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
+                              value={selectedStartDate}
+                              onChange={setSelectedStartDate}
+                              renderInput={(params) => (
+                                <TextField {...params} size="small" fullWidth />
+                              )}
+                            />
+                            <Typography>tới</Typography>
+                            <DatePicker
+                              value={selectedEndDate}
+                              onChange={setSelectedEndDate}
+                              renderInput={(params) => (
+                                <TextField {...params} size="small" fullWidth />
+                              )}
+                            />
+                          </LocalizationProvider>
+                        </Box>
                       </Box>
                     </Grid>
                   </Grid>
                 </Grid>
 
                 <Grid item xs={12}>
-                  <CustomTable
-                    columns={column}
-                    dataSource={dataCustomer}
-                    dataSelect={dataSelect}
-                  />;
+                  <CustomTable columns={column} dataSource={dataCustomer} dataSelect={dataSelect} />
                 </Grid>
               </Grid>
             </TabPanel>

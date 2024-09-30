@@ -125,67 +125,69 @@ const CollaboratePost = () => {
   return (
     <Box>
       {/* <Breadcrumb title="Blog Detail" items={BCrumb} />{' '} */}
-      <div style={{ display: 'flex', justifyContent: 'end' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            // margin: '20px 10px 20px 0',
-            paddingBottom: 24,
-          }}
-        >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value1}
-              onChange={(newValue) => {
-                setValue1(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-          tới
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value2}
-              onChange={(newValue) => {
-                setValue2(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-        </div>
-      </div>
+      <Grid container style={{ display: 'flex', justifyContent: 'end' }}>
+        <Grid item xs={4.24}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              // margin: '20px 10px 20px 0',
+              paddingBottom: 24,
+            }}
+          >
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                value={value1}
+                onChange={(newValue) => {
+                  setValue1(newValue);
+                }}
+                renderInput={(props) => (
+                  <CustomTextField
+                    {...props}
+                    fullWidth
+                    size="small"
+                    sx={{
+                      '& .MuiSvgIcon-root': {
+                        width: '18px',
+                        height: '18px',
+                      },
+                      '& .MuiFormHelperText-root': {
+                        display: 'none',
+                      },
+                    }}
+                  />
+                )}
+              />
+            </LocalizationProvider>
+            tới
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                value={value2}
+                onChange={(newValue) => {
+                  setValue2(newValue);
+                }}
+                renderInput={(props) => (
+                  <CustomTextField
+                    {...props}
+                    fullWidth
+                    size="small"
+                    sx={{
+                      '& .MuiSvgIcon-root': {
+                        width: '18px',
+                        height: '18px',
+                      },
+                      '& .MuiFormHelperText-root': {
+                        display: 'none',
+                      },
+                    }}
+                  />
+                )}
+              />
+            </LocalizationProvider>
+          </div>
+        </Grid>
+      </Grid>
       <Box display="flex" width="100%" flexWrap="wrap">
         <Box
           width={{ xs: '100%', md: '30%' }}
@@ -454,7 +456,7 @@ const CollaboratePost = () => {
               <Danhsachdh />
             </Grid>
           </TabPanel>
-          <TabPanel value="2">
+          <TabPanel value="2" sx={{ px: 0 }}>
             {' '}
             <Grid item xs={12} lg={8} style={{ height: 'auto', marginBottom: '30px' }}>
               <HistoryMoney />

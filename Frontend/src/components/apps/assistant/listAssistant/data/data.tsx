@@ -8,7 +8,6 @@ import rank4 from 'src/assets/images/rank/rank4.png';
 import rank6 from 'src/assets/images/rank/rank6.png';
 import rank7 from 'src/assets/images/rank/rank7.png';
 import rank8 from 'src/assets/images/rank/rank8.png';
-import rank9 from 'src/assets/images/rank/rank9.png';
 
 interface PropsTable {
   id: string;
@@ -132,7 +131,7 @@ const TableData: PropsTable[] = [
   {
     id: '8',
     fullName: 'Nguyen Van G',
-    rankImage: rank9,
+    rankImage: rank8,
     avatar: avt2,
     model: 'GTA-1',
     gmv: 100000,

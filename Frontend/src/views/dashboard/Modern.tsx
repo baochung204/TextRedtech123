@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem, TextField, Typography } from '@mui/material';
+import { Box, Grid, MenuItem } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -17,6 +17,8 @@ import Welcome from 'src/layouts/full/shared/welcome/Welcome';
 import GerChart from '../charts/Gerchart';
 import PieCharts from '../charts/PieCharts';
 
+import { Dayjs } from 'dayjs';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Charts from './charts';
 
 const Modern = () => {
@@ -24,9 +26,9 @@ const Modern = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <PageContainer title="Modern Dashboard" description="this is Modern Dashboard page">
       <Box>
@@ -42,7 +44,7 @@ const Modern = () => {
                   size="small"
                   value={month}
                   onChange={handleChange}
-                  sx={{ py: 0.5 }}
+                  // sx={{ py: 0.5 }}
                 >
                   <MenuItem value={1}>Tất cả</MenuItem>
                   <MenuItem value={2}>Assistant 1</MenuItem>
@@ -53,15 +55,51 @@ const Modern = () => {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      value={selectedStartDate}
-                      onChange={setSelectedStartDate}
-                      renderInput={(params: any) => <TextField {...params} />}
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
                     />
-                    <Typography>tới</Typography>
+                  </LocalizationProvider>
+                  tới
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      value={selectedEndDate}
-                      onChange={setSelectedEndDate}
-                      renderInput={(params: any) => <TextField {...params} />}
+                      value={value1}
+                      onChange={(newValue) => {
+                        setValue1(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
                     />
                   </LocalizationProvider>
                 </Box>
@@ -71,10 +109,6 @@ const Modern = () => {
           <Grid item xs={12} lg={12}>
             <TopCards />
           </Grid>
-          {/* column */}
-          {/* <Grid item xs={12} lg={8}>
-            <RevenueUpdates />
-          </Grid> */}
           <Grid item xs={12} lg={8}>
             <GerChart />
           </Grid>
@@ -82,31 +116,17 @@ const Modern = () => {
             {' '}
             <PieCharts />
           </Grid>
-          {/* column */}
-          {/* <Grid item xs={12} lg={4}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6} lg={12}>
-                <YearlyBreakup />
-              </Grid>
-              <Grid item xs={12} sm={6} lg={12}>
-                <MonthlyEarnings />
-              </Grid>
-            </Grid>
-          </Grid> */}
-          {/* column */}{' '}
           <Grid item xs={12} lg={4}>
             <SellingProducts />
           </Grid>
           <Grid item xs={12} lg={4}>
             <PaymentGateways />
           </Grid>{' '}
-          {/* column */}
           <Grid item xs={12} lg={4}>
             <WeeklyStats />
           </Grid>
           <Charts />
         </Grid>
-        {/* column */}
         <Welcome />
       </Box>
     </PageContainer>

@@ -74,7 +74,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 //   return 0;
 // }
 
-
 type Order = 'asc' | 'desc';
 
 // function getComparator<Key extends keyof any>(
@@ -180,18 +179,59 @@ const FilmsData: any = [
     id: 5,
     title: 'Trạng thái',
     dataIndex: 'status',
-    render: (value: any) => (
-      <Typography color={value ? '#13DEB9' : '#ba8b02'} variant="subtitle2" fontWeight={'24px'}>
-        {value ? 'đã thanh toán' : 'Chờ xử lý'}
-      </Typography>
+    // render: (value: any) => (
+    //   <Typography color={value ? '#13DEB9' : '#FFAE1F'} variant="subtitle2" fontWeight={'24px'}>
+    //     {value ? 'đã thanh toán' : 'Chờ xử lý'}
+    //   </Typography>
+    // ),
+    render: (value: number) => (
+      <Box>
+        {value === 1 ? (
+          <Typography sx={{ color: '#13DEB9' }} variant="subtitle2">
+            Đã thanh toán
+          </Typography>
+        ) : value === 2 ? (
+          <Typography sx={{ color: '#ff9800' }} variant="subtitle2">
+            Chờ xử lý
+          </Typography>
+        ) : value === 3 ? (
+          <Typography sx={{ color: '#f44336' }} variant="subtitle2">
+            Không hợp lệ
+          </Typography>
+        ) : (
+          <Typography sx={{ color: 'gray' }} variant="subtitle2">
+            Chưa tải hóa đơn
+          </Typography>
+        )}
+      </Box>
     ),
   },
 
   {
     id: 7,
-    title: 'Hành động',
+    title: 'Hóa đơn',
     dataIndex: 'status',
-    render: (value: any) => <Button color="success">{value ? 'tải về' : ''}</Button>,
+    // render: (value: any) => <Button color="success">{value ? 'Đã tải' : ''}</Button>,
+    render: (value: number) => (
+      <Box>
+        {value === 1 || value === 2 ? (
+          // <Button color="success" variant="contained" sx={{ width: 70 }}>
+          //   Đã tải
+          // </Button>
+          <Typography sx={{ color: '#13DEB9' }} variant="subtitle2">
+            Đã tải
+          </Typography>
+        ) : value === 3 ? (
+          <Button color="error" variant="text" sx={{ width: 70 }}>
+            Tải lại
+          </Button>
+        ) : (
+          <Button color="success" variant="contained" sx={{ width: 70 }}>
+            Tải lên
+          </Button>
+        )}
+      </Box>
+    ),
   },
 ];
 
@@ -287,7 +327,6 @@ const HistoryMoney = () => {
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   // const [ setPage] = React.useState(0);
   // const [dense, setDense] = React.useState(false);
-  
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -379,7 +418,7 @@ const HistoryMoney = () => {
           <MenuItem value={2}>Khách hàng </MenuItem>
           <MenuItem value={3}>Đơn Hàng </MenuItem>
         </CustomSelect>
-        <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
+        <Box style={{ width: '35.2%' }} display={'flex'} alignItems={'center'} gap="5px">
           {' '}
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
@@ -432,11 +471,11 @@ const HistoryMoney = () => {
           </LocalizationProvider>
         </Box>
       </Box>
-      <BlankCard>
-        <Box mb={2} sx={{ mb: 2 }}>
-          <CustomTable columns={FilmsData} dataSource={tabledh} />
-        </Box>
-      </BlankCard>
+      {/* <BlankCard>
+        <Box mb={2} sx={{ mb: 2 }}> */}
+      <CustomTable columns={FilmsData} dataSource={tabledh} />
+      {/* </Box>
+      </BlankCard> */}
     </PageContainer>
   );
 };

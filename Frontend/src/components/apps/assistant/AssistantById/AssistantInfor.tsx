@@ -4,7 +4,7 @@ import React from 'react';
 
 import Chart from 'react-apexcharts';
 import avt9 from 'src/assets/images/profile/user-9.jpg';
-import rank9 from 'src/assets/images/rank/rank9.png';
+import rank8 from 'src/assets/images/rank/rank8.png';
 
 import {
   Avatar,
@@ -56,6 +56,8 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import Affilatec2 from 'src/components/shared/Affilatec2';
 import Affilatec3 from 'src/components/shared/Affilatec3';
 import Modarm from 'src/components/shared/moderm';
+import Affilatec1 from 'src/components/shared/Affilatec1';
+import Affilatec from 'src/components/shared/Affilatec';
 
 interface cardType {
   icon: string;
@@ -259,11 +261,42 @@ const AssistantInfor = () => {
       icon: icon5Img,
     },
   ];
+
+  const seriesdoughnutchart = [55, 45];
+
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: '#0000000',
+
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] + '%' : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -272,6 +305,15 @@ const AssistantInfor = () => {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
         },
       },
     },
@@ -280,13 +322,27 @@ const AssistantInfor = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, secondary, warning, '#2c5364', '#99f2c8'],
+    colors: ['#f45c43', '#fd1d1d'],
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: 'vertical',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#feb47b', '#ff7e5f'],
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100],
+      },
+    },
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
+    labels: ['Cá nhân', 'Doanh nghiệp'],
   };
+
   const optionsradialchart = {
     chart: {
       id: 'gauge-chart',
@@ -556,40 +612,40 @@ const AssistantInfor = () => {
       data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
-  // const optionsdoughnutchart3: Props = {
-  //   chart: {
-  //     id: 'donut-chart',
-  //     fontFamily: "'Plus Jakarta Sans', sans-serif",
-  //     foreColor: '#adb0bb',
-  //   },
-  //   dataLabels: {
-  //     enabled: false,
-  //   },
-  //   plotOptions: {
-  //     pie: {
-  //       donut: {
-  //         size: '70px',
-  //       },
-  //     },
-  //   },
-  //   legend: {
-  //     show: true,
-  //     position: 'bottom',
-  //     width: '50px',
-  //   },
-  //   colors: ['#ff416c', '#ff4b2b'],
-  //   tooltip: {
-  //     theme: 'dark',
-  //     fillSeriesColor: false,
-  //   },
-  //   labels: ['Chi phí', 'Doanh thu'],
-  // };
-  // const seriesdoughnutchart3 = [65, 35];
-  const optionsdoughnutchart4: Props = {
+  const seriesdoughnutchart3 = [35, 65];
+
+  const optionsdoughnutchart3: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: '#000000',
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -598,6 +654,15 @@ const AssistantInfor = () => {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
         },
       },
     },
@@ -606,14 +671,79 @@ const AssistantInfor = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#93f9b9', '#1D976C'],
+    colors: ['#4cb8c4', '#3cd3ad'],
+    tooltip: {
+      theme: 'dark',
+      fillSeriesColor: false,
+    },
+    labels: ['Chi phí', 'Doanh thu'],
+  };
+  const seriesdoughnutchart4 = [41, 59];
+
+  const optionsdoughnutchart4: Props = {
+    chart: {
+      id: 'donut-chart',
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      foreColor: '#000000',
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    plotOptions: {
+      pie: {
+        donut: {
+          size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
+        },
+      },
+    },
+    legend: {
+      show: true,
+      position: 'bottom',
+      width: '50px',
+    },
+    colors: ['#fe8c00', '#f2c94c'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
     labels: ['Chi phí', 'Cuộc trò chuyện'],
   };
-  const seriesdoughnutchart4 = [55, 65];
 
   const [month, setMonth] = React.useState('1');
 
@@ -766,7 +896,7 @@ const AssistantInfor = () => {
                 }}
               >
                 <img
-                  src={rank9}
+                  src={rank8}
                   alt=""
                   style={{
                     width: '100%',
@@ -1003,7 +1133,7 @@ const AssistantInfor = () => {
           </Grid>
           {/* column */}
           <Grid item xs={12} sm={6} lg={4}>
-            <Modarm title="Nguồn khách hàng " description="">
+            <Modarm title="Nguồn khách hàng " text="Nguồn khách hàng" description="">
               <Chart
                 options={optionsdoughnutchart}
                 series={seriespiechart}
@@ -1340,7 +1470,7 @@ const AssistantInfor = () => {
             </DashboardCard>
           </Grid>
           <Grid item xs={12} lg={4}>
-            <Affilatec3 title="Tỉ trọng chi phí /vòng quay">
+            <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Chi phí / vòng quay">
               <Chart
                 options={optionsradialchart}
                 series={seriesradialchart}
@@ -1351,27 +1481,27 @@ const AssistantInfor = () => {
           </Grid>{' '}
           {/* column */}
           <Grid item xs={12} lg={4}>
-            {/* <Affilatec title="Tỉ trọng chi phí /doanh thu ">
+            <Affilatec title="Tỉ trọng chi phí /doanh thu " text="Chi phí / doanh thu">
               <Chart
-                options={optionsdoughnutchart3}
-                series={seriesdoughnutchart3}
+                options={optionsdoughnutchart}
+                series={seriesdoughnutchart}
                 type="donut"
                 height="300px"
               />
-            </Affilatec> */}
+            </Affilatec>
           </Grid>
           <Grid item xs={12} lg={4}>
-            {/* <Affilatec1 title=" Đơn hàng">
+            <Affilatec1 title=" Đơn hàng" text="Đơn hàng">
               <Chart
                 options={optionsdoughnutchart3}
                 series={seriesdoughnutchart3}
                 type="donut"
                 height="300px"
               />
-            </Affilatec1> */}
+            </Affilatec1>
           </Grid>{' '}
           <Grid item xs={12} lg={4}>
-            <Affilatec2 title="Cuộc trò chuyện">
+            <Affilatec2 title="Cuộc trò chuyện" text="Hội thoại">
               <Chart
                 options={optionsdoughnutchart4}
                 series={seriesdoughnutchart4}
