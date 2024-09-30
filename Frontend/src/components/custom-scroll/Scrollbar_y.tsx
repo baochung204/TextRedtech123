@@ -3,7 +3,7 @@ import 'simplebar/dist/simplebar.min.css';
 import { Box, styled, SxProps } from '@mui/material';
 
 const SimpleBarStyle = styled(SimpleBar)(() => ({
-  maxHeight: '100%',
+  minHeight: '100%', // Changed from maxHeight to minHeight
   overflowY: 'auto',
   overflowX: 'hidden',
 }));

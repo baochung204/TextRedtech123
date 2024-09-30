@@ -13,8 +13,9 @@ import {
   Select,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -27,115 +28,6 @@ import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddOrder from './PopupAdd2';
-// <<<<<<< hoand2
-// import { useSelector } from 'react-redux';
-// import IconPoint from 'src/assets/images/logos/R-Point.png';
-// import { AppState, dispatch } from 'src/store/Store';
-// import { fetchOrderUser } from 'src/store/apps/order/orderuserslice';
-
-// const columns = [
-//   {
-//     title: 'Mã đơn hàng',
-//     dataIndex: 'id',
-//     sort: true,
-//   },
-//   {
-//     title: 'Thời gian tạo',
-//     dataIndex: 'createdAt',
-//     sort: true,
-//   },
-//   {
-//     title: 'Trợ lý',
-//     dataIndex: 'assistant',
-//     sort: true,
-//   },
-//   {
-//     title: 'Giá trị đơn hàng',
-//     dataIndex: 'pricePoint',
-//     sort: true,
-//     render: (value: string) => (
-//       <Box
-//         sx={{
-//           display: 'flex',
-//           alignItems: 'center',
-//           justifyContent: 'end',
-//           gap: 0.5,
-//           maxWidth: 150,
-//           px: 2,
-//         }}
-//       >
-//         {value}{' '}
-//         <Box
-//           component="img"
-//           src={IconPoint}
-//           alt=""
-//           width={20}
-//           height={20}
-//           sx={{ borderRadius: '50%' }}
-//         />
-//       </Box>
-//     ),
-//   },
-//   {
-//     title: 'Kênh marketing',
-//     dataIndex: 'misc',
-//     render: (value: string) => (
-//       <>
-//         <Grid container spacing={3}>
-//           <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
-//             <Box
-//               component="img"
-//               src={value}
-//               alt=""
-//               width={38}
-//               height={38}
-//               sx={{
-//                 borderRadius: '50%',
-//                 objectFit: 'cover',
-//               }}
-//             />
-//           </Grid>
-//           <Grid item xs={8}>
-//             <Grid container>
-//               <Grid item xs={12}>
-//                 <Typography variant="subtitle1"> Facebook</Typography>
-//               </Grid>
-//               <Grid item xs={12}>
-//                 <Typography variant="subtitle2" fontSize={12}>
-//                   {' '}
-//                   #123456
-//                 </Typography>
-//               </Grid>
-//             </Grid>
-//           </Grid>
-//         </Grid>
-//       </>
-//     ),
-//   },
-//   {
-//     title: 'Tags',
-//     dataIndex: 'channel',
-//     render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
-//   },
-//   {
-//     title: 'Tên khách hàng',
-//     dataIndex: 'name',
-//   },
-//   {
-//     title: 'Số điện thoại',
-//     dataIndex: 'phone',
-//   },
-//   {
-//     title: 'Địa chỉ',
-//     dataIndex: 'address',
-//   },
-// ];
-// =======
-// const BCrumb = [
-//   { to: '/', title: 'Home' },
-//   { to: '/apps/blog/posts', title: 'Blog' },
-//   { title: 'Blog post' },
-// ];
 
 interface PropsTable {
   id: string;
@@ -151,11 +43,6 @@ interface PropsTable {
   notes: string;
   misc?: string;
 }
-
-// const generateIdCode = () => {
-//   const randomNumber = Math.floor(Math.random() * 1000000);
-//   return `#${randomNumber.toString().padStart(6, '0')}`;
-// };
 
 const TableData: PropsTable[] = [
   {
@@ -234,73 +121,18 @@ const CustomerListOrder = () => {
   const handleClosePopup = () => setIsPopupOpen(false);
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
-  // <<<<<<< hoand2
-  //   const dataOrder = useSelector((state: AppState) => state.OrderUser.data);
-  // =======
-  // const [selectedItems, setSelectedItems] = React.useState<number[]>([]);
+
   const [dataSelect, setDataSelect] = React.useState<string[]>([]);
-  // const handleItemClick = (id: number) => {
-  //   setSelectedItems((prev) =>
-  //     prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-  //   );
-  // };
 
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
     { to: '/apps/blog/posts', title: 'Đơn hàng' },
   ];
-  // <<<<<<< hoand2
-  //   interface FilmsData {
-  //     id: number;
-  //     title: string;
-  //   }
-  //   const FilmsData: FilmsData[] = [
-  //     { id: 1, title: 'File' },
-  //     { id: 2, title: 'Dung lượng' },
-  //     { id: 3, title: 'Functions' },
-  //     { id: 4, title: 'Token huấn luyện' },
-  //     { id: 5, title: 'Ngày tạo' },
-  //     { id: 6, title: 'Vòng quay trung bình' },
-  //     { id: 7, title: 'khách hàng' },
-  //     { id: 8, title: 'Đơn hàng' },
-  //     { id: 9, title: 'CVR' },
-  //     { id: 10, title: 'GMV' },
-  //     { id: 11, title: 'Chi phí' },
-  //     { id: 12, title: 'Chi phí/Doanh thu' },
-  //     { id: 13, title: 'Chi phí/Đơn hàng' },
-  //     { id: 14, title: 'Chi phí/Khách hàng' },
-  //     { id: 15, title: 'Chiến lược' },
-  //   ];
 
-  //   React.useEffect(() => {
-  //     dispatch(fetchOrderUser());
-  //   }, [dispatch]);
-  // =======
-  // interface FilmsData {
-  //   id: number;
-  //   title: string;
-  // }
-  // const FilmsData: FilmsData[] = [
-  //   { id: 1, title: 'File' },
-  //   { id: 2, title: 'Dung lượng' },
-  //   { id: 3, title: 'Functions' },
-  //   { id: 4, title: 'Token huấn luyện' },
-  //   { id: 5, title: 'Ngày tạo' },
-  //   { id: 6, title: 'Vòng quay trung bình' },
-  //   { id: 7, title: 'khách hàng' },
-  //   { id: 8, title: 'Đơn hàng' },
-  //   { id: 9, title: 'CVR' },
-  //   { id: 10, title: 'GMV' },
-  //   { id: 11, title: 'Chi phí' },
-  //   { id: 12, title: 'Chi phí/Doanh thu' },
-  //   { id: 13, title: 'Chi phí/Đơn hàng' },
-  //   { id: 14, title: 'Chi phí/Khách hàng' },
-  //   { id: 15, title: 'Chiến lược' },
-  // ];
   const columns = React.useMemo<Column[]>(
     () => [
       {
-        title: 'Mã đơn hàng',
+        title: 'Id',
         dataIndex: 'id',
         sort: true,
       },
@@ -443,6 +275,12 @@ const CustomerListOrder = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Badge
+                          badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                          color={dataSelect.length !== 0 ? 'primary' : undefined}
+                        >
+                          <FilterListIcon color="action" />
+                        </Badge>
                         <Select
                           multiple
                           value={dataSelect}

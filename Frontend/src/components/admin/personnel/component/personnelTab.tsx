@@ -1,13 +1,9 @@
 import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Avatar,
   Badge,
   Box,
   Checkbox,
-  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -16,18 +12,19 @@ import {
   Select,
   Stack,
   TextField,
-  Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconEye, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
-import React, { createElement, useEffect, useMemo, useState } from 'react';
+import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
+import { Dayjs } from 'dayjs';
+import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
 // import DialogPersonel from '../dialog/DialogPersonel';
-
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 interface PropsItem {
   value: string;
   open: boolean;
@@ -42,99 +39,97 @@ interface Column {
   isValids?: boolean;
 }
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
-  const [iconIndex, setIconIndex] = useState<number>(0);
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const [selectedItems] = useState<number[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
-
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
-  const column = useMemo<Column[]>(() => [
-    { dataIndex: 'id', title: 'ID', validate: true },
-    {
-      dataIndex: 'createdAt',
-      title: 'Ngày tạo',
-      render: (value: any) => value.toLocaleDateString(),
-      validate: true,
-    },
-    {
-      dataIndex: 'employeeName',
-      title: 'Nhân viên',
-      render: (row: any, value: any) => (
-        <>
-          <Stack direction="row" spacing={2}>
-            <Avatar src={value.avt} variant="rounded" alt={value.avt} />
-            <Grid container>
-              <Grid item xs={12}>
-                <Typography variant="h6">{row}</Typography>
+  const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
+  const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
+  const column = useMemo<Column[]>(
+    () => [
+      { dataIndex: 'id', title: 'ID', validate: true },
+      {
+        dataIndex: 'createdAt',
+        title: 'Ngày tạo',
+        render: (value: any) => value.toLocaleDateString(),
+        validate: true,
+      },
+      {
+        dataIndex: 'employeeName',
+        title: 'Nhân viên',
+        render: (row: any, value: any) => (
+          <>
+            <Stack direction="row" spacing={2}>
+              <Avatar src={value.avt} variant="rounded" alt={value.avt} />
+              <Grid container>
+                <Grid item xs={12}>
+                  <Typography variant="h6">{row}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="subtitle2">{value.position}</Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Typography variant="subtitle2">{value.position}</Typography>
-              </Grid>
-            </Grid>
-          </Stack>
-        </>
-      ),
+            </Stack>
+          </>
+        ),
 
-      validate: true,
-    },
-    { dataIndex: 'department', title: 'Phòng ban', validate: true },
-    { dataIndex: 'email', title: 'Email', validate: true },
-    { dataIndex: 'phoneNumber', title: 'Số điện thoại', validate: true },
-    { dataIndex: 'articleCount', title: 'Bài viết', validate: true },
-    {
-      dataIndex: 'status',
-      title: 'Trạng thái',
-      validate: true,
+        validate: true,
+      },
+      { dataIndex: 'department', title: 'Phòng ban', validate: true },
+      { dataIndex: 'email', title: 'Email', validate: true },
+      { dataIndex: 'phoneNumber', title: 'Số điện thoại', validate: true },
+      { dataIndex: 'articleCount', title: 'Bài viết', validate: true },
+      {
+        dataIndex: 'status',
+        title: 'Trạng thái',
+        validate: true,
 
-      render: (value: any) => (
-        <>
-          {value ? (
-            <Typography color="success.dark" variant="subtitle2">
-              Hoạt động
-            </Typography>
-          ) : (
-            <Typography color="error" variant="subtitle2">
-              Khóa
-            </Typography>
-          )}
-        </>
-      ),
-    },
-    {
-      dataIndex: 'isActive',
-      title: 'Hoạt động',
-      validate: true,
-      render: (_value, row: any) => (
-        <>
-          <IconButton
-            onClick={() => {
-              setSelectedKey(row.id);
-              setOpen(true);
-              setIsCheckFix(true);
-}}
-          >
-            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-          </IconButton>
-          <IconButton>
-            <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-          </IconButton>
-        </>
-      ),
-    },
-  ], [])
+        render: (value: any) => (
+          <>
+            {value ? (
+              <Typography color="success.dark" variant="subtitle2">
+                Hoạt động
+              </Typography>
+            ) : (
+              <Typography color="error" variant="subtitle2">
+                Khóa
+              </Typography>
+            )}
+          </>
+        ),
+      },
+      {
+        dataIndex: 'isActive',
+        title: 'Hoạt động',
+        validate: true,
+        render: (_value, row: any) => (
+          <>
+            <IconButton
+              onClick={() => {
+                setSelectedKey(row.id);
+                setOpen(true);
+                setIsCheckFix(true);
+              }}
+            >
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+            <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+          </>
+        ),
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -142,7 +137,9 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -150,7 +147,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     <>
       {' '}
       <Grid item xs={12}>
-        <Grid container>
+        <Grid container sx={{ alignItems: 'center' }} spacing={2}>
           <Grid
             item
             xs={4}
@@ -161,35 +158,21 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               alignItems: 'center',
             }}
           >
-            <Grid container spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
-              <Grid item>
+            <Grid container sx={{ alignItems: 'center' }}>
+              <Grid item >
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                  onClick={() => {
-                    setOpen(true);
-                    setSelectedKey(null);
-                  }}
-                  sx={{
-                    pr: 0,
-                  }}
+                onClick={() => setOpen(true)}
+
                 >
-                  <Tooltip title="Thêm nhân viên mới" sx={{ mb: '15px' }}>
-                    <Fab
-                      size="small"
-                      color="secondary"
-                      aria-label="plus"
-                      sx={{ my: 'auto', mr: '10px' }}
-                    >
-                      <IconPlus width={18} />
-                    </Fab>
-                  </Tooltip>
+                  <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item>
+              <Grid item >
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm nhân viên "
+                  placeholder="Tìm kiếm trợ lý"
                   size="small"
                   type="search"
                   variant="outlined"
@@ -216,21 +199,19 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               alignItems: 'center',
             }}
           >
-            <Badge
-              badgeContent={dataSelect.length !== 0 && dataSelect.length}
-              color={dataSelect.length !== 0 ? 'primary' : undefined}
-              sx={{ marginRight: 2 }}
-            >
+            <IconButton aria-label="filter" sx={{ mr: 2 }}>
+              <Badge badgeContent={selectedItems.length} color="primary">
+                <FilterListIcon />
+              </Badge>
+            </IconButton>
 
-              <FilterListIcon color="action" />
-            </Badge>
             <Select
               multiple
               value={dataSelect}
               displayEmpty
               onChange={handleColumnChange}
               renderValue={() => 'Sửa đổi cột'}
-              size='small'
+              size="small"
               MenuProps={{
                 PaperProps: {
                   sx: {
@@ -262,8 +243,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               }}
             >
               {column.map((header: any) => {
-
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                 const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -276,40 +256,63 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               })}
             </Select>
 
-            <IconButton
-              aria-label="filter"
-              onClick={handleClickIcon}
-              sx={{
-                ml: 1,
-              }}
-            >
-              {createElement(icons[iconIndex])}
-            </IconButton>
           </Grid>
-
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  value={selectedStartDate}
-                  onChange={setSelectedStartDate}
-                  renderInput={(params) => <TextField {...params} />}
+                  value={valueTime1}
+                  onChange={(newValue) => {
+                    setValueTime1(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
                 />
-                <Typography>tới</Typography>
+              </LocalizationProvider>
+              tới
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  value={selectedEndDate}
-                  onChange={setSelectedEndDate}
-                  renderInput={(params) => <TextField {...params} />}
+                  value={valueTime2}
+                  onChange={(newValue) => {
+                    setValueTime2(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
                 />
               </LocalizationProvider>
             </Box>
           </Grid>
         </Grid>
       </Grid>
-      <CustomTable
-        columns={column}
-        dataSource={PersonnelTable}
-        dataSelect={dataSelect} />
+      <CustomTable columns={column} dataSource={PersonnelTable} dataSelect={dataSelect} />
       <DialogPersonel
         open={open}
         value={value}

@@ -1,5 +1,6 @@
-import TabContext from '@mui/lab/TabContext';
-import TabPanel from '@mui/lab/TabPanel';
+import { Favorite, Visibility } from '@mui/icons-material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Avatar,
   Badge,
@@ -8,7 +9,6 @@ import {
   Chip,
   Dialog,
   DialogContent,
-  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -17,8 +17,7 @@ import {
   Select,
   Slide,
   TextField,
-  Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -29,23 +28,21 @@ import {
   IconEye,
   IconLockSquareRounded,
   IconPasswordUser,
-  IconPlus,
   IconSearch,
   IconTrash,
-  IconUser,
+  IconUser
 } from '@tabler/icons-react';
+import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
-import BlankCard from 'src/components/shared/BlankCard';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
-import ChildCard from './../../../components/shared/ChildCard';
 import AddBlog from './_components/AddBlog';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
-import { Favorite, Visibility } from '@mui/icons-material';
 import BlogTable from './data/datablog';
-import FilterListIcon from '@mui/icons-material/FilterList';
+
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -165,12 +162,7 @@ interface Column {
 }
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [value] = useState('1');
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
+ 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -287,9 +279,11 @@ const BlogAdmin = () => {
     ],
     [],
   );
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
+  const [selectedItems] = useState<number[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -313,143 +307,182 @@ const BlogAdmin = () => {
   return (
     <PageContainer>
       <BannerPage title="Quản lý bài viết" items={BCrumb} />
-      <Grid item xs={12}>
-        <TopCard dataSource={DataBox} totalColumn={4} />
-      </Grid>
-      <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
-        <TabContext value={value}>
-          <Box>
-            <TabPanel value="1" sx={{ p: 0 }}>
-              <Grid container sx={{ my: 2, alignItems: 'center' }}>
-                <Grid item xs={4}>
-                  <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Tooltip title="Thêm bài viết mới" sx={{ mb: '15px' }} placement="top">
-                        <Fab
-                          size="small"
-                          color="secondary"
-                          aria-label="plus"
-                          sx={{ my: 'auto' }}
-                          onClick={handleOpenPopup}
-                        >
-                          <IconPlus width={18} />
-                        </Fab>
-                      </Tooltip>
-                    </Grid>
-                    <Grid item xs={10}>
-                      <TextField
-                        id="outlined-search"
-                        placeholder="Tìm kiếm bài viết"
-                        size="small"
-                        type="search"
-                        variant="outlined"
-                        inputProps={{ 'aria-label': 'Search Followers' }}
-                        sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <IconSearch size="20" />
-                            </InputAdornment>
-                          ),
-                        }}
-                        fullWidth={true}
-                      />
-                    </Grid>
-                  </Grid>
+     
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <TopCard dataSource={DataBox} totalColumn={5} />
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container sx={{ alignItems: 'center' }} spacing={2}>
+            <Grid
+              item
+              xs={4}
+              sm={4}
+              md={4}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <Grid container sx={{ alignItems: 'center' }}>
+                <Grid item >
+                  <IconButton
+                    color="primary"
+                    aria-label="Add to cart"
+                  // onClick={() => setOpen(true)}
+
+                  >
+                    <AddCircleIcon sx={{ fontSize: 30 }} />
+                  </IconButton>
                 </Grid>
-                {/* lịch */}
-                <Grid item xs={8} container spacing={2} justifyContent="flex-end">
-                  <Grid item>
-                    <Badge
-                      badgeContent={dataSelect.length !== 0 && dataSelect.length}
-                      color={dataSelect.length !== 0 ? 'primary' : undefined}
-                    >
-                      <FilterListIcon color="action" />
-                    </Badge>
-                    <Select
-                      multiple
-                      value={dataSelect}
-                      displayEmpty
-                      onChange={handleColumnChange}
-                      renderValue={() => 'Sửa đổi cột'}
-                      size="small"
-                      MenuProps={{
-                        PaperProps: {
-                          sx: {
-                            marginTop: 1,
-                            maxHeight: 400,
-                            '&::-webkit-scrollbar': {
-                              width: '4px',
-                            },
-                            '&::-webkit-scrollbar-thumb': {
-                              backgroundColor: '#D2D2D2',
-                              borderRadius: '10px',
-                            },
-                            '&::-webkit-scrollbar-thumb:hover': {
-                              backgroundColor: '#C6C8CC',
-                            },
-                            '&::-webkit-scrollbar-track': {
-                              backgroundColor: '#f1f1f1',
-                            },
-                          },
-                        },
-                        anchorOrigin: {
-                          vertical: 'bottom',
-                          horizontal: 'right',
-                        },
-                        transformOrigin: {
-                          vertical: 'top',
-                          horizontal: 'right',
-                        },
-                      }}
-                    >
-                      {column.map((header: any) => {
-                        console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                        const isSelected = dataSelect.includes(header.dataIndex);
-
-                        return (
-                          <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                            <Checkbox checked={!isSelected} />
-                            <ListItemText primary={header.title} />
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </Grid>
-                  <Grid item>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        label="Ngày bắt đầu"
-                        value={startDate}
-                        onChange={(newValue) => setStartDate(newValue)}
-                        renderInput={(params) => <TextField {...params} fullWidth />}
-                      />
-                    </LocalizationProvider>
-                  </Grid>
-                  <Grid item>
-                    <Typography sx={{ margin: '0 10px' }}>tới</Typography>
-                  </Grid>
-                  <Grid item>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        label="Ngày kết thúc"
-                        value={endDate}
-                        onChange={(newValue) => setEndDate(newValue)}
-                        renderInput={(params) => <TextField {...params} fullWidth />}
-                      />
-                    </LocalizationProvider>
-                  </Grid>
+                <Grid item >
+                  <TextField
+                    id="outlined-search"
+                    placeholder="Tìm kiếm trợ lý"
+                    size="small"
+                    type="search"
+                    variant="outlined"
+                    inputProps={{ 'aria-label': 'Search Followers' }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="12" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    fullWidth={true}
+                  />
                 </Grid>
               </Grid>
-              <BlankCard>
-                <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect} />
-              </BlankCard>
-            </TabPanel>
-          </Box>
-        </TabContext>
-      </ChildCard>
-      {/* Popup Thêm blogs */}
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              sx={{
+                display: 'flex',
+                justifyContent: 'end',
+                alignItems: 'center',
+              }}
+            >
+              <IconButton aria-label="filter" sx={{ mr: 2 }}>
+                <Badge badgeContent={selectedItems.length} color="primary">
+                  <FilterListIcon />
+                </Badge>
+              </IconButton>
+
+              <Select
+                multiple
+                value={dataSelect}
+                displayEmpty
+                onChange={handleColumnChange}
+                renderValue={() => 'Sửa đổi cột'}
+                size="small"
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      marginTop: 1,
+                      maxHeight: 400,
+                      '&::-webkit-scrollbar': {
+                        width: '4px',
+                      },
+                      '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: '#D2D2D2',
+                        borderRadius: '10px',
+                      },
+                      '&::-webkit-scrollbar-thumb:hover': {
+                        backgroundColor: '#C6C8CC',
+                      },
+                      '&::-webkit-scrollbar-track': {
+                        backgroundColor: '#f1f1f1',
+                      },
+                    },
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                  },
+                }}
+              >
+                {column.map((header: any) => {
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                  const isSelected = dataSelect.includes(header.dataIndex);
+
+                  return (
+                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                      <Checkbox checked={!isSelected} />
+                      <ListItemText primary={header.title} />
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(props) => (
+                      <CustomTextField
+                        {...props}
+                        fullWidth
+                        size="small"
+                        sx={{
+                          '& .MuiSvgIcon-root': {
+                            width: '18px',
+                            height: '18px',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            display: 'none',
+                          },
+                        }}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+                tới
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={value1}
+                    onChange={(newValue) => {
+                      setValue1(newValue);
+                    }}
+                    renderInput={(props) => (
+                      <CustomTextField
+                        {...props}
+                        fullWidth
+                        size="small"
+                        sx={{
+                          '& .MuiSvgIcon-root': {
+                            width: '18px',
+                            height: '18px',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            display: 'none',
+                          },
+                        }}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect} />
+
+        </Grid>
+      </Grid>
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}

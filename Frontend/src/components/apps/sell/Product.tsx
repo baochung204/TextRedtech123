@@ -16,9 +16,10 @@ import * as React from 'react';
 // };
 
 // const shopProductNames = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Avatar,
+  Badge,
   Box,
   Checkbox,
   Chip,
@@ -322,87 +323,6 @@ const PaginationTable = () => {
   };
   return (
     <PageContainer title="Pagination Table" description="this is Pagination Table page">
-      {/*  <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          pb: '24px',
-        }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <AddDialog />
-          {/* <EnhancedTableToolbar
-            numSelected={selected.length}
-            // search={search}
-            // handleSearch={handleSearch}
-          /> */}
-      {/* </Box>
-
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-          <Select
-            multiple
-            value={dataSelect}
-            displayEmpty
-            onChange={handleColumnChange}
-            renderValue={() => 'Sửa đổi cột'}
-            size="small"
-            MenuProps={{
-              PaperProps: {
-                sx: {
-                  marginTop: 1,
-                  maxHeight: 400,
-                  '&::-webkit-scrollbar': {
-                    width: '4px',
-                  },
-                  '&::-webkit-scrollbar-thumb': {
-                    backgroundColor: '#D2D2D2',
-                    borderRadius: '10px',
-                  },
-                  '&::-webkit-scrollbar-thumb:hover': {
-                    backgroundColor: '#C6C8CC',
-                  },
-                  '&::-webkit-scrollbar-track': {
-                    backgroundColor: '#f1f1f1',
-                  },
-                },
-              },
-              anchorOrigin: {
-                vertical: 'bottom',
-                horizontal: 'right',
-              },
-              transformOrigin: {
-                vertical: 'top',
-                horizontal: 'right',
-              },
-            }}
-          >
-            {FilmsData.map((header: any) => {
-              console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-              const isSelected = dataSelect.includes(header.dataIndex);
-
-              return (
-                <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                  <Checkbox checked={!isSelected} />
-                  <ListItemText primary={header.title} />
-                </MenuItem>
-              );
-            })}
-          </Select>
-
-          <IconButton
-            aria-label="filter"
-            onClick={handleClickIcon}
-            sx={{
-              ml: 1,
-            }}
-          >
-            {React.createElement(icons[iconIndex])}
-          </IconButton>
-        </Box>
-      </Box> */}
-
       <Grid
         container
         sx={{
@@ -442,6 +362,12 @@ const PaginationTable = () => {
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'end' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+            <Badge
+              badgeContent={dataSelect.length !== 0 && dataSelect.length}
+              color={dataSelect.length !== 0 ? 'primary' : undefined}
+            >
+              <FilterListIcon color="action" />
+            </Badge>
             <Select
               multiple
               value={dataSelect}
@@ -492,16 +418,6 @@ const PaginationTable = () => {
                 );
               })}
             </Select>
-
-            <IconButton
-              aria-label="filter"
-              onClick={handleClickIcon}
-              sx={{
-                ml: 1,
-              }}
-            >
-              {React.createElement(icons[iconIndex])}
-            </IconButton>
           </Box>
         </Grid>
       </Grid>

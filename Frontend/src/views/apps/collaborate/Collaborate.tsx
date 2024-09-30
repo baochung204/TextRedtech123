@@ -11,72 +11,72 @@ import {
   DialogTitle,
   Grid,
   IconButton,
-  Tab,
-  Typography,
   styled,
+  Tab,
   Tooltip,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconCopy, IconInfoCircle, IconPackage } from '@tabler/icons-react';
+import { Dayjs } from 'dayjs';
+import React, { useState } from 'react';
+import RankA from 'src/assets/ICON/c1.png';
+import clickicon from 'src/assets/ICON/click.png';
+import revenueicon from 'src/assets/ICON/doanh thu.png';
+import userimg from 'src/assets/images/profile/user-1.jpg';
+import AlertChat from 'src/components/apps/chats/AlertChat';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import icon1 from '../../../assets/images/svgs/icon-connect.svg';
+import icon6 from '../../../assets/ICON/cvr.png';
+import icon4 from '../../../assets/ICON/dơn hang.png';
+import icon3 from '../../../assets/ICON/khách hàng.png';
+import PopupConvert from '../customerList/Popupconvert';
+import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-import badge from 'src/assets/images/badge/badge2.png';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Dayjs } from 'dayjs';
-import { BiSolidPurchaseTag } from 'react-icons/bi';
-import { FaChartLine } from 'react-icons/fa';
-import { GiClick } from 'react-icons/gi';
-import { PiPersonFill } from 'react-icons/pi';
-import userimg from 'src/assets/images/profile/user-1.jpg';
-import React, { useState } from 'react';
-
-import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
-import PopupConvert from '../customerList/Popupconvert';
 
 interface cardType {
-  icon: JSX.Element;
+  icon: string;
   title: string;
   digits: string;
   bgcolor: string;
 }
 const topcards: cardType[] = [
   {
-    icon: <GiClick size={40} color="#FFAE1F" />,
+    icon: clickicon,
     title: 'Clicks',
     digits: '96',
-    bgcolor: 'warning',
+    bgcolor: 'error.light',
   },
   {
-    icon: <PiPersonFill size={40} color="#5D87FF" />,
+    icon: icon3,
     title: 'Khách hàng',
     digits: '3.650',
-    bgcolor: 'primary',
+    bgcolor: 'error.light',
   },
   {
-    icon: <BiSolidPurchaseTag size={40} color="#49BEFF" />,
+    icon: icon4,
     title: 'Đơn hàng',
     digits: '3850',
-    bgcolor: 'secondary',
+    bgcolor: 'error.light',
   },
 
   {
-    icon: <FaChartLine size={40} color="#13DEB9" />,
+    icon: revenueicon,
     title: 'Doanh Thu',
     digits: '96 tỉ',
-    bgcolor: 'success',
+    bgcolor: 'error.light',
   },
   {
-    icon: <img src={icon1} alt="" />,
+    icon: icon6,
     title: 'CVR',
     digits: '26%',
-    bgcolor: 'info',
+    bgcolor: 'error.light',
   },
 ];
 const CollaboratePost = () => {
@@ -88,6 +88,23 @@ const CollaboratePost = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
   const [usdValue, setUsdValue] = useState<number | null>(null);
+  const [link] = useState('https://redtech.ai.vn?ref=RT1209');
+  const [openChartAlert, setOpenChartAlert] = useState(false);
+
+  const handleCloseAlert = (_event: React.SyntheticEvent | any) => {
+    setOpenChartAlert(false);
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        setOpenChartAlert(true); // Show alert after copying
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err);
+      });
+  };
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -275,9 +292,9 @@ const CollaboratePost = () => {
             <Grid container display={'flex'} justifyContent={'space-between'} gap={'2px'}>
               {topcards.map((topcard, i) => (
                 <Grid item xs={12} sm={12} lg={3} xl={2} key={i}>
-                  <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
+                  <Box bgcolor={topcard.bgcolor} textAlign="center">
                     <CardContent>
-                      {topcard.icon}
+                      <img src={topcard.icon} alt={topcard.icon} height={40} />
                       <Typography
                         color={topcard.bgcolor + '.main'}
                         mt={1}
@@ -305,9 +322,10 @@ const CollaboratePost = () => {
                 <CustomOutlinedInput
                   id="http"
                   placeholder="http://s"
-                  value="https://redtech.ai.vn?ref=RT1209"
+                  value={link}
                   fontSize="17px"
                   fullWidth
+                  readOnly
                 />
               </Grid>
               <Grid item xs={2}>
@@ -315,11 +333,20 @@ const CollaboratePost = () => {
                   variant="contained"
                   color="primary"
                   style={{ padding: '10px', width: '100%' }}
+                  onClick={handleCopy}
                 >
                   {lgUp ? 'Sao chép' : <IconCopy stroke={2} />}
                 </Button>
               </Grid>
             </Grid>
+
+            {/* <Snackbar open={openChartAlert} autoHideDuration={3000} onClose={handleCloseAlert}> */}
+            <AlertChat
+              handleClose={handleCloseAlert}
+              openChartAlert={openChartAlert}
+              text="Sao chép thành công"
+            />
+            {/* </Snackbar> */}
           </Box>
           <Box paddingTop="30px">
             <Grid container spacing={2}>
@@ -405,7 +432,7 @@ const CollaboratePost = () => {
                         }}
                       >
                         <img
-                          src={badge}
+                          src={RankA}
                           alt="Banner chiến lược"
                           style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                         />
@@ -506,7 +533,7 @@ const CollaboratePost = () => {
         <DialogContent
           sx={{
             width: '430px',
-            height: '250px',
+            // height: '250px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
