@@ -23,7 +23,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconCopy, IconInfoCircle, IconPackage } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
-import badge from 'src/assets/images/badge/badge2.png';
+import RankA from 'src/assets/ICON/c1.png';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import AlertChat from 'src/components/apps/chats/AlertChat';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
@@ -425,7 +425,7 @@ const CollaboratePost = () => {
                         }}
                       >
                         <img
-                          src={badge}
+                          src={RankA}
                           alt="Banner chiến lược"
                           style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                         />
