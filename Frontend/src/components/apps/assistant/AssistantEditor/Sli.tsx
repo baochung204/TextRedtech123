@@ -1,7 +1,9 @@
 import { Box, Button, Chip, Grid, Paper, Slider, Typography } from '@mui/material';
 import { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-
+ // or '@mui/system' if using system-based styling
+import SaveIcon from '@mui/icons-material/Save';
+// import { styled } from '@mui/material/styles'; 
 const valuetext = (value: any) => `${value}`;
 
 const Sli = () => {
@@ -23,13 +25,23 @@ const Sli = () => {
       <Paper elevation={3} sx={{ minHeight: '5%', p: 2 }}>
         <Grid container my={2}>
           <Grid item xs={6}>
-            <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>
+            <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>
               Tài nguyên
             </CustomFormLabel>
           </Grid>
           <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end' }}>
             {' '}
-            <Button variant="contained" color="primary" sx={{ p: 0 }}>
+            {/* <Button variant="contained" color="primary" sx={{ p: 0 }}>
+              Lưu
+            </Button> */}
+            <Button
+              variant="contained"
+              color="primary"
+              size='small'
+              component="span"
+              style={{ marginBottom: '10px' }}
+            >
+              <SaveIcon fontSize="small" style={{ marginRight: '10px' }}/>
               Lưu
             </Button>
           </Grid>
