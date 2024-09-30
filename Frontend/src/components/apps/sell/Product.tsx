@@ -310,9 +310,9 @@
 //   const dispatch = useDispatch();
 //   const dataProduct = useSelector((state: AppState) => state.product.data);
 
-  // React.useEffect(() => {
-  //   dispatch(fetchProduct());
-  // }, [dispatch]);
+// React.useEffect(() => {
+//   dispatch(fetchProduct());
+// }, [dispatch]);
 
 
 //   const handleColumnChange = (event: any) => {
@@ -436,6 +436,7 @@ import CustomTable from "src/components/ComponentTables/CustomTable";
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import { fetchProduct } from '../../../store/apps/products/productsSlice';
 import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
+import AddDialog from "./layout/addDialog";
 
 
 interface Column {
@@ -447,7 +448,7 @@ interface Column {
 
 const PaginationTable = () => {
 
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -465,21 +466,59 @@ const PaginationTable = () => {
       {
         title: 'Tags',
         dataIndex: 'tags',
-
       },
       {
         title: '	Giá niêm yết',
         dataIndex: 'price',
-
       },
       {
         title: 'Giá khuyến mãi',
         dataIndex: 'discount',
-
+      },
+      {
+        title: 'Mô tả',
+        dataIndex: 'mota',
+        isValids: false
+      },
+      {
+        title: 'Ảnh sản phẩm',
+        dataIndex: 'anhsanpham',
+        isValids: false
+      },
+      {
+        title: 'Đơn vị tính',
+        dataIndex: 'donvitinh',
+        isValids: false
+      },
+      {
+        title: 'Kích thước',
+        dataIndex: 'kichthuoc',
+        isValids: false
+      },
+      {
+        title: 'Màu sắc',
+        dataIndex: 'mausac',
+        isValids: false
+      },
+      {
+        title: 'Chất liệu',
+        dataIndex: 'chatlieu',
+        isValids: false
+      },
+      {
+        title: 'Tiêu đề',
+        dataIndex: 'tieude',
+        isValids: false
+      },
+      {
+        title: 'Kiểu dáng',
+        dataIndex: 'kieudang',
+        isValids: false
       },
     ],
     [],
   );
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch();
   const dataProduct = useSelector((state: AppState) => state.product.data);
   useEffect(() => {
@@ -526,7 +565,7 @@ const PaginationTable = () => {
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
+                  onClick={() => setIsPopupOpen(true)}
 
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
@@ -544,7 +583,7 @@ const PaginationTable = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <IconSearch  size="12" />
+                        <IconSearch size="12" />
                       </InputAdornment>
                     ),
                   }}
@@ -563,7 +602,7 @@ const PaginationTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={selectedItems.length} color="primary">
+              <Badge badgeContent={column.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -678,6 +717,8 @@ const PaginationTable = () => {
       <Grid item xs={12}>
         <CustomTable columns={column} dataSource={dataProduct} dataSelect={dataSelect} />
       </Grid>
+      {/* <Dialogproduct open={open} setOpen={setOpen} /> */}
+      <AddDialog isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </Grid>
   )
 }

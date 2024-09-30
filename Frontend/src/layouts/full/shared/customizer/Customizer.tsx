@@ -1,47 +1,44 @@
-import { FC, useState } from 'react';
-import {
-  Fab,
-  Drawer,
-  Grid,
-  Slider,
-  Divider,
-  styled,
-  IconButton,
-  Typography,
-  Tooltip,
-  Stack,
-} from '@mui/material';
-import { useSelector, useDispatch } from 'src/store/Store';
-import Box, { BoxProps } from '@mui/material/Box';
-import { IconX, IconSettings, IconCheck } from '@tabler/icons-react';
-import {
-  setTheme,
-  setDir,
-  setDarkMode,
-  toggleLayout,
-  toggleSidebar,
-  toggleHorizontal,
-  setBorderRadius,
-  setCardShadow,
-} from 'src/store/customizer/CustomizerSlice';
-import { AppState } from 'src/store/Store';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
-import WbSunnyTwoToneIcon from '@mui/icons-material/WbSunnyTwoTone';
+import { BorderOuter, PaddingTwoTone, ViewComfyTwoTone } from '@mui/icons-material';
+import AspectRatioTwoToneIcon from '@mui/icons-material/AspectRatioTwoTone';
+import CallToActionTwoToneIcon from '@mui/icons-material/CallToActionTwoTone';
 import DarkModeTwoToneIcon from '@mui/icons-material/DarkModeTwoTone';
 import SwipeLeftAltTwoToneIcon from '@mui/icons-material/SwipeLeftAltTwoTone';
 import SwipeRightAltTwoToneIcon from '@mui/icons-material/SwipeRightAltTwoTone';
-import AspectRatioTwoToneIcon from '@mui/icons-material/AspectRatioTwoTone';
-import CallToActionTwoToneIcon from '@mui/icons-material/CallToActionTwoTone';
 import ViewSidebarTwoToneIcon from '@mui/icons-material/ViewSidebarTwoTone';
+import WbSunnyTwoToneIcon from '@mui/icons-material/WbSunnyTwoTone';
 import WebAssetTwoToneIcon from '@mui/icons-material/WebAssetTwoTone';
-import { ViewComfyTwoTone, PaddingTwoTone, BorderOuter } from '@mui/icons-material';
+import {
+  Divider,
+  Drawer,
+  Fab,
+  IconButton,
+  Slider,
+  Stack,
+  styled,
+  Tooltip,
+  Typography
+} from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
+import { IconSettings, IconX } from '@tabler/icons-react';
+import { FC, useState } from 'react';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import {
+  setBorderRadius,
+  setCardShadow,
+  setDarkMode,
+  setDir,
+  toggleHorizontal,
+  toggleLayout,
+  toggleSidebar
+} from 'src/store/customizer/CustomizerSlice';
+import { AppState, useDispatch, useSelector } from 'src/store/Store';
 
 const SidebarWidth = '320px';
-interface colors {
-  id: number;
-  bgColor: string;
-  disp?: string;
-}
+// interface colors {
+//   id: number;
+//   bgColor: string;
+//   disp?: string;
+// }
 const Customizer: FC = () => {
   const [showDrawer, setShowDrawer] = useState(false);
   const customizer = useSelector((state: AppState) => state.customizer);

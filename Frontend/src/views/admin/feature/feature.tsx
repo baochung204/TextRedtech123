@@ -13,7 +13,6 @@
 //   { to: '/admin/feature', title: 'Danh sách đề xuất' },
 // ];
 
-
 // const dataSource = [
 //   {
 //     bgColor: 'primary.light',
@@ -146,30 +145,50 @@
 
 // export default PageFeature;
 
-
-
-import { Badge, Box, Checkbox, Dialog, DialogContent, DialogTitle, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import {
+  Badge,
+  Box,
+  Checkbox,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
 import Slide from '@mui/material/Slide';
-import { IconAd2, IconEdit, IconEye, IconEyeOff, IconFileStar, IconSearch, IconTrash } from '@tabler/icons-react';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import {
+  IconAd2,
+  IconEdit,
+  IconEye,
+  IconEyeOff,
+  IconFileStar,
+  IconSearch,
+  IconTrash,
+} from '@tabler/icons-react';
+
 import React, { useEffect, useMemo, useState } from 'react';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DataFeature from './data/DataFeuture';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
   { to: '/admin/feature', title: 'Danh sách đề xuất' },
 ];
-
 
 const dataSource = [
   {
@@ -270,46 +289,53 @@ interface Column {
 const PageFeature = () => {
   const [selectedItems] = useState<number[]>([]);
   const [isPopupOpen] = React.useState(false);
-  const column = useMemo<Column[]>(() => [
-    { title: 'ID', dataIndex: 'id' },
-    { title: 'Ngày tạo', dataIndex: 'createdAt', render: (value: any) => value.toLocaleDateString() },
-    { title: 'Họ và tên', dataIndex: 'name' },
-    { title: 'Email', dataIndex: 'email' },
-    { title: 'Số điện thoại', dataIndex: 'phone' },
-    {
-      title: 'Nội dùng đề xuất',
-      dataIndex: 'contextFeature',
-    },
-    { title: 'Trạng thái', dataIndex: 'status' },
-    { title: 'Ghi chú', dataIndex: 'note' },
-    {
-      title: 'Thao tác',
-      dataIndex: 'action',
-      render: () => (
-        <>
-          <IconButton>
-            <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-          </IconButton>
-          <IconButton>
-            <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
-          </IconButton>
-          <IconButton>
-            <IconTrash stroke={2} style={{ color: '#5D87FF' }} />
-          </IconButton>
-        </>
-      ),
-    },
-  ], [])
+  const column = useMemo<Column[]>(
+    () => [
+      { title: 'ID', dataIndex: 'id' },
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'createdAt',
+        render: (value: any) => value.toLocaleDateString(),
+      },
+      { title: 'Họ và tên', dataIndex: 'name' },
+      { title: 'Email', dataIndex: 'email' },
+      { title: 'Số điện thoại', dataIndex: 'phone' },
+      {
+        title: 'Nội dùng đề xuất',
+        dataIndex: 'contextFeature',
+      },
+      { title: 'Trạng thái', dataIndex: 'status' },
+      { title: 'Ghi chú', dataIndex: 'note' },
+      {
+        title: 'Thao tác',
+        dataIndex: 'action',
+        render: () => (
+          <>
+            <IconButton>
+              <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+            </IconButton>
+            <IconButton>
+              <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+            <IconButton>
+              <IconTrash stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+          </>
+        ),
+      },
+    ],
+    [],
+  );
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -317,7 +343,9 @@ const PageFeature = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -345,17 +373,16 @@ const PageFeature = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
+                    // onClick={() => setOpen(true)}
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -386,7 +413,7 @@ const PageFeature = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>
@@ -441,7 +468,6 @@ const PageFeature = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

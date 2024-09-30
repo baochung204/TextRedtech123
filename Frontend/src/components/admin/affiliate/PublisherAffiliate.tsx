@@ -232,10 +232,10 @@ const PublisherAffiliate = () => {
               value.type_account === 1
                 ? 'Hoạt động'
                 : value.type_account === 2
-                ? 'Chờ duyệt'
-                : value.type_account === 3
-                ? 'Bị từ chối'
-                : ''
+                  ? 'Chờ duyệt'
+                  : value.type_account === 3
+                    ? 'Bị từ chối'
+                    : ''
             }
             color={getStatusAccountColor(value.type_account)}
           />
@@ -398,7 +398,7 @@ const PublisherAffiliate = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>

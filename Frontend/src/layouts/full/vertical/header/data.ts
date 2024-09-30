@@ -2,10 +2,14 @@ import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
-import icon1 from 'src/assets/images/svgs/icon-account.svg';
-import icon3 from 'src/assets/images/svgs/icon-tasks.svg';
-import icon4 from 'src/assets/images/svgs/icon-dd-chat.svg';
-import Iconkey from 'src/assets/images/iconHeadrProfile/key.png';
+
+import icon1 from 'src/assets/images/iconProfile/account.png';
+import icon2 from 'src/assets/images/iconProfile/admin.png';
+import icon6 from 'src/assets/images/iconProfile/feature.png';
+import icon3 from 'src/assets/images/iconProfile/history.png';
+import icon4 from 'src/assets/images/iconProfile/password.png';
+import icon5 from 'src/assets/images/iconProfile/ticket.png';
+
 import ddIcon8 from 'src/assets/images/svgs/icon-dd-application.svg';
 import ddIcon2 from 'src/assets/images/svgs/icon-dd-cart.svg';
 import ddIcon1 from 'src/assets/images/svgs/icon-dd-chat.svg';
@@ -131,21 +135,21 @@ const profile: ProfileType[] = [
     href: '/admin',
     title: 'Quản trị viên',
     // subtitle: 'Account Settings',
-    icon: icon1,
+    icon: icon2,
   },
   {
-    id: 4,
+    id: 3,
     href: '/history/buy-point-in-frofile',
     title: 'Lịch sử giao dịch',
     // subtitle: 'Account Settings',
-    icon: ddIcon4,
+    icon: icon3,
   },
   {
-    id: 5,
+    id: 4,
     href: '/user-profile',
     title: 'Đổi mật khẩu',
     // subtitle: 'Account Settings',
-    icon: Iconkey,
+    icon: icon4,
   },
   // {
   //   href: '/auth/forgot-password2',
@@ -158,14 +162,14 @@ const profile: ProfileType[] = [
     href: '/apps/chats',
     title: 'Ticket hỗ trợ',
     // subtitle: 'To-do and Daily Tasks',
-    icon: icon4,
+    icon: icon5,
   },
   {
     id: 6,
     href: '/forms/form-request',
     title: 'Đề xuất tính năng',
     // subtitle: 'To-do and Daily Tasks',
-    icon: icon3,
+    icon: icon6,
   },
 ];
 

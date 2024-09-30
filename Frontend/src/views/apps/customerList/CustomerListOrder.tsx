@@ -77,7 +77,6 @@ const TableData: PropsTable[] = [
     notes: 'Ghi chú B',
     misc: 'fb',
   },
-  // Dữ liệu mẫu mới
   {
     id: 'ORD003',
     createdAt: '2024-09-03',
@@ -264,7 +263,7 @@ const CustomerListOrder = () => {
                       <IconButton
                         color="primary"
                         aria-label="Add to cart"
-                      // onClick={() => setOpen(true)}
+                      onClick={() => setIsPopupOpen(true)}
 
                       >
                         <AddCircleIcon sx={{ fontSize: 30 }} />

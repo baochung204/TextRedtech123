@@ -61,7 +61,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
               {columns.map((column, index) => {
                 const isColumnVisible = !dataSelect.includes(column.dataIndex ?? '');
                 const isSortable = column.sort ?? false;
-                console.log(`isColumnVisible ${column.title}`, isColumnVisible);
+                // console.log(`isColumnVisible ${column.title}`, isColumnVisible);
 
 
                 return (

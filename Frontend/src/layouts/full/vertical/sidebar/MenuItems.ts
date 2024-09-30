@@ -47,22 +47,22 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Trợ lý',
     icon: IconHeadset,
-    href: '/apps/assistant/',
-    children: [
-      {
-        id: uniqueId(),
-        title: 'Tạo Trợ lý',
-        icon: IconPoint,
-        href: '/apps/assistant/add',
-      },
-      {
-        id: uniqueId(),
-        title: 'Quản lý Trợ lý',
-        icon: IconPoint,
-        // href: '/apps/list-assistant',
-        href: '/assistant/list',
-      },
-    ],
+    href: '/assistant/list',
+    // children: [
+    //   {
+    //     id: uniqueId(),
+    //     title: 'Tạo Trợ lý',
+    //     icon: IconPoint,
+    //     href: '/apps/assistant/add',
+    //   },
+    //   {
+    //     id: uniqueId(),
+    //     title: 'Quản lý Trợ lý',
+    //     icon: IconPoint,
+    //     // href: '/apps/list-assistant',
+    //     href: '/assistant/list',
+    //   },
+    // ],
   },
   {
     id: uniqueId(),

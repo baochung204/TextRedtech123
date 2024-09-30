@@ -12,7 +12,8 @@ import { Props } from 'react-apexcharts';
 const MonthlyEarnings = () => {
   // Màu sắc biểu đồ
   const theme = useTheme();
-  const secondary = theme.palette.secondary.main;
+
+  const red = theme.palette.primary.main;
   const secondarylight = theme.palette.secondary.light;
   const errorlight = theme.palette.error.light;
 
@@ -53,7 +54,7 @@ const MonthlyEarnings = () => {
   const seriescolumnchart = [
     {
       name: '',
-      color: secondary,
+      color: red,
       data: [25, 66, 20, 40, 12, 58, 20],
     },
   ];
@@ -62,7 +63,7 @@ const MonthlyEarnings = () => {
     <DashboardCard
       title="Tổng hoa hồng"
       action={
-        <Fab color="secondary" size="medium">
+        <Fab color="primary" size="medium">
           <IconCurrencyDollar width={24} />
         </Fab>
       }

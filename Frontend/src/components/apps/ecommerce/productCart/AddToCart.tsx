@@ -39,10 +39,6 @@ function SlideTransition(props: any) {
 }
 
 const AddToCart = () => {
-  const checkout = useSelector((state) => state.ecommerceReducer.cart);
-
-  const total = sum(checkout.map((product: any) => product.price * product.qty));
-  const Discount = Math.round(total * (5 / 100));
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -62,7 +58,8 @@ const AddToCart = () => {
 
   // Lấy sản phẩm từ giỏ hàng
   const Cartproduct: any = useSelector((state) => state.ecommerceReducer.cart);
-  console.log(Cartproduct);
+  const total = sum(Cartproduct.map((product: any) => product.point * product.qty));
+  const Discount = Math.round(total * (5 / 100));
   const Increase = (productId: number | any) => {
     dispatch(increment(productId));
   };
@@ -71,6 +68,7 @@ const AddToCart = () => {
     dispatch(decrement(productId));
   };
 
+  console.log(Cartproduct);
   return (
     <Box>
       {Cartproduct.length > 0 ? (
@@ -110,8 +108,8 @@ const AddToCart = () => {
                       <TableCell align="center">
                         <Stack direction="row" alignItems="center" gap={2}>
                           <Avatar
-                            src={product.photo}
-                            alt={product.photo}
+                            src={product.thumbnailUrl}
+                            alt={product.thumbnailUrl}
                             sx={{
                               borderRadius: '10px',
                               height: '80px',
@@ -135,8 +133,8 @@ const AddToCart = () => {
                       </TableCell>
                       <TableCell align="center">
                         <Box>
-                          <Typography variant="h6">{product.title}</Typography>{' '}
-                          <Typography color="textSecondary" variant="body1">
+                          <Typography variant="h6">{product.name}</Typography>{' '}
+                          <Typography color="textSecondary" variant="body1" my={1}>
                             {product.category}
                           </Typography>
                           <IconButton
@@ -168,7 +166,7 @@ const AddToCart = () => {
                           justifyContent={'center'}
                         >
                           {' '}
-                          {(product.price * product.qty).toLocaleString('vn-VN')}{' '}
+                          {product.point.toLocaleString('vn-VN')}{' '}
                           <img
                             src={logoPoint}
                             alt={logoPoint}
@@ -186,10 +184,7 @@ const AddToCart = () => {
                           alignItems={'center'}
                           justifyContent={'center'}
                         >
-                          {(
-                            product.salesPrice * product.qty -
-                            product.price * product.qty
-                          ).toLocaleString('vn-VN')}{' '}
+                          {product.discount.toLocaleString('vn-VN')}{' '}
                           <img
                             src={logoPoint}
                             alt={logoPoint}
@@ -207,10 +202,9 @@ const AddToCart = () => {
                           alignItems={'center'}
                           justifyContent={'center'}
                         >
-                          {(
-                            product.price * product.qty -
-                            (product.salesPrice * product.qty - product.price * product.qty)
-                          ).toLocaleString('vn-VN')}
+                          {((product.point - product.discount) * product.qty).toLocaleString(
+                            'vn-VN',
+                          )}
                           <img
                             src={logoPoint}
                             alt={logoPoint}

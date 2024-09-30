@@ -191,7 +191,7 @@ const ProductList = ({ onClick }: Props) => {
                       position: 'relative',
                     }}
                   >
-                    <Typography variant="h6" sx={{ fontSize: '20px' }}>
+                    <Typography variant="h6" sx={{ fontSize: '16px' }}>
                       {product.name}
                     </Typography>
                     <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
@@ -202,22 +202,10 @@ const ProductList = ({ onClick }: Props) => {
                             alignItems: 'center',
                           }}
                         >
-                          <Typography variant="h6">{product.point}</Typography>
-                          <img
-                            src={logo}
-                            alt="Logo"
-                            style={{ width: '22px', height: '22px', marginLeft: '10px' }}
-                          />
-                        </Box>
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                          }}
-                        >
                           <Typography
                             color="textSecondary"
                             ml={1}
+                            my={1}
                             sx={{ textDecoration: 'line-through' }}
                           >
                             {product.discount}{' '}
@@ -226,6 +214,19 @@ const ProductList = ({ onClick }: Props) => {
                             src={logo}
                             alt="Logo"
                             style={{ width: '18px', height: '18px', marginLeft: '5px' }}
+                          />
+                        </Box>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Typography variant="h6">{product.point.toLocaleString()}</Typography>
+                          <img
+                            src={logo}
+                            alt="Logo"
+                            style={{ width: '22px', height: '22px', marginLeft: '10px' }}
                           />
                         </Box>
                         {/* <Typography
@@ -237,7 +238,7 @@ const ProductList = ({ onClick }: Props) => {
                         </Typography> */}
                       </Stack>
                       <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
-                        {product.tag.map((tag: any, index) => (
+                        {product.category.map((category: any, index: number) => (
                           <Stack direction="row" spacing={1} alignItems="center" key={index}>
                             <Chip
                               sx={{
@@ -249,7 +250,7 @@ const ProductList = ({ onClick }: Props) => {
                                 color: 'white',
                                 display: 'block', // Ensures each Chip is on a new line
                               }}
-                              label={tag.tagName || tag}
+                              label={category || 'tất cả'}
                               size="small"
                             />
                             {index === 0 && (

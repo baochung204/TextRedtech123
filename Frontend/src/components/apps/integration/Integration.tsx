@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   CardContent,
   Fab,
@@ -7,9 +6,7 @@ import {
   IconButton,
   Stack,
   Tab,
-  Tooltip,
-  Typography,
-  useMediaQuery,
+  Typography
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -28,7 +25,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchIntegrations } from 'src/store/apps/integration/integrationSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import Develop from './Develop';
-import { useTheme } from '@emotion/react';
 // import { Api } from 'src/store/apps/integration/integrationSlice';
 
 // interface Assistant {

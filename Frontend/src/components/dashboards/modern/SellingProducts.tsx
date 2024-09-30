@@ -43,7 +43,6 @@ const SellingProducts = () => {
     <Paper
       sx={{
         backgroundImage: `url(${Banner})`,
-
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         border: `1px solid ${borderColor}`,

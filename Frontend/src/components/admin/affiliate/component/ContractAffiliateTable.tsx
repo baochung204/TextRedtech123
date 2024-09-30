@@ -116,18 +116,18 @@ const ContractAffiliateTable = () => {
     page * rowsPerPage + rowsPerPage,
   );
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Đã ký':
-        return 'success'; // Green for approved
-      case 'Chờ ký':
-        return 'warning'; // Yellow for pending approval
-      case 'Từ chối':
-        return 'error'; // Red for rejected
-      default:
-        return 'default'; // Gray for any unrecognized status
-    }
-  };
+  // const getStatusColor = (status: string) => {
+  //   switch (status) {
+  //     case 'Đã ký':
+  //       return 'success'; // Green for approved
+  //     case 'Chờ ký':
+  //       return 'warning'; // Yellow for pending approval
+  //     case 'Từ chối':
+  //       return 'error'; // Red for rejected
+  //     default:
+  //       return 'default'; // Gray for any unrecognized status
+  //   }
+  // };
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
@@ -241,7 +241,7 @@ const ContractAffiliateTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={selectedItems.length} color="primary">
+              <Badge badgeContent={column.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -527,7 +527,7 @@ const ContractAffiliateTable = () => {
                     {TT && (
                       <TableCell>
                         <Typography style={{ width: '100px' }} variant="subtitle2">
-                          <Chip label={item.status} color={getStatusColor(item.status)} />
+                          <Chip label={item.status} />
                         </Typography>
                       </TableCell>
                     )}

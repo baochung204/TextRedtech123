@@ -171,6 +171,11 @@ interface Column {
 }
 
 const OrderAdminPages = () => {
+  const [selectID, setSelectID] = useState<string | null>(null)
+  const [checkValue, setCheckValue] = useState<string | null>(null)
+  const [open, setOpen] = useState<boolean>(false)
+
+
 
   const column = useMemo<Column[]>(
     () => [
@@ -199,7 +204,6 @@ const OrderAdminPages = () => {
         title: 'Trợ lý',
         dataIndex: 'troly',
       },
-
       {
         title: 'Tổng nạp',
         dataIndex: 'tongnap',
@@ -223,11 +227,13 @@ const OrderAdminPages = () => {
       {
         title: 'Hành động',
         dataIndex: 'action',
-        render: (_row, _value: any) => (
+        render: (_row, value: any) => (
           <>
             <IconButton
               onClick={() => {
-                // setSelectedKey(item.id); setOpen(true); console.log(item.id);
+                setSelectID(value.id);
+                setOpen(true);
+                setCheckValue('view');
               }}
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
@@ -238,12 +244,66 @@ const OrderAdminPages = () => {
           </>
         ),
       },
+      {
+        title: 'Giới tính',
+        dataIndex: 'sex',
+        isValids: false
+      },
+      {
+        title: 'Ngày sinh',
+        dataIndex: 'date',
+        isValids: false
+      },
+      {
+        title: 'Địa chỉ (Cá nhân)',
+        dataIndex: 'dccn',
+        isValids: false
+      },
+      {
+        title: 'MST (Cá nhân)',
+        dataIndex: 'mstcn',
+        isValids: false
+      },
+      {
+        title: 'Xuất VAT',
+        dataIndex: 'xvat',
+        isValids: false
+      },
+      {
+        title: 'Tên công ty',
+        dataIndex: 'tct',
+        isValids: false
+      },
+      {
+        title: 'MST (Doanh nghiệp)',
+        dataIndex: 'mstdn',
+        isValids: false
+      },
+      {
+        title: 'Người đại diện',
+        dataIndex: 'ndd',
+        isValids: false
+      },
+      {
+        title: 'Chúc vụ',
+        dataIndex: 'cv',
+        isValids: false
+      },
+      {
+        title: 'Địa chỉ (Công ty)',
+        dataIndex: 'dcct',
+        isValids: false
+      },
+      {
+        title: 'Email (Công ty)',
+        dataIndex: 'ect',
+        isValids: false
+      },
+
     ],
     [],
   );
-
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [selectedItems] = useState<number[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -265,6 +325,7 @@ const OrderAdminPages = () => {
   };
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
+  console.log(checkValue);
 
   return (
     <>
@@ -294,8 +355,7 @@ const OrderAdminPages = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
+                    onClick={() => { setOpen(true); setCheckValue('add') }}
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
@@ -331,7 +391,7 @@ const OrderAdminPages = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>
@@ -374,7 +434,7 @@ const OrderAdminPages = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
