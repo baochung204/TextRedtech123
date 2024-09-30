@@ -16,9 +16,10 @@ import * as React from 'react';
 // };
 
 // const shopProductNames = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Avatar,
+  Badge,
   Box,
   Checkbox,
   Chip,
@@ -364,6 +365,12 @@ const PaginationTable = () => {
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'end' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+            <Badge
+              badgeContent={dataSelect.length !== 0 && dataSelect.length}
+              color={dataSelect.length !== 0 ? 'primary' : undefined}
+            >
+              <FilterListIcon color="action" />
+            </Badge>
             <Select
               multiple
               value={dataSelect}

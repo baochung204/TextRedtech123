@@ -1,5 +1,6 @@
 import { TabContext, TabPanel } from '@mui/lab';
 import {
+  Badge,
   Box,
   Checkbox,
   Chip,
@@ -15,6 +16,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -274,6 +276,12 @@ const CustomerListOrder = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Badge
+                          badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                          color={dataSelect.length !== 0 ? 'primary' : undefined}
+                        >
+                          <FilterListIcon color="action" />
+                        </Badge>
                         <Select
                           multiple
                           value={dataSelect}
