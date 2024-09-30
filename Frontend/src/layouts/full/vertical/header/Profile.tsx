@@ -33,9 +33,7 @@ const Profile = () => {
   };
 
   return (
-    <Box
-    
-    >
+    <Box>
       <IconButton
         size="large"
         aria-label="show 11 new notifications"
@@ -173,7 +171,16 @@ const Profile = () => {
                   Giúp trợ lý của bạn <br />
                   thông minh hơn!
                 </Typography>
-                <Button variant="contained" color="primary" onClick={handleButtonClick2}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'black',
+                    ':hover': {
+                      backgroundColor: '#2C2C2C',
+                    },
+                  }}
+                  onClick={handleButtonClick2}
+                >
                   Shopping ngay!
                 </Button>
               </Box>
@@ -184,7 +191,6 @@ const Profile = () => {
               Đăng xuất
             </Button>
           </Box>
-
         </Box>
       </Menu>
     </Box>
