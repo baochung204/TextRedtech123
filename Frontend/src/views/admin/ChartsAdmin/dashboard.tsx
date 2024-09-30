@@ -1213,7 +1213,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_rpoint} totalColumn={6} />
+              <Topcardadminhorizontal dataSource={dataSource_rpoint} totalColumn={3} />
               <GenChartAdmin text={'R-Point'} menuItems={dataFilter_rpoint} />
             </Grid>
           </Grid>
@@ -1221,7 +1221,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_affiliate} totalColumn={8} />
+              <Topcardadminhorizontal dataSource={dataSource_affiliate} totalColumn={4} />
               <GenChartAdmin text={'Affiliate'} menuItems={dataFilter_affliate} />
             </Grid>
           </Grid>
@@ -1310,7 +1310,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_sale} totalColumn={8} />
+              <Topcardadminhorizontal dataSource={dataSource_sale} totalColumn={4} />
               <GenChartAdmin text={'Mã khuyến mãi'} menuItems={dataFilter_sale} />
             </Grid>
           </Grid>
@@ -1332,7 +1332,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_blog} totalColumn={7} />
+              <Topcardadminhorizontal dataSource={dataSource_blog} totalColumn={4} />
               <GenChartAdmin text={'Blog'} menuItems={dataFilter_blog} />
             </Grid>
           </Grid>
@@ -1340,7 +1340,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_ticket} totalColumn={6} />
+              <Topcardadminhorizontal dataSource={dataSource_ticket} totalColumn={3} />
               <GenChartAdmin text={'Ticket hỗ trợ'} menuItems={dataFilter_ticket} />
             </Grid>
           </Grid>

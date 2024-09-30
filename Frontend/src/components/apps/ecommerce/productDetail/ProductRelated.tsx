@@ -76,30 +76,30 @@ const ProductRelated = () => {
                         alignItems: 'center',
                       }}
                     >
-                      <Typography variant="h6">{product.point}</Typography>
+                      <Typography
+                        color="textSecondary"
+                        ml={1}
+                        sx={{ textDecoration: 'line-through' }}
+                      >
+                        {product.discount.toLocaleString()}{' '}
+                      </Typography>
                       <img
                         src={logo}
                         alt="Logo"
-                        style={{ width: '22px', height: '22px', marginLeft: '10px' }}
+                        style={{ width: '18px', height: '18px', marginLeft: '5px' }}
                       />
-                    </Box>
+                    </Box>{' '}
                     <Box
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
                       }}
                     >
-                      <Typography
-                        color="textSecondary"
-                        ml={1}
-                        sx={{ textDecoration: 'line-through' }}
-                      >
-                        {product.salesPrice}{' '}
-                      </Typography>
+                      <Typography variant="h6">{product.point.toLocaleString()}</Typography>
                       <img
                         src={logo}
                         alt="Logo"
-                        style={{ width: '18px', height: '18px', marginLeft: '5px' }}
+                        style={{ width: '22px', height: '22px', marginLeft: '10px' }}
                       />
                     </Box>
                     {/* <Typography
@@ -122,7 +122,7 @@ const ProductRelated = () => {
                           color: 'white',
                           display: 'block', // Ensures each Chip is on a new line
                         }}
-                        label="Smart"
+                        label={product.category}
                         size="small"
                       />
                     </Stack>

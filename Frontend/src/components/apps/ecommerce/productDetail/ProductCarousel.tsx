@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
-import { useSelector, useDispatch } from 'src/store/Store';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'src/store/Store';
 
 //Carousel slider for product
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import './Carousel.css';
 
 //Carousel slider data
-import SliderData from './SliderData';
 
 //fetch product
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
@@ -63,14 +62,9 @@ const ProductCarousel = () => {
             style={{ borderRadius: '5px' }}
           />
         </Box>
-        {SliderData.map((step) => (
+        {product?.gender.map((step: any) => (
           <Box key={step.id}>
-            <img
-              src={step.imgPath}
-              alt={step.imgPath}
-              width="100%"
-              style={{ borderRadius: '5px' }}
-            />
+            <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
           </Box>
         ))}
       </Slider>
@@ -83,14 +77,9 @@ const ProductCarousel = () => {
             style={{ borderRadius: '5px' }}
           />
         </Box>
-        {SliderData.map((step) => (
+        {product?.gender.map((step: any) => (
           <Box key={step.id} sx={{ p: 1, cursor: 'pointer' }}>
-            <img
-              src={step.imgPath}
-              alt={step.imgPath}
-              width="100%"
-              style={{ borderRadius: '5px' }}
-            />
+            <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
           </Box>
         ))}
       </Slider>
