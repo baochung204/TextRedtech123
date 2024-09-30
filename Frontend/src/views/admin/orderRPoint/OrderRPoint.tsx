@@ -26,6 +26,8 @@ import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { Dayjs } from 'dayjs';
 
 const BCrumb = [
   {
@@ -431,7 +433,8 @@ const OrderRPoint = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Đơn hàng R-Point" items={BCrumb} />
@@ -484,7 +487,7 @@ const OrderRPoint = () => {
                   displayEmpty
                   onChange={handleColumnChange}
                   renderValue={() => 'Sửa đổi cột'}
-                  size='small'
+                  size="small"
                   MenuProps={{
                     PaperProps: {
                       sx: {
@@ -526,19 +529,57 @@ const OrderRPoint = () => {
                     );
                   })}
                 </Select>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={selectedStartDate}
-                    onChange={setSelectedStartDate}
-                    renderInput={(params: any) => <TextField {...params} />}
-                  />
-                  <Typography>tới</Typography>
-                  <DatePicker
-                    value={selectedEndDate}
-                    onChange={setSelectedEndDate}
-                    renderInput={(params: any) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                  tới
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value1}
+                      onChange={(newValue) => {
+                        setValue1(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Box>
               </Box>
             </Grid>
           </Grid>

@@ -26,6 +26,8 @@ import React, { createElement, useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
+import { Dayjs } from 'dayjs';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 // import DialogPersonel from '../dialog/DialogPersonel';
 
 interface PropsItem {
@@ -46,95 +48,99 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
-
+  const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
+  const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
-  const column = useMemo<Column[]>(() => [
-    { dataIndex: 'id', title: 'ID', validate: true },
-    {
-      dataIndex: 'createdAt',
-      title: 'Ngày tạo',
-      render: (value: any) => value.toLocaleDateString(),
-      validate: true,
-    },
-    {
-      dataIndex: 'employeeName',
-      title: 'Nhân viên',
-      render: (row: any, value: any) => (
-        <>
-          <Stack direction="row" spacing={2}>
-            <Avatar src={value.avt} variant="rounded" alt={value.avt} />
-            <Grid container>
-              <Grid item xs={12}>
-                <Typography variant="h6">{row}</Typography>
+  const column = useMemo<Column[]>(
+    () => [
+      { dataIndex: 'id', title: 'ID', validate: true },
+      {
+        dataIndex: 'createdAt',
+        title: 'Ngày tạo',
+        render: (value: any) => value.toLocaleDateString(),
+        validate: true,
+      },
+      {
+        dataIndex: 'employeeName',
+        title: 'Nhân viên',
+        render: (row: any, value: any) => (
+          <>
+            <Stack direction="row" spacing={2}>
+              <Avatar src={value.avt} variant="rounded" alt={value.avt} />
+              <Grid container>
+                <Grid item xs={12}>
+                  <Typography variant="h6">{row}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="subtitle2">{value.position}</Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Typography variant="subtitle2">{value.position}</Typography>
-              </Grid>
-            </Grid>
-          </Stack>
-        </>
-      ),
+            </Stack>
+          </>
+        ),
 
-      validate: true,
-    },
-    { dataIndex: 'department', title: 'Phòng ban', validate: true },
-    { dataIndex: 'email', title: 'Email', validate: true },
-    { dataIndex: 'phoneNumber', title: 'Số điện thoại', validate: true },
-    { dataIndex: 'articleCount', title: 'Bài viết', validate: true },
-    {
-      dataIndex: 'status',
-      title: 'Trạng thái',
-      validate: true,
+        validate: true,
+      },
+      { dataIndex: 'department', title: 'Phòng ban', validate: true },
+      { dataIndex: 'email', title: 'Email', validate: true },
+      { dataIndex: 'phoneNumber', title: 'Số điện thoại', validate: true },
+      { dataIndex: 'articleCount', title: 'Bài viết', validate: true },
+      {
+        dataIndex: 'status',
+        title: 'Trạng thái',
+        validate: true,
 
-      render: (value: any) => (
-        <>
-          {value ? (
-            <Typography color="success.dark" variant="subtitle2">
-              Hoạt động
-            </Typography>
-          ) : (
-            <Typography color="error" variant="subtitle2">
-              Khóa
-            </Typography>
-          )}
-        </>
-      ),
-    },
-    {
-      dataIndex: 'isActive',
-      title: 'Hoạt động',
-      validate: true,
-      render: (_value, row: any) => (
-        <>
-          <IconButton
-            onClick={() => {
-              setSelectedKey(row.id);
-              setOpen(true);
-              setIsCheckFix(true);
-}}
-          >
-            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-          </IconButton>
-          <IconButton>
-            <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-          </IconButton>
-        </>
-      ),
-    },
-  ], [])
+        render: (value: any) => (
+          <>
+            {value ? (
+              <Typography color="success.dark" variant="subtitle2">
+                Hoạt động
+              </Typography>
+            ) : (
+              <Typography color="error" variant="subtitle2">
+                Khóa
+              </Typography>
+            )}
+          </>
+        ),
+      },
+      {
+        dataIndex: 'isActive',
+        title: 'Hoạt động',
+        validate: true,
+        render: (_value, row: any) => (
+          <>
+            <IconButton
+              onClick={() => {
+                setSelectedKey(row.id);
+                setOpen(true);
+                setIsCheckFix(true);
+              }}
+            >
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+            <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton>
+          </>
+        ),
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -142,7 +148,9 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -221,7 +229,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               color={dataSelect.length !== 0 ? 'primary' : undefined}
               sx={{ marginRight: 2 }}
             >
-
               <FilterListIcon color="action" />
             </Badge>
             <Select
@@ -230,7 +237,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               displayEmpty
               onChange={handleColumnChange}
               renderValue={() => 'Sửa đổi cột'}
-              size='small'
+              size="small"
               MenuProps={{
                 PaperProps: {
                   sx: {
@@ -262,8 +269,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               }}
             >
               {column.map((header: any) => {
-
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                 const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -288,7 +294,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
           </Grid>
 
           <Grid item xs={4}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   value={selectedStartDate}
@@ -302,14 +308,62 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                   renderInput={(params) => <TextField {...params} />}
                 />
               </LocalizationProvider>
+            </Box> */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value}
+                  onChange={(newValue) => {
+                    setValueTime1(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+              tới
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={valueTime2}
+                  onChange={(newValue) => {
+                    setValueTime2(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
             </Box>
           </Grid>
         </Grid>
       </Grid>
-      <CustomTable
-        columns={column}
-        dataSource={PersonnelTable}
-        dataSelect={dataSelect} />
+      <CustomTable columns={column} dataSource={PersonnelTable} dataSelect={dataSelect} />
       <DialogPersonel
         open={open}
         value={value}
