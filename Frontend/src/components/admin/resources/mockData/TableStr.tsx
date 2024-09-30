@@ -111,14 +111,8 @@ export const Strategy = [
 export const StrategyCells: any = [
   {
     dataIndex: 'id',
-
     title: 'ID',
   },
-  // {
-  //   dataIndex: 'creationTime',
-
-  //   title: 'Ngày tạo',
-  // },
   {
     dataIndex: 'strategyGroup',
 

@@ -40,8 +40,8 @@ const ChatBot = () => {
     }, [messages]);
 
     return (
-        <Paper elevation={3} sx={{ height: '100%', minHeight: '51vh', maxHeight: '51vh', display: 'flex', flexDirection: 'column', p: 2 }}>
-            <Typography variant="h6">Chatbot</Typography>
+        <Paper elevation={3} sx={{ height: '100%', minHeight: '61vh', maxHeight: '61vh', display: 'flex', flexDirection: 'column', p: 2 }}>
+            <Typography variant="h6">Chat thử</Typography>
             <Divider sx={{ my: 2 }} />
             {/* Phần chứa tin nhắn có tính năng cuộn */}
             <Box
@@ -49,8 +49,8 @@ const ChatBot = () => {
                 sx={{
                     flex: 1,
                     overflowY: 'auto',
-                    minHeight: '30vh',
-                    maxHeight: '30vh',
+                    // minHeight: '30vh',
+                    maxHeight: '40vh',
                     display: 'flex',
                     flexDirection: 'column',
                     // Custom scrollbar styles
@@ -69,13 +69,14 @@ const ChatBot = () => {
                     },
                 }}
             >
-                <List>
+                <List sx={{ padding: '10px' }}>
                     {messages.map((message, index) => (
                         <ListItem
                             key={index}
                             sx={{
                                 display: 'flex',
                                 justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
+                                mb: 0, // Khoảng cách giữa các tin nhắn
                             }}
                         >
                             <ListItemText
@@ -83,14 +84,18 @@ const ChatBot = () => {
                                 sx={{
                                     backgroundColor: message.sender === 'user' ? '#1976d2' : '#e0e0e0',
                                     color: message.sender === 'user' ? '#fff' : '#000',
-                                    borderRadius: '10px',
-                                    p: 1,
-                                    maxWidth: '80%',
+                                    borderRadius: '15px', // Làm tròn góc tin nhắn
+                                    p: 1, // Tăng padding để tạo khoảng trống thoáng hơn
+                                    maxWidth: '55%', // Giới hạn chiều rộng tối đa
+                                    display: 'inline-block',
+                                    wordWrap: 'break-word', // Ngắt dòng nếu văn bản quá dài
+                                    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)', // Hiệu ứng bóng
                                 }}
                             />
                         </ListItem>
                     ))}
                 </List>
+
             </Box>
 
             <Divider sx={{ my: 2 }} />

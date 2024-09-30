@@ -10,11 +10,7 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-// components
 import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -26,13 +22,13 @@ import {
   IconSearch,
 } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
-import { createElement, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 const BCrumb = [
   {
     to: '/admin',
@@ -42,7 +38,6 @@ const BCrumb = [
     title: 'Quản lý trợ lý',
   },
 ];
-
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -165,14 +160,12 @@ const DataBox = [
     ),
   },
 ];
-
 interface Column {
   title: string;
   dataIndex: string;
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-
 interface AssistantData {
   assistantId: string; // ID trợ lý
   customerId: string; // ID khách hàng
@@ -196,7 +189,6 @@ interface AssistantData {
   costPerCustomer: number; // Chi phí/Khách hàng
   strategy: string; // Chiến lược
 }
-
 const dataRows: AssistantData[] = [
   {
     assistantId: 'A001',
@@ -312,19 +304,6 @@ const FilmsData: FilmsData[] = [
 ];
 const AssistantAdmin = () => {
   const [selectedItems] = useState<number[]>([]);
-
-  // const handleItemClick = (id: number) => {
-  //   setSelectedItems((prev) =>
-  //     prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-  //   );
-  // };
-
-  const [iconIndex, setIconIndex] = useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
   const column = useMemo<Column[]>(
     () => [
       {
@@ -356,7 +335,6 @@ const AssistantAdmin = () => {
     [],
   );
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -385,7 +363,7 @@ const AssistantAdmin = () => {
           <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
         <Grid item xs={12}>
-          <Grid container>
+          <Grid container sx={{alignItems: 'center'}} spacing={2}>
             <Grid
               item
               xs={4}
@@ -396,23 +374,37 @@ const AssistantAdmin = () => {
                 alignItems: 'center',
               }}
             >
-              <TextField
-                id="outlined-search"
-                placeholder="Tìm kiếm trợ lý"
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ 'aria-label': 'Search Followers' }}
-                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="12" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth={true}
-              />
+              <Grid container sx={{ alignItems: 'center'}}>
+                <Grid item >
+                  <IconButton
+                    color="primary"
+                    aria-label="Add to cart"
+                  // onClick={() => setOpen(true)}
+
+                  >
+                    <AddCircleIcon sx={{ fontSize: 30 }} />
+                  </IconButton>
+                </Grid>
+                <Grid item >
+                  <TextField
+                    id="outlined-search"
+                    placeholder="Tìm kiếm trợ lý"
+                    size="small"
+                    type="search"
+                    variant="outlined"
+                    inputProps={{ 'aria-label': 'Search Followers' }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="12" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    fullWidth={true}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
             <Grid
               item
@@ -480,15 +472,6 @@ const AssistantAdmin = () => {
                 })}
               </Select>
 
-              <IconButton
-                aria-label="filter"
-                onClick={handleClickIcon}
-                sx={{
-                  ml: 1,
-                }}
-              >
-                {createElement(icons[iconIndex])}
-              </IconButton>
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -552,5 +535,4 @@ const AssistantAdmin = () => {
     </PageContainer>
   );
 };
-
 export default AssistantAdmin;

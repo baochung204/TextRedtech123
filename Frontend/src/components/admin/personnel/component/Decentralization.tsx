@@ -69,9 +69,14 @@ const InfoRow: React.FC<{ label: string; value: string | number }> = ({ label, v
             <Grid item xs={4}>
                 <Typography variant='h6'>{label}</Typography>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={1}>
+                <Typography variant='h6' >
+                    : 
+                </Typography>
+            </Grid>
+            <Grid item xs={4}>
                 <Typography variant='h6' fontWeight={400}>
-                    :{' '} {value}
+                     {value}
                 </Typography>
             </Grid>
         </Grid>
@@ -166,180 +171,7 @@ const Decentralization = () => {
 
             {selectedEmployee && (
                 <Box sx={{ mt: 2 }}>
-                    {/* <Box sx={
-                        {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                        }
-                    }>
-                        <Typography variant="h4">Thông tin nhân viên</Typography>
-                        {selectedEmployee.status ?
-                            <Box sx={{ backgroundColor: 'success.light', paddingY: 1.2, paddingX: 1, borderRadius: 1.5 }}>
-                                <Typography color="success.dark" fontWeight={600} variant="subtitle2">
-                                    Hoạt động
-                                </Typography>
-                            </Box>
-                            :
-                            <Box sx={{ backgroundColor: 'error.light', padding: 1, paddingX: 1, borderRadius: 1.5 }}>
-                                <Typography color="error.dark" fontWeight={600} variant="subtitle2">
-                                    Khóa
-                                </Typography>
-                            </Box>
-
-                        }
-                    </Box>
-                    <Grid container sx={{ marginY: 2 }}>
-                        <Grid
-                            item
-                            xs={4}
-                            sx={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <Avatar
-                                variant="square"
-                                src={selectedEmployee.avt}
-                                sx={{ width: 200, height: 200, borderRadius: 4 }}
-                            />
-                        </Grid>
-                        <Grid
-                            item
-                            xs={8}
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <Grid container xs={12}>
-                                <Grid item xs={6}  >
-                                    <Grid container xs={12} rowSpacing={2}>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        ID
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8} sx={{ display: 'flex' }}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '}{selectedEmployee.id}
-                                                    </Typography>
-
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        Tên nhân viên
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '} {selectedEmployee.employeeName}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        Chức vụ
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '} {selectedEmployee.position}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        Phòng ban
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '}{selectedEmployee.department}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-
-                                <Grid item xs={6}  >
-                                    <Grid container xs={12} rowSpacing={2}>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        Email
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '} {selectedEmployee.email}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        Số điện thoại
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '} {selectedEmployee.phoneNumber}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        Ngày tạo
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '}  {selectedEmployee.createdAt.toLocaleDateString()}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid container xs={12}>
-                                                <Grid item xs={4}>
-                                                    <Typography variant='h6' >
-                                                        Bài viết
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <Typography variant='h6' fontWeight={400}>
-                                                        :{' '}  {selectedEmployee.articleCount}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid> */}
+                   
                     <Box sx={{ mt: 2 }}>
                         <Box
                             sx={{
@@ -410,7 +242,6 @@ const Decentralization = () => {
                                 }}
                             >
                                 <Grid container xs={12}>
-                                    {/* Left Column */}
                                     <Grid item xs={6}>
                                         <Grid container rowSpacing={2}>
                                             <InfoRow label="ID" value={selectedEmployee.id} />
@@ -420,7 +251,6 @@ const Decentralization = () => {
                                         </Grid>
                                     </Grid>
 
-                                    {/* Right Column */}
                                     <Grid item xs={6}>
                                         <Grid container rowSpacing={2}>
                                             <InfoRow label="Email" value={selectedEmployee.email} />

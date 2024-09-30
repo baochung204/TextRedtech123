@@ -19,15 +19,15 @@ interface Ranks {
 
 const ranks: Ranks[] = [
   {
-    rankName: 'Rank 1',
+    rankName: 'Chiến lược kinh doanh cấp 1',
     rankImg: rank1,
   },
   {
-    rankName: 'Rank 2',
+    rankName: 'Chiến lược kinh doanh cấp 1',
     rankImg: rank2,
   },
   {
-    rankName: 'Rank 3',
+    rankName: 'Chiến lược kinh doanh cấp 1',
     rankImg: rank3,
   },
 ];
@@ -37,7 +37,7 @@ interface PropsDialog {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Strategy: React.FC<PropsDialog> = ({open, setOpen}) => {
+const Strategy: React.FC<PropsDialog> = ({ open, setOpen }) => {
   // const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Ranks>(ranks[1]);
 
@@ -53,24 +53,24 @@ const Strategy: React.FC<PropsDialog> = ({open, setOpen}) => {
 
 
       <Box p={0} maxWidth={45}>
-        
-          <Box 
-            display="flex" 
-            alignItems="center"  // Căn chỉnh ảnh và text theo chiều dọc
-            justifyContent="left"
-            mb={1}  // Căn giữa theo chiều ngang
-          >
-            <img src={selectedValue.rankImg} alt="rank" width={88} />
-            <Typography variant="h5" ml={2} minWidth={'130px'}>  {/* Thêm margin bên trái cho text */}
-              {selectedValue.rankName}
-            </Typography>
-          </Box>
-        
+
+        <Box
+          display="flex"
+          alignItems="center"  // Căn chỉnh ảnh và text theo chiều dọc
+          justifyContent="left"
+          mb={1}  // Căn giữa theo chiều ngang
+        >
+          <img src={selectedValue.rankImg} alt="rank" width={70} />
+          <Typography variant="h5" ml={2} minWidth={'250px'}>  {/* Thêm margin bên trái cho text */}
+            {selectedValue.rankName}
+          </Typography>
+        </Box>
+
       </Box>
 
       <Dialog onClose={() => handleClose(selectedValue)} open={open}>
         <DialogTitle
-          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',width:'100%' }}
         >
           Chọn chiến lược
           <CloseIcon onClick={() => setOpen(false)} style={{ cursor: 'pointer', opacity: 0.7 }} />
@@ -88,18 +88,40 @@ const Strategy: React.FC<PropsDialog> = ({open, setOpen}) => {
           }}
         >
           {ranks.map((rank) => (
-            <Box key={rank.rankName} onClick={() => handleClose(rank)}>
-              <CardContent sx={{ p: '30px', cursor: 'pointer' }}>
-                <Box textAlign="center">
-                  <img src={rank.rankImg} alt="star" width={100}  />
-                  <Typography variant="h5">{rank.rankName}</Typography>
+            <Box key={rank.rankName}
+              sx={{
+                display: 'inline-block', // Giúp mỗi Box vừa với nội dung bên trong
+                width: 'auto', // Chiều rộng tự điều chỉnh theo nội dung
+                maxWidth: '100%', // Có thể giới hạn chiều rộng tối đa nếu cần
+                cursor: 'pointer',
+              }}
+              onClick={() => handleClose(rank)}
+            >
+              <CardContent
+                sx={{
+                  p: '0px',
+                  "&:last-child": {
+                    pb: 1, // Giảm padding-bottom cho phần tử cuối
+                  },
+                }}
+              >
+                <Box
+                  textAlign="center"
+                  alignItems="center"
+                  justifyContent="left"
+                  display="flex"
+                  pl={3}
+                >
+                  <img src={rank.rankImg} alt="star" width={50} />
+                  <Typography variant="h5" ml={2}>{rank.rankName}</Typography>
                 </Box>
               </CardContent>
             </Box>
           ))}
         </List>
       </Dialog>
-    </Box>
+
+    </Box >
   );
 };
 

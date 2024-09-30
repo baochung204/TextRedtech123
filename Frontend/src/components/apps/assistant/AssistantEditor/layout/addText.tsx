@@ -1,5 +1,5 @@
+import DoneIcon from '@mui/icons-material/Done';
 import {
-  Box,
   Button,
   Grid,
   List,
@@ -7,7 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   Paper,
-  useTheme,
+  useTheme
 } from '@mui/material';
 import {
   IconChevronLeft,
@@ -76,6 +76,11 @@ const AddFunction = () => {
   const [checked, setChecked] = useState<readonly any[]>([]);
   const [left, setLeft] = useState<readonly any[]>(items.slice(0, 5));
   const [right, setRight] = useState<readonly any[]>(items.slice(5));
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+  };
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
@@ -178,14 +183,21 @@ const AddFunction = () => {
         <Grid item xs={12} sm={6} lg={12}>
           <Grid container>
             <Grid item xs={6}>
-              <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>
+              <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>
                 Định nghĩa chuyển đổi
               </CustomFormLabel>
             </Grid>
             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end' }}>
               {' '}
-              <Button variant="contained" color="primary" sx={{ p: 0 }}>
-                Lưu
+              <Button
+                variant="contained"
+                color="inherit"
+                size="small"
+                component="span"
+                style={{ marginBottom: '0px' }}
+                onClick={handleClick}
+              >
+                {isClicked ? <DoneIcon fontSize="small" color='success' style={{ marginRight: '0px' }} /> : 'Lưu'}
               </Button>
             </Grid>
           </Grid>

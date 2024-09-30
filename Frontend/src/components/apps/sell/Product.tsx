@@ -16,9 +16,10 @@ import * as React from 'react';
 // };
 
 // const shopProductNames = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Avatar,
+  Badge,
   Box,
   Checkbox,
   Chip,
@@ -29,15 +30,12 @@ import {
   MenuItem,
   Select,
   TextField,
-  Toolbar,
-  Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
-import { alpha } from '@mui/material/styles';
 
 import PageContainer from 'src/components/container/PageContainer';
 
-import { IconFilter, IconSearch, IconTrash } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 
 import BlankCard from '../../../components/shared/BlankCard';
 
@@ -152,11 +150,11 @@ import AddDialog from './layout/addDialog';
 //   },
 // ];
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-  handleSearch?: React.ChangeEvent<HTMLInputElement> | any;
-  search?: string;
-}
+// interface EnhancedTableToolbarProps {
+//   numSelected: number;
+//   handleSearch?: React.ChangeEvent<HTMLInputElement> | any;
+//   search?: string;
+// }
 interface Column {
   title: string;
   dataIndex: string;
@@ -164,68 +162,68 @@ interface Column {
   isValids?: boolean;
 }
 
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-  const { numSelected, handleSearch, search } = props;
+// const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+//   const { numSelected, handleSearch, search } = props;
 
-  // if (!data || data.length === 0) {
-  //   console.log('No data to display');
-  // } else {
-  //   console.log('Data to be passed to CustomTable:', data);
-  // }
+//   // if (!data || data.length === 0) {
+//   //   console.log('No data to display');
+//   // } else {
+//   //   console.log('Data to be passed to CustomTable:', data);
+//   // }
 
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        minHeight: { sm: 0 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Box sx={{ flex: '1 1 100%' }}>
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconSearch size="1.1rem" />
-                </InputAdornment>
-              ),
-            }}
-            placeholder="Tìm kiếm sản phẩm"
-            size="small"
-            onChange={handleSearch}
-            value={search}
-            sx={{
-              width: '100%',
-            }}
-          />
-        </Box>
-      )}
+//   return (
+//     <Toolbar
+//       sx={{
+//         pl: { sm: 2 },
+//         pr: { xs: 1, sm: 1 },
+//         minHeight: { sm: 0 },
+//         ...(numSelected > 0 && {
+//           bgcolor: (theme) =>
+//             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+//         }),
+//       }}
+//     >
+//       {numSelected > 0 ? (
+//         <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle2" component="div">
+//           {numSelected} selected
+//         </Typography>
+//       ) : (
+//         <Box sx={{ flex: '1 1 100%' }}>
+//           <TextField
+//             InputProps={{
+//               startAdornment: (
+//                 <InputAdornment position="start">
+//                   <IconSearch size="1.1rem" />
+//                 </InputAdornment>
+//               ),
+//             }}
+//             placeholder="Tìm kiếm sản phẩm"
+//             size="small"
+//             onChange={handleSearch}
+//             value={search}
+//             sx={{
+//               width: '100%',
+//             }}
+//           />
+//         </Box>
+//       )}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <IconTrash width="18" />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <IconFilter size="1.2rem" />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
-  );
-};
+//       {numSelected > 0 ? (
+//         <Tooltip title="Delete">
+//           <IconButton>
+//             <IconTrash width="18" />
+//           </IconButton>
+//         </Tooltip>
+//       ) : (
+//         <Tooltip title="Filter list">
+//           <IconButton>
+//             <IconFilter size="1.2rem" />
+//           </IconButton>
+//         </Tooltip>
+//       )}
+//     </Toolbar>
+//   );
+// };
 
 const PaginationTable = () => {
   // const [selected] = React.useState<readonly string[]>([]);
@@ -364,6 +362,12 @@ const PaginationTable = () => {
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'end' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+            <Badge
+              badgeContent={dataSelect.length !== 0 && dataSelect.length}
+              color={dataSelect.length !== 0 ? 'primary' : undefined}
+            >
+              <FilterListIcon color="action" />
+            </Badge>
             <Select
               multiple
               value={dataSelect}
