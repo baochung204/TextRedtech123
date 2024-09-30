@@ -37,12 +37,11 @@ const Modern = () => {
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'flex-end', // Aligns the items to the right inside the Box
-                alignItems: 'center', // Centers items vertically
-                gap: 1, // Adds space between the elements
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                gap: 1,
               }}
             >
-              {/* CustomSelect */}
               <CustomSelect
                 labelId="month-dd"
                 id="month-dd"

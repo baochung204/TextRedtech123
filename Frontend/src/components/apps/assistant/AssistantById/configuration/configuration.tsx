@@ -1,44 +1,51 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, CardContent, Chip, LinearProgress, Paper, Stack, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-// import SavingsImg from '../../../assets/images/backgrounds/piggy.png';
+import {
+  Box,
+  CardContent,
+  Chip,
+  LinearProgress,
+  Paper,
+  Stack,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import Banner from 'src/assets/images/banner/trangbịtroly.png';
-interface sellsData {
-  product: string;
-  parameter: number;
-  percent: number;
-  color: string;
-}
 
-const sells: sellsData[] = [
-  {
-    product: 'File',
-    parameter: 14,
-    percent: 75,
-    color: 'primary',
-  },
-  {
-    product: 'Dung lượng',
-    parameter: 289,
-    percent: 55,
-    color: 'warning',
-  },
-  {
-    product: 'Function',
-    parameter: 57,
-    percent: 20,
-    color: 'secondary',
-  },
-];
-
-const SellingProducts = () => {
+const Configuration = () => {
   const theme = useTheme();
-  const secondarylight = theme.palette.secondary.light;
+  const primary = theme.palette.primary.main;
   const primarylight = theme.palette.primary.light;
   const secondary = theme.palette.secondary.main;
-  const primary = theme.palette.primary.main;
+  const secondarylight = theme.palette.secondary.light;
   const borderColor = theme.palette.divider;
+  interface sellssData {
+    product: string;
+    parameter: number;
+    percent: number;
+    color: string;
+  }
+
+  const sellss: sellssData[] = [
+    {
+      product: 'File',
+      parameter: 14,
+      percent: 75,
+      color: 'primary',
+    },
+    {
+      product: 'Dung lượng',
+      parameter: 289,
+      percent: 55,
+      color: 'warning',
+    },
+    {
+      product: 'Function',
+      parameter: 57,
+      percent: 20,
+      color: 'secondary',
+    },
+  ];
   return (
     <Paper
       sx={{
@@ -69,7 +76,7 @@ const SellingProducts = () => {
       >
         <Box p={3}>
           <Stack spacing={3}>
-            {sells.map((sell: any, i: number) => (
+            {sellss.map((sell: any, i: number) => (
               <Box key={i}>
                 <Stack
                   direction="row"
@@ -106,4 +113,4 @@ const SellingProducts = () => {
   );
 };
 
-export default SellingProducts;
+export default Configuration;
