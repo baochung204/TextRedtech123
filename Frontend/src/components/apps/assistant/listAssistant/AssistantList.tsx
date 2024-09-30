@@ -13,6 +13,7 @@ import {
   Card,
   CardContent,
   Chip,
+  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -41,6 +42,8 @@ import Iconchart from 'src/assets/images/chat/chartt.png';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
 import AlertChat from '../../chats/AlertChat';
+import { IconPlus } from '@tabler/icons-react';
+
 interface FilmsData {
   title: string;
 }
@@ -55,6 +58,7 @@ const ListAssistant = () => {
   const successlight = theme.palette.success.light;
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
   const [alertText, setAlertText] = useState('');
+
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
       const isRankChecked = prevChecked.includes(rank.id);
@@ -101,6 +105,13 @@ const ListAssistant = () => {
               alignItems: 'center',
             }}
           >
+            <Tooltip title="Thêm" sx={{ mr: 2 }}>
+              <Link to={`/apps/assistant/add`}>
+                <Fab size="small" color="primary" aria-label="plus">
+                  <IconPlus width={18} />
+                </Fab>
+              </Link>
+            </Tooltip>
             <TextField
               id="outlined-search"
               placeholder="Tìm kiếm trợ lý"
