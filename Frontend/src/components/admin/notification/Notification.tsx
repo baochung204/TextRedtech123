@@ -1,4 +1,16 @@
-import { Badge, Box, Checkbox, Grid, InputAdornment, ListItemText, MenuItem, Select, TextField, Tooltip, Typography } from '@mui/material';
+import {
+  Badge,
+  Box,
+  Checkbox,
+  Grid,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -14,6 +26,8 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { Dayjs } from 'dayjs';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
 const DataBox = [
   {
@@ -113,10 +127,6 @@ const DataBox = [
     ),
   },
 ];
-
-
-
-
 
 interface INotification {
   id: string; // ID thông báo
@@ -229,54 +239,57 @@ interface Column {
 const ContentNotification = () => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-  const column = useMemo<Column[]>(() => [
-    {
-      dataIndex: 'id',
-      title: 'ID',
-    },
-    {
-      dataIndex: 'day',
-      title: 'Ngày đăng',
-    },
-    {
-      dataIndex: 'title',
-      title: 'Tiêu đề',
-    },
-    {
-      dataIndex: 'tags',
-      title: 'Tags',
-    },
-    {
-      dataIndex: 'content',
-      title: 'Nội dung thông báo',
-    },
-    {
-      dataIndex: 'moreLink',
-      title: 'Link xem thêm',
-    },
-    {
-      dataIndex: 'views',
-      title: 'Lượt xem',
-    },
-    {
-      dataIndex: 'interactions',
-      title: 'Tương tác',
-    },
-    {
-      dataIndex: 'status',
-      title: 'Trạng thái',
-    },
-  ], [])
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        dataIndex: 'id',
+        title: 'ID',
+      },
+      {
+        dataIndex: 'day',
+        title: 'Ngày đăng',
+      },
+      {
+        dataIndex: 'title',
+        title: 'Tiêu đề',
+      },
+      {
+        dataIndex: 'tags',
+        title: 'Tags',
+      },
+      {
+        dataIndex: 'content',
+        title: 'Nội dung thông báo',
+      },
+      {
+        dataIndex: 'moreLink',
+        title: 'Link xem thêm',
+      },
+      {
+        dataIndex: 'views',
+        title: 'Lượt xem',
+      },
+      {
+        dataIndex: 'interactions',
+        title: 'Tương tác',
+      },
+      {
+        dataIndex: 'status',
+        title: 'Trạng thái',
+      },
+    ],
+    [],
+  );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     const selectedColumns = column || [];
-    const hasIsValids = selectedColumns.some(col => col.isValids !== undefined);
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
     if (hasIsValids) {
       const hiddenColumns = selectedColumns
-        .filter(col => col.isValids === false)
-        .map(col => col.dataIndex || '');
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
       setDataSelect(hiddenColumns);
     } else {
       setDataSelect([]);
@@ -284,10 +297,13 @@ const ContentNotification = () => {
   }, [column]);
 
   const handleColumnChange = (event: any) => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
 
   return (
     <Grid container spacing={3}>
@@ -325,9 +341,12 @@ const ContentNotification = () => {
             </Grid>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Badge badgeContent={dataSelect.length !== 0 && dataSelect.length} color={dataSelect.length !== 0 ? 'primary' : undefined}>
+              <Badge
+                badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                color={dataSelect.length !== 0 ? 'primary' : undefined}
+              >
                 <FilterListIcon color="action" />
               </Badge>
               <Select
@@ -336,7 +355,7 @@ const ContentNotification = () => {
                 displayEmpty
                 onChange={handleColumnChange}
                 renderValue={() => 'Sửa đổi cột'}
-                size='small'
+                size="small"
                 MenuProps={{
                   PaperProps: {
                     sx: {
@@ -368,8 +387,7 @@ const ContentNotification = () => {
                 }}
               >
                 {column.map((header: any) => {
-
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex))
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -381,26 +399,64 @@ const ContentNotification = () => {
                   );
                 })}
               </Select>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={selectedStartDate}
-                  onChange={setSelectedStartDate}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                <Typography>tới</Typography>
-                <DatePicker
-                  value={selectedEndDate}
-                  onChange={setSelectedEndDate}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(props) => (
+                      <CustomTextField
+                        {...props}
+                        fullWidth
+                        size="small"
+                        sx={{
+                          '& .MuiSvgIcon-root': {
+                            width: '18px',
+                            height: '18px',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            display: 'none',
+                          },
+                        }}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+                tới
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={value1}
+                    onChange={(newValue) => {
+                      setValue1(newValue);
+                    }}
+                    renderInput={(props) => (
+                      <CustomTextField
+                        {...props}
+                        fullWidth
+                        size="small"
+                        sx={{
+                          '& .MuiSvgIcon-root': {
+                            width: '18px',
+                            height: '18px',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            display: 'none',
+                          },
+                        }}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </Box>
             </Box>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12}>
         <BlankCard>
-          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect}/>
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
     </Grid>
