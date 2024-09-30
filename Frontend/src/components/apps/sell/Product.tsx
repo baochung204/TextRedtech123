@@ -1,8 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import * as React from 'react';
 // const ITEM_HEIGHT = 48;
 // const ITEM_PADDING_TOP = 8;
@@ -24,13 +21,12 @@ import {
   Checkbox,
   Chip,
   Grid,
-  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 
 import PageContainer from 'src/components/container/PageContainer';
@@ -310,11 +306,7 @@ const PaginationTable = () => {
   React.useEffect(() => {
     dispatch(fetchProduct());
   }, [dispatch]);
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
-  const [iconIndex, setIconIndex] = React.useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+
   const handleColumnChange = (event: any) => {
     const {
       target: { value },

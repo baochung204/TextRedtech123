@@ -3,10 +3,10 @@
 import React, { useEffect } from 'react';
 
 import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
-import ChildCard from 'src/components/shared/ChildCard';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { useParams } from 'react-router';
+import ChildCard from 'src/components/shared/ChildCard';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 interface TabProps {
   children: React.ReactNode;
   index: number;
@@ -48,7 +48,7 @@ const ProductDesc = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
   const product: any = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   console.log(product?.description);

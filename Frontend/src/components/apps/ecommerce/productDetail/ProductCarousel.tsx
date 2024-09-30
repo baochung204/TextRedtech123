@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
-import { useSelector, useDispatch } from 'src/store/Store';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'src/store/Store';
 
 //Carousel slider for product
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import './Carousel.css';
 
 //Carousel slider data
-import SliderData from './SliderData';
 
 //fetch product
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
