@@ -131,7 +131,7 @@ const PopupAdd = () => {
         <Divider sx={{ mx: '-24px' }} />
 
         {/* Thông tin trợ lý và kênh */}
-        <Scrollbar_y sx={{ maxHeight: '400px', overflowX: 'hidden' }}>
+        {/* <Scrollbar_y sx={{ maxHeight: '400px', overflowX: 'hidden' }}> */}
           {/* Set maxHeight for scrolling */}
           <Box mb={4} p={3}>
             <Typography variant="h6" sx={{ fontSize: '1.1rem' }}>
@@ -261,7 +261,7 @@ const PopupAdd = () => {
               </Grid>
             </Grid>
           </Box>
-        </Scrollbar_y>
+        {/* </Scrollbar_y> */}
       </Box>
     </Scrollbar_y>
   );
