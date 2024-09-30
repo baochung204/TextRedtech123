@@ -22,6 +22,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { Dayjs } from 'dayjs';
 
 interface DataRow2 {
   id: string;
@@ -256,9 +258,10 @@ const HistoryVoucher = () => {
   //   setSelected([]);
   // };
 
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
+  // const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  // const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -427,19 +430,57 @@ const HistoryVoucher = () => {
                       );
                     })}
                   </Select>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={selectedStartDate}
-                      onChange={setSelectedStartDate}
-                      renderInput={(params: any) => <TextField {...params} />}
-                    />
-                    <Typography>tới</Typography>
-                    <DatePicker
-                      value={selectedEndDate}
-                      onChange={setSelectedEndDate}
-                      renderInput={(params: any) => <TextField {...params} />}
-                    />
-                  </LocalizationProvider>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        value={value}
+                        onChange={(newValue) => {
+                          setValue(newValue);
+                        }}
+                        renderInput={(props) => (
+                          <CustomTextField
+                            {...props}
+                            fullWidth
+                            size="small"
+                            sx={{
+                              '& .MuiSvgIcon-root': {
+                                width: '18px',
+                                height: '18px',
+                              },
+                              '& .MuiFormHelperText-root': {
+                                display: 'none',
+                              },
+                            }}
+                          />
+                        )}
+                      />
+                    </LocalizationProvider>
+                    tới
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        value={value1}
+                        onChange={(newValue) => {
+                          setValue1(newValue);
+                        }}
+                        renderInput={(props) => (
+                          <CustomTextField
+                            {...props}
+                            fullWidth
+                            size="small"
+                            sx={{
+                              '& .MuiSvgIcon-root': {
+                                width: '18px',
+                                height: '18px',
+                              },
+                              '& .MuiFormHelperText-root': {
+                                display: 'none',
+                              },
+                            }}
+                          />
+                        )}
+                      />
+                    </LocalizationProvider>
+                  </Box>
                 </Box>
               </Grid>
             </Grid>

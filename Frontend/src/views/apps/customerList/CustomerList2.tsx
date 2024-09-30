@@ -4,6 +4,7 @@ import {
   Checkbox,
   Dialog,
   DialogContent,
+  DialogTitle,
   Grid,
   InputAdornment,
   ListItemText,
@@ -74,23 +75,23 @@ const CustomerList2 = () => {
         title: 'Trợ lý',
         dataIndex: 'assistant',
       },
-      {
-        title: 'Kênh(MKT)',
-        dataIndex: 'pageName',
-        render: (_row, value: any) => (
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <img
-              src={value?.iconImageUrl}
-              alt=""
-              style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
-            />
-            <Box>
-              <Typography>{value.pageName}</Typography>
-              {/* <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography> */}
-            </Box>
-          </Box>
-        ),
-      },
+      // {
+      //   title: 'Kênh(MKT)',
+      //   dataIndex: 'pageName',
+      //   render: (_row, value: any) => (
+      //     <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      //       <img
+      //         src={value?.iconImageUrl}
+      //         alt=""
+      //         style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
+      //       />
+      //       <Box>
+      //         <Typography>{value.pageName}</Typography>
+      //         {/* <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography> */}
+      //       </Box>
+      //     </Box>
+      //   ),
+      // },
       {
         title: 'Tags',
         dataIndex: 'tag',
@@ -192,81 +193,7 @@ const CustomerList2 = () => {
                     </Grid>
 
                     <Grid item xs={5.83}>
-                      {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Badge
-                          badgeContent={dataSelect.length !== 0 && dataSelect.length}
-                          color={dataSelect.length !== 0 ? 'primary' : undefined}
-                        >
-                          <FilterListIcon color="action" />
-                        </Badge>
-                        <Select
-                          multiple
-                          value={dataSelect}
-                          displayEmpty
-                          onChange={handleColumnChange}
-                          renderValue={() => 'Sửa đổi cột'}
-                          size="small"
-                        >
-                          {column.map((header: any) => {
-                            console.log(
-                              `check ${header.title}`,
-                              dataSelect.includes(header.dataIndex),
-                            );
-
-                            const isSelected = dataSelect.includes(header.dataIndex);
-
-                            return (
-                              <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                                <Checkbox checked={!isSelected} />
-                                <ListItemText primary={header.title} />
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <DatePicker
-                            value={selectedStartDate}
-                            onChange={setSelectedStartDate}
-                            renderInput={(params) => (
-                              <TextField {...params} size="small" fullWidth />
-                            )}
-                          />
-                          <Typography>tới</Typography>
-                          <DatePicker
-                            value={selectedEndDate}
-                            onChange={setSelectedEndDate}
-                            renderInput={(params) => (
-                              <TextField {...params} size="small" fullWidth />
-                            )}
-                          />
-                        </LocalizationProvider>
-                      </Box> */}
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        {/* <Select
-                          multiple
-                          value={dataSelect}
-                          displayEmpty
-                          onChange={handleColumnChange}
-                          renderValue={() => 'Sửa đổi cột'}
-                          size="small"
-                        >
-                          {column.map((header: any) => {
-                            // console.log(
-                            //   `check ${header.title}`,
-                            //   dataSelect.includes(header.dataIndex),
-                            // );
-
-                            const isSelected = dataSelect.includes(header.dataIndex);
-
-                            return (
-                              <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                                <Checkbox checked={!isSelected} />
-                                <ListItemText primary={header.title} />
-                              </MenuItem>
-                            );
-                          })}
-                        </Select> */}
                         <Select
                           multiple
                           value={dataSelect}
@@ -366,7 +293,17 @@ const CustomerList2 = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogContent sx={{ paddingTop: '10px' }}>
+        <DialogTitle>
+          <Typography padding={'20px'} fontSize={'30px'}>
+            Thêm khách hàng
+          </Typography>
+        </DialogTitle>
+        <DialogContent
+          sx={{
+            padding: '0',
+            overflowY: 'hidden'
+          }}
+        >
           <PopupAddList2 />
         </DialogContent>
       </Dialog>

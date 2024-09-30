@@ -4,7 +4,7 @@ import React from 'react';
 
 import Chart from 'react-apexcharts';
 import avt9 from 'src/assets/images/profile/user-9.jpg';
-import rank9 from 'src/assets/images/rank/rank9.png';
+import rank8 from 'src/assets/images/rank/rank8.png';
 
 import {
   Avatar,
@@ -56,6 +56,8 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import Affilatec2 from 'src/components/shared/Affilatec2';
 import Affilatec3 from 'src/components/shared/Affilatec3';
 import Modarm from 'src/components/shared/moderm';
+import Affilatec1 from 'src/components/shared/Affilatec1';
+import Affilatec from 'src/components/shared/Affilatec';
 
 interface cardType {
   icon: string;
@@ -259,11 +261,42 @@ const AssistantInfor = () => {
       icon: icon5Img,
     },
   ];
+
+  const seriesdoughnutchart = [55, 45];
+
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: '#0000000',
+
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] + '%' : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -272,6 +305,15 @@ const AssistantInfor = () => {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
         },
       },
     },
@@ -280,13 +322,27 @@ const AssistantInfor = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, secondary, warning, '#2c5364', '#99f2c8'],
+    colors: ['#f45c43', '#fd1d1d'],
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: 'vertical',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#feb47b', '#ff7e5f'],
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100],
+      },
+    },
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
+    labels: ['Cá nhân', 'Doanh nghiệp'],
   };
+
   const optionsradialchart = {
     chart: {
       id: 'gauge-chart',
@@ -556,40 +612,40 @@ const AssistantInfor = () => {
       data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
-  // const optionsdoughnutchart3: Props = {
-  //   chart: {
-  //     id: 'donut-chart',
-  //     fontFamily: "'Plus Jakarta Sans', sans-serif",
-  //     foreColor: '#adb0bb',
-  //   },
-  //   dataLabels: {
-  //     enabled: false,
-  //   },
-  //   plotOptions: {
-  //     pie: {
-  //       donut: {
-  //         size: '70px',
-  //       },
-  //     },
-  //   },
-  //   legend: {
-  //     show: true,
-  //     position: 'bottom',
-  //     width: '50px',
-  //   },
-  //   colors: ['#ff416c', '#ff4b2b'],
-  //   tooltip: {
-  //     theme: 'dark',
-  //     fillSeriesColor: false,
-  //   },
-  //   labels: ['Chi phí', 'Doanh thu'],
-  // };
-  // const seriesdoughnutchart3 = [65, 35];
-  const optionsdoughnutchart4: Props = {
+  const seriesdoughnutchart3 = [35, 65];
+
+  const optionsdoughnutchart3: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#adb0bb',
+      foreColor: '#000000',
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -598,6 +654,15 @@ const AssistantInfor = () => {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
         },
       },
     },
@@ -606,14 +671,79 @@ const AssistantInfor = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#93f9b9', '#1D976C'],
+    colors: ['#4cb8c4', '#3cd3ad'],
+    tooltip: {
+      theme: 'dark',
+      fillSeriesColor: false,
+    },
+    labels: ['Chi phí', 'Doanh thu'],
+  };
+  const seriesdoughnutchart4 = [41, 59];
+
+  const optionsdoughnutchart4: Props = {
+    chart: {
+      id: 'donut-chart',
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      foreColor: '#000000',
+      events: {
+        mounted: (chart: any) => {
+          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
+          const maxValue = Math.max(...seriesdoughnutchart);
+          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] : '';
+
+          // Custom label for center text
+          chart.updateOptions({
+            annotations: {
+              position: 'front',
+              text: {
+                x: 0,
+                y: 0,
+                text: `${maxValue}%`,
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+                style: {
+                  fontSize: '20px',
+                  fontWeight: 'bold',
+                  color: '#000000', // màu đen
+                },
+              },
+            },
+          });
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    plotOptions: {
+      pie: {
+        donut: {
+          size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: 'Tỉ lệ cao nhất',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              fontWeight: 'bold',
+            },
+          },
+        },
+      },
+    },
+    legend: {
+      show: true,
+      position: 'bottom',
+      width: '50px',
+    },
+    colors: ['#fe8c00', '#f2c94c'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
     labels: ['Chi phí', 'Cuộc trò chuyện'],
   };
-  const seriesdoughnutchart4 = [55, 65];
 
   const [month, setMonth] = React.useState('1');
 
@@ -628,7 +758,7 @@ const AssistantInfor = () => {
       <Box mt={3}>
         <Grid container spacing={3}>
           {/* column */}
-          <Grid item xs={12} lg={8}>
+          <Grid item xs={12} sm={8} md={8} lg={8}>
             <Card
               elevation={0}
               sx={{ backgroundColor: (theme) => theme.palette.primary.light, py: 0 }}
@@ -649,7 +779,11 @@ const AssistantInfor = () => {
                         }}
                       >
                         <Avatar src={userImg} alt="img" sx={{ width: 40, height: 40 }} />
-                        <Typography variant="h5" whiteSpace="nowrap">
+                        <Typography
+                          variant="h5"
+                          whiteSpace="nowrap"
+                          sx={{ fontSize: { sm: 16, md: 18 } }}
+                        >
                           Chào mừng bạn đến với trang hồ sơ trợ lý !
                         </Typography>
                       </Box>
@@ -684,7 +818,7 @@ const AssistantInfor = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} lg={4}>
+          <Grid item xs={12} sm={4} md={4} lg={4}>
             <Box
               height="100%"
               bgcolor="error.light"
@@ -699,6 +833,7 @@ const AssistantInfor = () => {
                   py: 2,
                   fontWeight: 600,
                   color: '#FA896B',
+                  fontSize: { sm: 16, md: 18 },
                 }}
               >
                 Chiến lược của trợ lý
@@ -754,8 +889,55 @@ const AssistantInfor = () => {
             </Box>
           </Grid>
           {/* column */}
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={5} md={5} lg={4}>
             <BoxStyled sx={{ textAlign: 'center' }}>
+              {/* <Box
+                sx={{
+                  position: 'relative',
+                  display: 'inline-block',
+                  width: '80%',
+                  height: '80%',
+                  px: 2,
+                }}
+              >
+                <img
+                  src={rank8}
+                  alt=""
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 99,
+                    position: 'relative',
+                  }}
+                /> */}
+              {/* <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '45.5%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                    width: { xs: '41%', sm: '40%', md: '40%', lg: '100%' },
+                    height: { xs: '41%', sm: '40%', md: '40%', lg: '41%' },
+                  }}
+                > */}
+              {/* <img
+                  src={avt9}
+                  alt=""
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    transform: 'translate(-50%, -50%)',
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                    top: '45.5%',
+                    left: '50%',
+                  }}
+                /> */}
+              {/* </Box> */}
+              {/* </Box> */}
               <Box
                 sx={{
                   position: 'relative',
@@ -766,38 +948,34 @@ const AssistantInfor = () => {
                 }}
               >
                 <img
-                  src={rank9}
+                  src={rank8}
                   alt=""
                   style={{
                     width: '100%',
                     height: '100%',
-                    zIndex: 99,
+
                     position: 'relative',
+                    zIndex: 99,
                   }}
                 />
-                <Box
-                  sx={{
+
+                <img
+                  src={avt9}
+                  alt=""
+                  style={{
+                    height: '61%',
+                    objectFit: 'cover',
                     position: 'absolute',
-                    top: '45.5%',
-                    left: '50%',
                     transform: 'translate(-50%, -50%)',
                     borderRadius: '50%',
                     overflow: 'hidden',
-                    width: { xs: '41%', sm: '40%', md: '40%', lg: '41%' },
-                    height: { xs: '41%', sm: '40%', md: '40%', lg: '41%' },
+                    top: '49%',
+                    left: '50%',
+                    zIndex: 1,
                   }}
-                >
-                  <img
-                    src={avt9}
-                    alt=""
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </Box>
+                />
               </Box>
+
               <Box sx={{ textAlign: 'center' }}>
                 <Typography
                   variant="h6"
@@ -838,7 +1016,7 @@ const AssistantInfor = () => {
               >
                 <Box
                   sx={{
-                    p: { xs: 2, sm: 2, md: 1.7, lg: 2 },
+                    p: { xs: 2, sm: 2, md: 1.7, lg: 3 },
                     boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                   }}
                 >
@@ -880,81 +1058,78 @@ const AssistantInfor = () => {
               </Paper>
             </BoxStyled>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item xs={12} sm={7} md={7} lg={4}>
             <DashboardCard title="Thông tin trợ lý">
-              <Grid container>
-                <Grid container sx={{ my: 1 }}>
-                  <Grid item xs={12} sm={5}>
+              <Grid container sx={{ mt: { sm: '-20px', md: 0 } }}>
+                <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+                  <Grid item xs={5}>
                     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
                       Ngày sinh
                     </CustomFormLabel>
                   </Grid>
-                  <Grid item xs={12} sm={7}>
+                  <Grid item xs={7}>
                     <Typography>11/08/2025</Typography>
                   </Grid>
                 </Grid>
-
-                <Grid container sx={{ my: 1 }}>
-                  <Grid item xs={12} sm={5}>
+                <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+                  <Grid item xs={5}>
                     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
                       Giới tính
                     </CustomFormLabel>
                   </Grid>
-                  <Grid item xs={12} sm={7}>
+                  <Grid item xs={7}>
                     <Typography>Nữ</Typography>
                   </Grid>
                 </Grid>
-
-                <Grid container sx={{ my: 1 }}>
-                  <Grid item xs={12} sm={5}>
+                <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+                  <Grid item xs={5}>
                     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
                       Quốc gia
                     </CustomFormLabel>
                   </Grid>
-                  <Grid item xs={12} sm={7}>
+                  <Grid item xs={7}>
                     <Typography>Việt Nam</Typography>
                   </Grid>
                 </Grid>
-
-                <Grid container sx={{ my: 1 }}>
-                  <Grid item xs={12} sm={5}>
+                <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+                  <Grid item xs={5}>
                     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
                       Ngôn ngữ
                     </CustomFormLabel>
                   </Grid>
-                  <Grid item xs={12} sm={7}>
+                  <Grid item xs={7}>
                     <Typography>Tiếng Việt</Typography>
                   </Grid>
                 </Grid>
-                <Grid container sx={{ my: 1 }}>
-                  <Grid item xs={12} sm={5}>
+                <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+                  <Grid item xs={5}>
                     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
                       Vị trí nghề nghiệp
                     </CustomFormLabel>
                   </Grid>
-                  <Grid item xs={12} sm={7}>
+                  <Grid item xs={7}>
                     <Typography>Đại học</Typography>
                   </Grid>
                 </Grid>
-                <Grid container sx={{ my: 1 }}>
-                  <Grid item xs={12} sm={5}>
+                <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+                  <Grid item xs={5}>
                     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
                       Chuyên môn
                     </CustomFormLabel>
                   </Grid>
-                  <Grid item xs={12} sm={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  <Grid item xs={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     <Chip label="Tương tác đa phương tiện" color="primary" sx={{ px: 1 }} />
                     <Chip label="Phân tích dữ liệu và báo cáo" color="error" sx={{ px: 1 }} />
                     <Chip label="Hỗ trợ đa ngôn ngữ" color="warning" sx={{ px: 1 }} />
                   </Grid>
                 </Grid>
-                <Grid container sx={{ my: 1 }}>
-                  <Grid item xs={12} sm={5}>
+                <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+                  <Grid item xs={5}>
                     <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
                       Tính cách
                     </CustomFormLabel>
                   </Grid>
-                  <Grid item xs={12} sm={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  <Grid item xs={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     <Chip variant="outlined" label="Vui vẻ" color="primary" sx={{ px: 1 }} />
                     <Chip variant="outlined" label="Tận tâm" color="error" sx={{ px: 1 }} />
                     <Chip variant="outlined" label="Cởi mở" color="warning" sx={{ px: 1 }} />
@@ -965,7 +1140,7 @@ const AssistantInfor = () => {
               </Grid>
             </DashboardCard>
           </Grid>
-          <Grid item xs={12} lg={4}>
+          <Grid item xs={12} md={12} lg={4}>
             <Grid container spacing={3}>
               {topcards.map((topcard, i) => (
                 <Grid item xs={12} sm={4} lg={6} key={i}>
@@ -1002,8 +1177,8 @@ const AssistantInfor = () => {
             </Grid>
           </Grid>
           {/* column */}
-          <Grid item xs={12} sm={6} lg={4}>
-            <Modarm title="Nguồn khách hàng " description="">
+          <Grid item xs={12} sm={12} md={4} lg={4}>
+            <Modarm title="Nguồn khách hàng " text="Nguồn khách hàng" description="">
               <Chart
                 options={optionsdoughnutchart}
                 series={seriespiechart}
@@ -1012,7 +1187,7 @@ const AssistantInfor = () => {
               />
             </Modarm>
           </Grid>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} sm={12} md={8}>
             <DashboardCard>
               <Box>
                 <Box sx={{ marginTop: '0px' }}>
@@ -1101,7 +1276,7 @@ const AssistantInfor = () => {
             </DashboardCard>
           </Grid>
           {/* column */}
-          <Grid item xs={12} lg={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Paper
               sx={{ bgcolor: 'primary.main', border: `1px solid ${borderColor}` }}
               variant="outlined"
@@ -1165,8 +1340,8 @@ const AssistantInfor = () => {
               </Paper>
             </Paper>
           </Grid>
-          <Grid item xs={12} lg={4}>
-            <DashboardCard title="Function " subtitle="Danh sách Function được trang bị cho trợ lý">
+          <Grid item xs={12} sm={12} md={4} lg={4}>
+            <DashboardCard title="Function " subtitle="Function được trang bị cho trợ lý">
               <Box>
                 <Stack spacing={3} mt={'26px'}>
                   {stats.map((stat, i) => (
@@ -1207,8 +1382,8 @@ const AssistantInfor = () => {
               </Box>
             </DashboardCard>
           </Grid>
-          <Grid item xs={12} lg={4}>
-            <DashboardCard title="File " subtitle="Danh sách File được trang bị cho trợ lý">
+          <Grid item xs={12} sm={12} md={4} lg={4}>
+            <DashboardCard title="File " subtitle="File được trang bị cho trợ lý">
               <Box>
                 <Stack spacing={3} mt={'26px'}>
                   {stats2.map((stat, i) => (
@@ -1250,7 +1425,7 @@ const AssistantInfor = () => {
             </DashboardCard>
           </Grid>
           {/* column */}
-          <Grid item xs={12} lg={8}>
+          <Grid item xs={12} md={8} lg={8}>
             <DashboardCard>
               <Box>
                 <Box sx={{ marginTop: '-15px' }}>
@@ -1339,8 +1514,8 @@ const AssistantInfor = () => {
               </Box>
             </DashboardCard>
           </Grid>
-          <Grid item xs={12} lg={4}>
-            <Affilatec3 title="Tỉ trọng chi phí /vòng quay">
+          <Grid item xs={12} md={4} lg={4}>
+            <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Chi phí / vòng quay">
               <Chart
                 options={optionsradialchart}
                 series={seriesradialchart}
@@ -1350,28 +1525,28 @@ const AssistantInfor = () => {
             </Affilatec3>
           </Grid>{' '}
           {/* column */}
-          <Grid item xs={12} lg={4}>
-            {/* <Affilatec title="Tỉ trọng chi phí /doanh thu ">
+          <Grid item xs={12} sm={4} md={4} lg={4}>
+            <Affilatec title="Tỉ trọng chi phí /doanh thu " text="Chi phí / doanh thu">
               <Chart
-                options={optionsdoughnutchart3}
-                series={seriesdoughnutchart3}
+                options={optionsdoughnutchart}
+                series={seriesdoughnutchart}
                 type="donut"
                 height="300px"
               />
-            </Affilatec> */}
+            </Affilatec>
           </Grid>
-          <Grid item xs={12} lg={4}>
-            {/* <Affilatec1 title=" Đơn hàng">
+          <Grid item xs={12} sm={4} md={4} lg={4}>
+            <Affilatec1 title=" Đơn hàng" text="Đơn hàng">
               <Chart
                 options={optionsdoughnutchart3}
                 series={seriesdoughnutchart3}
                 type="donut"
                 height="300px"
               />
-            </Affilatec1> */}
+            </Affilatec1>
           </Grid>{' '}
-          <Grid item xs={12} lg={4}>
-            <Affilatec2 title="Cuộc trò chuyện">
+          <Grid item xs={12} sm={4} md={4} lg={4}>
+            <Affilatec2 title="Cuộc trò chuyện" text="Hội thoại">
               <Chart
                 options={optionsdoughnutchart4}
                 series={seriesdoughnutchart4}

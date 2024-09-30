@@ -1,11 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { Box, Grid, MenuItem } from '@mui/material';
-// import { useTheme } from '@mui/material/styles';
+import { Box, Grid } from '@mui/material';
+
 import React from 'react';
-// import { Props } from 'react-apexcharts';
-// import CustomSelect from '../../forms/theme-elements/CustomSelect';
-// import DashboardCard from '../../shared/DashboardCard';
+
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import dayjs, { Dayjs } from 'dayjs';
@@ -13,8 +9,6 @@ import dayjs, { Dayjs } from 'dayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomSelect from './../../../components/forms/theme-elements/CustomSelect';
-import DashboardCard from './../../../components/shared/DashboardCard';
 import { tabledh } from 'src/components/tables/tabledh';
 
 const columns = [
@@ -55,13 +49,6 @@ const columns = [
   },
 ];
 const Danhsachdh = () => {
-  // for select
-  const [month, setMonth] = React.useState('1');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
-
   const [value, setValue] = React.useState<Dayjs | null>(null);
   const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
@@ -71,23 +58,11 @@ const Danhsachdh = () => {
           display: 'flex',
           gap: '12px',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-end',
           margin: '0px 0px 10px 0px',
         }}
       >
-        <CustomSelect
-          labelId="month-dd"
-          id="month-dd"
-          size="small"
-          value={month}
-          onChange={handleChange}
-        >
-          <MenuItem value={1}>Tất cả</MenuItem>
-          <MenuItem value={2}>Khách hàng </MenuItem>
-          <MenuItem value={3}>Đơn Hàng </MenuItem>
-        </CustomSelect>
         <Box style={{ width: '35.2%' }} display={'flex'} alignItems={'center'} gap="5px">
-          {' '}
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               value={value}

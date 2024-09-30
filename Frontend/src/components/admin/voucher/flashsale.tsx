@@ -28,6 +28,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
 import AddDflashsale from './add/addflashsale';
+import { Dayjs } from 'dayjs';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
 interface DataRow3 {
   id: string;
@@ -219,10 +221,11 @@ const FlashSale = () => {
   //   }
   //   setSelected([]);
   // };
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  // const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  // const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -467,19 +470,57 @@ const FlashSale = () => {
                       );
                     })}
                   </Select>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={selectedStartDate}
-                      onChange={setSelectedStartDate}
-                      renderInput={(params: any) => <TextField {...params} />}
-                    />
-                    <Typography>tới</Typography>
-                    <DatePicker
-                      value={selectedEndDate}
-                      onChange={setSelectedEndDate}
-                      renderInput={(params: any) => <TextField {...params} />}
-                    />
-                  </LocalizationProvider>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        value={value}
+                        onChange={(newValue) => {
+                          setValue(newValue);
+                        }}
+                        renderInput={(props) => (
+                          <CustomTextField
+                            {...props}
+                            fullWidth
+                            size="small"
+                            sx={{
+                              '& .MuiSvgIcon-root': {
+                                width: '18px',
+                                height: '18px',
+                              },
+                              '& .MuiFormHelperText-root': {
+                                display: 'none',
+                              },
+                            }}
+                          />
+                        )}
+                      />
+                    </LocalizationProvider>
+                    tới
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        value={value1}
+                        onChange={(newValue) => {
+                          setValue1(newValue);
+                        }}
+                        renderInput={(props) => (
+                          <CustomTextField
+                            {...props}
+                            fullWidth
+                            size="small"
+                            sx={{
+                              '& .MuiSvgIcon-root': {
+                                width: '18px',
+                                height: '18px',
+                              },
+                              '& .MuiFormHelperText-root': {
+                                display: 'none',
+                              },
+                            }}
+                          />
+                        )}
+                      />
+                    </LocalizationProvider>
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
