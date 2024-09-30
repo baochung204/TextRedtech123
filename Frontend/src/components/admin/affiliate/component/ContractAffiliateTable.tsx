@@ -241,7 +241,7 @@ const ContractAffiliateTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={selectedItems.length} color="primary">
+              <Badge badgeContent={column.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -527,7 +527,7 @@ const ContractAffiliateTable = () => {
                     {TT && (
                       <TableCell>
                         <Typography style={{ width: '100px' }} variant="subtitle2">
-                          <Chip label={item.status}  />
+                          <Chip label={item.status} />
                         </Typography>
                       </TableCell>
                     )}

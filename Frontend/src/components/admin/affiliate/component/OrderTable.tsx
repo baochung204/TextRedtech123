@@ -267,7 +267,7 @@ const OrderTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={selectedItems.length} color="primary">
+              <Badge badgeContent={column.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -405,7 +405,7 @@ const OrderTable = () => {
                 return (
                   <TableRow
                     key={index}
-                    // selected={isItemSelected}
+                  // selected={isItemSelected}
                   >
                     {IDPublisher && (
                       <TableCell>

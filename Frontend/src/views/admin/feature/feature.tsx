@@ -183,7 +183,6 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
 import DataFeature from './data/DataFeuture';
-
 import { Dayjs } from 'dayjs';
 
 const BCrumb = [
@@ -414,7 +413,7 @@ const PageFeature = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>
