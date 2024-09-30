@@ -1,5 +1,6 @@
 import { TabContext, TabPanel } from '@mui/lab';
 import {
+  Badge,
   Box,
   Checkbox,
   Dialog,
@@ -28,6 +29,8 @@ import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 // import { AppDispatch, AppState } from 'src/store/Store';
+
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
@@ -194,6 +197,12 @@ const CustomerList2 = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Badge
+                          badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                          color={dataSelect.length !== 0 ? 'primary' : undefined}
+                        >
+                          <FilterListIcon color="action" />
+                        </Badge>
                         <Select
                           multiple
                           value={dataSelect}

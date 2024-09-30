@@ -1,13 +1,9 @@
 import FilterListIcon from '@mui/icons-material/FilterList';
-import NorthIcon from '@mui/icons-material/North';
-import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   Avatar,
   Badge,
   Box,
   Checkbox,
-  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -16,20 +12,19 @@ import {
   Select,
   Stack,
   TextField,
-  Tooltip,
-  Typography,
+  Typography
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconEye, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
-import React, { createElement, useEffect, useMemo, useState } from 'react';
+import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
+import { Dayjs } from 'dayjs';
+import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
-import { Dayjs } from 'dayjs';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 // import DialogPersonel from '../dialog/DialogPersonel';
-
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 interface PropsItem {
   value: string;
   open: boolean;
@@ -44,16 +39,10 @@ interface Column {
   isValids?: boolean;
 }
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
-  const [iconIndex, setIconIndex] = useState<number>(0);
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const [selectedItems] = useState<number[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
   const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
   const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
   const column = useMemo<Column[]>(
     () => [
       { dataIndex: 'id', title: 'ID', validate: true },
@@ -158,7 +147,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     <>
       {' '}
       <Grid item xs={12}>
-        <Grid container>
+        <Grid container sx={{ alignItems: 'center' }} spacing={2}>
           <Grid
             item
             xs={4}
@@ -169,35 +158,21 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               alignItems: 'center',
             }}
           >
-            <Grid container spacing={1} sx={{ display: 'flex', alignItems: 'center' }}>
-              <Grid item>
+            <Grid container sx={{ alignItems: 'center' }}>
+              <Grid item >
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                  onClick={() => {
-                    setOpen(true);
-                    setSelectedKey(null);
-                  }}
-                  sx={{
-                    pr: 0,
-                  }}
+                onClick={() => setOpen(true)}
+
                 >
-                  <Tooltip title="Thêm nhân viên mới" sx={{ mb: '15px' }}>
-                    <Fab
-                      size="small"
-                      color="secondary"
-                      aria-label="plus"
-                      sx={{ my: 'auto', mr: '10px' }}
-                    >
-                      <IconPlus width={18} />
-                    </Fab>
-                  </Tooltip>
+                  <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item>
+              <Grid item >
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm nhân viên "
+                  placeholder="Tìm kiếm trợ lý"
                   size="small"
                   type="search"
                   variant="outlined"
@@ -224,13 +199,12 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               alignItems: 'center',
             }}
           >
-            <Badge
-              badgeContent={dataSelect.length !== 0 && dataSelect.length}
-              color={dataSelect.length !== 0 ? 'primary' : undefined}
-              sx={{ marginRight: 2 }}
-            >
-              <FilterListIcon color="action" />
-            </Badge>
+            <IconButton aria-label="filter" sx={{ mr: 2 }}>
+              <Badge badgeContent={selectedItems.length} color="primary">
+                <FilterListIcon />
+              </Badge>
+            </IconButton>
+
             <Select
               multiple
               value={dataSelect}
@@ -282,37 +256,12 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               })}
             </Select>
 
-            <IconButton
-              aria-label="filter"
-              onClick={handleClickIcon}
-              sx={{
-                ml: 1,
-              }}
-            >
-              {createElement(icons[iconIndex])}
-            </IconButton>
           </Grid>
-
           <Grid item xs={4}>
-            {/* <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={selectedStartDate}
-                  onChange={setSelectedStartDate}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                <Typography>tới</Typography>
-                <DatePicker
-                  value={selectedEndDate}
-                  onChange={setSelectedEndDate}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
-            </Box> */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  value={value}
+                  value={valueTime1}
                   onChange={(newValue) => {
                     setValueTime1(newValue);
                   }}
