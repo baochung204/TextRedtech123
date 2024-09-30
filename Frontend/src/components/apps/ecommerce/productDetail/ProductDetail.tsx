@@ -65,13 +65,8 @@ const ProductDetail = () => {
         <>
           <Box display="flex" alignItems="center">
             {/* Badge and category */}
-            {product.tag.map((item: any) => (
-              <Chip
-                label={item.tagName || item}
-                color="success"
-                size="small"
-                sx={{ marginX: '2px' }}
-              />
+            {product.category.map((item: any) => (
+              <Chip label={item || 'tất cả'} color="success" size="small" sx={{ marginX: '2px' }} />
             ))}
           </Box>
           {/* Title and description */}
@@ -84,21 +79,8 @@ const ProductDetail = () => {
           </Typography>
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              {/* <Box component="span">{product.price - 10} point</Box> */}
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Typography variant="h3">{product.point}</Typography>
-                <img
-                  src={logo}
-                  alt="Logo"
-                  style={{ width: '25px', height: '25px', marginLeft: '10px' }}
-                />
-              </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'start', gap: '10px' }}>
+              {/* <Box component="span">{product.price - 10} point</Box> */}{' '}
               <Box
                 sx={{
                   display: 'flex',
@@ -111,12 +93,25 @@ const ProductDetail = () => {
                   ml={1}
                   sx={{ textDecoration: 'line-through', opacity: 0.6 }}
                 >
-                  {product.discount}{' '}
+                  {product.discount.toLocaleString()}
                 </Typography>
-                <img
+                {/* <img
                   src={logo}
                   alt="Logo"
                   style={{ width: '18px', height: '18px', marginLeft: '5px' }}
+                /> */}
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography variant="h4">{product.point.toLocaleString()}</Typography>
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: '25px', height: '25px', marginLeft: '10px' }}
                 />
               </Box>
               {/* <Box
