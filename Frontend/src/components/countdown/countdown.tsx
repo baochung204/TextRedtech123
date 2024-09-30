@@ -1,7 +1,13 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-const Countdown = ({ initialSeconds }: { initialSeconds: number }) => {
+const Countdown = ({
+  initialSeconds,
+  onTimeUp,
+}: {
+  initialSeconds: number;
+  onTimeUp: () => void;
+}) => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
   useEffect(() => {
@@ -10,12 +16,12 @@ const Countdown = ({ initialSeconds }: { initialSeconds: number }) => {
         setSeconds((prevSeconds) => prevSeconds - 1);
       }, 1000);
 
-      // Clear interval when component unmounts
       return () => clearInterval(timerId);
+    } else {
+      onTimeUp(); // Gọi hàm khi thời gian kết thúc
     }
-  }, [seconds]);
+  }, [seconds, onTimeUp]);
 
-  // Hàm format thời gian để lấy phút và giây
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;

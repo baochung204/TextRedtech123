@@ -336,7 +336,6 @@
       "delete": true
     }
   ],
-
   "userpersonalinformation": [
     {
       "id": "1",
@@ -349,8 +348,8 @@
   "productshop": [
     {
       "name": "MediGPT",
-      "point": 275,
-      "discount": 25,
+      "point": 2075,
+      "discount": 205,
       "related": false,
       "salesPrice": 350,
       "tag": [
@@ -363,21 +362,34 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": ["Đồ chơi"],
-      "gender": "Men",
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg"
+      ],
       "rating": 1,
       "stock": true,
       "qty": 1,
-      "colors": ["#1890FF"],
+      "colors": [
+        "#1890FF"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 1,
       "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "description": "Superintelligent AI (trí tuệ nhân tạo siêu thông minh) là một dạng AI có khả năng vượt trội hơn con người trong mọi lĩnh vực. Nó có khả năng tự học và cải thiện không giới hạn, trở nên thông minh hơn bất kỳ bộ não con người nào. Điều này có thể mang lại những đột phá lớn trong khoa học, y tế, và công nghệ. Tuy nhiên, nếu không được kiểm soát đúng cách, nó cũng đặt ra nhiều thách thức và rủi ro, như việc hành động ngoài tầm kiểm soát hoặc có mục tiêu xung đột với lợi ích của con người.",
+      "hotro": "Chatbot này được thiết kế để hỗ trợ bạn trong việc trả lời các câu hỏi cơ bản và cung cấp thông tin. Bạn có thể bắt đầu sử dụng chatbot bằng cách nhập câu hỏi của mình vào hộp chat, và chatbot sẽ trả lời ngay lập tức"
     },
     {
       "name": "EduGPT",
-      "point": 89,
-      "discount": 10,
+      "point": 809,
+      "discount": 100,
       "related": true,
       "salesPrice": 99,
       "tag": [
@@ -390,21 +402,34 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "gender": "Women",
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg"
+      ],
       "rating": 4,
-      "category": ["Đồ chơi"],
+      "category": [
+        "Đồ chơi"
+      ],
       "stock": false,
       "qty": 1,
-      "colors": ["#1890FF", "#94D82D", "#FF4842"],
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FF4842"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 2,
-      "created": "sub(new Date(), { days: 10, hours: 8, minutes: 69 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 10, hours: 8, minutes: 69 })"
     },
     {
       "name": "FinGPT",
-      "point": 125,
-      "discount": 12,
+      "point": 1205,
+      "discount": 120,
       "related": false,
       "salesPrice": 137,
       "tag": [
@@ -417,21 +442,31 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": ["Đồ chơi"],
-      "gender": "Kids",
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg"
+      ],
       "rating": 3,
       "stock": true,
       "qty": 3,
-      "colors": ["#FF4842", "#1890FF", "#94D82D"],
+      "colors": [
+        "#FF4842",
+        "#1890FF",
+        "#94D82D"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
       "id": 3,
-      "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })"
     },
     {
       "name": "CodeGPT",
-      "point": 50,
-      "discount": 15,
+      "point": 500,
+      "discount": 150,
       "related": true,
       "salesPrice": 65,
       "tag": [
@@ -444,34 +479,61 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": ["Đồ chơi"],
-      "gender": "Men",
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg"
+      ],
       "rating": 1,
       "stock": true,
       "qty": 1,
-      "colors": ["#1890FF", "#94D82D", "#FFC107"],
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FFC107"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 4,
-      "created": "sub(new Date(), { days: 4, hours: 9, minutes: 40 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 4, hours: 9, minutes: 40 })"
     },
     {
       "name": "LegalGPT",
-      "point": 650,
+      "point": 6500,
       "discount": 250,
       "related": true,
       "salesPrice": 900,
-      "tag": ["fashion"],
-      "gender": "Women",
+      "tag": [
+        "fashion"
+      ],
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg"
+      ],
       "rating": 5,
       "stock": false,
       "qty": 1,
-      "category": ["Đồ chơi"],
-      "colors": ["#00AB55", "#000000"],
+      "category": [
+        "Đồ chơi"
+      ],
+      "colors": [
+        "#00AB55",
+        "#000000"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
       "id": 5,
-      "created": "sub(new Date(), { days: 2, hours: 5, minutes: 50 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 2, hours: 5, minutes: 50 })"
     },
     {
       "name": "GPT-2.0",
@@ -489,20 +551,32 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "gender": "Men",
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg"
+      ],
       "rating": 3,
-      "category": ["Đồ chơi"],
+      "category": [
+        "Đồ chơi"
+      ],
       "stock": true,
       "qty": 1,
-      "colors": ["#FFC0CB", "#FF4842"],
+      "colors": [
+        "#FFC0CB",
+        "#FF4842"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 6,
-      "created": "sub(new Date(), { days: 2, hours: 9, minutes: 45 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 2, hours: 9, minutes: 45 })"
     },
     {
       "name": "GPT-2.0",
-      "point": 150,
+      "point": 1050,
       "discount": 50,
       "related": false,
       "salesPrice": 200,
@@ -516,20 +590,33 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "gender": "Women",
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg"
+      ],
       "rating": 4,
-      "category": ["Đồ chơi"],
+      "category": [
+        "Đồ chơi"
+      ],
       "stock": true,
       "qty": 1,
-      "colors": ["#FF4842", "#1890FF", "#94D82D"],
+      "colors": [
+        "#FF4842",
+        "#1890FF",
+        "#94D82D"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
       "id": 7,
-      "created": "sub(new Date(), { days: 6, hours: 10, minutes: 0 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 6, hours: 10, minutes: 0 })"
     },
     {
       "name": "GPT-2",
-      "point": 300,
+      "point": 3000,
       "discount": 80,
       "related": false,
       "salesPrice": 380,
@@ -543,21 +630,34 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "gender": "Women",
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg"
+      ],
       "rating": 3,
-      "category": ["Đồ chơi"],
+      "category": [
+        "Đồ chơi"
+      ],
       "stock": true,
       "qty": 1,
-      "colors": ["#1890FF", "#94D82D", "#FFC107"],
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FFC107"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
       "id": 8,
-      "created": "sub(new Date(), { days: 7, hours: 5, minutes: 20 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 7, hours: 5, minutes: 20 })"
     },
     {
       "name": "GPT-2 for Kids",
-      "point": 175,
-      "discount": 25,
+      "point": 1705,
+      "discount": 250,
       "related": false,
       "salesPrice": 200,
       "tag": [
@@ -570,16 +670,28 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "gender": "Women",
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg"
+      ],
       "rating": 3,
       "stock": true,
-      "category": ["Đồ chơi"],
+      "category": [
+        "Đồ chơi"
+      ],
       "qty": 1,
-      "colors": ["#00AB55", "#000000"],
+      "colors": [
+        "#00AB55",
+        "#000000"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 9,
-      "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })"
     },
     {
       "name": "GPT-5",
@@ -597,39 +709,66 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "gender": "Kids",
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg"
+      ],
       "rating": 3,
-      "category": ["Đồ chơi"],
+      "category": [
+        "Đồ chơi"
+      ],
       "stock": true,
       "qty": 1,
-      "colors": ["#FFC0CB", "#FF4842"],
+      "colors": [
+        "#FFC0CB",
+        "#FF4842"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 10,
-      "created": "sub(new Date(), { days: 6, hours: 6, minutes: 20 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 6, hours: 6, minutes: 20 })"
     },
     {
       "name": "GPT-3",
       "point": 285,
       "discount": 60,
       "related": false,
-      "category": ["Đồ chơi"],
+      "category": [
+        "Đồ chơi"
+      ],
       "salesPrice": 345,
-      "tag": ["toys"],
-      "gender": "Kids",
+      "tag": [
+        "toys"
+      ],
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg"
+      ],
       "rating": 3,
       "stock": true,
       "qty": 1,
-      "colors": ["#FF4842", "#1890FF", "#94D82D"],
+      "colors": [
+        "#FF4842",
+        "#1890FF",
+        "#94D82D"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
       "id": 11,
-      "created": "sub(new Date(), { days: 1, hours: 6, minutes: 20 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 1, hours: 6, minutes: 20 })"
     },
     {
       "name": "GPT-3 for Kids",
-      "point": 10,
-      "discount": 5,
+      "point": 1000,
+      "discount": 50,
       "related": false,
       "salesPrice": 10,
       "tag": [
@@ -642,16 +781,29 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": ["Đồ chơi"],
-      "gender": "Kids",
+      "category": [
+        "Đồ chơi"
+      ],
+      "gender": [
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
+        "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg"
+      ],
       "rating": 3,
       "stock": true,
       "qty": 1,
-      "colors": ["#1890FF", "#94D82D", "#FFC107"],
+      "colors": [
+        "#1890FF",
+        "#94D82D",
+        "#FFC107"
+      ],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
       "id": 12,
-      "created": "sub(new Date(), { days: 9, hours: 6, minutes: 20 })",
-      "description": "chance.paragraph({ sentences: 2 })"
+      "created": "sub(new Date(), { days: 9, hours: 6, minutes: 20 })"
     }
   ]
 }

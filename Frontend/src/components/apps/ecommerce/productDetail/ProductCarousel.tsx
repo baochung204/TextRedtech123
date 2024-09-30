@@ -63,14 +63,9 @@ const ProductCarousel = () => {
             style={{ borderRadius: '5px' }}
           />
         </Box>
-        {SliderData.map((step) => (
+        {product?.gender.map((step: any) => (
           <Box key={step.id}>
-            <img
-              src={step.imgPath}
-              alt={step.imgPath}
-              width="100%"
-              style={{ borderRadius: '5px' }}
-            />
+            <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
           </Box>
         ))}
       </Slider>
@@ -83,14 +78,9 @@ const ProductCarousel = () => {
             style={{ borderRadius: '5px' }}
           />
         </Box>
-        {SliderData.map((step) => (
+        {product?.gender.map((step: any) => (
           <Box key={step.id} sx={{ p: 1, cursor: 'pointer' }}>
-            <img
-              src={step.imgPath}
-              alt={step.imgPath}
-              width="100%"
-              style={{ borderRadius: '5px' }}
-            />
+            <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
           </Box>
         ))}
       </Slider>

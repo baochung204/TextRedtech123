@@ -1,6 +1,7 @@
 import { GeneralIcon } from './icon';
 
 export interface ProductType {
+  category: any;
   name: string;
   point: number;
   discount: number;
