@@ -1,19 +1,16 @@
 import {
-  Avatar,
   Checkbox,
   Dialog,
   DialogTitle,
   FormControlLabel,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemText,
-  Typography,
+  Typography
 } from '@mui/material';
 import React, { useRef, useState } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
-import { IconPlus } from '@tabler/icons-react';
 const emails = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl'];
 interface PropsSearch {
   openSearch: boolean;
@@ -34,11 +31,11 @@ const SimpleDialog: React.FC<PropsSearch> = ({ openSearch, setOpenSearch }) => {
     }
   };
 
-  const handleAddAccount = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click(); // Mở hộp thoại chọn tệp
-    }
-  };
+  // const handleAddAccount = () => {
+  //   if (fileInputRef.current) {
+  //     fileInputRef.current.click(); // Mở hộp thoại chọn tệp
+  //   }
+  // };
 
   const handleToggle = (email: string) => {
     setSelectedValues((prevSelectedValues) =>
@@ -88,14 +85,14 @@ const SimpleDialog: React.FC<PropsSearch> = ({ openSearch, setOpenSearch }) => {
             </ListItem>
           ))}
 
-          <ListItem autoFocus button onClick={handleAddAccount}>
+          {/* <ListItem autoFocus button onClick={handleAddAccount}>
             <ListItemAvatar>
               <Avatar>
                 <IconPlus width={20} height={20} />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Thêm trang bị" />
-          </ListItem>
+          </ListItem> */}
         </List>
       </Dialog>
 

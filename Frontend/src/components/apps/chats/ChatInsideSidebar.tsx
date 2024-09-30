@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Rating, Theme, Typography, useMediaQuery } from '@mui/material';
+import { Box, Rating, Theme, Typography, Button, useMediaQuery } from '@mui/material';
 import { ChatsType } from 'src/types/apps/chat';
 import AlertChat from './AlertChat'; // Import the AlertChat component
 
@@ -14,18 +14,24 @@ const ChatInsideSidebar = ({ isInSidebar }: chatType) => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
   const [value, setValue] = useState<number | null>(0);
   const [openChartAlert, setOpenChartAlert] = useState(false); // State to control alert visibility
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false); // Track if feedback was submitted
 
   // Function to handle rating change
   const handleRatingChange = (_event: React.SyntheticEvent, newValue: number | null) => {
     setValue(newValue);
-    if (newValue !== null) {
-      setOpenChartAlert(true); // Show alert when rating is selected
+  };
+
+  // Function to handle feedback submission
+  const handleSubmitFeedback = () => {
+    if (value !== null && !feedbackSubmitted) {
+      setOpenChartAlert(true); // Show alert when feedback is submitted
+      setFeedbackSubmitted(true); // Prevent multiple submissions
     }
   };
 
   // Function to handle alert close
-  const handleCloseAlert = (_event: React.SyntheticEvent | any) => {
-    setOpenChartAlert(false); // Close alert
+  const handleCloseAlert = () => {
+    setOpenChartAlert(false);
   };
 
   return (
@@ -50,16 +56,35 @@ const ChatInsideSidebar = ({ isInSidebar }: chatType) => {
           <Typography variant="h6" mt={5} mb={2}>
             Bạn đánh giá thế nào về lần hỗ trợ lần này?
           </Typography>
-          <Rating
-            name="simple-controlled"
-            value={value}
-            onChange={handleRatingChange} // Call the handler when the rating changes
-          />
+          <Box>
+            <Rating
+              name="simple-controlled"
+              value={value}
+              onChange={handleRatingChange} // Call the handler when the rating changes
+            />
+          </Box>
+
+          {/* Submit Feedback Button */}
+          <Box>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ mt: 2 }}
+              onClick={handleSubmitFeedback}
+              disabled={value === null || feedbackSubmitted} // Disable if no rating or already submitted
+            >
+              Đánh giá
+            </Button>
+          </Box>
         </Box>
       ) : null}
 
-      {/* Alert component to show after rating */}
-      <AlertChat handleClose={handleCloseAlert} openChartAlert={openChartAlert} />
+      {/* Alert component to show after feedback is submitted */}
+      <AlertChat
+        handleClose={handleCloseAlert}
+        openChartAlert={openChartAlert}
+        text="Cảm ơn bạn đã đánh giá !!!"
+      />
     </>
   );
 };

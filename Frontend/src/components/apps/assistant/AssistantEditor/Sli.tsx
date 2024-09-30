@@ -1,14 +1,22 @@
 import { Box, Button, Chip, Grid, Paper, Slider, Typography } from '@mui/material';
 import { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-
+ // or '@mui/system' if using system-based styling
+import DoneIcon from '@mui/icons-material/Done';
+// import { styled } from '@mui/material/styles'; 
 const valuetext = (value: any) => `${value}`;
 
 const Sli = () => {
   // State để lưu giá trị của các slider
-  const [fileCount, setFileCount] = useState<number>(30);
-  const [storage, setStorage] = useState<number>(30);
+  const [fileCount, setFileCount] = useState<number>(0);
+  const [stepFile] = useState<number>(100);
+  const [stepStorage] = useState<number>(100000);
+  const [storage, setStorage] = useState<number>(0);
+  const [isClicked, setIsClicked] = useState(false);
 
+  const handleClick = () => {
+    setIsClicked(true);
+  };
   // Hàm xử lý khi thay đổi giá trị slider
   const handleFileCountChange = (_event: Event, newValue: number | number[]) => {
     setFileCount(newValue as number);
@@ -20,17 +28,27 @@ const Sli = () => {
 
   return (
     <>
-      <Paper elevation={3} sx={{ minHeight: '5%', p: 2 }}>
+      <Paper elevation={3} sx={{ minHeight: '5%',mt:2, px: 2, pt:0.1,pb:1.5 }}>
         <Grid container my={2}>
           <Grid item xs={6}>
-            <CustomFormLabel htmlFor="name" sx={{ mt: 1 }}>
+            <CustomFormLabel htmlFor="name" sx={{ mt: 0 }}>
               Tài nguyên
             </CustomFormLabel>
           </Grid>
           <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end' }}>
             {' '}
-            <Button variant="contained" color="primary" sx={{ p: 0 }}>
+            {/* <Button variant="contained" color="primary" sx={{ p: 0 }}>
               Lưu
+            </Button> */}
+            <Button
+              variant="contained"
+              color="inherit"
+              size="small"
+              component="span"
+              style={{ marginBottom: '0px' }}
+              onClick={handleClick}
+            >
+              {isClicked ? <DoneIcon fontSize="small" color='success' style={{ marginRight: '0px' }} /> : 'Lưu'}
             </Button>
           </Grid>
         </Grid>
@@ -40,7 +58,7 @@ const Sli = () => {
             <Grid lg={6}>
               <Box fontWeight={500}>
                 Số File tri thức
-                <Chip sx={{ ml: 1 }} size="small" label="3" color="primary" />
+                <Chip sx={{ ml: 1 }} size="small" label={stepFile - fileCount} color="primary" />
               </Box>
             </Grid>
             <Grid lg={6}>
@@ -60,7 +78,7 @@ const Sli = () => {
               valueLabelDisplay="auto"
               step={1}
               min={0}
-              max={100}
+              max={stepFile}
             />
           </Box>
 
@@ -69,7 +87,7 @@ const Sli = () => {
             <Grid lg={6}>
               <Box fontWeight={500}>
                 Dung lượng
-                <Chip sx={{ ml: 1 }} size="small" label="100000MB" color="primary" />
+                <Chip sx={{ ml: 1 }} size="small" label={stepStorage-storage +" MB"} color="primary" />
               </Box>
             </Grid>
             <Grid lg={6}>
@@ -86,8 +104,8 @@ const Sli = () => {
               getAriaValueText={valuetext}
               valueLabelDisplay="auto"
               step={1}
-              min={1}
-              max={100000}
+              min={0}
+              max={stepStorage}
             />
           </Box>
         </Paper>

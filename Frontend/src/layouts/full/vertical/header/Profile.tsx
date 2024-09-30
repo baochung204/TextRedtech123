@@ -70,7 +70,20 @@ const Profile = () => {
             width: '360px',
             px: 2,
             pt: 3,
-            overflow: 'hidden',
+            overflow: 'auto',
+            '&::-webkit-scrollbar': {
+              width: '6px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'none',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#f1f1f1',
+              borderRadius: '10px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#e6e6e6',
+            },
           },
         }}
       >
@@ -158,17 +171,26 @@ const Profile = () => {
                   Giúp trợ lý của bạn <br />
                   thông minh hơn!
                 </Typography>
-                <Button variant="contained" color="primary" onClick={handleButtonClick2}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'black',
+                    ':hover': {
+                      backgroundColor: '#2C2C2C',
+                    },
+                  }}
+                  onClick={handleButtonClick2}
+                >
                   Shopping ngay!
                 </Button>
               </Box>
-              {/* You can remove this img tag since the image is now in the background */}
-              {/* <img style={{ width: '45%' }} src={unlimitedImg} alt="unlimited" className="signup-bg" /> */}
             </Box>
           </Box>
-          <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>
-            Đăng xuất
-          </Button>
+          <Box>
+            <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>
+              Đăng xuất
+            </Button>
+          </Box>
         </Box>
       </Menu>
     </Box>

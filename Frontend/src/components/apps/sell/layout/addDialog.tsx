@@ -51,9 +51,10 @@ const AddDialog = () => {
           },
         }}
       >
-        <DialogTitle padding={'10px'}>Thêm sản phẩm</DialogTitle>
-        <DialogContent>
-          <PopupAdd /> {/* Gọi component PopupAdd */}
+        <DialogTitle>Thêm sản phẩm</DialogTitle>
+        <DialogContent sx={{ padding: 0 }}>
+          <PopupAdd />
+          {/* Gọi component PopupAdd */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClosePopup}>Hủy</Button>

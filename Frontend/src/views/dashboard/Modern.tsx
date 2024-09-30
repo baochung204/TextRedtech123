@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem } from '@mui/material';
+import { Box, Grid, MenuItem, Typography } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -33,78 +33,77 @@ const Modern = () => {
     <PageContainer title="Modern Dashboard" description="this is Modern Dashboard page">
       <Box>
         <Grid container spacing={3}>
-          {/* column */}
-          <Grid item xs={12} sx={{ padding: 0 }}>
-            <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Grid item xs={4}>
-                {' '}
-                <CustomSelect
-                  labelId="month-dd"
-                  id="month-dd"
-                  size="small"
-                  value={month}
-                  onChange={handleChange}
-                  // sx={{ py: 0.5 }}
-                >
-                  <MenuItem value={1}>Tất cả</MenuItem>
-                  <MenuItem value={2}>Assistant 1</MenuItem>
-                  <MenuItem value={3}>Assistant 2</MenuItem>
-                </CustomSelect>{' '}
-              </Grid>
-              <Grid item xs={8} md={4}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={value}
-                      onChange={(newValue) => {
-                        setValue(newValue);
+          <Grid container justifyContent="flex-end" item xs={12} sx={{ padding: 0 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
+              <CustomSelect
+                labelId="month-dd"
+                id="month-dd"
+                size="small"
+                value={month}
+                onChange={handleChange}
+              >
+                <MenuItem value={1}>Tất cả</MenuItem>
+                <MenuItem value={2}>Assistant 1</MenuItem>
+                <MenuItem value={3}>Assistant 2</MenuItem>
+              </CustomSelect>
+
+              {/* Date Pickers */}
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value}
+                  onChange={(newValue) => setValue(newValue)}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
                       }}
-                      renderInput={(props) => (
-                        <CustomTextField
-                          {...props}
-                          fullWidth
-                          size="small"
-                          sx={{
-                            '& .MuiSvgIcon-root': {
-                              width: '18px',
-                              height: '18px',
-                            },
-                            '& .MuiFormHelperText-root': {
-                              display: 'none',
-                            },
-                          }}
-                        />
-                      )}
                     />
-                  </LocalizationProvider>
-                  tới
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={value1}
-                      onChange={(newValue) => {
-                        setValue1(newValue);
+                  )}
+                />
+              </LocalizationProvider>
+
+              {/* Text "tới" */}
+              <Typography sx={{ mx: 1 }}>tới</Typography>
+
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value1}
+                  onChange={(newValue) => setValue1(newValue)}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
                       }}
-                      renderInput={(props) => (
-                        <CustomTextField
-                          {...props}
-                          fullWidth
-                          size="small"
-                          sx={{
-                            '& .MuiSvgIcon-root': {
-                              width: '18px',
-                              height: '18px',
-                            },
-                            '& .MuiFormHelperText-root': {
-                              display: 'none',
-                            },
-                          }}
-                        />
-                      )}
                     />
-                  </LocalizationProvider>
-                </Box>
-              </Grid>
-            </Grid>
+                  )}
+                />
+              </LocalizationProvider>
+            </Box>
           </Grid>
           <Grid item xs={12} lg={12}>
             <TopCards />

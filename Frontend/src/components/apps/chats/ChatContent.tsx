@@ -1,25 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
 import {
-  Typography,
-  Divider,
   Avatar,
+  Badge,
+  Box,
+  Divider,
+  IconButton,
   ListItem,
   ListItemAvatar,
-  IconButton,
-  Box,
-  Stack,
-  Badge,
-  useMediaQuery,
-  Theme,
   ListItemText,
+  Stack,
+  Theme,
+  Typography,
+  useMediaQuery,
 } from '@mui/material';
-import { IconDotsVertical, IconMenu2 } from '@tabler/icons-react';
+import { IconMenu2, IconPencilStar } from '@tabler/icons-react';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { vi } from 'date-fns/locale';
+import React, { useEffect, useRef, useState } from 'react';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import { useSelector } from 'src/store/Store';
 import { ChatsType } from 'src/types/apps/chat';
 import ChatInsideSidebar from './ChatInsideSidebar';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
-import { formatDistanceToNowStrict } from 'date-fns';
-import { vi } from 'date-fns/locale';
 
 interface ChatContentProps {
   toggleChatSidebar: () => void;
@@ -81,8 +81,16 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                 />
               </ListItem>
               <Stack direction={'row'}>
+                <Typography
+                  fontSize={'12px'}
+                  width={'170px'}
+                  variant={'h5'}
+                  sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                  Đánh giá đoạn chat ngay !!!
+                </Typography>
                 <IconButton aria-label="delete" onClick={() => setOpen(!open)}>
-                  <IconDotsVertical stroke={1.5} />
+                  <IconPencilStar stroke={1.5} />
                 </IconButton>
               </Stack>
             </Box>

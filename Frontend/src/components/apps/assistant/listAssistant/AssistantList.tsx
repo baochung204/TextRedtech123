@@ -40,6 +40,7 @@ import { Link } from 'react-router-dom';
 import Iconchart from 'src/assets/images/chat/chartt.png';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
+import AlertChat from '../../chats/AlertChat';
 interface FilmsData {
   title: string;
 }
@@ -53,13 +54,16 @@ const ListAssistant = () => {
   const theme = useTheme();
   const successlight = theme.palette.success.light;
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
+  const [alertText, setAlertText] = useState('');
   const onHandleCheckOnOrOff = (rank: any) => {
-    setCheckedRanks((prevChecked) =>
-      prevChecked.includes(rank.id)
-        ? prevChecked.filter((id) => id !== rank.id)
-        : [...prevChecked, rank.id],
-    );
+    setCheckedRanks((prevChecked) => {
+      const isRankChecked = prevChecked.includes(rank.id);
+      setAlertText(isRankChecked ? 'tắt' : 'bật'); // Set alert text based on rank status
+      setOpenChartAlert(true);
+      return isRankChecked ? prevChecked.filter((id) => id !== rank.id) : [...prevChecked, rank.id];
+    });
   };
+  const [openChartAlert, setOpenChartAlert] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string>('');
   const handleChange1 = (event: SelectChangeEvent<string>) => {
     setSelectedItems(event.target.value);
@@ -78,6 +82,10 @@ const ListAssistant = () => {
     console.log(7 % 7);
   };
   const SelectedIcon = icons[iconIndex];
+
+  const handleCloseAlert = () => {
+    setOpenChartAlert(false);
+  };
 
   return (
     <Grid container spacing={3}>
@@ -186,12 +194,9 @@ const ListAssistant = () => {
                     src={rank.rankImage}
                     alt=""
                     sx={{
-                      // width: '100%', chịu Chung
-                      // height: 'auto',
                       maxWidth: '250px',
                       height: '200px',
                       zIndex: 99,
-                      mt: 2,
                       position: 'relative',
                     }}
                   />
@@ -200,12 +205,12 @@ const ListAssistant = () => {
                     src={avt}
                     sx={{
                       position: 'absolute',
-                      top: '35.5%',
-                      left: '50.1%',
+                      top: { xs: '32.8%', sm: '32.8%', md: '33.4%', lg: '33.1%' },
+                      left: '50%',
                       transform: 'translate(-50%, -50%)',
                       borderRadius: '50%',
                       overflow: 'hidden',
-                      height: { xs: '50%', sm: '45%' },
+                      height: { xs: '43%', sm: '42.4%', md: '43%', lg: '42.4%' },
                       border: '3px solid #fff',
                       boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
                     }}
@@ -231,14 +236,13 @@ const ListAssistant = () => {
                       {rank.model}
                     </Typography>
                   </Box>
-
                   <Grid
                     container
-                    columnSpacing={{ xs: -1, sm: 2, md: 5, lg: 1 }}
+                    columnSpacing={{ xs: -1, sm: 2, md: 2, lg: 1 }}
                     sx={{
                       mt: { xs: 1, sm: 1.7, md: 0.5, lg: 1 },
                       mb: { xs: 1 },
-                      ml: { xs: 1.8, sm: -2, md: -7, lg: 1 },
+                      ml: { xs: 1.8, sm: 1, md: -2, lg: 1 },
                     }}
                   >
                     <Grid item xs={4}>
@@ -264,7 +268,6 @@ const ListAssistant = () => {
                         <IconPower color="white" />
                       </Button>
                     </Grid>
-
                     <Grid item xs={4}>
                       <Button
                         variant="contained"
@@ -279,7 +282,6 @@ const ListAssistant = () => {
                         <IconEdit color="white" />
                       </Button>
                     </Grid>
-
                     <Grid item xs={4}>
                       <Button
                         variant="contained"
@@ -299,10 +301,10 @@ const ListAssistant = () => {
                   </Grid>
                 </Box>
 
-                <Box sx={{ width: '100%', px: 1, mt: { xs: 12, sm: 0 } }}>
+                <Box sx={{ width: '100%', mt: { xs: 1, sm: 0 } }}>
                   <Box>
-                    <Grid container spacing={2}>
-                      <Grid item xs={6} sm={6} md={12}>
+                    <Grid container spacing={2.5}>
+                      <Grid item xs={12}>
                         <BlankCard>
                           <CardContent sx={{ padding: '18px !important' }}>
                             <Grid container spacing={3} alignItems="center">
@@ -417,7 +419,7 @@ const ListAssistant = () => {
                                   justifyContent="space-between"
                                   alignItems="center"
                                   sx={{
-                                    mb: { sm: 3, md: 3.5, lg: 2 },
+                                    mb: { xs: 2, sm: 3, md: 3.5, lg: 2 },
                                   }}
                                 >
                                   <Box>
@@ -452,6 +454,11 @@ const ListAssistant = () => {
           ))}
         </Grid>
       </Grid>
+      <AlertChat
+        handleClose={handleCloseAlert}
+        openChartAlert={openChartAlert}
+        text={`Bạn đã ${alertText} trợ lý`}
+      />
     </Grid>
   );
 };

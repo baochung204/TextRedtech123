@@ -47,8 +47,8 @@ const Affilatechart3 = () => {
       gradient: {
         shade: 'light',
         type: 'horizontal',
-        gradientToColors: [warning, '#FC2032'], // Màu vàng và màu đỏ cho gradient
-        stops: [0, 50, 100], // Vị trí bắt đầu chuyển đổi màu: xanh, vàng, đỏ
+        gradientToColors: [warning, '#FC2032'],
+        stops: [0, 50, 100], 
         colorStops: [
           {
             offset: 0,

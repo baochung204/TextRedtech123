@@ -1,12 +1,13 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Grid, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Badge, Checkbox, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { IconSearch } from '@tabler/icons-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -18,21 +19,402 @@ import { Model, ModelCells, ModelRows } from './mockData/TableModel';
 import { Strategy, StrategyCells, StrategyRows } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
 
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
+
 const Main = () => {
-  const [value, setValue] = useState('1');
+  const [value, setValue] = useState<'1' | '2' | '3' | '4' | '5' | '6'>('1');
   const [data, setData] = useState([]);
   // const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+    setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
     // setOpen(false);
   };
+
   useEffect(() => {
     setTimeout(() => {
       GetFiles(setData);
     }, 2000);
   });
 
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const handleColumnChange = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
+
+  const column: { [key: string]: Column[] } = useMemo(
+    () => ({
+      '1': [
+        {
+          dataIndex: 'id',
+          title: 'ID',
+        },
+        {
+          dataIndex: 'strategyGroup',
+          title: 'Nhóm chiến lược',
+        },
+        {
+          dataIndex: 'badge',
+          title: 'Huy hiệu',
+        },
+        {
+          dataIndex: 'strategyName',
+          title: 'Tên chiến lược',
+        },
+        {
+          dataIndex: 'level',
+
+          title: 'Level',
+        },
+        {
+          dataIndex: 'ownedCustomers',
+
+          title: 'Khách hàng sở hữu',
+        },
+        {
+          dataIndex: 'appliedAssistants',
+
+          title: 'Trợ lý áp dụng',
+        },
+        {
+          dataIndex: 'summary',
+
+          title: 'Tóm tắt',
+        },
+        {
+          dataIndex: 'content',
+
+          title: 'Nội dung',
+        },
+        {
+          dataIndex: 'actions',
+
+          title: 'Hoạt động',
+        },
+      ],
+      '2': [
+        {
+          dataIndex: 'id',
+          title: 'ID',
+        },
+        {
+          dataIndex: 'creationTime',
+          title: 'Ngày tạo',
+        },
+        {
+          dataIndex: 'functionGroup',
+          title: 'Nhóm function',
+        },
+        {
+          dataIndex: 'level',
+          title: 'Level',
+        },
+        {
+          dataIndex: 'ownedCustomers',
+          title: 'Khách hàng sở hữu',
+        },
+        {
+          dataIndex: 'appliedAssistants',
+          title: 'Trợ lý áp dụng',
+        },
+        {
+          dataIndex: 'summary',
+          title: 'Tóm tắt',
+        },
+        {
+          dataIndex: 'functionCode',
+          title: 'Code function',
+        },
+        // {
+        //   dataIndex: 'creator',
+        //   title: 'Người tạo',
+        // },
+        {
+          dataIndex: 'actions',
+          title: 'Hoạt động',
+        },
+      ],
+      '3': [
+        {
+          dataIndex: 'id',
+          title: 'ID',
+        },
+        {
+          dataIndex: 'fileName',
+          title: 'Tên file',
+        },
+        {
+          dataIndex: 'customer',
+          title: 'Khách hàng',
+        },
+        {
+          dataIndex: 'format',
+          title: 'Định dạng',
+        },
+        {
+          dataIndex: 'size',
+          title: 'Dung lượng',
+        },
+        {
+          dataIndex: 'uploadDate',
+          title: 'Ngày tải',
+        },
+        {
+          dataIndex: 'actions',
+          title: 'Hoạt động',
+        },
+      ],
+      '4': [
+        {
+          dataIndex: 'id',
+          title: 'ID',
+        },
+        {
+          dataIndex: 'creationTime',
+          title: 'Ngày tạo',
+        },
+        {
+          dataIndex: 'modelName',
+          title: 'Tên model',
+        },
+        {
+          dataIndex: 'baseModel',
+          title: 'Model gốc',
+        },
+        {
+          dataIndex: 'trainingTokens',
+          title: 'Training tokens',
+        },
+        {
+          dataIndex: 'ownedCustomers',
+          title: 'Khách hàng sở hữu',
+        },
+        {
+          dataIndex: 'appliedAssistants',
+          title: 'Trợ lý áp dụng',
+        },
+        {
+          dataIndex: 'actions',
+          title: 'Hoạt động',
+        },
+      ],
+      '5': [
+        {
+          dataIndex: 'id',
+          title: 'ID',
+        },
+        {
+          dataIndex: 'creationTime',
+          title: 'Ngày tạo',
+        },
+        // {
+        //   dataIndex: 'creator',
+        //   title: 'Người tạo',
+        // },
+        {
+          dataIndex: 'image',
+          title: 'Hình ảnh',
+        },
+        {
+          dataIndex: 'imageName',
+          title: 'Tên ảnh',
+        },
+        {
+          dataIndex: 'title',
+          title: 'Tiêu đề',
+        },
+        // {
+        //     dataIndex: 'description',
+        //     title: 'Mô tả',
+        // },
+        {
+          dataIndex: 'size',
+          title: 'Dung lượng',
+        },
+        {
+          dataIndex: 'url',
+          title: 'URL',
+        },
+        {
+          dataIndex: 'actions',
+          title: 'Hoạt động',
+        },
+      ],
+      '6': [
+        {
+          dataIndex: 'id',
+          title: 'ID',
+        },
+        {
+          dataIndex: 'creationTime',
+          title: 'Ngày tạo',
+        },
+        {
+          dataIndex: 'customerId',
+          title: 'ID khách hàng',
+        },
+        {
+          dataIndex: 'title',
+          title: 'Tiêu đề',
+        },
+        {
+          dataIndex: 'description',
+          title: 'Mô tả',
+        },
+        {
+          dataIndex: 'url',
+          title: 'URL',
+        },
+        {
+          dataIndex: 'click',
+          title: 'Click',
+        },
+        {
+          dataIndex: 'actions',
+          title: 'Hoạt động',
+        },
+      ],
+    }),
+    [],
+  );
+  const [search, setSearch] = useState<boolean>(false);
+  const handleSearch = () => {
+    setSearch(!search);
+  };
+  useEffect(() => {
+    const selectedColumns = column[value] || [];
+    const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
+    if (hasIsValids) {
+      const hiddenColumns = selectedColumns
+        .filter((col) => col.isValids === false)
+        .map((col) => col.dataIndex || '');
+      setDataSelect(hiddenColumns);
+    } else {
+      setDataSelect([]);
+    }
+  }, [value, column]);
+
+  const searchSection = (
+    <Box>
+      <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
+        {/* {(value === '3' || value === '4' || value === '5' || value === '6') && ( */}
+          <Grid item>
+            <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
+              <Grid item>
+                <Badge
+                  badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                  color={dataSelect.length !== 0 ? 'primary' : undefined}
+                >
+                  <FilterListIcon color="action" />
+                </Badge>
+              </Grid>
+              <Grid item>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size="small"
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        marginTop: 1,
+                        maxHeight: 400,
+                        '&::-webkit-scrollbar': {
+                          width: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: '#D2D2D2',
+                          borderRadius: '10px',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                          backgroundColor: '#C6C8CC',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                          backgroundColor: '#f1f1f1',
+                        },
+                      },
+                    },
+                    anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    },
+                    transformOrigin: {
+                      vertical: 'top',
+                      horizontal: 'right',
+                    },
+                  }}
+                >
+                  {column[value].map((header: Column) => {
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                    const isSelected = dataSelect.includes(header.dataIndex);
+
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </Grid>
+            </Grid>
+          </Grid>
+        {/* )} */}
+        {/* {(value === '3' || value === '4' || value === '5' || value === '6') && ( */}
+          <Grid item>
+            <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+              <Grid item>
+                <TextField
+                  id="outlined-search"
+                  placeholder="Tìm kiếm"
+                  size="small"
+                  type="search"
+                  variant="outlined"
+                  inputProps={{ 'aria-label': 'Search Followers' }}
+                  sx={{
+                    fontSize: { xs: '24px', sm: '35px', md: '50px' },
+                    maxWidth: { xs: search ? '150px' : '40px', md: '700px' },
+                    transition: 'max-width 0.5s ease-in-out',
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <IconSearch onClick={() => handleSearch()} size="12" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item>
+                <IconButton
+                  color="primary"
+                  aria-label="Add to cart"
+                  // onClick={() => setOpen(true)}
+                  sx={{
+                    pr: 1.5,
+                  }}
+                >
+                  <AddCircleIcon sx={{ fontSize: 30 }} />
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Grid>
+        {/* )} */}
+      </Grid>
+    </Box>
+  );
   return (
     <Grid container xs={12}>
       <Grid item xs={12}>
@@ -72,21 +454,10 @@ const Main = () => {
                 <Tab label="Hình Ảnh" value="5" />
                 <Tab label="URL" value="6" />
               </TabList>
+              {searchSection}
               {/* {(value === '1' || value === '2') && ( */}
-              <Box display={'flex'} justifyContent={'end'}>
+              {/* <Box display={'flex'} justifyContent={'end'}>
                 <Grid container sx={{ alignItems: 'center' }}>
-                  {/* <Grid item>
-                      <CustomSelect
-                        labelId="column-sort"
-                        id="column-sort"
-                        size="small"
-                        value={1}
-                        sx={{ marginRight: '20px' }}
-                      >
-                        <MenuItem value={1}>Tất cả</MenuItem>
-                        <MenuItem value={2}>ID</MenuItem>
-                      </CustomSelect>
-                    </Grid> */}
                   <Grid item>
                     <TextField
                       id="outlined-search"
@@ -123,48 +494,37 @@ const Main = () => {
                     </Grid>
                   )}
                 </Grid>
-              </Box>
-              {/* )} */}
+              </Box> */}
             </Box>
 
-            {/* TabPanels */}
             <TabPanel sx={{ p: 0, pt: 2 }} value="1">
-              {/* <Tab1 headCells={StrategyCells} dataRows={StrategyRows} /> */}
               <BlankCard>
-                <CustomTable columns={StrategyCells} dataSource={StrategyRows} />
+                <CustomTable columns={StrategyCells} dataSource={StrategyRows} dataSelect={dataSelect}/>
               </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="2">
-              {/* <Tab1 headCells={FunctionCells} dataRows={FunctionRows} /> */}
               <BlankCard>
-                <CustomTable columns={FunctionCells} dataSource={FunctionRows} />
+                <CustomTable columns={FunctionCells} dataSource={FunctionRows} dataSelect={dataSelect} />
               </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">
-              {/* <Tab1 headCells={FileCells} dataRows={FileRows} /> */}
               <BlankCard>
-                <CustomTable columns={FileCells} dataSource={data} />
+                <CustomTable columns={FileCells} dataSource={data} dataSelect={dataSelect} />
               </BlankCard>
-
-              {/* <Tab3 value={value} open={open} setOpen={setOpen} /> */}
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="4">
-              {/* <Tab1 headCells={ModelCells} dataRows={ModelRows} /> */}
               <BlankCard>
-                <CustomTable columns={ModelCells} dataSource={ModelRows} />
+                <CustomTable columns={ModelCells} dataSource={ModelRows} dataSelect={dataSelect} />
               </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="5">
-              {/* <Tab1 headCells={ImageCells} dataRows={ImageRows} />
-               */}
               <BlankCard>
-                <CustomTable columns={ImageCells} dataSource={ImageRows} />
+                <CustomTable columns={ImageCells} dataSource={ImageRows} dataSelect={dataSelect} />
               </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="6">
-              {/* <Tab1 headCells={UrlCells} dataRows={UrlRows} /> */}
               <BlankCard>
-                <CustomTable columns={UrlCells} dataSource={UrlRows} />
+                <CustomTable columns={UrlCells} dataSource={UrlRows} dataSelect={dataSelect} />
               </BlankCard>
             </TabPanel>
           </TabContext>
