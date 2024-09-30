@@ -11,7 +11,7 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -28,6 +28,7 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BlankCard from '../../../components/shared/BlankCard';
+import AddNotification from './add/AddNotification';
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -322,17 +323,16 @@ const ContentNotification = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
-
+                  // onClick={() => setOpen(true)}
                 >
-                  <AddCircleIcon sx={{ fontSize: 30 }} />
+                  <AddNotification />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item>
                 <TextField
                   id="outlined-search"
                   placeholder="Tìm kiếm trợ lý"
@@ -418,7 +418,6 @@ const ContentNotification = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

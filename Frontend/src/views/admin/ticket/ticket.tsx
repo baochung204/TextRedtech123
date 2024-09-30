@@ -31,7 +31,6 @@ import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
-
 const BCrumb = [
   {
     to: '/',
@@ -369,17 +368,16 @@ const Ticket = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
+                    // onClick={() => setOpen(true)}
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -465,7 +463,6 @@ const Ticket = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
