@@ -1,18 +1,17 @@
 // src/pages/AllNotifications.tsx
-import { Box, Typography, Stack, Avatar, IconButton } from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime'; // Icon for timestamps
+import { Avatar, Box, Stack, Typography } from '@mui/material';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import * as dropdownData from './data'; // Adjust the path as necessary
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'; // Add an icon for notification
-import AccessTimeIcon from '@mui/icons-material/AccessTime'; // Icon for timestamps
 
 const AllNotifications = () => {
   return (
     <Box p={4} bgcolor="#f9f9f9">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={4}>
         <Typography variant="h4">Tất cả thông báo</Typography>
-        <IconButton>
+        {/* <IconButton>
           <NotificationsNoneIcon fontSize="large" color="primary" />
-        </IconButton>
+        </IconButton> */}
       </Stack>
 
       <Scrollbar sx={{ height: '700px', pr: 2 }}>
@@ -28,11 +27,7 @@ const AllNotifications = () => {
             borderRadius="12px"
             boxShadow="0 2px 8px rgba(0, 0, 0, 0.1)"
           >
-            <Avatar
-              src={notification.avatar}
-              alt="Avatar"
-              sx={{ width: 56, height: 56 }}
-            />
+            <Avatar src={notification.avatar} alt="Avatar" sx={{ width: 56, height: 56 }} />
             <Box flexGrow={1}>
               <Typography variant="subtitle1" fontWeight={600}>
                 {notification.title}

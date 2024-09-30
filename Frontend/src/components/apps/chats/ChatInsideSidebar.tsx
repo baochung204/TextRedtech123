@@ -66,15 +66,15 @@ const ChatInsideSidebar = ({ isInSidebar }: chatType) => {
 
           {/* Submit Feedback Button */}
           <Box>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mt: 2 }}
-            onClick={handleSubmitFeedback}
-            disabled={value === null || feedbackSubmitted} // Disable if no rating or already submitted
-          >
-            Đánh giá
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ mt: 2 }}
+              onClick={handleSubmitFeedback}
+              disabled={value === null || feedbackSubmitted} // Disable if no rating or already submitted
+            >
+              Đánh giá
+            </Button>
           </Box>
         </Box>
       ) : null}

@@ -40,6 +40,7 @@ import { Link } from 'react-router-dom';
 import Iconchart from 'src/assets/images/chat/chartt.png';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
+import AlertChat from '../../chats/AlertChat';
 interface FilmsData {
   title: string;
 }
@@ -53,13 +54,16 @@ const ListAssistant = () => {
   const theme = useTheme();
   const successlight = theme.palette.success.light;
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
+  const [alertText, setAlertText] = useState('');
   const onHandleCheckOnOrOff = (rank: any) => {
-    setCheckedRanks((prevChecked) =>
-      prevChecked.includes(rank.id)
-        ? prevChecked.filter((id) => id !== rank.id)
-        : [...prevChecked, rank.id],
-    );
+    setCheckedRanks((prevChecked) => {
+      const isRankChecked = prevChecked.includes(rank.id);
+      setAlertText(isRankChecked ? 'tắt' : 'bật'); // Set alert text based on rank status
+      setOpenChartAlert(true);
+      return isRankChecked ? prevChecked.filter((id) => id !== rank.id) : [...prevChecked, rank.id];
+    });
   };
+  const [openChartAlert, setOpenChartAlert] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string>('');
   const handleChange1 = (event: SelectChangeEvent<string>) => {
     setSelectedItems(event.target.value);
@@ -78,6 +82,10 @@ const ListAssistant = () => {
     console.log(7 % 7);
   };
   const SelectedIcon = icons[iconIndex];
+
+  const handleCloseAlert = () => {
+    setOpenChartAlert(false);
+  };
 
   return (
     <Grid container spacing={3}>
@@ -452,6 +460,11 @@ const ListAssistant = () => {
           ))}
         </Grid>
       </Grid>
+      <AlertChat
+        handleClose={handleCloseAlert}
+        openChartAlert={openChartAlert}
+        text={`Bạn đã ${alertText} trợ lý`}
+      />
     </Grid>
   );
 };
