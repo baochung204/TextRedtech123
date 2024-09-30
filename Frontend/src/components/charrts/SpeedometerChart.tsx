@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import Chart from 'react-apexcharts';
 import { Box, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import Chart from 'react-apexcharts';
 
 const SpeedometerChart: React.FC = () => {
     const [speed, setSpeed] = useState<number>(70.00);
@@ -28,7 +28,7 @@ const SpeedometerChart: React.FC = () => {
                     size: '70%',
                 },
                 dataLabels: {
-                    showOn: 'always',
+                    // showOn: 'always',
                     name: {
                         show: false,
                     },

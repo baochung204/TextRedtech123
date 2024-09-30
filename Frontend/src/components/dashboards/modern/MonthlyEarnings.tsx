@@ -12,7 +12,7 @@ import { Props } from 'react-apexcharts';
 const MonthlyEarnings = () => {
   // Màu sắc biểu đồ
   const theme = useTheme();
-  const secondary = theme.palette.secondary.main;
+  // const secondary = theme.palette.secondary.main;
   const red = theme.palette.primary.main;
   const secondarylight = theme.palette.secondary.light;
   const errorlight = theme.palette.error.light;
