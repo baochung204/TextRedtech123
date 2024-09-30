@@ -39,6 +39,10 @@ function SlideTransition(props: any) {
 }
 
 const AddToCart = () => {
+
+  const checkout = useSelector((state) => state.ecommerceReducer.cart);
+
+
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
