@@ -9,7 +9,9 @@ import {
   MenuItem,
   Select,
   TextField,
+
   Typography
+
 } from '@mui/material';
 import s24 from 'src/assets/images/products/s24.jpg';
 // components
@@ -393,17 +395,16 @@ const FlashSale = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
-
+                  // onClick={() => setOpen(true)}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item>
                 <TextField
                   id="outlined-search"
                   placeholder="Tìm kiếm trợ lý"
@@ -489,7 +490,6 @@ const FlashSale = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

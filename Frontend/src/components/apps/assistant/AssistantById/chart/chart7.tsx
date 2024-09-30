@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import Chart from 'react-apexcharts';
+import Chart, { Props } from 'react-apexcharts';
 import Affilatec2 from 'src/components/shared/Affilatec2';
 import { Props } from 'react-apexcharts';
 

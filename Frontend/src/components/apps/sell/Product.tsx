@@ -26,7 +26,7 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 
 import PageContainer from 'src/components/container/PageContainer';
@@ -306,11 +306,7 @@ const PaginationTable = () => {
   React.useEffect(() => {
     dispatch(fetchProduct());
   }, [dispatch]);
-  // const handleClickIcon = () => {
-  //   setIconIndex((pre) => (pre + 1) % icons.length);
-  // };
-  // const [ setIconIndex] = React.useState<number>(0);
-  // const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
