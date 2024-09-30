@@ -60,7 +60,7 @@ const MonthlyEarnings = () => {
 
   return (
     <DashboardCard
-      title="Hoa hồng"
+      title="Tổng hoa hồng"
       action={
         <Fab color="secondary" size="medium">
           <IconCurrencyDollar width={24} />
