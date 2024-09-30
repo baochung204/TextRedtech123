@@ -2,7 +2,6 @@
 // @ts-ignore
 import Chart, { Props } from 'react-apexcharts';
 import Affilatec2 from 'src/components/shared/Affilatec2';
-import { Props } from 'react-apexcharts';
 
 // const BCrumb = [
 //   {
@@ -168,7 +167,7 @@ const Chart7 = () => {
         series={seriesdoughnutchart4}
         type="donut"
         height="300px"
-      // style={{ position: 'relative' }}
+        // style={{ position: 'relative' }}
       />
     </Affilatec2>
   );

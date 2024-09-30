@@ -6,9 +6,8 @@ import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import ChildCard from 'src/components/shared/ChildCard';
 
-import { useSelector, useDispatch } from 'src/store/Store';
+import { useDispatch, useSelector } from 'src/store/Store';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import { useParams } from 'react-router';
 
 interface TabProps {
   children: React.ReactNode;
@@ -53,7 +52,6 @@ const ProductDesc = () => {
   const product: any = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-
     setValue(newValue);
   };
   console.log(product?.description);

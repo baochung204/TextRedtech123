@@ -2,7 +2,6 @@
 // @ts-ignore
 import Chart, { Props } from 'react-apexcharts';
 import Affilatec1 from 'src/components/shared/Affilatec1';
-import { Props } from 'react-apexcharts';
 
 // const BCrumb = [
 //   {

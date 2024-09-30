@@ -1,10 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
-
 import { Box, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import Chart from 'react-apexcharts';
 
 const SpeedometerChart: React.FC = () => {
   const [speed, setSpeed] = useState<number>(70.0);
@@ -16,38 +12,19 @@ const SpeedometerChart: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-
-    const chartOptions: ApexCharts.ApexOptions = {
-        chart: {
-            type: 'radialBar',
-            offsetY: 0,
-            sparkline: { enabled: true },
-        },
-        plotOptions: {
-            radialBar: {
-                startAngle: -120,
-                endAngle: 120,
-                hollow: {
-                    margin: 0,
-                    size: '70%',
-                },
-                dataLabels: {
-                    // showOn: 'always',
-                    name: {
-                        show: false,
-                    },
-                    value: {
-                        formatter: (val: number) => `${val.toFixed(2)} Mbps`,
-                        // color: '#fff',
-                        fontSize: '14px',
-                        offsetY: 70,
-                    },
-                },
-            },
-        },
-        stroke: {
-            lineCap: 'round',
-
+  const chartOptions: ApexCharts.ApexOptions = {
+    chart: {
+      type: 'radialBar',
+      offsetY: 0,
+      sparkline: { enabled: true },
+    },
+    plotOptions: {
+      radialBar: {
+        startAngle: -120,
+        endAngle: 120,
+        hollow: {
+          margin: 0,
+          size: '70%',
         },
         dataLabels: {
           show: true,
