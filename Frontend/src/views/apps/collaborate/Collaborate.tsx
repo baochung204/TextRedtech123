@@ -24,16 +24,16 @@ import { IconCopy, IconInfoCircle, IconPackage } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
 import RankA from 'src/assets/ICON/c1.png';
+import clickicon from 'src/assets/ICON/click.png';
+import revenueicon from 'src/assets/ICON/doanh thu.png';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import AlertChat from 'src/components/apps/chats/AlertChat';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import icon5 from '../../../assets/ICON/aov.png';
 import icon6 from '../../../assets/ICON/cvr.png';
 import icon4 from '../../../assets/ICON/dơn hang.png';
-import icon2 from '../../../assets/ICON/khach hang.png';
 import icon3 from '../../../assets/ICON/khách hàng.png';
 import PopupConvert from '../customerList/Popupconvert';
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
@@ -48,7 +48,7 @@ interface cardType {
 }
 const topcards: cardType[] = [
   {
-    icon: icon2,
+    icon: clickicon,
     title: 'Clicks',
     digits: '96',
     bgcolor: 'error.light',
@@ -67,7 +67,7 @@ const topcards: cardType[] = [
   },
 
   {
-    icon: icon5,
+    icon: revenueicon,
     title: 'Doanh Thu',
     digits: '96 tỉ',
     bgcolor: 'error.light',
@@ -96,7 +96,14 @@ const CollaboratePost = () => {
   };
 
   const handleCopy = () => {
-    setOpenChartAlert(true);
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        setOpenChartAlert(true); // Show alert after copying
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err);
+      });
   };
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
