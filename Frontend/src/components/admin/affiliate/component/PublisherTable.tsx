@@ -107,20 +107,20 @@ const getStatusColor = (status: string) => {
   }
 };
 
-const getStatusAccountColor = (status: string) => {
-  switch (status) {
-    case 'Hoạt động':
-      return 'success'; // Green for approved
-    case 'Chờ duyệt':
-      return 'warning'; // Yellow for pending approval
-    case 'Từ chối':
-      return 'error'; // Red for rejected
-    case 'Chưa đăng ký':
-      return 'default'; // Gray for not yet sent
-    default:
-      return 'default'; // Gray for any unrecognized status
-  }
-};
+// const getStatusAccountColor = (status: string) => {
+//   switch (status) {
+//     case 'Hoạt động':
+//       return 'success'; // Green for approved
+//     case 'Chờ duyệt':
+//       return 'warning'; // Yellow for pending approval
+//     case 'Từ chối':
+//       return 'error'; // Red for rejected
+//     case 'Chưa đăng ký':
+//       return 'default'; // Gray for not yet sent
+//     default:
+//       return 'default'; // Gray for any unrecognized status
+//   }
+// };
 interface FilmsData {
   id: number;
   title: string;
@@ -522,7 +522,7 @@ const PublisherTable = () => {
                       <TableCell>
                         <Chip
                           label={item.type_account}
-                          color={getStatusAccountColor(item.type_account)}
+                          // color={getStatusAccountColor(item.type_account)}
                         />
                       </TableCell>
                     )}

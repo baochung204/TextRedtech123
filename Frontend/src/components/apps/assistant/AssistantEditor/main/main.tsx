@@ -20,14 +20,19 @@ import Integration from '../layout/Integration';
 import Strategy from '../layout/Strategy';
 import AddText from '../layout/addText';
 import Sli from '../Sli';
+import AddIcon from '@mui/icons-material/Add';
+import SaveIcon from '@mui/icons-material/Save';
+
 
 const AssistantEditor = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
-
+  const [checkId, setCheckId] = React.useState(false);
   const handleChange4 = (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
-
+  const handleCheckId = () => {
+    setCheckId(prevCheckId => !prevCheckId);
+  }
   return (
     <PageContainer title="Tạo Assistant" description="this is Custom Form page">
       <Box>
@@ -40,9 +45,23 @@ const AssistantEditor = () => {
         >
           <Stack spacing={1} direction="row"></Stack>
           <Stack direction="row" spacing={1}>
-            <Button variant="contained" color="primary">
-              Lưu
-            </Button>
+            <Button variant="contained" color="primary" onClick={handleCheckId}>
+            {checkId ? 
+            (<>
+            
+                <AddIcon fontSize="medium" style={{ marginRight: '10px' }} />
+                <Typography fontSize={15}>Tạo</Typography>
+                </>
+              )
+              :
+              (<>
+              
+                <SaveIcon fontSize="medium" style={{ marginRight: '10px' }} />
+                <Typography fontSize={15}>Lưu</Typography>
+              </>
+              )}</Button>
+
+
           </Stack>
         </Stack>
         <Grid container spacing={2}>
@@ -74,14 +93,14 @@ const AssistantEditor = () => {
                       <AddText />
                     </Grid>
                     <Grid container spacing={2}>
+                      <Grid item xs={12} sm={6} lg={12}>
+                        <Sli />
+                      </Grid>
                       <Grid item xs={12} sm={6} lg={6}>
                         <AddSearch />
                       </Grid>
                       <Grid item xs={12} sm={6} lg={6}>
                         <AddFunction />
-                      </Grid>
-                      <Grid item xs={12} sm={6} lg={12}>
-                        <Sli />
                       </Grid>
                     </Grid>
                   </Grid>
@@ -92,17 +111,17 @@ const AssistantEditor = () => {
 
           {/* Cột 2 */}
           <Grid container item xs={12} sm={12} lg={4} sx={{ height: '100%' }}>
-            <Grid item xs={12} sx={{ height: '50%' }}>
+            <Grid item xs={12} >
               {' '}
               {/* 1/3 chiều cao của parent */}
               <ChatBot />
             </Grid>
-            <Grid item xs={12} sx={{ height: '25%' }}>
+            <Grid item xs={12} >
               {' '}
               {/* 1/3 chiều cao của parent */}
               <Integration />
             </Grid>
-            <Grid item xs={12} sx={{ height: '25%' }}>
+            <Grid item xs={12} >
               {' '}
               {/* 1/3 chiều cao của parent */}
               <Strategy />
