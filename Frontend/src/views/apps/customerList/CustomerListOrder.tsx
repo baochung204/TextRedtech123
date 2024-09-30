@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
+  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
@@ -29,6 +30,8 @@ import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddOrder from './PopupAdd2';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 
 interface PropsTable {
   id: string;
@@ -257,7 +260,15 @@ const CustomerListOrder = () => {
                     spacing={2}
                     sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
                   >
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={4} sx={{display: 'flex', alignItems: 'center'}}>
+                      <IconButton
+                        color="primary"
+                        aria-label="Add to cart"
+                      // onClick={() => setOpen(true)}
+
+                      >
+                        <AddCircleIcon sx={{ fontSize: 30 }} />
+                      </IconButton>
                       <TextField
                         id="outlined-search"
                         placeholder="Tìm kiếm đơn hàng"
