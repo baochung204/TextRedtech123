@@ -27,6 +27,10 @@ interface ProductProps {
     soluongmua: string;
     tongdoanhthu: string;
     titrongdoanthu: string;
+    ttsp?: string;
+    ha?: string;
+    secretkey?: string;
+    hdsd?: string;
 }
 
 
