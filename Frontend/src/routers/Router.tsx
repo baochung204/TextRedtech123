@@ -34,6 +34,10 @@ const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending'
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 
+const AssistantEditorAdmin = Loadable(
+  lazy(() => import('src/views/admin/assistant/AssistantEditorAdmin')),
+);
+
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
 const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
@@ -248,6 +252,7 @@ const Router = [
     children: [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
+      { path: '/admin/assistanteditoradmin', element: <AssistantEditorAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
       { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
       { path: '/admin/buy/products', element: <BuyPoints /> },
