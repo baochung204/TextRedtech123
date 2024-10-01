@@ -1,4 +1,14 @@
-import { Box, Button, Grid, Typography, useTheme, FormControl, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  useTheme,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import Tags from 'src/components/apps/sell/layout/Tags';
@@ -11,7 +21,6 @@ const AddBlog = () => {
   const theme = useTheme();
   const [content, setContent] = useState('');
   const [thumbnailPreview, setThumbnailPreview] = useState('');
-
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -29,7 +38,9 @@ const AddBlog = () => {
       description: Yup.string().required('Mô tả là bắt buộc'),
       content: Yup.string().required('Nội dung là bắt buộc'),
       thumbnail: Yup.string().required('Ảnh đại diện là bắt buộc'),
-      pricePoint: Yup.number().required('Điểm giá là bắt buộc').positive('Điểm giá phải là số dương'),
+      pricePoint: Yup.number()
+        .required('Điểm giá là bắt buộc')
+        .positive('Điểm giá phải là số dương'),
       status: Yup.string().required('Trạng thái là bắt buộc'),
       tags: Yup.array().min(1, 'Tags là bắt buộc').required('Tags là bắt buộc'),
     }),
@@ -164,7 +175,10 @@ const AddBlog = () => {
 
           <Grid item xs={12} md={6}>
             <CustomFormLabel>Trạng thái</CustomFormLabel>
-            <FormControl component="fieldset" error={formik.touched.status && Boolean(formik.errors.status)}>
+            <FormControl
+              component="fieldset"
+              error={formik.touched.status && Boolean(formik.errors.status)}
+            >
               <RadioGroup
                 row
                 aria-label="status"
@@ -203,7 +217,12 @@ const AddBlog = () => {
                 <img
                   src={thumbnailPreview}
                   alt="Preview"
-                  style={{ width: '100%', maxHeight: '200px', objectFit: 'cover', marginTop: '8px' }}
+                  style={{
+                    width: '100%',
+                    maxHeight: '200px',
+                    objectFit: 'cover',
+                    marginTop: '8px',
+                  }}
                 />
               </Box>
             )}

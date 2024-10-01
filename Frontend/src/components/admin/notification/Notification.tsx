@@ -1,4 +1,3 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -237,8 +236,6 @@ interface Column {
 }
 
 const ContentNotification = () => {
-  const [selectedItems] = useState<number[]>([]);
-
   const column = useMemo<Column[]>(
     () => [
       {
@@ -310,8 +307,8 @@ const ContentNotification = () => {
       <Grid item xs={12}>
         <TopCard dataSource={DataBox} totalColumn={4} />
       </Grid>
-      <Grid item xs={12}>
-        <Grid container sx={{ alignItems: 'center' }} spacing={2}>
+      <Grid item xs={12} sx={{ pt: 0 }}>
+        <Grid container sx={{ alignItems: 'center', pt: 0 }} spacing={2}>
           <Grid
             item
             xs={4}
@@ -324,13 +321,7 @@ const ContentNotification = () => {
           >
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item>
-                <IconButton
-                  color="primary"
-                  aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-                >
-                  <AddNotification />
-                </IconButton>
+                <AddNotification />
               </Grid>
               <Grid item>
                 <TextField

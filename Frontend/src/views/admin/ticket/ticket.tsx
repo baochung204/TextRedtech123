@@ -259,7 +259,6 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-
 const FilmsData: FilmsData[] = [
   { id: 1, title: 'File' },
   { id: 2, title: 'Dung lượng' },
@@ -278,7 +277,6 @@ const FilmsData: FilmsData[] = [
   { id: 15, title: 'Chiến lược' },
 ];
 const Ticket = () => {
-  const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -367,36 +365,23 @@ const Ticket = () => {
                 alignItems: 'center',
               }}
             >
-              <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    // onClick={() => setOpen(true)}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="12" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth={true}
-                  />
-                </Grid>
-              </Grid>
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm trợ lý"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch size="12" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth={true}
+              />
             </Grid>
             <Grid
               item
