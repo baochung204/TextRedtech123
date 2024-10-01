@@ -8,6 +8,7 @@ import {
   IconTrash,
   IconUserStar,
 } from '@tabler/icons-react';
+import assistant from 'src/assets/Adminphoto/tro ly ap dung.png';
 export const Function = [
   {
     bgColor: 'primary.light',
@@ -89,7 +90,6 @@ export const Function = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -100,7 +100,7 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img src={assistant} width={30} />
         </Box>
       </>
     ),

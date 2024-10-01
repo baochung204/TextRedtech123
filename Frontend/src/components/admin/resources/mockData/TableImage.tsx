@@ -6,10 +6,11 @@ import {
   IconPhoto,
   IconPhotoScan,
   IconTrash,
-  IconUsers,
 } from '@tabler/icons-react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import { HeadCell } from '../types/HeadCell';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+
 export const Image = [
   {
     bgColor: 'primary.light',
@@ -43,7 +44,6 @@ export const Image = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -54,7 +54,7 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconUsers color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),

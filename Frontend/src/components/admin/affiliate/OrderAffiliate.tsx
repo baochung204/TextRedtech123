@@ -1,3 +1,4 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Avatar,
   Badge,
@@ -13,19 +14,20 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { IconBox, IconChartBar, IconSearch, IconZoomMoney } from '@tabler/icons-react';
-import RPoint from 'src/assets/images/logos/R-Point.png';
-import TopCard from 'src/components/widgets/cards/TopCard';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import { DataAffiliateTable } from './datatable/OrderTableData';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { IconBox, IconChartBar, IconSearch, IconZoomMoney } from '@tabler/icons-react';
+import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import Point from 'src/assets/images/icon.png/point.png';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { Dayjs } from 'dayjs';
+import RPoint from 'src/assets/images/logos/R-Point.png';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import TopCard from 'src/components/widgets/cards/TopCard';
+import { DataAffiliateTable } from './datatable/OrderTableData';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
 
 const dataSource = [
   {
@@ -36,7 +38,6 @@ const dataSource = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -47,7 +48,8 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconBox color="white" size={30} />
+          {/* <IconBox color="white" size={30} /> */}
+          <img src={bill} width={30} />
         </Box>
       </>
     ),
@@ -60,7 +62,6 @@ const dataSource = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -72,7 +73,7 @@ const dataSource = [
           }}
         >
           {/* <IconWashDrycleanOff color="white" size={30} /> */}{' '}
-          <img src={RPoint} alt="RPoint" style={{ width: '24px', height: '24px' }} />,
+          <img src={RPoint} alt="RPoint" style={{ width: '30px', height: '30px' }} />,
         </Box>
       </>
     ),
@@ -84,7 +85,6 @@ const dataSource = [
     total: '123.456.789đ',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -95,7 +95,8 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
@@ -106,7 +107,6 @@ const dataSource = [
     total: '123.456.789đ',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -117,7 +117,8 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconZoomMoney color="white" size={30} />
+        {/* <IconZoomMoney color="white" size={30} /> */}
+        <img src={commission} width={30} />
       </Box>
     ),
   },

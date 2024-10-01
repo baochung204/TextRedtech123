@@ -5,6 +5,8 @@ import { useState } from 'react';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
 import PersonnelTab from './component/personnelTab';
+import admin from 'src/assets/Adminphoto/admin.png';
+import course from 'src/assets/Adminphoto/khóa.png';
 
 interface StyleProps {
   bgColor: string;
@@ -22,7 +24,6 @@ const DataBox: StyleProps[] = [
     total: '120',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -44,7 +45,6 @@ const DataBox: StyleProps[] = [
     total: '5',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -55,7 +55,8 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={admin} width={30} />
       </Box>
     ),
   },
@@ -66,7 +67,6 @@ const DataBox: StyleProps[] = [
     total: '52',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -88,7 +88,6 @@ const DataBox: StyleProps[] = [
     total: '12',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -99,7 +98,8 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={course} width={30} />
       </Box>
     ),
   },
