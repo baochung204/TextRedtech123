@@ -1,4 +1,4 @@
-interface OrderProps {
+export interface OrderProps {
     id: string,
     name: string,
     email: string,
@@ -7,6 +7,17 @@ interface OrderProps {
     troly: string,
     tongnap: string,
     sodu: string,
+    sex?: string,
+    date?: Date,
+    dccn?: string,
+    mstcn?:string,
+    xvat?: boolean,
+    tct?:string,
+    mstdn?:string,
+    ndd?:string,
+    cv?:string,
+    dcct?:string,
+    ect?:string,
 }
 
 const OrderData: OrderProps[] = [
@@ -19,6 +30,7 @@ const OrderData: OrderProps[] = [
         troly: '100',
         tongnap: '24.224.552',
         sodu: '424.222',
+       
     },
     {
         id: '2',
@@ -115,7 +127,7 @@ const OrderData: OrderProps[] = [
         name: 'Mai Thị Lệ',
         email: 'lemt@gmail.com',
         phone: '0912333445',
-        typeacc: 'Cá nhân',     
+        typeacc: 'Cá nhân',
         troly: '90',
         tongnap: '12.000.000',
         sodu: '120.000',
