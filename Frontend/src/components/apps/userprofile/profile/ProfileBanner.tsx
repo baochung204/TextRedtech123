@@ -41,7 +41,6 @@ const ProfileBanner = () => {
   return (
     <>
       <BlankCard>
-        {/* Banner Image */}
         <Box sx={{ position: 'relative' }}>
           <CardMedia
             component="img"
@@ -83,7 +82,7 @@ const ProfileBanner = () => {
           container
           spacing={0}
           sx={{
-            justifyContent: { xs: 'space-between', sm: 'space-between' },
+            justifyContent: { xs: 'center', sm: 'center' },
             alignItems: 'center',
             display: { xs: 'flex', sm: 'flex' },
           }}
@@ -201,7 +200,6 @@ const ProfileBanner = () => {
           </Grid>
         </Grid>
 
-        {/**TabbingPart**/}
         <ProfileTab />
       </BlankCard>
     </>
