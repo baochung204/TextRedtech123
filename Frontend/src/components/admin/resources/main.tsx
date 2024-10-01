@@ -3,7 +3,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Badge, Checkbox, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField } from '@mui/material';
+import { Badge, Checkbox, Dialog, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { IconSearch } from '@tabler/icons-react';
@@ -11,14 +11,15 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { GetFiles } from './Api/files';
 import { FileCells, Files } from './mockData/TableFile';
 import { Function, FunctionCells, FunctionRows } from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import { Model, ModelCells, ModelRows } from './mockData/TableModel';
 import { Strategy, StrategyCells, StrategyRows } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
-
+import  DialogStr  from './dialog/DialogStr';
+import DialogFile from './dialog/DialogFile';
+import DialogFunction from './dialog/DialogFunction';
 interface Column {
   title: string;
   dataIndex: string;
@@ -29,18 +30,16 @@ interface Column {
 const Main = () => {
   const [value, setValue] = useState<'1' | '2' | '3' | '4' | '5' | '6'>('1');
   const [data, setData] = useState([]);
-  // const [open, setOpen] = useState<boolean>(false);
-
+  const [open, setOpen] = useState<boolean>(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
-    // setOpen(false);
-  };
+    setOpen(false);
+  }; 
 
-  useEffect(() => {
-    setTimeout(() => {
-      GetFiles(setData);
-    }, 2000);
-  });
+
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const handleColumnChange = (event: any) => {
@@ -397,21 +396,26 @@ const Main = () => {
                   fullWidth={true}
                 />
               </Grid>
+            {(value === '1' || value === '2' || value === '3' ) && (
+
               <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
+                  onClick={handleClickOpen}
                   sx={{
                     pr: 1.5,
                   }}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
+                <DialogStr open={open} setOpen={setOpen} value={value} />
+                <DialogFile open={open} setOpen={setOpen} value={value} />
+                <DialogFunction open={open} setOpen={setOpen} value={value} />
               </Grid>
+            )} 
             </Grid>
           </Grid>
-        {/* )} */}
       </Grid>
     </Box>
   );
