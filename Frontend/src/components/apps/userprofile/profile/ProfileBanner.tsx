@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography, Button, Avatar, Stack, CardMedia, styled } from '@mui/material';
 import profilecover from 'src/assets/images/backgrounds/profilebg.jpg';
 import userimg from 'src/assets/images/profile/user-1.jpg';
@@ -8,7 +6,12 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import ProfileTab from './ProfileTab';
 import BlankCard from '../../../shared/BlankCard';
 import { Link } from 'react-router-dom';
+import { IconCameraBolt } from '@tabler/icons-react';
+
 const ProfileBanner = () => {
+  const [bannerImage, setBannerImage] = useState(profilecover);
+  const [avatarImage, setAvatarImage] = useState(userimg);
+
   const ProfileImage = styled(Box)(() => ({
     backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
     borderRadius: '50%',
@@ -18,45 +21,73 @@ const ProfileBanner = () => {
     alignItems: 'center',
     justifyContent: 'center',
     margin: '0 auto',
+    position: 'relative', // Make it relative to position the camera icon
   }));
+
+  const handleBannerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = URL.createObjectURL(event.target.files[0]);
+      setBannerImage(file);
+    }
+  };
+
+  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = URL.createObjectURL(event.target.files[0]);
+      setAvatarImage(file);
+    }
+  };
 
   return (
     <>
       <BlankCard>
-        <CardMedia component="img" image={profilecover} alt={profilecover} width="100%" />
+        {/* Banner Image */}
+        <Box sx={{ position: 'relative' }}>
+          <CardMedia
+            component="img"
+            image={bannerImage}
+            alt="Profile cover"
+            sx={{
+              width: '100%',
+              height: '300px', // Set a specific height for the banner
+              objectFit: 'cover', // Ensure the image covers the whole area without stretching
+            }}
+          />
+          <input
+            accept="image/*"
+            style={{ display: 'none' }}
+            id="upload-banner"
+            type="file"
+            onChange={handleBannerChange}
+          />
+          <label
+            htmlFor="upload-banner"
+            style={{
+              position: 'absolute',
+              bottom: '10px',
+              right: '10px',
+              backgroundColor: '#f5f5f5',
+              padding: '5px',
+              borderRadius: '50%',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <IconCameraBolt sx={{ fontSize: '30px' }} />
+          </label>
+        </Box>
+
         <Grid
           container
           spacing={0}
           sx={{
             justifyContent: { xs: 'space-between', sm: 'space-between' },
             alignItems: 'center',
-
             display: { xs: 'flex', sm: 'flex' },
           }}
         >
-          <Grid
-            item
-            lg={4}
-            sm={6}
-            md={5}
-            xs={12}
-            sx={{
-              order: {
-                xs: '3',
-                sm: '2',
-                lg: '1',
-              },
-            }}
-          >
-            <Stack
-              direction="row"
-              textAlign="center"
-              justifyContent="start"
-              my={2}
-              spacing={6}
-              px={2}
-            ></Stack>
-          </Grid>
           {/* about profile */}
           <Grid
             item
@@ -74,17 +105,19 @@ const ProfileBanner = () => {
             <Box
               display="flex"
               alignItems="center"
-              textAlign="center"
-              justifyContent="center"
+              justifyContent="center" // Centers the avatar container
               sx={{
                 mt: '-85px',
+                position: 'relative',
               }}
             >
-              <Box>
+              <Box textAlign="center">
+                {' '}
+                {/* Added textAlign center for content inside */}
                 <ProfileImage>
                   <Avatar
-                    src={userimg}
-                    alt={userimg}
+                    src={avatarImage}
+                    alt="User avatar"
                     sx={{
                       borderRadius: '50%',
                       width: '100px',
@@ -92,6 +125,27 @@ const ProfileBanner = () => {
                       border: '4px solid #fff',
                     }}
                   />
+                  <input
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    id="upload-avatar"
+                    type="file"
+                    onChange={handleAvatarChange}
+                  />
+                  <label
+                    htmlFor="upload-avatar"
+                    style={{
+                      position: 'absolute',
+                      bottom: '0',
+                      right: '-10px',
+                      backgroundColor: '#f5f5f5',
+                      padding: '5px',
+                      borderRadius: '50%',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <IconCameraBolt sx={{ fontSize: '30px' }} />
+                  </label>
                 </ProfileImage>
                 <Box mt={1}>
                   <Typography fontWeight={600} variant="h5" display="flex" alignItems="center">
@@ -111,6 +165,7 @@ const ProfileBanner = () => {
               </Box>
             </Box>
           </Grid>
+
           {/* friends following buttons */}
           <Grid
             item
@@ -145,6 +200,7 @@ const ProfileBanner = () => {
             </Stack>
           </Grid>
         </Grid>
+
         {/**TabbingPart**/}
         <ProfileTab />
       </BlankCard>

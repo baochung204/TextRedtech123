@@ -255,7 +255,7 @@ const Router = [
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
-      { path: '/admin/affiliate/history', element: <History /> },
+      // { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
       { path: '/admin/feature', element: <PageFeature /> },
       { path: '/admin/point/packagepoint', element: <RPoints /> },
