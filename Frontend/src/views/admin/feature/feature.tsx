@@ -377,7 +377,7 @@ const PageFeature = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                    // onClick={() => setOpen(true)}
+                    onClick={() => setOpen(true)}
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>

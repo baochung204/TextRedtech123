@@ -34,7 +34,6 @@ const ProfileBanner = () => {
             display: { xs: 'flex', sm: 'flex' },
           }}
         >
-          {/* Post | Followers | Following */}
           <Grid
             item
             lg={4}
