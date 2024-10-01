@@ -1,4 +1,3 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -30,6 +29,9 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import ticket from 'src/assets/Adminphoto/ticket.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import processing from 'src/assets/Adminphoto/chua xu ly.png';
 
 const BCrumb = [
   {
@@ -51,7 +53,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -62,7 +63,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          {/* <IconTicket color="white" size={30} /> */}
+          <img src={ticket} width={30} />
         </Box>
       </>
     ),
@@ -75,7 +77,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -86,7 +87,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
@@ -99,7 +100,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -123,7 +123,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -134,7 +133,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconRefreshOff color="white" size={30} />
+          <img src={processing} width={30} />
         </Box>
       </>
     ),
@@ -368,7 +367,6 @@ const Ticket = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-
                 <Grid item>
                   <TextField
                     id="outlined-search"

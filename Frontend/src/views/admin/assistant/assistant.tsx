@@ -15,7 +15,6 @@ import {
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
-  IconBox,
   IconChartArcs,
   IconChartBar,
   IconPasswordUser,
@@ -25,11 +24,14 @@ import {
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import bill from 'src/assets/ICON/dơn hang.png';
+import gmv from 'src/assets/ICON/gmv.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
 const BCrumb = [
   {
     to: '/admin',
@@ -48,7 +50,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -72,7 +73,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -96,7 +96,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -107,7 +106,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          {/* <IconPasswordUser color="white" size={30} /> */}
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
@@ -120,7 +120,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -131,7 +130,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBox color="white" size={30} />
+          {/* <IconBox color="white" size={30} /> */}
+          <img src={bill} width={30} />
         </Box>
       </>
     ),
@@ -144,7 +144,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -156,6 +155,7 @@ const DataBox = [
           }}
         >
           <IconChartBar color="white" size={30} />
+          <img src={gmv} width={30} />
         </Box>
       </>
     ),

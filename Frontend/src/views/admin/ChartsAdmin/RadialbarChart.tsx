@@ -88,7 +88,7 @@ const RadialbarChart = () => {
   ];
 
   return (
-    <PageContainer title="Radialbar & Radar Chart" description="this is innerpage">
+    <PageContainer title="hello" description="this is innerpage">
       {/* breadcrumb */}
       <Breadcrumb title="Radialbar Chart" items={BCrumb} />
       {/* end breadcrumb */}

@@ -4,10 +4,10 @@ import {
   IconDatabaseSmile,
   IconEye,
   IconFile,
-  IconMessageChatbot,
-  IconTrash,
-  IconUsers,
+  IconTrash
 } from '@tabler/icons-react';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 export const Files = [
   {
     bgColor: 'primary.light',
@@ -17,7 +17,6 @@ export const Files = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -41,7 +40,6 @@ export const Files = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -52,7 +50,7 @@ export const Files = [
             alignItems: 'center',
           }}
         >
-          <IconUsers color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
@@ -65,7 +63,6 @@ export const Files = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -89,7 +86,6 @@ export const Files = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -100,7 +96,7 @@ export const Files = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img src={assisstant} width={30} />
         </Box>
       </>
     ),
@@ -146,5 +142,3 @@ export const FileCells: any = [
     ),
   },
 ];
-
-

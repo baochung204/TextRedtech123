@@ -14,9 +14,7 @@ import {
   MenuItem,
   Select,
   TextField,
-
   Tooltip,
-
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -37,6 +35,11 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
+import tags from 'src/assets/NotificationAdmin/tags.png';
+import notification from 'src/assets/NotificationAdmin/thong bao.png';
+import interact from 'src/assets/NotificationAdmin/tuong tac.png';
+
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -46,7 +49,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -57,7 +59,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={notification} width={30} />
         </Box>
       </>
     ),
@@ -70,7 +72,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -81,7 +82,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTags color="white" size={30} />
+          <img src={tags} width={30} />
         </Box>
       </>
     ),
@@ -94,7 +95,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -105,7 +105,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconEye color="white" size={30} />
+          <img src={view} width={30} />
         </Box>
       </>
     ),
@@ -118,7 +118,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -129,7 +128,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconWorldUpload color="white" size={30} />
+          <img src={interact} width={30} />
         </Box>
       </>
     ),
@@ -314,10 +313,6 @@ const ContentNotification = () => {
   const [value1, setValue1] = useState<Dayjs | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -340,7 +335,6 @@ const ContentNotification = () => {
           >
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item>
-
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
@@ -348,7 +342,6 @@ const ContentNotification = () => {
                 >
                   <AddNotification />
                 </IconButton>
-
               </Grid>
               <Grid item>
                 <TextField

@@ -8,6 +8,7 @@ import {
   IconUsersGroup,
   IconUserStar,
 } from '@tabler/icons-react';
+import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 export const Model = [
   {
     bgColor: 'primary.light',
@@ -89,7 +90,6 @@ export const Model = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -100,7 +100,7 @@ export const Model = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img src={assisstant} width={30} />
         </Box>
       </>
     ),

@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 import { IconBrandGoogleHome, IconCoinOff, IconCoins, IconSearch } from '@tabler/icons-react';
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -26,6 +25,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataPublishersTable } from './datatable/OrderTableData';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -35,7 +36,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -59,7 +59,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -70,7 +69,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBox color="white" size={30} />
+          {/* <IconBox color="white" size={30} /> */}
+          <img src={bill} width={30} />
         </Box>
       </>
     ),
@@ -83,7 +83,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -94,7 +93,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconCoins color="white" size={30} />
+          {/* <IconCoins color="white" size={30} /> */}
+          <img src={commission} width={30} />
         </Box>
       </>
     ),
@@ -107,7 +107,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -232,10 +231,10 @@ const PublisherAffiliate = () => {
               value.type_account === 1
                 ? 'Hoạt động'
                 : value.type_account === 2
-                  ? 'Chờ duyệt'
-                  : value.type_account === 3
-                    ? 'Bị từ chối'
-                    : ''
+                ? 'Chờ duyệt'
+                : value.type_account === 3
+                ? 'Bị từ chối'
+                : ''
             }
             color={getStatusAccountColor(value.type_account)}
           />
@@ -367,7 +366,7 @@ const PublisherAffiliate = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid> */}
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -453,7 +452,6 @@ const PublisherAffiliate = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

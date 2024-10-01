@@ -25,7 +25,12 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+import aov from 'src/assets/Adminphoto/aov.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+
 import DialogBuyProduct from './DialogBuyProduct';
+
 
 
 
@@ -51,7 +56,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -62,7 +66,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={bill} width={30} />
         </Box>
       </>
     ),
@@ -82,7 +87,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -113,7 +117,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -144,7 +147,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -175,7 +177,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -186,7 +187,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={aov} width={30} />
         </Box>
       </>
     ),
@@ -201,9 +203,11 @@ interface Column {
 
 const BuyPoints = () => {
 
+
   const [open, setOpen] = useState<boolean>(false)
   const [checkValue, setCheckValue] = useState<string | null>(null)
   const [selectID, setSelectID] = useState<string | null>(null)
+
 
   const column = useMemo<Column[]>(
     () => [
@@ -362,16 +366,20 @@ const BuyPoints = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
+
+                    // onClick={() => setOpen(true)}
+
                     onClick={() => { setOpen(true); setCheckValue('add') }}
+
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -457,7 +465,6 @@ const BuyPoints = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

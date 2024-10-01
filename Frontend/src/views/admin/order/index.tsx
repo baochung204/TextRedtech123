@@ -24,6 +24,9 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DialogOrder from './DialogOrder';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
 
 const BCrumb = [
   {
@@ -50,7 +53,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -61,7 +63,8 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          {/* <IconBellRinging color="white" size={30} /> */}
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
@@ -74,7 +77,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -98,7 +100,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -122,7 +123,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -133,7 +133,8 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          {/* <IconBellRinging color="white" size={30} /> */}
+          <img src={revenue} width={30} />
         </Box>
       </>
     ),
@@ -146,7 +147,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -157,7 +157,8 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          {/* <IconBellRinging color="white" size={30} /> */}
+          <img src={rpointblance} width={30} />
         </Box>
       </>
     ),
@@ -264,7 +265,7 @@ const OrderAdminPages = () => {
       {
         title: 'Địa chỉ (Cá nhân)',
         dataIndex: 'adress',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Xuất VAT',
@@ -351,8 +352,22 @@ const OrderAdminPages = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
+
+                {/* <Grid item >
+                  <IconButton
+                    color="primary"
+                    aria-label="Add to cart"
+                    onClick={() => { setOpen(true); setCheckValue('add') }}
+                  >
+                    <AddCircleIcon sx={{ fontSize: 30 }} />
+                  </IconButton>
+                </Grid> */}
+
+                <Grid item>
+
                 
                 <Grid item >
+
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -426,7 +441,6 @@ const OrderAdminPages = () => {
                 }}
               >
                 {column.map((header: Column) => {
-
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -499,7 +513,13 @@ const OrderAdminPages = () => {
           <CustomTable columns={column} dataSource={OrderData} dataSelect={dataSelect} />
         </Grid>
       </Grid>
-      <DialogOrder open={open} setOpen={setOpen} selectID={selectID} checkValue={checkValue} setCheckValue={setCheckValue} />
+      <DialogOrder
+        open={open}
+        setOpen={setOpen}
+        selectID={selectID}
+        checkValue={checkValue}
+        setCheckValue={setCheckValue}
+      />
     </>
   );
 };
