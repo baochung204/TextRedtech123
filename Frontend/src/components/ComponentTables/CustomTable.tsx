@@ -61,9 +61,6 @@ const CustomTable: React.FC<CustomTableProps> = ({
               {columns.map((column, index) => {
                 const isColumnVisible = !dataSelect.includes(column.dataIndex ?? '');
                 const isSortable = column.sort ?? false;
-                console.log(`isColumnVisible ${column.title}`, isColumnVisible);
-
-
                 return (
                   <>
                     {isColumnVisible && (
@@ -71,7 +68,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
                         <Box
                           sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                         >
-                          <Typography variant="h6" sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}>
+                          <Typography variant="subtitle2" fontWeight={600} sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}>
                             {column.title}
                           </Typography>
                           {isSortable && (

@@ -107,7 +107,6 @@ const DataBox: StyleProps[] = [
 
 const Personnels = () => {
   const [value, setValue] = useState('1');
-  // const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {

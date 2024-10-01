@@ -27,7 +27,6 @@ import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -145,7 +144,7 @@ interface Column {
   isValids?: boolean;
 }
 const OrderAffiliate = () => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
 
   const column = useMemo<Column[]>(
     () => [
@@ -282,7 +281,7 @@ const OrderAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                {/* <Grid item >
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -291,8 +290,8 @@ const OrderAffiliate = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
-                <Grid item >
+                </Grid> */}
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -323,7 +322,7 @@ const OrderAffiliate = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>
@@ -378,7 +377,6 @@ const OrderAffiliate = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

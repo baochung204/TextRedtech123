@@ -31,7 +31,6 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
-
 const BCrumb = [
   {
     to: '/admin',
@@ -457,7 +456,7 @@ const OrderRPoint = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                {/* <Grid item >
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -466,8 +465,8 @@ const OrderRPoint = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
-                <Grid item >
+                </Grid> */}
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -498,7 +497,7 @@ const OrderRPoint = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>
@@ -553,7 +552,6 @@ const OrderRPoint = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

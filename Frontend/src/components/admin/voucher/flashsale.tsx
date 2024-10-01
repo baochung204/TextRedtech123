@@ -9,7 +9,9 @@ import {
   MenuItem,
   Select,
   TextField,
+
   Typography
+
 } from '@mui/material';
 import s24 from 'src/assets/images/products/s24.jpg';
 // components
@@ -30,6 +32,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
+import AddFlashSale from './add/AddSale';
+import AddDflashsale from './add/addflashsale';
 
 
 interface DataRow3 {
@@ -227,6 +231,7 @@ const FlashSale = () => {
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -369,7 +374,6 @@ const FlashSale = () => {
       setDataSelect([]);
     }
   }, [column]);
-  const [selectedItems] = useState<number[]>([]);
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
@@ -393,17 +397,16 @@ const FlashSale = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
-
+                  onClick={() => setIsPopupOpen(true)}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item>
                 <TextField
                   id="outlined-search"
                   placeholder="Tìm kiếm trợ lý"
@@ -434,7 +437,7 @@ const FlashSale = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={selectedItems.length} color="primary">
+              <Badge badgeContent={column.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -489,7 +492,6 @@ const FlashSale = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -551,6 +553,7 @@ const FlashSale = () => {
           <CustomTable columns={column} dataSource={dataRows3} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
+      <AddDflashsale isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </div>
   );
 };

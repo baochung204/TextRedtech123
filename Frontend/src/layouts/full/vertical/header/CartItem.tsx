@@ -31,8 +31,8 @@ const CartItems = () => {
             <Box key={product.id + index * index}>
               <Stack direction="row" spacing={2} py={3}>
                 <Avatar
-                  src={product.photo}
-                  alt={product.photo}
+                  src={product.thumbnailUrl}
+                  alt={product.thumbnailUrl}
                   sx={{
                     borderRadius: '10px',
                     height: '75px',
@@ -41,7 +41,7 @@ const CartItems = () => {
                 />
                 <Box>
                   <Typography variant="subtitle2" color="textPrimary" fontWeight={600}>
-                    {product.title}
+                    {product.name}
                   </Typography>{' '}
                   <Typography color="textSecondary" fontSize="12px">
                     {' '}
@@ -49,7 +49,7 @@ const CartItems = () => {
                   </Typography>
                   <Stack direction="row" alignItems="center" spacing={2} mt="5px">
                     <Typography variant="subtitle2" fontWeight="500">
-                      ${product.price * product.qty}
+                      {(product.point * product.qty).toLocaleString()}
                     </Typography>
                     <ButtonGroup size="small" aria-label="small button group">
                       <Button

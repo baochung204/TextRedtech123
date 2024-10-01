@@ -50,7 +50,7 @@ const AddNotification = () => {
   return (
     <Box>
       <Tooltip title="Thêm thông báo mới">
-        <Fab size="small" color="secondary" aria-label="plus" onClick={handleOpenPopup}>
+        <Fab size="small" color="primary" aria-label="plus" onClick={handleOpenPopup}>
           <IconPlus width={18} />
         </Fab>
       </Tooltip>
@@ -66,7 +66,7 @@ const AddNotification = () => {
           },
           '& .MuiPaper-root': {
             width: '100%',
-            maxWidth: '1000PX', // Giữ chiều rộng của Dialog
+            maxWidth: '1000PX',
           },
         }}
       >

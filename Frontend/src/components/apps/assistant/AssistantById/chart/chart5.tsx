@@ -1,8 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import Chart from 'react-apexcharts';
+import Chart, { Props } from 'react-apexcharts';
 import Affilatec from 'src/components/shared/Affilatec';
-import { Props } from 'react-apexcharts';
 
 // const BCrumb = [
 //   {

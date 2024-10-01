@@ -9,7 +9,9 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  TextField
+
+  TextField,
+
 } from '@mui/material';
 // components
 // import { styled } from '@mui/system';
@@ -362,17 +364,8 @@ const HistoryVoucher = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
-                <IconButton
-                  color="primary"
-                  aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
-
-                >
-                  <AddCircleIcon sx={{ fontSize: 30 }} />
-                </IconButton>
-              </Grid>
-              <Grid item >
+              
+              <Grid item>
                 <TextField
                   id="outlined-search"
                   placeholder="Tìm kiếm trợ lý"
@@ -403,7 +396,7 @@ const HistoryVoucher = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={selectedItems.length} color="primary">
+              <Badge badgeContent={column.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -458,7 +451,6 @@ const HistoryVoucher = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
