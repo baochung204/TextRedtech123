@@ -5,6 +5,7 @@ import BlankCard from 'src/components/shared/BlankCard';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DataTab1 from '../DataTable/TableTab1';
+import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
