@@ -25,7 +25,6 @@ import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
   { to: '/admin/buy/orderproducts', title: 'Danh sách đơn hàng' },
@@ -194,7 +193,6 @@ interface Column {
 }
 
 const ProductAdmin = () => {
-
   const column = useMemo<Column[]>(
     () => [
       {
@@ -282,6 +280,7 @@ const ProductAdmin = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
+  const [open, setOpen] = useState(false);
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
@@ -305,17 +304,16 @@ const ProductAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
+                    onClick={() => setOpen(true)}
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -401,7 +399,6 @@ const ProductAdmin = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
