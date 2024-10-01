@@ -1,4 +1,4 @@
-import  React ,{useState} from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography, Box, Snackbar, Alert } from '@mui/material';
+import { Typography, Box, Snackbar, Alert, Divider } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
@@ -57,20 +57,15 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 open={value === '3' && open ? true : false}
                 onClose={handleClose}
             >
-                <DialogTitle sx={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                }}>
-                    <Box sx={{
-                        borderBottom: '1px solid #E6EAEF',
-                        paddingX: 25,
-                        paddingBottom: 2
-                    }}>
+                <DialogTitle >
+                    <Box >
                         <Typography fontWeight={600} variant='h3'>
                             Thêm File
                         </Typography>
                     </Box>
                 </DialogTitle>
+                <Divider sx={{ mx: '0px' }} />
+
                 <DialogContent>
                     <DialogContentText>
                         <Grid container xs={12} spacing={2}>
