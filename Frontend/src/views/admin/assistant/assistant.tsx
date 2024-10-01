@@ -1,3 +1,5 @@
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
   Box,
@@ -10,7 +12,6 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -28,7 +29,6 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 const BCrumb = [
   {
     to: '/admin',
@@ -303,7 +303,6 @@ const FilmsData: FilmsData[] = [
   { id: 6, title: 'Experience' },
 ];
 const AssistantAdmin = () => {
-  const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -330,6 +329,81 @@ const AssistantAdmin = () => {
       {
         dataIndex: 'experience',
         title: 'Experience',
+      },
+      {
+        dataIndex: 'files',
+        title: 'Files',
+        isValids: false
+      },
+      {
+        dataIndex: 'dungluong',
+        title: 'Dung lượng',
+        isValids: false
+      },
+      {
+        dataIndex: 'function',
+        title: 'Functions',
+        isValids: false
+      },
+      {
+        dataIndex: 'token',
+        title: 'Token huấn luyện',
+        isValids: false
+      },
+      {
+        dataIndex: 'ngaytao',
+        title: 'Ngày tạo',
+        isValids: false
+      },
+      {
+        dataIndex: 'vqtb',
+        title: 'Vòng quay trung bình',
+        isValids: false
+      },
+      {
+        dataIndex: 'kh',
+        title: 'Khách hàng',
+        isValids: false
+      },
+      {
+        dataIndex: 'dh',
+        title: 'Đơn hàng',
+        isValids: false
+      },
+      {
+        dataIndex: 'cvr',
+        title: 'CVR',
+        isValids: false
+      },
+      {
+        dataIndex: 'gmv',
+        title: 'GMV',
+        isValids: false
+      },
+      {
+        dataIndex: 'cp',
+        title: 'Chi phí',
+        isValids: false
+      },
+      {
+        dataIndex: 'cpdt',
+        title: 'Chi phí/ Doanh thu',
+        isValids: false
+      },
+      {
+        dataIndex: 'cpdh',
+        title: 'Chi phí/ Đơn hàng',
+        isValids: false
+      },
+      {
+        dataIndex: 'cpkh',
+        title: 'Chi phí/ khách hàng',
+        isValids: false
+      },
+      {
+        dataIndex: 'cl',
+        title: 'Chiến lược',
+        isValids: false
       },
     ],
     [],
@@ -363,7 +437,7 @@ const AssistantAdmin = () => {
           <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
         <Grid item xs={12}>
-          <Grid container sx={{alignItems: 'center'}} spacing={2}>
+          <Grid container sx={{ alignItems: 'center' }} spacing={2}>
             <Grid
               item
               xs={4}
@@ -374,7 +448,7 @@ const AssistantAdmin = () => {
                 alignItems: 'center',
               }}
             >
-              <Grid container sx={{ alignItems: 'center'}}>
+              <Grid container sx={{ alignItems: 'center' }}>
                 <Grid item >
                   <IconButton
                     color="primary"
@@ -416,7 +490,7 @@ const AssistantAdmin = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={selectedItems.length} color="primary">
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>

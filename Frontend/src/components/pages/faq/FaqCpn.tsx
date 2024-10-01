@@ -278,18 +278,21 @@ const Faq = () => {
                   fullWidth={true}
                 />
               </Grid>
-              <Grid item>
-                <IconButton
-                  color="primary"
-                  aria-label="Add to cart"
-                  onClick={() => setOpen(true)}
-                  sx={{
-                    pr: 1.5,
-                  }}
-                >
-                  <AddCircleIcon sx={{ fontSize: 30 }} />
-                </IconButton>
-              </Grid>
+              {(value === '3' || value === '5' || value === '6') && (
+                <Grid item>
+                  <IconButton
+                    color="primary"
+                    aria-label="Add to cart"
+                    onClick={() => setOpen(true)}
+                    sx={{
+                      pr: 1.5,
+                    }}
+                  >
+                    <AddCircleIcon sx={{ fontSize: 30 }} />
+                  </IconButton>
+                </Grid>
+              )}
+
             </Grid>
           </Grid>
         )}

@@ -4,22 +4,22 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
-  Fab,
-  Tooltip,
+  DialogTitle
 } from '@mui/material';
-import { IconPlus } from '@tabler/icons-react';
-import { useState } from 'react';
 import PopupAdd from './PopupAdd';
 // import * as React from 'react';
-const AddDialog = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+interface PropsDialog {
+  isPopupOpen: boolean,
+  setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+const AddDialog = ({ isPopupOpen, setIsPopupOpen }: PropsDialog) => {
+  
   // const [value, setValue] = useState('1');
 
   // Function mở popup
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
 
   // Function đóng popup
   const handleClosePopup = () => {
@@ -30,11 +30,6 @@ const AddDialog = () => {
   // };
   return (
     <Box>
-      <Tooltip title="Thêm">
-        <Fab size="small" color="primary" aria-label="plus" onClick={handleOpenPopup}>
-          <IconPlus width={18} />
-        </Fab>
-      </Tooltip>
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}

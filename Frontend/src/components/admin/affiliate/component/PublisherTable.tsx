@@ -299,7 +299,7 @@ const PublisherTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={selectedItems.length} color="primary">
+              <Badge badgeContent={column.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -522,7 +522,7 @@ const PublisherTable = () => {
                       <TableCell>
                         <Chip
                           label={item.type_account}
-                          // color={getStatusAccountColor(item.type_account)}
+                        // color={getStatusAccountColor(item.type_account)}
                         />
                       </TableCell>
                     )}
