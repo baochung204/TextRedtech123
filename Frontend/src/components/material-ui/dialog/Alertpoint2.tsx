@@ -26,7 +26,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Afletpoint2 = ({ children }: any) => {
+const Afletpoint2 = ({ children, Cartproduct, total, Discount }: any) => {
   children;
   const [open, setOpen] = React.useState(false);
   const fullWidth = true; // Declare and initialize fullWidth variable
@@ -35,7 +35,7 @@ const Afletpoint2 = ({ children }: any) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  console.log(Cartproduct);
   return (
     <>
       <Button variant="contained" color="success" onClick={handleClickOpen}>
@@ -72,7 +72,7 @@ const Afletpoint2 = ({ children }: any) => {
         <DialogContent>
           {' '}
           <DialogContentText id="alert-dialog-slide-description">
-            <Content2 />
+            <Content2 Cartproduct={Cartproduct} total={total} Discount={Discount} />
           </DialogContentText>
         </DialogContent>
       </Dialog>
