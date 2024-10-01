@@ -10,12 +10,15 @@ import {
 } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
 
-import { useState } from 'react';
+interface PropsUp {
+  isPopupOpen: boolean,
+  setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>
+
+}
 
 import AddVoucher from './Addvoucher';
 // import * as React from 'react';
-const AddDialogvoucher = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // const [value, setValue] = useState('1');
 
   // Function mở popup
