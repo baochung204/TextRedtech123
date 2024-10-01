@@ -364,6 +364,7 @@ const Ticket = () => {
                 alignItems: 'center',
               }}
             >
+<<<<<<< HEAD
               <TextField
                 id="outlined-search"
                 placeholder="Tìm kiếm trợ lý"
@@ -381,6 +382,30 @@ const Ticket = () => {
                 }}
                 fullWidth={true}
               />
+=======
+              <Grid container sx={{ alignItems: 'center' }}>
+
+                <Grid item>
+                  <TextField
+                    id="outlined-search"
+                    placeholder="Tìm kiếm trợ lý"
+                    size="small"
+                    type="search"
+                    variant="outlined"
+                    inputProps={{ 'aria-label': 'Search Followers' }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconSearch size="12" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    fullWidth={true}
+                  />
+                </Grid>
+              </Grid>
+>>>>>>> 6a9f8912f228c1f9ff4762f015e37d49d81c4259
             </Grid>
             <Grid
               item

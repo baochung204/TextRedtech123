@@ -16,7 +16,7 @@ const Affiliatepro = Loadable(lazy(() => import('src/views/admin/affiliatepro/af
 
 const EInvoice = Loadable(lazy(() => import('src/views/admin/EInvoice/EInvoice')));
 const Feature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
-const History = Loadable(lazy(() => import('src/views/admin/history/history')));
+
 const Notification = Loadable(lazy(() => import('src/views/admin/notification/notification')));
 const Packagepoint = Loadable(lazy(() => import('src/views/admin/packagepoint/packagepoint')));
 const Pointdetail = Loadable(lazy(() => import('src/views/admin/pointdetail/pointdetail')));

@@ -3,6 +3,10 @@ import {
   Badge,
   Box,
   Checkbox,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -10,6 +14,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -17,6 +22,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconBellRinging,
   IconEye,
+  IconPlus,
   IconSearch,
   IconTags,
   IconWorldUpload,
@@ -26,6 +32,7 @@ import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
+import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
 const DataBox = [
@@ -236,6 +243,8 @@ interface Column {
 }
 
 const ContentNotification = () => {
+  // const [selectedItems] = useState<number[]>([]);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -301,7 +310,15 @@ const ContentNotification = () => {
   };
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -321,7 +338,13 @@ const ContentNotification = () => {
           >
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item>
-                <AddNotification />
+                <IconButton
+                  color="primary"
+                  aria-label="Add to cart"
+                  // onClick={() => setOpen(true)}
+                >
+                  <AddNotification />
+                </IconButton>
               </Grid>
               <Grid item>
                 <TextField
@@ -331,7 +354,7 @@ const ContentNotification = () => {
                   type="search"
                   variant="outlined"
                   inputProps={{ 'aria-label': 'Search Followers' }}
-                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px', marginLeft: '10px' } }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -470,6 +493,22 @@ const ContentNotification = () => {
           <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
+      {/* Popup Thêm khách hàng */}
+      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg" keepMounted>
+        <DialogTitle>
+          <Typography padding={'20px'} fontSize={'30px'}>
+            Thêm thông báo
+          </Typography>
+        </DialogTitle>
+        <DialogContent
+          sx={{
+            padding: '0',
+            overflowY: 'hidden',
+          }}
+        >
+          <DialogAddNotification />
+        </DialogContent>
+      </Dialog>
     </Grid>
   );
 };

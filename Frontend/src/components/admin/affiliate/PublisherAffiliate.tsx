@@ -161,7 +161,7 @@ interface Column {
 }
 
 const PublisherAffiliate = () => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   const column = useMemo<Column[]>(
@@ -357,7 +357,7 @@ const PublisherAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                {/* <Grid item >
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -366,7 +366,7 @@ const PublisherAffiliate = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
+                </Grid> */}
                 <Grid item >
                   <TextField
                     id="outlined-search"
