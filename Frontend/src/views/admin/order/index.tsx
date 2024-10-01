@@ -171,11 +171,9 @@ interface Column {
 }
 
 const OrderAdminPages = () => {
-  const [selectID, setSelectID] = useState<string | null>(null)
-  const [checkValue, setCheckValue] = useState<string | null>(null)
-  const [open, setOpen] = useState<boolean>(false)
-
-
+  const [selectID, setSelectID] = useState<string | null>(null);
+  const [checkValue, setCheckValue] = useState<string | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
 
   const column = useMemo<Column[]>(
     () => [
@@ -246,22 +244,22 @@ const OrderAdminPages = () => {
       {
         title: 'Giới tính',
         dataIndex: 'sex',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Ngày sinh',
         dataIndex: 'date',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Địa chỉ (Cá nhân)',
         dataIndex: 'dccn',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'MST (Cá nhân)',
         dataIndex: 'mstcn',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Địa chỉ (Cá nhân)',
@@ -271,39 +269,38 @@ const OrderAdminPages = () => {
       {
         title: 'Xuất VAT',
         dataIndex: 'xvat',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Tên công ty',
         dataIndex: 'tct',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'MST (Doanh nghiệp)',
         dataIndex: 'mstdn',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Người đại diện',
         dataIndex: 'ndd',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Chúc vụ',
         dataIndex: 'cv',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Địa chỉ (Công ty)',
         dataIndex: 'dcct',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Email (Công ty)',
         dataIndex: 'ect',
-        isValids: false
+        isValids: false,
       },
-
     ],
     [],
   );
@@ -362,7 +359,9 @@ const OrderAdminPages = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid> */}
-                <Grid item >
+
+                <Grid item>
+
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -447,7 +446,6 @@ const OrderAdminPages = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
