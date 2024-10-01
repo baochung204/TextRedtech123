@@ -175,8 +175,6 @@ const OrderAdminPages = () => {
   const [checkValue, setCheckValue] = useState<string | null>(null)
   const [open, setOpen] = useState<boolean>(false)
 
-
-
   const column = useMemo<Column[]>(
     () => [
       {
@@ -303,10 +301,10 @@ const OrderAdminPages = () => {
         dataIndex: 'ect',
         isValids: false
       },
-
     ],
     [],
   );
+ 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
@@ -353,15 +351,7 @@ const OrderAdminPages = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item >
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    onClick={() => { setOpen(true); setCheckValue('add') }}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
+                
                 <Grid item >
                   <TextField
                     id="outlined-search"

@@ -1,18 +1,58 @@
-import { Dialog, DialogTitle } from "@mui/material"
-import { useEffect, useMemo, useState } from "react"
+import { Box, Dialog, DialogContent, DialogTitle, Grid } from "@mui/material"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import ProductTable from "../product/ProductData";
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'src/store/Store';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import './Carousel.css';
+import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 
 interface PropUp {
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
     setCheckValue: React.Dispatch<React.SetStateAction<string | null>>
     checkValue: string | null,
-    seLectID: string | null
+    selectID: string | null
 }
 
-const DialogBuyProduct = ({ open, setOpen, setCheckValue, seLectID, checkValue }: PropUp) => {
+const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: PropUp) => {
+
+    const [state, setState] = useState<any>({ nav1: null, nav2: null });
+    const slider1 = useRef();
+    const slider2 = useRef();
+    const dispatch = useDispatch();
+    const Id: any = useParams();
+
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]);
+
+    const product: any = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
+    const getProductImage = product ? product.thumbnailUrl : '';
+
+    useEffect(() => {
+        setState({
+            nav1: slider1.current,
+            nav2: slider2.current,
+        });
+    }, []);
+
+    const { nav1, nav2 } = state;
+    const settings = {
+        focusOnSelect: true,
+        infinite: true,
+        slidesToShow: 5,
+        arrows: false,
+        swipeToSlide: true,
+        slidesToScroll: 1,
+        centerMode: true,
+        className: 'centerThumb',
+        speed: 500,
+    };
 
     const emptyInitialValues = useMemo(
         () => ({
@@ -37,7 +77,6 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, seLectID, checkValue }
 
     const [initialValues, setInitialValues] = useState(emptyInitialValues);
 
-
     const validationSchema = Yup.object({
         id: Yup.string(),
         danhmuc: Yup.string(),
@@ -59,7 +98,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, seLectID, checkValue }
         setOpen(false);
         resetForm();
     };
-    const handleSubmit = (values: typeof initialValues,{ resetForm }: FormikHelpers<typeof initialValues>,) => {
+    const handleSubmit = (values: typeof initialValues, { resetForm }: FormikHelpers<typeof initialValues>,) => {
         if (checkValue === 'view' || checkValue === 'add') {
             setCheckValue('fix')
         } else {
@@ -75,7 +114,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, seLectID, checkValue }
         if (checkValue === 'add') {
             setInitialValues(emptyInitialValues);
         } else {
-            const data = ProductTable.find((item) => item.id === seLectID);
+            const data = ProductTable.find((item) => item.id === selectID);
             if (data) {
                 setInitialValues({
                     id: data.id,
@@ -89,14 +128,14 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, seLectID, checkValue }
                     soluongmua: data.soluongmua,
                     tongdoanhthu: data.tongdoanhthu,
                     titrongdoanthu: data.titrongdoanthu,
-                    ttsp: data?.ttsp ?? '',
-                    ha: data?.ha ?? '',
-                    secretkey: data?.secretkey ?? '',
-                    hdsd: data?.hdsd ?? '',
+                    ttsp: data.ttsp ?? '',
+                    ha: data.ha ?? '',
+                    secretkey: data.secretkey ?? '',
+                    hdsd: data.hdsd ?? '',
                 });
             }
         }
-    }, [checkValue, emptyInitialValues, seLectID]);
+    }, [checkValue, emptyInitialValues, selectID]);
 
     return (
         <Dialog
@@ -104,10 +143,12 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, seLectID, checkValue }
             onClose={() => setOpen(false)}
             fullWidth
             maxWidth='md'
+            sx={{ '& .MuiDialog-paper': { height: '1000px' } }}
         >
             <DialogTitle sx={{ textAlign: 'center' }}>
                 {checkValue === 'add' ? 'Thêm san phẩm' : checkValue === 'view' ? 'Xem sản phẩm' : 'Sửa sản phẩm'}
             </DialogTitle>
+            
             <Formik
                 enableReinitialize
                 initialValues={initialValues}
@@ -116,7 +157,50 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, seLectID, checkValue }
                 validateOnChange={false}
                 validateOnBlur={false}
             >
+                {({ resetForm }) => (
+                    <Form>
+                        <DialogContent>
+                            <Grid container spacing={2}>
+                                <Grid item xs={3}>
+                                    <Box>
+                                        <Slider asNavFor={nav2} ref={(slider: any) => (slider1.current = slider)}>
+                                            <Box>
+                                                <img
+                                                    src={getProductImage}
+                                                    alt={getProductImage}
+                                                    width="100%"
+                                                    style={{ borderRadius: '5px' }}
+                                                />
+                                            </Box>
+                                            {product?.gender.map((step: any) => (
+                                                <Box key={step.id}>
+                                                    <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
+                                                </Box>
+                                            ))}
+                                        </Slider>
+                                        <Slider asNavFor={nav1} ref={(slider: any) => (slider2.current = slider)} {...settings}>
+                                            <Box sx={{ p: 1, cursor: 'pointer' }}>
+                                                <img
+                                                    src={getProductImage}
+                                                    alt={getProductImage}
+                                                    width="100%"
+                                                    style={{ borderRadius: '5px' }}
+                                                />
+                                            </Box>
+                                            {product?.gender.map((step: any) => (
+                                                <Box key={step.id} sx={{ p: 1, cursor: 'pointer' }}>
+                                                    <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
+                                                </Box>
+                                            ))}
+                                        </Slider>
+                                    </Box>
+                                </Grid>
+                                {/* Other Grid items go here */}
+                            </Grid>
+                        </DialogContent>
+                    </Form>
 
+                )}
             </Formik>
         </Dialog>
     )

@@ -17,7 +17,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconChartBar, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import icontext, { default as iconPoint } from 'src/assets/images/logos/R-Point.png';
-// import BuyProduct from 'src/components/admin/buyproduct';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -26,6 +25,11 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DialogBuyProduct from './DialogBuyProduct';
+
+
+
+
 const BCrumb = [
   {
     to: '/',
@@ -260,6 +264,7 @@ const BuyPoints = () => {
         title: 'Số lượng mua',
         dataIndex: 'soluongmua',
       },
+      
       {
         title: 'Tổng doanh thu',
         dataIndex: 'tongdoanhthu',
@@ -513,6 +518,13 @@ const BuyPoints = () => {
           <CustomTable columns={column} dataSource={ProductTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogBuyProduct
+        open={open}
+        setOpen={setOpen}
+        setCheckValue={setCheckValue}
+        checkValue={checkValue}
+        selectID={selectID}
+      />
     </>
   );
 };
