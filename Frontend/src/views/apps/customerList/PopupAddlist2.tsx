@@ -122,10 +122,10 @@ const PopupAddList2 = () => {
               Thông tin cá nhân
             </Typography>
             <Grid container spacing={2}>
-              {/* Cột trái */}
-              <Grid item xs={12} md={6}>
+              {/* Hàng ngang chứa tên, sđt, email */}
+              <Grid item xs={12}>
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
+                  <Grid item xs={4}>
                     <CustomFormLabel htmlFor="name">Tên khách hàng</CustomFormLabel>
                     <CustomTextField
                       id="name"
@@ -138,8 +138,7 @@ const PopupAddList2 = () => {
                       helperText={formik.touched.name && formik.errors.name}
                     />
                   </Grid>
-
-                  <Grid item xs={12}>
+                  <Grid item xs={4}>
                     <CustomFormLabel htmlFor="phone">Số điện thoại</CustomFormLabel>
                     <CustomTextField
                       id="phone"
@@ -152,8 +151,7 @@ const PopupAddList2 = () => {
                       helperText={formik.touched.phone && formik.errors.phone}
                     />
                   </Grid>
-
-                  <Grid item xs={12}>
+                  <Grid item xs={4}>
                     <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
                     <CustomTextField
                       id="email"
@@ -167,7 +165,27 @@ const PopupAddList2 = () => {
                       helperText={formik.touched.email && formik.errors.email}
                     />
                   </Grid>
+                </Grid>
+              </Grid>
 
+              {/* Ngày sinh và giới tính theo hàng dọc */}
+              <Grid item xs={12} md={6}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <CustomFormLabel htmlFor="dob">Ngày sinh</CustomFormLabel>
+                    <CustomTextField
+                      id="dob"
+                      type="date"
+                      variant="outlined"
+                      fullWidth
+                      InputLabelProps={{ shrink: true }}
+                      value={formik.values.dob}
+                      onChange={formik.handleChange}
+                      name="dob"
+                      error={formik.touched.dob && Boolean(formik.errors.dob)}
+                      helperText={formik.touched.dob && formik.errors.dob}
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <CustomFormLabel htmlFor="gender">Giới tính</CustomFormLabel>
                     <CustomSelect
@@ -193,43 +211,25 @@ const PopupAddList2 = () => {
                 </Grid>
               </Grid>
 
-              {/* Cột phải */}
+              {/* Ghi chú */}
               <Grid item xs={12} md={6}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <CustomFormLabel htmlFor="dob">Ngày sinh</CustomFormLabel>
-                    <CustomTextField
-                      id="dob"
-                      type="date"
-                      variant="outlined"
-                      fullWidth
-                      InputLabelProps={{ shrink: true }}
-                      value={formik.values.dob}
-                      onChange={formik.handleChange}
-                      name="dob"
-                      error={formik.touched.dob && Boolean(formik.errors.dob)}
-                      helperText={formik.touched.dob && formik.errors.dob}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <CustomFormLabel htmlFor="notes">Ghi chú</CustomFormLabel>
-                    <CustomTextField
-                      id="notes"
-                      variant="outlined"
-                      fullWidth
-                      multiline
-                      rows={6}
-                      value={formik.values.notes}
-                      onChange={formik.handleChange}
-                      name="notes"
-                      error={formik.touched.notes && Boolean(formik.errors.notes)}
-                      helperText={formik.touched.notes && formik.errors.notes}
-                    />
-                  </Grid>
-                </Grid>
+                <CustomFormLabel htmlFor="notes">Ghi chú</CustomFormLabel>
+                <CustomTextField
+                  id="notes"
+                  variant="outlined"
+                  fullWidth
+                  multiline
+                  rows={6}
+                  value={formik.values.notes}
+                  onChange={formik.handleChange}
+                  name="notes"
+                  error={formik.touched.notes && Boolean(formik.errors.notes)}
+                  helperText={formik.touched.notes && formik.errors.notes}
+                />
               </Grid>
             </Grid>
           </Box>
+
 
           {/* Thông tin trợ lý và kênh */}
           <Box
@@ -255,6 +255,7 @@ const PopupAddList2 = () => {
               Trợ lý và kênh
             </Typography>
             <Grid container spacing={2}>
+              {/* Cột trái chứa Trợ lý và Tags */}
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="assistant">Trợ lý</CustomFormLabel>
                 <CustomTextField
@@ -267,11 +268,9 @@ const PopupAddList2 = () => {
                   error={formik.touched.assistant && Boolean(formik.errors.assistant)}
                   helperText={formik.touched.assistant && formik.errors.assistant}
                 />
-                <Grid item xs={12}>
-                  <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
-                  <Tags />
-                </Grid>
               </Grid>
+
+              {/* Cột phải chứa Kênh */}
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="selectedChannels">Kênh</CustomFormLabel>
                 <CustomSelect
@@ -298,8 +297,15 @@ const PopupAddList2 = () => {
                   </Typography>
                 )}
               </Grid>
+
+              {/* Form Tags */}
+              <Grid item xs={12}  sx={{ width: '80%' }}>
+                <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
+                <Tags />
+              </Grid>
             </Grid>
           </Box>
+
 
           {/* Thông tin công ty */}
           <Box
