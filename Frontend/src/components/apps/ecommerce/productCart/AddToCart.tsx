@@ -59,7 +59,9 @@ const AddToCart = () => {
   // Lấy sản phẩm từ giỏ hàng
   const Cartproduct: any = useSelector((state) => state.ecommerceReducer.cart);
   const total = sum(Cartproduct.map((product: any) => product.point * product.qty));
-  const Discount = Math.round(total * (5 / 100));
+  const qty = sum(Cartproduct.map((product: any) => product.qty));
+
+  const Discount = sum(Cartproduct.map((product: any) => product.qty * product.discount));
   const Increase = (productId: number | any) => {
     dispatch(increment(productId));
   };
@@ -166,7 +168,7 @@ const AddToCart = () => {
                           justifyContent={'center'}
                         >
                           {' '}
-                          {product.point.toLocaleString('vn-VN')}{' '}
+                          {(product.point * product.qty).toLocaleString('vn-VN')}{' '}
                           <img
                             src={logoPoint}
                             alt={logoPoint}
@@ -184,7 +186,7 @@ const AddToCart = () => {
                           alignItems={'center'}
                           justifyContent={'center'}
                         >
-                          {product.discount.toLocaleString('vn-VN')}{' '}
+                          {(product.discount * product.qty).toLocaleString('vn-VN')}{' '}
                           <img
                             src={logoPoint}
                             alt={logoPoint}
@@ -219,7 +221,7 @@ const AddToCart = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-            <FirstStep total={total} Discount={Discount} />
+            <FirstStep total={total} Discount={Discount} qty={qty} />
             <Stack direction={'row'} justifyContent="space-between">
               <Link to={'/apps/ecommerce/shop'}>
                 <Button color="secondary" variant="contained">
@@ -228,7 +230,10 @@ const AddToCart = () => {
               </Link>
 
               <a onClick={handleClick}>
-                <Afletpoint2> Thanh toán</Afletpoint2>
+                <Afletpoint2 Cartproduct={Cartproduct} total={total} Discount={Discount}>
+                  {' '}
+                  Thanh toán
+                </Afletpoint2>
               </a>
             </Stack>
             <Snackbar

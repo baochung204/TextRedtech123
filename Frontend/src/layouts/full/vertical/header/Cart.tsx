@@ -13,7 +13,7 @@ const Cart = () => {
   const bcount = Cartproduct.length > 0 ? Cartproduct.length : '0';
 
   const checkout = useSelector((state: AppState) => state.ecommerceReducer.cart);
-  const total = sum(checkout.map((product: any) => product.price * product.qty));
+  const total = sum(checkout.map((product: any) => product.point * product.qty));
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
