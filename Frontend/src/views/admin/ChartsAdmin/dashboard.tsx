@@ -9,6 +9,32 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { default as Affilatechartadmin } from './Affilatechartadmin';
+import admin from 'src/assets/Adminphoto/admin.png';
+import aov from 'src/assets/Adminphoto/aov.png';
+import blog from 'src/assets/Adminphoto/bai viet.png';
+import reaction from 'src/assets/Adminphoto/cam xuc.png';
+import pending from 'src/assets/Adminphoto/cho xu ly.png';
+import checkout from 'src/assets/Adminphoto/chua thanh toan.png';
+import processing from 'src/assets/Adminphoto/chua xu ly.png';
+import done from 'src/assets/Adminphoto/da xu ly.png';
+import feedbackgreaterthan3 from 'src/assets/Adminphoto/danh gia tren 3.png';
+import feedbacksmallerthan3 from 'src/assets/Adminphoto/danh gia duoi 3.png';
+import feedbacknormal from 'src/assets/Adminphoto/danh gia trung binh.png';
+import blogrevenue from 'src/assets/Adminphoto/doanh thu bai viet.png';
+import rpointrevenue from 'src/assets/Adminphoto/doanh thu r poi.png';
+import productrevenue from 'src/assets/Adminphoto/doanh thu san pham.png';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import course from 'src/assets/Adminphoto/khoá.png';
+import amountbuy from 'src/assets/Adminphoto/luot mua san pham.png';
+import amountview from 'src/assets/Adminphoto/luot xem bai viet.png';
+import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
+import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
+import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
+import ticket from 'src/assets/Adminphoto/ticket.png';
+import cvr from 'src/assets/ICON/cvr.png';
 import Affilatechartadmin1 from './Affilatechartadmin1';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
 import Affilatechartadmin6 from './Affiliatechartadmin6';
@@ -163,6 +189,7 @@ const dataSource = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        <img src={customer} width={30} />
       </Box>
     ),
   },
@@ -184,7 +211,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={cvr} width={30} />
       </Box>
     ),
   },
@@ -206,7 +233,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={bill} width={30} />
       </Box>
     ),
   },
@@ -228,7 +255,8 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
@@ -253,7 +281,8 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={customer} width={30} />
       </Box>
     ),
   },
@@ -275,7 +304,8 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={rpointrevenue} width={30} />
       </Box>
     ),
   },
@@ -297,7 +327,8 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={bill} width={30} />
       </Box>
     ),
   },
@@ -319,7 +350,8 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={rpointblance} width={30} />
       </Box>
     ),
   },
@@ -342,6 +374,7 @@ const dataSource_rpoint = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        {/* chưa thay */}
       </Box>
     ),
   },
@@ -364,6 +397,7 @@ const dataSource_rpoint = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        {/* Chưa thay */}
       </Box>
     ),
   },
@@ -389,6 +423,7 @@ const dataSource_affiliate = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        {/* chưa thay */}
       </Box>
     ),
   },
@@ -411,6 +446,7 @@ const dataSource_affiliate = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        <img src={customer} width={30} />
       </Box>
     ),
   },
@@ -432,7 +468,8 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={bill} width={30} />
       </Box>
     ),
   },
@@ -454,7 +491,8 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
@@ -476,7 +514,8 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={commission} width={30} />
       </Box>
     ),
   },
@@ -499,6 +538,7 @@ const dataSource_affiliate = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        {/* chưa thay */}
       </Box>
     ),
   },
@@ -521,6 +561,7 @@ const dataSource_affiliate = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        {/* chưa thay */}
       </Box>
     ),
   },
@@ -1013,7 +1054,8 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={processing} width={30} />
       </Box>
     ),
   },
