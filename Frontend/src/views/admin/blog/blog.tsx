@@ -329,7 +329,7 @@ const BlogAdmin = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
+                    onClick={() => setIsPopupOpen(true)}
 
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
