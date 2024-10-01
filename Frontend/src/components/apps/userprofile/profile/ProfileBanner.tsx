@@ -82,7 +82,7 @@ const ProfileBanner = () => {
           container
           spacing={0}
           sx={{
-            justifyContent: { xs: 'center', sm: 'center' },
+            justifyContent: { xs: 'space-evenly', sm: 'space-evenly' },
             alignItems: 'center',
             display: { xs: 'flex', sm: 'flex' },
           }}
@@ -167,26 +167,19 @@ const ProfileBanner = () => {
 
           {/* friends following buttons */}
           <Grid
+            style={{ position: 'absolute', bottom: 55, right: 0 }}
             item
             lg={4}
             sm={6}
             xs={12}
             sx={{
-              order: {
-                xs: '3',
-                sm: '3',
-                lg: '3',
-              },
+              order: 2,
+              display: 'flex',
+              justifyContent: { xs: 'center', sm: 'flex-end' },
+              alignItems: 'center',
             }}
           >
-            <Stack
-              direction={'row'}
-              gap={2}
-              my={2}
-              px={2}
-              spacing={2}
-              sx={{ justifyContent: { sx: 'center', sm: 'end' } }}
-            >
+            <Stack direction={'row'} gap={2} my={2} px={2} spacing={2}>
               <Link to={'/apps/affiliate'}>
                 <Button
                   color="primary"
