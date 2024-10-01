@@ -24,6 +24,7 @@ import ChildCard from '../../../shared/ChildCard';
 interface Props {
   total: number;
   Discount: number;
+  qty: number;
 }
 const packages = [
   {
@@ -45,7 +46,7 @@ const packages = [
     timeFlash: 16,
   },
 ];
-const FirstStep = ({ total, Discount }: Props) => {
+const FirstStep = ({ total, Discount, qty }: Props) => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
   // const theme = useTheme();

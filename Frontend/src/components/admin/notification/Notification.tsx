@@ -14,7 +14,9 @@ import {
   MenuItem,
   Select,
   TextField,
+
   Tooltip,
+
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -34,6 +36,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import TopCard from 'src/components/widgets/cards/TopCard';
 import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import BlankCard from '../../../components/shared/BlankCard';
+import AddNotification from './add/AddNotification';
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -337,11 +340,15 @@ const ContentNotification = () => {
           >
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item>
-                <Tooltip title="Thêm mới khách hàng" onClick={handleOpenPopup}>
-                  <Fab size="small" color="primary" aria-label="plus" sx={{ my: 'auto' }}>
-                    <IconPlus width={18} />
-                  </Fab>
-                </Tooltip>
+
+                <IconButton
+                  color="primary"
+                  aria-label="Add to cart"
+                  // onClick={() => setOpen(true)}
+                >
+                  <AddNotification />
+                </IconButton>
+
               </Grid>
               <Grid item>
                 <TextField
