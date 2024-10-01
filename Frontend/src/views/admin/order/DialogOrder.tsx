@@ -347,5 +347,4 @@ const DialogOrder = ({ open, setOpen, selectID, checkValue, setCheckValue }: Pro
         </Dialog>
     )
 }
-
 export default DialogOrder
