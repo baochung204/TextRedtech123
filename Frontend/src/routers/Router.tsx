@@ -151,7 +151,7 @@ const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/hi
 const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
 const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));
 const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
-
+// const Suggestion = Loadable(lazy(() => import('')));
 //history of contract
 
 const ContractAffiliateUser = Loadable(
