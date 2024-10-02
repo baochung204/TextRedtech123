@@ -30,13 +30,14 @@ import aov from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 
 import DialogBuyProduct from './DialogBuyProduct';
+import PageContainer from 'src/components/container/PageContainer';
 
 const BCrumb = [
   {
     to: '/',
     title: 'Trang chủ',
   },
-  { to: 'admin/buy/products', title: 'Danh mục sản phẩm' },
+  { to: 'admin/buy/products', title: 'Sản phẩm' },
 ];
 
 const DataBox = [
@@ -337,192 +338,194 @@ const BuyPoints = () => {
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <>
-      <BannerPage title="Đơn hàng sản phẩm" items={BCrumb} />
-      <Grid container rowSpacing={3}>
-        <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
-        </Grid>
+      <PageContainer title="Sản phẩm" description="this is  page">
+        <BannerPage title="Sản phẩm" items={BCrumb} />
+        <Grid container rowSpacing={3}>
+          <Grid item xs={12}>
+            <TopCard dataSource={DataBox} totalColumn={5} />
+          </Grid>
 
-        <Grid item xs={12}>
-          <Grid container sx={{ alignItems: 'center' }} spacing={2}>
-            <Grid
-              item
-              xs={4}
-              sm={4}
-              md={4}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    // onClick={() => setOpen(true)}
-
-                    onClick={() => {
-                      setOpen(true);
-                      setCheckValue('add');
-                    }}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="12" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth={true}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={4}
-              sx={{
-                display: 'flex',
-                justifyContent: 'end',
-                alignItems: 'center',
-              }}
-            >
-              <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={column.length - dataSelect.length} color="primary">
-                  <FilterListIcon />
-                </Badge>
-              </IconButton>
-
-              <Select
-                multiple
-                value={dataSelect}
-                displayEmpty
-                onChange={handleColumnChange}
-                renderValue={() => 'Sửa đổi cột'}
-                size="small"
-                MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      marginTop: 1,
-                      maxHeight: 400,
-                      '&::-webkit-scrollbar': {
-                        width: '4px',
-                      },
-                      '&::-webkit-scrollbar-thumb': {
-                        backgroundColor: '#D2D2D2',
-                        borderRadius: '10px',
-                      },
-                      '&::-webkit-scrollbar-thumb:hover': {
-                        backgroundColor: '#C6C8CC',
-                      },
-                      '&::-webkit-scrollbar-track': {
-                        backgroundColor: '#f1f1f1',
-                      },
-                    },
-                  },
-                  anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  },
-                  transformOrigin: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                  },
+          <Grid item xs={12}>
+            <Grid container sx={{ alignItems: 'center' }} spacing={2}>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={4}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
-                {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                <Grid container sx={{ alignItems: 'center' }}>
+                  <Grid item>
+                    <IconButton
+                      color="primary"
+                      aria-label="Add to cart"
+                      // onClick={() => setOpen(true)}
 
-                  const isSelected = dataSelect.includes(header.dataIndex);
+                      onClick={() => {
+                        setOpen(true);
+                        setCheckValue('add');
+                      }}
+                    >
+                      <AddCircleIcon sx={{ fontSize: 30 }} />
+                    </IconButton>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm trợ lý"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="12" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'end',
+                  alignItems: 'center',
+                }}
+              >
+                <IconButton aria-label="filter" sx={{ mr: 2 }}>
+                  <Badge badgeContent={column.length - dataSelect.length} color="primary">
+                    <FilterListIcon />
+                  </Badge>
+                </IconButton>
 
-                  return (
-                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
-                      <ListItemText primary={header.title} />
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size="small"
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        marginTop: 1,
+                        maxHeight: 400,
+                        '&::-webkit-scrollbar': {
+                          width: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: '#D2D2D2',
+                          borderRadius: '10px',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                          backgroundColor: '#C6C8CC',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                          backgroundColor: '#f1f1f1',
+                        },
+                      },
+                    },
+                    anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    },
+                    transformOrigin: {
+                      vertical: 'top',
+                      horizontal: 'right',
+                    },
+                  }}
+                >
+                  {column.map((header: any) => {
+                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                    const isSelected = dataSelect.includes(header.dataIndex);
+
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </Grid>
+              <Grid item xs={4}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                  tới
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value1}
+                      onChange={(newValue) => {
+                        setValue1(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={12}>
+            <CustomTable columns={column} dataSource={ProductTable} dataSelect={dataSelect} />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={ProductTable} dataSelect={dataSelect} />
-        </Grid>
-      </Grid>
-      <DialogBuyProduct
-        open={open}
-        setOpen={setOpen}
-        setCheckValue={setCheckValue}
-        checkValue={checkValue}
-        selectID={selectID}
-      />
+        <DialogBuyProduct
+          open={open}
+          setOpen={setOpen}
+          setCheckValue={setCheckValue}
+          checkValue={checkValue}
+          selectID={selectID}
+        />
+      </PageContainer>
     </>
   );
 };

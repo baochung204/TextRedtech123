@@ -154,7 +154,7 @@ const CustomerList2 = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer title="Danh sách khách hàng">
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value="1">
@@ -310,7 +310,7 @@ const CustomerList2 = () => {
         <DialogContent
           sx={{
             padding: '0',
-            overflowY: 'hidden'
+            overflowY: 'hidden',
           }}
         >
           <PopupAddList2 />

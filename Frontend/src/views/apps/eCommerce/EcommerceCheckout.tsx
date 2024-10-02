@@ -19,7 +19,7 @@ const BCrumb = [
 
 const EcommerceCheckout = () => {
   return (
-    <PageContainer title="Checkout" description="this is Shop List page">
+    <PageContainer title="Thanh toán" description="this is page">
       {/* breadcrumb */}
       <Breadcrumb title="Checkout" items={BCrumb} />
       <ChildCard>

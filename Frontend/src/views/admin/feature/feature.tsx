@@ -35,9 +35,8 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
-import DialogFeature from './dialog/DialogFeature';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DataFeature from './data/DataFeuture';
+import DialogFeature from './dialog/DialogFeature';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -143,22 +142,20 @@ interface FeatureItem {
 }
 
 const PageFeature = () => {
-
-//   const [isPopupOpen] = React.useState(false);
-//   const column = useMemo<Column[]>(
+  //   const [isPopupOpen] = React.useState(false);
+  //   const column = useMemo<Column[]>(
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
 
   const column: Column[] = useMemo(
-
     () => [
       { title: 'ID', dataIndex: 'id' },
       {
         title: 'Ngày tạo',
         dataIndex: 'createdAt',
-        render: (value: any) => value.toLocaleDateString(), 
+        render: (value: any) => value.toLocaleDateString(),
       },
       { title: 'Họ và tên', dataIndex: 'name' },
       { title: 'Email', dataIndex: 'email' },
@@ -195,7 +192,7 @@ const PageFeature = () => {
         ),
       },
     ],
-    []
+    [],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
@@ -227,7 +224,7 @@ const PageFeature = () => {
   }
 
   return (
-    <PageContainer>
+    <PageContainer title="Đề xuất tính năng">
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -288,10 +285,7 @@ const PageFeature = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge
-                  badgeContent={column.length - dataSelect.length}
-                  color="primary"
-                >
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>
@@ -401,11 +395,7 @@ const PageFeature = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable
-            columns={column}
-            dataSource={DataFeature}
-            dataSelect={dataSelect}
-          />
+          <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} />
           <DialogFeature
             open={open}
             value="1" // Ensure this value matches the condition in DialogFeature

@@ -8,7 +8,6 @@ import {
   Checkbox,
   Chip,
   Dialog,
-  DialogActions,
   DialogContent,
   Grid,
   IconButton,
@@ -16,11 +15,9 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Slide,
   TextField,
   Typography,
 } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -43,19 +40,11 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
-import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
   { to: '/admin/blogs', title: 'Danh sách bài viết' },
 ];
-
-const Transition = React.forwardRef<
-  unknown,
-  TransitionProps & { children: React.ReactElement<any, any> }
->(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 interface StyleProps {
   bgColor: string;
@@ -298,7 +287,7 @@ const BlogAdmin = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer title="Quản lý bài viết">
       <BannerPage title="Quản lý bài viết" items={BCrumb} />
 
       <Grid container spacing={3}>

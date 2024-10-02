@@ -171,7 +171,7 @@ const VoucherAdmin = () => {
   // };
 
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Mã khuyến mãi" description="this is page">
       <BannerPage title="Mã khuyến mãi" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>

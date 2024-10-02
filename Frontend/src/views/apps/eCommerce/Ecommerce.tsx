@@ -21,7 +21,7 @@ const Ecommerce = () => {
   const [isMobileSidebarOpen, setMobileSidebarOpen] = React.useState(false);
 
   return (
-    <PageContainer title="Shop List" description="this is Shop List page">
+    <PageContainer title="Shop" description="this is page">
       {/* breadcrumb */}
       <Breadcrumb title="Ecom-Shop" items={BCrumb} />
       <AppCard>
