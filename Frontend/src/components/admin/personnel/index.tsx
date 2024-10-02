@@ -1,12 +1,13 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Grid, Tab } from '@mui/material';
-import { IconChartBar } from '@tabler/icons-react';
 import { useState } from 'react';
+import admin from 'src/assets/Adminphoto/admin.png';
+import online from 'src/assets/Adminphoto/hoat dong.png';
+import course from 'src/assets/Adminphoto/khóa.png';
+import employee from 'src/assets/Adminphoto/nhan vien.png';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
 import PersonnelTab from './component/personnelTab';
-import admin from 'src/assets/Adminphoto/admin.png';
-import course from 'src/assets/Adminphoto/khóa.png';
 
 interface StyleProps {
   bgColor: string;
@@ -33,7 +34,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={employee} width={30} />
       </Box>
     ),
   },
@@ -74,7 +75,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={online} width={30} />
       </Box>
     ),
   },

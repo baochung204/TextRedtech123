@@ -26,6 +26,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import rating from 'src/assets/Adminphoto/DANH GIA.png';
 
 const BCrumb = [
   {
@@ -101,7 +102,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconStars color="white" size={30} />
+          <img src={rating} width={30} />
         </Box>
       </>
     ),

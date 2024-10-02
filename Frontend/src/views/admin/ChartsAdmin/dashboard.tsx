@@ -5,20 +5,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconChartBar, IconGridDots } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React from 'react';
-import PageContainer from 'src/components/container/PageContainer';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { default as Affilatechartadmin } from './Affilatechartadmin';
-import admin from 'src/assets/Adminphoto/admin.png';
-import aov from 'src/assets/Adminphoto/aov.png';
 import blog from 'src/assets/Adminphoto/bai viet.png';
 import reaction from 'src/assets/Adminphoto/cam xuc.png';
 import pending from 'src/assets/Adminphoto/cho xu ly.png';
-import checkout from 'src/assets/Adminphoto/chua thanh toan.png';
 import processing from 'src/assets/Adminphoto/chua xu ly.png';
-import done from 'src/assets/Adminphoto/da xu ly.png';
-import feedbackgreaterthan3 from 'src/assets/Adminphoto/danh gia tren 3.png';
+import used from 'src/assets/Adminphoto/da su dung luot ap ma.png';
+import checkoutsuccess from 'src/assets/Adminphoto/da thanh toan.png';
 import feedbacksmallerthan3 from 'src/assets/Adminphoto/danh gia duoi 3.png';
+import feedbackgreaterthan3 from 'src/assets/Adminphoto/danh gia tren 3.png';
 import feedbacknormal from 'src/assets/Adminphoto/danh gia trung binh.png';
 import blogrevenue from 'src/assets/Adminphoto/doanh thu bai viet.png';
 import rpointrevenue from 'src/assets/Adminphoto/doanh thu r poi.png';
@@ -27,17 +21,24 @@ import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 import commission from 'src/assets/Adminphoto/hoa hong.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
-import course from 'src/assets/Adminphoto/khoá.png';
 import amountbuy from 'src/assets/Adminphoto/luot mua san pham.png';
 import amountview from 'src/assets/Adminphoto/luot xem bai viet.png';
-import view from 'src/assets/NotificationAdmin/luot xem.png';
-import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
-import checkoutsuccess from 'src/assets/Adminphoto/da thanh toan.png';
 import ticketsale from 'src/assets/Adminphoto/ma giam gia.png';
-import amountticketsale from 'src/assets/Adminphoto/so ma giam gia.png';
+import publisher from 'src/assets/Adminphoto/Publisher.png';
+import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
 import flashsale from 'src/assets/Adminphoto/so flash sale.png';
+import amountticketsale from 'src/assets/Adminphoto/so ma giam gia.png';
+import balancepublisher from 'src/assets/Adminphoto/Số dư Publisher.png';
 import ticket from 'src/assets/Adminphoto/ticket.png';
+import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
+import buyrate from 'src/assets/Adminphoto/ty le mua.png';
+import usagerate from 'src/assets/Adminphoto/ty le su dung.png';
 import cvr from 'src/assets/ICON/cvr.png';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
+import PageContainer from 'src/components/container/PageContainer';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { default as Affilatechartadmin } from './Affilatechartadmin';
 import Affilatechartadmin1 from './Affilatechartadmin1';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
 import Affilatechartadmin6 from './Affiliatechartadmin6';
@@ -407,8 +408,7 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
-        {/* chưa thay */}
+        <img src={publisher} width={30} />
       </Box>
     ),
   },
@@ -514,8 +514,7 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
-        {/* chưa thay */}
+        <img src={balancepublisher} width={30} />
       </Box>
     ),
   },
@@ -623,7 +622,7 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={used} width={30} />
       </Box>
     ),
   },
@@ -644,7 +643,7 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={usagerate} width={30} />
       </Box>
     ),
   },
@@ -686,7 +685,8 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={amountbuy} width={30} />
       </Box>
     ),
   },
@@ -728,7 +728,7 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={buyrate} width={30} />
       </Box>
     ),
   },
@@ -796,7 +796,7 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={reaction} width={30} />
       </Box>
     ),
   },
@@ -817,7 +817,7 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={totalrevenue} width={30} />
       </Box>
     ),
   },
@@ -838,7 +838,7 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={amountview} width={30} />
       </Box>
     ),
   },

@@ -12,6 +12,11 @@ import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FlashSale from './../../../components/admin/voucher/flashsale';
+import used from 'src/assets/MaKhuyenMai/da su dung.png';
+import sale from 'src/assets/MaKhuyenMai/ma khuyen mai.png';
+import amountticket from 'src/assets/MaKhuyenMai/so luong ma.png';
+import usagerate from 'src/assets/MaKhuyenMai/ty le su dung.png';
+import { use } from 'i18next';
 
 const BCrumb = [
   {
@@ -39,7 +44,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <img src={sale} width={30} />
         </Box>
       </>
     ),
@@ -61,7 +66,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandDeezer color="white" size={30} />
+          <img src={amountticket} width={30} />
         </Box>
       </>
     ),
@@ -83,7 +88,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandCakephp color="white" size={30} />
+          <img src={used} width={30} />
         </Box>
       </>
     ),
@@ -105,7 +110,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandDatabricks color="white" size={30} />
+          <img src={usagerate} width={30} />
         </Box>
       </>
     ),

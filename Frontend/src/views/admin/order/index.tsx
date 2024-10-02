@@ -28,6 +28,8 @@ import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import PageContainer from 'src/components/container/PageContainer';
+import customerpaid from 'src/assets/Adminphoto/khach tra phi.png';
+import personorcompany from 'src/assets/Adminphoto/cn dn.png';
 
 const BCrumb = [
   {
@@ -87,7 +89,7 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={customerpaid} width={30} />
         </Box>
       </>
     ),
@@ -109,7 +111,7 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={personorcompany} width={30} />
         </Box>
       </>
     ),
