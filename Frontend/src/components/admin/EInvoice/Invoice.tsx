@@ -16,22 +16,21 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconBox, IconChartBar, IconEye, IconSearch, IconZoomMoney } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
 import RPoint from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataInvoiceTable } from './datatable/InvoiceTableData';
-import bill from 'src/assets/Adminphoto/dơn hang.png';
-import revenue from 'src/assets/Adminphoto/doanh thu.png';
-import commission from 'src/assets/Adminphoto/hoa hong.png';
 
 const dataSource = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Đơn hàng',
     total: '1907',
     icons: (
@@ -53,8 +52,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'R-Point',
     total: '190.720.030',
     icons: (
@@ -76,8 +74,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Doanh thu',
     total: '123.456.789đ',
     icons: (
@@ -97,8 +94,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Hoa hồng',
     total: '123.456.789đ',
     icons: (

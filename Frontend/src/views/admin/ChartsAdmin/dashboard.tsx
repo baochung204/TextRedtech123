@@ -175,7 +175,7 @@ const dataFilter_detail = [
 const dataSource = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Khách hàng',
     total: '190',
     icons: (
@@ -196,8 +196,8 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'CVR',
     total: '190',
     icons: (
@@ -217,8 +217,8 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '123',
     icons: (
@@ -238,8 +238,8 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu',
     total: '23',
     icons: (
@@ -263,7 +263,7 @@ const dataSource = [
 const dataSource_rpoint = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Khách hàng',
     total: '190',
     icons: (
@@ -283,8 +283,8 @@ const dataSource_rpoint = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu(point)',
     total: '190',
     icons: (
@@ -304,8 +304,8 @@ const dataSource_rpoint = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '123',
     icons: (
@@ -325,8 +325,8 @@ const dataSource_rpoint = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Số dư R-Point',
     total: '23',
     icons: (
@@ -346,8 +346,8 @@ const dataSource_rpoint = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt mua/sản phẩm',
     total: '123',
     icons: (
@@ -367,8 +367,8 @@ const dataSource_rpoint = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu/sản phẩm',
     total: '23',
     icons: (
@@ -392,7 +392,7 @@ const dataSource_rpoint = [
 const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Publisher',
     total: '190',
     icons: (
@@ -413,8 +413,8 @@ const dataSource_affiliate = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Khách hàng',
     total: '190',
     icons: (
@@ -435,8 +435,8 @@ const dataSource_affiliate = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '123',
     icons: (
@@ -456,8 +456,8 @@ const dataSource_affiliate = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu',
     total: '23',
     icons: (
@@ -477,8 +477,8 @@ const dataSource_affiliate = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Hoa hồng',
     total: '123',
     icons: (
@@ -498,8 +498,8 @@ const dataSource_affiliate = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Số dư Publisher',
     total: '23',
     icons: (
@@ -520,8 +520,8 @@ const dataSource_affiliate = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đã thanh toán',
     total: '123',
     icons: (
@@ -541,8 +541,8 @@ const dataSource_affiliate = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Chờ xử lý',
     total: '23',
     icons: (
@@ -566,7 +566,7 @@ const dataSource_affiliate = [
 const dataSource_sale = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Mã khuyến mãi',
     total: '190',
     icons: (
@@ -586,8 +586,8 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Số lượng mã',
     total: '190',
     icons: (
@@ -607,8 +607,8 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đã sử dụng (lượt áp mã)',
     total: '123',
     icons: (
@@ -628,8 +628,8 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Tỉ lệ sử dụng',
     total: '23',
     icons: (
@@ -649,8 +649,8 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Số Flash-sale',
     total: '123',
     icons: (
@@ -670,8 +670,8 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt mua',
     total: '23',
     icons: (
@@ -691,8 +691,8 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu',
     total: '123',
     icons: (
@@ -712,8 +712,8 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Tỉ lệ mua',
     total: '23',
     icons: (
@@ -737,7 +737,7 @@ const dataSource_sale = [
 const dataSource_blog = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Bài viết',
     total: '190',
     icons: (
@@ -758,8 +758,8 @@ const dataSource_blog = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt xem',
     total: '190',
     icons: (
@@ -780,8 +780,8 @@ const dataSource_blog = [
   },
 
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Số cảm xúc',
     total: '23',
     icons: (
@@ -801,8 +801,8 @@ const dataSource_blog = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Tổng doanh thu',
     total: '123',
     icons: (
@@ -822,8 +822,8 @@ const dataSource_blog = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt xem / bài viết',
     total: '23',
     icons: (
@@ -843,8 +843,8 @@ const dataSource_blog = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu / bài viết',
     total: '23',
     icons: (
@@ -869,7 +869,7 @@ const dataSource_blog = [
 const dataSource_ticket = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Đánh giá trung bình',
     total: '190',
     icons: (
@@ -890,8 +890,8 @@ const dataSource_ticket = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Tickets',
     total: '190',
     icons: (
@@ -912,8 +912,8 @@ const dataSource_ticket = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Khách hàng',
     total: '123',
     icons: (
@@ -934,8 +934,8 @@ const dataSource_ticket = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Đánh giá > 3*',
     total: '23',
     icons: (
@@ -956,8 +956,8 @@ const dataSource_ticket = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đánh giá < 3*',
     total: '123',
     icons: (
@@ -978,8 +978,8 @@ const dataSource_ticket = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Chưa xử lý',
     total: '23',
     icons: (

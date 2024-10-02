@@ -14,24 +14,18 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconPasswordUser,
-  IconRefreshOff,
-  IconSearch,
-  IconStars,
-  IconTicket,
-} from '@tabler/icons-react';
+import { IconSearch, IconStars } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
+import processing from 'src/assets/Adminphoto/chua xu ly.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import ticket from 'src/assets/Adminphoto/ticket.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import ticket from 'src/assets/Adminphoto/ticket.png';
-import customer from 'src/assets/Adminphoto/khách hàng.png';
-import processing from 'src/assets/Adminphoto/chua xu ly.png';
 
 const BCrumb = [
   {
@@ -47,7 +41,6 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Ticket',
     total: '2.415',
     icons: (
@@ -70,8 +63,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng',
     total: '1.369',
     icons: (
@@ -93,8 +85,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Đánh giá',
     total: '4.7/5',
     icons: (
@@ -116,8 +107,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Chưa xử lý',
     total: '236',
     icons: (

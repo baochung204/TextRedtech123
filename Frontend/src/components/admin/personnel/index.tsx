@@ -10,7 +10,7 @@ import course from 'src/assets/Adminphoto/khóa.png';
 
 interface StyleProps {
   bgColor: string;
-  color: string;
+
   title: string;
   total: string;
   icons: JSX.Element;
@@ -19,7 +19,6 @@ interface StyleProps {
 const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Nhân viên',
     total: '120',
     icons: (
@@ -39,8 +38,7 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Admin',
     total: '5',
     icons: (
@@ -61,8 +59,7 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Hoạt động',
     total: '52',
     icons: (
@@ -82,8 +79,7 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Khóa',
     total: '12',
     icons: (

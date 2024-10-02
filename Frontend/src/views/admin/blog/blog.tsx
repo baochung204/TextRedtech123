@@ -23,18 +23,18 @@ import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
-  IconBrandStrava,
   IconEdit,
   IconEye,
   IconLockSquareRounded,
-  IconPasswordUser,
   IconSearch,
   IconTrash,
-  IconUser,
 } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import blog from 'src/assets/Adminphoto/bai viet.png';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -42,9 +42,6 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
-import blog from 'src/assets/Adminphoto/bai viet.png';
-import view from 'src/assets/NotificationAdmin/luot xem.png';
-import revenue from 'src/assets/Adminphoto/doanh thu.png';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -60,7 +57,7 @@ const Transition = React.forwardRef<
 
 interface StyleProps {
   bgColor: string;
-  color: string;
+
   title: string;
   total: string;
   icons: JSX.Element;
@@ -69,7 +66,6 @@ interface StyleProps {
 const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Bài viết ',
     total: '120',
     icons: (
@@ -89,8 +85,7 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Lượt xem',
     total: '5',
     icons: (
@@ -110,8 +105,7 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Doanh thu',
     total: '52.200.200 ₫ ',
     icons: (
@@ -131,8 +125,7 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Lượt tim',
     total: '120',
     icons: (
@@ -327,10 +320,7 @@ const BlogAdmin = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-
                     onClick={() => setIsPopupOpen(true)}
-
-
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>

@@ -32,7 +32,6 @@ import commission from 'src/assets/Adminphoto/hoa hong.png';
 const dataSource = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Đơn hàng',
     total: '1907',
     icons: (
@@ -55,8 +54,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'R-Point',
     total: '190.720.030',
     icons: (
@@ -79,8 +77,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Doanh thu',
     total: '123.456.789đ',
     icons: (
@@ -101,8 +98,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Hoa hồng',
     total: '123.456.789đ',
     icons: (

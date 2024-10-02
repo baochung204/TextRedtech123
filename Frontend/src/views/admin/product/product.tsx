@@ -30,8 +30,6 @@ import bill from 'src/assets/Adminphoto/dơn hang.png';
 
 import DialogProduct from './DialogProduct';
 
-
-
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
   { to: '/admin/buy/orderproducts', title: 'Danh sách đơn hàng' },
@@ -40,7 +38,7 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Đơn hàng',
     total: (
       <>
@@ -60,15 +58,13 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          {/* <IconChartBar color="white" size={30} /> */}
           <img src={bill} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Tổng giá trị',
     total: (
       <>
@@ -97,8 +93,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Khuyến mại',
     total: (
       <>
@@ -127,8 +122,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Tổng thanh toán',
     total: (
       <>
@@ -157,8 +151,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'AOV',
     total: (
       <>
@@ -197,12 +190,9 @@ interface Column {
 }
 
 const ProductAdmin = () => {
-
-
   const [open, setOpen] = useState<boolean>(false);
   const [selectID, setSelectID] = useState<string | null>(null);
-  const [checkValue, setCheckValue] = useState<string | null>(null)
-
+  const [checkValue, setCheckValue] = useState<string | null>(null);
 
   const column = useMemo<Column[]>(
     () => [
@@ -265,7 +255,7 @@ const ProductAdmin = () => {
             onClick={() => {
               setSelectID(row.id_don_hang);
               setOpen(true);
-              setCheckValue('show')
+              setCheckValue('show');
             }}
           >
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
@@ -323,14 +313,12 @@ const ProductAdmin = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-
                     // onClick={() => setOpen(true)}
 
                     onClick={() => {
                       setOpen(true);
-                      setCheckValue('add')
+                      setCheckValue('add');
                     }}
-
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
@@ -365,7 +353,6 @@ const ProductAdmin = () => {
                 alignItems: 'center',
               }}
             >
-
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
                 <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
@@ -410,7 +397,6 @@ const ProductAdmin = () => {
                 }}
               >
                 {column.map((header: any) => {
-
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -482,7 +468,13 @@ const ProductAdmin = () => {
           <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
         </Grid>
       </Grid>
-      <DialogProduct open={open} setOpen={setOpen} checkValue={checkValue} setCheckValue={setCheckValue} selectID={selectID} />
+      <DialogProduct
+        open={open}
+        setOpen={setOpen}
+        checkValue={checkValue}
+        setCheckValue={setCheckValue}
+        selectID={selectID}
+      />
     </>
   );
 };
