@@ -19,7 +19,7 @@ import userImg from 'src/assets/images/profile/user-1.jpg';
 import PageContainer from 'src/components/container/PageContainer';
 
 // import icon1 from 'src/assets/images/svgs/icon-connect.svg';
-import badge from 'src/assets/images/badge/badge2.png';
+import badge from 'src/assets/ICON/c1.png';
 
 // import bannercl from 'src/assets/images/banner/banner_assistant.png';
 import Chart1 from './chart/chart1';
