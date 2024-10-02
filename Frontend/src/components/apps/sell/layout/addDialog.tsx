@@ -42,7 +42,7 @@ const AddDialog = ({ isPopupOpen, setIsPopupOpen }: PropsDialog) => {
           },
           '& .MuiPaper-root': {
             width: '100%',
-            maxWidth: '1000PX', // Giữ chiều rộng của Dialog
+            maxWidth: '1000px', // Giữ chiều rộng của Dialog
           },
         }}
       >

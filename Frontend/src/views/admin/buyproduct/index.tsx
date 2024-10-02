@@ -14,10 +14,9 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import icontext, { default as iconPoint } from 'src/assets/images/logos/R-Point.png';
-// import BuyProduct from 'src/components/admin/buyproduct';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -26,8 +25,16 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 import aov from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
+
+import DialogBuyProduct from './DialogBuyProduct';
+
+
+
+
+
 const BCrumb = [
   {
     to: '/',
@@ -195,6 +202,13 @@ interface Column {
 }
 
 const BuyPoints = () => {
+
+
+  const [open, setOpen] = useState<boolean>(false)
+  const [checkValue, setCheckValue] = useState<string | null>(null)
+  const [selectID, setSelectID] = useState<string | null>(null)
+
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -254,6 +268,7 @@ const BuyPoints = () => {
         title: 'Số lượng mua',
         dataIndex: 'soluongmua',
       },
+      
       {
         title: 'Tổng doanh thu',
         dataIndex: 'tongdoanhthu',
@@ -262,12 +277,53 @@ const BuyPoints = () => {
         title: 'Tỉ trọng doanh thu',
         dataIndex: 'titrongdoanthu',
       },
+      {
+        title: 'Hoạt động',
+        dataIndex: 'action',
+        render: (_row: any, value: any) => (
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <IconButton
+                onClick={() => { setOpen(true); setCheckValue('view'); setSelectID(value.id) }}
+              >
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+            </Grid>
+            <Grid item xs={4}>
+              <IconButton
+                onClick={() => { }}
+              >
+                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+              </IconButton>
+            </Grid>
+          </Grid>
+        ),
+      },
+      {
+        title: 'Thông tin sản phẩm',
+        dataIndex: 'ttsp',
+        isValids: false
+      },
+      {
+        title: 'Hình ảnh',
+        dataIndex: 'ha',
+        isValids: false
+      },
+      {
+        title: 'Secretkey',
+        dataIndex: 'secretkey',
+        isValids: false
+      },
+      {
+        title: 'Hướng dẫn sử dụng',
+        dataIndex: 'hdsd',
+        isValids: false
+      }
     ],
     [],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [selectedItems] = useState<number[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -314,7 +370,11 @@ const BuyPoints = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
+
                     // onClick={() => setOpen(true)}
+
+                    onClick={() => { setOpen(true); setCheckValue('add') }}
+
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
@@ -465,6 +525,13 @@ const BuyPoints = () => {
           <CustomTable columns={column} dataSource={ProductTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogBuyProduct
+        open={open}
+        setOpen={setOpen}
+        setCheckValue={setCheckValue}
+        checkValue={checkValue}
+        selectID={selectID}
+      />
     </>
   );
 };
