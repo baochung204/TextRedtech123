@@ -32,6 +32,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
+import AddFlashSale from './add/AddSale';
+import AddDflashsale from './add/addflashsale';
 
 
 interface DataRow3 {
@@ -229,6 +231,7 @@ const FlashSale = () => {
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -371,7 +374,6 @@ const FlashSale = () => {
       setDataSelect([]);
     }
   }, [column]);
-  const [selectedItems] = useState<number[]>([]);
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
@@ -399,7 +401,7 @@ const FlashSale = () => {
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
+                  onClick={() => setIsPopupOpen(true)}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
@@ -551,6 +553,7 @@ const FlashSale = () => {
           <CustomTable columns={column} dataSource={dataRows3} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
+      <AddDflashsale isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </div>
   );
 };

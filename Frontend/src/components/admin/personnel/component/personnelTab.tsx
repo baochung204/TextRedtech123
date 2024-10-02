@@ -12,7 +12,7 @@ import {
   Select,
   Stack,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -39,7 +39,7 @@ interface Column {
   isValids?: boolean;
 }
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
   const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
   const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
@@ -159,17 +159,18 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                onClick={() => setOpen(true)}
-
-                >
+                  onClick={() => {
+                    setOpen(true);
+                    setSelectedKey(null);
+                  }}>
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item>
                 <TextField
                   id="outlined-search"
                   placeholder="Tìm kiếm trợ lý"
@@ -255,7 +256,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

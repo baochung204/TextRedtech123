@@ -1,9 +1,12 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
   Box,
   Checkbox,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -11,6 +14,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -18,6 +22,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconBellRinging,
   IconEye,
+  IconPlus,
   IconSearch,
   IconTags,
   IconWorldUpload,
@@ -27,8 +32,14 @@ import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
+import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
+import tags from 'src/assets/NotificationAdmin/tags.png';
+import notification from 'src/assets/NotificationAdmin/thong bao.png';
+import interact from 'src/assets/NotificationAdmin/tuong tac.png';
+
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -38,7 +49,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -49,7 +59,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={notification} width={30} />
         </Box>
       </>
     ),
@@ -62,7 +72,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -73,7 +82,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTags color="white" size={30} />
+          <img src={tags} width={30} />
         </Box>
       </>
     ),
@@ -86,7 +95,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -97,7 +105,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconEye color="white" size={30} />
+          <img src={view} width={30} />
         </Box>
       </>
     ),
@@ -110,7 +118,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -121,7 +128,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconWorldUpload color="white" size={30} />
+          <img src={interact} width={30} />
         </Box>
       </>
     ),
@@ -237,7 +244,7 @@ interface Column {
 }
 
 const ContentNotification = () => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
 
   const column = useMemo<Column[]>(
     () => [
@@ -304,7 +311,11 @@ const ContentNotification = () => {
   };
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -340,7 +351,7 @@ const ContentNotification = () => {
                   type="search"
                   variant="outlined"
                   inputProps={{ 'aria-label': 'Search Followers' }}
-                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                  sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px', marginLeft: '10px' } }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -479,6 +490,22 @@ const ContentNotification = () => {
           <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
+      {/* Popup Thêm khách hàng */}
+      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg" keepMounted>
+        <DialogTitle>
+          <Typography padding={'20px'} fontSize={'30px'}>
+            Thêm thông báo
+          </Typography>
+        </DialogTitle>
+        <DialogContent
+          sx={{
+            padding: '0',
+            overflowY: 'hidden',
+          }}
+        >
+          <DialogAddNotification />
+        </DialogContent>
+      </Dialog>
     </Grid>
   );
 };

@@ -17,7 +17,7 @@ import {
   Select,
   Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -30,7 +30,7 @@ import {
   IconPasswordUser,
   IconSearch,
   IconTrash,
-  IconUser
+  IconUser,
 } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -42,7 +42,9 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
-
+import blog from 'src/assets/Adminphoto/bai viet.png';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -72,7 +74,6 @@ const DataBox: StyleProps[] = [
     total: '120',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -83,7 +84,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconUser color="white" size={30} />
+        <img src={blog} width={30} />
       </Box>
     ),
   },
@@ -94,7 +95,6 @@ const DataBox: StyleProps[] = [
     total: '5',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -105,7 +105,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconPasswordUser color="white" size={30} />
+        <img src={view} width={30} />
       </Box>
     ),
   },
@@ -116,7 +116,6 @@ const DataBox: StyleProps[] = [
     total: '52.200.200 ₫ ',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -127,7 +126,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconBrandStrava color="white" size={30} />
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
@@ -138,7 +137,6 @@ const DataBox: StyleProps[] = [
     total: '120',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -162,7 +160,7 @@ interface Column {
 }
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
- 
+
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -283,7 +281,7 @@ const BlogAdmin = () => {
   const [value1, setValue1] = useState<Dayjs | null>(null);
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [selectedItems] = useState<number[]>([]);
+
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -307,10 +305,10 @@ const BlogAdmin = () => {
   return (
     <PageContainer>
       <BannerPage title="Quản lý bài viết" items={BCrumb} />
-     
+
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
+          <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
           <Grid container sx={{ alignItems: 'center' }} spacing={2}>
@@ -325,17 +323,19 @@ const BlogAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
+
+                    onClick={() => setIsPopupOpen(true)}
+
 
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -421,7 +421,6 @@ const BlogAdmin = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -480,7 +479,6 @@ const BlogAdmin = () => {
         </Grid>
         <Grid item xs={12}>
           <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect} />
-
         </Grid>
       </Grid>
       <Dialog

@@ -1,4 +1,3 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -15,22 +14,19 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconBox,
-  IconChartBar,
-  IconPasswordUser,
-  IconSearch,
-  IconZoomMoney,
-} from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
 import Point from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-
 
 const BCrumb = [
   {
@@ -51,7 +47,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -62,7 +57,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          {/* <IconPasswordUser color="white" size={30} /> */}
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
@@ -75,7 +71,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -86,7 +81,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBox color="white" size={30} />
+          {/* <IconBox color="white" size={30} /> */}
+          <img src={bill} width={30} />
         </Box>
       </>
     ),
@@ -99,7 +95,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -110,7 +105,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={revenue} width={30} />
         </Box>
       </>
     ),
@@ -123,7 +119,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -134,7 +129,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconZoomMoney color="white" size={30} />
+          {/* <IconZoomMoney color="white" size={30} /> */}
+          <img src={commission} width={30} />
         </Box>
       </>
     ),
@@ -457,7 +453,7 @@ const OrderRPoint = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                {/* <Grid item >
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -466,8 +462,8 @@ const OrderRPoint = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
-                <Grid item >
+                </Grid> */}
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -553,7 +549,6 @@ const OrderRPoint = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

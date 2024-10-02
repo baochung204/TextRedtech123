@@ -384,15 +384,15 @@ const PageFeature = ({ value, open, setOpen, setSelectedKey, selectedKey }: Prop
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                  {/* <Grid item>
-                    <IconButton
-                      color="primary"
-                      aria-label="Add to cart"
+                <Grid item>
+                  <IconButton
+                    color="primary"
+                    aria-label="Add to cart"
                     // onClick={() => setOpen(true)}
-                    >
-                      <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton>
-                  </Grid> */}
+                  >
+                    <AddCircleIcon sx={{ fontSize: 30 }} />
+                  </IconButton>
+                </Grid>
                 <Grid item>
                   <TextField
                     id="outlined-search"

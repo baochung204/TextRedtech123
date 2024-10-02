@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import { Box, Typography } from '@mui/material';
+import Affilatec3 from '../shared/Affilatec3';
 
 const SpeedometerChart: React.FC = () => {
   const [speed, setSpeed] = useState<number>(70.0);
@@ -84,40 +85,43 @@ const SpeedometerChart: React.FC = () => {
   });
 
   return (
-    <Box position="relative" width="100%" height="350px">
-      <Chart options={chartOptions} series={chartSeries} type="radialBar" height="100%" />
-      <Box
-        position="absolute"
-        width="4px"
-        height="20%"
-        bottom="45%"
-        left="50%"
-        style={{
-          background: 'linear-gradient(to bottom, #ff6633, #ffcc99)',
-          transition: 'transform 1s ease-out',
-          transform: `rotate(${needleRotation}deg)`,
-          transformOrigin: 'bottom center',
-          zIndex: 1,
-        }}
-      />
-      {labelPositions.map((pos, idx) => (
-        <Typography
-          key={idx}
+     <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
+      <Box position="relative" width="100%" height="350px" alignItems='center'>
+        <Chart options={chartOptions} series={chartSeries} type="radialBar" height="100%" />
+        <Box
           position="absolute"
-          left={pos.left}
-          top={pos.top}
-          textAlign="center"
-          color="red"
-          fontSize="12px"
+          width="4px"
+          height="20%"
+          bottom="45%"
+          left="50%"
           style={{
-            transform: 'translate(-50%, -50%)',
-            fontWeight: 600,
+            background: 'linear-gradient(to bottom, #ff6633, #ffcc99)',
+            transition: 'transform 1s ease-out',
+            transform: `rotate(${needleRotation}deg)`,
+            transformOrigin: 'bottom center',
+            zIndex: 1,
           }}
-        >
-          {pos.label}
-        </Typography>
-      ))}
-    </Box>
+        />
+        {labelPositions.map((pos, idx) => (
+          <Typography
+            key={idx}
+            position="absolute"
+            left={pos.left}
+            top={pos.top}
+            textAlign="center"
+            color="red"
+            fontSize="12px"
+            style={{
+              transform: 'translate(-50%, -50%)',
+              fontWeight: 600,
+            }}
+          >
+            {pos.label}
+          </Typography>
+        ))}
+      </Box>
+    </Affilatec3>
+    
   );
 };
 

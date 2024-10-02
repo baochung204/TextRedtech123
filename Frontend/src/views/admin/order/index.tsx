@@ -23,7 +23,10 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DialogOrder from './DialogOrder';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
 
 const BCrumb = [
   {
@@ -50,7 +53,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -61,7 +63,8 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          {/* <IconBellRinging color="white" size={30} /> */}
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
@@ -74,7 +77,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -98,7 +100,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -122,7 +123,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -133,7 +133,8 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          {/* <IconBellRinging color="white" size={30} /> */}
+          <img src={revenue} width={30} />
         </Box>
       </>
     ),
@@ -146,7 +147,6 @@ const DataBox: StyleProps[] = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -157,7 +157,8 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          {/* <IconBellRinging color="white" size={30} /> */}
+          <img src={rpointblance} width={30} />
         </Box>
       </>
     ),
@@ -175,15 +176,12 @@ const OrderAdminPages = () => {
   const [checkValue, setCheckValue] = useState<string | null>(null)
   const [open, setOpen] = useState<boolean>(false)
 
-
-
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
         dataIndex: 'id',
       },
-
       {
         title: 'Họ và tên',
         dataIndex: 'name',
@@ -265,6 +263,11 @@ const OrderAdminPages = () => {
         isValids: false
       },
       {
+        title: 'Địa chỉ (Cá nhân)',
+        dataIndex: 'adress',
+        isValids: false,
+      },
+      {
         title: 'Xuất VAT',
         dataIndex: 'xvat',
         isValids: false
@@ -299,10 +302,10 @@ const OrderAdminPages = () => {
         dataIndex: 'ect',
         isValids: false
       },
-
     ],
     [],
   );
+ 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
@@ -332,12 +335,10 @@ const OrderAdminPages = () => {
       <BannerPage title="Quản lý khách hàng" items={BCrumb} />
 
       <Grid container rowSpacing={3}>
-        {/* Top Card Section */}
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
         </Grid>
 
-        {/* Search and DatePicker Section */}
         <Grid item xs={12}>
           <Grid container sx={{ alignItems: 'center' }} spacing={2}>
             <Grid
@@ -351,7 +352,8 @@ const OrderAdminPages = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+
+                {/* <Grid item >
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -359,8 +361,13 @@ const OrderAdminPages = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
+                </Grid> */}
+
+                <Grid item>
+
+                
                 <Grid item >
+
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -433,9 +440,7 @@ const OrderAdminPages = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
+                {column.map((header: Column) => {
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -508,6 +513,13 @@ const OrderAdminPages = () => {
           <CustomTable columns={column} dataSource={OrderData} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogOrder
+        open={open}
+        setOpen={setOpen}
+        selectID={selectID}
+        checkValue={checkValue}
+        setCheckValue={setCheckValue}
+      />
     </>
   );
 };

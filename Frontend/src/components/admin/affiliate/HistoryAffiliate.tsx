@@ -1,3 +1,4 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
   Box,
@@ -13,6 +14,8 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
   IconBrandCashapp,
   IconBrandGumroad,
@@ -20,17 +23,17 @@ import {
   IconNumber,
   IconSearch,
 } from '@tabler/icons-react';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 // import HistoryTable from './component/HistoryTable';
-import { DataHistoryTable } from './datatable/OrderTableData';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { DataHistoryTable } from './datatable/OrderTableData';
+import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
+import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
+import pending from 'src/assets/Adminphoto/cho xu ly.png';
+import done from 'src/assets/Adminphoto/da xu ly.png';
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -40,7 +43,6 @@ const dataSource = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -51,7 +53,8 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconNumber color="white" size={30} />
+          {/* <IconNumber color="white" size={30} /> */}
+          <img src={amountrequest} width={30} />
         </Box>
       </>
     ),
@@ -64,7 +67,6 @@ const dataSource = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -75,7 +77,8 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconBrandCashapp color="white" size={30} />
+          {/* <IconBrandCashapp color="white" size={30} /> */}
+          <img src={amountwithdrawth} width={30} />
         </Box>
       </>
     ),
@@ -88,7 +91,6 @@ const dataSource = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -99,7 +101,8 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconBrandGumroad color="white" size={30} />
+          {/* <IconBrandGumroad color="white" size={30} /> */}
+          <img src={done} width={30} />
         </Box>
       </>
     ),
@@ -112,7 +115,6 @@ const dataSource = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -123,7 +125,8 @@ const dataSource = [
             alignItems: 'center',
           }}
         >
-          <IconChartArcs color="white" size={30} />
+          {/* <IconChartArcs color="white" size={30} /> */}
+          <img src={pending} width={30} />
         </Box>
       </>
     ),
@@ -150,7 +153,7 @@ interface Column {
 }
 
 const HistoryAffiliate = () => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -287,7 +290,7 @@ const HistoryAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                {/* <Grid item >
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -296,8 +299,8 @@ const HistoryAffiliate = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
-                <Grid item >
+                </Grid> */}
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -383,7 +386,6 @@ const HistoryAffiliate = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

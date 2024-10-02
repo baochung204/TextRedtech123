@@ -142,7 +142,7 @@ interface Column {
   isValids?: boolean;
 }
 const ContactAffiliate = () => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -297,7 +297,7 @@ const ContactAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
+                {/* <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -305,7 +305,7 @@ const ContactAffiliate = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
+                </Grid> */}
                 <Grid item>
                   <TextField
                     id="outlined-search"

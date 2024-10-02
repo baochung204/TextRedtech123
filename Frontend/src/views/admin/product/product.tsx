@@ -25,6 +25,12 @@ import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
+import aov from 'src/assets/Adminphoto/aov.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+
+import DialogProduct from './DialogProduct';
+
+
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -44,7 +50,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -55,7 +60,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={bill} width={30} />
         </Box>
       </>
     ),
@@ -75,7 +81,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -106,7 +111,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -137,7 +141,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -168,7 +171,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -179,7 +181,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={aov} width={30} />
         </Box>
       </>
     ),
@@ -194,6 +197,12 @@ interface Column {
 }
 
 const ProductAdmin = () => {
+
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [selectID, setSelectID] = useState<string | null>(null);
+  const [checkValue, setCheckValue] = useState<string | null>(null)
+
 
   const column = useMemo<Column[]>(
     () => [
@@ -220,7 +229,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Giá niêm yết',
-        dataIndex: 'gianiemyet',
+        dataIndex: 'gia_niem_yet',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.gia_niem_yet}
@@ -230,7 +239,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Khuyến mại',
-        dataIndex: 'khuyenmai',
+        dataIndex: 'khuyen_mai',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.khuyen_mai}
@@ -240,7 +249,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Thanh toán',
-        dataIndex: 'thanhtoan',
+        dataIndex: 'thanh_toan',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.thanh_toan}
@@ -251,9 +260,15 @@ const ProductAdmin = () => {
       {
         title: 'Thao tác',
         dataIndex: 'thaotac',
-        render: () => (
-          <IconButton>
-            <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+        render: (_value: any, row: any) => (
+          <IconButton
+            onClick={() => {
+              setSelectID(row.id_don_hang);
+              setOpen(true);
+              setCheckValue('show')
+            }}
+          >
+            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
         ),
       },
@@ -262,7 +277,6 @@ const ProductAdmin = () => {
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [selectedItems] = useState<number[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -305,17 +319,23 @@ const ProductAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
+
+                    // onClick={() => setOpen(true)}
+
+                    onClick={() => {
+                      setOpen(true);
+                      setCheckValue('add')
+                    }}
 
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -345,6 +365,7 @@ const ProductAdmin = () => {
                 alignItems: 'center',
               }}
             >
+
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
                 <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
@@ -389,7 +410,6 @@ const ProductAdmin = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -401,7 +421,6 @@ const ProductAdmin = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -463,6 +482,7 @@ const ProductAdmin = () => {
           <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogProduct open={open} setOpen={setOpen} checkValue={checkValue} setCheckValue={setCheckValue} selectID={selectID} />
     </>
   );
 };
