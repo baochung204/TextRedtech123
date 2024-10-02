@@ -172,7 +172,6 @@ const OrderInformation = () => {
                               style={{ borderRadius: 50, marginLeft: '4px' }}
                             />
                           </Typography>
-                          <Typography variant="subtitle2">70.000 ₫</Typography>
                         </Grid>
                       </Grid>
                     </Box>

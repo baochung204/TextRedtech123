@@ -37,7 +37,7 @@ import TopCart from './topcart/topcart';
 
 const AssistantInfor = () => {
   return (
-    <PageContainer title="eCommerce Dashboard" description="this is eCommerce Dashboard page">
+    <PageContainer title="Thông tin trợ lý" description="this is page">
       <Box mt={3}>
         <Grid container spacing={3}>
           {/* column */}

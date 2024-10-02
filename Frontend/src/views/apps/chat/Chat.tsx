@@ -21,7 +21,7 @@ const BCrumb = [
 const Chats = () => {
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   return (
-    <PageContainer title="Chat ui" description="this is Chat page">
+    <PageContainer title="Ticket hỗ trợ" description="this is Chat page">
       {/* <Breadcrumb title="Chat app" subtitle="Messenger" /> */}
       <BannerPage title="Ticket hỗ trợ" items={BCrumb} />
       <AppCard>

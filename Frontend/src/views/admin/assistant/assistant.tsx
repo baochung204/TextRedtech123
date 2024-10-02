@@ -429,7 +429,7 @@ const AssistantAdmin = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Quản lý trợ lý" description="this is  page">
       <BannerPage title="Quản lý trợ lý" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>

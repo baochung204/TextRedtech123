@@ -29,7 +29,7 @@ const Update = () => {
   };
 
   return (
-    <PageContainer title="Faq" description="this is Faq page">
+    <PageContainer title="Cập nhật" description="this is Faq page">
       {/* breadcrumb */}
       <BannerPage title="Cập nhật" items={BCrumb} />
       {/* end breadcrumb */}

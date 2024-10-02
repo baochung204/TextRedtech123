@@ -338,7 +338,7 @@ const Ticket = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Quản lý ticket" description="this is page">
       <BannerPage title="Quản lý ticket" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
