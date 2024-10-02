@@ -145,7 +145,6 @@
 
 // export default PageFeature;
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -171,10 +170,10 @@ import {
   IconEye,
   IconEyeOff,
   IconFileStar,
-  IconSearch,
-  IconTrash,
+  IconSearch
 } from '@tabler/icons-react';
 
+import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -183,7 +182,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
 import DataFeature from './data/DataFeuture';
-import { Dayjs } from 'dayjs';
+import DialogFeature from './dialog/DialogFeature';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -286,9 +285,17 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-const PageFeature = () => {
+interface PropsItem {
+  value: string;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedKey: string | null;
+  setSelectedKey: React.Dispatch<React.SetStateAction<string | null>>;
+}
+const PageFeature = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [selectedItems] = useState<number[]>([]);
   const [isPopupOpen] = React.useState(false);
+  const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
   const column = useMemo<Column[]>(
     () => [
       { title: 'ID', dataIndex: 'id' },
@@ -309,17 +316,21 @@ const PageFeature = () => {
       {
         title: 'Thao tác',
         dataIndex: 'action',
-        render: () => (
+        render: (_value, row: any) => (
           <>
-            <IconButton>
+            <IconButton onClick={() => {
+                setSelectedKey(row.id);
+                setOpen(true);
+                setIsCheckFix(true);
+              }}>
               <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
             </IconButton>
-            <IconButton>
+            {/* <IconButton>
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
             <IconButton>
               <IconTrash stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
+            </IconButton> */}
           </>
         ),
       },
@@ -327,7 +338,7 @@ const PageFeature = () => {
     [],
   );
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [value, setValue] = useState<Dayjs | null>(null);
+  // const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   useEffect(() => {
     const selectedColumns = column || [];
@@ -373,15 +384,15 @@ const PageFeature = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
+                  {/* <Grid item>
+                    <IconButton
+                      color="primary"
+                      aria-label="Add to cart"
                     // onClick={() => setOpen(true)}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid>
+                    >
+                      <AddCircleIcon sx={{ fontSize: 30 }} />
+                    </IconButton>
+                  </Grid> */}
                 <Grid item>
                   <TextField
                     id="outlined-search"
@@ -475,7 +486,7 @@ const PageFeature = () => {
                   <DatePicker
                     value={value}
                     onChange={(newValue) => {
-                      setValue(newValue);
+                      // setValue(newValue);
                     }}
                     renderInput={(props) => (
                       <CustomTextField
@@ -526,6 +537,14 @@ const PageFeature = () => {
         </Grid>
         <Grid item xs={12}>
           <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} />
+          <DialogFeature
+            open={open}
+            value={value}
+            setOpen={setOpen}
+            keyOption={selectedKey}
+            isCheckFix={isCheckFix}
+            setIsCheckFix={setIsCheckFix}
+          />
         </Grid>
       </Grid>
 
