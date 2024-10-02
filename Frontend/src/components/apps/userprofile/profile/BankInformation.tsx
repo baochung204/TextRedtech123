@@ -1,22 +1,19 @@
-import { Alert, Box, IconButton, Slide, Snackbar, TextField, Typography } from '@mui/material';
-import { IconCheck, IconEdit } from '@tabler/icons-react';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import { Alert, Box, Button, Slide, Snackbar, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
 function SlideTransition(props: any) {
   return <Slide {...props} direction="left" />;
 }
 
 const BankInformation = () => {
-  const [editing, setEditing] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false); 
   const [open, setOpen] = useState(false);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
-    null,
-  );
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  // Sử dụng Formik để quản lý form và Yup để xác thực
+  
   const formik = useFormik({
     initialValues: {
       bankName: '',
@@ -36,15 +33,20 @@ const BankInformation = () => {
       if (!formik.isValid) {
         return;
       }
-      setEditing(null);
+      setEditing(false); 
       setShowAlert({ type: 'success', message: 'Thông tin đã được cập nhật!' });
-      setOpen(true); // Hiển thị Snackbar khi có thông báo
+      setOpen(true); 
       setSubmitting(false);
     },
   });
-
-  const handleEditClick = (field: string) => {
-    setEditing(field);
+  const handleSaveClick = () => {
+    setEditing(false); 
+    setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công!' });
+    setOpen(true); 
+    setTimeout(() => setShowAlert(null), 3000);
+  };
+  const handleEditClick = () => {
+    setEditing(true); 
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -57,7 +59,7 @@ const BankInformation = () => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false); // Đóng Snackbar khi bấm ngoài
+    setOpen(false);
   };
 
   const renderField = (field: string, label: string) => {
@@ -66,7 +68,7 @@ const BankInformation = () => {
         <Typography variant="h6" fontWeight="500" sx={{ width: '200px' }}>
           {label}:
         </Typography>
-        {editing === field ? (
+        {editing ? (
           <>
             <TextField
               name={field}
@@ -85,20 +87,11 @@ const BankInformation = () => {
               sx={{ flexGrow: 1, mr: 1 }}
               size="small"
             />
-            <IconButton onClick={() => formik.handleSubmit()}>
-              <IconCheck />
-            </IconButton>
           </>
         ) : (
-          <>
-            <Typography variant="body1" sx={{ flexGrow: 1 }}>
-              {formik.values[field as keyof typeof formik.values]}
-            </Typography>
-            {/* Hiển thị biểu tượng chỉnh sửa luôn */}
-            <IconButton onClick={() => handleEditClick(field)}>
-              <IconEdit />
-            </IconButton>
-          </>
+          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {formik.values[field as keyof typeof formik.values]}
+          </Typography>
         )}
       </Box>
     );
@@ -114,7 +107,17 @@ const BankInformation = () => {
       {renderField('accountNumber', 'Số tài khoản')}
       {renderField('accountHolder', 'Chủ ngân hàng')}
 
-      {/* Hiển thị Alert khi có sự thay đổi */}
+
+      
+      <Button
+        variant="contained"
+        onClick={editing ? handleSaveClick : handleEditClick}
+        sx={{ mt: 2, marginLeft: 'auto', display: 'block' }}
+      >
+        {editing ? 'Lưu' : 'Sửa'}
+      </Button>
+
+      
       <Snackbar
         open={open}
         autoHideDuration={6000}
