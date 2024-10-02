@@ -37,7 +37,6 @@ import done from 'src/assets/Adminphoto/da xu ly.png';
 const dataSource = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Số ưu cầu',
     total: '1907',
     icons: (
@@ -60,8 +59,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Số tiền rút',
     total: '190.720.030đ',
     icons: (
@@ -84,8 +82,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Đã xử lý',
     total: '123.406.789đ',
     icons: (
@@ -108,8 +105,7 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Chờ xử lý',
     total: '123.406.789đ',
     icons: (

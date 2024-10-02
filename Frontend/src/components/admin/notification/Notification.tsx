@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -14,36 +13,27 @@ import {
   MenuItem,
   Select,
   TextField,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconBellRinging,
-  IconEye,
-  IconPlus,
-  IconSearch,
-  IconTags,
-  IconWorldUpload,
-} from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
+import tags from 'src/assets/NotificationAdmin/tags.png';
+import notification from 'src/assets/NotificationAdmin/thong bao.png';
+import interact from 'src/assets/NotificationAdmin/tuong tac.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
-import view from 'src/assets/NotificationAdmin/luot xem.png';
-import tags from 'src/assets/NotificationAdmin/tags.png';
-import notification from 'src/assets/NotificationAdmin/thong bao.png';
-import interact from 'src/assets/NotificationAdmin/tuong tac.png';
 
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Thông báo',
     total: '120',
     icons: (
@@ -65,8 +55,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Tags',
     total: '39',
     icons: (
@@ -88,8 +77,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Lượt xem',
     total: '21.369',
     icons: (
@@ -111,8 +99,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Tương tác',
     total: '236',
     icons: (

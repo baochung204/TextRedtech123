@@ -47,12 +47,10 @@ const BCrumb = [
 const dataSource = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Đề xuất',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -68,13 +66,11 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Đánh dấu',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -90,13 +86,11 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Chưa xem',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -112,13 +106,11 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Cập nhập',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -151,11 +143,16 @@ interface FeatureItem {
 }
 
 const PageFeature = () => {
+
+//   const [isPopupOpen] = React.useState(false);
+//   const column = useMemo<Column[]>(
+
   const [open, setOpen] = useState<boolean>(false);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
 
   const column: Column[] = useMemo(
+
     () => [
       { title: 'ID', dataIndex: 'id' },
       {

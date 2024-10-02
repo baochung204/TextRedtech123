@@ -5,13 +5,12 @@ import customer from 'src/assets/Adminphoto/khách hàng.png';
 export const Url = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'URL',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
+        
           textAlign="center"
           padding={1}
           sx={{
@@ -28,8 +27,7 @@ export const Url = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng',
     total: '189',
     icons: (

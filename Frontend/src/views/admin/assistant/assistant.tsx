@@ -14,16 +14,11 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconChartArcs,
-  IconChartBar,
-  IconPasswordUser,
-  IconReceipt,
-  IconSearch,
-} from '@tabler/icons-react';
+import { IconChartArcs, IconChartBar, IconReceipt, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
 import bill from 'src/assets/ICON/dơn hang.png';
 import gmv from 'src/assets/ICON/gmv.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -31,7 +26,6 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import customer from 'src/assets/Adminphoto/khách hàng.png';
 const BCrumb = [
   {
     to: '/admin',
@@ -44,7 +38,7 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Trợ lý',
     total: '2415',
     icons: (
@@ -66,8 +60,8 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
+
     title: 'CVR trung bình',
     total: '25.18%',
     icons: (
@@ -89,8 +83,8 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Khách hàng ',
     total: '362.415',
     icons: (
@@ -113,8 +107,8 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '11.415',
     icons: (
@@ -137,8 +131,8 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'GMV',
     total: '1.413.241.141₫',
     icons: (
