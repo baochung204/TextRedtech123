@@ -1,5 +1,5 @@
-import { Alert, Box, IconButton, Slide, Snackbar, TextField, Typography } from '@mui/material';
-import { IconBriefcase, IconCheck, IconEdit } from '@tabler/icons-react';
+import { Alert, Box, Button, Slide, Snackbar, TextField, Typography } from '@mui/material';
+import { IconBriefcase } from '@tabler/icons-react';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import * as Yup from 'yup';
@@ -9,13 +9,10 @@ function SlideTransition(props: any) {
 }
 
 const BusinessInformation = () => {
-  const [editing, setEditing] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
   const [open, setOpen] = useState(false);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
-    null,
-  );
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  // Sử dụng Formik để quản lý form và Yup để xác thực
   const formik = useFormik({
     initialValues: {
       companyName: '',
@@ -41,14 +38,19 @@ const BusinessInformation = () => {
       email: Yup.string().email('Email không hợp lệ').required('Email doanh nghiệp là bắt buộc'),
     }),
     onSubmit: () => {
-      setEditing(null);
+      setEditing(false);
       setShowAlert({ type: 'success', message: 'Thông tin đã được cập nhật!' });
-      setOpen(true); // Hiển thị Snackbar khi có thông báo
+      setOpen(true);
     },
   });
-
-  const handleEditClick = (field: string) => {
-    setEditing(field);
+  const handleSaveClick = () => {
+    setEditing(false); 
+    setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công!' });
+    setOpen(true); 
+    setTimeout(() => setShowAlert(null), 3000);
+  };
+  const handleEditClick = () => {
+    setEditing(true);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -61,61 +63,41 @@ const BusinessInformation = () => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false); // Đóng Snackbar khi bấm ngoài
+    setOpen(false);
   };
 
-  const renderField = (field: string, label: string) => {
-    // Kiểm tra nếu có thông tin (non-empty string)
-    const hasInfo = formik.values[field as keyof typeof formik.values].trim() !== '';
-
-    return (
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Typography
-          variant="h6"
-          fontWeight="500"
-          sx={{ width: '150px', whiteSpace: 'nowrap', mr: 4 }}
-        >
-          {label}:
+  const renderField = (field: string, label: string) => (
+    <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Typography variant="h6" fontWeight="500" sx={{ width: '150px', whiteSpace: 'nowrap', mr: 4 }}>
+        {label}:
+      </Typography>
+      {editing ? (
+        <>
+          <TextField
+            name={field}
+            value={formik.values[field as keyof typeof formik.values]}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched[field as keyof typeof formik.touched] &&
+              Boolean(formik.errors[field as keyof typeof formik.errors])
+            }
+            helperText={
+              formik.touched[field as keyof typeof formik.touched] &&
+              formik.errors[field as keyof typeof formik.errors]
+            }
+            onKeyDown={handleKeyDown}
+            sx={{ flexGrow: 1 }}
+            size="small"
+          />
+        </>
+      ) : (
+        <Typography variant="body1" sx={{ flexGrow: 1 }}>
+          {formik.values[field as keyof typeof formik.values]}
         </Typography>
-        {editing === field ? (
-          <>
-            <TextField
-              name={field}
-              value={formik.values[field as keyof typeof formik.values]}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={
-                formik.touched[field as keyof typeof formik.touched] &&
-                Boolean(formik.errors[field as keyof typeof formik.errors])
-              }
-              helperText={
-                formik.touched[field as keyof typeof formik.touched] &&
-                formik.errors[field as keyof typeof formik.errors]
-              }
-              onKeyDown={handleKeyDown}
-              sx={{ flexGrow: 1 }}
-              size="small"
-            />
-            <IconButton onClick={() => formik.handleSubmit()}>
-              <IconCheck />
-            </IconButton>
-          </>
-        ) : (
-          <>
-            <Typography variant="body1" sx={{ flexGrow: 1 }}>
-              {formik.values[field as keyof typeof formik.values]}
-            </Typography>
-            {/* Hiển thị biểu tượng chỉnh sửa chỉ khi không có thông tin */}
-            {!hasInfo && (
-              <IconButton onClick={() => handleEditClick(field)}>
-                <IconEdit />
-              </IconButton>
-            )}
-          </>
-        )}
-      </Box>
-    );
-  };
+      )}
+    </Box>
+  );
 
   return (
     <Box sx={{ padding: 3, borderRadius: 1, boxShadow: 3, margin: '0 auto' }}>
@@ -130,7 +112,16 @@ const BusinessInformation = () => {
       {renderField('phone', 'Số điện thoại công ty')}
       {renderField('email', 'Email doanh nghiệp')}
 
-      {/* Hiển thị Alert khi có sự thay đổi */}
+      {/* Nút sửa */}
+      <Button
+        variant="contained"
+        onClick={editing ? handleSaveClick : handleEditClick}
+        sx={{ mt: 2, marginLeft: 'auto', display: 'block' }}
+      >
+        {editing ? 'Lưu' : 'Sửa'}
+      </Button>
+
+
       <Snackbar
         open={open}
         autoHideDuration={6000}

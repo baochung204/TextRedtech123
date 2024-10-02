@@ -1,84 +1,100 @@
-import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, TextField, Typography } from '@mui/material';
+// src/components/DialogFeature.tsx
+
+import {
+    Box,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    TextField,
+    Typography,
+} from '@mui/material';
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import { styled } from '@mui/material/styles';
-import DataFeature from '../data/DataFeuture';
+import DataFeature, { FeatureItem } from '../data/DataFeuture';
 
 interface DialogProps {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     value: string;
     keyOption: string | null;
-    setIsCheckFix: React.Dispatch<React.SetStateAction<boolean>>
-    isCheckFix: boolean
+    setIsCheckFix: React.Dispatch<React.SetStateAction<boolean>>;
+    isCheckFix: boolean;
 }
 
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
-
-const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheckFix }: DialogProps) => {
-    const emptyInitialValues = useMemo(() => ({
-        // avtUrl: '',
-        name: '',
-        email: '',
-        phone: '',
-        contextFeature: ''
-    }), []);
+const DialogFeature = ({
+    open,
+    setOpen,
+    value,
+    keyOption,
+    setIsCheckFix,
+    isCheckFix,
+}: DialogProps) => {
+    // Default empty initial values for form fields
+    const emptyInitialValues = useMemo(
+        () => ({
+            name: '',
+            email: '',
+            phone: '',
+            contextFeature: '',
+        }),
+        []
+    );
 
     const [initialValues, setInitialValues] = useState(emptyInitialValues);
     const isViewMode = keyOption !== null;
+
+    // Validation schema using Yup
     const validationSchema = Yup.object({
         name: Yup.string().required('Tên nhân viên là bắt buộc'),
         contextFeature: Yup.string().required('Nội dung đề xuất là bắt buộc'),
         email: Yup.string().email('Email không đúng').required('Email là bắt buộc'),
-        numberPhone: Yup.string().matches(/^[0-9]+$/, 'Số điện thoại từ 0-9').required('Số điện thoại là bắt buộc'),
-       
+        phone: Yup.string()
+            .matches(/^[0-9]+$/, 'Số điện thoại chỉ được chứa số từ 0-9')
+            .required('Số điện thoại là bắt buộc'),
     });
 
-    const handleSubmit = (values: typeof initialValues, { resetForm }: FormikHelpers<typeof initialValues>) => {
-
+    // Form submit handler
+    const handleSubmit = (
+        values: typeof initialValues,
+        { resetForm }: FormikHelpers<typeof initialValues>
+    ) => {
+        console.log('Submitted values:', values);
         if (isCheckFix) {
-            setIsCheckFix(false)
+            // Logic xử lý khi sửa (nếu cần)
+            setIsCheckFix(false);
         } else {
+            // Logic xử lý khi thêm mới (nếu cần)
             setOpen(false);
-            console.log(values);
-            setIsCheckFix(false)
+            setIsCheckFix(false);
             resetForm();
-
         }
     };
-    const handleClose = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>, resetForm: () => void) => {
+
+    // Close the dialog and reset the form
+    const handleClose = (
+        _event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        resetForm: () => void
+    ) => {
         setIsCheckFix(false);
         setOpen(false);
         resetForm();
     };
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, setFieldValue: (field: string, value: string, shouldValidate?: boolean) => void) => {
-        if (event.target.files !== null) {
-            const file = event.target.files[0];
-            const fileUrl = URL.createObjectURL(file);
-            setFieldValue('avtUrl', fileUrl);
-        }
-    };
 
+    // Update form initial values based on keyOption
     useEffect(() => {
         if (keyOption === null) {
             setInitialValues(emptyInitialValues);
-
         } else {
-            const data = DataFeature.find((item) => item.id === keyOption);
+            const data: FeatureItem | undefined = DataFeature.find(
+                (item) => item.id === keyOption
+            );
+            console.log('Fetched Data:', data); // Debugging
             if (data) {
                 setInitialValues({
-                    // avtUrl: data.avt,
                     name: data.name,
                     phone: data.phone,
                     email: data.email,
@@ -86,9 +102,7 @@ const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheck
                 });
             }
         }
-
     }, [keyOption, emptyInitialValues]);
-    console.log(emptyInitialValues);
 
     return (
         <Dialog
@@ -97,14 +111,13 @@ const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheck
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             fullWidth
-            maxWidth='md'
+            maxWidth="md"
+            sx={{ zIndex: 1300 }} // Ensure Dialog is on top
         >
-            <DialogTitle
-                id="alert-dialog-title"
-                sx={{ textAlign: 'center' }}
-            >
-                {isViewMode ? <>{isCheckFix ? 'Xem thông tin nhân viên' : 'Sửa thông tin nhân viên'}</> : 'Thêm nhân viên'}
+            <DialogTitle id="alert-dialog-title" sx={{ textAlign: 'center' }}>
+                Xem thông tin đề xuất
             </DialogTitle>
+
             <DialogContent sx={{ marginBottom: 2 }}>
                 <Formik
                     enableReinitialize
@@ -113,9 +126,8 @@ const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheck
                     onSubmit={handleSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
-                    context={{ isViewMode }}
                 >
-                    {({ setFieldValue, values, resetForm }) => (
+                    {({ resetForm }) => (
                         <Form>
                             <Grid container>
                                 <Grid item xs={12}>
@@ -123,16 +135,14 @@ const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheck
                                         sx={{
                                             display: 'flex',
                                             justifyContent: 'center',
-                                            paddingBottom: 3
+                                            paddingBottom: 3,
                                         }}
-                                    >
-                                        
-                                    </Box>
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sx={{ paddingLeft: 2 }}>
                                     <Grid container spacing={2}>
                                         <Grid item xs={6}>
-                                            <Typography variant='h6'>Tên khách hàng</Typography>
+                                            <Typography variant="h6">Tên khách hàng</Typography>
                                             <Field
                                                 as={TextField}
                                                 name="name"
@@ -143,14 +153,18 @@ const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheck
                                                 }}
                                                 helperText={
                                                     <ErrorMessage name="name">
-                                                        {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                                        {(msg) => (
+                                                            <Typography sx={{ color: 'red' }}>
+                                                                {msg}
+                                                            </Typography>
+                                                        )}
                                                     </ErrorMessage>
                                                 }
                                                 FormHelperTextProps={{ sx: { ml: 0 } }}
                                             />
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography variant='h6'>Email</Typography>
+                                            <Typography variant="h6">Email</Typography>
                                             <Field
                                                 as={TextField}
                                                 name="email"
@@ -161,14 +175,18 @@ const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheck
                                                 }}
                                                 helperText={
                                                     <ErrorMessage name="email">
-                                                        {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                                        {(msg) => (
+                                                            <Typography sx={{ color: 'red' }}>
+                                                                {msg}
+                                                            </Typography>
+                                                        )}
                                                     </ErrorMessage>
                                                 }
                                                 FormHelperTextProps={{ sx: { ml: 0 } }}
                                             />
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography variant='h6'>Số điện thoại</Typography>
+                                            <Typography variant="h6">Số điện thoại</Typography>
                                             <Field
                                                 as={TextField}
                                                 name="phone"
@@ -179,56 +197,60 @@ const DialogFeature = ({ open, setOpen, value, keyOption, setIsCheckFix, isCheck
                                                 }}
                                                 helperText={
                                                     <ErrorMessage name="phone">
-                                                        {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                                        {(msg) => (
+                                                            <Typography sx={{ color: 'red' }}>
+                                                                {msg}
+                                                            </Typography>
+                                                        )}
                                                     </ErrorMessage>
                                                 }
                                                 FormHelperTextProps={{ sx: { ml: 0 } }}
                                             />
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Typography variant='h6'>Nội dung đề xuất</Typography>
+                                            <Typography variant="h6">Nội dung đề xuất</Typography>
                                             <Field
                                                 as={TextField}
-                                                name="econtextFeaturemail"
+                                                name="contextFeature"
                                                 fullWidth
                                                 margin="normal"
+                                                multiline
+                                                rows={4}
                                                 InputProps={{
                                                     readOnly: isCheckFix,
                                                 }}
                                                 helperText={
                                                     <ErrorMessage name="contextFeature">
-                                                        {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                                        {(msg) => (
+                                                            <Typography sx={{ color: 'red' }}>
+                                                                {msg}
+                                                            </Typography>
+                                                        )}
                                                     </ErrorMessage>
                                                 }
                                                 FormHelperTextProps={{ sx: { ml: 0 } }}
                                             />
-                                        </Grid>                                    
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
                             <DialogActions>
                                 <Button
                                     onClick={(event) => handleClose(event, resetForm)}
-                                    variant='contained'
-                                    color='error'
+                                    variant="contained"
+                                    color="error"
                                 >
                                     Đóng
                                 </Button>
-                                {!isViewMode ?
-                                    <Button
-                                        type="submit"
-                                        variant='contained'
-                                    >
-                                        Thêm
-                                    </Button>
-                                    :
-                                    <Button
-                                        type="submit"
-                                        variant='contained'
-                                    >
-                                        {isCheckFix ? 'Sửa' : 'Lưu'}
-                                    </Button>
-                                }
+                                {/* {!isViewMode ? (
+                    <Button type="submit" variant="contained" color="primary">
+                      Thêm
+                    </Button>
+                  ) : (
+                    <Button type="submit" variant="contained" color="primary">
+                      {isCheckFix ? 'Sửa' : 'Lưu'}
+                    </Button>
+                  )} */}
                             </DialogActions>
                         </Form>
                     )}
