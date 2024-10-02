@@ -23,7 +23,7 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DialogOrder from './DialogOrder';
 
 const BCrumb = [
   {
@@ -183,7 +183,6 @@ const OrderAdminPages = () => {
         title: 'ID',
         dataIndex: 'id',
       },
-
       {
         title: 'Họ và tên',
         dataIndex: 'name',
@@ -265,6 +264,11 @@ const OrderAdminPages = () => {
         isValids: false
       },
       {
+        title: 'Địa chỉ (Cá nhân)',
+        dataIndex: 'adress',
+        isValids: false
+      },
+      {
         title: 'Xuất VAT',
         dataIndex: 'xvat',
         isValids: false
@@ -332,12 +336,10 @@ const OrderAdminPages = () => {
       <BannerPage title="Quản lý khách hàng" items={BCrumb} />
 
       <Grid container rowSpacing={3}>
-        {/* Top Card Section */}
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
         </Grid>
 
-        {/* Search and DatePicker Section */}
         <Grid item xs={12}>
           <Grid container sx={{ alignItems: 'center' }} spacing={2}>
             <Grid
@@ -351,7 +353,7 @@ const OrderAdminPages = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                {/* <Grid item >
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -359,7 +361,7 @@ const OrderAdminPages = () => {
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
-                </Grid>
+                </Grid> */}
                 <Grid item >
                   <TextField
                     id="outlined-search"
@@ -433,8 +435,7 @@ const OrderAdminPages = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                {column.map((header: Column) => {
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -508,6 +509,7 @@ const OrderAdminPages = () => {
           <CustomTable columns={column} dataSource={OrderData} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogOrder open={open} setOpen={setOpen} selectID={selectID} checkValue={checkValue} setCheckValue={setCheckValue} />
     </>
   );
 };

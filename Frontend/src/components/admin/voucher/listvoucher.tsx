@@ -22,6 +22,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
+import AddDialogvoucher from './add/addDialog';
 
 interface DataRow {
   id: string;
@@ -184,9 +185,10 @@ interface Column {
 // }
 
 const ListVoucher = () => {
-  const [selectedItems] = useState<number[]>([]);
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -289,7 +291,7 @@ const ListVoucher = () => {
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
+                  onClick={() => setIsPopupOpen(true)}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
@@ -441,6 +443,7 @@ const ListVoucher = () => {
           <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
+      <AddDialogvoucher isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </div>
   );
 };

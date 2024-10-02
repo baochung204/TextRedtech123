@@ -24,6 +24,8 @@ import DataOrderProduct from './data/DataOrderProduct';
 import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddDialogvoucher from 'src/components/admin/voucher/add/addDialog';
+import AddDialogDH from './Add/addDialog';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -460,6 +462,7 @@ const ProductAdmin = () => {
           <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <AddDialogDH isPopupOpen={open} setIsPopupOpen={setOpen} />
     </>
   );
 };
