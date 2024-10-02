@@ -1,68 +1,29 @@
-import { Box, Dialog, DialogContent, DialogTitle, Grid } from "@mui/material"
-import { useEffect, useMemo, useRef, useState } from "react"
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
+import { Avatar, AvatarGroup, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, TextField, Typography } from "@mui/material";
+import { useEffect, useMemo, useState } from "react";
+import { Formik, Form, Field, FormikHelpers, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ProductTable from "../product/ProductData";
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'src/store/Store';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
-import './Carousel.css';
-import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import { PhotoCamera } from "@mui/icons-material";
 
 interface PropUp {
-    open: boolean,
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
-    setCheckValue: React.Dispatch<React.SetStateAction<string | null>>
-    checkValue: string | null,
-    selectID: string | null
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setCheckValue: React.Dispatch<React.SetStateAction<string | null>>;
+    checkValue: string | null;
+    selectID: string | null;
 }
-
+interface PropsTitle {
+    title: string,
+    dataIndex: string
+}
 const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: PropUp) => {
-
-    const [state, setState] = useState<any>({ nav1: null, nav2: null });
-    const slider1 = useRef();
-    const slider2 = useRef();
-    const dispatch = useDispatch();
-    const Id: any = useParams();
-
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
-
-    const product: any = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
-    const getProductImage = product ? product.thumbnailUrl : '';
-
-    useEffect(() => {
-        setState({
-            nav1: slider1.current,
-            nav2: slider2.current,
-        });
-    }, []);
-
-    const { nav1, nav2 } = state;
-    const settings = {
-        focusOnSelect: true,
-        infinite: true,
-        slidesToShow: 5,
-        arrows: false,
-        swipeToSlide: true,
-        slidesToScroll: 1,
-        centerMode: true,
-        className: 'centerThumb',
-        speed: 500,
-    };
-
     const emptyInitialValues = useMemo(
         () => ({
-            id: '',
             danhmuc: '',
-            anh: '',
+            anh: [] as string[],
             tensanpham: '',
             gianiemyet: '',
             giakhuyenmai: '',
-            level: <></>,
             tags: '',
             soluongmua: '',
             tongdoanhthu: '',
@@ -71,6 +32,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             ha: '',
             secretkey: '',
             hdsd: '',
+            mota: '',
         }),
         [],
     );
@@ -78,9 +40,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
     const [initialValues, setInitialValues] = useState(emptyInitialValues);
 
     const validationSchema = Yup.object({
-        id: Yup.string(),
         danhmuc: Yup.string(),
-        anh: Yup.string(),
+        anh: Yup.array().of(Yup.string()).min(1, 'Vui lòng tải lên ít nhất một ảnh.'), // Validate that at least one image is uploaded
         tensanpham: Yup.string(),
         gianiemyet: Yup.string(),
         giakhuyenmai: Yup.string(),
@@ -92,23 +53,25 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
         ha: Yup.string(),
         secretkey: Yup.string(),
         hdsd: Yup.string(),
+        mota: Yup.string(),
     });
 
-    const handleClose = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>, resetForm: () => void,) => {
+    const handleClose = (resetForm: () => void) => {
         setOpen(false);
         resetForm();
     };
-    const handleSubmit = (values: typeof initialValues, { resetForm }: FormikHelpers<typeof initialValues>,) => {
+
+    const handleSubmit = (values: typeof initialValues, { resetForm }: FormikHelpers<typeof initialValues>) => {
+        console.log(values);
         if (checkValue === 'view' || checkValue === 'add') {
-            setCheckValue('fix')
+            setCheckValue('fix');
         } else {
             setOpen(false);
-            console.log(values);
-            setCheckValue(null)
+            console.log("Form data:", values);
+            setCheckValue(null);
             resetForm();
         }
     };
-
 
     useEffect(() => {
         if (checkValue === 'add') {
@@ -117,13 +80,11 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             const data = ProductTable.find((item) => item.id === selectID);
             if (data) {
                 setInitialValues({
-                    id: data.id,
                     danhmuc: data.danhmuc,
-                    anh: data.anh,
+                    anh: Array.isArray(data.anh) ? data.anh : data.anh ? [data.anh] : [],
                     tensanpham: data.tensanpham,
                     gianiemyet: data.gianiemyet,
                     giakhuyenmai: data.giakhuyenmai,
-                    level: data.level,
                     tags: data.tags,
                     soluongmua: data.soluongmua,
                     tongdoanhthu: data.tongdoanhthu,
@@ -132,23 +93,42 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     ha: data.ha ?? '',
                     secretkey: data.secretkey ?? '',
                     hdsd: data.hdsd ?? '',
+                    mota: data.mota,
                 });
             }
         }
     }, [checkValue, emptyInitialValues, selectID]);
 
+    const form: PropsTitle[] = [
+        {
+            title: 'Tên sản phẩm',
+            dataIndex: 'tensanpham'
+        },
+        {
+            title: 'Mô tả',
+            dataIndex: 'mota'
+        },
+        {
+            title: 'Giá niêm yết',
+            dataIndex: 'gianiemyet'
+        },
+        {
+            title: 'Tag',
+            dataIndex: 'tags'
+        },
+    ]
+
     return (
         <Dialog
             open={open}
-            onClose={() => setOpen(false)}
+            onClose={() => handleClose(() => { })}
             fullWidth
-            maxWidth='md'
-            sx={{ '& .MuiDialog-paper': { height: '1000px' } }}
+            maxWidth="md"
         >
             <DialogTitle sx={{ textAlign: 'center' }}>
-                {checkValue === 'add' ? 'Thêm san phẩm' : checkValue === 'view' ? 'Xem sản phẩm' : 'Sửa sản phẩm'}
+                {checkValue === 'add' ? 'Thêm sản phẩm' : checkValue === 'view' ? 'Xem sản phẩm' : 'Sửa sản phẩm'}
             </DialogTitle>
-            
+
             <Formik
                 enableReinitialize
                 initialValues={initialValues}
@@ -157,53 +137,131 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                 validateOnChange={false}
                 validateOnBlur={false}
             >
-                {({ resetForm }) => (
+                {({ values, setFieldValue, resetForm }) => (
                     <Form>
                         <DialogContent>
                             <Grid container spacing={2}>
                                 <Grid item xs={3}>
-                                    <Box>
-                                        <Slider asNavFor={nav2} ref={(slider: any) => (slider1.current = slider)}>
-                                            <Box>
-                                                <img
-                                                    src={getProductImage}
-                                                    alt={getProductImage}
-                                                    width="100%"
-                                                    style={{ borderRadius: '5px' }}
-                                                />
-                                            </Box>
-                                            {product?.gender.map((step: any) => (
-                                                <Box key={step.id}>
-                                                    <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
-                                                </Box>
-                                            ))}
-                                        </Slider>
-                                        <Slider asNavFor={nav1} ref={(slider: any) => (slider2.current = slider)} {...settings}>
-                                            <Box sx={{ p: 1, cursor: 'pointer' }}>
-                                                <img
-                                                    src={getProductImage}
-                                                    alt={getProductImage}
-                                                    width="100%"
-                                                    style={{ borderRadius: '5px' }}
-                                                />
-                                            </Box>
-                                            {product?.gender.map((step: any) => (
-                                                <Box key={step.id} sx={{ p: 1, cursor: 'pointer' }}>
-                                                    <img src={step} alt={step} width="100%" style={{ borderRadius: '5px' }} />
-                                                </Box>
-                                            ))}
-                                        </Slider>
+                                    <Box
+                                        sx={{
+                                        backgroundColor: 'transparent'
+                                    }}
+                                    >
+                                        <Typography variant="h5" gutterBottom sx={{ textAlign: 'center' }}>
+                                            Upload Images
+                                        </Typography>
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                paddingBottom: 3
+                                            }}
+                                        >
+                                            <IconButton
+                                                aria-label="upload"
+                                            >
+                                                <Button
+                                                    variant="contained"
+                                                    component="label"
+                                                    sx={{
+                                                        height: 150,
+                                                        width: 150,
+                                                        backgroundColor: '#C6D5FF',
+                                                        '&:hover': {
+                                                            backgroundColor: '#D9E3FF',
+                                                            boxShadow: 'none',
+                                                            borderColor: '#5D87FF',
+                                                            color: '#5D87FF'
+                                                        },
+                                                        boxShadow: 'none',
+                                                        border: values.anh ? '1px dashed black' : 'none',
+                                                        borderRadius: 999,
+                                                        color: 'black'
+                                                    }}
+                                                >
+                                                    {values.anh && values.anh.length > 0 ?
+                                                        <Box sx={{ position: 'relative' }}>
+                                                            <Avatar alt="Remy Sharp" src={values.anh[0]} sx={{ width: 150, height: 150 }} />
+                                                        </Box>
+                                                        : <span style={{display: 'flex', alignItems: 'center'}}>+ Tải ảnh lên</span>
+                                                    }
+
+                                                    <input
+                                                        type="file"
+                                                        hidden
+                                                        multiple
+                                                        accept="image/*"
+                                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                                            if (e.target.files) {
+                                                                const files = Array.from(e.target.files).map(file => URL.createObjectURL(file));
+                                                                setFieldValue('anh', files);
+                                                            }
+                                                        }}
+                                                    />
+                                                </Button>
+                                            </IconButton>
+
+                                        </Box>
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                            }}
+                                        >
+                                            <AvatarGroup max={4} >
+                                                {values.anh && values.anh.length > 0 &&
+                                                    values.anh.map((url: string, index: number) => (
+                                                        <Avatar alt={url} src={url} key={index} />
+                                                    ))
+                                                }
+                                            </AvatarGroup>
+                                        </Box>
+
+                                        <ErrorMessage name="anh">
+                                            {msg => <div style={{ color: 'red' }}>{msg}</div>}
+                                        </ErrorMessage>
                                     </Box>
                                 </Grid>
-                                {/* Other Grid items go here */}
+                                <Grid item xs={9}>
+                                    <Grid container spacing={2}>
+                                        {form.map((item, index) => {
+                                            return (
+                                                <Grid item xs={6} key={index}>
+                                                    <Typography variant="h5">
+                                                        {item.title}
+                                                    </Typography>
+                                                    <Field
+                                                        as={TextField}
+                                                        name={item.dataIndex}
+                                                        fullWidth
+                                                        margin="normal"
+                                                        InputProps={{
+                                                            readOnly: checkValue === 'show' ? true : false,
+                                                        }}
+                                                        helperText={
+                                                            <ErrorMessage name={item.dataIndex}>
+                                                                {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                                            </ErrorMessage>
+                                                        }
+                                                        FormHelperTextProps={{ sx: { ml: 0 } }}
+                                                    />
+                                                </Grid>
+                                            )
+                                        })}
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </DialogContent>
+                        <DialogActions>
+                            <Button type="submit">
+                                Submit
+                            </Button>
+                        </DialogActions>
                     </Form>
-
                 )}
             </Formik>
         </Dialog>
-    )
-}
+    );
+};
 
-export default DialogBuyProduct
+export default DialogBuyProduct;

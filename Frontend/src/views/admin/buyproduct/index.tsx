@@ -284,7 +284,7 @@ const BuyPoints = () => {
           <Grid container spacing={2}>
             <Grid item xs={4}>
               <IconButton
-                onClick={() => { setOpen(true); setCheckValue('view'); setSelectID(value.id) }}
+                onClick={() => { setOpen(true); setCheckValue('show'); setSelectID(value.id) }}
               >
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
@@ -370,9 +370,6 @@ const BuyPoints = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-
-                    // onClick={() => setOpen(true)}
-
                     onClick={() => { setOpen(true); setCheckValue('add') }}
 
                   >
