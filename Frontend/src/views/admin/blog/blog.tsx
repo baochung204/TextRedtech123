@@ -40,6 +40,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
+import reaction from 'src/assets/Adminphoto/luot timm.png';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -131,7 +132,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconLockSquareRounded color="white" size={30} />
+        <img width={30} src={reaction} />
       </Box>
     ),
   },

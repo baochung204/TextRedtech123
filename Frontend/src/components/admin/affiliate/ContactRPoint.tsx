@@ -1,4 +1,3 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -18,14 +17,14 @@ import {
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
-  IconDevicesCancel,
-  IconFileText,
-  IconPencilDollar,
-  IconPencilSearch,
-  IconSearch,
+  IconSearch
 } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import contractwait from 'src/assets/Contract/HOP DONG CHO XU LY.png';
+import contractdone from 'src/assets/Contract/HOP DONG DA KY.png';
+import contractreject from 'src/assets/Contract/HOP DONG TU CHOI.png';
+import contract from 'src/assets/Contract/hop dong.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -48,7 +47,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconFileText color="white" size={30} />
+        <img src={contract} width={30} />
       </Box>
     ),
   },
@@ -68,7 +67,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconDevicesCancel color="white" size={30} />
+        <img src={contractreject} width={30} />
       </Box>
     ),
   },
@@ -88,7 +87,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconPencilDollar color="white" size={30} />
+        <img src={contractdone} width={30} />
       </Box>
     ),
   },
@@ -108,7 +107,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconPencilSearch color="white" size={30} />
+        <img src={contractwait} width={30} />
       </Box>
     ),
   },

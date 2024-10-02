@@ -26,6 +26,8 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import Cvr from 'src/assets/Adminphoto/cvr.png';
+import Assistant from 'src/assets/Adminphoto/tro ly.png';
 const BCrumb = [
   {
     to: '/admin',
@@ -54,7 +56,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <img src={Assistant} width={30} />
         </Box>
       </>
     ),
@@ -77,7 +79,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartArcs color="white" size={30} />
+          <img src={Cvr} width={30} />
         </Box>
       </>
     ),

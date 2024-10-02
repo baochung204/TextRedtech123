@@ -37,6 +37,10 @@ import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
 import DataFeature from './data/DataFeuture';
 import DialogFeature from './dialog/DialogFeature';
+import update from 'src/assets/DeXuatTinhNang/cap nhap.png';
+import mark from 'src/assets/DeXuatTinhNang/danh dau.png';
+import suggest from 'src/assets/DeXuatTinhNang/de xuat.png';
+import seen from 'src/assets/DeXuatTinhNang/chua xem.png';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -60,7 +64,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconAd2 color="white" size={30} />
+        <img src={suggest} width={30} />
       </Box>
     ),
   },
@@ -80,7 +84,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconFileStar color="white" size={30} />
+        <img src={mark} width={30} />
       </Box>
     ),
   },
@@ -100,7 +104,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconEyeOff color="white" size={30} />
+        <img src={seen} width={30} />
       </Box>
     ),
   },
@@ -120,7 +124,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconEdit color="white" size={30} />
+        <img src={update} width={30} />
       </Box>
     ),
   },
