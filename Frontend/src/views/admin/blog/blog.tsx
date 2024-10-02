@@ -8,6 +8,7 @@ import {
   Checkbox,
   Chip,
   Dialog,
+  DialogActions,
   DialogContent,
   Grid,
   IconButton,
@@ -42,6 +43,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -476,11 +478,9 @@ const BlogAdmin = () => {
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
-        TransitionComponent={Transition}
-        keepMounted
+        // TransitionComponent={Transition}
       >
-        {/* <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle> */}
-        <DialogContent>
+        <DialogContent sx={{ overflowY: 'hidden' }}>
           <AddBlog />
         </DialogContent>
       </Dialog>
