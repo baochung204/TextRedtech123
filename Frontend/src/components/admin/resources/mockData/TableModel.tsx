@@ -1,7 +1,10 @@
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import { IconEye, IconFile3d, IconTrash, IconUsersGroup, IconUserStar } from '@tabler/icons-react';
+import { IconEye, IconFile3d, IconTrash } from '@tabler/icons-react';
 import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
+import customer from 'src/assets/Function/KHACH HANG SO HUU.png';
+import model from 'src/assets/Model/MODEL.png'
+import trainingtoken from 'src/assets/Model/Tranning tokens.png'
 export const Model = [
   {
     bgColor: 'primary.light',
@@ -20,7 +23,7 @@ export const Model = [
             alignItems: 'center',
           }}
         >
-          <IconFile3d color="white" size={30} />
+          <img src={model} width={30} />
         </Box>
       </>
     ),
@@ -42,7 +45,7 @@ export const Model = [
             alignItems: 'center',
           }}
         >
-          <IconUsersGroup color="white" size={30} />
+         <img src={trainingtoken} width={30}/>
         </Box>
       </>
     ),
@@ -64,7 +67,7 @@ export const Model = [
             alignItems: 'center',
           }}
         >
-          <IconUserStar color="white" size={30} />
+         <img src={customer} width={30} />
         </Box>
       </>
     ),

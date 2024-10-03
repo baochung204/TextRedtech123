@@ -7,7 +7,11 @@ import {
   IconTrash,
   IconUserStar,
 } from '@tabler/icons-react';
+import functionimg from 'src/assets/Function/FUNCTION.png';
+import functiongroup from 'src/assets/Function/NHOM FUNCTION.png';
 import assistant from 'src/assets/Adminphoto/tro ly ap dung.png';
+import customer from 'src/assets/Function/KHACH HANG SO HUU.png'
+
 export const Function = [
   {
     bgColor: 'primary.light',
@@ -26,7 +30,7 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconFunction color="white" size={30} />
+          <img src={functiongroup} width={30} />
         </Box>
       </>
     ),
@@ -48,7 +52,7 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconBrandFlutter color="white" size={30} />
+          <img src={functionimg} width={30} />
         </Box>
       </>
     ),
@@ -70,7 +74,7 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconUserStar color="white" size={30} />
+        <img src={customer} width={30} />
         </Box>
       </>
     ),
