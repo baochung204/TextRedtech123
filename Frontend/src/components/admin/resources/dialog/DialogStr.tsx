@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import PersonIcon from '@mui/icons-material/Person';
+import { Alert, Avatar, Box, Divider, Snackbar, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { styled } from '@mui/material/styles';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography, Box, Snackbar, Alert, Divider, InputAdornment, Avatar } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
+// import { styled } from '@mui/material/styles';
+import React, { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
-import PersonIcon from '@mui/icons-material/Person';
 
 interface PropsDialog {
     value: string,
@@ -21,17 +17,17 @@ interface PropsDialog {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
 }
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
+// const VisuallyHiddenInput = styled('input')({
+//     clip: 'rect(0 0 0 0)',
+//     clipPath: 'inset(50%)',
+//     height: 1,
+//     overflow: 'hidden',
+//     position: 'absolute',
+//     bottom: 0,
+//     left: 0,
+//     whiteSpace: 'nowrap',
+//     width: 1,
+// });
 const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
     const handleClose = () => {
@@ -140,20 +136,11 @@ const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                     onChange={handleAvatarChange}
                                 />
                                 <Typography mt={1} fontWeight={600}>
-                                    Ảnh chiến lược
+                                    Ảnh huy hiệu
                                 </Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} lg={4} md={12}>
-                            <CustomFormLabel htmlFor="name-text">Nhóm chiến lược</CustomFormLabel>
-                            <CustomTextField
-                                id="name-text"
-                                variant="outlined"
-                                fullWidth
-                                placeholder="Nhập tên nhóm Function . . ."
-
-                            />
-
+                        <Grid item xs={12} lg={8} md={12}>
                             <CustomFormLabel htmlFor="name-text">Tên chiến lược</CustomFormLabel>
                             <CustomTextField
                                 id="name-text"
@@ -162,19 +149,18 @@ const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                 placeholder="Nhập tên Function . . ."
 
                             />
+                            <Grid container spacing={2}> 
+                                <Grid item xs={12} lg={9} md={6}>
+                                    <CustomFormLabel htmlFor="name-text">Nhóm chiến lược</CustomFormLabel>
+                                    <CustomTextField
+                                        id="name-text"
+                                        variant="outlined"
+                                        fullWidth
+                                        placeholder="Nhập tên nhóm chiến lược . . ."
 
-                        </Grid>
-                        <Grid item xs={12} lg={4} md={12}>
-                            
-                            <CustomFormLabel htmlFor="tags-text">Khách hàng sở hữu</CustomFormLabel>
-                            <CustomTextField
-                                id="tags-text"
-                                variant="outlined"
-                                fullWidth
-                                placeholder="Nhập số lượng . . ."
-                            />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} lg={6} md={6}>
+                                    />
+                                </Grid>
+                                <Grid item xs={12} lg={3} md={6}>
                                     <CustomFormLabel htmlFor="name-text">Level</CustomFormLabel>
                                     <CustomTextField
                                         id="name-text"
@@ -183,7 +169,21 @@ const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         placeholder="Nhập level . . ."
                                     />
                                 </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
+                               
+                        </Grid>
+                        <Grid item xs={12} lg={4} md={12}>
+
+
+                            {/* <CustomFormLabel htmlFor="tags-text">Khách hàng sở hữu</CustomFormLabel>
+                            <CustomTextField
+                                id="tags-text"
+                                variant="outlined"
+                                fullWidth
+                                placeholder="Nhập số lượng . . ."
+                            /> */}
+                            
+
+                                {/* <Grid item xs={12} lg={6} md={6}>
                                     <CustomFormLabel htmlFor="phone-text">Trợ lý áp dụng</CustomFormLabel>
                                     <CustomOutlinedInput
                                         id="price-list"
@@ -191,7 +191,7 @@ const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         variant="outlined"
                                         placeholder="Nhập số lượng . . ."
                                     />
-                                </Grid>
+                                </Grid> */}
                             </Grid>
 
 

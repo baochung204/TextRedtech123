@@ -1,7 +1,9 @@
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import {
   IconBrandSentry,
   IconChessQueen,
+  IconEdit,
+  IconEditOff,
   IconEye,
   IconMessageChatbot,
   IconTrash,
@@ -10,6 +12,11 @@ import {
 import img1 from 'src/assets/images/badge/badge.png';
 import img2 from 'src/assets/images/badge/badge2.png';
 import img3 from 'src/assets/images/badge/badge3.png';
+import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconEditCircle } from '@tabler/icons-react';
+import { IconFilePencil } from '@tabler/icons-react';
+import { IconPencilBolt } from '@tabler/icons-react';
 export const Strategy = [
   {
     bgColor: 'primary.light',
@@ -153,16 +160,26 @@ export const StrategyCells: any = [
 
     title: 'Nội dung',
   },
-  // {
-  //   dataIndex: 'creator',
+  {
+    dataIndex: 'dateCreate',
 
-  //   title: 'Người tạo',
-  // },
+    title: 'Ngày tạo',
+  },
+  {
+    dataIndex: 'status',
+    title: 'Trạng thái',
+    render: ((_row: any, value: any) => (
+      <Typography color="textSecondary" variant="subtitle2">
+        <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
+      </Typography>
+    ))
+  },
   {
     dataIndex: 'actions',
 
     title: 'Hoạt động',
   },
+ 
 ];
 
 export const StrategyRows = [
@@ -177,7 +194,7 @@ export const StrategyRows = [
     appliedAssistants: 3,
     summary: 'Tập trung vào thị trường mới',
     content: 'Chiến lược nhằm tăng cường sự hiện diện tại các thị trường mới nổi...',
-    // creator: 'Nguyễn Văn A',
+    dateCreate: 'Nguyễn Văn A',
     actions: (
       <>
         <IconButton>
@@ -188,6 +205,7 @@ export const StrategyRows = [
         </IconButton>
       </>
     ),
+    status: true
   },
   {
     id: 'STG002',
@@ -200,7 +218,7 @@ export const StrategyRows = [
     appliedAssistants: 4,
     summary: 'Cải thiện trải nghiệm khách hàng',
     content: 'Chiến lược này tập trung vào việc nâng cao dịch vụ sau bán hàng...',
-    // creator: 'Trần Thị B',
+    dateCreate: 'Trần Thị B',
     actions: (
       <>
         <IconButton>
@@ -210,7 +228,8 @@ export const StrategyRows = [
           <IconTrash stroke={2} style={{ color: '#FA896B' }} />
         </IconButton>
       </>
-    ),
+    ), 
+    status: true
   },
   {
     id: 'STG003',
@@ -223,17 +242,21 @@ export const StrategyRows = [
     appliedAssistants: 2,
     summary: 'Phát triển sản phẩm mới trong quý 4',
     content: 'Tập trung vào việc ra mắt các sản phẩm mới nhằm đáp ứng nhu cầu thị trường...',
-    // creator: 'Lê Văn C',
+    dateCreate: 'Lê Văn C',
     actions: (
       <>
         <IconButton>
           <IconEye stroke={2} style={{ color: '#5D87FF' }} />
         </IconButton>
+        {/* <IconButton>
+          <IconPencilBolt stroke={2} style={{ color: '#5D87FF' }} />
+        </IconButton> */}
         <IconButton>
           <IconTrash stroke={2} style={{ color: '#FA896B' }} />
         </IconButton>
       </>
-    ),
+    ), 
+    status: false
   },
   {
     id: 'STG004',
@@ -247,7 +270,7 @@ export const StrategyRows = [
     summary: 'Mở rộng thị trường tại Đông Nam Á',
     content:
       'Chiến lược tập trung vào việc xâm nhập và phát triển các kênh phân phối tại Đông Nam Á...',
-    // creator: 'Hoàng Thị D',
+    dateCreate: 'Hoàng Thị D',
     actions: (
       <>
         <IconButton>
@@ -257,7 +280,8 @@ export const StrategyRows = [
           <IconTrash stroke={2} style={{ color: '#FA896B' }} />
         </IconButton>
       </>
-    ),
+    ), 
+    status: true
   },
   {
     id: 'STG005',
@@ -270,7 +294,7 @@ export const StrategyRows = [
     appliedAssistants: 3,
     summary: 'Giảm thiểu chi phí sản xuất và vận hành',
     content: 'Tối ưu hóa quy trình sản xuất và cắt giảm các chi phí không cần thiết...',
-    // creator: 'Phạm Văn E',
+    dateCreate: 'Phạm Văn E',
     actions: (
       <>
         <IconButton>
@@ -280,7 +304,8 @@ export const StrategyRows = [
           <IconTrash stroke={2} style={{ color: '#FA896B' }} />
         </IconButton>
       </>
-    ),
+    ), 
+    status: true
   },
   {
     id: 'STG006',
@@ -293,7 +318,7 @@ export const StrategyRows = [
     appliedAssistants: 6,
     summary: 'Nâng cao nhận diện thương hiệu quốc tế',
     content: 'Chiến lược này tập trung vào việc xây dựng hình ảnh thương hiệu mạnh mẽ...',
-    // creator: 'Ngô Thị F',
+    dateCreate: 'Ngô Thị F',
     actions: (
       <>
         <IconButton>
@@ -304,5 +329,6 @@ export const StrategyRows = [
         </IconButton>
       </>
     ),
+    status: true
   },
 ];
