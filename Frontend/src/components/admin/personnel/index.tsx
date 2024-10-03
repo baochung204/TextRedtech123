@@ -1,14 +1,17 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Grid, Tab } from '@mui/material';
-import { IconChartBar } from '@tabler/icons-react';
 import { useState } from 'react';
+import admin from 'src/assets/Adminphoto/admin.png';
+import online from 'src/assets/Adminphoto/hoat dong.png';
+import course from 'src/assets/Adminphoto/khóa.png';
+import employee from 'src/assets/Adminphoto/nhan vien.png';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
 import PersonnelTab from './component/personnelTab';
 
 interface StyleProps {
   bgColor: string;
-  color: string;
+
   title: string;
   total: string;
   icons: JSX.Element;
@@ -17,12 +20,10 @@ interface StyleProps {
 const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Nhân viên',
     total: '120',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -33,18 +34,16 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={employee} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Admin',
     total: '5',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -55,18 +54,17 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={admin} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Hoạt động',
     total: '52',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -77,18 +75,16 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={online} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Khóa',
     total: '12',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -99,7 +95,8 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={course} width={30} />
       </Box>
     ),
   },

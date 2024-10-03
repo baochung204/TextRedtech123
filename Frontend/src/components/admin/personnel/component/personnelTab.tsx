@@ -160,7 +160,13 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
           >
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item>
-                <IconButton color="primary" aria-label="Add to cart" onClick={() => setOpen(true)}>
+                <IconButton
+                  color="primary"
+                  aria-label="Add to cart"
+                  onClick={() => {
+                    setOpen(true);
+                    setSelectedKey(null);
+                  }}>
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>

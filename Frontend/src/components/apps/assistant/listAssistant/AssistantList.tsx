@@ -105,9 +105,9 @@ const ListAssistant = () => {
               alignItems: 'center',
             }}
           >
-            <Tooltip title="Thêm" sx={{ mr: 2 }}>
+            <Tooltip title="Thêm" >
               <Link to={`/apps/assistant/add`}>
-                <Fab size="small" color="primary" aria-label="plus">
+                <Fab sx={{ mr: 1 }} size="small" color="primary" aria-label="plus">
                   <IconPlus width={18} />
                 </Fab>
               </Link>

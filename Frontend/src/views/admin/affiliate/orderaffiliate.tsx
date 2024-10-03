@@ -10,7 +10,7 @@ const BCrumb = [
 const orderaffiliate = () => {
   return (
     <>
-      <PageContainer title="Order" description="this is Order page">
+      <PageContainer title="Đơn hàng affiliate" description="this is Order page">
         <BannerPage title="Đơn hàng Affiliate" items={BCrumb} />
         <Grid container spacing={3}>
           <Grid item xs={12}>

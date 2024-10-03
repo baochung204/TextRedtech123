@@ -10,7 +10,7 @@ const historyaffiliate = () => {
   ];
   return (
     <>
-      <PageContainer title="Order" description="this is Order page">
+      <PageContainer title="Lịch sử rút tiền" description="this is Order page">
         <BannerPage title="Lịch sử rút tiền" items={BCrumb} />
         <Grid container spacing={3}>
           <Grid item xs={12}>

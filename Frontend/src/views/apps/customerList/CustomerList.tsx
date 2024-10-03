@@ -16,7 +16,8 @@ import {
   Slide,
   TextField,
   Typography,
-} from '@mui/material'; import FilterListIcon from '@mui/icons-material/FilterList';
+} from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -124,7 +125,7 @@ const CustomerList = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer title="Danh sách khách hàng">
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value="1">
@@ -158,11 +159,8 @@ const CustomerList = () => {
                       </Grid>
                     </Grid>
 
-                  
                     <Grid item xs={5.83}>
-                      
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        
                         <Badge
                           badgeContent={dataSelect.length !== 0 && dataSelect.length}
                           color={dataSelect.length !== 0 ? 'primary' : undefined}

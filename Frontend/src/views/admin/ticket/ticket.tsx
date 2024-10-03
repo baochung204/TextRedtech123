@@ -14,23 +14,19 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconEye,
-  IconPasswordUser,
-  IconRefreshOff,
-  IconSearch,
-  IconStars,
-  IconTicket,
-} from '@tabler/icons-react';
+import { IconSearch, IconStars } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
+import processing from 'src/assets/Adminphoto/chua xu ly.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import ticket from 'src/assets/Adminphoto/ticket.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import ContentChat from './contentChat/contentChat';
+import rating from 'src/assets/Adminphoto/DANH GIA.png';
 
 const BCrumb = [
   {
@@ -46,13 +42,11 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Ticket',
     total: '2.415',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -63,20 +57,19 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          {/* <IconTicket color="white" size={30} /> */}
+          <img src={ticket} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng',
     total: '1.369',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -87,20 +80,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Đánh giá',
     total: '4.7/5',
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -111,20 +102,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconStars color="white" size={30} />
+          <img src={rating} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Chưa xử lý',
     total: '236',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -135,7 +124,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconRefreshOff color="white" size={30} />
+          <img src={processing} width={30} />
         </Box>
       </>
     ),
@@ -260,6 +249,7 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
+
 const FilmsData: FilmsData[] = [
   { id: 1, title: 'File' },
   { id: 2, title: 'Dung lượng' },
@@ -278,21 +268,7 @@ const FilmsData: FilmsData[] = [
   { id: 15, title: 'Chiến lược' },
 ];
 const Ticket = () => {
-  const [openChat, setOpenChat] = useState<Boolean>(false);
-
-  const [dataSelect, setDataSelect] = useState<string[]>([]);
-
-  const handleColumnChange = (event: any) => {
-    const {
-      target: { value },
-    } = event;
-    setDataSelect(typeof value === 'string' ? value.split(',') : value);
-  };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
-  const onHandleOpenChat = () => {
-    setOpenChat(!openChat);
-  };
+  const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -335,20 +311,12 @@ const Ticket = () => {
         dataIndex: 'phoneNumber',
         title: 'Số điện thoại',
       },
-      {
-        title: 'Hành động',
-        dataIndex: 'action',
-        render: (_row, value: any) => (
-          <>
-            <IconButton onClick={() => onHandleOpenChat()}>
-              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
-          </>
-        ),
-      },
     ],
     [],
   );
+
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -361,8 +329,17 @@ const Ticket = () => {
       setDataSelect([]);
     }
   }, [column]);
+
+  const handleColumnChange = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Quản lý ticket" description="this is page">
       <BannerPage title="Quản lý ticket" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -455,7 +432,7 @@ const Ticket = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -529,7 +506,6 @@ const Ticket = () => {
           </BlankCard>
         </Grid>
       </Grid>
-      {openChat && <ContentChat onClose={onHandleOpenChat} />}
     </PageContainer>
   );
 };

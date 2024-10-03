@@ -9,17 +9,17 @@
 // import u9 from 'src/assets/images/profile/user-9.jpg';
 // import u10 from 'src/assets/images/profile/user-10.jpg';
 
-interface DataOrderProduct {
+interface DataOrderProductInter {
   id_don_hang: string;
-  createdAt: Date;
+  createdAt: Date 
   id_khach_hang: string;
   ten_khach_hang: string;
-  gia_niem_yet: number;
-  khuyen_mai: number;
-  thanh_toan: number;
+  gia_niem_yet: number | string;
+  khuyen_mai: number | string;
+  thanh_toan: number | string;
 }
 
-const DataOrderProduct: DataOrderProduct[] = [
+const DataOrderProduct: DataOrderProductInter[] = [
   {
     id_don_hang: '1',
     createdAt: new Date('2023-11-22'),

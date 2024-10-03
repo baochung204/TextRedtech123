@@ -4,20 +4,18 @@ import {
   IconBrandFlutter,
   IconEye,
   IconFunction,
-  IconMessageChatbot,
   IconTrash,
   IconUserStar,
 } from '@tabler/icons-react';
+import assistant from 'src/assets/Adminphoto/tro ly ap dung.png';
 export const Function = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Nhóm Function',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -34,14 +32,12 @@ export const Function = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Functions',
     total: '189',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -58,14 +54,12 @@ export const Function = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng sở hữu',
     total: '32.415',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -82,14 +76,12 @@ export const Function = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -100,7 +92,7 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img src={assistant} width={30} />
         </Box>
       </>
     ),

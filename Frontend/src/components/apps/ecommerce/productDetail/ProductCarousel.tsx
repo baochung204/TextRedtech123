@@ -1,33 +1,24 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'src/store/Store';
-
-//Carousel slider for product
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import './Carousel.css';
-
-//Carousel slider data
-
-//fetch product
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-// import { ProductType } from 'src/types/apps/eCommerce';
 
 const ProductCarousel = () => {
-  const [state, setState] = React.useState<any>({ nav1: null, nav2: null });
+  const [state, setState] = useState<any>({ nav1: null, nav2: null });
   const slider1 = useRef();
   const slider2 = useRef();
   const dispatch = useDispatch();
   const Id: any = useParams();
 
-  // Get Product
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  // Get Products
   const product: any = useSelector((state) => state.ecommerceReducer.products[Id.id - 1]);
   const getProductImage = product ? product.thumbnailUrl : '';
 

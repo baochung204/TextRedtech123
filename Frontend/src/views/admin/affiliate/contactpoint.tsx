@@ -10,7 +10,7 @@ const contactpoint = () => {
   ];
   return (
     <>
-      <PageContainer title="Order" description="this is Order page">
+      <PageContainer title="Hợp đồng R-Point" description="this is Order page">
         <BannerPage title="Hợp đồng R-Point" items={BCrumb} />
         <Grid container spacing={3}>
           <Grid item xs={12}>
