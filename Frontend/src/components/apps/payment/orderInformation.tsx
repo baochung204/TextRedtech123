@@ -128,7 +128,7 @@ const OrderInformation = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setOpen(false);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [open]);
   return (
