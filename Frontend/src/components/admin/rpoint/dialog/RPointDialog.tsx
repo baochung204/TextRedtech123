@@ -2,33 +2,44 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, InputA
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik"
 import * as Yup from 'yup';
 import icontext from 'src/assets/images/logos/R-Point.png';
+import { useEffect, useMemo, useState } from "react";
+import PublisherTable from "../datatable/Publisher";
 
 interface PropsDialog {
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
+    selectID: string | null,
+    checkValue: string | null,
+    setCheckValue: React.Dispatch<React.SetStateAction<string | null>>
 }
 
+interface PropsTitle {
+    title: string,
+    dataIndex: string
+}
 
+const RPointDialog = ({ open, setOpen, checkValue, setCheckValue, selectID }: PropsDialog) => {
 
-const RPointDialog = ({ open, setOpen }: PropsDialog) => {
-
-    const emptyInitialValues = {
-        name: '',
-        point: '',
+    const emptyInitialValues = useMemo(() => ({
+        package: '',
+        points: '',
         money: '',
         model: '',
         function: '',
-        stagety: '',
+        totalBuy: '',
+        strategy: '',
         files: '',
-        function2: '',
+        totalFunction: '',
         createDate: ''
-    }
-    // const [initialValues, setInitialValues] = useState(emptyInitialValues);
+    }), [])
+
+
+    const [initialValues, setInitialValues] = useState(emptyInitialValues);
 
     const validateSchema = Yup.object({
-        name: Yup.string()
+        package: Yup.string()
             .required('Tên gói R-Point là bắt buộc.'),
-        point: Yup.string()
+        points: Yup.string()
             .required('Số Point là bắt buộc.'),
         money: Yup.string()
             .required('Số tiền là bắt buộc.'),
@@ -36,12 +47,16 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
             .required('Model là bắt buộc.'),
         function: Yup.string()
             .required('Hành động là bắt buộc.'),
-        stagety: Yup.string()
+        strategy: Yup.string()
             .required('Chiến lược là bắt buộc.'),
         files: Yup.string()
             .required('Files là bắt buộc.'),
         function2: Yup.string()
-            .required('Hành động là bắt buộc.')
+            .required('Hành động là bắt buộc.'),
+        totalFunction: Yup.string()
+            .required('totalFunction là bắt buộc.'),
+        totalBuy: Yup.string()
+            .required('totalBuy là bắt buộc.')
     })
 
     const handleSubmit = (values: typeof emptyInitialValues, { resetForm }: FormikHelpers<typeof emptyInitialValues>) => {
@@ -67,6 +82,65 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
         resetForm();
     };
 
+    useEffect(() => {
+        if (checkValue === 'add') {
+            setInitialValues(emptyInitialValues);
+        } else {
+            const data = PublisherTable.find((item) => item.id === selectID);
+            if (data) {
+                setInitialValues({
+                    package: data.package,
+                    points: data.points,
+                    money: data.money,
+                    model: data.model,
+                    function: data.function,
+                    totalBuy: data.totalBuy,
+                    strategy: data.strategy,
+                    files: data.files,
+                    totalFunction: data.totalFunction,
+                    createDate: data.createDate
+                })
+            }
+        }
+    }, [checkValue, selectID, emptyInitialValues])
+
+
+    const form: PropsTitle[] = [
+        {
+            title: 'Tên gói R-Point',
+            dataIndex: 'package'
+        },
+        {
+            title: 'Model',
+            dataIndex: 'model'
+        },
+        {
+            title: 'Số Points',
+            dataIndex: 'points'
+        },
+        {
+            title: 'Giá tiền',
+            dataIndex: 'money'
+        },
+        {
+            title: 'Function',
+            dataIndex: 'function'
+        },
+        {
+            title: 'Chiến lược',
+            dataIndex: 'strategy'
+        },
+        {
+            title: 'Files (slot)',
+            dataIndex: 'files'
+        },
+        {
+            title: 'Function (slot)',
+            dataIndex: 'totalFunction'
+        },
+
+    ]
+
     return (
         <Dialog
             open={open}
@@ -86,18 +160,54 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
             >
                 Thêm gói R-Point
             </DialogTitle>
-            <DialogContent >
-                <Formik
-                    enableReinitialize
-                    initialValues={emptyInitialValues}
-                    validationSchema={validateSchema}
-                    onSubmit={handleSubmit}
-                    validateOnChange={true}
-                    validateOnBlur={false}
-                >
-                    {({ resetForm }) => (
-                        <Form>
-                            <Grid
+            <Formik
+                enableReinitialize
+                initialValues={initialValues}
+                validationSchema={validateSchema}
+                onSubmit={handleSubmit}
+                validateOnChange={true}
+                validateOnBlur={false}
+            >
+                {({ resetForm }) => (
+                    <Form>
+                        <DialogContent >
+                            <Grid container spacing={2}>
+                                {form.map((item, index) => {
+                                    return (
+                                        <Grid item xs={6} key={index}>
+                                            <Typography variant="h6">
+                                                {item.title}
+                                            </Typography>
+                                            <Field
+                                                as={TextField}
+                                                name={item.dataIndex}
+                                                fullWidth
+                                                margin="normal"
+                                                // InputProps={{
+                                                //     endAdornment: (
+                                                //         <InputAdornment position="end">
+                                                //             <img
+                                                //                 src={icontext}
+                                                //                 alt="icon"
+                                                //                 style={{ width: '24px', height: '24px' }}
+                                                //             />
+                                                //         </InputAdornment>
+                                                //     ),
+                                                // }}
+                                                helperText={
+                                                    <ErrorMessage name={item.dataIndex}>
+                                                        {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                                    </ErrorMessage>
+                                                }
+                                                FormHelperTextProps={{ sx: { ml: 0 } }}
+                                            />
+                                        </Grid>
+                                    )
+                                })}
+                            </Grid>
+                        </DialogContent>
+
+                        {/* <Grid
                                 container
                                 spacing={3}
                                 justifyContent="center"
@@ -111,11 +221,11 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
                                             </Typography>
                                             <Field
                                                 as={TextField}
-                                                name='name'
+                                                name='package'
                                                 fullWidth
                                                 margin='normal'
                                                 helperText={
-                                                    <ErrorMessage name='name'>
+                                                    <ErrorMessage name='package'>
                                                         {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
                                                     </ErrorMessage>
                                                 }
@@ -128,7 +238,7 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
                                             </Typography>
                                             <Field
                                                 as={TextField}
-                                                name='point'
+                                                name='points'
                                                 fullWidth
                                                 margin="normal"
                                                 InputProps={{
@@ -143,7 +253,7 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
                                                     ),
                                                 }}
                                                 helperText={
-                                                    <ErrorMessage name='point'>
+                                                    <ErrorMessage name='points'>
                                                         {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
                                                     </ErrorMessage>
                                                 }
@@ -218,11 +328,11 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
                                             </Typography>
                                             <Field
                                                 as={TextField}
-                                                name='stagety'
+                                                name='strategy'
                                                 fullWidth
                                                 margin='normal'
                                                 helperText={
-                                                    <ErrorMessage name='stagety'>
+                                                    <ErrorMessage name='strategy'>
                                                         {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
                                                     </ErrorMessage>
                                                 }
@@ -252,11 +362,11 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
                                             </Typography>
                                             <Field
                                                 as={TextField}
-                                                name='function2'
+                                                name='totalFunction'
                                                 fullWidth
                                                 margin='normal'
                                                 helperText={
-                                                    <ErrorMessage name='function2'>
+                                                    <ErrorMessage name='totalFunction'>
                                                         {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
                                                     </ErrorMessage>
                                                 }
@@ -265,26 +375,25 @@ const RPointDialog = ({ open, setOpen }: PropsDialog) => {
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                            <DialogActions >
-                                <Button
-                                    onClick={(event) => handleClose(event, resetForm)}
-                                    variant="contained"
-                                    color='error'
-                                >
-                                    Đóng
-                                </Button>
-                                <Button
-                                    type="submit"
-                                    variant='contained'
-                                >
-                                    Thêm
-                                </Button>
-                            </DialogActions>
-                        </Form>
-                    )}
-                </Formik>
-            </DialogContent>
+                            </Grid> */}
+                        <DialogActions >
+                            <Button
+                                onClick={(event) => handleClose(event, resetForm)}
+                                variant="contained"
+                                color='error'
+                            >
+                                Đóng
+                            </Button>
+                            <Button
+                                type="submit"
+                                variant='contained'
+                            >
+                                Thêm
+                            </Button>
+                        </DialogActions>
+                    </Form>
+                )}
+            </Formik>
 
         </Dialog>
     )
