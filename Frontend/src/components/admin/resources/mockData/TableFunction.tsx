@@ -4,21 +4,22 @@ import {
   IconBrandFlutter,
   IconEye,
   IconFunction,
-  IconMessageChatbot,
   IconTrash,
   IconUserStar,
 } from '@tabler/icons-react';
+import functionimg from 'src/assets/Function/FUNCTION.png';
+import functiongroup from 'src/assets/Function/NHOM FUNCTION.png';
 import assistant from 'src/assets/Adminphoto/tro ly ap dung.png';
+import customer from 'src/assets/Function/KHACH HANG SO HUU.png'
+
 export const Function = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Nhóm Function',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -29,20 +30,18 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconFunction color="white" size={30} />
+          <img src={functiongroup} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Functions',
     total: '189',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -53,20 +52,18 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconBrandFlutter color="white" size={30} />
+          <img src={functionimg} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng sở hữu',
     total: '32.415',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -77,14 +74,13 @@ export const Function = [
             alignItems: 'center',
           }}
         >
-          <IconUserStar color="white" size={30} />
+        <img src={customer} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (

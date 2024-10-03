@@ -51,8 +51,9 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Khách hàng',
     icon: IconUsersGroup,
-    href: '/admin/order/orderadminpage'
+    href: '/admin/order/orderadminpage',
   },
+
   {
     id: uniqueId(),
     title: 'Bán hàng',

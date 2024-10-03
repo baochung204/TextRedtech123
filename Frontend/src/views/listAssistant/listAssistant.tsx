@@ -12,7 +12,7 @@ const BCrumb = [
 
 const AssistantList = () => {
   return (
-    <PageContainer title="User Profile" description="this is User Profile page">
+    <PageContainer title="Danh sách trợ lý" description="this is User Profile page">
       <BannerPage title="Danh sách trợ lý " items={BCrumb} />
       <ListAssistant />
     </PageContainer>

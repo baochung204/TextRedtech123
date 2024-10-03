@@ -15,7 +15,7 @@ const BCrumb = [
 
 const Faq = () => {
   return (
-    <PageContainer title="Faq" description="this is Faq page">
+    <PageContainer title="Tài nguyên" description="this is Faq page">
       <BannerPage title="Tài nguyên" items={BCrumb} />
       {/* end breadcrumb */}
       <Grid container spacing={3}>

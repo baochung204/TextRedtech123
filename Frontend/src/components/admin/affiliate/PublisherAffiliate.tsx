@@ -13,24 +13,24 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { IconBrandGoogleHome, IconCoinOff, IconCoins, IconSearch } from '@tabler/icons-react';
+import { IconBrandGoogleHome, IconCoinOff, IconSearch } from '@tabler/icons-react';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconBox } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataPublishersTable } from './datatable/OrderTableData';
-import bill from 'src/assets/Adminphoto/dơn hang.png';
-import commission from 'src/assets/Adminphoto/hoa hong.png';
+import publisher from 'src/assets/Adminphoto/Publisher.png';
+import notpaid from 'src/assets/Adminphoto/chua thanh toan.png';
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Publisher',
     total: '1907',
     icons: (
@@ -46,14 +46,13 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandGoogleHome color="white" size={30} />
+          <img src={publisher} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Đơn hàng',
     total: '8386',
     icons: (
@@ -76,8 +75,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Hoa hồng',
     total: '123.406.369 ₫',
     icons: (
@@ -100,8 +98,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Chưa thanh toán',
     total: '11.415.123 ₫',
     icons: (
@@ -117,27 +114,12 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconCoinOff color="white" size={30} />
+          <img width={30} src={notpaid} />
         </Box>
       </>
     ),
   },
 ];
-
-// const getStatusColor = (status: string) => {
-//   switch (status) {
-//     case 'Đã duyệt':
-//       return 'success'; // Green for approved
-//     case 'Chờ duyệt':
-//       return 'warning'; // Yellow for pending approval
-//     case 'Từ chối':
-//       return 'error'; // Red for rejected
-//     case 'Chưa gửi':
-//       return 'default'; // Gray for not yet sent
-//     default:
-//       return 'default'; // Gray for any unrecognized status
-//   }
-// };
 
 const getStatusAccountColor = (status: number) => {
   switch (status) {

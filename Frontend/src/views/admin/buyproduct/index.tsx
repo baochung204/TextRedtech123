@@ -534,3 +534,20 @@ const BuyPoints = () => {
 };
 
 export default BuyPoints;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
