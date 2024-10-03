@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Typography, Box, TextField, Grid } from '@mui/material';
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 interface PropsDialog {
   open: boolean;
@@ -72,14 +73,14 @@ const DialogImage: React.FC<PropsDialog> = ({
   };
 
   return (
-    <>
-      <Dialog fullWidth={true} maxWidth="sm" open={value === '5' && open} onClose={handleClose}>
-        <DialogTitle sx={{ textAlign: 'center' }}>
-          <Typography fontWeight={600} variant="h3">
-            Thêm Ảnh
-          </Typography>
-        </DialogTitle>
-        <DialogContent>
+    <Dialog fullWidth={true} maxWidth="sm" open={value === '5' && open} onClose={handleClose}>
+      <DialogTitle sx={{ textAlign: 'center' }}>
+        <Typography fontWeight={600} variant="h3">
+          Xem ảnh
+        </Typography>
+      </DialogTitle>
+      <DialogContent>
+        <Scrollbar_y sx={{ maxHeight: '530px', paddingX: 5 }}>
           <DialogContentText>
             <Grid container direction="column">
               {selectedItemId1 === null && (
@@ -109,7 +110,11 @@ const DialogImage: React.FC<PropsDialog> = ({
               )}
               {fileUrl && (
                 <Grid item sm={12}>
-                  <Box component="img" src={fileUrl} alt="Preview" width={400}
+                  <Box
+                    component="img"
+                    src={fileUrl}
+                    alt="Preview"
+                    width={400}
                     sx={{
                       display: 'flex',
                       justifyContent: 'center',
@@ -156,13 +161,13 @@ const DialogImage: React.FC<PropsDialog> = ({
               )}
             </Grid>
           </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Hủy</Button>
-          <Button onClick={() => { }}>Lưu</Button>
-        </DialogActions>
-      </Dialog>
-    </>
+        </Scrollbar_y>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Hủy</Button>
+        <Button onClick={() => {}}>Lưu</Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 
