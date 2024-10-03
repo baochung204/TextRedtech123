@@ -1,47 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import Chart from 'react-apexcharts';
-
-import { Props } from 'react-apexcharts';
-
+import { useTheme } from '@mui/material/styles';
+import Chart, { Props } from 'react-apexcharts';
 import Modarm from 'src/components/shared/moderm';
 
 const Chart1 = () => {
-  const seriesdoughnutchart = [55, 45];
-  const seriespiechart = [45, 65, 27, 18, 35];
+  // chart color
+  const theme = useTheme();
+  const primary = theme.palette.primary.main;
+  const secondary = theme.palette.secondary.main;
+  const warning = theme.palette.warning.main;
+
+  // 1
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#0000000',
-
-      events: {
-        mounted: (chart: any) => {
-          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
-          const maxValue = Math.max(...seriesdoughnutchart);
-          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
-          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] + '%' : '';
-
-          // Custom label for center text
-          chart.updateOptions({
-            annotations: {
-              position: 'front',
-              text: {
-                x: 0,
-                y: 0,
-                text: `${maxValue}%`,
-                textAnchor: 'middle',
-                dominantBaseline: 'middle',
-                style: {
-                  fontSize: '20px',
-                  fontWeight: 'bold',
-                  color: '#000000', // màu đen
-                },
-              },
-            },
-          });
-        },
-      },
+      foreColor: '#adb0bb',
     },
     dataLabels: {
       enabled: false,
@@ -50,15 +25,6 @@ const Chart1 = () => {
       pie: {
         donut: {
           size: '70px',
-          labels: {
-            show: true,
-            total: {
-              show: true,
-              label: 'Tỉ lệ cao nhất',
-              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
-              fontWeight: 'bold',
-            },
-          },
         },
       },
     },
@@ -67,30 +33,29 @@ const Chart1 = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#f45c43', '#fd1d1d'],
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shade: 'light',
-        type: 'vertical',
-        shadeIntensity: 0.5,
-        gradientToColors: ['#feb47b', '#ff7e5f'],
-        inverseColors: true,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100],
-      },
-    },
+    colors: [primary, secondary, warning, '#2c5364', '#99f2c8'],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Cá nhân', 'Doanh nghiệp'],
+    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
   };
 
+  const seriespiechart = [45, 65, 27, 18, 35];
+
   return (
-    <Modarm title="Nguồn khách hàng " text="Nguồn khách hàng" description="">
-      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="330px" />
+    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
+    //   {/* breadcrumb */}
+    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
+    //   {/* end breadcrumb */}
+    //   <Grid container spacing={3}>
+    //     <Grid item lg={6} md={12} xs={12}>
+
+    //     </Grid>
+    //   </Grid>
+    // </PageContainer>
+    <Modarm title="Nguồn khách hàng" text="Nguồn khách hàng" description="">
+      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
     </Modarm>
   );
 };
