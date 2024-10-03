@@ -37,6 +37,7 @@ const Tags = () => {
     <Autocomplete
       multiple
       fullWidth
+      open={false}
       id="tags-outlined"
       size="small"
       options={top100Films}

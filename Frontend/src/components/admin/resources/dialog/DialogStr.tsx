@@ -61,8 +61,6 @@ const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     return (
         <>
             <Dialog
-
-
                 open={value === '1' && open ? true : false}
                 onClose={handleClose}
                 maxWidth="lg"
@@ -74,13 +72,11 @@ const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     },
                     '& .MuiPaper-root': {
                         width: '100%',
-                        maxWidth: '900px', // Giữ chiều rộng của Dialog
+                        maxWidth: '900px',
                     },
                 }}
             >
-                <DialogTitle sx={{
-
-                }}>
+                <DialogTitle>
 
                     <Typography fontWeight={600} variant='h3'>
                         Thêm chiến lược
@@ -109,7 +105,7 @@ const DialogStr: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                             position: 'relative',
                                             zIndex: 1,
                                             borderRadius: '50%',
-                                            border: 'none', // Remove default border
+                                            border: 'none',
                                             '&:before': {
                                                 content: '""',
                                                 position: 'absolute',

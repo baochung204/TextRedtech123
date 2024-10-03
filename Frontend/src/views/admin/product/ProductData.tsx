@@ -18,7 +18,7 @@ const imageSources = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10];
 interface ProductProps {
     id: string;
     danhmuc: string;
-    anh: string;
+    anh: string[];
     tensanpham: string;
     gianiemyet: string;
     giakhuyenmai: string;
@@ -31,6 +31,22 @@ interface ProductProps {
     ha?: string;
     secretkey?: string;
     hdsd?: string;
+    mota: string,
+    nhomFunction?: string,
+    tenFunction?: string,
+    codeFunction?: string,
+    levelx?: string,
+    khachHang?: string,
+    troLy?: string,
+    tomTat?: string,
+    anhStrategy?: string[],
+    nhomStrategy?: string,
+    tenStrategy?: string,
+    khachhangStrategy?: string,
+    levelStrategy?: string,
+    trolyStrategy?: string,
+    tomtatStrategy?: string,
+    noidungStrategy?: string
 }
 
 
@@ -44,7 +60,7 @@ const ProductTable: ProductProps[] = [
     {
         id: generateIdCode(),
         danhmuc: 'Học máy',
-        anh: imageSources[Math.floor(Math.random() * imageSources.length)],
+        anh: [imageSources[Math.floor(Math.random() * imageSources.length)]],
         tensanpham: 'GPT-0',
         gianiemyet: '200.000',
         giakhuyenmai: '150.000',
@@ -52,12 +68,13 @@ const ProductTable: ProductProps[] = [
         tags: 'tagTest',
         soluongmua: '100',
         tongdoanhthu: '300.000',
-        titrongdoanthu: '20%'
+        titrongdoanthu: '20%',
+        mota: 'Mo Ta'
     },
     {
         id: generateIdCode(),
         danhmuc: 'Học máy',
-        anh: imageSources[Math.floor(Math.random() * imageSources.length)],
+        anh: [imageSources[Math.floor(Math.random() * imageSources.length)]],
         tensanpham: 'GPT-0',
         gianiemyet: '200.000',
         giakhuyenmai: '150.000',
@@ -65,12 +82,13 @@ const ProductTable: ProductProps[] = [
         tags: 'tagTest',
         soluongmua: '100',
         tongdoanhthu: '300.000',
-        titrongdoanthu: '20%'
+        titrongdoanthu: '20%',
+        mota: 'Mo Ta'
     },
     {
         id: generateIdCode(),
         danhmuc: 'Học máy',
-        anh: imageSources[Math.floor(Math.random() * imageSources.length)],
+        anh: [imageSources[Math.floor(Math.random() * imageSources.length)]],
         tensanpham: 'GPT-0',
         gianiemyet: '200.000',
         giakhuyenmai: '150.000',
@@ -78,12 +96,13 @@ const ProductTable: ProductProps[] = [
         tags: 'tagTest',
         soluongmua: '100',
         tongdoanhthu: '300.000',
-        titrongdoanthu: '20%'
+        titrongdoanthu: '20%',
+        mota: 'Mo Ta'
     },
     {
         id: generateIdCode(),
         danhmuc: 'Học máy',
-        anh: imageSources[Math.floor(Math.random() * imageSources.length)],
+        anh: [imageSources[Math.floor(Math.random() * imageSources.length)]],
         tensanpham: 'GPT-0',
         gianiemyet: '200.000',
         giakhuyenmai: '150.000',
@@ -91,12 +110,13 @@ const ProductTable: ProductProps[] = [
         tags: 'tagTest',
         soluongmua: '100',
         tongdoanhthu: '300.000',
-        titrongdoanthu: '20%'
+        titrongdoanthu: '20%',
+        mota: 'Mo Ta'
     },
     {
         id: generateIdCode(),
         danhmuc: 'Học máy',
-        anh: imageSources[Math.floor(Math.random() * imageSources.length)],
+        anh: [imageSources[Math.floor(Math.random() * imageSources.length)]],
         tensanpham: 'GPT-0',
         gianiemyet: '200.000',
         giakhuyenmai: '150.000',
@@ -104,7 +124,8 @@ const ProductTable: ProductProps[] = [
         tags: 'tagTest',
         soluongmua: '100',
         tongdoanhthu: '300.000',
-        titrongdoanthu: '20%'
+        titrongdoanthu: '20%',
+        mota: 'Mo Ta'
     },
 
 ]
