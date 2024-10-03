@@ -266,6 +266,8 @@ const ProductAdmin = () => {
               setSelectID(row.id_don_hang);
               setOpen(true);
               setCheckValue('show')
+              console.log('checkValuever1:',checkValue);
+              
             }}
           >
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />

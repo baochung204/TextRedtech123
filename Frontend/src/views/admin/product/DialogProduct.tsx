@@ -53,7 +53,6 @@ const DialogProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: P
     });
 
     const handleClose = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>, resetForm: () => void,) => {
-        setInitialValues(emptyInitialValues);
         setOpen(false);
         resetForm();
     };
@@ -73,6 +72,7 @@ const DialogProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: P
         if (checkValue === 'add') {
             setInitialValues(emptyInitialValues);
         } else {
+            setCheckValue('show')
             const data = DataOrderProduct.find((item) => item.id_don_hang === selectID);
             console.log('data', data);
 
@@ -88,7 +88,8 @@ const DialogProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: P
                 });
             }
         }
-    }, [checkValue, emptyInitialValues, selectID]);
+    }, [checkValue, emptyInitialValues, selectID, setCheckValue]);
+    console.log('checkValuever2:', checkValue);
 
 
     const form: PropsTitle[] = [

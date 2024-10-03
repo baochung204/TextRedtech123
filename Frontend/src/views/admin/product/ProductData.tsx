@@ -31,7 +31,22 @@ interface ProductProps {
     ha?: string;
     secretkey?: string;
     hdsd?: string;
-    mota: string
+    mota: string,
+    nhomFunction?: string,
+    tenFunction?: string,
+    codeFunction?: string,
+    levelx?: string,
+    khachHang?: string,
+    troLy?: string,
+    tomTat?: string,
+    anhStrategy?: string[],
+    nhomStrategy?: string,
+    tenStrategy?: string,
+    khachhangStrategy?: string,
+    levelStrategy?: string,
+    trolyStrategy?: string,
+    tomtatStrategy?: string,
+    noidungStrategy?: string
 }
 
 

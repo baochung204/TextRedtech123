@@ -284,10 +284,12 @@ const Main = () => {
     }),
     [],
   );
+
   const [search, setSearch] = useState<boolean>(false);
   const handleSearch = () => {
     setSearch(!search);
   };
+  
   useEffect(() => {
     const selectedColumns = column[value] || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -304,7 +306,6 @@ const Main = () => {
   const searchSection = (
     <Box>
       <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
-        {/* {(value === '3' || value === '4' || value === '5' || value === '6') && ( */}
           <Grid item>
             <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
               <Grid item>
@@ -369,8 +370,6 @@ const Main = () => {
               </Grid>
             </Grid>
           </Grid>
-        {/* )} */}
-        {/* {(value === '3' || value === '4' || value === '5' || value === '6') && ( */}
           <Grid item>
             <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
               <Grid item>
@@ -423,7 +422,6 @@ const Main = () => {
     <Grid container xs={12}>
       <Grid item xs={12}>
         <Box>
-          {/* Hiển thị TopCard khi tab value là 1 */}
           {value === '1' && <TopCard dataSource={Strategy} totalColumn={4} />}
           {value === '2' && <TopCard dataSource={Function} totalColumn={4} />}
           {value === '3' && <TopCard dataSource={Files} totalColumn={4} />}
@@ -459,46 +457,6 @@ const Main = () => {
                 <Tab label="URL" value="6" />
               </TabList>
               {searchSection}
-              {/* {(value === '1' || value === '2') && ( */}
-              {/* <Box display={'flex'} justifyContent={'end'}>
-                <Grid container sx={{ alignItems: 'center' }}>
-                  <Grid item>
-                    <TextField
-                      id="outlined-search"
-                      placeholder="Tìm kiếm"
-                      size="small"
-                      type="search"
-                      variant="outlined"
-                      inputProps={{ 'aria-label': 'Search Followers' }}
-                      sx={{
-                        fontSize: { xs: '50px', sm: '50px', md: '50px' },
-                      }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <IconSearch size="12" />
-                          </InputAdornment>
-                        ),
-                      }}
-                      fullWidth={true}
-                    />
-                  </Grid>
-                  {(value === '1' || value === '2') && (
-                    <Grid item>
-                      <IconButton
-                        color="primary"
-                        aria-label="Add to cart"
-                        // onClick={() => setOpen(true)}
-                        sx={{
-                          pr: 0,
-                        }}
-                      >
-                        <AddCircleIcon sx={{ fontSize: 30 }} />
-                      </IconButton>
-                    </Grid>
-                  )}
-                </Grid>
-              </Box> */}
             </Box>
 
             <TabPanel sx={{ p: 0, pt: 2 }} value="1">

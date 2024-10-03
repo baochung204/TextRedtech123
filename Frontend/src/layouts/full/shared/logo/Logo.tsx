@@ -16,6 +16,9 @@ import LogoDark from 'src/assets/images/logos/dark-logo.svg';
 import { styled } from '@mui/material';
 import { AppState } from 'src/store/Store';
 import logoRedai from 'src/assets/images/logos/LogoRedai.png';
+
+
+
 const Logo: FC = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const LinkStyled = styled(Link)(() => ({
