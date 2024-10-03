@@ -1,4 +1,4 @@
-import { Alert, Divider, InputAdornment, Snackbar, Typography } from '@mui/material';
+import { Alert, Divider, Snackbar, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -54,8 +54,6 @@ const DialogFunction: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         <>
         <Scrollbar_y>
             <Dialog
-
-
                 open={value === '2' && open ? true : false}
                 onClose={handleClose}
                 maxWidth="lg"
