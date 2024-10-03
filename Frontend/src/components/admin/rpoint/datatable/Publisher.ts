@@ -1,4 +1,4 @@
-interface PropsTable {
+export interface PropsTable {
     id: string;
     package: string;
     model: string;

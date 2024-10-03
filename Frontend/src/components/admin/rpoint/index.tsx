@@ -21,6 +21,7 @@ import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import PublisherTable from './datatable/Publisher';
+import RPointDialog from './dialog/RPointDialog';
 
 
 interface Column {
@@ -31,6 +32,12 @@ interface Column {
 }
 
 const PublisherTablePage: React.FC = () => {
+
+
+  const [open, setOpen] = useState<boolean>(false)
+  const [checkValue, setCheckValue] = useState<string | null>(null)
+  const [selectID, setSelectID] = useState<string | null>(null)
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -38,7 +45,7 @@ const PublisherTablePage: React.FC = () => {
         dataIndex: 'id',
       },
       {
-        title: 'Tên gói',
+        title: 'Tên gói R-Point',
         dataIndex: 'package',
       },
       {
@@ -63,26 +70,6 @@ const PublisherTablePage: React.FC = () => {
         ),
       },
       {
-        title: 'Số lượt mua',
-        dataIndex: 'totalBuy',
-      },
-      {
-        title: 'Chức năng',
-        dataIndex: 'function',
-      },
-      {
-        title: 'Chiến lược',
-        dataIndex: 'strategy',
-      },
-      {
-        title: 'Tổng files',
-        dataIndex: 'files',
-      },
-      {
-        title: 'Tổng chức năng',
-        dataIndex: 'totalFunction',
-      },
-      {
         title: 'Ngày tạo',
         dataIndex: 'createDate',
       },
@@ -90,13 +77,13 @@ const PublisherTablePage: React.FC = () => {
         dataIndex: 'isActive',
         title: 'Hoạt động',
         validate: true,
-        render: () => (
+        render: (_value, row) => (
           <>
             <IconButton
               onClick={() => {
-                // setSelectedKey(row.id);
-                // setOpen(true);
-                // setIsCheckFix(true);
+                setSelectID(row.id);
+                setOpen(true);
+                setCheckValue('view');
               }}
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
@@ -107,11 +94,35 @@ const PublisherTablePage: React.FC = () => {
           </>
         ),
       },
+      {
+        title: 'Số lượt mua',
+        dataIndex: 'totalBuy',
+        isValids: false
+      },
+      {
+        title: 'Function',
+        dataIndex: 'function',
+        isValids: false
+      },
+      {
+        title: 'Chiến lược',
+        dataIndex: 'strategy',
+        isValids: false
+      },
+      {
+        title: 'Files (slot)',
+        dataIndex: 'files',
+        isValids: false
+      },
+      {
+        title: 'Function (slot)',
+        dataIndex: 'totalFunction',
+        isValids: false
+      },
     ],
     [],
   );
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [selectedItems] = useState<number[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -152,7 +163,7 @@ const PublisherTablePage: React.FC = () => {
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
+                  onClick={() => { setOpen(true); setCheckValue('add')}}
 
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
@@ -304,6 +315,13 @@ const PublisherTablePage: React.FC = () => {
       <Grid item xs={12}>
         <CustomTable columns={column} dataSource={PublisherTable} dataSelect={dataSelect} />
       </Grid>
+      <RPointDialog
+        open={open}
+        setOpen={setOpen}
+        checkValue={checkValue}
+        setCheckValue={setCheckValue}
+        selectID={selectID}
+      />
     </Grid>
   );
 };

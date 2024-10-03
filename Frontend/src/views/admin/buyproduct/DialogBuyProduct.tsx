@@ -416,13 +416,13 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                                         sx: {
                                                                             '& .MuiOutlinedInput-root': {
                                                                                 '& fieldset': {
-                                                                                    borderColor: 'transparent', // Xóa bỏ viền khi không hover
+                                                                                    borderColor: 'transparent',
                                                                                 },
                                                                                 '&:hover fieldset': {
-                                                                                    borderColor: 'transparent', // Xóa bỏ viền khi hover
+                                                                                    borderColor: 'transparent',
                                                                                 },
                                                                                 '&.Mui-focused fieldset': {
-                                                                                    borderColor: 'transparent', // Xóa bỏ viền khi field được focus
+                                                                                    borderColor: 'transparent', 
                                                                                 },
                                                                             },
                                                                         },
