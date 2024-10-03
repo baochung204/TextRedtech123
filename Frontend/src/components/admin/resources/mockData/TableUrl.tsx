@@ -2,6 +2,7 @@ import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import { IconEye, IconTrash, IconUnlink } from '@tabler/icons-react';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
+import url from 'src/assets/Adminphoto/URL.png';
 export const Url = [
   {
     bgColor: 'primary.light',
@@ -10,7 +11,6 @@ export const Url = [
     icons: (
       <>
         <Box
-        
           textAlign="center"
           padding={1}
           sx={{
@@ -21,7 +21,7 @@ export const Url = [
             alignItems: 'center',
           }}
         >
-          <IconUnlink color="white" size={30} />
+          <img src={url} width={30} />
         </Box>
       </>
     ),
