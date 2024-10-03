@@ -10,6 +10,9 @@ import {
 import icontext from 'src/assets/images/logos/R-Point.png';
 import { HeadCell } from '../types/HeadCell';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
+import capacity from 'src/assets/Gallary/DUNG LUONG.png';
+import gallarypercustomer from 'src/assets/Gallary/HINH ANH KHACH HANG.png';
+import gallary from 'src/assets/Gallary/HINH ANH.png';
 
 export const Image = [
   {
@@ -29,7 +32,7 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconPhotoScan color="white" size={30} />
+          <img src={gallary} width={30} />
         </Box>
       </>
     ),
@@ -73,7 +76,7 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconDatabaseSmile color="white" size={30} />
+          <img src={capacity} width={30} />
         </Box>
       </>
     ),
@@ -95,7 +98,7 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconPhoto color="white" size={30} />
+          <img src={gallarypercustomer} width={30} />
         </Box>
       </>
     ),
