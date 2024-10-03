@@ -14,22 +14,20 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconBox,
-  IconChartArcs,
-  IconChartBar,
-  IconPasswordUser,
-  IconReceipt,
-  IconSearch,
-} from '@tabler/icons-react';
+import { IconChartArcs, IconChartBar, IconReceipt, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import bill from 'src/assets/ICON/dơn hang.png';
+import gmv from 'src/assets/ICON/gmv.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import Cvr from 'src/assets/Adminphoto/cvr.png';
+import Assistant from 'src/assets/Adminphoto/tro ly.png';
 const BCrumb = [
   {
     to: '/admin',
@@ -42,13 +40,12 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Trợ lý',
     total: '2415',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -59,20 +56,19 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <img src={Assistant} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
+
     title: 'CVR trung bình',
     total: '25.18%',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -83,20 +79,19 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartArcs color="white" size={30} />
+          <img src={Cvr} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Khách hàng ',
     total: '362.415',
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -107,20 +102,20 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          {/* <IconPasswordUser color="white" size={30} /> */}
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '11.415',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -131,20 +126,20 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBox color="white" size={30} />
+          {/* <IconBox color="white" size={30} /> */}
+          <img src={bill} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'GMV',
     total: '1.413.241.141₫',
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -156,6 +151,7 @@ const DataBox = [
           }}
         >
           <IconChartBar color="white" size={30} />
+          <img src={gmv} width={30} />
         </Box>
       </>
     ),
@@ -435,7 +431,7 @@ const AssistantAdmin = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Quản lý trợ lý" description="this is  page">
       <BannerPage title="Quản lý trợ lý" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>

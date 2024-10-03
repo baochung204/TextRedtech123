@@ -15,26 +15,24 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Slide,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
-  IconBrandStrava,
   IconEdit,
   IconEye,
   IconLockSquareRounded,
-  IconPasswordUser,
   IconSearch,
   IconTrash,
-  IconUser
 } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import blog from 'src/assets/Adminphoto/bai viet.png';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -42,23 +40,16 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
-
+import reaction from 'src/assets/Adminphoto/luot timm.png';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
   { to: '/admin/blogs', title: 'Danh sách bài viết' },
 ];
 
-const Transition = React.forwardRef<
-  unknown,
-  TransitionProps & { children: React.ReactElement<any, any> }
->(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
 interface StyleProps {
   bgColor: string;
-  color: string;
+
   title: string;
   total: string;
   icons: JSX.Element;
@@ -67,12 +58,10 @@ interface StyleProps {
 const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Bài viết ',
     total: '120',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -83,18 +72,16 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconUser color="white" size={30} />
+        <img src={blog} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Lượt xem',
     total: '5',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -105,18 +92,16 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconPasswordUser color="white" size={30} />
+        <img src={view} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Doanh thu',
     total: '52.200.200 ₫ ',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -127,18 +112,16 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconBrandStrava color="white" size={30} />
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Lượt tim',
     total: '120',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -149,7 +132,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconLockSquareRounded color="white" size={30} />
+        <img width={30} src={reaction} />
       </Box>
     ),
   },
@@ -162,7 +145,7 @@ interface Column {
 }
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
- 
+
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -283,7 +266,7 @@ const BlogAdmin = () => {
   const [value1, setValue1] = useState<Dayjs | null>(null);
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [selectedItems] = useState<number[]>([]);
+
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -305,12 +288,12 @@ const BlogAdmin = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer title="Quản lý bài viết">
       <BannerPage title="Quản lý bài viết" items={BCrumb} />
-     
+
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
+          <TopCard dataSource={DataBox} totalColumn={4} />
         </Grid>
         <Grid item xs={12}>
           <Grid container sx={{ alignItems: 'center' }} spacing={2}>
@@ -325,17 +308,16 @@ const BlogAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item >
+                <Grid item>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
                     onClick={() => setIsPopupOpen(true)}
-
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -421,7 +403,6 @@ const BlogAdmin = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -480,7 +461,6 @@ const BlogAdmin = () => {
         </Grid>
         <Grid item xs={12}>
           <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect} />
-
         </Grid>
       </Grid>
       <Dialog
@@ -488,11 +468,9 @@ const BlogAdmin = () => {
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
-        TransitionComponent={Transition}
-        keepMounted
+        // TransitionComponent={Transition}
       >
-        {/* <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle> */}
-        <DialogContent>
+        <DialogContent sx={{ overflowY: 'hidden' }}>
           <AddBlog />
         </DialogContent>
       </Dialog>

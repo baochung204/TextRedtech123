@@ -1,21 +1,16 @@
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import {
-  IconEye,
-  IconTrash,
-  IconUnlink,
-  IconUsers
-} from '@tabler/icons-react';
+import { IconEye, IconTrash, IconUnlink } from '@tabler/icons-react';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import url from 'src/assets/Adminphoto/URL.png';
 export const Url = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'URL',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -26,20 +21,18 @@ export const Url = [
             alignItems: 'center',
           }}
         >
-          <IconUnlink color="white" size={30} />
+          <img src={url} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng',
     total: '189',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -50,7 +43,7 @@ export const Url = [
             alignItems: 'center',
           }}
         >
-          <IconUsers color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),

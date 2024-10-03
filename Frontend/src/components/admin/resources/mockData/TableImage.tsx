@@ -6,20 +6,22 @@ import {
   IconPhoto,
   IconPhotoScan,
   IconTrash,
-  IconUsers,
 } from '@tabler/icons-react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import { HeadCell } from '../types/HeadCell';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import capacity from 'src/assets/Gallary/DUNG LUONG.png';
+import gallarypercustomer from 'src/assets/Gallary/HINH ANH KHACH HANG.png';
+import gallary from 'src/assets/Gallary/HINH ANH.png';
+
 export const Image = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Hình ảnh',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -30,20 +32,18 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconPhotoScan color="white" size={30} />
+          <img src={gallary} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng',
     total: '189',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -54,20 +54,18 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconUsers color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Dung lượng',
     total: '32.415',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -78,20 +76,18 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconDatabaseSmile color="white" size={30} />
+          <img src={capacity} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Hình ảnh/khách hàng',
     total: '11.415',
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -102,7 +98,7 @@ export const Image = [
             alignItems: 'center',
           }}
         >
-          <IconPhoto color="white" size={30} />
+          <img src={gallarypercustomer} width={30} />
         </Box>
       </>
     ),

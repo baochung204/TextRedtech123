@@ -1,32 +1,25 @@
 import { Box, IconButton, Typography } from '@mui/material';
 import {
-  IconBrandSentry,
-  IconChessQueen,
-  IconEdit,
-  IconEditOff,
   IconEye,
-  IconMessageChatbot,
-  IconTrash,
-  IconUserStar,
+  IconTrash
 } from '@tabler/icons-react';
+import customer from 'src/assets/ChienLuoc/KHACH HANG SO HUU.png';
+import strategy from 'src/assets/ChienLuoc/chien luoc.png';
+import strategicgroup from 'src/assets/ChienLuoc/nhom chien luoc.png';
+import assistantstrategy from 'src/assets/ChienLuoc/tro ly ap dung.png';
 import img1 from 'src/assets/images/badge/badge.png';
 import img2 from 'src/assets/images/badge/badge2.png';
 import img3 from 'src/assets/images/badge/badge3.png';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
-import EditIcon from '@mui/icons-material/Edit';
-import { IconEditCircle } from '@tabler/icons-react';
-import { IconFilePencil } from '@tabler/icons-react';
-import { IconPencilBolt } from '@tabler/icons-react';
+
 export const Strategy = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Nhóm chiến lược',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -37,20 +30,18 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconChessQueen color="white" size={30} />
+          <img src={strategicgroup} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Chiến lược',
     total: '189',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -61,20 +52,18 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconBrandSentry color="white" size={30} />
+          <img src={strategy} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng sở hữu',
     total: '32.415',
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -85,20 +74,18 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconUserStar color="white" size={30} />
+          <img src={assistantstrategy} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -109,7 +96,7 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img width={30} src={customer} />
         </Box>
       </>
     ),

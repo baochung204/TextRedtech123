@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -14,39 +13,32 @@ import {
   MenuItem,
   Select,
   TextField,
-
-  Tooltip,
-
   Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconBellRinging,
-  IconEye,
-  IconPlus,
-  IconSearch,
-  IconTags,
-  IconWorldUpload,
-} from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
+import tags from 'src/assets/NotificationAdmin/tags.png';
+import notification from 'src/assets/NotificationAdmin/thong bao.png';
+import interact from 'src/assets/NotificationAdmin/tuong tac.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
+
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Thông báo',
     total: '120',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -57,20 +49,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={notification} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Tags',
     total: '39',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -81,20 +71,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTags color="white" size={30} />
+          <img src={tags} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Lượt xem',
     total: '21.369',
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -105,20 +93,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconEye color="white" size={30} />
+          <img src={view} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Tương tác',
     total: '236',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -129,7 +115,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconWorldUpload color="white" size={30} />
+          <img src={interact} width={30} />
         </Box>
       </>
     ),
@@ -314,10 +300,6 @@ const ContentNotification = () => {
   const [value1, setValue1] = useState<Dayjs | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -340,7 +322,6 @@ const ContentNotification = () => {
           >
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item>
-
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
@@ -348,7 +329,6 @@ const ContentNotification = () => {
                 >
                   <AddNotification />
                 </IconButton>
-
               </Grid>
               <Grid item>
                 <TextField

@@ -30,7 +30,7 @@ const Modern = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
-    <PageContainer title="Modern Dashboard" description="this is Modern Dashboard page">
+    <PageContainer title="RedAI" description="this is page">
       <Box>
         <Grid container spacing={3}>
           <Grid container justifyContent="flex-end" item xs={12} sx={{ padding: 0 }}>

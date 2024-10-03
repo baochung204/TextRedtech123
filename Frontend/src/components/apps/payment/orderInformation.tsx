@@ -128,7 +128,7 @@ const OrderInformation = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setOpen(false);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [open]);
   return (
@@ -172,7 +172,6 @@ const OrderInformation = () => {
                               style={{ borderRadius: 50, marginLeft: '4px' }}
                             />
                           </Typography>
-                          <Typography variant="subtitle2">70.000 ₫</Typography>
                         </Grid>
                       </Grid>
                     </Box>

@@ -62,7 +62,7 @@ const RadialbarChartAdmin = ({ menuItems }: { menuItems: any }) => {
   };
 
   return (
-    <PageContainer title="Radialbar & Radar Chart" description="this is innerpage">
+    <PageContainer title="RedAI" description="this is innerpage">
       <Grid container spacing={3}>
         <Grid item lg={6} md={12} xs={12}>
           <ParentCard title="Chi tiết theo">

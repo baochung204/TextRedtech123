@@ -3,7 +3,17 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Badge, Checkbox, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField } from '@mui/material';
+import {
+  Badge,
+  Checkbox,
+  Grid,
+  IconButton,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { IconSearch } from '@tabler/icons-react';
@@ -29,7 +39,7 @@ interface Column {
 
 const Main = () => {
   const [value, setValue] = useState<'1' | '2' | '3' | '4' | '5' | '6'>('1');
-  const [data, setData] = useState([]);
+  const [data] = useState([]);
   const [open, setOpen] = useState<boolean>(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,9 +47,7 @@ const Main = () => {
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
     setOpen(false);
-  }; 
-
-
+  };
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const handleColumnChange = (event: any) => {
@@ -284,10 +292,12 @@ const Main = () => {
     }),
     [],
   );
+
   const [search, setSearch] = useState<boolean>(false);
   const handleSearch = () => {
     setSearch(!search);
   };
+  
   useEffect(() => {
     const selectedColumns = column[value] || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -305,99 +315,98 @@ const Main = () => {
     <Box>
       <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
         {/* {(value === '3' || value === '4' || value === '5' || value === '6') && ( */}
-          <Grid item>
-            <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
-              <Grid item>
-                <Badge
-                  badgeContent={dataSelect.length !== 0 && dataSelect.length}
-                  color={dataSelect.length !== 0 ? 'primary' : undefined}
-                >
-                  <FilterListIcon color="action" />
-                </Badge>
-              </Grid>
-              <Grid item>
-                <Select
-                  multiple
-                  value={dataSelect}
-                  displayEmpty
-                  onChange={handleColumnChange}
-                  renderValue={() => 'Sửa đổi cột'}
-                  size="small"
-                  MenuProps={{
-                    PaperProps: {
-                      sx: {
-                        marginTop: 1,
-                        maxHeight: 400,
-                        '&::-webkit-scrollbar': {
-                          width: '4px',
-                        },
-                        '&::-webkit-scrollbar-thumb': {
-                          backgroundColor: '#D2D2D2',
-                          borderRadius: '10px',
-                        },
-                        '&::-webkit-scrollbar-thumb:hover': {
-                          backgroundColor: '#C6C8CC',
-                        },
-                        '&::-webkit-scrollbar-track': {
-                          backgroundColor: '#f1f1f1',
-                        },
+        <Grid item>
+          <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Grid item>
+              <Badge
+                badgeContent={dataSelect.length !== 0 && dataSelect.length}
+                color={dataSelect.length !== 0 ? 'primary' : undefined}
+              >
+                <FilterListIcon color="action" />
+              </Badge>
+            </Grid>
+            <Grid item>
+              <Select
+                multiple
+                value={dataSelect}
+                displayEmpty
+                onChange={handleColumnChange}
+                renderValue={() => 'Sửa đổi cột'}
+                size="small"
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      marginTop: 1,
+                      maxHeight: 400,
+                      '&::-webkit-scrollbar': {
+                        width: '4px',
+                      },
+                      '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: '#D2D2D2',
+                        borderRadius: '10px',
+                      },
+                      '&::-webkit-scrollbar-thumb:hover': {
+                        backgroundColor: '#C6C8CC',
+                      },
+                      '&::-webkit-scrollbar-track': {
+                        backgroundColor: '#f1f1f1',
                       },
                     },
-                    anchorOrigin: {
-                      vertical: 'bottom',
-                      horizontal: 'right',
-                    },
-                    transformOrigin: {
-                      vertical: 'top',
-                      horizontal: 'right',
-                    },
-                  }}
-                >
-                  {column[value].map((header: Column) => {
-                    console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                  },
+                  anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  },
+                  transformOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                  },
+                }}
+              >
+                {column[value].map((header: Column) => {
+                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
-                    const isSelected = dataSelect.includes(header.dataIndex);
+                  const isSelected = dataSelect.includes(header.dataIndex);
 
-                    return (
-                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                        <Checkbox checked={!isSelected} />
-                        <ListItemText primary={header.title} />
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </Grid>
+                  return (
+                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                      <Checkbox checked={!isSelected} />
+                      <ListItemText primary={header.title} />
+                    </MenuItem>
+                  );
+                })}
+              </Select>
             </Grid>
           </Grid>
+        </Grid>
         {/* )} */}
         {/* {(value === '3' || value === '4' || value === '5' || value === '6') && ( */}
-          <Grid item>
-            <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-              <Grid item>
-                <TextField
-                  id="outlined-search"
-                  placeholder="Tìm kiếm"
-                  size="small"
-                  type="search"
-                  variant="outlined"
-                  inputProps={{ 'aria-label': 'Search Followers' }}
-                  sx={{
-                    fontSize: { xs: '24px', sm: '35px', md: '50px' },
-                    maxWidth: { xs: search ? '150px' : '40px', md: '700px' },
-                    transition: 'max-width 0.5s ease-in-out',
-                  }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <IconSearch onClick={() => handleSearch()} size="12" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  fullWidth={true}
-                />
-              </Grid>
-            {(value === '1' || value === '2' || value === '3' ) && (
-
+        <Grid item>
+          <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+            <Grid item>
+              <TextField
+                id="outlined-search"
+                placeholder="Tìm kiếm"
+                size="small"
+                type="search"
+                variant="outlined"
+                inputProps={{ 'aria-label': 'Search Followers' }}
+                sx={{
+                  fontSize: { xs: '24px', sm: '35px', md: '50px' },
+                  maxWidth: { xs: search ? '150px' : '40px', md: '700px' },
+                  transition: 'max-width 0.5s ease-in-out',
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconSearch onClick={() => handleSearch()} size="12" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth={true}
+              />
+            </Grid>
+            {(value === '1' || value === '2' || value === '3') && (
               <Grid item>
                 <IconButton
                   color="primary"
@@ -413,9 +422,9 @@ const Main = () => {
                 <DialogFile open={open} setOpen={setOpen} value={value} />
                 <DialogFunction open={open} setOpen={setOpen} value={value} />
               </Grid>
-            )} 
-            </Grid>
+            )}
           </Grid>
+        </Grid>
       </Grid>
     </Box>
   );
@@ -423,7 +432,6 @@ const Main = () => {
     <Grid container xs={12}>
       <Grid item xs={12}>
         <Box>
-          {/* Hiển thị TopCard khi tab value là 1 */}
           {value === '1' && <TopCard dataSource={Strategy} totalColumn={4} />}
           {value === '2' && <TopCard dataSource={Function} totalColumn={4} />}
           {value === '3' && <TopCard dataSource={Files} totalColumn={4} />}
@@ -459,56 +467,24 @@ const Main = () => {
                 <Tab label="URL" value="6" />
               </TabList>
               {searchSection}
-              {/* {(value === '1' || value === '2') && ( */}
-              {/* <Box display={'flex'} justifyContent={'end'}>
-                <Grid container sx={{ alignItems: 'center' }}>
-                  <Grid item>
-                    <TextField
-                      id="outlined-search"
-                      placeholder="Tìm kiếm"
-                      size="small"
-                      type="search"
-                      variant="outlined"
-                      inputProps={{ 'aria-label': 'Search Followers' }}
-                      sx={{
-                        fontSize: { xs: '50px', sm: '50px', md: '50px' },
-                      }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <IconSearch size="12" />
-                          </InputAdornment>
-                        ),
-                      }}
-                      fullWidth={true}
-                    />
-                  </Grid>
-                  {(value === '1' || value === '2') && (
-                    <Grid item>
-                      <IconButton
-                        color="primary"
-                        aria-label="Add to cart"
-                        // onClick={() => setOpen(true)}
-                        sx={{
-                          pr: 0,
-                        }}
-                      >
-                        <AddCircleIcon sx={{ fontSize: 30 }} />
-                      </IconButton>
-                    </Grid>
-                  )}
-                </Grid>
-              </Box> */}
             </Box>
 
             <TabPanel sx={{ p: 0, pt: 2 }} value="1">
               <BlankCard>
-                <CustomTable columns={StrategyCells} dataSource={StrategyRows} dataSelect={dataSelect}/>
+                <CustomTable
+                  columns={StrategyCells}
+                  dataSource={StrategyRows}
+                  dataSelect={dataSelect}
+                />
               </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="2">
               <BlankCard>
-                <CustomTable columns={FunctionCells} dataSource={FunctionRows} dataSelect={dataSelect} />
+                <CustomTable
+                  columns={FunctionCells}
+                  dataSource={FunctionRows}
+                  dataSelect={dataSelect}
+                />
               </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">

@@ -5,6 +5,7 @@ import { hoverSidebar, toggleMobileSidebar } from 'src/store/customizer/Customiz
 import Logo from '../../shared/logo/Logo';
 import SidebarAdminitems from './SidebarAdminItems';
 import { Profile } from './SidebarProfile/Profile';
+import LogoAdmin from '../../shared/logo/LogoAdmin';
 
 const SidebarAdmin = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -68,7 +69,8 @@ const SidebarAdmin = () => {
             {/* Logo */}
             {/* ------------------------------------------- */}
             <Box px={3} pb={2}>
-              <Logo />
+              {/* <Logo /> */}
+              <LogoAdmin />
             </Box>
             <Scrollbar sx={{ height: 'calc(100% - 190px)' }}>
               {/* ------------------------------------------- */}
