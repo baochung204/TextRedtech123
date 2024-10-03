@@ -55,6 +55,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
         hdsd: Yup.string(),
         mota: Yup.string(),
     });
+  }, []);
 
     const handleClose = (resetForm: () => void) => {
         setOpen(false);

@@ -34,8 +34,8 @@ const FilmsData: FilmsData[] = [
 ];
 const Product = () => {
   return (
-    <PageContainer title="User Profile" description="this is User Profile page">
-      <BannerPage title="Quản lý sản phẩm  " items={BCrumb} />
+    <PageContainer title="Quản lý sản phẩm" description="this is User Profile page">
+      <BannerPage title="Quản lý sản phẩm " items={BCrumb} />
       <Products />
     </PageContainer>
   );

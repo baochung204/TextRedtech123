@@ -89,7 +89,7 @@ const HistoryMoney = () => {
   const [value, setValue] = React.useState<any | null>(null);
   const [value1, setValue1] = React.useState<any | null>(null);
   return (
-    <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
+    <PageContainer title="Enhanced Table" description="this is page">
       {/* breadcrumb */}
       <Box
         style={{

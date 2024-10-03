@@ -12,6 +12,11 @@ import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import FlashSale from './../../../components/admin/voucher/flashsale';
+import used from 'src/assets/MaKhuyenMai/da su dung.png';
+import sale from 'src/assets/MaKhuyenMai/ma khuyen mai.png';
+import amountticket from 'src/assets/MaKhuyenMai/so luong ma.png';
+import usagerate from 'src/assets/MaKhuyenMai/ty le su dung.png';
+import { use } from 'i18next';
 
 const BCrumb = [
   {
@@ -24,13 +29,11 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Mã khuyến mãi',
     total: '620',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -41,20 +44,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          <img src={sale} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Số lượng mã',
     total: '3.405',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -65,20 +66,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandDeezer color="white" size={30} />
+          <img src={amountticket} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Đã sử dụng',
     total: '3.931',
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -89,20 +88,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandCakephp color="white" size={30} />
+          <img src={used} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Tỉ lệ sử dụng',
     total: '34.2%',
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -113,7 +110,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandDatabricks color="white" size={30} />
+          <img src={usagerate} width={30} />
         </Box>
       </>
     ),
@@ -179,7 +176,7 @@ const VoucherAdmin = () => {
   // };
 
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Mã khuyến mãi" description="this is page">
       <BannerPage title="Mã khuyến mãi" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>

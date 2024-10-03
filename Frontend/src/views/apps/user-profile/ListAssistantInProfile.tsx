@@ -8,7 +8,7 @@ import ListAssistant from 'src/components/apps/assistant/listAssistant/Assistant
 
 const ListAssistantInProfile = () => {
   return (
-    <PageContainer title="User Profile" description="this is User Profile page">
+    <PageContainer title="Trợ lý" description="this is  page">
       <Grid container spacing={3}>
         <Grid item sm={12}>
           <ProfileBanner />

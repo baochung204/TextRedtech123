@@ -14,7 +14,7 @@ const Assistant = () => {
     nav('/apps/assistant/add');
   };
   return (
-    <PageContainer title="Assistant" description="this is Shop List page">
+    <PageContainer title="Trợ lý" description="this is page">
       {/* breadcrumb */}
       {/* <BannerPage title="Quản lý sản phẩm  " items={BCrumb} /> */}
 

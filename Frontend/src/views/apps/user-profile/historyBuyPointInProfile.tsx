@@ -18,7 +18,7 @@ import HistoryBuyPoint from '../allTransactionHistory/HistoryBuyPoint';
 
 const HistoryBuyPointInProfile = () => {
   return (
-    <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
+    <PageContainer title="Lịch sử giao dịch" description="this is Enhanced Table page">
       <Grid container>
         <Grid item xs={12}>
           <ProfileBanner />

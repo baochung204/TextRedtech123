@@ -27,7 +27,7 @@ const BuyPoint = () => {
   const theme = useTheme();
 
   return (
-    <PageContainer title="Buy Point " description="Buy Point Here">
+    <PageContainer title="Quy đổi R-Point" description="Buy Point Here">
       <BannerPage title="Quy Đổi R-Point  " items={BCrumb} />
 
       <ChildCard sx={{ boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)' }}>

@@ -13,7 +13,7 @@ function _setPrototypeOf(t, e) {
 }
 
 export {
-  _assertThisInitialized,
-  _setPrototypeOf
+  _setPrototypeOf,
+  _assertThisInitialized
 };
-//# sourceMappingURL=chunk-WXUDCTVF.js.map
+//# sourceMappingURL=chunk-652WSGQN.js.map

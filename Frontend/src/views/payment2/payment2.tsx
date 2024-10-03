@@ -15,7 +15,7 @@ const BCrumb = [
 ];
 const PayMentPonit2 = () => {
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Thanh toán" description="this is page">
       <BannerPage title="Thanh Toán" items={BCrumb} />
       <OrderInformation />
     </PageContainer>

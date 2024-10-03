@@ -32,7 +32,6 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddOrder from './PopupAdd2';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-
 interface PropsTable {
   id: string;
   createdAt: string;
@@ -246,8 +245,8 @@ const CustomerListOrder = () => {
   };
 
   return (
-    <PageContainer>
-      <BannerPage title="Đơn hàng" items={BCrumb} />
+    <PageContainer title="Chuyển đổi">
+      <BannerPage title="Chuyển đổi" items={BCrumb} />
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value="1">
           <Box>
@@ -259,12 +258,11 @@ const CustomerListOrder = () => {
                     spacing={2}
                     sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
                   >
-                    <Grid item xs={12} sm={4} sx={{display: 'flex', alignItems: 'center'}}>
+                    <Grid item xs={12} sm={4} sx={{ display: 'flex', alignItems: 'center' }}>
                       <IconButton
                         color="primary"
                         aria-label="Add to cart"
-                      onClick={() => setIsPopupOpen(true)}
-
+                        onClick={() => setIsPopupOpen(true)}
                       >
                         <AddCircleIcon sx={{ fontSize: 30 }} />
                       </IconButton>

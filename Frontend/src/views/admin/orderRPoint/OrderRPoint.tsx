@@ -41,7 +41,6 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Khách hàng',
     total: '5.415',
     icons: (
@@ -64,8 +63,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Đơn hàng',
     total: '8.369',
     icons: (
@@ -88,8 +86,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Doanh thu',
     total: '235.635.592 ₫',
     icons: (
@@ -112,8 +109,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Hoa hồng affiliate',
     total: '120.369.235 ₫',
     icons: (
@@ -434,7 +430,7 @@ const OrderRPoint = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Đơn hàng R-Point" description="this is page">
       <BannerPage title="Đơn hàng R-Point" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>

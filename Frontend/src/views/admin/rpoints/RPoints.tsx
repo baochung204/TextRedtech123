@@ -13,7 +13,7 @@ const BCrumb = [
 
 const RPoints = () => {
   return (
-    <PageContainer title="Personnel" description="this is Personnel page">
+    <PageContainer title="Gói R-Point" description="this is Personnel page">
       <BannerPage title="Gói R-Point" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
