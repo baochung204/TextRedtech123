@@ -80,24 +80,39 @@ const AssistantEditor = () => {
                   <Typography variant="h6">Cấu hình</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Grid container>
+                  <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddModel />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddText />
                     </Grid>
-                    <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      {' '}
+                      <Sli />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6} lg={6}>
+                          <AddSearch />
+                        </Grid>
+                        <Grid item xs={12} sm={6} lg={6}>
+                          <AddFunction />
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    {/* <Grid container spacing={2}>
                       <Grid item xs={12} sm={6} lg={12}>
                         <Sli />
                       </Grid>
-                      <Grid item xs={12} sm={6} lg={6}>
+                      <Grid item xs={12} sm={6} lg={6} sx={{ minHeight: 50 }}>
                         <AddSearch />
                       </Grid>
-                      <Grid item xs={12} sm={6} lg={6}>
+                      <Grid item xs={12} sm={6} lg={6} sx={{ minHeight: 50 }}>
                         <AddFunction />
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </AccordionDetails>
               </Accordion>
