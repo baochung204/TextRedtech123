@@ -311,11 +311,6 @@ const ContentNotification = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };

@@ -15,9 +15,8 @@ import {
   useTheme,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
-import { useNavigate } from 'react-router';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import * as Yup from 'yup';

@@ -15,6 +15,7 @@ import {
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
+  IconEye,
   IconPasswordUser,
   IconRefreshOff,
   IconSearch,
@@ -29,6 +30,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import ContentChat from './contentChat/contentChat';
 
 const BCrumb = [
   {
@@ -276,6 +278,21 @@ const FilmsData: FilmsData[] = [
   { id: 15, title: 'Chiến lược' },
 ];
 const Ticket = () => {
+  const [openChat, setOpenChat] = useState<Boolean>(false);
+
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
+
+  const handleColumnChange = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setDataSelect(typeof value === 'string' ? value.split(',') : value);
+  };
+  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value1, setValue1] = useState<Dayjs | null>(null);
+  const onHandleOpenChat = () => {
+    setOpenChat(!openChat);
+  };
   const column = useMemo<Column[]>(
     () => [
       {
@@ -318,12 +335,20 @@ const Ticket = () => {
         dataIndex: 'phoneNumber',
         title: 'Số điện thoại',
       },
+      {
+        title: 'Hành động',
+        dataIndex: 'action',
+        render: (_row, value: any) => (
+          <>
+            <IconButton onClick={() => onHandleOpenChat()}>
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+          </>
+        ),
+      },
     ],
     [],
   );
-
-  const [dataSelect, setDataSelect] = useState<string[]>([]);
-
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -336,15 +361,6 @@ const Ticket = () => {
       setDataSelect([]);
     }
   }, [column]);
-
-  const handleColumnChange = (event: any) => {
-    const {
-      target: { value },
-    } = event;
-    setDataSelect(typeof value === 'string' ? value.split(',') : value);
-  };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <PageContainer title="Vertical Form" description="this is Vertical Form page">
       <BannerPage title="Quản lý ticket" items={BCrumb} />
@@ -364,27 +380,7 @@ const Ticket = () => {
                 alignItems: 'center',
               }}
             >
-<<<<<<< HEAD
-              <TextField
-                id="outlined-search"
-                placeholder="Tìm kiếm trợ lý"
-                size="small"
-                type="search"
-                variant="outlined"
-                inputProps={{ 'aria-label': 'Search Followers' }}
-                sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconSearch size="12" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth={true}
-              />
-=======
               <Grid container sx={{ alignItems: 'center' }}>
-
                 <Grid item>
                   <TextField
                     id="outlined-search"
@@ -405,7 +401,6 @@ const Ticket = () => {
                   />
                 </Grid>
               </Grid>
->>>>>>> 6a9f8912f228c1f9ff4762f015e37d49d81c4259
             </Grid>
             <Grid
               item
@@ -460,7 +455,7 @@ const Ticket = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -534,6 +529,7 @@ const Ticket = () => {
           </BlankCard>
         </Grid>
       </Grid>
+      {openChat && <ContentChat onClose={onHandleOpenChat} />}
     </PageContainer>
   );
 };
