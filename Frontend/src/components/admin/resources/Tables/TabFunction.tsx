@@ -2,11 +2,11 @@ import { Avatar, IconButton, Typography } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
+import DialogFuncView from '../dialog/DialogFuncView';
 import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
-import DialogFuncView from '../dialog/DialogFuncView';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 
 
 
