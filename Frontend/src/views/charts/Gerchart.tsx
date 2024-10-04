@@ -8,15 +8,7 @@ import { Props } from 'react-apexcharts';
 import { Box, Typography } from '@mui/material';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-// const BCrumb = [
-//   {
-//     to: '/',
-//     title: 'Home',
-//   },
-//   {
-//     title: 'Gradient Chart',
-//   },
-// ];
+
 const monthsInVietnamese = [
   'Tháng 1',
   'Tháng 2',
