@@ -184,49 +184,49 @@ interface appsLinkType {
 
 const appsLink: appsLinkType[] = [
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 1',
     subtext: 'Tính năng 1',
     avatar: ddIcon1,
   },
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 2',
     subtext: 'Tính năng 2',
     avatar: ddIcon2,
   },
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 3',
     subtext: 'Tính năng 3',
     avatar: ddIcon3,
   },
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 4',
     subtext: 'Tính năng 4',
     avatar: ddIcon4,
   },
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 5',
     subtext: 'Tính năng 5',
     avatar: ddIcon5,
   },
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 6',
     subtext: 'Tính năng 6',
     avatar: ddIcon6,
   },
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 7',
     subtext: 'Tính năng 7',
     avatar: ddIcon7,
   },
   {
-    href: '/auth/updating',
+    href: '/updating',
     title: 'Free tool 8',
     subtext: 'Tính năng 8',
     avatar: ddIcon8,
@@ -264,11 +264,11 @@ const pageLinks: LinkType[] = [
     title: 'User Application',
   },
   {
-    href: '/apps/blog/posts',
+    href: '/blogs',
     title: 'Blog Design',
   },
   {
-    href: '/apps/ecommerce/eco-checkout',
+    href: '/carts',
     title: 'Shopping Cart',
   },
 ];

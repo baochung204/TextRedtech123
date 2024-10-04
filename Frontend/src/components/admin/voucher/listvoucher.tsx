@@ -286,7 +286,7 @@ const ListVoucher = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item xs={2}>
+              <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
@@ -295,7 +295,7 @@ const ListVoucher = () => {
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item xs={10}>
+              <Grid item>
                 <TextField
                   id="outlined-search"
                   placeholder="Tìm kiếm mã khuyến mãi"

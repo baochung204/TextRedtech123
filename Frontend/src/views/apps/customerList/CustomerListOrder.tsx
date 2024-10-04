@@ -128,7 +128,7 @@ const CustomerListOrder = () => {
 
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
-    { to: '/apps/blog/posts', title: 'Chuyển đổi' },
+    { to: '/', title: 'Chuyển đổi' },
   ];
 
   const columns = React.useMemo<Column[]>(
