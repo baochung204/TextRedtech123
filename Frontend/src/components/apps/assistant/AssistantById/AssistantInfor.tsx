@@ -33,7 +33,7 @@ import Configuration from './configuration/configuration';
 import File from './configuration/file';
 import Function from './configuration/function';
 import InFor from './infor/infor';
-import TopCart from './topcart/topcart';
+import Topcardassistant from './topcard/Topcardassistant';
 
 const AssistantInfor = () => {
   return (
@@ -173,7 +173,7 @@ const AssistantInfor = () => {
           </Grid>
           {/* column */}
           <InFor />
-          <TopCart />
+          <Topcardassistant />
           {/* column */}
           <Grid item xs={12} sm={12} md={4} lg={4}>
             <Chart1 />

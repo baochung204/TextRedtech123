@@ -11,7 +11,13 @@ import {
   Typography,
 } from '@mui/material';
 import { filterProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import { IconHanger, IconCircles, IconNotebook, IconMoodSmile } from '@tabler/icons-react';
+import {
+  IconHanger,
+  IconCircles,
+  IconNotebook,
+  IconMoodSmile,
+  IconDeviceLaptop,
+} from '@tabler/icons-react';
 import { ProductFiterType } from 'src/types/apps/eCommerce';
 
 const ProductFilter = () => {
@@ -49,79 +55,37 @@ const ProductFilter = () => {
     },
     {
       id: 3,
-      name: 'ChatAi',
+      name: 'Chiến lược',
       sort: 'fashion',
       icon: IconHanger,
     },
     {
       id: 9,
-      name: 'ChatBox',
+      name: 'Function',
       sort: 'chatbox',
       icon: IconNotebook,
     },
     {
       id: 10,
-      name: 'OpenAi',
+      name: 'Files',
       sort: 'openai',
       icon: IconMoodSmile,
     },
-    // {
-    //   id: 11,
-    //   name: 'Electronics',
-    //   sort: 'electronics',
-    //   icon: IconDeviceLaptop,
-    // },
+    {
+      id: 11,
+      name: 'Model',
+      sort: 'electronics',
+      icon: IconDeviceLaptop,
+    },
     {
       id: 6,
       devider: true,
     },
   ];
 
-  // const filterbyPrice = [
-  //   {
-  //     id: 0,
-  //     label: 'All',
-  //     value: 'All',
-  //   },
-  //   {
-  //     id: 1,
-  //     label: '0-50.000 VNĐ',
-  //     value: '0-50.000',
-  //   },
-  //   {
-  //     id: 3,
-  //     label: '50.000-100.000 VNĐ',
-  //     value: '50-100',
-  //   },
-  //   {
-  //     id: 4,
-  //     label: '100.000-200.000 VNĐ',
-  //     value: '100-200',
-  //   },
-  //   {
-  //     id: 5,
-  //     label: 'Over 200.000 VNĐ',
-  //     value: '200-99999',
-  //   },
-  // ];
-
-  // const handlerGenderFilter = (value: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (value.target.checked) {
-  //     dispatch(sortByGender({ gender: value.target.value }));
-  //   }
-  // };
-  // const handlerPriceFilter = (value: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (value.target.checked) {
-  //     dispatch(sortByPrice({ price: value.target.value }));
-  //   }
-  // };
-
   return (
     <>
       <List>
-        {/* ------------------------------------------- */}
-        {/* Category filter */}
-        {/* ------------------------------------------- */}
         {filterCategory.map((filter) => {
           if (filter.filterbyTitle) {
             return (
@@ -147,100 +111,6 @@ const ProductFilter = () => {
             </ListItemButton>
           );
         })}
-        {/* ------------------------------------------- */}
-        {/* Sort by */}
-        {/* ------------------------------------------- */}
-
-        {/* ------------------------------------------- */}
-        {/* Filter By Gender */}
-        {/* ------------------------------------------- */}
-        {/* <Box p={3}>
-          <Typography variant="subtitle2" fontWeight={600}>
-            By Gender
-          </Typography>
-          <br />
-          <FormGroup>
-            {filterbyGender.map((gen) => (
-              <FormControlLabel
-                key={gen}
-                control={
-                  <Radio
-                    value={gen}
-                    checked={active.gender === gen}
-                    onChange={handlerGenderFilter}
-                  />
-                }
-                label={gen}
-              />
-            ))}
-          </FormGroup>
-        </Box> */}
-        {/* ------------------------------------------- */}
-        {/* Filter By Pricing */}
-        {/* ------------------------------------------- */}
-        {/* <Typography variant="h6" px={3} mt={3} pb={2}>
-          Theo giá cả
-        </Typography>
-        <Box p={3} pt={0}>
-          <FormGroup>
-            {filterbyPrice.map((price) => (
-              <FormControlLabel
-                key={price.label}
-                control={
-                  <Radio
-                    value={price.value}
-                    checked={active.price === price.value}
-                    onChange={handlerPriceFilter}
-                  />
-                }
-                label={price.label}
-              />
-            ))}
-          </FormGroup>
-        </Box> */}
-        {/* <Typography variant="h6" px={3} mt={3} pb={2}>
-          By Colors
-        </Typography> */}
-        {/* ------------------------------------------- */}
-        {/* Filter By colors */}
-        {/* ------------------------------------------- */}
-        {/* <Box p={3} pt={0}>
-          <Stack direction={'row'} flexWrap="wrap" gap={1}>
-            {filterbyColors.map((curColor) => {
-              if (curColor !== 'All') {
-                return (
-                  <Avatar
-                    sx={{
-                      backgroundColor: curColor,
-                      width: 24,
-                      height: 24,
-                      cursor: 'pointer',
-                    }}
-                    aria-label={curColor}
-                    key={curColor}
-                    onClick={
-                      active.color === curColor
-                        ? () => dispatch(sortByColor({ color: 'All' }))
-                        : () => dispatch(sortByColor({ color: curColor }))
-                    }
-                  >
-                    {active.color === curColor ? <IconCheck size="13" /> : ''}
-                  </Avatar>
-                );
-              } else {
-                return <Box key={curColor} sx={{ display: 'none' }}></Box>;
-              }
-            })}
-          </Stack>
-        </Box> */}
-        {/* ------------------------------------------- */}
-        {/* Reset */}
-        {/* ------------------------------------------- */}
-        {/* <Box p={3}>
-          <Button variant="contained" onClick={() => dispatch(filterReset())} fullWidth>
-            Đặt lại bộ lọc
-          </Button>
-        </Box> */}
       </List>
     </>
   );
