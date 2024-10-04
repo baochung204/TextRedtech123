@@ -7,16 +7,22 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
+  FormControlLabel,
   Grid,
   IconButton,
   Paper,
+  Radio,
+  RadioGroup,
   Snackbar,
   Tooltip,
+  Typography,
   useTheme,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
+import Tags from 'src/components/apps/sell/layout/Tags';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import * as Yup from 'yup';
@@ -46,6 +52,8 @@ const AddNotification = () => {
     tags: Yup.string().required('Tags là bắt buộc'),
     url: Yup.string().url('Đường dẫn không hợp lệ').required('Đường dẫn là bắt buộc'),
     content: Yup.string().required('Nội dung là bắt buộc'),
+    status: Yup.string().required('Trạng thái là bắt buộc'),
+    tags: Yup.array().min(1, 'Tags là bắt buộc').required('Tags là bắt buộc'),
   });
 
   const formik = useFormik({
@@ -54,6 +62,8 @@ const AddNotification = () => {
       tags: '',
       url: '',
       content: '',
+      status: '',
+      tags: [],
     },
     validationSchema: validateSchema,
     validateOnChange: true,
@@ -126,17 +136,7 @@ const AddNotification = () => {
                   </Grid>
                   <Grid item lg={6} md={12}>
                     <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
-                    <CustomTextField
-                      id="tags"
-                      variant="outlined"
-                      fullWidth
-                      placeholder="VD: Mục số 1"
-                      value={formik.values.tags}
-                      name="tags"
-                      onChange={formik.handleChange}
-                      error={formik.touched.tags && Boolean(formik.errors.tags)}
-                      helperText={formik.touched.tags && formik.errors.tags}
-                    />
+                    <Tags />
                   </Grid>
                   <Grid item lg={12} md={12}>
                     <CustomFormLabel htmlFor="url">Đường dẫn xem thêm</CustomFormLabel>
@@ -163,6 +163,29 @@ const AddNotification = () => {
                     {formik.touched.content && formik.errors.content && (
                       <p style={{ color: 'red' }}>{formik.errors.content}</p>
                     )}
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <CustomFormLabel>Trạng thái</CustomFormLabel>
+                    <FormControl
+                      component="fieldset"
+                      error={formik.touched.status && Boolean(formik.errors.status)}
+                    >
+                      <RadioGroup
+                        row
+                        aria-label="status"
+                        name="status"
+                        value={formik.values.status}
+                        onChange={formik.handleChange}
+                      >
+                        <FormControlLabel value="published" control={<Radio />} label="Đăng" />
+                        <FormControlLabel value="draft" control={<Radio />} label="Nháp" />
+                      </RadioGroup>
+                      {formik.touched.status && formik.errors.status && (
+                        <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                          {formik.errors.status}
+                        </Typography>
+                      )}
+                    </FormControl>
                   </Grid>
                 </Grid>
               </Box>

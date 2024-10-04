@@ -258,11 +258,10 @@ const PageFeature = () => {
                   </IconButton>
                 </Grid>
                 */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
+                    placeholder="Tìm kiếm tình năng"
                     type="search"
                     variant="outlined"
                     inputProps={{ 'aria-label': 'Search Followers' }}

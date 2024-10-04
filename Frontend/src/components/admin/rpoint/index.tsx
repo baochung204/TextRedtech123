@@ -11,7 +11,7 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  TextField
+  TextField,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -23,7 +23,6 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import PublisherTable from './datatable/Publisher';
 import RPointDialog from './dialog/RPointDialog';
 
-
 interface Column {
   title: string;
   dataIndex: string;
@@ -32,11 +31,9 @@ interface Column {
 }
 
 const PublisherTablePage: React.FC = () => {
-
-
-  const [open, setOpen] = useState<boolean>(false)
-  const [checkValue, setCheckValue] = useState<string | null>(null)
-  const [selectID, setSelectID] = useState<string | null>(null)
+  const [open, setOpen] = useState<boolean>(false);
+  const [checkValue, setCheckValue] = useState<string | null>(null);
+  const [selectID, setSelectID] = useState<string | null>(null);
 
   const column = useMemo<Column[]>(
     () => [
@@ -97,27 +94,27 @@ const PublisherTablePage: React.FC = () => {
       {
         title: 'Số lượt mua',
         dataIndex: 'totalBuy',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Function',
         dataIndex: 'function',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Chiến lược',
         dataIndex: 'strategy',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Files (slot)',
         dataIndex: 'files',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Function (slot)',
         dataIndex: 'totalFunction',
-        isValids: false
+        isValids: false,
       },
     ],
     [],
@@ -159,20 +156,22 @@ const PublisherTablePage: React.FC = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                  onClick={() => { setOpen(true); setCheckValue('add')}}
-
+                  onClick={() => {
+                    setOpen(true);
+                    setCheckValue('add');
+                  }}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm gói R-Point"
                   size="small"
                   type="search"
                   variant="outlined"
@@ -255,7 +254,6 @@ const PublisherTablePage: React.FC = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

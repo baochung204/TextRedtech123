@@ -25,15 +25,13 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
+import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
+import sale from 'src/assets/Adminphoto/khuyen mai.png';
 import aov from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 
 import DialogBuyProduct from './DialogBuyProduct';
-
-
-
-
 
 const BCrumb = [
   {
@@ -46,7 +44,7 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Đơn hàng',
     total: (
       <>
@@ -66,15 +64,13 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          {/* <IconChartBar color="white" size={30} /> */}
           <img src={bill} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Tổng giá trị',
     total: (
       <>
@@ -97,14 +93,13 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={totalvalue} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Khuyến mại',
     total: (
       <>
@@ -127,14 +122,13 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={sale} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Tổng thanh toán',
     total: (
       <>
@@ -157,14 +151,13 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={totalcheckout} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'AOV',
     total: (
       <>
@@ -194,6 +187,7 @@ const DataBox = [
     ),
   },
 ];
+
 interface Column {
   title: string;
   dataIndex: string;
@@ -202,12 +196,9 @@ interface Column {
 }
 
 const BuyPoints = () => {
-
-
-  const [open, setOpen] = useState<boolean>(false)
-  const [checkValue, setCheckValue] = useState<string | null>(null)
-  const [selectID, setSelectID] = useState<string | null>(null)
-
+  const [open, setOpen] = useState<boolean>(false);
+  const [checkValue, setCheckValue] = useState<string | null>(null);
+  const [selectID, setSelectID] = useState<string | null>(null);
 
   const column = useMemo<Column[]>(
     () => [
@@ -268,7 +259,7 @@ const BuyPoints = () => {
         title: 'Số lượng mua',
         dataIndex: 'soluongmua',
       },
-      
+
       {
         title: 'Tổng doanh thu',
         dataIndex: 'tongdoanhthu',
@@ -284,15 +275,17 @@ const BuyPoints = () => {
           <Grid container spacing={2}>
             <Grid item xs={4}>
               <IconButton
-                onClick={() => { setOpen(true); setCheckValue('view'); setSelectID(value.id) }}
+                onClick={() => {
+                  setOpen(true);
+                  setCheckValue('view');
+                  setSelectID(value.id);
+                }}
               >
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
             </Grid>
             <Grid item xs={4}>
-              <IconButton
-                onClick={() => { }}
-              >
+              <IconButton onClick={() => {}}>
                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />
               </IconButton>
             </Grid>
@@ -302,23 +295,23 @@ const BuyPoints = () => {
       {
         title: 'Thông tin sản phẩm',
         dataIndex: 'ttsp',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Hình ảnh',
         dataIndex: 'ha',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Secretkey',
         dataIndex: 'secretkey',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Hướng dẫn sử dụng',
         dataIndex: 'hdsd',
-        isValids: false
-      }
+        isValids: false,
+      },
     ],
     [],
   );
@@ -370,16 +363,18 @@ const BuyPoints = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                    onClick={() => { setOpen(true); setCheckValue('add') }}
-
+                    onClick={() => {
+                      setOpen(true);
+                      setCheckValue('add');
+                    }}
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm sản phẩm"
                     size="small"
                     type="search"
                     variant="outlined"
@@ -534,20 +529,3 @@ const BuyPoints = () => {
 };
 
 export default BuyPoints;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -9,9 +9,7 @@ import {
   MenuItem,
   Select,
   TextField,
-
-  Typography
-
+  Typography,
 } from '@mui/material';
 import s24 from 'src/assets/images/products/s24.jpg';
 // components
@@ -34,7 +32,6 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import BlankCard from 'src/components/shared/BlankCard';
 import AddFlashSale from './add/AddSale';
 import AddDflashsale from './add/addflashsale';
-
 
 interface DataRow3 {
   id: string;
@@ -397,7 +394,7 @@ const FlashSale = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item>
+              <Grid item xs={2}>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
@@ -406,10 +403,10 @@ const FlashSale = () => {
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item>
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm flash-sale"
                   size="small"
                   type="search"
                   variant="outlined"

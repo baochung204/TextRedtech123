@@ -313,7 +313,7 @@ const ProductAdmin = () => {
                 }}
               >
                 <Grid container sx={{ alignItems: 'center' }}>
-                  <Grid item>
+                  <Grid item xs={2}>
                     <IconButton
                       color="primary"
                       aria-label="Add to cart"
@@ -327,10 +327,10 @@ const ProductAdmin = () => {
                       <AddCircleIcon sx={{ fontSize: 30 }} />
                     </IconButton>
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={10}>
                     <TextField
                       id="outlined-search"
-                      placeholder="Tìm kiếm trợ lý"
+                      placeholder="Tìm kiếm đơn hàng"
                       size="small"
                       type="search"
                       variant="outlined"
