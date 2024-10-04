@@ -74,7 +74,7 @@ const ProfileBanner = () => {
               justifyContent: 'center',
             }}
           >
-            <IconCameraBolt sx={{ fontSize: '30px' }} />
+            <IconCameraBolt style={{ fontSize: '30px' }} />
           </label>
         </Box>
 
@@ -143,7 +143,7 @@ const ProfileBanner = () => {
                       cursor: 'pointer',
                     }}
                   >
-                    <IconCameraBolt sx={{ fontSize: '30px' }} />
+                    <IconCameraBolt style={{ fontSize: '30px' }} />
                   </label>
                 </ProfileImage>
                 <Box mt={1}>
