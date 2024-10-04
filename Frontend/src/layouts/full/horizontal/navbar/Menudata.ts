@@ -139,7 +139,7 @@ const Menuitems = [
             id: uniqueId(),
             title: 'Checkout',
             icon: IconPoint,
-            href: '/apps/ecommerce/eco-checkout',
+            href: '/carts',
           },
         ],
       },
