@@ -222,7 +222,7 @@ const DialogOrder = ({ open, setOpen, selectID, checkValue, setCheckValue }: Pro
       >
         {({ resetForm }) => (
           <Form>
-            <Scrollbar_y style={{ maxHeight: '550px' }}>
+            <Scrollbar_y sx={{ maxHeight: '550px' }}>
               <DialogContent>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>

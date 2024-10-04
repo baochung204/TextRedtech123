@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import { Alert, Box, Divider, Snackbar, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { styled } from '@mui/material/styles';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography, Box, Snackbar, Alert, Divider } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
+import { styled } from '@mui/material/styles';
+import React, { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
@@ -19,30 +17,20 @@ interface PropsDialog {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
 }
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
+
 const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
     const handleClose = () => {
         setOpen(false);
     };
     const [open1, setOpen1] = useState(false);
-    const [name, setName] = React.useState<string | null>(null);
-    const hanldeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files !== null) {
-            setName(event.target.files[0].name);
-        }
+    // const [name, setName] = React.useState<string | null>(null);
+    // const hanldeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (event.target.files !== null) {
+    //         setName(event.target.files[0].name);
+    //     }
 
-    }
+    // }
     const handleSubmit = () => {
 
         handleClose();

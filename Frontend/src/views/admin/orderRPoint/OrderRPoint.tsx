@@ -334,7 +334,7 @@ const FilmsData: FilmsData[] = [
   { id: 15, title: 'Chiến lược' },
 ];
 const OrderRPoint = () => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
