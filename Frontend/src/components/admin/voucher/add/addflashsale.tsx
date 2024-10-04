@@ -13,9 +13,8 @@ import { IconPlus } from '@tabler/icons-react';
 import AddFlashSale from './AddSale';
 
 interface PropsUp {
-  isPopupOpen: boolean,
-  setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>
-
+  isPopupOpen: boolean;
+  setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 // import * as React from 'react';
 const AddDflashsale = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
@@ -35,11 +34,6 @@ const AddDflashsale = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // };
   return (
     <Box>
-      <Tooltip title="Thêm thông báo mới">
-        <Fab size="small" color="secondary" aria-label="plus" onClick={handleOpenPopup}>
-          <IconPlus width={18} />
-        </Fab>
-      </Tooltip>
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
