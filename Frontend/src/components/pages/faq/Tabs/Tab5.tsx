@@ -58,12 +58,12 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect }) => {
       dataIndex: 'name',
     },
     {
-      title: 'Mô tả',
-      dataIndex: 'description',
-    },
-    {
       title: 'Tiêu đề',
       dataIndex: 'title',
+    },
+    {
+      title: 'Mô tả',
+      dataIndex: 'description',
     },
     {
       title: 'Hoạt động',
