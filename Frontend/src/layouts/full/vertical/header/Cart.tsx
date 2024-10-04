@@ -47,7 +47,7 @@ const Cart = () => {
         }}
       >
         <Button size="large" color="inherit">
-          <Badge color="warning" badgeContent={bcount}>
+          <Badge color="error" badgeContent={bcount}>
             <IconShoppingCart size="21" stroke="1.5" />
           </Badge>
         </Button>

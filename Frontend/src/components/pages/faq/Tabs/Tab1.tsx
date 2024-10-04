@@ -14,6 +14,14 @@ import BlankCard from 'src/components/shared/BlankCard';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DataTab1 from '../DataTable/TableTab1';
+import DialogStragety from '../dialog/DialogStragety';
+
+interface PropsData {
+  content: string,
+  badgeUrl: string,
+  productId: string,
+  level: string
+}
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
@@ -32,13 +40,39 @@ const Tab1 = () => {
   useEffect(() => {
     dispatch(fetchStr());
   }, [dispatch]);
+
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [data, setData] = useState<PropsData[]>([{
+    content: "",
+    badgeUrl: "",
+    productId: "",
+    level: ""
+  }])
+
+  const handleClick = (items: PropsData) => {
+    setOpen(true);
+    setData([{
+      content: items.content,
+      badgeUrl: items.badgeUrl,
+      productId: items.productId,
+      level: items.level
+    }])
+
+  }
+
   return (
     <>
       <Grid container spacing={2}>
         {dataStr.map((items) => (
           <Grid item xs={12} sm={6} md={4} key={items.productId}>
             <BlankCard>
-              <CardContent>
+              <CardContent
+                onClick={() => handleClick(items)}
+                sx={{
+                  cursor: 'pointer'
+                }}
+              >
                 <Stack direction={'row'} gap={2} alignItems="center">
                   <Avatar alt="Remy Sharp" src={items.badgeUrl} />
                   <Box>
@@ -73,6 +107,7 @@ const Tab1 = () => {
         onRowsPerPageChange={handleChangeRowsPerPage}
         labelRowsPerPage="Số hàng trên mỗi trang"
       />
+      <DialogStragety open={open} setOpen={setOpen} data={data} />
     </>
   );
 };
