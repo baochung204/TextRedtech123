@@ -65,7 +65,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Tài nguyên',
     icon: IconArchive,
-    href: '/resourses',
+    href: '/admin/resources',
   },
   {
     id: uniqueId(),
@@ -73,7 +73,6 @@ const Menuitems: MenuitemsType[] = [
 
     icon: IconAtom,
     href: '/products',
-
   },
   {
     id: uniqueId(),
@@ -103,7 +102,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: 'Tổng quan',
         icon: IconPoint,
-        href: '/affiliate/detail',
+        href: '/affiliate',
       },
       {
         id: uniqueId(),
