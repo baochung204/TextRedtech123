@@ -65,7 +65,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Tài nguyên',
     icon: IconArchive,
-    href: '/admin/resources',
+    href: '/resources',
   },
   {
     id: uniqueId(),

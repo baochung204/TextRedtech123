@@ -219,7 +219,7 @@ const Router = [
       { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
 
-      { path: '/pages/faq', element: <Faq /> },
+      { path: '/resources', element: <Faq /> },
       { path: '/profile/assistant/list', element: <ListAssistantInProfile /> },
       { path: '/assistants', element: <ListAssistant /> },
       { path: '/buy/point', element: <BuyPoint /> },
