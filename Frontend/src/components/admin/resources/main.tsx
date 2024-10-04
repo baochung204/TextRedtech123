@@ -409,9 +409,9 @@ const Main = () => {
                 fullWidth={true}
               />
             </Grid>
-            {(value === '1' || value === '2' || value === '3') && (
+            {( value === '4') && (
               <Grid item>
-                {/* <IconButton
+                <IconButton
                   color="primary"
                   aria-label="Add to cart"
                   onClick={handleClickOpen}
@@ -420,7 +420,7 @@ const Main = () => {
                   }}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
-                </IconButton> */}
+                </IconButton>
                 <DialogStr open={open} setOpen={setOpen} value={value} />
                 <DialogFile open={open} setOpen={setOpen} value={value} />
                 <DialogFunction open={open} setOpen={setOpen} value={value} />

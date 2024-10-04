@@ -10,6 +10,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Typography, Box, Snackbar, Alert, Divider } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
 interface PropsDialog {
     value: string,
@@ -54,13 +56,13 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
             <Dialog
                 fullWidth={true}
                 maxWidth='sm'
-                open={value === '3' && open ? true : false}
+                open={value === '4' && open ? true : false}
                 onClose={handleClose}
             >
                 <DialogTitle >
                     <Box >
                         <Typography fontWeight={600} variant='h3'>
-                            Thêm File
+                            Thêm model
                         </Typography>
                     </Box>
                 </DialogTitle>
@@ -70,57 +72,31 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     <DialogContentText>
                         <Grid container xs={12} spacing={2}>
                             <Grid item xs={12}>
-                                <Grid
-                                    container
-                                    direction="column"
-                                    sx={{
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    <Grid item xs={12}
-                                        sx={{
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        <Button
-                                            component="label"
-                                            role={undefined}
-                                            variant="contained"
-                                            tabIndex={-1}
-                                            startIcon={<CloudUploadIcon />}
-                                            fullWidth
-                                        >
-                                            Tải file lên
-                                            <VisuallyHiddenInput
-                                                type="file"
-                                                onChange={hanldeChange}
-                                                accept=".txt, .docx, .pdf, .pptx, .xlsx, .csv"
-                                            />
-                                        </Button>
-                                        <Typography sx={{ fontSize: 12, fontWeight: 400, pt: 1, pb: 2 }}>
-                                            Hỗ trợ: .txt, .docx, .pdf, .xlsx, .csv...
-                                        </Typography>
-                                    </Grid>
-                                    {name !== null &&
-                                        <Grid
-                                            item
-                                            sx={{
-                                                display: 'flex',
-                                                alignItems: 'center'
-                                            }}
-                                        >
-
-
-                                            <AttachFileIcon
-                                                sx={{ fontSize: 20 }}
-                                            />
-                                            <Typography >
-                                                {name}
-                                            </Typography>
-                                        </Grid>
-                                    }
-                                </Grid>
+                                <CustomFormLabel htmlFor="name-text">Tên Model</CustomFormLabel>
+                                <CustomTextField
+                                    id="name-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    placeholder="Nhập tên Model . . ."
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <CustomFormLabel htmlFor="name-text">Model gốc</CustomFormLabel>
+                                <CustomTextField
+                                    id="name-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    placeholder="Nhập Model gốc . . ."
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <CustomFormLabel htmlFor="name-text">Trainign token</CustomFormLabel>
+                                <CustomTextField
+                                    id="name-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    placeholder="Nhập tên Trainign token . . ."
+                                />
                             </Grid>
                         </Grid>
 
