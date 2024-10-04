@@ -24,6 +24,9 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DialogOrder from './DialogOrder';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
 
 const BCrumb = [
   {
@@ -35,7 +38,7 @@ const BCrumb = [
 
 interface StyleProps {
   bgColor: string;
-  color: string;
+
   title: string;
   total: string;
   icons: JSX.Element;
@@ -44,13 +47,12 @@ interface StyleProps {
 const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Khách hàng',
     total: '6251',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -61,20 +63,19 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
+
     title: 'Khách trả phí',
     total: '1204 (33%)',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -91,14 +92,12 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'CN/DN',
     total: '3251/3000',
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -115,14 +114,12 @@ const DataBox: StyleProps[] = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Doanh thu',
     total: '15.126.422.555đ',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -133,20 +130,18 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={revenue} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Số dư R-Point',
     total: '52.126.422',
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -157,7 +152,7 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={rpointblance} width={30} />
         </Box>
       </>
     ),
@@ -171,11 +166,9 @@ interface Column {
 }
 
 const OrderAdminPages = () => {
-  const [selectID, setSelectID] = useState<string | null>(null)
-  const [checkValue, setCheckValue] = useState<string | null>(null)
-  const [open, setOpen] = useState<boolean>(false)
-
-
+  const [selectID, setSelectID] = useState<string | null>(null);
+  const [checkValue, setCheckValue] = useState<string | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
 
   const column = useMemo<Column[]>(
     () => [
@@ -246,67 +239,67 @@ const OrderAdminPages = () => {
       {
         title: 'Giới tính',
         dataIndex: 'sex',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Ngày sinh',
         dataIndex: 'date',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Địa chỉ (Cá nhân)',
         dataIndex: 'dccn',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'MST (Cá nhân)',
         dataIndex: 'mstcn',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Địa chỉ (Cá nhân)',
         dataIndex: 'adress',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Xuất VAT',
         dataIndex: 'xvat',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Tên công ty',
         dataIndex: 'tct',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'MST (Doanh nghiệp)',
         dataIndex: 'mstdn',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Người đại diện',
         dataIndex: 'ndd',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Chúc vụ',
         dataIndex: 'cv',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Địa chỉ (Công ty)',
         dataIndex: 'dcct',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Email (Công ty)',
         dataIndex: 'ect',
-        isValids: false
+        isValids: false,
       },
-
     ],
     [],
   );
+
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
@@ -353,16 +346,7 @@ const OrderAdminPages = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item >
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    onClick={() => { setOpen(true); setCheckValue('add') }}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
-                <Grid item >
+                <Grid item>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"
@@ -436,7 +420,6 @@ const OrderAdminPages = () => {
                 }}
               >
                 {column.map((header: Column) => {
-
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -447,7 +430,6 @@ const OrderAdminPages = () => {
                   );
                 })}
               </Select>
-
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -509,7 +491,13 @@ const OrderAdminPages = () => {
           <CustomTable columns={column} dataSource={OrderData} dataSelect={dataSelect} />
         </Grid>
       </Grid>
-      <DialogOrder open={open} setOpen={setOpen} selectID={selectID} checkValue={checkValue} setCheckValue={setCheckValue} />
+      <DialogOrder
+        open={open}
+        setOpen={setOpen}
+        selectID={selectID}
+        checkValue={checkValue}
+        setCheckValue={setCheckValue}
+      />
     </>
   );
 };

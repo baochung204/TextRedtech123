@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Box,
   Typography,
-  IconButton,
+  Button,
   TextField,
   Select,
   MenuItem,
@@ -11,7 +11,6 @@ import {
   Slide,
   useTheme,
 } from '@mui/material';
-import { IconUser, IconEdit, IconCheck } from '@tabler/icons-react';
 import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -23,11 +22,9 @@ function SlideTransition(props: any) {
 
 const PersonalInformation = () => {
   const theme = useTheme();
-  const [editing, setEditing] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false); // Chỉ dùng một state cho chế độ chỉnh sửa
   const [open, setOpen] = useState(false);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
-    null,
-  );
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [userInfo, setUserInfo] = useState({
     name: 'Ngô Quốc Toản',
     gender: 'Nam',
@@ -35,14 +32,10 @@ const PersonalInformation = () => {
     address: '123 Đường ABC, TP. Hồ Chí Minh',
   });
 
-  const handleEditClick = (field: string) => {
-    setEditing(field);
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo({
       ...userInfo,
-      [editing as string]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -60,17 +53,15 @@ const PersonalInformation = () => {
     });
   };
 
-  const handleSaveClick = () => {
-    setEditing(null);
-    setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công!' });
-    setOpen(true); // Hiển thị Snackbar khi lưu thay đổi
-    setTimeout(() => setShowAlert(null), 3000);
+  const handleEditClick = () => {
+    setEditing(true); 
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSaveClick();
-    }
+  const handleSaveClick = () => {
+    setEditing(false); 
+    setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công!' });
+    setOpen(true);
+    setTimeout(() => setShowAlert(null), 3000);
   };
 
   const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
@@ -79,62 +70,6 @@ const PersonalInformation = () => {
     }
     setOpen(false);
   };
-
-  const renderField = (field: string, label: string) => (
-    <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-      <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-        {label}:
-      </Typography>
-      {editing === field ? (
-        field === 'dob' ? (
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={userInfo.dob}
-              onChange={handleDateChange}
-              renderInput={(params) => (
-                <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />
-              )}
-            />
-          </LocalizationProvider>
-        ) : field === 'gender' ? (
-          <Select
-            value={userInfo.gender}
-            onChange={handleGenderChange}
-            sx={{ flexGrow: 1, mr: 1 }}
-            size="small"
-          >
-            <MenuItem value="Nam">Nam</MenuItem>
-            <MenuItem value="Nữ">Nữ</MenuItem>
-            <MenuItem value="Khác">Khác</MenuItem>
-          </Select>
-        ) : (
-          <TextField
-            value={userInfo[field as keyof typeof userInfo]}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            sx={{ flexGrow: 1, mr: 1 }}
-            size="small"
-          />
-        )
-      ) : (
-        <>
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {field === 'dob'
-              ? userInfo.dob.toLocaleDateString()
-              : String(userInfo[field as keyof typeof userInfo])}
-          </Typography>
-          <IconButton onClick={() => handleEditClick(field)}>
-            <IconEdit />
-          </IconButton>
-        </>
-      )}
-      {editing === field && (
-        <IconButton onClick={handleSaveClick}>
-          <IconCheck />
-        </IconButton>
-      )}
-    </Box>
-  );
 
   return (
     <Box
@@ -148,14 +83,100 @@ const PersonalInformation = () => {
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
-        <IconUser /> <span>Thông tin cá nhân</span>
+        Thông tin cá nhân
       </Typography>
-      {renderField('name', 'Họ và tên')}
-      {renderField('gender', 'Giới tính')}
-      {renderField('dob', 'Ngày sinh')}
-      {renderField('address', 'Địa chỉ')}
 
-      {/* Hiển thị Alert khi có sự thay đổi */}
+      {/* Tên */}
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+          Họ và tên:
+        </Typography>
+        {editing ? (
+          <TextField
+            name="name"
+            value={userInfo.name}
+            onChange={handleInputChange}
+            sx={{ flexGrow: 1, mr: 1 }}
+            size="small"
+          />
+        ) : (
+          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {userInfo.name}
+          </Typography>
+        )}
+      </Box>
+
+      
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+          Giới tính:
+        </Typography>
+        {editing ? (
+          <Select
+            value={userInfo.gender}
+            onChange={handleGenderChange}
+            sx={{ flexGrow: 1, mr: 1 }}
+            size="small"
+          >
+            <MenuItem value="Nam">Nam</MenuItem>
+            <MenuItem value="Nữ">Nữ</MenuItem>
+            <MenuItem value="Khác">Khác</MenuItem>
+          </Select>
+        ) : (
+          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {userInfo.gender}
+          </Typography>
+        )}
+      </Box>
+
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+          Ngày sinh:
+        </Typography>
+        {editing ? (
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={userInfo.dob}
+              onChange={handleDateChange}
+              renderInput={(params) => (
+                <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />
+              )}
+            />
+          </LocalizationProvider>
+        ) : (
+          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {userInfo.dob.toLocaleDateString()}
+          </Typography>
+        )}
+      </Box>
+
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+          Địa chỉ:
+        </Typography>
+        {editing ? (
+          <TextField
+            name="address"
+            value={userInfo.address}
+            onChange={handleInputChange}
+            sx={{ flexGrow: 1, mr: 1 }}
+            size="small"
+          />
+        ) : (
+          <Typography variant="body1" sx={{ flexGrow: 1 }}>
+            {userInfo.address}
+          </Typography>
+        )}
+      </Box>
+
+      <Button
+        variant="contained"
+        onClick={editing ? handleSaveClick : handleEditClick}
+        sx={{ mt: 2, marginLeft: 'auto', display: 'block' }}  
+      >
+        {editing ? 'Lưu' : 'Sửa'}
+      </Button>
+
       <Snackbar
         open={open}
         autoHideDuration={6000}

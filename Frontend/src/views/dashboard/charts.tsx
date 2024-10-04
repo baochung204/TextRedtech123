@@ -5,6 +5,7 @@ import Affilatechart1 from '../charts/chart1/Affilatechart1';
 import Affilatechart2 from '../charts/chart1/Affilatechart2';
 import Affilatechart3 from '../charts/chart1/Affilatechart3';
 import Affiliatedetail from '../charts/chart1/Affiliatedetail1';
+import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 // import Affilatechart21 from '../charts/chart2/Affilatechart21';
 // import Affilatechart22 from '../charts/chart2/Affilatechart22';
 // import Affilatechart23 from '../charts/chart2/Affilatechart23';
@@ -103,7 +104,8 @@ const Charts = () => {
             <Affiliatedetail />
           </Grid>
           <Grid item xs={12} lg={4}>
-            <Affilatechart3 />
+            {/* <Affilatechart3 /> */}
+            <SpeedometerChart />
           </Grid>
           <Grid item xs={12} lg={4}>
             <Affilatechart />

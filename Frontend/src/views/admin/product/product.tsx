@@ -35,7 +35,7 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Đơn hàng',
     total: (
       <>
@@ -45,7 +45,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -56,14 +55,13 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={'bill'} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Tổng giá trị',
     total: (
       <>
@@ -76,7 +74,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -93,8 +90,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Khuyến mại',
     total: (
       <>
@@ -107,7 +103,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -124,8 +119,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Tổng thanh toán',
     total: (
       <>
@@ -138,7 +132,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -155,8 +148,7 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'AOV',
     total: (
       <>
@@ -169,7 +161,6 @@ const DataBox = [
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -180,7 +171,8 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={'aov'} width={30} />
         </Box>
       </>
     ),
@@ -220,7 +212,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Giá niêm yết',
-        dataIndex: 'gianiemyet',
+        dataIndex: 'gia_niem_yet',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.gia_niem_yet}
@@ -230,7 +222,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Khuyến mại',
-        dataIndex: 'khuyenmai',
+        dataIndex: 'khuyen_mai',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.khuyen_mai}
@@ -240,7 +232,7 @@ const ProductAdmin = () => {
       },
       {
         title: 'Thanh toán',
-        dataIndex: 'thanhtoan',
+        dataIndex: 'thanh_toan',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
             {value.thanh_toan}
@@ -251,9 +243,15 @@ const ProductAdmin = () => {
       {
         title: 'Thao tác',
         dataIndex: 'thaotac',
-        render: () => (
-          <IconButton>
-            <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+        render: (_value: any, row: any) => (
+          <IconButton
+            onClick={() => {
+              setSelectID(row.id_don_hang);
+              setOpen(true);
+              setCheckValue('show');
+            }}
+          >
+            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
         ),
       },
@@ -262,7 +260,6 @@ const ProductAdmin = () => {
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [selectedItems] = useState<number[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -290,7 +287,7 @@ const ProductAdmin = () => {
       <BannerPage title="Đơn hàng sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
+          <TopCard dataSource={DataBox as any} totalColumn={5} />
         </Grid>
 
         <Grid item xs={12}>
@@ -389,8 +386,6 @@ const ProductAdmin = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -468,3 +463,10 @@ const ProductAdmin = () => {
 };
 
 export default ProductAdmin;
+function setSelectID(id_don_hang: any) {
+  throw new Error('Function not implemented.');
+}
+
+function setCheckValue(arg0: string) {
+  throw new Error('Function not implemented.');
+}

@@ -9,6 +9,35 @@ import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { default as Affilatechartadmin } from './Affilatechartadmin';
+import admin from 'src/assets/Adminphoto/admin.png';
+import aov from 'src/assets/Adminphoto/aov.png';
+import blog from 'src/assets/Adminphoto/bai viet.png';
+import reaction from 'src/assets/Adminphoto/cam xuc.png';
+import pending from 'src/assets/Adminphoto/cho xu ly.png';
+import checkout from 'src/assets/Adminphoto/chua thanh toan.png';
+import processing from 'src/assets/Adminphoto/chua xu ly.png';
+import done from 'src/assets/Adminphoto/da xu ly.png';
+import feedbackgreaterthan3 from 'src/assets/Adminphoto/danh gia tren 3.png';
+import feedbacksmallerthan3 from 'src/assets/Adminphoto/danh gia duoi 3.png';
+import feedbacknormal from 'src/assets/Adminphoto/danh gia trung binh.png';
+import blogrevenue from 'src/assets/Adminphoto/doanh thu bai viet.png';
+import rpointrevenue from 'src/assets/Adminphoto/doanh thu r poi.png';
+import productrevenue from 'src/assets/Adminphoto/doanh thu san pham.png';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import course from 'src/assets/Adminphoto/khoá.png';
+import amountbuy from 'src/assets/Adminphoto/luot mua san pham.png';
+import amountview from 'src/assets/Adminphoto/luot xem bai viet.png';
+import view from 'src/assets/NotificationAdmin/luot xem.png';
+import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
+import checkoutsuccess from 'src/assets/Adminphoto/da thanh toan.png';
+import ticketsale from 'src/assets/Adminphoto/ma giam gia.png';
+import amountticketsale from 'src/assets/Adminphoto/so ma giam gia.png';
+import flashsale from 'src/assets/Adminphoto/so flash sale.png';
+import ticket from 'src/assets/Adminphoto/ticket.png';
+import cvr from 'src/assets/ICON/cvr.png';
 import Affilatechartadmin1 from './Affilatechartadmin1';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
 import Affilatechartadmin6 from './Affiliatechartadmin6';
@@ -146,12 +175,11 @@ const dataFilter_detail = [
 const dataSource = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Khách hàng',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -162,18 +190,18 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={customer} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'CVR',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -184,18 +212,17 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={cvr} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -206,18 +233,17 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={bill} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -228,7 +254,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
@@ -237,12 +263,11 @@ const dataSource = [
 const dataSource_rpoint = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Khách hàng',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -253,18 +278,17 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={customer} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu(point)',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -275,18 +299,17 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={rpointrevenue} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -297,18 +320,17 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={bill} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Số dư R-Point',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -319,18 +341,17 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={rpointblance} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt mua/sản phẩm',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -341,18 +362,17 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={amountbuy} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu/sản phẩm',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -363,7 +383,7 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={productrevenue} width={30} />
       </Box>
     ),
   },
@@ -372,12 +392,11 @@ const dataSource_rpoint = [
 const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Publisher',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -389,17 +408,17 @@ const dataSource_affiliate = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        {/* chưa thay */}
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Khách hàng',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -411,17 +430,17 @@ const dataSource_affiliate = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        <img src={customer} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đơn hàng',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -432,18 +451,17 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={bill} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -454,18 +472,17 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Hoa hồng',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -476,18 +493,17 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={commission} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Số dư Publisher',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -499,17 +515,17 @@ const dataSource_affiliate = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        {/* chưa thay */}
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đã thanh toán',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -520,18 +536,17 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={checkoutsuccess} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Chờ xử lý',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -542,7 +557,7 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={pending} width={30} />
       </Box>
     ),
   },
@@ -551,12 +566,11 @@ const dataSource_affiliate = [
 const dataSource_sale = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Mã khuyến mãi',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -567,18 +581,17 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={ticketsale} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Số lượng mã',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -589,18 +602,17 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={amountticketsale} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đã sử dụng (lượt áp mã)',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -616,13 +628,12 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Tỉ lệ sử dụng',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -638,13 +649,12 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Số Flash-sale',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -655,18 +665,17 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={flashsale} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt mua',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -682,13 +691,12 @@ const dataSource_sale = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -699,18 +707,17 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Tỉ lệ mua',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -730,12 +737,11 @@ const dataSource_sale = [
 const dataSource_blog = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Bài viết',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -746,18 +752,18 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={blog} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt xem',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -768,40 +774,18 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={view} width={30} />
       </Box>
     ),
   },
+
   {
-    bgColor: 'success.light',
-    color: 'success.main',
-    title: 'Tổng doanh thu',
-    total: '123',
-    icons: (
-      <Box
-        bgcolor="success.main"
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <IconChartBar color="white" size={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Số cảm xúc',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -817,13 +801,12 @@ const dataSource_blog = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Tổng doanh thu',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -839,13 +822,12 @@ const dataSource_blog = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Lượt xem / bài viết',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -861,13 +843,12 @@ const dataSource_blog = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Doanh thu / bài viết',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -878,7 +859,8 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={blogrevenue} width={30} />
       </Box>
     ),
   },
@@ -887,12 +869,11 @@ const dataSource_blog = [
 const dataSource_ticket = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
+
     title: 'Đánh giá trung bình',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -903,18 +884,18 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={feedbacknormal} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
+
     title: 'Tickets',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -926,17 +907,17 @@ const dataSource_ticket = [
         }}
       >
         <IconChartBar color="white" size={30} />
+        <img src={ticket} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Khách hàng',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -947,18 +928,18 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={customer} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Đánh giá > 3*',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -969,18 +950,18 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={feedbackgreaterthan3} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
+
     title: 'Đánh giá < 3*',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -991,18 +972,18 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        {/* <IconChartBar color="white" size={30} /> */}
+        <img src={feedbacksmallerthan3} width={30} />
       </Box>
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
+
     title: 'Chưa xử lý',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -1013,7 +994,7 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        <IconChartBar color="white" size={30} />
+        <img src={processing} width={30} />
       </Box>
     ),
   },
@@ -1332,7 +1313,7 @@ const DashboardAdmin = () => {
         <Box sx={{ margin: '30px 0px' }}>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_blog} totalColumn={4} />
+              <Topcardadminhorizontal dataSource={dataSource_blog} totalColumn={3} />
               <GenChartAdmin text={'Blog'} menuItems={dataFilter_blog} />
             </Grid>
           </Grid>

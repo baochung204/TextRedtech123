@@ -1,4 +1,3 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -15,15 +14,12 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconPasswordUser,
-  IconRefreshOff,
-  IconSearch,
-  IconStars,
-  IconTicket,
-} from '@tabler/icons-react';
+import { IconSearch, IconStars } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
+import processing from 'src/assets/Adminphoto/chua xu ly.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import ticket from 'src/assets/Adminphoto/ticket.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -45,13 +41,11 @@ const BCrumb = [
 const DataBox = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Ticket',
     total: '2.415',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -62,20 +56,19 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconTicket color="white" size={30} />
+          {/* <IconTicket color="white" size={30} /> */}
+          <img src={ticket} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng',
     total: '1.369',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -86,20 +79,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconPasswordUser color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Đánh giá',
     total: '4.7/5',
     icons: (
       <>
         <Box
-          bgcolor="success.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -116,14 +107,12 @@ const DataBox = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Chưa xử lý',
     total: '236',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -134,7 +123,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconRefreshOff color="white" size={30} />
+          <img src={processing} width={30} />
         </Box>
       </>
     ),
@@ -368,7 +357,6 @@ const Ticket = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-
                 <Grid item>
                   <TextField
                     id="outlined-search"

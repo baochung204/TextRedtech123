@@ -1,151 +1,5 @@
-// import { Box, Dialog, DialogContent, DialogTitle, Grid } from '@mui/material';
-// import Slide from '@mui/material/Slide';
-// import { IconAd2, IconEdit, IconEyeOff, IconFileStar } from '@tabler/icons-react';
-// import React from 'react';
-// import TopCard from 'src/components/widgets/cards/TopCard';
-// import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-// import AddBlog from '../blog/_components/AddBlog';
-// import PageContainer from './../../../components/container/PageContainer';
-// import TableFeature from './_components/TableFeature';
+// src/pages/PageFeature.tsx
 
-// const BCrumb = [
-//   { to: '/', title: 'Trang Chủ' },
-//   { to: '/admin/feature', title: 'Danh sách đề xuất' },
-// ];
-
-// const dataSource = [
-//   {
-//     bgColor: 'primary.light',
-//     color: 'primary.main',
-//     title: 'Đề xuất',
-//     total: '190',
-//     icons: (
-//       <Box
-//         bgcolor="primary.main"
-//         textAlign="center"
-//         padding={1}
-//         sx={{
-//           width: 45,
-//           height: 45,
-//           display: 'flex',
-//           justifyContent: 'center',
-//           alignItems: 'center',
-//         }}
-//       >
-//         <IconAd2 color="white" size={30} />
-//       </Box>
-//     ),
-//   },
-//   {
-//     bgColor: 'warning.light',
-//     color: 'warning.main',
-//     title: 'Đánh dấu',
-//     total: '190',
-//     icons: (
-//       <Box
-//         bgcolor="warning.main"
-//         textAlign="center"
-//         padding={1}
-//         sx={{
-//           width: 45,
-//           height: 45,
-//           display: 'flex',
-//           justifyContent: 'center',
-//           alignItems: 'center',
-//         }}
-//       >
-//         <IconFileStar color="white" size={30} />
-//       </Box>
-//     ),
-//   },
-//   {
-//     bgColor: 'success.light',
-//     color: 'success.main',
-//     title: 'Chưa xem',
-//     total: '123',
-//     icons: (
-//       <Box
-//         bgcolor="success.main"
-//         textAlign="center"
-//         padding={1}
-//         sx={{
-//           width: 45,
-//           height: 45,
-//           display: 'flex',
-//           justifyContent: 'center',
-//           alignItems: 'center',
-//         }}
-//       >
-//         <IconEyeOff color="white" size={30} />
-//       </Box>
-//     ),
-//   },
-//   {
-//     bgColor: 'error.light',
-//     color: 'error.main',
-//     title: 'Cập nhập',
-//     total: '23',
-//     icons: (
-//       <Box
-//         bgcolor="error.main"
-//         textAlign="center"
-//         padding={1}
-//         sx={{
-//           width: 45,
-//           height: 45,
-//           display: 'flex',
-//           justifyContent: 'center',
-//           alignItems: 'center',
-//         }}
-//       >
-//         <IconEdit color="white" size={30} />
-//       </Box>
-//     ),
-//   },
-// ];
-
-// const PageFeature = () => {
-
-//   const [isPopupOpen] = React.useState(false);
-
-//   function handleClosePopup(_event: {}): void {
-//     throw new Error('Function not implemented.');
-//   }
-
-//   return (
-//     <PageContainer>
-//       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
-//       <Grid container spacing={3}>
-//         <Grid item xs={12}>
-//           <TopCard dataSource={dataSource} totalColumn={4} />
-//         </Grid>
-
-//         <Grid item xs={12}>
-//           <TableFeature />
-//         </Grid>
-//       </Grid>
-
-//       {/* Popup Thêm blogs */}
-//       <Dialog
-//         open={isPopupOpen}
-//         onClose={handleClosePopup}
-//         fullWidth
-//         maxWidth="lg"
-//         TransitionComponent={Slide}
-//         keepMounted
-//       >
-//         <DialogTitle padding={'10px'}>Thêm bài viết</DialogTitle>
-//         <DialogContent>
-//           <AddBlog />
-//         </DialogContent>
-//       </Dialog>
-//     </PageContainer>
-//   );
-// };
-
-// export default PageFeature;
-
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -172,7 +26,6 @@ import {
   IconEyeOff,
   IconFileStar,
   IconSearch,
-  IconTrash,
 } from '@tabler/icons-react';
 
 import React, { useEffect, useMemo, useState } from 'react';
@@ -182,8 +35,9 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
+import DialogFeature from './dialog/DialogFeature';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DataFeature from './data/DataFeuture';
-import { Dayjs } from 'dayjs';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -193,12 +47,10 @@ const BCrumb = [
 const dataSource = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Đề xuất',
     total: '190',
     icons: (
       <Box
-        bgcolor="primary.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -214,13 +66,11 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Đánh dấu',
     total: '190',
     icons: (
       <Box
-        bgcolor="warning.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -236,13 +86,11 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'success.light',
-    color: 'success.main',
+    bgColor: 'primary.light',
     title: 'Chưa xem',
     total: '123',
     icons: (
       <Box
-        bgcolor="success.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -258,13 +106,11 @@ const dataSource = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Cập nhập',
     total: '23',
     icons: (
       <Box
-        bgcolor="error.main"
         textAlign="center"
         padding={1}
         sx={{
@@ -280,28 +126,45 @@ const dataSource = [
     ),
   },
 ];
+
 interface Column {
   title: string;
   dataIndex: string;
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
+
+interface FeatureItem {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  contextFeature: string;
+}
+
 const PageFeature = () => {
-  const [selectedItems] = useState<number[]>([]);
-  const [isPopupOpen] = React.useState(false);
-  const column = useMemo<Column[]>(
+
+//   const [isPopupOpen] = React.useState(false);
+//   const column = useMemo<Column[]>(
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
+
+  const column: Column[] = useMemo(
+
     () => [
       { title: 'ID', dataIndex: 'id' },
       {
         title: 'Ngày tạo',
         dataIndex: 'createdAt',
-        render: (value: any) => value.toLocaleDateString(),
+        render: (value: any) => value.toLocaleDateString(), 
       },
       { title: 'Họ và tên', dataIndex: 'name' },
       { title: 'Email', dataIndex: 'email' },
       { title: 'Số điện thoại', dataIndex: 'phone' },
       {
-        title: 'Nội dùng đề xuất',
+        title: 'Nội dung đề xuất',
         dataIndex: 'contextFeature',
       },
       { title: 'Trạng thái', dataIndex: 'status' },
@@ -309,26 +172,36 @@ const PageFeature = () => {
       {
         title: 'Thao tác',
         dataIndex: 'action',
-        render: () => (
+        render: (_value: any, row: FeatureItem) => (
           <>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                setSelectedKey(row.id);
+                setOpen(true);
+                setIsCheckFix(true);
+              }}
+            >
               <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
             </IconButton>
+            {/* Uncomment and implement if needed
             <IconButton>
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
             <IconButton>
               <IconTrash stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
+            */}
           </>
         ),
       },
     ],
-    [],
+    []
   );
+
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+  const [value, setValue] = useState<Date | null>(null);
+  const [value1, setValue1] = useState<Date | null>(null);
+
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -350,7 +223,7 @@ const PageFeature = () => {
   };
 
   function handleClosePopup(_event: {}): void {
-    throw new Error('Function not implemented.');
+    // Implement if needed
   }
 
   return (
@@ -373,6 +246,7 @@ const PageFeature = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
+                {/* Uncomment if needed
                 <Grid item>
                   <IconButton
                     color="primary"
@@ -382,6 +256,7 @@ const PageFeature = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
+                */}
                 <Grid item>
                   <TextField
                     id="outlined-search"
@@ -394,7 +269,7 @@ const PageFeature = () => {
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <IconSearch size="12" />
+                          <IconSearch size={12} />
                         </InputAdornment>
                       ),
                     }}
@@ -413,7 +288,10 @@ const PageFeature = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={column.length - dataSelect.length} color="primary">
+                <Badge
+                  badgeContent={column.length - dataSelect.length}
+                  color="primary"
+                >
                   <FilterListIcon />
                 </Badge>
               </IconButton>
@@ -455,9 +333,7 @@ const PageFeature = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
+                {column.map((header: Column) => {
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -525,13 +401,25 @@ const PageFeature = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} />
+          <CustomTable
+            columns={column}
+            dataSource={DataFeature}
+            dataSelect={dataSelect}
+          />
+          <DialogFeature
+            open={open}
+            value="1" // Ensure this value matches the condition in DialogFeature
+            setOpen={setOpen}
+            keyOption={selectedKey}
+            setIsCheckFix={setIsCheckFix}
+            isCheckFix={isCheckFix}
+          />
         </Grid>
       </Grid>
 
       {/* Popup Thêm blogs */}
       <Dialog
-        open={isPopupOpen}
+        open={false} // Set to true to test
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"

@@ -1,23 +1,16 @@
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import {
-  IconDatabaseSmile,
-  IconEye,
-  IconFile,
-  IconMessageChatbot,
-  IconTrash,
-  IconUsers,
-} from '@tabler/icons-react';
+import { IconDatabaseSmile, IconEye, IconFile, IconTrash } from '@tabler/icons-react';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 export const Files = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Files',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -34,14 +27,12 @@ export const Files = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng',
     total: '189',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -52,20 +43,18 @@ export const Files = [
             alignItems: 'center',
           }}
         >
-          <IconUsers color="white" size={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Dung lượng',
     total: '32.415',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -82,14 +71,12 @@ export const Files = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -100,7 +87,7 @@ export const Files = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img src={assisstant} width={30} />
         </Box>
       </>
     ),
@@ -146,5 +133,3 @@ export const FileCells: any = [
     ),
   },
 ];
-
-

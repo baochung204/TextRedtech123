@@ -10,7 +10,7 @@ import {
   Typography,
   Box,
   IconButton,
-  Paper
+  Paper,
 } from '@mui/material';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
@@ -34,7 +34,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   columns,
   dataSource,
   rowsPerPageOptions = [5, 10, 25],
-  dataSelect = []
+  dataSelect = [],
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[0]);
@@ -50,7 +50,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
     setPage(0);
   };
 
-  const paginatedData = dataSource.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const paginatedData = dataSource?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <TableContainer component={Paper} sx={{ px: 2 }}>
@@ -58,20 +58,25 @@ const CustomTable: React.FC<CustomTableProps> = ({
         <Table>
           <TableHead>
             <TableRow>
-              {columns.map((column, index) => {
+              {columns?.map((column, index) => {
                 const isColumnVisible = !dataSelect.includes(column.dataIndex ?? '');
                 const isSortable = column.sort ?? false;
-                // console.log(`isColumnVisible ${column.title}`, isColumnVisible);
-
-
                 return (
                   <>
                     {isColumnVisible && (
                       <TableCell key={index}>
                         <Box
-                          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                          }}
                         >
-                          <Typography variant="h6" sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}>
+                          <Typography
+                            variant="subtitle2"
+                            fontWeight={600}
+                            sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}
+                          >
                             {column.title}
                           </Typography>
                           {isSortable && (
@@ -88,7 +93,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedData.map((row, rowIndex) => (
+            {paginatedData?.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => {
                   const value = column.dataIndex ? row[column.dataIndex] : undefined;

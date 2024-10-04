@@ -1,23 +1,15 @@
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import {
-  IconEye,
-  IconFile3d,
-  IconMessageChatbot,
-  IconTrash,
-  IconUsersGroup,
-  IconUserStar,
-} from '@tabler/icons-react';
+import { IconEye, IconFile3d, IconTrash, IconUsersGroup, IconUserStar } from '@tabler/icons-react';
+import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 export const Model = [
   {
     bgColor: 'primary.light',
-    color: 'primary.main',
     title: 'Model',
     total: '52',
     icons: (
       <>
         <Box
-          bgcolor="primary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -34,14 +26,12 @@ export const Model = [
     ),
   },
   {
-    bgColor: 'secondary.light',
-    color: 'secondary.main',
+    bgColor: 'primary.light',
     title: 'Tranning tokens',
     total: '189',
     icons: (
       <>
         <Box
-          bgcolor="secondary.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -58,14 +48,12 @@ export const Model = [
     ),
   },
   {
-    bgColor: 'warning.light',
-    color: 'warning.main',
+    bgColor: 'primary.light',
     title: 'Khách hàng sở hữu',
     total: '32.415',
     icons: (
       <>
         <Box
-          bgcolor="warning.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -82,14 +70,12 @@ export const Model = [
     ),
   },
   {
-    bgColor: 'error.light',
-    color: 'error.main',
+    bgColor: 'primary.light',
     title: 'Trợ lý áp dụng',
     total: '11.415',
     icons: (
       <>
         <Box
-          bgcolor="error.main"
           textAlign="center"
           padding={1}
           sx={{
@@ -100,7 +86,7 @@ export const Model = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img src={assisstant} width={30} />
         </Box>
       </>
     ),

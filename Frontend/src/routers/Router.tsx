@@ -34,6 +34,10 @@ const Pending = Loadable(lazy(() => import('src/views/apps/user-profile/Pending'
 const Success = Loadable(lazy(() => import('src/views/apps/user-profile/Success')));
 const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assistant')));
 
+const AssistantEditorAdmin = Loadable(
+  lazy(() => import('src/views/admin/assistant/AssistantEditorAdmin')),
+);
+
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
 const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
@@ -162,8 +166,8 @@ const Router = [
     path: '/',
     element: <FullLayout />,
     children: [
-      { path: '/', element: <Navigate to="/dashboards/modern" /> },
-      { path: '/dashboards/modern', exact: true, element: <ModernDash /> },
+      { path: '/', element: <Navigate to="/dashboards" /> },
+      { path: '/dashboards', exact: true, element: <ModernDash /> },
       { path: '/apps/contractaffiliate', exact: true, element: <ContractAffiliateUser /> },
       { path: '/apps/contractorder', exact: true, element: <ContractOrderUser /> },
       { path: '/dashboards/ecommerce', exact: true, element: <EcommerceDash /> },
@@ -172,23 +176,23 @@ const Router = [
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/apps/assistant/add', element: <AssistantEditor /> },
       { path: '/apps/assistant/:id', element: <AssistantInfor /> },
-      { path: '/apps/integration', element: <Integration /> },
-      { path: '/apps/sell/product', element: <Product /> },
-      { path: '/apps/sell/order', element: <CustomerListOrder /> },
+      { path: '/integrations', element: <Integration /> },
+      { path: '/products', element: <Product /> },
+      { path: '/conversions', element: <CustomerListOrder /> },
       { path: '/apps/contacts', element: <Contacts /> },
-      { path: '/apps/collaborate', element: <Collaborate /> },
-      { path: '/apps/customerlist2', element: <CustomerList2 /> },
-      { path: '/apps/customerlist', element: <CustomerList /> },
+      { path: '/affiliate', element: <Collaborate /> },
+      { path: '/customers', element: <CustomerList2 /> },
+      { path: '/affiliate/list_customer', element: <CustomerList /> },
       { path: '/apps/contract-client', element: <Client /> },
-      { path: '/apps/contract-affiliate', element: <Aff /> },
+      { path: '/affiliate/agreement', element: <Aff /> },
       { path: '/apps/blog/posts', element: <Blog /> },
       { path: '/apps/blog/detail/:id', element: <BlogDetail /> },
-      { path: '/apps/chats', element: <Chats /> },
+      { path: '/tickets', element: <Chats /> },
       { path: '/apps/email', element: <Email /> },
       { path: '/apps/notes', element: <Notes /> },
       { path: '/apps/tickets', element: <Tickets /> },
-      { path: '/apps/update', element: <Update /> },
-      { path: '/apps/ecommerce/shop', element: <Ecommerce /> },
+      { path: '/update', element: <Update /> },
+      { path: '/shops', element: <Ecommerce /> },
       { path: '/apps/ecommerce/eco-product-list', element: <EcomProductList /> },
       { path: '/apps/ecommerce/eco-checkout', element: <EcomProductCheckout /> },
       { path: '/apps/point/detaipoint/:id', element: <Detailpoint /> },
@@ -208,10 +212,10 @@ const Router = [
       { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
 
-      { path: '/pages/faq', element: <Faq /> },
+      { path: '/resourses', element: <Faq /> },
 
       { path: '/profile/assistant/list', element: <ListAssistantInProfile /> },
-      { path: '/assistant/list', element: <ListAssistant /> },
+      { path: '/assistants', element: <ListAssistant /> },
       { path: '/buy/point', element: <BuyPoint /> },
       { path: '/pay/point', element: <PaymentPoint /> },
       { path: '/pay/point2', element: <PaymentPoint2 /> },
@@ -248,6 +252,7 @@ const Router = [
     children: [
       { path: '/admin', element: <DashboardAdmin /> },
       { path: '/admin/dashboard', element: <AssistantAdmin /> },
+      { path: '/admin/assistanteditoradmin', element: <AssistantEditorAdmin /> },
       { path: '/admin/assistant', element: <AssistantAdmin /> },
       { path: '/admin/buy/orderproducts', element: <ProductAdmin /> },
       { path: '/admin/buy/products', element: <BuyPoints /> },
@@ -255,7 +260,7 @@ const Router = [
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
-      { path: '/admin/affiliate/history', element: <History /> },
+      // { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
       { path: '/admin/feature', element: <PageFeature /> },
       { path: '/admin/point/packagepoint', element: <RPoints /> },
