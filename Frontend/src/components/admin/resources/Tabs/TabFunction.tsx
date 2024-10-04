@@ -5,7 +5,7 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
-import DialogFuncView from '../dialog/DialogFuncView';
+// import DialogFuncView from '../dialog/DialogFuncView';
 
 
 interface PropsTabFunction {
@@ -77,7 +77,7 @@ const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => 
         dataSource={FunctionRows}
         dataSelect={dataSelect}
       />
-      <DialogFuncView open={open} setOpen={setOpen} value={selectId} />
+      {/* <DialogFuncView open={open} setOpen={setOpen} value={selectId} /> */}
     </BlankCard>
   );
 };
