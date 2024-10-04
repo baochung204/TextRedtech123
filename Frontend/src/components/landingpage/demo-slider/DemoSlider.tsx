@@ -124,7 +124,7 @@ const apps: DemoTypes[] = [
     title: 'Blog App',
   },
   {
-    link: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
+    link: '/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
     img: app13,
     title: 'Blog Detail App',
   },

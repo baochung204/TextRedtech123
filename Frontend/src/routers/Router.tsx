@@ -224,7 +224,7 @@ const Router = [
       { path: '/assistants', element: <ListAssistant /> },
       { path: '/buy/point', element: <BuyPoint /> },
       { path: '/pay/point', element: <PaymentPoint /> },
-      { path: '/pay/point2', element: <PaymentPoint2 /> },
+      { path: '/pay/checkout_point', element: <PaymentPoint2 /> },
       { path: '/history/buy-point', element: <HistoryBuyPoint /> },
       { path: '/history/buy-point-in-frofile', element: <HistoryBuyPointInProfile /> },
       { path: '/history/purchase-history-point-in-frofile', element: <PurchaseHistoryInProfile /> },
