@@ -212,7 +212,7 @@ const Assistant = () => {
   };
   const nav = useNavigate();
   const handleInfor = () => {
-    nav('/apps/assistant/:id');
+    nav('/assistant/:id');
   };
 
   return (
@@ -264,7 +264,7 @@ const Assistant = () => {
                       <Stack direction="row" spacing={2} alignItems="center">
                         <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
 
-                        <Link to={'/apps/assistant/:id'}>
+                        <Link to={'/assistant/:id'}>
                           <Typography
                             sx={{ cursor: 'pointer' }}
                             variant="subtitle2"

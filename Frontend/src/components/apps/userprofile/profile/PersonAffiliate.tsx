@@ -519,7 +519,7 @@ const PersonAffiliate = () => {
     console.log(formik.values.frontImage);
     console.log(formik.values.backImage);
     if (formik.values.backImage !== null && formik.values.frontImage !== null) {
-      window.location.href = '/apps/pending';
+      window.location.href = '/pending';
     }
   };
   return (

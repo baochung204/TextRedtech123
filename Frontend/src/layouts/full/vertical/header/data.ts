@@ -71,9 +71,6 @@ const notifications: notificationType[] = [
   },
 ];
 
-//
-// Messages dropdown
-//
 interface messageType {
   avatar: string;
   title: string;
@@ -127,48 +124,43 @@ const profile: ProfileType[] = [
     id: 1,
     href: '/user_profile',
     title: 'Quản lý tài khoản',
-    // subtitle: 'Account Settings',
+
     icon: icon1,
   },
   {
     id: 2,
     href: '/admin',
     title: 'Quản trị viên',
-    // subtitle: 'Account Settings',
+
     icon: icon2,
   },
   {
     id: 3,
     href: '/user_profile/point/transaction_point_history',
     title: 'Lịch sử giao dịch',
-    // subtitle: 'Account Settings',
+
     icon: icon3,
   },
   {
     id: 4,
     href: '/user_profile',
     title: 'Đổi mật khẩu',
-    // subtitle: 'Account Settings',
+
     icon: icon4,
   },
-  // {
-  //   href: '/auth/forgot-password2',
-  //   title: 'Đổi mật khẩu',
-  //   // subtitle: 'Messages & Emails',
-  //   icon: icon2,
-  // },
+
   {
     id: 5,
-    href: '/apps/chats',
+    href: '/tickets',
     title: 'Ticket hỗ trợ',
-    // subtitle: 'To-do and Daily Tasks',
+
     icon: icon5,
   },
   {
     id: 6,
-    href: '/forms/form-request',
+    href: '/feature_suggestion',
     title: 'Đề xuất tính năng',
-    // subtitle: 'To-do and Daily Tasks',
+
     icon: icon6,
   },
 ];
