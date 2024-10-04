@@ -48,7 +48,7 @@ const Notifications = () => {
         }}
         onClick={handleClick2}
       >
-        <Badge variant="dot" color="error">
+        <Badge variant="dot" color="primary">
           <IconBellRinging size="21" stroke="1.5" />
         </Badge>
       </IconButton>

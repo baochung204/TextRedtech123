@@ -18,7 +18,7 @@ const BannerPage = ({ subtitle, items, title, children }: BreadCrumbType) => (
   <Grid
     container
     sx={{
-      backgroundColor: '#FFEBEB',
+      backgroundColor: 'error.light',
       borderRadius: (theme: Theme) => theme.shape.borderRadius / 4,
       p: '30px 25px 20px',
       marginBottom: '30px',
@@ -45,16 +45,16 @@ const BannerPage = ({ subtitle, items, title, children }: BreadCrumbType) => (
       >
         {items
           ? items.map((item) => (
-              <div key={item.title}>
-                {item.to ? (
-                  <Link underline="none" color="inherit" component={NavLink} to={item.to}>
-                    {item.title}
-                  </Link>
-                ) : (
-                  <Typography color="textPrimary">{item.title}</Typography>
-                )}
-              </div>
-            ))
+            <div key={item.title}>
+              {item.to ? (
+                <Link underline="none" color="inherit" component={NavLink} to={item.to}>
+                  {item.title}
+                </Link>
+              ) : (
+                <Typography color="textPrimary">{item.title}</Typography>
+              )}
+            </div>
+          ))
           : ''}
       </Breadcrumbs>
     </Grid>
