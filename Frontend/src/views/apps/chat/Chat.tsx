@@ -14,7 +14,7 @@ const BCrumb = [
     title: 'Trang chủ',
   },
   {
-    to: '/apps/assistant/add',
+    to: '/assistant/add',
     title: 'Ticket hỗ trợ',
   },
 ];

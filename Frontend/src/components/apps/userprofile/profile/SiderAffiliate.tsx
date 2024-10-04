@@ -67,7 +67,7 @@ const SiderAffiliate = () => {
               color="secondary"
               fullWidth
               component={Link}
-              to="/apps/person-affiliate"
+              to="/person-affiliate"
             >
               Cá nhân
             </Button>

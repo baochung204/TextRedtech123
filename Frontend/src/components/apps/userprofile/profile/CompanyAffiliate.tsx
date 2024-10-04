@@ -584,7 +584,7 @@ const CompanyAffiliate = () => {
               Bạn đã hoàn thành việc đăng ký - chờ chúng tôi phê duyệt trong vòng 24h
             </Alert>
             <Box textAlign="right">
-              <Button component={Link} to="/apps/pending" variant="contained" color="error">
+              <Button component={Link} to="/pending" variant="contained" color="error">
                 Hoàn thành
               </Button>
             </Box>
@@ -606,7 +606,7 @@ const CompanyAffiliate = () => {
                 component={Link}
                 color="inherit"
                 variant="contained"
-                to="/user-profile"
+                to="/user_profile"
                 sx={{ mr: 1 }}
               >
                 Hủy bỏ
@@ -621,7 +621,7 @@ const CompanyAffiliate = () => {
                   variant="contained"
                   color="success"
                   component={Link}
-                  to="/apps/pending"
+                  to="/pending"
                 >
                   Hoàn thành
                 </Button>

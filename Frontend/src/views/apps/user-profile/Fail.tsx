@@ -103,7 +103,7 @@ const Fail = () => {
                     component={Link}
                     variant="contained"
                     color="error"
-                    to="/apps/affiliate"
+                    to="/apps/affiliate_register"
                     sx={{ marginTop: '10px' }}
                   >
                     Trở lại trang đăng ký

@@ -50,7 +50,7 @@ const Menuitems: MenuitemsType[] = [
     //     id: uniqueId(),
     //     title: 'Tạo Trợ lý',
     //     icon: IconPoint,
-    //     href: '/apps/assistant/add',
+    //     href: '/assistant/add',
     //   },
     //   {
     //     id: uniqueId(),

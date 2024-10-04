@@ -83,13 +83,13 @@ const Menuitems = [
         id: uniqueId(),
         title: 'User Profile',
         icon: IconPoint,
-        href: '/user-profile',
+        href: '/user_profile',
         children: [
           {
             id: uniqueId(),
             title: 'Profile',
             icon: IconPoint,
-            href: '/user-profile',
+            href: '/user_profile',
           },
           {
             id: uniqueId(),

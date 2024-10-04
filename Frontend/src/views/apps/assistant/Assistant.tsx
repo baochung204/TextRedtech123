@@ -11,7 +11,7 @@ import BlankCard from 'src/components/shared/BlankCard';
 const Assistant = () => {
   const nav = useNavigate();
   const handleAdd = () => {
-    nav('/apps/assistant/add');
+    nav('/assistant/add');
   };
   return (
     <PageContainer title="Trợ lý" description="this is page">
