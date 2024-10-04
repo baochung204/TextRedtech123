@@ -28,8 +28,10 @@ import { FileCells, Files } from './mockData/TableFile';
 import { Function, FunctionCells, FunctionRows } from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import { Model, ModelCells, ModelRows } from './mockData/TableModel';
-import { Strategy, StrategyCells, StrategyRows } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
+import { Strategy } from './mockData/TableStr';
+
+import Tab1 from './Tabs/TabStr';
 interface Column {
   title: string;
   dataIndex: string;
@@ -470,13 +472,7 @@ const Main = () => {
             </Box>
 
             <TabPanel sx={{ p: 0, pt: 2 }} value="1">
-              <BlankCard>
-                <CustomTable
-                  columns={StrategyCells}
-                  dataSource={StrategyRows}
-                  dataSelect={dataSelect}
-                />
-              </BlankCard>
+              <Tab1 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="2">
               <BlankCard>
