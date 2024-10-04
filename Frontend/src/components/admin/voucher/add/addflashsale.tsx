@@ -1,14 +1,11 @@
 import {
-  Dialog,
+  Box,
   Button,
+  Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
-  Box,
-  Tooltip,
-  Fab,
+  DialogTitle
 } from '@mui/material';
-import { IconPlus } from '@tabler/icons-react';
 
 import AddFlashSale from './AddSale';
 
@@ -21,9 +18,9 @@ const AddDflashsale = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // const [value, setValue] = useState('1');
 
   // Function mở popup
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
+  // const handleOpenPopup = () => {
+  //   setIsPopupOpen(true);
+  // };
 
   // Function đóng popup
   const handleClosePopup = () => {

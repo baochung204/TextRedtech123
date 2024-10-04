@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'src/store/Store';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import './Carousel.css';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import { useDispatch, useSelector } from 'src/store/Store';
+import './Carousel.css';
 
 const ProductCarousel = () => {
   const [state, setState] = useState<any>({ nav1: null, nav2: null });

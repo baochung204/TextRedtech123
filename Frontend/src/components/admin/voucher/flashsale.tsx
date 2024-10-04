@@ -30,7 +30,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
-import AddFlashSale from './add/AddSale';
 import AddDflashsale from './add/addflashsale';
 
 interface DataRow3 {

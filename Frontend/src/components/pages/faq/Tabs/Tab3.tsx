@@ -58,12 +58,7 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
       dataIndex: 'isCheck',
       render: (_value: ItemTable3, row: any) => (
         <Grid container>
-          <Grid item xs={4}>
-            <IconButton onClick={() => window.open(row.url, '_blank')}>
-              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
-          </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
             <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
             </IconButton>

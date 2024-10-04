@@ -1,8 +1,7 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, InputAdornment, TextField, Typography } from "@mui/material"
-import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik"
-import * as Yup from 'yup';
-import icontext from 'src/assets/images/logos/R-Point.png';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextField, Typography } from "@mui/material";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import { useEffect, useMemo, useState } from "react";
+import * as Yup from 'yup';
 import PublisherTable from "../datatable/Publisher";
 
 interface PropsDialog {
