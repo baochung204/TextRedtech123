@@ -179,7 +179,7 @@ const ProductList = ({ onClick }: Props) => {
                 />
               ) : (
                 <BlankCard className="hoverCard" sx={{ position: 'relative' }}>
-                  <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
+                  <Typography component={Link} to={`/shop/detail/${product.id}`}>
                     <img src={product.thumbnailUrl} alt={product.name} width="100%" />
                   </Typography>
                   <CardContent

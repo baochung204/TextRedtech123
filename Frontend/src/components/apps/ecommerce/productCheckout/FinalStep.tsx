@@ -7,9 +7,19 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Box, styled, TextField,
-  Typography, FormControl
-  , Grid, AccordionDetails, Card, Accordion, CardContent, Tooltip, AccordionSummary, Drawer
+  Box,
+  styled,
+  TextField,
+  Typography,
+  FormControl,
+  Grid,
+  AccordionDetails,
+  Card,
+  Accordion,
+  CardContent,
+  Tooltip,
+  AccordionSummary,
+  Drawer,
 } from '@mui/material';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
@@ -115,12 +125,7 @@ const Afletpoint = ({ row }: any) => {
   return (
     <>
       {row.status == 1 ? (
-        <Button
-          variant="contained"
-          color="success"
-          sx={{ width: '50%' }}
-          onClick={handleClickOpen}
-        >
+        <Button variant="contained" color="success" sx={{ width: '50%' }} onClick={handleClickOpen}>
           Chi tiết
         </Button>
       ) : (
@@ -359,7 +364,8 @@ const Afletpoint = ({ row }: any) => {
                                     marginY: '0px',
                                     paddingY: '0px',
 
-                                    transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
+                                    transform:
+                                      selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
                                   }}
                                   onClick={() => handleSelectPackage(pkg)}
                                 >
@@ -372,7 +378,7 @@ const Afletpoint = ({ row }: any) => {
                                     }}
                                   >
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                      <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
+                                      <Typography component={Link} to={`/shop/detail/11`}>
                                         <img
                                           src={pkg.img}
                                           alt={''}
@@ -415,7 +421,9 @@ const Afletpoint = ({ row }: any) => {
                                     </div>
 
                                     <Button
-                                      variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
+                                      variant={
+                                        selectedPackage === pkg.id ? 'contained' : 'outlined'
+                                      }
                                       color="warning"
                                       sx={{
                                         display: { xs: 'none', md: 'block' },
@@ -532,7 +540,9 @@ const Afletpoint = ({ row }: any) => {
                           onClick={handleCheckboxChange}
                         >
                           <CustomCheckbox checked={checked} />
-                          <Typography sx={{ fontSize: 16, fontWeight: 500 }}>Xuất hóa đơn</Typography>
+                          <Typography sx={{ fontSize: 16, fontWeight: 500 }}>
+                            Xuất hóa đơn
+                          </Typography>
                         </Box>
 
                         <Box
@@ -549,9 +559,9 @@ const Afletpoint = ({ row }: any) => {
                               <Box sx={{ display: 'flex', gap: '6px', p: 2 }}>
                                 <img src={iconWarning} alt="" />
                                 <Typography>
-                                  Quý khách vui lòng cung cấp đúng thông tin để xuất hóa đơn. Công ty
-                                  không chịu trách nhiệm xử lý trong trường hợp quý khách điền sai thông
-                                  tin hoặc doanh nghiệp không còn hoạt động.
+                                  Quý khách vui lòng cung cấp đúng thông tin để xuất hóa đơn. Công
+                                  ty không chịu trách nhiệm xử lý trong trường hợp quý khách điền
+                                  sai thông tin hoặc doanh nghiệp không còn hoạt động.
                                 </Typography>
                               </Box>
                               <form>
@@ -564,7 +574,9 @@ const Afletpoint = ({ row }: any) => {
                                     required
                                     placeholder="Mã số thuế"
                                   />
-                                  <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                                  <p style={{ margin: 0, color: 'red' }}>
+                                    Vui lòng không bỏ trống{' '}
+                                  </p>
                                 </FormControl>
 
                                 <FormControl fullWidth>
@@ -576,7 +588,9 @@ const Afletpoint = ({ row }: any) => {
                                     fullWidth
                                     required
                                   />
-                                  <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                                  <p style={{ margin: 0, color: 'red' }}>
+                                    Vui lòng không bỏ trống{' '}
+                                  </p>
                                 </FormControl>
 
                                 <FormControl fullWidth>
@@ -588,7 +602,9 @@ const Afletpoint = ({ row }: any) => {
                                     required
                                     placeholder="Địa chỉ công ty"
                                   />
-                                  <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                                  <p style={{ margin: 0, color: 'red' }}>
+                                    Vui lòng không bỏ trống{' '}
+                                  </p>
                                 </FormControl>
 
                                 <FormControl fullWidth>
@@ -602,7 +618,9 @@ const Afletpoint = ({ row }: any) => {
                                     required
                                     placeholder="Email"
                                   />
-                                  <p style={{ margin: 0, color: 'red' }}>Vui lòng không bỏ trống </p>
+                                  <p style={{ margin: 0, color: 'red' }}>
+                                    Vui lòng không bỏ trống{' '}
+                                  </p>
                                 </FormControl>
                               </form>
                             </Box>
@@ -622,7 +640,7 @@ const Afletpoint = ({ row }: any) => {
                               backgroundColor: '#DC143C ',
                             },
                           }}
-                          onClick={() => { }}
+                          onClick={() => {}}
                         >
                           Thanh Toán{' '}
                         </Button>

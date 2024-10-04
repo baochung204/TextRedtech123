@@ -168,7 +168,7 @@ const TableBuyPoint = () => {
                 },
               }}
             >
-              <Link to={'/pay/point2'} style={{ color: 'white' }}>
+              <Link to={'/pay/checkout_point'} style={{ color: 'white' }}>
                 Thanh toán ngay
               </Link>
             </Button>

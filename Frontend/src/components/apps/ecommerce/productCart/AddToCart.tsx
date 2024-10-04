@@ -223,7 +223,7 @@ const AddToCart = () => {
             </TableContainer>
             <FirstStep total={total} Discount={Discount} qty={qty} />
             <Stack direction={'row'} justifyContent="space-between">
-              <Link to={'/apps/ecommerce/shop'}>
+              <Link to={'/shops'}>
                 <Button color="secondary" variant="contained">
                   Quay lại
                 </Button>
@@ -255,7 +255,7 @@ const AddToCart = () => {
           <Typography variant="h5" mb={2}>
             Giỏ hàng trống
           </Typography>
-          <Button component={Link} to="/apps/ecommerce/shop" variant="contained">
+          <Button component={Link} to="/shops" variant="contained">
             Quay lại mua sắm
           </Button>
         </Box>

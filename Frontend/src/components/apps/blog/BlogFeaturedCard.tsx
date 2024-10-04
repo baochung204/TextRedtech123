@@ -99,7 +99,7 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
               <>
                 <Typography
                   component={Link}
-                  to={`/apps/blog/detail/${linkTo}`}
+                  to={`/blog/detail/${linkTo}`}
                   onClick={() => dispatch(fetchBlogPost(linkTo))}
                 >
                   <CoverBox
@@ -158,7 +158,7 @@ const BlogFeaturedCard = ({ post, index }: Btype) => {
                           color="inherit"
                           sx={{ textDecoration: 'none' }}
                           component={Link}
-                          to={`/apps/blog/detail/${linkTo}`}
+                          to={`/blog/detail/${linkTo}`}
                           onClick={() => dispatch(fetchBlogPost(linkTo))}
                         >
                           {title}
