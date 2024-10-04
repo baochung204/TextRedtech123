@@ -7,16 +7,13 @@ import {
 } from '@tabler/icons-react';
 
 import {
-  IconBrandOpenai,
+  IconAtom,
   IconFileInvoice,
-  IconMessage2Bolt,
-  IconPresentationAnalytics,
-} from '@tabler/icons-react';
-
-import {
   // IconAppWindow,
   IconHeadset,
+  IconMessage2Bolt,
   IconPoint,
+  IconPresentationAnalytics,
   IconShoppingCart,
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
@@ -73,8 +70,10 @@ const Menuitems: MenuitemsType[] = [
   {
     id: uniqueId(),
     title: 'Sản phẩm',
-    icon: IconBrandOpenai,
+
+    icon: IconAtom,
     href: '/products',
+
   },
   {
     id: uniqueId(),

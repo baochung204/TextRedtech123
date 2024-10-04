@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import { AppState, useSelector } from 'src/store/Store';
 
-
 export const Profile = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -16,8 +15,8 @@ export const Profile = () => {
           <Avatar alt="Remy Sharp" src={img1} />
 
           <Box>
-            <Typography variant="h6">Mathew </Typography>
-            <Typography variant="caption">Designer</Typography>
+            <Typography variant="h6">Đăng Hòa</Typography>
+            <Typography variant="caption">Rank A</Typography>
           </Box>
           <Box sx={{ ml: 'auto' }}>
             <Tooltip title="Logout" placement="top">

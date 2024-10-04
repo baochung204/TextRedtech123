@@ -181,9 +181,15 @@ const Router = [
       { path: '/products', element: <Product /> },
       { path: '/conversions', element: <CustomerListOrder /> },
       { path: '/apps/contacts', element: <Contacts /> },
+
+//       { path: '/apps/collaborate', element: <Collaborate /> },
+//       { path: '/customers', element: <CustomerList2 /> },
+//       { path: '/apps/customerlist', element: <CustomerList /> },
+
       { path: '/affiliate', element: <Collaborate /> },
       { path: '/customers', element: <CustomerList2 /> },
       { path: '/affiliate/list_customer', element: <CustomerList /> },
+
       { path: '/apps/contract-client', element: <Client /> },
       { path: '/apps/contract-affiliate', element: <Aff /> },
       { path: '/blogs', element: <Blog /> },
