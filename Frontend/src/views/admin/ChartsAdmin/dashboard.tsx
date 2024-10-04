@@ -48,6 +48,7 @@ import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
+import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },
@@ -1187,7 +1188,8 @@ const DashboardAdmin = () => {
               <Affilatechartadmin5 menuItems={dataFilter_type_account} />
             </Grid>
             <Grid item xs={12} lg={4}>
-              <Affilatechartadmin6 />
+              {/* <Affilatechartadmin6 /> */}
+              <SpeedometerChart />
             </Grid>
           </Grid>
         </Box>
