@@ -350,10 +350,10 @@ const OrderAdminPages = () => {
                 }}
               >
                 <Grid container sx={{ alignItems: 'center' }}>
-                  <Grid item>
+                  <Grid item xs={10}>
                     <TextField
                       id="outlined-search"
-                      placeholder="Tìm kiếm trợ lý"
+                      placeholder="Tìm kiếm khách hàng"
                       size="small"
                       type="search"
                       variant="outlined"

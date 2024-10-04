@@ -16,9 +16,7 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconSearch
-} from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import contractwait from 'src/assets/Contract/HOP DONG CHO XU LY.png';
@@ -281,10 +279,10 @@ const ContactRPoint = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid> */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm hợp đồng"
                     size="small"
                     type="search"
                     variant="outlined"

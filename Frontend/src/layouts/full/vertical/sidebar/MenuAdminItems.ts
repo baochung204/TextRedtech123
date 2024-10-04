@@ -178,7 +178,7 @@ const MenuAdminitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: 'E-Invoice',
+        title: 'Hóa đơn',
         icon: IconPoint,
         href: '/admin/einvoice',
       },

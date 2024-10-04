@@ -15,7 +15,6 @@
 // //   },
 // // };
 
-
 // // const shopProductNames = ['Id', 'Ảnh', 'Tên sản phẩm', 'Tags', 'Giá niêm yết', 'Giá khuyến mãi'];
 
 // import {
@@ -314,7 +313,6 @@
 //   dispatch(fetchProduct());
 // }, [dispatch]);
 
-
 //   const handleColumnChange = (event: any) => {
 //     const {
 //       target: { value },
@@ -424,20 +422,30 @@
 
 // export default PaginationTable;
 
-import { Badge, Box, Checkbox, Grid, IconButton, InputAdornment, ListItemText, MenuItem, Select, TextField } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import {
+  Badge,
+  Box,
+  Checkbox,
+  Grid,
+  IconButton,
+  InputAdornment,
+  ListItemText,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
+import { useEffect, useMemo, useState } from 'react';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { Dayjs } from "dayjs";
-import { IconSearch } from "@tabler/icons-react";
+import { Dayjs } from 'dayjs';
+import { IconSearch } from '@tabler/icons-react';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import CustomTable from "src/components/ComponentTables/CustomTable";
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import { fetchProduct } from '../../../store/apps/products/productsSlice';
-import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
-import AddDialog from "./layout/addDialog";
-
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import AddDialog from './layout/addDialog';
 
 interface Column {
   title: string;
@@ -447,7 +455,6 @@ interface Column {
 }
 
 const PaginationTable = () => {
-
   // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
@@ -478,42 +485,42 @@ const PaginationTable = () => {
       {
         title: 'Mô tả',
         dataIndex: 'mota',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Ảnh sản phẩm',
         dataIndex: 'anhsanpham',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Đơn vị tính',
         dataIndex: 'donvitinh',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Kích thước',
         dataIndex: 'kichthuoc',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Màu sắc',
         dataIndex: 'mausac',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Chất liệu',
         dataIndex: 'chatlieu',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Tiêu đề',
         dataIndex: 'tieude',
-        isValids: false
+        isValids: false,
       },
       {
         title: 'Kiểu dáng',
         dataIndex: 'kieudang',
-        isValids: false
+        isValids: false,
       },
     ],
     [],
@@ -547,7 +554,6 @@ const PaginationTable = () => {
   };
   return (
     <Grid container spacing={3}>
-
       <Grid item xs={12}>
         <Grid container sx={{ alignItems: 'center' }} spacing={2}>
           <Grid
@@ -561,20 +567,19 @@ const PaginationTable = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item xs={2}>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
                   onClick={() => setIsPopupOpen(true)}
-
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm sản phẩm"
                   size="small"
                   type="search"
                   variant="outlined"
@@ -657,7 +662,6 @@ const PaginationTable = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -720,7 +724,7 @@ const PaginationTable = () => {
       {/* <Dialogproduct open={open} setOpen={setOpen} /> */}
       <AddDialog isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </Grid>
-  )
-}
+  );
+};
 
 export default PaginationTable;

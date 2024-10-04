@@ -11,7 +11,7 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  TextField
+  TextField,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -21,7 +21,6 @@ import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import PublisherTable from './datatable/Publisher';
-
 
 interface Column {
   title: string;
@@ -148,20 +147,19 @@ const PublisherTablePage: React.FC = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
-                // onClick={() => setOpen(true)}
-
+                  // onClick={() => setOpen(true)}
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm gói R-Point"
                   size="small"
                   type="search"
                   variant="outlined"
@@ -244,7 +242,6 @@ const PublisherTablePage: React.FC = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

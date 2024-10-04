@@ -11,7 +11,7 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  TextField
+  TextField,
 } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -23,7 +23,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
 import AddDialogvoucher from './add/addDialog';
-
 
 interface DataRow {
   id: string;
@@ -287,20 +286,19 @@ const ListVoucher = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item >
+              <Grid item xs={2}>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
                   onClick={() => setIsPopupOpen(true)}
-
                 >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item >
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm mã khuyến mãi"
                   size="small"
                   type="search"
                   variant="outlined"
@@ -383,7 +381,6 @@ const ListVoucher = () => {
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
