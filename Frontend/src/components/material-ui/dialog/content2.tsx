@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'src/store/Store';
 import products2 from 'src/assets/images/products/s24.jpg';
-import products from 'src/assets/images/products/s25.jpg';
+
 // import Countdown from 'src/components/countdown/countdown';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';

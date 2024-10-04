@@ -101,7 +101,7 @@ const DialogOrder = ({ open, setOpen, selectID, checkValue, setCheckValue }: Pro
 
   const handleSubmit = (
     values: typeof emptyInitialValues,
-    { resetForm }: FormikHelpers<typeof initialValues>,
+    { resetForm }: FormikHelpers<typeof emptyInitialValues>,
   ) => {
     if (checkValue === 'view') {
       setCheckValue('fix');

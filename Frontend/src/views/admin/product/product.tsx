@@ -1,3 +1,4 @@
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -14,19 +15,15 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconChartBar, IconEye, IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
+import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { default as iconPoint, default as point } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DataOrderProduct from './data/DataOrderProduct';
-import { Dayjs } from 'dayjs';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-import aov from 'src/assets/Adminphoto/aov.png';
-import bill from 'src/assets/Adminphoto/dơn hang.png';
 
 import DialogProduct from './DialogProduct';
 
@@ -477,10 +474,3 @@ const ProductAdmin = () => {
 };
 
 export default ProductAdmin;
-function setSelectID(id_don_hang: any) {
-  throw new Error('Function not implemented.');
-}
-
-function setCheckValue(arg0: string) {
-  throw new Error('Function not implemented.');
-}
