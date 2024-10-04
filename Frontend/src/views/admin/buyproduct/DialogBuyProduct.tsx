@@ -466,6 +466,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                 )}
             </Formik>
         </Dialog>
+        
     );
 };
 

@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { StrategyRows } from '../mockData/TableStr';
+import { FunctionRows } from '../mockData/TableFunction';
 
 interface PropsDialog {
     value: string,
@@ -17,21 +18,20 @@ interface PropsDialog {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
+const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
     const [formData, setFormData] = useState({
         id: '',
-        strategyGroup: '',
-        strategyName: '',
-        badge: '',
+        creationTime: '',
+        functionGroup: '',
         level: '',
         ownedCustomers: '',
         appliedAssistants: '',
-        summary: '',
         content: '',
-        dateCreate: '',
-        creator:''
+        summary: '',
+        functionCode: '',
+        creator: '',
     });
 
     const [errors, setErrors] = useState({
@@ -106,7 +106,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     };
 
     const fetchStrategyDetail = (id: string) => {
-        const strategy = StrategyRows.find((item) => item.id === id);
+        const strategy = FunctionRows.find((item) => item.id === id);
         if (strategy) {
             setFormData({
                 id: strategy.id,
@@ -119,7 +119,6 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 summary: strategy.summary,
                 content: strategy.content,
                 dateCreate: strategy.dateCreate,
-                creator: strategy.creator
             });
         }
     };
@@ -344,7 +343,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         variant="outlined"
                                         fullWidth
                                         placeholder="Nhập tên chiến lược . . ."
-                                        value={formData.creator}
+                                        value={formData.strategyName}
                                     />
                                 </Grid>
                                 <Grid item xs={12} lg={12} md={6}>
@@ -490,4 +489,4 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     );
 };
 
-export default DialogStrView;
+export default DialogFuncView;
