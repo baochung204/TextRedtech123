@@ -51,26 +51,26 @@ const MenuAdminitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Khách hàng',
     icon: IconUsersGroup,
-    href: '/admin/order/orderadminpage',
+    href: '/admin/customer',
   },
 
   {
     id: uniqueId(),
     title: 'Bán hàng',
     icon: IconPackage,
-    href: '/admin/buy/',
+    href: '/admin/shop/',
     children: [
       {
         id: uniqueId(),
         title: 'Sản phẩm',
         icon: IconPoint,
-        href: '/admin/buy/products',
+        href: '/admin/shop/products',
       },
       {
         id: uniqueId(),
         title: 'Đơn hàng sản phẩm',
         icon: IconPoint,
-        href: '/admin/buy/orderproducts',
+        href: '/admin/shop/orderproducts',
       },
     ],
   },
@@ -91,7 +91,7 @@ const MenuAdminitems: MenuitemsType[] = [
         title: 'Đơn hàng R-Point',
         icon: IconPoint,
 
-        href: '/admin/order/orderRPoint',
+        href: '/admin/point/orderRPoint',
       },
     ],
   },
@@ -178,7 +178,7 @@ const MenuAdminitems: MenuitemsType[] = [
       },
       {
         id: uniqueId(),
-        title: 'E-Invoice',
+        title: 'Hóa đơn',
         icon: IconPoint,
         href: '/admin/einvoice',
       },

@@ -114,17 +114,17 @@ const apps: DemoTypes[] = [
     title: 'Note App',
   },
   {
-    link: '/apps/user-profile',
+    link: '/apps/user_profile',
     img: app6,
     title: 'User Profile App',
   },
   {
-    link: '/apps/blog/posts',
+    link: '/blogs',
     img: app7,
     title: 'Blog App',
   },
   {
-    link: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
+    link: '/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
     img: app13,
     title: 'Blog Detail App',
   },
@@ -139,12 +139,12 @@ const apps: DemoTypes[] = [
     title: 'eCommerce Shop App',
   },
   {
-    link: '/apps/ecommerce/detail/1',
+    link: '/shop/detail/1',
     img: app10,
     title: 'eCommerce Detail App',
   },
   {
-    link: '/apps/ecommerce/eco-checkout',
+    link: '/carts',
     img: app11,
     title: 'eCommerce Checkout App',
   },

@@ -1,8 +1,7 @@
-import { Box, Button, Dialog, Divider } from '@mui/material';
+import { Box, Button, Divider } from '@mui/material';
 import { useState } from 'react';
 import ChatContent from 'src/components/apps/chats/ChatContent';
 import ChatMsgSent from 'src/components/apps/chats/ChatMsgSent';
-import ChatSidebar from 'src/components/apps/chats/ChatSidebar';
 import AppCard from 'src/components/shared/AppCard';
 
 interface ContentChatProps {

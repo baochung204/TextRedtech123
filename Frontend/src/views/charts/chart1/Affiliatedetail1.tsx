@@ -23,10 +23,35 @@ const monthsInVietnamese = [
   'Tháng 11',
   'Tháng 12',
 ];
+
+
+
 const Affiliatedetail = () => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
+
+  const categories = [
+    '1/11/2000',
+    '2/11/2000',
+    '3/11/2000',
+    '4/11/2000',
+    '5/11/2000',
+    '6/11/2000',
+    '7/11/2000',
+    '8/11/2000',
+    '9/11/2000',
+    '10/11/2000',
+    '11/11/2000',
+    '12/11/2000',
+    '1/11/2001',
+    '2/11/2001',
+    '3/11/2001',
+    '4/11/2001',
+    '5/11/2001',
+    '6/11/2001',
+  ]
+
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -52,33 +77,19 @@ const Affiliatedetail = () => {
 
     xaxis: {
       type: 'datetime',
-      categories: [
-        '1/11/2000',
-        '2/11/2000',
-        '3/11/2000',
-        '4/11/2000',
-        '5/11/2000',
-        '6/11/2000',
-        '7/11/2000',
-        '8/11/2000',
-        '9/11/2000',
-        '10/11/2000',
-        '11/11/2000',
-        '12/11/2000',
-        '1/11/2001',
-        '2/11/2001',
-        '3/11/2001',
-        '4/11/2001',
-        '5/11/2001',
-        '6/11/2001',
-      ],
+      categories: categories,
       labels: {
-        formatter: function (value: any) {
+        show: true,
+        formatter: (value: string, timestamp: string, opts?: any) => {
           const date = new Date(value);
-          return monthsInVietnamese[date.getMonth()];
+          if (opts.i === 0 || opts.i === categories.length - 1) {
+            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+          }
+          return '';
         },
       },
-      tickAmount: 9,
+      tickAmount: categories.length - 1,
+      tickPlacement: 'on',
     },
     fill: {
       type: 'gradient',
@@ -123,7 +134,10 @@ const Affiliatedetail = () => {
       theme: 'dark',
     },
     grid: {
-      show: false,
+      show: true,
+      padding: {
+        right: 30,
+      },
     },
   };
   const seriesgredientchart: any = [

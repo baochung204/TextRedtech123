@@ -6,7 +6,6 @@ const BCrumb = [
     to: '/',
     title: 'Trang Chủ',
   },
-  { to: '/buy/point', title: 'Trợ Lý' },
   { to: '/buy/point', title: 'Danh Sách Trợ Lý' },
 ];
 

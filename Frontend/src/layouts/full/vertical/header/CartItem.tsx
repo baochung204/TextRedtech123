@@ -89,7 +89,7 @@ const CartItems = () => {
           <Typography variant="h5" mb={2}>
             Không có sản phẩm nào
           </Typography>
-          <Button component={Link} to="/apps/ecommerce/shop" variant="contained">
+          <Button component={Link} to="/shops" variant="contained">
             Shopping ngay !
           </Button>
         </Box>

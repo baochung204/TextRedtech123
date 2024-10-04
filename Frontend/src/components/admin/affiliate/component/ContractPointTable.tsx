@@ -52,7 +52,6 @@ const FilmsData: FilmsData[] = [
   { id: 14, title: 'Duyệt hồ sơ' },
 ];
 
-
 const ContractPointTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -157,6 +156,8 @@ const ContractPointTable = () => {
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
+  const dataSelect: any[] = []; // Define dataSelect variable
+
   return (
     <>
       {' '}
@@ -195,7 +196,7 @@ const ContractPointTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={column.length - dataSelect.length} color="primary">
+              <Badge badgeContent={FilmsData.length - dataSelect.length} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>

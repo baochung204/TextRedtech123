@@ -296,10 +296,10 @@ const Invoice = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid> */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm hóa đơn"
                     size="small"
                     type="search"
                     variant="outlined"

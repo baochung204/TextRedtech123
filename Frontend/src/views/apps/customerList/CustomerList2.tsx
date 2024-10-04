@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
+  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
@@ -15,13 +16,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
 import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconPlus, IconSearch } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
@@ -29,6 +29,7 @@ import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 // import { AppDispatch, AppState } from 'src/store/Store';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
@@ -38,7 +39,7 @@ import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
-  { to: '/apps/blog/posts', title: 'Danh Sách Khách Hàng' },
+  { to: '/blogs', title: 'Danh Sách Khách Hàng' },
 ];
 
 const Transition = forwardRef<
@@ -169,14 +170,14 @@ const CustomerList2 = () => {
                   >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Tooltip title="Thêm mới khách hàng" onClick={handleOpenPopup}>
-                            <Fab size="small" color="primary" aria-label="plus" sx={{ my: 'auto' }}>
-                              <IconPlus width={18} />
-                            </Fab>
+                            <IconButton color="primary" aria-label="Add to cart">
+                              <AddCircleIcon sx={{ fontSize: 30 }} />
+                            </IconButton>
                           </Tooltip>
                         </Grid>
-                        <Grid item xs={8.5}>
+                        <Grid item xs={10}>
                           <TextField
                             id="outlined-search"
                             placeholder="Tìm kiếm khách hàng"
@@ -244,10 +245,10 @@ const CustomerList2 = () => {
                           }}
                         >
                           {column.map((header: any) => {
-                            console.log(
-                              `check ${header.title}`,
-                              dataSelect.includes(header.dataIndex),
-                            );
+                            // console.log(
+                            //   `check ${header.title}`,
+                            //   dataSelect.includes(header.dataIndex),
+                            // );
 
                             const isSelected = dataSelect.includes(header.dataIndex);
 

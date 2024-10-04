@@ -128,7 +128,7 @@ const CustomerListOrder = () => {
 
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
-    { to: '/apps/blog/posts', title: 'Đơn hàng' },
+    { to: '/', title: 'Chuyển đổi' },
   ];
 
   const columns = React.useMemo<Column[]>(
@@ -258,28 +258,36 @@ const CustomerListOrder = () => {
                     spacing={2}
                     sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
                   >
-                    <Grid item xs={12} sm={4} sx={{ display: 'flex', alignItems: 'center' }}>
-                      <IconButton
-                        color="primary"
-                        aria-label="Add to cart"
-                        onClick={() => setIsPopupOpen(true)}
-                      >
-                        <AddCircleIcon sx={{ fontSize: 30 }} />
-                      </IconButton>
-                      <TextField
-                        id="outlined-search"
-                        placeholder="Tìm kiếm đơn hàng"
-                        size="small"
-                        variant="outlined"
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <IconSearch size="20" />
-                            </InputAdornment>
-                          ),
-                        }}
-                        fullWidth
-                      />
+                    <Grid item xs={12} sm={4}>
+                      <Grid container sx={{ alignItems: 'center' }}>
+                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                          {' '}
+                          <IconButton
+                            color="primary"
+                            aria-label="Add to cart"
+                            onClick={() => setIsPopupOpen(true)}
+                          >
+                            <AddCircleIcon sx={{ fontSize: 30 }} />
+                          </IconButton>
+                        </Grid>
+                        <Grid item xs={10}>
+                          {' '}
+                          <TextField
+                            id="outlined-search"
+                            placeholder="Tìm kiếm chuyển đổi"
+                            size="small"
+                            variant="outlined"
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <IconSearch size="20" />
+                                </InputAdornment>
+                              ),
+                            }}
+                            fullWidth
+                          />
+                        </Grid>
+                      </Grid>
                     </Grid>
 
                     <Grid item xs={5.83}>
@@ -331,10 +339,10 @@ const CustomerListOrder = () => {
                           }}
                         >
                           {columns.map((header: any) => {
-                            console.log(
-                              `check ${header.title}`,
-                              dataSelect.includes(header.dataIndex),
-                            );
+                            // console.log(
+                            //   `check ${header.title}`,
+                            //   dataSelect.includes(header.dataIndex),
+                            // );
 
                             const isSelected = dataSelect.includes(header.dataIndex);
 

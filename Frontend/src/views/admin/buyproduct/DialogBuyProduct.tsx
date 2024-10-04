@@ -266,7 +266,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                         }}
                                     >
                                         <Typography variant="h5" gutterBottom sx={{ textAlign: 'center' }}>
-                                            Upload Images
+                                            Tải ảnh lên
                                         </Typography>
                                         <Box
                                             sx={{
@@ -416,13 +416,13 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                                         sx: {
                                                                             '& .MuiOutlinedInput-root': {
                                                                                 '& fieldset': {
-                                                                                    borderColor: 'transparent', // Xóa bỏ viền khi không hover
+                                                                                    borderColor: 'transparent',
                                                                                 },
                                                                                 '&:hover fieldset': {
-                                                                                    borderColor: 'transparent', // Xóa bỏ viền khi hover
+                                                                                    borderColor: 'transparent',
                                                                                 },
                                                                                 '&.Mui-focused fieldset': {
-                                                                                    borderColor: 'transparent', // Xóa bỏ viền khi field được focus
+                                                                                    borderColor: 'transparent', 
                                                                                 },
                                                                             },
                                                                         },
@@ -453,7 +453,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                             <Button
                                 type="submit"
                                 color="primary"
-                            // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
+                                variant="contained"
+                                // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
                             >
                                 {checkValue === 'add' ? 'Xác nhận'
                                     :

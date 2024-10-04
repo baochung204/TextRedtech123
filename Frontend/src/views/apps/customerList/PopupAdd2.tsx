@@ -187,9 +187,11 @@ const AddOrder = () => {
         </Grid>
       </Box>
 
-      <Button type="submit" variant="contained" color="primary" fullWidth>
-        Lưu thông tin
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button type="submit" variant="contained" color="primary">
+          Lưu thông tin
+        </Button>
+      </Box>
     </form>
   );
 };
