@@ -40,7 +40,7 @@ import PopupAddList2 from './PopupAddlist2';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
-  { to: '/apps/blog/posts', title: 'Danh Sách Khách Hàng' },
+  { to: '/blogs', title: 'Danh Sách Khách Hàng' },
 ];
 
 const Transition = forwardRef<

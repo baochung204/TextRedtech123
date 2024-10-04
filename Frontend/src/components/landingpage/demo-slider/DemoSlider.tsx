@@ -119,7 +119,7 @@ const apps: DemoTypes[] = [
     title: 'User Profile App',
   },
   {
-    link: '/apps/blog/posts',
+    link: '/blogs',
     img: app7,
     title: 'Blog App',
   },
@@ -144,7 +144,7 @@ const apps: DemoTypes[] = [
     title: 'eCommerce Detail App',
   },
   {
-    link: '/apps/ecommerce/eco-checkout',
+    link: '/carts',
     img: app11,
     title: 'eCommerce Checkout App',
   },
