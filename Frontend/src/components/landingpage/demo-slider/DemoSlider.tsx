@@ -139,7 +139,7 @@ const apps: DemoTypes[] = [
     title: 'eCommerce Shop App',
   },
   {
-    link: '/apps/ecommerce/detail/1',
+    link: '/shop/detail/1',
     img: app10,
     title: 'eCommerce Detail App',
   },

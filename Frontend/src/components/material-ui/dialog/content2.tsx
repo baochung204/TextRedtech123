@@ -217,7 +217,7 @@ const Content2 = ({
                         }}
                       >
                         <div style={{ display: 'flex', gap: '20px' }}>
-                          <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
+                          <Typography component={Link} to={`/shop/detail/11`}>
                             {lgUp ? (
                               <img
                                 src={pkg.img}
@@ -403,7 +403,7 @@ const Content2 = ({
             </Box>
           </ChildCard>
           <Box textAlign={'center'} marginTop={'20px'}>
-            <Button component={Link} to="/pages/faq">
+            <Button component={Link} to="/resources">
               Tiếp tục
             </Button>
           </Box>

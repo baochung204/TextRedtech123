@@ -127,7 +127,7 @@ const Menuitems = [
             id: uniqueId(),
             title: 'Detail',
             icon: IconPoint,
-            href: '/apps/ecommerce/detail/1',
+            href: '/shop/detail//1',
           },
           {
             id: uniqueId(),
