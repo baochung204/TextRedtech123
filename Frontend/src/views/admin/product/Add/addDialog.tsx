@@ -15,9 +15,10 @@ interface PropsUp {
   setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-import AddVoucher from './Addvoucher';
+import AddVoucher from './AddDH';
+import AddHD from './AddDH';
 // import * as React from 'react';
-const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
+const AddDialogDH = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // const [value, setValue] = useState('1');
 
   // Function mở popup
@@ -34,11 +35,6 @@ const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // };
   return (
     <Box>
-      <Tooltip title="Thêm thông báo mới">
-        <Fab size="small" color="secondary" aria-label="plus" onClick={handleOpenPopup}>
-          <IconPlus width={18} />
-        </Fab>
-      </Tooltip>
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
@@ -56,9 +52,9 @@ const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
         }}
       >
         <Box>
-          <DialogTitle padding={'10px'}>Tạo mã khuyến mãi</DialogTitle>
+          <DialogTitle padding={'10px'}>Tạo đơn hàng sản phẩm</DialogTitle>
           <DialogContent>
-            <AddVoucher />
+            <AddHD />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClosePopup}>Hủy</Button>
@@ -72,4 +68,4 @@ const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   );
 };
 
-export default AddDialogvoucher;
+export default AddDialogDH;
