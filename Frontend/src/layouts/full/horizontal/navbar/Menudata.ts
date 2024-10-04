@@ -127,7 +127,7 @@ const Menuitems = [
             id: uniqueId(),
             title: 'Detail',
             icon: IconPoint,
-            href: '/apps/ecommerce/detail/1',
+            href: '/shop/detail//1',
           },
           {
             id: uniqueId(),
@@ -147,19 +147,19 @@ const Menuitems = [
         id: uniqueId(),
         title: 'Blog',
         icon: IconPoint,
-        href: '/apps/blog/',
+        href: '/blog/',
         children: [
           {
             id: uniqueId(),
             title: 'Posts',
             icon: IconPoint,
-            href: '/apps/blog/posts',
+            href: '/blog/posts',
           },
           {
             id: uniqueId(),
             title: 'Detail',
             icon: IconPoint,
-            href: '/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
+            href: '/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow',
           },
         ],
       },

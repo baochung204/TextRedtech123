@@ -367,7 +367,7 @@ const ContentPurchaseHistory = () => {
                             }}
                           >
                             <div style={{ display: 'flex', gap: '20px' }}>
-                              <Typography component={Link} to={`/apps/ecommerce/detail/11`}>
+                              <Typography component={Link} to={`/shop/detail/11`}>
                                 <img
                                   src={pkg.img}
                                   alt={''}
