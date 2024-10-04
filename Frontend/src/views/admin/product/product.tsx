@@ -25,18 +25,14 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DataOrderProduct from './data/DataOrderProduct';
 
-import { Dayjs } from 'dayjs';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
-import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
-import sale from 'src/assets/Adminphoto/khuyen mai.png';
 import aov from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
+import sale from 'src/assets/Adminphoto/khuyen mai.png';
+import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
+import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
 
-
-import DialogProduct from './DialogProduct';
 import PageContainer from 'src/components/container/PageContainer';
+import DialogProduct from './DialogProduct';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
