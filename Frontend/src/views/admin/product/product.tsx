@@ -315,7 +315,7 @@ const ProductAdmin = () => {
               >
                 <Grid container sx={{ alignItems: 'center' }}>
                   <Grid item>
-                    {/* <IconButton
+                    <IconButton
                       color="primary"
                       aria-label="Add to cart"
                       // onClick={() => setOpen(true)}
@@ -326,7 +326,7 @@ const ProductAdmin = () => {
                       }}
                     >
                       <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton> */}
+                    </IconButton>
                   </Grid>
                   <Grid item>
                     <TextField
