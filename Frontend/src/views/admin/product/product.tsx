@@ -174,7 +174,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          {/* <IconChartBar color="white" size={30} /> */}
+         
           <img src={'aov'} width={30} />
         </Box>
       </>

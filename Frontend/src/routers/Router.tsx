@@ -211,7 +211,7 @@ const Router = [
       { path: '/apps/fail', element: <Fail /> },
       { path: '/pending', element: <Pending /> },
       { path: '/person-affiliate', element: <PersonAffiliate /> },
-      { path: '/apps/company-affiliate', element: <CompanyAffiliate /> },
+      { path: '/company-affiliate', element: <CompanyAffiliate /> },
       { path: '/apps/gallery', element: <Gallery /> },
       { path: '/user_profile', element: <UserProfile /> },
       { path: '/pointhistory', element: <Pointhistory /> },
