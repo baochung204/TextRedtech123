@@ -339,10 +339,10 @@ const CustomerListOrder = () => {
                           }}
                         >
                           {columns.map((header: any) => {
-                            console.log(
-                              `check ${header.title}`,
-                              dataSelect.includes(header.dataIndex),
-                            );
+                            // console.log(
+                            //   `check ${header.title}`,
+                            //   dataSelect.includes(header.dataIndex),
+                            // );
 
                             const isSelected = dataSelect.includes(header.dataIndex);
 

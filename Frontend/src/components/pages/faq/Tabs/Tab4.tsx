@@ -1,9 +1,7 @@
-
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DataTable4 from '../DataTable/TableTab4';
-import { Box,  Grid, IconButton } from '@mui/material';
+import { Box, Grid, IconButton } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
-
 
 interface ItemTable4 {
   images: string;
@@ -15,46 +13,43 @@ interface ItemTable4 {
 }
 
 interface PropsData {
-  dataSelect?: string[]
+  dataSelect?: string[];
 }
-
-
 
 const Tab4 = ({ dataSelect }: PropsData) => {
   const column = [
     {
       title: 'ID',
-      dataIndex: 'idCode'
+      dataIndex: 'idCode',
     },
     {
       title: 'Ngày tạo',
       dataIndex: 'creationDate',
       render: (value: Date) => {
         return new Date(value).toLocaleDateString();
-      }
+      },
     },
     {
       title: 'Tên model',
-      dataIndex: 'modelName'
+      dataIndex: 'modelName',
     },
     {
       title: 'Model gốc',
-      dataIndex: 'modelLocal'
+      dataIndex: 'modelLocal',
     },
     {
       title: 'Token huấn luyện',
-      dataIndex: 'trainedTokens'
+      dataIndex: 'trainedTokens',
     },
     {
       title: 'Hành động',
       dataIndex: 'isCheck',
-      render: (row: ItemTable4, value: ItemTable4) => {
-        console.log(row);
-        console.log(value);
+      render: (_row: ItemTable4, value: ItemTable4) => {
+        // console.log(row);
+        // console.log(value);
 
         return (
-
-          <Grid container >
+          <Grid container>
             <Grid item xs={4}>
               <IconButton
                 onClick={() => {
@@ -70,26 +65,18 @@ const Tab4 = ({ dataSelect }: PropsData) => {
               </IconButton>
             </Grid>
           </Grid>
-
-
-        )
-      }
-    }
-  ]
+        );
+      },
+    },
+  ];
 
   return (
     <Box
       sx={{
-        paddingTop: 1
+        paddingTop: 1,
       }}
     >
-
-      <CustomTable
-        dataSource={DataTable4}
-        columns={column}
-        dataSelect={dataSelect}
-      />
-
+      <CustomTable dataSource={DataTable4} columns={column} dataSelect={dataSelect} />
     </Box>
   );
 };

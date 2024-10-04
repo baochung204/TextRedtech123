@@ -114,7 +114,7 @@ const apps: DemoTypes[] = [
     title: 'Note App',
   },
   {
-    link: '/apps/user-profile',
+    link: '/apps/user_profile',
     img: app6,
     title: 'User Profile App',
   },

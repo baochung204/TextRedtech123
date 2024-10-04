@@ -106,7 +106,7 @@ const ListAssistant = () => {
             }}
           >
             <Tooltip title="Thêm">
-              <Link to={`/assistant/add`}>
+              <Link to={`/assistants/add`}>
                 <IconButton color="primary" aria-label="Add to cart">
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
@@ -304,7 +304,7 @@ const ListAssistant = () => {
                           ':hover': { backgroundColor: '#FFB300' },
                         }}
                         component={Link}
-                        to={`/assistant/${rank.id}`}
+                        to={`/assistants/${rank.id}`}
                       >
                         <IconStackBack stroke={2} />
                       </Button>
