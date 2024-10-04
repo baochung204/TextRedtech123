@@ -3,6 +3,7 @@ import assistant from 'src/assets/Adminphoto/tro ly ap dung.png';
 import functionimg from 'src/assets/Function/FUNCTION.png';
 import customer from 'src/assets/Function/KHACH HANG SO HUU.png';
 import functiongroup from 'src/assets/Function/NHOM FUNCTION.png';
+import { Functions } from '../types/Functions';
 
 export const Function = [
   {
@@ -96,11 +97,12 @@ export const Function = [
 ];
 
 
-export const FunctionRows = [
+export const FunctionRows: Functions[] = [
   {
     id: 'FUNC001',
     creationTime: '2024-09-01 08:30',
     functionGroup: 'Nhóm A',
+    functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 1',
     ownedCustomers: '25',
@@ -115,6 +117,7 @@ export const FunctionRows = [
     id: 'FUNC002',
     creationTime: '2024-09-02 09:15',
     functionGroup: 'Nhóm B',
+    functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 2',
     ownedCustomers: '15',
@@ -129,6 +132,7 @@ export const FunctionRows = [
     id: 'FUNC003',
     creationTime: '2024-09-03 10:40',
     functionGroup: 'Nhóm A',
+    functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 1',
     ownedCustomers: '10',
@@ -143,6 +147,7 @@ export const FunctionRows = [
     id: 'FUNC004',
     creationTime: '2024-09-04 11:20',
     functionGroup: 'Nhóm C',
+    functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 3',
     ownedCustomers: '30',
@@ -157,6 +162,7 @@ export const FunctionRows = [
     id: 'FUNC005',
     creationTime: '2024-09-05 14:05',
     functionGroup: 'Nhóm B',
+    functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 2',
     ownedCustomers: '20',
@@ -171,6 +177,7 @@ export const FunctionRows = [
     id: 'FUNC006',
     creationTime: '2024-09-06 15:30',
     functionGroup: 'Nhóm A',
+    functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 3',
     ownedCustomers: '40',
