@@ -34,6 +34,7 @@ import File from './configuration/file';
 import Function from './configuration/function';
 import InFor from './infor/infor';
 import TopCart from './topcart/topcart';
+import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 
 const AssistantInfor = () => {
   return (
@@ -196,7 +197,8 @@ const AssistantInfor = () => {
             <Chart3 />
           </Grid>
           <Grid item xs={12} md={4} lg={4}>
-            <Chart4 />
+            {/* <Chart4 /> */}
+            <SpeedometerChart />
           </Grid>{' '}
           {/* column */}
           <Grid item xs={12} sm={4} md={4} lg={4}>
