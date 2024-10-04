@@ -368,7 +368,9 @@ const PersonAffiliate = () => {
             >
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <CustomFormLabel sx={{ marginTop: '25px' }} htmlFor="image1">
-                  <Typography sx={{ fontSize: '30px', fontWeight: 'bold' }}>Xác minh danh tính</Typography>
+                  <Typography sx={{ fontSize: '30px', fontWeight: 'bold' }}>
+                    Xác minh danh tính
+                  </Typography>
                 </CustomFormLabel>
               </Box>
               <Grid container spacing={2} justifyContent="center" alignItems="center">
@@ -555,7 +557,7 @@ const PersonAffiliate = () => {
             component={Link}
             color="inherit"
             variant="contained"
-            to="/user-profile"
+            to="/user_profile"
             sx={{ mr: 1 }}
             size="small"
           >

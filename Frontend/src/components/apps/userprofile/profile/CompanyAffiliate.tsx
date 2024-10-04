@@ -606,7 +606,7 @@ const CompanyAffiliate = () => {
                 component={Link}
                 color="inherit"
                 variant="contained"
-                to="/user-profile"
+                to="/user_profile"
                 sx={{ mr: 1 }}
               >
                 Hủy bỏ

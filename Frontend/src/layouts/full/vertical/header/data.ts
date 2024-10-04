@@ -125,7 +125,7 @@ interface ProfileType {
 const profile: ProfileType[] = [
   {
     id: 1,
-    href: '/user-profile',
+    href: '/user_profile',
     title: 'Quản lý tài khoản',
     // subtitle: 'Account Settings',
     icon: icon1,
@@ -139,14 +139,14 @@ const profile: ProfileType[] = [
   },
   {
     id: 3,
-    href: '/history/buy-point-in-frofile',
+    href: '/user_profile/point/transaction_point_history',
     title: 'Lịch sử giao dịch',
     // subtitle: 'Account Settings',
     icon: icon3,
   },
   {
     id: 4,
-    href: '/user-profile',
+    href: '/user_profile',
     title: 'Đổi mật khẩu',
     // subtitle: 'Account Settings',
     icon: icon4,
@@ -260,7 +260,7 @@ const pageLinks: LinkType[] = [
     title: 'Login Page',
   },
   {
-    href: '/user-profile',
+    href: '/user_profile',
     title: 'User Application',
   },
   {
