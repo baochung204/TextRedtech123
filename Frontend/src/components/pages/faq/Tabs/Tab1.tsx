@@ -1,17 +1,25 @@
-import { Avatar, Box, Button, CardContent, Grid, Stack, TablePagination, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  CardContent,
+  Grid,
+  Stack,
+  TablePagination,
+  Typography,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BlankCard from 'src/components/shared/BlankCard';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DataTab1 from '../DataTable/TableTab1';
-import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
-  const dispatch = useDispatch<AppDispatch>()
-  const dataStr = useSelector((state: AppState) => state.str.data)
+  const dispatch = useDispatch<AppDispatch>();
+  const dataStr = useSelector((state: AppState) => state.str.data);
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -22,8 +30,8 @@ const Tab1 = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchStr())
-  }, [dispatch])
+    dispatch(fetchStr());
+  }, [dispatch]);
   return (
     <>
       <Grid container spacing={2}>
