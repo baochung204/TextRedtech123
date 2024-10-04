@@ -180,7 +180,7 @@ const ProfileBanner = () => {
             }}
           >
             <Stack direction={'row'} gap={2} my={2} px={2} spacing={2}>
-              <Link to={'/apps/affiliate'}>
+              <Link to={'/affiliate_register'}>
                 <Button
                   color="primary"
                   variant="contained"

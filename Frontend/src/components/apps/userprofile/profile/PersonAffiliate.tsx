@@ -517,7 +517,7 @@ const PersonAffiliate = () => {
     console.log(formik.values.frontImage);
     console.log(formik.values.backImage);
     if (formik.values.backImage !== null && formik.values.frontImage !== null) {
-      window.location.href = '/apps/pending';
+      window.location.href = '/pending';
     }
   };
   return (
@@ -555,7 +555,7 @@ const PersonAffiliate = () => {
             component={Link}
             color="inherit"
             variant="contained"
-            to="/user-profile"
+            to="/user_profile"
             sx={{ mr: 1 }}
             size="small"
           >

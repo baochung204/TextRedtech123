@@ -39,7 +39,7 @@ const ProfileTab = () => {
     {
       label: 'Thông tin cá nhân',
       icon: <IconUser size="20" />,
-      to: '/user-profile',
+      to: '/user_profile',
     },
 
     {

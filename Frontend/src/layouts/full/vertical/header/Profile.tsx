@@ -17,7 +17,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const handleButtonClick2 = () => {
-    navigate('/apps/ecommerce/shop'); // Điều hướng đến trang '/shopping'
+    navigate('/shops'); // Điều hướng đến trang '/shopping'
   };
 
   const handleClick2 = (event: any) => {
