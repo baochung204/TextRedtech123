@@ -109,7 +109,7 @@ const PurchaseHistoryInProfile = () => {
               <Grid item xs={4}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm thông báo"
+                  placeholder="Tìm kiếm"
                   size="small"
                   type="search"
                   variant="outlined"

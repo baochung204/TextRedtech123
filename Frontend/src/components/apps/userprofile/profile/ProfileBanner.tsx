@@ -52,30 +52,6 @@ const ProfileBanner = () => {
               objectFit: 'cover', // Ensure the image covers the whole area without stretching
             }}
           />
-          <input
-            accept="image/*"
-            style={{ display: 'none' }}
-            id="upload-banner"
-            type="file"
-            onChange={handleBannerChange}
-          />
-          <label
-            htmlFor="upload-banner"
-            style={{
-              position: 'absolute',
-              bottom: '10px',
-              right: '10px',
-              backgroundColor: '#f5f5f5',
-              padding: '5px',
-              borderRadius: '50%',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <IconCameraBolt style={{ fontSize: '30px' }} />
-          </label>
         </Box>
 
         <Grid

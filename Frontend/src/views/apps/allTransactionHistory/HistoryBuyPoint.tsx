@@ -154,7 +154,7 @@ const HistoryBuyPoint = () => {
                   <Grid item xs={12}>
                     <TextField
                       id="outlined-search"
-                      placeholder="Tìm kiếm thông báo"
+                      placeholder="Tìm kiếm"
                       size="small"
                       type="search"
                       variant="outlined"
