@@ -42,7 +42,7 @@ import Iconchart from 'src/assets/images/chat/chartt.png';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
 import AlertChat from '../../chats/AlertChat';
-import { IconPlus } from '@tabler/icons-react';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 interface FilmsData {
   title: string;
@@ -105,11 +105,11 @@ const ListAssistant = () => {
               alignItems: 'center',
             }}
           >
-            <Tooltip title="Thêm" >
+            <Tooltip title="Thêm">
               <Link to={`/apps/assistant/add`}>
-                <Fab sx={{ mr: 1 }} size="small" color="primary" aria-label="plus">
-                  <IconPlus width={18} />
-                </Fab>
+                <IconButton color="primary" aria-label="Add to cart">
+                  <AddCircleIcon sx={{ fontSize: 30 }} />
+                </IconButton>
               </Link>
             </Tooltip>
             <TextField

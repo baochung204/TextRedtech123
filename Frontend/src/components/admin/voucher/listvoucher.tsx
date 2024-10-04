@@ -249,7 +249,6 @@ const ListVoucher = () => {
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const selectedColumns = column || [];
@@ -299,7 +298,7 @@ const ListVoucher = () => {
               <Grid item>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm mã khuyến mãi"
                   size="small"
                   type="search"
                   variant="outlined"

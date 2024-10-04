@@ -24,8 +24,11 @@ import DataOrderProduct from './data/DataOrderProduct';
 import { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AddDialogvoucher from 'src/components/admin/voucher/add/addDialog';
-import AddDialogDH from './Add/addDialog';
+
+import aov from 'src/assets/Adminphoto/aov.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+
+import DialogProduct from './DialogProduct';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -84,7 +87,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={totalvalue} width={30} />
         </Box>
       </>
     ),
@@ -113,7 +116,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={sale} width={30} />
         </Box>
       </>
     ),
@@ -142,7 +145,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={totalcheckout} width={30} />
         </Box>
       </>
     ),
@@ -287,7 +290,7 @@ const ProductAdmin = () => {
       <BannerPage title="Đơn hàng sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox as any} totalColumn={5} />
+          <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
 
         <Grid item xs={12}>
@@ -307,7 +310,12 @@ const ProductAdmin = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                    onClick={() => setOpen(true)}
+                    // onClick={() => setOpen(true)}
+
+                    onClick={() => {
+                      setOpen(true);
+                      setCheckValue('add');
+                    }}
                   >
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
@@ -457,7 +465,13 @@ const ProductAdmin = () => {
           <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
         </Grid>
       </Grid>
-      <AddDialogDH isPopupOpen={open} setIsPopupOpen={setOpen} />
+      <DialogProduct
+        open={open}
+        setOpen={setOpen}
+        checkValue={checkValue}
+        setCheckValue={setCheckValue}
+        selectID={selectID}
+      />
     </>
   );
 };

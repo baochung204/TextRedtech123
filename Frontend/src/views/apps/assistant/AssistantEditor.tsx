@@ -18,9 +18,8 @@ const BCrumb = [
 ];
 
 const AssistantEditor = () => {
-  
   return (
-    <PageContainer title="Tạo Assistant" description="this is Shop List page">
+    <PageContainer title="Tạo trợ lý" description="this is page">
       <BannerPage title="Tạo Assistant" items={BCrumb} />
       <Assistant_Add />
     </PageContainer>

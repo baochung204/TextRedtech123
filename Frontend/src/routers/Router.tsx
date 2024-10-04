@@ -151,7 +151,8 @@ const HistoryAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/hi
 const ContactAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/contactaffiliate')));
 const ContactPoint = Loadable(lazy(() => import('../views/admin/affiliate/contactpoint')));
 const ListAssistant = Loadable(lazy(() => import('../views/listAssistant/listAssistant')));
-
+const FormRequest = Loadable(lazy(() => import('../views/suggestion/FormRequest')));
+// const Suggestion = Loadable(lazy(() => import('')));
 //history of contract
 
 const ContractAffiliateUser = Loadable(
@@ -212,7 +213,7 @@ const Router = [
       { path: '/apps/support', element: <Aisupport /> },
       { path: '/apps/calendar', element: <Calendar /> },
 
-      { path: '/resourses', element: <Faq /> },
+      { path: '/pages/faq', element: <Faq /> },
 
       { path: '/profile/assistant/list', element: <ListAssistantInProfile /> },
       { path: '/assistants', element: <ListAssistant /> },

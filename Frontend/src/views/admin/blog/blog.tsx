@@ -8,7 +8,6 @@ import {
   Checkbox,
   Chip,
   Dialog,
-  DialogActions,
   DialogContent,
   Grid,
   IconButton,
@@ -16,11 +15,9 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Slide,
   TextField,
   Typography,
 } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {
@@ -43,19 +40,12 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
-import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
+import reaction from 'src/assets/Adminphoto/luot timm.png';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
   { to: '/admin/blogs', title: 'Danh sách bài viết' },
 ];
-
-const Transition = React.forwardRef<
-  unknown,
-  TransitionProps & { children: React.ReactElement<any, any> }
->(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 interface StyleProps {
   bgColor: string;
@@ -142,7 +132,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <IconLockSquareRounded color="white" size={30} />
+        <img width={30} src={reaction} />
       </Box>
     ),
   },
@@ -298,7 +288,7 @@ const BlogAdmin = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer title="Quản lý bài viết">
       <BannerPage title="Quản lý bài viết" items={BCrumb} />
 
       <Grid container spacing={3}>
@@ -318,7 +308,7 @@ const BlogAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
+                <Grid item xs={2}>
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
@@ -327,10 +317,10 @@ const BlogAdmin = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm bài viết"
                     size="small"
                     type="search"
                     variant="outlined"

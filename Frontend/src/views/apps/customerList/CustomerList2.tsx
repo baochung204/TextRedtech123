@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
+  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
@@ -29,6 +30,7 @@ import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 // import { AppDispatch, AppState } from 'src/store/Store';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
@@ -154,7 +156,7 @@ const CustomerList2 = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer title="Danh sách khách hàng">
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
       <ChildCard sx={{ border: 'none' }} sx1={{ padding: 0 }}>
         <TabContext value="1">
@@ -169,14 +171,14 @@ const CustomerList2 = () => {
                   >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Tooltip title="Thêm mới khách hàng" onClick={handleOpenPopup}>
-                            <Fab size="small" color="primary" aria-label="plus" sx={{ my: 'auto' }}>
-                              <IconPlus width={18} />
-                            </Fab>
+                            <IconButton color="primary" aria-label="Add to cart">
+                              <AddCircleIcon sx={{ fontSize: 30 }} />
+                            </IconButton>
                           </Tooltip>
                         </Grid>
-                        <Grid item xs={8.5}>
+                        <Grid item xs={10}>
                           <TextField
                             id="outlined-search"
                             placeholder="Tìm kiếm khách hàng"
@@ -310,7 +312,7 @@ const CustomerList2 = () => {
         <DialogContent
           sx={{
             padding: '0',
-            overflowY: 'hidden'
+            overflowY: 'hidden',
           }}
         >
           <PopupAddList2 />

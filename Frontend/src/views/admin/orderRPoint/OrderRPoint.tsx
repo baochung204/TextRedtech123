@@ -430,7 +430,7 @@ const OrderRPoint = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Đơn hàng R-Point" description="this is page">
       <BannerPage title="Đơn hàng R-Point" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -459,10 +459,10 @@ const OrderRPoint = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid> */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm đơn hàng"
                     size="small"
                     type="search"
                     variant="outlined"

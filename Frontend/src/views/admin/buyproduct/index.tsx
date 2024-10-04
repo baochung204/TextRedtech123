@@ -25,7 +25,9 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { Dayjs } from 'dayjs';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
+import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
+import sale from 'src/assets/Adminphoto/khuyen mai.png';
 import aov from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 
@@ -91,7 +93,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={totalvalue} width={30} />
         </Box>
       </>
     ),
@@ -120,7 +122,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={sale} width={30} />
         </Box>
       </>
     ),
@@ -149,7 +151,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartBar color="white" size={30} />
+          <img src={totalcheckout} width={30} />
         </Box>
       </>
     ),
@@ -185,6 +187,7 @@ const DataBox = [
     ),
   },
 ];
+
 interface Column {
   title: string;
   dataIndex: string;
@@ -360,8 +363,6 @@ const BuyPoints = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                    // onClick={() => setOpen(true)}
-
                     onClick={() => {
                       setOpen(true);
                       setCheckValue('add');
@@ -370,10 +371,10 @@ const BuyPoints = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid>
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm sản phẩm"
                     size="small"
                     type="search"
                     variant="outlined"

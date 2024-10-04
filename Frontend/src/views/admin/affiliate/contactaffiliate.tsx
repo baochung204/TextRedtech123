@@ -10,7 +10,7 @@ const contactaffiliate = () => {
   ];
   return (
     <>
-      <PageContainer title="Order" description="this is Order page">
+      <PageContainer title="Hợp đồng affiliate" description="this is Order page">
         <BannerPage title="Hợp đồng affiliate" items={BCrumb} />
         <Grid container spacing={3}>
           <Grid item xs={12}>

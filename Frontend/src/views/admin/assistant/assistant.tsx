@@ -14,11 +14,13 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconChartArcs, IconChartBar, IconReceipt, IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Cvr from 'src/assets/Adminphoto/cvr.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
+import Assistant from 'src/assets/Adminphoto/tro ly.png';
 import bill from 'src/assets/ICON/dơn hang.png';
 import gmv from 'src/assets/ICON/gmv.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -54,7 +56,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconReceipt color="white" size={30} />
+          <img src={Assistant} width={30} />
         </Box>
       </>
     ),
@@ -77,7 +79,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconChartArcs color="white" size={30} />
+          <img src={Cvr} width={30} />
         </Box>
       </>
     ),
@@ -429,7 +431,7 @@ const AssistantAdmin = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Quản lý trợ lý" description="this is  page">
       <BannerPage title="Quản lý trợ lý" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -448,14 +450,14 @@ const AssistantAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
+                <Grid item xs={2}>
                   <Link to="/admin/assistanteditoradmin">
                     <IconButton color="primary" aria-label="Add to cart">
                       <AddCircleIcon sx={{ fontSize: 30 }} />
                     </IconButton>
                   </Link>
                 </Grid>
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
                     placeholder="Tìm kiếm trợ lý"

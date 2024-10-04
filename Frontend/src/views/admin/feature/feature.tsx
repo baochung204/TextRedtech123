@@ -35,9 +35,12 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
-import DialogFeature from './dialog/DialogFeature';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DataFeature from './data/DataFeuture';
+import DialogFeature from './dialog/DialogFeature';
+import update from 'src/assets/DeXuatTinhNang/cap nhap.png';
+import mark from 'src/assets/DeXuatTinhNang/danh dau.png';
+import suggest from 'src/assets/DeXuatTinhNang/de xuat.png';
+import seen from 'src/assets/DeXuatTinhNang/chua xem.png';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -61,7 +64,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconAd2 color="white" size={30} />
+        <img src={suggest} width={30} />
       </Box>
     ),
   },
@@ -81,7 +84,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconFileStar color="white" size={30} />
+        <img src={mark} width={30} />
       </Box>
     ),
   },
@@ -101,7 +104,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconEyeOff color="white" size={30} />
+        <img src={seen} width={30} />
       </Box>
     ),
   },
@@ -121,7 +124,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <IconEdit color="white" size={30} />
+        <img src={update} width={30} />
       </Box>
     ),
   },
@@ -143,22 +146,20 @@ interface FeatureItem {
 }
 
 const PageFeature = () => {
-
-//   const [isPopupOpen] = React.useState(false);
-//   const column = useMemo<Column[]>(
+  //   const [isPopupOpen] = React.useState(false);
+  //   const column = useMemo<Column[]>(
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
 
   const column: Column[] = useMemo(
-
     () => [
       { title: 'ID', dataIndex: 'id' },
       {
         title: 'Ngày tạo',
         dataIndex: 'createdAt',
-        render: (value: any) => value.toLocaleDateString(), 
+        render: (value: any) => value.toLocaleDateString(),
       },
       { title: 'Họ và tên', dataIndex: 'name' },
       { title: 'Email', dataIndex: 'email' },
@@ -195,7 +196,7 @@ const PageFeature = () => {
         ),
       },
     ],
-    []
+    [],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
@@ -227,7 +228,7 @@ const PageFeature = () => {
   }
 
   return (
-    <PageContainer>
+    <PageContainer title="Đề xuất tính năng">
       <BannerPage title="Đề xuất tính năng" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -257,11 +258,10 @@ const PageFeature = () => {
                   </IconButton>
                 </Grid>
                 */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
+                    placeholder="Tìm kiếm tình năng"
                     type="search"
                     variant="outlined"
                     inputProps={{ 'aria-label': 'Search Followers' }}
@@ -288,10 +288,7 @@ const PageFeature = () => {
               }}
             >
               <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge
-                  badgeContent={column.length - dataSelect.length}
-                  color="primary"
-                >
+                <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>
               </IconButton>
@@ -401,11 +398,7 @@ const PageFeature = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable
-            columns={column}
-            dataSource={DataFeature}
-            dataSelect={dataSelect}
-          />
+          <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} />
           <DialogFeature
             open={open}
             value="1" // Ensure this value matches the condition in DialogFeature

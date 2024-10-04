@@ -10,6 +10,11 @@ import {
 import img1 from 'src/assets/images/badge/badge.png';
 import img2 from 'src/assets/images/badge/badge2.png';
 import img3 from 'src/assets/images/badge/badge3.png';
+import customer from 'src/assets/ChienLuoc/KHACH HANG SO HUU.png';
+import strategy from 'src/assets/ChienLuoc/chien luoc.png';
+import strategicgroup from 'src/assets/ChienLuoc/nhom chien luoc.png';
+import assistantstrategy from 'src/assets/ChienLuoc/tro ly ap dung.png';
+
 export const Strategy = [
   {
     bgColor: 'primary.light',
@@ -28,7 +33,7 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconChessQueen color="white" size={30} />
+          <img src={strategicgroup} width={30} />
         </Box>
       </>
     ),
@@ -50,7 +55,7 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconBrandSentry color="white" size={30} />
+          <img src={strategy} width={30} />
         </Box>
       </>
     ),
@@ -72,7 +77,7 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconUserStar color="white" size={30} />
+          <img src={assistantstrategy} width={30} />
         </Box>
       </>
     ),
@@ -94,7 +99,7 @@ export const Strategy = [
             alignItems: 'center',
           }}
         >
-          <IconMessageChatbot color="white" size={30} />
+          <img width={30} src={customer} />
         </Box>
       </>
     ),

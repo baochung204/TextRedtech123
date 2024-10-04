@@ -26,6 +26,7 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import rating from 'src/assets/Adminphoto/DANH GIA.png';
 
 const BCrumb = [
   {
@@ -101,7 +102,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconStars color="white" size={30} />
+          <img src={rating} width={30} />
         </Box>
       </>
     ),
@@ -338,7 +339,7 @@ const Ticket = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
-    <PageContainer title="Vertical Form" description="this is Vertical Form page">
+    <PageContainer title="Quản lý ticket" description="this is page">
       <BannerPage title="Quản lý ticket" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -357,10 +358,10 @@ const Ticket = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm ticket"
                     size="small"
                     type="search"
                     variant="outlined"

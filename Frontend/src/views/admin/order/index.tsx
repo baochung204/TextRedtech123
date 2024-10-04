@@ -14,19 +14,22 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconBellRinging, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
+import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import personorcompany from 'src/assets/Adminphoto/cn dn.png';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import customerpaid from 'src/assets/Adminphoto/khach tra phi.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import OrderData from 'src/components/admin/order/data/OrderData';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DialogOrder from './DialogOrder';
-import revenue from 'src/assets/Adminphoto/doanh thu.png';
-import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
-import customer from 'src/assets/Adminphoto/khách hàng.png';
 
 const BCrumb = [
   {
@@ -86,7 +89,7 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={customerpaid} width={30} />
         </Box>
       </>
     ),
@@ -108,7 +111,7 @@ const DataBox: StyleProps[] = [
             alignItems: 'center',
           }}
         >
-          <IconBellRinging color="white" size={30} />
+          <img src={personorcompany} width={30} />
         </Box>
       </>
     ),
@@ -326,178 +329,180 @@ const OrderAdminPages = () => {
 
   return (
     <>
-      <BannerPage title="Quản lý khách hàng" items={BCrumb} />
+      <PageContainer title="Quản lý khách hàng" description="this is  page">
+        <BannerPage title="Quản lý khách hàng" items={BCrumb} />
 
-      <Grid container rowSpacing={3}>
-        <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
-        </Grid>
+        <Grid container rowSpacing={3}>
+          <Grid item xs={12}>
+            <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
+          </Grid>
 
-        <Grid item xs={12}>
-          <Grid container sx={{ alignItems: 'center' }} spacing={2}>
-            <Grid
-              item
-              xs={4}
-              sm={4}
-              md={4}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item>
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconSearch size="12" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth={true}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={4}
-              sx={{
-                display: 'flex',
-                justifyContent: 'end',
-                alignItems: 'center',
-              }}
-            >
-              <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                <Badge badgeContent={column.length - dataSelect.length} color="primary">
-                  <FilterListIcon />
-                </Badge>
-              </IconButton>
-
-              <Select
-                multiple
-                value={dataSelect}
-                displayEmpty
-                onChange={handleColumnChange}
-                renderValue={() => 'Sửa đổi cột'}
-                size="small"
-                MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      marginTop: 1,
-                      maxHeight: 400,
-                      '&::-webkit-scrollbar': {
-                        width: '4px',
-                      },
-                      '&::-webkit-scrollbar-thumb': {
-                        backgroundColor: '#D2D2D2',
-                        borderRadius: '10px',
-                      },
-                      '&::-webkit-scrollbar-thumb:hover': {
-                        backgroundColor: '#C6C8CC',
-                      },
-                      '&::-webkit-scrollbar-track': {
-                        backgroundColor: '#f1f1f1',
-                      },
-                    },
-                  },
-                  anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  },
-                  transformOrigin: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                  },
+          <Grid item xs={12}>
+            <Grid container sx={{ alignItems: 'center' }} spacing={2}>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={4}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
-                {column.map((header: Column) => {
-                  const isSelected = dataSelect.includes(header.dataIndex);
+                <Grid container sx={{ alignItems: 'center' }}>
+                  <Grid item xs={10}>
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Tìm kiếm khách hàng"
+                      size="small"
+                      type="search"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' } }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <IconSearch size="12" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                xs={4}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'end',
+                  alignItems: 'center',
+                }}
+              >
+                <IconButton aria-label="filter" sx={{ mr: 2 }}>
+                  <Badge badgeContent={column.length - dataSelect.length} color="primary">
+                    <FilterListIcon />
+                  </Badge>
+                </IconButton>
 
-                  return (
-                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
-                      <ListItemText primary={header.title} />
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size="small"
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        marginTop: 1,
+                        maxHeight: 400,
+                        '&::-webkit-scrollbar': {
+                          width: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: '#D2D2D2',
+                          borderRadius: '10px',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                          backgroundColor: '#C6C8CC',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                          backgroundColor: '#f1f1f1',
+                        },
+                      },
+                    },
+                    anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    },
+                    transformOrigin: {
+                      vertical: 'top',
+                      horizontal: 'right',
+                    },
+                  }}
+                >
+                  {column.map((header: Column) => {
+                    const isSelected = dataSelect.includes(header.dataIndex);
+
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </Grid>
+              <Grid item xs={4}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value}
+                      onChange={(newValue) => {
+                        setValue(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                  tới
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={value1}
+                      onChange={(newValue) => {
+                        setValue1(newValue);
+                      }}
+                      renderInput={(props) => (
+                        <CustomTextField
+                          {...props}
+                          fullWidth
+                          size="small"
+                          sx={{
+                            '& .MuiSvgIcon-root': {
+                              width: '18px',
+                              height: '18px',
+                            },
+                            '& .MuiFormHelperText-root': {
+                              display: 'none',
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
 
-        <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={OrderData} dataSelect={dataSelect} />
+          <Grid item xs={12}>
+            <CustomTable columns={column} dataSource={OrderData} dataSelect={dataSelect} />
+          </Grid>
         </Grid>
-      </Grid>
-      <DialogOrder
-        open={open}
-        setOpen={setOpen}
-        selectID={selectID}
-        checkValue={checkValue}
-        setCheckValue={setCheckValue}
-      />
+        <DialogOrder
+          open={open}
+          setOpen={setOpen}
+          selectID={selectID}
+          checkValue={checkValue}
+          setCheckValue={setCheckValue}
+        />
+      </PageContainer>
     </>
   );
 };

@@ -26,6 +26,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataPublishersTable } from './datatable/OrderTableData';
+import publisher from 'src/assets/Adminphoto/Publisher.png';
+import notpaid from 'src/assets/Adminphoto/chua thanh toan.png';
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -44,7 +46,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconBrandGoogleHome color="white" size={30} />
+          <img src={publisher} width={30} />
         </Box>
       </>
     ),
@@ -112,7 +114,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <IconCoinOff color="white" size={30} />
+          <img width={30} src={notpaid} />
         </Box>
       </>
     ),
@@ -346,10 +348,10 @@ const PublisherAffiliate = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid> */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm khách hàng"
                     size="small"
                     type="search"
                     variant="outlined"
