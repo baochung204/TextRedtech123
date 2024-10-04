@@ -182,7 +182,7 @@ const Router = [
       { path: '/apps/sell/order', element: <CustomerListOrder /> },
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/apps/collaborate', element: <Collaborate /> },
-      { path: '/apps/customerlist2', element: <CustomerList2 /> },
+      { path: '/customers', element: <CustomerList2 /> },
       { path: '/apps/customerlist', element: <CustomerList /> },
       { path: '/apps/contract-client', element: <Client /> },
       { path: '/apps/contract-affiliate', element: <Aff /> },

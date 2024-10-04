@@ -36,6 +36,8 @@ const SidebarAdmin = () => {
           ...(customizer.isCollapse && {
             position: 'absolute',
           }),
+          overflowY: 'hidden',
+          overflowX: 'hidden',
         }}
       >
         {/* ------------------------------------------- */}
@@ -72,7 +74,7 @@ const SidebarAdmin = () => {
               {/* <Logo /> */}
               <LogoAdmin />
             </Box>
-            <Scrollbar sx={{ height: 'calc(100% - 190px)' }}>
+            <Scrollbar sx={{ height: 'calc(100% - 210px)' }}>
               {/* ------------------------------------------- */}
               {/* Sidebar Items */}
               {/* ------------------------------------------- */}
