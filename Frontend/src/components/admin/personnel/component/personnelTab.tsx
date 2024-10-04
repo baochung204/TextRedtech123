@@ -159,21 +159,22 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item>
+              <Grid item xs={2}>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
                   onClick={() => {
                     setOpen(true);
                     setSelectedKey(null);
-                  }}>
+                  }}
+                >
                   <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Grid>
-              <Grid item>
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm nhân viên"
                   size="small"
                   type="search"
                   variant="outlined"

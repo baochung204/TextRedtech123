@@ -39,7 +39,7 @@ const ProfileTab = () => {
     {
       label: 'Thông tin cá nhân',
       icon: <IconUser size="20" />,
-      to: '/user-profile',
+      to: '/user_profile',
     },
 
     {
@@ -51,7 +51,7 @@ const ProfileTab = () => {
     {
       label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
-      to: '/profile/assistant/list',
+      to: '/user_profile/assistants',
     },
     {
       label: 'Ticket',
@@ -128,7 +128,7 @@ const ProfileTab = () => {
         >
           <MenuItem
             component={Link}
-            to="/apps/contractaffiliate"
+            to="/user_profile/contract/contract_affiliate"
             onClick={handleCloseContract}
             sx={{
               padding: '10px 20px',
@@ -146,7 +146,7 @@ const ProfileTab = () => {
           </MenuItem>
           <MenuItem
             component={Link}
-            to="/apps/contractorder"
+            to="/user_profile/contract/contract_order"
             onClick={handleCloseContract}
             sx={{
               padding: '10px 20px',
@@ -181,7 +181,7 @@ const ProfileTab = () => {
         >
           <MenuItem
             component={Link}
-            to="/history/buy-point-in-frofile"
+            to="/user_profile/point/transaction_point_history"
             onClick={handleCloseHistory}
             sx={{
               padding: '10px 20px',
@@ -199,7 +199,7 @@ const ProfileTab = () => {
           </MenuItem>
           <MenuItem
             component={Link}
-            to="/history/purchase-history-point-in-frofile"
+            to="/user_profile/point/purchase_history"
             onClick={handleCloseHistory}
             sx={{
               padding: '10px 20px',

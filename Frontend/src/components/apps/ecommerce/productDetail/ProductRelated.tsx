@@ -47,7 +47,7 @@ const ProductRelated = () => {
           <Grid item xs={12} lg={3} sm={4} display="flex" alignItems="stretch" key={product.id}>
             {/* Product Card */}
             <BlankCard sx={{ p: 0 }} className="hoverCard">
-              <Typography component={Link} to={`/apps/ecommerce/detail/${product.id}`}>
+              <Typography component={Link} to={`/shop/detail/${product.id}`}>
                 {isLoading ? (
                   <Skeleton
                     variant="rectangular"

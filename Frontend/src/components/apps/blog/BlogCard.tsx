@@ -64,7 +64,7 @@ const BlogCard = ({ post }: Btype) => {
           <>
             <Typography
               component={Link}
-              to={`/apps/blog/detail/${linkTo}`}
+              to={`/blog/detail/${linkTo}`}
               onClick={() => dispatch(fetchBlogPost(linkTo))}
               style={{ position: 'relative' }}
             >
@@ -126,7 +126,7 @@ const BlogCard = ({ post }: Btype) => {
                   color="inherit"
                   sx={{ textDecoration: 'none' }}
                   component={Link}
-                  to={`/apps/blog/detail/${linkTo}`}
+                  to={`/blog/detail/${linkTo}`}
                   onClick={() => dispatch(fetchBlogPost(linkTo))}
                 >
                   {title}

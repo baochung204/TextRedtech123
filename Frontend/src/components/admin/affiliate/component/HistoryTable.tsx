@@ -32,7 +32,6 @@ import React, { createElement, useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { DataHistoryTable } from '../datatable/OrderTableData';
 
-
 interface FilmsData {
   id: number;
   title: string;
@@ -170,6 +169,9 @@ const HistoryTable = () => {
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
   };
+  const column = FilmsData; // Assuming column refers to FilmsData
+  const dataSelect = selectedItems; // Assuming dataSelect refers to selectedItems
+
   return (
     <>
       {' '}

@@ -125,7 +125,7 @@ const Header = () => {
           {/* ------------------------------------------- */}
           <Box
             component={RouterLink}
-            to="/apps/ecommerce/eco-checkout"
+            to="/carts"
             sx={{
               cursor: 'pointer',
               transform: { xs: 'translateX(-30px)', md: 'translateX(0px)' },

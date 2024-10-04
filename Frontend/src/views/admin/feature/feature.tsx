@@ -19,16 +19,13 @@ import {
 import Slide from '@mui/material/Slide';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconAd2,
-  IconEdit,
-  IconEye,
-  IconEyeOff,
-  IconFileStar,
-  IconSearch,
-} from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import update from 'src/assets/DeXuatTinhNang/cap nhap.png';
+import seen from 'src/assets/DeXuatTinhNang/chua xem.png';
+import mark from 'src/assets/DeXuatTinhNang/danh dau.png';
+import suggest from 'src/assets/DeXuatTinhNang/de xuat.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -37,10 +34,6 @@ import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
 import DataFeature from './data/DataFeuture';
 import DialogFeature from './dialog/DialogFeature';
-import update from 'src/assets/DeXuatTinhNang/cap nhap.png';
-import mark from 'src/assets/DeXuatTinhNang/danh dau.png';
-import suggest from 'src/assets/DeXuatTinhNang/de xuat.png';
-import seen from 'src/assets/DeXuatTinhNang/chua xem.png';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -258,11 +251,10 @@ const PageFeature = () => {
                   </IconButton>
                 </Grid>
                 */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
-                    size="small"
+                    placeholder="Tìm kiếm tình năng"
                     type="search"
                     variant="outlined"
                     inputProps={{ 'aria-label': 'Search Followers' }}

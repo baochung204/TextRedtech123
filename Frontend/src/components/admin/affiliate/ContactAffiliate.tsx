@@ -302,10 +302,10 @@ const ContactAffiliate = () => {
                     <AddCircleIcon sx={{ fontSize: 30 }} />
                   </IconButton>
                 </Grid> */}
-                <Grid item>
+                <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
-                    placeholder="Tìm kiếm trợ lý"
+                    placeholder="Tìm kiếm hợp đồng"
                     size="small"
                     type="search"
                     variant="outlined"

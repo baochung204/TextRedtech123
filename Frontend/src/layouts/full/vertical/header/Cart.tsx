@@ -104,13 +104,7 @@ const Cart = () => {
                     ${total}
                   </Typography>
                 </Stack>
-                <Button
-                  fullWidth
-                  component={Link}
-                  to="/apps/ecommerce/eco-checkout"
-                  variant="contained"
-                  color="primary"
-                >
+                <Button fullWidth component={Link} to="/carts" variant="contained" color="primary">
                   Giỏ hàng của bạn
                 </Button>
               </>

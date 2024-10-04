@@ -27,7 +27,7 @@ import interact from 'src/assets/NotificationAdmin/tuong tac.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
+// import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
 
@@ -98,28 +98,28 @@ const DataBox = [
       </>
     ),
   },
-  {
-    bgColor: 'primary.light',
-    title: 'Tương tác',
-    total: '236',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={interact} width={30} />
-        </Box>
-      </>
-    ),
-  },
+  // {
+  //   bgColor: 'primary.light',
+  //   title: 'Tương tác',
+  //   total: '236',
+  //   icons: (
+  //     <>
+  //       <Box
+  //         textAlign="center"
+  //         padding={1}
+  //         sx={{
+  //           width: 40,
+  //           height: 40,
+  //           display: 'flex',
+  //           justifyContent: 'center',
+  //           alignItems: 'center',
+  //         }}
+  //       >
+  //         <img src={interact} width={30} />
+  //       </Box>
+  //     </>
+  //   ),
+  // },
 ];
 
 interface INotification {
@@ -306,7 +306,7 @@ const ContentNotification = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <TopCard dataSource={DataBox} totalColumn={4} />
+        <TopCard dataSource={DataBox} totalColumn={3} />
       </Grid>
       <Grid item xs={12}>
         <Grid container sx={{ alignItems: 'center' }} spacing={2}>
@@ -321,7 +321,7 @@ const ContentNotification = () => {
             }}
           >
             <Grid container sx={{ alignItems: 'center' }}>
-              <Grid item>
+              <Grid item xs={2}>
                 <IconButton
                   color="primary"
                   aria-label="Add to cart"
@@ -330,10 +330,10 @@ const ContentNotification = () => {
                   <AddNotification />
                 </IconButton>
               </Grid>
-              <Grid item>
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-search"
-                  placeholder="Tìm kiếm trợ lý"
+                  placeholder="Tìm kiếm thông báo"
                   size="small"
                   type="search"
                   variant="outlined"
@@ -490,7 +490,7 @@ const ContentNotification = () => {
             overflowY: 'hidden',
           }}
         >
-          <DialogAddNotification />
+          {/* <DialogAddNotification /> */}
         </DialogContent>
       </Dialog>
     </Grid>
