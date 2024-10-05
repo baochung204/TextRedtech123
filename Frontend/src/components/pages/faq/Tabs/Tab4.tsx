@@ -50,7 +50,7 @@ const Tab4 = ({ dataSelect }: PropsData) => {
 
         return (
           <Grid container>
-            <Grid item xs={4}>
+            {/* <Grid item xs={4}>
               <IconButton
                 onClick={() => {
                   console.log(value.idCode);
@@ -58,7 +58,7 @@ const Tab4 = ({ dataSelect }: PropsData) => {
               >
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
-            </Grid>
+            </Grid> */}
             <Grid item xs={4}>
               <IconButton>
                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />

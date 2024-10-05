@@ -21,7 +21,8 @@ interface PropsData {
   badgeUrl: string,
   productId: string,
   level: string,
-  tomtat: string
+  tomtat: string,
+  nhom: string
 }
 
 const Tab1 = () => {
@@ -49,7 +50,8 @@ const Tab1 = () => {
     badgeUrl: "",
     productId: "",
     level: "",
-    tomtat: ""
+    tomtat: "",
+    nhom: ""
   }])
 
   const handleClick = (items: PropsData) => {
@@ -59,7 +61,8 @@ const Tab1 = () => {
       badgeUrl: items.badgeUrl,
       productId: items.productId,
       level: items.level,
-      tomtat: items.tomtat
+      tomtat: items.tomtat,
+      nhom: items.nhom
     }])
 
   }
@@ -67,8 +70,8 @@ const Tab1 = () => {
   return (
     <>
       <Grid container spacing={2}>
-        {dataStr.map((items) => (
-          <Grid item xs={12} sm={6} md={4} key={items.productId}>
+        {dataStr.map((items, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <BlankCard>
               <CardContent
                 onClick={() => handleClick(items)}

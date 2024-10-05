@@ -1,12 +1,12 @@
 import { Avatar, Button, Dialog, DialogActions, DialogContentText, DialogTitle, Grid, Typography } from "@mui/material";
 
 interface PropsX {
-    content: string;
-    badgeUrl: string;
-    productId: string;
+    id: string;
+    name: string;
     level: string;
-    tomtat: string;
+    badgeUrl: string;
     nhom: string;
+    tomtat: string
 }
 
 interface PropsDialog {
@@ -15,7 +15,7 @@ interface PropsDialog {
     data: PropsX[];
 }
 
-const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
+const DialogFunction = ({ open, setOpen, data }: PropsDialog) => {
     return (
         <Dialog
             open={open}
@@ -24,7 +24,7 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
             maxWidth="md"
         >
             <DialogTitle textAlign={'center'}>
-                <Typography variant="h4">Chi tiết chiến lược</Typography>
+                <Typography variant="h4">Chi tiết Function</Typography>
             </DialogTitle>
 
             <DialogContentText>
@@ -36,10 +36,10 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
                         <Grid item xs={6}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <span style={{ fontWeight: 600 }}>ID:</span> {item.productId}
+                                    <span style={{ fontWeight: 600 }}>ID:</span> {item.id}
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <span style={{ fontWeight: 600 }}>Tên chiến lược:</span> {item.content}
+                                    <span style={{ fontWeight: 600 }}>Tên chiến lược:</span> {item.name}
                                 </Grid>
                                 <Grid item xs={12}>
                                     <span style={{ fontWeight: 600 }}>Nhóm:</span> {item.nhom}
@@ -65,4 +65,4 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
     );
 };
 
-export default DialogStragety;
+export default DialogFunction;

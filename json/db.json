@@ -294,13 +294,16 @@
       "badgeUrl": "https://drive.google.com/file/d/14_XDzXQIoIeNqtHlbARG0HJhpMr2n724/view?usp=drive_link",
       "productId": "#SI3QT",
       "level": "Cấp 1",
-      "tomtat": "Đây là tóm tắt vượt thời đại"
+      "tomtat": "Đây là tóm tắt vượt thời đại",
+      "nhom": "Nhóm vip pro"
     },
     {
       "content": "Phát triển thị trường",
       "badgeUrl": "https://drive.google.com/file/d/1YRSjFCiQCYfCzrG29CmY0IM1-bxquD3N/view?usp=sharing",
       "productId": "#AB2XY",
-      "level": "Cấp 2"
+      "level": "Cấp 2",
+      "tomtat": "Đây là tóm tắt vượt thời đại",
+      "nhom": "Nhóm vip pro"
     }
   ],
   "function": [
@@ -308,13 +311,17 @@
       "id": "#FCU4C",
       "name": "Tăng trưởng thị trường",
       "level": "Cấp 1",
-      "badgeUrl": "https://drive.google.com/file/d/15sP3V-mxB23C4Kgzrv5wxGM22YNcCoWh/view?usp=sharing"
+      "badgeUrl": "https://drive.google.com/file/d/15sP3V-mxB23C4Kgzrv5wxGM22YNcCoWh/view?usp=sharing",
+      "tomtat": "Đây là tóm tắt vượt thời đại",
+      "nhom": "Nhóm vip pro"
     },
     {
       "id": "#D2X8P",
       "name": "Phát triển doanh nghiệp",
       "level": "Cấp 2",
-      "badgeUrl": "https://drive.google.com/file/d/15sP3V-mxB23C4Kgzrv5wxGM22YNcCoWh/view?usp=sharing"
+      "badgeUrl": "https://drive.google.com/file/d/15sP3V-mxB23C4Kgzrv5wxGM22YNcCoWh/view?usp=sharing",
+      "tomtat": "Đây là tóm tắt vượt thời đại",
+      "nhom": "Nhóm vip pro"
     }
   ],
   "file": [
