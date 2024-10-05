@@ -1,11 +1,29 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Box, MenuItem, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import React, { useState } from 'react';
+import React from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
+// const monthsInVietnamese = [
+//   'Tháng 1',
+//   'Tháng 2',
+//   'Tháng 3',
+//   'Tháng 4',
+//   'Tháng 5',
+//   'Tháng 6',
+//   'Tháng 7',
+//   'Tháng 8',
+//   'Tháng 9',
+//   'Tháng 10',
+//   'Tháng 11',
+//   'Tháng 12',
+// ];
+
 const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
+  // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
@@ -38,7 +56,7 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       foreColor: '#adb0bb',
       toolbar: {
-        show: true,
+        show: false,
       },
       dropShadow: {
         enabled: true,
@@ -94,17 +112,13 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
         ],
       },
     },
-    colors: ['#FF5733'],
     markers: {
-      size: 20,
-      shape: 'path',
-      path: {
-        d: 'M8 0L3 14h10L8 0z',
-        width: 20,
-        height: 20,
-      },
-      offsetY: 0,
-      offsetX: 0,
+      size: 4,
+      opacity: 0.9,
+      colors: [primary],
+      strokeColor: '#fff',
+      strokeWidth: 2,
+
       hover: {
         size: 7,
       },
@@ -125,15 +139,17 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
   };
   const seriesgredientchart: any = [
     {
-      name: 'Points',
+      name: 'Thích',
       data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
     },
   ];
-  const [month, setMonth] = useState('1');
+  const [month, setMonth] = React.useState('1');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
+
+  // chart color
 
   return (
     <DashboardCard>
