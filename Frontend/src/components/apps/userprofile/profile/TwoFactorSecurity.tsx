@@ -5,7 +5,7 @@ import WarningIcon from '@mui/icons-material/Warning'; // Thêm icon Warning
 const TwoFactorSecurity = () => {
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
   const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState(false);
-  const [isTwoFactorEnabled2, setIsTwoFactorEnabled2] = useState(false);
+  // const [isTwoFactorEnabled2, setIsTwoFactorEnabled2] = useState(false);
   const theme = useTheme(); // Lấy thông tin theme
 
   const handleToggleTwoFactor = () => {

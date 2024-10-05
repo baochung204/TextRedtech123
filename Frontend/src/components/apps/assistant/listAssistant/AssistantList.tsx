@@ -42,6 +42,7 @@ import avt from 'src/assets/images/icon/avt.jpg';
 import AlertChat from '../../chats/AlertChat';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
+import IconCrv from 'src/assets/ICON/cvr.png';
 
 interface FilmsData {
   title: string;
@@ -329,8 +330,8 @@ const ListAssistant = () => {
                                   </Avatar>
                                 </Stack>
                               </Grid>
-                              <Grid item xs={4} container justifyContent="flex-end">
-                                <img src={Iconchart} width={50} alt="" />
+                              <Grid item xs={4} container justifyContent="flex-end" sx={{ px: 2 }}>
+                                <img src={IconCrv} width={50} alt="" />
                               </Grid>
                             </Grid>
                           </CardContent>

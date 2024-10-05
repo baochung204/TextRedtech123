@@ -40,7 +40,7 @@ import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
 import PageContainer from 'src/components/container/PageContainer';
-
+import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 interface cardType {
   icon: string;
   title: string;
@@ -459,7 +459,18 @@ const CollaboratePost = () => {
                             placement="top"
                             arrow
                           >
-                            <IconInfoCircle />
+                            {/* <IconInfoCircle /> */}
+                            {/* IconDescriptionAfl */}
+                            <Box
+                              component="img"
+                              src={IconDescriptionAfl}
+                              alt="Description of the image"
+                              width={20}
+                              sx={{
+                                borderRadius: '8px',
+                                ml: 1,
+                              }}
+                            />
                           </Tooltip>
                         </Typography>
                       </Grid>
