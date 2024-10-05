@@ -21,7 +21,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import DialogFile from './dialog/DialogFile';
+import DialogFile from './dialog/DialogModel';
 import DialogFunction from './dialog/DialogFunction';
 import DialogStr from './dialog/DialogStr';
 import { FileCells, Files } from './mockData/TableFile';

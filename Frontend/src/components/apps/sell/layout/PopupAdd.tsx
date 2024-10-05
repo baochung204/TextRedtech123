@@ -46,61 +46,8 @@ const PopupAdd = () => {
           {/* Set maxHeight for scrolling */}
           <Box mb={3} pt={2}>
             <Grid container spacing={2}>
-              <Grid item xs={12} lg={4} md={12}>
-                <Box
-                  sx={{ textAlign: 'center', justifyContent: 'center', mt: { md: 2 }, mb: '20px' }}
-                >
-                  <label htmlFor="avatar-upload">
-                    <Avatar
-                      src={avatarPreview || ''}
-                      alt="avatar preview"
-                      sx={{
-                        width: { xs: 90, sm: 110, md: 130, lg: 160 },
-                        height: { xs: 90, sm: 110, md: 130, lg: 160 },
-                        margin: 'auto',
-                        fontSize: 50,
-                        backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
-                        color: '#9e9e9e',
-                        cursor: 'pointer',
-                        position: 'relative',
-                        zIndex: 1,
-                        borderRadius: '50%',
-                        border: 'none', // Remove default border
-                        '&:before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          borderRadius: '50%',
-                          padding: '6px', // Border width
-                          background: 'linear-gradient(#50b2fc, #f44c66)', // Gradient
-                          '-webkit-mask':
-                            'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                          mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                          maskComposite: 'exclude',
-                          zIndex: 1, // Ensure gradient is behind the avatar
-                        },
-                      }}
-                    >
-                      {!avatarPreview && <PersonIcon fontSize="inherit" />}
-                    </Avatar>
-                  </label>
-                  {/* Hidden file input */}
-                  <input
-                    id="avatar-upload"
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    onChange={handleAvatarChange}
-                  />
-                  <Typography mt={1} fontWeight={600}>
-                    Ảnh thumbnail
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={12} lg={4} md={12}>
+              
+              <Grid item xs={12} lg={6} md={12}>
                 <Grid item xs={12} sm={6} lg={12}>
                   <CustomFormLabel htmlFor="name-text">Tên sản phẩm</CustomFormLabel>
                   <CustomTextField
@@ -118,7 +65,7 @@ const PopupAdd = () => {
                 </Grid>
               </Grid>
 
-              <Grid item xs={12} lg={4} md={12}>
+              <Grid item xs={12} lg={6} md={12}>
                 <CustomFormLabel htmlFor="phone-text">Giá niêm yết</CustomFormLabel>
                 <CustomOutlinedInput
                   endAdornment={<InputAdornment position="end">đ</InputAdornment>}
@@ -281,7 +228,7 @@ const PopupAdd = () => {
                   multiple
                   onChange={handleImageUpload}
                 />
-                <Button variant="contained" component="span">
+                <Button variant="contained" component="span" sx={{mb:1}}>
                   Thêm ảnh sản phẩm
                 </Button>
               </label>
@@ -294,7 +241,7 @@ const PopupAdd = () => {
                           <img
                             src={URL.createObjectURL(image)}
                             alt={`uploaded-${index}`}
-                            style={{ width: "200px", height: "auto" }}
+                            style={{ width: "200px", height: "200px" }}
                           />
                           <ClearIcon
                             

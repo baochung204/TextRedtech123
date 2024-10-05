@@ -126,9 +126,9 @@ export const FileCells: any = [
     title: 'Hoạt động',
     render: () => (
       <Box>
-        <IconButton>
+        {/* <IconButton>
           <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
+        </IconButton> */}
         <IconButton>
           <IconTrash stroke={2} style={{ color: '#FA896B' }} />
         </IconButton>
