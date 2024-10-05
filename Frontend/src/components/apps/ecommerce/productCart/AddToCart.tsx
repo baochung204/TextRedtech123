@@ -70,7 +70,6 @@ const AddToCart = () => {
     dispatch(decrement(productId));
   };
 
-  console.log(Cartproduct);
   return (
     <Box>
       {Cartproduct.length > 0 ? (

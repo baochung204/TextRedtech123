@@ -35,7 +35,7 @@ const Afletpoint2 = ({ children, Cartproduct, total, Discount }: any) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-  console.log(Cartproduct);
+  // console.log(Cartproduct);
   return (
     <>
       <Button variant="contained" color="success" onClick={handleClickOpen}>
@@ -50,6 +50,9 @@ const Afletpoint2 = ({ children, Cartproduct, total, Discount }: any) => {
         aria-describedby="alert-dialog-slide-description"
         fullWidth={fullWidth}
         maxWidth={maxWidth}
+        sx={{
+          maxHeight: '90vh',
+        }}
       >
         {' '}
         <DialogActions style={{ padding: '0' }}>
@@ -69,7 +72,25 @@ const Afletpoint2 = ({ children, Cartproduct, total, Discount }: any) => {
             <CloseIcon />
           </a> */}
         </DialogActions>
-        <DialogContent>
+        <DialogContent
+          sx={{
+            overflowY: 'auto',
+            height: '100%',
+            '&::-webkit-scrollbar': {
+              width: '10px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'none',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#E3E3E3',
+              borderRadius: '10px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#d6d6d6',
+            },
+          }}
+        >
           {' '}
           <DialogContentText id="alert-dialog-slide-description">
             <Content2 Cartproduct={Cartproduct} total={total} Discount={Discount} />
