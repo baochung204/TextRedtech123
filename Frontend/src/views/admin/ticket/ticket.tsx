@@ -18,6 +18,7 @@ import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 import processing from 'src/assets/Adminphoto/chua xu ly.png';
+import rating from 'src/assets/Adminphoto/DANH GIA.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import ticket from 'src/assets/Adminphoto/ticket.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -26,7 +27,6 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import rating from 'src/assets/Adminphoto/DANH GIA.png';
 
 const BCrumb = [
   {
@@ -268,7 +268,7 @@ const FilmsData: FilmsData[] = [
   { id: 15, title: 'Chiến lược' },
 ];
 const Ticket = () => {
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {

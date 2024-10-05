@@ -106,7 +106,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
         console.log('tesst', values.anh);
         if (checkValue === 'view') {
             setCheckValue('fix');
-        } else  if (checkValue === 'add') {
+        } else if (checkValue === 'add') {
             setCheckValue('sub')
             setKey(value && value.values)
             setKey(null)
@@ -467,6 +467,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                 )}
             </Formik>
         </Dialog>
+        
     );
 };
 

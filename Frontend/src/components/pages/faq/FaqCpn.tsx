@@ -192,7 +192,7 @@ const Faq = () => {
               <Grid item>
                 <Badge
                   badgeContent={column[value].length - dataSelect.length}
-                  color={'primary'}
+                  color="primary"
                 >
                   <FilterListIcon color="action" />
                 </Badge>

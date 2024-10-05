@@ -7,6 +7,11 @@ import icon5 from 'src/assets/images/svgs/icon-favorites.svg';
 import icon4 from 'src/assets/images/svgs/icon-mailbox.svg';
 import icon3 from 'src/assets/images/svgs/icon-briefcase.svg';
 import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
+import gmv from 'src/assets/Adminphoto/gmv.png';
+import aov from 'src/assets/Adminphoto/aov.png';
+import cvr from 'src/assets/Adminphoto/cvr.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import order from 'src/assets/Adminphoto/dơn hang.png';
 
 interface cardType {
   icon: string;
@@ -16,43 +21,43 @@ interface cardType {
 }
 const topcards: cardType[] = [
   {
-    icon: icon2,
+    icon: customer,
     title: 'Khách hàng',
     digits: '2,696',
     bgcolor: 'primary',
   },
   {
-    icon: icon3,
+    icon: order,
     title: 'Đơn hàng',
     digits: '650',
-    bgcolor: 'warning',
+    bgcolor: 'primary',
   },
   {
-    icon: icon4,
+    icon: gmv,
     title: 'GMV',
     digits: '112M',
-    bgcolor: 'secondary',
+    bgcolor: 'primary',
   },
   {
-    icon: icon5,
+    icon: aov,
     title: 'AOV',
     digits: '251K',
-    bgcolor: 'error',
+    bgcolor: 'primary',
   },
   {
-    icon: iconRotation,
-    title: 'Tổng Vòng Quay',
+    icon: cvr,
+    title: 'CVR',
     digits: '251K',
-    bgcolor: 'success',
+    bgcolor: 'primary',
   },
   {
     icon: iconExpense,
     title: 'Chi Phí',
     digits: '251K',
-    bgcolor: 'info',
+    bgcolor: 'primary',
   },
 ];
-const TopCart = () => {
+const Topcardassistant = () => {
   return (
     <Grid item xs={12} md={12} lg={4}>
       <Grid container spacing={3}>
@@ -63,7 +68,8 @@ const TopCart = () => {
                 <img
                   src={topcard.icon}
                   alt={topcard.icon}
-                  width="50"
+                  width="auto"
+                  height="50"
                   style={{ objectFit: 'cover' }}
                 />
                 <Typography
@@ -93,4 +99,4 @@ const TopCart = () => {
   );
 };
 
-export default TopCart;
+export default Topcardassistant;

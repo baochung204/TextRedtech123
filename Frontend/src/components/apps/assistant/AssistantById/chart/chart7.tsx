@@ -161,7 +161,7 @@ const Chart7 = () => {
   };
 
   return (
-    <Affilatec2 title="Cuộc trò chuyện" text="Hội thoại">
+    <Affilatec2 title="Cuộc trò chuyện" text="Chi phí / hội thoại">
       <Chart
         options={optionsdoughnutchart4}
         series={seriesdoughnutchart4}
