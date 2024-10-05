@@ -1,10 +1,11 @@
-import { Avatar, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Typography } from "@mui/material"
+import { Avatar, Button, Dialog, DialogActions, DialogContentText, DialogTitle, Grid, Typography } from "@mui/material";
 
 interface PropsX {
     content: string;
     badgeUrl: string;
     productId: string;
     level: string;
+    tomtat: string;
 }
 
 interface PropsDialog {
@@ -28,8 +29,8 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
             <DialogContentText>
                 {data.map((item, index) => (
                     <Grid container key={index} spacing={2}>
-                        <Grid item xs={6} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                            <Avatar src={item.badgeUrl} alt={item.badgeUrl} sx={{ width: 100, height: 100 }} />
+                        <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <Avatar src={item.badgeUrl} alt={item.badgeUrl} variant="rounded" sx={{ width: 100, height: 100 }} />
                         </Grid>
                         <Grid item xs={6}>
                             <Grid container spacing={2}>
