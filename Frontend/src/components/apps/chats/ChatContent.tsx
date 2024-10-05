@@ -12,10 +12,11 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { IconMenu2, IconPencilStar } from '@tabler/icons-react';
+import { IconMenu2 } from '@tabler/icons-react';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { vi } from 'date-fns/locale';
 import React, { useEffect, useRef, useState } from 'react';
+import rating from 'src/assets/Adminphoto/đanh gia.png';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import { useSelector } from 'src/store/Store';
 import { ChatsType } from 'src/types/apps/chat';
@@ -81,16 +82,8 @@ const ChatContent: React.FC<ChatContentProps> = ({ toggleChatSidebar }) => {
                 />
               </ListItem>
               <Stack direction={'row'}>
-                <Typography
-                  fontSize={'12px'}
-                  width={'170px'}
-                  variant={'h5'}
-                  sx={{ display: 'flex', alignItems: 'center' }}
-                >
-                  Đánh giá đoạn chat ngay !!!
-                </Typography>
                 <IconButton aria-label="delete" onClick={() => setOpen(!open)}>
-                  <IconPencilStar stroke={1.5} />
+                  <img src={rating} width={24} />
                 </IconButton>
               </Stack>
             </Box>

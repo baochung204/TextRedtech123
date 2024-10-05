@@ -20,7 +20,7 @@ interface PropsHeadTable {
 const HeadTable: PropsHeadTable[] = [
   { head: 'ID' },
   { head: 'Ngày mua' },
-  { head: 'ID khách hàng' },
+  { head: 'ID' },
   { head: 'Tên khách hàng' },
   { head: 'Giá niêm yết' },
   { head: 'Khuyến mại' },

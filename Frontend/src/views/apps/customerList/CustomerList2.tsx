@@ -67,13 +67,21 @@ const CustomerList2 = () => {
   const column = useMemo<Column[]>(
     () => [
       {
-        title: 'ID khách hàng',
+        title: 'ID',
         dataIndex: 'idCustomer',
       },
 
       {
         title: 'Ngày tạo',
         dataIndex: 'dateTime',
+      },
+      {
+        title: 'Tên khách hàng',
+        dataIndex: 'nameCustomer',
+      },
+      {
+        title: 'SĐT',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Trợ lý',
@@ -83,10 +91,7 @@ const CustomerList2 = () => {
         title: 'Tags',
         dataIndex: 'tag',
       },
-      {
-        title: 'Tên khách hàng',
-        dataIndex: 'nameCustomer',
-      },
+
       {
         title: 'Tổng chi tiêu',
         dataIndex: 'orderValue',
@@ -96,13 +101,14 @@ const CustomerList2 = () => {
           </Box>
         ),
       },
-      {
-        title: 'SĐT',
-        dataIndex: 'phoneNumber',
-      },
+
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
       },
     ],
     [],
@@ -153,13 +159,13 @@ const CustomerList2 = () => {
                   >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                        {/* <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Tooltip title="Thêm mới khách hàng" onClick={handleOpenPopup}>
                             <IconButton color="primary" aria-label="Add to cart">
                               <AddCircleIcon sx={{ fontSize: 30 }} />
                             </IconButton>
                           </Tooltip>
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={10}>
                           <TextField
                             id="outlined-search"

@@ -41,33 +41,30 @@ const Tab4 = ({ dataSelect }: PropsData) => {
       title: 'Token huấn luyện',
       dataIndex: 'trainedTokens',
     },
-    {
-      title: 'Hành động',
-      dataIndex: 'isCheck',
-      render: (_row: ItemTable4, value: ItemTable4) => {
-        // console.log(row);
-        // console.log(value);
-
-        return (
-          <Grid container>
-            <Grid item xs={4}>
-              <IconButton
-                onClick={() => {
-                  console.log(value.idCode);
-                }}
-              >
-                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-              </IconButton>
-            </Grid>
-            <Grid item xs={4}>
-              <IconButton>
-                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-              </IconButton>
-            </Grid>
-          </Grid>
-        );
-      },
-    },
+    // {
+    //   title: 'Hành động',
+    //   dataIndex: 'isCheck',
+    //   render: (_row: ItemTable4, value: ItemTable4) => {
+    //     return (
+    //       <Grid container>
+    //         <Grid item xs={4}>
+    //           <IconButton
+    //             onClick={() => {
+    //               console.log(value.idCode);
+    //             }}
+    //           >
+    //             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+    //           </IconButton>
+    //         </Grid>
+    //         <Grid item xs={4}>
+    //           <IconButton>
+    //             <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+    //           </IconButton>
+    //         </Grid>
+    //       </Grid>
+    //     );
+    //   },
+    // },
   ];
 
   return (
