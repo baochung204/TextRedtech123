@@ -191,8 +191,8 @@ const Faq = () => {
             <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
               <Grid item>
                 <Badge
-                  badgeContent={dataSelect.length !== 0 && dataSelect.length}
-                  color={dataSelect.length !== 0 ? 'primary' : undefined}
+                  badgeContent={column[value].length - dataSelect.length}
+                  color="primary"
                 >
                   <FilterListIcon color="action" />
                 </Badge>

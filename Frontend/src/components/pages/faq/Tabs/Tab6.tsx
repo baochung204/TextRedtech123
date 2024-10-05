@@ -2,7 +2,7 @@ import { Box, IconButton } from '@mui/material';
 import { IconTrash } from '@tabler/icons-react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DialogURL from 'src/components/pages/faq/dialog/DIalogURL';
+import DialogURL from '../dialog/DIalogURL';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { fetchUrls } from 'src/store/apps/resources/url/UrlSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
