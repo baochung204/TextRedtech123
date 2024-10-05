@@ -4,10 +4,15 @@ import WarningIcon from '@mui/icons-material/Warning'; // Thêm icon Warning
 
 const TwoFactorSecurity = () => {
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
+  const [isTwoFactorEnabled2, setIsTwoFactorEnabled2] = useState(false);
   const theme = useTheme(); // Lấy thông tin theme
 
   const handleToggleTwoFactor = () => {
     setIsTwoFactorEnabled(!isTwoFactorEnabled);
+  };
+
+  const handleToggleTwoFactor2 = () => {
+    setIsTwoFactorEnabled2(!isTwoFactorEnabled2);
   };
 
   return (
@@ -16,7 +21,7 @@ const TwoFactorSecurity = () => {
         padding: 3,
         borderRadius: 1,
         boxShadow: 3,
-        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff', 
+        backgroundColor: theme.palette.mode === 'dark' ? '#2A3447' : '#fff',
       }}
     >
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom>
@@ -25,9 +30,9 @@ const TwoFactorSecurity = () => {
 
       <Box
         sx={{
-        //   mb: 4,
+          //   mb: 4,
           padding: 2,
-          backgroundColor: '#E3F2FD', 
+          backgroundColor: '#E3F2FD',
           borderRadius: 1,
           color: '#1976D2',
           display: 'flex',
@@ -36,14 +41,17 @@ const TwoFactorSecurity = () => {
       >
         <WarningIcon sx={{ mr: 2 }} />
         <Typography variant="body1">
-          Chúng tôi khuyên bạn nên bật xác thực hai yếu tố để cung cấp thêm một lớp bảo mật cho tài khoản của bạn.
+          Chúng tôi khuyên bạn nên bật xác thực hai yếu tố để cung cấp thêm một lớp bảo mật cho tài
+          khoản của bạn.
         </Typography>
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-        <Typography sx={{ flexGrow: 1, fontWeight: 'bold', fontSize: 17 }}>Bật bảo mật 2 lớp:</Typography>
+        <Typography sx={{ flexGrow: 1, fontWeight: 'bold', fontSize: 17 }}>
+          Bật bảo mật 2 lớp:
+        </Typography>
         <Switch
-          sx={{ border: "3px"}}
+          sx={{ border: '3px' }}
           checked={isTwoFactorEnabled}
           onChange={handleToggleTwoFactor}
           color="primary"
@@ -55,8 +63,11 @@ const TwoFactorSecurity = () => {
           <Typography variant="h6" fontWeight="500">
             Ứng dụng xác thực
           </Typography>
-          <Typography variant="body1" color={theme.palette.mode === 'dark' ? 'gray' : 'textSecondary'}>
-          Google Authenticator
+          <Typography
+            variant="body1"
+            color={theme.palette.mode === 'dark' ? 'gray' : 'textSecondary'}
+          >
+            Google Authenticator
           </Typography>
         </Box>
         <Button variant="outlined" color="primary">
@@ -70,17 +81,20 @@ const TwoFactorSecurity = () => {
             Liên kết xác minh email
           </Typography>
         </Box>
-        <Button variant="outlined" color="primary">
-          Cài đặt
-        </Button>
+        <Switch
+          sx={{ border: '3px' }}
+          checked={isTwoFactorEnabled2}
+          onChange={handleToggleTwoFactor2}
+          color="primary"
+        />
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ flexGrow: 1 }}>
+        {/* <Box sx={{ flexGrow: 1 }}>
           <Typography variant="h6" fontWeight="500">
             Liên kết số điện thoại gửi SMS
           </Typography>
-        </Box>
+        </Box> */}
         <Button variant="outlined" color="primary">
           Cài đặt
         </Button>

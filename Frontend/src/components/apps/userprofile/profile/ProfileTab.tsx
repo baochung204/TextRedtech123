@@ -1,6 +1,6 @@
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Box, Menu, MenuItem, Tab, Tabs, Typography } from '@mui/material';
-import { IconHistory, IconTicket, IconUser, IconUserCircle } from '@tabler/icons-react';
+import { IconHistory, IconUser, IconUserCircle } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const ProfileTab = () => {
     setValue(newValue);
   };
 
-  const handleHopDongClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleContractClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElContract(event.currentTarget);
   };
   const handleClickHistory = (event: React.MouseEvent<HTMLElement>) => {
@@ -46,7 +46,7 @@ const ProfileTab = () => {
       label: 'Hợp đồng',
       icon: <DescriptionIcon fontSize="small" />,
       dropdown: true,
-      handleClick: handleHopDongClick,
+      handleClick: handleContractClick,
     },
     {
       label: 'Trợ lý',
@@ -59,7 +59,6 @@ const ProfileTab = () => {
       icon: <IconHistory size="20" />,
       dropdown: true,
       handleClick: handleClickHistory,
-      // handleClick: handleLichSuGiaoDichClick,
     },
   ];
   return (
