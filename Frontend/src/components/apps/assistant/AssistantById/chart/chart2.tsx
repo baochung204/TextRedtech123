@@ -129,6 +129,7 @@ const Chart2 = () => {
         ],
       },
     },
+    colors: [primary],
     markers: {
       size: 4,
       opacity: 0.9,
@@ -156,7 +157,7 @@ const Chart2 = () => {
   };
   const seriesgredientchart: any = [
     {
-      name: 'Thích',
+      name: 'Points',
       data: [4, 3, 10, 9, 35, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5],
     },
   ];

@@ -115,6 +115,7 @@ const Affiliatedetail = () => {
         ]
       },
     },
+    colors: [primary],
     markers: {
       size: 4,
       opacity: 0.9,
@@ -142,7 +143,7 @@ const Affiliatedetail = () => {
   };
   const seriesgredientchart: any = [
     {
-      name: 'Likes',
+      name: 'Points',
       data: [4, 3, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];

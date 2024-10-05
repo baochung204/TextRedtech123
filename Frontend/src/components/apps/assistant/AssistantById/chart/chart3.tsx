@@ -128,6 +128,7 @@ const Chart3 = () => {
         ],
       },
     },
+    colors: [primary],
     markers: {
       size: 4,
       opacity: 0.9,
@@ -155,7 +156,7 @@ const Chart3 = () => {
   };
   const seriesgredientchart2: any = [
     {
-      name: 'point',
+      name: 'Points',
       data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];

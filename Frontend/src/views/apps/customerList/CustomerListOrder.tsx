@@ -1,5 +1,6 @@
 import { TabContext, TabPanel } from '@mui/lab';
 import {
+  Avatar,
   Badge,
   Box,
   Checkbox,
@@ -14,6 +15,7 @@ import {
   MenuItem,
   Select,
   Slide,
+  Stack,
   TextField,
   Typography,
 } from '@mui/material';
@@ -45,6 +47,7 @@ interface PropsTable {
   orderInfo: string;
   notes: string;
   misc?: string;
+
 }
 
 const TableData: PropsTable[] = [
@@ -144,9 +147,48 @@ const CustomerListOrder = () => {
         sort: true,
       },
       {
+        title: 'Tên khách hàng',
+        dataIndex: 'name',
+        sort: true,
+      },
+      {
+        title: 'Số điện thoại',
+        dataIndex: 'phone',
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+      },
+      {
+        title: 'Kênh',
+        dataIndex: 'misc',
+        render: (value: string) => (
+          <Stack
+            direction='row'
+            spacing={1}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Avatar src={value} alt={value} />
+            </Box>
+            <Box>
+              <Typography variant="subtitle1"> Facebook</Typography>
+              <Typography variant="subtitle2" fontSize={12}>
+                {' '}
+                #123456
+              </Typography>
+            </Box>
+          </Stack>
+        ),
+      },
+      {
         title: 'Trợ lý',
         dataIndex: 'assistant',
         sort: true,
+      },
+      {
+        title: 'Tags',
+        dataIndex: 'channel',
+        render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
       },
       {
         title: 'Giá trị đơn hàng',
@@ -166,55 +208,6 @@ const CustomerListOrder = () => {
             {value} đ
           </Box>
         ),
-      },
-      {
-        title: 'Kênh marketing',
-        dataIndex: 'misc',
-        render: (value: string) => (
-          <>
-            <Grid container spacing={3}>
-              <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box
-                  component="img"
-                  src={value}
-                  alt=""
-                  width={38}
-                  height={38}
-                  sx={{
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </Grid>
-              <Grid item xs={8}>
-                <Grid container>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1"> Facebook</Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle2" fontSize={12}>
-                      {' '}
-                      #123456
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </>
-        ),
-      },
-      {
-        title: 'Tags',
-        dataIndex: 'channel',
-        render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
-      },
-      {
-        title: 'Tên khách hàng',
-        dataIndex: 'name',
-      },
-      {
-        title: 'Số điện thoại',
-        dataIndex: 'phone',
       },
       {
         title: 'Địa chỉ',
@@ -293,8 +286,8 @@ const CustomerListOrder = () => {
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Badge
-                          badgeContent={dataSelect.length !== 0 && dataSelect.length}
-                          color={dataSelect.length !== 0 ? 'primary' : undefined}
+                          badgeContent={columns.length - dataSelect.length}
+                          color={'primary'}
                         >
                           <FilterListIcon color="action" />
                         </Badge>
