@@ -360,7 +360,7 @@ const CollaboratePost = () => {
                       flexDirection: 'column',
                       alignItems: 'center', // Center horizontally
                       justifyContent: 'center', // Center vertically
-                      backgroundColor: '#FDEDE8',
+                      backgroundColor: 'error.light',
                       padding: '20px',
                       borderRadius: '14px',
                     }}
@@ -385,7 +385,7 @@ const CollaboratePost = () => {
                         color="textSecondary"
                         variant="h6"
                         fontWeight={400}
-                        sx={{ color: '#757575', margin: '10px 0' }}
+                        sx={{ color: 'main.light', margin: '10px 0' }}
                       >
                         Đối tác cá nhân
                       </Typography>

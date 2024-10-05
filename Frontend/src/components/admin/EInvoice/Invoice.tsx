@@ -126,7 +126,7 @@ const Invoice = () => {
   const column = useMemo<Column[]>(
     () => [
       {
-        title: 'ID hóa đơn',
+        title: 'ID',
         dataIndex: 'id_bill',
       },
 

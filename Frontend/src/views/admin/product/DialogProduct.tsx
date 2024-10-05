@@ -115,7 +115,7 @@ const DialogProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: P
       dataIndex: 'createdAt',
     },
     {
-      title: 'ID khách hàng',
+      title: 'ID',
       dataIndex: 'id_khach_hang',
     },
     {
