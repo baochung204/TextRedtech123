@@ -3,9 +3,8 @@ import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import { hoverSidebar, toggleMobileSidebar } from 'src/store/customizer/CustomizerSlice';
 import Logo from '../../shared/logo/Logo';
-import SidebarAdminitems from './SidebarAdminItems';
-import { Profile } from './SidebarProfile/Profile';
 import LogoAdmin from '../../shared/logo/LogoAdmin';
+import SidebarAdminitems from './SidebarAdminItems';
 
 const SidebarAdmin = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
@@ -80,7 +79,7 @@ const SidebarAdmin = () => {
               {/* ------------------------------------------- */}
               <SidebarAdminitems />
             </Scrollbar>
-            <Profile />
+            {/* <Profile /> */}
           </Box>
         </Drawer>
       </Box>
