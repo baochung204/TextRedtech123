@@ -35,7 +35,7 @@ const Affilatec3 = ({ children, footer, text }: Props) => {
         <h2>{text}</h2>
         {/* Vòng quay trung bình */}
       </Box>
-      <CardContent sx={{ p: 0, m: 0 }}>{children}</CardContent>
+      <CardContent sx={{ m: 0, p: 0 }}>{children}</CardContent>
       {footer ? (
         <>
           <Divider />

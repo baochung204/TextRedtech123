@@ -143,11 +143,11 @@
   ],
   "integration": [
     {
-      "id": "123456789012345",
+      "id": "1234",
       "name": "Cửa hàng ABC"
     },
     {
-      "id": "987654321098765",
+      "id": "9876",
       "name": "Dịch vụ XYZ"
     }
   ],
@@ -363,9 +363,7 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "gender": [
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
@@ -378,9 +376,7 @@
       "rating": 1,
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#1890FF"
-      ],
+      "colors": ["#1890FF"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 1,
       "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })",
@@ -413,16 +409,10 @@
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg"
       ],
       "rating": 4,
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "stock": false,
       "qty": 1,
-      "colors": [
-        "#1890FF",
-        "#94D82D",
-        "#FF4842"
-      ],
+      "colors": ["#1890FF", "#94D82D", "#FF4842"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 2,
       "created": "sub(new Date(), { days: 10, hours: 8, minutes: 69 })"
@@ -443,9 +433,7 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "gender": [
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
@@ -455,11 +443,7 @@
       "rating": 3,
       "stock": true,
       "qty": 3,
-      "colors": [
-        "#FF4842",
-        "#1890FF",
-        "#94D82D"
-      ],
+      "colors": ["#FF4842", "#1890FF", "#94D82D"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
       "id": 3,
       "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })"
@@ -480,9 +464,7 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "gender": [
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
@@ -495,11 +477,7 @@
       "rating": 1,
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#1890FF",
-        "#94D82D",
-        "#FFC107"
-      ],
+      "colors": ["#1890FF", "#94D82D", "#FFC107"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 4,
       "created": "sub(new Date(), { days: 4, hours: 9, minutes: 40 })"
@@ -510,9 +488,7 @@
       "discount": 250,
       "related": true,
       "salesPrice": 900,
-      "tag": [
-        "fashion"
-      ],
+      "tag": ["fashion"],
       "gender": [
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
@@ -525,13 +501,8 @@
       "rating": 5,
       "stock": false,
       "qty": 1,
-      "category": [
-        "Đồ chơi"
-      ],
-      "colors": [
-        "#00AB55",
-        "#000000"
-      ],
+      "category": ["Đồ chơi"],
+      "colors": ["#00AB55", "#000000"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427861.jpg",
       "id": 5,
       "created": "sub(new Date(), { days: 2, hours: 5, minutes: 50 })"
@@ -562,15 +533,10 @@
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg"
       ],
       "rating": 3,
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#FFC0CB",
-        "#FF4842"
-      ],
+      "colors": ["#FFC0CB", "#FF4842"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 6,
       "created": "sub(new Date(), { days: 2, hours: 9, minutes: 45 })"
@@ -601,16 +567,10 @@
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg"
       ],
       "rating": 4,
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#FF4842",
-        "#1890FF",
-        "#94D82D"
-      ],
+      "colors": ["#FF4842", "#1890FF", "#94D82D"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427860.jpg",
       "id": 7,
       "created": "sub(new Date(), { days: 6, hours: 10, minutes: 0 })"
@@ -641,16 +601,10 @@
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg"
       ],
       "rating": 3,
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#1890FF",
-        "#94D82D",
-        "#FFC107"
-      ],
+      "colors": ["#1890FF", "#94D82D", "#FFC107"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
       "id": 8,
       "created": "sub(new Date(), { days: 7, hours: 5, minutes: 20 })"
@@ -682,14 +636,9 @@
       ],
       "rating": 3,
       "stock": true,
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "qty": 1,
-      "colors": [
-        "#00AB55",
-        "#000000"
-      ],
+      "colors": ["#00AB55", "#000000"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427858.jpg",
       "id": 9,
       "created": "sub(new Date(), { days: 8, hours: 6, minutes: 20 })"
@@ -720,15 +669,10 @@
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg"
       ],
       "rating": 3,
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#FFC0CB",
-        "#FF4842"
-      ],
+      "colors": ["#FFC0CB", "#FF4842"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427859.jpg",
       "id": 10,
       "created": "sub(new Date(), { days: 6, hours: 6, minutes: 20 })"
@@ -738,13 +682,9 @@
       "point": 285,
       "discount": 60,
       "related": false,
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "salesPrice": 345,
-      "tag": [
-        "toys"
-      ],
+      "tag": ["toys"],
       "gender": [
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
@@ -757,11 +697,7 @@
       "rating": 3,
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#FF4842",
-        "#1890FF",
-        "#94D82D"
-      ],
+      "colors": ["#FF4842", "#1890FF", "#94D82D"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427863.jpg",
       "id": 11,
       "created": "sub(new Date(), { days: 1, hours: 6, minutes: 20 })"
@@ -782,9 +718,7 @@
           "tagName": "Khuyến mãi"
         }
       ],
-      "category": [
-        "Đồ chơi"
-      ],
+      "category": ["Đồ chơi"],
       "gender": [
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
         "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
@@ -797,11 +731,7 @@
       "rating": 3,
       "stock": true,
       "qty": 1,
-      "colors": [
-        "#1890FF",
-        "#94D82D",
-        "#FFC107"
-      ],
+      "colors": ["#1890FF", "#94D82D", "#FFC107"],
       "thumbnailUrl": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/redtech/6316649904952427862.jpg",
       "id": 12,
       "created": "sub(new Date(), { days: 9, hours: 6, minutes: 20 })"

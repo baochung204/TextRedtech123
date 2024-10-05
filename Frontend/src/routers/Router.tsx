@@ -184,7 +184,7 @@ const Router = [
       { path: '/apps/list-assistant', element: <Assistant /> },
       { path: '/apps/assistant', element: <Assistant /> },
       { path: '/assistants/add', element: <AssistantEditor /> },
-      { path: '/assistants/:id', element: <AssistantInfor /> },
+      { path: '//assistants/detail/:id', element: <AssistantInfor /> },
       { path: '/integrations', element: <Integration /> },
       { path: '/products', element: <Product /> },
       { path: '/conversions', element: <CustomerListOrder /> },

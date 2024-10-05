@@ -4,16 +4,20 @@ import WarningIcon from '@mui/icons-material/Warning'; // Thêm icon Warning
 
 const TwoFactorSecurity = () => {
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
+  const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState(false);
   const [isTwoFactorEnabled2, setIsTwoFactorEnabled2] = useState(false);
   const theme = useTheme(); // Lấy thông tin theme
 
   const handleToggleTwoFactor = () => {
     setIsTwoFactorEnabled(!isTwoFactorEnabled);
   };
-
-  const handleToggleTwoFactor2 = () => {
-    setIsTwoFactorEnabled2(!isTwoFactorEnabled2);
+  const handleToggleTwoFactorEmail = () => {
+    setIsTwoFactorEnabledEmail(!isTwoFactorEnabledEmail);
   };
+
+  // const handleToggleTwoFactor2 = () => {
+  //   setIsTwoFactorEnabled2(!isTwoFactorEnabled2);
+  // };
 
   return (
     <Box
@@ -83,22 +87,25 @@ const TwoFactorSecurity = () => {
         </Box>
         <Switch
           sx={{ border: '3px' }}
-          checked={isTwoFactorEnabled2}
-          onChange={handleToggleTwoFactor2}
+          checked={isTwoFactorEnabledEmail}
+          onChange={handleToggleTwoFactorEmail}
           color="primary"
         />
+        {/* <Button variant="outlined" color="primary">
+          Cài đặt
+        </Button> */}
       </Box>
 
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        {/* <Box sx={{ flexGrow: 1 }}>
+      {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ flexGrow: 1 }}>
           <Typography variant="h6" fontWeight="500">
             Liên kết số điện thoại gửi SMS
           </Typography>
         </Box> */}
-        <Button variant="outlined" color="primary">
+      {/* <Button variant="outlined" color="primary">
           Cài đặt
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
