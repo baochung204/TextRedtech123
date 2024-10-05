@@ -134,12 +134,12 @@ const CustomerListOrder = () => {
   const columns = React.useMemo<Column[]>(
     () => [
       {
-        title: 'Id',
+        title: 'ID',
         dataIndex: 'id',
         sort: true,
       },
       {
-        title: 'Thời gian tạo',
+        title: 'Ngày tạo',
         dataIndex: 'createdAt',
         sort: true,
       },

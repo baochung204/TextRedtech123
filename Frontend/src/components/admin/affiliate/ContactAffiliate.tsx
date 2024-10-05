@@ -142,7 +142,7 @@ const ContactAffiliate = () => {
   const column = useMemo<Column[]>(
     () => [
       {
-        title: 'Mã hợp đồng',
+        title: 'ID',
         dataIndex: 'id_contract',
       },
 

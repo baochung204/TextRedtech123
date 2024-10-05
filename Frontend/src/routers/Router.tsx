@@ -190,10 +190,6 @@ const Router = [
       { path: '/conversions', element: <CustomerListOrder /> },
       { path: '/apps/contacts', element: <Contacts /> },
       { path: '/feature_suggestion', element: <FormRequest /> },
-      // { path: '/apps/collaborate', element: <Collaborate /> },
-      // { path: '/customers', element: <CustomerList2 /> },
-      // { path: '/apps/customerlist', element: <CustomerList /> },
-
       { path: '/affiliate', element: <Collaborate /> },
       { path: '/customers', element: <CustomerList2 /> },
       { path: '/affiliate/list_customer', element: <CustomerList /> },
