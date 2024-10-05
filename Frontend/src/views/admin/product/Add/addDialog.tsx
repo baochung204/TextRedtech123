@@ -11,9 +11,9 @@ const AddDialogDH = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // const [value, setValue] = useState('1');
 
   // Function mở popup
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
+  // const handleOpenPopup = () => {
+  //   setIsPopupOpen(true);
+  // };
 
   // Function đóng popup
   const handleClosePopup = () => {

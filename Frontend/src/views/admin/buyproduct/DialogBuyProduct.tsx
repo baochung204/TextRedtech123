@@ -106,7 +106,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
         console.log('tesst', values.anh);
         if (checkValue === 'view') {
             setCheckValue('fix');
-        } else  if (checkValue === 'add') {
+        } else if (checkValue === 'add') {
             setCheckValue('sub')
             setKey(value && value.values)
             setKey(null)
@@ -266,7 +266,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                         }}
                                     >
                                         <Typography variant="h5" gutterBottom sx={{ textAlign: 'center' }}>
-                                            Upload Images
+                                            Tải ảnh lên
                                         </Typography>
                                         <Box
                                             sx={{
@@ -453,6 +453,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                             <Button
                                 type="submit"
                                 color="primary"
+                                variant="contained"
                                 // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
                             >
                                 {checkValue === 'add' ? 'Xác nhận'
@@ -466,6 +467,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                 )}
             </Formik>
         </Dialog>
+        
     );
 };
 

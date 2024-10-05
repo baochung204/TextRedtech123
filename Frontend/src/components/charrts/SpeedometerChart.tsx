@@ -34,8 +34,9 @@ const SpeedometerChart: React.FC = () => {
           },
           value: {
             formatter: (val: number) => `${val.toFixed(2)}`,
-            // color: '#fff',
-            fontSize: '14px',
+            color: 'red',
+            fontSize: '20px',
+            fontWeight: 600,
             offsetY: 70,
           },
         },

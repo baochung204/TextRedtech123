@@ -25,11 +25,14 @@ import DialogFile from './dialog/DialogFile';
 import DialogFunction from './dialog/DialogFunction';
 import DialogStr from './dialog/DialogStr';
 import { FileCells, Files } from './mockData/TableFile';
-import { Function, FunctionCells, FunctionRows } from './mockData/TableFunction';
+import { Function } from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import { Model, ModelCells, ModelRows } from './mockData/TableModel';
-import { Strategy, StrategyCells, StrategyRows } from './mockData/TableStr';
+import { Strategy } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
+
+import TabFunction from './Tables/TabFunction';
+import TabStr from './Tables/TabStr';
 interface Column {
   title: string;
   dataIndex: string;
@@ -297,7 +300,7 @@ const Main = () => {
   const handleSearch = () => {
     setSearch(!search);
   };
-  
+
   useEffect(() => {
     const selectedColumns = column[value] || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -406,7 +409,7 @@ const Main = () => {
                 fullWidth={true}
               />
             </Grid>
-            {(value === '1' || value === '2' || value === '3') && (
+            {( value === '4') && (
               <Grid item>
                 <IconButton
                   color="primary"
@@ -470,22 +473,10 @@ const Main = () => {
             </Box>
 
             <TabPanel sx={{ p: 0, pt: 2 }} value="1">
-              <BlankCard>
-                <CustomTable
-                  columns={StrategyCells}
-                  dataSource={StrategyRows}
-                  dataSelect={dataSelect}
-                />
-              </BlankCard>
+              <TabStr value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="2">
-              <BlankCard>
-                <CustomTable
-                  columns={FunctionCells}
-                  dataSource={FunctionRows}
-                  dataSelect={dataSelect}
-                />
-              </BlankCard>
+              <TabFunction value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">
               <BlankCard>

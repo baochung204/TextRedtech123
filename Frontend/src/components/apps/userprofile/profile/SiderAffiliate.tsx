@@ -78,7 +78,7 @@ const SiderAffiliate = () => {
               color="secondary"
               fullWidth
               component={Link}
-              to="/apps/company-affiliate"
+              to="/company-affiliate"
             >
               Doanh nghiệp
             </Button>

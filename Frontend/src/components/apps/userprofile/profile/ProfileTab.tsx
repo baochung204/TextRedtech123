@@ -53,11 +53,7 @@ const ProfileTab = () => {
       icon: <IconUserCircle size="20" />,
       to: '/user_profile/assistants',
     },
-    {
-      label: 'Ticket',
-      icon: <IconTicket size="20" />,
-      to: '/apps/chats',
-    },
+
     {
       label: 'Lịch sử giao dịch',
       icon: <IconHistory size="20" />,
@@ -159,7 +155,7 @@ const ProfileTab = () => {
           >
             <DescriptionIcon style={{ marginRight: '8px' }} />
             <Typography variant="body1" fontWeight="500">
-              Hợp đồng mua hàng
+              Hợp đồng nguyên tắc
             </Typography>
           </MenuItem>
         </Menu>

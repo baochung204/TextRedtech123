@@ -6,27 +6,49 @@ import React from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
-import points from 'src/assets/images/logos/R-Point.png'
-const monthsInVietnamese = [
-  'Tháng 1',
-  'Tháng 2',
-  'Tháng 3',
-  'Tháng 4',
-  'Tháng 5',
-  'Tháng 6',
-  'Tháng 7',
-  'Tháng 8',
-  'Tháng 9',
-  'Tháng 10',
-  'Tháng 11',
-  'Tháng 12',
-];
+
+// const monthsInVietnamese = [
+//   'Tháng 1',
+//   'Tháng 2',
+//   'Tháng 3',
+//   'Tháng 4',
+//   'Tháng 5',
+//   'Tháng 6',
+//   'Tháng 7',
+//   'Tháng 8',
+//   'Tháng 9',
+//   'Tháng 10',
+//   'Tháng 11',
+//   'Tháng 12',
+// ];
 
 const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
+
+  const categories = [
+    '1/11/2000',
+    '2/11/2000',
+    '3/11/2000',
+    '4/11/2000',
+    '5/11/2000',
+    '6/11/2000',
+    '7/11/2000',
+    '8/11/2000',
+    '9/11/2000',
+    '10/11/2000',
+    '11/11/2000',
+    '12/11/2000',
+    '1/11/2001',
+    '2/11/2001',
+    '3/11/2001',
+    '4/11/2001',
+    '5/11/2001',
+    '6/11/2001',
+  ];
+
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -52,33 +74,19 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
 
     xaxis: {
       type: 'datetime',
-      categories: [
-        '1/11/2000',
-        '2/11/2000',
-        '3/11/2000',
-        '4/11/2000',
-        '5/11/2000',
-        '6/11/2000',
-        '7/11/2000',
-        '8/11/2000',
-        '9/11/2000',
-        '10/11/2000',
-        '11/11/2000',
-        '12/11/2000',
-        '1/11/2001',
-        '2/11/2001',
-        '3/11/2001',
-        '4/11/2001',
-        '5/11/2001',
-        '6/11/2001',
-      ],
+      categories: categories,
       labels: {
-        formatter: function (value: any) {
+        show: true,
+        formatter: (value: string, timestamp: string, opts?: any) => {
           const date = new Date(value);
-          return monthsInVietnamese[date.getMonth()];
+          if (opts.i === 0 || opts.i === categories.length - 1) {
+            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+          }
+          return '';
         },
       },
-      tickAmount: 9,
+      tickAmount: categories.length - 1,
+      tickPlacement: 'on',
     },
     fill: {
       type: 'gradient',
@@ -89,19 +97,19 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
         type: 'horizontal',
         opacityFrom: 1,
         opacityTo: 0.9,
-        stops: [0, 100, 100, 100],
+        stops: [0, 100],
         colorStops: [
           {
             offset: 0,
             color: primary2,
-            opacity: 1
+            opacity: 1,
           },
           {
             offset: 100,
             color: primary,
-            opacity: 0.9
-          }
-        ]
+            opacity: 0.9,
+          },
+        ],
       },
     },
     colors: ['#FF5733'],
@@ -138,7 +146,10 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
       theme: 'dark',
     },
     grid: {
-      show: false,
+      show: true,
+      padding: {
+        right: 30,
+      },
     },
   };
   const seriesgredientchart: any = [
