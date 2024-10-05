@@ -131,7 +131,7 @@ const CustomerList = () => {
         <TabContext value="1">
           <Box>
             <TabPanel value="1" sx={{ p: 0 }}>
-              <Grid container spacing={2}>
+              <Grid container spacing={2} sx={{paddingTop: 1}}>
                 <Grid item xs={12}>
                   <Grid
                     container
@@ -162,8 +162,8 @@ const CustomerList = () => {
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Badge
-                          badgeContent={dataSelect.length !== 0 && dataSelect.length}
-                          color={dataSelect.length !== 0 ? 'primary' : undefined}
+                          badgeContent={column.length - dataSelect.length}
+                          color={ 'primary' }
                         >
                           <FilterListIcon color="action" />
                         </Badge>
