@@ -75,7 +75,7 @@ const SpeedometerChart: React.FC = () => {
   const chartSeries: number[] = [speed];
   const needleRotation = (speed / 100) * 240 - 120;
   const labels = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
-  const radius = 113;
+  const radius = 110;
   const labelPositions = labels.map((label, index) => {
     const angle = (40 + (index * -260) / (labels.length - 1)) * (Math.PI / 180);
     return {
@@ -87,8 +87,9 @@ const SpeedometerChart: React.FC = () => {
 
   return (
     <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
-      <Box position="relative" width="100%" height="350px" alignItems='center'>
-        <Chart options={chartOptions} series={chartSeries} type="radialBar" height="100%" />
+      <Box position="relative" width="100%" alignItems='center'>
+        <Box  width="100%" height="350px" alignItems='center' position='absolute'>
+        <Chart options={chartOptions} series={chartSeries} type="radialBar" width="100%" height="100%"  />
         <Box
           position="absolute"
           width="4px"
@@ -111,7 +112,7 @@ const SpeedometerChart: React.FC = () => {
             top={pos.top}
             textAlign="center"
             color="red"
-            fontSize="12px"
+            fontSize="14px"
             style={{
               transform: 'translate(-50%, -50%)',
               fontWeight: 600,
@@ -120,6 +121,7 @@ const SpeedometerChart: React.FC = () => {
             {pos.label}
           </Typography>
         ))}
+        </Box>
       </Box>
     </Affilatec3>
 

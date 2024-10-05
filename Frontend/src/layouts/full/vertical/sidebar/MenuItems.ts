@@ -96,7 +96,7 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Affiliate',
     icon: IconAffiliate,
-    href: '/affiliate',
+    href: '/affiliates',
     children: [
       {
         id: uniqueId(),

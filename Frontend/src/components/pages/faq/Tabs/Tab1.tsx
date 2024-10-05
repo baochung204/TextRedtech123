@@ -20,7 +20,8 @@ interface PropsData {
   content: string,
   badgeUrl: string,
   productId: string,
-  level: string
+  level: string,
+  tomtat: string
 }
 
 const Tab1 = () => {
@@ -47,7 +48,8 @@ const Tab1 = () => {
     content: "",
     badgeUrl: "",
     productId: "",
-    level: ""
+    level: "",
+    tomtat: ""
   }])
 
   const handleClick = (items: PropsData) => {
@@ -56,7 +58,8 @@ const Tab1 = () => {
       content: items.content,
       badgeUrl: items.badgeUrl,
       productId: items.productId,
-      level: items.level
+      level: items.level,
+      tomtat: items.tomtat
     }])
 
   }

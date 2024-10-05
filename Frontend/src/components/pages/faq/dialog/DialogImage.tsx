@@ -50,6 +50,8 @@ const DialogImage: React.FC<PropsDialog> = ({
 
   const handleSave = () => {
     console.log(dataImage);
+    setDataImage([])
+    setOpen(false)
   };
 
   return (
@@ -89,11 +91,11 @@ const DialogImage: React.FC<PropsDialog> = ({
                                     if (e.target.files) {
                                       const initialData = Array.from(e.target.files).map(file => ({
                                         url: URL.createObjectURL(file),
-                                        name: file.name, 
+                                        name: file.name,
                                         title: '',
-                                        moTa: '',  
+                                        moTa: '',
                                       }));
-                                      setDataImage(initialData); 
+                                      setDataImage(initialData);
                                     }
                                   }}
                                 />
@@ -110,7 +112,7 @@ const DialogImage: React.FC<PropsDialog> = ({
                               <Grid item xs={12} key={index}>
                                 <Grid container spacing={2}>
                                   <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <Avatar src={item.url} alt={item.url} sx={{ width: 56, height: 56 }} />
+                                    <Avatar src={item.url} alt={item.url} variant="rounded" sx={{ width: 56, height: 56 }} />
                                   </Grid>
                                   <Grid item xs={3.3} sx={{ marginBottom: '15px' }}>
                                     <TextField

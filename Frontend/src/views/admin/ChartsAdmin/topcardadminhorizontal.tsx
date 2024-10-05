@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 interface StyleProps {
   bgColor: string;
-  color: string;
+  // color: string;
   title: string;
   total: string | JSX.Element;
   icons: JSX.Element;
