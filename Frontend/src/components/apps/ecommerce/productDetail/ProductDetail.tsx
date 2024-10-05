@@ -89,7 +89,6 @@ const ProductDetail = () => {
     setCartalert(false);
   };
 
-  // Handle "Mua ngay" click to show dialog
   const handleBuyNowClick = () => {
     setOpen(true);
   };
@@ -553,9 +552,11 @@ const ProductDetail = () => {
                               </Typography>
                               <Typography
                                 variant="h6"
-                                sx={{ display: 'flex', justifyContent: 'center' }}
+                                sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}
                               >
                                 {/* {(total + pointsEarned).toLocaleString()}{' '} */}
+                                {product.point * product.qty}
+
                                 <img
                                   src={logoPoint}
                                   alt={logoPoint}
@@ -575,11 +576,11 @@ const ProductDetail = () => {
                                 sx={{
                                   display: 'flex',
                                   justifyContent: 'center',
-                                  color: 'error.main',
+                                  gap: 1,
                                   alignItems: 'center',
                                 }}
                               >
-                                {/* -{Discount.toLocaleString('vn-VN')}{' '} */}
+                                {product.discount * product.qty}
                                 <img
                                   src={logoPoint}
                                   alt={logoPoint}
@@ -596,16 +597,22 @@ const ProductDetail = () => {
                               <Typography variant="h6">Tổng thanh toán</Typography>
                               <Typography
                                 variant="h5"
-                                color="success"
+                                color="error"
                                 display={'flex'}
                                 justifyContent={'center'}
+                                sx={{
+                                  gap: 1,
+                                }}
                               >
-                                {/* {(total - Discount + pointsEarned).toLocaleString('vn-VN')}{' '} */}
+                                {(
+                                  product.point * product.qty -
+                                  product.discount * product.qty
+                                ).toLocaleString()}
                                 <img
                                   src={logoPoint}
                                   alt={logoPoint}
-                                  width={20}
-                                  height={20}
+                                  width={25}
+                                  height={25}
                                   style={{ borderRadius: 50 }}
                                 />
                               </Typography>

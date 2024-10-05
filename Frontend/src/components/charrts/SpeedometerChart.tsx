@@ -87,7 +87,7 @@ const SpeedometerChart: React.FC = () => {
 
   return (
     <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
-      <Box position="relative" width="100%" height="350px" alignItems='center'>
+      <Box position="relative" width="100%" height="350px" alignItems="center" sx={{ p: 0 }}>
         <Chart options={chartOptions} series={chartSeries} type="radialBar" height="100%" />
         <Box
           position="absolute"
@@ -95,7 +95,7 @@ const SpeedometerChart: React.FC = () => {
           height="20%"
           bottom="45%"
           left="50%"
-          style={{
+          sx={{
             background: 'linear-gradient(to bottom, #ff6633, #ffcc99)',
             transition: 'transform 1s ease-out',
             transform: `rotate(${needleRotation}deg)`,
@@ -112,7 +112,7 @@ const SpeedometerChart: React.FC = () => {
             textAlign="center"
             color="red"
             fontSize="12px"
-            style={{
+            sx={{
               transform: 'translate(-50%, -50%)',
               fontWeight: 600,
             }}
@@ -122,7 +122,6 @@ const SpeedometerChart: React.FC = () => {
         ))}
       </Box>
     </Affilatec3>
-
   );
 };
 

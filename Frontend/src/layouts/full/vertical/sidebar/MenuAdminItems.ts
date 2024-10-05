@@ -142,7 +142,7 @@ const MenuAdminitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
-    title: 'Blog',
+    title: 'Bài viết',
     icon: IconBrandCodepen,
     href: '/admin/blogs',
   },
