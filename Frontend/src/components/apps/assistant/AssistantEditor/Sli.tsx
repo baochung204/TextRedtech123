@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Grid, Paper, Slider, Typography } from '@mui/material';
+import { Box, Button, Chip, Grid, Paper, Slider, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
  // or '@mui/system' if using system-based styling
@@ -13,7 +13,7 @@ const Sli = () => {
   const [stepStorage] = useState<number>(100000);
   const [storage, setStorage] = useState<number>(0);
   const [isClicked, setIsClicked] = useState(false);
-
+  const theme = useTheme();
   const handleClick = () => {
     setIsClicked(true);
   };
@@ -53,7 +53,7 @@ const Sli = () => {
           </Grid>
         </Grid>
 
-        <Paper elevation={2} sx={{ minHeight: '4%', p: 2, backgroundColor: '#fafafa' }}>
+        <Paper elevation={2} sx={{ minHeight: '4%', p: 2, backgroundColor: theme.palette.info.light }}>
           <Grid container>
             <Grid lg={6}>
               <Box fontWeight={500}>

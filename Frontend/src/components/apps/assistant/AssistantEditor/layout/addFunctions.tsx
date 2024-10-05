@@ -1,9 +1,8 @@
-import { Box, Button, Fab, Grid, Paper, Tooltip, Typography } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Box, Fab, Grid, Paper, Tooltip } from '@mui/material';
 
+import { IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
 import FunctionsDialog from '../dialog/functionsDialog';
-import { IconPlus } from '@tabler/icons-react';
 
 const AddFunction = () => {
   const [openFunction, setOpenFunction] = useState(false);

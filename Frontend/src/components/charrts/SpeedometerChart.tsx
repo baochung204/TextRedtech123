@@ -33,9 +33,10 @@ const SpeedometerChart: React.FC = () => {
             show: false,
           },
           value: {
-            formatter: (val: number) => `${val.toFixed(2)} Mbps`,
-            // color: '#fff',
-            fontSize: '14px',
+            formatter: (val: number) => `${val.toFixed(2)}`,
+            color: 'red',
+            fontSize: '20px',
+            fontWeight: 600,
             offsetY: 70,
           },
         },
@@ -85,7 +86,7 @@ const SpeedometerChart: React.FC = () => {
   });
 
   return (
-     <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
+    <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
       <Box position="relative" width="100%" height="350px" alignItems='center'>
         <Chart options={chartOptions} series={chartSeries} type="radialBar" height="100%" />
         <Box
@@ -121,7 +122,7 @@ const SpeedometerChart: React.FC = () => {
         ))}
       </Box>
     </Affilatec3>
-    
+
   );
 };
 

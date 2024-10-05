@@ -22,10 +22,10 @@ import PageContainer from 'src/components/container/PageContainer';
 import badge from 'src/assets/ICON/c1.png';
 
 // import bannercl from 'src/assets/images/banner/banner_assistant.png';
+import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 import Chart1 from './chart/chart1';
 import Chart2 from './chart/chart2';
 import Chart3 from './chart/chart3';
-import Chart4 from './chart/chart4';
 import Chart5 from './chart/chart5';
 import Chart6 from './chart/chart6';
 import Chart7 from './chart/chart7';
@@ -33,8 +33,7 @@ import Configuration from './configuration/configuration';
 import File from './configuration/file';
 import Function from './configuration/function';
 import InFor from './infor/infor';
-import TopCart from './topcart/topcart';
-import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
+import Topcardassistant from './topcard/Topcardassistant';
 
 const AssistantInfor = () => {
   return (
@@ -174,7 +173,7 @@ const AssistantInfor = () => {
           </Grid>
           {/* column */}
           <InFor />
-          <TopCart />
+          <Topcardassistant />
           {/* column */}
           <Grid item xs={12} sm={12} md={4} lg={4}>
             <Chart1 />

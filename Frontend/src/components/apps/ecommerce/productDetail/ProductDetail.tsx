@@ -52,23 +52,10 @@ const ProductDetail = () => {
     setCartalert(false);
   };
 
-  // Convert USD to VND
-  // const convertToVND = (amount: number, rate: number = 24000) => {
-  //   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
-  //     amount * rate,
-  //   );
-  // };
-
   return (
     <Box p={2}>
       {product ? (
         <>
-          <Box display="flex" alignItems="center">
-            {/* Badge and category */}
-            {product.category.map((item: any) => (
-              <Chip label={item || 'tất cả'} color="success" size="small" sx={{ marginX: '2px' }} />
-            ))}
-          </Box>
           {/* Title and description */}
           <Typography fontWeight="600" variant="h4" mt={1}>
             {product.name}
@@ -127,19 +114,29 @@ const ProductDetail = () => {
           <Stack direction={'row'} alignItems="center" gap="10px" mt={2} pb={3}>
             <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
           </Stack>
-          <Divider />
 
           <Stack direction="row" alignItems="center" pb={5}>
-            <Typography variant="h6" mt={4} mr={4}>
+            {/* <Typography variant="h6" mt={4} mr={4}>
               Dung lượng:
             </Typography>
             <Box mt={4}>
               <ButtonGroup size="small" color="secondary" aria-label="small button group">
-                {/* <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
+                <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
                   <IconMinus size="1.1rem" />
-                </Button> */}
+                </Button>
               </ButtonGroup>
               <Button key="two">{count_data} MB</Button>
+            </Box> */}
+            <Box display="flex" alignItems="center">
+              {/* Badge and category */}
+              {product.category.map((item: any) => (
+                <Chip
+                  label={item || 'tất cả'}
+                  color="success"
+                  size="small"
+                  sx={{ marginX: '2px' }}
+                />
+              ))}
             </Box>
           </Stack>
           <Stack direction="row" alignItems="center" pb={5}>

@@ -35,20 +35,19 @@ import buyrate from 'src/assets/Adminphoto/ty le mua.png';
 import usagerate from 'src/assets/Adminphoto/ty le su dung.png';
 import cvr from 'src/assets/ICON/cvr.png';
 import view from 'src/assets/NotificationAdmin/luot xem.png';
+import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { default as Affilatechartadmin } from './Affilatechartadmin';
 import Affilatechartadmin1 from './Affilatechartadmin1';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
-import Affilatechartadmin6 from './Affiliatechartadmin6';
 import Affilatechartadmin7 from './Affiliatechartadmin7';
 import Affilatechartadmin8 from './Affiliatechartadmin8';
 import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
-import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },

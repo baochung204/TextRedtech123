@@ -7,20 +7,20 @@ import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-const monthsInVietnamese = [
-  'Tháng 1',
-  'Tháng 2',
-  'Tháng 3',
-  'Tháng 4',
-  'Tháng 5',
-  'Tháng 6',
-  'Tháng 7',
-  'Tháng 8',
-  'Tháng 9',
-  'Tháng 10',
-  'Tháng 11',
-  'Tháng 12',
-];
+// const monthsInVietnamese = [
+//   'Tháng 1',
+//   'Tháng 2',
+//   'Tháng 3',
+//   'Tháng 4',
+//   'Tháng 5',
+//   'Tháng 6',
+//   'Tháng 7',
+//   'Tháng 8',
+//   'Tháng 9',
+//   'Tháng 10',
+//   'Tháng 11',
+//   'Tháng 12',
+// ];
 
 const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
   // chart color

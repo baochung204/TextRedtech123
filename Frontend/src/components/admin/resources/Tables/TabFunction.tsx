@@ -4,44 +4,46 @@ import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
-import DialogStrView from '../dialog/DialogStrView';
-import { StrategyRows } from '../mockData/TableStr';
+import DialogFuncView from '../dialog/DialogFuncView';
+import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
 
 
-interface PropsTabStr {
+
+interface PropsTabFunction {
   value: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dataSelect?: string[];
 }
 
-const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
+const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => {
   const [selectId, setSelectId] = useState<string | null>(null)
-  const StrategyCells: HeadCell[] = [
+  const FunctionCells: HeadCell[] = [
     {
       dataIndex: 'id',
       title: 'ID',
     },
     {
-      dataIndex: 'strategyGroup',
-      title: 'Nhóm chiến lược',
+      dataIndex: 'creationTime',
+      title: 'Ngày tạo',
+    },
+    {
+      dataIndex: 'functionGroup',
+      title: 'Nhóm function',
+    },
+    {
+      dataIndex: 'functionName',
+      title: 'Tên function',
     },
     {
       dataIndex: 'badge',
       title: 'Huy hiệu',
-      render: ((value: string) => {
-        return (
-          <>
-            <Avatar src={value} alt="value" sx={{borderRadius:'50%'}} />
-          </>
-        )
-
-      })
-    },
-    {
-      dataIndex: 'strategyName',
-      title: 'Tên chiến lược',
+      render: ((value: string) => (
+        <>
+          <Avatar src={value} alt="value" sx={{ borderRadius: '50%' }} />
+        </>
+      ))
     },
     {
       dataIndex: 'level',
@@ -60,12 +62,8 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
       title: 'Tóm tắt',
     },
     {
-      dataIndex: 'content',
-      title: 'Nội dung',
-    },
-    {
-      dataIndex: 'dateCreate',
-      title: 'Ngày tạo',
+      dataIndex: 'functionCode',
+      title: 'Code function',
     },
     {
       dataIndex: 'creator',
@@ -83,8 +81,7 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
     {
       dataIndex: 'actions',
       title: 'Hoạt động',
-      render: (_row: any, value: any) => (
-        // console.log(value)
+      render: ((_row: any, value: any) => (
         <>
           <IconButton onClick={() => { setOpen(true); setSelectId(value.id) }}>
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
@@ -93,16 +90,20 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
             <IconTrash stroke={2} style={{ color: '#FA896B' }} />
           </IconButton>
         </>
-      ),
+      ))
     },
   ];
 
   return (
     <BlankCard>
-      <CustomTable columns={StrategyCells} dataSource={StrategyRows} dataSelect={dataSelect} />
-      <DialogStrView open={open} setOpen={setOpen} value={selectId} />
+      <CustomTable
+        columns={FunctionCells}
+        dataSource={FunctionRows}
+        dataSelect={dataSelect}
+      />
+      <DialogFuncView open={open} setOpen={setOpen} value={selectId} />
     </BlankCard>
   );
 };
 
-export default TabStr;
+export default TabFunction;

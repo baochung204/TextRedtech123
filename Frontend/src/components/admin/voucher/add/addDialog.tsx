@@ -1,14 +1,4 @@
-import {
-  Dialog,
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Box,
-  Tooltip,
-  Fab,
-} from '@mui/material';
-import { IconPlus } from '@tabler/icons-react';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 interface PropsUp {
   isPopupOpen: boolean;
@@ -21,9 +11,9 @@ const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // const [value, setValue] = useState('1');
 
   // Function mở popup
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
+  // const handleOpenPopup = () => {
+  //   setIsPopupOpen(true);
+  // };
 
   // Function đóng popup
   const handleClosePopup = () => {
@@ -34,11 +24,11 @@ const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   // };
   return (
     <Box>
-      <Tooltip title="Thêm thông báo mới">
+      {/* <Tooltip title="Thêm thông báo mới">
         <Fab size="small" color="secondary" aria-label="plus" onClick={handleOpenPopup}>
           <IconPlus width={18} />
         </Fab>
-      </Tooltip>
+      </Tooltip> */}
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}

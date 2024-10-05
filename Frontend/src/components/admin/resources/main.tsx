@@ -25,14 +25,14 @@ import DialogFile from './dialog/DialogFile';
 import DialogFunction from './dialog/DialogFunction';
 import DialogStr from './dialog/DialogStr';
 import { FileCells, Files } from './mockData/TableFile';
-import { Function, FunctionRows } from './mockData/TableFunction';
+import { Function } from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import { Model, ModelCells, ModelRows } from './mockData/TableModel';
 import { Strategy } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
 
-import Tab1 from './Tabs/TabStr';
-import TabFunction from './Tabs/TabFunction';
+import TabFunction from './Tables/TabFunction';
+import TabStr from './Tables/TabStr';
 interface Column {
   title: string;
   dataIndex: string;
@@ -409,7 +409,7 @@ const Main = () => {
                 fullWidth={true}
               />
             </Grid>
-            {(value === '1' || value === '2' || value === '3') && (
+            {( value === '4') && (
               <Grid item>
                 <IconButton
                   color="primary"
@@ -473,7 +473,7 @@ const Main = () => {
             </Box>
 
             <TabPanel sx={{ p: 0, pt: 2 }} value="1">
-              <Tab1 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
+              <TabStr value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="2">
               <TabFunction value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
