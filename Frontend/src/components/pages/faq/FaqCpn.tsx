@@ -144,7 +144,7 @@ const Faq = () => {
         },
         {
           title: 'Tiêu đề URL',
-          dataIndex: 'tilte',
+          dataIndex: 'title',
         },
         {
           title: 'Mô tả URL',
@@ -235,19 +235,32 @@ const Faq = () => {
                     },
                   }}
                 >
+                  <MenuItem>
+                    <Checkbox
+                      checked={dataSelect.length === column[value].length}
+                      indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          const allColumns = column[value].map((header: Column) => header.dataIndex);
+                          setDataSelect(allColumns);
+                        } else {
+                          setDataSelect([]);
+                        }
+                      }}
+                    />
+                    <ListItemText primary="Chọn tất cả" />
+                  </MenuItem>
                   {column[value].map((header: Column) => {
-                    // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
                     const isSelected = dataSelect.includes(header.dataIndex);
-
                     return (
                       <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                        <Checkbox checked={!isSelected} />
+                        <Checkbox checked={isSelected} />
                         <ListItemText primary={header.title} />
                       </MenuItem>
                     );
                   })}
                 </Select>
+
               </Grid>
             </Grid>
           </Grid>

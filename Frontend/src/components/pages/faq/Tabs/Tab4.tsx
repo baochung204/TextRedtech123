@@ -1,16 +1,8 @@
+import { Box } from '@mui/material';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DataTable4 from '../DataTable/TableTab4';
-import { Box, Grid, IconButton } from '@mui/material';
-import { IconEye, IconTrash } from '@tabler/icons-react';
 
-interface ItemTable4 {
-  images: string;
-  modelName: string;
-  modelLocal: string;
-  creationDate: Date;
-  trainedTokens: string;
-  idCode: string;
-}
+
 
 interface PropsData {
   dataSelect?: string[];

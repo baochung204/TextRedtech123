@@ -1,5 +1,6 @@
 
-import { Box, MenuItem, Typography } from '@mui/material';
+import { Opacity } from '@mui/icons-material';
+import { Box, colors, MenuItem, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 import Chart, { Props } from 'react-apexcharts';
@@ -42,7 +43,7 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       foreColor: '#adb0bb',
       toolbar: {
-        show: true,
+        show: false,
       },
       dropShadow: {
         enabled: true,
@@ -98,16 +99,14 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
         ],
       },
     },
-    colors: ['#FF5733'],
+    colors: [primary],
     markers: {
-      size: 20,
-      shape: 'path',
-      path: {
-        d: 'M8 0L3 14h10L8 0z',
-        width: 20,
-        height: 20,
-      },
+      size: 4,
+      opacity: 0.9,
+      colors: [primary],
       offsetY: 0,
+      strokeColor: '#fff',
+      strokeWidth: 2,
       offsetX: 0,
       hover: {
         size: 7,

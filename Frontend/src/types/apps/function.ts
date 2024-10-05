@@ -3,4 +3,6 @@ export interface Functions {
     name: string;
     level: string;
     badgeUrl: string;
+    nhom: string;
+    tomtat: string
 }

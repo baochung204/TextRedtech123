@@ -18,14 +18,14 @@ interface PropsDialog {
 interface PropsForm {
     url: string,
     title: string,
-    mota: string,
+    describe: string,
 }
 
 const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     const [formData, setFormData] = useState<PropsForm[]>([{
         url: '',
         title: '',
-        mota: '',
+        describe: '',
     }]);
     const [open1, setOpen1] = useState(false);
 
@@ -55,7 +55,7 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         setFormData([{
             url: '',
             title: '',
-            mota: '',
+            describe: '',
         }]);
     };
 
@@ -67,7 +67,7 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         data.push({
             url: '',
             title: '',
-            mota: '',
+            describe: '',
         })
         setFormData(data)
         console.log('formdata: ', formData.length);
@@ -135,10 +135,10 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         <Typography fontWeight={600}>Mô tả</Typography>
                                         <TextField
                                             name="url"
-                                            value={item.mota}
+                                            value={item.describe}
                                             onChange={(e) => {
                                                 const data = [...formData];
-                                                data[index].mota = e.target.value;
+                                                data[index].describe = e.target.value;
                                                 setFormData(data)
                                             }}
                                             fullWidth

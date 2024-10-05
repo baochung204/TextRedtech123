@@ -3,4 +3,6 @@ export interface Str {
     badgeUrl: string;
     productId: string;
     level: string;
+    tomtat: string;
+    nhom: string
 }
