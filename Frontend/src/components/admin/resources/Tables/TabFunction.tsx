@@ -61,10 +61,10 @@ const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => 
       dataIndex: 'summary',
       title: 'Tóm tắt',
     },
-    {
-      dataIndex: 'functionCode',
-      title: 'Code function',
-    },
+    // {
+    //   dataIndex: 'functionCode',
+    //   title: 'Code function',
+    // },
     {
       dataIndex: 'creator',
       title: 'Người tạo',
