@@ -80,7 +80,7 @@ const SidebarAdmin = () => {
               {/* ------------------------------------------- */}
               <SidebarAdminitems />
             </Scrollbar>
-            <Profile />
+            {/* <Profile /> */}
           </Box>
         </Drawer>
       </Box>

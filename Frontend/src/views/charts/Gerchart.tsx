@@ -33,7 +33,7 @@ const GerChart = () => {
   ];
   const seriesgredientchart: any = [
     {
-      name: 'Thích',
+      name: 'Points',
       data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
     },
   ];
@@ -104,6 +104,7 @@ const GerChart = () => {
         ],
       },
     },
+    colors: [primary],
     markers: {
       size: 4,
       opacity: 0.9,
@@ -124,7 +125,7 @@ const GerChart = () => {
     grid: {
       show: true,
       padding: {
-        right: 30,  
+        right: 30,
       },
     },
     responsive: [
@@ -160,7 +161,7 @@ const GerChart = () => {
           series={seriesgredientchart}
           type="line"
           height="300px"
-        
+
         />
       </Box>
     </DashboardCard>

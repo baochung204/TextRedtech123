@@ -5,6 +5,7 @@ import WarningIcon from '@mui/icons-material/Warning'; // Thêm icon Warning
 const TwoFactorSecurity = () => {
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
   const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState(false);
+  const [isTwoFactorEnabled2, setIsTwoFactorEnabled2] = useState(false);
   const theme = useTheme(); // Lấy thông tin theme
 
   const handleToggleTwoFactor = () => {
@@ -13,6 +14,10 @@ const TwoFactorSecurity = () => {
   const handleToggleTwoFactorEmail = () => {
     setIsTwoFactorEnabledEmail(!isTwoFactorEnabledEmail);
   };
+
+  // const handleToggleTwoFactor2 = () => {
+  //   setIsTwoFactorEnabled2(!isTwoFactorEnabled2);
+  // };
 
   return (
     <Box
@@ -96,8 +101,8 @@ const TwoFactorSecurity = () => {
           <Typography variant="h6" fontWeight="500">
             Liên kết số điện thoại gửi SMS
           </Typography>
-        </Box>
-        <Button variant="outlined" color="primary">
+        </Box> */}
+      {/* <Button variant="outlined" color="primary">
           Cài đặt
         </Button>
       </Box> */}

@@ -79,23 +79,6 @@ const CustomerList2 = () => {
         title: 'Trợ lý',
         dataIndex: 'assistant',
       },
-      // {
-      //   title: 'Kênh(MKT)',
-      //   dataIndex: 'pageName',
-      //   render: (_row, value: any) => (
-      //     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      //       <img
-      //         src={value?.iconImageUrl}
-      //         alt=""
-      //         style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
-      //       />
-      //       <Box>
-      //         <Typography>{value.pageName}</Typography>
-      //         {/* <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography> */}
-      //       </Box>
-      //     </Box>
-      //   ),
-      // },
       {
         title: 'Tags',
         dataIndex: 'tag',
@@ -245,11 +228,6 @@ const CustomerList2 = () => {
                           }}
                         >
                           {column.map((header: any) => {
-                            // console.log(
-                            //   `check ${header.title}`,
-                            //   dataSelect.includes(header.dataIndex),
-                            // );
-
                             const isSelected = dataSelect.includes(header.dataIndex);
 
                             return (
