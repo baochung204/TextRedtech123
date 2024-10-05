@@ -14,7 +14,11 @@ import {
 import { IconMenu2 } from '@tabler/icons-react';
 import { Link as RouterLink } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import { setDarkMode, toggleMobileSidebar, toggleSidebar } from 'src/store/customizer/CustomizerSlice';
+import {
+  setDarkMode,
+  toggleMobileSidebar,
+  toggleSidebar,
+} from 'src/store/customizer/CustomizerSlice';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import Cart from './Cart';
 import Language from './Language';
@@ -26,9 +30,6 @@ import Search from './Search';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-
-
-
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const lgDown = useMediaQuery((theme: any) => theme.breakpoints.down('xl'));
@@ -37,15 +38,15 @@ const Header = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const dispatch = useDispatch();
 
-  const [check, setCheck] = useState<boolean>(false)
+  const [check, setCheck] = useState<boolean>(false);
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-
-    width: 62,
-    height: 34,
+    width: 53,
+    height: 32,
     padding: 7,
     '& .MuiSwitch-switchBase': {
-      margin: 1,
+      // margin: 3,
+      margin: '4px 0px 0px 0px',
       padding: 0,
       transform: 'translateX(6px)',
       '&.Mui-checked': {
@@ -67,8 +68,8 @@ const Header = () => {
     },
     '& .MuiSwitch-thumb': {
       backgroundColor: `${!check ? '#FF5757' : '#001e3c'}`,
-      width: 32,
-      height: 32,
+      width: 25,
+      height: 25,
       '&::before': {
         content: "''",
         position: 'absolute',
@@ -96,8 +97,6 @@ const Header = () => {
     },
   }));
 
-
-
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
     background: theme.palette.background.paper,
@@ -113,17 +112,14 @@ const Header = () => {
   }));
   // const a = 70000;
 
-
-
-
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheck(event.target.checked);
     // if (!check) {
     //   dispatch(setDarkMode('light'))
     // } else dispatch(setDarkMode('dark'))
     if (!check) {
-      dispatch(setDarkMode('dark'))
-    } else dispatch(setDarkMode('light'))
+      dispatch(setDarkMode('dark'));
+    } else dispatch(setDarkMode('light'));
   };
 
   return (
