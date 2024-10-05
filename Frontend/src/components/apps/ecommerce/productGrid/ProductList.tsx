@@ -7,6 +7,7 @@ import {
   Grid,
   Skeleton,
   Stack,
+  TablePagination,
   Theme,
   Tooltip,
   Typography,
@@ -14,7 +15,7 @@ import {
 } from '@mui/material';
 import { IconBasket, IconMenu2 } from '@tabler/icons-react';
 import { filter, orderBy } from 'lodash';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
 import { useDispatch, useSelector } from 'src/store/Store';
@@ -37,6 +38,17 @@ interface Props {
 const ProductList = ({ onClick }: Props) => {
   const dispatch = useDispatch();
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(3);
+
+  const handleChangePage = (newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -129,6 +141,8 @@ const ProductList = ({ onClick }: Props) => {
     return () => clearTimeout(timer);
   }, []);
 
+  const paginatedData = getProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
   return (
     <Box>
       {/* Header */}
@@ -158,8 +172,8 @@ const ProductList = ({ onClick }: Props) => {
 
       {/* Product Listing */}
       <Grid container spacing={3}>
-        {getProducts.length > 0 ? (
-          getProducts.map((product) => (
+        {paginatedData.length > 0 ? (
+          paginatedData.map((product) => (
             <Grid
               item
               xs={12}
@@ -298,6 +312,16 @@ const ProductList = ({ onClick }: Props) => {
           </Grid>
         )}
       </Grid>
+      <TablePagination
+        rowsPerPageOptions={[3, 6, 9]}
+        component="div"
+        count={getProducts.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={(_event, newPage) => handleChangePage(newPage)}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage="Số hàng trên mỗi trang"
+      />
     </Box>
   );
 };
