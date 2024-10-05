@@ -33,6 +33,7 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
     '4/11/2001',
     '5/11/2001',
     '6/11/2001',
+    '7/11/2001',
   ];
 
   const optionsgredientchart: Props = {

@@ -40,7 +40,7 @@ import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
 import PageContainer from 'src/components/container/PageContainer';
-
+import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 interface cardType {
   icon: string;
   title: string;
@@ -360,7 +360,7 @@ const CollaboratePost = () => {
                       flexDirection: 'column',
                       alignItems: 'center', // Center horizontally
                       justifyContent: 'center', // Center vertically
-                      backgroundColor: '#FDEDE8',
+                      backgroundColor: 'error.light',
                       padding: '20px',
                       borderRadius: '14px',
                     }}
@@ -385,7 +385,7 @@ const CollaboratePost = () => {
                         color="textSecondary"
                         variant="h6"
                         fontWeight={400}
-                        sx={{ color: '#757575', margin: '10px 0' }}
+                        sx={{ color: 'main.light', margin: '10px 0' }}
                       >
                         Đối tác cá nhân
                       </Typography>
@@ -459,7 +459,18 @@ const CollaboratePost = () => {
                             placement="top"
                             arrow
                           >
-                            <IconInfoCircle />
+                            {/* <IconInfoCircle /> */}
+                            {/* IconDescriptionAfl */}
+                            <Box
+                              component="img"
+                              src={IconDescriptionAfl}
+                              alt="Description of the image"
+                              width={20}
+                              sx={{
+                                borderRadius: '8px',
+                                ml: 1,
+                              }}
+                            />
                           </Tooltip>
                         </Typography>
                       </Grid>

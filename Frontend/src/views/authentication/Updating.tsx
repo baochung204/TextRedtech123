@@ -27,7 +27,7 @@ const Updating = () => {
           Đang cập nhật...
         </Typography>
         <Typography align="center" variant="h6" mb={4}>
-          Website đang được xây dựng. Vui lòng quay lại sau!
+          Website đang trong quá trình hoàn thiện. Vui lòng quay lại sau!
         </Typography>
         <Button color="primary" variant="contained" component={Link} to="/" disableElevation>
           Trở về trang chủ

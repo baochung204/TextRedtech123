@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   CardContent,
   Fab,
@@ -6,7 +7,7 @@ import {
   IconButton,
   Stack,
   Tab,
-  Typography
+  Typography,
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -25,6 +26,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchIntegrations } from 'src/store/apps/integration/integrationSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import Develop from './Develop';
+import { useTheme } from '@emotion/react';
 // import { Api } from 'src/store/apps/integration/integrationSlice';
 
 // interface Assistant {
@@ -143,6 +145,7 @@ import Develop from './Develop';
 
 const Integration = () => {
   const [value, setValue] = React.useState('1');
+  const theme = useTheme();
   const dispatch = useDispatch<AppDispatch>();
   const dataIntegration = useSelector((state: AppState) => state.integration.data);
   useEffect(() => {
@@ -225,7 +228,11 @@ const Integration = () => {
                       <BlankCard>
                         <CardContent>
                           <Stack direction={'row'} gap={2} alignItems="center">
-                            {/* <Avatar sx={{borderRadius:'50%'}} alt="Remy Sharp" src={integration.imgsrc} /> */}
+                            <Avatar
+                              sx={{ borderRadius: '50%' }}
+                              alt="Remy Sharp"
+                              src={integration.imgsrc}
+                            />
                             <Box>
                               <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
                                 {integration.name}
@@ -234,7 +241,22 @@ const Integration = () => {
                                 variant="caption"
                                 sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
                               >
-                                {/* <CircleIcon sx={{ fontSize: '10px', color: `${integration.isConnected ? '#46AB5E' : '#e0e0e0'}` }} /> */}
+                                {/* <CircleIcon
+                                  sx={{
+                                    fontSize: '10px',
+                                    color: `${integration.isConnected ? '#46AB5E' : '#e0e0e0'}`,
+                                  }}
+                                /> */}
+                                <Box
+                                  sx={{
+                                    backgroundColor: integration.isConnected
+                                      ? theme.palette.success.main
+                                      : 'gray',
+                                    borderRadius: '100%',
+                                    height: '10px',
+                                    width: '10px',
+                                  }}
+                                />
                                 {integration.id}
                               </Typography>
                             </Box>

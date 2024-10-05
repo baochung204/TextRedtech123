@@ -1,17 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Box, CardContent, Grid, Typography } from '@mui/material';
-import iconExpense from 'src/assets/images/icon.png/expense.png';
-import iconRotation from 'src/assets/images/icon.png/rotation.png';
-import icon5 from 'src/assets/images/svgs/icon-favorites.svg';
-import icon4 from 'src/assets/images/svgs/icon-mailbox.svg';
-import icon3 from 'src/assets/images/svgs/icon-briefcase.svg';
-import icon2 from 'src/assets/images/svgs/icon-user-male.svg';
-import gmv from 'src/assets/Adminphoto/gmv.png';
 import aov from 'src/assets/Adminphoto/aov.png';
 import cvr from 'src/assets/Adminphoto/cvr.png';
-import customer from 'src/assets/Adminphoto/khách hàng.png';
 import order from 'src/assets/Adminphoto/dơn hang.png';
+import gmv from 'src/assets/Adminphoto/gmv.png';
+import customer from 'src/assets/Adminphoto/khách hàng.png';
+import iconExpense from 'src/assets/images/icon.png/expense.png';
+import budget from 'src/assets/Adminphoto/chi phi.png';
 
 interface cardType {
   icon: string;
@@ -51,7 +47,7 @@ const topcards: cardType[] = [
     bgcolor: 'primary',
   },
   {
-    icon: iconExpense,
+    icon: budget,
     title: 'Chi Phí',
     digits: '251K',
     bgcolor: 'primary',

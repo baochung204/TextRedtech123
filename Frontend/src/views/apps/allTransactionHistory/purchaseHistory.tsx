@@ -48,7 +48,7 @@ const PurchaseHistoryInProfile = () => {
       dataIndex: 'id',
       numeric: false,
       disablePadding: false,
-      title: 'ID hóa đơn',
+      title: 'ID',
     },
     {
       dataIndex: 'date',

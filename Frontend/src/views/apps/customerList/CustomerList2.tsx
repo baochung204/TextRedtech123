@@ -67,7 +67,7 @@ const CustomerList2 = () => {
   const column = useMemo<Column[]>(
     () => [
       {
-        title: 'ID khách hàng',
+        title: 'ID',
         dataIndex: 'idCustomer',
       },
 
@@ -76,34 +76,22 @@ const CustomerList2 = () => {
         dataIndex: 'dateTime',
       },
       {
+        title: 'Tên khách hàng',
+        dataIndex: 'nameCustomer',
+      },
+      {
+        title: 'SĐT',
+        dataIndex: 'phoneNumber',
+      },
+      {
         title: 'Trợ lý',
         dataIndex: 'assistant',
       },
-      // {
-      //   title: 'Kênh(MKT)',
-      //   dataIndex: 'pageName',
-      //   render: (_row, value: any) => (
-      //     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      //       <img
-      //         src={value?.iconImageUrl}
-      //         alt=""
-      //         style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
-      //       />
-      //       <Box>
-      //         <Typography>{value.pageName}</Typography>
-      //         {/* <Typography style={{ fontSize: '12px', color: '#ccc' }}>{'MKT000' + value.id}</Typography> */}
-      //       </Box>
-      //     </Box>
-      //   ),
-      // },
       {
         title: 'Tags',
         dataIndex: 'tag',
       },
-      {
-        title: 'Tên khách hàng',
-        dataIndex: 'nameCustomer',
-      },
+
       {
         title: 'Tổng chi tiêu',
         dataIndex: 'orderValue',
@@ -113,13 +101,14 @@ const CustomerList2 = () => {
           </Box>
         ),
       },
-      {
-        title: 'SĐT',
-        dataIndex: 'phoneNumber',
-      },
+
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
       },
     ],
     [],
@@ -170,13 +159,13 @@ const CustomerList2 = () => {
                   >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                        {/* <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Tooltip title="Thêm mới khách hàng" onClick={handleOpenPopup}>
                             <IconButton color="primary" aria-label="Add to cart">
                               <AddCircleIcon sx={{ fontSize: 30 }} />
                             </IconButton>
                           </Tooltip>
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={10}>
                           <TextField
                             id="outlined-search"
@@ -245,11 +234,6 @@ const CustomerList2 = () => {
                           }}
                         >
                           {column.map((header: any) => {
-                            // console.log(
-                            //   `check ${header.title}`,
-                            //   dataSelect.includes(header.dataIndex),
-                            // );
-
                             const isSelected = dataSelect.includes(header.dataIndex);
 
                             return (

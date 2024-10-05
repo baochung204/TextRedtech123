@@ -269,7 +269,7 @@ const Main = () => {
         },
         {
           dataIndex: 'customerId',
-          title: 'ID khách hàng',
+          title: 'ID',
         },
         {
           dataIndex: 'title',

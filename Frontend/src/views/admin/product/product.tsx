@@ -213,7 +213,7 @@ const ProductAdmin = () => {
         ),
       },
       {
-        title: 'ID khách hàng',
+        title: 'ID',
         dataIndex: 'id_khach_hang',
       },
       {

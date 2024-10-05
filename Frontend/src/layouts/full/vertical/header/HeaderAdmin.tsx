@@ -1,6 +1,19 @@
-import { AppBar, Box, IconButton, Stack, Switch, Toolbar, styled, useMediaQuery } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Stack,
+  Switch,
+  Toolbar,
+  styled,
+  useMediaQuery,
+} from '@mui/material';
 import { IconMenu2 } from '@tabler/icons-react';
-import { setDarkMode, toggleMobileSidebar, toggleSidebar } from 'src/store/customizer/CustomizerSlice';
+import {
+  setDarkMode,
+  toggleMobileSidebar,
+  toggleSidebar,
+} from 'src/store/customizer/CustomizerSlice';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import Language from './Language';
 import MobileRightSidebar from './MobileRightSidebar';
@@ -17,16 +30,15 @@ const HeaderAdmin = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
   const dispatch = useDispatch();
 
-
-  const [check, setCheck] = useState<boolean>(false)
+  const [check, setCheck] = useState<boolean>(false);
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-
-    width: 62,
-    height: 34,
+    width: 53,
+    height: 32,
     padding: 7,
     '& .MuiSwitch-switchBase': {
-      margin: 1,
+      // margin: 3,
+      margin: '4px 0px 0px 0px',
       padding: 0,
       transform: 'translateX(6px)',
       '&.Mui-checked': {
@@ -48,8 +60,8 @@ const HeaderAdmin = () => {
     },
     '& .MuiSwitch-thumb': {
       backgroundColor: `${!check ? '#FF5757' : '#001e3c'}`,
-      width: 32,
-      height: 32,
+      width: 25,
+      height: 25,
       '&::before': {
         content: "''",
         position: 'absolute',
@@ -82,8 +94,8 @@ const HeaderAdmin = () => {
     //   dispatch(setDarkMode('light'))
     // } else dispatch(setDarkMode('dark'))
     if (!check) {
-      dispatch(setDarkMode('dark'))
-    } else dispatch(setDarkMode('light'))
+      dispatch(setDarkMode('dark'));
+    } else dispatch(setDarkMode('light'));
   };
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
@@ -127,7 +139,7 @@ const HeaderAdmin = () => {
           <Box>
             <MaterialUISwitch checked={check} onChange={handleSwitchChange} />
           </Box>
-          
+
           {lgDown ? <MobileRightSidebar /> : null}
 
           <Profile />

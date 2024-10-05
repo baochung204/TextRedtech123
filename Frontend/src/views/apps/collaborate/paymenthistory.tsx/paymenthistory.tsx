@@ -96,7 +96,7 @@ const headCells: HeadCell[] = [
     id: 'MHD',
     numeric: false,
     disablePadding: false,
-    label: 'ID hóa đơn',
+    label: 'ID',
   },
   {
     id: 'date',

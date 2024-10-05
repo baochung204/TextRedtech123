@@ -24,7 +24,7 @@ import {
   Stack,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
@@ -42,6 +42,7 @@ import avt from 'src/assets/images/icon/avt.jpg';
 import AlertChat from '../../chats/AlertChat';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
+import IconCrv from 'src/assets/ICON/cvr.png';
 
 interface FilmsData {
   title: string;
@@ -212,7 +213,7 @@ const ListAssistant = () => {
                   />
                   <Box
                     component="img"
-                    src={avt}
+                    src={rank.avatar}
                     sx={{
                       position: 'absolute',
                       top: { xs: '32.8%', sm: '32.8%', md: '33.4%', lg: '33.1%' },
@@ -303,7 +304,7 @@ const ListAssistant = () => {
                           ':hover': { backgroundColor: '#FFB300' },
                         }}
                         component={Link}
-                        to={`/assistants/${rank.id}`}
+                        to={`/assistants/detail/${rank.id}`}
                       >
                         <IconStackBack stroke={2} />
                       </Button>
@@ -329,8 +330,8 @@ const ListAssistant = () => {
                                   </Avatar>
                                 </Stack>
                               </Grid>
-                              <Grid item xs={4} container justifyContent="flex-end">
-                                <img src={Iconchart} width={50} alt="" />
+                              <Grid item xs={4} container justifyContent="flex-end" sx={{ px: 2 }}>
+                                <img src={IconCrv} width={50} alt="" />
                               </Grid>
                             </Grid>
                           </CardContent>
@@ -389,12 +390,12 @@ const ListAssistant = () => {
                                       px: { md: '10px', lg: '15px' },
                                     }}
                                   >
-                                    CC: {rank.cc}
+                                    Khách hàng: {rank.cc}
                                   </Button>
                                 </Tooltip>
                               </Grid>
                               <Grid item xs={12}>
-                                <Tooltip title="Số lượng đơn hàng" placement="top">
+                                <Tooltip title="Số lượng chuyển đổi" placement="top">
                                   <Button
                                     variant="outlined"
                                     color="warning"
@@ -404,7 +405,7 @@ const ListAssistant = () => {
                                       px: { md: '10px', lg: '5px' },
                                     }}
                                   >
-                                    OC: {rank.oc}
+                                    Chuyển đổi : {rank.oc}
                                   </Button>
                                 </Tooltip>
                               </Grid>

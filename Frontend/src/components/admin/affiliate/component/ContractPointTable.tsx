@@ -36,7 +36,7 @@ interface FilmsData {
   title: string;
 }
 const FilmsData: FilmsData[] = [
-  { id: 1, title: 'Mã hợp đồng' },
+  { id: 1, title: 'ID' },
   { id: 2, title: 'Mã khách hàng' },
   { id: 3, title: 'Ngày tạo' },
   { id: 4, title: 'Ngày ký' },
@@ -262,7 +262,7 @@ const ContractPointTable = () => {
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    <Typography variant="h6">Mã hợp đồng</Typography>
+                    <Typography variant="h6">ID</Typography>
                   </TableCell>
                 )}{' '}
                 {MAKH && (

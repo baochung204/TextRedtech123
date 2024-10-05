@@ -39,7 +39,7 @@ interface FilmsData {
   title: string;
 }
 const FilmsData: FilmsData[] = [
-  { id: 1, title: 'ID hóa đơn' },
+  { id: 1, title: 'ID' },
   { id: 2, title: 'ID đơn hàng' },
   { id: 3, title: 'Ngày tạo' },
   { id: 4, title: 'Loại tài khoản' },
@@ -290,7 +290,7 @@ const InvoiceTable = () => {
               <TableRow>
                 {MAHd && (
                   <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                    <Typography variant="h6">ID hóa đơn</Typography>
+                    <Typography variant="h6">ID</Typography>
                   </TableCell>
                 )}
                 {MADH && (
