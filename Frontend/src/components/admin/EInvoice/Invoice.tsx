@@ -168,11 +168,16 @@ const Invoice = () => {
       {
         title: 'ID',
         dataIndex: 'id_bill',
+        // isValids: true,
       },
 
       {
         title: 'ID đơn hàng',
         dataIndex: 'id_order',
+      },
+      {
+        title: 'ID khách hàng',
+        dataIndex: 'id_customer',
       },
       {
         title: 'Ngày tạo',
@@ -195,59 +200,73 @@ const Invoice = () => {
       {
         title: 'Tên công ty',
         dataIndex: 'name_company',
+        isValids: false,
       },
       {
         title: 'Mã số thuế',
         dataIndex: 'tax_code',
+        isValids: false,
       },
       {
         title: 'Nội dung hóa đơn',
         dataIndex: 'content_bill',
+        isValids: false,
       },
       {
         title: 'DVT',
         dataIndex: 'dvt',
+        isValids: false,
       },
       {
         title: 'Số lượng',
         dataIndex: 'amount',
+        isValids: false,
       },
       {
         title: 'Đơn giá',
         dataIndex: 'price',
+        isValids: false,
       },
       {
         title: 'Thành tiền',
         dataIndex: 'into_money',
+        isValids: false,
       },
 
       {
         title: 'VAT',
         dataIndex: 'vat',
+        isValids: false,
       },
       {
         title: 'Tổng(VAT)',
         dataIndex: 'total_vat',
+        isValids: false,
       },
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+        isValids: false,
       },
       {
         title: 'Người đại diện',
         dataIndex: 'presentative',
+        isValids: false,
       },
       {
         title: 'Chức vụ',
         dataIndex: 'position',
+        isValids: false,
       },
       {
         title: 'SĐT công ty',
         dataIndex: 'phone_number',
+        isValids: false,
       },
       {
         title: 'Email công ty',
         dataIndex: 'email',
+        isValids: false,
       },
       {
         title: 'Trạng thái',

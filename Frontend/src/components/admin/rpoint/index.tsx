@@ -4,6 +4,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
   Box,
+  Button,
   Checkbox,
   Grid,
   IconButton,
@@ -12,6 +13,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Tooltip,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -42,12 +44,12 @@ const PublisherTablePage: React.FC = () => {
         dataIndex: 'id',
       },
       {
-        title: 'Tên gói R-Point',
-        dataIndex: 'package',
+        title: 'Ngày tạo',
+        dataIndex: 'createDate',
       },
       {
-        title: 'Model',
-        dataIndex: 'model',
+        title: 'Tên gói R-Point',
+        dataIndex: 'package',
       },
       {
         title: 'Số Points',
@@ -60,15 +62,15 @@ const PublisherTablePage: React.FC = () => {
         ),
       },
       {
+        title: 'Model',
+        dataIndex: 'model',
+      },
+      {
         title: 'Giá tiền',
         dataIndex: 'money',
         render: (value: string) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>{value} VNĐ</Box>
         ),
-      },
-      {
-        title: 'Ngày tạo',
-        dataIndex: 'createDate',
       },
       {
         dataIndex: 'isActive',
@@ -85,9 +87,9 @@ const PublisherTablePage: React.FC = () => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            <IconButton>
+            {/* <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton>
+            </IconButton> */}
           </>
         ),
       },
@@ -149,7 +151,7 @@ const PublisherTablePage: React.FC = () => {
             item
             xs={4}
             sm={4}
-            md={4}
+            md={3.5}
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -191,69 +193,87 @@ const PublisherTablePage: React.FC = () => {
           </Grid>
           <Grid
             item
-            xs={4}
+            xs={4.5}
             sx={{
               display: 'flex',
               justifyContent: 'end',
               alignItems: 'center',
             }}
           >
-            <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={column.length - dataSelect.length} color="primary">
-                <FilterListIcon />
-              </Badge>
-            </IconButton>
+            <Grid container sx={{ alignItems: 'center' }}>
+              <Grid item xs={7} sx={{ display: 'flex', gap: 1.5 }}>
+                <Tooltip title="Nhập tỉ giá Point/Vnd ">
+                  <TextField
+                    id="outlined-search"
+                    placeholder="Point/Vnd"
+                    size="small"
+                    type="search"
+                    variant="outlined"
+                    inputProps={{ 'aria-label': 'Search Followers' }}
+                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' }, width: 150 }}
+                  />
+                </Tooltip>
+                <Button variant="contained">Lưu</Button>
+              </Grid>
 
-            <Select
-              multiple
-              value={dataSelect}
-              displayEmpty
-              onChange={handleColumnChange}
-              renderValue={() => 'Sửa đổi cột'}
-              size="small"
-              MenuProps={{
-                PaperProps: {
-                  sx: {
-                    marginTop: 1,
-                    maxHeight: 400,
-                    '&::-webkit-scrollbar': {
-                      width: '4px',
+              <Grid item xs={5} sx={{ display: 'flex' }}>
+                <IconButton aria-label="filter" sx={{ mr: 2 }}>
+                  <Badge badgeContent={column.length - dataSelect.length} color="primary">
+                    <FilterListIcon />
+                  </Badge>
+                </IconButton>
+                <Select
+                  multiple
+                  value={dataSelect}
+                  displayEmpty
+                  onChange={handleColumnChange}
+                  renderValue={() => 'Sửa đổi cột'}
+                  size="small"
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        marginTop: 1,
+                        maxHeight: 400,
+                        '&::-webkit-scrollbar': {
+                          width: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: '#D2D2D2',
+                          borderRadius: '10px',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                          backgroundColor: '#C6C8CC',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                          backgroundColor: '#f1f1f1',
+                        },
+                      },
                     },
-                    '&::-webkit-scrollbar-thumb': {
-                      backgroundColor: '#D2D2D2',
-                      borderRadius: '10px',
+                    anchorOrigin: {
+                      vertical: 'bottom',
+                      horizontal: 'right',
                     },
-                    '&::-webkit-scrollbar-thumb:hover': {
-                      backgroundColor: '#C6C8CC',
+                    transformOrigin: {
+                      vertical: 'top',
+                      horizontal: 'right',
                     },
-                    '&::-webkit-scrollbar-track': {
-                      backgroundColor: '#f1f1f1',
-                    },
-                  },
-                },
-                anchorOrigin: {
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                },
-                transformOrigin: {
-                  vertical: 'top',
-                  horizontal: 'right',
-                },
-              }}
-            >
-              {column.map((header: any) => {
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                  }}
+                >
+                  {column.map((header: any) => {
+                    // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
-                const isSelected = dataSelect.includes(header.dataIndex);
+                    const isSelected = dataSelect.includes(header.dataIndex);
 
-                return (
-                  <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                    <Checkbox checked={!isSelected} />
-                    <ListItemText primary={header.title} />
-                  </MenuItem>
-                );
-              })}
-            </Select>
+                    return (
+                      <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                        <Checkbox checked={!isSelected} />
+                        <ListItemText primary={header.title} />
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
