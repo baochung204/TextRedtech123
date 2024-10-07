@@ -255,7 +255,7 @@ const AddBlog = () => {
   const formik = useFormik({
     initialValues: {
       title: '',
-      url: '',
+      // url: '',
       description: '',
       content: '',
       tags: [],
@@ -265,7 +265,7 @@ const AddBlog = () => {
     },
     validationSchema: Yup.object({
       title: Yup.string().required('Tiêu đề là bắt buộc'),
-      url: Yup.string().url('URL không hợp lệ').required('URL là bắt buộc'),
+      // url: Yup.string().url('URL không hợp lệ').required('URL là bắt buộc'),
       description: Yup.string().required('Mô tả là bắt buộc'),
       content: Yup.string().required('Nội dung là bắt buộc'),
       thumbnail: Yup.string().required('Ảnh đại diện là bắt buộc'),
@@ -303,9 +303,9 @@ const AddBlog = () => {
   const handleImageUpload = async (file: File) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      const range = quillRef.getEditor().getSelection();
+      const range = quillRef.current?.getEditor().getSelection();
       if (range) {
-        quillRef.getEditor().insertEmbed(range.index, 'image', reader.result);
+        quillRef.current?.getEditor().insertEmbed(range.index, 'image', reader.result);
       }
     };
     reader.readAsDataURL(file);
@@ -387,7 +387,7 @@ const AddBlog = () => {
               )}
             </Grid>
 
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <CustomFormLabel htmlFor="url">Đường link URL</CustomFormLabel>
               <CustomTextField
                 id="url"
@@ -399,7 +399,7 @@ const AddBlog = () => {
                 error={formik.touched.url && Boolean(formik.errors.url)}
                 helperText={formik.touched.url && formik.errors.url}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12}>
               <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
@@ -435,7 +435,15 @@ const AddBlog = () => {
                   onChange={formik.handleChange}
                 >
                   <FormControlLabel value="published" control={<Radio />} label="Đăng" />
-                  <FormControlLabel value="draft" control={<Radio />} label="Nháp" />
+<<<<<<< HEAD
+                  <FormControlLabel value="draft" control={<Radio />} label="Ẩn" />
+=======
+                  <FormControlLabel
+                    value="draft"
+                    control={<Radio />}
+                    label="Ẩn bỏ đường link url"
+                  />
+>>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
                 </RadioGroup>
                 {formik.touched.status && formik.errors.status && (
                   <Typography color="error" variant="caption" sx={{ mt: 1 }}>
@@ -455,7 +463,7 @@ const AddBlog = () => {
                   handleThumbnailChange(event);
                   const file = event.target.files?.[0];
                   if (file) {
-                    handleImageUpload(file); // Gọi hàm chèn hình ảnh vào nội dung
+                    handleImageUpload(file);
                   }
                 }}
                 style={{ display: 'none' }}

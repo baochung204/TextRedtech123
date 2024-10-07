@@ -16,18 +16,18 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconBox, IconChartBar, IconSearch, IconZoomMoney } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import bill from 'src/assets/Adminphoto/dơn hang.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
 import Point from 'src/assets/images/icon.png/point.png';
 import RPoint from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataAffiliateTable } from './datatable/OrderTableData';
-import revenue from 'src/assets/Adminphoto/doanh thu.png';
-import bill from 'src/assets/Adminphoto/dơn hang.png';
-import commission from 'src/assets/Adminphoto/hoa hong.png';
 
 const dataSource = [
   {
@@ -225,13 +225,13 @@ const OrderAffiliate = () => {
         title: 'Hoa hồng',
         dataIndex: 'commission',
       },
-      {
-        title: 'Trạng thái',
-        dataIndex: '',
-        render: (_row: any, value: any) => (
-          <Chip label={value.status} color={getStatusAccountColor(value.status)} />
-        ),
-      },
+      // {
+      //   title: 'Trạng thái',
+      //   dataIndex: '',
+      //   render: (_row: any, value: any) => (
+      //     <Chip label={value.status} color={getStatusAccountColor(value.status)} />
+      //   ),
+      // },
     ],
     [],
   );

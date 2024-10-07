@@ -299,7 +299,8 @@ const FlashSale = () => {
             gap={'2px'}
             style={{ whiteSpace: 'nowrap' }}
           >
-            {value.sale.toLocaleString()} <img src={icontext} alt="" width={22} />
+            {value.sale.toLocaleString()} %
+            {/* <img src={icontext} alt="" width={22} /> */}
           </Typography>
         ),
       },
@@ -307,17 +308,20 @@ const FlashSale = () => {
         id: 'flashSale',
         title: 'Giá Flash-Sale',
         dataIndex: 'flashSale',
-        render: (_text: any, value: any) => (
-          <Typography
-            color="textSecondary"
-            variant="subtitle2"
-            display={'flex'}
-            gap={'2px'}
-            style={{ whiteSpace: 'nowrap' }}
-          >
-            {value.flashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
-          </Typography>
-        ),
+        render: (_text: any, value: any) => {
+          const calculatedFlashSale = value.listed * (1 - value.sale / 100);
+          return (
+            <Typography
+              color="textSecondary"
+              variant="subtitle2"
+              display={'flex'}
+              gap={'2px'}
+              style={{ whiteSpace: 'nowrap' }}
+            >
+              {calculatedFlashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
+            </Typography>
+          );
+        }
       },
       {
         id: 'buy',
@@ -438,131 +442,118 @@ const FlashSale = () => {
               </Badge>
             </IconButton>
 
-            <Grid item>
-              <Select
-                multiple
-                value={dataSelect}
-                displayEmpty
-                onChange={handleColumnChange}
-                renderValue={() => 'Sửa đổi cột'}
-                size="small"
-                MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      marginTop: 1,
-                      maxHeight: 400,
-                      '&::-webkit-scrollbar': {
-                        width: '4px',
-                      },
-                      '&::-webkit-scrollbar-thumb': {
-                        backgroundColor: '#D2D2D2',
-                        borderRadius: '10px',
-                      },
-                      '&::-webkit-scrollbar-thumb:hover': {
-                        backgroundColor: '#C6C8CC',
-                      },
-                      '&::-webkit-scrollbar-track': {
-                        backgroundColor: '#f1f1f1',
-                      },
+            <Select
+              multiple
+              value={dataSelect}
+              displayEmpty
+              onChange={handleColumnChange}
+              renderValue={() => 'Sửa đổi cột'}
+              size="small"
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    marginTop: 1,
+                    maxHeight: 400,
+                    '&::-webkit-scrollbar': {
+                      width: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#D2D2D2',
+                      borderRadius: '10px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                      backgroundColor: '#C6C8CC',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                      backgroundColor: '#f1f1f1',
                     },
                   },
-                  anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  },
-                  transformOrigin: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                  },
-                }}
-              >
-                <MenuItem>
-                  <Checkbox
-                    checked={dataSelect.length === column[value].length}
-                    indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        const allColumns = column[value].map((header: Column) => header.dataIndex);
-                        setDataSelect(allColumns);
-                      } else {
-                        setDataSelect([]);
-                      }
-                    }}
-                  />
-                  <ListItemText primary="Chọn tất cả" />
-                </MenuItem>
-                {column[value].map((header: Column) => {
-                  const isSelected = dataSelect.includes(header.dataIndex);
-                  return (
-                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={isSelected} />
-                      <ListItemText primary={header.title} />
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Grid>
+                },
+                anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                },
+                transformOrigin: {
+                  vertical: 'top',
+                  horizontal: 'right',
+                },
+              }}
+            >
+              {column.map((header: any) => {
+                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                const isSelected = dataSelect.includes(header.dataIndex);
+
+                return (
+                  <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                    <Checkbox checked={!isSelected} />
+                    <ListItemText primary={header.title} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </Grid>
+          <Grid item xs={4}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+              tới
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value1}
+                  onChange={(newValue) => {
+                    setValue1(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+            </Box>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <BlankCard>
-            <CustomTable columns={column} dataSource={dataRows3} dataSelect={dataSelect} />
-          </BlankCard>
-        </Grid>
-        <AddDflashsale isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
+      </Grid>
+      <Grid item xs={12}>
+        <BlankCard>
+          <CustomTable columns={column} dataSource={dataRows3} dataSelect={dataSelect} />
+        </BlankCard>
+      </Grid>
+      <AddDflashsale isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </div>
   );
 };

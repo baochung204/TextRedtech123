@@ -23,9 +23,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import blog from 'src/assets/Adminphoto/bai viet.png';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
-import reaction from 'src/assets/Adminphoto/luot timm.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import view from 'src/assets/NotificationAdmin/luot xem.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -35,6 +35,11 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
+<<<<<<< HEAD
+import { useNavigate } from 'react-router';
+=======
+import Iconlike from 'src/assets/ICON/like.png';
+>>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -66,7 +71,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={blog} width={30} />
+        <img src={blog} width={30} alt="Blog" />
       </Box>
     ),
   },
@@ -86,7 +91,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={view} width={30} />
+        <img src={view} width={30} alt="View" />
       </Box>
     ),
   },
@@ -106,13 +111,13 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={revenue} width={30} />
+        <img src={revenue} width={30} alt="Revenue" />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
-    title: 'Lượt tim',
+    title: 'Lượt like',
     total: '120',
     icons: (
       <Box
@@ -126,7 +131,11 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img width={30} src={reaction} />
+<<<<<<< HEAD
+        <img width={30} src={reaction} alt="Reaction" />
+=======
+        <img width={30} src={Iconlike} />
+>>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
       </Box>
     ),
   },
@@ -138,8 +147,16 @@ interface Column {
   isValids?: boolean;
 }
 const BlogAdmin = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const nav = useNavigate();
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+<<<<<<< HEAD
+  const handleIconClick = () => {
+    nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
+  };
+
+=======
+>>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -231,7 +248,8 @@ const BlogAdmin = () => {
             style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
           >
             {value}
-            <Favorite color="error" />
+            {/* <Favorite color="error" /> */}
+            <img src={Iconlike} alt="" width={18} />
           </Typography>
         ),
       },
@@ -246,9 +264,19 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
-            <IconButton>
+<<<<<<< HEAD
+            <IconButton onClick={handleIconClick}>
               <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
             </IconButton>
+=======
+            <Link
+              to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
+            >
+              <IconButton>
+                <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+              </IconButton>{' '}
+            </Link>
+>>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
             <IconButton>
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>

@@ -153,7 +153,7 @@
   ],
   "customer": [
     {
-      "nameCustomer": "Lê Tài Đức",
+      "nameCustomer": "d",
       "dateTime": "2024-01-02",
       "idCustomer": "1",
       "assistant": "ABC",
@@ -162,7 +162,14 @@
       "tag": "Đơn hàng A",
       "totalSpend": "70",
       "phoneNumber": "0987654321",
-      "address": "Hà Nội"
+      "address": "Hà Nội",
+      "email": "duc.lt@redon.com",
+      "companyemail": "toannq@gmail.com",
+      "companyname": "Công ty THHH ABC",
+      "company_phone_number": "0987654321",
+      "company_address": "Hà Nội",
+      "tax_code": "123456789",
+      "company_website": "https://example.com"
     },
     {
       "nameCustomer": "Nguyễn Văn B",

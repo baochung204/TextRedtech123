@@ -33,28 +33,28 @@ interface DataRow {
   quantity: number;
   customerId: string;
   customerName: string;
-  tag: string;
+  tag: 'Hoạt động' | 'Đang hoạt động' | 'Ẩn';
   use: number;
 }
 
 const dataRows: DataRow[] = [
   {
     id: 'MA001',
-    creationTime: '2024-09-01 08:30',
+    creationTime: '2024-09-01',
     voucherName: 'Sản phẩm mới',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'JDEwJG5zZ3J1c2',
     quantity: 234,
     customerId: 'Đồng',
     customerName: '19.000 đ',
-    tag: 'chưa sử dụng',
+    tag: 'Hoạt động',
     use: 23,
   },
   {
     id: 'MA002',
-    creationTime: '2024-09-02 09:15',
+    creationTime: '2024-09-02',
     voucherName: 'Mã giảm giá',
-    endTime: '2025-10-12 00:23',
+    endTime: '2025-10-12',
     Mavoucher: 'DFG3554F3TT4F',
     quantity: 680,
     customerId: 'Đồng',
@@ -64,50 +64,50 @@ const dataRows: DataRow[] = [
   },
   {
     id: 'MA003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03',
     voucherName: 'khách hàng thân thiết',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'DG335534TTGGE',
     quantity: 32,
     customerId: 'Phần trăm',
     customerName: '10%',
-    tag: 'quá hạn',
+    tag: 'Đang hoạt động',
     use: 21,
   },
   {
     id: 'MA004',
-    creationTime: '2024-09-04 11:20',
+    creationTime: '2024-09-04',
     voucherName: 'mini-game',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: '44FV43TG4V34G',
     quantity: 54,
     customerId: 'Phần trăm',
     customerName: '10%',
-    tag: 'đã sử dụng',
+    tag: 'Ẩn',
     use: 3,
   },
   {
     id: 'MA005',
-    creationTime: '2024-09-05 14:05',
+    creationTime: '2024-09-05',
     voucherName: ' sự kiện',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'DGH34T53167D5',
     quantity: 23,
     customerId: 'Phần trăm',
     customerName: '20%',
-    tag: 'quá hạn',
+    tag: 'Ẩn',
     use: 7,
   },
   {
     id: 'MA006',
-    creationTime: '2024-09-06 15:30',
+    creationTime: '2024-09-06',
     voucherName: 'khách hàng thân thiết',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'RH56YH563226TYB',
     quantity: 424,
     customerId: 'Phần trăm',
     customerName: '10%',
-    tag: 'đã sử dụng',
+    tag: 'Đang hoạt động',
     use: 23,
   },
 ];
@@ -234,7 +234,7 @@ const ListVoucher = () => {
             <Chip
               label={value}
               color={
-                value === 'chưa sử dụng' ? 'primary' : value === 'đã sử dụng' ? 'success' : 'error'
+                value === 'Hoạt động' ? 'primary' : value === 'Đang hoạt động' ? 'success' : 'error'
               }
             />
           );
@@ -331,131 +331,118 @@ const ListVoucher = () => {
               </Badge>
             </IconButton>
 
-            <Grid item>
-              <Select
-                multiple
-                value={dataSelect}
-                displayEmpty
-                onChange={handleColumnChange}
-                renderValue={() => 'Sửa đổi cột'}
-                size="small"
-                MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      marginTop: 1,
-                      maxHeight: 400,
-                      '&::-webkit-scrollbar': {
-                        width: '4px',
-                      },
-                      '&::-webkit-scrollbar-thumb': {
-                        backgroundColor: '#D2D2D2',
-                        borderRadius: '10px',
-                      },
-                      '&::-webkit-scrollbar-thumb:hover': {
-                        backgroundColor: '#C6C8CC',
-                      },
-                      '&::-webkit-scrollbar-track': {
-                        backgroundColor: '#f1f1f1',
-                      },
+            <Select
+              multiple
+              value={dataSelect}
+              displayEmpty
+              onChange={handleColumnChange}
+              renderValue={() => 'Sửa đổi cột'}
+              size="small"
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    marginTop: 1,
+                    maxHeight: 400,
+                    '&::-webkit-scrollbar': {
+                      width: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#D2D2D2',
+                      borderRadius: '10px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                      backgroundColor: '#C6C8CC',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                      backgroundColor: '#f1f1f1',
                     },
                   },
-                  anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  },
-                  transformOrigin: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                  },
-                }}
-              >
-                <MenuItem>
-                  <Checkbox
-                    checked={dataSelect.length === column[value].length}
-                    indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        const allColumns = column[value].map((header: Column) => header.dataIndex);
-                        setDataSelect(allColumns);
-                      } else {
-                        setDataSelect([]);
-                      }
-                    }}
-                  />
-                  <ListItemText primary="Chọn tất cả" />
-                </MenuItem>
-                {column[value].map((header: Column) => {
-                  const isSelected = dataSelect.includes(header.dataIndex);
-                  return (
-                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={isSelected} />
-                      <ListItemText primary={header.title} />
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Grid>
+                },
+                anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                },
+                transformOrigin: {
+                  vertical: 'top',
+                  horizontal: 'right',
+                },
+              }}
+            >
+              {column.map((header: any) => {
+                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                const isSelected = dataSelect.includes(header.dataIndex);
+
+                return (
+                  <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                    <Checkbox checked={!isSelected} />
+                    <ListItemText primary={header.title} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </Grid>
+          <Grid item xs={4}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+              tới
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value1}
+                  onChange={(newValue) => {
+                    setValue1(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+            </Box>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <BlankCard>
-            <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
-          </BlankCard>
-        </Grid>
-        <AddDialogvoucher isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
+      </Grid>
+      <Grid item xs={12}>
+        <BlankCard>
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
+        </BlankCard>
+      </Grid>
+      <AddDialogvoucher isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </div>
   );
 };

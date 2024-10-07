@@ -147,11 +147,11 @@ interface RechargeTransaction {
   email: string; // Email khách hàng
   phoneNumber: string; // Số điện thoại
   packageName: string; // Tên gói
-  points: JSX.Element; // Số point
+  points: number; // Số point
   listedPrice: string; // Giá niêm yết
   promotionCode?: string; // Mã khuyến mại (optional nếu có)
   paymentAmount: string; // Số tiền
-  totalOrder: number; // Tổng đơn
+  totalOrder: string; // Doanh thu
   publisherId: string; // ID publisher
   affiliateCommission: string; // Hoa hồng Affiliate
   status: JSX.Element; // Trạng thái (ví dụ: Đã thanh toán, Chưa thanh toán)
@@ -185,18 +185,14 @@ const dataRows: RechargeTransaction[] = [
     email: 'nguyenvana@example.com',
     phoneNumber: '0123456789',
     packageName: 'Gói cơ bản',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        100
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '20.000 ₫',
+    points: 100,
+
+    listedPrice: '200.000',
     promotionCode: 'PROMO10',
-    paymentAmount: '180.000 ₫',
-    totalOrder: 1,
+    paymentAmount: '20.000',
+    totalOrder: '180.000',
     publisherId: 'PUB001',
-    affiliateCommission: '9.000 ₫',
+    affiliateCommission: '20.000',
     status: renderStatus(2),
     invoice: 'INV001',
   },
@@ -207,18 +203,13 @@ const dataRows: RechargeTransaction[] = [
     email: 'tranthib@example.com',
     phoneNumber: '0987654321',
     packageName: 'Gói nâng cao',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        200
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '45.050 ₫',
+    points: 200,
+    listedPrice: '250.000',
     promotionCode: 'PROMO20',
-    paymentAmount: '320.000 ₫',
-    totalOrder: 2,
+    paymentAmount: '50.000',
+    totalOrder: '200.000',
     publisherId: 'PUB002',
-    affiliateCommission: '16.000 ₫',
+    affiliateCommission: '25.000',
     status: renderStatus(2),
     invoice: 'INV002',
   },
@@ -229,18 +220,13 @@ const dataRows: RechargeTransaction[] = [
     email: 'levanc@example.com',
     phoneNumber: '0123987654',
     packageName: 'Gói VIP',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        400
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '23.500 ₫',
+    points: 300,
+    listedPrice: '230.000',
     promotionCode: '',
-    paymentAmount: '1.000.000 ₫',
-    totalOrder: 1,
+    paymentAmount: '50.000',
+    totalOrder: '180.000',
     publisherId: 'PUB003',
-    affiliateCommission: '50.000 ₫',
+    affiliateCommission: '23.000',
     status: renderStatus(1),
     invoice: 'INV003',
   },
@@ -251,18 +237,13 @@ const dataRows: RechargeTransaction[] = [
     email: 'hoangthid@example.com',
     phoneNumber: '0234567890',
     packageName: 'Gói khuyến mãi',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        105
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '56.000 ₫',
+    points: 400,
+    listedPrice: '350.000',
     promotionCode: 'PROMO15',
-    paymentAmount: '25.000.000',
-    totalOrder: 1,
+    paymentAmount: '20.000',
+    totalOrder: '330.000',
     publisherId: 'PUB004',
-    affiliateCommission: '1.000.500 ₫ ',
+    affiliateCommission: '35.000 ',
     status: renderStatus(1),
     invoice: 'INV004',
   },
@@ -273,18 +254,13 @@ const dataRows: RechargeTransaction[] = [
     email: 'phamvane@example.com',
     phoneNumber: '0345678901',
     packageName: 'Gói thường',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        1200
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '252.000 ₫',
+    points: 400,
+    listedPrice: '252.000',
     promotionCode: '',
-    paymentAmount: '500.000 ₫',
-    totalOrder: 1,
+    paymentAmount: '25.000',
+    totalOrder: '227.000',
     publisherId: 'PUB005',
-    affiliateCommission: '50.000 ₫',
+    affiliateCommission: '25.200',
     status: renderStatus(2),
     invoice: 'INV005',
   },
@@ -295,18 +271,13 @@ const dataRows: RechargeTransaction[] = [
     email: 'ngothif@example.com',
     phoneNumber: '0456789012',
     packageName: 'Gói đặc biệt',
-    points: (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-        450
-        <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
-      </Box>
-    ),
-    listedPrice: '600.000 ₫',
+    points: 50,
+    listedPrice: '600.000',
     promotionCode: 'PROMO25',
-    paymentAmount: '520.000 ₫',
-    totalOrder: 2,
+    paymentAmount: '300.000',
+    totalOrder: '300.000',
     publisherId: 'PUB006',
-    affiliateCommission: '25.000 ₫',
+    affiliateCommission: '30.000',
     status: renderStatus(2),
     invoice: 'INV006',
   },
@@ -365,10 +336,29 @@ const OrderRPoint = () => {
       {
         dataIndex: 'points',
         title: 'Số point ',
+        render: (value: number) => (
+          <Box
+            sx={{
+              px: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'end',
+              gap: 0.5,
+              width: '70px',
+            }}
+          >
+            {value} <img src={Point} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+          </Box>
+        ),
       },
       {
         dataIndex: 'listedPrice',
         title: 'Giá niêm yết ',
+        render: (value: string) => (
+          <Box sx={{ px: 1, display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
+            {value} ₫
+          </Box>
+        ),
       },
       {
         dataIndex: 'promotionCode',
@@ -376,11 +366,21 @@ const OrderRPoint = () => {
       },
       {
         dataIndex: 'paymentAmount',
-        title: 'Số tiền  ',
+        title: 'Số tiền giảm  ',
+        render: (value: string) => (
+          <Box sx={{ px: 1, display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
+            {value} ₫
+          </Box>
+        ),
       },
       {
         dataIndex: 'totalOrder',
-        title: 'Tổng đơn',
+        title: 'Doanh thu',
+        render: (value: string) => (
+          <Box sx={{ px: 1, display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
+            {value} ₫
+          </Box>
+        ),
       },
       {
         dataIndex: 'publisherId',
@@ -389,6 +389,11 @@ const OrderRPoint = () => {
       {
         dataIndex: 'affiliateCommission',
         title: 'Hoa hồng Affiliate',
+        render: (value: string) => (
+          <Box sx={{ px: 1, display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
+            {value} ₫
+          </Box>
+        ),
       },
       {
         dataIndex: 'status',

@@ -1,44 +1,38 @@
 import {
+  Avatar,
   Box,
   Button,
   ButtonGroup,
-  Chip,
+  Card,
+  CardContent,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
   Divider,
   Grid,
   Rating,
-  Stack,
-  Typography,
-  useTheme,
   Slide,
-  TableContainer,
+  Stack,
   Table,
+  TableBody,
+  TableCell,
+  TableContainer,
   TableHead,
   TableRow,
-  TableCell,
-  TableBody,
-  Card,
-  CardContent,
+  Typography,
   useMediaQuery,
-  Avatar,
+  useTheme,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { TransitionProps } from '@mui/material/transitions';
+import { IconMinus, IconPlus } from '@tabler/icons-react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { default as logo, default as logoPoint } from 'src/assets/images/logos/R-Point.png';
+import products2 from 'src/assets/images/products/s24.jpg';
+import ChildCard from 'src/components/shared/ChildCard';
 import { useDispatch, useSelector } from 'src/store/Store';
 import { addToCart, fetchProducts } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';
-import { IconMinus, IconPlus } from '@tabler/icons-react';
-import logo from 'src/assets/images/logos/R-Point.png';
-import React from 'react';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
-import { TransitionProps } from '@mui/material/transitions';
-import ChildCard from 'src/components/shared/ChildCard';
-import products2 from 'src/assets/images/products/s24.jpg';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
-import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children: React.ReactElement },
@@ -142,12 +136,9 @@ const ProductDetail = () => {
               </Box>
             </Box>
           </Typography>
-          {/* Ratings */}
-          <Stack direction="row" alignItems="center" gap="10px" mt={2} pb={3}>
-            <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
-          </Stack>
+          <Divider sx={{ marginTop: '20px' }} />
           {/* Quantity selection */}
-          <Stack direction="row" alignItems="center" pb={5}>
+          <Stack direction="row" alignItems="center" pb={5} sx={{ marginTop: '40px' }}>
             <Typography variant="h6" mr={4}>
               Số lượng:
             </Typography>
@@ -172,7 +163,7 @@ const ProductDetail = () => {
                 size="large"
                 fullWidth
                 variant="contained"
-                onClick={handleBuyNowClick} // Open dialog when clicked
+                onClick={handleBuyNowClick}
               >
                 Mua ngay
               </Button>

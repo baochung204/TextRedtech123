@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Typography } from '@mui/material';
+import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -61,35 +61,37 @@ const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => 
       dataIndex: 'summary',
       title: 'Tóm tắt',
     },
-    {
-      dataIndex: 'functionCode',
-      title: 'Code function',
-    },
-    {
-      dataIndex: 'creator',
-      title: 'Người tạo',
-    },
-    {
-      dataIndex: 'status',
-      title: 'Trạng thái',
-      render: (_row: any, value: any) => (
-        <Typography color="textSecondary" variant="subtitle2">
-          <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
-        </Typography>
-      ),
-    },
+    // {
+    //   dataIndex: 'functionCode',
+    //   title: 'Code function',
+    // },
+    // {
+    //   dataIndex: 'creator',
+    //   title: 'Người tạo',
+    // },
+    // {
+    //   dataIndex: 'status',
+    //   title: 'Trạng thái',
+    //   render: (_row: any, value: any) => (
+    //     <Typography color="textSecondary" variant="subtitle2">
+    //       <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
+    //     </Typography>
+    //   ),
+    // },
     {
       dataIndex: 'actions',
       title: 'Hoạt động',
       render: ((_row: any, value: any) => (
-        <>
-          <IconButton onClick={() => { setOpen(true); setSelectId(value.id) }}>
-            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-          </IconButton>
-          <IconButton>
-            <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-          </IconButton>
-        </>
+        <Box display={'flex'} sx={{ justifyContent: 'center' }}>
+          <Tooltip title='Xem' placement='right'>
+            <IconButton onClick={() => { setOpen(true); setSelectId(value.id) }}>
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+            {/* <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton> */}
+          </Tooltip>
+        </Box>
       ))
     },
   ];

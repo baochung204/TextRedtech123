@@ -27,11 +27,12 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataInvoiceTable } from './datatable/InvoiceTableData';
-
+import IconWaitingForExport from 'src/assets/ICON/waitingForExport.png';
+import IconExport from 'src/assets/ICON/Export.png';
 const dataSource = [
   {
     bgColor: 'primary.light',
-    title: 'Đơn hàng',
+    title: 'Hóa đơn',
     total: '1907',
     icons: (
       <>
@@ -113,6 +114,46 @@ const dataSource = [
       </Box>
     ),
   },
+  {
+    bgColor: 'primary.light',
+    title: 'Đã xuất',
+    total: '123456',
+    icons: (
+      <Box
+        textAlign="center"
+        padding={1}
+        sx={{
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <img src={IconWaitingForExport} width={30} />
+      </Box>
+    ),
+  },
+  {
+    bgColor: 'primary.light',
+    title: 'Chờ xuất',
+    total: '1235',
+    icons: (
+      <Box
+        textAlign="center"
+        padding={1}
+        sx={{
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <img src={IconExport} width={30} />
+      </Box>
+    ),
+  },
 ];
 interface Column {
   title: string;
@@ -128,11 +169,16 @@ const Invoice = () => {
       {
         title: 'ID',
         dataIndex: 'id_bill',
+        // isValids: true,
       },
 
       {
         title: 'ID đơn hàng',
         dataIndex: 'id_order',
+      },
+      {
+        title: 'ID khách hàng',
+        dataIndex: 'id_customer',
       },
       {
         title: 'Ngày tạo',
@@ -155,59 +201,73 @@ const Invoice = () => {
       {
         title: 'Tên công ty',
         dataIndex: 'name_company',
+        isValids: false,
       },
       {
         title: 'Mã số thuế',
         dataIndex: 'tax_code',
+        isValids: false,
       },
       {
         title: 'Nội dung hóa đơn',
         dataIndex: 'content_bill',
+        isValids: false,
       },
       {
         title: 'DVT',
         dataIndex: 'dvt',
+        isValids: false,
       },
       {
         title: 'Số lượng',
         dataIndex: 'amount',
+        isValids: false,
       },
       {
         title: 'Đơn giá',
         dataIndex: 'price',
+        isValids: false,
       },
       {
         title: 'Thành tiền',
         dataIndex: 'into_money',
+        isValids: false,
       },
 
       {
         title: 'VAT',
         dataIndex: 'vat',
+        isValids: false,
       },
       {
         title: 'Tổng(VAT)',
         dataIndex: 'total_vat',
+        isValids: false,
       },
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+        isValids: false,
       },
       {
         title: 'Người đại diện',
         dataIndex: 'presentative',
+        isValids: false,
       },
       {
         title: 'Chức vụ',
         dataIndex: 'position',
+        isValids: false,
       },
       {
         title: 'SĐT công ty',
         dataIndex: 'phone_number',
+        isValids: false,
       },
       {
         title: 'Email công ty',
         dataIndex: 'email',
+        isValids: false,
       },
       {
         title: 'Trạng thái',
@@ -232,7 +292,7 @@ const Invoice = () => {
       },
       {
         title: 'Hoạt động',
-        dataIndex: 'phone_number',
+        dataIndex: '',
         // render: (_row:any, value: any) => (
         render: () => (
           <IconButton>
@@ -270,7 +330,7 @@ const Invoice = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={dataSource} totalColumn={4} />
+          <TopCard dataSource={dataSource} totalColumn={6} />
         </Grid>
 
         <Grid item xs={12}>
@@ -370,10 +430,8 @@ const Invoice = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
+                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
                   const isSelected = dataSelect.includes(header.dataIndex);
-
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
                       <Checkbox checked={!isSelected} />

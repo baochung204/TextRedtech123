@@ -1,8 +1,9 @@
-import { Box, Grid, MenuItem } from '@mui/material';
+import { Box, Button, Grid, MenuItem } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import LoopIcon from '@mui/icons-material/Loop';
 
 interface CurrencyType {
   value: string;
@@ -12,22 +13,18 @@ interface CurrencyType {
 const currencies: CurrencyType[] = [
   { value: 'female', label: 'Đồng' },
   { value: 'male', label: 'Phần trăm' },
-  // { value: 'other', label: 'Khác' },
 ];
-
-// const channels: CurrencyType[] = [
-//   { value: 'mkt', label: 'MKT' },
-//   { value: 'zl', label: 'Zalo' },
-//   { value: 'fb', label: 'Facebook' },
-//   { value: 'inst', label: 'Instagram' },
-//   { value: 'other', label: 'Other' },
-// ];
 
 const AddVoucher = () => {
   const [gender, setGender] = React.useState(currencies[0]?.value || '');
   const [Name, setName] = React.useState('');
-
   const [companyPhone, setCompanyPhone] = React.useState('');
+  const [discountCode, setDiscountCode] = React.useState('');
+
+  const generateRandomCode = () => {
+    const randomCode = Math.random().toString(36).substring(2, 10).toUpperCase();
+    setDiscountCode(randomCode);
+  };
 
   const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setGender(event.target.value as string);
@@ -35,9 +32,9 @@ const AddVoucher = () => {
 
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setter(event.target.value);
-    };
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setter(event.target.value);
+      };
 
   return (
     <div>
@@ -79,17 +76,35 @@ const AddVoucher = () => {
             </CustomSelect>
           </Grid>
           <Grid item lg={6} md={12}>
-            <CustomFormLabel htmlFor="dob-text">Ngày bắt đầu </CustomFormLabel>
+            <CustomFormLabel htmlFor="discount-code">Mã giảm giá</CustomFormLabel>
+            <Grid container spacing={2}>
+              <Grid item xs={8}>
+                <CustomTextField
+                  id="discount-code"
+                  variant="outlined"
+                  fullWidth
+                  value={discountCode}
+                  placeholder="Nhập mã giảm giá"
+                  onChange={handleChange(setDiscountCode)}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <Button variant="contained" color="primary" onClick={generateRandomCode} >
+                  <LoopIcon />
+                </Button>
+              </Grid>
+            </Grid>
+            <CustomFormLabel htmlFor="start-date">Ngày bắt đầu</CustomFormLabel>
             <CustomTextField
-              id="dob-text"
+              id="start-date"
               type="date"
               variant="outlined"
               fullWidth
               InputLabelProps={{ shrink: true }}
             />
-            <CustomFormLabel htmlFor="dob-text">Ngày kết thúc </CustomFormLabel>
+            <CustomFormLabel htmlFor="end-date">Ngày kết thúc</CustomFormLabel>
             <CustomTextField
-              id="dob-text"
+              id="end-date"
               type="date"
               variant="outlined"
               fullWidth
@@ -98,8 +113,6 @@ const AddVoucher = () => {
           </Grid>
         </Grid>
       </Box>
-
-      {/* Thông tin trợ lý và kênh */}
     </div>
   );
 };

@@ -11,7 +11,8 @@ import {
 import React, { useRef, useState } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
-const emails = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl'];
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
+const emails = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl', 'trithucchochatbot.jsnl', 'trithucchochatbot11.jsnl', 'trithucchochatbot12.jsnl',];
 interface PropsSearch {
   openSearch: boolean;
   setOpenSearch: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,15 +49,18 @@ const SimpleDialog: React.FC<PropsSearch> = ({ openSearch, setOpenSearch }) => {
   return (
     <>
       <Typography variant="subtitle1" component="div">
-        {selectedValues
-          .join('\n')
-          .split('\n')
-          .map((value, index) => (
-            <React.Fragment key={index}>
-              {value}
-              <br />
-            </React.Fragment>
-          ))}
+        <Scrollbar_y sx={{ height: '80px' }}>
+          {selectedValues
+            .join('\n')
+            .split('\n')
+            .map((value, index) => (
+              <React.Fragment key={index}>
+                {value}
+                <br />
+              </React.Fragment>
+
+            ))}
+        </Scrollbar_y>
       </Typography>
       <Dialog onClose={handleClose} open={openSearch}>
         <DialogTitle

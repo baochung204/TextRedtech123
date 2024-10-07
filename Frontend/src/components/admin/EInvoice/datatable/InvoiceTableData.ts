@@ -1,6 +1,7 @@
 export interface InvoiceTable {
   id_order: string;
   id_bill: string;
+  id_customer: string;
   createdate: string;
   type_account: boolean;
   tax_code: number;
@@ -24,6 +25,7 @@ const DataInvoiceTable: InvoiceTable[] = [
   {
     id_order: 'ORD001',
     id_bill: 'BILL001',
+    id_customer: 'KH011',
     createdate: '2023-01-01',
     type_account: true,
     tax_code: 1234567890,
@@ -43,6 +45,7 @@ const DataInvoiceTable: InvoiceTable[] = [
     status: true,
   },
   {
+    id_customer: 'KH012',
     id_order: 'ORD002',
     id_bill: 'BILL002',
     createdate: '2023-02-15',
@@ -65,6 +68,8 @@ const DataInvoiceTable: InvoiceTable[] = [
   },
   {
     id_order: 'ORD003',
+    id_customer: 'KH013',
+
     id_bill: 'BILL003',
     createdate: '2023-03-10',
     type_account: true,
@@ -85,6 +90,7 @@ const DataInvoiceTable: InvoiceTable[] = [
     status: false,
   },
   {
+    id_customer: 'KH0134',
     id_order: 'ORD004',
     id_bill: 'BILL004',
     createdate: '2023-04-05',
@@ -107,6 +113,8 @@ const DataInvoiceTable: InvoiceTable[] = [
   },
   {
     id_order: 'ORD005',
+    id_customer: 'KH0003',
+
     id_bill: 'BILL005',
     createdate: '2023-05-20',
     type_account: true,
@@ -128,6 +136,7 @@ const DataInvoiceTable: InvoiceTable[] = [
   },
   {
     id_order: 'ORD006',
+    id_customer: 'KH0134',
     id_bill: 'BILL006',
     createdate: '2023-06-01',
     type_account: false,
@@ -150,6 +159,8 @@ const DataInvoiceTable: InvoiceTable[] = [
   {
     id_order: 'ORD007',
     id_bill: 'BILL007',
+    id_customer: 'KH0133',
+
     createdate: '2023-07-15',
     type_account: true,
     tax_code: 3456789012,
@@ -171,6 +182,8 @@ const DataInvoiceTable: InvoiceTable[] = [
   {
     id_order: 'ORD008',
     id_bill: 'BILL008',
+    id_customer: 'KH0345',
+
     createdate: '2023-08-10',
     type_account: false,
     tax_code: 1230984567,
@@ -192,6 +205,8 @@ const DataInvoiceTable: InvoiceTable[] = [
   {
     id_order: 'ORD009',
     id_bill: 'BILL009',
+    id_customer: 'KH090',
+
     createdate: '2023-09-05',
     type_account: true,
     tax_code: 8976543210,
@@ -213,6 +228,8 @@ const DataInvoiceTable: InvoiceTable[] = [
   {
     id_order: 'ORD010',
     id_bill: 'BILL010',
+    id_customer: 'KH011',
+
     createdate: '2023-10-01',
     type_account: false,
     tax_code: 5463728190,

@@ -23,8 +23,8 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 //   { value: 'other', label: 'Other' },
 // ];
 const options = [
-  { value: 'option1', label: 'Giá gốc' },
-  { value: 'option2', label: 'Giá khuyến mãi' },
+  { value: 'option1', label: 'GPT4.0' },
+  { value: 'option2', label: 'Gitcopilot' },
 ];
 
 const AddFlashSale = () => {
@@ -63,7 +63,7 @@ const AddFlashSale = () => {
               placeholder="Nhập số lượng mã"
               onChange={handleChange(setQuantity)}
             />
-            <CustomFormLabel htmlFor="custom-select">Chọn một tùy chọn</CustomFormLabel>
+            <CustomFormLabel htmlFor="custom-select">Chọn sản phẩm</CustomFormLabel>
             <CustomTextField
               id="custom-select"
               select

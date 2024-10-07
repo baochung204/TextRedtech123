@@ -37,7 +37,7 @@ import done from 'src/assets/Adminphoto/da xu ly.png';
 const dataSource = [
   {
     bgColor: 'primary.light',
-    title: 'Số ưu cầu',
+    title: 'Số yêu cầu',
     total: '1907',
     icons: (
       <>
@@ -153,7 +153,7 @@ const HistoryAffiliate = () => {
   const column = useMemo<Column[]>(
     () => [
       {
-        title: 'ID thanh toán',
+        title: 'ID',
         dataIndex: 'id_checkout',
       },
 

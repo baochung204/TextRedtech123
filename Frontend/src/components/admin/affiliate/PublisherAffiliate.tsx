@@ -13,21 +13,22 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { IconBrandGoogleHome, IconCoinOff, IconSearch } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import publisher from 'src/assets/Adminphoto/Publisher.png';
+import notpaid from 'src/assets/Adminphoto/chua thanh toan.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
+import user from "src/assets/Adminphoto/khách hàng.png"
 import commission from 'src/assets/Adminphoto/hoa hong.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataPublishersTable } from './datatable/OrderTableData';
-import publisher from 'src/assets/Adminphoto/Publisher.png';
-import notpaid from 'src/assets/Adminphoto/chua thanh toan.png';
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -46,7 +47,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={publisher} width={30} />
+          <img src={publisher} width={30} alt="Publisher" />
         </Box>
       </>
     ),
@@ -69,7 +70,30 @@ const DataBox = [
           }}
         >
           {/* <IconBox color="white" size={30} /> */}
-          <img src={bill} width={30} />
+          <img src={bill} width={30} alt="Đơn hàng" />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'primary.light',
+    title: 'Khách hàng',
+    total: '8386',
+    icons: (
+      <>
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          {/* <IconBox color="white" size={30} /> */}
+          <img src={user} width={30} alt="Đơn hàng" />
         </Box>
       </>
     ),
@@ -92,7 +116,7 @@ const DataBox = [
           }}
         >
           {/* <IconCoins color="white" size={30} /> */}
-          <img src={commission} width={30} />
+          <img src={commission} width={30} alt="Hoa hồng" />
         </Box>
       </>
     ),
@@ -114,7 +138,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img width={30} src={notpaid} />
+          <img width={30} src={notpaid} alt="Chưa thanh toán" />
         </Box>
       </>
     ),
@@ -291,7 +315,7 @@ const PublisherAffiliate = () => {
         dataIndex: 'processing',
       },
       {
-        title: 'Đã hoàn thành',
+        title: 'Tổng rút',
         dataIndex: 'paid',
       },
     ],
@@ -322,7 +346,7 @@ const PublisherAffiliate = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={4} />
+          <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
 
         <Grid item xs={12}>

@@ -40,78 +40,78 @@ interface DataRow2 {
 const dataRows2: DataRow2[] = [
   {
     id: 'MA001',
-    creationTime: '2024-09-01 08:30',
+    creationTime: '2024-09-01',
     voucherName: 'Sản phẩm mới',
-    startTime: '2024-09-03 10:45',
+    startTime: '2024-09-03',
     user: 'Nguyễn văn Toản',
     email: 'toan2ho@gmail.com',
     phone: '08686759866',
-    expiry: '09/05/2024 10:45:00',
+    expiry: '09/05/2024',
     TypeVoucher: 'phân trăm',
     sale: 23,
     ID_order: '#09341341',
   },
   {
     id: 'MA002',
-    creationTime: '2024-09-02 09:15',
+    creationTime: '2024-09-02',
     voucherName: 'Mã giảm giá',
-    startTime: '2025-10-12 00:23',
+    startTime: '2025-10-12',
     user: 'Trần Văn B',
     email: 'tranb@gmail.com',
     phone: '0987654321',
-    expiry: '09/03/2024 10:45:00',
+    expiry: '09/03/2024',
     TypeVoucher: 'đồng',
     sale: 99,
     ID_order: '#09341342',
   },
   {
     id: 'MA003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03',
     voucherName: 'khách hàng thân thiết',
-    startTime: '2024-09-03 10:45',
+    startTime: '2024-09-03',
     user: 'Lê Thị C',
     email: 'lec@gmail.com',
     phone: '0912345678',
-    expiry: '09/03/2024 10:45:00',
+    expiry: '09/03/2024',
     TypeVoucher: 'phân trăm',
     sale: 10,
     ID_order: '#09341343',
   },
   {
     id: 'MA004',
-    creationTime: '2024-09-04 11:20',
+    creationTime: '2024-09-04',
     voucherName: 'mini-game',
-    startTime: '2024-09-03 10:45',
+    startTime: '2024-09-03 ',
     user: 'Phạm Văn D',
     email: 'phamd@gmail.com',
     phone: '0901234567',
-    expiry: '09/03/2024 10:45:00',
+    expiry: '09/03/2024 ',
     TypeVoucher: 'đồng',
     sale: 100,
     ID_order: '#09341344',
   },
   {
     id: 'MA005',
-    creationTime: '2024-09-05 14:05',
+    creationTime: '2024-09-05',
     voucherName: 'sự kiện',
-    startTime: '2024-09-03 10:45',
+    startTime: '2024-09-03',
     user: 'Nguyễn Thị E',
     email: 'nguyene@gmail.com',
     phone: '0897654321',
-    expiry: '10/03/2025 00:45:00',
+    expiry: '10/03/2025',
     TypeVoucher: 'phân trăm',
     sale: 20,
     ID_order: '#09341345',
   },
   {
     id: 'MA006',
-    creationTime: '2024-09-06 15:30',
+    creationTime: '2024-09-06',
     voucherName: 'khách hàng thân thiết',
-    startTime: '2024-09-03 10:45',
+    startTime: '2024-09-03',
     user: 'Trần Thị F',
     email: 'tranf@gmail.com',
     phone: '0887654321',
-    expiry: '09/03/2025 10:45:00',
+    expiry: '09/03/2025',
     TypeVoucher: 'phân trăm',
     sale: 10,
     ID_order: '#09341346',
@@ -269,9 +269,22 @@ const HistoryVoucher = () => {
         dataIndex: 'id',
       },
       {
-        title: 'Ngày áp mã',
-        dataIndex: 'creationTime',
+        title: 'ID đơn hàng',
+        dataIndex: 'ID_order',
       },
+      
+      {
+        title: 'Ngày tạo',
+        dataIndex: 'startTime',
+      },
+      // {
+      //   title: 'Hạn sửa dụng',
+      //   dataIndex: 'expiry',
+      // },
+      // {
+      //   title: 'Ngày áp mã',
+      //   dataIndex: 'creationTime',
+      // },
       {
         title: 'Khách hàng',
         dataIndex: 'user',
@@ -288,14 +301,7 @@ const HistoryVoucher = () => {
         title: 'Tên chiến dịch',
         dataIndex: 'voucherName',
       },
-      {
-        title: 'Ngày tạo',
-        dataIndex: 'startTime',
-      },
-      {
-        title: 'Hạn sửa dụng',
-        dataIndex: 'expiry',
-      },
+      
       {
         title: 'Loại giảm giá',
         dataIndex: 'TypeVoucher',
@@ -315,10 +321,7 @@ const HistoryVoucher = () => {
         title: 'Giá trị giảm',
         dataIndex: 'sale',
       },
-      {
-        title: 'ID đơn hàng',
-        dataIndex: 'ID_order',
-      },
+      
     ],
     [],
   );
@@ -397,130 +400,117 @@ const HistoryVoucher = () => {
               </Badge>
             </IconButton>
 
-            <Grid item>
-              <Select
-                multiple
-                value={dataSelect}
-                displayEmpty
-                onChange={handleColumnChange}
-                renderValue={() => 'Sửa đổi cột'}
-                size="small"
-                MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      marginTop: 1,
-                      maxHeight: 400,
-                      '&::-webkit-scrollbar': {
-                        width: '4px',
-                      },
-                      '&::-webkit-scrollbar-thumb': {
-                        backgroundColor: '#D2D2D2',
-                        borderRadius: '10px',
-                      },
-                      '&::-webkit-scrollbar-thumb:hover': {
-                        backgroundColor: '#C6C8CC',
-                      },
-                      '&::-webkit-scrollbar-track': {
-                        backgroundColor: '#f1f1f1',
-                      },
+            <Select
+              multiple
+              value={dataSelect}
+              displayEmpty
+              onChange={handleColumnChange}
+              renderValue={() => 'Sửa đổi cột'}
+              size="small"
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    marginTop: 1,
+                    maxHeight: 400,
+                    '&::-webkit-scrollbar': {
+                      width: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#D2D2D2',
+                      borderRadius: '10px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                      backgroundColor: '#C6C8CC',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                      backgroundColor: '#f1f1f1',
                     },
                   },
-                  anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  },
-                  transformOrigin: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                  },
-                }}
-              >
-                <MenuItem>
-                  <Checkbox
-                    checked={dataSelect.length === column[value].length}
-                    indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        const allColumns = column[value].map((header: Column) => header.dataIndex);
-                        setDataSelect(allColumns);
-                      } else {
-                        setDataSelect([]);
-                      }
-                    }}
-                  />
-                  <ListItemText primary="Chọn tất cả" />
-                </MenuItem>
-                {column[value].map((header: Column) => {
-                  const isSelected = dataSelect.includes(header.dataIndex);
-                  return (
-                    <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={isSelected} />
-                      <ListItemText primary={header.title} />
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </Grid>
-            <Grid item xs={4}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Grid>
+                },
+                anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                },
+                transformOrigin: {
+                  vertical: 'top',
+                  horizontal: 'right',
+                },
+              }}
+            >
+              {column.map((header: any) => {
+                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+
+                const isSelected = dataSelect.includes(header.dataIndex);
+
+                return (
+                  <MenuItem key={header.dataIndex} value={header.dataIndex}>
+                    <Checkbox checked={!isSelected} />
+                    <ListItemText primary={header.title} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </Grid>
+          <Grid item xs={4}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+              tới
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={value1}
+                  onChange={(newValue) => {
+                    setValue1(newValue);
+                  }}
+                  renderInput={(props) => (
+                    <CustomTextField
+                      {...props}
+                      fullWidth
+                      size="small"
+                      sx={{
+                        '& .MuiSvgIcon-root': {
+                          width: '18px',
+                          height: '18px',
+                        },
+                        '& .MuiFormHelperText-root': {
+                          display: 'none',
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+            </Box>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <BlankCard>
-            <CustomTable columns={column} dataSource={dataRows2} dataSelect={dataSelect} />
-          </BlankCard>
-        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <BlankCard>
+          <CustomTable columns={column} dataSource={dataRows2} dataSelect={dataSelect} />
+        </BlankCard>
+      </Grid>
     </div>
   );
 };

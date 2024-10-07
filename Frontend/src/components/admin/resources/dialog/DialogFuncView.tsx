@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { FunctionRows } from '../mockData/TableFunction';
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 interface PropsDialog {
     value: string,
@@ -18,14 +19,14 @@ interface PropsDialog {
 }
 
 const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
-    const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+    // const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
     const [formData, setFormData] = useState({
         id: '',
         creationTime: '',
         functionGroup: '',
-        functionName:'',
-        badge:'',
+        functionName: '',
+        badge: '',
         level: '',
         ownedCustomers: '',
         appliedAssistants: '',
@@ -35,14 +36,14 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         creator: '',
     });
 
-    const [errors, setErrors] = useState({
-        functionName: '',
-        functionGroup: '',
-        badge: '',
-        level: '',
-        summary: '',
-        content: '',
-    });
+    // const [errors, setErrors] = useState({
+    //     functionName: '',
+    //     functionGroup: '',
+    //     badge: '',
+    //     level: '',
+    //     summary: '',
+    //     content: '',
+    // });
 
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -51,60 +52,60 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         setIsEditMode(false);
     };
 
-    const handleSubmit = () => {
-        if (isEditMode) {
-            const newErrors = validateForm();
-            if (Object.values(newErrors).some(error => error !== '')) {
-                setErrors(newErrors);
-            } else {
-                // Lưu thay đổi
-                setIsEditMode(false); // Thoát chế độ chỉnh sửa sau khi lưu
-                setOpenSnackbar(true);
-                setTimeout(() => {
-                    setOpenSnackbar(false);
-                }, 3000);
-            }
-        } else {
-            // Kích hoạt chế độ chỉnh sửa
-            setIsEditMode(true);
-        }
-    };
+    // const handleSubmit = () => {
+    //     if (isEditMode) {
+    //         const newErrors = validateForm();
+    //         if (Object.values(newErrors).some(error => error !== '')) {
+    //             setErrors(newErrors);
+    //         } else {
+    //             // Lưu thay đổi
+    //             setIsEditMode(false); // Thoát chế độ chỉnh sửa sau khi lưu
+    //             setOpenSnackbar(true);
+    //             setTimeout(() => {
+    //                 setOpenSnackbar(false);
+    //             }, 3000);
+    //         }
+    //     } else {
+    //         // Kích hoạt chế độ chỉnh sửa
+    //         setIsEditMode(true);
+    //     }
+    // };
 
-    const validateForm = () => {
-        const newErrors = {
-            functionName: '', functionGroup: '', badge: '',
-            level: '',
-            summary: '',
-            content: '',
-        };
+    // const validateForm = () => {
+    //     const newErrors = {
+    //         functionName: '', functionGroup: '', badge: '',
+    //         level: '',
+    //         summary: '',
+    //         content: '',
+    //     };
 
-        if (!formData.functionName) {
-            newErrors.functionName = 'Tên chiến lược không được để trống';
-        }
-        if (!formData.functionGroup) {
-            newErrors.functionGroup = 'Nhóm chiến lược không được để trống';
-        }
-        if (!formData.badge) {
-            newErrors.badge = 'Huy hiệu không được để trống';
-        }
-        if (!formData.level) {
-            newErrors.level = 'Level không được để trống';
-        }
-        if (!formData.content) {
-            newErrors.content = 'Nội dung không được để trống';
-        }
-        if (!formData.summary) {
-            newErrors.summary = 'Tóm tắt không được để trống';
-        }
-        return newErrors;
-    };
+    //     if (!formData.functionName) {
+    //         newErrors.functionName = 'Tên chiến lược không được để trống';
+    //     }
+    //     if (!formData.functionGroup) {
+    //         newErrors.functionGroup = 'Nhóm chiến lược không được để trống';
+    //     }
+    //     if (!formData.badge) {
+    //         newErrors.badge = 'Huy hiệu không được để trống';
+    //     }
+    //     if (!formData.level) {
+    //         newErrors.level = 'Level không được để trống';
+    //     }
+    //     if (!formData.content) {
+    //         newErrors.content = 'Nội dung không được để trống';
+    //     }
+    //     if (!formData.summary) {
+    //         newErrors.summary = 'Tóm tắt không được để trống';
+    //     }
+    //     return newErrors;
+    // };
 
-    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
-            const file = e.target.files[0];
-            setAvatarPreview(URL.createObjectURL(file));
-        }
-    };
+    // const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files && e.target.files.length > 0) {
+    //         const file = e.target.files[0];
+    //         setAvatarPreview(URL.createObjectURL(file));
+    //     }
+    // };
 
     const fetchStrategyDetail = (id: string) => {
         const functions = FunctionRows.find((item) => item.id === id);
@@ -146,18 +147,20 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     },
                     '& .MuiPaper-root': {
                         width: '100%',
-                        maxWidth: '900px',
+                        maxWidth: '700px',
                     },
                 }}
             >
                 <DialogTitle>
                     <Typography fontWeight={600} variant='h3'>
-                        {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'}
+                        {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
+                        Xem function
                     </Typography>
                 </DialogTitle>
-                <Divider sx={{ mx: '0px' }} />
-                <DialogContent sx={{ pt: 0, px: 5 }}>
-                    {isEditMode ? (<Grid container spacing={2}>
+                <Scrollbar_y sx={{ maxHeight: '550px', paddingX: 0 }}>
+                    <Divider sx={{ mx: '0px' }} />
+                    <DialogContent sx={{ pt: 0, px: 5 }}>
+                        {/* {isEditMode ? (<Grid container spacing={2}>
                         <Grid item xs={12} lg={4} md={12}>
                             <Box
                                 sx={{ textAlign: 'center', justifyContent: 'center', mt: { md: 2 }, mb: '20px' }}
@@ -327,7 +330,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    ) : (
+                    ) : ( */}
                         <Grid item xs={12} lg={12} md={12}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} lg={6} md={6}>
@@ -336,6 +339,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         value={formData.id}
                                     />
                                 </Grid>
@@ -345,7 +349,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập tên chiến lược . . ."
+                                        disabled
                                         value={formData.functionName}
                                     />
                                 </Grid>
@@ -355,7 +359,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập tên chiến lược . . ."
+                                        disabled
                                         value={formData.functionName}
                                     />
                                 </Grid>
@@ -365,7 +369,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="strategyGroup-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập nhóm chiến lược . . ."
+                                        disabled
                                         value={formData.functionGroup}
 
                                     />
@@ -376,7 +380,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="badge-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập huy hiệu . . ."
+                                        disabled
                                         value={formData.badge}
 
                                     />
@@ -387,7 +391,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="level-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập level . . ."
+                                        disabled
                                         value={formData.level}
 
                                     />
@@ -398,7 +402,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="ownedCustomers-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập khách hàng sở hữu . . ."
+                                        disabled
                                         value={formData.ownedCustomers}
 
                                     />
@@ -410,7 +414,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="appliedAssistants-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập trợ lý đã áp dụng . . ."
+                                        disabled
                                         value={formData.appliedAssistants}
 
                                     />
@@ -421,7 +425,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="dateCreate-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập ngày tạo . . ."
+                                        disabled
                                         value={formData.creationTime}
 
                                     />
@@ -432,7 +436,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="summary-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập tóm tắt . . ."
+                                        disabled
                                         multiline
                                         rows={5}
                                         value={formData.summary}
@@ -445,7 +449,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         id="content-text"
                                         variant="outlined"
                                         fullWidth
-                                        placeholder="Nhập nội dung . . ."
+                                        disabled
                                         multiline
                                         rows={5}
                                         value={formData.content}
@@ -453,14 +457,19 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                     />
                                 </Grid>
 
-                               
-                            </Grid>
-                        </Grid>)}
 
-                </DialogContent>
+                            </Grid>
+                        </Grid>
+                        {/* )} */}
+
+                    </DialogContent>
+                </Scrollbar_y>
+
                 <DialogActions>
-                    <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button>
-                    <Button variant='contained' onClick={handleSubmit}>{isEditMode ? 'Lưu' : 'Sửa'}</Button>
+                    <Button onClick={handleClose}>Đóng</Button>
+
+                    {/* <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button>
+                    <Button variant='contained' onClick={handleSubmit}>{isEditMode ? 'Lưu' : 'Sửa'}</Button> */}
                 </DialogActions>
             </Dialog>
 
