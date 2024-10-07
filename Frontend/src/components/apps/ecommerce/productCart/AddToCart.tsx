@@ -165,6 +165,7 @@ const AddToCart = () => {
                           display={'flex'}
                           alignItems={'center'}
                           justifyContent={'center'}
+                          gap="2px"
                         >
                           {' '}
                           {(product.point * product.qty).toLocaleString('vn-VN')}{' '}
@@ -184,6 +185,7 @@ const AddToCart = () => {
                           display={'flex'}
                           alignItems={'center'}
                           justifyContent={'center'}
+                          gap="2px"
                         >
                           {(product.discount * product.qty).toLocaleString('vn-VN')}{' '}
                           <img
@@ -202,6 +204,7 @@ const AddToCart = () => {
                           display={'flex'}
                           alignItems={'center'}
                           justifyContent={'center'}
+                          gap="2px"
                         >
                           {((product.point - product.discount) * product.qty).toLocaleString(
                             'vn-VN',

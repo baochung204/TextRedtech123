@@ -33,7 +33,7 @@ const Chart1 = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, secondary, warning, '#2c5364', '#99f2c8'],
+    colors: [secondary, '#2c5364', warning, '#99f2c8', primary],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,

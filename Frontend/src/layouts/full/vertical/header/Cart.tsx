@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import CartItems from './CartItem';
 import { AppState } from 'src/store/Store';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
-
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 const Cart = () => {
   const Cartproduct = useSelector((state: AppState) => state.ecommerceReducer.cart);
   const bcount = Cartproduct.length > 0 ? Cartproduct.length : '0';
@@ -60,7 +60,8 @@ const Cart = () => {
             position: 'absolute',
             right: 0,
             zIndex: 1,
-            backgroundColor: 'white',
+            bgcolor: 'white',
+            color: 'black',
             borderRadius: '10px',
             padding: '14px 35px',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
@@ -72,7 +73,13 @@ const Cart = () => {
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            p={2}
+            // sx={{ bgcolor: 'transparent', color: 'text.secondary' }}
+          >
             <Typography variant="h5" fontWeight={600}>
               Giỏ hàng
             </Typography>
@@ -98,10 +105,21 @@ const Cart = () => {
               <>
                 <Stack direction="row" justifyContent="space-between" mb={3}>
                   <Typography variant="subtitle2" fontWeight={400}>
-                    Total
+                    Tổng
                   </Typography>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    ${total}
+                  <Typography
+                    variant="subtitle2"
+                    fontWeight={600}
+                    style={{ display: 'flex', alignItems: 'center' }}
+                  >
+                    {total.toLocaleString('vi-VN')}{' '}
+                    <img
+                      src={logoPoint}
+                      alt={logoPoint}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: 50, marginLeft: '4px' }}
+                    />
                   </Typography>
                 </Stack>
                 <Button fullWidth component={Link} to="/carts" variant="contained" color="primary">
