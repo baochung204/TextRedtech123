@@ -339,7 +339,7 @@ const BuyPoints = () => {
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={3} />
+          <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
 
         <Grid item xs={12}>
