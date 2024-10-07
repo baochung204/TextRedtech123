@@ -2,20 +2,20 @@ import { Box, Fab, Grid, Paper, Tooltip } from '@mui/material';
 
 import { IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
-import FunctionsDialog from '../dialog/functionsDialog';
+import ImageDialog from '../dialog/imageDialog';
 
-const AddFunction = () => {
+const AddImage = () => {
   const [openFunction, setOpenFunction] = useState(false);
   const handleClickOpenFunction = () => {
     setOpenFunction(true);
   };
 
   return (
-    <Paper elevation={3} sx={{ minHeight: '5%', height: '190px', p: 2 }}>
+    <Paper elevation={3} sx={{ minHeight: '5%', height: '190px', p: 2,mt:2 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} lg={6}>
           <Box fontWeight={600} mt={0.5}>
-            Functions
+            Ảnh
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} lg={6} display={'flex'} justifyContent={'end'}>
@@ -37,11 +37,11 @@ const AddFunction = () => {
           </Tooltip>
         </Grid>
         <Grid item xs={12} sm={6} lg={12}>
-          <FunctionsDialog openFunction={openFunction} setOpenFunction={setOpenFunction} />
+          <ImageDialog openFunction={openFunction} setOpenFunction={setOpenFunction} />
         </Grid>
       </Grid>
     </Paper>
   );
 };
 
-export default AddFunction;
+export default AddImage;

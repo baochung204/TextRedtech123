@@ -1,4 +1,4 @@
-import { Box, Fab, Grid, Paper, Tooltip, Typography } from '@mui/material';
+import { Box, Chip, Fab, Grid, Paper, Tooltip, Typography } from '@mui/material';
 
 import { IconPlus } from '@tabler/icons-react';
 import { useState } from 'react';
@@ -11,24 +11,16 @@ const AddSearch = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ minHeight: '5%', p: 2 }}>
+    <Paper elevation={3} sx={{ minHeight: '50%',height:'190px', p: 2 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} lg={6} sx={{ display: 'flex', gap: 1 }}>
           <Box fontWeight={600} mt={0.5}>
             Tri thức
+            <Chip sx={{ ml: 1 }} size="small" label={"3/5"} color="primary" />
           </Box>
-          <Box
-            color="primary"
-            sx={{
-              backgroundColor: '#ff3333',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <Typography fontWeight={800} sx={{ fontSize: 12, color: 'white', px: 2 }}>
-              3/5
-            </Typography>
-          </Box>
+          
+
+          
         </Grid>
         <Grid item xs={12} sm={6} lg={6} display={'flex'} justifyContent={'end'}>
           {/* <Button
