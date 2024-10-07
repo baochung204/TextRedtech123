@@ -5,7 +5,7 @@ interface tablePaymentProp {
   requestId: string;
   createdAt: string;
   completedAt: string;
-  status: number;
+  status: boolean;
   invoice: number;
 }
 
@@ -17,7 +17,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106834',
     createdAt: '2024-07-18',
     completedAt: '2024-07-18',
-    status: 1,
+    status: true,
     invoice: 1,
   },
   {
@@ -27,7 +27,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106835',
     createdAt: '2024-07-19',
     completedAt: '2024-07-19',
-    status: 2,
+    status: false,
     invoice: 2,
   },
   {
@@ -37,7 +37,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106836',
     createdAt: '2024-07-20',
     completedAt: '2024-07-20',
-    status: 3,
+    status: true,
     invoice: 3,
   },
   {
@@ -47,7 +47,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106837',
     createdAt: '2024-07-21',
     completedAt: '2024-07-21',
-    status: 3,
+    status: false,
     invoice: 3,
   },
   {
@@ -57,7 +57,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106838',
     createdAt: '2024-07-22',
     completedAt: '2024-07-22',
-    status: 1,
+    status: true,
     invoice: 1,
   },
   {
@@ -67,7 +67,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106839',
     createdAt: '2024-07-23',
     completedAt: '2024-07-23',
-    status: 2,
+    status: false,
     invoice: 2,
   },
   {
@@ -77,7 +77,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106840',
     createdAt: '2024-07-24',
     completedAt: '2024-07-24',
-    status: 2,
+    status: true,
     invoice: 2,
   },
   {
@@ -87,7 +87,7 @@ export const tablepayment: tablePaymentProp[] = [
     requestId: '10000017392941114415106843',
     createdAt: '2024-07-27',
     completedAt: '2024-07-27',
-    status: 1,
+    status: false,
     invoice: 1,
   },
 ];

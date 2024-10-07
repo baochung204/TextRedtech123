@@ -26,7 +26,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import blog from 'src/assets/Adminphoto/bai viet.png';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
-import reaction from 'src/assets/Adminphoto/luot timm.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import view from 'src/assets/NotificationAdmin/luot xem.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';

@@ -94,25 +94,22 @@ const HistoryBuyPoint = () => {
     {
       title: 'Trạng thái',
       dataIndex: 'status',
-      render: (value: number) => (
+      render: (value: boolean) => (
         <Box>
-          {value === 1 ? (
+          {value ? (
             <Typography sx={{ color: '#13DEB9' }} variant="subtitle2">
               Đã thanh toán
             </Typography>
-          ) : value === 2 ? (
-            <Typography sx={{ color: '#ff9800' }} variant="subtitle2">
-              Chờ thanh toán
-            </Typography>
           ) : (
             <Typography sx={{ color: '#f44336' }} variant="subtitle2">
-              Không xác định
+              Không thành công
             </Typography>
           )}
         </Box>
       ),
       sort: true,
     },
+
     {
       title: 'Chi tiết',
       dataIndex: 'invoice',
