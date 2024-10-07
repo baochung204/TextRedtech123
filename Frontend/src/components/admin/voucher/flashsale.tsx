@@ -299,7 +299,8 @@ const FlashSale = () => {
             gap={'2px'}
             style={{ whiteSpace: 'nowrap' }}
           >
-            {value.sale.toLocaleString()} <img src={icontext} alt="" width={22} />
+            {value.sale.toLocaleString()} %
+            {/* <img src={icontext} alt="" width={22} /> */}
           </Typography>
         ),
       },
@@ -307,17 +308,20 @@ const FlashSale = () => {
         id: 'flashSale',
         title: 'Giá Flash-Sale',
         dataIndex: 'flashSale',
-        render: (_text: any, value: any) => (
-          <Typography
-            color="textSecondary"
-            variant="subtitle2"
-            display={'flex'}
-            gap={'2px'}
-            style={{ whiteSpace: 'nowrap' }}
-          >
-            {value.flashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
-          </Typography>
-        ),
+        render: (_text: any, value: any) => {
+          const calculatedFlashSale = value.listed * (1 - value.sale / 100);
+          return (
+            <Typography
+              color="textSecondary"
+              variant="subtitle2"
+              display={'flex'}
+              gap={'2px'}
+              style={{ whiteSpace: 'nowrap' }}
+            >
+              {calculatedFlashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
+            </Typography>
+          );
+        }
       },
       {
         id: 'buy',

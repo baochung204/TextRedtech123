@@ -43,7 +43,7 @@ const AccountInformation = () => {
     onSubmit: () => {
       setEditing(null);
       setShowAlert({ message: 'Cập nhật thông tin thành công!', type: 'success' });
-      setOpen(true); // Mở Snackbar khi submit thành công
+      setOpen(true); 
     },
   });
 
@@ -83,7 +83,7 @@ const AccountInformation = () => {
       </Typography>
       {field === 'email' ? (
         <Typography variant="body1" sx={{ flexGrow: 1 }}>
-          nqton301004@gmail.com {/* Email tĩnh và không thể chỉnh sửa */}
+          nqton301004@gmail.com 
         </Typography>
       ) : editing === field ? (
         <>
