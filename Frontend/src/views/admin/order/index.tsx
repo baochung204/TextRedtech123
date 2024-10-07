@@ -73,8 +73,29 @@ const DataBox: StyleProps[] = [
   },
   {
     bgColor: 'primary.light',
-
-    title: 'Khách trả phí',
+    title: 'Doanh thu',
+    total: '15.126.422.555đ',
+    icons: (
+      <>
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={revenue} width={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'primary.light',
+    title: 'Khách hàng trả phí',
     total: '1204 (33%)',
     icons: (
       <>
@@ -112,28 +133,6 @@ const DataBox: StyleProps[] = [
           }}
         >
           <img src={personorcompany} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu',
-    total: '15.126.422.555đ',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={revenue} width={30} />
         </Box>
       </>
     ),
@@ -180,6 +179,11 @@ const OrderAdminPages = () => {
         dataIndex: 'id',
       },
       {
+        title: 'Ngày tạo',
+        dataIndex: 'date',
+        isValids: false,
+      },
+      {
         title: 'Họ và tên',
         dataIndex: 'name',
       },
@@ -196,9 +200,13 @@ const OrderAdminPages = () => {
         dataIndex: 'typeacc',
       },
       {
-        title: 'Trợ lý',
+        title: 'Số lượng trợ lý',
         dataIndex: 'troly',
       },
+      // {
+      //   title: 'Trợ lý',
+      //   dataIndex: 'troly',
+      // },
       {
         title: 'Tổng nạp',
         dataIndex: 'tongnap',
@@ -220,6 +228,55 @@ const OrderAdminPages = () => {
         ),
       },
       {
+        title: 'Ngày sinh',
+        dataIndex: 'date',
+        isValids: false,
+      },
+      {
+        title: 'Giới tính',
+        dataIndex: 'sex',
+        isValids: false,
+      },
+      {
+        title: 'MST (Cá nhân)',
+        dataIndex: 'mstcn',
+        isValids: false,
+      },
+      {
+        title: 'Địa chỉ (Cá nhân)',
+        dataIndex: 'dccn',
+        isValids: false,
+      },
+      {
+        title: 'MST (Doanh nghiệp)',
+        dataIndex: 'mstdn',
+        isValids: false,
+      },
+      {
+        title: 'Tên công ty',
+        dataIndex: 'tct',
+        isValids: false,
+      },
+      {
+        title: 'Email (Công ty)',
+        dataIndex: 'ect',
+        isValids: false,
+      },
+      {
+        title: 'Địa chỉ (Công ty)',
+        dataIndex: 'dcct',
+        isValids: false,
+      },
+      {
+        title: 'Người đại diện',
+        dataIndex: 'ndd',
+      },
+      {
+        title: 'Chúc vụ',
+        dataIndex: 'cv',
+        isValids: false,
+      },
+      {
         title: 'Hành động',
         dataIndex: 'action',
         render: (_row, value: any) => (
@@ -238,66 +295,6 @@ const OrderAdminPages = () => {
             </IconButton>
           </>
         ),
-      },
-      {
-        title: 'Giới tính',
-        dataIndex: 'sex',
-        isValids: false,
-      },
-      {
-        title: 'Ngày sinh',
-        dataIndex: 'date',
-        isValids: false,
-      },
-      {
-        title: 'Địa chỉ (Cá nhân)',
-        dataIndex: 'dccn',
-        isValids: false,
-      },
-      {
-        title: 'MST (Cá nhân)',
-        dataIndex: 'mstcn',
-        isValids: false,
-      },
-      {
-        title: 'Địa chỉ (Cá nhân)',
-        dataIndex: 'adress',
-        isValids: false,
-      },
-      {
-        title: 'Xuất VAT',
-        dataIndex: 'xvat',
-        isValids: false,
-      },
-      {
-        title: 'Tên công ty',
-        dataIndex: 'tct',
-        isValids: false,
-      },
-      {
-        title: 'MST (Doanh nghiệp)',
-        dataIndex: 'mstdn',
-        isValids: false,
-      },
-      {
-        title: 'Người đại diện',
-        dataIndex: 'ndd',
-        isValids: false,
-      },
-      {
-        title: 'Chúc vụ',
-        dataIndex: 'cv',
-        isValids: false,
-      },
-      {
-        title: 'Địa chỉ (Công ty)',
-        dataIndex: 'dcct',
-        isValids: false,
-      },
-      {
-        title: 'Email (Công ty)',
-        dataIndex: 'ect',
-        isValids: false,
       },
     ],
     [],

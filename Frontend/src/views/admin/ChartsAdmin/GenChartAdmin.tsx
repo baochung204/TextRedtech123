@@ -1,15 +1,11 @@
-
-import { Opacity } from '@mui/icons-material';
-import { Box, colors, MenuItem, Typography } from '@mui/material';
+import { Box, MenuItem, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-
 const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
-
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
