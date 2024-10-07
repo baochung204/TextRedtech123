@@ -25,7 +25,11 @@ const channels: CurrencyType[] = [
   { value: 'Instagram', label: 'Instagram' },
   // { value: 'other', label: 'Other' },
 ];
-
+const assistants: CurrencyType[] = [
+  { value: 'assistant1', label: 'Trợ lý 1' },
+  { value: 'assistant2', label: 'Trợ lý 2' },
+  { value: 'assistant3', label: 'Trợ lý 3' },
+];
 const PopupAddList2 = () => {
   const theme = useTheme();
 
@@ -37,7 +41,7 @@ const PopupAddList2 = () => {
       email: '',
       dob: '',
       notes: '',
-      assistant: '',
+      assistant: [],
       tags: '',
       selectedChannels: [],
       companyName: '',
@@ -128,6 +132,7 @@ const PopupAddList2 = () => {
                   <Grid item xs={4}>
                     <CustomFormLabel htmlFor="name">Tên khách hàng</CustomFormLabel>
                     <CustomTextField
+                      placeholder="Ngô Quốc Toản"
                       id="name"
                       variant="outlined"
                       fullWidth
@@ -141,6 +146,7 @@ const PopupAddList2 = () => {
                   <Grid item xs={4}>
                     <CustomFormLabel htmlFor="phone">Số điện thoại</CustomFormLabel>
                     <CustomTextField
+                      placeholder="0983827425"
                       id="phone"
                       variant="outlined"
                       fullWidth
@@ -154,6 +160,7 @@ const PopupAddList2 = () => {
                   <Grid item xs={4}>
                     <CustomFormLabel htmlFor="email">Email</CustomFormLabel>
                     <CustomTextField
+                      placeholder="nqton301004@gmail.com"
                       id="email"
                       type="email"
                       variant="outlined"
@@ -189,6 +196,7 @@ const PopupAddList2 = () => {
                   <Grid item xs={12}>
                     <CustomFormLabel htmlFor="gender">Giới tính</CustomFormLabel>
                     <CustomSelect
+                      placeholder="Chọn giới tính"
                       id="gender"
                       value={formik.values.gender}
                       onChange={formik.handleChange}
@@ -215,6 +223,7 @@ const PopupAddList2 = () => {
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="notes">Ghi chú</CustomFormLabel>
                 <CustomTextField
+                  placeholder="tôi yêu em"
                   id="notes"
                   variant="outlined"
                   fullWidth
@@ -258,18 +267,31 @@ const PopupAddList2 = () => {
               {/* Cột trái chứa Trợ lý và Tags */}
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="assistant">Trợ lý</CustomFormLabel>
-                <CustomTextField
+                <CustomSelect
+                  multiple
+                  placeholder="Chọn trợ lý"
                   id="assistant"
-                  variant="outlined"
-                  fullWidth
                   value={formik.values.assistant}
-                  onChange={formik.handleChange}
+                  onChange={(event: any) => {
+                    formik.setFieldValue('assistant', event.target.value);
+                  }}
                   name="assistant"
-                  error={formik.touched.assistant && Boolean(formik.errors.assistant)}
-                  helperText={formik.touched.assistant && formik.errors.assistant}
-                />
+                  fullWidth
+                  variant="outlined"
+                  renderValue={(selected: any) => selected.join(', ')} // Hiển thị danh sách chọn dưới dạng chuỗi
+                >
+                  {assistants.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      <ListItemText primary={option.label} />
+                    </MenuItem>
+                  ))}
+                </CustomSelect>
+                {formik.touched.assistant && Boolean(formik.errors.assistant) && (
+                  <Typography color="error" variant="body2">
+                    {formik.errors.assistant}
+                  </Typography>
+                )}
               </Grid>
-
               {/* Cột phải chứa Kênh */}
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="selectedChannels">Kênh</CustomFormLabel>
@@ -299,7 +321,7 @@ const PopupAddList2 = () => {
               </Grid>
 
               {/* Form Tags */}
-              <Grid item xs={12}  sx={{ width: '80%' }}>
+              <Grid item xs={12} sx={{ width: '80%' }}>
                 <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
                 <Tags />
               </Grid>
@@ -334,6 +356,7 @@ const PopupAddList2 = () => {
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="companyName">Tên công ty</CustomFormLabel>
                 <CustomTextField
+                  placeholder="Công ty THHH 1 thành viên"
                   id="companyName"
                   variant="outlined"
                   fullWidth
@@ -347,6 +370,7 @@ const PopupAddList2 = () => {
                   Địa chỉ công ty
                 </CustomFormLabel>
                 <CustomTextField
+                  placeholder="Số 11, xóm đồng cả, làng bùng, phùng xá, thạch thất, HN"
                   id="companyAddress"
                   variant="outlined"
                   fullWidth
@@ -360,6 +384,7 @@ const PopupAddList2 = () => {
                   Mã số thuế
                 </CustomFormLabel>
                 <CustomTextField
+                 placeholder="1234567890"
                   id="taxId"
                   variant="outlined"
                   fullWidth
@@ -373,6 +398,7 @@ const PopupAddList2 = () => {
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="companyEmail">Email công ty</CustomFormLabel>
                 <CustomTextField
+                 placeholder="redon@gmail.com"
                   id="companyEmail"
                   type="email"
                   variant="outlined"
@@ -387,6 +413,7 @@ const PopupAddList2 = () => {
                   Số điện thoại công ty
                 </CustomFormLabel>
                 <CustomTextField
+                 placeholder="0987654321"
                   id="companyPhone"
                   variant="outlined"
                   fullWidth
@@ -400,6 +427,7 @@ const PopupAddList2 = () => {
                   Website công ty
                 </CustomFormLabel>
                 <CustomTextField
+                 placeholder="http://shop972980.vnn.mn/"
                   id="companyWebsite"
                   variant="outlined"
                   fullWidth

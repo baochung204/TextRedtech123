@@ -129,7 +129,7 @@ const DataBox = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Tổng thanh toán',
+    title: 'Doanh thu',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
@@ -261,7 +261,7 @@ const BuyPoints = () => {
       },
 
       {
-        title: 'Tổng doanh thu',
+        title: 'Doanh thu',
         dataIndex: 'tongdoanhthu',
       },
       {

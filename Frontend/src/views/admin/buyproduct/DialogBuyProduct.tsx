@@ -6,6 +6,7 @@ import CustomTextField from "src/components/forms/theme-elements/CustomTextField
 import Function from "./components/Function";
 import { validationSchema1, validationSchema2, validationSchema3 } from "./validationSchema";
 import Strategy from "./components/Strategy";
+import ReactQuill from "react-quill";
 
 interface PropUp {
     open: boolean;
@@ -407,6 +408,15 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                                 )}
                                                             />
                                                         ) :
+                                                            item.dataIndex === 'mota' ? (
+                                                                <ReactQuill
+                                                                    value={values.mota}
+                                                                    onChange={(content) => setFieldValue('mota', content)}
+                                                                    theme="snow"
+                                                                    placeholder="Nhập mô tả sản phẩm"
+                                                                    style={{ minHeight: '300px', height: '300px' }}
+                                                                />
+                                                            ) :
                                                             (
                                                                 <Field
                                                                     as={TextField}
@@ -422,7 +432,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                                                     borderColor: 'transparent',
                                                                                 },
                                                                                 '&.Mui-focused fieldset': {
-                                                                                    borderColor: 'transparent', 
+                                                                                    borderColor: 'transparent',
                                                                                 },
                                                                             },
                                                                         },
@@ -454,7 +464,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                 type="submit"
                                 color="primary"
                                 variant="contained"
-                                // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
+                            // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
                             >
                                 {checkValue === 'add' ? 'Xác nhận'
                                     :
@@ -467,7 +477,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                 )}
             </Formik>
         </Dialog>
-        
+
     );
 };
 

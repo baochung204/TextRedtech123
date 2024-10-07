@@ -225,13 +225,13 @@ const OrderAffiliate = () => {
         title: 'Hoa hồng',
         dataIndex: 'commission',
       },
-      {
-        title: 'Trạng thái',
-        dataIndex: '',
-        render: (_row: any, value: any) => (
-          <Chip label={value.status} color={getStatusAccountColor(value.status)} />
-        ),
-      },
+      // {
+      //   title: 'Trạng thái',
+      //   dataIndex: '',
+      //   render: (_row: any, value: any) => (
+      //     <Chip label={value.status} color={getStatusAccountColor(value.status)} />
+      //   ),
+      // },
     ],
     [],
   );
