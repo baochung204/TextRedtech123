@@ -11,15 +11,13 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography,
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconEye } from '@tabler/icons-react';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconEye, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cvr from 'src/assets/Adminphoto/cvr.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import Assistant from 'src/assets/Adminphoto/tro ly.png';
@@ -302,8 +300,14 @@ const FilmsData: FilmsData[] = [
   { id: 6, title: 'Functions' },
   { id: 7, title: 'Chiến lược' },
 ];
-
-
+const AssistantAdmin = () => {
+  const column = useMemo<Column[]>(
+    () => [
+      {
+        dataIndex: 'customerId',
+        title: 'ID',
+      },
+      {
         dataIndex: 'ngaytao',
         title: 'Ngày tạo',
         isValids: true,
@@ -317,8 +321,9 @@ const FilmsData: FilmsData[] = [
         title: 'Tên trợ lý',
       },
       {
-        dataIndex: 'customerId',
+        dataIndex: 'assistantId',
         title: 'ID khách hàng',
+        isValids: true,
       },
       {
         dataIndex: 'kh',
@@ -385,15 +390,16 @@ const FilmsData: FilmsData[] = [
         title: 'Dung lượng',
         isValids: true,
       },
-      {
-        dataIndex: 'cpdt',
-        title: 'Chi phí/ Doanh thu',
-        isValids: false,
-      },
 
       {
         dataIndex: 'assistantId',
         title: 'ID trợ lý',
+        isValids: false,
+      },
+
+      {
+        dataIndex: 'cpdt',
+        title: 'Chi phí/ doanh thu',
         isValids: false,
       },
       {
@@ -407,22 +413,26 @@ const FilmsData: FilmsData[] = [
         isValids: false,
       },
       {
+        title: 'Xem chi tiết',
         dataIndex: 'action',
-        title: 'Chi tiết',
-        render: (_row, value: any) => (
-          <>
-            <IconButton
-              onClick={() => {
-                setSelectID(value.id);
-                setOpen(true);
-                setCheckValue('view');
-              }}
-            >
-              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
-          </>
-        ),
-        isValids: true,
+        render: (_row: any, value: any) => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const navigate = useNavigate();
+
+          const handleRedirect = () => {
+            navigate(`/assistants/detail/${value.customerId}`);
+          };
+
+          return (
+            <>
+              <IconButton onClick={() => handleRedirect()}>
+                {' '}
+                {/* Using value.id for redirection */}
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+            </>
+          );
+        },
       },
     ],
     [],

@@ -48,6 +48,13 @@ import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
+import customerperpublisher from 'src/assets/dashboardadmin/khach hang- publis.png';
+import orderperpublisher from 'src/assets/dashboardadmin/đơn hàng-publis.png';
+import revenueperpublisher from 'src/assets/dashboardadmin/doanh thu-publis.png';
+import commissionperpublisher from 'src/assets/dashboardadmin/hoa hồng publis.png';
+import revenueperorder from 'src/assets/dashboardadmin/doanh thu- don hnag.png';
+import commissionperorder from 'src/assets/dashboardadmin/hoa dồng - đơn hàng.png';
+import point from 'src/assets/images/logos/R-Point.png';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },
@@ -196,7 +203,7 @@ const dataSource = [
     bgColor: 'primary.light',
 
     title: 'CVR',
-    total: '190',
+    total: '30%',
     icons: (
       <Box
         textAlign="center"
@@ -238,7 +245,7 @@ const dataSource = [
     bgColor: 'primary.light',
 
     title: 'Doanh thu',
-    total: '23',
+    total: '234.567đ',
     icons: (
       <Box
         textAlign="center"
@@ -280,8 +287,15 @@ const dataSource_rpoint = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Doanh thu(point)',
-    total: '190',
+    title: 'Doanh thu',
+    total: (
+      <>
+        <Box display="flex" alignItems="center" gap={0.4}>
+          <Typography variant="h6">190</Typography>
+          <img src={point} alt="" width={17} />
+        </Box>
+      </>
+    ),
     icons: (
       <Box
         textAlign="center"
@@ -566,7 +580,7 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <img src={pending} width={30} />
+        <img src={customerperpublisher} width={30} />
       </Box>
     ),
   },
@@ -586,14 +600,14 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <img src={pending} width={30} />
+        <img src={orderperpublisher} width={30} />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
     title: 'Doanh thu / Publisher',
-    total: '23',
+    total: '789.567đ',
     icons: (
       <Box
         textAlign="center"
@@ -606,14 +620,14 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <img src={pending} width={30} />
+        <img src={revenueperpublisher} width={30} />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
     title: 'Hoa hồng / Publisher',
-    total: '23',
+    total: '456.789đ',
     icons: (
       <Box
         textAlign="center"
@@ -626,14 +640,14 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <img src={pending} width={30} />
+        <img src={commissionperpublisher} width={30} />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
     title: 'Doanh thu / Đơn hàng',
-    total: '23',
+    total: '234.567đ',
     icons: (
       <Box
         textAlign="center"
@@ -646,14 +660,14 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <img src={pending} width={30} />
+        <img src={revenueperpublisher} width={30} />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
     title: 'Hoa hồng / Đơn hàng',
-    total: '23',
+    total: '123.456đ',
     icons: (
       <Box
         textAlign="center"
@@ -666,7 +680,7 @@ const dataSource_affiliate = [
           alignItems: 'center',
         }}
       >
-        <img src={pending} width={30} />
+        <img src={commissionperorder} width={30} />
       </Box>
     ),
   },
@@ -739,7 +753,7 @@ const dataSource_sale = [
     bgColor: 'primary.light',
 
     title: 'Tỉ lệ sử dụng',
-    total: '23',
+    total: '23%',
     icons: (
       <Box
         textAlign="center"
@@ -803,7 +817,7 @@ const dataSource_sale = [
     bgColor: 'primary.light',
 
     title: 'Doanh thu',
-    total: '123',
+    total: '123.456đ',
     icons: (
       <Box
         textAlign="center"
@@ -824,7 +838,7 @@ const dataSource_sale = [
     bgColor: 'primary.light',
 
     title: 'Tỉ lệ mua',
-    total: '23',
+    total: '23%',
     icons: (
       <Box
         textAlign="center"
@@ -913,7 +927,7 @@ const dataSource_blog = [
     bgColor: 'primary.light',
 
     title: 'Tổng doanh thu',
-    total: '123',
+    total: '123.456đ',
     icons: (
       <Box
         textAlign="center"
@@ -955,7 +969,7 @@ const dataSource_blog = [
     bgColor: 'primary.light',
 
     title: 'Doanh thu / bài viết',
-    total: '23',
+    total: '234.567đ',
     icons: (
       <Box
         textAlign="center"
