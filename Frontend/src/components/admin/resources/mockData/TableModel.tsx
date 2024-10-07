@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
 import { IconEye, IconFile3d, IconTrash } from '@tabler/icons-react';
 import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
@@ -127,15 +127,18 @@ export const ModelCells: any = [
   {
     dataIndex: 'actions',
     title: 'Hoạt động',
-    render: (()=> (
-      <>
-        {/* <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton> */}
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
+    render: ((_row:any, value: string)=> (
+      <Box display={'flex'} sx={{justifyContent:'center'}}>
+        <Tooltip title='Xem' placement='right'>
+          <IconButton >
+            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+          </IconButton>
+          {/* <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton> */}
+        </Tooltip>
+      
+      </Box>
     ))
   },
 ];
@@ -146,113 +149,59 @@ export const ModelRows = [
     creationTime: '2024-09-01',
     modelName: 'Model Dự đoán Doanh thu',
     baseModel: 'GPT-4',
-    trainingTokens: 1000000,
-    ownedCustomers: 12,
-    appliedAssistants: 3,
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
+    trainingTokens: '1000000',
+    ownedCustomers: '12',
+    appliedAssistants: '3',
+  
   },
   {
     id: 'MDL002',
     creationTime: '2024-09-02',
     modelName: 'Model Phân tích Tâm lý',
     baseModel: 'BERT',
-    trainingTokens: 800000,
-    ownedCustomers: 8,
-    appliedAssistants: 2,
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
+    trainingTokens: '800000',
+    ownedCustomers: '8',
+    appliedAssistants: '2',
+   
   },
   {
     id: 'MDL003',
     creationTime: '2024-09-03',
     modelName: 'Model Tối ưu Hóa Chi phí',
     baseModel: 'GPT-3',
-    trainingTokens: 1200000,
-    ownedCustomers: 15,
-    appliedAssistants: 4,
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
+    trainingTokens: '1200000',
+    ownedCustomers: '15',
+    appliedAssistants: '4',
+    
   },
   {
     id: 'MDL004',
     creationTime: '2024-09-04',
     modelName: 'Model Dự báo Nhu cầu',
     baseModel: 'RoBERTa',
-    trainingTokens: 950000,
-    ownedCustomers: 10,
-    appliedAssistants: 3,
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
+    trainingTokens: '950000',
+    ownedCustomers: '10',
+    appliedAssistants: '3',
+   
   },
   {
     id: 'MDL005',
     creationTime: '2024-09-05',
     modelName: 'Model Phân tích Đối thủ',
     baseModel: 'GPT-4',
-    trainingTokens: 1300000,
-    ownedCustomers: 20,
-    appliedAssistants: 5,
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
+    trainingTokens: '1300000',
+    ownedCustomers: '20',
+    appliedAssistants: '5',
+   
   },
   {
     id: 'MDL006',
     creationTime: '2024-09-06',
     modelName: 'Model Dự đoán Thị trường',
     baseModel: 'T5',
-    trainingTokens: 1100000,
-    ownedCustomers: 18,
-    appliedAssistants: 6,
-    actions: (
-      <>
-        <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton>
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ),
+    trainingTokens: '1100000',
+    ownedCustomers: '18',
+    appliedAssistants: '6',
+   
   },
 ];

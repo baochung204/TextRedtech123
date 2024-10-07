@@ -96,7 +96,7 @@ export interface ContactPointTable {
   position: string;
   phone_number: number;
   email: string;
-  status: string;
+  status: number;
 }
 
 const DataContactPointTable: ContactPointTable[] = [
@@ -114,7 +114,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'CEO',
     phone_number: 1234567890,
     email: 'contact@companya.com',
-    status: 'Chờ ký',
+    status: 1,
   },
   {
     id_contract: 'CNT002',
@@ -130,7 +130,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Quản lý',
     phone_number: 2345678901,
     email: 'contact@companyb.com',
-    status: 'Đã ký',
+    status: 2,
   },
   {
     id_contract: 'CNT003',
@@ -146,7 +146,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Kế toán',
     phone_number: 3456789012,
     email: 'contact@companyc.com',
-    status: 'Chờ ký',
+    status: 3,
   },
   {
     id_contract: 'CNT004',
@@ -162,7 +162,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Tech leader',
     phone_number: 4567890123,
     email: 'contact@companyd.com',
-    status: 'Từ chối',
+    status: 4,
   },
   {
     id_contract: 'CNT005',
@@ -178,7 +178,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'CEO',
     phone_number: 5678901234,
     email: 'contact@companye.com',
-    status: 'Chờ ký',
+    status: 2,
   },
   {
     id_contract: 'CNT006',
@@ -194,7 +194,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Trường phòng marketing',
     phone_number: 6789012345,
     email: 'contact@companyf.com',
-    status: 'Đã ký',
+    status: 1,
   },
   {
     id_contract: 'CNT007',
@@ -210,7 +210,7 @@ const DataContactPointTable: ContactPointTable[] = [
     position: 'Trưởng phòng kinh doanh',
     phone_number: 7890123456,
     email: 'contact@companyg.com',
-    status: 'Đã ký',
+    status: 3,
   },
 ];
 

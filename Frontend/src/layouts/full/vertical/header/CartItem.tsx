@@ -40,7 +40,7 @@ const CartItems = () => {
                   }}
                 />
                 <Box>
-                  <Typography variant="subtitle2" color="textPrimary" fontWeight={600}>
+                  <Typography variant="subtitle2" color="black" fontWeight={600}>
                     {product.name}
                   </Typography>{' '}
                   <Typography color="textSecondary" fontSize="12px">
@@ -56,6 +56,7 @@ const CartItems = () => {
                         color="success"
                         className="btn-xs"
                         variant="text"
+                        sx={{ bgcolor: 'transparent', color: 'text.secondary' }}
                         onClick={() => Decrease(product.id)}
                         disabled={product.qty < 2}
                       >
@@ -70,6 +71,7 @@ const CartItems = () => {
                       </Button>
                       <Button
                         color="success"
+                        sx={{ bgcolor: 'transparent', color: 'text.secondary' }}
                         className="btn-xs"
                         variant="text"
                         onClick={() => Increase(product.id)}

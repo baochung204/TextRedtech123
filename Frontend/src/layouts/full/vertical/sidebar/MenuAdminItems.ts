@@ -166,7 +166,7 @@ const MenuAdminitems: MenuitemsType[] = [
     children: [
       {
         id: uniqueId(),
-        title: 'Hợp đồng R-Point',
+        title: 'Hợp đồng nguyên tắc',
         icon: IconPoint,
         href: '/admin/contactpoint',
       },

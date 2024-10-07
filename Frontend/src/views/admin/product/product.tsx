@@ -1,4 +1,3 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   Badge,
@@ -31,7 +30,7 @@ import sale from 'src/assets/Adminphoto/khuyen mai.png';
 import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
 import PageContainer from 'src/components/container/PageContainer';
-import DialogProduct from './DialogProduct';
+import DialogDetailOrder from './DialogDetailOrder';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -257,7 +256,7 @@ const ProductAdmin = () => {
           <IconButton
             onClick={() => {
               setSelectID(row.id_don_hang);
-              setOpen(true);
+              setOpen(!open);
               setCheckValue('show');
             }}
           >
@@ -470,13 +469,14 @@ const ProductAdmin = () => {
             <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
           </Grid>
         </Grid>
-        <DialogProduct
+        {/* <DialogProduct
           open={open}
           setOpen={setOpen}
           checkValue={checkValue}
           setCheckValue={setCheckValue}
           selectID={selectID}
-        />
+        /> */}
+        <DialogDetailOrder open={open} setOpen={setOpen} />
       </PageContainer>
     </>
   );

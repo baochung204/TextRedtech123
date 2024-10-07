@@ -6,47 +6,80 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography
+  Typography,
+  TextField,
+  Button,
+  Box,
+  Divider,
+  Grid,
+  Tooltip,
+  Avatar,
 } from '@mui/material';
 import React, { useState } from 'react';
-
 import CloseIcon from '@mui/icons-material/Close';
-const functions = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl'];
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
+
+const functions = [
+  { name: 'trithucchochatbot1.jsnl', url: 'https://example.com/image1.jpg' },
+  { name: 'trithuc2.jsnl', url: 'https://example.com/image2.jpg' },
+  { name: 'trithuc3.jsnl', url: 'https://example.com/image3.jpg' },
+  // Add more images as needed
+];
+
 interface PropsFunction {
   openFunction: boolean;
   setOpenFunction: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-
-
+const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
+  const [selectedValues, setSelectedValues] = useState<{ name: string, url: string }[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>(''); // Ô tìm kiếm
+  const [selectAll, setSelectAll] = useState<boolean>(false); // Trạng thái Select All
 
   const handleClose = () => {
     setOpenFunction(false);
   };
 
-  const handleToggle = (email: string) => {
+  const handleToggle = (image: { name: string, url: string }) => {
     setSelectedValues((prevSelectedValues) =>
-      prevSelectedValues.includes(email)
-        ? prevSelectedValues.filter((value) => value !== email)
-        : [...prevSelectedValues, email],
+      prevSelectedValues.some((val) => val.name === image.name)
+        ? prevSelectedValues.filter((value) => value.name !== image.name)
+        : [...prevSelectedValues, image],
     );
   };
 
+  const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedValues([]); // Bỏ chọn tất cả
+    } else {
+      setSelectedValues(filteredFunctions); // Chọn tất cả các mục được lọc
+    }
+    setSelectAll(!selectAll);
+  };
+
+  // Lọc danh sách các files theo từ khóa tìm kiếm
+  const filteredFunctions = functions.filter((file) =>
+    file.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
   return (
     <>
-
       <Typography variant="subtitle1" component="div">
-        {selectedValues
-          .join('\n')
-          .split('\n')
-          .map((value, index) => (
+        <Scrollbar_y sx={{ height: '100px' }}>
+          {selectedValues.map((value, index) => (
             <React.Fragment key={index}>
-              {value}
+              <Box display="flex" alignItems="center" mb={-1}>
+                <Avatar
+                  src={value.url}
+                  alt="avatar"
+                  sx={{ width: 40, height: 40, mr: 2 }}
+                />
+                <Typography variant="body1">{value.name}</Typography>
+              </Box>
               <br />
             </React.Fragment>
           ))}
+        </Scrollbar_y>
       </Typography>
       <Dialog onClose={handleClose} open={openFunction}>
         <DialogTitle
@@ -56,28 +89,91 @@ const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunctio
             alignItems: 'center',
           }}
         >
-          Chọn file
+          Chọn ảnh
           <CloseIcon onClick={handleClose} style={{ cursor: 'pointer', opacity: 0.7 }} />
         </DialogTitle>
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px', width: '600px' }}>
+          <TextField
+            sx={{ mx: 1 }}
+            label="Tìm kiếm"
+            variant="outlined"
+            fullWidth
+            size="small"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </Box>
+
         <List sx={{ pt: 0 }}>
-          {functions.map((email) => (
-            <ListItem key={email}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={selectedValues.includes(email)}
-                    onChange={() => handleToggle(email)}
+          <ListItem>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs={1}>
+                <Tooltip title="Chọn tất cả">
+                  <FormControlLabel
+                    control={<Checkbox onClick={handleSelectAll} />}
+                    label=""
                   />
-                }
-                label=""
-              />
-              <ListItemText primary={email} />
-            </ListItem>
-          ))}
+                </Tooltip>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="subtitle1" fontWeight="bold">
+                  Tên ảnh
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">
+                  Tiêu đề
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">
+                  Mô tả
+                </Typography>
+              </Grid>
+            </Grid>
+          </ListItem>
+
+          <Divider />
+          <Scrollbar_y sx={{ height: '300px' }}>
+            {filteredFunctions.map((file) => (
+              <React.Fragment key={file.name}>
+                <Divider sx={{ mx: '0px' }} />
+                <ListItem>
+                  <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={1}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={selectedValues.some((val) => val.name === file.name)}
+                            onChange={() => handleToggle(file)}
+                          />
+                        }
+                        label=""
+                      />
+                    </Grid>
+                    <Grid item xs={3}>
+                      <Typography
+                        display={'flex'}
+                        variant="body1"
+                        alignItems={"center"}
+                        noWrap
+                        sx={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
+                        <Avatar sx={{ mr: 1 }} src={file.url} />
+                        {file.name}
+                      </Typography>
+                    </Grid>
+                    {/* Add more details or actions here if needed */}
+                  </Grid>
+                </ListItem>
+              </React.Fragment>
+            ))}
+          </Scrollbar_y>
         </List>
       </Dialog>
     </>
   );
 };
 
-export default FunctionsDialog;
+export default FunctionDialog;

@@ -19,6 +19,7 @@ import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import type { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../../shared/BlankCard';
+import reaction from 'src/assets/Adminphoto/luot timm.png';
 
 const BlogDetail = () => {
   const dispatch = useDispatch();
@@ -72,7 +73,17 @@ const BlogDetail = () => {
                 size="small"
               ></Chip>
             </Stack>
-            <Chip label={post?.author.name} size="small" sx={{ marginTop: 2 }}></Chip>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Box>
+                <Chip label={post?.author.name} size="small" sx={{ marginTop: 2 }} />
+              </Box>
+              <Box sx={{ display: 'flex' }}>
+                <Typography sx={{ marginRight: '5px' }}>159</Typography>
+                <Box sx={{ marginTop: '3px' }}>
+                  <img src={reaction} width={15} height={15} />
+                </Box>
+              </Box>
+            </Box>
             <Box my={3}>
               <Typography
                 gutterBottom

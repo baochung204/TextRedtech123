@@ -157,10 +157,10 @@ const PageFeature = () => {
       { title: 'Họ và tên', dataIndex: 'name' },
       { title: 'Email', dataIndex: 'email' },
       { title: 'Số điện thoại', dataIndex: 'phone' },
-      {
-        title: 'Nội dung đề xuất',
-        dataIndex: 'contextFeature',
-      },
+      // {
+      //   title: 'Nội dung đề xuất',
+      //   dataIndex: 'contextFeature',
+      // },
       { title: 'Trạng thái', dataIndex: 'status' },
       { title: 'Ghi chú', dataIndex: 'note' },
       {

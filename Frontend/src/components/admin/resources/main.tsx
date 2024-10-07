@@ -33,6 +33,7 @@ import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
 
 import TabFunction from './Tables/TabFunction';
 import TabStr from './Tables/TabStr';
+import TabModel from './Tables/TabModel';
 interface Column {
   title: string;
   dataIndex: string;
@@ -409,7 +410,7 @@ const Main = () => {
                 fullWidth={true}
               />
             </Grid>
-            {( value === '4') && (
+            {( value === null) && (
               <Grid item>
                 <IconButton
                   color="primary"
@@ -484,9 +485,7 @@ const Main = () => {
               </BlankCard>
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="4">
-              <BlankCard>
-                <CustomTable columns={ModelCells} dataSource={ModelRows} dataSelect={dataSelect} />
-              </BlankCard>
+              <TabModel value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="5">
               <BlankCard>

@@ -19,10 +19,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
-import aov from 'src/assets/Adminphoto/aov.png';
-import bill from 'src/assets/Adminphoto/dơn hang.png';
-import sale from 'src/assets/Adminphoto/khuyen mai.png';
-import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
+import revenueperproduct from 'src/assets/Adminphoto/doanh thu san pham.png';
+import product from 'src/assets/Adminphoto/san pham.png';
+import amountcheckout from 'src/assets/Adminphoto/so luong mua.png';
+import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
 import icontext, { default as iconPoint } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -30,7 +30,6 @@ import CustomTextField from 'src/components/forms/theme-elements/CustomTextField
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import ProductTable from '../product/ProductData';
-
 import DialogBuyProduct from './DialogBuyProduct';
 
 const BCrumb = [
@@ -38,14 +37,14 @@ const BCrumb = [
     to: '/',
     title: 'Trang chủ',
   },
-  { to: 'admin/buy/products', title: 'Danh mục sản phẩm' },
+  { to: 'admin/buy/products', title: 'Danh sách sản phẩm' },
 ];
 
 const DataBox = [
   {
     bgColor: 'primary.light',
 
-    title: 'Đơn hàng',
+    title: 'Sản phẩm',
     total: (
       <>
         <Typography variant="h6">1236</Typography>
@@ -64,19 +63,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={bill} width={30} />
+          <img src={product} width={30} />
         </Box>
       </>
     ),
   },
   {
     bgColor: 'primary.light',
-    title: 'Tổng giá trị',
+    title: 'Số lượng mua',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">16.146.515</Typography>
-          <img src={iconPoint} alt="" width={17} />
+          <Typography variant="h6">165</Typography>
         </Box>
       </>
     ),
@@ -93,17 +91,18 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={totalvalue} width={30} />
+          <img src={amountcheckout} width={30} />
         </Box>
       </>
     ),
   },
   {
     bgColor: 'primary.light',
-    title: 'Khuyến mại',
+    title: 'Tổng doanh thu',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
+<<<<<<< HEAD
           <Typography variant="h6">5.432.234</Typography>
           <img src={iconPoint} alt="" width={17} />
         </Box>
@@ -135,6 +134,9 @@ const DataBox = [
         <Box display="flex" alignItems="center" gap={0.4}>
           <Typography variant="h6">12.423.423 </Typography>
           <img src={iconPoint} alt="" width={17} />
+=======
+          <Typography variant="h6">5.432.234đ</Typography>
+>>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
         </Box>
       </>
     ),
@@ -158,11 +160,11 @@ const DataBox = [
   },
   {
     bgColor: 'primary.light',
-    title: 'AOV',
+    title: 'Lượt mua / sản phẩm',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">23.423 </Typography>
+          <Typography variant="h6">1245</Typography>
           <img src={iconPoint} alt="" width={17} />
         </Box>
       </>
@@ -180,8 +182,36 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
+          <img src={totalrevenue} width={30} />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'primary.light',
+    title: 'Doanh thu / sản phẩm',
+    total: (
+      <>
+        <Box display="flex" alignItems="center" gap={0.4}>
+          <Typography variant="h6">23.423đ</Typography>
+        </Box>
+      </>
+    ),
+    icons: (
+      <>
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           {/* <IconChartBar color="white" size={30} /> */}
-          <img src={aov} width={30} />
+          <img src={revenueperproduct} width={30} />
         </Box>
       </>
     ),
@@ -340,7 +370,7 @@ const BuyPoints = () => {
   const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <>
-      <BannerPage title="Đơn hàng sản phẩm" items={BCrumb} />
+      <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
           <TopCard dataSource={DataBox} totalColumn={5} />

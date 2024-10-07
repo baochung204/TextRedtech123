@@ -36,9 +36,9 @@ const BlogListing = () => {
     return posts;
   };
 
-  const filterFeaturedpost = (posts: BlogPostType[]) => {
-    return (posts = posts.filter((t) => t.featured));
-  };
+  // const filterFeaturedpost = (posts: BlogPostType[]) => {
+  //   return (posts = posts.filter((t) => t.featured));
+  // };
 
   const blogPosts = useSelector((state) =>
     filterBlogs(
@@ -47,13 +47,13 @@ const BlogListing = () => {
       state.blogReducer.blogSearch,
     ),
   );
-  const featuredPost = useSelector((state) => filterFeaturedpost(state.blogReducer.blogposts));
+  // const featuredPost = useSelector((state) => filterFeaturedpost(state.blogReducer.blogposts));
 
   return (
     <Grid container spacing={3}>
-      {featuredPost.map((post, index) => {
+      {/* {featuredPost.map((post, index) => {
         return <BlogFeaturedCard index={index} post={post} key={post.title} />;
-      })}
+      })} */}
       {blogPosts.map((post) => {
         return <BlogCard post={post} key={post.id} />;
       })}

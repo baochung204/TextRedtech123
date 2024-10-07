@@ -14,10 +14,10 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconChartBar, IconSearch } from '@tabler/icons-react';
+import { IconChartBar, IconEye, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cvr from 'src/assets/Adminphoto/cvr.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import Assistant from 'src/assets/Adminphoto/tro ly.png';
@@ -64,7 +64,7 @@ const DataBox = [
   {
     bgColor: 'primary.light',
 
-    title: 'CVR trung bình',
+    title: 'CVR',
     total: '25.18%',
     icons: (
       <>
@@ -111,7 +111,7 @@ const DataBox = [
   {
     bgColor: 'primary.light',
 
-    title: 'Đơn hàng',
+    title: 'Chuyển đổi',
     total: '11.415',
     icons: (
       <>
@@ -308,6 +308,11 @@ const AssistantAdmin = () => {
         title: 'ID',
       },
       {
+        dataIndex: 'ngaytao',
+        title: 'Ngày tạo',
+        isValids: true,
+      },
+      {
         dataIndex: 'assistantImage',
         title: 'Ảnh trợ lý',
       },
@@ -316,60 +321,14 @@ const AssistantAdmin = () => {
         title: 'Tên trợ lý',
       },
       {
-        dataIndex: 'files',
-        title: 'Files',
-        isValids: true,
-      },
-      {
-        dataIndex: 'dungluong',
-        title: 'Dung lượng',
-        isValids: true,
-      },
-      {
-        dataIndex: 'function',
-        title: 'Functions',
-        isValids: true,
-      },
-      {
-        dataIndex: 'cl',
-        title: 'Chiến lược',
-        isValids: true,
-      },
-      {
         dataIndex: 'assistantId',
-        title: 'ID trợ lý',
-        isValids: false,
-      },
-      {
-        dataIndex: 'level',
-        title: 'Level',
-        isValids: false,
-      },
-      {
-        dataIndex: 'experience',
-        title: 'Experience',
-        isValids: false,
-      },
-
-      {
-        dataIndex: 'token',
-        title: 'Token huấn luyện',
-        isValids: false,
-      },
-      {
-        dataIndex: 'ngaytao',
-        title: 'Ngày tạo',
-        isValids: false,
-      },
-      {
-        dataIndex: 'vqtb',
-        title: 'Vòng quay trung bình',
-        isValids: false,
+        title: 'ID khách hàng',
+        isValids: true,
       },
       {
         dataIndex: 'kh',
         title: 'Khách hàng',
-        isValids: false,
+        isValids: true,
       },
       {
         dataIndex: 'dh',
@@ -392,19 +351,88 @@ const AssistantAdmin = () => {
         isValids: false,
       },
       {
+        dataIndex: 'level',
+        title: 'Level',
+        isValids: false,
+      },
+      {
+        dataIndex: 'experience',
+        title: 'Experience',
+        isValids: false,
+      },
+      {
+        dataIndex: 'token',
+        title: 'Token huấn luyện',
+        isValids: false,
+      },
+      {
+        dataIndex: 'vqtb',
+        title: 'Vòng quay trung bình',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cl',
+        title: 'Chiến lược',
+        isValids: true,
+      },
+      {
+        dataIndex: 'function',
+        title: 'Functions',
+        isValids: true,
+      },
+      {
+        dataIndex: 'files',
+        title: 'Files',
+        isValids: true,
+      },
+      {
+        dataIndex: 'dungluong',
+        title: 'Dung lượng',
+        isValids: true,
+      },
+
+      {
+        dataIndex: 'assistantId',
+        title: 'ID trợ lý',
+        isValids: false,
+      },
+
+      {
         dataIndex: 'cpdt',
-        title: 'Chi phí/ Doanh thu',
+        title: 'Chi phí/ doanh thu',
         isValids: false,
       },
       {
         dataIndex: 'cpdh',
-        title: 'Chi phí/ Đơn hàng',
+        title: 'Chi phí / chuyển đổi',
         isValids: false,
       },
       {
         dataIndex: 'cpkh',
-        title: 'Chi phí/ khách hàng',
+        title: 'Chi phí / khách hàng',
         isValids: false,
+      },
+      {
+        title: 'Xem chi tiết',
+        dataIndex: 'action',
+        render: (_row: any, value: any) => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const navigate = useNavigate();
+
+          const handleRedirect = () => {
+            navigate(`/assistants/detail/${value.customerId}`);
+          };
+
+          return (
+            <>
+              <IconButton onClick={() => handleRedirect()}>
+                {' '}
+                {/* Using value.id for redirection */}
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+            </>
+          );
+        },
       },
     ],
     [],
@@ -450,13 +478,13 @@ const AssistantAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                <Grid item xs={2}>
+                {/* <Grid item xs={2}>
                   <Link to="/admin/assistanteditoradmin">
                     <IconButton color="primary" aria-label="Add to cart">
                       <AddCircleIcon sx={{ fontSize: 30 }} />
                     </IconButton>
                   </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
