@@ -118,6 +118,10 @@ export const ImageCells: HeadCell[] = [
   //   title: 'Người tạo',
   // },
   {
+    dataIndex: 'creator',
+    title: 'ID khách hàng',
+  },
+  {
     dataIndex: 'image',
     title: 'Hình ảnh',
   },
@@ -141,20 +145,20 @@ export const ImageCells: HeadCell[] = [
     dataIndex: 'url',
     title: 'URL',
   },
-  {
-    dataIndex: 'actions',
-    title: 'Hoạt động',
-    render: (()=> (
-      <>
-        {/* <IconButton>
-          <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-        </IconButton> */}
-        <IconButton>
-          <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-        </IconButton>
-      </>
-    ))
-  },
+  // {
+  //   dataIndex: 'actions',
+  //   title: 'Hoạt động',
+  //   render: (()=> (
+  //     <>
+  //       {/* <IconButton>
+  //         <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+  //       </IconButton> */}
+  //       <IconButton>
+  //         <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+  //       </IconButton>
+  //     </>
+  //   ))
+  // },
 ];
 
 export const ImageRows = [

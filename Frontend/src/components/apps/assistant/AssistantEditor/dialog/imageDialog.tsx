@@ -31,7 +31,7 @@ interface PropsFunction {
   setOpenFunction: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
+const ImageDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
   const [selectedValues, setSelectedValues] = useState<{ name: string, url: string }[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>(''); // Ô tìm kiếm
   const [selectAll, setSelectAll] = useState<boolean>(false); // Trạng thái Select All
@@ -176,4 +176,4 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
   );
 };
 
-export default FunctionDialog;
+export default ImageDialog;

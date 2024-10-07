@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, MenuItem, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import CustomTextField from '../../../components/forms/theme-elements/CustomText
 import Logo from 'src/layouts/full/shared/logo/Logo';
 import React from 'react';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 const AuthRegister = ({ subtitle }: registerType) => {
   // const [gender, setGender] = useState('');
   const [username, setUsername] = useState('');
@@ -15,7 +16,10 @@ const AuthRegister = ({ subtitle }: registerType) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [nkow, setnkow] = useState(1);
+  const handleChangenkow = (event: any) => {
+    setnkow(event.target.value);
+  };
   interface Errors {
     username?: string;
     email?: string;
@@ -25,9 +29,6 @@ const AuthRegister = ({ subtitle }: registerType) => {
   }
   const [checked, setChecked] = React.useState(true);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
   const [errors, setErrors] = useState<Errors>({});
 
   const validateUsername = (username: string) => {
@@ -245,42 +246,28 @@ const AuthRegister = ({ subtitle }: registerType) => {
             </Grid>
           </Grid>
           <Grid container item xs={12} spacing={2} alignItems="center">
-            <Grid item xs={1} display={'flex'}>
-              {' '}
-              <CustomCheckbox
-                checked={checked}
-                onChange={handleChange}
-                inputProps={{ 'aria-label': 'primary checkbox' }}
-              />
-              {/* <Checkbox
-                defaultChecked
-                sx={{
-                  color: (theme) => theme.palette.success.main,
-                  '&.Mui-checked': {
-                    color: (theme) => theme.palette.success.main,
-                  },
-                }}
-              /> */}
-              {/* <Typography color="textSecondary" fontWeight={600}>
-                Cá nhân
-              </Typography> */}
-            </Grid>
-            <Grid item xs={9}>
-              {/* <Checkbox
-                defaultChecked
-                sx={{
-                  color: (theme) => theme.palette.warning.main,
-                  '&.Mui-checked': {
-                    color: (theme) => theme.palette.warning.main,
-                  },
-                }}
-              />
+            <Grid item xs={4} display={'flex'}>
               <Typography color="textSecondary" fontWeight={600}>
-                Doanh thu
-              </Typography> */}
-              <Typography color="textSecondary" fontWeight={600}>
-                Đăng ký tài khoản doanh nghiệp
+                Bạn biết đến chúng tôi qua đâu
               </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              {' '}
+              <CustomSelect
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={nkow}
+                onChange={handleChangenkow}
+                fullWidth
+              >
+                <MenuItem value={1}>Kênh khác</MenuItem>
+                <MenuItem value={2}>Facebook</MenuItem>
+                <MenuItem value={3}>TikTok</MenuItem>
+                <MenuItem value={4}>Email</MenuItem>
+                <MenuItem value={5}>Google</MenuItem>
+                <MenuItem value={6}>Zalo</MenuItem>
+                <MenuItem value={7}>Bạn bè giới thiệu</MenuItem>
+              </CustomSelect>
             </Grid>
           </Grid>
           {/* Fifth Row: Gender */}
