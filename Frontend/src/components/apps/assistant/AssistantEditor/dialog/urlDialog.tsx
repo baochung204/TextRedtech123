@@ -144,62 +144,64 @@ const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunctio
           </ListItem>
 
           <Divider />
+          <Scrollbar_y sx={{ height: '300px' }}>
 
-          {/* Lặp qua các phần tử danh sách */}
-          {filteredFunctions.map((file) => (
-            <>
-              <Divider sx={{ mx: '0px' }} />
-              <ListItem key={file}>
-                <Grid container spacing={2} alignItems="center">
-                  {/* Cột 1: Checkbox */}
-                  <Grid item xs={1}>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={selectedValues.includes(file)}
-                          onChange={() => handleToggle(file)}
-                        />
-                      }
-                      label=""
-                    />
-                  </Grid>
+            {/* Lặp qua các phần tử danh sách */}
+            {filteredFunctions.map((file) => (
+              <>
+                <Divider sx={{ mx: '0px' }} />
+                <ListItem key={file}>
+                  <Grid container spacing={2} alignItems="center">
+                    {/* Cột 1: Checkbox */}
+                    <Grid item xs={1}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={selectedValues.includes(file)}
+                            onChange={() => handleToggle(file)}
+                          />
+                        }
+                        label=""
+                      />
+                    </Grid>
 
-                  {/* Cột 2: Tiêu đề */}
-                  <Grid item xs={3}>
-                    <Typography
-                      variant="body1"
-                      noWrap
-                      sx={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}
-                    >
-                      {file}
-                    </Typography>
-                  </Grid>
+                    {/* Cột 2: Tiêu đề */}
+                    <Grid item xs={3}>
+                      <Typography
+                        variant="body1"
+                        noWrap
+                        sx={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
+                        {file}
+                      </Typography>
+                    </Grid>
 
-                  {/* Cột 3: Mô tả */}
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="body2"
-                      noWrap
-                      sx={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}
-                    >
-                      {file}
-                    </Typography>
-                  </Grid>
+                    {/* Cột 3: Mô tả */}
+                    <Grid item xs={4}>
+                      <Typography
+                        variant="body2"
+                        noWrap
+                        sx={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
+                        {file}
+                      </Typography>
+                    </Grid>
 
-                  {/* Cột 4: URL */}
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="body2"
-                      noWrap
-                      sx={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}
-                    >
-                     {file}
-                    </Typography>
+                    {/* Cột 4: URL */}
+                    <Grid item xs={4}>
+                      <Typography
+                        variant="body2"
+                        noWrap
+                        sx={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
+                        {file}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </ListItem>
-            </>
-          ))}
+                </ListItem>
+              </>
+            ))}
+          </Scrollbar_y>
         </List>
 
 
