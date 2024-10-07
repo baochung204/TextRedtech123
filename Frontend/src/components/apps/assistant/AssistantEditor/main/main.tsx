@@ -22,6 +22,8 @@ import AddText from '../layout/addText';
 import Sli from '../Sli';
 import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
+import AddImage from '../layout/addImage';
+import AddUrl from '../layout/addUrl';
 
 const AssistantEditor = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -80,18 +82,17 @@ const AssistantEditor = () => {
                   <Typography variant="h6">Cấu hình</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Grid container spacing={2}>
+                  <Grid container spacing={0}>
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddModel />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddText />
                     </Grid>
-                    <Grid item xs={12}>
-                      {' '}
+                    <Grid item xs={12} sm={6} lg={12}>
                       <Sli />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} mt={2}>
                       <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} lg={6}>
                           <AddSearch />
@@ -122,19 +123,19 @@ const AssistantEditor = () => {
           {/* Cột 2 */}
           <Grid container item xs={12} sm={12} lg={4} sx={{ height: '100%' }}>
             <Grid item xs={12}>
-              {' '}
-              {/* 1/3 chiều cao của parent */}
               <ChatBot />
             </Grid>
             <Grid item xs={12}>
-              {' '}
-              {/* 1/3 chiều cao của parent */}
               <Integration />
             </Grid>
             <Grid item xs={12}>
-              {' '}
-              {/* 1/3 chiều cao của parent */}
               <Strategy />
+            </Grid>
+            <Grid item xs={12}>
+              <AddImage />
+            </Grid>
+            <Grid item xs={12}>
+              <AddUrl />
             </Grid>
           </Grid>
         </Grid>

@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import React, { useEffect, useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { FunctionRows } from '../mockData/TableFunction';
+import { ModelRows } from '../mockData/TableModel';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 interface PropsDialog {
@@ -18,27 +18,22 @@ interface PropsDialog {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
+const DialogModelView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     // const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
     const [formData, setFormData] = useState({
         id: '',
         creationTime: '',
-        functionGroup: '',
-        functionName: '',
-        badge: '',
-        level: '',
+        modelName: '',
+        baseModel: '',
+        trainingTokens: '',
         ownedCustomers: '',
         appliedAssistants: '',
-        content: '',
-        summary: '',
-        functionCode: '',
-        creator: '',
     });
 
     // const [errors, setErrors] = useState({
-    //     functionName: '',
-    //     functionGroup: '',
+    //     strategyName: '',
+    //     strategyGroup: '',
     //     badge: '',
     //     level: '',
     //     summary: '',
@@ -73,17 +68,17 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
     // const validateForm = () => {
     //     const newErrors = {
-    //         functionName: '', functionGroup: '', badge: '',
+    //         strategyName: '', strategyGroup: '', badge: '',
     //         level: '',
     //         summary: '',
     //         content: '',
     //     };
 
-    //     if (!formData.functionName) {
-    //         newErrors.functionName = 'Tên chiến lược không được để trống';
+    //     if (!formData.strategyName) {
+    //         newErrors.strategyName = 'Tên chiến lược không được để trống';
     //     }
-    //     if (!formData.functionGroup) {
-    //         newErrors.functionGroup = 'Nhóm chiến lược không được để trống';
+    //     if (!formData.strategyGroup) {
+    //         newErrors.strategyGroup = 'Nhóm chiến lược không được để trống';
     //     }
     //     if (!formData.badge) {
     //         newErrors.badge = 'Huy hiệu không được để trống';
@@ -108,21 +103,18 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     // };
 
     const fetchStrategyDetail = (id: string) => {
-        const functions = FunctionRows.find((item) => item.id === id);
-        if (functions) {
+        const model = ModelRows.find((item) => item.id === id);
+        if (model) {
             setFormData({
-                id: functions.id,
-                creationTime: functions.creationTime,
-                functionGroup: functions.functionGroup,
-                functionName: functions.functionName,
-                badge: functions.badge,
-                level: functions.level,
-                ownedCustomers: functions.ownedCustomers,
-                appliedAssistants: functions.appliedAssistants,
-                content: functions.content,
-                summary: functions.summary,
-                functionCode: functions.functionCode,
-                creator: functions.creator,
+                id: model.id,
+                creationTime: model.creationTime,
+                modelName: model.modelName,
+                baseModel: model.baseModel,
+                trainingTokens: model.trainingTokens,
+                ownedCustomers: model.ownedCustomers,
+                appliedAssistants: model.appliedAssistants,
+
+
             });
         }
     };
@@ -147,18 +139,18 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     },
                     '& .MuiPaper-root': {
                         width: '100%',
-                        maxWidth: '700px',
+                        maxWidth: '600px',
                     },
                 }}
             >
                 <DialogTitle>
                     <Typography fontWeight={600} variant='h3'>
                         {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
-                        Xem function
+                        Xem model
                     </Typography>
                 </DialogTitle>
+                <Divider sx={{ mx: '0px' }} />
                 <Scrollbar_y sx={{ maxHeight: '550px', paddingX: 0 }}>
-                    <Divider sx={{ mx: '0px' }} />
                     <DialogContent sx={{ pt: 0, px: 5 }}>
                         {/* {isEditMode ? (<Grid container spacing={2}>
                         <Grid item xs={12} lg={4} md={12}>
@@ -229,15 +221,15 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                 variant="outlined"
                                 fullWidth
                                 placeholder="Nhập tên Function . . ."
-                                value={formData.functionName}
+                                value={formData.strategyName}
                                 onChange={(e) => {
-                                    setFormData({ ...formData, functionName: e.target.value });
-                                    if (errors.functionName && e.target.value.trim() !== '') {
-                                        setErrors({ ...errors, functionName: '' });
+                                    setFormData({ ...formData, strategyName: e.target.value });
+                                    if (errors.strategyName && e.target.value.trim() !== '') {
+                                        setErrors({ ...errors, strategyName: '' });
                                     }
                                 }}
-                                error={!!errors.functionName}
-                                helperText={errors.functionName}
+                                error={!!errors.strategyName}
+                                helperText={errors.strategyName}
                                 disabled={!isEditMode}
                             />
                             <Grid container spacing={2}>
@@ -248,15 +240,15 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         variant="outlined"
                                         fullWidth
                                         placeholder="Nhập tên nhóm chiến lược . . ."
-                                        value={formData.functionGroup}
+                                        value={formData.strategyGroup}
                                         onChange={(e) => {
-                                            setFormData({ ...formData, functionGroup: e.target.value });
-                                            if (errors.functionGroup && e.target.value.trim() !== '') {
-                                                setErrors({ ...errors, functionGroup: '' });
+                                            setFormData({ ...formData, strategyGroup: e.target.value });
+                                            if (errors.strategyGroup && e.target.value.trim() !== '') {
+                                                setErrors({ ...errors, strategyGroup: '' });
                                             }
                                         }}
-                                        error={!!errors.functionGroup}
-                                        helperText={errors.functionGroup}
+                                        error={!!errors.strategyGroup}
+                                        helperText={errors.strategyGroup}
                                         disabled={!isEditMode}
                                     />
                                 </Grid>
@@ -332,67 +324,69 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     </Grid>
                     ) : ( */}
                         <Grid item xs={12} lg={12} md={12}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyName-text">ID</CustomFormLabel>
+                            <Grid container spacing={2} >
+                                <Grid item xs={12} lg={6} md={6} sx={{}}>
+                                    <CustomFormLabel prop htmlFor="strategyName-text">ID</CustomFormLabel>
                                     <CustomTextField
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
                                         disabled
                                         value={formData.id}
+
                                     />
                                 </Grid>
                                 <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyName-text">Người tạo</CustomFormLabel>
+                                    <CustomFormLabel htmlFor="strategyName-text">Ngày tạo</CustomFormLabel>
                                     <CustomTextField
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
                                         disabled
-                                        value={formData.functionName}
+                                        value={formData.creationTime}
                                     />
                                 </Grid>
-                                <Grid item xs={12} lg={12} md={6}>
-                                    <CustomFormLabel htmlFor="strategyName-text">Tên chiến lược</CustomFormLabel>
+                                <Grid item xs={12} lg={12} md={6} >
+                                    <CustomFormLabel htmlFor="strategyName-text">Tên model</CustomFormLabel>
                                     <CustomTextField
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
                                         disabled
-                                        value={formData.functionName}
+                                        value={formData.modelName}
                                     />
                                 </Grid>
                                 <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyGroup-text">Nhóm chiến lược</CustomFormLabel>
+                                    <CustomFormLabel htmlFor="strategyGroup-text">Model gốc</CustomFormLabel>
                                     <CustomTextField
                                         id="strategyGroup-text"
                                         variant="outlined"
                                         fullWidth
                                         disabled
-                                        value={formData.functionGroup}
+                                        value={formData.baseModel}
 
                                     />
                                 </Grid>
                                 <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="badge-text">Huy hiệu</CustomFormLabel>
+                                    <CustomFormLabel htmlFor="badge-text">Trợ lý áp dụng</CustomFormLabel>
                                     <CustomTextField
                                         id="badge-text"
                                         variant="outlined"
                                         fullWidth
                                         disabled
-                                        value={formData.badge}
+                                        value={formData.appliedAssistants}
 
                                     />
+
                                 </Grid>
                                 <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="level-text">Level</CustomFormLabel>
+                                    <CustomFormLabel htmlFor="level-text">TrainingTokens</CustomFormLabel>
                                     <CustomTextField
                                         id="level-text"
                                         variant="outlined"
                                         fullWidth
                                         disabled
-                                        value={formData.level}
+                                        value={formData.trainingTokens}
 
                                     />
                                 </Grid>
@@ -407,57 +401,59 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
                                     />
                                 </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
+                                {/* <Grid item xs={12} lg={6} md={6}>
 
                                     <CustomFormLabel htmlFor="appliedAssistants-text">Trợ lý đã áp dụng</CustomFormLabel>
                                     <CustomTextField
                                         id="appliedAssistants-text"
                                         variant="outlined"
                                         fullWidth
-                                        disabled
+                                        placeholder="Nhập trợ lý đã áp dụng . . ."
                                         value={formData.appliedAssistants}
 
                                     />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
+                                </Grid> */}
+                                {/* <Grid item xs={12} lg={6} md={6}>
                                     <CustomFormLabel htmlFor="dateCreate-text">Ngày tạo</CustomFormLabel>
                                     <CustomTextField
                                         id="dateCreate-text"
                                         variant="outlined"
                                         fullWidth
-                                        disabled
-                                        value={formData.creationTime}
+                                        placeholder="Nhập ngày tạo . . ."
+                                        value={formData.}
 
                                     />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
+                                </Grid> */}
+                                {/* <Grid item xs={12} lg={6} md={6}>
                                     <CustomFormLabel htmlFor="summary-text">Tóm tắt</CustomFormLabel>
                                     <CustomTextField
                                         id="summary-text"
                                         variant="outlined"
                                         fullWidth
-                                        disabled
+                                        placeholder="Nhập tóm tắt . . ."
                                         multiline
                                         rows={5}
                                         value={formData.summary}
 
                                     />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
+                                </Grid> */}
+                                {/* <Grid item xs={12} lg={6} md={6}>
                                     <CustomFormLabel htmlFor="content-text">Nội dung</CustomFormLabel>
                                     <CustomTextField
                                         id="content-text"
                                         variant="outlined"
                                         fullWidth
-                                        disabled
+                                        placeholder="Nhập nội dung . . ."
                                         multiline
                                         rows={5}
                                         value={formData.content}
 
                                     />
+                                </Grid> */}
+
+                                <Grid item xs={12} lg={6} md={6}>
+
                                 </Grid>
-
-
                             </Grid>
                         </Grid>
                         {/* )} */}
@@ -467,9 +463,8 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
                 <DialogActions>
                     <Button onClick={handleClose}>Đóng</Button>
-
-                    {/* <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button>
-                    <Button variant='contained' onClick={handleSubmit}>{isEditMode ? 'Lưu' : 'Sửa'}</Button> */}
+                    {/* <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button> */}
+                    {/* <Button variant='contained' onClick={handleSubmit}>{isEditMode ? 'Lưu' : 'Sửa'}</Button> */}
                 </DialogActions>
             </Dialog>
 
@@ -482,4 +477,4 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     );
 };
 
-export default DialogFuncView;
+export default DialogModelView;

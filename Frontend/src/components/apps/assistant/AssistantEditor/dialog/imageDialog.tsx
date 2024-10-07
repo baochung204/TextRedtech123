@@ -27,7 +27,7 @@ interface PropsFunction {
   setOpenFunction: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
+const ImageDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>(''); // Ô tìm kiếm
   const [selectAll, setSelectAll] = useState<boolean>(false); // Trạng thái Select All
@@ -88,6 +88,7 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
           Chọn ảnh
           <CloseIcon onClick={handleClose} style={{ cursor: 'pointer', opacity: 0.7 }} />
         </DialogTitle>
+
         {/* Thêm ô tìm kiếm và nút Select All */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px', width: '600px' }}>
 
@@ -101,6 +102,7 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Box>
+
         <List sx={{ pt: 0 }}>
           {/* Hàng tiêu đề */}
           <ListItem>
@@ -126,14 +128,14 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
               {/* Cột 3: Mô tả */}
               <Grid item xs={3}>
                 <Typography variant="subtitle1" fontWeight="bold">
-                  Tên function
+                  Tên ảnh
                 </Typography>
               </Grid>
 
               {/* Cột 4: URL */}
               <Grid item xs={4}>
                 <Typography variant="subtitle1" fontWeight="bold">
-                  Level
+                  Tiêu đề
                 </Typography>
               </Grid>
               {/* Cột 4: URL */}
@@ -213,11 +215,9 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
 
 
 
-
-
       </Dialog>
     </>
   );
 };
 
-export default FunctionDialog;
+export default ImageDialog;

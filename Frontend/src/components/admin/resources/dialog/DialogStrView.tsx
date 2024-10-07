@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { StrategyRows } from '../mockData/TableStr';
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 interface PropsDialog {
     value: string,
@@ -18,7 +19,7 @@ interface PropsDialog {
 }
 
 const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
-    const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+    // const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
     const [formData, setFormData] = useState({
         id: '',
@@ -31,17 +32,17 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         summary: '',
         content: '',
         dateCreate: '',
-        creator:''
+        creator: ''
     });
 
-    const [errors, setErrors] = useState({
-        strategyName: '',
-        strategyGroup: '',
-        badge: '',
-        level: '',
-        summary: '',
-        content: '',
-    });
+    // const [errors, setErrors] = useState({
+    //     strategyName: '',
+    //     strategyGroup: '',
+    //     badge: '',
+    //     level: '',
+    //     summary: '',
+    //     content: '',
+    // });
 
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -50,60 +51,60 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         setIsEditMode(false);
     };
 
-    const handleSubmit = () => {
-        if (isEditMode) {
-            const newErrors = validateForm();
-            if (Object.values(newErrors).some(error => error !== '')) {
-                setErrors(newErrors);
-            } else {
-                // Lưu thay đổi
-                setIsEditMode(false); // Thoát chế độ chỉnh sửa sau khi lưu
-                setOpenSnackbar(true);
-                setTimeout(() => {
-                    setOpenSnackbar(false);
-                }, 3000);
-            }
-        } else {
-            // Kích hoạt chế độ chỉnh sửa
-            setIsEditMode(true);
-        }
-    };
+    // const handleSubmit = () => {
+    //     if (isEditMode) {
+    //         const newErrors = validateForm();
+    //         if (Object.values(newErrors).some(error => error !== '')) {
+    //             setErrors(newErrors);
+    //         } else {
+    //             // Lưu thay đổi
+    //             setIsEditMode(false); // Thoát chế độ chỉnh sửa sau khi lưu
+    //             setOpenSnackbar(true);
+    //             setTimeout(() => {
+    //                 setOpenSnackbar(false);
+    //             }, 3000);
+    //         }
+    //     } else {
+    //         // Kích hoạt chế độ chỉnh sửa
+    //         setIsEditMode(true);
+    //     }
+    // };
 
-    const validateForm = () => {
-        const newErrors = {
-            strategyName: '', strategyGroup: '', badge: '',
-            level: '',
-            summary: '',
-            content: '',
-        };
+    // const validateForm = () => {
+    //     const newErrors = {
+    //         strategyName: '', strategyGroup: '', badge: '',
+    //         level: '',
+    //         summary: '',
+    //         content: '',
+    //     };
 
-        if (!formData.strategyName) {
-            newErrors.strategyName = 'Tên chiến lược không được để trống';
-        }
-        if (!formData.strategyGroup) {
-            newErrors.strategyGroup = 'Nhóm chiến lược không được để trống';
-        }
-        if (!formData.badge) {
-            newErrors.badge = 'Huy hiệu không được để trống';
-        }
-        if (!formData.level) {
-            newErrors.level = 'Level không được để trống';
-        }
-        if (!formData.content) {
-            newErrors.content = 'Nội dung không được để trống';
-        }
-        if (!formData.summary) {
-            newErrors.summary = 'Tóm tắt không được để trống';
-        }
-        return newErrors;
-    };
+    //     if (!formData.strategyName) {
+    //         newErrors.strategyName = 'Tên chiến lược không được để trống';
+    //     }
+    //     if (!formData.strategyGroup) {
+    //         newErrors.strategyGroup = 'Nhóm chiến lược không được để trống';
+    //     }
+    //     if (!formData.badge) {
+    //         newErrors.badge = 'Huy hiệu không được để trống';
+    //     }
+    //     if (!formData.level) {
+    //         newErrors.level = 'Level không được để trống';
+    //     }
+    //     if (!formData.content) {
+    //         newErrors.content = 'Nội dung không được để trống';
+    //     }
+    //     if (!formData.summary) {
+    //         newErrors.summary = 'Tóm tắt không được để trống';
+    //     }
+    //     return newErrors;
+    // };
 
-    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
-            const file = e.target.files[0];
-            setAvatarPreview(URL.createObjectURL(file));
-        }
-    };
+    // const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files && e.target.files.length > 0) {
+    //         const file = e.target.files[0];
+    //         setAvatarPreview(URL.createObjectURL(file));
+    //     }
+    // };
 
     const fetchStrategyDetail = (id: string) => {
         const strategy = StrategyRows.find((item) => item.id === id);
@@ -144,18 +145,20 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     },
                     '& .MuiPaper-root': {
                         width: '100%',
-                        maxWidth: '900px',
+                        maxWidth: '700px',
                     },
                 }}
             >
                 <DialogTitle>
                     <Typography fontWeight={600} variant='h3'>
-                        {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'}
+                        {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
+                        Xem chiến lược
                     </Typography>
                 </DialogTitle>
                 <Divider sx={{ mx: '0px' }} />
-                <DialogContent sx={{ pt: 0, px: 5 }}>
-                    {isEditMode ? (<Grid container spacing={2}>
+                <Scrollbar_y sx={{ maxHeight: '550px', paddingX: 0 }}>
+                                    <DialogContent sx={{ pt: 0, px: 5 }}>
+                    {/* {isEditMode ? (<Grid container spacing={2}>
                         <Grid item xs={12} lg={4} md={12}>
                             <Box
                                 sx={{ textAlign: 'center', justifyContent: 'center', mt: { md: 2 }, mb: '20px' }}
@@ -325,145 +328,150 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    ) : (
-                        <Grid item xs={12} lg={12} md={12}>
-                            <Grid container spacing={2} >
-                                <Grid item xs={12} lg={6} md={6} sx={{}}>
-                                    <CustomFormLabel prop htmlFor="strategyName-text">ID</CustomFormLabel>
-                                    <CustomTextField 
-                                        id="strategyName-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        value={formData.id}
-                                        
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyName-text">Người tạo</CustomFormLabel>
-                                    <CustomTextField
-                                    
-                                        id="strategyName-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập tên chiến lược . . ."
-                                        value={formData.creator}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={12} md={6} >
-                                    <CustomFormLabel htmlFor="strategyName-text">Tên chiến lược</CustomFormLabel>
-                                    <CustomTextField
-                                        id="strategyName-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập tên chiến lược . . ."
-                                        value={formData.strategyName}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyGroup-text">Nhóm chiến lược</CustomFormLabel>
-                                    <CustomTextField
-                                        id="strategyGroup-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập nhóm chiến lược . . ."
-                                        value={formData.strategyGroup}
+                    ) : ( */}
+                    <Grid item xs={12} lg={12} md={12}>
+                        <Grid container spacing={2} >
+                            <Grid item xs={12} lg={6} md={6} sx={{}}>
+                                <CustomFormLabel prop htmlFor="strategyName-text">ID</CustomFormLabel>
+                                <CustomTextField
+                                    id="strategyName-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.id}
 
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="badge-text">Huy hiệu</CustomFormLabel>
-                                    <CustomTextField
-                                        id="badge-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập huy hiệu . . ."
-                                        value={formData.badge}
-
-                                    />
-                                    
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="level-text">Level</CustomFormLabel>
-                                    <CustomTextField
-                                        id="level-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập level . . ."
-                                        value={formData.level}
-
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="ownedCustomers-text">Khách hàng sở hữu</CustomFormLabel>
-                                    <CustomTextField
-                                        id="ownedCustomers-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập khách hàng sở hữu . . ."
-                                        value={formData.ownedCustomers}
-
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-
-                                    <CustomFormLabel htmlFor="appliedAssistants-text">Trợ lý đã áp dụng</CustomFormLabel>
-                                    <CustomTextField
-                                        id="appliedAssistants-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập trợ lý đã áp dụng . . ."
-                                        value={formData.appliedAssistants}
-
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="dateCreate-text">Ngày tạo</CustomFormLabel>
-                                    <CustomTextField
-                                        id="dateCreate-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập ngày tạo . . ."
-                                        value={formData.dateCreate}
-
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="summary-text">Tóm tắt</CustomFormLabel>
-                                    <CustomTextField
-                                        id="summary-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập tóm tắt . . ."
-                                        multiline
-                                        rows={5}
-                                        value={formData.summary}
-
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="content-text">Nội dung</CustomFormLabel>
-                                    <CustomTextField
-                                        id="content-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập nội dung . . ."
-                                        multiline
-                                        rows={5}
-                                        value={formData.content}
-
-                                    />
-                                </Grid>
-
-                                <Grid item xs={12} lg={6} md={6}>
-
-                                </Grid>
+                                />
                             </Grid>
-                        </Grid>)}
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="strategyName-text">Người tạo</CustomFormLabel>
+                                <CustomTextField
+
+                                    id="strategyName-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.creator}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={12} md={6} >
+                                <CustomFormLabel htmlFor="strategyName-text">Tên chiến lược</CustomFormLabel>
+                                <CustomTextField
+                                    id="strategyName-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.strategyName}
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="strategyGroup-text">Nhóm chiến lược</CustomFormLabel>
+                                <CustomTextField
+                                    id="strategyGroup-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.strategyGroup}
+
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="badge-text">Huy hiệu</CustomFormLabel>
+                                <CustomTextField
+                                    id="badge-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.badge}
+
+                                />
+
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="level-text">Level</CustomFormLabel>
+                                <CustomTextField
+                                    id="level-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.level}
+
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="ownedCustomers-text">Khách hàng sở hữu</CustomFormLabel>
+                                <CustomTextField
+                                    id="ownedCustomers-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.ownedCustomers}
+
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+
+                                <CustomFormLabel htmlFor="appliedAssistants-text">Trợ lý đã áp dụng</CustomFormLabel>
+                                <CustomTextField
+                                    id="appliedAssistants-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.appliedAssistants}
+
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="dateCreate-text">Ngày tạo</CustomFormLabel>
+                                <CustomTextField
+                                    id="dateCreate-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    value={formData.dateCreate}
+
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="summary-text">Tóm tắt</CustomFormLabel>
+                                <CustomTextField
+                                    id="summary-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    multiline
+                                    rows={5}
+                                    value={formData.summary}
+
+                                />
+                            </Grid>
+                            <Grid item xs={12} lg={6} md={6}>
+                                <CustomFormLabel htmlFor="content-text">Nội dung</CustomFormLabel>
+                                <CustomTextField
+                                    id="content-text"
+                                    variant="outlined"
+                                    fullWidth
+                                    disabled
+                                    multiline
+                                    rows={5}
+                                    value={formData.content}
+
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} lg={6} md={6}>
+
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    {/* )} */}
 
                 </DialogContent>
+                </Scrollbar_y>
+
                 <DialogActions>
-                    <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button>
-                    <Button variant='contained' onClick={handleSubmit}>{isEditMode ? 'Lưu' : 'Sửa'}</Button>
+                    <Button onClick={handleClose}>Đóng</Button>
+                    {/* <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button> */}
+                    {/* <Button variant='contained' onClick={handleSubmit}>{isEditMode ? 'Lưu' : 'Sửa'}</Button> */}
                 </DialogActions>
             </Dialog>
 
