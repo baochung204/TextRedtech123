@@ -31,7 +31,7 @@ import { DataInvoiceTable } from './datatable/InvoiceTableData';
 const dataSource = [
   {
     bgColor: 'primary.light',
-    title: 'Đơn hàng',
+    title: 'Hóa đơn',
     total: '1907',
     icons: (
       <>
@@ -97,6 +97,46 @@ const dataSource = [
     bgColor: 'primary.light',
     title: 'Hoa hồng',
     total: '123.456.789đ',
+    icons: (
+      <Box
+        textAlign="center"
+        padding={1}
+        sx={{
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <img src={commission} width={30} />
+      </Box>
+    ),
+  },
+  {
+    bgColor: 'primary.light',
+    title: 'Đã xuất',
+    total: '123456',
+    icons: (
+      <Box
+        textAlign="center"
+        padding={1}
+        sx={{
+          width: 45,
+          height: 45,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <img src={commission} width={30} />
+      </Box>
+    ),
+  },
+  {
+    bgColor: 'primary.light',
+    title: 'Chờ xuất',
+    total: '1235',
     icons: (
       <Box
         textAlign="center"
@@ -232,7 +272,7 @@ const Invoice = () => {
       },
       {
         title: 'Hoạt động',
-        dataIndex: 'phone_number',
+        dataIndex: '',
         // render: (_row:any, value: any) => (
         render: () => (
           <IconButton>
@@ -270,7 +310,7 @@ const Invoice = () => {
     <>
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={dataSource} totalColumn={4} />
+          <TopCard dataSource={dataSource} totalColumn={6} />
         </Grid>
 
         <Grid item xs={12}>
@@ -370,10 +410,8 @@ const Invoice = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
+                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
                   const isSelected = dataSelect.includes(header.dataIndex);
-
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
                       <Checkbox checked={!isSelected} />

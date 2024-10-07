@@ -435,7 +435,11 @@ const AddBlog = () => {
                   onChange={formik.handleChange}
                 >
                   <FormControlLabel value="published" control={<Radio />} label="Đăng" />
-                  <FormControlLabel value="draft" control={<Radio />} label="Nháp" />
+                  <FormControlLabel
+                    value="draft"
+                    control={<Radio />}
+                    label="Ẩn bỏ đường link url"
+                  />
                 </RadioGroup>
                 {formik.touched.status && formik.errors.status && (
                   <Typography color="error" variant="caption" sx={{ mt: 1 }}>
@@ -455,7 +459,7 @@ const AddBlog = () => {
                   handleThumbnailChange(event);
                   const file = event.target.files?.[0];
                   if (file) {
-                    handleImageUpload(file); // Gọi hàm chèn hình ảnh vào nội dung
+                    handleImageUpload(file);
                   }
                 }}
                 style={{ display: 'none' }}

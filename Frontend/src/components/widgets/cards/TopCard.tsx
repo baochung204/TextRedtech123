@@ -42,9 +42,13 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
               sx={{
                 backgroundColor: items.bgColor,
                 color: items.color,
+                px: totalColumn === 6 ? 1 : 0,
               }}
             >
-              <Grid container spacing={totalColumn >= 5 ? 5.5 : 0}>
+              <Grid
+                container
+                spacing={totalColumn <= 4 ? 0 : totalColumn === 5 ? 5.5 : totalColumn === 6 ? 2 : 0}
+              >
                 <Grid
                   item
                   xs={3}
@@ -58,7 +62,7 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
                 <Grid item xs={9}>
                   <Grid container spacing={0.4} sx={{ whiteSpace: 'nowrap' }}>
                     <Grid item xs={12}>
-                      <Typography variant="h6">{items.title}</Typography>
+                      <Typography variant="subtitle1">{items.title}</Typography>
                     </Grid>
                     <Grid item xs={12}>
                       <Typography variant="h6">{items.total}</Typography>

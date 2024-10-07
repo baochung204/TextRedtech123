@@ -23,6 +23,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import blog from 'src/assets/Adminphoto/bai viet.png';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import reaction from 'src/assets/Adminphoto/luot timm.png';
@@ -35,6 +36,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
+import Iconlike from 'src/assets/ICON/like.png';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -112,7 +114,7 @@ const DataBox: StyleProps[] = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Lượt tim',
+    title: 'Lượt like',
     total: '120',
     icons: (
       <Box
@@ -126,7 +128,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img width={30} src={reaction} />
+        <img width={30} src={Iconlike} />
       </Box>
     ),
   },
@@ -139,7 +141,6 @@ interface Column {
 }
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -231,7 +232,8 @@ const BlogAdmin = () => {
             style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
           >
             {value}
-            <Favorite color="error" />
+            {/* <Favorite color="error" /> */}
+            <img src={Iconlike} alt="" width={18} />
           </Typography>
         ),
       },
@@ -246,9 +248,13 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
-            <IconButton>
-              <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-            </IconButton>
+            <Link
+              to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
+            >
+              <IconButton>
+                <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+              </IconButton>{' '}
+            </Link>
             <IconButton>
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>

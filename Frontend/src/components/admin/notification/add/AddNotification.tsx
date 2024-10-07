@@ -138,7 +138,7 @@ const AddNotification = () => {
                     <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
                     <Tags />
                   </Grid>
-                  <Grid item lg={12} md={12}>
+                  {/* <Grid item lg={12} md={12}>
                     <CustomFormLabel htmlFor="url">Đường dẫn xem thêm</CustomFormLabel>
                     <CustomTextField
                       id="url"
@@ -151,7 +151,7 @@ const AddNotification = () => {
                       error={formik.touched.url && Boolean(formik.errors.url)}
                       helperText={formik.touched.url && formik.errors.url}
                     />
-                  </Grid>
+                  </Grid> */}
                   <Grid item lg={12} md={12}>
                     <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel>
                     <Paper sx={{ border: `1px solid ${borderColor}` }} variant="outlined">

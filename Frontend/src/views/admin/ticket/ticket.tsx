@@ -134,7 +134,7 @@ const DataBox = [
 interface DataRow {
   idTicket: string;
   creationTime: string;
-  interaction: string;
+  interaction: Date;
   rating: number;
   status: JSX.Element;
   title: string;
@@ -168,7 +168,7 @@ const dataRows: DataRow[] = [
   {
     idTicket: 'TCK001',
     creationTime: '2024-09-01 08:30',
-    interaction: 'Nhận yêu cầu',
+    interaction: new Date('2023-11-22'),
     rating: 4,
     status: renderStatus(1),
     title: 'Lỗi sản phẩm',
@@ -180,7 +180,7 @@ const dataRows: DataRow[] = [
   {
     idTicket: 'TCK002',
     creationTime: '2024-09-02 09:15',
-    interaction: 'Gửi phản hồi',
+    interaction: new Date('2023-11-22'),
     rating: 5,
     status: renderStatus(2),
     title: 'Yêu cầu hỗ trợ kỹ thuật',
@@ -192,7 +192,7 @@ const dataRows: DataRow[] = [
   {
     idTicket: 'TCK003',
     creationTime: '2024-09-03 10:45',
-    interaction: 'Gọi điện',
+    interaction: new Date('2023-11-22'),
     rating: 3,
     status: renderStatus(1),
     title: 'Vấn đề thanh toán',
@@ -204,7 +204,7 @@ const dataRows: DataRow[] = [
   {
     idTicket: 'TCK004',
     creationTime: '2024-09-04 11:20',
-    interaction: 'Nhận yêu cầu',
+    interaction: new Date('2023-11-22'),
     rating: 2,
     status: renderStatus(2),
     title: 'Sản phẩm bị lỗi',
@@ -216,7 +216,7 @@ const dataRows: DataRow[] = [
   {
     idTicket: 'TCK005',
     creationTime: '2024-09-05 14:05',
-    interaction: 'Gửi phản hồi',
+    interaction: new Date('2023-11-22'),
     rating: 4,
     status: renderStatus(2),
     title: 'Yêu cầu đổi hàng',
@@ -228,7 +228,7 @@ const dataRows: DataRow[] = [
   {
     idTicket: 'TCK006',
     creationTime: '2024-09-06 15:30',
-    interaction: 'Gọi điện',
+    interaction: new Date('2023-11-22'),
     rating: 5,
     status: renderStatus(1),
     title: 'Vấn đề bảo hành',
@@ -282,6 +282,7 @@ const Ticket = () => {
       {
         dataIndex: 'interaction',
         title: 'Tương tác gần đây',
+        render: (value: any) => value.toLocaleDateString(),
       },
       {
         dataIndex: 'rating',
@@ -432,7 +433,7 @@ const Ticket = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                   const isSelected = dataSelect.includes(header.dataIndex);
 
