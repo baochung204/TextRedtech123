@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Grid, Box, Typography, Button, Avatar, Stack, CardMedia, styled } from '@mui/material';
+import {
+  Grid,
+  Box,
+  Typography,
+  Button,
+  Avatar,
+  Stack,
+  CardMedia,
+  styled,
+  IconButton,
+} from '@mui/material';
 import profilecover from 'src/assets/images/backgrounds/profilebg.jpg';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import VerifiedIcon from '@mui/icons-material/Verified';
@@ -7,10 +17,13 @@ import ProfileTab from './ProfileTab';
 import BlankCard from '../../../shared/BlankCard';
 import { Link } from 'react-router-dom';
 import { IconCameraBolt } from '@tabler/icons-react';
+import { useTheme } from '@mui/material/styles';
 
 const ProfileBanner = () => {
   const [bannerImage, setBannerImage] = useState(profilecover);
   const [avatarImage, setAvatarImage] = useState(userimg);
+  const theme = useTheme();
+  const primary = theme.palette.primary.light;
 
   const ProfileImage = styled(Box)(() => ({
     backgroundImage: 'linear-gradient(#50b2fc,#f44c66)',
@@ -23,13 +36,6 @@ const ProfileBanner = () => {
     margin: '0 auto',
     position: 'relative', // Make it relative to position the camera icon
   }));
-
-  const handleBannerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = URL.createObjectURL(event.target.files[0]);
-      setBannerImage(file);
-    }
-  };
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -52,30 +58,6 @@ const ProfileBanner = () => {
               objectFit: 'cover', // Ensure the image covers the whole area without stretching
             }}
           />
-          <input
-            accept="image/*"
-            style={{ display: 'none' }}
-            id="upload-banner"
-            type="file"
-            onChange={handleBannerChange}
-          />
-          <label
-            htmlFor="upload-banner"
-            style={{
-              position: 'absolute',
-              bottom: '10px',
-              right: '10px',
-              backgroundColor: '#f5f5f5',
-              padding: '5px',
-              borderRadius: '50%',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <IconCameraBolt style={{ fontSize: '30px' }} />
-          </label>
         </Box>
 
         <Grid
@@ -111,8 +93,6 @@ const ProfileBanner = () => {
               }}
             >
               <Box textAlign="center">
-                {' '}
-                {/* Added textAlign center for content inside */}
                 <ProfileImage>
                   <Avatar
                     src={avatarImage}
@@ -131,21 +111,28 @@ const ProfileBanner = () => {
                     type="file"
                     onChange={handleAvatarChange}
                   />
-                  <label
-                    htmlFor="upload-avatar"
-                    style={{
-                      position: 'absolute',
-                      bottom: '0',
-                      right: '-10px',
-                      backgroundColor: '#f5f5f5',
-                      padding: '5px',
-                      borderRadius: '50%',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <IconCameraBolt style={{ fontSize: '30px' }} />
+                  <label htmlFor="upload-avatar">
+                    <IconButton
+                      component="span" // Ensures the button acts as a label for the file input
+                      sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        right: '-10px',
+                        backgroundColor: primary,
+                        padding: '5px',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
+                        color: '#fff', // Adjust the icon color if necessary
+                        '&:hover': {
+                          backgroundColor: primary, // Optional hover state customization
+                        },
+                      }}
+                    >
+                      <IconCameraBolt style={{ fontSize: '30px' }} />
+                    </IconButton>
                   </label>
                 </ProfileImage>
+
                 <Box mt={1}>
                   <Typography fontWeight={600} variant="h5" display="flex" alignItems="center">
                     Nguyễn Đăng Hòa

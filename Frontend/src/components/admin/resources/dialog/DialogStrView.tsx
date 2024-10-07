@@ -327,19 +327,21 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     </Grid>
                     ) : (
                         <Grid item xs={12} lg={12} md={12}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyName-text">ID</CustomFormLabel>
-                                    <CustomTextField
+                            <Grid container spacing={2} >
+                                <Grid item xs={12} lg={6} md={6} sx={{}}>
+                                    <CustomFormLabel prop htmlFor="strategyName-text">ID</CustomFormLabel>
+                                    <CustomTextField 
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
                                         value={formData.id}
+                                        
                                     />
                                 </Grid>
                                 <Grid item xs={12} lg={6} md={6}>
                                     <CustomFormLabel htmlFor="strategyName-text">Người tạo</CustomFormLabel>
                                     <CustomTextField
+                                    
                                         id="strategyName-text"
                                         variant="outlined"
                                         fullWidth
@@ -347,7 +349,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         value={formData.creator}
                                     />
                                 </Grid>
-                                <Grid item xs={12} lg={12} md={6}>
+                                <Grid item xs={12} lg={12} md={6} >
                                     <CustomFormLabel htmlFor="strategyName-text">Tên chiến lược</CustomFormLabel>
                                     <CustomTextField
                                         id="strategyName-text"
@@ -378,6 +380,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                         value={formData.badge}
 
                                     />
+                                    
                                 </Grid>
                                 <Grid item xs={12} lg={6} md={6}>
                                     <CustomFormLabel htmlFor="level-text">Level</CustomFormLabel>
@@ -455,23 +458,6 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
 
                                 </Grid>
                             </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </Grid>)}
 
                 </DialogContent>

@@ -1,8 +1,8 @@
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import avt from 'src/assets/images/icon/avt.jpg';
 import {
   // Autocomplete,
   // Autocomplete,
@@ -13,7 +13,6 @@ import {
   Card,
   CardContent,
   Chip,
-  Fab,
   Grid,
   IconButton,
   InputAdornment,
@@ -39,10 +38,11 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Iconchart from 'src/assets/images/chat/chartt.png';
+import avt from 'src/assets/images/icon/avt.jpg';
+import AlertChat from '../../chats/AlertChat';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
-import AlertChat from '../../chats/AlertChat';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import IconCrv from 'src/assets/ICON/cvr.png';
 
 interface FilmsData {
   title: string;
@@ -213,7 +213,7 @@ const ListAssistant = () => {
                   />
                   <Box
                     component="img"
-                    src={avt}
+                    src={rank.avatar}
                     sx={{
                       position: 'absolute',
                       top: { xs: '32.8%', sm: '32.8%', md: '33.4%', lg: '33.1%' },
@@ -304,7 +304,7 @@ const ListAssistant = () => {
                           ':hover': { backgroundColor: '#FFB300' },
                         }}
                         component={Link}
-                        to={`/assistants/${rank.id}`}
+                        to={`/assistants/detail/${rank.id}`}
                       >
                         <IconStackBack stroke={2} />
                       </Button>
@@ -330,8 +330,8 @@ const ListAssistant = () => {
                                   </Avatar>
                                 </Stack>
                               </Grid>
-                              <Grid item xs={4} container justifyContent="flex-end">
-                                <img src={Iconchart} width={50} alt="" />
+                              <Grid item xs={4} container justifyContent="flex-end" sx={{ px: 2 }}>
+                                <img src={IconCrv} width={50} alt="" />
                               </Grid>
                             </Grid>
                           </CardContent>
@@ -390,12 +390,12 @@ const ListAssistant = () => {
                                       px: { md: '10px', lg: '15px' },
                                     }}
                                   >
-                                    CC: {rank.cc}
+                                    Khách hàng: {rank.cc}
                                   </Button>
                                 </Tooltip>
                               </Grid>
                               <Grid item xs={12}>
-                                <Tooltip title="Số lượng đơn hàng" placement="top">
+                                <Tooltip title="Số lượng chuyển đổi" placement="top">
                                   <Button
                                     variant="outlined"
                                     color="warning"
@@ -405,7 +405,7 @@ const ListAssistant = () => {
                                       px: { md: '10px', lg: '5px' },
                                     }}
                                   >
-                                    OC: {rank.oc}
+                                    Chuyển đổi : {rank.oc}
                                   </Button>
                                 </Tooltip>
                               </Grid>

@@ -30,7 +30,6 @@ import bill from 'src/assets/Adminphoto/dơn hang.png';
 import sale from 'src/assets/Adminphoto/khuyen mai.png';
 import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
-
 import PageContainer from 'src/components/container/PageContainer';
 import DialogProduct from './DialogProduct';
 
@@ -214,7 +213,7 @@ const ProductAdmin = () => {
         ),
       },
       {
-        title: 'ID khách hàng',
+        title: 'ID',
         dataIndex: 'id_khach_hang',
       },
       {
@@ -315,18 +314,16 @@ const ProductAdmin = () => {
               >
                 <Grid container sx={{ alignItems: 'center' }}>
                   <Grid item>
-                    <IconButton
+                    {/* <IconButton
                       color="primary"
                       aria-label="Add to cart"
-                      // onClick={() => setOpen(true)}
-
                       onClick={() => {
                         setOpen(true);
                         setCheckValue('add');
                       }}
                     >
                       <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton>
+                    </IconButton> */}
                   </Grid>
                   <Grid item>
                     <TextField

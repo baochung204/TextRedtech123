@@ -33,9 +33,10 @@ const SpeedometerChart: React.FC = () => {
             show: false,
           },
           value: {
-            formatter: (val: number) => `${val.toFixed(2)} Mbps`,
-            // color: '#fff',
-            fontSize: '14px',
+            formatter: (val: number) => `${val.toFixed(2)}`,
+            color: 'red',
+            fontSize: '20px',
+            fontWeight: 600,
             offsetY: 70,
           },
         },
@@ -74,7 +75,7 @@ const SpeedometerChart: React.FC = () => {
   const chartSeries: number[] = [speed];
   const needleRotation = (speed / 100) * 240 - 120;
   const labels = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
-  const radius = 113;
+  const radius = 110;
   const labelPositions = labels.map((label, index) => {
     const angle = (40 + (index * -260) / (labels.length - 1)) * (Math.PI / 180);
     return {
@@ -85,43 +86,50 @@ const SpeedometerChart: React.FC = () => {
   });
 
   return (
-     <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
-      <Box position="relative" width="100%" height="350px" alignItems='center'>
-        <Chart options={chartOptions} series={chartSeries} type="radialBar" height="100%" />
-        <Box
-          position="absolute"
-          width="4px"
-          height="20%"
-          bottom="45%"
-          left="50%"
-          style={{
-            background: 'linear-gradient(to bottom, #ff6633, #ffcc99)',
-            transition: 'transform 1s ease-out',
-            transform: `rotate(${needleRotation}deg)`,
-            transformOrigin: 'bottom center',
-            zIndex: 1,
-          }}
-        />
-        {labelPositions.map((pos, idx) => (
-          <Typography
-            key={idx}
+    <Affilatec3 title="Tỉ trọng chi phí /vòng quay" text="Vòng quay trung bình" description={''}>
+      <Box position="relative" width="100%" alignItems="center">
+        <Box width="100%" height="350px" alignItems="center" position="absolute">
+          <Chart
+            options={chartOptions}
+            series={chartSeries}
+            type="radialBar"
+            width="100%"
+            height="100%"
+          />
+          <Box
             position="absolute"
-            left={pos.left}
-            top={pos.top}
-            textAlign="center"
-            color="red"
-            fontSize="12px"
-            style={{
-              transform: 'translate(-50%, -50%)',
-              fontWeight: 600,
+            width="4px"
+            height="20%"
+            bottom="45%"
+            left="50%"
+            sx={{
+              background: 'linear-gradient(to bottom, #ff6633, #ffcc99)',
+              transition: 'transform 1s ease-out',
+              transform: `rotate(${needleRotation}deg)`,
+              transformOrigin: 'bottom center',
+              zIndex: 1,
             }}
-          >
-            {pos.label}
-          </Typography>
-        ))}
+          />
+          {labelPositions.map((pos, idx) => (
+            <Typography
+              key={idx}
+              position="absolute"
+              left={pos.left}
+              top={pos.top}
+              textAlign="center"
+              color="red"
+              fontSize="14px"
+              style={{
+                transform: 'translate(-50%, -50%)',
+                fontWeight: 600,
+              }}
+            >
+              {pos.label}
+            </Typography>
+          ))}
+        </Box>
       </Box>
     </Affilatec3>
-    
   );
 };
 

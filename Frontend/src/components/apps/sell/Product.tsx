@@ -459,7 +459,7 @@ const PaginationTable = () => {
   const column = useMemo<Column[]>(
     () => [
       {
-        title: 'Id',
+        title: 'ID',
         dataIndex: 'shopProductId',
       },
       {

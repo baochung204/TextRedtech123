@@ -3,10 +3,11 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Typography, Box, TextField, Snackbar, Alert } from '@mui/material';
+import { Typography, Box, TextField, Snackbar, Alert, IconButton } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import AddIcon from '@mui/icons-material/Add';
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 interface PropsDialog {
     open: boolean;
@@ -14,21 +15,27 @@ interface PropsDialog {
     value: string;
 }
 
+interface PropsForm {
+    url: string,
+    title: string,
+    describe: string,
+}
+
 const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
-    const [formData, setFormData] = React.useState({
+    const [formData, setFormData] = useState<PropsForm[]>([{
         url: '',
         title: '',
-        moTa: '',
-    });
+        describe: '',
+    }]);
     const [open1, setOpen1] = useState(false);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, value } = event.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     });
+    // };
 
     const handleClose = () => {
         setOpen(false);
@@ -36,9 +43,7 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     };
 
     const handleSubmit = () => {
-        console.log('url:', formData.url);
-        console.log('Tiêu đề:', formData.title);
-        console.log('Mô tả:', formData.moTa);
+        console.log(formData);
         handleClose();
         setOpen1(true);
         setTimeout(() => {
@@ -47,18 +52,33 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
     };
 
     const resetForm = () => {
-        setFormData({
+        setFormData([{
             url: '',
             title: '',
-            moTa: '',
-        });
+            describe: '',
+        }]);
     };
+
+    console.log('formdata: ', formData.length);
+
+
+    const handleClick = () => {
+        const data = [...formData];
+        data.push({
+            url: '',
+            title: '',
+            describe: '',
+        })
+        setFormData(data)
+        console.log('formdata: ', formData.length);
+
+    }
 
     return (
         <>
             <Dialog
                 fullWidth={true}
-                maxWidth="sm"
+                maxWidth="md"
                 open={value === '6' && open}
                 onClose={handleClose}
             >
@@ -78,59 +98,73 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                         </Typography>
                     </Box>
                 </DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        <Grid container direction="column">
-                            <Grid item sm={12}>
-                                <Grid container direction="column" sx={{ justifyContent: 'center' }} sm={12}>
-                                    <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2, width: '100%', pb: '8%' }}>
-                                        <Box component="form"
-                                            sx={{
-                                                width: { xs: '300px', md: '200px' },
+                <Scrollbar_y sx={{ maxHeight: 500 }}>
+                    <DialogContent>
+                        {formData.map((item, index) => {
+                            return (
+                                <Grid container spacing={2} key={index}>
+                                    <Grid item xs={4}>
+                                        <Typography fontWeight={600}>URL</Typography>
+                                        <TextField
+                                            name="url"
+                                            value={item.url}
+                                            onChange={(e) => {
+                                                const data = [...formData];
+                                                data[index].url = e.target.value;
+                                                setFormData(data)
                                             }}
-                                        >
-                                            <Typography fontWeight={600}>URL</Typography>
-                                            <TextField
-                                                name="url"
-                                                value={formData.url}
-                                                onChange={handleInputChange}
-                                                fullWidth
-                                                margin="normal"
-                                            />
-                                            <Typography fontWeight={600}>Tiêu đề</Typography>
-                                            <TextField
-                                                name="title"
-                                                value={formData.title}
-                                                onChange={handleInputChange}
-                                                fullWidth
-                                                margin="normal"
-                                            />
-                                            <Typography fontWeight={600}>Mô tả</Typography>
-                                            <TextField
-                                                name="moTa"
-                                                value={formData.moTa}
-                                                onChange={handleInputChange}
-                                                fullWidth
-                                                margin="none"
-                                                minRows={3}
-                                                multiline
-                                                sx={{
-                                                    '& .MuiInputBase-input': {
-                                                        padding: 0,
-                                                    },
-                                                    '& .MuiInputBase-root': {
-                                                        padding: '12px 14px',
-                                                    },
-                                                }}
-                                            />
-                                        </Box>
+                                            fullWidth
+                                            margin="normal"
+                                        />
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <Typography fontWeight={600}>Tiêu đề</Typography>
+                                        <TextField
+                                            name="title"
+                                            value={item.title}
+                                            onChange={(e) => {
+                                                const data = [...formData];
+                                                data[index].title = e.target.value;
+                                                setFormData(data)
+                                            }}
+                                            fullWidth
+                                            margin="normal"
+                                        />
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <Typography fontWeight={600}>Mô tả</Typography>
+                                        <TextField
+                                            name="url"
+                                            value={item.describe}
+                                            onChange={(e) => {
+                                                const data = [...formData];
+                                                data[index].describe = e.target.value;
+                                                setFormData(data)
+                                            }}
+                                            fullWidth
+                                            margin="normal"
+                                        />
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                        </Grid>
-                    </DialogContentText>
 
-                </DialogContent>
+                            )
+                        })}
+                        <IconButton
+                            sx={{
+                                backgroundColor: 'error.light',
+                                color: 'error.main',
+                                "&: hover": {
+                                    backgroundColor: 'error.main',
+                                    color: 'white'
+                                }
+                            }}
+                            onClick={handleClick}
+
+                        >
+                            <AddIcon sx={{ fontSize: '15px' }} />
+                        </IconButton>
+                    </DialogContent>
+                </Scrollbar_y>
 
                 <DialogActions>
                     <Button

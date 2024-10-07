@@ -30,14 +30,11 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
     {
       dataIndex: 'badge',
       title: 'Huy hiệu',
-      render: ((value: string) => {
-        return (
-          <>
-            <Avatar src={value} alt="value" sx={{borderRadius:'50%'}} />
-          </>
-        )
-
-      })
+      render: ((value: string) => (
+        <>
+          <Avatar src={value} alt="value" sx={{ borderRadius: '50%' }} />
+        </>
+      ))
     },
     {
       dataIndex: 'strategyName',

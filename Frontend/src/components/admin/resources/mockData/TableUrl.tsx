@@ -109,7 +109,7 @@ export const UrlCells: any = [
   },
   {
     dataIndex: 'customerId',
-    title: 'ID khách hàng',
+    title: 'ID',
   },
   {
     dataIndex: 'title',
@@ -123,10 +123,10 @@ export const UrlCells: any = [
     dataIndex: 'url',
     title: 'URL',
   },
-  {
-    dataIndex: 'click',
-    title: 'Click',
-  },
+  // {
+  //   dataIndex: 'click',
+  //   title: 'Click',
+  // },
   {
     dataIndex: 'actions',
     title: 'Hoạt động',

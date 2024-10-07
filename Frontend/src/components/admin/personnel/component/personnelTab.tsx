@@ -206,7 +206,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 <FilterListIcon />
               </Badge>
             </IconButton>
-
             <Select
               multiple
               value={dataSelect}
@@ -244,14 +243,26 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 },
               }}
             >
-              {column.map((header: any) => {
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
+              <MenuItem>
+                <Checkbox
+                  checked={dataSelect.length === column.length}
+                  indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      const allColumns = column.map((header: Column) => header.dataIndex);
+                      setDataSelect(allColumns);
+                    } else {
+                      setDataSelect([]);
+                    }
+                  }}
+                />
+                <ListItemText primary="Chọn tất cả" />
+              </MenuItem>
+              {column.map((header: Column) => {
                 const isSelected = dataSelect.includes(header.dataIndex);
-
                 return (
                   <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                    <Checkbox checked={!isSelected} />
+                    <Checkbox checked={isSelected} />
                     <ListItemText primary={header.title} />
                   </MenuItem>
                 );

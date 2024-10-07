@@ -1,6 +1,6 @@
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Box, Menu, MenuItem, Tab, Tabs, Typography } from '@mui/material';
-import { IconHistory, IconTicket, IconUser, IconUserCircle } from '@tabler/icons-react';
+import { IconHistory, IconUser, IconUserCircle } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const ProfileTab = () => {
     setValue(newValue);
   };
 
-  const handleHopDongClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleContractClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElContract(event.currentTarget);
   };
   const handleClickHistory = (event: React.MouseEvent<HTMLElement>) => {
@@ -46,24 +46,19 @@ const ProfileTab = () => {
       label: 'Hợp đồng',
       icon: <DescriptionIcon fontSize="small" />,
       dropdown: true,
-      handleClick: handleHopDongClick,
+      handleClick: handleContractClick,
     },
     {
       label: 'Trợ lý',
       icon: <IconUserCircle size="20" />,
       to: '/user_profile/assistants',
     },
-    {
-      label: 'Ticket',
-      icon: <IconTicket size="20" />,
-      to: '/apps/chats',
-    },
+
     {
       label: 'Lịch sử giao dịch',
       icon: <IconHistory size="20" />,
       dropdown: true,
       handleClick: handleClickHistory,
-      // handleClick: handleLichSuGiaoDichClick,
     },
   ];
   return (
@@ -159,7 +154,7 @@ const ProfileTab = () => {
           >
             <DescriptionIcon style={{ marginRight: '8px' }} />
             <Typography variant="body1" fontWeight="500">
-              Hợp đồng mua hàng
+              Hợp đồng nguyên tắc
             </Typography>
           </MenuItem>
         </Menu>

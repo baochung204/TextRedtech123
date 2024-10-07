@@ -5,8 +5,16 @@ import BlankCard from 'src/components/shared/BlankCard';
 import { fetchFunction } from 'src/store/apps/resources/function/functionSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DataTab2 from '../DataTable/TableTab2';
+import DialogFunction from '../dialog/DialogFunction';
 
-
+interface PropsData {
+  id: string;
+  name: string;
+  level: string;
+  badgeUrl: string;
+  nhom: string;
+  tomtat: string
+}
 
 const Tab2 = () => {
 
@@ -28,14 +36,42 @@ const Tab2 = () => {
     dispatch(fetchFunction())
   }, [dispatch])
 
-return (
-  <>
-    <Grid container spacing={2}>
-      {dataFunction.map((items) => {
-        return (
-          <Grid item xs={12} sm={6} md={4} key={items.id}>
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [data, setData] = useState<PropsData[]>([{
+    id: '',
+    name: '',
+    level: '',
+    badgeUrl: '',
+    nhom: '',
+    tomtat: ''
+  }])
+
+  const handleClick = (items: PropsData) => {
+    setOpen(true);
+    setData([{
+      id: items.id,
+      name: items.name,
+      level: items.level,
+      badgeUrl: items.badgeUrl,
+      nhom: items.nhom,
+      tomtat: items.tomtat
+    }])
+
+  }
+
+  return (
+    <>
+      <Grid container spacing={2}>
+        {dataFunction.map((items, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <BlankCard>
-              <CardContent>
+              <CardContent
+                onClick={() => handleClick(items)}
+                sx={{
+                  cursor: 'pointer'
+                }}
+              >
                 <Stack direction={'row'} gap={2} alignItems="center">
                   <Avatar alt="Remy Sharp" src={items.badgeUrl} />
                   <Box>
@@ -46,7 +82,6 @@ return (
                       variant="caption"
                       sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
                     >
-                      {/* <CircleIcon sx={{ fontSize: '13px', color: `${items.isActive ? '#46AB5E' : '#C6C8CC'}` }} /> */}
                       {items.level}
                     </Typography>
                   </Box>
@@ -59,21 +94,21 @@ return (
               </CardContent>
             </BlankCard>
           </Grid>
-        );
-      })}
-    </Grid>
-    <TablePagination
-      rowsPerPageOptions={[15, 18, 21]}
-      component="div"
-      count={DataTab2.length}
-      rowsPerPage={rowsPerPage}
-      page={page}
-      onPageChange={handleChangePage}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-      labelRowsPerPage="Số hàng trên mỗi trang"
-    />
-  </>
-);
+        ))}
+      </Grid>
+      <TablePagination
+        rowsPerPageOptions={[15, 18, 21]}
+        component="div"
+        count={DataTab2.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage="Số hàng trên mỗi trang"
+      />
+      <DialogFunction open={open} setOpen={setOpen} data={data} />
+    </>
+  );
 };
 
 export default Tab2;

@@ -104,7 +104,7 @@ const DialogView = ({ open, setOpen, checkID }: PropsDialog) => {
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>
                                         <Typography variant="subtitle1" sx={{ fontSize: 16, fontWeight: 600 }}>
-                                            ID khách hàng
+                                            ID
                                         </Typography>
                                         <Field
                                             as={TextField}

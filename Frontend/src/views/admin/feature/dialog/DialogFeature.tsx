@@ -45,7 +45,7 @@ const DialogFeature = ({
     );
 
     const [initialValues, setInitialValues] = useState(emptyInitialValues);
-    const isViewMode = keyOption !== null;
+    // const isViewMode = keyOption !== null;
 
     // Validation schema using Yup
     const validationSchema = Yup.object({

@@ -5,9 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { styled } from '@mui/material/styles';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Typography, Box, TextField, Grid } from '@mui/material';
+import { Typography, Box, TextField, Grid, Avatar, IconButton } from '@mui/material';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 interface PropsDialog {
@@ -19,18 +17,6 @@ interface PropsDialog {
   dataImages: any[];
 }
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
-
 const DialogImage: React.FC<PropsDialog> = ({
   value,
   open,
@@ -39,31 +25,21 @@ const DialogImage: React.FC<PropsDialog> = ({
   setSelectedItemId1,
   dataImages,
 }) => {
-  const [fileUrl, setFileUrl] = useState<string | undefined>('');
-  const [formData, setFormData] = useState({
-    name: '',
-    title: '',
-    moTa: '',
-  });
+  const [dataImage, setDataImage] = useState<{ url: string; name: string; title: string; moTa: string }[]>([]);
 
   useEffect(() => {
     if (selectedItemId1) {
       const item = dataImages.find((item) => item.id === selectedItemId1);
       if (item) {
-        setFileUrl(item.imageURL);
-        setFormData({
+        setDataImage([{
+          url: item.imageURL,
           name: item.name,
           title: item.title,
           moTa: item.description,
-        });
+        }]);
       }
     } else {
-      setFileUrl('');
-      setFormData({
-        name: '',
-        title: '',
-        moTa: '',
-      });
+      setDataImage([]);
     }
   }, [selectedItemId1, dataImages]);
 
@@ -72,11 +48,17 @@ const DialogImage: React.FC<PropsDialog> = ({
     setSelectedItemId1(null);
   };
 
+  const handleSave = () => {
+    console.log(dataImage);
+    setDataImage([])
+    setOpen(false)
+  };
+
   return (
-    <Dialog fullWidth={true} maxWidth="sm" open={value === '5' && open} onClose={handleClose}>
+    <Dialog fullWidth={true} maxWidth="md" open={value === '5' && open} onClose={handleClose}>
       <DialogTitle sx={{ textAlign: 'center' }}>
         <Typography fontWeight={600} variant="h3">
-          Xem ảnh
+          Thêm ảnh
         </Typography>
       </DialogTitle>
       <DialogContent>
@@ -91,72 +73,106 @@ const DialogImage: React.FC<PropsDialog> = ({
                       sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                       sm={12}
                     >
-                      <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-                        Tải ảnh lên
-                        <VisuallyHiddenInput type="file" accept=".png, .jpg, .svg" />
-                      </Button>
-                    </Grid>
-                    <Grid
-                      item
-                      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                      sm={12}
-                    >
-                      <Typography sx={{ fontSize: 12, fontWeight: 400, pt: 1, pb: 2 }}>
-                        Hỗ trợ: .png, .jpg, .svg
-                      </Typography>
+                      <Box sx={{ backgroundColor: 'transparent' }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', paddingBottom: 3 }}>
+                          <Box>
+                            <IconButton aria-label="upload">
+                              <Button
+                                variant="contained"
+                                component="label"
+                              >
+                                <span style={{ display: 'flex', alignItems: 'center' }}>+ Tải ảnh lên</span>
+                                <input
+                                  type="file"
+                                  hidden
+                                  multiple
+                                  accept="image/*"
+                                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                    if (e.target.files) {
+                                      const initialData = Array.from(e.target.files).map(file => ({
+                                        url: URL.createObjectURL(file),
+                                        name: file.name,
+                                        title: '',
+                                        moTa: '',
+                                      }));
+                                      setDataImage(initialData);
+                                    }
+                                  }}
+                                />
+                              </Button>
+                            </IconButton>
+                            <Typography sx={{ fontSize: 12, fontWeight: 400, pt: 1, pb: 2 }}>
+                              Hỗ trợ: .png, .jpg, .svg
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                          <Grid container spacing={2}>
+                            {dataImage.map((item, index) => (
+                              <Grid item xs={12} key={index}>
+                                <Grid container spacing={2}>
+                                  <Grid item xs={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Avatar src={item.url} alt={item.url} variant="rounded" sx={{ width: 56, height: 56 }} />
+                                  </Grid>
+                                  <Grid item xs={3.3} sx={{ marginBottom: '15px' }}>
+                                    <TextField
+                                      fullWidth
+                                      label="Tên ảnh"
+                                      variant="outlined"
+                                      value={item.name}
+                                      onChange={(e) => {
+                                        const newData = [...dataImage];
+                                        newData[index].name = e.target.value;
+                                        setDataImage(newData);
+                                      }}
+                                      sx={{ mt: 2 }}
+                                    />
+                                  </Grid>
+                                  <Grid item xs={3.3}>
+                                    <TextField
+                                      fullWidth
+                                      label="Tiêu đề"
+                                      variant="outlined"
+                                      value={item.title}
+                                      onChange={(e) => {
+                                        const newData = [...dataImage];
+                                        newData[index].title = e.target.value;
+                                        setDataImage(newData);
+                                      }}
+                                      sx={{ mt: 2 }}
+                                    />
+                                  </Grid>
+                                  <Grid item xs={3.4}>
+                                    <TextField
+                                      fullWidth
+                                      label="Mô tả"
+                                      variant="outlined"
+                                      multiline
+                                      value={item.moTa}
+                                      onChange={(e) => {
+                                        const newData = [...dataImage];
+                                        newData[index].moTa = e.target.value;
+                                        setDataImage(newData);
+                                      }}
+                                      sx={{
+                                        mt: 2,
+                                        '& .MuiInputBase-input': {
+                                          padding: 0,
+                                        },
+                                        '& .MuiInputBase-root': {
+                                          padding: '12px 14px',
+                                        },
+                                      }}
+                                    />
+                                  </Grid>
+                                </Grid>
+                              </Grid>
+                            ))}
+                          </Grid>
+                        </Box>
+                      </Box>
                     </Grid>
                   </Grid>
-                </Grid>
-              )}
-              {fileUrl && (
-                <Grid item sm={12}>
-                  <Box
-                    component="img"
-                    src={fileUrl}
-                    alt="Preview"
-                    width={400}
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      position: 'relative',
-                      margin: 'auto',
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    label="Tên ảnh"
-                    variant="outlined"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    sx={{ mt: 2 }}
-                  />
-                  <TextField
-                    fullWidth
-                    label="Tiêu đề"
-                    variant="outlined"
-                    value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    sx={{ mt: 2 }}
-                  />
-                  <TextField
-                    fullWidth
-                    label="Mô tả"
-                    variant="outlined"
-                    multiline
-                    rows={4}
-                    value={formData.moTa}
-                    onChange={(e) => setFormData({ ...formData, moTa: e.target.value })}
-                    sx={{
-                      mt: 2,
-                      '& .MuiInputBase-input': {
-                        padding: 0,
-                      },
-                      '& .MuiInputBase-root': {
-                        padding: '12px 14px',
-                      },
-                    }}
-                  />
                 </Grid>
               )}
             </Grid>
@@ -165,7 +181,7 @@ const DialogImage: React.FC<PropsDialog> = ({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Hủy</Button>
-        <Button onClick={() => {}}>Lưu</Button>
+        <Button onClick={handleSave}>Lưu</Button>
       </DialogActions>
     </Dialog>
   );

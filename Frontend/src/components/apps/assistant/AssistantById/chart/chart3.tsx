@@ -29,20 +29,20 @@ const Chart3 = () => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
-  const monthsInVietnamese = [
-    'Tháng 1',
-    'Tháng 2',
-    'Tháng 3',
-    'Tháng 4',
-    'Tháng 5',
-    'Tháng 6',
-    'Tháng 7',
-    'Tháng 8',
-    'Tháng 9',
-    'Tháng 10',
-    'Tháng 11',
-    'Tháng 12',
-  ];
+  // const monthsInVietnamese = [
+  //   'Tháng 1',
+  //   'Tháng 2',
+  //   'Tháng 3',
+  //   'Tháng 4',
+  //   'Tháng 5',
+  //   'Tháng 6',
+  //   'Tháng 7',
+  //   'Tháng 8',
+  //   'Tháng 9',
+  //   'Tháng 10',
+  //   'Tháng 11',
+  //   'Tháng 12',
+  // ];
 
   const categories = [
     '1/11/2000',
@@ -63,7 +63,7 @@ const Chart3 = () => {
     '4/11/2001',
     '5/11/2001',
     '6/11/2001',
-  ]
+  ];
 
   const optionsgredientchart2: Props = {
     chart: {
@@ -128,6 +128,7 @@ const Chart3 = () => {
         ],
       },
     },
+    colors: [primary],
     markers: {
       size: 4,
       opacity: 0.9,
@@ -155,16 +156,10 @@ const Chart3 = () => {
   };
   const seriesgredientchart2: any = [
     {
-      name: 'Likes',
+      name: 'Points',
       data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
     },
   ];
-
-  const [month, setMonth] = useState('1');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
 
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
@@ -179,21 +174,10 @@ const Chart3 = () => {
               display: 'flex',
               gap: '12px',
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-end',
               mt: '5px',
             }}
           >
-            <CustomSelect
-              labelId="month-dd"
-              id="month-dd"
-              size="small"
-              value={month}
-              onChange={handleChange}
-            >
-              <MenuItem value={1}>Danh thu</MenuItem>
-              <MenuItem value={2}>Khách hàng </MenuItem>
-              <MenuItem value={3}>Đơn Hàng </MenuItem>
-            </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
               {' '}
               <LocalizationProvider dateAdapter={AdapterDateFns}>

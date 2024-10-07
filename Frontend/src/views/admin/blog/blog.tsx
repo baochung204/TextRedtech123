@@ -20,17 +20,12 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconEdit,
-  IconEye,
-  IconLockSquareRounded,
-  IconSearch,
-  IconTrash,
-} from '@tabler/icons-react';
+import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import blog from 'src/assets/Adminphoto/bai viet.png';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
+import reaction from 'src/assets/Adminphoto/luot timm.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import view from 'src/assets/NotificationAdmin/luot xem.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -40,7 +35,6 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
-import reaction from 'src/assets/Adminphoto/luot timm.png';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -240,6 +234,11 @@ const BlogAdmin = () => {
             <Favorite color="error" />
           </Typography>
         ),
+      },
+      {
+        title: 'Ngày sửa',
+        dataIndex: 'createdAt',
+        render: (value: any) => value.toLocaleDateString(),
       },
       {
         title: 'Thao tác',

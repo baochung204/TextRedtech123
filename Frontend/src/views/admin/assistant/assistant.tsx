@@ -292,7 +292,7 @@ interface FilmsData {
   title: string;
 }
 const FilmsData: FilmsData[] = [
-  { id: 1, title: 'ID khách hàng' },
+  { id: 1, title: 'ID' },
   { id: 2, title: 'Ảnh Trợ lý ' },
   { id: 3, title: 'Tên trợ lý' },
   { id: 4, title: 'Files' },
@@ -305,7 +305,7 @@ const AssistantAdmin = () => {
     () => [
       {
         dataIndex: 'customerId',
-        title: 'ID khách hàng',
+        title: 'ID',
       },
       {
         dataIndex: 'assistantImage',

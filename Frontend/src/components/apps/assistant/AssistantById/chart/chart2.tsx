@@ -23,20 +23,20 @@ import DashboardCard from 'src/components/shared/DashboardCard';
 //     title: 'Gradient Chart',
 //   },
 // ];
-const monthsInVietnamese = [
-  'Tháng 1',
-  'Tháng 2',
-  'Tháng 3',
-  'Tháng 4',
-  'Tháng 5',
-  'Tháng 6',
-  'Tháng 7',
-  'Tháng 8',
-  'Tháng 9',
-  'Tháng 10',
-  'Tháng 11',
-  'Tháng 12',
-];
+// const monthsInVietnamese = [
+//   'Tháng 1',
+//   'Tháng 2',
+//   'Tháng 3',
+//   'Tháng 4',
+//   'Tháng 5',
+//   'Tháng 6',
+//   'Tháng 7',
+//   'Tháng 8',
+//   'Tháng 9',
+//   'Tháng 10',
+//   'Tháng 11',
+//   'Tháng 12',
+// ];
 const Chart2 = () => {
   // chart color
   const theme = useTheme();
@@ -129,6 +129,7 @@ const Chart2 = () => {
         ],
       },
     },
+    colors: [primary],
     markers: {
       size: 4,
       opacity: 0.9,
@@ -156,7 +157,7 @@ const Chart2 = () => {
   };
   const seriesgredientchart: any = [
     {
-      name: 'Thích',
+      name: 'Points',
       data: [4, 3, 10, 9, 35, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5],
     },
   ];
