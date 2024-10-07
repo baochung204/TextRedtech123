@@ -259,14 +259,14 @@ const ContentNotification = () => {
         dataIndex: 'moreLink',
         title: 'Link xem thêm',
       },
-      {
-        dataIndex: 'views',
-        title: 'Lượt xem',
-      },
-      {
-        dataIndex: 'interactions',
-        title: 'Tương tác',
-      },
+      // {
+      //   dataIndex: 'views',
+      //   title: 'Lượt xem',
+      // },
+      // {
+      //   dataIndex: 'interactions',
+      //   title: 'Tương tác',
+      // },
       {
         dataIndex: 'status',
         title: 'Trạng thái',
@@ -404,7 +404,7 @@ const ContentNotification = () => {
               }}
             >
               {column.map((header: any) => {
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
+                // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
 
                 const isSelected = dataSelect.includes(header.dataIndex);
 
@@ -477,22 +477,6 @@ const ContentNotification = () => {
           <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </BlankCard>
       </Grid>
-      {/* Popup Thêm khách hàng */}
-      <Dialog open={isPopupOpen} onClose={handleClosePopup} fullWidth maxWidth="lg" keepMounted>
-        <DialogTitle>
-          <Typography padding={'20px'} fontSize={'30px'}>
-            Thêm thông báo
-          </Typography>
-        </DialogTitle>
-        <DialogContent
-          sx={{
-            padding: '0',
-            overflowY: 'hidden',
-          }}
-        >
-          {/* <DialogAddNotification /> */}
-        </DialogContent>
-      </Dialog>
     </Grid>
   );
 };
