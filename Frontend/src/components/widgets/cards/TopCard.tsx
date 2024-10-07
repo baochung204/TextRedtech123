@@ -42,7 +42,7 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
               sx={{
                 backgroundColor: items.bgColor,
                 color: items.color,
-                px: totalColumn === 6 ? 1 : 0,
+                px: totalColumn <= 5 ? '24px' : totalColumn === 6 ? 1 : 0,
               }}
             >
               <Grid
