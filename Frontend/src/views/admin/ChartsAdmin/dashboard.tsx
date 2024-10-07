@@ -1306,30 +1306,27 @@ const DashboardAdmin = () => {
               <Box sx={{ marginLeft: '20px' }}>
                 <Stack spacing={3} mt={3}>
                   <Stack direction="row" spacing={2} alignItems="center">
-                    <Box
-                      width={40}
-                      height={40}
-                      bgcolor="primary.light"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography color="primary" variant="h6" display="flex">
-                        <IconGridDots width={21} />
-                      </Typography>
-                    </Box>
                     <Box>
-                      <Typography variant="subtitle2" color="textSecondary">
+                      <Typography variant="h4" color="textSecondary">
                         Tổng
                       </Typography>
-                      <Typography variant="h6" fontWeight="700">
-                        Chi phí / Khách hàng: 351.216.213đ
+                      <Typography>
+                        Chi phí / khách hàng:
+                        <Typography variant="h6" fontWeight="700">
+                          351.216.213đ
+                        </Typography>
                       </Typography>
-                      <Typography variant="h6" fontWeight="700">
-                        Tokens / Khách hàng: 197 token
+                      <Typography>
+                        Tokens / khách hàng:
+                        <Typography variant="h6" fontWeight="700">
+                          197 token
+                        </Typography>
                       </Typography>
-                      <Typography variant="h6" fontWeight="700">
-                        Chi phí / Khách hàng: 3.216.213đ
+                      <Typography>
+                        Chi phí / doanh thu:
+                        <Typography variant="h6" fontWeight="700">
+                          30%
+                        </Typography>
                       </Typography>
                     </Box>
                   </Stack>
@@ -1346,7 +1343,7 @@ const DashboardAdmin = () => {
                       }}
                     ></Avatar>
                     <Box>
-                      <Typography variant="h5">Chi phí / Khách hàng(đ)</Typography>
+                      <Typography variant="h5">Chi phí / khách hàng(đ)</Typography>
                       <Typography variant="subtitle1" color="textSecondary">
                         987.654.321đ
                       </Typography>
@@ -1366,7 +1363,7 @@ const DashboardAdmin = () => {
                       }}
                     ></Avatar>
                     <Box>
-                      <Typography variant="h5">Tokens / Khách hàng(số)</Typography>
+                      <Typography variant="h5">Tokens / khách hàng(số)</Typography>
                       <Typography variant="subtitle1" color="textSecondary">
                         123.456.789 tokens
                       </Typography>
@@ -1387,7 +1384,7 @@ const DashboardAdmin = () => {
                       }}
                     ></Avatar>
                     <Box>
-                      <Typography variant="h5">Chi phí / Doanh thu(%)</Typography>
+                      <Typography variant="h5">Chi phí / doanh thu(%)</Typography>
                       <Typography variant="subtitle1" color="textSecondary">
                         123.456.789đ
                       </Typography>
