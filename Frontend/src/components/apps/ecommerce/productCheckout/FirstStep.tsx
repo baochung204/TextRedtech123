@@ -51,7 +51,7 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
 
   // const theme = useTheme();
   const [pointsEarned, setPointsEarned] = useState(0);
-
+  const [countdownTime, setCountdownTime] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackage2, setSelectedPackage2] = useState(true);
   const handleSelectPackage = (pkg: any) => {
@@ -66,8 +66,15 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
     }
   };
   const handleSelectPackage2 = () => {
-    setSelectedPackage2(false);
-    setPointsEarned(0);
+    // setSelectedPackage2(false);
+    // setPointsEarned(0);
+  };
+  const handleAccordionClick = () => {
+    console.log('Flash-sale accordion clicked');
+    setCountdownTime(15);
+    setTimeout(() => {
+      setSelectedPackage2(false);
+    }, 15000);
   };
   return (
     <>
@@ -92,6 +99,7 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                     border: 'none',
                     boxShadow: 'none',
                   }}
+                  onClick={handleAccordionClick}
                 >
                   <Typography variant="body2" sx={{ fontSize: 16, fontWeight: 500 }}>
                     Flash-sale
@@ -179,6 +187,7 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                                       color: '#888',
                                       fontSize: '14px',
                                       display: 'flex',
+                                      gap: '3px',
                                     }}
                                   >
                                     <del>{pkg.discount.toLocaleString()} </del>
@@ -195,6 +204,7 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                                       mb: 1,
                                       display: 'flex',
                                       fontWeight: 'bold',
+                                      gap: '3px',
                                     }}
                                   >
                                     {' '}
@@ -225,15 +235,23 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                               </div>
                             </div>
                             <Box>
-                              {lgUp ? (
+                              {/* {lgUp ? (
                                 <Countdown
                                   initialSeconds={pkg.timeFlash}
                                   onTimeUp={() => {
-                                    // Thực hiện hành động khi hết thời gian, ví dụ:
                                     handleSelectPackage2(); // Ví dụ: tự động chọn gói khi hết giờ
                                   }}
                                 />
-                              ) : null}
+                              ) : null} */}
+                              {lgUp && countdownTime && (
+                                <Countdown
+                                  initialSeconds={countdownTime}
+                                  onTimeUp={() => {
+                                    console.log('Countdown finished');
+                                    // Thực hiện hành động khi hết thời gian
+                                  }}
+                                />
+                              )}
                               <Button
                                 variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
                                 color="warning"
@@ -284,7 +302,7 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
               <Typography variant="h6" fontWeight={400}>
                 Giá trị đơn hàng
               </Typography>
-              <Typography variant="h6" display={'flex'} alignItems={'center'}>
+              <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
                 {(total + pointsEarned).toLocaleString('vn-VN')}{' '}
                 <img
                   src={logoPoint}
@@ -301,7 +319,13 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
               <Typography variant="h6" fontWeight={400}>
                 Khuyến mãi
               </Typography>
-              <Typography variant="h6" color="error" display={'flex'} alignItems={'center'}>
+              <Typography
+                variant="h6"
+                color="error"
+                display={'flex'}
+                alignItems={'center'}
+                gap="3px"
+              >
                 -{Discount.toLocaleString('vn-VN')}{' '}
                 <img
                   src={logoPoint}
@@ -317,7 +341,13 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
             {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={1}>
               <Typography variant="h6">Tổng thanh toán</Typography>
-              <Typography variant="h5" color="success" display={'flex'} alignItems={'center'}>
+              <Typography
+                variant="h5"
+                color="success"
+                display={'flex'}
+                alignItems={'center'}
+                gap="3px"
+              >
                 {(total - Discount + pointsEarned).toLocaleString('vn-VN')}{' '}
                 <img
                   src={logoPoint}
