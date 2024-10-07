@@ -2,6 +2,7 @@
 // @ts-ignore
 import { Box, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { error } from 'console';
 import React from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -36,12 +37,20 @@ const PieChartsAdmin = ({ menuItems }: { menuItems: any }) => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [primary, secondary, warning, '#2c5364', '#99f2c8'],
+    colors: [
+      primary, // Color for 'Facebook'
+      secondary, // Color for 'Tiktok'
+      warning, // Color for 'Email'
+      '#2c5364', // Color for 'Zalo'
+      '#99f2c8', // Color for 'Google'
+      '#f5a623', // Color for 'Bạn bè' (added new color)
+      '#e74c3c', // Color for 'Khác' (added new color)
+    ],
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
+    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Google', 'Bạn bè', 'Khác'],
   };
 
   const seriespiechart = [45, 65, 27, 18, 35];
