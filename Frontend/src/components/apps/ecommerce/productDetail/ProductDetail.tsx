@@ -136,12 +136,9 @@ const ProductDetail = () => {
               </Box>
             </Box>
           </Typography>
-          {/* Ratings */}
-          <Stack direction="row" alignItems="center" gap="10px" mt={2} pb={3}>
-            <Rating name="simple-controlled" size="small" value={product.rating} readOnly />
-          </Stack>
+          <Divider sx={{ marginTop: '20px' }} />
           {/* Quantity selection */}
-          <Stack direction="row" alignItems="center" pb={5}>
+          <Stack direction="row" alignItems="center" pb={5} sx={{ marginTop: '40px' }}>
             <Typography variant="h6" mr={4}>
               Số lượng:
             </Typography>

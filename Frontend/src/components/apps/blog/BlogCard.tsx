@@ -23,6 +23,7 @@ import BlankCard from '../../shared/BlankCard';
 // import crown from 'src/assets/images/icon.png/crown.png';
 import { IconEye } from '@tabler/icons-react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
+import reaction from 'src/assets/Adminphoto/luot timm.png';
 interface Btype {
   post: BlogPostType;
   index?: number;
@@ -132,11 +133,21 @@ const BlogCard = ({ post }: Btype) => {
                   {title}
                 </Typography>
               </Box>
-              <Chip
-                label={category}
-                size="small"
-                sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 6 }}
-              />
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box>
+                  <Chip
+                    label={category}
+                    size="small"
+                    sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 6 }}
+                  />
+                </Box>
+                <Box sx={{ display: 'flex' }}>
+                  <Typography sx={{ marginRight: '5px' }}>159</Typography>
+                  <Box sx={{ marginTop: '3px' }}>
+                    <img src={reaction} width={15} height={15} />
+                  </Box>
+                </Box>
+              </Box>
               <Box
                 sx={{
                   position: 'absolute',
