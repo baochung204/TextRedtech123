@@ -277,6 +277,10 @@ const OrderAdminPages = () => {
         isValids: false,
       },
       {
+        title: 'Publisher',
+        dataIndex: 'name',
+      },
+      {
         title: 'Hành động',
         dataIndex: 'action',
         render: (_row, value: any) => (
