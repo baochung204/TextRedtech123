@@ -139,7 +139,7 @@ const DialogModelView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     },
                     '& .MuiPaper-root': {
                         width: '100%',
-                        maxWidth: '600px',
+                        maxWidth: '500px',
                     },
                 }}
             >
@@ -325,137 +325,67 @@ const DialogModelView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     ) : ( */}
                         <Grid item xs={12} lg={12} md={12}>
                             <Grid container spacing={2} >
-                                <Grid item xs={12} lg={6} md={6} sx={{}}>
-                                    <CustomFormLabel prop htmlFor="strategyName-text">ID</CustomFormLabel>
-                                    <CustomTextField
-                                        id="strategyName-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        disabled
-                                        value={formData.id}
+                                <Grid item xs={12} lg={5} md={6} mt={2}>
+                                    {/** Grid trái chứa nhãn các trường */}
+                                    <Box display="flex" flexDirection="column" justifyContent="space-between">
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box fontWeight={600}>ID :</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box fontWeight={600}>Ngày tạo :</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box fontWeight={600}>Tên model :</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box fontWeight={600}>Model gốc :</Box>
+                                        </Box>
 
-                                    />
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box fontWeight={600}>Training tokens :</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box fontWeight={600}>Khách hàng sở hữu :</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box fontWeight={600}>Trợ lý đã áp dụng :</Box>
+                                        </Box>
+                                        
+                                    </Box>
                                 </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyName-text">Ngày tạo</CustomFormLabel>
-                                    <CustomTextField
-                                        id="strategyName-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        disabled
-                                        value={formData.creationTime}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={12} md={6} >
-                                    <CustomFormLabel htmlFor="strategyName-text">Tên model</CustomFormLabel>
-                                    <CustomTextField
-                                        id="strategyName-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        disabled
-                                        value={formData.modelName}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="strategyGroup-text">Model gốc</CustomFormLabel>
-                                    <CustomTextField
-                                        id="strategyGroup-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        disabled
-                                        value={formData.baseModel}
 
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="badge-text">Trợ lý áp dụng</CustomFormLabel>
-                                    <CustomTextField
-                                        id="badge-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        disabled
-                                        value={formData.appliedAssistants}
+                                <Grid item xs={12} lg={7} md={6} mt={2}>
+                                    {/** Grid phải chứa dữ liệu */}
+                                    <Box display="flex" flexDirection="column" justifyContent="space-between">
+                                        <Box display="flex" alignItems="center" height="40px">
+                                            <Box>{formData.id}</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" height="40px">
+                                            <Box>{formData.creationTime}</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box>{formData.modelName}</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box>{formData.baseModel}</Box>
+                                        </Box>
 
-                                    />
-
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="level-text">TrainingTokens</CustomFormLabel>
-                                    <CustomTextField
-                                        id="level-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        disabled
-                                        value={formData.trainingTokens}
-
-                                    />
-                                </Grid>
-                                <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="ownedCustomers-text">Khách hàng sở hữu</CustomFormLabel>
-                                    <CustomTextField
-                                        id="ownedCustomers-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        disabled
-                                        value={formData.ownedCustomers}
-
-                                    />
-                                </Grid>
-                                {/* <Grid item xs={12} lg={6} md={6}>
-
-                                    <CustomFormLabel htmlFor="appliedAssistants-text">Trợ lý đã áp dụng</CustomFormLabel>
-                                    <CustomTextField
-                                        id="appliedAssistants-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập trợ lý đã áp dụng . . ."
-                                        value={formData.appliedAssistants}
-
-                                    />
-                                </Grid> */}
-                                {/* <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="dateCreate-text">Ngày tạo</CustomFormLabel>
-                                    <CustomTextField
-                                        id="dateCreate-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập ngày tạo . . ."
-                                        value={formData.}
-
-                                    />
-                                </Grid> */}
-                                {/* <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="summary-text">Tóm tắt</CustomFormLabel>
-                                    <CustomTextField
-                                        id="summary-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập tóm tắt . . ."
-                                        multiline
-                                        rows={5}
-                                        value={formData.summary}
-
-                                    />
-                                </Grid> */}
-                                {/* <Grid item xs={12} lg={6} md={6}>
-                                    <CustomFormLabel htmlFor="content-text">Nội dung</CustomFormLabel>
-                                    <CustomTextField
-                                        id="content-text"
-                                        variant="outlined"
-                                        fullWidth
-                                        placeholder="Nhập nội dung . . ."
-                                        multiline
-                                        rows={5}
-                                        value={formData.content}
-
-                                    />
-                                </Grid> */}
-
-                                <Grid item xs={12} lg={6} md={6}>
-
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box>{formData.trainingTokens}</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box>{formData.ownedCustomers}</Box>
+                                        </Box>
+                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                            <Box>{formData.appliedAssistants}</Box>
+                                        </Box>
+                                      
+                                       
+                                    </Box>
                                 </Grid>
                             </Grid>
                         </Grid>
+                     
                         {/* )} */}
 
                     </DialogContent>

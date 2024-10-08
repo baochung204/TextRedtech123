@@ -1,28 +1,26 @@
+import CloseIcon from '@mui/icons-material/Close';
 import {
+  Avatar,
+  Box,
   Checkbox,
   Dialog,
   DialogTitle,
+  Divider,
   FormControlLabel,
+  Grid,
   List,
   ListItem,
-  ListItemText,
-  Typography,
   TextField,
-  Button,
-  Box,
-  Divider,
-  Grid,
   Tooltip,
-  Avatar,
+  Typography
 } from '@mui/material';
 import React, { useState } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 const functions = [
-  { name: 'trithucchochatbot1.jsnl', url: 'https://example.com/image1.jpg' },
-  { name: 'trithuc2.jsnl', url: 'https://example.com/image2.jpg' },
-  { name: 'trithuc3.jsnl', url: 'https://example.com/image3.jpg' },
+  { name: 'trithucchochatbot1.jsnl', url: 'https://ben.com.vn/tin-tuc/wp-content/uploads/2021/12/anh-che-cho-hai-huoc-cho-dien-thoai-4.jpg' },
+  { name: 'trithuc2.jsnl', url: 'https://ben.com.vn/tin-tuc/wp-content/uploads/2021/12/anh-che-cho-hai-huoc-cho-dien-thoai-4.jpg' },
+  { name: 'trithuc3.jsnl', url: 'https://ben.com.vn/tin-tuc/wp-content/uploads/2021/12/anh-che-cho-hai-huoc-cho-dien-thoai-4.jpg' },
   // Add more images as needed
 ];
 
