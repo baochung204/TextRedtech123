@@ -17,7 +17,6 @@ import {
   TableHead,
   TableRow,
   Typography,
-  useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
@@ -25,7 +24,6 @@ import { IconMinus, IconPlus } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { default as logo, default as logoPoint } from 'src/assets/images/logos/R-Point.png';
-import products2 from 'src/assets/images/products/s24.jpg';
 import { useDispatch, useSelector } from 'src/store/Store';
 import { addToCart, fetchProducts } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';

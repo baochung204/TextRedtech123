@@ -67,7 +67,7 @@ const FlashSaleInDetailProduct = ({ total, discountProduct }: IProp) => {
       setPointsEarned(null);
     }, 15000);
   };
-  useEffect(() => {}, [pointsEarned]);
+
   return (
     <>
       <Box my={3}>
