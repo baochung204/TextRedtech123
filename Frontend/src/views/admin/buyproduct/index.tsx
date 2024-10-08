@@ -98,45 +98,11 @@ const DataBox = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Tổng doanh thu',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-<<<<<<< HEAD
-          <Typography variant="h6">5.432.234</Typography>
-          <img src={iconPoint} alt="" width={17} />
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={sale} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
     title: 'Doanh thu',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">12.423.423 </Typography>
-          <img src={iconPoint} alt="" width={17} />
-=======
           <Typography variant="h6">5.432.234đ</Typography>
->>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
         </Box>
       </>
     ),
@@ -315,7 +281,7 @@ const BuyPoints = () => {
               </IconButton>
             </Grid>
             <Grid item xs={4}>
-              <IconButton onClick={() => {}}>
+              <IconButton onClick={() => { }}>
                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />
               </IconButton>
             </Grid>
@@ -373,7 +339,7 @@ const BuyPoints = () => {
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
+          <TopCard dataSource={DataBox} totalColumn={3} />
         </Grid>
 
         <Grid item xs={12}>

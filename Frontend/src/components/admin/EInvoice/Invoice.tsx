@@ -271,7 +271,7 @@ const Invoice = () => {
       },
       {
         title: 'Trạng thái',
-        dataIndex: 'position',
+        dataIndex: 'action',
         render: (_row: any, value: any) => (
           <Typography
             sx={{
@@ -296,7 +296,7 @@ const Invoice = () => {
         // render: (_row:any, value: any) => (
         render: () => (
           <IconButton>
-            <IconEye stroke={2} />
+            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
         ),
       },

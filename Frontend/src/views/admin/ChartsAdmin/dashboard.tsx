@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, MenuItem, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Grid, Stack, Typography } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -33,28 +33,24 @@ import ticket from 'src/assets/Adminphoto/ticket.png';
 import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
 import buyrate from 'src/assets/Adminphoto/ty le mua.png';
 import usagerate from 'src/assets/Adminphoto/ty le su dung.png';
+import revenueperpublisher from 'src/assets/dashboardadmin/doanh thu-publis.png';
+import commissionperorder from 'src/assets/dashboardadmin/hoa dồng - đơn hàng.png';
+import commissionperpublisher from 'src/assets/dashboardadmin/hoa hồng publis.png';
+import customerperpublisher from 'src/assets/dashboardadmin/khach hang- publis.png';
+import orderperpublisher from 'src/assets/dashboardadmin/đơn hàng-publis.png';
 import cvr from 'src/assets/ICON/cvr.png';
+import point from 'src/assets/images/logos/R-Point.png';
 import view from 'src/assets/NotificationAdmin/luot xem.png';
 import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { default as Affilatechartadmin } from './Affilatechartadmin';
 import Affilatechartadmin1 from './Affilatechartadmin1';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
-import Affilatechartadmin7 from './Affiliatechartadmin7';
-import Affilatechartadmin8 from './Affiliatechartadmin8';
 import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
-import customerperpublisher from 'src/assets/dashboardadmin/khach hang- publis.png';
-import orderperpublisher from 'src/assets/dashboardadmin/đơn hàng-publis.png';
-import revenueperpublisher from 'src/assets/dashboardadmin/doanh thu-publis.png';
-import commissionperpublisher from 'src/assets/dashboardadmin/hoa hồng publis.png';
-import revenueperorder from 'src/assets/dashboardadmin/doanh thu- don hnag.png';
-import commissionperorder from 'src/assets/dashboardadmin/hoa dồng - đơn hàng.png';
-import point from 'src/assets/images/logos/R-Point.png';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },
@@ -101,11 +97,11 @@ const dataFilter_order_bill = [
   { value: 3, label: 'E-Invoice' },
 ];
 
-const dataFilter_blog = [
-  { value: 1, label: 'Lượt xem' },
-  { value: 2, label: 'Doanh thu' },
-  { value: 3, label: 'Số cảm xúc' },
-];
+// const dataFilter_blog = [
+//   { value: 1, label: 'Lượt xem' },
+//   { value: 2, label: 'Doanh thu' },
+//   { value: 3, label: 'Số cảm xúc' },
+// ];
 
 const dataFilter_ticket = [
   { value: 1, label: 'Tickets' },
@@ -135,11 +131,11 @@ const dataFilter_social = [
   { value: 4, label: 'CVR(%)' },
 ];
 
-const dataFilter_density = [
-  { value: 1, label: 'Chi phí / Khách hàng(đ)' },
-  { value: 2, label: 'Tokens / Khách hàng(số)' },
-  { value: 3, label: 'Chi phí / Doanh thu(%)' },
-];
+// const dataFilter_density = [
+//   { value: 1, label: 'Chi phí / Khách hàng(đ)' },
+//   { value: 2, label: 'Tokens / Khách hàng(số)' },
+//   { value: 3, label: 'Chi phí / Doanh thu(%)' },
+// ];
 
 const dataFilter_type_account = [
   { value: 1, label: 'Tổng chi phí' },
@@ -149,25 +145,25 @@ const dataFilter_type_account = [
   { value: 5, label: 'Tokens Output' },
 ];
 
-const dataFilter_type = [
-  { value: 1, label: 'Publisher' },
-  { value: 2, label: 'Khách hàng' },
-  { value: 3, label: 'Đơn hàng' },
-  { value: 4, label: 'Doanh thu' },
-  { value: 5, label: 'Hoa hồng' },
-  { value: 6, label: 'Số dư' },
-  { value: 7, label: 'Yêu cầu rút tiền' },
-  { value: 8, label: 'Số tiền rút' },
-];
+// const dataFilter_type = [
+//   { value: 1, label: 'Publisher' },
+//   { value: 2, label: 'Khách hàng' },
+//   { value: 3, label: 'Đơn hàng' },
+//   { value: 4, label: 'Doanh thu' },
+//   { value: 5, label: 'Hoa hồng' },
+//   { value: 6, label: 'Số dư' },
+//   { value: 7, label: 'Yêu cầu rút tiền' },
+//   { value: 8, label: 'Số tiền rút' },
+// ];
 
-const dataFilter_density2 = [
-  { value: 1, label: 'Khách hàng / Publisher' },
-  { value: 2, label: 'Đơn hàng / Publisher' },
-  { value: 3, label: 'Doanh thu / Publisher' },
-  { value: 3, label: 'Hoa hồng / Publisher' },
-  { value: 3, label: 'Doanh thu / Đơn hàng' },
-  { value: 3, label: 'Hoa hồng / Đơn hàng' },
-];
+// const dataFilter_density2 = [
+//   { value: 1, label: 'Khách hàng / Publisher' },
+//   { value: 2, label: 'Đơn hàng / Publisher' },
+//   { value: 3, label: 'Doanh thu / Publisher' },
+//   { value: 3, label: 'Hoa hồng / Publisher' },
+//   { value: 3, label: 'Doanh thu / Đơn hàng' },
+//   { value: 3, label: 'Hoa hồng / Đơn hàng' },
+// ];
 
 const dataFilter_detail = [
   { value: 1, label: 'Tổng' },
@@ -352,46 +348,46 @@ const dataSource_rpoint = [
       </Box>
     ),
   },
-  {
-    bgColor: 'primary.light',
-    title: 'Số dư R-Point',
-    total: '23',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={rpointblance} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng',
-    total: '190',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={customer} width={30} />
-      </Box>
-    ),
-  },
+  // {
+  //   bgColor: 'primary.light',
+  //   title: 'Số dư R-Point',
+  //   total: '23',
+  //   icons: (
+  //     <Box
+  //       textAlign="center"
+  //       padding={1}
+  //       sx={{
+  //         width: 45,
+  //         height: 45,
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //       }}
+  //     >
+  //       <img src={rpointblance} width={30} />
+  //     </Box>
+  //   ),
+  // },
+  // {
+  //   bgColor: 'primary.light',
+  //   title: 'Khách hàng',
+  //   total: '190',
+  //   icons: (
+  //     <Box
+  //       textAlign="center"
+  //       padding={1}
+  //       sx={{
+  //         width: 45,
+  //         height: 45,
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //       }}
+  //     >
+  //       <img src={customer} width={30} />
+  //     </Box>
+  //   ),
+  // },
 ];
 
 const dataSource_affiliate = [
@@ -990,26 +986,26 @@ const dataSource_blog = [
 ];
 
 const dataSource_ticket = [
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng',
-    total: '123',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={customer} width={30} />
-      </Box>
-    ),
-  },
+  // {
+  //   bgColor: 'primary.light',
+  //   title: 'Khách hàng',
+  //   total: '123',
+  //   icons: (
+  //     <Box
+  //       textAlign="center"
+  //       padding={1}
+  //       sx={{
+  //         width: 45,
+  //         height: 45,
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //       }}
+  //     >
+  //       <img src={customer} width={30} />
+  //     </Box>
+  //   ),
+  // },
   {
     bgColor: 'primary.light',
     title: 'Tickets',
@@ -1404,7 +1400,7 @@ const DashboardAdmin = () => {
           </Typography>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_rpoint} totalColumn={3} />
+              <Topcardadminhorizontal dataSource={dataSource_rpoint} totalColumn={4} />
               <Box sx={{ marginTop: '30px' }}>
                 <GenChartAdmin text={''} menuItems={dataFilter_rpoint} />
               </Box>

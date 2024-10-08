@@ -255,7 +255,7 @@ const AddBlog = () => {
   const formik = useFormik({
     initialValues: {
       title: '',
-      // url: '',
+      url: '',
       description: '',
       content: '',
       tags: [],
@@ -265,7 +265,7 @@ const AddBlog = () => {
     },
     validationSchema: Yup.object({
       title: Yup.string().required('Tiêu đề là bắt buộc'),
-      // url: Yup.string().url('URL không hợp lệ').required('URL là bắt buộc'),
+      url: Yup.string().url('URL không hợp lệ').required('URL là bắt buộc'),
       description: Yup.string().required('Mô tả là bắt buộc'),
       content: Yup.string().required('Nội dung là bắt buộc'),
       thumbnail: Yup.string().required('Ảnh đại diện là bắt buộc'),
@@ -303,9 +303,9 @@ const AddBlog = () => {
   const handleImageUpload = async (file: File) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      const range = quillRef.current?.getEditor().getSelection();
+      const range = quillRef.getEditor().getSelection();
       if (range) {
-        quillRef.current?.getEditor().insertEmbed(range.index, 'image', reader.result);
+        quillRef.getEditor().insertEmbed(range.index, 'image', reader.result);
       }
     };
     reader.readAsDataURL(file);
@@ -435,15 +435,11 @@ const AddBlog = () => {
                   onChange={formik.handleChange}
                 >
                   <FormControlLabel value="published" control={<Radio />} label="Đăng" />
-<<<<<<< HEAD
-                  <FormControlLabel value="draft" control={<Radio />} label="Ẩn" />
-=======
                   <FormControlLabel
                     value="draft"
                     control={<Radio />}
-                    label="Ẩn bỏ đường link url"
+                    label="Ẩn"
                   />
->>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
                 </RadioGroup>
                 {formik.touched.status && formik.errors.status && (
                   <Typography color="error" variant="caption" sx={{ mt: 1 }}>
