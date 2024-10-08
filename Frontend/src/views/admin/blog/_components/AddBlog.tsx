@@ -435,15 +435,12 @@ const AddBlog = () => {
                   onChange={formik.handleChange}
                 >
                   <FormControlLabel value="published" control={<Radio />} label="Đăng" />
-<<<<<<< HEAD
                   <FormControlLabel value="draft" control={<Radio />} label="Ẩn" />
-=======
                   <FormControlLabel
                     value="draft"
                     control={<Radio />}
                     label="Ẩn bỏ đường link url"
                   />
->>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
                 </RadioGroup>
                 {formik.touched.status && formik.errors.status && (
                   <Typography color="error" variant="caption" sx={{ mt: 1 }}>
