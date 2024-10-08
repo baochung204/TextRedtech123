@@ -3,14 +3,11 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Card,
-  CardContent,
   Dialog,
   DialogContent,
   DialogContentText,
   Divider,
   Grid,
-  Rating,
   Slide,
   Stack,
   Table,
@@ -29,7 +26,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { default as logo, default as logoPoint } from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';
-import ChildCard from 'src/components/shared/ChildCard';
 import { useDispatch, useSelector } from 'src/store/Store';
 import { addToCart, fetchProducts } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';
@@ -41,38 +37,23 @@ const Transition = React.forwardRef(function Transition(
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const packages = [
-  {
-    id: 7,
-    img: products2,
-    title: 'Chatbot thương mại điện tử',
-    price: 520,
-    discount: 499,
-    sale: 80,
-    timeFlash: 180,
-  },
-];
+
 const ProductDetail = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [selectedPackage, setSelectedPackage] = useState(null);
-  const handleSelectPackage = (pkg: any) => {
-    setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
-  };
-  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
-  // Get Product
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
   const product: any = useSelector((state) => state.ecommerceReducer.products[Number(id) - 1]);
+  const total = product.point * product.qty - product.discount * product.qty;
+  // console.log(total);
+  const discountProduct = product.discount * product.qty;
 
-  // Set quantity
   const [count, setCount] = useState(1);
   const [open, setOpen] = useState(false);
 
-  // For alert when added something to cart
   const [cartalert, setCartalert] = useState(false);
 
   const handleClick = () => {
@@ -359,7 +340,7 @@ const ProductDetail = () => {
                           </TableBody>
                         </Table>{' '}
                       </TableContainer>
-                      <FlashSaleInDetailProduct />
+                      <FlashSaleInDetailProduct total={total} discountProduct={discountProduct} />
                       <Box textAlign={'center'} marginY={'20px'}>
                         <Button component={Link} to="/resources">
                           Tiếp tục

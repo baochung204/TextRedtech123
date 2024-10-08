@@ -11,10 +11,8 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { IconChevronDown } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';
@@ -42,35 +40,34 @@ const packages = [
     timeFlash: 16,
   },
 ];
-const FlashSaleInDetailProduct = () => {
+interface IProp {
+  total: number;
+  discountProduct: number;
+}
+const FlashSaleInDetailProduct = ({ total, discountProduct }: IProp) => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
-
-  // const theme = useTheme();
-  const [pointsEarned, setPointsEarned] = useState(0);
+  const [pointsEarned, setPointsEarned] = useState<number | null>(null);
   const [countdownTime, setCountdownTime] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackage2, setSelectedPackage2] = useState(true);
   const handleSelectPackage = (pkg: any) => {
     if (selectedPackage === pkg.id) {
-      // Nếu gói đã được chọn trước đó, thiết lập lại selectedPackage và điểm
       setSelectedPackage(null);
-      setPointsEarned(0); // Không cộng điểm
+      setPointsEarned(null);
     } else {
-      // Nếu chọn gói mới, thiết lập selectedPackage và cộng điểm
       setSelectedPackage(pkg.id);
-      setPointsEarned(pkg.point); // Cộng điểm
+      setPointsEarned(pkg.point);
     }
   };
-  const total = 200;
-  const Discount = 10;
-
   const handleAccordionClick = () => {
-    console.log('Flash-sale accordion clicked');
     setCountdownTime(15);
     setTimeout(() => {
       setSelectedPackage2(false);
+      setSelectedPackage(null);
+      setPointsEarned(null);
     }, 15000);
   };
+  useEffect(() => {}, [pointsEarned]);
   return (
     <>
       <Box my={3}>
@@ -230,20 +227,11 @@ const FlashSaleInDetailProduct = () => {
                               </div>
                             </div>
                             <Box>
-                              {/* {lgUp ? (
-                                  <Countdown
-                                    initialSeconds={pkg.timeFlash}
-                                    onTimeUp={() => {
-                                      handleSelectPackage2(); // Ví dụ: tự động chọn gói khi hết giờ
-                                    }}
-                                  />
-                                ) : null} */}
                               {lgUp && countdownTime && (
                                 <Countdown
                                   initialSeconds={countdownTime}
                                   onTimeUp={() => {
                                     // console.log('Countdown finished');
-                                    // Thực hiện hành động khi hết thời gian
                                   }}
                                 />
                               )}
@@ -265,31 +253,11 @@ const FlashSaleInDetailProduct = () => {
                               </Button>
                             </Box>
                           </CardContent>
-                          {/* <Box
-                                style={{
-                                  position: 'absolute',
-                                  top: '-15px',
-  
-                                  padding: '5px 10px',
-                                  color: 'white',
-                                  borderRadius: '0px 0px 10px 10px',
-                                  fontWeight: 'bold',
-                                }}
-                                sx={{ right: { xs: '-15px', md: '45px' } }}
-                              >
-                                <img src={sale} alt="" style={{ width: '70px' }} />
-                              </Box> */}
                         </Card>
                       </Grid>
                     ))}
                   </Grid>
                 </AccordionDetails>
-                {/* <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography variant="h5">Tổng giá Flash-sale : </Typography>
-                  <Typography variant="h5" sx={{ paddingX: '3px' }}>
-                    1.023.900point
-                  </Typography>
-                </Box>{' '} */}
               </Accordion>
             )}
             {/* Tổng cộng */}
@@ -298,7 +266,7 @@ const FlashSaleInDetailProduct = () => {
                 Giá trị đơn hàng
               </Typography>
               <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
-                {(total + pointsEarned).toLocaleString('vn-VN')}{' '}
+                {(total + (pointsEarned === null ? 0 : pointsEarned)).toLocaleString('vn-VN')}{' '}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -321,7 +289,7 @@ const FlashSaleInDetailProduct = () => {
                 alignItems={'center'}
                 gap="3px"
               >
-                -{Discount.toLocaleString('vn-VN')}{' '}
+                -{discountProduct.toLocaleString('vn-VN')}{' '}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -343,7 +311,11 @@ const FlashSaleInDetailProduct = () => {
                 alignItems={'center'}
                 gap="3px"
               >
-                {(total - Discount + pointsEarned).toLocaleString('vn-VN')}{' '}
+                {(
+                  total -
+                  discountProduct +
+                  (pointsEarned === null ? 0 : pointsEarned)
+                ).toLocaleString('vn-VN')}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
