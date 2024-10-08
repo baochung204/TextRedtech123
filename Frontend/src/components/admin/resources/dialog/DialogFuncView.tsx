@@ -154,7 +154,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 <DialogTitle>
                     <Typography fontWeight={600} variant='h3'>
                         {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
-                        Xem function
+                        Chi tiết function
                     </Typography>
                 </DialogTitle>
                 <Scrollbar_y sx={{ maxHeight: '550px',overflow:'hidden', paddingX: 0 }}>
@@ -345,7 +345,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                             <Box fontWeight={600}>ID :</Box>
                                         </Box>
                                         <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Người tạo :</Box>
+                                            <Box fontWeight={600}>Ngày tạo :</Box>
                                         </Box>
                                         <Box display="flex" alignItems="center" minHeight="40px">
                                             <Box fontWeight={600}>Tên function :</Box>
@@ -382,7 +382,7 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                             <Box>{formData.id}</Box>
                                         </Box>
                                         <Box display="flex" alignItems="center" height="40px">
-                                            <Box>{formData.creator}</Box>
+                                            <Box>{formData.creationTime}</Box>
                                         </Box>
                                         <Box display="flex" alignItems="center" minHeight="40px">
                                             <Box>{formData.functionName}</Box>
