@@ -98,7 +98,7 @@ const DataBox = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Tổng doanh thu',
+    title: 'Doanh thu',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
@@ -257,7 +257,7 @@ const BuyPoints = () => {
       },
 
       {
-        title: 'Tổng doanh thu',
+        title: 'Doanh thu',
         dataIndex: 'tongdoanhthu',
       },
       {
@@ -281,7 +281,7 @@ const BuyPoints = () => {
               </IconButton>
             </Grid>
             <Grid item xs={4}>
-              <IconButton onClick={() => {}}>
+              <IconButton onClick={() => { }}>
                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />
               </IconButton>
             </Grid>

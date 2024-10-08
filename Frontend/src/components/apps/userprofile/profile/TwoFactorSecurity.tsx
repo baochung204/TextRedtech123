@@ -1,23 +1,26 @@
 import { Box, Button, Switch, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
-import WarningIcon from '@mui/icons-material/Warning'; // Thêm icon Warning
+import WarningIcon from '@mui/icons-material/Warning';
+import { useNavigate } from 'react-router';
 
 const TwoFactorSecurity = () => {
+  const nav = useNavigate();
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
   const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState(false);
-  // const [isTwoFactorEnabled2, setIsTwoFactorEnabled2] = useState(false);
-  const theme = useTheme(); // Lấy thông tin theme
+  const theme = useTheme();
 
   const handleToggleTwoFactor = () => {
     setIsTwoFactorEnabled(!isTwoFactorEnabled);
+    
+    // Navigate to /auth/two-steps when the switch is turned on
+    if (!isTwoFactorEnabled) {
+      nav('/auth/two-steps');
+    }
   };
+
   const handleToggleTwoFactorEmail = () => {
     setIsTwoFactorEnabledEmail(!isTwoFactorEnabledEmail);
   };
-
-  // const handleToggleTwoFactor2 = () => {
-  //   setIsTwoFactorEnabled2(!isTwoFactorEnabled2);
-  // };
 
   return (
     <Box
@@ -34,7 +37,6 @@ const TwoFactorSecurity = () => {
 
       <Box
         sx={{
-          //   mb: 4,
           padding: 2,
           backgroundColor: '#E3F2FD',
           borderRadius: 1,
@@ -45,8 +47,7 @@ const TwoFactorSecurity = () => {
       >
         <WarningIcon sx={{ mr: 2 }} />
         <Typography variant="body1">
-          Chúng tôi khuyên bạn nên bật xác thực hai yếu tố để cung cấp thêm một lớp bảo mật cho tài
-          khoản của bạn.
+          Chúng tôi khuyên bạn nên bật xác thực hai yếu tố để cung cấp thêm một lớp bảo mật cho tài khoản của bạn.
         </Typography>
       </Box>
 
@@ -91,21 +92,7 @@ const TwoFactorSecurity = () => {
           onChange={handleToggleTwoFactorEmail}
           color="primary"
         />
-        {/* <Button variant="outlined" color="primary">
-          Cài đặt
-        </Button> */}
       </Box>
-
-      {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h6" fontWeight="500">
-            Liên kết số điện thoại gửi SMS
-          </Typography>
-        </Box> */}
-      {/* <Button variant="outlined" color="primary">
-          Cài đặt
-        </Button>
-      </Box> */}
     </Box>
   );
 };

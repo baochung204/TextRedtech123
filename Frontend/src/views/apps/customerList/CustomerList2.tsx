@@ -14,9 +14,9 @@ import {
   Select,
   Slide,
   TextField,
-  Typography,
+  Tooltip,
+  Typography
 } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
 import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -29,13 +29,13 @@ import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 // import { AppDispatch, AppState } from 'src/store/Store';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 import PopupAddList2 from './PopupAddlist2';
+import  AddCircleIcon  from '@mui/icons-material/AddCircle';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -69,27 +69,33 @@ const CustomerList2 = () => {
       {
         title: 'ID',
         dataIndex: 'idCustomer',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
 
       {
         title: 'Ngày tạo',
         dataIndex: 'dateTime',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
       {
         title: 'Tên khách hàng',
         dataIndex: 'nameCustomer',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
       {
-        title: 'SĐT',
+        title: 'Số điện thoại',
         dataIndex: 'phoneNumber',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
       {
         title: 'Trợ lý',
         dataIndex: 'assistant',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
       {
         title: 'Tags',
         dataIndex: 'tag',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
 
       {
@@ -97,7 +103,7 @@ const CustomerList2 = () => {
         dataIndex: 'orderValue',
         render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography>{value.totalSpend} đ</Typography>
+            <Typography>{value?.totalSpend ? `${value.totalSpend} đ` : 'Không có dữ liệu'}</Typography>
           </Box>
         ),
       },
@@ -105,11 +111,43 @@ const CustomerList2 = () => {
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
       {
         title: 'Email',
         dataIndex: 'email',
+        render: (value: any) => value || 'Không có dữ liệu',
       },
+      {
+        title: 'Tên công ty',
+        dataIndex: 'companyname',
+        render: (value: any) => value || 'Không có dữ liệu',
+      },
+      {
+        title: "Email công ty",
+        dataIndex: "companyemail",
+        render: (value: any) => value || 'Không có dữ liệu',
+      },
+      {
+        title: "Số điện thoại công ty",
+        dataIndex: "company_phone_number",
+        render: (value: any) => value || 'Không có dữ liệu',
+      },
+      {
+        title: 'Địa chỉ công ty',
+        dataIndex: 'company_address',
+        render: (value: any) => value || 'Không có dữ liệu',
+      },
+      {
+        title: "Mã số thuế",
+        dataIndex: 'tax_code',
+        render: (value: any) => value || 'Không có dữ liệu',
+      },
+      {
+        title: "Website công ty",
+        dataIndex: 'company_website', 
+        render: (value: any) => value || 'Không có dữ liệu',
+      }
     ],
     [],
   );
@@ -159,13 +197,13 @@ const CustomerList2 = () => {
                   >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
-                        {/* <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                           <Tooltip title="Thêm mới khách hàng" onClick={handleOpenPopup}>
                             <IconButton color="primary" aria-label="Add to cart">
                               <AddCircleIcon sx={{ fontSize: 30 }} />
                             </IconButton>
                           </Tooltip>
-                        </Grid> */}
+                        </Grid>
                         <Grid item xs={10}>
                           <TextField
                             id="outlined-search"

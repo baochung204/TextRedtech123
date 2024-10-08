@@ -38,13 +38,13 @@ const PopupAdd = () => {
   };
 
   return (
-    <Scrollbar_y sx={{ maxHeight: '550px', paddingX: 5 }}>
+    <Scrollbar_y sx={{ maxHeight: '550px', paddingX: 5, overflowX: 'hidden' }}>
       <Box>
         <Divider sx={{ mx: '-50px' }} />
 
-        <Scrollbar_y sx={{ maxHeight: '400px', overflowX: 'hidden' }}>
+        
           {/* Set maxHeight for scrolling */}
-          <Box mb={3} pt={2}>
+          <Box mb={3} pt={0}>
             <Grid container spacing={2}>
               
               <Grid item xs={12} lg={6} md={12}>
@@ -86,7 +86,7 @@ const PopupAdd = () => {
               </Grid>
             </Grid>
           </Box>
-        </Scrollbar_y>
+        
 
         <Divider sx={{ mx: '-50px' }} />
 

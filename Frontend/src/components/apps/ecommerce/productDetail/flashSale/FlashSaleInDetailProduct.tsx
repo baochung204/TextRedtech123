@@ -20,12 +20,8 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';
 import products from 'src/assets/images/products/s25.jpg';
 import Countdown from 'src/components/countdown/countdown';
-import ChildCard from '../../../shared/ChildCard';
-interface Props {
-  total: number;
-  Discount: number;
-  qty: number;
-}
+import ChildCard from 'src/components/shared/ChildCard';
+
 const packages = [
   {
     id: 5,
@@ -46,7 +42,7 @@ const packages = [
     timeFlash: 16,
   },
 ];
-const FirstStep = ({ total, Discount, qty }: Props) => {
+const FlashSaleInDetailProduct = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
   // const theme = useTheme();
@@ -65,10 +61,9 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
       setPointsEarned(pkg.point); // Cộng điểm
     }
   };
-  const handleSelectPackage2 = () => {
-    // setSelectedPackage2(false);
-    // setPointsEarned(0);
-  };
+  const total = 200;
+  const Discount = 10;
+
   const handleAccordionClick = () => {
     console.log('Flash-sale accordion clicked');
     setCountdownTime(15);
@@ -236,13 +231,13 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                             </div>
                             <Box>
                               {/* {lgUp ? (
-                                <Countdown
-                                  initialSeconds={pkg.timeFlash}
-                                  onTimeUp={() => {
-                                    handleSelectPackage2(); // Ví dụ: tự động chọn gói khi hết giờ
-                                  }}
-                                />
-                              ) : null} */}
+                                  <Countdown
+                                    initialSeconds={pkg.timeFlash}
+                                    onTimeUp={() => {
+                                      handleSelectPackage2(); // Ví dụ: tự động chọn gói khi hết giờ
+                                    }}
+                                  />
+                                ) : null} */}
                               {lgUp && countdownTime && (
                                 <Countdown
                                   initialSeconds={countdownTime}
@@ -271,30 +266,30 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                             </Box>
                           </CardContent>
                           {/* <Box
-                              style={{
-                                position: 'absolute',
-                                top: '-15px',
-
-                                padding: '5px 10px',
-                                color: 'white',
-                                borderRadius: '0px 0px 10px 10px',
-                                fontWeight: 'bold',
-                              }}
-                              sx={{ right: { xs: '-15px', md: '45px' } }}
-                            >
-                              <img src={sale} alt="" style={{ width: '70px' }} />
-                            </Box> */}
+                                style={{
+                                  position: 'absolute',
+                                  top: '-15px',
+  
+                                  padding: '5px 10px',
+                                  color: 'white',
+                                  borderRadius: '0px 0px 10px 10px',
+                                  fontWeight: 'bold',
+                                }}
+                                sx={{ right: { xs: '-15px', md: '45px' } }}
+                              >
+                                <img src={sale} alt="" style={{ width: '70px' }} />
+                              </Box> */}
                         </Card>
                       </Grid>
                     ))}
                   </Grid>
                 </AccordionDetails>
                 {/* <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5">Tổng giá Flash-sale : </Typography>
-                <Typography variant="h5" sx={{ paddingX: '3px' }}>
-                  1.023.900point
-                </Typography>
-              </Box>{' '} */}
+                  <Typography variant="h5">Tổng giá Flash-sale : </Typography>
+                  <Typography variant="h5" sx={{ paddingX: '3px' }}>
+                    1.023.900point
+                  </Typography>
+                </Box>{' '} */}
               </Accordion>
             )}
             {/* Tổng cộng */}
@@ -342,8 +337,8 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
             <Stack direction="row" justifyContent="space-between" mb={1}>
               <Typography variant="h6">Tổng thanh toán</Typography>
               <Typography
-                variant="h5"
-                color="success"
+                variant="h4"
+                color="main"
                 display={'flex'}
                 alignItems={'center'}
                 gap="3px"
@@ -365,4 +360,4 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
   );
 };
 
-export default FirstStep;
+export default FlashSaleInDetailProduct;

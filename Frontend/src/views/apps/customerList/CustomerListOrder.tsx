@@ -1,3 +1,4 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { TabContext, TabPanel } from '@mui/lab';
 import {
   Avatar,
@@ -5,11 +6,7 @@ import {
   Box,
   Checkbox,
   Chip,
-  Dialog,
-  DialogContent,
-  DialogTitle,
   Grid,
-  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
@@ -17,9 +14,8 @@ import {
   Slide,
   Stack,
   TextField,
-  Typography,
+  Typography
 } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -31,8 +27,6 @@ import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import AddOrder from './PopupAdd2';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 interface PropsTable {
   id: string;
@@ -255,16 +249,15 @@ const CustomerListOrder = () => {
                       <Grid container sx={{ alignItems: 'center' }}>
                         <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
                           {' '}
-                          <IconButton
+                          {/* <IconButton
                             color="primary"
                             aria-label="Add to cart"
                             onClick={() => setIsPopupOpen(true)}
                           >
                             <AddCircleIcon sx={{ fontSize: 30 }} />
-                          </IconButton>
+                          </IconButton> */}
                         </Grid>
                         <Grid item xs={10}>
-                          {' '}
                           <TextField
                             id="outlined-search"
                             placeholder="Tìm kiếm chuyển đổi"
@@ -383,7 +376,7 @@ const CustomerListOrder = () => {
       </ChildCard>
 
       {/* Add Order Popup */}
-      <Dialog
+      {/* <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
         fullWidth
@@ -395,7 +388,7 @@ const CustomerListOrder = () => {
         <DialogContent>
           <AddOrder />
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </PageContainer>
   );
 };

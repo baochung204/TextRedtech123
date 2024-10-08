@@ -310,7 +310,6 @@ const AssistantAdmin = () => {
       {
         dataIndex: 'ngaytao',
         title: 'Ngày tạo',
-        isValids: true,
       },
       {
         dataIndex: 'assistantImage',
@@ -323,94 +322,89 @@ const AssistantAdmin = () => {
       {
         dataIndex: 'assistantId',
         title: 'ID khách hàng',
-        isValids: true,
       },
       {
         dataIndex: 'kh',
         title: 'Khách hàng',
-        isValids: true,
       },
       {
         dataIndex: 'dh',
         title: 'Đơn hàng',
-        isValids: false,
       },
       {
         dataIndex: 'cvr',
         title: 'CVR',
-        isValids: false,
       },
       {
         dataIndex: 'gmv',
         title: 'GMV',
-        isValids: false,
       },
       {
         dataIndex: 'cp',
         title: 'Chi phí',
-        isValids: false,
       },
       {
         dataIndex: 'level',
         title: 'Level',
-        isValids: false,
+        isValids: false
       },
       {
         dataIndex: 'experience',
         title: 'Experience',
-        isValids: false,
+        isValids: false
       },
       {
         dataIndex: 'token',
         title: 'Token huấn luyện',
-        isValids: false,
+        isValids: false
       },
       {
         dataIndex: 'vqtb',
         title: 'Vòng quay trung bình',
-        isValids: false,
+        isValids: false
+
       },
       {
         dataIndex: 'cl',
         title: 'Chiến lược',
-        isValids: true,
+        isValids: false
+
       },
       {
         dataIndex: 'function',
         title: 'Functions',
-        isValids: true,
+        isValids: false
+
       },
       {
         dataIndex: 'files',
         title: 'Files',
-        isValids: true,
+        isValids: false
+
       },
       {
         dataIndex: 'dungluong',
         title: 'Dung lượng',
-        isValids: true,
-      },
+        isValids: false
 
-      {
-        dataIndex: 'assistantId',
-        title: 'ID trợ lý',
-        isValids: false,
       },
-
       {
         dataIndex: 'cpdt',
         title: 'Chi phí/ doanh thu',
-        isValids: false,
+        isValids: false
+
       },
       {
         dataIndex: 'cpdh',
         title: 'Chi phí / chuyển đổi',
-        isValids: false,
+        isValids: false
+
       },
       {
         dataIndex: 'cpkh',
         title: 'Chi phí / khách hàng',
-        isValids: false,
+        isValids: false
+
       },
       {
         title: 'Xem chi tiết',

@@ -121,22 +121,22 @@ const RPointDialog = ({ open, setOpen, checkValue, setCheckValue, selectID }: Pr
             title: 'Giá tiền',
             dataIndex: 'money'
         },
-        {
-            title: 'Function',
-            dataIndex: 'function'
-        },
-        {
-            title: 'Chiến lược',
-            dataIndex: 'strategy'
-        },
-        {
-            title: 'Files (slot)',
-            dataIndex: 'files'
-        },
-        {
-            title: 'Function (slot)',
-            dataIndex: 'totalFunction'
-        },
+        // {
+        //     title: 'Function',
+        //     dataIndex: 'function'
+        // },
+        // {
+        //     title: 'Chiến lược',
+        //     dataIndex: 'strategy'
+        // },
+        // {
+        //     title: 'Files (slot)',
+        //     dataIndex: 'files'
+        // },
+        // {
+        //     title: 'Function (slot)',
+        //     dataIndex: 'totalFunction'
+        // },
 
     ]
 

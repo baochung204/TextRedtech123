@@ -101,7 +101,15 @@ const CustomTable: React.FC<CustomTableProps> = ({
                   return (
                     isColumnVisible && (
                       <TableCell key={colIndex} sx={{ whiteSpace: 'nowrap' }}>
-                        <Typography variant="subtitle2">
+                        <Typography
+                          variant="subtitle2"
+                          style={{
+                            whiteSpace: 'nowrap', 
+                            overflow: 'hidden',    
+                            textOverflow: 'ellipsis', 
+                            maxWidth: '200px',    
+                          }}
+                        >
                           {column.render ? column.render(value, row, rowIndex) : value}
                         </Typography>
                       </TableCell>

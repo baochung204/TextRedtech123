@@ -73,9 +73,12 @@ const PublisherTablePage: React.FC = () => {
         ),
       },
       {
+        title: 'Số lượt mua',
+        dataIndex: 'totalBuy',
+      },
+      {
         dataIndex: 'isActive',
         title: 'Hoạt động',
-        validate: true,
         render: (_value, row) => (
           <>
             <IconButton
@@ -93,31 +96,27 @@ const PublisherTablePage: React.FC = () => {
           </>
         ),
       },
-      {
-        title: 'Số lượt mua',
-        dataIndex: 'totalBuy',
-        isValids: false,
-      },
-      {
-        title: 'Function',
-        dataIndex: 'function',
-        isValids: false,
-      },
-      {
-        title: 'Chiến lược',
-        dataIndex: 'strategy',
-        isValids: false,
-      },
-      {
-        title: 'Files (slot)',
-        dataIndex: 'files',
-        isValids: false,
-      },
-      {
-        title: 'Function (slot)',
-        dataIndex: 'totalFunction',
-        isValids: false,
-      },
+      
+      // {
+      //   title: 'Function',
+      //   dataIndex: 'function',
+      //   isValids: false,
+      // },
+      // {
+      //   title: 'Chiến lược',
+      //   dataIndex: 'strategy',
+      //   isValids: false,
+      // },
+      // {
+      //   title: 'Files (slot)',
+      //   dataIndex: 'files',
+      //   isValids: false,
+      // },
+      // {
+      //   title: 'Function (slot)',
+      //   dataIndex: 'totalFunction',
+      //   isValids: false,
+      // },
     ],
     [],
   );

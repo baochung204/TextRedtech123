@@ -33,81 +33,81 @@ interface DataRow {
   quantity: number;
   customerId: string;
   customerName: string;
-  tag: string;
+  tag: 'Hoạt động' | 'Đang hoạt động' | 'Ẩn';
   use: number;
 }
 
 const dataRows: DataRow[] = [
   {
     id: 'MA001',
-    creationTime: '2024-09-01 08:30',
+    creationTime: '2024-09-01',
     voucherName: 'Sản phẩm mới',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'JDEwJG5zZ3J1c2',
     quantity: 234,
     customerId: 'Đồng',
     customerName: '19.000 đ',
-    tag: 'chưa sử dụng',
+    tag: 'Hoạt động',
     use: 23,
   },
   {
     id: 'MA002',
-    creationTime: '2024-09-02 09:15',
+    creationTime: '2024-09-02',
     voucherName: 'Mã giảm giá',
-    endTime: '2025-10-12 00:23',
+    endTime: '2025-10-12',
     Mavoucher: 'DFG3554F3TT4F',
     quantity: 680,
     customerId: 'Đồng',
     customerName: '99.000 đ',
-    tag: 'đã sử dụng',
+    tag: 'Đang hoạt động',
     use: 41,
   },
   {
     id: 'MA003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03',
     voucherName: 'khách hàng thân thiết',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'DG335534TTGGE',
     quantity: 32,
     customerId: 'Phần trăm',
     customerName: '10%',
-    tag: 'quá hạn',
+    tag: 'Đang hoạt động',
     use: 21,
   },
   {
     id: 'MA004',
-    creationTime: '2024-09-04 11:20',
+    creationTime: '2024-09-04',
     voucherName: 'mini-game',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: '44FV43TG4V34G',
     quantity: 54,
     customerId: 'Phần trăm',
     customerName: '10%',
-    tag: 'đã sử dụng',
+    tag: 'Ẩn',
     use: 3,
   },
   {
     id: 'MA005',
-    creationTime: '2024-09-05 14:05',
+    creationTime: '2024-09-05',
     voucherName: ' sự kiện',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'DGH34T53167D5',
     quantity: 23,
     customerId: 'Phần trăm',
     customerName: '20%',
-    tag: 'quá hạn',
+    tag: 'Ẩn',
     use: 7,
   },
   {
     id: 'MA006',
-    creationTime: '2024-09-06 15:30',
+    creationTime: '2024-09-06',
     voucherName: 'khách hàng thân thiết',
-    endTime: '2024-09-03 10:45',
+    endTime: '2024-09-03',
     Mavoucher: 'RH56YH563226TYB',
     quantity: 424,
     customerId: 'Phần trăm',
     customerName: '10%',
-    tag: 'đã sử dụng',
+    tag: 'Đang hoạt động',
     use: 23,
   },
 ];
@@ -119,70 +119,7 @@ interface Column {
   isValids?: boolean;
 }
 
-// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-//   if (b[orderBy] < a[orderBy]) {
-//     return -1;
-//   }
-//   if (b[orderBy] > a[orderBy]) {
-//     return 1;
-//   }
 
-//   return 0;
-// }
-
-// type Order = 'asc' | 'desc';
-
-// function getComparator<Key extends keyof any>(
-//   order: Order,
-//   orderBy: Key,
-// ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-//   return order === 'desc'
-//     ? (a, b) => descendingComparator(a, b, orderBy)
-//     : (a, b) => -descendingComparator(a, b, orderBy);
-// }
-// interface EnhancedTableProps {
-//   numSelected: number;
-//   order: 'asc' | 'desc';
-//   orderBy: string;
-//   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-//   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
-//   rowCount: number;
-// }
-
-// function EnhancedTableHead(props: EnhancedTableProps) {
-//   const { order, orderBy, onRequestSort } = props;
-//   const createSortHandler = (property: keyof DataRow) => (event: React.MouseEvent<unknown>) => {
-//     onRequestSort(event, property);
-//   };
-//   return (
-//     <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
-//       <TableRow>
-//         {headCells.map((headCell: any) => (
-//           <TableCell
-//             key={headCell.id}
-//             align={headCell.numeric ? 'right' : 'left'}
-//             padding={headCell.disablePadding ? 'none' : 'normal'}
-//             sortDirection={orderBy === headCell.id ? order : false}
-//             sx={{ whiteSpace: 'nowrap' }}
-//           >
-//             <TableSortLabel
-//               active={orderBy === headCell.id}
-//               direction={orderBy === headCell.id ? order : 'asc'}
-//               onClick={createSortHandler(headCell.id)}
-//             >
-//               <Typography variant="h6">{headCell.label}</Typography>
-//               {/* {orderBy === headCell.id ? (
-//                     <Box component="span">
-//                       {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-//                     </Box>
-//                   ) : null} */}
-//             </TableSortLabel>
-//           </TableCell>
-//         ))}
-//       </TableRow>
-//     </TableHead>
-//   );
-// }
 
 const ListVoucher = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
@@ -234,7 +171,7 @@ const ListVoucher = () => {
             <Chip
               label={value}
               color={
-                value === 'chưa sử dụng' ? 'primary' : value === 'đã sử dụng' ? 'success' : 'error'
+                value === 'Hoạt động' ? 'primary' : value === 'Đang hoạt động' ? 'success' : 'error'
               }
             />
           );
@@ -448,3 +385,71 @@ const ListVoucher = () => {
 };
 
 export default ListVoucher;
+
+
+
+
+// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
+
+//   return 0;
+// }
+
+// type Order = 'asc' | 'desc';
+
+// function getComparator<Key extends keyof any>(
+//   order: Order,
+//   orderBy: Key,
+// ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+//   return order === 'desc'
+//     ? (a, b) => descendingComparator(a, b, orderBy)
+//     : (a, b) => -descendingComparator(a, b, orderBy);
+// }
+// interface EnhancedTableProps {
+//   numSelected: number;
+//   order: 'asc' | 'desc';
+//   orderBy: string;
+//   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+//   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
+//   rowCount: number;
+// }
+
+// function EnhancedTableHead(props: EnhancedTableProps) {
+//   const { order, orderBy, onRequestSort } = props;
+//   const createSortHandler = (property: keyof DataRow) => (event: React.MouseEvent<unknown>) => {
+//     onRequestSort(event, property);
+//   };
+//   return (
+//     <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
+//       <TableRow>
+//         {headCells.map((headCell: any) => (
+//           <TableCell
+//             key={headCell.id}
+//             align={headCell.numeric ? 'right' : 'left'}
+//             padding={headCell.disablePadding ? 'none' : 'normal'}
+//             sortDirection={orderBy === headCell.id ? order : false}
+//             sx={{ whiteSpace: 'nowrap' }}
+//           >
+//             <TableSortLabel
+//               active={orderBy === headCell.id}
+//               direction={orderBy === headCell.id ? order : 'asc'}
+//               onClick={createSortHandler(headCell.id)}
+//             >
+//               <Typography variant="h6">{headCell.label}</Typography>
+//               {/* {orderBy === headCell.id ? (
+//                     <Box component="span">
+//                       {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+//                     </Box>
+//                   ) : null} */}
+//             </TableSortLabel>
+//           </TableCell>
+//         ))}
+//       </TableRow>
+//     </TableHead>
+//   );
+// }
