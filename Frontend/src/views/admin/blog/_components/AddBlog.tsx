@@ -435,6 +435,10 @@ const AddBlog = () => {
                   onChange={formik.handleChange}
                 >
                   <FormControlLabel value="published" control={<Radio />} label="Đăng" />
+<<<<<<< HEAD
+                  <FormControlLabel value="draft" control={<Radio />} label="Ẩn" />
+=======
+>>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
                   <FormControlLabel
                     value="draft"
                     control={<Radio />}

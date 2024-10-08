@@ -35,6 +35,10 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
+<<<<<<< HEAD
+import { useNavigate } from 'react-router';
+=======
+>>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
 import Iconlike from 'src/assets/ICON/like.png';
 
 const BCrumb = [
@@ -127,7 +131,12 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
+<<<<<<< HEAD
+        {/* <img width={30} src={reaction} alt="Reaction" /> */}
+        <img width={30} src={Iconlike} alt="Like Icon" />
+=======
         <img width={30} src={Iconlike} />
+>>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
       </Box>
     ),
   },
@@ -140,6 +149,13 @@ interface Column {
 }
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+<<<<<<< HEAD
+  const handleIconClick = () => {
+    nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
+  };
+
+=======
+>>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -247,6 +263,12 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
+<<<<<<< HEAD
+            <IconButton onClick={handleIconClick}>
+              <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+            </IconButton>
+=======
+>>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
             <Link
               to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
             >
@@ -254,7 +276,11 @@ const BlogAdmin = () => {
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>{' '}
             </Link>
+<<<<<<< HEAD
+            <IconButton>
+=======
             {/* <IconButton>
+>>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton> */}
             <IconButton>
