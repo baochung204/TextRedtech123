@@ -3,12 +3,8 @@ import * as Yup from "yup";
 export const validationSchema2 = Yup.object({
 
     nhomFunction: Yup.string().required("Required nhomFunction"),
-    tenFunction: Yup.string().required("Required tenFunction"),
     codeFunction: Yup.string().required("Required codeFunction"),
     levelx: Yup.string().required("Required levelx"),
-    khachHang: Yup.string().required("Required khachHang"),
-    troLy: Yup.string().required("Required troLy"),
-    tomTat: Yup.string().required("Required tomTat"),
 
 });
 
