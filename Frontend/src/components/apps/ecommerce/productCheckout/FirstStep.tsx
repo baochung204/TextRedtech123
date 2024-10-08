@@ -54,26 +54,43 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
   const [countdownTime, setCountdownTime] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackage2, setSelectedPackage2] = useState(true);
+  // const handleSelectPackage = (pkg: any) => {
+  //   if (selectedPackage === pkg.id) {
+  //     // Nếu gói đã được chọn trước đó, thiết lập lại selectedPackage và điểm
+  //     setSelectedPackage(null);
+  //     setPointsEarned(0); // Không cộng điểm
+  //   } else {
+  //     // Nếu chọn gói mới, thiết lập selectedPackage và cộng điểm
+  //     setSelectedPackage(pkg.id);
+  //     setPointsEarned(pkg.point); // Cộng điểm
+  //   }
+  // };
+  // const handleSelectPackage2 = () => {
+  //   // setSelectedPackage2(false);
+  //   // setPointsEarned(0);
+  // };
+  // const handleAccordionClick = () => {
+  //   console.log('Flash-sale accordion clicked');
+  //   setCountdownTime(15);
+  //   setTimeout(() => {
+  //     setSelectedPackage2(false);
+  //   }, 15000);
+  // };
   const handleSelectPackage = (pkg: any) => {
     if (selectedPackage === pkg.id) {
-      // Nếu gói đã được chọn trước đó, thiết lập lại selectedPackage và điểm
       setSelectedPackage(null);
-      setPointsEarned(0); // Không cộng điểm
+      setPointsEarned(null);
     } else {
-      // Nếu chọn gói mới, thiết lập selectedPackage và cộng điểm
       setSelectedPackage(pkg.id);
-      setPointsEarned(pkg.point); // Cộng điểm
+      setPointsEarned(pkg.point);
     }
   };
-  const handleSelectPackage2 = () => {
-    // setSelectedPackage2(false);
-    // setPointsEarned(0);
-  };
   const handleAccordionClick = () => {
-    console.log('Flash-sale accordion clicked');
     setCountdownTime(15);
     setTimeout(() => {
       setSelectedPackage2(false);
+      setSelectedPackage(null);
+      setPointsEarned(null);
     }, 15000);
   };
   return (
@@ -303,7 +320,7 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                 Giá trị đơn hàng
               </Typography>
               <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
-                {(total + pointsEarned).toLocaleString('vn-VN')}{' '}
+                {(total + (pointsEarned === null ? 0 : pointsEarned)).toLocaleString('vn-VN')}{' '}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -348,7 +365,9 @@ const FirstStep = ({ total, Discount, qty }: Props) => {
                 alignItems={'center'}
                 gap="3px"
               >
-                {(total - Discount + pointsEarned).toLocaleString('vn-VN')}{' '}
+                {(total - Discount + (pointsEarned === null ? 0 : pointsEarned)).toLocaleString(
+                  'vn-VN',
+                )}{' '}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
