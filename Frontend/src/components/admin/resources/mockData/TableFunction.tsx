@@ -100,7 +100,7 @@ export const Function = [
 export const FunctionRows: Functions[] = [
   {
     id: 'FUNC001',
-    creationTime: '2024-09-01 08:30',
+    creationTime: '2024-09-01',
     functionGroup: 'Nhóm A',
     functionName: 'AAAAAAAA AAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
@@ -115,7 +115,7 @@ export const FunctionRows: Functions[] = [
   },
   {
     id: 'FUNC002',
-    creationTime: '2024-09-02 09:15',
+    creationTime: '2024-09-02',
     functionGroup: 'Nhóm B',
     functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
@@ -130,7 +130,7 @@ export const FunctionRows: Functions[] = [
   },
   {
     id: 'FUNC003',
-    creationTime: '2024-09-03 10:40',
+    creationTime: '2024-09-03',
     functionGroup: 'Nhóm A',
     functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
@@ -145,7 +145,7 @@ export const FunctionRows: Functions[] = [
   },
   {
     id: 'FUNC004',
-    creationTime: '2024-09-04 11:20',
+    creationTime: '2024-09-04',
     functionGroup: 'Nhóm C',
     functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
@@ -160,7 +160,7 @@ export const FunctionRows: Functions[] = [
   },
   {
     id: 'FUNC005',
-    creationTime: '2024-09-05 14:05',
+    creationTime: '2024-09-05',
     functionGroup: 'Nhóm B',
     functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
@@ -175,7 +175,7 @@ export const FunctionRows: Functions[] = [
   },
   {
     id: 'FUNC006',
-    creationTime: '2024-09-06 15:30',
+    creationTime: '2024-09-06',
     functionGroup: 'Nhóm A',
     functionName: 'AAAAAAAAAAAAAAAAA',
     badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',

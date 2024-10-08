@@ -152,7 +152,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 <DialogTitle>
                     <Typography fontWeight={600} variant='h3'>
                         {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
-                        Xem chiến lược
+                        Chi tiết chiến lược
                     </Typography>
                 </DialogTitle>
                 <Divider sx={{ mx: '0px' }} />

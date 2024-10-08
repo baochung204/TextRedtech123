@@ -146,7 +146,7 @@ const DialogModelView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 <DialogTitle>
                     <Typography fontWeight={600} variant='h3'>
                         {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
-                        Xem model
+                        Chi tiết model
                     </Typography>
                 </DialogTitle>
                 <Divider sx={{ mx: '0px' }} />
