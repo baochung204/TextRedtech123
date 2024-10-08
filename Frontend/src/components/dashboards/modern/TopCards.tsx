@@ -67,7 +67,7 @@ const TopCards = () => {
                 variant="subtitle1"
                 fontWeight={600}
               >
-                {topcard.title}
+                {topcard.title} 
               </Typography>
               <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
                 {topcard.digits}
