@@ -41,8 +41,10 @@ const PurchaseHistoryInProfile = () => {
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  // const handleClose = () => setOpen(false);
+  const handleCloseDialog = () => {
+    setOpen(!open);
+  };
   const columns = [
     {
       dataIndex: 'id',
@@ -161,8 +163,12 @@ const PurchaseHistoryInProfile = () => {
         aria-describedby="alert-dialog-slide-description"
         fullWidth
         maxWidth="lg"
+        sx={{
+          maxHeight: '90vh',
+        }}
+        onClose={handleCloseDialog}
       >
-        <DialogActions style={{ padding: '0' }}>
+        {/* <DialogActions style={{ padding: '0' }}>
           <Button
             onClick={handleClose}
             color="error"
@@ -171,8 +177,26 @@ const PurchaseHistoryInProfile = () => {
           >
             <CloseIcon />
           </Button>
-        </DialogActions>
-        <DialogContent>
+        </DialogActions> */}
+        <DialogContent
+          sx={{
+            overflowY: 'auto',
+            height: '100%',
+            '&::-webkit-scrollbar': {
+              width: '10px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'none',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#E3E3E3',
+              borderRadius: '10px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#d6d6d6',
+            },
+          }}
+        >
           <DialogContentText id="alert-dialog-slide-description">
             <ContentPurchaseHistory />
           </DialogContentText>
