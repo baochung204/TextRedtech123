@@ -8,6 +8,7 @@ import employee from 'src/assets/Adminphoto/nhan vien.png';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
 import PersonnelTab from './component/personnelTab';
+// import Decentralization2 from './component/Decentralization2';
 
 interface StyleProps {
   bgColor: string;
@@ -122,7 +123,7 @@ const Personnels = () => {
               sx={{
                 borderBottom: 1,
                 borderColor: 'divider',
-                display: 'flex',
+                display: 'flex',  
                 justifyContent: 'space-between',
                 mb: 2,
               }}

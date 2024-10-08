@@ -9,17 +9,17 @@ import u8 from 'src/assets/images/profile/user-8.jpg';
 import u9 from 'src/assets/images/profile/user-9.jpg';
 import u10 from 'src/assets/images/profile/user-10.jpg';
 
-interface ActionProps {
-    them: boolean,
-    xem: boolean,
-    sua: boolean,
-    xoa: boolean,
-    khong: boolean
-}
+// interface ActionProps {
+//     them: boolean,
+//     xem: boolean,
+//     sua: boolean,
+//     xoa: boolean,
+//     khong: boolean
+// }
 
-interface Permissions {
-    [functionName: string]: ActionProps;
-}
+// interface Permissions {
+//     [functionName: string]: ActionProps;
+// }
 
 interface PersonnelTables {
     id: string;
@@ -34,7 +34,7 @@ interface PersonnelTables {
     avt: string,
     position: string,
     isValidate: boolean,
-    permissions: Permissions
+    // permissions?: Permissions
 }
 
 const images = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10];
@@ -63,10 +63,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: true, sua: false, xoa: true, khong: false },
-            'Chức năng 2': { xem: true, them: true, sua: false, xoa: false, khong: true }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: true, sua: false, xoa: true, khong: false },
+        //     'Chức năng 2': { xem: true, them: true, sua: false, xoa: false, khong: true }
+        // }
     },
     {
         id: '2',
@@ -81,10 +81,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: false },
-            'Chức năng 2': { xem: true, them: true, sua: false, xoa: true, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: true, them: true, sua: false, xoa: true, khong: false }
+        // }
     },
     {
         id: '3',
@@ -99,10 +99,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: true },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: true }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: true },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: true }
+        // }
     },
     {
         id: '4',
@@ -117,10 +117,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '5',
@@ -135,10 +135,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '6',
@@ -153,10 +153,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '7',
@@ -171,10 +171,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '8',
@@ -189,10 +189,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '9',
@@ -207,10 +207,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '10',
@@ -225,10 +225,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '11',
@@ -243,10 +243,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '12',
@@ -261,10 +261,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '13',
@@ -279,10 +279,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '14',
@@ -297,10 +297,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '15',
@@ -315,10 +315,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '16',
@@ -333,10 +333,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '17',
@@ -351,10 +351,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '18',
@@ -369,10 +369,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '19',
@@ -387,10 +387,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     },
     {
         id: '20',
@@ -405,10 +405,10 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
-        permissions: {
-            'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
-            'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
-        }
+        // permissions: {
+        //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
+        //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
+        // }
     }
 ];
 

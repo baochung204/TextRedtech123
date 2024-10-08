@@ -52,8 +52,8 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
             show: true,
             total: {
               show: true,
-              label: 'Tỉ lệ cao nhất',
-              formatter: () => `${Math.max(...seriesdoughnutchart)}đ`,
+              label: 'Chỉ số',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}`,
               fontWeight: 'bold',
             },
           },
@@ -70,17 +70,11 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Doanh thu', 'Khách hàng'],
-  };
-
-  const [month, setMonth] = React.useState('1');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
+    labels: ['Doanh thu', 'Khách hàng trả phí'],
   };
 
   return (
-    <Affilatec title="Khách hàng" text="Khách hàng" description={''}>
+    <Affilatec title="Khách hàng" text="Doanh thu/Khách hàng trả phí" description={''}>
       <Box
         sx={{
           display: 'flex',
@@ -89,21 +83,6 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
           flexDirection: 'column',
         }}
       >
-        <CustomSelect
-          labelId="month-dd"
-          id="month-dd"
-          size="small"
-          value={month}
-          onChange={handleChange}
-          sx={{ marginBottom: '20px' }}
-        >
-          {menuItems &&
-            menuItems.map((item: any) => (
-              <MenuItem key={item.value} value={item.value}>
-                {item.label}
-              </MenuItem>
-            ))}
-        </CustomSelect>
         <Chart
           options={optionsdoughnutchart}
           series={seriesdoughnutchart}

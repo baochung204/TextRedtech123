@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { IconEye } from '@tabler/icons-react';
 import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
@@ -406,6 +407,20 @@ const OrderRPoint = () => {
       {
         dataIndex: 'details',
         title: 'Chi tiết',
+        render: (_value, row) => (
+          <>
+            <IconButton
+              onClick={() => {
+                // setSelectID(row.id);
+                // setOpen(true);
+                // setCheckValue('view');
+              }}
+            >
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+          
+          </>
+        ),
       },
     ],
     [],

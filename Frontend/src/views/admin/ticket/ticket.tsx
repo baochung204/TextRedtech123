@@ -167,7 +167,7 @@ const renderStatus = (status: number) => {
 const dataRows: DataRow[] = [
   {
     idTicket: 'TCK001',
-    creationTime: '2024-09-01 08:30',
+    creationTime: '2024-09-01',
     interaction: new Date('2023-11-22'),
     rating: 4,
     status: renderStatus(1),
@@ -179,7 +179,7 @@ const dataRows: DataRow[] = [
   },
   {
     idTicket: 'TCK002',
-    creationTime: '2024-09-02 09:15',
+    creationTime: '2024-09-02',
     interaction: new Date('2023-11-22'),
     rating: 5,
     status: renderStatus(2),
@@ -191,7 +191,7 @@ const dataRows: DataRow[] = [
   },
   {
     idTicket: 'TCK003',
-    creationTime: '2024-09-03 10:45',
+    creationTime: '2024-09-03',
     interaction: new Date('2023-11-22'),
     rating: 3,
     status: renderStatus(1),
@@ -203,7 +203,7 @@ const dataRows: DataRow[] = [
   },
   {
     idTicket: 'TCK004',
-    creationTime: '2024-09-04 11:20',
+    creationTime: '2024-09-04',
     interaction: new Date('2023-11-22'),
     rating: 2,
     status: renderStatus(2),
@@ -215,7 +215,7 @@ const dataRows: DataRow[] = [
   },
   {
     idTicket: 'TCK005',
-    creationTime: '2024-09-05 14:05',
+    creationTime: '2024-09-05',
     interaction: new Date('2023-11-22'),
     rating: 4,
     status: renderStatus(2),
@@ -227,7 +227,7 @@ const dataRows: DataRow[] = [
   },
   {
     idTicket: 'TCK006',
-    creationTime: '2024-09-06 15:30',
+    creationTime: '2024-09-06',
     interaction: new Date('2023-11-22'),
     rating: 5,
     status: renderStatus(1),
@@ -273,11 +273,19 @@ const Ticket = () => {
     () => [
       {
         dataIndex: 'idTicket',
-        title: 'ID Ticket',
+        title: 'ID',
       },
       {
         dataIndex: 'creationTime',
         title: 'Thời gian tạo',
+      },
+      {
+        dataIndex: 'customerId',
+        title: 'ID Khách hàng',
+      },
+      {
+        dataIndex: 'customerName',
+        title: 'Tên Khách hàng',
       },
       {
         dataIndex: 'interaction',
@@ -289,28 +297,20 @@ const Ticket = () => {
         title: 'Đánh giá',
       },
       {
-        dataIndex: 'status',
-        title: 'Trạng thái',
-      },
-      {
-        dataIndex: 'title',
-        title: 'Tiêu đề',
-      },
-      {
-        dataIndex: 'customerId',
-        title: 'ID Khách hàng',
-      },
-      {
-        dataIndex: 'customerName',
-        title: 'Tên Khách hàng',
-      },
-      {
         dataIndex: 'email',
         title: 'Email',
       },
       {
         dataIndex: 'phoneNumber',
         title: 'Số điện thoại',
+      },
+      {
+        dataIndex: 'title',
+        title: 'Tiêu đề',
+      },
+      {
+        dataIndex: 'status',
+        title: 'Trạng thái',
       },
     ],
     [],

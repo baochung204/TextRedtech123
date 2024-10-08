@@ -76,28 +76,28 @@ const DataBox = [
       </>
     ),
   },
-  {
-    bgColor: 'primary.light',
-    title: 'Lượt xem',
-    total: '21.369',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={view} width={30} />
-        </Box>
-      </>
-    ),
-  },
+  // {
+  //   bgColor: 'primary.light',
+  //   title: 'Lượt xem',
+  //   total: '21.369',
+  //   icons: (
+  //     <>
+  //       <Box
+  //         textAlign="center"
+  //         padding={1}
+  //         sx={{
+  //           width: 40,
+  //           height: 40,
+  //           display: 'flex',
+  //           justifyContent: 'center',
+  //           alignItems: 'center',
+  //         }}
+  //       >
+  //         <img src={view} width={30} />
+  //       </Box>
+  //     </>
+  //   ),
+  // },
   // {
   //   bgColor: 'primary.light',
   //   title: 'Tương tác',
@@ -306,7 +306,7 @@ const ContentNotification = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <TopCard dataSource={DataBox} totalColumn={3} />
+        <TopCard dataSource={DataBox} totalColumn={DataBox.length} />
       </Grid>
       <Grid item xs={12}>
         <Grid container sx={{ alignItems: 'center' }} spacing={2}>

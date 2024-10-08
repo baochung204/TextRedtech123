@@ -175,16 +175,8 @@ const PageFeature = () => {
                 setIsCheckFix(true);
               }}
             >
-              <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            {/* Uncomment and implement if needed
-            <IconButton>
-              <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
-            <IconButton>
-              <IconTrash stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
-            */}
           </>
         ),
       },

@@ -1,3 +1,4 @@
+// import { Box, MenuItem, Typography } from '@mui/material';
 import { Box, MenuItem, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
@@ -113,7 +114,7 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
       max: 40,
     },
     tooltip: {
-      theme: 'dark',
+      enabled: false, // Disable tooltip
     },
     grid: {
       show: true,
