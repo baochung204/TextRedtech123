@@ -132,7 +132,7 @@ const dataFilter_social = [
   { value: 1, label: 'Khách hàng' },
   { value: 2, label: 'Đơn hàng(nạp point)' },
   { value: 3, label: 'Doanh thu(đ)' },
-  { value: 4, label: 'CVR(%)' },
+  // { value: 4, label: 'CVR(%)' },
 ];
 
 const dataFilter_density = [
@@ -223,7 +223,7 @@ const dataSource = [
   {
     bgColor: 'primary.light',
 
-    title: 'Đơn hàng',
+    title: 'Chuyển đổi',
     total: '123',
     icons: (
       <Box
@@ -1184,13 +1184,13 @@ const DashboardAdmin = () => {
       <Box>
         <Box sx={{ margin: '30px 0px' }}>
           <Typography variant={'h3'} sx={{ marginBottom: '10px' }}>
-            Chi phí
+            Kinh doanh
           </Typography>
           <Grid>
             <Grid item xs={12}>
               <Topcardadminhorizontal dataSource={dataSource} totalColumn={4} />
               <Box sx={{ marginTop: '30px' }}>
-                <GenChartAdmin text={'Kinh doanh'} menuItems={dataFilter_bussiness} />
+                <GenChartAdmin text={''} menuItems={dataFilter_bussiness} />
               </Box>
             </Grid>
           </Grid>
@@ -1210,12 +1210,12 @@ const DashboardAdmin = () => {
         </Box>
         <Box sx={{ margin: '30px 0px' }}>
           <Typography variant={'h3'} marginBottom={'10px'}>
-            Token
+            Chi phí
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={8}>
               <Box sx={{ marginTop: '30px' }}>
-                <GenChartAdmin text={''} menuItems={dataFilter_token} />
+                <GenChartAdmin text={'Token'} menuItems={dataFilter_token} />
               </Box>
             </Grid>
             <Grid item xs={12} lg={4}>
