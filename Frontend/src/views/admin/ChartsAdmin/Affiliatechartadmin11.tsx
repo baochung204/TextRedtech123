@@ -1,24 +1,24 @@
-// import React from 'react';
-import { Box, MenuItem } from '@mui/material';
-import React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { Box } from '@mui/material';
 import Chart, { Props } from 'react-apexcharts';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import Affilatec from 'src/components/shared/Affilatec';
+import Affilatec1 from 'src/components/shared/Affilatec1';
 
-const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
-  const seriesdoughnutchart = [35, 65];
+const Affilatechartadmin1 = () => {
+  const seriesdoughnutchart = [55, 45];
 
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#000000',
+      foreColor: '#0000000',
+
       events: {
         mounted: (chart: any) => {
           chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
           const maxValue = Math.max(...seriesdoughnutchart);
           const maxIndex = seriesdoughnutchart.indexOf(maxValue);
-          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] : '';
+          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] + '%' : '';
 
           // Custom label for center text
           chart.updateOptions({
@@ -52,8 +52,8 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
             show: true,
             total: {
               show: true,
-              label: 'Tỉ lệ cao nhất',
-              formatter: () => `${Math.max(...seriesdoughnutchart)}đ`,
+              label: 'Chi số',
+              formatter: () => `${Math.max(...seriesdoughnutchart)}`,
               fontWeight: 'bold',
             },
           },
@@ -65,22 +65,33 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#4cb8c4', '#3cd3ad'],
+    colors: ['#f45c43', '#fd1d1d'],
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: 'vertical',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#feb47b', '#ff7e5f'],
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100],
+      },
+    },
     tooltip: {
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Doanh thu', 'Khách hàng'],
-  };
-
-  const [month, setMonth] = React.useState('1');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
+    labels: ['Doanh thu', 'Tất cả khách hàng'],
   };
 
   return (
-    <Affilatec title="Khách hàng" text="Khách hàng" description={''}>
+    <Affilatec1
+      title="Doanh thu/Tất cả khách hàng"
+      text="Doanh thu/Tất cả khách hàng"
+      description={''}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -89,21 +100,6 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
           flexDirection: 'column',
         }}
       >
-        <CustomSelect
-          labelId="month-dd"
-          id="month-dd"
-          size="small"
-          value={month}
-          onChange={handleChange}
-          sx={{ marginBottom: '20px' }}
-        >
-          {menuItems &&
-            menuItems.map((item: any) => (
-              <MenuItem key={item.value} value={item.value}>
-                {item.label}
-              </MenuItem>
-            ))}
-        </CustomSelect>
         <Chart
           options={optionsdoughnutchart}
           series={seriesdoughnutchart}
@@ -111,8 +107,8 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
           height="300px"
         />
       </Box>
-    </Affilatec>
+    </Affilatec1>
   );
 };
 
-export default Affilatechartadmin;
+export default Affilatechartadmin1;
