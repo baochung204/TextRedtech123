@@ -44,9 +44,14 @@ import view from 'src/assets/NotificationAdmin/luot xem.png';
 import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { default as Affilatechartadmin } from './Affilatechartadmin';
 import Affilatechartadmin1 from './Affilatechartadmin1';
+import Affilatechartadmin12 from './Affiliateadminchart12';
+import Affilatechartadmin10 from './Affiliatechartadmin10';
+import Affilatechartadmin11 from './Affiliatechartadmin11';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
+
+import Affilatechartadmin9 from './Affiliatechartadmin9';
+
 import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
@@ -562,7 +567,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
 
-    title: 'Khách hàng / Publisher',
+    title: 'Khách hàng/Pub',
     total: '23',
     icons: (
       <Box
@@ -582,7 +587,7 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Đơn hàng / Publisher',
+    title: 'Đơn hàng/Pub',
     total: '23',
     icons: (
       <Box
@@ -602,7 +607,7 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Doanh thu / Publisher',
+    title: 'Doanh thu/Pub',
     total: '789.567đ',
     icons: (
       <Box
@@ -622,7 +627,7 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Hoa hồng / Publisher',
+    title: 'Hoa hồng/Pub',
     total: '456.789đ',
     icons: (
       <Box
@@ -642,7 +647,7 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Doanh thu / Đơn hàng',
+    title: 'Doanh thu/Đơn hàng',
     total: '234.567đ',
     icons: (
       <Box
@@ -1192,15 +1197,31 @@ const DashboardAdmin = () => {
           </Grid>
         </Box>
         <Box>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={4}>
-              <Affilatechartadmin menuItems={dataFilter_customer} />
-            </Grid>
-            <Grid item xs={12} lg={4}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={6}>
               <Affilatechartadmin1 menuItems={dataFilter_account} />
             </Grid>
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} lg={6}>
               <PieChartsAdmin menuItems={dataFilter_social} />
+            </Grid>
+          </Grid>
+        </Box>
+        <Box sx={{ marginTop: '30px' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
+            <Typography variant="h3">Khách hàng</Typography>
+          </Box>
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={6}>
+              <Affilatechartadmin9 />
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <Affilatechartadmin10 />
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <Affilatechartadmin11 />
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <Affilatechartadmin12 menuItems={dataFilter_customer} />
             </Grid>
           </Grid>
         </Box>
@@ -1413,7 +1434,7 @@ const DashboardAdmin = () => {
           </Typography>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_affiliate} totalColumn={4} />
+              <Topcardadminhorizontal dataSource={dataSource_affiliate} totalColumn={5} />
               <Box sx={{ marginTop: '30px' }}>
                 <GenChartAdmin text={''} menuItems={dataFilter_affliate} />
               </Box>
