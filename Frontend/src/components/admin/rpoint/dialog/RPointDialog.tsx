@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextField, Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Switch, TextField, Typography } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import { useEffect, useMemo, useState } from "react";
 import * as Yup from 'yup';
@@ -18,7 +18,7 @@ interface PropsTitle {
 }
 
 const RPointDialog = ({ open, setOpen, checkValue, setCheckValue, selectID }: PropsDialog) => {
-
+    const label = { inputProps: { 'aria-label': 'Switch demo' } };
     const emptyInitialValues = useMemo(() => ({
         package: '',
         points: '',
@@ -376,6 +376,7 @@ const RPointDialog = ({ open, setOpen, checkValue, setCheckValue, selectID }: Pr
                                 </Grid>
                             </Grid> */}
                         <DialogActions >
+                            <Switch {...label} />
                             <Button
                                 onClick={(event) => handleClose(event, resetForm)}
                                 variant="contained"
