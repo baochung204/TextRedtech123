@@ -156,7 +156,10 @@ const HistoryAffiliate = () => {
         title: 'ID',
         dataIndex: 'id_checkout',
       },
-
+      {
+        title: 'Publisher',
+        dataIndex: 'publisher',
+      },
       {
         title: 'Khách hàng',
         dataIndex: 'name_publisher',

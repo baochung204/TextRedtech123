@@ -35,11 +35,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
-<<<<<<< HEAD
-import { useNavigate } from 'react-router';
-=======
 import Iconlike from 'src/assets/ICON/like.png';
->>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -71,7 +67,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={blog} width={30} alt="Blog" />
+        <img src={blog} width={30} />
       </Box>
     ),
   },
@@ -91,7 +87,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={view} width={30} alt="View" />
+        <img src={view} width={30} />
       </Box>
     ),
   },
@@ -111,7 +107,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={revenue} width={30} alt="Revenue" />
+        <img src={revenue} width={30} />
       </Box>
     ),
   },
@@ -131,11 +127,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-<<<<<<< HEAD
-        <img width={30} src={reaction} alt="Reaction" />
-=======
         <img width={30} src={Iconlike} />
->>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
       </Box>
     ),
   },
@@ -147,16 +139,7 @@ interface Column {
   isValids?: boolean;
 }
 const BlogAdmin = () => {
-  const nav = useNavigate();
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-<<<<<<< HEAD
-  const handleIconClick = () => {
-    nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
-  };
-
-=======
->>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -264,22 +247,16 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
-<<<<<<< HEAD
-            <IconButton onClick={handleIconClick}>
-              <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-            </IconButton>
-=======
             <Link
               to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
             >
               <IconButton>
-                <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>{' '}
             </Link>
->>>>>>> 4aa5560352320857b37a403d6ee71c22723529b3
-            <IconButton>
+            {/* <IconButton>
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
+            </IconButton> */}
             <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
             </IconButton>
@@ -495,7 +472,7 @@ const BlogAdmin = () => {
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
-        // TransitionComponent={Transition}
+      // TransitionComponent={Transition}
       >
         <DialogContent sx={{ overflowY: 'hidden' }}>
           <AddBlog />

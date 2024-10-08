@@ -272,7 +272,7 @@ const OrderAdminPages = () => {
         dataIndex: 'ndd',
       },
       {
-        title: 'Chúc vụ',
+        title: 'Chức vụ',
         dataIndex: 'cv',
         isValids: false,
       },
