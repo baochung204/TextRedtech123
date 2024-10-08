@@ -1,22 +1,20 @@
+import CloseIcon from '@mui/icons-material/Close';
 import {
+  Avatar,
+  Box,
   Checkbox,
   Dialog,
   DialogTitle,
+  Divider,
   FormControlLabel,
+  Grid,
   List,
   ListItem,
-  ListItemText,
-  Typography,
   TextField,
-  Button,
-  Box,
-  Divider,
-  Grid,
   Tooltip,
-  Avatar,
+  Typography
 } from '@mui/material';
 import React, { useState } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
 const functions = [
