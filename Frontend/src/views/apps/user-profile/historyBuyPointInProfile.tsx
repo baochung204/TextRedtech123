@@ -4,8 +4,8 @@
 import { Grid } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
+import TableHistoryBuyPoint from 'src/components/apps/historyBuyPoint/TableHistoryBuyPoint';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
-import HistoryBuyPoint from '../allTransactionHistory/HistoryBuyPoint';
 
 const HistoryBuyPointInProfile = () => {
   return (
@@ -15,7 +15,8 @@ const HistoryBuyPointInProfile = () => {
           <ProfileBanner />
         </Grid>
         <Grid item xs={12}>
-          <HistoryBuyPoint />
+          {/* <HistoryBuyPoint /> */}
+          <TableHistoryBuyPoint />
         </Grid>
       </Grid>
     </PageContainer>
