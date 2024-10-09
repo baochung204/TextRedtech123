@@ -1,8 +1,10 @@
 import { Box, Button, Grid, Input, styled, Typography, useTheme } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import TableData from './data/dataBuyPoint';
+import { fetchPoints } from 'src/store/apps/point/PointSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -20,9 +22,16 @@ const TableBuyPoint = () => {
   const [click, setClick] = useState<boolean>(false);
   const [value, setValue] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataPoints = useSelector((state: AppState) => state.points.points);
+  useEffect(() => {
+    dispatch(fetchPoints());
+  }, [dispatch]);
+  // console.log(dataPoint);
+
   const handlePackageClick = (items: any) => {
     setClickedId(items.id);
-    setTotalPrice(items.text2);
+    setTotalPrice(items.cash);
   };
 
   const formatNumber = (num: string) => {
@@ -43,10 +52,9 @@ const TableBuyPoint = () => {
     <Grid container>
       <Grid item xs={12}>
         <Grid container spacing={3} textAlign="center" sx={{ pt: 4 }}>
-          {TableData.map((items, index) => (
-            <Grid item lg={3} sm={6} xs={12} key={index}>
+          {dataPoints.map((items) => (
+            <Grid item lg={3} sm={6} xs={12} key={items.id}>
               <BoxStyled
-                key={index}
                 onClick={() => handlePackageClick(items)}
                 sx={{
                   borderWidth: 1,
@@ -70,19 +78,18 @@ const TableBuyPoint = () => {
                     padding: '0',
                   }}
                 >
-                  {typeof items.text1 === 'string' ? (
+                  {typeof items.point === 'string' ? (
                     <>
-                      {' '}
                       <Typography variant="h3" sx={{ fontWeight: 700 }}>
                         {!click ? (
-                          <div onClick={() => setClick(!click)}>{items.text1}</div>
+                          <div onClick={() => setClick(!click)}>{items.point}</div>
                         ) : (
                           <Input
                             value={value}
                             onChange={handleChange}
-                            // onChange={e => setValue(e.target.value)}
-                            // onChange={handleChange1}
-                            onBlur={value === '' ? () => setClick(false) : undefined}
+                            onBlur={() => {
+                              if (!value || value === '') setClick(false);
+                            }}
                             inputProps={{
                               maxLength: 11,
                               style: {
@@ -94,42 +101,35 @@ const TableBuyPoint = () => {
                             }}
                           />
                         )}
-                      </Typography>{' '}
-                    </>
-                  ) : (
-                    <>
-                      {' '}
-                      <Typography variant="h3" sx={{ fontWeight: 700 }}>
-                        {items.text1.toLocaleString('vi-VN')}{' '}
                       </Typography>
                     </>
+                  ) : (
+                    <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                      {items.point.toLocaleString('vi-VN')}
+                    </Typography>
                   )}
                   <img src={logoPoint} alt="" width={30} height={30} style={{ borderRadius: 50 }} />
                 </BoxStyled>
-                {typeof items.text1 === 'string' ? (
-                  <>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        paddingTop: '5px',
-                        color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
-                      }}
-                    >
-                      {toggle === null ? items.text2 : <>{toggle.toLocaleString('vi-VN')} ₫</>}
-                    </Typography>{' '}
-                  </>
+                {typeof items.point === 'string' ? (
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      paddingTop: '5px',
+                      color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
+                    }}
+                  >
+                    {toggle === null ? items.cash : <>{toggle.toLocaleString('vi-VN')} ₫</>}
+                  </Typography>
                 ) : (
-                  <>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        paddingTop: '5px',
-                        color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
-                      }}
-                    >
-                      {items.text2.toLocaleString('vi-VN')} ₫
-                    </Typography>
-                  </>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      paddingTop: '5px',
+                      color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
+                    }}
+                  >
+                    {items.cash ? items.cash.toLocaleString('vi-VN') : '0'} ₫
+                  </Typography>
                 )}
               </BoxStyled>
             </Grid>
@@ -143,7 +143,7 @@ const TableBuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              {typeof totalPrice === 'number' ? (
+              {Number.isFinite(totalPrice) ? (
                 totalPrice.toLocaleString('vi-VN')
               ) : (
                 <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
@@ -152,24 +152,24 @@ const TableBuyPoint = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
-              variant="contained"
-              disableElevation
-              sx={{
-                px: 5,
-                py: 1,
-                backgroundColor: '#FC2032',
-                fontWeight: 700,
-                fontSize: 18,
-                ':hover': {
-                  backgroundColor: '#F22A51',
-                },
-              }}
-            >
-              <Link to={`/pay/checkout_point/${clickedId}`} style={{ color: 'white' }}>
+            <Link to={`/pay/checkout_point/${clickedId}`} style={{ textDecoration: 'none' }}>
+              <Button
+                variant="contained"
+                disableElevation
+                sx={{
+                  px: 5,
+                  py: 1,
+                  backgroundColor: '#FC2032',
+                  fontWeight: 700,
+                  fontSize: 18,
+                  ':hover': {
+                    backgroundColor: '#F22A51',
+                  },
+                }}
+              >
                 Thanh toán ngay
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </Grid>

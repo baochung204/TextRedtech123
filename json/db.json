@@ -753,9 +753,72 @@
   ],
   "points": [
     {
-      "name": "ghsd",
-      "point": 1212,
-      "cash": 1200.0
+      "id": "6703ea6e1518f2ac36ca10f1",
+      "name": "Gói 1",
+      "point": 70,
+      "cash": 20100
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca10f2",
+      "name": "Gói 2",
+      "point": 90,
+      "cash": 25900
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca10f3",
+      "name": "Gói 3",
+      "point": 150,
+      "cash": 43100
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca10f4",
+      "name": "Gói 4",
+      "point": 200,
+      "cash": 57400
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca10f5",
+      "name": "Gói 5 ",
+      "point": 250,
+      "cash": 71800
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca10f6",
+      "name": "Gói 6 ",
+      "point": 350,
+      "cash": 100500
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca10f7",
+      "name": "Gói 7 ",
+      "point": 450,
+      "cash": 129200
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca10f8",
+      "name": "Gói 8 ",
+      "point": "Tuỳ chọn",
+      "cash": "Hỗ trợ số lượng lớn"
+    }
+  ],
+  "vnd_coupons": [
+    {
+      "id": "6703ea6e1518f2ac36ca10",
+      "name": "Giảm 200.000₫",
+      "value": 20000,
+      "type": "VALUE",
+      "coupon_percen": 0,
+      "lower_bound": 100000,
+      "coupons_code": "KM025K2J"
+    },
+    {
+      "id": "6703ea6e1518f2ac36ca11",
+      "name": "Giảm 15% ",
+      "value": 15,
+      "type": "PERCENT",
+      "coupon_percen": 0,
+      "lower_bound": 150000,
+      "coupons_code": "CN850KDWQ"
     }
   ]
 }
