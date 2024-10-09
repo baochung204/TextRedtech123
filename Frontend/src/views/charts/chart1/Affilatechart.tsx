@@ -1,62 +1,81 @@
-// import React from 'react';
 import { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import Affilatec from 'src/components/shared/Affilatec';
+import Affilatec1 from 'src/components/shared/Affilatec1';
+import { Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import Chart, { Props } from 'react-apexcharts';
 
 const Affilatechart = () => {
-  const [chartData, setChartData] = useState({
-    series: [
-      {
-        name: 'Chi phí',
-        data: [61, 80, 38, 21, 42, 39, 90],
-      },
-      {
-        name: 'Doanh thu',
-        data: [11, 42, 15, 32, 34, 12, 21],
-      },
-    ],
-    options: {
-      chart: {
-        height: 350,
-        type: 'area',
-        zoom: {
-          enabled: false, // Vô hiệu hóa zoom
-        },
-        toolbar: {
-          show: false, // Ẩn toolbar (icon ở góc)
-        },
-      },
-      // colors: ['#c31432', '#FF5733'],
-      colors: ['#4cb8c4', '#3cd3ad'],
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
+  const theme = useTheme();
+  const warning = theme.palette.warning.main;
+  const labels = ['Chi phí /doanh thu'];
 
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy ',
+  const optionsradialchart: Props = {
+    chart: {
+      id: 'radial-bar-chart',
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      foreColor: '#000000',
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: [warning],
+    plotOptions: {
+      radialBar: {
+        dataLabels: {
+          label: 'Chi phí / doanh thu',
+          name: {
+            fontSize: '20px', // Tăng kích thước chữ cho tên
+            color: '#FC2032', // Màu đen cho tên
+          },
+          value: {
+            fontSize: '20px', // Tăng kích thước chữ cho giá trị
+            color: '#000000', // Màu đen cho giá trị
+          },
+          total: {
+            show: true,
+            label: 'Tỉ lệ',
+            formatter() {
+              return '96%'; // Giá trị tổng
+            },
+            fontSize: '22px', // Tăng kích thước chữ cho tổng
+            color: '#000000', // Màu đen cho tổng
+          },
+        },
+        track: {
+          background: '#e0e0e0', // Màu nền của vòng tròn
+          strokeWidth: '97%', // Độ dày của vòng tròn nền
         },
       },
     },
-  });
+    tooltip: {
+      enabled: true, // Enable tooltips
+      theme: 'dark', // Set the tooltip theme to dark
+      y: {
+        formatter: (val: number) => {
+          return `${val}%`; // Display the label and value
+        },
+      },
+    },
+    labels: labels, // Set the labels for the radial bars
+  };
+
+  const seriesradialchart: any = [96]; // Replace with dynamic series data if needed
 
   return (
-    <Affilatec title="Tỉ trọng chi phí / doanh thu" text="Chi phí / doanh thu" description={''}>
+    <Affilatec1 title=" Đơn hàng" text="Chi phí /doanh thu" description={''}>
       <div>
         <div id="chart">
-          <ReactApexChart
-            options={chartData.options as any}
-            series={chartData.series}
-            type="area"
-            height={350}
+          <Chart
+            options={optionsradialchart}
+            series={seriesradialchart}
+            type="radialBar"
+            height="300px"
           />
         </div>
         <div id="html-dist"></div>
       </div>
-    </Affilatec>
+    </Affilatec1>
   );
 };
 
