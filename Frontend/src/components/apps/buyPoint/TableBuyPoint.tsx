@@ -15,10 +15,8 @@ const BoxStyled = styled(Box)(() => ({
 
 const TableBuyPoint = () => {
   const theme = useTheme();
-
   const [clickedId, setClickedId] = useState<string | null>(null);
   const [totalPrice, setTotalPrice] = useState<number | string>(0);
-
   const [click, setClick] = useState<boolean>(false);
   const [value, setValue] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number | null>(null);
@@ -168,7 +166,7 @@ const TableBuyPoint = () => {
                 },
               }}
             >
-              <Link to={'/pay/checkout_point'} style={{ color: 'white' }}>
+              <Link to={`/pay/checkout_point/${clickedId}`} style={{ color: 'white' }}>
                 Thanh toán ngay
               </Link>
             </Button>

@@ -55,21 +55,17 @@ const AddToCart = () => {
     setOpen(false);
   };
   const dispatch = useDispatch();
-
   // Lấy sản phẩm từ giỏ hàng
   const Cartproduct: any = useSelector((state) => state.ecommerceReducer.cart);
-  const total = sum(Cartproduct.map((product: any) => product.point * product.qty));
-  const qty = sum(Cartproduct.map((product: any) => product.qty));
-
-  const Discount = sum(Cartproduct.map((product: any) => product.qty * product.discount));
+  const total = sum(Cartproduct.map((product: any) => product?.point ?? 0 * product?.qty ?? 0));
+  const qty = sum(Cartproduct.map((product: any) => product?.qty ?? 0));
+  const Discount = sum(Cartproduct.map((product: any) => product.qty ?? 0 * product.discount ?? 0));
   const Increase = (productId: number | any) => {
     dispatch(increment(productId));
   };
-
   const Decrease = (productId: number | any) => {
     dispatch(decrement(productId));
   };
-
   return (
     <Box>
       {Cartproduct.length > 0 ? (

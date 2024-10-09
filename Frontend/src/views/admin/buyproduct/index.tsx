@@ -24,7 +24,7 @@ import product from 'src/assets/Adminphoto/san pham.png';
 import amountcheckout from 'src/assets/Adminphoto/so luong mua.png';
 import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
-import sale from 'src/assets/Adminphoto/so flash sale.png'
+import sale from 'src/assets/Adminphoto/so flash sale.png';
 import icontext, { default as iconPoint } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -128,14 +128,12 @@ const DataBox = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Doanh thu',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
           <Typography variant="h6">12.423.423 </Typography>
           <img src={iconPoint} alt="" width={17} />
-
         </Box>
       </>
     ),
@@ -314,7 +312,7 @@ const BuyPoints = () => {
               </IconButton>
             </Grid>
             <Grid item xs={4}>
-              <IconButton onClick={() => { }}>
+              <IconButton onClick={() => {}}>
                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />
               </IconButton>
             </Grid>
