@@ -6,7 +6,10 @@ import CustomTextField from "src/components/forms/theme-elements/CustomTextField
 import ProductTable from "../product/ProductData";
 import Function from "./components/Function";
 import Strategy from "./components/Strategy";
+import File from "./components/File";
 import { validationSchema1, validationSchema2, validationSchema3 } from "./validationSchema";
+import AssistantProduct from "./components/AssistantProduct";
+
 
 interface PropUp {
     open: boolean;
@@ -68,7 +71,10 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             levelStrategy: '',
             trolyStrategy: '',
             tomtatStrategy: '',
-            noidungStrategy: ''
+            noidungStrategy: '',
+
+            // file
+            files: '',
 
         }),
         [],
@@ -166,7 +172,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     levelStrategy: data.levelStrategy ?? '',
                     trolyStrategy: data.trolyStrategy ?? '',
                     tomtatStrategy: data.tomtatStrategy ?? '',
-                    noidungStrategy: data.noidungStrategy ?? ''
+                    noidungStrategy: data.noidungStrategy ?? '',
+                    file: data.file ?? ''
 
                 });
             }
@@ -178,7 +185,10 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             title: 'Tên sản phẩm',
             dataIndex: 'tensanpham'
         },
-
+        {
+            title: 'Danh mục',
+            dataIndex: 'danhmuc'
+        },
         {
             title: 'Giá niêm yết',
             dataIndex: 'gianiemyet'
@@ -191,10 +201,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             title: 'Tag',
             dataIndex: 'tags'
         },
-        {
-            title: 'Danh mục',
-            dataIndex: 'danhmuc'
-        },
+        
     
     ];
     const [tags, setTags] = useState<Tag[]>([]);
@@ -227,6 +234,14 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
         {
             label: 'Files',
             values: 3
+        },
+        {
+            label: 'Model',
+            values: 4
+        },
+        {
+            label: 'Trợ lý',
+            values: 5
         },
     ];
     return (
@@ -469,7 +484,10 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                 <Grid item xs={12}>
                                     {key && key === 1 && <Strategy values={values} />}
                                     {key && key === 2 && <Function values={values} />}
-                                    {key && key === 3 && 'heleo3'}
+                                    {key && key === 3 && <File values={values} />}
+                                    {/* {key && key === 3 && <File values={values} />} */}
+                                    {key && key === 4 && 4234324}
+                                    {key && key === 5 && <AssistantProduct />}
 
                                 </Grid>
                             </Grid>

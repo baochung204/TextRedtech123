@@ -190,20 +190,22 @@ import {
 // import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
 // import CustomOutlinedInput from "src/components/forms/theme-elements/CustomOutlinedInput";
 import { ErrorMessage, Field } from "formik";
+import ReactQuill from "react-quill";
 
 interface StrategyProps {
     values: {
-        anhStrategy: string[],
-        nhomStrategy: string,
-        tenStrategy: string,
-        khachhangStrategy: string,
-        levelStrategy: string,
-        trolyStrategy: string,
-        tomtatStrategy: string,
-        noidungStrategy: string
-    }
+        nhomStrategy: string;
+        levelStrategy: string;
+        noidungStrategy: string;
+    };
 }
+// const QuillEditor = ({ field, form }: { field: any; form: any }) => {
+//     const handleChange = (content: any) => {
+//         form.setFieldValue(field.name, content);
+//     };
 
+//     return <ReactQuill placeholder="Nội dung chiến lực" style={{ height: "100px", marginTop: '15px' }} value={field.value} onChange={handleChange} theme="snow" />;
+// };
 const Strategy = ({ values }: StrategyProps) => {
 
     return (
@@ -380,44 +382,51 @@ const Strategy = ({ values }: StrategyProps) => {
         //     </Grid>
         // </Grid>
         <Grid container spacing={2}>
-            <Grid item xs={6}>
-                <Field name="nhomStrategy" as={TextField} label="Nhóm chiến lược" fullWidth />
-                <ErrorMessage name="nhomStrategy">
-                    {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                </ErrorMessage>
+            <Grid item xs={12} md={6}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Field name="nhomStrategy" as={TextField} label="Nhóm chiến lược" fullWidth />
+                        <ErrorMessage name="nhomStrategy">
+                            {(msg) => <div style={{ color: 'red' }}>{msg}</div>}
+                        </ErrorMessage>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Field name="levelStrategy" as={TextField} label="Levels chiến lược" fullWidth />
+                        <ErrorMessage name="levelStrategy">
+                            {(msg) => <div style={{ color: 'red' }}>{msg}</div>}
+                        </ErrorMessage>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid item xs={6}>
-                <Field name="tenStrategy" as={TextField} label="Tên chiến lược" fullWidth />
-                <ErrorMessage name="tenStrategy">
-                    {msg => <div style={{ color: 'red' }}>{msg}</div>}
+
+            {/* <Grid item xs={12} md={6}>
+                <Field  name="noidungStrategy" component={QuillEditor} />
+                <ErrorMessage name="noidungStrategy">
+                    {(msg) => <div style={{ color: 'red' }}>{msg}</div>}
                 </ErrorMessage>
-            </Grid>
-            <Grid item xs={6}>
-                <Field name="levelStrategy" as={TextField} label="Levels chiến lược" fullWidth />
-                <ErrorMessage name="levelStrategy">
-                    {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                </ErrorMessage>
-            </Grid>
-            <Grid item xs={6}>
-                <Field name="trolyStrategy" as={TextField} label="Trợ lý chiến lược" fullWidth />
-                <ErrorMessage name="trolyStrategy">
-                    {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                </ErrorMessage>
-            </Grid>
-            <Grid item xs={6}>
-                <Field name="tomtatStrategy" as={TextField} label="Tóm tắt chiến lược" fullWidth />
-                <ErrorMessage name="tomtatStrategy">
-                    {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                </ErrorMessage>
-            </Grid>
-            <Grid item xs={6}>
-                <Field name="noidungStrategy" as={TextField} label="Nội tăng chiến lược" fullWidth />
+            </Grid> */}
+            {/* <Grid item xs={12} md={6}>
+                <Field name="noidungStrategy" as={TextField} label="Nội dung chiến lược" fullWidth />
                 <ErrorMessage name="noidungStrategy">
                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
                 </ErrorMessage>
+            </Grid> */}
+            <Grid item xs={12} md={6}>
+              {/* <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel> */}
+              <ReactQuill
+                // ref={quillRef}
+                // value={formik.values.content}
+                // onChange={handleContentChange}s
+                theme="snow"
+                placeholder="Nhập nội dung chiến lực"
+                style={{ height: '70px', paddingBottom: '10px' }}
+              />
+              <ErrorMessage name="noidungStrategy">
+                    {msg => <div style={{ color: 'red' }}>{msg}</div>}
+                </ErrorMessage>
             </Grid>
-
         </Grid>
+
     )
 }
 

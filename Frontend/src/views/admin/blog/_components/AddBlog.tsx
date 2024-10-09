@@ -303,9 +303,9 @@ const AddBlog = () => {
   const handleImageUpload = async (file: File) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      const range = quillRef.getEditor().getSelection();
+      const range = quillRef.current?.getEditor().getSelection();
       if (range) {
-        quillRef.getEditor().insertEmbed(range.index, 'image', reader.result);
+        quillRef.current?.getEditor().insertEmbed(range.index, 'image', reader.result);
       }
     };
     reader.readAsDataURL(file);
@@ -435,10 +435,8 @@ const AddBlog = () => {
                   onChange={formik.handleChange}
                 >
                   <FormControlLabel value="published" control={<Radio />} label="Đăng" />
-<<<<<<< HEAD
-                  <FormControlLabel value="draft" control={<Radio />} label="Ẩn" />
-=======
->>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
+  <FormControlLabel value="draft" control={<Radio />} label="Ẩn" />
+
                   <FormControlLabel
                     value="draft"
                     control={<Radio />}
