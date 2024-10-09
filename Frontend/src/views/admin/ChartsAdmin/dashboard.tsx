@@ -1197,31 +1197,28 @@ const DashboardAdmin = () => {
           </Grid>
         </Box>
         <Box>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={6}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} lg={4}>
               <Affilatechartadmin1 menuItems={dataFilter_account} />
             </Grid>
-            <Grid item xs={12} lg={6}>
+            <Grid item xs={12} lg={4}>
               <PieChartsAdmin menuItems={dataFilter_social} />
+            </Grid>
+            <Grid item xs={12} lg={4}>
+              <Affilatechartadmin12 menuItems={dataFilter_customer} />
             </Grid>
           </Grid>
         </Box>
         <Box sx={{ marginTop: '30px' }}>
-          <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-            <Typography variant="h3">Khách hàng</Typography>
-          </Box>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={6}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} lg={4}>
               <Affilatechartadmin9 />
             </Grid>
-            <Grid item xs={12} lg={6}>
+            <Grid item xs={12} lg={4}>
               <Affilatechartadmin10 />
             </Grid>
-            <Grid item xs={12} lg={6}>
+            <Grid item xs={12} lg={4}>
               <Affilatechartadmin11 />
-            </Grid>
-            <Grid item xs={12} lg={6}>
-              <Affilatechartadmin12 menuItems={dataFilter_customer} />
             </Grid>
           </Grid>
         </Box>
@@ -1327,86 +1324,23 @@ const DashboardAdmin = () => {
                       <Typography variant="h4" color="textSecondary">
                         Tổng
                       </Typography>
-                      <Typography>
+                      <Typography sx={{ fontSize: '20px', margin: '20px 0' }}>
                         Chi phí / khách hàng:
-                        <Typography variant="h6" fontWeight="700">
-                          351.216.213đ
+                        <Typography fontSize="25px" variant="h6" fontWeight="700" marginTop="20px">
+                          19.703đ
                         </Typography>
                       </Typography>
-                      <Typography>
+                      <Typography sx={{ fontSize: '20px', margin: '20px 0' }}>
                         Tokens / khách hàng:
-                        <Typography variant="h6" fontWeight="700">
-                          197 token
+                        <Typography fontSize="25px" variant="h6" fontWeight="700" marginTop="20px">
+                          197.000 token
                         </Typography>
                       </Typography>
-                      <Typography>
+                      <Typography sx={{ fontSize: '20px', margin: '20px 0' }}>
                         Chi phí / doanh thu:
-                        <Typography variant="h6" fontWeight="700">
+                        <Typography fontSize="25px" variant="h6" fontWeight="700" marginTop="20px">
                           30%
                         </Typography>
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </Stack>
-                <Stack spacing={3} my={5}>
-                  <Stack direction="row" spacing={2}>
-                    <Avatar
-                      sx={{
-                        width: 9,
-                        mt: 1,
-                        height: 9,
-                        bgcolor: '#1976d2',
-                        svg: { display: 'none' },
-                      }}
-                    ></Avatar>
-                    <Box>
-                      <Typography variant="h5">Chi phí / khách hàng(đ)</Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        987.654.321đ
-                      </Typography>
-                      <Typography variant="h5" fontSize={'15px'}>
-                        197 khách hàng
-                      </Typography>
-                    </Box>
-                  </Stack>
-                  <Stack direction="row" spacing={2}>
-                    <Avatar
-                      sx={{
-                        width: 9,
-                        mt: 1,
-                        height: 9,
-                        bgcolor: '#1976d2',
-                        svg: { display: 'none' },
-                      }}
-                    ></Avatar>
-                    <Box>
-                      <Typography variant="h5">Tokens / khách hàng(số)</Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        123.456.789 tokens
-                      </Typography>
-                      <Typography variant="h5" fontSize={'15px'}>
-                        147 khách hàng
-                      </Typography>
-                    </Box>
-                  </Stack>
-
-                  <Stack direction="row" spacing={2}>
-                    <Avatar
-                      sx={{
-                        width: 9,
-                        mt: 1,
-                        height: 9,
-                        bgcolor: '#1976d2',
-                        svg: { display: 'none' },
-                      }}
-                    ></Avatar>
-                    <Box>
-                      <Typography variant="h5">Chi phí / doanh thu(%)</Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        123.456.789đ
-                      </Typography>
-                      <Typography variant="h5" fontSize={'15px'}>
-                        190.720.030đ
                       </Typography>
                     </Box>
                   </Stack>
