@@ -20,14 +20,16 @@ import {
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { IconCopy, IconInfoCircle, IconPackage } from '@tabler/icons-react';
+import { IconCopy, IconPackage } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
 import RankA from 'src/assets/ICON/c1.png';
 import clickicon from 'src/assets/ICON/click.png';
+import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 import revenueicon from 'src/assets/ICON/doanh thu.png';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import AlertChat from 'src/components/apps/chats/AlertChat';
+import PageContainer from 'src/components/container/PageContainer';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
@@ -39,8 +41,6 @@ import PopupConvert from '../customerList/Popupconvert';
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-import PageContainer from 'src/components/container/PageContainer';
-import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 interface cardType {
   icon: string;
   title: string;
@@ -459,8 +459,6 @@ const CollaboratePost = () => {
                             placement="top"
                             arrow
                           >
-                            {/* <IconInfoCircle /> */}
-                            {/* IconDescriptionAfl */}
                             <Box
                               component="img"
                               src={IconDescriptionAfl}

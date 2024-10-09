@@ -115,6 +115,20 @@ const InFor = () => {
               </Typography>
             </Grid>
           </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+
+              mt: 1.5,
+            }}
+          >
+            <Grid item>
+              <Typography variant="h6" sx={{ display: 'flex', gap: 1 }}>
+                Level 1
+              </Typography>
+            </Grid>
+          </Box>
           <Paper
             sx={{
               overflow: 'hidden',

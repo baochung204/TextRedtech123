@@ -2,7 +2,7 @@
 // @ts-ignore
 import { Box, CardContent, Chip, LinearProgress, Paper, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-// import SavingsImg from '../../../assets/images/backgrounds/piggy.png';
+
 import Banner from 'src/assets/images/banner/trangbịtroly.png';
 interface sellsData {
   product: string;
@@ -82,7 +82,7 @@ const SellingProducts = () => {
                     <Typography variant="h6">{sell.product}</Typography>
                     <Typography variant="subtitle2" color="textSecondary">
                       {sell.parameter}
-                      {sell.product == 'File' ? 'file' : sell.product == 'Dung lượng' ? 'MB' : ''}
+                      {sell.product == 'File' ? ' file' : sell.product == 'Dung lượng' ? ' MB' : ''}
                     </Typography>
                   </Box>
                   <Chip

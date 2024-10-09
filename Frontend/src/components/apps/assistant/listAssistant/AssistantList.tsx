@@ -37,12 +37,10 @@ import {
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Iconchart from 'src/assets/images/chat/chartt.png';
-import avt from 'src/assets/images/icon/avt.jpg';
+import IconCrv from 'src/assets/ICON/cvr.png';
 import AlertChat from '../../chats/AlertChat';
 import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
-import IconCrv from 'src/assets/ICON/cvr.png';
 
 interface FilmsData {
   title: string;
@@ -108,7 +106,7 @@ const ListAssistant = () => {
             <Tooltip title="Thêm">
               <Link to={`/assistants/add`}>
                 <IconButton color="primary" aria-label="Add to cart">
-                  <AddCircleIcon sx={{ fontSize: 30 }} />
+                  <AddCircleIcon sx={{ fontSize: 50 }} />
                 </IconButton>
               </Link>
             </Tooltip>

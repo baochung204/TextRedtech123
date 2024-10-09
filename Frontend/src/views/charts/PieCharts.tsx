@@ -19,12 +19,35 @@ const PieCharts = () => {
       foreColor: '#adb0bb',
     },
     dataLabels: {
-      enabled: false,
+      enabled: true, // Enable data labels to display percentages
+      formatter: (val: number) => `${val.toFixed(2)}%`, // Format the percentage values
     },
     plotOptions: {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              showAlways: true,
+              label: 'Total',
+              fontSize: '16px',
+              fontWeight: 600,
+              color: theme.palette.text.primary,
+              formatter: (w: any) => {
+                const total = w.globals.seriesTotals.reduce((a: number, b: number) => a + b, 0);
+                return `${total}`;
+              },
+            },
+            value: {
+              show: true,
+              fontSize: '14px',
+              fontWeight: 500,
+              color: theme.palette.text.secondary,
+              formatter: (val: number) => `${val.toFixed(2)}%`,
+            },
+          },
         },
       },
     },
@@ -44,16 +67,6 @@ const PieCharts = () => {
   const seriespiechart = [45, 65, 27, 18, 35];
 
   return (
-    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-    //   <Grid container spacing={3}>
-    //     <Grid item lg={6} md={12} xs={12}>
-
-    //     </Grid>
-    //   </Grid>
-    // </PageContainer>
     <Modarm title="Nguồn khách hàng" text="Nguồn khách hàng" description="">
       <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
     </Modarm>

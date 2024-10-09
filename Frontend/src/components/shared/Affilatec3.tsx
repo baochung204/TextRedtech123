@@ -1,8 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Card, CardContent, Divider } from '@mui/material';
+import { Box, Card, CardContent, Divider, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { AppState, useSelector } from 'src/store/Store';
+import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 
 type Props = {
   title: string;
@@ -28,12 +29,9 @@ const Affilatec3 = ({ children, footer, text }: Props) => {
       elevation={customizer.isCardShadow ? 9 : 0}
       variant={!customizer.isCardShadow ? 'outlined' : undefined}
     >
-      {/* <CardHeader title={title} sx={{ display: 'flex', justifyContent: 'center' }} />
-      {description ? <CardContent>{description}</CardContent> : ''} */}
       <Box sx={{ textAlign: 'center', marginY: '30px' }}>
         {' '}
         <h2>{text}</h2>
-        {/* Vòng quay trung bình */}
       </Box>
       <CardContent sx={{ m: 0, p: 0 }}>{children}</CardContent>
       {footer ? (

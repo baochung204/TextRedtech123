@@ -423,6 +423,7 @@
 // export default PaginationTable;
 
 import {
+  Avatar,
   Badge,
   Box,
   Checkbox,
@@ -433,6 +434,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -477,6 +479,11 @@ const PaginationTable = () => {
       {
         title: '	Giá niêm yết',
         dataIndex: 'price',
+        render: (value: string, row) => (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography>{row.price} đ</Typography>
+          </Box>
+        ),
       },
       {
         title: 'Giá khuyến mãi',

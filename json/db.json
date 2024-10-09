@@ -48,8 +48,8 @@
       "shopProductId": 101,
       "shopProductName": "Áo thun trắng",
       "shopProductImageUrl": "https://example.com/product1.png",
-      "price": 150000,
-      "discount": 99000,
+      "price": 150.197,
+      "discount": 99.009,
       "productTag": [
         {
           "tagId": 12,
@@ -65,8 +65,8 @@
       "shopProductId": 102,
       "shopProductName": "Áo sơ mi xanh",
       "shopProductImageUrl": "https://example.com/product2.png",
-      "price": 45000,
-      "discount": 39000,
+      "price": 45.193,
+      "discount": 39.193,
       "productTag": [
         {
           "tagId": 13,
