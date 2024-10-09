@@ -25,7 +25,6 @@ import amountbuy from 'src/assets/Adminphoto/luot mua san pham.png';
 import amountview from 'src/assets/Adminphoto/luot xem bai viet.png';
 import ticketsale from 'src/assets/Adminphoto/ma giam gia.png';
 import publisher from 'src/assets/Adminphoto/Publisher.png';
-import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
 import flashsale from 'src/assets/Adminphoto/so flash sale.png';
 import amountticketsale from 'src/assets/Adminphoto/so ma giam gia.png';
 import balancepublisher from 'src/assets/Adminphoto/Số dư Publisher.png';
@@ -124,23 +123,16 @@ const dataFilter_customer = [
 
 const dataFilter_account = [
   { value: 1, label: 'Khách hàng' },
-  { value: 2, label: 'Đơn hàng(nạp point)' },
-  { value: 3, label: 'Doanh thu(đ)' },
+  { value: 2, label: 'Đơn hàng (nạp point)' },
+  { value: 3, label: 'Doanh thu (đ)' },
   { value: 4, label: 'Loại khách hàng' },
 ];
 
 const dataFilter_social = [
   { value: 1, label: 'Khách hàng' },
-  { value: 2, label: 'Đơn hàng(nạp point)' },
-  { value: 3, label: 'Doanh thu(đ)' },
-  // { value: 4, label: 'CVR(%)' },
+  { value: 2, label: 'Đơn hàng (nạp point)' },
+  { value: 3, label: 'Doanh thu (đ)' },
 ];
-
-// const dataFilter_density = [
-//   { value: 1, label: 'Chi phí / Khách hàng(đ)' },
-//   { value: 2, label: 'Tokens / Khách hàng(số)' },
-//   { value: 3, label: 'Chi phí / Doanh thu(%)' },
-// ];
 
 const dataFilter_type_account = [
   { value: 1, label: 'Tổng chi phí' },
@@ -149,26 +141,6 @@ const dataFilter_type_account = [
   { value: 4, label: 'Tokens Input' },
   { value: 5, label: 'Tokens Output' },
 ];
-
-// const dataFilter_type = [
-//   { value: 1, label: 'Publisher' },
-//   { value: 2, label: 'Khách hàng' },
-//   { value: 3, label: 'Đơn hàng' },
-//   { value: 4, label: 'Doanh thu' },
-//   { value: 5, label: 'Hoa hồng' },
-//   { value: 6, label: 'Số dư' },
-//   { value: 7, label: 'Yêu cầu rút tiền' },
-//   { value: 8, label: 'Số tiền rút' },
-// ];
-
-// const dataFilter_density2 = [
-//   { value: 1, label: 'Khách hàng / Publisher' },
-//   { value: 2, label: 'Đơn hàng / Publisher' },
-//   { value: 3, label: 'Doanh thu / Publisher' },
-//   { value: 3, label: 'Hoa hồng / Publisher' },
-//   { value: 3, label: 'Doanh thu / Đơn hàng' },
-//   { value: 3, label: 'Hoa hồng / Đơn hàng' },
-// ];
 
 const dataFilter_detail = [
   { value: 1, label: 'Tổng' },
@@ -223,7 +195,6 @@ const dataSource = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Chuyển đổi',
     total: '123',
     icons: (
@@ -244,7 +215,6 @@ const dataSource = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Doanh thu',
     total: '234.567đ',
     icons: (
@@ -353,52 +323,11 @@ const dataSource_rpoint = [
       </Box>
     ),
   },
-  // {
-  //   bgColor: 'primary.light',
-  //   title: 'Số dư R-Point',
-  //   total: '23',
-  //   icons: (
-  //     <Box
-  //       textAlign="center"
-  //       padding={1}
-  //       sx={{
-  //         width: 45,
-  //         height: 45,
-  //         display: 'flex',
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <img src={rpointblance} width={30} />
-  //     </Box>
-  //   ),
-  // },
-  // {
-  //   bgColor: 'primary.light',
-  //   title: 'Khách hàng',
-  //   total: '190',
-  //   icons: (
-  //     <Box
-  //       textAlign="center"
-  //       padding={1}
-  //       sx={{
-  //         width: 45,
-  //         height: 45,
-  //         display: 'flex',
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <img src={customer} width={30} />
-  //     </Box>
-  //   ),
-  // },
 ];
 
 const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
-
     title: 'Publisher',
     total: '190',
     icons: (
@@ -419,7 +348,6 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Khách hàng',
     total: '190',
     icons: (
@@ -441,7 +369,6 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Đơn hàng',
     total: '123',
     icons: (
@@ -462,7 +389,6 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Doanh thu',
     total: '123.456.789đ',
     icons: (
@@ -483,7 +409,6 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Hoa hồng',
     total: '123.456.789đ',
     icons: (
@@ -504,7 +429,6 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Số dư Publisher',
     total: '234.567đ',
     icons: (
@@ -525,7 +449,6 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Đã thanh toán',
     total: '123.456.789đ',
     icons: (
@@ -566,7 +489,6 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Khách hàng/Pub',
     total: '23',
     icons: (
@@ -809,14 +731,12 @@ const dataSource_sale = [
           alignItems: 'center',
         }}
       >
-        {/* <IconChartBar color="white" size={30} /> */}
         <img src={amountbuy} width={30} />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
-
     title: 'Doanh thu',
     total: '123.456đ',
     icons: (
@@ -837,7 +757,6 @@ const dataSource_sale = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Tỉ lệ mua',
     total: '23%',
     icons: (
@@ -861,7 +780,6 @@ const dataSource_sale = [
 const dataSource_blog = [
   {
     bgColor: 'primary.light',
-
     title: 'Bài viết',
     total: '190',
     icons: (
@@ -876,14 +794,12 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        {/* <IconChartBar color="white" size={30} /> */}
         <img src={blog} width={30} />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
-
     title: 'Lượt xem',
     total: '190',
     icons: (
@@ -905,7 +821,6 @@ const dataSource_blog = [
 
   {
     bgColor: 'primary.light',
-
     title: 'Số lượt like',
     total: '23',
     icons: (
@@ -926,7 +841,6 @@ const dataSource_blog = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Tổng doanh thu',
     total: '123.456đ',
     icons: (
@@ -947,7 +861,6 @@ const dataSource_blog = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'lượt xem trung bình / bài viết',
     total: '23',
     icons: (
@@ -968,7 +881,6 @@ const dataSource_blog = [
   },
   {
     bgColor: 'primary.light',
-
     title: 'Doanh thu / bài viết',
     total: '234.567đ',
     icons: (
@@ -983,7 +895,6 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        {/* <IconChartBar color="white" size={30} /> */}
         <img src={blogrevenue} width={30} />
       </Box>
     ),
@@ -991,26 +902,6 @@ const dataSource_blog = [
 ];
 
 const dataSource_ticket = [
-  // {
-  //   bgColor: 'primary.light',
-  //   title: 'Khách hàng',
-  //   total: '123',
-  //   icons: (
-  //     <Box
-  //       textAlign="center"
-  //       padding={1}
-  //       sx={{
-  //         width: 45,
-  //         height: 45,
-  //         display: 'flex',
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <img src={customer} width={30} />
-  //     </Box>
-  //   ),
-  // },
   {
     bgColor: 'primary.light',
     title: 'Tickets',
@@ -1027,7 +918,6 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        {/* <IconChartBar color="white" size={30} /> */}
         <img src={ticket} width={30} />
       </Box>
     ),
@@ -1068,7 +958,6 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        {/* <IconChartBar color="white" size={30} /> */}
         <img src={feedbackgreaterthan3} width={30} />
       </Box>
     ),
@@ -1089,7 +978,6 @@ const dataSource_ticket = [
           alignItems: 'center',
         }}
       >
-        {/* <IconChartBar color="white" size={30} /> */}
         <img src={feedbacksmallerthan3} width={30} />
       </Box>
     ),
