@@ -750,5 +750,12 @@
       "id": 12,
       "created": "sub(new Date(), { days: 9, hours: 6, minutes: 20 })"
     }
+  ],
+  "points": [
+    {
+      "name": "ghsd",
+      "point": 1212,
+      "cash": 1200.0
+    }
   ]
 }

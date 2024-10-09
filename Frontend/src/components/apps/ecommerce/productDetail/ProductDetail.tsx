@@ -45,10 +45,13 @@ const ProductDetail = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
   const product: any = useSelector((state) => state.ecommerceReducer.products[Number(id) - 1]);
-  const total = product.point * product.qty - product.discount * product.qty;
-  // console.log(total);
-  const discountProduct = product.discount * product.qty;
+  const point = product?.point ?? 0;
+  const qty = product?.qty ?? 0;
+  const discount = product?.discount ?? 0;
 
+  // Calculate total and discount safely
+  const total = point * qty - discount * qty;
+  const discountProduct = discount * qty;
   const [count, setCount] = useState(1);
   const [open, setOpen] = useState(false);
 
