@@ -25,5 +25,9 @@ export const validationSchema3 = Yup.object({
     tomtatStrategy: Yup.string().required("Required tomtatStrategy"),
     noidungStrategy: Yup.string().required("Required noidungStrategy"),
 });
+export const validationSchema4 = Yup.object({
+
+    files: Yup.array().required("Required files"),
+})
 
 
