@@ -99,7 +99,6 @@ const DataBox = [
   },
   {
     bgColor: 'primary.light',
-<<<<<<< HEAD
     title: 'Tổng doanh thu',
     total: (
       <>
@@ -129,18 +128,14 @@ const DataBox = [
   },
   {
     bgColor: 'primary.light',
-=======
->>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
+
     title: 'Doanh thu',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-<<<<<<< HEAD
           <Typography variant="h6">12.423.423 </Typography>
           <img src={iconPoint} alt="" width={17} />
-=======
-          <Typography variant="h6">5.432.234đ</Typography>
->>>>>>> 34d3ff34e865c52829dee216d741b86f07147b65
+
         </Box>
       </>
     ),
