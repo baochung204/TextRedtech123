@@ -61,15 +61,10 @@ const TopCards = () => {
           <Box textAlign="center" sx={{ backgroundColor: topcard.bgcolor }}>
             <CardContent>
               <img src={topcard.icon} alt={topcard.icon} height={40} />
-              <Typography
-                color={topcard.bgcolor + '.main'}
-                mt={1}
-                variant="subtitle1"
-                fontWeight={600}
-              >
-                {topcard.title} 
+              <Typography color={topcard.bgcolor + '.main'} mt={1}>
+                {topcard.title}
               </Typography>
-              <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+              <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={700}>
                 {topcard.digits}
                 {topcard.title == 'AOV'
                   ? 'k'
