@@ -42,12 +42,19 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
               sx={{
                 backgroundColor: items.bgColor,
                 color: items.color,
-                px: totalColumn <= 5 ? '24px' : totalColumn === 6 ? 1 : 0,
+                px:
+                  totalColumn <= 4
+                    ? '24px'
+                    : totalColumn === 5
+                    ? '10px'
+                    : totalColumn === 6
+                    ? 1
+                    : 0,
               }}
             >
               <Grid
                 container
-                spacing={totalColumn <= 4 ? 0 : totalColumn === 5 ? 5.5 : totalColumn === 6 ? 2 : 0}
+                spacing={totalColumn <= 4 ? 0 : totalColumn === 5 ? 2 : totalColumn === 6 ? 2 : 0}
               >
                 <Grid
                   item

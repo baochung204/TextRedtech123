@@ -387,7 +387,7 @@ const AddBlog = () => {
               )}
             </Grid>
 
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <CustomFormLabel htmlFor="url">Đường link URL</CustomFormLabel>
               <CustomTextField
                 id="url"
@@ -399,7 +399,7 @@ const AddBlog = () => {
                 error={formik.touched.url && Boolean(formik.errors.url)}
                 helperText={formik.touched.url && formik.errors.url}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12}>
               <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
@@ -438,7 +438,7 @@ const AddBlog = () => {
                   <FormControlLabel
                     value="draft"
                     control={<Radio />}
-                    label="Ẩn bỏ đường link url"
+                    label="Ẩn"
                   />
                 </RadioGroup>
                 {formik.touched.status && formik.errors.status && (

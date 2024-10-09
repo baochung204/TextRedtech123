@@ -12,13 +12,12 @@ const AuthTwoSteps = () => {
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
   const handleChange = (index: number, value: string) => {
-    if (isNaN(Number(value))) return; // Chỉ cho phép nhập số
+    if (isNaN(Number(value))) return; 
 
     const newCodes = [...codes];
     newCodes[index] = value;
     setCodes(newCodes);
 
-    // Nếu người dùng nhập một số, di chuyển con trỏ sang ô tiếp theo
     if (value && index < inputRefs.current.length - 1) {
       inputRefs.current[index + 1]?.focus();
     }
@@ -26,14 +25,14 @@ const AuthTwoSteps = () => {
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace' && codes[index] === '') {
-      // Nếu ô hiện tại trống và nhấn Backspace, di chuyển con trỏ về ô trước đó
+
       if (index > 0) {
         inputRefs.current[index - 1]?.focus();
       }
     }
   };
 
-  const isFormValid = codes.every(code => code !== ''); // Kiểm tra tất cả các ô đã được điền
+  const isFormValid = codes.every(code => code !== ''); 
 
   return (
     <Box mt={4}>
@@ -48,14 +47,14 @@ const AuthTwoSteps = () => {
               inputRef={(el: any) => (inputRefs.current[index] = el)}
               variant="outlined"
               fullWidth
-              onKeyDown={(e: any) => handleKeyDown(index, e)} // Xử lý sự kiện khi nhấn phím Backspace
-              inputProps={{ maxLength: 1, style: { textAlign: 'center' } }} // Giới hạn 1 ký tự và căn giữa
+              onKeyDown={(e: any) => handleKeyDown(index, e)}
+              inputProps={{ maxLength: 1, style: { textAlign: 'center' } }} 
             />
           ))}
         </Stack>
       </Stack>
 
-      {/* Nút xác minh chỉ có thể nhấn khi đủ 6 ký tự */}
+
       <Button
         color="primary"
         variant="contained"
@@ -63,7 +62,7 @@ const AuthTwoSteps = () => {
         fullWidth
         component={Link}
         to="/"
-        disabled={!isFormValid} // Vô hiệu hóa nút nếu chưa điền đủ mã
+        disabled={!isFormValid} 
       >
         Xác minh tài khoản của tôi
       </Button>

@@ -27,7 +27,8 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataInvoiceTable } from './datatable/InvoiceTableData';
-
+import IconWaitingForExport from 'src/assets/ICON/waitingForExport.png';
+import IconExport from 'src/assets/ICON/Export.png';
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -129,7 +130,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <img src={commission} width={30} />
+        <img src={IconWaitingForExport} width={30} />
       </Box>
     ),
   },
@@ -149,7 +150,7 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        <img src={commission} width={30} />
+        <img src={IconExport} width={30} />
       </Box>
     ),
   },
@@ -270,7 +271,7 @@ const Invoice = () => {
       },
       {
         title: 'Trạng thái',
-        dataIndex: 'position',
+        dataIndex: 'action',
         render: (_row: any, value: any) => (
           <Typography
             sx={{
@@ -295,7 +296,7 @@ const Invoice = () => {
         // render: (_row:any, value: any) => (
         render: () => (
           <IconButton>
-            <IconEye stroke={2} />
+            <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
         ),
       },

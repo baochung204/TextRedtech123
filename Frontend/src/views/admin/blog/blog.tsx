@@ -251,12 +251,12 @@ const BlogAdmin = () => {
               to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
             >
               <IconButton>
-                <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>{' '}
             </Link>
-            <IconButton>
+            {/* <IconButton>
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
+            </IconButton> */}
             <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
             </IconButton>
@@ -472,7 +472,7 @@ const BlogAdmin = () => {
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
-        // TransitionComponent={Transition}
+      // TransitionComponent={Transition}
       >
         <DialogContent sx={{ overflowY: 'hidden' }}>
           <AddBlog />
