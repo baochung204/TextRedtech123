@@ -68,7 +68,7 @@ const ProductDetail = () => {
   };
 
   const handleCloseDialog = () => {
-    setOpen(false);
+    setOpen(!open);
   };
 
   return (
