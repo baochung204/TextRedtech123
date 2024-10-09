@@ -69,7 +69,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={blog} width={30} />
+        <img src={blog} width={30} alt="Blog Icon" />
       </Box>
     ),
   },
@@ -89,7 +89,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={view} width={30} />
+        <img src={view} width={30} alt="View Icon" />
       </Box>
     ),
   },
@@ -109,7 +109,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={revenue} width={30} />
+        <img src={revenue} width={30} alt="Revenue Icon" />
       </Box>
     ),
   },
@@ -143,6 +143,7 @@ interface Column {
   isValids?: boolean;
 }
 const BlogAdmin = () => {
+  const nav = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const handleIconClick = () => {
     nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');

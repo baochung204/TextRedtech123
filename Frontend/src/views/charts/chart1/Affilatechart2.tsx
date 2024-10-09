@@ -1,72 +1,81 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import Affilatec2 from 'src/components/shared/Affilatec2';
-const Affilatechart2 = () => {
-  const [chartData, setChartData] = useState({
-    series: [
-      {
-        name: 'Chi phí',
-        data: [31, 40, 28, 51, 42, 19, 10],
-      },
-      {
-        name: 'Khách hàng ',
-        data: [61, 22, 45, 32, 54, 22, 31],
-      },
-    ],
-    options: {
-      chart: {
-        height: 350,
-        type: 'area',
-        zoom: {
-          enabled: false, // Vô hiệu hóa zoom
-        },
-        toolbar: {
-          show: false, // Ẩn toolbar (icon ở góc)
-        },
-      },
-      // colors: ['#c31432', '#FF5733'],
-      colors: ['#fe8c00', '#f2c94c'],
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
+import Affilatec1 from 'src/components/shared/Affilatec1';
+import { Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import Chart, { Props } from 'react-apexcharts';
 
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy HH:mm',
+const Affilatechart2 = () => {
+  const theme = useTheme();
+  const warning = theme.palette.warning.main;
+  const labels = ['Chi phí /đơn hàng'];
+
+  const optionsradialchart: Props = {
+    chart: {
+      id: 'radial-bar-chart',
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      foreColor: '#000000',
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: ['#3f5efb'],
+    plotOptions: {
+      radialBar: {
+        dataLabels: {
+          label: 'Chi phí / khách hàng',
+          name: {
+            fontSize: '20px', // Tăng kích thước chữ cho tên
+            color: '#FC2032', // Màu đen cho tên
+          },
+          value: {
+            fontSize: '20px', // Tăng kích thước chữ cho giá trị
+            color: '#000000', // Màu đen cho giá trị
+          },
+          total: {
+            show: true,
+            label: 'Tỉ lệ',
+            formatter() {
+              return '27%'; // Giá trị tổng
+            },
+            fontSize: '22px', // Tăng kích thước chữ cho tổng
+            color: '#000000', // Màu đen cho tổng
+          },
+        },
+        track: {
+          background: '#e0e0e0', // Màu nền của vòng tròn
+          strokeWidth: '100%', // Độ dày của vòng tròn nền
         },
       },
     },
-  });
+    tooltip: {
+      enabled: true, // Enable tooltips
+      theme: 'dark', // Set the tooltip theme to dark
+      y: {
+        formatter: (val: number) => {
+          return `${val}%`; // Display the label and value
+        },
+      },
+    },
+    labels: labels, // Set the labels for the radial bars
+  };
+
+  const seriesradialchart: any = [27]; // Replace with dynamic series data if needed
 
   return (
-    // <PageContainer title="Doughnut & Pie Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Doughtnut Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-    //   <Grid container spacing={3}>
-    //     <Grid item lg={6} md={12} xs={12}>
-
-    //     </Grid>
-    //   </Grid>
-    // </PageContainer>
-    <Affilatec2 title=" Đơn hàng" text="Chi phí /khách hàng" description={''}>
+    <Affilatec1 title=" Đơn hàng" text="Chi phí / khách hàng" description={''}>
       <div>
         <div id="chart">
-          <ReactApexChart
-            options={chartData.options as any}
-            series={chartData.series}
-            type="area"
-            height={350}
+          <Chart
+            options={optionsradialchart}
+            series={seriesradialchart}
+            type="radialBar"
+            height="300px"
           />
         </div>
         <div id="html-dist"></div>
       </div>
-    </Affilatec2>
+    </Affilatec1>
   );
 };
 
