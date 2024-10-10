@@ -19,8 +19,6 @@ const AddSearch = () => {
             <Chip sx={{ ml: 1 }} size="small" label={"3/5"} color="primary" />
           </Box>
           
-
-          
         </Grid>
         <Grid item xs={12} sm={6} lg={6} display={'flex'} justifyContent={'end'}>
           {/* <Button
@@ -43,7 +41,7 @@ const AddSearch = () => {
           <SimpleDialog openSearch={openSearch} setOpenSearch={setOpenSearch} />
         </Grid>
         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'end' }}>
-          <Typography fontWeight={600}>Dung lượng: 500/1000 MB</Typography>
+          <Typography fontSize={12} fontWeight={600}>500/1000 MB</Typography>
         </Grid>
       </Grid>
     </Paper>
