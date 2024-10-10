@@ -57,7 +57,7 @@ const PaymentGateways: React.FC = () => {
       icon: avt2,
     },
     {
-      title: 'Credit Card',
+      title: 'Trợ lý 3',
       level: 1,
       price: 43.5,
       color: warning,
@@ -65,7 +65,7 @@ const PaymentGateways: React.FC = () => {
       icon: avt3,
     },
     {
-      title: 'Refund',
+      title: 'Trợ lý 4',
       level: 6,
       price: 39,
       color: error,
@@ -73,7 +73,7 @@ const PaymentGateways: React.FC = () => {
       icon: avt4,
     },
     {
-      title: 'Trợ lý 4.0',
+      title: 'Trợ lý 5',
       level: 2,
       price: 32.1,
       color: error,
