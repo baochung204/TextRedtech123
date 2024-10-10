@@ -1,8 +1,7 @@
-import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
-import { IconEye, IconTrash } from '@tabler/icons-react';
+import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
+import { IconEye } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
 import DialogStrView from '../dialog/DialogStrView';
 import { StrategyRows } from '../mockData/TableStr';
@@ -61,7 +60,7 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
       title: 'Nội dung',
     },
     {
-      dataIndex: 'dateCreate',
+      dataIndex: 'creationTime',
       title: 'Ngày tạo',
     },
     {
