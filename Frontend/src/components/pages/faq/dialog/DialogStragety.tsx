@@ -41,7 +41,7 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
               sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
               <Box>
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                   <Avatar
                     src={item.badgeUrl}
                     alt={item.badgeUrl}
