@@ -1,9 +1,6 @@
-import { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import Affilatec1 from 'src/components/shared/Affilatec1';
-import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
+import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const Chart5 = () => {
   const theme = useTheme();

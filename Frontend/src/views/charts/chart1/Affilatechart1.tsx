@@ -1,11 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import Affilatec1 from 'src/components/shared/Affilatec1';
-import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
+import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const Affilatechart1 = () => {
   const theme = useTheme();

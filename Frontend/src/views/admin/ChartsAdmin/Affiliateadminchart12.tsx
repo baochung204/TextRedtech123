@@ -1,11 +1,9 @@
 // import React from 'react';
-import { Box, MenuItem } from '@mui/material';
-import React from 'react';
+import { Box } from '@mui/material';
 import Chart, { Props } from 'react-apexcharts';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec from 'src/components/shared/Affilatec';
 
-const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
+const Affilatechartadmin = () => {
   const seriesdoughnutchart = [35, 65];
 
   const optionsdoughnutchart: Props = {
