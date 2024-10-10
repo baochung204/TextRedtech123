@@ -1,4 +1,3 @@
-import PersonIcon from '@mui/icons-material/Person';
 import { Alert, Avatar, Box, Divider, Snackbar, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -7,10 +6,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useState } from 'react';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { StrategyRows } from '../mockData/TableStr';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
+import { StrategyRows } from '../mockData/TableStr';
 
 interface PropsDialog {
     value: string,
@@ -31,7 +28,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         appliedAssistants: '',
         summary: '',
         content: '',
-        dateCreate: '',
+        creationTime: '',
         creator: ''
     });
 
@@ -119,7 +116,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 appliedAssistants: strategy.appliedAssistants,
                 summary: strategy.summary,
                 content: strategy.content,
-                dateCreate: strategy.dateCreate,
+                creationTime: strategy.creationTime,
                 creator: strategy.creator
             });
         }
@@ -145,7 +142,7 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     },
                     '& .MuiPaper-root': {
                         width: '100%',
-                        maxWidth: '700px',
+                        maxWidth: '800px',
                     },
                 }}
             >
@@ -331,83 +328,109 @@ const DialogStrView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                     ) : ( */}
                         <Grid item xs={12} lg={12} md={12}>
                             <Grid container spacing={2} >
-                                <Grid item xs={12} lg={4} md={6} mt={3} >
-                                    <Avatar sx={{width:'190px',height:'190px'}} src={formData.badge}/>
-                                    <Box fontWeight={600} mt={1} display={'flex'} justifyContent={'center'}>Huy hiệu</Box>
+                                <Grid item xs={12} lg={2} md={6} mt={3} >
+                                    <Avatar sx={{ width: '100px', height: '100px' }} src={formData.badge} />
+                                    {/* <Box fontWeight={600} mt={1} display={'flex'} justifyContent={'center'}>Huy hiệu</Box> */}
                                 </Grid>
 
-                                <Grid item xs={12} lg={3} md={6} mt={2}>
+                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
                                     {/** Grid trái chứa nhãn các trường */}
                                     <Box display="flex" flexDirection="column" justifyContent="space-between">
-                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                        <Box display="flex" alignItems="top" minHeight="40px">
                                             <Box fontWeight={600}>ID :</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Người tạo:</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
+
+                                        <Box display="flex" alignItems="top" minHeight="40px">
                                             <Box fontWeight={600}>Tên chiến lược:</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Nhóm chiến lược:</Box>
-                                        </Box>
-                                     
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Level:</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Khách hàng sở hữu:</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Trợ lý đã áp dụng:</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
+
+                                        <Box display="flex" alignItems="top" minHeight="40px">
                                             <Box fontWeight={600}>Ngày tạo:</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Tóm tắt:</Box>
+
+
+                                        <Box display="flex" alignItems="top" minHeight="40px">
+                                            <Box fontWeight={600}>Khách hàng sở hữu:</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box fontWeight={600}>Nội dung:</Box>
-                                        </Box>
+
+
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={12} lg={5} md={6} mt={2}>
+                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
                                     {/** Grid phải chứa dữ liệu */}
                                     <Box display="flex" flexDirection="column" justifyContent="space-between">
-                                        <Box display="flex" alignItems="center" height="40px">
+                                        <Box display="flex" alignItems="top" height="40px">
                                             <Box>{formData.id}</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" height="40px">
-                                            <Box>{formData.creator}</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
+
+                                        <Box display="flex" alignItems="top" minHeight="40px">
                                             <Box>{formData.strategyName}</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box>{formData.strategyGroup}</Box>
+                                        <Box display="flex" alignItems="top" minHeight="40px">
+                                            <Box>{formData.creationTime}</Box>
                                         </Box>
-                                        
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box>{formData.level}</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
+
+                                        <Box display="flex" alignItems="top" minHeight="40px">
                                             <Box>{formData.ownedCustomers}</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box>{formData.appliedAssistants}</Box>
+
+
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
+                                    <Box display="flex" alignItems="top" minHeight="40px">
+                                        <Box fontWeight={600}>Người tạo:</Box>
+                                    </Box>
+                                    <Box display="flex" alignItems="top" minHeight="40px">
+                                        <Box fontWeight={600}>Nhóm chiến lược:</Box>
+                                    </Box>
+                                    <Box display="flex" alignItems="top" minHeight="40px">
+                                        <Box fontWeight={600}>Level:</Box>
+                                    </Box>
+                                    <Box display="flex" alignItems="top" minHeight="40px">
+                                        <Box fontWeight={600}>Trợ lý đã áp dụng:</Box>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
+                                    <Box display="flex" alignItems="top" height="40px">
+                                        <Box>{formData.creator}</Box>
+                                    </Box>
+                                    <Box display="flex" alignItems="top" minHeight="40px">
+                                        <Box>{formData.strategyGroup}</Box>
+                                    </Box>
+                                    <Box display="flex" alignItems="top" minHeight="40px">
+                                        <Box>{formData.level}</Box>
+                                    </Box>
+                                    <Box display="flex" alignItems="top" minHeight="40px">
+                                        <Box>{formData.appliedAssistants}</Box>
+                                    </Box>
+                                </Grid>
+                                <Grid container xs={12} lg={12} md={6} ml={2}>
+                                    <Grid item xs={12} lg={2} md={6} mt={2}>
+                                        <Box display="flex" alignItems="top" minHeight="40px">
+                                            <Box fontWeight={600}>Tóm tắt:</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
-                                            <Box>{formData.dateCreate}</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
+                                    </Grid>
+                                    <Grid item xs={12} lg={10} md={6} mt={2}>
+                                        <Box display="flex" alignItems="top" minHeight="40px">
                                             <Box>{formData.summary}</Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" minHeight="40px">
+
+                                    </Grid>
+                                </Grid>
+                                <Grid container xs={12} lg={12} md={6} ml={2}>
+
+                                    <Grid item xs={12} lg={2} md={6} mt={2}>
+                                        <Box display="flex" alignItems="top" minHeight="40px">
+                                            <Box fontWeight={600}>Nội dung:</Box>
+                                        </Box>
+                                    </Grid>
+                                    <Grid item xs={12} lg={10} md={6} mt={2}>
+                                        <Box display="flex" alignItems="top" minHeight="40px">
                                             <Box>{formData.content}</Box>
                                         </Box>
-                                    </Box>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>

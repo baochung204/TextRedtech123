@@ -176,7 +176,7 @@ export const Strategy = [
 export const StrategyRows: Strategys[] = [
   {
     id: 'STG001',
-    creationTime: new Date('2024-09-01'),
+    creationTime: '2024-09-01',
     strategyGroup: 'Nhóm A',
     badge: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRb8BMw3RWhIF-wAiHpwibf7h0SNZUZRa0qA0IQ-d5p3EuNL0zR',
     strategyName: 'Chiến lược Tăng trưởng 2024',
@@ -191,7 +191,7 @@ export const StrategyRows: Strategys[] = [
   },
   {
     id: 'STG002',
-    creationTime: new Date('2024-09-01'),
+    creationTime: '2024-09-01',
     strategyGroup: 'Nhóm B',
     badge: '',
     strategyName: 'Chiến lược Giữ chân khách hàng',
@@ -206,7 +206,7 @@ export const StrategyRows: Strategys[] = [
   },
   {
     id: 'STG003',
-    creationTime: new Date('2024-09-01'),
+    creationTime: '2024-09-01',
     strategyGroup: 'Nhóm A',
     badge: '',
     strategyName: 'Chiến lược Phát triển sản phẩm',
@@ -221,7 +221,7 @@ export const StrategyRows: Strategys[] = [
   },
   {
     id: 'STG004',
-    creationTime: new Date('2024-09-01'),
+    creationTime: '2024-09-01',
     strategyGroup: 'Nhóm C',
     badge: '',
     strategyName: 'Chiến lược Mở rộng thị trường',
@@ -237,7 +237,7 @@ export const StrategyRows: Strategys[] = [
   },
   {
     id: 'STG005',
-    creationTime: new Date('2024-09-01'),
+    creationTime: '2024-09-01',
     strategyGroup: 'Nhóm B',
     badge: '',
     strategyName: 'Chiến lược Tối ưu hóa chi phí',
@@ -252,7 +252,7 @@ export const StrategyRows: Strategys[] = [
   },
   {
     id: 'STG006',
-    creationTime: new Date('2024-09-01'),
+    creationTime: '2024-09-01',
     strategyGroup: 'Nhóm A',
     badge: '',
     strategyName: 'Chiến lược Nâng cao thương hiệu',
