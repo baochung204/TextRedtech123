@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Avatar, Box, Button, Stack, Typography, useTheme } from '@mui/material';
-import DashboardCard from 'src/components/shared/DashboardCard';
-import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
-import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
-import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
-import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
-import icon5Img from 'src/assets/images/svgs/icon-account.svg';
-import 'simplebar/dist/simplebar.min.css';
+import { Avatar, Box, Stack, Typography, useTheme } from '@mui/material';
 import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
+import doc from 'src/assets/Formatfile/DOC.png';
+import html from 'src/assets/Formatfile/HTML.png';
+import json from 'src/assets/Formatfile/JSON.png';
+import pdf from 'src/assets/Formatfile/PDF.png';
+import DashboardCard from 'src/components/shared/DashboardCard';
+
 const File = () => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -33,90 +33,94 @@ const File = () => {
       level: 23.5,
       color: primary,
       lightcolor: primarylight,
-      icon: icon1Img,
+      icon: doc,
     },
     {
       title: 'Ky-nang-sales.pdf',
       level: 24.5,
       color: secondary,
       lightcolor: secondarylight,
-      icon: icon2Img,
+      icon: html,
     },
     {
       title: 'FAQ.docx',
       level: 25.5,
       color: warning,
       lightcolor: warninglight,
-      icon: icon3Img,
+      icon: json,
     },
     {
       title: 'infor-company.docx',
       level: 26.5,
       color: error,
       lightcolor: errorlight,
-      icon: icon4Img,
+      icon: pdf,
     },
     {
       title: 'Ky-nang-2-sales.pdf',
       level: 27.5,
       color: error,
       lightcolor: errorlight,
-      icon: icon5Img,
+      icon: html,
     },
     {
       title: 'Ky-nang-5-sales.pdf',
       level: 27.5,
       color: error,
       lightcolor: errorlight,
-      icon: icon3Img,
+      icon: json,
     },
     {
       title: 'Ky-nang-9-sales.pdf',
       level: 27.5,
       color: error,
       lightcolor: errorlight,
-      icon: icon1Img,
+      icon: pdf,
     },
   ];
+
+  const totalMB = stats2.reduce((acc, stat) => acc + stat.level, 0);
+
   return (
-    <DashboardCard title="File " subtitle="File được trang bị cho trợ lý">
-      <SimpleBar style={{ maxHeight: '410px', overflowX: 'hidden' }}>
-        <Box>
-          <Stack spacing={3} mt={'26px'}>
-            {stats2.map((stat, i) => (
-              <Stack
-                direction="row"
-                spacing={2}
-                justifyContent="space-between"
-                alignItems="center"
-                key={i}
-              >
-                <Stack direction="row" alignItems="center" spacing={2}>
-                  <Avatar
-                    variant="rounded"
-                    sx={{
-                      bgcolor: stat.lightcolor,
-                      color: stat.color,
-                      width: 40,
-                      height: 40,
-                    }}
-                  >
-                    <Avatar src={stat.icon} alt={stat.icon} sx={{ width: 24, height: 24 }} />
-                  </Avatar>
-                  <Box>
-                    <Typography variant="h6" mb="4px">
-                      {stat.title}
-                    </Typography>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {stat.level} MB
-                    </Typography>
-                  </Box>
+    <DashboardCard title="File" subtitle="File được trang bị cho trợ lý">
+      <Box>
+        <Typography variant="h6">Total: {totalMB.toFixed(2)} MB</Typography>
+        <SimpleBar style={{ maxHeight: '410px', overflowX: 'hidden' }}>
+          <Box>
+            <Stack spacing={3} mt={'26px'}>
+              {stats2.map((stat, i) => (
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  justifyContent="space-between"
+                  alignItems="center"
+                  key={i}
+                >
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Avatar
+                      variant="rounded"
+                      sx={{
+                        color: stat.color,
+                        width: 40,
+                        height: 40,
+                      }}
+                      src={stat.icon}
+                    ></Avatar>
+                    <Box>
+                      <Typography variant="h6" mb="4px">
+                        {stat.title}
+                      </Typography>
+                      <Typography variant="subtitle2" color="textSecondary">
+                        {stat.level} MB
+                      </Typography>
+                    </Box>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ))}
-          </Stack>
-        </Box>
-      </SimpleBar>
+              ))}
+            </Stack>
+          </Box>
+        </SimpleBar>
+      </Box>
     </DashboardCard>
   );
 };

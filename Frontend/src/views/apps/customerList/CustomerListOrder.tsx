@@ -11,12 +11,10 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Slide,
   Stack,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -24,6 +22,7 @@ import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -41,7 +40,6 @@ interface PropsTable {
   orderInfo: string;
   notes: string;
   misc?: string;
-
 }
 
 const TableData: PropsTable[] = [
@@ -103,12 +101,6 @@ const TableData: PropsTable[] = [
   },
 ];
 
-const Transition = React.forwardRef<
-  unknown,
-  TransitionProps & { children: React.ReactElement<any, any> }
->(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 interface Column {
   title: string;
   dataIndex: string;
@@ -116,10 +108,12 @@ interface Column {
   isValids?: boolean;
 }
 const CustomerListOrder = () => {
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const handleClosePopup = () => setIsPopupOpen(false);
   const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
   const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
+  const [month, setMonth] = React.useState('1');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
 
   const [dataSelect, setDataSelect] = React.useState<string[]>([]);
 
@@ -133,17 +127,14 @@ const CustomerListOrder = () => {
       {
         title: 'ID',
         dataIndex: 'id',
-        sort: true,
       },
       {
         title: 'Ngày tạo',
         dataIndex: 'createdAt',
-        sort: true,
       },
       {
         title: 'Tên khách hàng',
         dataIndex: 'name',
-        sort: true,
       },
       {
         title: 'Số điện thoại',
@@ -157,10 +148,7 @@ const CustomerListOrder = () => {
         title: 'Kênh',
         dataIndex: 'misc',
         render: (value: string) => (
-          <Stack
-            direction='row'
-            spacing={1}
-          >
+          <Stack direction="row" spacing={1}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Avatar src={value} alt={value} />
             </Box>
@@ -177,7 +165,6 @@ const CustomerListOrder = () => {
       {
         title: 'Trợ lý',
         dataIndex: 'assistant',
-        sort: true,
       },
       {
         title: 'Tags',
@@ -187,7 +174,7 @@ const CustomerListOrder = () => {
       {
         title: 'Giá trị đơn hàng',
         dataIndex: 'pricePoint',
-        sort: true,
+
         render: (value: string) => (
           <Box
             sx={{
@@ -247,17 +234,21 @@ const CustomerListOrder = () => {
                   >
                     <Grid item xs={12} sm={4}>
                       <Grid container sx={{ alignItems: 'center' }}>
-                        <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center' }}>
-                          {' '}
-                          {/* <IconButton
-                            color="primary"
-                            aria-label="Add to cart"
-                            onClick={() => setIsPopupOpen(true)}
+                        <Grid item xs={3} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <CustomSelect
+                            labelId="month-dd"
+                            id="month-dd"
+                            size="small"
+                            value={month}
+                            onChange={handleChange}
                           >
-                            <AddCircleIcon sx={{ fontSize: 30 }} />
-                          </IconButton> */}
+                            <MenuItem value={1}>Tất cả</MenuItem>
+                            <MenuItem value={2}>Assistant 1</MenuItem>
+                            <MenuItem value={3}>Assistant 2</MenuItem>
+                          </CustomSelect>
                         </Grid>
-                        <Grid item xs={10}>
+
+                        <Grid item xs={9}>
                           <TextField
                             id="outlined-search"
                             placeholder="Tìm kiếm chuyển đổi"
@@ -281,6 +272,7 @@ const CustomerListOrder = () => {
                         <Badge
                           badgeContent={columns.length - dataSelect.length}
                           color={'primary'}
+                          sx={{ margin: '0px 10px' }}
                         >
                           <FilterListIcon color="action" />
                         </Badge>

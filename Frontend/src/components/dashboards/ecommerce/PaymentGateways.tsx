@@ -4,7 +4,14 @@ import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Stack, Typography, Avatar, Box, Button } from '@mui/material';
 import DashboardCard from '../../shared/DashboardCard';
-
+import avt1 from 'src/assets/images/profile/user-1.jpg';
+import avt2 from 'src/assets/images/profile/user-2.jpg';
+import avt3 from 'src/assets/images/profile/user-3.jpg';
+import avt4 from 'src/assets/images/profile/user-4.jpg';
+import avt5 from 'src/assets/images/profile/user-5.jpg';
+import avt6 from 'src/assets/images/profile/user-6.jpg';
+import avt7 from 'src/assets/images/profile/user-7.jpg';
+import avt8 from 'src/assets/images/profile/user-8.jpg';
 import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
 import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
 import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
@@ -39,7 +46,7 @@ const PaymentGateways: React.FC = () => {
       price: 78.3,
       color: primary,
       lightcolor: primarylight,
-      icon: icon1Img,
+      icon: avt1,
     },
     {
       title: 'Trợ lý 2',
@@ -47,7 +54,7 @@ const PaymentGateways: React.FC = () => {
       price: 73,
       color: secondary,
       lightcolor: secondarylight,
-      icon: icon2Img,
+      icon: avt2,
     },
     {
       title: 'Credit Card',
@@ -55,7 +62,7 @@ const PaymentGateways: React.FC = () => {
       price: 43.5,
       color: warning,
       lightcolor: warninglight,
-      icon: icon3Img,
+      icon: avt3,
     },
     {
       title: 'Refund',
@@ -63,7 +70,7 @@ const PaymentGateways: React.FC = () => {
       price: 39,
       color: error,
       lightcolor: errorlight,
-      icon: icon4Img,
+      icon: avt4,
     },
     {
       title: 'Trợ lý 4.0',
@@ -71,7 +78,7 @@ const PaymentGateways: React.FC = () => {
       price: 32.1,
       color: error,
       lightcolor: errorlight,
-      icon: icon5Img,
+      icon: avt5,
     },
   ];
 
@@ -90,10 +97,16 @@ const PaymentGateways: React.FC = () => {
               <Stack direction="row" alignItems="center" spacing={2}>
                 <Avatar
                   variant="rounded"
-                  sx={{ bgcolor: stat.lightcolor, color: stat.color, width: 40, height: 40 }}
-                >
-                  <Avatar src={stat.icon} alt={stat.icon} sx={{ width: 24, height: 24 }} />
-                </Avatar>
+                  sx={{
+                    bgcolor: stat.lightcolor,
+                    color: stat.color,
+                    width: 40,
+                    height: 40,
+                    borderRadius: 10,
+                  }}
+                  src={stat.icon}
+                  alt={stat.icon}
+                ></Avatar>
                 <Box>
                   <Typography variant="h6" mb="4px">
                     {stat.title}
