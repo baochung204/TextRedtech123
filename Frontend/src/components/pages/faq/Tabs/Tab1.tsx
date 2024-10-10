@@ -17,12 +17,12 @@ import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
 
 interface PropsData {
-  content: string,
-  badgeUrl: string,
-  productId: string,
-  level: string,
-  tomtat: string,
-  nhom: string
+  content: string;
+  badgeUrl: string;
+  productId: string;
+  level: string;
+  tomtat: string;
+  nhom: string;
 }
 
 const Tab1 = () => {
@@ -43,29 +43,31 @@ const Tab1 = () => {
     dispatch(fetchStr());
   }, [dispatch]);
 
-
   const [open, setOpen] = useState<boolean>(false);
-  const [data, setData] = useState<PropsData[]>([{
-    content: "",
-    badgeUrl: "",
-    productId: "",
-    level: "",
-    tomtat: "",
-    nhom: ""
-  }])
+  const [data, setData] = useState<PropsData[]>([
+    {
+      content: '',
+      badgeUrl: '',
+      productId: '',
+      level: '',
+      tomtat: '',
+      nhom: '',
+    },
+  ]);
 
   const handleClick = (items: PropsData) => {
     setOpen(true);
-    setData([{
-      content: items.content,
-      badgeUrl: items.badgeUrl,
-      productId: items.productId,
-      level: items.level,
-      tomtat: items.tomtat,
-      nhom: items.nhom
-    }])
-
-  }
+    setData([
+      {
+        content: items.content,
+        badgeUrl: items.badgeUrl,
+        productId: items.productId,
+        level: items.level,
+        tomtat: items.tomtat,
+        nhom: items.nhom,
+      },
+    ]);
+  };
 
   return (
     <>
@@ -76,7 +78,7 @@ const Tab1 = () => {
               <CardContent
                 onClick={() => handleClick(items)}
                 sx={{
-                  cursor: 'pointer'
+                  cursor: 'pointer',
                 }}
               >
                 <Stack direction={'row'} gap={2} alignItems="center">

@@ -1,11 +1,12 @@
-
 import { useTheme } from '@mui/material/styles';
 import Chart from 'react-apexcharts';
 
 import { Props } from 'react-apexcharts';
 
-import { Box, Typography } from '@mui/material';
+import { Box, MenuItem, Typography } from '@mui/material';
 import DashboardCard from 'src/components/shared/DashboardCard';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import { ChangeEvent, useState } from 'react';
 
 const GerChart = () => {
   const theme = useTheme();
@@ -147,8 +148,10 @@ const GerChart = () => {
       },
     ],
   };
-
-
+  const [month, setMonth] = useState('1');
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
 
   return (
     <DashboardCard>
@@ -156,12 +159,24 @@ const GerChart = () => {
         <Box sx={{}}>
           <Typography variant="h4">Báo cáo công việc</Typography>
         </Box>
+        <Box sx={{ margin: '10px 0' }}>
+          <CustomSelect
+            labelId="month-dd"
+            id="month-dd"
+            size="small"
+            value={month}
+            onChange={handleChange}
+          >
+            <MenuItem value={1}>Tất cả</MenuItem>
+            <MenuItem value={2}>Assistant 1</MenuItem>
+            <MenuItem value={3}>Assistant 2</MenuItem>
+          </CustomSelect>
+        </Box>
         <Chart
           options={optionsgredientchart}
           series={seriesgredientchart}
           type="line"
           height="300px"
-
         />
       </Box>
     </DashboardCard>
