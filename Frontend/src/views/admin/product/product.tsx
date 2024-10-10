@@ -193,8 +193,8 @@ interface Column {
 
 const ProductAdmin = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [selectID, setSelectID] = useState<string | null>(null);
-  const [checkValue, setCheckValue] = useState<string | null>(null);
+  const [, setSelectID] = useState<string | null>(null);
+  const [, setCheckValue] = useState<string | null>(null);
 
   const column = useMemo<Column[]>(
     () => [

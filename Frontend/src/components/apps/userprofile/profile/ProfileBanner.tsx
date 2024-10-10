@@ -20,7 +20,7 @@ import { IconCameraBolt } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
 
 const ProfileBanner = () => {
-  const [bannerImage, setBannerImage] = useState(profilecover);
+  const [bannerImage] = useState(profilecover);
   const [avatarImage, setAvatarImage] = useState(userimg);
   const theme = useTheme();
   const primary = theme.palette.primary.light;

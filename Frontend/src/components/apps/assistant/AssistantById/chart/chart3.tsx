@@ -5,12 +5,11 @@ import Chart from 'react-apexcharts';
 
 import { Props } from 'react-apexcharts';
 
-import { Box, MenuItem, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
 import { useState } from 'react';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
@@ -93,7 +92,7 @@ const Chart3 = () => {
       categories: categories,
       labels: {
         show: true,
-        formatter: (value: string, timestamp: string, opts?: any) => {
+        formatter: (value: string, opts?: any) => {
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;

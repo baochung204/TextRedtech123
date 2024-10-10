@@ -2,7 +2,6 @@
 // @ts-ignore
 import { Box, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { error } from 'console';
 import React from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -62,7 +61,7 @@ const PieChartsAdmin = ({ menuItems }: { menuItems: any }) => {
   };
 
   return (
-    <Modarm title="Nguồn khách hàng" text="Kênh" description="">
+    <Modarm title="Nguồn khách hàng" text="" description="">
       <Box
         sx={{
           display: 'flex',

@@ -1,22 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
+import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Avatar, Box, Button } from '@mui/material';
-import DashboardCard from '../../shared/DashboardCard';
+import React from 'react';
 import avt1 from 'src/assets/images/profile/user-1.jpg';
 import avt2 from 'src/assets/images/profile/user-2.jpg';
 import avt3 from 'src/assets/images/profile/user-3.jpg';
 import avt4 from 'src/assets/images/profile/user-4.jpg';
 import avt5 from 'src/assets/images/profile/user-5.jpg';
-import avt6 from 'src/assets/images/profile/user-6.jpg';
-import avt7 from 'src/assets/images/profile/user-7.jpg';
-import avt8 from 'src/assets/images/profile/user-8.jpg';
-import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
-import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
-import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
-import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
-import icon5Img from 'src/assets/images/svgs/icon-account.svg';
+import DashboardCard from '../../shared/DashboardCard';
 
 interface statType {
   title: string;
