@@ -422,8 +422,9 @@
 
 // export default PaginationTable;
 
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
-  Avatar,
   Badge,
   Box,
   Checkbox,
@@ -436,17 +437,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { Dayjs } from 'dayjs';
 import { IconSearch } from '@tabler/icons-react';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import { fetchProduct } from '../../../store/apps/products/productsSlice';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import AddDialog from './layout/addDialog';
 
 interface Column {
@@ -488,6 +483,11 @@ const PaginationTable = () => {
       {
         title: 'Giá khuyến mãi',
         dataIndex: 'discount',
+        render: (value: string, row) => (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography>{row.discount} đ</Typography>
+          </Box>
+        ),
       },
       {
         title: 'Mô tả',
@@ -551,8 +551,8 @@ const PaginationTable = () => {
       setDataSelect([]);
     }
   }, [column]);
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+  // const [value, setValue] = useState<Dayjs | null>(null);
+  // const [value1, setValue1] = useState<Dayjs | null>(null);
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
@@ -606,7 +606,7 @@ const PaginationTable = () => {
           </Grid>
           <Grid
             item
-            xs={4}
+            xs={8}
             sx={{
               display: 'flex',
               justifyContent: 'end',
@@ -670,7 +670,7 @@ const PaginationTable = () => {
               })}
             </Select>
           </Grid>
-          <Grid item xs={4}>
+          {/* <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -722,7 +722,7 @@ const PaginationTable = () => {
                 />
               </LocalizationProvider>
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
       <Grid item xs={12}>
