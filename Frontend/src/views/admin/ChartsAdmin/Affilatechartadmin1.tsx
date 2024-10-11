@@ -1,45 +1,39 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { Box, MenuItem } from '@mui/material';
-import React from 'react';
+import { useTheme } from '@emotion/react';
+import { Box, MenuItem, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
-  const seriesdoughnutchart = [55, 45];
+  const theme = useTheme();
+  const labels = ['Cá nhân', 'Doanh nghiệp'];
+  const seriespiechart = [45, 65]; // Ensure these values are valid
+  const total = seriespiechart.reduce((acc, value) => acc + value, 0);
+
+  const maxIndex = seriespiechart.indexOf(Math.max(...seriespiechart));
+  const defaultPercent = total > 0 ? ((seriespiechart[maxIndex] / total) * 100).toFixed(2) : 0;
+
+  const [hoveredPercent, setHoveredPercent] = useState<number | null>(defaultPercent);
+  const [isHovering, setIsHovering] = useState(false); // State to track hover status
 
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
-      foreColor: '#0000000',
-
+      foreColor: '#adb0bb',
       events: {
-        mounted: (chart: any) => {
-          chart.w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
-          const maxValue = Math.max(...seriesdoughnutchart);
-          const maxIndex = seriesdoughnutchart.indexOf(maxValue);
-          optionsdoughnutchart.labels ? optionsdoughnutchart.labels[maxIndex] + '%' : '';
+        dataPointMouseEnter: (event: any, chartContext: any, config: any) => {
+          const seriesIndex = config.dataPointIndex;
 
-          // Custom label for center text
-          chart.updateOptions({
-            annotations: {
-              position: 'front',
-              text: {
-                x: 0,
-                y: 0,
-                text: `${maxValue}%`,
-                textAnchor: 'middle',
-                dominantBaseline: 'middle',
-                style: {
-                  fontSize: '20px',
-                  fontWeight: 'bold',
-                  color: '#000000', // màu đen
-                },
-              },
-            },
-          });
+          if (seriesIndex >= 0 && seriesIndex < seriespiechart.length) {
+            const value = seriespiechart[seriesIndex];
+            const percent = total > 0 ? ((value / total) * 100).toFixed(2) : 0;
+            setHoveredPercent(Number(percent));
+          }
+        },
+        dataPointMouseLeave: () => {
+          setHoveredPercent(defaultPercent);
         },
       },
     },
@@ -52,11 +46,8 @@ const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
           size: '70px',
           labels: {
             show: true,
-            total: {
-              show: true,
-              label: 'Tỉ lệ cao nhất',
-              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
-              fontWeight: 'bold',
+            value: {
+              show: false,
             },
           },
         },
@@ -67,25 +58,13 @@ const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
       position: 'bottom',
       width: '50px',
     },
-    colors: ['#f45c43', '#fd1d1d'],
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shade: 'light',
-        type: 'vertical',
-        shadeIntensity: 0.5,
-        gradientToColors: ['#feb47b', '#ff7e5f'],
-        inverseColors: true,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100],
-      },
-    },
+    colors: ['#f5a623', '#e74c3c'],
     tooltip: {
+      enabled: true,
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Cá nhân', 'Doanh nghiệp'],
+    labels,
   };
 
   const [month, setMonth] = React.useState('1');
@@ -122,12 +101,48 @@ const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
             <MenuItem disabled>No options available</MenuItem>
           )}
         </CustomSelect>
-        <Chart
-          options={optionsdoughnutchart}
-          series={seriesdoughnutchart}
-          type="donut"
-          height="300px"
-        />
+        <Box
+          sx={{ position: 'relative', width: '300px', height: '300px' }}
+          onMouseEnter={() => setIsHovering(true)} // Set hovering to true on mouse enter
+          onMouseLeave={() => setIsHovering(false)} // Set hovering to false on mouse leave
+        >
+          {/* Centered Percentage */}
+          {hoveredPercent !== null && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-45%, -170%)', // Centering the percentage
+                fontSize: '24px',
+                fontWeight: 'bold',
+                color: theme.palette.text.primary,
+              }}
+            >
+              {/* Conditional Rendering */}
+              {!isHovering ? (
+                <>
+                  <Box sx={{ marginTop: '-60px' }}>
+                    <Typography sx={{ color: 'red', fontSize: '15px', fontWeight: 'bold' }}>
+                      Giá trị lớn nhất
+                    </Typography>
+                    {hoveredPercent}%
+                  </Box>
+                </>
+              ) : (
+                `${hoveredPercent}%`
+              )}
+            </Box>
+          )}
+
+          {/* Pie Chart */}
+          <Chart
+            options={optionsdoughnutchart}
+            series={seriespiechart}
+            type="donut"
+            height="300px"
+          />
+        </Box>
       </Box>
     </Affilatec1>
   );

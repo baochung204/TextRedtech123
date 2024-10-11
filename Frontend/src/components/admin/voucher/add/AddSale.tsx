@@ -1,6 +1,5 @@
-import { Box, Grid, MenuItem, Typography } from '@mui/material';
-import { log } from 'console';
-import React, { useEffect, useState } from 'react';
+import { Box, Grid, MenuItem } from '@mui/material';
+import React, { useEffect } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';

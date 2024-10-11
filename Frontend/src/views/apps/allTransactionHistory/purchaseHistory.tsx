@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import CloseIcon from '@mui/icons-material/Close';
 import {
   Box,
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
   Grid,
@@ -168,16 +166,6 @@ const PurchaseHistoryInProfile = () => {
         }}
         onClose={handleCloseDialog}
       >
-        {/* <DialogActions style={{ padding: '0' }}>
-          <Button
-            onClick={handleClose}
-            color="error"
-            variant="contained"
-            style={{ borderBottomLeftRadius: '10px' }}
-          >
-            <CloseIcon />
-          </Button>
-        </DialogActions> */}
         <DialogContent
           sx={{
             overflowY: 'auto',

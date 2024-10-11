@@ -55,6 +55,7 @@ import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
+import Affilatechartadmin13 from './Affiliateadminchart13';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },
@@ -64,9 +65,9 @@ const dataFilter_bussiness = [
 
 const dataFilter_token = [
   { value: 1, label: 'Tổng chi phí' },
-  { value: 2, label: 'Tổng số lượng token' },
-  { value: 3, label: 'Chi phí Input' },
-  { value: 4, label: 'Chi phí Output' },
+  { value: 2, label: 'Chi phí Input' },
+  { value: 3, label: 'Chi phí Output' },
+  { value: 4, label: 'Tổng token' },
   { value: 5, label: 'Tokens Input' },
   { value: 6, label: 'Tokens Output' },
 ];
@@ -110,27 +111,27 @@ const dataFilter_order_bill = [
 const dataFilter_ticket = [
   { value: 1, label: 'Tickets' },
   { value: 2, label: 'Đánh giá > 3*' },
-  { value: 3, label: 'Đánh giá < 3*' },
+  { value: 3, label: 'Đánh giá ≤ 3*' },
   // { value: 2, label: 'Khách hàng' },
 ];
 
-const dataFilter_customer = [
-  { value: 1, label: 'Doanh thu / Khách hàng(tất cả)' },
-  { value: 2, label: 'Doanh thu / Khách hàng(trả phi)' },
-  { value: 3, label: 'tỉ lệ khách hàng(doanh nghiệp)' },
-  { value: 4, label: 'Tỉ lệ Khách hàng(trả phí)' },
-];
+// const dataFilter_customer = [
+//   { value: 1, label: 'Doanh thu / Khách hàng(tất cả)' },
+//   { value: 2, label: 'Doanh thu / Khách hàng(trả phi)' },
+//   { value: 3, label: 'tỉ lệ khách hàng(doanh nghiệp)' },
+//   { value: 4, label: 'Tỉ lệ Khách hàng(trả phí)' },
+// ];
 
 const dataFilter_account = [
   { value: 1, label: 'Khách hàng' },
-  { value: 2, label: 'Đơn hàng (nạp point)' },
+  { value: 2, label: 'Đơn hàng (point)' },
   { value: 3, label: 'Doanh thu (đ)' },
-  { value: 4, label: 'Loại khách hàng' },
+  // { value: 4, label: 'Loại khách hàng' },
 ];
 
 const dataFilter_social = [
   { value: 1, label: 'Khách hàng' },
-  { value: 2, label: 'Đơn hàng (nạp point)' },
+  { value: 2, label: 'Đơn hàng (point)' },
   { value: 3, label: 'Doanh thu (đ)' },
 ];
 
@@ -138,8 +139,9 @@ const dataFilter_type_account = [
   { value: 1, label: 'Tổng chi phí' },
   { value: 2, label: 'Chi phí Input' },
   { value: 3, label: 'Chi phí Output' },
-  { value: 4, label: 'Tokens Input' },
-  { value: 5, label: 'Tokens Output' },
+  { value: 4, label: 'Tổng token' },
+  { value: 5, label: 'Tokens Input' },
+  { value: 6, label: 'Tokens Output' },
 ];
 
 const dataFilter_detail = [
@@ -259,14 +261,7 @@ const dataSource_rpoint = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">190</Typography>
-          <img src={point} alt="" width={17} />
-        </Box>
-      </>
-    ),
+    total: '190',
     icons: (
       <Box
         textAlign="center"
@@ -279,7 +274,7 @@ const dataSource_rpoint = [
           alignItems: 'center',
         }}
       >
-        <img src={rpointrevenue} width={30} />
+        <img src={point} width={30} />
       </Box>
     ),
   },
@@ -509,7 +504,7 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Đơn hàng/Pub',
+    title: 'Đơn hàng / Publisher',
     total: '23',
     icons: (
       <Box
@@ -529,7 +524,7 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Doanh thu/Pub',
+    title: 'Doanh thu / Publisher',
     total: '789.567đ',
     icons: (
       <Box
@@ -549,7 +544,7 @@ const dataSource_affiliate = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Hoa hồng/Pub',
+    title: 'Hoa hồng / Publisher',
     total: '456.789đ',
     icons: (
       <Box
@@ -564,46 +559,6 @@ const dataSource_affiliate = [
         }}
       >
         <img src={commissionperpublisher} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu/Đơn hàng',
-    total: '234.567đ',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={revenueperpublisher} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Hoa hồng / Đơn hàng',
-    total: '123.456đ',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={commissionperorder} width={30} />
       </Box>
     ),
   },
@@ -842,7 +797,7 @@ const dataSource_blog = [
   {
     bgColor: 'primary.light',
     title: 'Tổng doanh thu',
-    total: '123.456đ',
+    total: '123.456',
     icons: (
       <Box
         textAlign="center"
@@ -855,13 +810,13 @@ const dataSource_blog = [
           alignItems: 'center',
         }}
       >
-        <img src={totalrevenue} width={30} />
+        <img src={rpointrevenue} width={40} />
       </Box>
     ),
   },
   {
     bgColor: 'primary.light',
-    title: 'lượt xem trung bình / bài viết',
+    title: 'Lượt xem / Bài viết',
     total: '23',
     icons: (
       <Box
@@ -881,8 +836,8 @@ const dataSource_blog = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Doanh thu / bài viết',
-    total: '234.567đ',
+    title: 'Doanh thu / Bài viết',
+    total: '234.567',
     icons: (
       <Box
         textAlign="center"
@@ -925,7 +880,7 @@ const dataSource_ticket = [
   {
     bgColor: 'primary.light',
     title: 'Đánh giá trung bình',
-    total: '190',
+    total: '4.5',
     icons: (
       <Box
         textAlign="center"
@@ -964,7 +919,7 @@ const dataSource_ticket = [
   },
   {
     bgColor: 'primary.light',
-    title: 'Đánh giá < 3*',
+    title: 'Đánh giá ≤ 3*',
     total: '123',
     icons: (
       <Box
@@ -1075,12 +1030,20 @@ const DashboardAdmin = () => {
           <Typography variant={'h3'} sx={{ marginBottom: '10px' }}>
             Kinh doanh
           </Typography>
-          <Grid>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <Topcardadminhorizontal dataSource={dataSource} totalColumn={4} />
-              <Box sx={{ marginTop: '30px' }}>
-                <GenChartAdmin text={''} menuItems={dataFilter_bussiness} />
-              </Box>
+            </Grid>
+
+            <Grid container item xs={12} spacing={2}>
+              <Grid item xs={12} md={8}>
+                <Box>
+                  <GenChartAdmin text={''} menuItems={dataFilter_bussiness} />
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <PieChartsAdmin menuItems={dataFilter_social} />
+              </Grid>
             </Grid>
           </Grid>
         </Box>
@@ -1090,28 +1053,75 @@ const DashboardAdmin = () => {
               <Affilatechartadmin1 menuItems={dataFilter_account} />
             </Grid>
             <Grid item xs={12} lg={4}>
-              <PieChartsAdmin menuItems={dataFilter_social} />
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Affilatechartadmin12 menuItems={dataFilter_customer} />
-            </Grid>
-          </Grid>
-        </Box>
-        <Box sx={{ marginTop: '30px' }}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={4}>
               <Affilatechartadmin9 />
             </Grid>
             <Grid item xs={12} lg={4}>
-              <Affilatechartadmin10 />
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Affilatechartadmin11 />
+              <Box>
+                <Stack spacing={3} mt={3}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      width={40}
+                      height={40}
+                      bgcolor="primary.light"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography color="primary" variant="h6" display="flex">
+                        <IconGridDots width={21} />
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle2" color="textSecondary">
+                        Doanh thu / Khách trả phí
+                      </Typography>
+                      <Typography variant="h5" fontWeight="700">
+                        351.216.213đ
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </Stack>
+                <Stack spacing={3} mt={3}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      width={40}
+                      height={40}
+                      bgcolor="primary.light"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography color="primary" variant="h6" display="flex">
+                        <IconGridDots width={21} />
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle2" color="textSecondary">
+                        Doanh thu / Khách hàng (All)
+                      </Typography>
+                      <Typography variant="h5" fontWeight="700">
+                        351.216.213đ
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </Stack>
+              </Box>
+              {/* <Affilatechartadmin13 /> */}
             </Grid>
           </Grid>
         </Box>
+        {/* <Box sx={{ marginTop: '30px' }}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} lg={6}>
+              <Affilatechartadmin11 />
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <Affilatechartadmin12 />
+            </Grid>
+          </Grid>
+        </Box> */}
         <Box sx={{ margin: '30px 0px' }}>
-          <Typography variant={'h3'} marginBottom={'10px'}>
+          <Typography variant={'h3'} marginTop={'10px'}>
             Chi phí
           </Typography>
           <Grid container spacing={3}>
@@ -1137,15 +1147,13 @@ const DashboardAdmin = () => {
                       </Typography>
                     </Box>
                     <Box>
-                      <Typography variant="subtitle2" color="textSecondary">
+                      <Typography variant="h5" color="textSecondary">
                         Tổng chi phí
                       </Typography>
-                      <Typography variant="h3" fontWeight="700">
+                      <Typography variant="h5" fontWeight="700">
                         351.216.213đ
                       </Typography>
-                      <Typography variant="subtitle2" color="textSecondary">
-                        123.456.789 tokens
-                      </Typography>
+                      <Typography color="textSecondary">123.456.789 tokens</Typography>
                     </Box>
                   </Stack>
                 </Stack>
@@ -1162,12 +1170,10 @@ const DashboardAdmin = () => {
                     ></Avatar>
                     <Box>
                       <Typography variant="h5">Input</Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
+                      <Typography variant="h5" color="textSecondary">
                         987.654.321đ
                       </Typography>
-                      <Typography variant="h5" fontSize={'15px'}>
-                        123.456.789 tokens
-                      </Typography>
+                      <Typography fontSize={'15px'}>123.456.789 tokens</Typography>
                     </Box>
                   </Stack>
                   <Stack direction="row" spacing={2}>
@@ -1182,12 +1188,10 @@ const DashboardAdmin = () => {
                     ></Avatar>
                     <Box>
                       <Typography variant="h5">Output</Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
+                      <Typography variant="h5" color="textSecondary">
                         123.456.789đ
                       </Typography>
-                      <Typography variant="h5" fontSize={'15px'}>
-                        190.720.030 tokens
-                      </Typography>
+                      <Typography fontSize={'15px'}>190.720.030 tokens</Typography>
                     </Box>
                   </Stack>
                 </Stack>
@@ -1201,34 +1205,78 @@ const DashboardAdmin = () => {
               <Affilatechartadmin5 menuItems={dataFilter_type_account} />
             </Grid>
             <Grid item xs={12} lg={4}>
-              {/* <Affilatechartadmin6 /> */}
               <SpeedometerChart />
             </Grid>
             <Grid item xs={12} lg={4}>
-              <Box sx={{ marginLeft: '20px' }}>
+              <Box>
                 <Stack spacing={3} mt={3}>
                   <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      width={40}
+                      height={40}
+                      bgcolor="primary.light"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography color="primary" variant="h6" display="flex">
+                        <IconGridDots width={21} />
+                      </Typography>
+                    </Box>
                     <Box>
-                      <Typography variant="h4" color="textSecondary">
-                        Tổng
-                      </Typography>
-                      <Typography sx={{ fontSize: '20px', margin: '20px 0' }}>
-                        Chi phí / khách hàng:
-                        <Typography fontSize="25px" variant="h6" fontWeight="700" marginTop="20px">
-                          19.703đ
-                        </Typography>
-                      </Typography>
-                      <Typography sx={{ fontSize: '20px', margin: '20px 0' }}>
-                        Tokens / khách hàng:
-                        <Typography fontSize="25px" variant="h6" fontWeight="700" marginTop="20px">
-                          197.000 token
-                        </Typography>
-                      </Typography>
-                      <Typography sx={{ fontSize: '20px', margin: '20px 0' }}>
+                      <Typography variant="subtitle2" color="textSecondary">
                         Chi phí / doanh thu:
-                        <Typography fontSize="25px" variant="h6" fontWeight="700" marginTop="20px">
-                          30%
-                        </Typography>
+                      </Typography>
+                      <Typography variant="h5" fontWeight="700">
+                        30%
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </Stack>
+                <Stack spacing={3} mt={3}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      width={40}
+                      height={40}
+                      bgcolor="primary.light"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography color="primary" variant="h6" display="flex">
+                        <IconGridDots width={21} />
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle2" color="textSecondary">
+                        Chi phí / khách hàng:
+                      </Typography>
+                      <Typography variant="h5" fontWeight="700">
+                        19.703đ
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </Stack>
+                <Stack spacing={3} mt={3}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      width={40}
+                      height={40}
+                      bgcolor="primary.light"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Typography color="primary" variant="h6" display="flex">
+                        <IconGridDots width={21} />
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle2" color="textSecondary">
+                        Tokens / khách hàng:
+                      </Typography>
+                      <Typography variant="h5" fontWeight="700">
+                        197.000
                       </Typography>
                     </Box>
                   </Stack>
@@ -1256,7 +1304,7 @@ const DashboardAdmin = () => {
           </Typography>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_affiliate} totalColumn={5} />
+              <Topcardadminhorizontal dataSource={dataSource_affiliate} totalColumn={4} />
               <Box sx={{ marginTop: '30px' }}>
                 <GenChartAdmin text={''} menuItems={dataFilter_affliate} />
               </Box>
@@ -1277,16 +1325,16 @@ const DashboardAdmin = () => {
             </Grid>
           </Grid>
         </Box>
+        <Typography variant={'h3'}>Hợp đồng - Hóa đơn</Typography>
         <Box>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={7} lg={7}>
-              <Typography variant={'h3'}>Hợp đồng - Hóa đơn</Typography>
-              <Box sx={{ width: '700px' }}>
+          <Grid container>
+            <Grid item xs={12} md={8} lg={8}>
+              <Box sx={{ width: '750px' }}>
                 <GenChartAdmin text={''} menuItems={dataFilter_order_bill} />
               </Box>
             </Grid>
-            <Grid item xs={12} md={5} lg={5}>
-              <Box sx={{ width: '900px', height: 'auto', marginLeft: '28px' }}>
+            <Grid item xs={12} md={4} lg={4}>
+              <Box sx={{ width: '800px', height: 'auto' }}>
                 <RadialbarChartAdmin menuItems={dataFilter_detail} />
               </Box>
             </Grid>
@@ -1311,7 +1359,7 @@ const DashboardAdmin = () => {
           </Typography>
           <Grid>
             <Grid item xs={12}>
-              <Topcardadminhorizontal dataSource={dataSource_ticket} totalColumn={3} />
+              <Topcardadminhorizontal dataSource={dataSource_ticket} totalColumn={5} />
               <Box sx={{ marginTop: '30px' }}>
                 <GenChartAdmin text={''} menuItems={dataFilter_ticket} />
               </Box>

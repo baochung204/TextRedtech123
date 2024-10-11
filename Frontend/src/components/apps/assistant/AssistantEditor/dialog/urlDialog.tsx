@@ -10,14 +10,20 @@ import {
   ListItem,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 
-const functions = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl', 'trithuc5.jsnl', 'trithuc55.jsnl'];
+const functions = [
+  'trithucchochatbot1.jsnl',
+  'trithuc2.jsnl',
+  'trithuc3.jsnl',
+  'trithuc5.jsnl',
+  'trithuc55.jsnl',
+];
 
 interface PropsFunction {
   openFunction: boolean;
@@ -74,7 +80,7 @@ const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunctio
             ))}
         </Scrollbar_y>
       </Typography>
-      <Dialog onClose={handleClose} open={openFunction} >
+      <Dialog onClose={handleClose} open={openFunction}>
         <DialogTitle
           sx={{
             display: 'flex',
@@ -87,8 +93,9 @@ const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunctio
         </DialogTitle>
 
         {/* Thêm ô tìm kiếm và nút Select All */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px', width: '600px' }}>
-
+        <Box
+          sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px', width: '600px' }}
+        >
           <TextField
             sx={{ mx: 1 }}
             label="Tìm kiếm"
@@ -107,11 +114,7 @@ const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunctio
               {/* Cột 1: Checkbox chọn */}
               <Grid item xs={1}>
                 <Tooltip title="Chọn tất cả">
-                  <FormControlLabel
-                    control={
-                      <Checkbox onClick={handleSelectAll} />}
-                    label=""
-                  />
+                  <FormControlLabel control={<Checkbox onClick={handleSelectAll} />} label="" />
                 </Tooltip>
               </Grid>
 
@@ -140,7 +143,6 @@ const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunctio
 
           <Divider />
           <Scrollbar_y sx={{ height: '300px' }}>
-
             {/* Lặp qua các phần tử danh sách */}
             {filteredFunctions.map((file) => (
               <>
@@ -198,10 +200,6 @@ const FunctionsDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunctio
             ))}
           </Scrollbar_y>
         </List>
-
-
-
-
       </Dialog>
     </>
   );
