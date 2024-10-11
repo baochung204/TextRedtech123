@@ -21,6 +21,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import AddInforProduct from './addInForProduct';
 import AddModelProduct from './AddModelProduct';
 import AddTextProduct from './AddTextProduct';
+import SliderProduct from './SliderProduct';
 
 const AssistantProduct = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -87,7 +88,7 @@ const AssistantProduct = () => {
                       <AddTextProduct />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
-                      <Sli />
+                      <SliderProduct />
                     </Grid>
                     <Grid item xs={12} mt={2}>
                       <Grid container spacing={2}>
