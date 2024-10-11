@@ -19,6 +19,7 @@ import Strategy from 'src/components/apps/assistant/AssistantEditor/layout/Strat
 import Sli from 'src/components/apps/assistant/AssistantEditor/Sli';
 import PageContainer from 'src/components/container/PageContainer';
 import AddInforProduct from './addInForProduct';
+import AddModelProduct from './AddModelProduct';
 
 const AssistantProduct = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -79,7 +80,7 @@ const AssistantProduct = () => {
                 <AccordionDetails>
                   <Grid container spacing={0}>
                     <Grid item xs={12} sm={6} lg={12}>
-                      <AddModel />
+                      <AddModelProduct />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddText />
