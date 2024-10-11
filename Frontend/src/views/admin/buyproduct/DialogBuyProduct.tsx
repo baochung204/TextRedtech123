@@ -240,11 +240,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             event.preventDefault();
         }
     };
-    const modelOptions = [
-        { label: 'Model A', values: 'A' },
-        { label: 'Model B', values: 'B' },
-        { label: 'Model C', values: 'C' },
-    ];
+
 
     const options: Options[] = [
         {
@@ -419,7 +415,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                             <TextField
                                                 fullWidth
                                                 required
-                                                label="Giá khuyến mại"
+                                                // label="Giá khuyến mại"
                                                 value={values.giakhuyenmai}
                                                 error={Boolean(errors.giakhuyenmai && touched.giakhuyenmai)}
                                                 helperText={errors.giakhuyenmai && touched.giakhuyenmai ? errors.giakhuyenmai : ''}
@@ -446,7 +442,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                 renderInput={(params) => (
                                                     <TextField
                                                         {...params}
-                                                        // label="Tags"
+                                                        label="Tags"
                                                         placeholder="Enter tags"
                                                     />
                                                 )}
