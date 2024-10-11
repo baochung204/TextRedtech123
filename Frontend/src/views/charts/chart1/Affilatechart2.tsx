@@ -4,7 +4,7 @@ import Affilatec1 from 'src/components/shared/Affilatec1';
 const Affilatechart2 = () => {
   // const theme = useTheme();
   // const warning = theme.palette.warning.main;
-  const labels = ['Chi phí /đơn hàng'];
+  const labels = ['Chi phí /khách hàng'];
 
   const optionsradialchart: Props = {
     chart: {
@@ -25,8 +25,11 @@ const Affilatechart2 = () => {
             color: '#FC2032', // Màu đen cho tên
           },
           value: {
-            fontSize: '20px', // Tăng kích thước chữ cho giá trị
-            color: '#000000', // Màu đen cho giá trị
+            show: true, // Hiển thị giá trị tổng
+            fontSize: '22px', // Tăng kích thước chữ
+            fontWeight: 'bold', // Làm chữ đậm
+            color: '#000000', // Màu chữ đen
+            offsetY: 0, // Đảm bảo giá trị nằm chính giữa theo chiều dọc
           },
           total: {
             show: true,
