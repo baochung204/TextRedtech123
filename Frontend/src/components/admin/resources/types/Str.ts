@@ -10,6 +10,6 @@ export interface Strategys {
     content: string;
     dateCreate: string;
     creator: string;
-    creationTime: Date;
+    creationTime: string;
     status: boolean;
 }

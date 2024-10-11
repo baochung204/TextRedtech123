@@ -24,6 +24,7 @@ import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
 import AddImage from '../layout/addImage';
 import AddUrl from '../layout/addUrl';
+import AddProduct from '../layout/addProduct';
 
 const AssistantEditor = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -103,17 +104,7 @@ const AssistantEditor = () => {
                       </Grid>
                     </Grid>
 
-                    {/* <Grid container spacing={2}>
-                      <Grid item xs={12} sm={6} lg={12}>
-                        <Sli />
-                      </Grid>
-                      <Grid item xs={12} sm={6} lg={6} sx={{ minHeight: 50 }}>
-                        <AddSearch />
-                      </Grid>
-                      <Grid item xs={12} sm={6} lg={6} sx={{ minHeight: 50 }}>
-                        <AddFunction />
-                      </Grid>
-                    </Grid> */}
+                 
                   </Grid>
                 </AccordionDetails>
               </Accordion>
@@ -136,6 +127,9 @@ const AssistantEditor = () => {
             </Grid>
             <Grid item xs={12}>
               <AddUrl />
+            </Grid>
+            <Grid item xs={12}>
+              <AddProduct />
             </Grid>
           </Grid>
         </Grid>

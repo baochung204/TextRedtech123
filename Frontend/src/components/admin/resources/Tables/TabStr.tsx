@@ -59,7 +59,7 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
       title: 'Nội dung',
     },
     {
-      dataIndex: 'dateCreate',
+      dataIndex: 'creationTime',
       title: 'Ngày tạo',
     },
     {
