@@ -1,26 +1,21 @@
 import {
+  Box,
   Checkbox,
   Dialog,
   DialogTitle,
+  Divider,
   FormControlLabel,
+  Grid,
   List,
   ListItem,
-  ListItemText,
-  Typography,
   TextField,
-  Button,
-  Box,
-  Divider,
-  Grid,
   Tooltip,
+  Typography
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
-import { AppDispatch, AppState, useSelector } from 'src/store/Store';
-import { useDispatch } from 'react-redux';
-import { fetchUrls } from 'src/store/apps/resources/url/UrlSlice';
 
 const functions = ['trithucchochatbot1.jsnl', 'trithuc2.jsnl', 'trithuc3.jsnl', 'trithuc5.jsnl', 'trithuc55.jsnl'];
 
