@@ -1,15 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import Affilatec1 from 'src/components/shared/Affilatec1';
-import { Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
+import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const Chart7 = () => {
-  const theme = useTheme();
-  const primary = theme.palette.primary.main;
+  // const theme = useTheme();
+  // const primary = theme.palette.primary.main;
   const labels = ['Chi phí / khách hàng '];
 
   const optionsradialchart: Props = {

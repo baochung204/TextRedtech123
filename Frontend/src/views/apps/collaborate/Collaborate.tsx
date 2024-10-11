@@ -297,15 +297,10 @@ const CollaboratePost = () => {
                     <Box bgcolor={topcard.bgcolor} textAlign="center">
                       <CardContent>
                         <img src={topcard.icon} alt={topcard.icon} height={40} />
-                        <Typography
-                          color={topcard.bgcolor + '.main'}
-                          mt={1}
-                          variant="subtitle1"
-                          fontWeight={600}
-                        >
+                        <Typography color={topcard.bgcolor + '.main'} mt={1} variant="subtitle1">
                           {topcard.title}
                         </Typography>
-                        <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+                        <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={800}>
                           {topcard.digits}
                         </Typography>
                       </CardContent>

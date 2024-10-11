@@ -468,7 +468,6 @@ const PersonAffiliate = () => {
                       {/* Display uploaded images here */}
                       {selectedImage1 && (
                         <Box mb={2} position="relative">
-                          <Typography variant="subtitle1">Mặt trước:</Typography>
                           <img
                             src={selectedImage1}
                             alt="Selected 1"
@@ -477,7 +476,7 @@ const PersonAffiliate = () => {
                           <IconButton
                             size="small"
                             onClick={handleRemoveImage1}
-                            sx={{ position: 'absolute', top: 0, right: 0 }}
+                            sx={{ position: 'absolute', top: -25, right: -25 }}
                           >
                             <CloseIcon />
                           </IconButton>
@@ -486,7 +485,6 @@ const PersonAffiliate = () => {
 
                       {selectedImage2 && (
                         <Box mb={2} position="relative">
-                          <Typography variant="subtitle1">Mặt sau:</Typography>
                           <img
                             src={selectedImage2}
                             alt="Selected 2"
@@ -495,7 +493,7 @@ const PersonAffiliate = () => {
                           <IconButton
                             size="small"
                             onClick={handleRemoveImage2}
-                            sx={{ position: 'absolute', top: 0, right: 0 }}
+                            sx={{ position: 'absolute', top: -25, right: -25 }}
                           >
                             <CloseIcon />
                           </IconButton>

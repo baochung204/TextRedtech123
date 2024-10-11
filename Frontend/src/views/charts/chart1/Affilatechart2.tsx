@@ -1,13 +1,9 @@
-import { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import Affilatec1 from 'src/components/shared/Affilatec1';
-import { Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
+import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const Affilatechart2 = () => {
-  const theme = useTheme();
-  const warning = theme.palette.warning.main;
+  // const theme = useTheme();
+  // const warning = theme.palette.warning.main;
   const labels = ['Chi phí /đơn hàng'];
 
   const optionsradialchart: Props = {
