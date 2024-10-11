@@ -1,26 +1,42 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { Box, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { error } from 'console';
-import React from 'react';
+import React, { useState } from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Modarm from 'src/components/shared/moderm';
 
 const PieChartsAdmin = ({ menuItems }: { menuItems: any }) => {
-  // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
   const warning = theme.palette.warning.main;
 
-  // 1
+  const seriespiechart = [45, 65, 27, 18, 35]; // Percentages
+  const labels = ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Google', 'Bạn bè', 'Khác'];
+
+  // 1. State to hold hovered percentage
+  const [hoveredPercent, setHoveredPercent] = useState<number | null>(null);
+
+  // 2. Calculate the total value for dynamic percentage calculation
+  const total = seriespiechart.reduce((acc, value) => acc + value, 0);
+
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       foreColor: '#adb0bb',
+      events: {
+        // Capture the event when hovering over the slices
+        dataPointMouseEnter: (event, chartContext, config) => {
+          const seriesIndex = config.dataPointIndex;
+          const value = seriespiechart[seriesIndex];
+          const percent = ((value / total) * 100).toFixed(2); // Calculate percentage
+          setHoveredPercent(Number(percent));
+        },
+        dataPointMouseLeave: () => {
+          setHoveredPercent(null); // Reset when not hovering
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -29,6 +45,12 @@ const PieChartsAdmin = ({ menuItems }: { menuItems: any }) => {
       pie: {
         donut: {
           size: '70px',
+          labels: {
+            show: true,
+            value: {
+              show: false, // We will show the percentage via our custom method
+            },
+          },
         },
       },
     },
@@ -37,38 +59,30 @@ const PieChartsAdmin = ({ menuItems }: { menuItems: any }) => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [
-      primary, // Color for 'Facebook'
-      secondary, // Color for 'Tiktok'
-      warning, // Color for 'Email'
-      '#2c5364', // Color for 'Zalo'
-      '#99f2c8', // Color for 'Google'
-      '#f5a623', // Color for 'Bạn bè' (added new color)
-      '#e74c3c', // Color for 'Khác' (added new color)
-    ],
+    colors: [primary, secondary, warning, '#2c5364', '#99f2c8', '#f5a623', '#e74c3c'],
     tooltip: {
+      enabled: true,
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Google', 'Bạn bè', 'Khác'],
+    labels,
   };
 
-  const seriespiechart = [45, 65, 27, 18, 35];
-
-  const [month, setMonth] = React.useState('1');
+  const [month, setMonth] = useState('1');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
 
   return (
-    <Modarm title="Nguồn khách hàng" text="Kênh" description="">
+    <Modarm title="Nguồn khách hàng" text="" description="">
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
+          position: 'relative', // To position the percentage in the center
         }}
       >
         <CustomSelect
@@ -89,7 +103,32 @@ const PieChartsAdmin = ({ menuItems }: { menuItems: any }) => {
             <MenuItem disabled>No options available</MenuItem>
           )}
         </CustomSelect>
-        <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
+
+        <Box sx={{ position: 'relative', width: '300px', height: '300px' }}>
+          {/* Centered Percentage */}
+          {hoveredPercent !== null && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '45%',
+                left: '50%',
+                transform: 'translate(-40%, -90%)',
+                fontSize: '24px',
+                fontWeight: 'bold',
+                color: theme.palette.text.primary,
+              }}
+            >
+              {hoveredPercent}%
+            </Box>
+          )}
+          {/* Pie Chart */}
+          <Chart
+            options={optionsdoughnutchart}
+            series={seriespiechart}
+            type="donut"
+            height="300px"
+          />
+        </Box>
       </Box>
     </Modarm>
   );

@@ -1,13 +1,11 @@
-import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
-import { IconEye, IconTrash } from '@tabler/icons-react';
+import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
+import { IconEye } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
 import DialogStrView from '../dialog/DialogStrView';
 import { StrategyRows } from '../mockData/TableStr';
 import { HeadCell } from '../types/HeadCell';
-
 
 interface PropsTabStr {
   value: string;
@@ -16,8 +14,8 @@ interface PropsTabStr {
   dataSelect?: string[];
 }
 
-const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
-  const [selectId, setSelectId] = useState<string | null>(null)
+const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
+  const [selectId, setSelectId] = useState<string | null>(null);
   const StrategyCells: HeadCell[] = [
     {
       dataIndex: 'id',
@@ -30,11 +28,11 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
     {
       dataIndex: 'badge',
       title: 'Huy hiệu',
-      render: ((value: string) => (
+      render: (value: string) => (
         <>
           <Avatar src={value} alt="value" sx={{ borderRadius: '50%' }} />
         </>
-      ))
+      ),
     },
     {
       dataIndex: 'strategyName',
@@ -61,7 +59,7 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
       title: 'Nội dung',
     },
     {
-      dataIndex: 'dateCreate',
+      dataIndex: 'creationTime',
       title: 'Ngày tạo',
     },
     {
@@ -83,15 +81,19 @@ const TabStr = ({ value, open, setOpen, dataSelect }: PropsTabStr) => {
       render: (_row: any, value: any) => (
         // console.log(value)
         <Box display={'flex'} sx={{ justifyContent: 'center' }}>
-          <Tooltip title='Xem' placement='right'>
-            <IconButton onClick={() => { setOpen(true); setSelectId(value.id) }}>
+          <Tooltip title="Xem" placement="right">
+            <IconButton
+              onClick={() => {
+                setOpen(true);
+                setSelectId(value.id);
+              }}
+            >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
             {/* <IconButton>
             <IconTrash stroke={2} style={{ color: '#FA896B' }} />
           </IconButton> */}
           </Tooltip>
-
         </Box>
       ),
     },

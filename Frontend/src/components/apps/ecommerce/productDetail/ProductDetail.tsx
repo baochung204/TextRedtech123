@@ -3,14 +3,11 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Card,
-  CardContent,
   Dialog,
   DialogContent,
   DialogContentText,
   Divider,
   Grid,
-  Rating,
   Slide,
   Stack,
   Table,
@@ -20,7 +17,6 @@ import {
   TableHead,
   TableRow,
   Typography,
-  useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
@@ -28,11 +24,10 @@ import { IconMinus, IconPlus } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { default as logo, default as logoPoint } from 'src/assets/images/logos/R-Point.png';
-import products2 from 'src/assets/images/products/s24.jpg';
-import ChildCard from 'src/components/shared/ChildCard';
 import { useDispatch, useSelector } from 'src/store/Store';
 import { addToCart, fetchProducts } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';
+import FlashSaleInDetailProduct from './flashSale/FlashSaleInDetailProduct';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children: React.ReactElement },
@@ -40,38 +35,26 @@ const Transition = React.forwardRef(function Transition(
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const packages = [
-  {
-    id: 7,
-    img: products2,
-    title: 'Chatbot thương mại điện tử',
-    price: 520,
-    discount: 499,
-    sale: 80,
-    timeFlash: 180,
-  },
-];
+
 const ProductDetail = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [selectedPackage, setSelectedPackage] = useState(null);
-  const handleSelectPackage = (pkg: any) => {
-    setSelectedPackage(selectedPackage === pkg.id ? null : pkg.id);
-  };
-  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
-  // Get Product
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
   const product: any = useSelector((state) => state.ecommerceReducer.products[Number(id) - 1]);
+  const point = product?.point ?? 0;
+  const qty = product?.qty ?? 0;
+  const discount = product?.discount ?? 0;
 
-  // Set quantity
+  // Calculate total and discount safely
+  const total = point * qty - discount * qty;
+  const discountProduct = discount * qty;
   const [count, setCount] = useState(1);
   const [open, setOpen] = useState(false);
 
-  // For alert when added something to cart
   const [cartalert, setCartalert] = useState(false);
 
   const handleClick = () => {
@@ -88,7 +71,7 @@ const ProductDetail = () => {
   };
 
   const handleCloseDialog = () => {
-    setOpen(false);
+    setOpen(!open);
   };
 
   return (
@@ -358,289 +341,11 @@ const ProductDetail = () => {
                           </TableBody>
                         </Table>{' '}
                       </TableContainer>
-                      <Box my={3}>
-                        <ChildCard>
-                          <Box p={2}>
-                            <Typography variant="h5" fontWeight={600} mb={3}>
-                              Đơn hàng
-                            </Typography>
-                            {/* Tổng cộng */}
-
-                            <Typography variant="body2" sx={{ fontSize: 16, fontWeight: 500 }}>
-                              Flash-sale
-                            </Typography>
-
-                            <Grid container spacing={1} style={{ marginTop: '10px' }}>
-                              {packages.map((pkg) => (
-                                <Grid item xs={12} md={12} key={pkg.id}>
-                                  <Card
-                                    sx={{
-                                      borderRadius: '15px',
-                                      overflow: 'hidden',
-                                      boxShadow:
-                                        selectedPackage === pkg.id
-                                          ? '0 6px 18px rgba(128, 128, 128, 0.4)'
-                                          : '0 6px 18px rgba(0,0,0,0.1)',
-                                      transition: 'transform 0.3s',
-                                      height: 'auto',
-                                      marginY: '0px',
-                                      paddingY: '0px',
-
-                                      transform: 'scale(1)',
-                                    }}
-                                    onClick={() => handleSelectPackage(pkg)}
-                                  >
-                                    <CardContent
-                                      sx={{
-                                        p: 2,
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'end',
-                                        '&:last-child': {
-                                          pb: 2,
-                                        },
-                                      }}
-                                    >
-                                      <div style={{ display: 'flex', gap: '20px' }}>
-                                        <Typography component={Link} to={`/shop/detail/11`}>
-                                          {lgUp ? (
-                                            <img
-                                              src={pkg.img}
-                                              alt={''}
-                                              style={{
-                                                borderRadius: '10px',
-                                                width: '100px',
-                                              }}
-                                            />
-                                          ) : (
-                                            <img
-                                              src={pkg.img}
-                                              alt={''}
-                                              style={{
-                                                borderRadius: '10px',
-                                                width: '60px',
-                                              }}
-                                            />
-                                          )}
-                                        </Typography>
-                                        <div>
-                                          <Typography
-                                            variant="h6"
-                                            sx={{
-                                              fontWeight: 'bold',
-                                              mb: 1,
-                                            }}
-                                          >
-                                            {pkg.title}
-                                          </Typography>
-
-                                          <div
-                                            style={{
-                                              display: 'flex',
-                                              gap: '10px',
-                                              marginTop: '10px',
-                                            }}
-                                          >
-                                            {' '}
-                                            <Typography
-                                              sx={{
-                                                mb: 1,
-                                                color: '#888',
-                                                fontSize: '14px',
-                                                display: 'flex',
-                                              }}
-                                            >
-                                              <del>{pkg.discount.toLocaleString()} </del>
-                                              <img
-                                                src={logoPoint}
-                                                alt={logoPoint}
-                                                width={20}
-                                                height={20}
-                                                style={{ borderRadius: 50 }}
-                                              />
-                                            </Typography>
-                                            <Typography
-                                              sx={{
-                                                mb: 1,
-                                                display: 'flex',
-                                                fontWeight: 'bold',
-                                              }}
-                                            >
-                                              {' '}
-                                              {pkg.price.toLocaleString()}{' '}
-                                              <img
-                                                src={logoPoint}
-                                                alt={logoPoint}
-                                                width={20}
-                                                height={20}
-                                                style={{ borderRadius: 50 }}
-                                              />
-                                            </Typography>{' '}
-                                          </div>
-                                          <Box>
-                                            <Button
-                                              variant={'outlined'}
-                                              color="warning"
-                                              sx={{
-                                                display: { xs: 'none', md: 'block' },
-                                                backgroundImage: 'none',
-                                                ':hover': { backgroundColor: 'none' },
-                                                mt: 3.4,
-                                              }}
-                                            >
-                                              {pkg.sale}%
-                                            </Button>
-                                          </Box>
-                                        </div>
-                                      </div>
-                                      <Box>
-                                        {/* {lgUp ? <Countdown initialSeconds={pkg.timeFlash} /> : null} */}
-                                        <Button
-                                          variant="contained"
-                                          color="warning"
-                                          sx={{
-                                            display: { xs: 'none', md: 'block' },
-                                            width: '123.86px',
-                                            backgroundImage:
-                                              'linear-gradient(45deg, #ff6f61, #ff9a76)',
-
-                                            borderColor: 'transparent',
-                                          }}
-                                        >
-                                          Đã chọn
-                                        </Button>
-                                      </Box>
-                                    </CardContent>
-                                    {/* <Box
-                              style={{
-                                position: 'absolute',
-                                top: '-15px',
-
-                                padding: '5px 10px',
-                                color: 'white',
-                                borderRadius: '0px 0px 10px 10px',
-                                fontWeight: 'bold',
-                              }}
-                              sx={{ right: { xs: '-15px', md: '45px' } }}
-                            >
-                              <img src={sale} alt="" style={{ width: '70px' }} />
-                            </Box> */}
-                                  </Card>
-                                </Grid>
-                              ))}
-                            </Grid>
-
-                            {/* <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5">Tổng giá Flash-sale : </Typography>
-                <Typography variant="h5" sx={{ paddingX: '3px' }}>
-                  1.023.900point
-                </Typography>
-              </Box>{' '} */}
-
-                            <Stack direction="row" justifyContent="space-between" my={3}>
-                              <Typography variant="h6" fontWeight={400}>
-                                Giá trị đơn hàng
-                              </Typography>
-                              <Typography
-                                variant="h6"
-                                sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}
-                              >
-                                {/* {(total + pointsEarned).toLocaleString()}{' '} */}
-                                {product.point * product.qty}
-
-                                <img
-                                  src={logoPoint}
-                                  alt={logoPoint}
-                                  width={20}
-                                  height={20}
-                                  style={{ borderRadius: 50 }}
-                                />
-                              </Typography>
-                            </Stack>
-                            {/* Giảm giá */}
-                            <Stack direction="row" justifyContent="space-between" mb={3}>
-                              <Typography variant="h6" fontWeight={400}>
-                                Khuyến mãi
-                              </Typography>
-                              <Typography
-                                variant="h6"
-                                sx={{
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                  gap: 1,
-                                  alignItems: 'center',
-                                }}
-                              >
-                                {product.discount * product.qty}
-                                <img
-                                  src={logoPoint}
-                                  alt={logoPoint}
-                                  width={20}
-                                  height={20}
-                                  style={{ borderRadius: 50 }}
-                                />
-                              </Typography>
-                            </Stack>
-                            {/* Vận chuyển */}
-
-                            {/* Tổng cộng */}
-                            <Stack direction="row" justifyContent="space-between" mb={1}>
-                              <Typography variant="h6">Tổng thanh toán</Typography>
-                              <Typography
-                                variant="h5"
-                                color="error"
-                                display={'flex'}
-                                justifyContent={'center'}
-                                sx={{
-                                  gap: 1,
-                                }}
-                              >
-                                {(
-                                  product.point * product.qty -
-                                  product.discount * product.qty
-                                ).toLocaleString()}
-                                <img
-                                  src={logoPoint}
-                                  alt={logoPoint}
-                                  width={25}
-                                  height={25}
-                                  style={{ borderRadius: 50 }}
-                                />
-                              </Typography>
-                            </Stack>
-                          </Box>
-                        </ChildCard>
-                        <Box textAlign={'center'} marginTop={'20px'}>
-                          <Button component={Link} to="/resources">
-                            Tiếp tục
-                          </Button>
-                        </Box>
-                        {/* <Grid container>
-                          <Grid
-                            item
-                            xs={12}
-                            sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}
-                          >
-                            <Button
-                              variant="contained"
-                              disableElevation
-                              sx={{
-                                px: 5,
-                                py: 1,
-                                backgroundColor: '#FC2032',
-                                fontWeight: 700,
-                                fontSize: 18,
-                                ':hover': {
-                                  backgroundColor: '#F22A51',
-                                },
-                              }}
-                            >
-                              <Link to={'/resources'} style={{ color: 'white' }}>
-                                Thanh toán ngay
-                              </Link>
-                            </Button>
-                          </Grid>
-                        </Grid> */}
+                      <FlashSaleInDetailProduct total={total} discountProduct={discountProduct} />
+                      <Box textAlign={'center'} marginY={'20px'}>
+                        <Button component={Link} to="/resources">
+                          Tiếp tục
+                        </Button>
                       </Box>
                     </Box>
                   </Grid>

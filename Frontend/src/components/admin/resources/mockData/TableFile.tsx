@@ -1,6 +1,6 @@
 import { IconButton, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
-import { IconDatabaseSmile, IconEye, IconFile, IconTrash } from '@tabler/icons-react';
+import { IconTrash } from '@tabler/icons-react';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 import capacity from 'src/assets/FILE/DUNG LUONG.png';
@@ -126,7 +126,7 @@ export const FileCells: any = [
     title: 'Hoạt động',
     render: () => (
       <Box display={'flex'} sx={{ justifyContent: 'center' }}>
-        <Tooltip title='Xem' placement='right'>
+        <Tooltip title="Xem" placement="right">
           {/* <IconButton onClick={() => { setOpen(true); setSelectId(value.id) }}>
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton> */}

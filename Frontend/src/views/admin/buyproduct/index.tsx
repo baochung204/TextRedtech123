@@ -24,6 +24,7 @@ import product from 'src/assets/Adminphoto/san pham.png';
 import amountcheckout from 'src/assets/Adminphoto/so luong mua.png';
 import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
+import sale from 'src/assets/Adminphoto/so flash sale.png';
 import icontext, { default as iconPoint } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -63,7 +64,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={product} width={30} />
+          <img src={product} width={30} alt="Product" />
         </Box>
       </>
     ),
@@ -91,14 +92,14 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={amountcheckout} width={30} />
+          <img src={amountcheckout} width={30} alt="Amount Checkout" />
         </Box>
       </>
     ),
   },
   {
     bgColor: 'primary.light',
-    title: 'Doanh thu',
+    title: 'Tổng doanh thu',
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
@@ -119,7 +120,36 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={totalcheckout} width={30} />
+          <img src={sale} width={30} alt="Sale" />
+        </Box>
+      </>
+    ),
+  },
+  {
+    bgColor: 'primary.light',
+    title: 'Doanh thu',
+    total: (
+      <>
+        <Box display="flex" alignItems="center" gap={0.4}>
+          <Typography variant="h6">12.423.423 </Typography>
+          <img src={iconPoint} alt="" width={17} />
+        </Box>
+      </>
+    ),
+    icons: (
+      <>
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={totalcheckout} width={30} alt="Total Checkout" />
         </Box>
       </>
     ),
@@ -148,7 +178,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={totalrevenue} width={30} />
+          <img src={totalrevenue} width={30} alt="Total Revenue" />
         </Box>
       </>
     ),
@@ -177,7 +207,7 @@ const DataBox = [
           }}
         >
           {/* <IconChartBar color="white" size={30} /> */}
-          <img src={revenueperproduct} width={30} />
+          <img src={revenueperproduct} width={30} alt="Revenue per Product" />
         </Box>
       </>
     ),

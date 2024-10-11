@@ -47,6 +47,9 @@ interface ProductProps {
     trolyStrategy?: string,
     tomtatStrategy?: string,
     noidungStrategy?: string
+    files?: string
+    detail?: string;
+    guide?: string
 }
 
 
@@ -69,7 +72,8 @@ const ProductTable: ProductProps[] = [
         soluongmua: '100',
         tongdoanhthu: '300.000',
         titrongdoanthu: '20%',
-        mota: 'Mo Ta'
+        mota: 'Mo Ta',
+        detail: "12334"
     },
     {
         id: generateIdCode(),
@@ -83,7 +87,8 @@ const ProductTable: ProductProps[] = [
         soluongmua: '100',
         tongdoanhthu: '300.000',
         titrongdoanthu: '20%',
-        mota: 'Mo Ta'
+        mota: 'Mo Ta',
+        detail: "12334"
     },
     {
         id: generateIdCode(),
@@ -97,7 +102,8 @@ const ProductTable: ProductProps[] = [
         soluongmua: '100',
         tongdoanhthu: '300.000',
         titrongdoanthu: '20%',
-        mota: 'Mo Ta'
+        mota: 'Mo Ta',
+        detail: "12334"
     },
     {
         id: generateIdCode(),
@@ -111,7 +117,8 @@ const ProductTable: ProductProps[] = [
         soluongmua: '100',
         tongdoanhthu: '300.000',
         titrongdoanthu: '20%',
-        mota: 'Mo Ta'
+        mota: 'Mo Ta',
+        detail: "12334"
     },
     {
         id: generateIdCode(),
@@ -125,7 +132,8 @@ const ProductTable: ProductProps[] = [
         soluongmua: '100',
         tongdoanhthu: '300.000',
         titrongdoanthu: '20%',
-        mota: 'Mo Ta'
+        mota: 'Mo Ta',
+        detail: "12334"
     },
 
 ]

@@ -58,7 +58,7 @@ const Topcardadminhorizontal = ({ dataSource, totalColumn }: TopCardProps) => {
                 <Grid item xs={9}>
                   <Grid container spacing={0.4} sx={{ whiteSpace: 'nowrap' }}>
                     <Grid item xs={12}>
-                      <Typography variant="h6">{items.title}</Typography>
+                      <Typography>{items.title}</Typography>
                     </Grid>
                     <Grid item xs={12}>
                       <Typography variant="h6">{items.total}</Typography>

@@ -20,12 +20,16 @@ import BlankCard from 'src/components/shared/BlankCard';
 
 import { styled } from '@mui/system';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
 import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
 import logoVnpay from 'src/assets/images/logoPay/logoVnpay.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
+import { fetchPointById } from 'src/store/apps/point/PointSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 import * as Yup from 'yup';
+import { fetchVndCoupons } from 'src/store/apps/vnd_coupons/Vnd_CouponsSlice';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -50,6 +54,22 @@ const Payments: IPayMent[] = [
 ];
 
 const OrderInformation = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
+  const dataPoint = useSelector((state: AppState) => state.points.points.find((p) => p.id === id));
+  const dataVndCoupons = useSelector((state: AppState) => state.vnd_coupons.vnd_coupons);
+  useEffect(() => {
+    dispatch(fetchVndCoupons());
+    dispatch(fetchPointById(id));
+  }, [dispatch, id]);
+  const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
+  const handleSelectedVoucherId = (item: any) => {
+    if (selectedVoucher === item.id) {
+      setSelectedVoucher(null);
+    } else {
+      setSelectedVoucher(item.id);
+    }
+  };
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const handleChange5 = (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
@@ -131,6 +151,7 @@ const OrderInformation = () => {
     }, 2000);
     return () => clearInterval(interval);
   }, [open]);
+
   return (
     <>
       <Grid container spacing={3}>
@@ -152,7 +173,7 @@ const OrderInformation = () => {
                           sx={{ display: 'flex', justifyContent: 'space-between' }}
                         >
                           <Typography variant="h6">Tổng</Typography>
-                          <Typography variant="h6">70.000 ₫</Typography>
+                          <Typography variant="h6">{dataPoint?.cash} ₫</Typography>
                         </Grid>
                         <Grid
                           item
@@ -163,7 +184,7 @@ const OrderInformation = () => {
                             variant="subtitle1"
                             sx={{ display: 'flex', alignItems: 'center' }}
                           >
-                            20
+                            {dataPoint?.point}
                             <img
                               src={logoPoint}
                               alt={logoPoint}
@@ -338,64 +359,39 @@ const OrderInformation = () => {
                                 Áp dụng
                               </Button>
                             </Grid>
-                            <Grid item xs={12}>
-                              <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                  <Box
-                                    sx={{
-                                      border: '2px solid #FFD60A',
-                                      display: 'flex',
-                                      justifyContent: 'space-between',
-                                      alignItems: 'center',
-                                      padding: '8px 16px',
-                                      borderRadius: '10px',
-                                    }}
-                                  >
-                                    <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                                      KM025K2J - Giảm 15%
-                                    </Typography>
-                                    <Button variant="outlined" color="warning">
-                                      Bỏ chọn
-                                    </Button>
-                                  </Box>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Box
-                                    sx={{
-                                      border: '2px solid #E0E0E0',
-                                      display: 'flex',
-                                      justifyContent: 'space-between',
-                                      position: 'relative',
-
-                                      '&:hover button': {
-                                        opacity: 1,
-                                        visibility: 'visible',
-                                      },
-                                    }}
-                                  >
-                                    <Typography
-                                      sx={{ fontWeight: 600, px: 2, fontSize: 16, py: 2 }}
-                                    >
-                                      CN850KDWQ-Giảm 200.000₫
-                                    </Typography>
-                                    <Button
-                                      variant="outlined"
-                                      color="warning"
+                            {dataVndCoupons?.map((item: any) => (
+                              <Grid item xs={12} key={item.id}>
+                                <Grid container spacing={2}>
+                                  <Grid item xs={12}>
+                                    <Box
                                       sx={{
-                                        height: '35px',
-                                        my: 'auto',
-                                        mr: 2,
-                                        opacity: 0,
-                                        visibility: 'hidden',
-                                        transition: 'opacity 0.3s ease, visibility 0.3s ease',
+                                        border:
+                                          selectedVoucher === item.id
+                                            ? 'none'
+                                            : '2px solid #ff3333', // Bỏ border nếu item được chọn
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        padding: '8px 16px',
+                                        borderRadius: '10px',
+                                        backgroundColor: 'primary.light',
                                       }}
                                     >
-                                      Áp dụng
-                                    </Button>
-                                  </Box>
+                                      <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
+                                        {item.coupons_code} - {item.name}
+                                      </Typography>
+                                      <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={() => handleSelectedVoucherId(item)}
+                                      >
+                                        {selectedVoucher === item.id ? 'Bỏ chọn' : 'Chọn'}
+                                      </Button>
+                                    </Box>
+                                  </Grid>
                                 </Grid>
                               </Grid>
-                            </Grid>
+                            ))}
                           </Grid>
                         </AccordionDetails>
                       </Accordion>
@@ -428,7 +424,7 @@ const OrderInformation = () => {
                   Giá niêm yết
                 </Typography>
                 <Typography variant="h5" fontWeight={700} sx={{ px: 1 }}>
-                  1.140 ₫
+                  {dataPoint?.cash} ₫
                 </Typography>
               </Box>
 

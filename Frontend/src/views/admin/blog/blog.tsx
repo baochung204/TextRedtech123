@@ -35,6 +35,8 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
+
+import { useNavigate } from 'react-router';
 import Iconlike from 'src/assets/ICON/like.png';
 
 const BCrumb = [
@@ -67,7 +69,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={blog} width={30} />
+        <img src={blog} width={30} alt="Blog Icon" />
       </Box>
     ),
   },
@@ -87,7 +89,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={view} width={30} />
+        <img src={view} width={30} alt="View Icon" />
       </Box>
     ),
   },
@@ -107,7 +109,7 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img src={revenue} width={30} />
+        <img src={revenue} width={30} alt="Revenue Icon" />
       </Box>
     ),
   },
@@ -127,7 +129,9 @@ const DataBox: StyleProps[] = [
           alignItems: 'center',
         }}
       >
-        <img width={30} src={Iconlike} />
+        {/* <img width={30} src={reaction} alt="Reaction" /> */}
+        <img width={30} src={Iconlike} alt="Like Icon" />
+
       </Box>
     ),
   },
@@ -139,7 +143,12 @@ interface Column {
   isValids?: boolean;
 }
 const BlogAdmin = () => {
+  const nav = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const handleIconClick = () => {
+    nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
+  };
+
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
@@ -247,6 +256,9 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
+            <IconButton onClick={handleIconClick}>
+              <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
+            </IconButton>
             <Link
               to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
             >
@@ -254,9 +266,10 @@ const BlogAdmin = () => {
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>{' '}
             </Link>
-            {/* <IconButton>
+            <IconButton>
+
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton> */}
+            </IconButton>
             <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
             </IconButton>

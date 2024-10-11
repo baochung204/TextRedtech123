@@ -12,7 +12,7 @@ import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/productsSlice';
 import UrlSlice from './apps/resources/url/UrlSlice';
-
+import PointSlice from './apps/point/PointSlice';
 import {
   TypedUseSelectorHook,
   useDispatch as useAppDispatch,
@@ -26,7 +26,7 @@ import StrReducer from './apps/resources/str/strSlice';
 import functionReducer from './apps/resources/function/functionSlice';
 import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
-
+import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -46,11 +46,11 @@ export const store = configureStore({
     imageResources: ImageSlice,
     product: productReducer,
     customeraffiliate: CustomerAffiliate,
-
+    points: PointSlice,
+    vnd_coupons: vndCouponsSlice,
     str: StrReducer,
     function: functionReducer,
-    file: fileReducer
-
+    file: fileReducer,
   },
 });
 
@@ -70,12 +70,12 @@ const rootReducer = combineReducers({
   urlResources: UrlSlice,
   imageResources: ImageSlice,
   customeraffiliate: CustomerAffiliate,
-
+  points: PointSlice,
+  vnd_coupons: vndCouponsSlice,
   product: productReducer,
   str: StrReducer,
   function: functionReducer,
-  file: fileReducer
-
+  file: fileReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

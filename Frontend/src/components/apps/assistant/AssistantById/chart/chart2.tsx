@@ -43,7 +43,6 @@ const Chart2 = () => {
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
 
-
   const categories = [
     '1/11/2000',
     '2/11/2000',
@@ -63,8 +62,7 @@ const Chart2 = () => {
     '4/11/2001',
     '5/11/2001',
     '6/11/2001',
-  ]
-
+  ];
 
   const optionsgredientchart: Props = {
     chart: {

@@ -1,5 +1,5 @@
 import { Box, Grid, IconButton } from '@mui/material';
-import { IconEye, IconTrash } from '@tabler/icons-react';
+import { IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -16,14 +16,14 @@ interface PropsTab3 {
   setCheckOption: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-interface ItemTable3 {
-  fileName: string;
-  datas: string;
-  creationDate: Date;
-  formats: string;
-  idCode: string;
-  isCheck: boolean;
-}
+// interface ItemTable3 {
+//   fileName: string;
+//   datas: string;
+//   creationDate: Date;
+//   formats: string;
+//   idCode: string;
+//   isCheck: boolean;
+// }
 
 const Tab3 = ({ value, open, setOpen,  checkOption, setCheckOption }: PropsTab3) => {
   // const [dataSelect, setDataSelect] = useState<string[]>([]);
@@ -58,7 +58,7 @@ const Tab3 = ({ value, open, setOpen,  checkOption, setCheckOption }: PropsTab3)
     {
       title: 'Hành động',
       dataIndex: 'isCheck',
-      render: (_value: ItemTable3, row: any) => (
+      render: () => (
         <Grid container>
           <Grid item xs={12}>
             <IconButton>

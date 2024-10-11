@@ -1,18 +1,12 @@
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import {
-  IconDatabaseSmile,
-  IconEye,
-  IconPhoto,
-  IconPhotoScan,
-  IconTrash,
-} from '@tabler/icons-react';
-import icontext from 'src/assets/images/logos/R-Point.png';
-import { HeadCell } from '../types/HeadCell';
+import { IconEye, IconTrash } from '@tabler/icons-react';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import capacity from 'src/assets/Gallary/DUNG LUONG.png';
 import gallarypercustomer from 'src/assets/Gallary/HINH ANH KHACH HANG.png';
 import gallary from 'src/assets/Gallary/HINH ANH.png';
+import icontext from 'src/assets/images/logos/R-Point.png';
+import { HeadCell } from '../types/HeadCell';
 
 export const Image = [
   {

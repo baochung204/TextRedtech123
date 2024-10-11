@@ -53,7 +53,7 @@ const Affilatechartadmin = ({ menuItems }: { menuItems: any }) => {
             total: {
               show: true,
               label: 'Tỉ lệ cao nhất',
-              formatter: () => `${Math.max(...seriesdoughnutchart)}%`,
+              formatter: () => `${Math.max(...seriesdoughnutchart)}đ`,
               fontWeight: 'bold',
             },
           },

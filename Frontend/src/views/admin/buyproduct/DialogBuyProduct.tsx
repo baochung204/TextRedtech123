@@ -1,12 +1,15 @@
-import { Avatar, AvatarGroup, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, TextField, Typography, Chip, Autocomplete } from "@mui/material";
+import { Autocomplete, Avatar, AvatarGroup, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, TextField, Typography } from "@mui/material";
+import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import { useEffect, useMemo, useState } from "react";
-import { Formik, Form, Field, FormikHelpers, ErrorMessage } from 'formik';
-import ProductTable from "../product/ProductData";
-import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
-import Function from "./components/Function";
-import { validationSchema1, validationSchema2, validationSchema3 } from "./validationSchema";
-import Strategy from "./components/Strategy";
 import ReactQuill from "react-quill";
+import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
+import ProductTable from "../product/ProductData";
+import Function from "./components/Function";
+import Strategy from "./components/Strategy";
+import File from "./components/File";
+import { validationSchema1, validationSchema2, validationSchema3 } from "./validationSchema";
+import AssistantProduct from "./components/AssistantProduct";
+
 
 interface PropUp {
     open: boolean;
@@ -31,7 +34,8 @@ interface Tag {
 
 interface Options {
     label: string,
-    values: number
+    values: number,
+    subOptions?: { label: string, values: string }[]
 }
 
 const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: PropUp) => {
@@ -51,16 +55,14 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             secretkey: '',
             hdsd: '',
             mota: '',
-
+            detail: '',
+            guide: '',
             // Function
 
             nhomFunction: "",
-            tenFunction: "",
             codeFunction: "",
             levelx: "",
-            khachHang: "",
-            troLy: "",
-            tomTat: "",
+
 
             // Strategy
 
@@ -71,8 +73,13 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             levelStrategy: '',
             trolyStrategy: '',
             tomtatStrategy: '',
-            noidungStrategy: ''
+            noidungStrategy: '',
 
+            // file
+            files: '',
+
+            // model
+            model: '',
         }),
         [],
     );
@@ -159,13 +166,12 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     secretkey: data.secretkey ?? '',
                     hdsd: data.hdsd ?? '',
                     mota: data.mota,
+                    // detail: data.detail,
+                    detail: data.detail ?? '',
+                    guide: data.guide,
                     nhomFunction: data.nhomFunction ?? '',
-                    tenFunction: data.tenFunction ?? '',
                     codeFunction: data.codeFunction ?? '',
                     levelx: data.levelx ?? '',
-                    khachHang: data.khachHang ?? '',
-                    troLy: data.troLy ?? '',
-                    tomTat: data.tomTat ?? '',
                     anhStrategy: Array.isArray(data.anhStrategy) ? data.anhStrategy : data.anhStrategy ? [data.anhStrategy] : [],
                     nhomStrategy: data.nhomStrategy ?? '',
                     tenStrategy: data.tenStrategy ?? '',
@@ -173,7 +179,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     levelStrategy: data.levelStrategy ?? '',
                     trolyStrategy: data.trolyStrategy ?? '',
                     tomtatStrategy: data.tomtatStrategy ?? '',
-                    noidungStrategy: data.noidungStrategy ?? ''
+                    noidungStrategy: data.noidungStrategy ?? '',
+                    files: data.files ?? ''
 
                 });
             }
@@ -186,8 +193,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             dataIndex: 'tensanpham'
         },
         {
-            title: 'Mô tả',
-            dataIndex: 'mota'
+            title: 'Danh mục',
+            dataIndex: 'danhmuc'
         },
         {
             title: 'Giá niêm yết',
@@ -202,11 +209,13 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             dataIndex: 'tags'
         },
         {
-            title: 'Danh mục',
-            dataIndex: 'danhmuc'
+            title: 'Mô tả',
+            dataIndex: 'mota'
         },
+
     ];
     const [tags, setTags] = useState<Tag[]>([]);
+    const [gianiemyet, setGianiemyet] = useState<Tag[]>([]);
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' && (event.target as HTMLInputElement).value) {
@@ -221,7 +230,11 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             event.preventDefault();
         }
     };
-
+    const modelOptions = [
+        { label: 'Model A', values: 'A' },
+        { label: 'Model B', values: 'B' },
+        { label: 'Model C', values: 'C' },
+    ];
 
     const options: Options[] = [
         {
@@ -236,13 +249,21 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             label: 'Files',
             values: 3
         },
+        {
+            label: 'Model',
+            values: 4,
+        },
+        {
+            label: 'Trợ lý',
+            values: 5
+        },
     ];
     return (
         <Dialog
             open={open}
             onClose={() => handleClose(() => { })}
             fullWidth
-            maxWidth="md"
+            maxWidth="lg"
         >
             <DialogTitle sx={{ textAlign: 'center' }}>
                 {checkValue === 'add' ? 'Thêm sản phẩm' : checkValue === 'view' ? 'Xem sản phẩm' : 'Sửa sản phẩm'}
@@ -344,116 +365,177 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                 </Grid>
                                 <Grid item xs={9}>
                                     <Grid container spacing={2}>
-                                        {form.map((item, index) => {
-                                            return (
-                                                <Grid item xs={6} key={index}>
-                                                    <Typography variant="h6" >
-                                                        {item.title}
-                                                    </Typography>
-                                                    {item.dataIndex === 'danhmuc' ? (
-                                                        <Autocomplete
-                                                            value={value}
-                                                            onChange={(_event, newValue) => {
-                                                                if (newValue) {
-                                                                    setValue(newValue);
-                                                                    setFieldValue('danhmuc', newValue.values);
-                                                                    console.log("Selected Values:", newValue.values);
-                                                                }
-                                                            }}
-                                                            options={options}
-                                                            getOptionLabel={(option) => option.label}
-                                                            isOptionEqualToValue={(option, value) => option.values === value.values}
-                                                            renderInput={(params) => <TextField {...params} />}
-                                                            sx={{ mt: 2 }}
-                                                        />
-                                                    ) :
 
-                                                        item.dataIndex === 'tags' ? (
-                                                            <Autocomplete
-                                                                multiple
-                                                                fullWidth
-
-                                                                open={false}
-                                                                id="tags-outlined"
-                                                                size="medium"
-                                                                options={[]}
-                                                                getOptionLabel={(option) => option.title}
-                                                                value={tags}
-                                                                filterSelectedOptions
-                                                                sx={{ mt: 2 }}
-                                                                onChange={(_event, newValue) =>
-                                                                    setTags(newValue.map((tag) => ({ ...tag, color: getRandomColor() })))
-                                                                }
-                                                                renderTags={(value, getTagProps) =>
-                                                                    value.map((option, index) => (
-                                                                        <Chip
-                                                                            label={option.title}
-                                                                            {...getTagProps({ index })}
-                                                                            style={{ backgroundColor: option.color, color: '#fff' }}
-                                                                        />
-                                                                    ))
-                                                                }
-                                                                renderInput={(params) => (
-                                                                    <CustomTextField
-                                                                        {...params}
-                                                                        placeholder="Enter tags"
-                                                                        aria-label="tags"
-                                                                        onKeyDown={handleKeyDown}
-                                                                        InputProps={{
-                                                                            ...params.InputProps,
-                                                                            endAdornment: null,
-                                                                            readOnly: key === null ? false : true,
+                                        <Grid item xs={5}>
+                                            <Grid container spacing={2}>
+                                                {form.map((item, index) => {
+                                                    return (
+                                                        <Grid item xs={12} key={index}>
+                                                            <Typography variant="h6" >
+                                                                {item.title}
+                                                            </Typography>
+                                                            {item.dataIndex === 'danhmuc' ? (
+                                                                <>
+                                                                    <Autocomplete
+                                                                        value={value} // Giá trị danh mục hiện tại
+                                                                        onChange={(_event, newValue) => {
+                                                                            if (newValue) {
+                                                                                setValue(newValue); // Cập nhật giá trị danh mục
+                                                                                setFieldValue('danhmuc', newValue.values); // Lưu giá trị vào Formik
+                                                                                console.log("Selected Category:", newValue.values);
+                                                                            }
                                                                         }}
+                                                                        options={options} // Các danh mục chính
+                                                                        getOptionLabel={(option) => option.label}
+                                                                        isOptionEqualToValue={(option, value) => option.values === value.values}
+                                                                        renderInput={(params) => <TextField {...params} label="Chọn danh mục" />}
+                                                                        sx={{ mt: 2 }}
                                                                     />
-                                                                )}
-                                                            />
-                                                        ) :
-                                                            item.dataIndex === 'mota' ? (
-                                                                <ReactQuill
-                                                                    value={values.mota}
-                                                                    onChange={(content) => setFieldValue('mota', content)}
-                                                                    theme="snow"
-                                                                    placeholder="Nhập mô tả sản phẩm"
-                                                                    style={{ minHeight: '300px', height: '300px' }}
-                                                                />
-                                                            ) :
-                                                            (
-                                                                <Field
-                                                                    as={TextField}
 
-                                                                    InputProps={{
-                                                                        readOnly: key === null ? false : true,
-                                                                        sx: {
-                                                                            '& .MuiOutlinedInput-root': {
-                                                                                '& fieldset': {
-                                                                                    borderColor: 'transparent',
-                                                                                },
-                                                                                '&:hover fieldset': {
-                                                                                    borderColor: 'transparent',
-                                                                                },
-                                                                                '&.Mui-focused fieldset': {
-                                                                                    borderColor: 'transparent',
-                                                                                },
-                                                                            },
-                                                                        },
-                                                                    }}
-                                                                    name={item.dataIndex}
-                                                                    fullWidth
-                                                                    margin="normal"
-                                                                />
-                                                            )}
-                                                    <ErrorMessage name={item.dataIndex}>
-                                                        {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                                    </ErrorMessage>
-                                                </Grid>
-                                            );
-                                        })}
+                                                                    {/* Khi chọn "Model" (values === 4), hiển thị select cho modelOptions */}
+                                                                    {value && value.values === 4 && (
+                                                                        <Grid item xs={12} sx={{ mt: 2 }}>
+                                                                            <Autocomplete
+                                                                                options={modelOptions} // Hiển thị các lựa chọn model
+                                                                                getOptionLabel={(option) => option.label}
+                                                                                onChange={(_event, newValue) => {
+                                                                                    setFieldValue('model', newValue?.values); // Lưu giá trị model được chọn
+                                                                                    console.log("Selected Model:", newValue?.values);
+                                                                                }}
+                                                                                renderInput={(params) => (
+                                                                                    <TextField {...params} label="Chọn model chi tiết" />
+                                                                                )}
+                                                                            />
+                                                                        </Grid>
+                                                                    )}
+                                                                </>
+                                                            ) :
+
+                                                                item.dataIndex === 'tags' ? (
+                                                                    <Autocomplete
+                                                                        multiple
+                                                                        fullWidth
+
+                                                                        open={false}
+                                                                        id="tags-outlined"
+                                                                        size="medium"
+                                                                        options={[]}
+                                                                        getOptionLabel={(option) => option.title}
+                                                                        value={tags}
+                                                                        filterSelectedOptions
+                                                                        sx={{ mt: 2 }}
+                                                                        onChange={(_event, newValue) =>
+                                                                            setTags(newValue.map((tag) => ({ ...tag, color: getRandomColor() })))
+                                                                        }
+                                                                        renderTags={(value, getTagProps) =>
+                                                                            value.map((option, index) => (
+                                                                                <Chip
+                                                                                    label={option.title}
+                                                                                    {...getTagProps({ index })}
+                                                                                    style={{ backgroundColor: option.color, color: '#fff' }}
+                                                                                />
+                                                                            ))
+                                                                        }
+                                                                        renderInput={(params) => (
+                                                                            <CustomTextField
+                                                                                {...params}
+                                                                                placeholder="Enter tags"
+                                                                                aria-label="tags"
+                                                                                onKeyDown={handleKeyDown}
+                                                                                InputProps={{
+                                                                                    ...params.InputProps,
+                                                                                    endAdornment: null,
+                                                                                    readOnly: key === null ? false : true,
+                                                                                }}
+                                                                            />
+                                                                        )}
+                                                                    />
+                                                                ) :
+                                                                    item.dataIndex === "mota" ? (
+                                                                        <Grid item xs={12}>
+                                                                            <Field name="mota">
+                                                                                {({ field }: any) => (
+                                                                                    <CustomTextField
+                                                                                        {...field}
+                                                                                        variant="outlined"
+                                                                                        fullWidth
+                                                                                        multiline
+                                                                                        rows={4}
+                                                                                        sx={{ marginBottom: 1 }}
+                                                                                    />
+                                                                                )}
+                                                                            </Field>
+                                                                            <ErrorMessage name="codeFunction">
+                                                                                {msg => <div style={{ color: 'red' }}>{msg}</div>}
+                                                                            </ErrorMessage>
+                                                                        </Grid>
+                                                                    ) :
+                                                                        (
+                                                                            <Field
+                                                                                as={TextField}
+
+                                                                                InputProps={{
+                                                                                    readOnly: key === null ? false : true,
+                                                                                    sx: {
+                                                                                        '& .MuiOutlinedInput-root': {
+                                                                                            '& fieldset': {
+                                                                                                borderColor: 'transparent',
+                                                                                            },
+                                                                                            '&:hover fieldset': {
+                                                                                                borderColor: 'transparent',
+                                                                                            },
+                                                                                            '&.Mui-focused fieldset': {
+                                                                                                borderColor: 'transparent',
+                                                                                            },
+                                                                                        },
+                                                                                    },
+                                                                                }}
+                                                                                name={item.dataIndex}
+                                                                                fullWidth
+                                                                                margin="normal"
+                                                                            />
+                                                                        )}
+                                                            <ErrorMessage name={item.dataIndex}>
+                                                                {msg => <div style={{ color: 'red' }}>{msg}</div>}
+                                                            </ErrorMessage>
+                                                        </Grid>
+                                                    );
+
+                                                })}
+
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={7}>
+                                            {/* <CustomFormLabel sx={{ margin: '0'}} htmlFor="description"></CustomFormLabel> */}
+                                            <Typography variant="h6" >
+                                                Chi tiết
+                                            </Typography>
+                                            <ReactQuill
+                                                value={values.detail}
+                                                onChange={(content) => setFieldValue('detail', content)}
+                                                theme="snow"
+                                                placeholder="Chi tiết sản phẩm"
+                                                style={{ height: "270px", marginTop: '15px', paddingBottom: "42px"}}
+                                            />
+                                            <Typography variant="h6" style={{marginTop: '10px'}} >
+                                                Hướng dẫn sử dụng
+                                            </Typography>
+                                            <ReactQuill
+                                                value={values.guide}
+                                                onChange={(content) => setFieldValue('guide', content)}
+                                                theme="snow"
+                                                placeholder="Hướng dẫn sử dụng sản phẩm"
+                                                style={{ height: "280px", marginTop: '15px' }}
+                                            />
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
                                     {key && key === 1 && <Strategy values={values} />}
                                     {key && key === 2 && <Function values={values} />}
-                                    {key && key === 3 && 'heleo3'}
+                                    {key && key === 3 && <File values={values} />}
+                                    {/* {key && key === 4 && 4234324} */}
+                                    {key && key === 5 && <AssistantProduct />}
 
                                 </Grid>
                             </Grid>
