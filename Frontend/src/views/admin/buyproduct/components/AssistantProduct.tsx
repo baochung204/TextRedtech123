@@ -11,15 +11,12 @@ import { IconChevronDown } from '@tabler/icons-react';
 import React from 'react';
 import AddFunction from 'src/components/apps/assistant/AssistantEditor/layout/addFunctions';
 import AddImage from 'src/components/apps/assistant/AssistantEditor/layout/addImage';
-import AddModel from 'src/components/apps/assistant/AssistantEditor/layout/addModel';
-import AddSearch from 'src/components/apps/assistant/AssistantEditor/layout/addSearch';
-import AddText from 'src/components/apps/assistant/AssistantEditor/layout/addText';
 import AddUrl from 'src/components/apps/assistant/AssistantEditor/layout/addUrl';
 import Strategy from 'src/components/apps/assistant/AssistantEditor/layout/Strategy';
-import Sli from 'src/components/apps/assistant/AssistantEditor/Sli';
 import PageContainer from 'src/components/container/PageContainer';
 import AddInforProduct from './addInForProduct';
 import AddModelProduct from './AddModelProduct';
+import AddSearchProduct from './AddSearchProduct';
 import AddTextProduct from './AddTextProduct';
 import SliderProduct from './SliderProduct';
 
@@ -87,13 +84,13 @@ const AssistantProduct = () => {
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddTextProduct />
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={12}>
-                      <SliderProduct />
-                    </Grid>
+                      <Grid item xs={12} sm={6} lg={12}>
+                        <SliderProduct />
+                      </Grid>
                     <Grid item xs={12} mt={2}>
                       <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} lg={6}>
-                          <AddSearch />
+                          <AddSearchProduct />
                         </Grid>
                         <Grid item xs={12} sm={6} lg={6}>
                           <AddFunction />
