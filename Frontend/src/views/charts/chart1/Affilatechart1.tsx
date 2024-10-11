@@ -33,7 +33,7 @@ const Affilatechart1 = () => {
           },
           total: {
             show: true,
-            label: 'Tỉ lệ',
+            label: '',
             formatter() {
               return '66%'; // Giá trị tổng
             },
