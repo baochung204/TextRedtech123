@@ -55,7 +55,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
             secretkey: '',
             hdsd: '',
             mota: '',
-
+            detail: '',
+            guide: '',
             // Function
 
             nhomFunction: "",
@@ -165,6 +166,9 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     secretkey: data.secretkey ?? '',
                     hdsd: data.hdsd ?? '',
                     mota: data.mota,
+                    // detail: data.detail,
+                    detail: data.detail ?? '',
+                    guide: data.guide,
                     nhomFunction: data.nhomFunction ?? '',
                     codeFunction: data.codeFunction ?? '',
                     levelx: data.levelx ?? '',
@@ -176,7 +180,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     trolyStrategy: data.trolyStrategy ?? '',
                     tomtatStrategy: data.tomtatStrategy ?? '',
                     noidungStrategy: data.noidungStrategy ?? '',
-                    file: data.file ?? ''
+                    files: data.files ?? ''
 
                 });
             }
@@ -453,7 +457,6 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                                                 {({ field }: any) => (
                                                                                     <CustomTextField
                                                                                         {...field}
-                                                                                        label="Code Function"
                                                                                         variant="outlined"
                                                                                         fullWidth
                                                                                         multiline
@@ -508,8 +511,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                 Chi tiết
                                             </Typography>
                                             <ReactQuill
-                                                value={values.mota}
-                                                onChange={(content) => setFieldValue('mota', content)}
+                                                value={values.detail}
+                                                onChange={(content) => setFieldValue('detail', content)}
                                                 theme="snow"
                                                 placeholder="Chi tiết sản phẩm"
                                                 style={{ height: "270px", marginTop: '15px', paddingBottom: "42px"}}
@@ -518,8 +521,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                                 Hướng dẫn sử dụng
                                             </Typography>
                                             <ReactQuill
-                                                value={values.mota}
-                                                onChange={(content) => setFieldValue('mota', content)}
+                                                value={values.guide}
+                                                onChange={(content) => setFieldValue('guide', content)}
                                                 theme="snow"
                                                 placeholder="Hướng dẫn sử dụng sản phẩm"
                                                 style={{ height: "280px", marginTop: '15px' }}
