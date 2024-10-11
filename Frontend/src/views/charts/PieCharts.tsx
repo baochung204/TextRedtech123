@@ -1,26 +1,44 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useState } from 'react';
 import Chart, { Props } from 'react-apexcharts';
 import Modarm from 'src/components/shared/moderm';
 
 const PieCharts = () => {
-  // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
   const warning = theme.palette.warning.main;
 
-  // 1
+  const seriespiechart = [45, 65, 27, 18, 35]; // Percentages
+  const labels = ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Google', 'Bạn bè', 'Khác'];
+
+  // 1. State to hold hovered percentage
+  const [hoveredPercent, setHoveredPercent] = useState<number | null>(null);
+
+  // 2. Calculate the total value for dynamic percentage calculation
+  const total = seriespiechart.reduce((acc, value) => acc + value, 0);
+
   const optionsdoughnutchart: Props = {
     chart: {
       id: 'donut-chart',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       foreColor: '#adb0bb',
+      events: {
+        // Capture the event when hovering over the slices
+        dataPointMouseEnter: (event, chartContext, config) => {
+          const seriesIndex = config.dataPointIndex;
+          const value = seriespiechart[seriesIndex];
+          const percent = ((value / total) * 100).toFixed(2); // Calculate percentage
+          setHoveredPercent(Number(percent));
+        },
+        dataPointMouseLeave: () => {
+          setHoveredPercent(null); // Reset when not hovering
+        },
+      },
     },
     dataLabels: {
-      enabled: true, // Enable data labels to display percentages
-      formatter: (val: number) => `${val.toFixed(2)}%`, // Format the percentage values
+      enabled: false,
     },
     plotOptions: {
       pie: {
@@ -28,24 +46,8 @@ const PieCharts = () => {
           size: '70px',
           labels: {
             show: true,
-            total: {
-              show: true,
-              showAlways: true,
-              label: 'Total',
-              fontSize: '16px',
-              fontWeight: 600,
-              color: theme.palette.text.primary,
-              formatter: (w: any) => {
-                const total = w.globals.seriesTotals.reduce((a: number, b: number) => a + b, 0);
-                return `${total}`;
-              },
-            },
             value: {
-              show: true,
-              fontSize: '14px',
-              fontWeight: 500,
-              color: theme.palette.text.secondary,
-              formatter: (val: number) => `${val.toFixed(2)}%`,
+              show: false, // We will show the percentage via our custom method
             },
           },
         },
@@ -56,19 +58,52 @@ const PieCharts = () => {
       position: 'bottom',
       width: '50px',
     },
-    colors: [secondary, '#2c5364', warning, '#99f2c8', primary],
+    colors: [primary, secondary, warning, '#2c5364', '#99f2c8', '#f5a623', '#e74c3c'],
     tooltip: {
+      enabled: true,
       theme: 'dark',
       fillSeriesColor: false,
     },
-    labels: ['Facebook', 'Tiktok', 'Email', 'Zalo', 'Instagram'],
+    labels,
   };
-
-  const seriespiechart = [45, 65, 27, 18, 35];
 
   return (
     <Modarm title="Nguồn khách hàng" text="Nguồn khách hàng" description="">
-      <Chart options={optionsdoughnutchart} series={seriespiechart} type="donut" height="300px" />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          position: 'relative', // To position the percentage in the center
+        }}
+      >
+        <Box sx={{ position: 'relative', width: '300px', height: '300px' }}>
+          {/* Centered Percentage */}
+          {hoveredPercent !== null && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '45%',
+                left: '50%',
+                transform: 'translate(-40%, -90%)',
+                fontSize: '24px',
+                fontWeight: 'bold',
+                color: theme.palette.text.primary,
+              }}
+            >
+              {hoveredPercent}%
+            </Box>
+          )}
+          {/* Pie Chart */}
+          <Chart
+            options={optionsdoughnutchart}
+            series={seriespiechart}
+            type="donut"
+            height="300px"
+          />
+        </Box>
+      </Box>
     </Modarm>
   );
 };
