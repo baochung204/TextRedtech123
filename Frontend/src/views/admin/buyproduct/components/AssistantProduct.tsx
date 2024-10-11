@@ -11,14 +11,14 @@ import { IconChevronDown } from '@tabler/icons-react';
 import React from 'react';
 import AddFunction from 'src/components/apps/assistant/AssistantEditor/layout/addFunctions';
 import AddImage from 'src/components/apps/assistant/AssistantEditor/layout/addImage';
+import AddModel from 'src/components/apps/assistant/AssistantEditor/layout/addModel';
 import AddSearch from 'src/components/apps/assistant/AssistantEditor/layout/addSearch';
+import AddText from 'src/components/apps/assistant/AssistantEditor/layout/addText';
 import AddUrl from 'src/components/apps/assistant/AssistantEditor/layout/addUrl';
 import Strategy from 'src/components/apps/assistant/AssistantEditor/layout/Strategy';
 import Sli from 'src/components/apps/assistant/AssistantEditor/Sli';
 import PageContainer from 'src/components/container/PageContainer';
-import AddInfor from 'src/components/apps/assistant/AssistantEditor/layout/addInfor';
-import AddModel from 'src/components/apps/assistant/AssistantEditor/layout/addModel';
-import AddText from 'src/components/apps/assistant/AssistantEditor/layout/addText';
+import AddInforProduct from './addInForProduct';
 
 const AssistantProduct = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -60,7 +60,7 @@ const AssistantProduct = () => {
           {/* Cột 1 */}
           <Grid item xs={12} sm={12} lg={8}>
             <Grid item xs={12} sm={12} lg={12}>
-              <AddInfor />
+              <AddInforProduct />
             </Grid>
 
             <Grid item xs={12} sm={12} lg={12} mt={2}>
