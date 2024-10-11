@@ -23,8 +23,10 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
-// import DialogPersonel from '../dialog/DialogPersonel';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+
+
 interface PropsItem {
   value: string;
   open: boolean;
@@ -45,12 +47,14 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
   const column = useMemo<Column[]>(
     () => [
-      { dataIndex: 'id', title: 'ID', validate: true },
+      {
+        dataIndex: `id`,
+        title: 'ID'
+      },
       {
         dataIndex: 'createdAt',
         title: 'Ngày tạo',
         render: (value: any) => value.toLocaleDateString(),
-        validate: true,
       },
       {
         dataIndex: 'employeeName',
@@ -71,16 +75,15 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
           </>
         ),
 
-        validate: true,
       },
-      { dataIndex: 'department', title: 'Phòng ban', validate: true },
-      { dataIndex: 'email', title: 'Email', validate: true },
-      { dataIndex: 'phoneNumber', title: 'Số điện thoại', validate: true },
-      { dataIndex: 'articleCount', title: 'Bài viết', validate: true },
+      { dataIndex: 'department', title: 'Phòng ban' },
+      { dataIndex: 'email', title: 'Email' },
+      { dataIndex: 'phoneNumber', title: 'Số điện thoại' },
+      { dataIndex: 'articleCount', title: 'Bài viết' },
       {
         dataIndex: 'status',
         title: 'Trạng thái',
-        validate: true,
+
 
         render: (value: any) => (
           <>
@@ -99,7 +102,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
       {
         dataIndex: 'isActive',
         title: 'Hoạt động',
-        validate: true,
         render: (_value, row: any) => (
           <>
             <IconButton
@@ -134,6 +136,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     } else {
       setDataSelect([]);
     }
+
   }, [column]);
 
   const handleColumnChange = (event: any) => {
@@ -142,6 +145,9 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
+
+  console.log('dataselect', dataSelect.length);
+
 
   return (
     <>
@@ -245,10 +251,10 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
             >
               <MenuItem>
                 <Checkbox
-                  checked={dataSelect.length === column.length}
+                  checked={!(dataSelect.length === column.length)}
                   indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
-                  onChange={(e) => {
-                    if (e.target.checked) {
+                  onChange={() => {
+                    if (dataSelect.length < column.length) {
                       const allColumns = column.map((header: Column) => header.dataIndex);
                       setDataSelect(allColumns);
                     } else {
@@ -259,7 +265,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 <ListItemText primary="Chọn tất cả" />
               </MenuItem>
               {column.map((header: Column) => {
-                const isSelected = dataSelect.includes(header.dataIndex);
+                const isSelected = !dataSelect.includes(header.dataIndex);
                 return (
                   <MenuItem key={header.dataIndex} value={header.dataIndex}>
                     <Checkbox checked={isSelected} />
@@ -268,6 +274,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 );
               })}
             </Select>
+
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

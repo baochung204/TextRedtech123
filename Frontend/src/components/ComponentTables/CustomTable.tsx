@@ -17,7 +17,7 @@ import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 
 interface Column {
   title: string;
-  dataIndex?: string;
+  dataIndex: string;
   render?: (value: any, record: any, rowIndex: number) => React.ReactNode;
   sort?: boolean;
   isValids?: boolean;
