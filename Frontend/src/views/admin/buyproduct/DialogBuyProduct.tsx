@@ -10,6 +10,7 @@ import File from "./components/File";
 import { validationSchema1, validationSchema2, validationSchema3 } from "./validationSchema";
 import AssistantProduct from "./components/AssistantProduct";
 import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
+import Model from "./components/Model";
 
 
 interface PropUp {
@@ -491,7 +492,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                     {key && key === 1 && <Strategy values={values} />}
                                     {key && key === 2 && <Function values={values} />}
                                     {key && key === 3 && <File values={values} />}
-                                    {/* {key && key === 4 && 4234324} */}
+                                    {key && key === 4 && <Model values={values}/>}
                                     {key && key === 5 && <AssistantProduct />}
 
                                 </Grid>

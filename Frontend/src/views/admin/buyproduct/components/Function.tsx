@@ -64,6 +64,7 @@ import ReactQuill from "react-quill";
 import { useState } from "react";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'; // Icon cho nút upload ảnh
 import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
+import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
 
 interface FunctionProps {
   values: {
@@ -98,7 +99,8 @@ const Function = ({ values }: FunctionProps) => {
   };
 
   return (
-    <Grid container spacing={2} sx={{ marginTop: 2, paddingLeft: 38 }}>
+    <Grid container spacing={2} sx={{  paddingLeft: 38 }}>
+      <CustomFormLabel htmlFor="name">Function</CustomFormLabel>
       <Grid container alignItems="center" spacing={2}>
         {/* Khu vực hiển thị nút upload và các ảnh đã upload */}
         <Grid item>
