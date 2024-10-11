@@ -94,7 +94,7 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
             alignItems: 'center',
           }}
         >
-          Chọn ảnh
+          Chọn function
           <CloseIcon onClick={handleClose} style={{ cursor: 'pointer', opacity: 0.7 }} />
         </DialogTitle>
 
@@ -122,7 +122,7 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="subtitle1" fontWeight="bold">
-                  Tên ảnh
+                  Tên function
                 </Typography>
               </Grid>
               <Grid item xs={4}>
@@ -164,11 +164,32 @@ const FunctionDialog: React.FC<PropsFunction> = ({ openFunction, setOpenFunction
                         noWrap
                         sx={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}
                       >
-                        <Avatar sx={{ mr: 1 }} src={file.url} />
                         {file.name}
                       </Typography>
                     </Grid>
                     {/* Add more details or actions here if needed */}
+                    <Grid item xs={4}>
+                      <Typography
+                        display={'flex'}
+                        variant="body1"
+                        alignItems={"center"}
+                        noWrap
+                        sx={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
+                        {file.name}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography
+                        display={'flex'}
+                        variant="body1"
+                        alignItems={"center"}
+                        noWrap
+                        sx={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
+                        {file.name}
+                      </Typography>
+                    </Grid>
                   </Grid>
                 </ListItem>
               </React.Fragment>
