@@ -9,6 +9,7 @@ import Strategy from "./components/Strategy";
 import File from "./components/File";
 import { validationSchema1, validationSchema2, validationSchema3 } from "./validationSchema";
 import AssistantProduct from "./components/AssistantProduct";
+import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
 
 
 interface PropUp {
@@ -168,7 +169,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     mota: data.mota,
                     // detail: data.detail,
                     detail: data.detail ?? '',
-                    guide: data.guide,
+                    guide: data.guide ?? '',
                     nhomFunction: data.nhomFunction ?? '',
                     codeFunction: data.codeFunction ?? '',
                     levelx: data.levelx ?? '',
@@ -180,40 +181,49 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                     trolyStrategy: data.trolyStrategy ?? '',
                     tomtatStrategy: data.tomtatStrategy ?? '',
                     noidungStrategy: data.noidungStrategy ?? '',
-                    files: data.files ?? ''
+                    files: data.files ?? '',
+                    model: data.model ?? ''
 
                 });
             }
         }
     }, [checkValue, emptyInitialValues, selectID, value]);
 
-    const form: PropsTitle[] = [
-        {
-            title: 'Tên sản phẩm',
-            dataIndex: 'tensanpham'
-        },
-        {
-            title: 'Danh mục',
-            dataIndex: 'danhmuc'
-        },
-        {
-            title: 'Giá niêm yết',
-            dataIndex: 'gianiemyet'
-        },
-        {
-            title: 'Giá khuyến mại',
-            dataIndex: 'giakhuyenmai'
-        },
-        {
-            title: 'Tag',
-            dataIndex: 'tags'
-        },
-        {
-            title: 'Mô tả',
-            dataIndex: 'mota'
-        },
+    // const form: PropsTitle[] = [
+    //     {
+    //         title: 'Tên sản phẩm',
+    //         dataIndex: 'tensanpham'
+    //     },
+    //     {
+    //         title: 'Danh mục',
+    //         dataIndex: 'danhmuc'
+    //     },
+    //     {
+    //         title: 'Giá niêm yết',
+    //         dataIndex: 'gianiemyet'
+    //     },
+    //     {
+    //         title: 'Giá khuyến mại',
+    //         dataIndex: 'giakhuyenmai'
+    //     },
+    //     {
+    //         title: 'Tag',
+    //         dataIndex: 'tags'
+    //     },
+    //     {
+    //         title: 'Mô tả',
+    //         dataIndex: 'mota'
+    //     },
+    //     {
+    //         title: "Chi tiết",
+    //         dataIndex: "chitiet"
+    //     },
+    //     {
+    //         title: "Hướng dẫn",
+    //         dataIndex: "huongdan"
+    //     }
 
-    ];
+    // ];
     const [tags, setTags] = useState<Tag[]>([]);
     const [gianiemyet, setGianiemyet] = useState<Tag[]>([]);
 
@@ -277,7 +287,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                 validateOnChange={true}
                 validateOnBlur={false}
             >
-                {({ values, setFieldValue, resetForm }) => (
+                {({ values, setFieldValue, resetForm, errors, touched }) => (
                     <Form>
                         <DialogContent>
                             <Grid container spacing={2}>
@@ -365,167 +375,118 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                                 </Grid>
                                 <Grid item xs={9}>
                                     <Grid container spacing={2}>
-
-                                        <Grid item xs={5}>
-                                            <Grid container spacing={2}>
-                                                {form.map((item, index) => {
-                                                    return (
-                                                        <Grid item xs={12} key={index}>
-                                                            <Typography variant="h6" >
-                                                                {item.title}
-                                                            </Typography>
-                                                            {item.dataIndex === 'danhmuc' ? (
-                                                                <>
-                                                                    <Autocomplete
-                                                                        value={value} // Giá trị danh mục hiện tại
-                                                                        onChange={(_event, newValue) => {
-                                                                            if (newValue) {
-                                                                                setValue(newValue); // Cập nhật giá trị danh mục
-                                                                                setFieldValue('danhmuc', newValue.values); // Lưu giá trị vào Formik
-                                                                                console.log("Selected Category:", newValue.values);
-                                                                            }
-                                                                        }}
-                                                                        options={options} // Các danh mục chính
-                                                                        getOptionLabel={(option) => option.label}
-                                                                        isOptionEqualToValue={(option, value) => option.values === value.values}
-                                                                        renderInput={(params) => <TextField {...params} label="Chọn danh mục" />}
-                                                                        sx={{ mt: 2 }}
-                                                                    />
-
-                                                                    {/* Khi chọn "Model" (values === 4), hiển thị select cho modelOptions */}
-                                                                    {value && value.values === 4 && (
-                                                                        <Grid item xs={12} sx={{ mt: 2 }}>
-                                                                            <Autocomplete
-                                                                                options={modelOptions} // Hiển thị các lựa chọn model
-                                                                                getOptionLabel={(option) => option.label}
-                                                                                onChange={(_event, newValue) => {
-                                                                                    setFieldValue('model', newValue?.values); // Lưu giá trị model được chọn
-                                                                                    console.log("Selected Model:", newValue?.values);
-                                                                                }}
-                                                                                renderInput={(params) => (
-                                                                                    <TextField {...params} label="Chọn model chi tiết" />
-                                                                                )}
-                                                                            />
-                                                                        </Grid>
-                                                                    )}
-                                                                </>
-                                                            ) :
-
-                                                                item.dataIndex === 'tags' ? (
-                                                                    <Autocomplete
-                                                                        multiple
-                                                                        fullWidth
-
-                                                                        open={false}
-                                                                        id="tags-outlined"
-                                                                        size="medium"
-                                                                        options={[]}
-                                                                        getOptionLabel={(option) => option.title}
-                                                                        value={tags}
-                                                                        filterSelectedOptions
-                                                                        sx={{ mt: 2 }}
-                                                                        onChange={(_event, newValue) =>
-                                                                            setTags(newValue.map((tag) => ({ ...tag, color: getRandomColor() })))
-                                                                        }
-                                                                        renderTags={(value, getTagProps) =>
-                                                                            value.map((option, index) => (
-                                                                                <Chip
-                                                                                    label={option.title}
-                                                                                    {...getTagProps({ index })}
-                                                                                    style={{ backgroundColor: option.color, color: '#fff' }}
-                                                                                />
-                                                                            ))
-                                                                        }
-                                                                        renderInput={(params) => (
-                                                                            <CustomTextField
-                                                                                {...params}
-                                                                                placeholder="Enter tags"
-                                                                                aria-label="tags"
-                                                                                onKeyDown={handleKeyDown}
-                                                                                InputProps={{
-                                                                                    ...params.InputProps,
-                                                                                    endAdornment: null,
-                                                                                    readOnly: key === null ? false : true,
-                                                                                }}
-                                                                            />
-                                                                        )}
-                                                                    />
-                                                                ) :
-                                                                    item.dataIndex === "mota" ? (
-                                                                        <Grid item xs={12}>
-                                                                            <Field name="mota">
-                                                                                {({ field }: any) => (
-                                                                                    <CustomTextField
-                                                                                        {...field}
-                                                                                        variant="outlined"
-                                                                                        fullWidth
-                                                                                        multiline
-                                                                                        rows={4}
-                                                                                        sx={{ marginBottom: 1 }}
-                                                                                    />
-                                                                                )}
-                                                                            </Field>
-                                                                            <ErrorMessage name="codeFunction">
-                                                                                {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                                                            </ErrorMessage>
-                                                                        </Grid>
-                                                                    ) :
-                                                                        (
-                                                                            <Field
-                                                                                as={TextField}
-
-                                                                                InputProps={{
-                                                                                    readOnly: key === null ? false : true,
-                                                                                    sx: {
-                                                                                        '& .MuiOutlinedInput-root': {
-                                                                                            '& fieldset': {
-                                                                                                borderColor: 'transparent',
-                                                                                            },
-                                                                                            '&:hover fieldset': {
-                                                                                                borderColor: 'transparent',
-                                                                                            },
-                                                                                            '&.Mui-focused fieldset': {
-                                                                                                borderColor: 'transparent',
-                                                                                            },
-                                                                                        },
-                                                                                    },
-                                                                                }}
-                                                                                name={item.dataIndex}
-                                                                                fullWidth
-                                                                                margin="normal"
-                                                                            />
-                                                                        )}
-                                                            <ErrorMessage name={item.dataIndex}>
-                                                                {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                                            </ErrorMessage>
-                                                        </Grid>
-                                                    );
-
-                                                })}
-
-                                            </Grid>
+                                        {/* Tên sản phẩm and Mô tả */}
+                                        <Grid item xs={6}>
+                                        <CustomFormLabel htmlFor="name">Tên sản phẩm</CustomFormLabel>
+                                            <TextField
+                                                fullWidth
+                                                required
+                                                // label="Tên sản phẩm"
+                                                value={values.tensanpham}
+                                                error={Boolean(errors.tensanpham && touched.tensanpham)}
+                                                helperText={errors.tensanpham && touched.tensanpham ? errors.tensanpham : ''}
+                                                onChange={(e) => setFieldValue('tensanpham', e.target.value)}
+                                            />
                                         </Grid>
-                                        <Grid item xs={7}>
-                                            {/* <CustomFormLabel sx={{ margin: '0'}} htmlFor="description"></CustomFormLabel> */}
-                                            <Typography variant="h6" >
-                                                Chi tiết
-                                            </Typography>
+                                        <Grid item xs={6}>
+                                        <CustomFormLabel htmlFor="name">Mô tả</CustomFormLabel>
+                                            <TextField
+                                                fullWidth
+                                                required
+                                                // label="Tên sản phẩm"
+                                                value={values.mota}
+                                                error={Boolean(errors.mota && touched.mota)}
+                                                helperText={errors.mota && touched.mota ? errors.mota : ''}
+                                                onChange={(e) => setFieldValue('mota', e.target.value)}
+                                            />
+                                        </Grid>
+
+                                        {/* Giá niêm yết and Giá khuyến mại */}
+                                        <Grid item xs={6}>
+                                        <CustomFormLabel htmlFor="name">Giá niêm yết</CustomFormLabel>
+                                            <TextField
+                                                fullWidth
+                                                required
+                                                // label="Giá niêm yết"
+                                                value={values.gianiemyet}
+                                                error={Boolean(errors.gianiemyet && touched.gianiemyet)}
+                                                helperText={errors.gianiemyet && touched.gianiemyet ? errors.gianiemyet : ''}
+                                                onChange={(e) => setFieldValue('gianiemyet', e.target.value)}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                        <CustomFormLabel htmlFor="name">Giá khuyến mại</CustomFormLabel>
+                                            <TextField
+                                                fullWidth
+                                                required
+                                                label="Giá khuyến mại"
+                                                value={values.giakhuyenmai}
+                                                error={Boolean(errors.giakhuyenmai && touched.giakhuyenmai)}
+                                                helperText={errors.giakhuyenmai && touched.giakhuyenmai ? errors.giakhuyenmai : ''}
+                                                onChange={(e) => setFieldValue('giakhuyenmai', e.target.value)}
+                                            />
+                                        </Grid>
+
+                                        {/* Tags and Danh mục */}
+                                        <Grid item xs={6}>
+                                        <CustomFormLabel htmlFor="name">Tags</CustomFormLabel>
+                                            <Autocomplete
+                                                multiple
+                                                options={[]}
+                                                value={tags}
+                                                renderTags={(value, getTagProps) =>
+                                                    value.map((option, index) => (
+                                                        <Chip
+                                                            label={option.title}
+                                                            {...getTagProps({ index })}
+                                                            style={{ backgroundColor: option.color, color: '#fff' }}
+                                                        />
+                                                    ))
+                                                }
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        // label="Tags"
+                                                        placeholder="Enter tags"
+                                                    />
+                                                )}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                        <CustomFormLabel htmlFor="name">Chọn danh mục</CustomFormLabel>
+                                            <Autocomplete
+                                                value={value}
+                                                onChange={(_event, newValue) => {
+                                                    if (newValue) {
+                                                        setValue(newValue);
+                                                        setFieldValue('danhmuc', newValue.values);
+                                                    }
+                                                }}
+                                                options={options}
+                                                getOptionLabel={(option) => option.label}
+                                                renderInput={(params) => <TextField {...params} />}
+                                            />
+                                        </Grid>
+
+                                        {/* Chi tiết sản phẩm */}
+                                        <Grid item xs={12}>
+                                        <CustomFormLabel htmlFor="name">Chi tiết sản phẩm</CustomFormLabel>
                                             <ReactQuill
                                                 value={values.detail}
                                                 onChange={(content) => setFieldValue('detail', content)}
                                                 theme="snow"
                                                 placeholder="Chi tiết sản phẩm"
-                                                style={{ height: "270px", marginTop: '15px', paddingBottom: "42px"}}
                                             />
-                                            <Typography variant="h6" style={{marginTop: '10px'}} >
-                                                Hướng dẫn sử dụng
-                                            </Typography>
+                                        </Grid>
+
+                                        {/* Hướng dẫn */}
+                                        <Grid item xs={12}>
+                                        <CustomFormLabel htmlFor="name">Hướng dẫn</CustomFormLabel>
                                             <ReactQuill
                                                 value={values.guide}
                                                 onChange={(content) => setFieldValue('guide', content)}
                                                 theme="snow"
-                                                placeholder="Hướng dẫn sử dụng sản phẩm"
-                                                style={{ height: "280px", marginTop: '15px' }}
+                                                placeholder="Hướng dẫn"
                                             />
                                         </Grid>
                                     </Grid>

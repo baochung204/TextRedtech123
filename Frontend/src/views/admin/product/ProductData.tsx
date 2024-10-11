@@ -49,7 +49,8 @@ interface ProductProps {
     noidungStrategy?: string
     files?: string
     detail?: string;
-    guide?: string
+    guide?: string 
+    model?: string
 }
 
 

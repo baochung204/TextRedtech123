@@ -222,6 +222,6 @@ const ProductClassification: React.FC = () => {
 
     </Box>
   );
-};
+};  
 
 export default ProductClassification;

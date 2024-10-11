@@ -28,8 +28,11 @@ const Affilatechart1 = () => {
             color: '#000000', // Màu đen cho tên
           },
           value: {
-            fontSize: '20px', // Tăng kích thước chữ cho giá trị
-            color: '#000000', // Màu đen cho giá trị
+            show: true, // Hiển thị giá trị tổng
+            fontSize: '22px', // Tăng kích thước chữ
+            fontWeight: 'bold', // Làm chữ đậm
+            color: '#000000', // Màu chữ đen
+            offsetY: 0, // Đảm bảo giá trị nằm chính giữa theo chiều dọc
           },
           total: {
             show: true,

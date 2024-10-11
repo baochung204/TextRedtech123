@@ -515,7 +515,7 @@ const BuyPoints = () => {
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     value={value1}
-                    onChange={(newValue) => {
+                    onChange={(newValue: any) => {
                       setValue1(newValue);
                     }}
                     renderInput={(props) => (
