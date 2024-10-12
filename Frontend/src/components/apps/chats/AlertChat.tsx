@@ -15,7 +15,7 @@ const AlertChat = ({ handleClose, openChartAlert, text }: Props) => {
       autoHideDuration={1000}
       onClose={handleClose}
     >
-      <Alert severity="error" variant="filled" sx={{ width: '100%', color: 'white' }}>
+      <Alert severity="success" variant="filled" sx={{ width: '100%', color: 'white' }}>
         {text}
       </Alert>
     </Snackbar>
