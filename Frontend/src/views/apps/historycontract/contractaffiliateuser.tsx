@@ -5,7 +5,6 @@ import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner
 import Otp from './Otp';
 import AlertChat from 'src/components/apps/chats/AlertChat';
 
-
 const ContractAffiliateUser = () => {
   const theme = useTheme(); // Get theme to check dark/light mode
   const isDarkMode = theme.palette.mode === 'dark';
@@ -31,7 +30,7 @@ const ContractAffiliateUser = () => {
     setOpenOtpDialog(false);
   };
 
-  const handleAlertClose = (event: React.SyntheticEvent | any) => {
+  const handleAlertClose = () => {
     setOpenChartAlert(false);
   };
 

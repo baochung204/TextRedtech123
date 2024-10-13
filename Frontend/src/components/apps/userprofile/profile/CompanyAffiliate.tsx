@@ -25,6 +25,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import Rule from 'src/views/apps/contract/Affiliate';
+import { Worker } from '@react-pdf-viewer/core';
+import PDFViewer from 'src/components/apps/userprofile/profile/PDFViewer';
 
 const steps = [
   'Thỏa thuận hợp tác',
@@ -78,6 +80,10 @@ const validationSchemas = [
   }),
   Yup.object({}),
 ];
+
+const base64String =
+  'JVBERi0xLjMKMyAwIG9iago8PC9UeXBlIC9QYWdlCi9QYXJlbnQgMSAwIFIKL1Jlc291cmNlcyAyIDAgUgovQ29udGVudHMgNCAwIFI+PgplbmRvYmoKNCAwIG9iago8PC9GaWx0ZXIgL0ZsYXRlRGVjb2RlIC9MZW5ndGggOTQ+PgpzdHJlYW0KeJwzUvDiMtAzNVco53IKUdB3M1QwNNIzMFAISVNwDQEJGRlZ6JlbKphbmuqZmyuEpChoeKTm5OTrKJRkZBYrAFGiQnFibkFOqkKAi5tCWmZOqqKmQkgWSDcA3HAXSQplbmRzdHJlYW0KZW5kb2JqCjEgMCBvYmoKPDwvVHlwZSAvUGFnZXMKL0tpZHMgWzMgMCBSIF0KL0NvdW50IDEKL01lZGlhQm94IFswIDAgNTk1LjI4IDg0MS44OV0KPj4KZW5kb2JqCjUgMCBvYmoKPDwvVHlwZSAvRm9udAovQmFzZUZvbnQgL0hlbHZldGljYQovU3VidHlwZSAvVHlwZTEKL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1Byb2NTZXQgWy9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUldCi9Gb250IDw8Ci9GMSA1IDAgUgo+PgovWE9iamVjdCA8PAo+Pgo+PgplbmRvYmoKNiAwIG9iago8PAovUHJvZHVjZXIgKFB5RlBERiAxLjcuMiBodHRwOi8vcHlmcGRmLmdvb2dsZWNvZGUuY29tLykKL0NyZWF0aW9uRGF0ZSAoRDoyMDI0MTAxMzEzNDE0MykKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL1R5cGUgL0NhdGFsb2cKL1BhZ2VzIDEgMCBSCi9PcGVuQWN0aW9uIFszIDAgUiAvRml0SCBudWxsXQovUGFnZUxheW91dCAvT25lQ29sdW1uCj4+CmVuZG9iagp4cmVmCjAgOAowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAyNTAgMDAwMDAgbiAKMDAwMDAwMDQzMyAwMDAwMCBuIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwODcgMDAwMDAgbiAKMDAwMDAwMDMzNyAwMDAwMCBuIAowMDAwMDAwNTM3IDAwMDAwIG4gCjAwMDAwMDA2NDYgMDAwMDAgbiAKdHJhaWxlcgo8PAovU2l6ZSA4Ci9Sb290IDcgMCBSCi9JbmZvIDYgMCBSCj4+CnN0YXJ0eHJlZgo3NDkKJSVFT0YK';
+
 const CompanyAffiliate = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set<number>());
@@ -451,107 +457,8 @@ const CompanyAffiliate = () => {
         return (
           <Box sx={{ width: '100%', padding: '20px' }}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/iCRV5g-u_M0?si=fM5Z3KQsaL5uv_PA"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                ></iframe>
-              </Grid>
-              <Grid item xs={6}>
-                <Box
-                  sx={{
-                    border: `1px solid ${isDarkMode ? '#444' : '#ccc'}`,
-                    padding: '24px',
-                    boxShadow: isDarkMode
-                      ? '0px 4px 12px rgba(0, 0, 0, 0.7)'
-                      : '0px 4px 12px rgba(0, 0, 0, 0.1)',
-                    backgroundColor: isDarkMode ? theme.palette.background.paper : '#fafafa',
-                    height: '100%',
-                    color: isDarkMode ? theme.palette.text.primary : 'black',
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontWeight: 'bold',
-                      fontSize: '25px',
-                      marginBottom: '20px',
-                      color: isDarkMode ? theme.palette.text.primary : '#333',
-                    }}
-                  >
-                    Hướng dẫn ký hợp đồng
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      fontSize: '16px',
-                      marginBottom: '20px',
-                      color: isDarkMode ? theme.palette.text.secondary : '#555',
-                    }}
-                  >
-                    Bước 1: Tải xuống hợp đồng có chứa thông tin của đối tác.
-                  </Typography>
-
-                  <Box sx={{ textAlign: 'center', marginBottom: '20px' }}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      sx={{
-                        padding: '8px 16px',
-                        borderRadius: '4px',
-                        fontSize: '14px',
-                      }}
-                    >
-                      Tải xuống
-                    </Button>
-                  </Box>
-
-                  <Typography
-                    sx={{
-                      fontSize: '16px',
-                      marginBottom: '20px',
-                      color: isDarkMode ? theme.palette.text.secondary : '#555',
-                    }}
-                  >
-                    Bước 2: Kiểm tra & xác minh toàn bộ thông tin trong hợp đồng.
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      fontSize: '16px',
-                      marginBottom: '20px',
-                      color: isDarkMode ? theme.palette.text.secondary : '#555',
-                    }}
-                  >
-                    Bước 3: Tiến hành ký hợp đồng như video hướng dẫn bên trái.
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      fontSize: '16px',
-                      marginBottom: '20px',
-                      color: isDarkMode ? theme.palette.text.secondary : '#555',
-                    }}
-                  >
-                    Bước 4: Tải file hợp đồng đã ký lên.
-                  </Typography>
-
-                  <Box sx={{ textAlign: 'center' }}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      sx={{
-                        padding: '8px 16px',
-                        borderRadius: '4px',
-                        fontSize: '14px',
-                      }}
-                    >
-                      Tải hợp đồng đã ký lên
-                    </Button>
-                  </Box>
-                </Box>
+              <Grid sx={6}>
+                <PDFViewer base64Data={base64String} />
               </Grid>
             </Grid>
           </Box>
