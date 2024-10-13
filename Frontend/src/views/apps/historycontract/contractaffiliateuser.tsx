@@ -35,7 +35,6 @@ const ContractAffiliateUser = () => {
   };
 
   const handleOtpSubmit = () => {
-    // Logic for verifying account can be added here
     setOpenChartAlert(true); // Show the success alert after OTP verification
     handleCloseOtpDialog(); // Close the OTP dialog
   };

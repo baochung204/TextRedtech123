@@ -1,32 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import { useTheme } from '@emotion/react';
 import {
-  Box,
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-  Typography,
-  FormControl,
-  Select,
-  MenuItem,
-  Input,
-  Grid,
-  Stack,
   Alert,
+  Box,
+  Button,
   Checkbox,
   Container,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  Grid,
+  Input,
+  MenuItem,
+  Select,
+  Stack,
+  Step,
+  StepLabel,
+  Stepper,
+  Typography,
 } from '@mui/material';
-import PageContainer from 'src/components/container/PageContainer';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-import { Link } from 'react-router-dom';
-import { useTheme } from '@emotion/react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
-import Rule from 'src/views/apps/contract/Affiliate';
-import { Worker } from '@react-pdf-viewer/core';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PDFViewer from 'src/components/apps/userprofile/profile/PDFViewer';
+import PageContainer from 'src/components/container/PageContainer';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import Rule from 'src/views/apps/contract/Affiliate';
+import Otp from 'src/views/apps/historycontract/Otp';
+import * as Yup from 'yup';
+import AlertChat from '../../chats/AlertChat';
 
 const steps = [
   'Thỏa thuận hợp tác',
@@ -90,6 +94,35 @@ const CompanyAffiliate = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  const [open, setOpen] = useState(false);
+  const [openOtpDialog, setOpenOtpDialog] = useState(false); // State for OTP dialog
+  const [openChartAlert, setOpenChartAlert] = useState(false); // State for alert
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpenOtpDialog = () => {
+    setOpen(false); // Close the first dialog
+    setOpenOtpDialog(true); // Open the OTP dialog
+  };
+
+  const handleCloseOtpDialog = () => {
+    setOpenOtpDialog(false);
+  };
+
+  const handleAlertClose = () => {
+    setOpenChartAlert(false);
+  };
+
+  const handleOtpSubmit = () => {
+    setOpenChartAlert(true); // Show the success alert after OTP verification
+    handleCloseOtpDialog(); // Close the OTP dialog
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -457,8 +490,79 @@ const CompanyAffiliate = () => {
         return (
           <Box sx={{ width: '100%', padding: '20px' }}>
             <Grid container spacing={2}>
-              <Grid sx={6}>
+              <Grid item xs={12}>
                 <PDFViewer base64Data={base64String} />
+              </Grid>
+              <Grid item xs={12}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Button variant="contained" color="primary" onClick={handleClickOpen}>
+                    Ký hợp đồng ngay
+                  </Button>
+                </Box>
+
+                {/* First Popup Dialog */}
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  maxWidth="md"
+                  fullWidth
+                  PaperProps={{
+                    sx: {
+                      width: '400px',
+                      maxWidth: '100%',
+                    },
+                  }}
+                >
+                  <DialogTitle sx={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
+                    Hợp Đồng
+                  </DialogTitle>
+                  <DialogContent>
+                    <Box
+                      sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}
+                    >
+                      <Button sx={{ width: '150px' }}>Ký USB</Button>
+                      <Button sx={{ width: '150px' }} onClick={handleOpenOtpDialog}>
+                        Ký OTP
+                      </Button>
+                    </Box>
+                  </DialogContent>
+                </Dialog>
+
+                {/* Second Popup Dialog for OTP */}
+                <Dialog
+                  open={openOtpDialog}
+                  onClose={handleCloseOtpDialog}
+                  maxWidth="sm"
+                  fullWidth
+                  PaperProps={{
+                    sx: {
+                      width: '500px',
+                      maxWidth: '100%',
+                    },
+                  }}
+                >
+                  <DialogTitle sx={{ display: 'flex', justifyContent: 'center' }}>
+                    Xác nhận OTP
+                  </DialogTitle>
+                  <DialogContent
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      padding: '40px',
+                    }}
+                  >
+                    <Otp onOtpSubmit={handleOtpSubmit} /> {/* Pass the submit handler */}
+                  </DialogContent>
+                </Dialog>
+
+                {/* AlertChat Component */}
+                <AlertChat
+                  handleClose={handleAlertClose}
+                  openChartAlert={openChartAlert}
+                  text="Xác minh tài khoản thành công!" // Success Alert message
+                />
               </Grid>
             </Grid>
           </Box>
