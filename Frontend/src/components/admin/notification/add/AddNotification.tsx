@@ -49,11 +49,10 @@ const AddNotification = () => {
 
   const validateSchema = Yup.object().shape({
     title: Yup.string().required('Tiêu đề là bắt buộc'),
-    tags: Yup.string().required('Tags là bắt buộc'),
+    tags: Yup.array().min(1, 'Tags là bắt buộc').required('Tags là bắt buộc'),
     url: Yup.string().url('Đường dẫn không hợp lệ').required('Đường dẫn là bắt buộc'),
     content: Yup.string().required('Nội dung là bắt buộc'),
     status: Yup.string().required('Trạng thái là bắt buộc'),
-    tags: Yup.array().min(1, 'Tags là bắt buộc').required('Tags là bắt buộc'),
   });
 
   const formik = useFormik({
@@ -63,7 +62,7 @@ const AddNotification = () => {
       url: '',
       content: '',
       status: '',
-      tags: [],
+      // tags: [],
     },
     validationSchema: validateSchema,
     validateOnChange: true,

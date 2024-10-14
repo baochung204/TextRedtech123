@@ -1,4 +1,4 @@
-import { Favorite, Visibility } from '@mui/icons-material';
+import { Visibility } from '@mui/icons-material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {

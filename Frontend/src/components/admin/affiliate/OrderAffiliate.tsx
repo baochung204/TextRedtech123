@@ -4,7 +4,6 @@ import {
   Badge,
   Box,
   Checkbox,
-  Chip,
   Grid,
   IconButton,
   InputAdornment,
@@ -120,20 +119,20 @@ const dataSource = [
   },
 ];
 
-const getStatusAccountColor = (status: string) => {
-  switch (status) {
-    case 'Hoạt động':
-      return 'success'; // Green for approved
-    case 'Chờ duyệt':
-      return 'warning'; // Yellow for pending approval
-    case 'Từ chối':
-      return 'error'; // Red for rejected
-    case 'Chưa đăng ký':
-      return 'default'; // Gray for not yet sent
-    default:
-      return 'default'; // Gray for any unrecognized status
-  }
-};
+// const getStatusAccountColor = (status: string) => {
+//   switch (status) {
+//     case 'Hoạt động':
+//       return 'success'; // Green for approved
+//     case 'Chờ duyệt':
+//       return 'warning'; // Yellow for pending approval
+//     case 'Từ chối':
+//       return 'error'; // Red for rejected
+//     case 'Chưa đăng ký':
+//       return 'default'; // Gray for not yet sent
+//     default:
+//       return 'default'; // Gray for any unrecognized status
+//   }
+// };
 interface Column {
   title: string;
   dataIndex: string;

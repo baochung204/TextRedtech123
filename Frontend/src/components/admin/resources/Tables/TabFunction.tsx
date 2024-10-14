@@ -15,7 +15,7 @@ interface PropsTabFunction {
 }
 
 const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
-  const [selectId, setSelectId] = useState<string | null>(null);
+  const [selectId, setSelectId] = useState<string>;
   const FunctionCells: HeadCell[] = [
     {
       dataIndex: 'id',

@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
   file: Yup.mixed().required('Bạn phải tải lên ít nhất một file'),
 });
 
-const FileUploadForm: React.FC<FunctionProps> = ({ values }) => {
+const FileUploadForm: React.FC<FunctionProps> = () => {
   const [fileNames, setFileNames] = useState<string[]>([]);
 
   const initialValues = {
@@ -46,7 +46,7 @@ const FileUploadForm: React.FC<FunctionProps> = ({ values }) => {
         <Form>
           <Box mb={2}>
             <Field name="file">
-              {({ field }: any) => (
+              {() => (
                 <div>
                   <input
                     accept="*"

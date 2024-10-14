@@ -2,13 +2,12 @@ import { Box, Button, Grid, MenuItem, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import React from 'react';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import Logo from 'src/layouts/full/shared/logo/Logo';
 import { registerType } from 'src/types/auth/auth';
 import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import Logo from 'src/layouts/full/shared/logo/Logo';
-import React from 'react';
-import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 const AuthRegister = ({ subtitle }: registerType) => {
   // const [gender, setGender] = useState('');
   const [username, setUsername] = useState('');
@@ -27,7 +26,7 @@ const AuthRegister = ({ subtitle }: registerType) => {
     password?: string;
     confirmPassword?: string; // Add confirmPassword property
   }
-  const [checked, setChecked] = React.useState(true);
+  // const [checked, setChecked] = React.useState(true);
 
   const [errors, setErrors] = useState<Errors>({});
 

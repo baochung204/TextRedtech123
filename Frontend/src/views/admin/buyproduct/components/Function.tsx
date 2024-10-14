@@ -56,28 +56,34 @@
 // };
 
 // export default Function;
-import {
-  Grid, InputAdornment, TextField, IconButton, Box, Tooltip, Select, MenuItem, FormControl, InputLabel
-} from "@mui/material";
-import { ErrorMessage, Field } from "formik";
-import ReactQuill from "react-quill";
-import { useState } from "react";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'; // Icon cho nút upload ảnh
-import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
-import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
+import {
+  Box,
+  FormControl,
+  Grid,
+  IconButton,
+  MenuItem,
+  Select,
+  TextField,
+  Tooltip,
+} from '@mui/material';
+import { ErrorMessage, Field } from 'formik';
+import { useState } from 'react';
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-interface FunctionProps {
-  values: {
-    nhomFunction: string;
-    codeFunction: string;
-    levelx: string;
-  };
-}
+// interface FunctionProps {
+//   values: {
+//     nhomFunction: string;
+//     codeFunction: string;
+//     levelx: string;
+//   };
+// }
 
-const Function = ({ values }: FunctionProps) => {
+const Function = () => {
   const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
   const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
-    images: []
+    images: [],
   });
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,7 +105,7 @@ const Function = ({ values }: FunctionProps) => {
   };
 
   return (
-    <Grid container spacing={2} sx={{  paddingLeft: 38 }}>
+    <Grid container spacing={2} sx={{ paddingLeft: 38 }}>
       <CustomFormLabel htmlFor="name">Function</CustomFormLabel>
       <Grid container alignItems="center" spacing={2}>
         {/* Khu vực hiển thị nút upload và các ảnh đã upload */}
@@ -117,9 +123,7 @@ const Function = ({ values }: FunctionProps) => {
                 sx={{
                   backgroundColor: uploadedImages[0] ? 'transparent' : '#000',
                   opacity: uploadedImages[0] ? 1 : 0.1,
-                  backgroundImage: uploadedImages[0]
-                    ? `url(${uploadedImages[0]})`
-                    : 'none', // Hiển thị ảnh nền nếu đã upload
+                  backgroundImage: uploadedImages[0] ? `url(${uploadedImages[0]})` : 'none', // Hiển thị ảnh nền nếu đã upload
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   color: '#fff',
@@ -133,9 +137,7 @@ const Function = ({ values }: FunctionProps) => {
                   },
                   transition: 'all 0.3s ease',
                 }}
-                onClick={() =>
-                  document.getElementById(`upload-button-0`)?.click()
-                }
+                onClick={() => document.getElementById(`upload-button-0`)?.click()}
               >
                 {!uploadedImages[0] && <AddPhotoAlternateIcon fontSize="medium" />}
               </IconButton>
@@ -173,11 +175,11 @@ const Function = ({ values }: FunctionProps) => {
             variant="outlined"
             InputProps={{
               sx: {
-                height: 40,  // Giữ chiều cao đồng nhất với các field khác
+                height: 40, // Giữ chiều cao đồng nhất với các field khác
               },
             }}
             sx={{
-              width: '100%',  // Full width
+              width: '100%', // Full width
             }}
           />
           <ErrorMessage name="levelx">
@@ -189,7 +191,7 @@ const Function = ({ values }: FunctionProps) => {
       <Grid item xs={12}>
         {/* Nội dung chiến lược */}
         <Field name="codeFunction">
-           {({ field }: any) => (
+          {({ field }: any) => (
             <CustomTextField
               {...field}
               label="Code Function"
@@ -207,6 +209,6 @@ const Function = ({ values }: FunctionProps) => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default Function;

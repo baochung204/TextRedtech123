@@ -29,7 +29,7 @@ import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import { fetchPointById } from 'src/store/apps/point/PointSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import * as Yup from 'yup';
-import { fetchVndCoupons } from 'src/store/apps/vnd_coupons/Vnd_CouponsSlice';
+import { fetchVndCouponById, fetchVndCoupons } from 'src/store/apps/vnd_coupons/Vnd_CouponsSlice';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -56,31 +56,69 @@ const Payments: IPayMent[] = [
 const OrderInformation = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
+  const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
   const dataPoint = useSelector((state: AppState) => state.points.points.find((p) => p.id === id));
   const dataVndCoupons = useSelector((state: AppState) => state.vnd_coupons.vnd_coupons);
+  const [couponValue, setCouponValue] = useState<number | undefined>(undefined);
+  const selectedVoucherDetail = useSelector((state: AppState) =>
+    state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
+  );
+
   useEffect(() => {
     dispatch(fetchVndCoupons());
     dispatch(fetchPointById(id));
   }, [dispatch, id]);
-  const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (selectedVoucher) {
+      dispatch(fetchVndCouponById(selectedVoucher));
+    }
+  }, [dispatch, selectedVoucher]);
+
   const handleSelectedVoucherId = (item: any) => {
     if (selectedVoucher === item.id) {
       setSelectedVoucher(null);
+      setCouponValue(undefined);
     } else {
       setSelectedVoucher(item.id);
+      if (item.type === 'VALUE' || item.type === 'PERCENT') {
+        setCouponValue(item.value);
+      }
     }
   };
-  const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const originalOrderTotal = dataPoint?.cash || 0;
+
+  const calculateFinalOrderTotal = () => {
+    if (!couponValue || !selectedVoucherDetail) {
+      return originalOrderTotal;
+    }
+
+    if (selectedVoucherDetail.type === 'PERCENT') {
+      const discount = (originalOrderTotal * couponValue) / 100;
+      return originalOrderTotal - discount;
+    } else if (selectedVoucherDetail.type === 'VALUE') {
+      return originalOrderTotal - couponValue;
+    }
+    return originalOrderTotal;
+  };
+
+  const finalOrderTotal = calculateFinalOrderTotal();
+
+  const [expanded, setExpanded] = useState<string | false>(false);
   const handleChange5 = (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
+
   const navigate = useNavigate();
   const [checked, setChecked] = useState<boolean>(false);
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
+
   const [clickPaymentId, setClickPaymentId] = useState<number | null>(null);
   const [paymentSelected, setPaymentSelected] = useState<boolean>(false);
+
   const validateSchema = Yup.object().shape({
     Payments: Yup.boolean().oneOf([true], 'Vui lòng hãy chọn phương thức thanh toán'),
     ...(checked && {
@@ -89,16 +127,10 @@ const OrderInformation = () => {
         .required('Mã số thuế bắt buộc nhập')
         .matches(/^\d+$/, 'Mã số thuế chỉ chứa số'),
       RepresentativeName: Yup.string()
-        .matches(
-          /^[a-zA-ZaAáÁàÀảẢãÃạẠăĂắẮằẰẳẲẵẴặẶâÂấẤầẦẩẨẫẪậẬbBcCdDđĐeEéÉèÈẻẺẽẼẹẸêÊếẾềỀễỄệỆfFgGhHiIíÍìÌĩĨỉỈịỊjJkKlLmMnNoOóÓòÒỏỎõÕọỌôÔốỐồỒổỔỗỖộỘơƠớỚờỜởỞỡỠợỢpPqQrRsStTuUúÚùÙủỦũŨụỤưƯứỨừỪửỬữỮựỰvVwWxXyY\s]+$/,
-          'Người đại diện chỉ chứa ký tự chữ.',
-        )
+        .matches(/^[a-zA-Z\s]+$/, 'Người đại diện chỉ chứa ký tự chữ.')
         .required('Người đại diện là bắt buộc'),
       Position: Yup.string()
-        .matches(
-          /^[a-zA-ZaAáÁàÀảẢãÃạẠăĂắẮằẰẳẲẵẴặẶâÂấẤầẦẩẨẫẪậẬbBcCdDđĐeEéÉèÈẻẺẽẼẹẸêÊếẾềỀễỄệỆfFgGhHiIíÍìÌĩĨỉỈịỊjJkKlLmMnNoOóÓòÒỏỎõÕọỌôÔốỐồỒổỔỗỖộỘơƠớỚờỜởỞỡỠợỢpPqQrRsStTuUúÚùÙủỦũŨụỤưƯứỨừỪửỬữỮựỰvVwWxXyY\s]+$/,
-          'Người đại diện chỉ chứa ký tự chữ.',
-        )
+        .matches(/^[a-zA-Z\s]+$/, 'Người đại diện chỉ chứa ký tự chữ.')
         .required('Chức vụ là bắt buộc'),
       Address: Yup.string()
         .required('Địa chỉ là bắt buộc')
@@ -118,7 +150,7 @@ const OrderInformation = () => {
       Position: '',
       Address: '',
       email: '',
-      Payments: 'false',
+      Payments: false,
     },
     validationSchema: validateSchema,
     validateOnChange: true,
@@ -127,6 +159,7 @@ const OrderInformation = () => {
       console.log(value);
     },
   });
+
   const [open, setOpen] = useState<boolean>(false);
   const handleSubmitForm = () => {
     if (!paymentSelected) {
@@ -145,6 +178,7 @@ const OrderInformation = () => {
       navigate('/');
     }
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setOpen(false);
@@ -368,24 +402,27 @@ const OrderInformation = () => {
                                         border:
                                           selectedVoucher === item.id
                                             ? 'none'
-                                            : '2px solid #ff3333', // Bỏ border nếu item được chọn
+                                            : '2px solid #FFEBEB',
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
                                         padding: '8px 16px',
                                         borderRadius: '10px',
-                                        backgroundColor: 'primary.light',
+                                        backgroundColor:
+                                          selectedVoucher === item.id ? 'primary.light' : 'white',
                                       }}
                                     >
                                       <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
                                         {item.coupons_code} - {item.name}
                                       </Typography>
                                       <Button
-                                        variant="outlined"
+                                        variant={
+                                          selectedVoucher === item.id ? 'contained' : 'outlined'
+                                        }
                                         color="primary"
                                         onClick={() => handleSelectedVoucherId(item)}
                                       >
-                                        {selectedVoucher === item.id ? 'Bỏ chọn' : 'Chọn'}
+                                        {selectedVoucher === item.id ? 'Bỏ chọn' : 'Đã Chọn'}
                                       </Button>
                                     </Box>
                                   </Grid>
@@ -424,7 +461,7 @@ const OrderInformation = () => {
                   Giá niêm yết
                 </Typography>
                 <Typography variant="h5" fontWeight={700} sx={{ px: 1 }}>
-                  {dataPoint?.cash} ₫
+                  {dataPoint.cash.toLocaleString('vi-VN')} ₫
                 </Typography>
               </Box>
 
@@ -440,7 +477,11 @@ const OrderInformation = () => {
                   Khuyến mại
                 </Typography>
                 <Typography variant="subtitle1" fontWeight={600} sx={{ px: 1 }}>
-                  - 240 ₫
+                  {selectedVoucherDetail?.type === 'VALUE'
+                    ? `${selectedVoucherDetail.value.toLocaleString('vi-VN')}₫`
+                    : selectedVoucherDetail?.type === 'PERCENT'
+                    ? `${selectedVoucherDetail.value}%`
+                    : 'Không có khuyến mại'}
                 </Typography>
               </Box>
 
@@ -480,7 +521,7 @@ const OrderInformation = () => {
             <Box sx={{ mt: 2, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="h4">Tổng cộng</Typography>
               <Typography variant="h4" fontWeight="bold" sx={{ color: '#FC3242' }}>
-                990 ₫
+                {finalOrderTotal.toLocaleString('vi-VN')}₫
               </Typography>
             </Box>
           </BoxStyled>

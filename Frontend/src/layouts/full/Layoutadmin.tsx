@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom';
 import { AppState, useSelector } from 'src/store/Store';
 import HorizontalHeader from '../full/horizontal/header/Header';
 import Navigation from '../full/horizontal/navbar/Navigation';
-import Customizer from './shared/customizer/Customizer';
 import HeaderAdmin from './vertical/header/HeaderAdmin';
 import SidebarAdmin from './vertical/sidebar/SidebarAdmin';
 
