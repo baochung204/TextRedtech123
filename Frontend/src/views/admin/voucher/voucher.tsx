@@ -37,7 +37,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={sale} width={30} />
+          <img src={sale} width={30} alt="Mã khuyến mãi" />
         </Box>
       </>
     ),
@@ -59,7 +59,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={amountticket} width={30} />
+          <img src={amountticket} width={30} alt="Số lượng mã" />
         </Box>
       </>
     ),
@@ -81,7 +81,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={used} width={30} />
+          <img src={used} width={30} alt="Đã sử dụng" />
         </Box>
       </>
     ),
@@ -103,7 +103,7 @@ const DataBox = [
             alignItems: 'center',
           }}
         >
-          <img src={usagerate} width={30} />
+          <img src={usagerate} width={30} alt="Tỉ lệ sử dụng" />
         </Box>
       </>
     ),

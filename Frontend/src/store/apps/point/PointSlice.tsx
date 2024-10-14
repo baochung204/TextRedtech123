@@ -43,12 +43,22 @@ const pointsSlice = createSlice({
       .addCase(fetchPointById.pending, (state) => {
         state.loading = true;
       })
+      // .addCase(fetchPointById.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   const point = action.payload;
+      //   const existingIndex = state.points.findIndex((p) => p.id === point.id);
+      //   if (existingIndex !== -1) {
+      //     state.points[existingIndex] = point;
+      //   }
+      // })
       .addCase(fetchPointById.fulfilled, (state, action) => {
         state.loading = false;
         const point = action.payload;
         const existingIndex = state.points.findIndex((p) => p.id === point.id);
         if (existingIndex !== -1) {
           state.points[existingIndex] = point;
+        } else {
+          state.points.push(point);
         }
       })
       .addCase(fetchPointById.rejected, (state, action) => {
