@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
 import {
+    Avatar,
     Box,
     Button,
+    Checkbox,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    Typography,
+    FormControl,
+    Grid,
+    InputLabel,
     List,
     ListItemButton,
     ListItemText,
-    Stack,
-    Avatar,
-    Grid,
-    Checkbox,
-    FormControl,
-    InputLabel,
     MenuItem,
+    Stack,
+    Typography,
 } from '@mui/material';
-import PersonnelTable from '../datatable/PersonnelTable';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import PersonnelTable from '../datatable/PersonnelTable';
 
 
 interface PropsPosition {
