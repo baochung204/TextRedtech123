@@ -1,15 +1,49 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Grid, Box, Card, Stack, Typography } from '@mui/material';
 
 // components
 import PageContainer from 'src/components/container/PageContainer';
 import Logo from 'src/layouts/full/shared/logo/Logo';
 import AuthLogin from '../authForms/AuthLogin';
+import ApiService from 'src/service/ApiService';
 
 const Login2 = () => {
+  const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Lấy mã `code` từ URL
+        const urlParams = new URLSearchParams(location.search);
+        const code = urlParams.get('code');
+
+        // Nếu có mã `code`, gọi API trên server để đổi lấy access token
+        if (code) {
+            const handleLogin = async () => {
+                const response = await ApiService.loginWithGoogle(code);
+
+                if (response.code == 200) {
+                    const { accessToken, refreshToken, roles, userId, tokenExpired } =
+                        response.result;
+
+                    // Lưu token và roles vào localStorage
+                    localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('refreshToken', refreshToken);
+                    localStorage.setItem('refreshToken', refreshToken);
+                    localStorage.setItem('roles', JSON.stringify(roles));
+                    localStorage.setItem('userId', JSON.stringify(userId));
+                    localStorage.setItem('tokenExpired', tokenExpired);
+
+                    // Chuyển hướng người dùng đến trang chính (hoặc trang dashboard)
+                    navigate('/dashboards');
+                }
+            };
+            handleLogin();
+        }
+    }, []);
+
   return (
     <PageContainer title="Login" description="this is Login page">
       <Box
