@@ -162,31 +162,31 @@ export default class ApiService {
 
     static isAuthenticated() {
         const token = localStorage.getItem('accessToken');
-        const tokenExpired = localStorage.getItem('tokenExpired');
-        console.log("Token:", token);
-        console.log("Token Expired:", tokenExpired);
+        // const tokenExpired = localStorage.getItem('tokenExpired');
+        // console.log("Token:", token);
+        // console.log("Token Expired:", tokenExpired);
         
-        if (!token || !tokenExpired) {
-            return false; // Không có token hoặc thời gian hết hạn
-        }
+        // if (!token || !tokenExpired) {
+        //     return false; // Không có token hoặc thời gian hết hạn
+        // }
     
-        // Chuyển đổi tokenExpired từ chuỗi thành đối tượng Date
-        const expirationTime = new Date(tokenExpired);
-        console.log("Expiration Time:", expirationTime);
+        // // Chuyển đổi tokenExpired từ chuỗi thành đối tượng Date
+        // const expirationTime = new Date(tokenExpired);
+        // console.log("Expiration Time:", expirationTime);
         
-        // Kiểm tra xem expirationTime có hợp lệ không
-        if (isNaN(expirationTime.getTime())) {
-            console.log("Expiration time is invalid");
-            return false; // Nếu không phải là ngày hợp lệ, trả về false
-        }
+        // // Kiểm tra xem expirationTime có hợp lệ không
+        // if (isNaN(expirationTime.getTime())) {
+        //     console.log("Expiration time is invalid");
+        //     return false; // Nếu không phải là ngày hợp lệ, trả về false
+        // }
     
-        const currentTime = new Date();
-        console.log("Current Time:", currentTime);
+        // const currentTime = new Date();
+        // console.log("Current Time:", currentTime);
     
-        // So sánh thời gian hiện tại với thời gian hết hạn
-        const isValid = currentTime < expirationTime;
-        console.log("Is Valid:", isValid);
-        return isValid;
+        // // So sánh thời gian hiện tại với thời gian hết hạn
+        // const isValid = currentTime < expirationTime;
+        // console.log("Is Valid:", isValid);
+        return !!token;
     }    
 
     static isAdmin() {
