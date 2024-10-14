@@ -56,10 +56,14 @@ const Payments: IPayMent[] = [
 const OrderInformation = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
+
   const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
-  const dataPoint = useSelector((state: AppState) => state.points.points.find((p) => p.id === id));
-  const dataVndCoupons = useSelector((state: AppState) => state.vnd_coupons.vnd_coupons);
   const [couponValue, setCouponValue] = useState<number | undefined>(undefined);
+
+  const dataPoint = useSelector((state: AppState) => state.points.points.find((p) => p.id === id));
+
+  const dataVndCoupons = useSelector((state: AppState) => state.vnd_coupons.vnd_coupons);
+
   const selectedVoucherDetail = useSelector((state: AppState) =>
     state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
   );
@@ -461,7 +465,8 @@ const OrderInformation = () => {
                   Giá niêm yết
                 </Typography>
                 <Typography variant="h5" fontWeight={700} sx={{ px: 1 }}>
-                  {dataPoint.cash.toLocaleString('vi-VN')} ₫
+                  {/* {dataPoint.cash.toLocaleString('vi-VN')} ₫ */}
+                  {dataPoint?.cash ? `${dataPoint.cash.toLocaleString('vi-VN')} ₫` : 'Đang tải...'}
                 </Typography>
               </Box>
 
