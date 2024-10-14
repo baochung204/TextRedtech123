@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
-const PDFViewer = ({ base64Data }) => {
-  const iframeRef = useRef(null);
+const PDFViewer = ({ base64Data }: any) => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     if (iframeRef.current && base64Data) {
