@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 // Interface for props
-interface FunctionProps {
+interface FileProps {
   values: {
     files: string;
   };
@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
   file: Yup.mixed().required('Bạn phải tải lên ít nhất một file'),
 });
 
-const FileUploadForm: React.FC<FunctionProps> = () => {
+const FileUploadForm: React.FC<FileProps> = () => {
   const [fileNames, setFileNames] = useState<string[]>([]);
 
   const initialValues = {

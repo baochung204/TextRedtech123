@@ -1,12 +1,12 @@
 import { FormControl, MenuItem, Select, SelectChangeEvent, Grid } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-// interface ModelProps {
-//   values: {
-//     model: string;
-//   };
-// }
-const Model = () => {
+interface ModelProps {
+  values: {
+    model: string;
+  };
+}
+const Model = ({ values }: ModelProps )=> {
   const [selectedOption, setSelectedOption] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent<string>) => {

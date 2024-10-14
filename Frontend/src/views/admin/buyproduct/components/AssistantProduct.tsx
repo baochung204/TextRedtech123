@@ -14,11 +14,11 @@ import AddImage from 'src/components/apps/assistant/AssistantEditor/layout/addIm
 import AddUrl from 'src/components/apps/assistant/AssistantEditor/layout/addUrl';
 import Strategy from 'src/components/apps/assistant/AssistantEditor/layout/Strategy';
 import PageContainer from 'src/components/container/PageContainer';
-import AddInforProduct from './addInForProduct';
 import AddModelProduct from './AddModelProduct';
 import AddSearchProduct from './AddSearchProduct';
 import AddTextProduct from './AddTextProduct';
 import SliderProduct from './SliderProduct';
+import AddInforProduct from './AddInforProduct';
 
 const AssistantProduct = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
