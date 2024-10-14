@@ -118,7 +118,6 @@ const dataRows2: DataRow2[] = [
   },
 ];
 
-
 interface Column {
   title: string;
   dataIndex: string;
@@ -126,16 +125,15 @@ interface Column {
   isValids?: boolean;
 }
 const HistoryVoucher = () => {
-
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
         dataIndex: 'id',
-      },      
+      },
       {
         title: 'ID đơn hàng',
         dataIndex: 'ID_order',
@@ -175,7 +173,6 @@ const HistoryVoucher = () => {
         title: 'Giá trị giảm',
         dataIndex: 'sale',
       },
-      
     ],
     [],
   );
@@ -371,14 +368,6 @@ const HistoryVoucher = () => {
 
 export default HistoryVoucher;
 
-
-
-
-
-
-
-
-
 // type Order = 'asc' | 'desc';
 
 // const [order, setOrder] = useState<Order>('asc');
@@ -435,15 +424,6 @@ export default HistoryVoucher;
 
 // const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
 // const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
-
-
-
-
-
-
-
-
 
 // function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 //   if (b[orderBy] < a[orderBy]) {

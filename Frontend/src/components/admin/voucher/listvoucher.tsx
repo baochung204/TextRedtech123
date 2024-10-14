@@ -153,6 +153,10 @@ const ListVoucher = () => {
         dataIndex: 'quantity',
       },
       {
+        title: 'Đã sử dụng',
+        dataIndex: 'use',
+      },
+      {
         title: 'Loại giảm giá',
         dataIndex: 'customerId',
         render: (value: any) => {
@@ -177,10 +181,7 @@ const ListVoucher = () => {
           );
         },
       },
-      {
-        title: 'Đã sử dụng',
-        dataIndex: 'use',
-      },
+      
     ],
     [],
   );

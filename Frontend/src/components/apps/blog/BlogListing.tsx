@@ -1,13 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
 import { Grid, Pagination } from '@mui/material';
-import BlogCard from './BlogCard';
 import { orderBy } from 'lodash';
-import { useSelector, useDispatch } from 'src/store/Store';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'src/store/Store';
 import { fetchBlogPosts } from 'src/store/apps/blog/BlogSlice';
-import BlogFeaturedCard from './BlogFeaturedCard';
 import { BlogPostType } from 'src/types/apps/blog';
+import BlogCard from './BlogCard';
 
 const BlogListing = () => {
   const dispatch = useDispatch();

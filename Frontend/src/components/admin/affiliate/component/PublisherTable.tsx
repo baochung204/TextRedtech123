@@ -31,7 +31,6 @@ import React, { createElement, useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { DataHistoryTable, DataPublishersTable } from '../datatable/OrderTableData';
 
-
 // const HeadTable: PropsHeadTable[] = [
 //   {
 //     head: 'ID publisher',
@@ -299,7 +298,8 @@ const PublisherTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={column.length - dataSelect.length} color="primary">
+              <Badge color="primary">
+                {/* badgeContent={column.length - dataSelect.length}  */}
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -522,7 +522,7 @@ const PublisherTable = () => {
                       <TableCell>
                         <Chip
                           label={item.type_account}
-                        // color={getStatusAccountColor(item.type_account)}
+                          // color={getStatusAccountColor(item.type_account)}
                         />
                       </TableCell>
                     )}
