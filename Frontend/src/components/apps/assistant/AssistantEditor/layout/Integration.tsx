@@ -9,7 +9,7 @@ import {
   Stack,
   Tooltip,
   Typography,
-  useTheme
+  useTheme,
 } from '@mui/material';
 import { IconPlus, IconPower, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
@@ -78,7 +78,7 @@ const Integration = () => {
                       <IconButton onClick={handleConnection}>
                         <IconPower
                           style={{ cursor: 'pointer' }}
-                          color={connect ? 'black' : 'gray'}
+                          color={connect ? '#13DEB9' : 'gray'}
                         />
                       </IconButton>
                     </Tooltip>

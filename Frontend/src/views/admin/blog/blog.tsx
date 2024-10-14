@@ -181,13 +181,13 @@ const BlogAdmin = () => {
           ));
         },
       },
-      { title: 'Đường dẫn url', dataIndex: 'url' },
+      // { title: 'Đường dẫn url', dataIndex: 'url' },
       {
         title: 'Mô tả',
         dataIndex: 'description',
         render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
       },
-      { title: 'Nội dung', dataIndex: 'content' },
+      // { title: 'Nội dung', dataIndex: 'content' },
       {
         title: 'Giá Point',
         dataIndex: 'pricePoint',

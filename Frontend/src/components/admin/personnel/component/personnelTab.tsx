@@ -12,9 +12,11 @@ import {
   Select,
   Stack,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
+import { IconEye, IconPower, IconSearch } from '@tabler/icons-react';
+import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PersonnelTable from '../datatable/PersonnelTable';
@@ -36,8 +38,19 @@ interface Column {
   isValids?: boolean;
 }
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
-  // const [selectedItems] = useState<number[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
+  const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
+  const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
+
+  const handleConnection = (id: string) => {
+    setSelectedIds(
+      (prevSelected) =>
+        prevSelected.includes(id)
+          ? prevSelected.filter((selectedId) => selectedId !== id) // Remove if already selected
+          : [...prevSelected, id], // Add if not selected
+    );
+  };
 
   const column = useMemo<Column[]>(
     () => [
@@ -52,21 +65,18 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
         dataIndex: 'employeeName',
         title: 'Nhân viên',
         render: (row: any, value: any) => (
-          <>
-            <Stack direction="row" spacing={2}>
-              <Avatar src={value.avt} variant="rounded" alt={value.avt} />
-              <Grid container>
-                <Grid item xs={12}>
-                  <Typography variant="h6">{row}</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography variant="subtitle2">{value.position}</Typography>
-                </Grid>
+          <Stack direction="row" spacing={2}>
+            <Avatar src={value.avt} variant="rounded" alt={value.avt} />
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography variant="h6">{row}</Typography>
               </Grid>
-            </Stack>
-          </>
+              <Grid item xs={12}>
+                <Typography variant="subtitle2">{value.position}</Typography>
+              </Grid>
+            </Grid>
+          </Stack>
         ),
-
         validate: true,
       },
       { dataIndex: 'department', title: 'Phòng ban', validate: true },
@@ -77,19 +87,10 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
         dataIndex: 'status',
         title: 'Trạng thái',
         validate: true,
-
         render: (value: any) => (
-          <>
-            {value ? (
-              <Typography color="success.dark" variant="subtitle2">
-                Hoạt động
-              </Typography>
-            ) : (
-              <Typography color="error" variant="subtitle2">
-                Khóa
-              </Typography>
-            )}
-          </>
+          <Typography color={value ? 'success.dark' : 'error'} variant="subtitle2">
+            {value ? 'Hoạt động' : 'Khóa'}
+          </Typography>
         ),
       },
       {
@@ -107,14 +108,22 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton>
+            <Tooltip
+              title={selectedIds.includes(row.id) ? 'Đã kết nối' : 'Tắt kết nối'}
+              placement="top"
+            >
+              <IconButton onClick={() => handleConnection(row.id)}>
+                <IconPower
+                  style={{ cursor: 'pointer' }}
+                  color={selectedIds.includes(row.id) ? '#13DEB9' : 'gray'}
+                />
+              </IconButton>
+            </Tooltip>
           </>
         ),
       },
     ],
-    [],
+    [selectedIds], // Add dependency here to ensure re-render on state change
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);

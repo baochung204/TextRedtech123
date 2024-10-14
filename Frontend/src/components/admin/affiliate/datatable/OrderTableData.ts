@@ -37,7 +37,8 @@ export interface HistoryTable {
   date_done: string;
   paid: boolean;
   checked: boolean;
-  status: string;
+  status: number;
+  type_publisher: number;
 }
 
 export interface PublisherTable {
@@ -122,7 +123,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon2.png',
     createdate: '2023-02-05',
     confirmdate: '2023-02-07',
-    type_company: false,
+    type_company: true,
     name_company: 'GreenTech',
     tax_code: 9876543210,
     address: 'Hồ Chí Minh',
@@ -154,7 +155,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon4.png',
     createdate: '2023-04-10',
     confirmdate: '2023-04-13',
-    type_company: false,
+    type_company: true,
     name_company: 'GreyTech',
     tax_code: 5647382910,
     address: 'Bình Định',
@@ -186,7 +187,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon6.png',
     createdate: '2023-06-15',
     confirmdate: '2023-06-18',
-    type_company: false,
+    type_company: true,
     name_company: 'WhiteTech',
     tax_code: 8765432109,
     address: 'Thái Bình',
@@ -410,7 +411,7 @@ const DataPublishersTable: PublisherTable[] = [
     phone_number: 4567890123,
     type: false,
     create_date: '2023-04-18',
-    type_account: 1,
+    type_account: 4,
     rank: 'Rank A',
     contract: 'Từ chối', // Moved here
     brief: false, // Moved here
@@ -730,7 +731,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: true,
     checked: true,
-    status: 'Chờ duyệt',
+    status: 1,
+    type_publisher: 1,
   },
   {
     id_checkout: 'CHK002',
@@ -750,7 +752,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: false,
     checked: false,
-    status: 'Từ chối',
+    status: 2,
+    type_publisher: 1,
   },
   {
     id_checkout: 'CHK003',
@@ -770,7 +773,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: false,
     checked: true,
-    status: 'Từ chối',
+    status: 3,
+    type_publisher: 2,
   },
   {
     id_checkout: 'CHK004',
@@ -790,7 +794,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: false,
     checked: false,
-    status: 'Đã đi tiền',
+    status: 4,
+    type_publisher: 2,
   },
   {
     id_checkout: 'CHK005',
@@ -810,7 +815,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-24',
     paid: true,
     checked: true,
-    status: 'Đã đi tiền',
+    status: 2,
+    type_publisher: 1,
   },
   {
     id_checkout: 'CHK006',
@@ -830,7 +836,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: false,
     checked: true,
-    status: 'Chờ duyệt',
+    status: 2,
+    type_publisher: 1,
   },
   {
     id_checkout: 'CHK007',
@@ -850,7 +857,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-26',
     paid: true,
     checked: true,
-    status: 'Chờ duyệt',
+    status: 3,
+    type_publisher: 1,
   },
   {
     id_checkout: 'CHK008',
@@ -870,7 +878,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: false,
     checked: false,
-    status: 'Đã đi tiền',
+    status: 4,
+    type_publisher: 2,
   },
   {
     id_checkout: 'CHK009',
@@ -890,7 +899,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: false,
     checked: false,
-    status: 'Chờ duyệt',
+    status: 2,
+    type_publisher: 2,
   },
   {
     id_checkout: 'CHK010',
@@ -910,7 +920,8 @@ const DataHistoryTable: HistoryTable[] = [
     date_done: '2024-07-20',
     paid: false,
     checked: true,
-    status: 'Từ chối',
+    status: 1,
+    type_publisher: 2,
   },
 ];
 
