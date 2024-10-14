@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem } from '@mui/material';
+import { Box, Grid, MenuItem, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Chart from 'react-apexcharts';
@@ -10,6 +10,7 @@ import Chart from 'react-apexcharts';
 import { Props } from 'react-apexcharts';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import Affilatec2 from 'src/components/shared/Affilatec2';
 import ParentCard from 'src/components/shared/ParentCard';
 
 const RadialbarChartAdmin = ({ menuItems }: { menuItems: any }) => {
@@ -65,7 +66,7 @@ const RadialbarChartAdmin = ({ menuItems }: { menuItems: any }) => {
     <PageContainer title="RedAI" description="this is innerpage">
       <Grid container spacing={3}>
         <Grid item lg={6} md={12} xs={12}>
-          <ParentCard title="Chi tiết theo">
+          <Affilatec2 title="" text="" description={''}>
             <Box
               sx={{
                 display: 'flex',
@@ -96,10 +97,10 @@ const RadialbarChartAdmin = ({ menuItems }: { menuItems: any }) => {
                 options={optionsradialchart}
                 series={seriesradialchart}
                 type="radialBar"
-                height="300px"
+                height="325px"
               />
             </Box>
-          </ParentCard>
+          </Affilatec2>
         </Grid>
       </Grid>
     </PageContainer>

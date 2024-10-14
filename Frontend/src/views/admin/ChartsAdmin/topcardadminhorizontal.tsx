@@ -61,9 +61,7 @@ const Topcardadminhorizontal = ({ dataSource, totalColumn }: TopCardProps) => {
                       <Typography>{items.title}</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                      <Typography variant="h6" fontSize={'20px'}>
-                        {items.total}
-                      </Typography>
+                      <Typography variant="h6">{items.total}</Typography>
                     </Grid>
                   </Grid>
                 </Grid>

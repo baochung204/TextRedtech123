@@ -5,9 +5,9 @@ import { useState } from 'react';
 import SimpleDialog from '../dialog/searchDialog';
 
 const AddSearch = () => {
-  const [openSearch, setOpenSearch] = useState(false);
-  const handleClickOpenSearch = () => {
-    setOpenSearch(true);
+  const [openFunction, setOpenFunction] = useState(false);
+  const handleClickOpenFunction = () => {
+    setOpenFunction(true);
   };
 
   return (
@@ -18,8 +18,6 @@ const AddSearch = () => {
             Tri thức
             <Chip sx={{ ml: 1 }} size="small" label={"3/5"} color="primary" />
           </Box>
-          
-
           
         </Grid>
         <Grid item xs={12} sm={6} lg={6} display={'flex'} justifyContent={'end'}>
@@ -34,17 +32,16 @@ const AddSearch = () => {
             <AddIcon fontSize="small" style={{ marginRight: '10px' }} />
           </Button> */}
           <Tooltip title="Thêm File tri thức">
-            <Fab onClick={handleClickOpenSearch} size="small" color="primary" aria-label="plus">
+            <Fab onClick={handleClickOpenFunction} size="small" color="primary" aria-label="plus">
               <IconPlus width={18} />
             </Fab>
           </Tooltip>
         </Grid>
         <Grid item xs={12} sm={6} lg={12}>
-          <SimpleDialog openSearch={openSearch} setOpenSearch={setOpenSearch} />
+          <SimpleDialog openFunction={openFunction} setOpenFunction={setOpenFunction} />
+          <Typography sx={{ display: 'flex', justifyContent: 'end' }} fontSize={12} fontWeight={600}>500/1000 MB</Typography>
         </Grid>
-        <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'end' }}>
-          <Typography fontWeight={600}>Dung lượng: 500/1000 MB</Typography>
-        </Grid>
+        
       </Grid>
     </Paper>
   );

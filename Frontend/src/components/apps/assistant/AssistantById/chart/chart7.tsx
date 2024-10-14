@@ -1,15 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import Affilatec1 from 'src/components/shared/Affilatec1';
-import { Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import Chart, { Props } from 'react-apexcharts';
+import Affilatec1 from 'src/components/shared/Affilatec1';
 
 const Chart7 = () => {
-  const theme = useTheme();
-  const primary = theme.palette.primary.main;
+  // const theme = useTheme();
+  // const primary = theme.palette.primary.main;
   const labels = ['Chi phí / khách hàng '];
 
   const optionsradialchart: Props = {
@@ -31,12 +27,15 @@ const Chart7 = () => {
             color: '#000000', // Màu đen cho tên
           },
           value: {
-            fontSize: '20px', // Tăng kích thước chữ cho giá trị
-            color: '#000000', // Màu đen cho giá trị
+            show: true, // Hiển thị giá trị tổng
+            fontSize: '22px', // Tăng kích thước chữ
+            fontWeight: 'bold', // Làm chữ đậm
+            color: '#000000', // Màu chữ đen
+            offsetY: 0, // Đảm bảo giá trị nằm chính giữa theo chiều dọc
           },
           total: {
             show: true,
-            label: 'Tỉ lệ',
+            label: '',
             formatter() {
               return '66%'; // Giá trị tổng
             },

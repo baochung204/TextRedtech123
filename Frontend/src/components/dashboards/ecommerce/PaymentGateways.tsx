@@ -1,15 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
+import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Avatar, Box, Button } from '@mui/material';
+import React from 'react';
+import avt1 from 'src/assets/images/profile/user-1.jpg';
+import avt2 from 'src/assets/images/profile/user-2.jpg';
+import avt3 from 'src/assets/images/profile/user-3.jpg';
+import avt4 from 'src/assets/images/profile/user-4.jpg';
+import avt5 from 'src/assets/images/profile/user-5.jpg';
 import DashboardCard from '../../shared/DashboardCard';
-
-import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
-import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
-import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
-import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
-import icon5Img from 'src/assets/images/svgs/icon-account.svg';
 
 interface statType {
   title: string;
@@ -39,7 +38,7 @@ const PaymentGateways: React.FC = () => {
       price: 78.3,
       color: primary,
       lightcolor: primarylight,
-      icon: icon1Img,
+      icon: avt1,
     },
     {
       title: 'Trợ lý 2',
@@ -47,31 +46,31 @@ const PaymentGateways: React.FC = () => {
       price: 73,
       color: secondary,
       lightcolor: secondarylight,
-      icon: icon2Img,
+      icon: avt2,
     },
     {
-      title: 'Credit Card',
+      title: 'Trợ lý 3',
       level: 1,
       price: 43.5,
       color: warning,
       lightcolor: warninglight,
-      icon: icon3Img,
+      icon: avt3,
     },
     {
-      title: 'Refund',
+      title: 'Trợ lý 4',
       level: 6,
       price: 39,
       color: error,
       lightcolor: errorlight,
-      icon: icon4Img,
+      icon: avt4,
     },
     {
-      title: 'Trợ lý 4.0',
+      title: 'Trợ lý 5',
       level: 2,
       price: 32.1,
       color: error,
       lightcolor: errorlight,
-      icon: icon5Img,
+      icon: avt5,
     },
   ];
 
@@ -90,10 +89,16 @@ const PaymentGateways: React.FC = () => {
               <Stack direction="row" alignItems="center" spacing={2}>
                 <Avatar
                   variant="rounded"
-                  sx={{ bgcolor: stat.lightcolor, color: stat.color, width: 40, height: 40 }}
-                >
-                  <Avatar src={stat.icon} alt={stat.icon} sx={{ width: 24, height: 24 }} />
-                </Avatar>
+                  sx={{
+                    bgcolor: stat.lightcolor,
+                    color: stat.color,
+                    width: 40,
+                    height: 40,
+                    borderRadius: 10,
+                  }}
+                  src={stat.icon}
+                  alt={stat.icon}
+                ></Avatar>
                 <Box>
                   <Typography variant="h6" mb="4px">
                     {stat.title}

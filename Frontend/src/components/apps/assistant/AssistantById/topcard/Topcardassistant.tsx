@@ -24,7 +24,7 @@ const topcards: cardType[] = [
   },
   {
     icon: order,
-    title: 'Đơn hàng',
+    title: 'Chuyển đổi',
     digits: '650',
     bgcolor: 'primary',
   },
@@ -68,15 +68,10 @@ const Topcardassistant = () => {
                   height="50"
                   style={{ objectFit: 'cover' }}
                 />
-                <Typography
-                  color={topcard.bgcolor + '.main'}
-                  mt={1}
-                  variant="subtitle1"
-                  fontWeight={600}
-                >
+                <Typography color={topcard.bgcolor + '.main'} mt={1} variant="subtitle1">
                   {topcard.title}
                 </Typography>
-                <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+                <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={800}>
                   {topcard.digits}
                   {topcard.title == 'AOV'
                     ? ''

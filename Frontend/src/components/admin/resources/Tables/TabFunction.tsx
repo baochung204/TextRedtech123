@@ -1,14 +1,11 @@
-import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
-import { IconEye, IconTrash } from '@tabler/icons-react';
+import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
+import { IconEye } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import BlankCard from 'src/components/shared/BlankCard';
 import DialogFuncView from '../dialog/DialogFuncView';
 import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
-
-
 
 interface PropsTabFunction {
   value: string;
@@ -17,8 +14,8 @@ interface PropsTabFunction {
   dataSelect?: string[];
 }
 
-const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => {
-  const [selectId, setSelectId] = useState<string | null>(null)
+const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
+  const [selectId, setSelectId] = useState<string | null>(null);
   const FunctionCells: HeadCell[] = [
     {
       dataIndex: 'id',
@@ -39,11 +36,11 @@ const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => 
     {
       dataIndex: 'badge',
       title: 'Huy hiệu',
-      render: ((value: string) => (
+      render: (value: string) => (
         <>
           <Avatar src={value} alt="value" sx={{ borderRadius: '50%' }} />
         </>
-      ))
+      ),
     },
     {
       dataIndex: 'level',
@@ -81,10 +78,15 @@ const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => 
     {
       dataIndex: 'actions',
       title: 'Hoạt động',
-      render: ((_row: any, value: any) => (
+      render: (_row: any, value: any) => (
         <Box display={'flex'} sx={{ justifyContent: 'center' }}>
-          <Tooltip title='Xem' placement='right'>
-            <IconButton onClick={() => { setOpen(true); setSelectId(value.id) }}>
+          <Tooltip title="Xem" placement="right">
+            <IconButton
+              onClick={() => {
+                setOpen(true);
+                setSelectId(value.id);
+              }}
+            >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
             {/* <IconButton>
@@ -92,17 +94,13 @@ const TabFunction = ({ value, open, setOpen, dataSelect }: PropsTabFunction) => 
             </IconButton> */}
           </Tooltip>
         </Box>
-      ))
+      ),
     },
   ];
 
   return (
     <BlankCard>
-      <CustomTable
-        columns={FunctionCells}
-        dataSource={FunctionRows}
-        dataSelect={dataSelect}
-      />
+      <CustomTable columns={FunctionCells} dataSource={FunctionRows} dataSelect={dataSelect} />
       <DialogFuncView open={open} setOpen={setOpen} value={selectId} />
     </BlankCard>
   );

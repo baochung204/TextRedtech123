@@ -1,12 +1,12 @@
 import { Avatar, Box, Stack, Typography, useTheme } from '@mui/material';
 import DashboardCard from 'src/components/shared/DashboardCard';
-import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
-import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
-import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
-import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
-import icon5Img from 'src/assets/images/svgs/icon-account.svg';
-import SimpleBar from 'simplebar-react'; // Import SimpleBar cho thanh cuộn tùy chỉnh
-import 'simplebar/dist/simplebar.min.css'; // Import CSS cho SimpleBar
+import icon3Img from 'src/assets/ListFunction/f6.png';
+import icon2Img from 'src/assets/ListFunction/f2.png';
+import icon1Img from 'src/assets/ListFunction/f1.png';
+import icon4Img from 'src/assets/ListFunction/f4.png';
+import icon5Img from 'src/assets/ListFunction/f5.png';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 const Function = () => {
   const theme = useTheme();
@@ -102,15 +102,12 @@ const Function = () => {
                       width: 40,
                       height: 40,
                     }}
-                  >
-                    <Avatar src={stat.icon} alt={stat.icon} sx={{ width: 24, height: 24 }} />
-                  </Avatar>
+                    src={stat.icon}
+                    alt={stat.icon}
+                  ></Avatar>
                   <Box>
                     <Typography variant="h6" mb="4px">
                       {stat.title}
-                    </Typography>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {stat.level} MB
                     </Typography>
                   </Box>
                 </Stack>

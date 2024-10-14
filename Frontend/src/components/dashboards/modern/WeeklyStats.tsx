@@ -1,12 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
+import { Avatar, Box, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Avatar, Box } from '@mui/material';
+import React from 'react';
+import Chart, { Props } from 'react-apexcharts';
+import avt1 from 'src/assets/images/profile/user-1.jpg';
+import avt5 from 'src/assets/images/profile/user-5.jpg';
+import avt6 from 'src/assets/images/profile/user-6.jpg';
 import DashboardCard from '../../shared/DashboardCard';
-import { IconGridDots } from '@tabler/icons-react';
-import { Props } from 'react-apexcharts';
 
 interface Stat {
   title: string;
@@ -81,7 +82,7 @@ const WeeklyStats: React.FC = () => {
       percent: '68',
       color: primary,
       lightcolor: primarylight,
-      icon: <IconGridDots width={18} />,
+      icon: <Avatar src={avt5} sx={{ width: 40, height: 40 }} />, // Changed to avatar image
     },
     {
       title: 'Trợ lý 2',
@@ -89,15 +90,15 @@ const WeeklyStats: React.FC = () => {
       percent: '45',
       color: secondary,
       lightcolor: secondarylight,
-      icon: <IconGridDots width={18} />,
+      icon: <Avatar src={avt1} sx={{ width: 40, height: 40 }} />, // Changed to avatar image
     },
     {
-      title: 'Credit Card',
+      title: 'Trợ lý 3',
       level: 1,
       percent: '14',
       color: error,
       lightcolor: errorlight,
-      icon: <IconGridDots width={18} />,
+      icon: <Avatar src={avt6} sx={{ width: 40, height: 40 }} />, // Changed to avatar image
     },
   ];
 
@@ -122,18 +123,13 @@ const WeeklyStats: React.FC = () => {
               key={i}
             >
               <Stack direction="row" alignItems="center" spacing={2}>
-                <Avatar
-                  variant="rounded"
-                  sx={{ bgcolor: stat.lightcolor, color: stat.color, width: 40, height: 40 }}
-                >
-                  {stat.icon}
-                </Avatar>
+                {stat.icon}
                 <Box>
                   <Typography variant="h6" mb="4px">
                     {stat.title}
                   </Typography>
                   <Typography variant="subtitle2" color="textSecondary">
-                    Level{stat.level}
+                    Level {stat.level}
                   </Typography>
                 </Box>
               </Stack>

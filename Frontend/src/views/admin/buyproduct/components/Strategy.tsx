@@ -1,196 +1,11 @@
-// import { Avatar, Box, Divider, Grid, Typography } from "@mui/material"
-// import { useState } from "react";
-// import PersonIcon from '@mui/icons-material/Person';
-// import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
-// import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
-// import CustomOutlinedInput from "src/components/forms/theme-elements/CustomOutlinedInput";
-
-// interface StrategyProps {
-//     values: {
-//         anhStrategy: string,
-//         nhomStrategy: string,
-//         tenStrategy: string,
-//         khachhangStrategy: string,
-//         levelStrategy: string,
-//         trolyStrategy: string,
-//         tomtatStrategy: string,
-//         noidungStrategy: string
-//     }
-// }
-
-
-// const Strategy = ({ values }: StrategyProps) => {
-
-
-//     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-
-
-
-//     const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//         if (e.target.files && e.target.files.length > 0) {
-//             const file = e.target.files[0];
-//             setAvatarPreview(URL.createObjectURL(file));
-//         }
-//     };
-
-//     return (
-//         <Grid container spacing={2}>
-//             <Grid item xs={12} lg={4} md={12}>
-//                 <Box
-//                     sx={{ textAlign: 'center', justifyContent: 'center'}}
-//                 >
-//                     <label htmlFor="avatar-upload">
-//                         <Avatar
-//                             src={avatarPreview || ''}
-//                             alt="avatar preview"
-//                             sx={{
-//                                 width: { xs: 90, sm: 110, md: 130, lg: 160 },
-//                                 height: { xs: 90, sm: 110, md: 130, lg: 160 },
-//                                 margin: 'auto',
-//                                 fontSize: 50,
-//                                 backgroundColor: avatarPreview ? 'transparent' : '#f0f0f0',
-//                                 color: '#9e9e9e',
-//                                 cursor: 'pointer',
-//                                 position: 'relative',
-//                                 zIndex: 1,
-//                                 borderRadius: '50%',
-//                                 border: 'none',
-//                                 '&:before': {
-//                                     content: '""',
-//                                     position: 'absolute',
-//                                     top: 0,
-//                                     left: 0,
-//                                     right: 0,
-//                                     bottom: 0,
-//                                     borderRadius: '50%',
-//                                     padding: '6px', // Border width
-//                                     background: 'linear-gradient(#50b2fc, #f44c66)', // Gradient
-//                                     '-webkit-mask':
-//                                         'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-//                                     mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-//                                     maskComposite: 'exclude',
-//                                     zIndex: 1, // Ensure gradient is behind the avatar
-//                                 },
-//                             }}
-//                         >
-//                             {!avatarPreview && <PersonIcon fontSize="inherit" />}
-//                         </Avatar>
-//                     </label>
-//                     {/* Hidden file input */}
-//                     <input
-//                         id="avatar-upload"
-//                         type="file"
-//                         accept="image/*"
-//                         hidden
-//                         onChange={handleAvatarChange}
-//                     />
-//                     <Typography mt={1} fontWeight={600}>
-//                         Ảnh chiến lược
-//                     </Typography>
-//                 </Box>
-//             </Grid>
-//             <Grid item xs={12} lg={4} md={12}>
-//                 <CustomFormLabel htmlFor="nhomStrategy">Nhóm chiến lược</CustomFormLabel>
-//                 <CustomTextField
-//                     id="nhomStrategy"
-//                     variant="outlined"
-//                     fullWidth
-//                     placeholder="Nhập tên nhóm Function . . ."
-
-//                 />
-
-//                 <CustomFormLabel htmlFor="tenStrategy">Tên chiến lược</CustomFormLabel>
-//                 <CustomTextField
-//                     id="tenStrategy"
-//                     variant="outlined"
-//                     fullWidth
-//                     placeholder="Nhập tên Function . . ."
-
-//                 />
-
-//             </Grid>
-//             <Grid item xs={12} lg={4} md={12}>
-
-//                 <CustomFormLabel htmlFor="khachhangStrategy">Khách hàng sở hữu</CustomFormLabel>
-//                 <CustomTextField
-//                     id="khachhangStrategy"
-//                     variant="outlined"
-//                     fullWidth
-//                     placeholder="Nhập số lượng . . ."
-//                 />
-//                 <Grid container spacing={2}>
-//                     <Grid item xs={12} lg={6} md={6}>
-//                         <CustomFormLabel htmlFor="levelStrategy">Level</CustomFormLabel>
-//                         <CustomTextField
-//                             id="levelStrategy"
-//                             variant="outlined"
-//                             fullWidth
-//                             placeholder="Nhập level . . ."
-//                         />
-//                     </Grid>
-//                     <Grid item xs={12} lg={6} md={6}>
-//                         <CustomFormLabel htmlFor="trolyStrategy">Trợ lý áp dụng</CustomFormLabel>
-//                         <CustomOutlinedInput
-//                             id="trolyStrategy"
-//                             fullWidth
-//                             variant="outlined"
-//                             placeholder="Nhập số lượng . . ."
-//                         />
-//                     </Grid>
-//                 </Grid>
-
-
-//             </Grid>
-
-
-//             <Grid item xs={12} lg={12} md={12}>
-//                 <Divider />
-//                 <Grid container spacing={2}>
-//                     <Grid item xs={12} lg={6} md={6}>
-//                         <CustomFormLabel htmlFor="tomtatStrategy">Tóm tắt</CustomFormLabel>
-//                         <CustomTextField
-//                             id="tomtatStrategy"
-//                             fullWidth
-//                             variant="outlined"
-//                             placeholder="Nhập tóm tắt . . ."
-//                             multiline
-//                             rows={5}
-//                         />
-//                     </Grid>
-//                     <Grid item xs={12} lg={6} md={6}>
-//                         <CustomFormLabel htmlFor="noidungStrategy">Nội dung</CustomFormLabel>
-//                         <CustomTextField
-//                             id="noidungStrategy"
-//                             fullWidth
-//                             variant="outlined"
-//                             placeholder="Nhập nội dung . . ."
-//                             multiline
-//                             rows={5}
-//                         />
-//                     </Grid>
-//                 </Grid>
-
-
-//             </Grid>
-
-//         </Grid>
-//     )
-// }
-
-// export default Strategy
-
-
 import {
-    // Avatar, Box,
-    // Divider,
-    Grid, TextField,
+    Grid, InputAdornment, TextField, IconButton, Box, Tooltip, Select, MenuItem, FormControl, InputLabel
 } from "@mui/material";
-// import PersonIcon from '@mui/icons-material/Person';
-// import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
-// import CustomTextField from "src/components/forms/theme-elements/CustomTextField";
-// import CustomOutlinedInput from "src/components/forms/theme-elements/CustomOutlinedInput";
 import { ErrorMessage, Field } from "formik";
 import ReactQuill from "react-quill";
+import { useState } from "react";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'; // Icon cho nút upload ảnh
+import CustomFormLabel from "src/components/forms/theme-elements/CustomFormLabel";
 
 interface StrategyProps {
     values: {
@@ -199,235 +14,134 @@ interface StrategyProps {
         noidungStrategy: string;
     };
 }
-// const QuillEditor = ({ field, form }: { field: any; form: any }) => {
-//     const handleChange = (content: any) => {
-//         form.setFieldValue(field.name, content);
-//     };
 
-//     return <ReactQuill placeholder="Nội dung chiến lực" style={{ height: "100px", marginTop: '15px' }} value={field.value} onChange={handleChange} theme="snow" />;
-// };
 const Strategy = ({ values }: StrategyProps) => {
+    const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
+    const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
+        images: []
+    });
+
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0] || null;
+        if (!file) return;
+
+        // Tạo URL tạm thời cho ảnh đã tải lên
+        const imageUrl = URL.createObjectURL(file);
+        const newIndex = classifications.images.length; // Tính index mới cho ảnh này
+
+        // Cập nhật state classifications và uploadedImages
+        setClassifications((prev) => ({
+            images: [...prev.images, file],
+        }));
+        setUploadedImages((prev) => ({
+            ...prev,
+            [newIndex]: imageUrl,
+        }));
+    };
 
     return (
-        // <Grid container spacing={3}>
-        //     {/* <Box<Grid item xs={12} lg={4} md={12}>
+        <Grid container spacing={2} sx={{ paddingLeft: 38 }}>
+            <CustomFormLabel htmlFor="name">Chiến lược</CustomFormLabel>
+            <Grid container alignItems="center" spacing={2}>
+                {/* Khu vực hiển thị nút upload và các ảnh đã upload */}
+                <Grid item>
+                    <Box p={0}>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleImageChange}
+                            id={`upload-button-0`} // Mặc định chỉ số 0 (có thể thay đổi nếu cần)
+                        />
+                        <Tooltip title="Thêm ảnh">
+                            <IconButton
+                                sx={{
+                                    backgroundColor: uploadedImages[0] ? 'transparent' : '#000',
+                                    opacity: uploadedImages[0] ? 1 : 0.1,
+                                    backgroundImage: uploadedImages[0]
+                                        ? `url(${uploadedImages[0]})`
+                                        : 'none', // Hiển thị ảnh nền nếu đã upload
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    color: '#fff',
+                                    borderRadius: '8px',
+                                    padding: '9px',
+                                    width: 40,
+                                    height: 40,
+                                    '&:hover': {
+                                        backgroundColor: '#333',
+                                        opacity: 0.8,
+                                    },
+                                    transition: 'all 0.3s ease',
+                                }}
+                                onClick={() =>
+                                    document.getElementById(`upload-button-0`)?.click()
+                                }
+                            >
+                                {!uploadedImages[0] && <AddPhotoAlternateIcon fontSize="medium" />}
+                            </IconButton>
+                        </Tooltip>
+                    </Box>
+                </Grid>
 
-        //             sx={{ textAlign: 'center', justifyContent: 'center' }}
-        //         >
-        //             <Avatar
-        //                 src={values.anhStrategy || ''}
-        //                 alt="avatar preview"
-        //                 sx={{
-        //                     width: { xs: 90, sm: 110, md: 130, lg: 160 },
-        //                     height: { xs: 90, sm: 110, md: 130, lg: 160 },
-        //                     margin: 'auto',
-        //                     fontSize: 50,
-        //                     backgroundColor: values.anhStrategy ? 'transparent' : '#f0f0f0',
-        //                     color: '#9e9e9e',
-        //                     cursor: 'pointer',
-        //                     position: 'relative',
-        //                     zIndex: 1,
-        //                     borderRadius: '50%',
-        //                     border: 'none',
-        //                     '&:before': {
-        //                         content: '""',
-        //                         position: 'absolute',
-        //                         top: 0,
-        //                         left: 0,
-        //                         right: 0,
-        //                         bottom: 0,
-        //                         borderRadius: '50%',
-        //                         padding: '6px', // Border width
-        //                         background: 'linear-gradient(#50b2fc, #f44c66)', // Gradient
-        //                         '-webkit-mask':
-        //                             'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-        //                         mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-        //                         maskComposite: 'exclude',
-        //                         zIndex: 1, // Ensure gradient is behind the avatar
-        //                     },
-        //                 }}
-        //             >
-        //                 {!values.anhStrategy && <PersonIcon fontSize="inherit" />}
-        //             </Avatar>
-        //             <ErrorMessage name="nhomFunction">
-        //                 {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //             </ErrorMessage> 
-        //             <Typography mt={1} fontWeight={600}>
-        //                 Ảnh chiến lược
-        //             </Typography>
-        //         </Box> 
-        //     </Grid>*/}
-        //     <Grid item xs={12} lg={4} md={12}>
-        //         {/* <CustomFormLabel htmlFor="nhomStrategy">Nhóm chiến lược</CustomFormLabel>
-        //         <CustomTextField
-        //             id="nhomStrategy"
-        //             variant="outlined"
-        //             fullWidth
-        //             rows={5}
-        //             placeholder="Nhập tên nhóm Function . . ."
-        //             value={values.nhomStrategy}
-        //         /> */}
-        //         {/* <Field name="nhomFunction" as={TextField} label="Nhóm chiến lược" fullWidth />
-        //         <ErrorMessage name="nhomStrategy">
-        //             {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //         </ErrorMessage> */}
-        //         {/* <CustomFormLabel htmlFor="tenStrategy">Tên chiến lược</CustomFormLabel>
-        //         <CustomTextField
-        //             id="tenStrategy"
-        //             variant="outlined"
-        //             fullWidth
-        //             placeholder="Nhập tên Function . . ."
-        //             value={values.tenStrategy}
-        //         /> */}
-        //         {/* <Field name="tenStrategy" as={TextField} label="Tên chiến lược" fullWidth />
-        //         <ErrorMessage name="tenStrategy">
-        //             {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //         </ErrorMessage> */}
-        //         <Grid container spacing={2}>
-        //             <Grid item xs={6}>
-        //                 <Field name="nhomFunction" as={TextField} label="Nhóm chiến lược" fullWidth />
-        //                 <ErrorMessage name="nhomStrategy">
-        //                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //                 </ErrorMessage>
-        //             </Grid>
-        //             <Grid item xs={6}>
-        //                 <Field name="tenStrategy" as={TextField} label="Tên chiến lược" fullWidth />
-        //                 <ErrorMessage name="tenStrategy">
-        //                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //                 </ErrorMessage>
-        //             </Grid>
-        //         </Grid>
-        //     </Grid>
-        //     <Grid item xs={12} lg={4} md={12}>
-        //         {/* <CustomFormLabel htmlFor="khachhangStrategy">Khách hàng sở hữu</CustomFormLabel>
-        //         <CustomTextField
-        //             id="khachhangStrategy"
-        //             variant="outlined"
-        //             fullWidth
-        //             placeholder="Nhập số lượng . . ."
-        //             value={values.khachhangStrategy}
-        //         /> */}
-        //         {/* <Field name="khachhangStrategy" as={TextField} label="Khách hàng chiến lược" fullWidth />
-        //         <ErrorMessage name="khachhangStrategy">
-        //             {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //         </ErrorMessage> */}
-        //         <Grid container spacing={2}>
-        //             <Grid item xs={12} lg={6} md={6}>
-        //                 {/* <CustomFormLabel htmlFor="levelStrategy">Level</CustomFormLabel>
-        //                 <CustomTextField
-        //                     id="levelStrategy"
-        //                     variant="outlined"
-        //                     fullWidth
-        //                     placeholder="Nhập level . . ."
-        //                     value={values.levelStrategy}
-        //                 /> */}
-        //                 <Field name="levelStrategy" as={TextField} label="Levels chiến lược" fullWidth />
-        //                 <ErrorMessage name="levelStrategy">
-        //                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //                 </ErrorMessage>
-        //             </Grid>
+                {/* Input cho Nhóm chiến lược (đã chuyển thành dropdown) */}
+                <Grid item xs>
+                    <FormControl fullWidth variant="outlined">
+                        {/* <InputLabel id=""></InputLabel> */}
+                        <Field
+                            name="nhomStrategy"
+                            as={Select}
+                            labelId="nhomStrategy-label"
+                            placeholder="Nhóm chiến lược"
+                            displayEmpty
+                        >
+                            <MenuItem value="" disabled>
+                                Nhóm chiến lược
+                            </MenuItem>
+                            <MenuItem value="nhom1">Nhóm 1</MenuItem>
+                            <MenuItem value="nhom2">Nhóm 2</MenuItem>
+                            <MenuItem value="nhom3">Nhóm 3</MenuItem>
+                        </Field>
+                    </FormControl>
+                    <ErrorMessage name="nhomStrategy">
+                        {(msg) => <div style={{ color: 'red', marginTop: 4 }}>{msg}</div>}
+                    </ErrorMessage>
+                </Grid>
 
-        //             <Grid item xs={12} lg={6} md={6}>
-        //                 {/* <CustomFormLabel htmlFor="trolyStrategy">Trợ lý áp dụng</CustomFormLabel>
-        //                 <CustomOutlinedInput
-        //                     id="trolyStrategy"
-        //                     fullWidth
-        //                     variant="outlined"
-        //                     placeholder="Nhập số lượng . . ."
-        //                     value={values.trolyStrategy}
-        //                 /> */}
-        //                 <Field name="trolyStrategy" as={TextField} label="Trợ lý chiến lược" fullWidth />
-        //                 <ErrorMessage name="trolyStrategy">
-        //                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //                 </ErrorMessage>
-        //             </Grid>
-        //         </Grid>
-        //     </Grid>
-        //     <Grid item xs={12} lg={12} md={12}>
-        //         <Divider />
-        //         <Grid container spacing={2}>
-        //             <Grid item xs={12} lg={6} md={6}>
-        //                 {/* <CustomFormLabel htmlFor="tomtatStrategy">Tóm tắt</CustomFormLabel>
-        //                 <CustomTextField
-        //                     id="tomtatStrategy"
-        //                     fullWidth
-        //                     variant="outlined"
-        //                     placeholder="Nhập tóm tắt . . ."
-        //                     multiline
-        //                     rows={5}
-        //                     value={values.tomtatStrategy}
-        //                 /> */}
-        //                 <Field name="tomtatStrategy" as={TextField} label="Tóm tắt chiến lược" fullWidth />
-        //                 <ErrorMessage name="tomtatStrategy">
-        //                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //                 </ErrorMessage>
-        //             </Grid>
-        //             <Grid item xs={12} lg={6} md={6}>
-        //                 {/* <CustomFormLabel htmlFor="noidungStrategy">Nội dung</CustomFormLabel>
-        //                 <CustomTextField
-        //                     id="noidungStrategy"
-        //                     fullWidth
-        //                     variant="outlined"
-        //                     placeholder="Nhập nội dung . . ."
-        //                     multiline
-        //                     rows={5}
-        //                     value={values.noidungStrategy}
-        //                 /> */}
-        //                 <Field name="noidungStrategy" as={TextField} label="Nội tăng chiến lược" fullWidth />
-        //                 <ErrorMessage name="noidungStrategy">
-        //                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
-        //                 </ErrorMessage>
-        //             </Grid>
-        //         </Grid>
-        //     </Grid>
-        // </Grid>
-        <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Field name="nhomStrategy" as={TextField} label="Nhóm chiến lược" fullWidth />
-                        <ErrorMessage name="nhomStrategy">
-                            {(msg) => <div style={{ color: 'red' }}>{msg}</div>}
-                        </ErrorMessage>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Field name="levelStrategy" as={TextField} label="Levels chiến lược" fullWidth />
-                        <ErrorMessage name="levelStrategy">
-                            {(msg) => <div style={{ color: 'red' }}>{msg}</div>}
-                        </ErrorMessage>
-                    </Grid>
+                {/* Input cho Giá trị chiến lược */}
+                <Grid item xs>
+                    <Field
+                        name="levelStrategy"
+                        as={TextField}
+                        placeholder="Level chiến lược"
+                        variant="outlined"
+                        InputProps={{
+                            sx: {
+                                height: 40,  // Giữ chiều cao đồng nhất với các field khác
+                            },
+                        }}
+                        sx={{
+                            width: '100%',  // Full width
+                        }}
+                    />
+                    <ErrorMessage name="levelStrategy">
+                        {(msg) => <div style={{ color: 'red', marginTop: 4 }}>{msg}</div>}
+                    </ErrorMessage>
                 </Grid>
             </Grid>
 
-            {/* <Grid item xs={12} md={6}>
-                <Field  name="noidungStrategy" component={QuillEditor} />
+            <Grid item xs={12}>
+                {/* Nội dung chiến lược */}
+                <ReactQuill
+                    theme="snow"
+                    placeholder="Nhập nội dung chiến lược"
+                />
                 <ErrorMessage name="noidungStrategy">
-                    {(msg) => <div style={{ color: 'red' }}>{msg}</div>}
-                </ErrorMessage>
-            </Grid> */}
-            {/* <Grid item xs={12} md={6}>
-                <Field name="noidungStrategy" as={TextField} label="Nội dung chiến lược" fullWidth />
-                <ErrorMessage name="noidungStrategy">
-                    {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                </ErrorMessage>
-            </Grid> */}
-            <Grid item xs={12} md={6}>
-              {/* <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel> */}
-              <ReactQuill
-                // ref={quillRef}
-                // value={formik.values.content}
-                // onChange={handleContentChange}s
-                theme="snow"
-                placeholder="Nhập nội dung chiến lực"
-                style={{ height: '70px', paddingBottom: '10px' }}
-              />
-              <ErrorMessage name="noidungStrategy">
                     {msg => <div style={{ color: 'red' }}>{msg}</div>}
                 </ErrorMessage>
             </Grid>
         </Grid>
-
-    )
+    );
 }
 
 export default Strategy;
