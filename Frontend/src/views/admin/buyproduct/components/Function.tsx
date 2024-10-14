@@ -72,15 +72,15 @@ import { useState } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-interface FunctionProps {
-  values: {
-    nhomFunction: string;
-    codeFunction: string;
-    levelx: string;
-  };
-}
+// interface FunctionProps {
+//   values: {
+//     nhomFunction: string;
+//     codeFunction: string;
+//     levelx: string;
+//   };
+// }
 
-const Function = ({ values }: FunctionProps) => {
+const Function = () => {
   const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
   const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
     images: [],
@@ -185,7 +185,6 @@ const Function = ({ values }: FunctionProps) => {
             {(msg) => <div style={{ color: 'red', marginTop: 4 }}>{msg}</div>}
           </ErrorMessage>
         </Grid>
-
       </Grid>
       <Grid>
         <CustomTextField
@@ -194,7 +193,7 @@ const Function = ({ values }: FunctionProps) => {
           variant="outlined"
           fullWidth
           name="name"
-          sx={{ marginLeft: 2, marginTop: 3 ,width: '830px', }}
+          sx={{ marginLeft: 2, marginTop: 3, width: '830px' }}
         />
       </Grid>
       <Grid item xs={12}>
