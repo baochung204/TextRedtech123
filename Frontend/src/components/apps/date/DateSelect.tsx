@@ -1,12 +1,15 @@
 import { Box, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-
 const DateSelect = () => {
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const date = new Date();
+  const tenDaysBeforeToday = new Date(date);
+  tenDaysBeforeToday.setDate(date.getDate() - 10);
+  console.log(tenDaysBeforeToday);
+  const [startDate, setStartDate] = useState<Date | any>(tenDaysBeforeToday);
+  const [endDate, setEndDate] = useState<Date | any>(new Date());
   const [error, setError] = useState<string | null>(null);
 
   // Effect to validate dates in real-time
@@ -26,6 +29,8 @@ const DateSelect = () => {
           <DatePicker
             value={startDate}
             onChange={(newValue) => setStartDate(newValue)}
+            inputFormat="dd/MM/yyyy"
+            maxDate={endDate}
             renderInput={(props) => (
               <CustomTextField
                 {...props}
@@ -46,6 +51,8 @@ const DateSelect = () => {
           <DatePicker
             value={endDate}
             onChange={(newValue) => setEndDate(newValue)}
+            inputFormat="dd/MM/yyyy"
+            maxDate={new Date()}
             renderInput={(props) => (
               <CustomTextField
                 {...props}

@@ -165,7 +165,11 @@ const Router = [
         element: <ProtectedRoute element={ContractOrderUser} />,
       },
 
-      { path: '/dashboards/ecommerce', exact: true, element: <ProtectedRoute element={EcommerceDash} /> },
+      {
+        path: '/dashboards/ecommerce',
+        exact: true,
+        element: <ProtectedRoute element={EcommerceDash} />,
+      },
       { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
       { path: '/apps/list-assistant', element: <ProtectedRoute element={Assistant} /> },
       { path: '/apps/assistant', element: <ProtectedRoute element={Assistant} /> },
@@ -179,7 +183,7 @@ const Router = [
       { path: '/affiliate', element: <ProtectedRoute element={Collaborate} /> },
       { path: '/customers', element: <ProtectedRoute element={CustomerList2} /> },
       { path: '/affiliate/list_customer', element: <ProtectedRoute element={CustomerList} /> },
-  
+
       { path: '/apps/contract-client', element: <ProtectedRoute element={Client} /> },
       { path: '/affiliate/agreement', element: <ProtectedRoute element={Aff} /> },
       { path: '/blogs', element: <ProtectedRoute element={Blog} /> },
@@ -190,7 +194,10 @@ const Router = [
       { path: '/apps/tickets', element: <ProtectedRoute element={Tickets} /> },
       { path: '/update', element: <ProtectedRoute element={Update} /> },
       { path: '/shops', element: <ProtectedRoute element={Ecommerce} /> },
-      { path: '/apps/ecommerce/eco-product-list', element: <ProtectedRoute element={EcomProductList} /> },
+      {
+        path: '/apps/ecommerce/eco-product-list',
+        element: <ProtectedRoute element={EcomProductList} />,
+      },
       { path: '/carts', element: <ProtectedRoute element={EcomProductCheckout} /> },
       { path: '/apps/point/detaipoint/:id', element: <ProtectedRoute element={Detailpoint} /> },
       { path: '/shop/detail/:id', element: <ProtectedRoute element={EcommerceDetail} /> },
@@ -207,12 +214,18 @@ const Router = [
       { path: '/user_profile', element: <ProtectedRoute element={UserProfile} /> },
       { path: '/pointhistory', element: <ProtectedRoute element={Pointhistory} /> },
       { path: '/purchasehistory', element: <ProtectedRoute element={Purchasehistory} /> },
-      { path: '/apps/support', element: <ProtectedRoute element={Aisupport} /> },
-      { path: '/apps/calendar', element: <ProtectedRoute element={Calendar} /> },
+      // { path: '/apps/support', element: <ProtectedRoute element={Aisupport} /> },
+      // { path: '/apps/calendar', element: <ProtectedRoute element={Calendar} /> },
       { path: '/pages/faq', element: <ProtectedRoute element={Faq} /> },
-      { path: '/user_profile/assistants', element: <ProtectedRoute element={ListAssistantInProfile} /> },
+      {
+        path: '/user_profile/assistants',
+        element: <ProtectedRoute element={ListAssistantInProfile} />,
+      },
       { path: '/resources', element: <ProtectedRoute element={Faq} /> },
-      { path: '/profile/assistant/list', element: <ProtectedRoute element={ListAssistantInProfile} /> },
+      {
+        path: '/profile/assistant/list',
+        element: <ProtectedRoute element={ListAssistantInProfile} />,
+      },
       { path: '/assistants', element: <ProtectedRoute element={ListAssistant} /> },
       { path: '/buy/point', element: <ProtectedRoute element={BuyPoint} /> },
       { path: '/pay/point', element: <ProtectedRoute element={PaymentPoint} /> },
@@ -223,7 +236,10 @@ const Router = [
         path: '/user_profile/point/transaction_point_history',
         element: <ProtectedRoute element={HistoryBuyPointInProfile} />,
       },
-      { path: '/user_profile/point/purchase_history', element: <ProtectedRoute element={PurchaseHistoryInProfile} /> },
+      {
+        path: '/user_profile/point/purchase_history',
+        element: <ProtectedRoute element={PurchaseHistoryInProfile} />,
+      },
       { path: '/assistant/list', element: <ProtectedRoute element={ListAssistant} /> },
       { path: '/notifications', element: <ProtectedRoute element={AllNotifications} /> },
       { path: '*', element: <Navigate to="/error/404" /> },

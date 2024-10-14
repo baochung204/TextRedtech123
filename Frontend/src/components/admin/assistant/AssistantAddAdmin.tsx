@@ -119,7 +119,16 @@ const AssistantEditer = () => {
             <Grid item xs={12}>
               {' '}
               {/* 1/3 chiều cao của parent */}
-              <Strategy />
+              {Strategy.map((item, index) => (
+                <Box
+                  key={index}
+                  sx={{ backgroundColor: item.bgColor, padding: 2, marginBottom: 2 }}
+                >
+                  <Typography variant="h6">{item.title}</Typography>
+                  <Typography variant="body1">{item.total}</Typography>
+                  {item.icons}
+                </Box>
+              ))}
             </Grid>
           </Grid>
         </Grid>
