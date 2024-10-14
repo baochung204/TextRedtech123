@@ -874,7 +874,7 @@
   "vnd_coupons": [
     {
       "id": "6703ea6e1518f2ac36ca10",
-      "name": "Giảm 200.000₫",
+      "name": "Giảm 20.000₫",
       "value": 20000,
       "type": "VALUE",
       "coupon_percen": 0,
