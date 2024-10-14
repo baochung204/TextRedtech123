@@ -1,4 +1,4 @@
-import instance from '../resources/instance';
+import instance from 'src/configs/axios';
 
 export const GetAllVndCoupons = async () => {
   try {
