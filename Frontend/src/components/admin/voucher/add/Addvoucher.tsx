@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, FormControlLabel, Grid, MenuItem } from '@mui/material';
+import { Box, Button, Checkbox, FormControl, FormControlLabel, Grid, MenuItem, Radio, RadioGroup } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -104,26 +104,24 @@ const AddVoucher = () => {
                 </Button>
               </Grid>
             </Grid>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={externalCode}
-                  onChange={() => setExternalCode(!externalCode)}
-                  color="primary"
+            <FormControl component="fieldset">
+              <RadioGroup
+                name="discountType"
+                value={discountType}
+                onChange={handleDiscountTypeChange}
+              >
+                <FormControlLabel
+                  value="external"
+                  control={<Radio color="primary" />}
+                  label="Mã giảm bên ngoài hệ thống"
                 />
-              }
-              label="Mã giảm bên ngoài hệ thống"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={internalCode}
-                  onChange={() => setInternalCode(!internalCode)}
-                  color="primary"
+                <FormControlLabel
+                  value="internal"
+                  control={<Radio color="primary" />}
+                  label="Mã giảm bên trong hệ thống"
                 />
-              }
-              label="Mã giảm bên trong hệ thống"
-            />
+              </RadioGroup>
+            </FormControl>
           </Grid>
 
           <Grid item lg={6} md={12}>
