@@ -10,154 +10,154 @@ import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 import { FunctionRows } from '../mockData/TableFunction';
 
 interface PropsDialog {
-    value: string,
-    open: boolean,
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  value: string;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
-    // const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-    const [isEditMode, setIsEditMode] = useState(false);
-    const [formData, setFormData] = useState({
-        id: '',
-        creationTime: '',
-        functionGroup: '',
-        functionName: '',
-        badge: '',
-        level: '',
-        ownedCustomers: '',
-        appliedAssistants: '',
-        content: '',
-        summary: '',
-        functionCode: '',
-        creator: '',
-    });
+  // const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [, setIsEditMode] = useState(false);
+  const [formData, setFormData] = useState({
+    id: '',
+    creationTime: '',
+    functionGroup: '',
+    functionName: '',
+    badge: '',
+    level: '',
+    ownedCustomers: '',
+    appliedAssistants: '',
+    content: '',
+    summary: '',
+    functionCode: '',
+    creator: '',
+  });
 
-    // const [errors, setErrors] = useState({
-    //     functionName: '',
-    //     functionGroup: '',
-    //     badge: '',
-    //     level: '',
-    //     summary: '',
-    //     content: '',
-    // });
+  // const [errors, setErrors] = useState({
+  //     functionName: '',
+  //     functionGroup: '',
+  //     badge: '',
+  //     level: '',
+  //     summary: '',
+  //     content: '',
+  // });
 
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbar] = useState(false);
 
-    const handleClose = () => {
-        setOpen(false);
-        setIsEditMode(false);
-    };
+  const handleClose = () => {
+    setOpen(false);
+    setIsEditMode(false);
+  };
 
-    // const handleSubmit = () => {
-    //     if (isEditMode) {
-    //         const newErrors = validateForm();
-    //         if (Object.values(newErrors).some(error => error !== '')) {
-    //             setErrors(newErrors);
-    //         } else {
-    //             // Lưu thay đổi
-    //             setIsEditMode(false); // Thoát chế độ chỉnh sửa sau khi lưu
-    //             setOpenSnackbar(true);
-    //             setTimeout(() => {
-    //                 setOpenSnackbar(false);
-    //             }, 3000);
-    //         }
-    //     } else {
-    //         // Kích hoạt chế độ chỉnh sửa
-    //         setIsEditMode(true);
-    //     }
-    // };
+  // const handleSubmit = () => {
+  //     if (isEditMode) {
+  //         const newErrors = validateForm();
+  //         if (Object.values(newErrors).some(error => error !== '')) {
+  //             setErrors(newErrors);
+  //         } else {
+  //             // Lưu thay đổi
+  //             setIsEditMode(false); // Thoát chế độ chỉnh sửa sau khi lưu
+  //             setOpenSnackbar(true);
+  //             setTimeout(() => {
+  //                 setOpenSnackbar(false);
+  //             }, 3000);
+  //         }
+  //     } else {
+  //         // Kích hoạt chế độ chỉnh sửa
+  //         setIsEditMode(true);
+  //     }
+  // };
 
-    // const validateForm = () => {
-    //     const newErrors = {
-    //         functionName: '', functionGroup: '', badge: '',
-    //         level: '',
-    //         summary: '',
-    //         content: '',
-    //     };
+  // const validateForm = () => {
+  //     const newErrors = {
+  //         functionName: '', functionGroup: '', badge: '',
+  //         level: '',
+  //         summary: '',
+  //         content: '',
+  //     };
 
-    //     if (!formData.functionName) {
-    //         newErrors.functionName = 'Tên chiến lược không được để trống';
-    //     }
-    //     if (!formData.functionGroup) {
-    //         newErrors.functionGroup = 'Nhóm chiến lược không được để trống';
-    //     }
-    //     if (!formData.badge) {
-    //         newErrors.badge = 'Huy hiệu không được để trống';
-    //     }
-    //     if (!formData.level) {
-    //         newErrors.level = 'Level không được để trống';
-    //     }
-    //     if (!formData.content) {
-    //         newErrors.content = 'Nội dung không được để trống';
-    //     }
-    //     if (!formData.summary) {
-    //         newErrors.summary = 'Tóm tắt không được để trống';
-    //     }
-    //     return newErrors;
-    // };
+  //     if (!formData.functionName) {
+  //         newErrors.functionName = 'Tên chiến lược không được để trống';
+  //     }
+  //     if (!formData.functionGroup) {
+  //         newErrors.functionGroup = 'Nhóm chiến lược không được để trống';
+  //     }
+  //     if (!formData.badge) {
+  //         newErrors.badge = 'Huy hiệu không được để trống';
+  //     }
+  //     if (!formData.level) {
+  //         newErrors.level = 'Level không được để trống';
+  //     }
+  //     if (!formData.content) {
+  //         newErrors.content = 'Nội dung không được để trống';
+  //     }
+  //     if (!formData.summary) {
+  //         newErrors.summary = 'Tóm tắt không được để trống';
+  //     }
+  //     return newErrors;
+  // };
 
-    // const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     if (e.target.files && e.target.files.length > 0) {
-    //         const file = e.target.files[0];
-    //         setAvatarPreview(URL.createObjectURL(file));
-    //     }
-    // };
+  // const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //     if (e.target.files && e.target.files.length > 0) {
+  //         const file = e.target.files[0];
+  //         setAvatarPreview(URL.createObjectURL(file));
+  //     }
+  // };
 
-    const fetchStrategyDetail = (id: string) => {
-        const functions = FunctionRows.find((item) => item.id === id);
-        if (functions) {
-            setFormData({
-                id: functions.id,
-                creationTime: functions.creationTime,
-                functionGroup: functions.functionGroup,
-                functionName: functions.functionName,
-                badge: functions.badge,
-                level: functions.level,
-                ownedCustomers: functions.ownedCustomers,
-                appliedAssistants: functions.appliedAssistants,
-                content: functions.content,
-                summary: functions.summary,
-                functionCode: functions.functionCode,
-                creator: functions.creator,
-            });
-        }
-    };
+  const fetchStrategyDetail = (id: string) => {
+    const functions = FunctionRows.find((item) => item.id === id);
+    if (functions) {
+      setFormData({
+        id: functions.id,
+        creationTime: functions.creationTime,
+        functionGroup: functions.functionGroup,
+        functionName: functions.functionName,
+        badge: functions.badge,
+        level: functions.level,
+        ownedCustomers: functions.ownedCustomers,
+        appliedAssistants: functions.appliedAssistants,
+        content: functions.content,
+        summary: functions.summary,
+        functionCode: functions.functionCode,
+        creator: functions.creator,
+      });
+    }
+  };
 
-    useEffect(() => {
-        if (value) {
-            fetchStrategyDetail(value);
-        }
-    }, [value]);
+  useEffect(() => {
+    if (value) {
+      fetchStrategyDetail(value);
+    }
+  }, [value]);
 
-    return (
-        <>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                maxWidth="lg"
-                sx={{
-                    '& .MuiDialog-container': {
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    },
-                    '& .MuiPaper-root': {
-                        width: '100%',
-                        maxWidth: '800px',
-                    },
-                }}
-            >
-                <DialogTitle>
-                    <Typography fontWeight={600} variant='h3'>
-                        {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
-                        Chi tiết function
-                    </Typography>
-                </DialogTitle>
-                <Scrollbar_y sx={{ maxHeight: '550px',overflow:'hidden', paddingX: 0 }}>
-                    <Divider sx={{ mx: '0px' }} />
-                    <DialogContent sx={{ pt: 0, px: 5 }}>
-                        {/* {isEditMode ? (<Grid container spacing={2}>
+  return (
+    <>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        maxWidth="lg"
+        sx={{
+          '& .MuiDialog-container': {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+          '& .MuiPaper-root': {
+            width: '100%',
+            maxWidth: '800px',
+          },
+        }}
+      >
+        <DialogTitle>
+          <Typography fontWeight={600} variant="h3">
+            {/* {isEditMode ? 'Chỉnh sửa chiến lược' : 'Xem chiến lược'} */}
+            Chi tiết function
+          </Typography>
+        </DialogTitle>
+        <Scrollbar_y sx={{ maxHeight: '550px', overflow: 'hidden', paddingX: 0 }}>
+          <Divider sx={{ mx: '0px' }} />
+          <DialogContent sx={{ pt: 0, px: 5 }}>
+            {/* {isEditMode ? (<Grid container spacing={2}>
                         <Grid item xs={12} lg={4} md={12}>
                             <Box
                                 sx={{ textAlign: 'center', justifyContent: 'center', mt: { md: 2 }, mb: '20px' }}
@@ -328,132 +328,124 @@ const DialogFuncView: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                         </Grid>
                     </Grid>
                     ) : ( */}
-                        <Grid item xs={12} lg={12} md={12}>
-                            <Grid container spacing={2} >
-                                <Grid item xs={12} lg={2} md={6} mt={3} >
-                                    <Avatar sx={{ width: '100px', height: '100px' }} src={formData.badge} />
-                                    {/* <Box fontWeight={600} mt={1} display={'flex'} justifyContent={'center'}>Huy hiệu</Box> */}
-                                </Grid>
+            <Grid item xs={12} lg={12} md={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} lg={2} md={6} mt={3}>
+                  <Avatar sx={{ width: '100px', height: '100px' }} src={formData.badge} />
+                  {/* <Box fontWeight={600} mt={1} display={'flex'} justifyContent={'center'}>Huy hiệu</Box> */}
+                </Grid>
 
-                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
-                                    {/** Grid trái chứa nhãn các trường */}
-                                    <Box display="flex" flexDirection="column" justifyContent="space-between">
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box fontWeight={600}>ID :</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box fontWeight={600}>Tên function :</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box fontWeight={600}>Người tạo :</Box>
-                                        </Box>
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box fontWeight={600}>Khách hàng sở hữu :</Box>
-                                        </Box>
-                                      
-                                    </Box>
-                                </Grid>
+                <Grid item xs={12} lg={2.5} md={6} mt={3}>
+                  {/** Grid trái chứa nhãn các trường */}
+                  <Box display="flex" flexDirection="column" justifyContent="space-between">
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box fontWeight={600}>ID :</Box>
+                    </Box>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box fontWeight={600}>Tên function :</Box>
+                    </Box>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box fontWeight={600}>Người tạo :</Box>
+                    </Box>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box fontWeight={600}>Khách hàng sở hữu :</Box>
+                    </Box>
+                  </Box>
+                </Grid>
 
-                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
-                                    {/** Grid phải chứa dữ liệu */}
-                                    <Box display="flex" flexDirection="column" justifyContent="space-between">
-                                        <Box display="flex" alignItems="top" height="40px">
-                                            <Box>{formData.id}</Box>
-                                        </Box>
-                                       
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box>{formData.functionName}</Box>
-                                        </Box>
-                                      
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box>{formData.creator}</Box>
-                                        </Box>
+                <Grid item xs={12} lg={2.5} md={6} mt={3}>
+                  {/** Grid phải chứa dữ liệu */}
+                  <Box display="flex" flexDirection="column" justifyContent="space-between">
+                    <Box display="flex" alignItems="top" height="40px">
+                      <Box>{formData.id}</Box>
+                    </Box>
 
-                                      
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box>{formData.ownedCustomers}</Box>
-                                        </Box>
-                                        
-                                        
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
-                                    <Box display="flex" alignItems="top" minHeight="40px">
-                                        <Box fontWeight={600}>Ngày tạo :</Box>
-                                    </Box>
-                                    <Box display="flex" alignItems="top" minHeight="40px">
-                                        <Box fontWeight={600}>Nhóm function :</Box>
-                                    </Box>
-                                    <Box display="flex" alignItems="top" minHeight="40px">
-                                        <Box fontWeight={600}>Level :</Box>
-                                    </Box>
-                                    <Box display="flex" alignItems="top" minHeight="40px">
-                                        <Box fontWeight={600}>Trợ lý đã áp dụng :</Box>
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={12} lg={2.5} md={6} mt={3}>
-                                    <Box display="flex" alignItems="top" height="40px">
-                                        <Box>{formData.creationTime}</Box>
-                                    </Box>
-                                    <Box display="flex" alignItems="top" minHeight="40px">
-                                        <Box>{formData.functionGroup}</Box>
-                                    </Box>
-                                    <Box display="flex" alignItems="top" minHeight="40px">
-                                        <Box>{formData.level}</Box>
-                                    </Box>
-                                    <Box display="flex" alignItems="top" minHeight="40px">
-                                        <Box>{formData.appliedAssistants}</Box>
-                                    </Box>
-                                </Grid>
-                                <Grid container xs={12} lg={12} md={6} ml={2}>
-                                    <Grid item xs={12} lg={2} md={6} mt={2}>
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box fontWeight={600}>Tóm tắt:</Box>
-                                        </Box>
-                                    </Grid>
-                                    <Grid item xs={12} lg={10} md={6} mt={2}>
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box>{formData.summary}</Box>
-                                        </Box>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box>{formData.functionName}</Box>
+                    </Box>
 
-                                    </Grid>
-                                </Grid>
-                                <Grid container xs={12} lg={12} md={6} ml={2}>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box>{formData.creator}</Box>
+                    </Box>
 
-                                    <Grid item xs={12} lg={2} md={6} mt={2}>
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box fontWeight={600}>Nội dung:</Box>
-                                        </Box>
-                                    </Grid>
-                                    <Grid item xs={12} lg={10} md={6} mt={2}>
-                                        <Box display="flex" alignItems="top" minHeight="40px">
-                                            <Box>{formData.content}</Box>
-                                        </Box>
-                                    </Grid>
-                                </Grid>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box>{formData.ownedCustomers}</Box>
+                    </Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} lg={2.5} md={6} mt={3}>
+                  <Box display="flex" alignItems="top" minHeight="40px">
+                    <Box fontWeight={600}>Ngày tạo :</Box>
+                  </Box>
+                  <Box display="flex" alignItems="top" minHeight="40px">
+                    <Box fontWeight={600}>Nhóm function :</Box>
+                  </Box>
+                  <Box display="flex" alignItems="top" minHeight="40px">
+                    <Box fontWeight={600}>Level :</Box>
+                  </Box>
+                  <Box display="flex" alignItems="top" minHeight="40px">
+                    <Box fontWeight={600}>Trợ lý đã áp dụng :</Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} lg={2.5} md={6} mt={3}>
+                  <Box display="flex" alignItems="top" height="40px">
+                    <Box>{formData.creationTime}</Box>
+                  </Box>
+                  <Box display="flex" alignItems="top" minHeight="40px">
+                    <Box>{formData.functionGroup}</Box>
+                  </Box>
+                  <Box display="flex" alignItems="top" minHeight="40px">
+                    <Box>{formData.level}</Box>
+                  </Box>
+                  <Box display="flex" alignItems="top" minHeight="40px">
+                    <Box>{formData.appliedAssistants}</Box>
+                  </Box>
+                </Grid>
+                <Grid container xs={12} lg={12} md={6} ml={2}>
+                  <Grid item xs={12} lg={2} md={6} mt={2}>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box fontWeight={600}>Tóm tắt:</Box>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} lg={10} md={6} mt={2}>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box>{formData.summary}</Box>
+                    </Box>
+                  </Grid>
+                </Grid>
+                <Grid container xs={12} lg={12} md={6} ml={2}>
+                  <Grid item xs={12} lg={2} md={6} mt={2}>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box fontWeight={600}>Nội dung:</Box>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} lg={10} md={6} mt={2}>
+                    <Box display="flex" alignItems="top" minHeight="40px">
+                      <Box>{formData.content}</Box>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+            {/* )} */}
+          </DialogContent>
+        </Scrollbar_y>
 
-                            </Grid>
-                        </Grid>
-                        {/* )} */}
+        <DialogActions>
+          <Button onClick={handleClose}>Đóng</Button>
 
-                    </DialogContent>
-                </Scrollbar_y>
-
-                <DialogActions>
-                    <Button onClick={handleClose}>Đóng</Button>
-
-                    {/* <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button>
+          {/* <Button onClick={handleClose}>{isEditMode ? 'Hủy' : 'Đóng'}</Button>
                     <Button variant='contained' onClick={handleSubmit}>{isEditMode ? 'Lưu' : 'Sửa'}</Button> */}
-                </DialogActions>
-            </Dialog>
+        </DialogActions>
+      </Dialog>
 
-            <Snackbar open={openSnackbar} autoHideDuration={3000}>
-                <Alert severity="success" sx={{ width: '100%' }}>
-                    Thêm chiến lược thành công!
-                </Alert>
-            </Snackbar>
-        </>
-    );
+      <Snackbar open={openSnackbar} autoHideDuration={3000}>
+        <Alert severity="success" sx={{ width: '100%' }}>
+          Thêm chiến lược thành công!
+        </Alert>
+      </Snackbar>
+    </>
+  );
 };
 
 export default DialogFuncView;

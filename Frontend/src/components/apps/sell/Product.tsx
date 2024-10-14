@@ -474,7 +474,7 @@ const PaginationTable = () => {
       {
         title: '	Giá niêm yết',
         dataIndex: 'price',
-        render: (value: string, row) => (
+        render: (row) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Typography>{row.price} đ</Typography>
           </Box>

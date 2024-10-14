@@ -2,7 +2,6 @@ import {
   AppBar,
   Box,
   Button,
-  FormControlLabel,
   IconButton,
   Stack,
   Switch,
@@ -27,8 +26,8 @@ import Notifications from './Notification';
 import Profile from './Profile';
 import Search from './Search';
 
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));

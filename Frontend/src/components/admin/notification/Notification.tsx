@@ -3,9 +3,6 @@ import {
   Badge,
   Box,
   Checkbox,
-  Dialog,
-  DialogContent,
-  DialogTitle,
   Grid,
   IconButton,
   InputAdornment,
@@ -20,10 +17,8 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
-import view from 'src/assets/NotificationAdmin/luot xem.png';
 import tags from 'src/assets/NotificationAdmin/tags.png';
 import notification from 'src/assets/NotificationAdmin/thong bao.png';
-import interact from 'src/assets/NotificationAdmin/tuong tac.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -298,11 +293,11 @@ const ContentNotification = () => {
   };
   const [value, setValue] = useState<Dayjs | null>(null);
   const [value1, setValue1] = useState<Dayjs | null>(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  // const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-  };
+  // const handleClosePopup = () => {
+  //   setIsPopupOpen(false);
+  // };
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>

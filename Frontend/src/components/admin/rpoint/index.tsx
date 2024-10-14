@@ -1,4 +1,3 @@
-import React, { useEffect, useMemo, useState } from 'react';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
@@ -17,8 +16,9 @@ import {
 } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
+import React, { useEffect, useMemo, useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
@@ -96,7 +96,7 @@ const PublisherTablePage: React.FC = () => {
           </>
         ),
       },
-      
+
       // {
       //   title: 'Function',
       //   dataIndex: 'function',

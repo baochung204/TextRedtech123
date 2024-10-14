@@ -29,11 +29,9 @@ import flashsale from 'src/assets/Adminphoto/so flash sale.png';
 import amountticketsale from 'src/assets/Adminphoto/so ma giam gia.png';
 import balancepublisher from 'src/assets/Adminphoto/Số dư Publisher.png';
 import ticket from 'src/assets/Adminphoto/ticket.png';
-import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
 import buyrate from 'src/assets/Adminphoto/ty le mua.png';
 import usagerate from 'src/assets/Adminphoto/ty le su dung.png';
 import revenueperpublisher from 'src/assets/dashboardadmin/doanh thu-publis.png';
-import commissionperorder from 'src/assets/dashboardadmin/hoa dồng - đơn hàng.png';
 import commissionperpublisher from 'src/assets/dashboardadmin/hoa hồng publis.png';
 import customerperpublisher from 'src/assets/dashboardadmin/khach hang- publis.png';
 import orderperpublisher from 'src/assets/dashboardadmin/đơn hàng-publis.png';
@@ -44,9 +42,6 @@ import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Affilatechartadmin1 from './Affilatechartadmin1';
-import Affilatechartadmin12 from './Affiliateadminchart12';
-import Affilatechartadmin10 from './Affiliatechartadmin10';
-import Affilatechartadmin11 from './Affiliatechartadmin11';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
 
 import Affilatechartadmin9 from './Affiliatechartadmin9';
@@ -55,7 +50,6 @@ import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
-import Affilatechartadmin13 from './Affiliateadminchart13';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },

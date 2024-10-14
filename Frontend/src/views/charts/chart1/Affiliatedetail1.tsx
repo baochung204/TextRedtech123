@@ -24,8 +24,6 @@ import DashboardCard from 'src/components/shared/DashboardCard';
 //   'Tháng 12',
 // ];
 
-
-
 const Affiliatedetail = () => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -50,7 +48,7 @@ const Affiliatedetail = () => {
     '4/11/2001',
     '5/11/2001',
     '6/11/2001',
-  ]
+  ];
 
   const optionsgredientchart: Props = {
     chart: {
@@ -80,7 +78,7 @@ const Affiliatedetail = () => {
       categories: categories,
       labels: {
         show: true,
-        formatter: (value: string, timestamp: string, opts?: any) => {
+        formatter: (value: string, opts?: any) => {
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -105,14 +103,14 @@ const Affiliatedetail = () => {
           {
             offset: 0,
             color: primary2,
-            opacity: 1
+            opacity: 1,
           },
           {
             offset: 100,
             color: primary,
-            opacity: 0.9
-          }
-        ]
+            opacity: 0.9,
+          },
+        ],
       },
     },
     colors: [primary],

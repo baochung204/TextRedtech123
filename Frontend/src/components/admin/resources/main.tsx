@@ -21,19 +21,19 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import DialogFile from './dialog/DialogModel';
 import DialogFunction from './dialog/DialogFunction';
+import DialogFile from './dialog/DialogModel';
 import DialogStr from './dialog/DialogStr';
 import { FileCells, Files } from './mockData/TableFile';
 import { Function } from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
-import { Model, ModelCells, ModelRows } from './mockData/TableModel';
+import { Model } from './mockData/TableModel';
 import { Strategy } from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
 
 import TabFunction from './Tables/TabFunction';
-import TabStr from './Tables/TabStr';
 import TabModel from './Tables/TabModel';
+import TabStr from './Tables/TabStr';
 interface Column {
   title: string;
   dataIndex: string;
@@ -410,7 +410,7 @@ const Main = () => {
                 fullWidth={true}
               />
             </Grid>
-            {( value === null) && (
+            {value === null && (
               <Grid item>
                 <IconButton
                   color="primary"

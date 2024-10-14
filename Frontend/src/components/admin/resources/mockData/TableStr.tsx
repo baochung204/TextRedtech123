@@ -95,90 +95,14 @@ export const Strategy = [
     ),
   },
 ];
-// export const StrategyCells: any = [
-//   {
-//     dataIndex: 'id',
-//     title: 'ID',
-//   },
-//   {
-//     dataIndex: 'strategyGroup',
-
-//     title: 'Nhóm chiến lược',
-//   },
-//   {
-//     dataIndex: 'badge',
-
-//     title: 'Huy hiệu',
-//   },
-//   {
-//     dataIndex: 'strategyName',
-
-//     title: 'Tên chiến lược',
-//   },
-//   {
-//     dataIndex: 'level',
-
-//     title: 'Level',
-//   },
-//   {
-//     dataIndex: 'ownedCustomers',
-
-//     title: 'Khách hàng sở hữu',
-//   },
-//   {
-//     dataIndex: 'appliedAssistants',
-
-//     title: 'Trợ lý áp dụng',
-//   },
-//   {
-//     dataIndex: 'summary',
-
-//     title: 'Tóm tắt',
-//   },
-//   {
-//     dataIndex: 'content',
-
-//     title: 'Nội dung',
-//   },
-//   {
-//     dataIndex: 'dateCreate',
-
-//     title: 'Ngày tạo',
-//   },
-//   {
-//     dataIndex: 'status',
-//     title: 'Trạng thái',
-//     render: ((_row: any, value: any) => (
-//       <Typography color="textSecondary" variant="subtitle2">
-//         <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
-//       </Typography>
-//     ))
-//   },
-//   {
-//     dataIndex: 'actions',
-//     title: 'Hoạt động',
-//     render: ((_row: any, value: any) => (
-//       <>
-//         <IconButton >
-//           <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-//         </IconButton>
-//         <IconButton>
-//           <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-//         </IconButton>
-//       </>
-//         // console.log(`cot ${value.id}`,value)
-
-//     ))
-//   },
-
-// ];
 
 export const StrategyRows: Strategys[] = [
   {
     id: 'STG001',
     creationTime: '2024-09-01',
     strategyGroup: 'Nhóm A',
-    badge: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRb8BMw3RWhIF-wAiHpwibf7h0SNZUZRa0qA0IQ-d5p3EuNL0zR',
+    badge:
+      'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRb8BMw3RWhIF-wAiHpwibf7h0SNZUZRa0qA0IQ-d5p3EuNL0zR',
     strategyName: 'Chiến lược Tăng trưởng 2024',
     level: 'Cấp 1',
     ownedCustomers: '25',
@@ -187,7 +111,7 @@ export const StrategyRows: Strategys[] = [
     content: 'Chiến lược nhằm tăng cường sự hiện diện tại các thị trường mới nổi...',
     dateCreate: 'Nguyễn Văn A',
     creator: 'Khai dan',
-    status: true
+    status: true,
   },
   {
     id: 'STG002',
@@ -202,7 +126,7 @@ export const StrategyRows: Strategys[] = [
     content: 'Chiến lược này tập trung vào việc nâng cao dịch vụ sau bán hàng...',
     dateCreate: 'Trần Thị B',
     creator: 'Khai dan',
-    status: true
+    status: true,
   },
   {
     id: 'STG003',
@@ -217,7 +141,7 @@ export const StrategyRows: Strategys[] = [
     content: 'Tập trung vào việc ra mắt các sản phẩm mới nhằm đáp ứng nhu cầu thị trường...',
     dateCreate: 'Lê Văn C',
     creator: 'Khai dan',
-    status: false
+    status: false,
   },
   {
     id: 'STG004',
@@ -233,7 +157,7 @@ export const StrategyRows: Strategys[] = [
       'Chiến lược tập trung vào việc xâm nhập và phát triển các kênh phân phối tại Đông Nam Á...',
     dateCreate: 'Hoàng Thị D',
     creator: 'Khai dan',
-    status: true
+    status: true,
   },
   {
     id: 'STG005',
@@ -248,7 +172,7 @@ export const StrategyRows: Strategys[] = [
     content: 'Tối ưu hóa quy trình sản xuất và cắt giảm các chi phí không cần thiết...',
     dateCreate: 'Phạm Văn E',
     creator: 'Khai dan',
-    status: true
+    status: true,
   },
   {
     id: 'STG006',
@@ -263,6 +187,6 @@ export const StrategyRows: Strategys[] = [
     content: 'Chiến lược này tập trung vào việc xây dựng hình ảnh thương hiệu mạnh mẽ...',
     dateCreate: 'Ngô Thị F',
     creator: 'Khai dan',
-    status: true
+    status: true,
   },
 ];
