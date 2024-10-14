@@ -25,3 +25,13 @@ export const AdminRoute: React.FC<ProtectedRouteProps> = ({ element: Element }) 
         <Navigate to={'/auth/login'} replace state={{ from: location }} />
     );
 };
+
+export const AuthorizationWithPermission: React.FC<ProtectedRouteProps> = ({ element: Element }) => {
+    const location = useLocation();
+
+    return ApiService.isAdmin() ? (
+        <Element />
+    ) : (
+        <Navigate to={'/auth/login'} replace state={{ from: location }} />
+    );
+};

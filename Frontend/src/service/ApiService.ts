@@ -1,5 +1,15 @@
 import axios from 'axios';
 
+interface UserRole {
+    permission: string;
+    create: boolean;
+    read: boolean;
+    update: boolean;
+    delete: boolean;
+}
+
+type ActionType = 'create' | 'read' | 'update' | 'delete';
+
 export default class ApiService {
     static BASE_URL = 'https://redai02-4af4309fd76b.herokuapp.com'; // Dựa trên URL API của bạn
 
@@ -197,5 +207,22 @@ export default class ApiService {
     static isUser() {
         const roles = JSON.parse(localStorage.getItem('roles') || '[]'); // Lấy mảng roles từ localStorage
         return roles.includes('USER'); // Kiểm tra nếu mảng chứa 'USER'
+    }
+
+
+    static userPermissions = {
+        employeeRoles: [
+            { permission: "USER", create: true, read: true, update: true, delete: true },
+            { permission: "EMPLOYEE", create: true, read: true, update: true, delete: true },
+            { permission: "BLOG", create: true, read: true, update: true, delete: false }, // Example: no delete permission
+        ] as UserRole[],
+    };
+
+    static hasPermission(permission: string, action: ActionType): boolean {
+        const role = ApiService.userPermissions.employeeRoles.find(r => r.permission === permission);
+        
+        if (!role) return false;
+        
+        return role[action];
     }
 }
