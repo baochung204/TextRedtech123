@@ -219,10 +219,20 @@ const OrderAffiliate = () => {
       {
         title: 'Giá trị đơn hàng',
         dataIndex: 'value',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
       {
         title: 'Hoa hồng',
         dataIndex: 'commission',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
       // {
       //   title: 'Trạng thái',

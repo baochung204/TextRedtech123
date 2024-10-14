@@ -428,7 +428,7 @@ const OrderInformation = () => {
                                         color="primary"
                                         onClick={() => handleSelectedVoucherId(item)}
                                       >
-                                        {selectedVoucher === item.id ? 'Bỏ chọn' : 'Đã Chọn'}
+                                        {selectedVoucher === item.id ? 'Bỏ chọn' : 'Chọn'}
                                       </Button>
                                     </Box>
                                   </Grid>

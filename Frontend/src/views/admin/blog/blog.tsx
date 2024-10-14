@@ -131,7 +131,6 @@ const DataBox: StyleProps[] = [
       >
         {/* <img width={30} src={reaction} alt="Reaction" /> */}
         <img width={30} src={Iconlike} alt="Like Icon" />
-
       </Box>
     ),
   },
@@ -185,13 +184,13 @@ const BlogAdmin = () => {
           ));
         },
       },
-      { title: 'Đường dẫn url', dataIndex: 'url' },
+      // { title: 'Đường dẫn url', dataIndex: 'url' },
       {
         title: 'Mô tả',
         dataIndex: 'description',
         render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
       },
-      { title: 'Nội dung', dataIndex: 'content' },
+      // { title: 'Nội dung', dataIndex: 'content' },
       {
         title: 'Giá Point',
         dataIndex: 'pricePoint',
@@ -267,7 +266,6 @@ const BlogAdmin = () => {
               </IconButton>{' '}
             </Link>
             <IconButton>
-
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
             <IconButton>
@@ -485,7 +483,7 @@ const BlogAdmin = () => {
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
-      // TransitionComponent={Transition}
+        // TransitionComponent={Transition}
       >
         <DialogContent sx={{ overflowY: 'hidden' }}>
           <AddBlog />

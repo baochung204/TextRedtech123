@@ -5,6 +5,7 @@ import {
   Badge,
   Box,
   Checkbox,
+  Chip,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -137,7 +138,20 @@ interface FeatureItem {
   phone: string;
   contextFeature: string;
 }
-
+const getStatusColor = (status: number) => {
+  switch (status) {
+    case 1:
+      return 'success';
+    case 2:
+      return 'warning';
+    case 3:
+      return 'error';
+    case 4:
+      return 'primary';
+    default:
+      return 'default';
+  }
+};
 const PageFeature = () => {
   //   const [isPopupOpen] = React.useState(false);
   //   const column = useMemo<Column[]>(
@@ -161,7 +175,26 @@ const PageFeature = () => {
       //   title: 'Nội dung đề xuất',
       //   dataIndex: 'contextFeature',
       // },
-      { title: 'Trạng thái', dataIndex: 'status' },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'status',
+        render: (value: any) => (
+          <Chip
+            label={
+              value === 1
+                ? 'Đã xem'
+                : value === 2
+                ? 'Đanh dấu'
+                : value === 3
+                ? 'Updated'
+                : value === 4
+                ? 'Chưa xem'
+                : ''
+            }
+            color={getStatusColor(value)}
+          />
+        ),
+      },
       { title: 'Ghi chú', dataIndex: 'note' },
       {
         title: 'Thao tác',

@@ -159,8 +159,8 @@ const ContactRPoint = () => {
         render: (_row: any, value: any) => (
           <Typography style={{ width: '150px' }} variant="subtitle2">
             <Chip
-              label={value.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
-              color={value.type_company ? 'success' : 'warning'}
+              label={value.type_company ? 'Doanh nghiệp' : ''}
+              color={value.type_company ? 'success' : ''}
               variant="outlined"
             />
           </Typography>
