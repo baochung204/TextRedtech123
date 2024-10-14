@@ -211,7 +211,9 @@ const OrderInformation = () => {
                           sx={{ display: 'flex', justifyContent: 'space-between' }}
                         >
                           <Typography variant="h6">Tổng</Typography>
-                          <Typography variant="h6">{dataPoint?.cash} ₫</Typography>
+                          <Typography variant="h6">
+                            {dataPoint?.cash.toLocaleString('vi-VN')} ₫
+                          </Typography>
                         </Grid>
                         <Grid
                           item
