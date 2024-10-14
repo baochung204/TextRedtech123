@@ -6,7 +6,8 @@ interface ModelProps {
     model: string;
   };
 }
-const Model = ({ values }: ModelProps )=> {
+const Model = ({ values }: ModelProps) => {
+  console.log(values);
   const [selectedOption, setSelectedOption] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent<string>) => {
