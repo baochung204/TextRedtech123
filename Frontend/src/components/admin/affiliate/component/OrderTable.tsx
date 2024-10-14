@@ -24,13 +24,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import React, { createElement, useState } from 'react';
+import Point from 'src/assets/images/logos/R-Point.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { DataAffiliateTable } from '../datatable/OrderTableData';
-import Point from 'src/assets/images/logos/R-Point.png';
 
 // interface PropsHeadTable {
 //   head: string;
@@ -111,8 +110,6 @@ const OrderTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
@@ -304,19 +301,7 @@ const OrderTable = () => {
 
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={selectedStartDate}
-                  onChange={setSelectedStartDate}
-                  renderInput={(params: any) => <TextField {...params} />}
-                />
-                <Typography>tới</Typography>
-                <DatePicker
-                  value={selectedEndDate}
-                  onChange={setSelectedEndDate}
-                  renderInput={(params: any) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Grid>
         </Grid>

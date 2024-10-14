@@ -6,12 +6,9 @@ import Chart from 'react-apexcharts';
 import { Props } from 'react-apexcharts';
 
 import { Box, MenuItem, Typography } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { Dayjs } from 'dayjs';
 import { useState } from 'react';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
 // const BCrumb = [
@@ -165,8 +162,6 @@ const Chart2 = () => {
     setMonth(event.target.value);
   };
 
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <DashboardCard>
       <Box>
@@ -193,56 +188,7 @@ const Chart2 = () => {
               <MenuItem value={3}>Đơn Hàng </MenuItem>
             </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
-              {' '}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Box>
         </Box>

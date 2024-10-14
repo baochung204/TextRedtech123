@@ -18,12 +18,10 @@ import {
 import { IconEye, IconPlus, IconSearch, IconTrash } from '@tabler/icons-react';
 // import { alpha } from '@mui/material/styles';
 import { useState } from 'react';
-import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import icontext from 'src/assets/images/logos/R-Point.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
+import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import OrderData from './data/OrderData';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-
 
 interface HeadProps {
   head: string;
@@ -60,16 +58,11 @@ const HeadTable: HeadProps[] = [
 ];
 
 const OrderAdminPage = () => {
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
   };
-
-
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -117,22 +110,9 @@ const OrderAdminPage = () => {
             </Grid>
           </Grid>
 
-
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={selectedStartDate}
-                  onChange={setSelectedStartDate}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-                <Typography>tới</Typography>
-                <DatePicker
-                  value={selectedEndDate}
-                  onChange={setSelectedEndDate}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Grid>
         </Grid>
@@ -214,13 +194,11 @@ const OrderAdminPage = () => {
                       <Typography variant="subtitle2">{item.tongnap} VNĐ</Typography>
                     </TableCell>
 
-
                     <TableCell>
                       <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
                         <Typography
                           color="textSecondary"
                           variant="subtitle2"
-
                           sx={{ display: 'flex', gap: 0.5 }}
                         >
                           {item.sodu}{' '}
@@ -234,7 +212,6 @@ const OrderAdminPage = () => {
                         </Typography>
                       </Box>
                     </TableCell>
-
 
                     <TableCell
                       sx={{
@@ -271,6 +248,5 @@ const OrderAdminPage = () => {
     </>
   );
 };
-
 
 export default OrderAdminPage;

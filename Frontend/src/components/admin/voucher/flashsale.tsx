@@ -16,19 +16,15 @@ import s24 from 'src/assets/images/products/s24.jpg';
 // import { styled } from '@mui/system';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import s22 from 'src/assets/images/products/s22.jpg';
 import s25 from 'src/assets/images/products/s23.jpg';
 import s23 from 'src/assets/images/products/s25.jpg';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
 import AddDflashsale from './add/addflashsale';
 
@@ -138,10 +134,7 @@ interface Column {
 }
 
 const FlashSale = () => {
-  
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const column = useMemo<Column[]>(
     () => [
@@ -214,8 +207,7 @@ const FlashSale = () => {
             gap={'2px'}
             style={{ whiteSpace: 'nowrap' }}
           >
-            {value.sale.toLocaleString()} %
-            {/* <img src={icontext} alt="" width={22} /> */}
+            {value.sale.toLocaleString()} %{/* <img src={icontext} alt="" width={22} /> */}
           </Typography>
         ),
       },
@@ -236,7 +228,7 @@ const FlashSale = () => {
               {calculatedFlashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
             </Typography>
           );
-        }
+        },
       },
       {
         id: 'buy',
@@ -410,55 +402,7 @@ const FlashSale = () => {
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Grid>
         </Grid>
@@ -474,12 +418,6 @@ const FlashSale = () => {
 };
 
 export default FlashSale;
-
-
-
-
-
-
 
 // type Order = 'asc' | 'desc';
 
@@ -537,9 +475,6 @@ export default FlashSale;
 // };
 // const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
 // const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
-
-
 
 // function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 //   if (b[orderBy] < a[orderBy]) {

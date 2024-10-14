@@ -81,7 +81,6 @@ const EcomProductCheckout = Loadable(
 const Detailpoint = Loadable(lazy(() => import('../views/apps/collaborate/point/detailpoint')));
 const Aff = Loadable(lazy(() => import('../views/apps/contract/Affiliate')));
 const Client = Loadable(lazy(() => import('../views/apps/contract/Client')));
-const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Purchasehistory = Loadable(lazy(() => import('../views/apps/history/purchase-history')));
 const Pointhistory = Loadable(lazy(() => import('../views/apps/history/point-history')));
