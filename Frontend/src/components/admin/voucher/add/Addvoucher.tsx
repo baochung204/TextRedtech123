@@ -1,4 +1,4 @@
-import { Box, Button, Grid, MenuItem } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, Grid, MenuItem } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -23,7 +23,8 @@ const AddVoucher = () => {
   const [discountValue, setDiscountValue] = React.useState('');
   const [minOrderValue, setMinOrderValue] = React.useState('');
   const [maxDiscountAmount, setMaxDiscountAmount] = React.useState('');
-
+  const [externalCode, setExternalCode] = React.useState(false);
+  const [internalCode, setInternalCode] = React.useState(false);
   // Generate random code with current date (ddMM format)
   const generateRandomCode = () => {
     const today = new Date();
@@ -103,6 +104,26 @@ const AddVoucher = () => {
                 </Button>
               </Grid>
             </Grid>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={externalCode}
+                  onChange={() => setExternalCode(!externalCode)}
+                  color="primary"
+                />
+              }
+              label="Mã giảm bên ngoài hệ thống"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={internalCode}
+                  onChange={() => setInternalCode(!internalCode)}
+                  color="primary"
+                />
+              }
+              label="Mã giảm bên trong hệ thống"
+            />
           </Grid>
 
           <Grid item lg={6} md={12}>
