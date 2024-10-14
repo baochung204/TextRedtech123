@@ -13,16 +13,17 @@ import { ErrorMessage, Field } from 'formik';
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
+import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-// interface StrategyProps {
-//   values: {
-//     nhomStrategy: string;
-//     levelStrategy: string;
-//     noidungStrategy: string;
-//   };
-// }
+interface StrategyProps {
+  values: {
+    nhomStrategy: string;
+    levelStrategy: string;
+    noidungStrategy: string;
+  };
+}
 
-const Strategy = () => {
+const Strategy = ({ values }: StrategyProps) => {
   const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
   const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
     images: [],
@@ -120,11 +121,11 @@ const Strategy = () => {
             variant="outlined"
             InputProps={{
               sx: {
-                height: 40, // Giữ chiều cao đồng nhất với các field khác
+                height: 40, 
               },
             }}
             sx={{
-              width: '100%', // Full width
+              width: '100%', 
             }}
           />
           <ErrorMessage name="levelStrategy">
@@ -132,7 +133,16 @@ const Strategy = () => {
           </ErrorMessage>
         </Grid>
       </Grid>
-
+      <Grid>
+        <CustomTextField
+          placeholder="Tóm tắt chiến lược"
+          id="name"
+          variant="outlined"
+          fullWidth
+          name="name"
+          sx={{ marginLeft: 2,marginTop: 3  ,width: '830px', }}
+        />
+      </Grid>
       <Grid item xs={12}>
         {/* Nội dung chiến lược */}
         <ReactQuill theme="snow" placeholder="Nhập nội dung chiến lược" />
