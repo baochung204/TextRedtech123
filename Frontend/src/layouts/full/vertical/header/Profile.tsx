@@ -11,6 +11,7 @@ import Banner from 'src/assets/ICON/shopping.png';
 import ProfileImg from 'src/assets/images/profile/user-1.jpg';
 import { setSelected } from 'src/store/RouterSlice';
 import { dispatch } from 'src/store/Store';
+import ApiService from 'src/service/ApiService';
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -30,6 +31,11 @@ const Profile = () => {
     if (id == 2) {
       dispatch(setSelected('changepassword'));
     }
+  };
+
+  const handleLogout = () => {
+    ApiService.logout();
+    navigate('/auth/login');
   };
 
   return (
@@ -187,7 +193,7 @@ const Profile = () => {
             </Box>
           </Box>
           <Box>
-            <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>
+            <Button onClick={handleLogout} variant="outlined" color="primary" fullWidth>
               Đăng xuất
             </Button>
           </Box>
