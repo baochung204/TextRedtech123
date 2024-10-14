@@ -1,10 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem, Typography } from '@mui/material';
+import { Box, Grid, MenuItem } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ChangeEvent, useState } from 'react';
 import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
 import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
@@ -17,8 +15,7 @@ import Welcome from 'src/layouts/full/shared/welcome/Welcome';
 import GerChart from '../charts/Gerchart';
 import PieCharts from '../charts/PieCharts';
 
-import dayjs, { Dayjs } from 'dayjs';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import Charts from './charts';
 
 const Modern = () => {
@@ -26,12 +23,6 @@ const Modern = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
-  const date = new Date();
-  const tenDaysBeforeToday = new Date(date);
-  tenDaysBeforeToday.setDate(date.getDate() - 10);
-  console.log(tenDaysBeforeToday);
-  const [value, setValue] = useState<Dayjs>(dayjs(tenDaysBeforeToday));
-  const [value1, setValue1] = useState<Dayjs | any>(new Date());
 
   return (
     <PageContainer title="RedAI" description="this is page">
@@ -57,60 +48,7 @@ const Modern = () => {
                 <MenuItem value={2}>Assistant 1</MenuItem>
                 <MenuItem value={3}>Assistant 2</MenuItem>
               </CustomSelect>
-
-              {/* Date Pickers */}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue: any) => setValue(newValue)}
-                  inputFormat="dd/MM/yyyy"
-                  maxDate={value1}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-
-              {/* Text "tới" */}
-              <Typography sx={{ mx: 1 }}>tới</Typography>
-
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue: any) => setValue1(newValue)}
-                  inputFormat="dd/MM/yyyy"
-                  maxDate={new Date()}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Grid>
           <Grid item xs={12} lg={12}>

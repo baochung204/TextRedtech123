@@ -16,11 +16,10 @@ import {
   Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import BlankCard from 'src/components/shared/BlankCard';
 import ContentBuyPoint from './content/conTentBuyPoint';
@@ -132,8 +131,7 @@ const HistoryBuyPoint = () => {
       ),
     },
   ];
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+
   return (
     <>
       <Grid container>
@@ -172,19 +170,7 @@ const HistoryBuyPoint = () => {
 
               <Grid item xs={4}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      value={selectedStartDate}
-                      onChange={setSelectedStartDate}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                    <Typography>tới</Typography>
-                    <DatePicker
-                      value={selectedEndDate}
-                      onChange={setSelectedEndDate}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                  </LocalizationProvider>
+                  <DateSelect />
                 </Box>
               </Grid>
             </Grid>

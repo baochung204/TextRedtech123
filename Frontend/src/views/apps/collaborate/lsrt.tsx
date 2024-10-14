@@ -1,11 +1,8 @@
 import { Box, Button, Typography } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import format from 'date-fns/format/index.js';
-import React from 'react';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { tabledh } from 'src/components/tables/tabledh';
 
 const FilmsData: any = [
@@ -86,8 +83,6 @@ const FilmsData: any = [
 ];
 
 const HistoryMoney = () => {
-  const [value, setValue] = React.useState<any | null>(null);
-  const [value1, setValue1] = React.useState<any | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is page">
       {/* breadcrumb */}
@@ -101,55 +96,7 @@ const HistoryMoney = () => {
         }}
       >
         <Box style={{ width: '35.2%' }} display={'flex'} alignItems={'center'} gap="5px">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-          tới
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value1}
-              onChange={(newValue) => {
-                setValue1(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
+          <DateSelect />
         </Box>
       </Box>
       <CustomTable columns={FilmsData} dataSource={tabledh} />

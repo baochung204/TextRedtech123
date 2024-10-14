@@ -1,28 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Chart from 'react-apexcharts';
-import { useTheme } from '@mui/material/styles';
 
 import { Props } from 'react-apexcharts';
 
-import { Dayjs } from 'dayjs';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import { Box, MenuItem, Typography } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import DateSelect from 'src/components/apps/date/DateSelect';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-// const BCrumb = [
-//   {
-//     to: '/',
-//     title: 'Home',
-//   },
-//   {
-//     title: 'Gradient Chart',
-//   },
-// ];
 const monthsInVietnamese = [
   'Tháng 1',
   'Tháng 2',
@@ -143,15 +131,7 @@ const GerChart = () => {
 
   // chart color
 
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
-    // <PageContainer title="Gredient Chart" description="this is innerpage">
-    //   {/* breadcrumb */}
-    //   <Breadcrumb title="Gradient Chart" items={BCrumb} />
-    //   {/* end breadcrumb */}
-
-    // </PageContainer>
     <DashboardCard>
       <>
         <Box sx={{ marginTop: '0px' }}>
@@ -179,56 +159,7 @@ const GerChart = () => {
               <MenuItem value={3}>Đơn Hàng </MenuItem>
             </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
-              {' '}
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Box>
         </Box>

@@ -17,8 +17,6 @@ import {
   TextField,
 } from '@mui/material';
 import Slide from '@mui/material/Slide';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 
 import React, { useEffect, useMemo, useState } from 'react';
@@ -26,8 +24,8 @@ import update from 'src/assets/DeXuatTinhNang/cap nhap.png';
 import seen from 'src/assets/DeXuatTinhNang/chua xem.png';
 import mark from 'src/assets/DeXuatTinhNang/danh dau.png';
 import suggest from 'src/assets/DeXuatTinhNang/de xuat.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
@@ -185,8 +183,6 @@ const PageFeature = () => {
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [value, setValue] = useState<Date | null>(null);
-  const [value1, setValue1] = useState<Date | null>(null);
 
   useEffect(() => {
     const selectedColumns = column || [];
@@ -232,17 +228,6 @@ const PageFeature = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* Uncomment if needed
-                <Grid item>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    onClick={() => setOpen(true)}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid>
-                */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -329,55 +314,7 @@ const PageFeature = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>
