@@ -66,7 +66,6 @@ const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/Cust
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
 const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
 const AssistantInfor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantById')));
-// const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
@@ -91,19 +90,8 @@ const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
 
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
-//Ai ticket
-const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
-//update page
-// const Update = Loadable(lazy(() => import('../views/apps/update/update')));
-// ui components
 
 const Faq = Loadable(lazy(() => import('../views/pages/faq/Faq')));
-
-// charts
-
-// tables
-
-// widget
 
 // authentication
 const Login = Loadable(lazy(() => import('../views/authentication/auth1/Login')));
@@ -139,9 +127,6 @@ const ListAssistantInProfile = Loadable(
 );
 const OrderRPoint = Loadable(lazy(() => import('../views/admin/orderRPoint/OrderRPoint')));
 const Ticket = Loadable(lazy(() => import('../views/admin/ticket/ticket')));
-// const AssistantList = Loadable(
-//   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
-// );import Blog from './../views/apps/blog/Blog';
 
 //admin affiliate
 const OrderAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/orderaffiliate')));
@@ -192,7 +177,6 @@ const Router = [
       { path: '/affiliate', element: <Collaborate /> },
       { path: '/customers', element: <CustomerList2 /> },
       { path: '/affiliate/list_customer', element: <CustomerList /> },
-
       { path: '/apps/contract-client', element: <Client /> },
       { path: '/affiliate/agreement', element: <Aff /> },
       { path: '/blogs', element: <Blog /> },
@@ -220,8 +204,6 @@ const Router = [
       { path: '/user_profile', element: <UserProfile /> },
       { path: '/pointhistory', element: <Pointhistory /> },
       { path: '/purchasehistory', element: <Purchasehistory /> },
-      { path: '/apps/support', element: <Aisupport /> },
-      { path: '/apps/calendar', element: <Calendar /> },
       { path: '/pages/faq', element: <Faq /> },
       { path: '/user_profile/assistants', element: <ListAssistantInProfile /> },
       { path: '/resources', element: <Faq /> },
@@ -274,7 +256,6 @@ const Router = [
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
-      // { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
       { path: '/admin/feature', element: <PageFeature /> },
       { path: '/admin/point/packagepoint', element: <RPoints /> },

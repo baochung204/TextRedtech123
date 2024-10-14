@@ -2,8 +2,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Box, Grid } from '@mui/material';
-import { Dayjs } from 'dayjs';
-import React from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import TableHistoryBuyPoint from 'src/components/apps/historyBuyPoint/TableHistoryBuyPoint';
 import PageContainer from 'src/components/container/PageContainer';
