@@ -11,8 +11,6 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconChartBar, IconEye, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
@@ -22,9 +20,9 @@ import customer from 'src/assets/Adminphoto/khách hàng.png';
 import Assistant from 'src/assets/Adminphoto/tro ly.png';
 import bill from 'src/assets/ICON/dơn hang.png';
 import gmv from 'src/assets/ICON/gmv.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
@@ -173,7 +171,7 @@ interface AssistantData {
   fileSize: string; // Dung lượng file
   functions: string[]; // Danh sách các chức năng
   trainingToken: string; // Token huấn luyện
-  createdDate: Date; // Ngày tạo
+  createdDate: string; // Ngày tạo
   averageRotation: number; // Vòng quay trung bình
   customer: string; // Thông tin khách hàng
   order: string; // Đơn hàng
@@ -207,7 +205,7 @@ const dataRows: AssistantData[] = [
     fileSize: '2MB',
     functions: ['Chức năng A', 'Chức năng B'],
     trainingToken: 'Token001',
-    createdDate: new Date('2023-01-15'),
+    createdDate: '2023-01-15',
     averageRotation: 120,
     customer: 'Khách hàng A',
     order: 'Đơn hàng 001',
@@ -240,7 +238,7 @@ const dataRows: AssistantData[] = [
     fileSize: '3.5MB',
     functions: ['Chức năng C', 'Chức năng D'],
     trainingToken: 'Token002',
-    createdDate: new Date('2023-03-22'),
+    createdDate: '2023-03-22',
     averageRotation: 150,
     customer: 'Khách hàng B',
     order: 'Đơn hàng 002',
@@ -273,7 +271,7 @@ const dataRows: AssistantData[] = [
     fileSize: '1.2MB',
     functions: ['Chức năng E', 'Chức năng F'],
     trainingToken: 'Token003',
-    createdDate: new Date('2023-05-10'),
+    createdDate: '2023-05-10',
     averageRotation: 100,
     customer: 'Khách hàng C',
     order: 'Đơn hàng 003',
@@ -343,69 +341,6 @@ const AssistantAdmin = () => {
         title: 'Chi phí',
       },
       {
-        dataIndex: 'level',
-        title: 'Level',
-        isValids: false
-      },
-      {
-        dataIndex: 'experience',
-        title: 'Experience',
-        isValids: false
-      },
-      {
-        dataIndex: 'token',
-        title: 'Token huấn luyện',
-        isValids: false
-      },
-      {
-        dataIndex: 'vqtb',
-        title: 'Vòng quay trung bình',
-        isValids: false
-
-      },
-      {
-        dataIndex: 'cl',
-        title: 'Chiến lược',
-        isValids: false
-
-      },
-      {
-        dataIndex: 'function',
-        title: 'Functions',
-        isValids: false
-
-      },
-      {
-        dataIndex: 'files',
-        title: 'Files',
-        isValids: false
-
-      },
-      {
-        dataIndex: 'dungluong',
-        title: 'Dung lượng',
-        isValids: false
-
-      },
-      {
-        dataIndex: 'cpdt',
-        title: 'Chi phí/ doanh thu',
-        isValids: false
-
-      },
-      {
-        dataIndex: 'cpdh',
-        title: 'Chi phí / chuyển đổi',
-        isValids: false
-
-      },
-      {
-        dataIndex: 'cpkh',
-        title: 'Chi phí / khách hàng',
-        isValids: false
-
-      },
-      {
         title: 'Xem chi tiết',
         dataIndex: 'action',
         render: (_row: any, value: any) => {
@@ -426,6 +361,61 @@ const AssistantAdmin = () => {
             </>
           );
         },
+      },
+      {
+        dataIndex: 'level',
+        title: 'Level',
+        isValids: false,
+      },
+      {
+        dataIndex: 'experience',
+        title: 'Experience',
+        isValids: false,
+      },
+      {
+        dataIndex: 'token',
+        title: 'Token huấn luyện',
+        isValids: false,
+      },
+      {
+        dataIndex: 'vqtb',
+        title: 'Vòng quay trung bình',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cl',
+        title: 'Chiến lược',
+        isValids: false,
+      },
+      {
+        dataIndex: 'function',
+        title: 'Functions',
+        isValids: false,
+      },
+      {
+        dataIndex: 'files',
+        title: 'Files',
+        isValids: false,
+      },
+      {
+        dataIndex: 'dungluong',
+        title: 'Dung lượng',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdt',
+        title: 'Chi phí/ doanh thu',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdh',
+        title: 'Chi phí / chuyển đổi',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpkh',
+        title: 'Chi phí / khách hàng',
+        isValids: false,
       },
     ],
     [],
@@ -567,55 +557,7 @@ const AssistantAdmin = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>

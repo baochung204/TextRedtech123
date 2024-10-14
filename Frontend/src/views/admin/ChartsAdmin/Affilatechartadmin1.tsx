@@ -14,7 +14,7 @@ const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
   const maxIndex = seriespiechart.indexOf(Math.max(...seriespiechart));
   const defaultPercent = total > 0 ? ((seriespiechart[maxIndex] / total) * 100).toFixed(2) : 0;
 
-  const [hoveredPercent, setHoveredPercent] = useState<number | null>(defaultPercent);
+  const [hoveredPercent, setHoveredPercent] = useState<number | null>(defaultPercent as any); // State to hold hovered percentage
   const [isHovering, setIsHovering] = useState(false); // State to track hover status
 
   const optionsdoughnutchart: Props = {
@@ -23,7 +23,7 @@ const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       foreColor: '#adb0bb',
       events: {
-        dataPointMouseEnter: (event: any, chartContext: any, config: any) => {
+        dataPointMouseEnter: (config: any) => {
           const seriesIndex = config.dataPointIndex;
 
           if (seriesIndex >= 0 && seriesIndex < seriespiechart.length) {
@@ -33,7 +33,7 @@ const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
           }
         },
         dataPointMouseLeave: () => {
-          setHoveredPercent(defaultPercent);
+          setHoveredPercent(defaultPercent as any);
         },
       },
     },

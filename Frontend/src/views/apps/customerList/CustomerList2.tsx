@@ -1,3 +1,5 @@
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { TabContext, TabPanel } from '@mui/lab';
 import {
   Badge,
@@ -15,27 +17,20 @@ import {
   Slide,
   TextField,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
+import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-// import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
-// import { AppDispatch, AppState } from 'src/store/Store';
-
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 import PopupAddList2 from './PopupAddlist2';
-import  AddCircleIcon  from '@mui/icons-material/AddCircle';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -55,9 +50,6 @@ interface Column {
   isValids?: boolean;
 }
 const CustomerList2 = () => {
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const dataCustomer = useSelector((state: AppState) => state.customer.data);
@@ -103,7 +95,9 @@ const CustomerList2 = () => {
         dataIndex: 'orderValue',
         render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography>{value?.totalSpend ? `${value.totalSpend} đ` : 'Không có dữ liệu'}</Typography>
+            <Typography>
+              {value?.totalSpend ? `${value.totalSpend} đ` : 'Không có dữ liệu'}
+            </Typography>
           </Box>
         ),
       },
@@ -124,13 +118,13 @@ const CustomerList2 = () => {
         render: (value: any) => value || 'Không có dữ liệu',
       },
       {
-        title: "Email công ty",
-        dataIndex: "companyemail",
+        title: 'Email công ty',
+        dataIndex: 'companyemail',
         render: (value: any) => value || 'Không có dữ liệu',
       },
       {
-        title: "Số điện thoại công ty",
-        dataIndex: "company_phone_number",
+        title: 'Số điện thoại công ty',
+        dataIndex: 'company_phone_number',
         render: (value: any) => value || 'Không có dữ liệu',
       },
       {
@@ -139,15 +133,15 @@ const CustomerList2 = () => {
         render: (value: any) => value || 'Không có dữ liệu',
       },
       {
-        title: "Mã số thuế",
+        title: 'Mã số thuế',
         dataIndex: 'tax_code',
         render: (value: any) => value || 'Không có dữ liệu',
       },
       {
-        title: "Website công ty",
-        dataIndex: 'company_website', 
+        title: 'Website công ty',
+        dataIndex: 'company_website',
         render: (value: any) => value || 'Không có dữ liệu',
-      }
+      },
     ],
     [],
   );
@@ -225,10 +219,7 @@ const CustomerList2 = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Badge
-                          badgeContent={column.length - dataSelect.length}
-                          color={'primary'}
-                        >
+                        <Badge badgeContent={column.length - dataSelect.length} color={'primary'}>
                           <FilterListIcon color="action" />
                         </Badge>
                         <Select
@@ -284,23 +275,7 @@ const CustomerList2 = () => {
                         </Select>
 
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                              value={selectedStartDate}
-                              onChange={setSelectedStartDate}
-                              renderInput={(params) => (
-                                <TextField {...params} size="small" fullWidth />
-                              )}
-                            />
-                            <Typography>tới</Typography>
-                            <DatePicker
-                              value={selectedEndDate}
-                              onChange={setSelectedEndDate}
-                              renderInput={(params) => (
-                                <TextField {...params} size="small" fullWidth />
-                              )}
-                            />
-                          </LocalizationProvider>
+                          <DateSelect />
                         </Box>
                       </Box>
                     </Grid>

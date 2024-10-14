@@ -18,34 +18,13 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import { format } from 'date-fns';
 import React from 'react';
-import PageContainer from 'src/components/container/PageContainer';
-import BlankCard from 'src/components/shared/BlankCard';
-// import { EnTableType } from 'src/components/tables/tableData';
-import { tablepayment } from 'src/components/tables/tablepayment';
-// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// import CustomSelect from '../../forms/theme-elements/CustomSelect';
-// import DashboardCard from '../../shared/DashboardCard';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
-import SearchInput from 'src/components/apps/search/search';
-
 import pointimg from 'src/assets/images/icon.png/point.png';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DateSelect from 'src/components/apps/date/DateSelect';
+import SearchInput from 'src/components/apps/search/search';
+import PageContainer from 'src/components/container/PageContainer';
 import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
-
-// const BCrumb = [
-//   {
-//     to: '/',
-//     title: 'Trang chủ',
-//   },
-//   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
-//   { title: 'Lịch sử quy đổi ' },
-// ];
+import BlankCard from 'src/components/shared/BlankCard';
+import { tablepayment } from 'src/components/tables/tablepayment';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -126,30 +105,6 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
 }
-// const getStatusTextAndColor = (status: number) => {
-//   switch (status) {
-//     case 1:
-//       return (
-//         <Typography color="#13DEB9" variant="subtitle2">
-//           Đã thanh toán
-//         </Typography>
-//       );
-//     case 2:
-//       return (
-//         <Typography color="#ff9800" variant="subtitle2">
-//           Chờ xử lý
-//         </Typography>
-//       );
-//     case 3:
-//       return (
-//         <Typography color="#f44336" variant="subtitle2">
-//           Không thành công
-//         </Typography>
-//       );
-//     default:
-//       return;
-//   }
-// };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
   const { order, orderBy, onRequestSort } = props;
@@ -250,8 +205,6 @@ const Paymenthistory = () => {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
@@ -273,25 +226,7 @@ const Paymenthistory = () => {
         </Grid>
         <Grid item xs={12} lg={5.5} display={'flex'} alignItems={'center'} gap="10px">
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                label="Từ ngày"
-                value={selectedStartDate}
-                onChange={(newDate) => setSelectedStartDate(newDate)}
-                renderInput={(params) => (
-                  <CustomTextField {...params} sx={{ marginRight: '10px' }} />
-                )}
-              />
-
-              <DatePicker
-                label="Đến ngày"
-                value={selectedEndDate}
-                onChange={(newDate) => setSelectedEndDate(newDate)}
-                renderInput={(params) => (
-                  <CustomTextField {...params} sx={{ marginRight: '10px' }} />
-                )}
-              />
-            </LocalizationProvider>
+            <DateSelect />
           </Box>
         </Grid>
       </Grid>

@@ -70,7 +70,7 @@ const OrderInformation = () => {
 
   useEffect(() => {
     dispatch(fetchVndCoupons());
-    dispatch(fetchPointById(id));
+    dispatch(fetchPointById(id as string));
   }, [dispatch, id]);
 
   useEffect(() => {

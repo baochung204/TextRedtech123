@@ -38,18 +38,14 @@ import { tablepoin } from 'src/components/tables/tablepoin';
 // import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Dayjs } from 'dayjs';
 // import CustomSelect from '../../forms/theme-elements/CustomSelect';
 // import DashboardCard from '../../shared/DashboardCard';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 // import Slide from '@mui/material/Slide';
 // import { TransitionProps } from '@mui/material/transitions';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import pointimg from 'src/assets/images/icon.png/point.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import SearchInput from 'src/components/apps/search/search';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
 // const BCrumb = [
@@ -199,18 +195,6 @@ const getInvoiceTextAndColor = (invoice: any) => {
       return;
   }
 };
-// const getdetailTextAndColor = (status: any) => {
-//   switch (status) {
-//     case 1:
-//       return <Button color="success">Xem</Button>;
-//     case 2:
-//       return <Typography color="#ff9800"></Typography>;
-//     case 3:
-//       return <Typography color="#f44336"> </Typography>;
-//     default:
-//       return;
-//   }
-// };
 
 function EnhancedTableHead(props: EnhancedTableProps) {
   const { order, orderBy, onRequestSort } = props;
@@ -312,32 +296,8 @@ const Lspoin = () => {
     setPage(0);
   };
 
-  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDense(event.target.checked);
-  // };
-
-  // const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  // const [month, setMonth] = React.useState('1');
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setMonth(event.target.value);
-  // };
-  // const [value, setValue] = React.useState<Dayjs | null>(null);
-  // const [value1, setValue1] = React.useState<Dayjs | null>(null);
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   return (
     <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
       {/* breadcrumb */}
@@ -359,25 +319,7 @@ const Lspoin = () => {
         </Grid>
         <Grid item xs={12} lg={5.5} display={'flex'} alignItems={'center'} gap="10px">
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                label="Từ ngày"
-                value={selectedStartDate}
-                onChange={(newDate) => setSelectedStartDate(newDate)}
-                renderInput={(params) => (
-                  <CustomTextField {...params} sx={{ marginRight: '10px' }} />
-                )}
-              />
-
-              <DatePicker
-                label="Đến ngày"
-                value={selectedEndDate}
-                onChange={(newDate) => setSelectedEndDate(newDate)}
-                renderInput={(params) => (
-                  <CustomTextField {...params} sx={{ marginRight: '10px' }} />
-                )}
-              />
-            </LocalizationProvider>
+            <DateSelect />
           </Box>
         </Grid>
       </Grid>
