@@ -361,8 +361,8 @@ const BuyPoints = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+  // const [value, setValue] = useState<Dayjs | null>(null);
+  // const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <>
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
