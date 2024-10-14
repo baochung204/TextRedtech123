@@ -52,7 +52,7 @@ const FileUploadForm: React.FC<FileProps> = () => {
                     accept="*"
                     id="file-upload"
                     type="file"
-                    multiple // Allow multiple file selection
+                    multiple 
                     onChange={(event) => handleFileChange(event, setFieldValue)}
                     style={{ display: 'none' }}
                   />
