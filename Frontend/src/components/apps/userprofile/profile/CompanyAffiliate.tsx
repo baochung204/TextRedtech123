@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PDFViewer from 'src/components/apps/userprofile/profile/PDFViewer';
 import PageContainer from 'src/components/container/PageContainer';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
@@ -92,8 +92,9 @@ const CompanyAffiliate = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set<number>());
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const navigate = useNavigate();
+  // const theme = useTheme();
+  // const isDarkMode = theme.palette.mode === 'dark';
   const [open, setOpen] = useState(false);
   const [openOtpDialog, setOpenOtpDialog] = useState(false); // State for OTP dialog
   const [openChartAlert, setOpenChartAlert] = useState(false); // State for alert
@@ -122,6 +123,7 @@ const CompanyAffiliate = () => {
   const handleOtpSubmit = () => {
     setOpenChartAlert(true); // Show the success alert after OTP verification
     handleCloseOtpDialog(); // Close the OTP dialog
+    navigate('/pending');
   };
 
   const formik = useFormik({
@@ -594,11 +596,11 @@ const CompanyAffiliate = () => {
             <Alert severity="success">
               Bạn đã hoàn thành việc đăng ký - chờ chúng tôi phê duyệt trong vòng 24h
             </Alert>
-            <Box textAlign="right">
+            {/* <Box textAlign="right">
               <Button component={Link} to="/pending" variant="contained" color="error">
                 Hoàn thành
               </Button>
-            </Box>
+            </Box> */}
           </Stack>
         ) : (
           <Box>
@@ -624,19 +626,20 @@ const CompanyAffiliate = () => {
               </Button>
               <Box flex="1 1 auto" />
               {activeStep === steps.length - 1 ? (
-                <Button
-                  onClick={() => {
-                    setIsSubmitting(true);
-                    formik.handleSubmit();
-                  }}
-                  variant="contained"
-                  color="success"
-                  component={Link}
-                  to="/pending"
-                >
-                  Hoàn thành
-                </Button>
+                <></>
               ) : (
+                // <Button
+                //   onClick={() => {
+                //     setIsSubmitting(true);
+                //     formik.handleSubmit();
+                //   }}
+                //   variant="contained"
+                //   color="success"
+                //   component={Link}
+                //   to="/pending"
+                // >
+                //   Hoàn thành
+                // </Button>
                 <Button
                   onClick={() => {
                     setIsSubmitting(true);
