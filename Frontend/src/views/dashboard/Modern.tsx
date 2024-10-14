@@ -17,7 +17,7 @@ import Welcome from 'src/layouts/full/shared/welcome/Welcome';
 import GerChart from '../charts/Gerchart';
 import PieCharts from '../charts/PieCharts';
 
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Charts from './charts';
 
@@ -26,9 +26,13 @@ const Modern = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
+  const date = new Date();
+  const tenDaysBeforeToday = new Date(date);
+  tenDaysBeforeToday.setDate(date.getDate() - 10);
+  console.log(tenDaysBeforeToday);
+  const [value, setValue] = useState<Dayjs>(dayjs(tenDaysBeforeToday));
+  const [value1, setValue1] = useState<Dayjs | any>(new Date());
 
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <PageContainer title="RedAI" description="this is page">
       <Box>
@@ -58,7 +62,9 @@ const Modern = () => {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   value={value}
-                  onChange={(newValue) => setValue(newValue)}
+                  onChange={(newValue: any) => setValue(newValue)}
+                  inputFormat="dd/MM/yyyy"
+                  maxDate={value1}
                   renderInput={(props) => (
                     <CustomTextField
                       {...props}
@@ -84,7 +90,9 @@ const Modern = () => {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   value={value1}
-                  onChange={(newValue) => setValue1(newValue)}
+                  onChange={(newValue: any) => setValue1(newValue)}
+                  inputFormat="dd/MM/yyyy"
+                  maxDate={new Date()}
                   renderInput={(props) => (
                     <CustomTextField
                       {...props}
