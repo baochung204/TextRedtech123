@@ -1,10 +1,5 @@
 import { Avatar, Box, Grid, Stack, Typography } from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconChartBar, IconGridDots } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
-import React from 'react';
 import blog from 'src/assets/Adminphoto/bai viet.png';
 import reaction from 'src/assets/Adminphoto/cam xuc.png';
 import pending from 'src/assets/Adminphoto/cho xu ly.png';
@@ -40,12 +35,12 @@ import point from 'src/assets/images/logos/R-Point.png';
 import view from 'src/assets/NotificationAdmin/luot xem.png';
 import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Affilatechartadmin1 from './Affilatechartadmin1';
 import Affilatechartadmin5 from './Affiliatechartadmin5';
 
 import Affilatechartadmin9 from './Affiliatechartadmin9';
 
+import DateSelect from 'src/components/apps/date/DateSelect';
 import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
@@ -954,70 +949,10 @@ const dataSource_ticket = [
 ];
 
 const DashboardAdmin = () => {
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
-  const [value2, setValue2] = React.useState<Dayjs | null>(null);
-
   return (
     <PageContainer title="Modern Dashboard" description="this is Modern Dashboard page">
       <div style={{ display: 'flex', justifyContent: 'end' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            margin: '10px 0',
-          }}
-        >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value1}
-              onChange={(newValue) => {
-                setValue1(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-          tới
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value2}
-              onChange={(newValue) => {
-                setValue2(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-        </div>
+        <DateSelect />
       </div>
       <Box>
         <Box sx={{ margin: '30px 0px' }}>

@@ -18,10 +18,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import blog from 'src/assets/Adminphoto/bai viet.png';
@@ -29,7 +26,6 @@ import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import view from 'src/assets/NotificationAdmin/luot xem.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import PageContainer from './../../../components/container/PageContainer';
@@ -38,6 +34,7 @@ import BlogTable from './data/datablog';
 
 import { useNavigate } from 'react-router';
 import Iconlike from 'src/assets/ICON/like.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -131,7 +128,6 @@ const DataBox: StyleProps[] = [
       >
         {/* <img width={30} src={reaction} alt="Reaction" /> */}
         <img width={30} src={Iconlike} alt="Like Icon" />
-
       </Box>
     ),
   },
@@ -267,7 +263,6 @@ const BlogAdmin = () => {
               </IconButton>{' '}
             </Link>
             <IconButton>
-
               <IconEdit stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
             <IconButton>
@@ -279,8 +274,6 @@ const BlogAdmin = () => {
     ],
     [],
   );
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
@@ -423,55 +416,7 @@ const BlogAdmin = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>
@@ -485,7 +430,7 @@ const BlogAdmin = () => {
         onClose={handleClosePopup}
         fullWidth
         maxWidth="lg"
-      // TransitionComponent={Transition}
+        // TransitionComponent={Transition}
       >
         <DialogContent sx={{ overflowY: 'hidden' }}>
           <AddBlog />

@@ -10,11 +10,10 @@ import {
   Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconChartBar, IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React from 'react';
 import iconPoint from 'src/assets/images/logos/R-Point.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -31,16 +30,6 @@ const Transition = React.forwardRef<
 >(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
-// const BoxStyled = styled(Box)(() => ({
-//   padding: '30px',
-//   transition: '0.1s ease-in',
-//   cursor: 'pointer',
-//   color: 'inherit',
-//   '&:hover': {
-//     transform: 'scale(1.03)',
-//   },
-// }));
 
 interface StyleProps {
   bgColor: string;
@@ -207,8 +196,6 @@ const DataBox: StyleProps[] = [
 
 const OrderProduct = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
@@ -248,29 +235,7 @@ const OrderProduct = () => {
               </Grid>
             </Grid>
             <Grid item xs={8} container spacing={2} justifyContent="flex-end">
-              <Grid item>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Ngày bắt đầu"
-                    value={startDate}
-                    onChange={(newValue) => setStartDate(newValue)}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ margin: '0 10px' }}>tới</Typography>
-              </Grid>
-              <Grid item>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Ngày kết thúc"
-                    value={endDate}
-                    onChange={(newValue) => setEndDate(newValue)}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Grid>
+              <DateSelect />
             </Grid>
           </Grid>
         </Grid>

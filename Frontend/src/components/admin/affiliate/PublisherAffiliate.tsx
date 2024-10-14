@@ -16,17 +16,15 @@ import {
 import { IconSearch } from '@tabler/icons-react';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import publisher from 'src/assets/Adminphoto/Publisher.png';
 import notpaid from 'src/assets/Adminphoto/chua thanh toan.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
-import user from "src/assets/Adminphoto/khách hàng.png"
 import commission from 'src/assets/Adminphoto/hoa hong.png';
+import user from 'src/assets/Adminphoto/khách hàng.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataPublishersTable } from './datatable/OrderTableData';
 const DataBox = [
@@ -167,8 +165,7 @@ interface Column {
 
 const PublisherAffiliate = () => {
   // const [selectedItems] = useState<number[]>([]);
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -461,55 +458,7 @@ const PublisherAffiliate = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>
