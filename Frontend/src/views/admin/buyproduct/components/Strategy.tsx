@@ -14,15 +14,15 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 
-// interface StrategyProps {
-//   values: {
-//     nhomStrategy: string;
-//     levelStrategy: string;
-//     noidungStrategy: string;
-//   };
-// }
+interface StrategyProps {
+  values: {
+    nhomStrategy: string;
+    levelStrategy: string;
+    noidungStrategy: string;
+  };
+}
 
-const Strategy = () => {
+const Strategy = ({ values }: StrategyProps) => {
   const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
   const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
     images: [],
