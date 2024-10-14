@@ -102,7 +102,7 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
   return (
     <BlankCard>
       <CustomTable columns={StrategyCells} dataSource={StrategyRows} dataSelect={dataSelect} />
-      <DialogStrView open={open} setOpen={setOpen} value={selectId} />
+      <DialogStrView open={open} setOpen={setOpen} value={selectId as any} />
     </BlankCard>
   );
 };
