@@ -106,7 +106,6 @@ const DataBox: StyleProps[] = [
 const Personnels = () => {
   const [value, setValue] = useState('1');
   const [open, setOpen] = useState<boolean>(false);
-
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -123,7 +122,7 @@ const Personnels = () => {
               sx={{
                 borderBottom: 1,
                 borderColor: 'divider',
-                display: 'flex',  
+                display: 'flex',
                 justifyContent: 'space-between',
                 mb: 2,
               }}

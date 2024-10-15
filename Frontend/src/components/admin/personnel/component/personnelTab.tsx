@@ -16,12 +16,11 @@ import {
   Typography,
 } from '@mui/material';
 import { IconEye, IconPower, IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
+// import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
-// import DialogPersonel from '../dialog/DialogPersonel';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DateSelect from 'src/components/apps/date/DateSelect';
 interface PropsItem {
@@ -40,26 +39,27 @@ interface Column {
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
-  const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
-  const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
+  // const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
+  // const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
 
   const handleConnection = (id: string) => {
-    setSelectedIds(
-      (prevSelected) =>
-        prevSelected.includes(id)
-          ? prevSelected.filter((selectedId) => selectedId !== id) // Remove if already selected
-          : [...prevSelected, id], // Add if not selected
+    setSelectedIds((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((selectedId) => selectedId !== id) // Remove if already selected
+        : [...prevSelected, id],
     );
   };
 
   const column = useMemo<Column[]>(
     () => [
-      { dataIndex: 'id', title: 'ID', validate: true },
+      {
+        dataIndex: `id`,
+        title: 'ID'
+      },
       {
         dataIndex: 'createdAt',
         title: 'Ngày tạo',
         render: (value: any) => value.toLocaleDateString(),
-        validate: true,
       },
       {
         dataIndex: 'employeeName',
@@ -79,24 +79,23 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
         ),
         validate: true,
       },
-      { dataIndex: 'department', title: 'Phòng ban', validate: true },
-      { dataIndex: 'email', title: 'Email', validate: true },
-      { dataIndex: 'phoneNumber', title: 'Số điện thoại', validate: true },
-      { dataIndex: 'articleCount', title: 'Bài viết', validate: true },
+      { dataIndex: 'department', title: 'Phòng ban' },
+      { dataIndex: 'email', title: 'Email' },
+      { dataIndex: 'phoneNumber', title: 'Số điện thoại' },
+      { dataIndex: 'articleCount', title: 'Bài viết' },
       {
         dataIndex: 'status',
         title: 'Trạng thái',
         validate: true,
-        render: (value: any) => (
-          <Typography color={value ? 'success.dark' : 'error'} variant="subtitle2">
-            {value ? 'Hoạt động' : 'Khóa'}
+        render: (value: any, row: any) => (
+          <Typography color={selectedIds.includes(row.id) ? '#13DEB9' : 'gray'} variant="subtitle2">
+            {selectedIds.includes(row.id) ? 'Hoạt động' : 'Tắt'}
           </Typography>
         ),
       },
       {
         dataIndex: 'isActive',
         title: 'Hoạt động',
-        validate: true,
         render: (_value, row: any) => (
           <>
             <IconButton
@@ -108,10 +107,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            <Tooltip
-              title={selectedIds.includes(row.id) ? 'Đã kết nối' : 'Tắt kết nối'}
-              placement="top"
-            >
+            <Tooltip title={selectedIds.includes(row.id) ? 'Hoạt động' : 'Tắt'} placement="top">
               <IconButton onClick={() => handleConnection(row.id)}>
                 <IconPower
                   style={{ cursor: 'pointer' }}
@@ -139,6 +135,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     } else {
       setDataSelect([]);
     }
+
   }, [column]);
 
   const handleColumnChange = (event: any) => {
@@ -147,6 +144,9 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
+
+  console.log('dataselect', dataSelect.length);
+
 
   return (
     <>
@@ -250,10 +250,10 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
             >
               <MenuItem>
                 <Checkbox
-                  checked={dataSelect.length === column.length}
+                  checked={!(dataSelect.length === column.length)}
                   indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
-                  onChange={(e) => {
-                    if (e.target.checked) {
+                  onChange={() => {
+                    if (dataSelect.length < column.length) {
                       const allColumns = column.map((header: Column) => header.dataIndex);
                       setDataSelect(allColumns);
                     } else {
@@ -264,7 +264,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 <ListItemText primary="Chọn tất cả" />
               </MenuItem>
               {column.map((header: Column) => {
-                const isSelected = dataSelect.includes(header.dataIndex);
+                const isSelected = !dataSelect.includes(header.dataIndex);
                 return (
                   <MenuItem key={header.dataIndex} value={header.dataIndex}>
                     <Checkbox checked={isSelected} />
@@ -273,6 +273,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 );
               })}
             </Select>
+
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
