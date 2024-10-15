@@ -174,6 +174,19 @@ export default class ApiService {
         return response.data;
     }
 
+    static async refreshToken() {
+        try {
+            const response = await axios.post(`${this.BASE_URL}/api/v1/auth/refresh-token`, {}, { withCredentials: true });
+            return response.data;
+        } catch (error: any) {
+            // Xử lý lỗi
+            console.error('Error logging refresh-token:', error);
+            return error.response.data;
+        }
+    }
+
+    
+
     // General methods for authentication
     static logout() {
         localStorage.removeItem('accessToken');
