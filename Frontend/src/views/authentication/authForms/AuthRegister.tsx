@@ -1,20 +1,27 @@
-import { Box, Button, Grid, MenuItem, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Grid, MenuItem, Typography } from '@mui/material';
 import { useState } from 'react';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Logo from 'src/layouts/full/shared/logo/Logo';
-import { registerType } from 'src/types/auth/auth';
+import { registerType, registrationV2 } from 'src/types/auth/auth';
 import CustomFormLabel from '../../../components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
+import ApiService from 'src/service/ApiService';
+import { useNavigate } from 'react-router';
+import AlertChat from 'src/components/apps/chats/AlertChat';
+
 const AuthRegister = ({ subtitle }: registerType) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [nkow, setnkow] = useState(1);
+  const [nkow, setnkow] = useState('OTHER');
+  const [isLoading, setIsLoading] = useState(false);
+  const [openAlertChat, setOpenAlertChat] = useState(false);
   const handleChangenkow = (event: any) => {
     setnkow(event.target.value);
   };
+  const navigate = useNavigate();
   interface Errors {
     username?: string;
     email?: string;
@@ -135,6 +142,72 @@ const AuthRegister = ({ subtitle }: registerType) => {
   // const handleGenderChange = (event: any) => {
   //   setGender(event.target.value);
   // };
+  const handleSubmit = async () => {
+    // Validate
+    if (
+      errors.username ||
+      errors.email ||
+      errors.phoneNumber ||
+      errors.password ||
+      errors.confirmPassword ||
+      !validateEmail(email) ||
+      !validateUsername(username) ||
+      !validatePassword(password) ||
+      !validatePhoneNumber(phoneNumber)
+    ) {
+      return;
+    }
+    setIsLoading(true);
+    const requestBody: registrationV2 = {
+      name: username,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password,
+      confirmPassword: confirmPassword,
+      platform: nkow,
+    };
+    try {
+      const data = await ApiService.registerV2User(requestBody);
+      console.log(data);
+
+      if (data.code == 201) {
+        setIsLoading(false);
+        setOpenAlertChat(true);
+        navigate('/auth/login');
+      } else if (data.code == 306) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: 'Email đã tồn tại.',
+          phoneNumber: 'Số điện thoại đã tồn tại',
+        }));
+      } else if (data.code == 400) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          username: data.result.name,
+          email: data.result.email,
+          phoneNumber: data.result.phoneNumber,
+          password: data.result.password,
+          confirmPassword: data.result.registerFormRequest,
+        }));
+      } else if (data.code == 1023) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: 'Email đã tồn tại',
+        }));
+      } else if (data.code == 1024) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          phoneNumber: 'Số điện thoại đã tồn tại',
+        }));
+      } else {
+        throw new Error(data.message);
+      }
+      setIsLoading(false);
+    } catch (e: any) {
+      setIsLoading(false);
+      throw new Error('Error in register-v2');
+    }
+  };
 
   return (
     <>
@@ -255,32 +328,42 @@ const AuthRegister = ({ subtitle }: registerType) => {
                 onChange={handleChangenkow}
                 fullWidth
               >
-                <MenuItem value={1}>Kênh khác</MenuItem>
-                <MenuItem value={2}>Facebook</MenuItem>
-                <MenuItem value={3}>TikTok</MenuItem>
-                <MenuItem value={4}>Email</MenuItem>
-                <MenuItem value={5}>Google</MenuItem>
-                <MenuItem value={6}>Zalo</MenuItem>
-                <MenuItem value={7}>Bạn bè giới thiệu</MenuItem>
+                <MenuItem value={'OTHER'}>Kênh khác</MenuItem>
+                <MenuItem value={'FACEBOOK'}>Facebook</MenuItem>
+                <MenuItem value={'TICTOK'}>TikTok</MenuItem>
+                <MenuItem value={'EMAIL'}>Email</MenuItem>
+                <MenuItem value={'GOOGLE'}>Google</MenuItem>
+                <MenuItem value={'ZALO'}>Zalo</MenuItem>
+                <MenuItem value={'FRIEND'}>Bạn bè giới thiệu</MenuItem>
               </CustomSelect>
             </Grid>
           </Grid>
           {/* Fifth Row: Gender */}
         </Grid>
 
-        <Button
-          color="primary"
-          variant="contained"
-          size="large"
-          fullWidth
-          sx={{ mt: 3 }}
-          // component={Link}
-          // to="/auth/login"
-        >
-          Đăng ký
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }} mt={1}>
+          {!isLoading ? (
+            <Button
+              color="primary"
+              variant="contained"
+              size="large"
+              fullWidth
+              sx={{ mt: 3 }}
+              onClick={handleSubmit}
+            >
+              Đăng ký
+            </Button>
+          ) : (
+            <CircularProgress />
+          )}
+        </Box>
       </Box>
       {subtitle}
+      <AlertChat
+        text="Đăng ký thành công"
+        openChartAlert={openAlertChat}
+        handleClose={setOpenAlertChat}
+      />
     </>
   );
 };
