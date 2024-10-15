@@ -12,9 +12,10 @@ import {
   MenuItem,
   Select,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -25,6 +26,7 @@ import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
 import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { DataHistoryTable } from './datatable/OrderTableData';
+import DialogViewHistory from './dialog/DialogViewHistory';
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -155,6 +157,8 @@ interface Column {
 
 const HistoryAffiliate = () => {
   // const [selectedItems] = useState<number[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -246,6 +250,7 @@ const HistoryAffiliate = () => {
           />
         ),
       },
+
       // {
       //   title: 'Duyệt hóa đơn',
       //   dataIndex: '',
@@ -271,6 +276,28 @@ const HistoryAffiliate = () => {
         dataIndex: '',
         // render: (row, value: any) => <Button>Gửi email</Button>,
         render: () => <Button>Gửi email</Button>,
+      },
+      {
+        dataIndex: 'actions',
+        title: 'Hoạt động',
+        render: (_row: any, value: any) => (
+          // console.log(value)
+          <Box display={'flex'} sx={{ justifyContent: 'center' }}>
+            <Tooltip title="Xem" placement="right">
+              <IconButton
+                onClick={() => {
+                  setOpen(!open);
+                  // setSelectId(value.id);
+                }}
+              >
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+              {/* <IconButton>
+              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+            </IconButton> */}
+            </Tooltip>
+          </Box>
+        ),
       },
     ],
     [],
@@ -425,6 +452,7 @@ const HistoryAffiliate = () => {
           <CustomTable columns={column} dataSource={DataHistoryTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogViewHistory open={open} setOpen={setOpen} />
     </>
   );
 };
