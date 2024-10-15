@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { registrationV2 } from 'src/types/auth/auth';
 
 interface UserRole {
     permission: string;
@@ -96,6 +97,17 @@ export default class ApiService {
     static async registerUser(registration: any) {
         const response = await axios.post(`${this.BASE_URL}/api/v1/auth/register`, registration);
         return response.data;
+    }
+
+    static async registerV2User(registration: registrationV2) {
+        try {
+            const response = await axios.post(`${this.BASE_URL}/api/v1/auth/register-v2`, registration);
+            return response.data;
+        } catch (error: any) {
+            // Xử lý lỗi
+            console.error('Error logging register-v2:', error);
+            return error.response.data;
+        }
     }
 
     static async loginWithGoogle(googleCode: string) {
