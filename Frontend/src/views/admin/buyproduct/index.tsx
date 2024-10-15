@@ -46,7 +46,7 @@ const DataBox = [
     title: 'Sản phẩm',
     total: (
       <>
-        <Typography variant="h6">1236</Typography>
+        <Typography variant="h6">999.999.999.999</Typography>
       </>
     ),
     icons: (
@@ -73,7 +73,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">165</Typography>
+          <Typography variant="h6">999.999.999.999</Typography>
         </Box>
       </>
     ),
@@ -101,8 +101,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">5.432.234</Typography>
-          <img src={iconPoint} alt="" width={17} />
+          <Typography variant="h6">999.999.999.999đ</Typography>
         </Box>
       </>
     ),
@@ -159,7 +158,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">1245</Typography>
+          <Typography variant="h6">999.999.999.999</Typography>
           <img src={iconPoint} alt="" width={17} />
         </Box>
       </>
@@ -188,7 +187,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">23.423đ</Typography>
+          <Typography variant="h6">999.999.999.999đ</Typography>
         </Box>
       </>
     ),
@@ -310,7 +309,7 @@ const BuyPoints = () => {
               </IconButton>
             </Grid>
             <Grid item xs={4}>
-              <IconButton onClick={() => {}}>
+              <IconButton onClick={() => { }}>
                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />
               </IconButton>
             </Grid>
@@ -368,7 +367,7 @@ const BuyPoints = () => {
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={3} />
+          <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
 
         <Grid item xs={12}>
