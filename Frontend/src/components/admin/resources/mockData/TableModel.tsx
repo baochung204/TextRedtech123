@@ -1,10 +1,10 @@
 import { IconButton, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
-import { IconEye, IconFile3d, IconTrash } from '@tabler/icons-react';
+import { IconEye } from '@tabler/icons-react';
 import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 import customer from 'src/assets/Function/KHACH HANG SO HUU.png';
-import model from 'src/assets/Model/MODEL.png'
-import trainingtoken from 'src/assets/Model/Tranning tokens.png'
+import model from 'src/assets/Model/MODEL.png';
+import trainingtoken from 'src/assets/Model/Tranning tokens.png';
 export const Model = [
   {
     bgColor: 'primary.light',
@@ -45,7 +45,7 @@ export const Model = [
             alignItems: 'center',
           }}
         >
-         <img src={trainingtoken} width={30}/>
+          <img src={trainingtoken} width={30} />
         </Box>
       </>
     ),
@@ -67,7 +67,7 @@ export const Model = [
             alignItems: 'center',
           }}
         >
-         <img src={customer} width={30} />
+          <img src={customer} width={30} />
         </Box>
       </>
     ),
@@ -127,19 +127,18 @@ export const ModelCells: any = [
   {
     dataIndex: 'actions',
     title: 'Hoạt động',
-    render: ((_row:any, value: string)=> (
-      <Box display={'flex'} sx={{justifyContent:'center'}}>
-        <Tooltip title='Xem' placement='right'>
-          <IconButton >
+    render: () => (
+      <Box display={'flex'} sx={{ justifyContent: 'center' }}>
+        <Tooltip title="Xem" placement="right">
+          <IconButton>
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
           {/* <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
             </IconButton> */}
         </Tooltip>
-      
       </Box>
-    ))
+    ),
   },
 ];
 
@@ -152,7 +151,6 @@ export const ModelRows = [
     trainingTokens: '1000000',
     ownedCustomers: '12',
     appliedAssistants: '3',
-  
   },
   {
     id: 'MDL002',
@@ -162,7 +160,6 @@ export const ModelRows = [
     trainingTokens: '800000',
     ownedCustomers: '8',
     appliedAssistants: '2',
-   
   },
   {
     id: 'MDL003',
@@ -172,7 +169,6 @@ export const ModelRows = [
     trainingTokens: '1200000',
     ownedCustomers: '15',
     appliedAssistants: '4',
-    
   },
   {
     id: 'MDL004',
@@ -182,7 +178,6 @@ export const ModelRows = [
     trainingTokens: '950000',
     ownedCustomers: '10',
     appliedAssistants: '3',
-   
   },
   {
     id: 'MDL005',
@@ -192,7 +187,6 @@ export const ModelRows = [
     trainingTokens: '1300000',
     ownedCustomers: '20',
     appliedAssistants: '5',
-   
   },
   {
     id: 'MDL006',
@@ -202,6 +196,5 @@ export const ModelRows = [
     trainingTokens: '1100000',
     ownedCustomers: '18',
     appliedAssistants: '6',
-   
   },
 ];

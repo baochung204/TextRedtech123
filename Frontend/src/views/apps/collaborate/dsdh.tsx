@@ -1,14 +1,9 @@
 import { Box, Grid } from '@mui/material';
 
-import React from 'react';
+import dayjs from 'dayjs';
 
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import dayjs, { Dayjs } from 'dayjs';
-
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import { tabledh } from 'src/components/tables/tabledh';
 
 const columns = [
@@ -49,8 +44,6 @@ const columns = [
   },
 ];
 const Danhsachdh = () => {
-  const [value, setValue] = React.useState<Dayjs | null>(null);
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
   return (
     <>
       <Box
@@ -63,55 +56,7 @@ const Danhsachdh = () => {
         }}
       >
         <Box style={{ width: '35.2%' }} display={'flex'} alignItems={'center'} gap="5px">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-          tới
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={value1}
-              onChange={(newValue) => {
-                setValue1(newValue);
-              }}
-              renderInput={(props) => (
-                <CustomTextField
-                  {...props}
-                  fullWidth
-                  size="small"
-                  sx={{
-                    '& .MuiSvgIcon-root': {
-                      width: '18px',
-                      height: '18px',
-                    },
-                    '& .MuiFormHelperText-root': {
-                      display: 'none',
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
+          <DateSelect />
         </Box>
       </Box>
       <Grid item xs={12}>

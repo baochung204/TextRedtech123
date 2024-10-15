@@ -22,14 +22,12 @@ import {
 } from '@mui/material';
 import React, { createElement, useState } from 'react';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
-
-import { IconEye, IconSearch } from '@tabler/icons-react';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import { IconEye, IconSearch } from '@tabler/icons-react';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import { DataInvoiceTable } from '../datatable/InvoiceTableData';
 // interface PropsHeadTable {
 //   head: string;
@@ -89,8 +87,6 @@ const InvoiceTable = () => {
   //       return 'default'; // Gray for any unrecognized status
   //   }
   // };
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
@@ -227,7 +223,8 @@ const InvoiceTable = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={column.length - dataSelect.length} color="primary">
+              <Badge color="primary">
+                {/* badgeContent={column.length - dataSelect.length} */}
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -266,19 +263,7 @@ const InvoiceTable = () => {
 
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={selectedStartDate}
-                  onChange={setSelectedStartDate}
-                  renderInput={(params: any) => <TextField {...params} />}
-                />
-                <Typography>tới</Typography>
-                <DatePicker
-                  value={selectedEndDate}
-                  onChange={setSelectedEndDate}
-                  renderInput={(params: any) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Grid>
         </Grid>

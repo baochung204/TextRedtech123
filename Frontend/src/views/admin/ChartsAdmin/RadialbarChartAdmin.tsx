@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem, Typography } from '@mui/material';
+import { Box, Grid, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Chart from 'react-apexcharts';
@@ -11,7 +11,6 @@ import { Props } from 'react-apexcharts';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Affilatec2 from 'src/components/shared/Affilatec2';
-import ParentCard from 'src/components/shared/ParentCard';
 
 const RadialbarChartAdmin = ({ menuItems }: { menuItems: any }) => {
   // chart color

@@ -12,7 +12,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { IconChevronDown } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';

@@ -26,7 +26,7 @@ const PieCharts = () => {
       foreColor: '#adb0bb',
       events: {
         // Capture the event when hovering over the slices
-        dataPointMouseEnter: (event, chartContext, config) => {
+        dataPointMouseEnter: (config: any) => {
           const seriesIndex = config.dataPointIndex;
           const value = seriespiechart[seriesIndex];
           const percent = ((value / total) * 100).toFixed(2); // Calculate percentage

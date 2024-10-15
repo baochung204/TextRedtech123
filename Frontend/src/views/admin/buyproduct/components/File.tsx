@@ -1,84 +1,161 @@
 import React, { useState } from 'react';
-import { Button, Box, Typography } from '@mui/material';
+import { Box, Button, MenuItem, Select, Typography, TextField } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
-// Interface for props
-interface FunctionProps {
-  values: {
-    files: string;
-  };
-}
+import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
-  file: Yup.mixed().required('Bạn phải tải lên ít nhất một file'),
+  option: Yup.string().required('Bạn phải chọn một tùy chọn'),
 });
 
-const FileUploadForm: React.FC<FunctionProps> = ({ values }) => {
-  const [fileNames, setFileNames] = useState<string[]>([]);
+const FileUploadForm: React.FC = () => {
+  const [selectedOption, setSelectedOption] = useState<string>(''); // State to hold selected option
+  const [fileNames, setFileNames] = useState<string[]>([]); // Lưu trữ danh sách file đã chọn
 
   const initialValues = {
-    file: '',
+    option: '',
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, setFieldValue: any) => {
-    const files = event.target.files; // Get the list of files
+  const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>, setFieldValue: any) => {
+    setSelectedOption(event.target.value as string);
+    setFieldValue('option', event.target.value);
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
     if (files) {
       const selectedFileNames = Array.from(files).map((file) => file.name);
-      setFileNames(selectedFileNames); // Set the file names for display
-      setFieldValue('file', files); // Update file field in formik
+      setFileNames(selectedFileNames);
     }
   };
 
   const handleSubmit = (values: any) => {
-    // Handle file submit logic here
-    console.log('Files uploaded:', values.file);
+    // Handle submit logic here
+    console.log('Selected Option:', values.option);
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       {({ setFieldValue }) => (
         <Form>
+          <CustomFormLabel sx={{ color: 'red', fontSize: 18, marginLeft: 36, width: 850 }} htmlFor="name">
+            Files
+          </CustomFormLabel>
           <Box mb={2}>
-            <Field name="file">
-              {({ field }: any) => (
+            <Field name="option">
+              {() => (
                 <div>
-                  <input
-                    accept="*"
-                    id="file-upload"
-                    type="file"
-                    multiple // Allow multiple file selection
-                    onChange={(event) => handleFileChange(event, setFieldValue)}
-                    style={{ display: 'none' }}
-                  />
-                  <label htmlFor="file-upload">
-                    <Button variant="contained" component="span">
-                      Chọn file
-                    </Button>
-                  </label>
-                  {fileNames.length > 0 && (
-                    <Box mt={1}>
-                      <Typography variant="body1" color="textSecondary">
-                        File đã chọn:
-                      </Typography>
-                      <ul>
-                        {fileNames.map((fileName, index) => (
-                          <li key={index}>
-                            <Typography variant="body2">{fileName}</Typography>
-                          </li>
-                        ))}
-                      </ul>
-                    </Box>
-                  )}
+                  <Select
+                    id="option-select"
+                    value={selectedOption}
+                    onChange={(event: any) => handleOptionChange(event, setFieldValue)}
+                    displayEmpty
+                    fullWidth
+                    sx={{
+                      marginLeft: 36,
+                      width: 850,
+                      backgroundColor: '#fff5f5',
+                      borderColor: 'red',
+                      color: 'red',
+                      '&:hover': {
+                        backgroundColor: '#ffe0e0',
+                      },
+                    }}
+                  >
+                    <MenuItem value="" disabled>
+                      Chọn tùy chọn
+                    </MenuItem>
+                    <MenuItem value="file">File</MenuItem>
+                    <MenuItem value="dungluong">Dung lượng</MenuItem>
+                    <MenuItem value="slot">Slot</MenuItem>
+                  </Select>
+                  <ErrorMessage name="option" component="div" className="error-message" />
                 </div>
               )}
             </Field>
-            <ErrorMessage name="file" component="div" className="error-message" />
+          </Box>
+
+          {selectedOption === 'file' && (
+            <Box sx={{ marginLeft: 32, width: 850 }} mb={2}>
+              <Typography sx={{  marginLeft: 32, width: 850, color: 'red' }}>Chọn file:</Typography>
+              <input
+                type="file"
+                multiple
+                onChange={handleFileChange}
+                style={{ marginLeft: 36, width: 850, padding: '10px', border: '2px solid red', borderRadius: '8px', color: 'red' }}
+              />
+              {fileNames.length > 0 && (
+                <Box mt={1} sx={{ marginLeft: 36 }}>
+                  <Typography variant="body1" color="textSecondary">
+                    File đã chọn:
+                  </Typography>
+                  <ul>
+                    {fileNames.map((fileName, index) => (
+                      <li key={index} style={{ color: 'red' }}>
+                        {fileName}
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
+              )}
+            </Box>
+          )}
+
+          {selectedOption === 'dungluong' && (
+            <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
+              <Typography sx={{ color: 'red' }}>Nhập dung lượng:</Typography>
+              <TextField
+                placeholder="Nhập dung lượng (MB)"
+                fullWidth
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'red',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ff6666',
+                    },
+                  },
+                }}
+              />
+            </Box>
+          )}
+
+          {selectedOption === 'slot' && (
+            <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
+              <Typography sx={{ color: 'red' }}>Nhập số lượng slot:</Typography>
+              <TextField
+                placeholder="Nhập số lượng slot"
+                fullWidth
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'red',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ff6666',
+                    },
+                  },
+                }}
+              />
+            </Box>
+          )}
+
+          <Box sx={{ marginLeft: 36, width: 850, display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                backgroundColor: 'red',
+                color: '#fff',
+                '&:hover': {
+                  backgroundColor: '#ff6666',
+                },
+              }}
+            >
+              Gửi
+            </Button>
           </Box>
         </Form>
       )}

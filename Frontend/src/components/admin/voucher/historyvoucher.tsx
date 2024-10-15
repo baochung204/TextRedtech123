@@ -14,14 +14,10 @@ import {
 // components
 // import { styled } from '@mui/system';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
 
 interface DataRow2 {
@@ -118,7 +114,6 @@ const dataRows2: DataRow2[] = [
   },
 ];
 
-
 interface Column {
   title: string;
   dataIndex: string;
@@ -126,16 +121,13 @@ interface Column {
   isValids?: boolean;
 }
 const HistoryVoucher = () => {
-
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
-  const [selectedItems] = useState<number[]>([]);
+  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
         dataIndex: 'id',
-      },      
+      },
       {
         title: 'ID đơn hàng',
         dataIndex: 'ID_order',
@@ -175,7 +167,6 @@ const HistoryVoucher = () => {
         title: 'Giá trị giảm',
         dataIndex: 'sale',
       },
-      
     ],
     [],
   );
@@ -307,55 +298,7 @@ const HistoryVoucher = () => {
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Grid>
         </Grid>
@@ -370,14 +313,6 @@ const HistoryVoucher = () => {
 };
 
 export default HistoryVoucher;
-
-
-
-
-
-
-
-
 
 // type Order = 'asc' | 'desc';
 
@@ -435,15 +370,6 @@ export default HistoryVoucher;
 
 // const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
 // const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
-
-
-
-
-
-
-
-
 
 // function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 //   if (b[orderBy] < a[orderBy]) {

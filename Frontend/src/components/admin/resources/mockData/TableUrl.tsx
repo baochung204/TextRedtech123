@@ -1,6 +1,4 @@
-import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import { IconEye, IconTrash, IconUnlink } from '@tabler/icons-react';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import url from 'src/assets/Adminphoto/URL.png';
 export const Url = [
@@ -142,7 +140,6 @@ export const UrlRows = [
     description: 'Tập trung vào thị trường mới',
     url: 'https://example.com/1',
     click: 25,
-  
   },
   {
     id: 'STG002',
@@ -152,7 +149,6 @@ export const UrlRows = [
     description: 'Cải thiện trải nghiệm khách hàng',
     url: 'https://example.com/2',
     click: 15,
-  
   },
   {
     id: 'STG003',
@@ -162,7 +158,6 @@ export const UrlRows = [
     description: 'Phát triển sản phẩm mới trong quý 4',
     url: 'https://example.com/3',
     click: 10,
-  
   },
   {
     id: 'STG004',
@@ -172,7 +167,6 @@ export const UrlRows = [
     description: 'Mở rộng thị trường tại Đông Nam Á',
     url: 'https://example.com/4',
     click: 30,
-   
   },
   {
     id: 'STG005',
@@ -182,7 +176,6 @@ export const UrlRows = [
     description: 'Giảm thiểu chi phí sản xuất và vận hành',
     url: 'https://example.com/5',
     click: 20,
-   
   },
   {
     id: 'STG006',
@@ -192,6 +185,5 @@ export const UrlRows = [
     description: 'Nâng cao nhận diện thương hiệu quốc tế',
     url: 'https://example.com/6',
     click: 40,
-  
   },
 ];

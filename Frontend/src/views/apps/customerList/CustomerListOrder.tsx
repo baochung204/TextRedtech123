@@ -15,11 +15,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -108,8 +106,6 @@ interface Column {
   isValids?: boolean;
 }
 const CustomerListOrder = () => {
-  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null);
   const [month, setMonth] = React.useState('1');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
@@ -333,23 +329,7 @@ const CustomerListOrder = () => {
                           })}
                         </Select>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                              value={selectedStartDate}
-                              onChange={setSelectedStartDate}
-                              renderInput={(params) => (
-                                <TextField {...params} size="small" fullWidth />
-                              )}
-                            />
-                            <Typography>tới</Typography>
-                            <DatePicker
-                              value={selectedEndDate}
-                              onChange={setSelectedEndDate}
-                              renderInput={(params) => (
-                                <TextField {...params} size="small" fullWidth />
-                              )}
-                            />
-                          </LocalizationProvider>
+                          <DateSelect />
                         </Box>
                       </Box>
                     </Grid>

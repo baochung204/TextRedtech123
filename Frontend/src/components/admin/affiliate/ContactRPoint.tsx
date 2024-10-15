@@ -14,17 +14,14 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import contractwait from 'src/assets/Contract/HOP DONG CHO XU LY.png';
 import contractdone from 'src/assets/Contract/HOP DONG DA KY.png';
 import contractreject from 'src/assets/Contract/HOP DONG TU CHOI.png';
 import contract from 'src/assets/Contract/hop dong.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataContactPointTable } from './datatable/OrderTableData';
 
@@ -159,8 +156,8 @@ const ContactRPoint = () => {
         render: (_row: any, value: any) => (
           <Typography style={{ width: '150px' }} variant="subtitle2">
             <Chip
-              label={value.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
-              color={value.type_company ? 'success' : 'warning'}
+              label={value.type_company ? 'Doanh nghiệp' : ''}
+              color={value.type_company ? 'success' : ''}
               variant="outlined"
             />
           </Typography>
@@ -266,8 +263,7 @@ const ContactRPoint = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+
   return (
     <>
       <Grid container rowSpacing={3}>
@@ -386,55 +382,7 @@ const ContactRPoint = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>

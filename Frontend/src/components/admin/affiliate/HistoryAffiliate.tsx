@@ -14,26 +14,17 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import {
-  IconBrandCashapp,
-  IconBrandGumroad,
-  IconChartArcs,
-  IconNumber,
-  IconSearch,
-} from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 // import HistoryTable from './component/HistoryTable';
-import { Dayjs } from 'dayjs';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import { DataHistoryTable } from './datatable/OrderTableData';
-import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
-import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
 import pending from 'src/assets/Adminphoto/cho xu ly.png';
 import done from 'src/assets/Adminphoto/da xu ly.png';
+import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
+import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
+import { DataHistoryTable } from './datatable/OrderTableData';
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -129,16 +120,30 @@ const dataSource = [
   },
 ];
 
-const getStatusColor = (status: string) => {
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case 'Chờ duyệt':
+//       return 'warning'; // Yellow or custom color
+//     case 'Từ chối':
+//       return 'error'; // Red or custom color
+//     case 'Đã đi tiền':
+//       return 'success'; // Green or custom color
+//     default:
+//       return 'default'; // Gray or default color
+//   }
+// };
+const getStatusColor = (status: number) => {
   switch (status) {
-    case 'Chờ duyệt':
-      return 'warning'; // Yellow or custom color
-    case 'Từ chối':
-      return 'error'; // Red or custom color
-    case 'Đã đi tiền':
-      return 'success'; // Green or custom color
+    case 1:
+      return 'success';
+    case 2:
+      return 'warning';
+    case 3:
+      return 'error';
+    case 4:
+      return 'error';
     default:
-      return 'default'; // Gray or default color
+      return 'default';
   }
 };
 interface Column {
@@ -158,7 +163,16 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'Publisher',
-        dataIndex: 'publisher',
+        dataIndex: 'type_publisher',
+        render: (value: any) => (
+          <Box sx={{ display: 'flex', width: '110px' }}>
+            <Chip
+              label={value === 1 ? 'Doanh nghiệp' : value === 2 ? 'Cá nhân' : ''}
+              color={value === 1 ? 'success' : value === 2 ? 'warning' : 'default'}
+              variant="outlined"
+            />
+          </Box>
+        ),
       },
       {
         title: 'Khách hàng',
@@ -183,6 +197,11 @@ const HistoryAffiliate = () => {
       {
         title: 'Số tiền rút',
         dataIndex: 'bank_amount',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', px: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
       {
         title: 'Số tài khoản',
@@ -209,11 +228,22 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'Trạng thái',
-        dataIndex: '',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2">
-            <Chip label={value.status} color={getStatusColor(value.status)} />
-          </Typography>
+        dataIndex: 'status',
+        render: (value: any) => (
+          <Chip
+            label={
+              value === 1
+                ? 'Đã đi tiền '
+                : value === 2
+                ? 'Chờ duyệt'
+                : value === 3
+                ? 'Từ chối'
+                : value === 4
+                ? 'Chưa đi tiền'
+                : ''
+            }
+            color={getStatusColor(value)}
+          />
         ),
       },
       {
@@ -267,8 +297,7 @@ const HistoryAffiliate = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+
   return (
     <>
       <Grid container rowSpacing={3}>
@@ -373,8 +402,6 @@ const HistoryAffiliate = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -388,55 +415,7 @@ const HistoryAffiliate = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>

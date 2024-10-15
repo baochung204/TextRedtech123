@@ -42,10 +42,6 @@ const AddInfor = () => {
         {/* Circular Avatar Placeholder */}
         <Grid container item xs={12} sm={12} lg={12} spacing={2}>
           <Grid item xs={12} sm={6} lg={6}>
-            {/* <Button variant="contained" color="primary">
-            
-              <Typography >Lưu</Typography>
-            </Button> */}
             <Box
               sx={{
                 maxHeight: 'calc(65vh - 120px)',

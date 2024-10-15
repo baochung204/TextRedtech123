@@ -3,9 +3,6 @@ import {
   Badge,
   Box,
   Checkbox,
-  Dialog,
-  DialogContent,
-  DialogTitle,
   Grid,
   IconButton,
   InputAdornment,
@@ -15,19 +12,14 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
-import view from 'src/assets/NotificationAdmin/luot xem.png';
 import tags from 'src/assets/NotificationAdmin/tags.png';
 import notification from 'src/assets/NotificationAdmin/thong bao.png';
-import interact from 'src/assets/NotificationAdmin/tuong tac.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 // import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import BlankCard from '../../../components/shared/BlankCard';
 import AddNotification from './add/AddNotification';
 
@@ -132,6 +124,7 @@ interface INotification {
   views: number; // Lượt xem
   interactions: number; // Tương tác
   status: JSX.Element; // Trạng thái của thông báo
+  description: string;
 }
 
 const getStatusTextAndColor = (status: number) => {
@@ -164,6 +157,7 @@ const dataRows: INotification[] = [
     views: 1200,
     interactions: 340,
     status: renderStatus(2),
+    description: 'mô tả 1',
   },
   {
     id: '2',
@@ -176,6 +170,7 @@ const dataRows: INotification[] = [
     views: 950,
     interactions: 210,
     status: renderStatus(1),
+    description: 'mô tả 2',
   },
   {
     id: '3',
@@ -187,6 +182,7 @@ const dataRows: INotification[] = [
     views: 1500,
     interactions: 450,
     status: renderStatus(2),
+    description: 'mô tả 3',
   },
   {
     id: '4',
@@ -198,6 +194,7 @@ const dataRows: INotification[] = [
     views: 600,
     interactions: 120,
     status: renderStatus(1),
+    description: 'mô tả 3',
   },
 ];
 
@@ -252,13 +249,14 @@ const ContentNotification = () => {
         title: 'Tags',
       },
       {
+        dataIndex: 'description',
+        title: 'Mô tả',
+      },
+      {
         dataIndex: 'content',
         title: 'Nội dung thông báo',
       },
-      {
-        dataIndex: 'moreLink',
-        title: 'Link xem thêm',
-      },
+
       // {
       //   dataIndex: 'views',
       //   title: 'Lượt xem',
@@ -296,13 +294,12 @@ const ContentNotification = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-  };
+  // const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  // const handleClosePopup = () => {
+  //   setIsPopupOpen(false);
+  // };
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -419,55 +416,7 @@ const ContentNotification = () => {
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </Box>
           </Grid>
         </Grid>

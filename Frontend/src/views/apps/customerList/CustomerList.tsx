@@ -1,3 +1,4 @@
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { TabContext, TabPanel } from '@mui/lab';
 import {
   Badge,
@@ -17,10 +18,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { TransitionProps } from '@mui/material/transitions';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -31,6 +29,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { fetchCustomer } from 'src/store/apps/customer/customerSliceAffiliate';
 // import { AppDispatch, AppState } from 'src/store/Store';
 import { useEffect, useMemo, useState } from 'react';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
 import PopupAdd from './PopupAdd';
 
@@ -53,8 +52,6 @@ interface Column {
   isValids?: boolean;
 }
 const CustomerList = () => {
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleClosePopup = () => {
@@ -131,7 +128,7 @@ const CustomerList = () => {
         <TabContext value="1">
           <Box>
             <TabPanel value="1" sx={{ p: 0 }}>
-              <Grid container spacing={2} sx={{paddingTop: 1}}>
+              <Grid container spacing={2} sx={{ paddingTop: 1 }}>
                 <Grid item xs={12}>
                   <Grid
                     container
@@ -161,10 +158,7 @@ const CustomerList = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Badge
-                          badgeContent={column.length - dataSelect.length}
-                          color={ 'primary' }
-                        >
+                        <Badge badgeContent={column.length - dataSelect.length} color={'primary'}>
                           <FilterListIcon color="action" />
                         </Badge>
                         <Select
@@ -225,23 +219,7 @@ const CustomerList = () => {
                         </Select>
 
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                              value={selectedStartDate}
-                              onChange={setSelectedStartDate}
-                              renderInput={(params) => (
-                                <TextField {...params} size="small" fullWidth />
-                              )}
-                            />
-                            <Typography>tới</Typography>
-                            <DatePicker
-                              value={selectedEndDate}
-                              onChange={setSelectedEndDate}
-                              renderInput={(params) => (
-                                <TextField {...params} size="small" fullWidth />
-                              )}
-                            />
-                          </LocalizationProvider>
+                          <DateSelect />
                         </Box>
                       </Box>
                     </Grid>

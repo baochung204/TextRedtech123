@@ -8,7 +8,7 @@ interface FeatureItem {
   phone: string;
   contextFeature: string;
   note: string;
-  status: string
+  status: number;
 }
 
 const DataFeature: FeatureItem[] = [
@@ -20,7 +20,7 @@ const DataFeature: FeatureItem[] = [
     phone: '0987654331',
     contextFeature: 'Ứng dụng mạng xã hội',
     note: 'Chưa đăng',
-    status: 'Chưa xem',
+    status: 1,
   },
   {
     id: '2',
@@ -30,7 +30,27 @@ const DataFeature: FeatureItem[] = [
     phone: '0987654331',
     contextFeature: 'Ứng dụng mạng xã hội',
     note: 'Chưa đăng',
-    status: 'Chưa xem',
+    status: 2,
+  },
+  {
+    id: '3',
+    createdAt: new Date('2023-11-12'),
+    name: 'Ian King',
+    email: 'iank@example.com',
+    phone: '0987654331',
+    contextFeature: 'Ứng dụng mạng xã hội',
+    note: 'Chưa đăng',
+    status: 3,
+  },
+  {
+    id: '4',
+    createdAt: new Date('2023-11-12'),
+    name: 'Ian King',
+    email: 'iank@example.com',
+    phone: '0987654331',
+    contextFeature: 'Ứng dụng mạng xã hội',
+    note: 'Chưa đăng',
+    status: 4,
   },
   // Thêm nhiều dữ liệu mẫu nếu cần
 ];

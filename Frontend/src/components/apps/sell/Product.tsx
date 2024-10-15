@@ -474,7 +474,7 @@ const PaginationTable = () => {
       {
         title: '	Giá niêm yết',
         dataIndex: 'price',
-        render: (value: string, row) => (
+        render: (row) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Typography>{row.price} đ</Typography>
           </Box>
@@ -670,59 +670,6 @@ const PaginationTable = () => {
               })}
             </Select>
           </Grid>
-          {/* <Grid item xs={4}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-            </Box>
-          </Grid> */}
         </Grid>
       </Grid>
       <Grid item xs={12}>

@@ -17,11 +17,7 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { IconCopy, IconPackage } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
 import RankA from 'src/assets/ICON/c1.png';
 import clickicon from 'src/assets/ICON/click.png';
@@ -29,11 +25,11 @@ import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 import revenueicon from 'src/assets/ICON/doanh thu.png';
 import userimg from 'src/assets/images/profile/user-1.jpg';
 import AlertChat from 'src/components/apps/chats/AlertChat';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import icon6 from '../../../assets/ICON/cvr.png';
 import icon4 from '../../../assets/ICON/dơn hang.png';
 import icon3 from '../../../assets/ICON/khách hàng.png';
@@ -84,8 +80,6 @@ const CollaboratePost = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
   const [value, setValue] = React.useState('1');
-  const [value1, setValue1] = React.useState<Dayjs | null>(null);
-  const [value2, setValue2] = React.useState<Dayjs | null>(null);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
   const [usdValue, setUsdValue] = useState<number | null>(null);
@@ -155,55 +149,7 @@ const CollaboratePost = () => {
                 paddingBottom: 24,
               }}
             >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value1}
-                  onChange={(newValue) => {
-                    setValue1(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              tới
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={value2}
-                  onChange={(newValue) => {
-                    setValue2(newValue);
-                  }}
-                  renderInput={(props) => (
-                    <CustomTextField
-                      {...props}
-                      fullWidth
-                      size="small"
-                      sx={{
-                        '& .MuiSvgIcon-root': {
-                          width: '18px',
-                          height: '18px',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          display: 'none',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <DateSelect />
             </div>
           </Grid>
         </Grid>
