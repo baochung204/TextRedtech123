@@ -12,8 +12,6 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconChartBar, IconEye, IconSearch } from '@tabler/icons-react';
 import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
@@ -23,9 +21,9 @@ import customer from 'src/assets/Adminphoto/khách hàng.png';
 import Assistant from 'src/assets/Adminphoto/tro ly.png';
 import bill from 'src/assets/ICON/dơn hang.png';
 import gmv from 'src/assets/ICON/gmv.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 const BCrumb = [
@@ -413,6 +411,61 @@ const AssistantAdmin = () => {
           );
         },
       },
+      {
+        dataIndex: 'level',
+        title: 'Level',
+        isValids: false,
+      },
+      {
+        dataIndex: 'experience',
+        title: 'Experience',
+        isValids: false,
+      },
+      {
+        dataIndex: 'token',
+        title: 'Token huấn luyện',
+        isValids: false,
+      },
+      {
+        dataIndex: 'vqtb',
+        title: 'Vòng quay trung bình',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cl',
+        title: 'Chiến lược',
+        isValids: false,
+      },
+      {
+        dataIndex: 'function',
+        title: 'Functions',
+        isValids: false,
+      },
+      {
+        dataIndex: 'files',
+        title: 'Files',
+        isValids: false,
+      },
+      {
+        dataIndex: 'dungluong',
+        title: 'Dung lượng',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdt',
+        title: 'Chi phí/ doanh thu',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdh',
+        title: 'Chi phí / chuyển đổi',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpkh',
+        title: 'Chi phí / khách hàng',
+        isValids: false,
+      },
     ],
     [],
   );
@@ -429,8 +482,8 @@ const AssistantAdmin = () => {
       setDataSelect([]);
     }
   }, [column]);
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+  // const [value, setValue] = useState<Dayjs | null>(null);
+  // const [value1, setValue1] = useState<Dayjs | null>(null);
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
@@ -564,55 +617,7 @@ const AssistantAdmin = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>

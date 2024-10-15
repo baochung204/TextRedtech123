@@ -1,7 +1,6 @@
 import { useTheme } from '@emotion/react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom'; // Import useNavigate for navigation
-import fail from 'src/assets/images/certificate/failre.png';
 import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner';
 
 const contractorderuser = () => {

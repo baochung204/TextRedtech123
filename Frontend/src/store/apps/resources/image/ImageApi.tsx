@@ -1,4 +1,4 @@
-import instance from '../instance';
+import instance from 'src/configs/axios';
 
 export const GetAllImage = async () => {
   try {

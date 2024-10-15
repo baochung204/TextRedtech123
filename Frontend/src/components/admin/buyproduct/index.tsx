@@ -316,7 +316,8 @@ const BuyProduct = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 2 }}>
-              <Badge badgeContent={column.length - dataSelect.length} color="primary">
+              <Badge color="primary">
+                {/* badgeContent={column.length - dataSelect.length} */}
                 <FilterListIcon />
               </Badge>
             </IconButton>

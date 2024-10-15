@@ -1,9 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Card, CardContent, Divider, Tooltip } from '@mui/material';
+import { Box, Card, CardContent, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { AppState, useSelector } from 'src/store/Store';
-import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 
 type Props = {
   title: string;

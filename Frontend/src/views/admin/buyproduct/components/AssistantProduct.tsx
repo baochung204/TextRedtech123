@@ -11,14 +11,14 @@ import { IconChevronDown } from '@tabler/icons-react';
 import React from 'react';
 import AddFunction from 'src/components/apps/assistant/AssistantEditor/layout/addFunctions';
 import AddImage from 'src/components/apps/assistant/AssistantEditor/layout/addImage';
-import AddSearch from 'src/components/apps/assistant/AssistantEditor/layout/addSearch';
 import AddUrl from 'src/components/apps/assistant/AssistantEditor/layout/addUrl';
 import Strategy from 'src/components/apps/assistant/AssistantEditor/layout/Strategy';
-import Sli from 'src/components/apps/assistant/AssistantEditor/Sli';
 import PageContainer from 'src/components/container/PageContainer';
-import AddInfor from 'src/components/apps/assistant/AssistantEditor/layout/addInfor';
-import AddModel from 'src/components/apps/assistant/AssistantEditor/layout/addModel';
-import AddText from 'src/components/apps/assistant/AssistantEditor/layout/addText';
+import AddModelProduct from './AddModelProduct';
+import AddSearchProduct from './AddSearchProduct';
+import AddTextProduct from './AddTextProduct';
+import SliderProduct from './SliderProduct';
+import AddInforProduct from './AddInforProduct';
 
 const AssistantProduct = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -60,7 +60,7 @@ const AssistantProduct = () => {
           {/* Cột 1 */}
           <Grid item xs={12} sm={12} lg={8}>
             <Grid item xs={12} sm={12} lg={12}>
-              <AddInfor />
+              <AddInforProduct />
             </Grid>
 
             <Grid item xs={12} sm={12} lg={12} mt={2}>
@@ -79,18 +79,18 @@ const AssistantProduct = () => {
                 <AccordionDetails>
                   <Grid container spacing={0}>
                     <Grid item xs={12} sm={6} lg={12}>
-                      <AddModel />
+                      <AddModelProduct />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
-                      <AddText />
+                      <AddTextProduct />
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={12}>
-                      <Sli />
-                    </Grid>
+                      <Grid item xs={12} sm={6} lg={12}>
+                        <SliderProduct />
+                      </Grid>
                     <Grid item xs={12} mt={2}>
                       <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} lg={6}>
-                          <AddSearch />
+                          <AddSearchProduct />
                         </Grid>
                         <Grid item xs={12} sm={6} lg={6}>
                           <AddFunction />

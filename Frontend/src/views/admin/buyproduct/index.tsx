@@ -14,20 +14,18 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
+// import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import revenueperproduct from 'src/assets/Adminphoto/doanh thu san pham.png';
 import product from 'src/assets/Adminphoto/san pham.png';
+import sale from 'src/assets/Adminphoto/so flash sale.png';
 import amountcheckout from 'src/assets/Adminphoto/so luong mua.png';
 import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
-import sale from 'src/assets/Adminphoto/so flash sale.png';
 import icontext, { default as iconPoint } from 'src/assets/images/logos/R-Point.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import ProductTable from '../product/ProductData';
@@ -362,8 +360,8 @@ const BuyPoints = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+  // const [value, setValue] = useState<Dayjs | null>(null);
+  // const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <>
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
@@ -486,55 +484,7 @@ const BuyPoints = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>

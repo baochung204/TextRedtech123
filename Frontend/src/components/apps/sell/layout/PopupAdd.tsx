@@ -1,17 +1,16 @@
-import PersonIcon from '@mui/icons-material/Person';
-import { Avatar, Box, Button, Divider, Grid, InputAdornment, Typography } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Box, Button, Divider, Grid, InputAdornment, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import Classify from 'src/components/apps/sell/layout/classify';
+import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Tags from './Tags';
-import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
-import ClearIcon from '@mui/icons-material/Clear';
 
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
   const [images, setImages] = useState<File[]>([]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,67 +25,64 @@ const PopupAdd = () => {
   };
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        setter(event.target.value);
-      };
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
+    };
 
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setAvatarPreview(URL.createObjectURL(file));
-    }
-  };
+  // const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     const file = e.target.files[0];
+  //     setAvatarPreview(URL.createObjectURL(file));
+  //   }
+  // };
 
   return (
     <Scrollbar_y sx={{ maxHeight: '550px', paddingX: 5, overflowX: 'hidden' }}>
       <Box>
         <Divider sx={{ mx: '-50px' }} />
 
-        
-          {/* Set maxHeight for scrolling */}
-          <Box mb={3} pt={0}>
-            <Grid container spacing={2}>
-              
-              <Grid item xs={12} lg={6} md={12}>
-                <Grid item xs={12} sm={6} lg={12}>
-                  <CustomFormLabel htmlFor="name-text">Tên sản phẩm</CustomFormLabel>
-                  <CustomTextField
-                    id="name-text"
-                    variant="outlined"
-                    fullWidth
-                    placeholder="Nhập tên sản phẩm . . ."
-                    value={tags}
-                    onChange={handleChange(setTags)}
-                  />
-                  <CustomFormLabel htmlFor="tags-text">Nhãn</CustomFormLabel>
-                </Grid>
-                <Grid item xs={12} sm={6} lg={12}>
-                  <Tags />
-                </Grid>
+        {/* Set maxHeight for scrolling */}
+        <Box mb={3} pt={0}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={6} md={12}>
+              <Grid item xs={12} sm={6} lg={12}>
+                <CustomFormLabel htmlFor="name-text">Tên sản phẩm</CustomFormLabel>
+                <CustomTextField
+                  id="name-text"
+                  variant="outlined"
+                  fullWidth
+                  placeholder="Nhập tên sản phẩm . . ."
+                  value={tags}
+                  onChange={handleChange(setTags)}
+                />
+                <CustomFormLabel htmlFor="tags-text">Nhãn</CustomFormLabel>
               </Grid>
-
-              <Grid item xs={12} lg={6} md={12}>
-                <CustomFormLabel htmlFor="phone-text">Giá niêm yết</CustomFormLabel>
-                <CustomOutlinedInput
-                  endAdornment={<InputAdornment position="end">đ</InputAdornment>}
-                  id="price-list"
-                  fullWidth
-                  variant="outlined"
-                  placeholder="Nhập giá . . ."
-                />
-
-                <CustomFormLabel htmlFor="sale-price">Giá khuyến mãi</CustomFormLabel>
-                <CustomOutlinedInput
-                  endAdornment={<InputAdornment position="end">đ</InputAdornment>}
-                  id="sale-price"
-                  fullWidth
-                  variant="outlined"
-                  placeholder="Nhập giá . . ."
-                />
+              <Grid item xs={12} sm={6} lg={12}>
+                <Tags />
               </Grid>
             </Grid>
-          </Box>
-        
+
+            <Grid item xs={12} lg={6} md={12}>
+              <CustomFormLabel htmlFor="phone-text">Giá niêm yết</CustomFormLabel>
+              <CustomOutlinedInput
+                endAdornment={<InputAdornment position="end">đ</InputAdornment>}
+                id="price-list"
+                fullWidth
+                variant="outlined"
+                placeholder="Nhập giá . . ."
+              />
+
+              <CustomFormLabel htmlFor="sale-price">Giá khuyến mãi</CustomFormLabel>
+              <CustomOutlinedInput
+                endAdornment={<InputAdornment position="end">đ</InputAdornment>}
+                id="sale-price"
+                fullWidth
+                variant="outlined"
+                placeholder="Nhập giá . . ."
+              />
+            </Grid>
+          </Grid>
+        </Box>
 
         <Divider sx={{ mx: '-50px' }} />
 
@@ -113,9 +109,7 @@ const PopupAdd = () => {
                   </Grid> */}
                 <Grid container item xs={12} spacing={2}>
                   <Grid item xs={6}>
-                    <CustomFormLabel>
-                      Khối lượng
-                    </CustomFormLabel>
+                    <CustomFormLabel>Khối lượng</CustomFormLabel>
                     <CustomOutlinedInput
                       endAdornment={<InputAdornment position="end">g</InputAdornment>}
                       id="weight-text"
@@ -125,9 +119,7 @@ const PopupAdd = () => {
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <CustomFormLabel>
-                      Đơn vị tính
-                    </CustomFormLabel>
+                    <CustomFormLabel>Đơn vị tính</CustomFormLabel>
                     <CustomTextField
                       id="unit-text"
                       variant="outlined"
@@ -222,13 +214,13 @@ const PopupAdd = () => {
             <Grid item xs={12}>
               <label htmlFor="image-upload">
                 <input
-                  style={{ display: "none" }}
+                  style={{ display: 'none' }}
                   id="image-upload"
                   type="file"
                   multiple
                   onChange={handleImageUpload}
                 />
-                <Button variant="contained" component="span" sx={{mb:1}}>
+                <Button variant="contained" component="span" sx={{ mb: 1 }}>
                   Thêm ảnh sản phẩm
                 </Button>
               </label>
@@ -237,20 +229,19 @@ const PopupAdd = () => {
                   <Grid container spacing={2}>
                     {images.map((image, index) => (
                       <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                        <div style={{ position: "relative" }}>
+                        <div style={{ position: 'relative' }}>
                           <img
                             src={URL.createObjectURL(image)}
                             alt={`uploaded-${index}`}
-                            style={{ width: "200px", height: "200px" }}
+                            style={{ width: '200px', height: '200px' }}
                           />
                           <ClearIcon
-                            
                             onClick={() => handleRemoveImage(index)}
                             style={{
-                              position: "absolute",
+                              position: 'absolute',
                               top: 5,
                               right: 5,
-                              cursor: "pointer"
+                              cursor: 'pointer',
                             }}
                           >
                             Xóa

@@ -14,14 +14,8 @@ import {
 } from '@mui/material';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
+import { Column } from './ColumnInterface';
 
-interface Column {
-  title: string;
-  dataIndex: string;
-  render?: (value: any, record: any, rowIndex: number) => React.ReactNode;
-  sort?: boolean;
-  isValids?: boolean;
-}
 
 interface CustomTableProps {
   columns: Column[];

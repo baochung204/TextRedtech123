@@ -3,6 +3,7 @@ import {
   Badge,
   Box,
   Checkbox,
+  Chip,
   Grid,
   IconButton,
   InputAdornment,
@@ -12,21 +13,19 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 import processing from 'src/assets/Adminphoto/chua xu ly.png';
 import rating from 'src/assets/Adminphoto/DANH GIA.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import ticket from 'src/assets/Adminphoto/ticket.png';
+import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
-import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import rating1 from 'src/assets/Adminphoto/đanh gia.png';
 
 const BCrumb = [
   {
@@ -295,6 +294,21 @@ const Ticket = () => {
       {
         dataIndex: 'rating',
         title: 'Đánh giá',
+        render: (value: any) => (
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              justifyContent: 'flex-start',
+            }}
+          >
+            <Box>{value}</Box>
+            <IconButton sx={{ padding: '0' }}>
+              <img src={rating1} width={16} alt="Rating" />
+            </IconButton>
+          </Box>
+        ),
       },
       {
         dataIndex: 'email',
@@ -311,6 +325,12 @@ const Ticket = () => {
       {
         dataIndex: 'status',
         title: 'Trạng thái',
+        render: (_row: any, value: any) => (
+          <Chip
+            label={value.rating > 3 ? 'Đã xử lý' : 'Chưa xử lý'}
+            color={value.rating > 3 ? 'success' : 'error'}
+          />
+        ),
       },
     ],
     [],
@@ -337,8 +357,7 @@ const Ticket = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+
   return (
     <PageContainer title="Quản lý ticket" description="this is page">
       <BannerPage title="Quản lý ticket" items={BCrumb} />
@@ -448,55 +467,7 @@ const Ticket = () => {
             </Grid>
             <Grid item xs={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-                tới
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                    }}
-                    renderInput={(props) => (
-                      <CustomTextField
-                        {...props}
-                        fullWidth
-                        size="small"
-                        sx={{
-                          '& .MuiSvgIcon-root': {
-                            width: '18px',
-                            height: '18px',
-                          },
-                          '& .MuiFormHelperText-root': {
-                            display: 'none',
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
+                <DateSelect />
               </Box>
             </Grid>
           </Grid>

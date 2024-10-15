@@ -1,4 +1,4 @@
-import { Box, Button, Grid, MenuItem } from '@mui/material';
+import { Box, Button, Checkbox, FormControl, FormControlLabel, Grid, MenuItem, Radio, RadioGroup } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -11,23 +11,33 @@ interface CurrencyType {
 }
 
 const currencies: CurrencyType[] = [
-  { value: 'female', label: 'Đồng' },
-  { value: 'male', label: 'Phần trăm' },
+  { value: 'dong', label: 'Đồng' },
+  { value: 'percent', label: 'Phần trăm' },
 ];
 
 const AddVoucher = () => {
-  const [gender, setGender] = React.useState(currencies[0]?.value || '');
+  const [discountType, setDiscountType] = React.useState(currencies[0]?.value || '');
   const [Name, setName] = React.useState('');
   const [companyPhone, setCompanyPhone] = React.useState('');
   const [discountCode, setDiscountCode] = React.useState('');
-
+  const [discountValue, setDiscountValue] = React.useState('');
+  const [minOrderValue, setMinOrderValue] = React.useState('');
+  const [maxDiscountAmount, setMaxDiscountAmount] = React.useState('');
+  const [externalCode, setExternalCode] = React.useState(false);
+  const [internalCode, setInternalCode] = React.useState(false);
+  // Generate random code with current date (ddMM format)
   const generateRandomCode = () => {
-    const randomCode = Math.random().toString(36).substring(2, 10).toUpperCase();
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase() + day + month;
     setDiscountCode(randomCode);
   };
 
-  const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setGender(event.target.value as string);
+  const handleDiscountTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setDiscountType(event.target.value as string);
+    setDiscountValue(''); // Reset discount value when switching discount type
+    setMaxDiscountAmount(''); // Reset max discount amount when switching
   };
 
   const handleChange =
@@ -38,7 +48,6 @@ const AddVoucher = () => {
 
   return (
     <div>
-      {/* Thông tin cá nhân */}
       <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
         <Grid container spacing={3}>
           <Grid item lg={6} md={12}>
@@ -51,6 +60,7 @@ const AddVoucher = () => {
               value={Name}
               onChange={handleChange(setName)}
             />
+
             <CustomFormLabel htmlFor="phone-text">Số lượng mã</CustomFormLabel>
             <CustomTextField
               id="phone-text"
@@ -60,11 +70,12 @@ const AddVoucher = () => {
               placeholder="Nhập số lượng mã"
               onChange={handleChange(setCompanyPhone)}
             />
-            <CustomFormLabel htmlFor="gender-select">Loại giảm giá</CustomFormLabel>
+
+            <CustomFormLabel htmlFor="discount-type-select">Loại giảm giá</CustomFormLabel>
             <CustomSelect
-              id="gender-select"
-              value={gender}
-              onChange={handleGenderChange}
+              id="discount-type-select"
+              value={discountType}
+              onChange={handleDiscountTypeChange}
               fullWidth
               variant="outlined"
             >
@@ -74,8 +85,7 @@ const AddVoucher = () => {
                 </MenuItem>
               ))}
             </CustomSelect>
-          </Grid>
-          <Grid item lg={6} md={12}>
+
             <CustomFormLabel htmlFor="discount-code">Mã giảm giá</CustomFormLabel>
             <Grid container spacing={2}>
               <Grid item xs={8}>
@@ -89,11 +99,32 @@ const AddVoucher = () => {
                 />
               </Grid>
               <Grid item xs={4}>
-                <Button variant="contained" color="primary" onClick={generateRandomCode} >
+                <Button variant="contained" color="primary" onClick={generateRandomCode}>
                   <LoopIcon />
                 </Button>
               </Grid>
             </Grid>
+            <FormControl component="fieldset">
+              <RadioGroup
+                name="discountType"
+                value={discountType}
+                onChange={handleDiscountTypeChange}
+              >
+                <FormControlLabel
+                  value="external"
+                  control={<Radio color="primary" />}
+                  label="Mã giảm bên ngoài hệ thống"
+                />
+                <FormControlLabel
+                  value="internal"
+                  control={<Radio color="primary" />}
+                  label="Mã giảm bên trong hệ thống"
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+
+          <Grid item lg={6} md={12}>
             <CustomFormLabel htmlFor="start-date">Ngày bắt đầu</CustomFormLabel>
             <CustomTextField
               id="start-date"
@@ -102,6 +133,7 @@ const AddVoucher = () => {
               fullWidth
               InputLabelProps={{ shrink: true }}
             />
+
             <CustomFormLabel htmlFor="end-date">Ngày kết thúc</CustomFormLabel>
             <CustomTextField
               id="end-date"
@@ -109,6 +141,56 @@ const AddVoucher = () => {
               variant="outlined"
               fullWidth
               InputLabelProps={{ shrink: true }}
+            />
+
+            {discountType === 'percent' ? (
+              <>
+                <CustomFormLabel htmlFor="discount-percentage">Giảm bao nhiêu %</CustomFormLabel>
+                <CustomTextField
+                  id="discount-percentage"
+                  variant="outlined"
+                  fullWidth
+                  value={discountValue}
+                  placeholder="Nhập % giảm giá"
+                  onChange={handleChange(setDiscountValue)}
+                />
+
+                <CustomFormLabel htmlFor="max-discount-amount">
+                  Số tiền giảm tối đa (VNĐ)
+                </CustomFormLabel>
+                <CustomTextField
+                  id="max-discount-amount"
+                  variant="outlined"
+                  fullWidth
+                  value={maxDiscountAmount}
+                  placeholder="Nhập số tiền giảm tối đa"
+                  onChange={handleChange(setMaxDiscountAmount)}
+                />
+              </>
+            ) : (
+              <>
+                <CustomFormLabel htmlFor="discount-amount">Giảm bao nhiêu tiền (VNĐ)</CustomFormLabel>
+                <CustomTextField
+                  id="discount-amount"
+                  variant="outlined"
+                  fullWidth
+                  value={discountValue}
+                  placeholder="Nhập số tiền giảm"
+                  onChange={handleChange(setDiscountValue)}
+                />
+              </>
+            )}
+
+            <CustomFormLabel htmlFor="min-order-value">
+              Giá trị đơn hàng tối thiểu (VNĐ) để áp dụng
+            </CustomFormLabel>
+            <CustomTextField
+              id="min-order-value"
+              variant="outlined"
+              fullWidth
+              value={minOrderValue}
+              placeholder="Nhập giá trị đơn hàng tối thiểu"
+              onChange={handleChange(setMinOrderValue)}
             />
           </Grid>
         </Grid>

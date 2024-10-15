@@ -8,7 +8,7 @@ interface ContentChatProps {
   onClose: () => void;
 }
 const ContentChat: React.FC<ContentChatProps> = ({ onClose }) => {
-  const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [, setMobileSidebarOpen] = useState(false);
 
   return (
     <>

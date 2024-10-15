@@ -222,7 +222,7 @@ const Integration = () => {
                 </Fab>
               </Tooltip> */}
               <Grid container spacing={3}>
-                {dataIntegration.map((integration) => {
+                {dataIntegration.map((integration: any) => {
                   return (
                     <Grid item xs={12} lg={4} key={integration.id}>
                       <BlankCard>
