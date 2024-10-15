@@ -28,13 +28,16 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
   const [dataSelect] = useState<string[]>([]);
   const dispatch = useDispatch<AppDispatch>();
   const dataFile = useSelector((state: AppState) => state.file.data);
+  const content = dataFile?.map(a=> a.result.map(b=>b.content)) || [];
+
+  console.log('content',content)
   useEffect(() => {
     dispatch(fetchFile());
   }, [dispatch]);
   const column = [
     {
       title: 'ID',
-      dataIndex: 'id',
+      dataIndex: 'fileId',
     },
     {
       title: 'Tên file',
@@ -46,12 +49,12 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
     },
     {
       title: 'Ngày tải',
-      dataIndex: 'dateTime',
+      dataIndex: 'date',
       render: (value: Date) => new Date(value).toLocaleDateString(),
     },
     {
       title: 'Định dạng',
-      dataIndex: 'typeFile',
+      dataIndex: 'type',
     },
     {
       title: 'Hành động',
@@ -74,7 +77,7 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
         paddingTop: 1,
       }}
     >
-      <CustomTable dataSource={dataFile} columns={column} dataSelect={dataSelect} />
+      <CustomTable dataSource={content} columns={column} dataSelect={dataSelect} />
 
       <DialogFile open={open} setOpen={setOpen} value={value} />
     </Box>
