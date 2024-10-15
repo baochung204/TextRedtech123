@@ -167,6 +167,7 @@ interface Column {
 
 const PublisherAffiliate = () => {
   // const [selectedItems] = useState<number[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
 
   const column = useMemo<Column[]>(
     () => [
