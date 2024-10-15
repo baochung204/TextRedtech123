@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 declare module '@emotion/react' {
   export interface Theme {
     palette: {
+      primary: any;
       success: any;
       warning: any;
       error: any;

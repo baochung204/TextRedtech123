@@ -71,7 +71,7 @@ const DataBox: StyleProps[] = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu',
-    total: '15.126.422.555đ',
+    total: '15.126.422.555 ₫',
     icons: (
       <>
         <Box

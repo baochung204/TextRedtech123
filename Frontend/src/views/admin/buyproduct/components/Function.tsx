@@ -81,6 +81,7 @@ interface FunctionProps {
 }
 
 const Function = ({ values }: FunctionProps) => {
+  console.log(values);
   const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
   const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
     images: [],
@@ -185,7 +186,6 @@ const Function = ({ values }: FunctionProps) => {
             {(msg) => <div style={{ color: 'red', marginTop: 4 }}>{msg}</div>}
           </ErrorMessage>
         </Grid>
-
       </Grid>
       <Grid>
         <CustomTextField
@@ -194,7 +194,7 @@ const Function = ({ values }: FunctionProps) => {
           variant="outlined"
           fullWidth
           name="name"
-          sx={{ marginLeft: 2, marginTop: 3 ,width: '830px', }}
+          sx={{ marginLeft: 2, marginTop: 3, width: '830px' }}
         />
       </Grid>
       <Grid item xs={12}>

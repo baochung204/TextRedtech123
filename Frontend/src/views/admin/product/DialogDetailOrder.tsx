@@ -9,10 +9,12 @@ import {
   Card,
   CardContent,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogContentText,
   Grid,
   Stack,
+  Switch,
   Table,
   TableBody,
   TableCell,
@@ -34,7 +36,7 @@ interface IProp {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const DialogDetailOrder = ({ open, setOpen }: IProp) => {
-  // Changed function name to follow PascalCase
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
   const packages = [
     {
       id: 7,
@@ -59,26 +61,15 @@ const DialogDetailOrder = ({ open, setOpen }: IProp) => {
   return (
     <Dialog
       open={open}
-      //   TransitionComponent={Transition}
       onClose={handleCloseDialog}
       keepMounted
-      aria-describedby="alert-dialog-slide-description"
       fullWidth
       maxWidth="lg"
       sx={{
         maxHeight: '90vh',
       }}
     >
-      {/* <DialogActions style={{ padding: '0' }}>
-        <Button
-          onClick={handleClose}
-          color="error"
-          variant="contained"
-          style={{ borderBottomLeftRadius: '10px' }}
-        >
-          <CloseIcon />
-        </Button>
-      </DialogActions> */}
+
       <DialogContent
         sx={{
           overflowY: 'auto',
@@ -612,6 +603,9 @@ const DialogDetailOrder = ({ open, setOpen }: IProp) => {
           </Box>
         </DialogContentText>
       </DialogContent>
+      <DialogActions>
+        <Switch {...label} />
+      </DialogActions>
     </Dialog>
   );
 };

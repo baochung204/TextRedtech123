@@ -16,21 +16,25 @@ interface PropsTab5 {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dataSelect: string[];
+  checkOption: string | null;
+  setCheckOption: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect }) => {
+const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect, checkOption, setCheckOption }) => {
   const [key, setKey] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const dataImages = useSelector((state: AppState) => state.imageResources.images);
+  console.log(dataImages);
 
   useEffect(() => {
     dispatch(fetchImages());
   }, [dispatch]);
 
   const onHandleOpenImageById = (id: string) => {
-    dispatch(fetchImageById(id));
+    // dispatch(fetchImageById(id));
     setKey(id);
     setOpen(true);
+    setCheckOption('view')
   };
 
   const onHandleRemove = (id: string) => {
@@ -95,6 +99,8 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect }) => {
         selectedItemId1={key}
         setSelectedItemId1={setKey}
         dataImages={dataImages}
+        checkOption={checkOption}
+        setCheckOption={setCheckOption}
       />
     </Box>
   );
