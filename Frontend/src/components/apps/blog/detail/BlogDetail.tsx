@@ -20,7 +20,7 @@ import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import type { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../../shared/BlankCard';
 import reaction from 'src/assets/Adminphoto/luot timm.png';
-
+import like from 'src/assets/ICON/like.png';
 const BlogDetail = () => {
   const dispatch = useDispatch();
   const title = useLocation();
@@ -69,7 +69,7 @@ const BlogDetail = () => {
               </Tooltip>
               <Chip
                 sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                label="2,203 số lượt xem"
+                label="2,203 lượt xem"
                 size="small"
               ></Chip>
             </Stack>
@@ -77,10 +77,10 @@ const BlogDetail = () => {
               <Box>
                 <Chip label={post?.author.name} size="small" sx={{ marginTop: 2 }} />
               </Box>
-              <Box sx={{ display: 'flex' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Typography sx={{ marginRight: '5px' }}>159</Typography>
                 <Box sx={{ marginTop: '3px' }}>
-                  <img src={reaction} width={15} height={15} />
+                  <img src={like} width={15} height={15} />
                 </Box>
               </Box>
             </Box>

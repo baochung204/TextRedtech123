@@ -252,9 +252,9 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
-            <IconButton onClick={handleIconClick}>
+            {/* <IconButton onClick={handleIconClick}>
               <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-            </IconButton>
+            </IconButton> */}
             <Link
               to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
             >
