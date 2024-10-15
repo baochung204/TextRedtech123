@@ -246,26 +246,26 @@ const HistoryAffiliate = () => {
           />
         ),
       },
-      {
-        title: 'Duyệt hóa đơn',
-        dataIndex: '',
-        // render: (_row:any, value: any) => (
-        render: () => (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Checkbox defaultChecked />
-          </Box>
-        ),
-      },
-      {
-        title: 'Đã thanh toán',
-        dataIndex: '',
-        // render: (row, value: any) => (
-        render: () => (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Checkbox defaultChecked />
-          </Box>
-        ),
-      },
+      // {
+      //   title: 'Duyệt hóa đơn',
+      //   dataIndex: '',
+      //   // render: (_row:any, value: any) => (
+      //   render: () => (
+      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      //       <Checkbox defaultChecked />
+      //     </Box>
+      //   ),
+      // },
+      // {
+      //   title: 'Đã thanh toán',
+      //   dataIndex: '',
+      //   // render: (row, value: any) => (
+      //   render: () => (
+      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      //       <Checkbox defaultChecked />
+      //     </Box>
+      //   ),
+      // },
       {
         title: 'Thông báo',
         dataIndex: '',
