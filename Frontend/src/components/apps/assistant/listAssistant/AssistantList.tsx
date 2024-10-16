@@ -35,14 +35,35 @@ import {
   IconSearch,
   IconStackBack,
 } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import IconCrv from 'src/assets/ICON/cvr.png';
 import AlertChat from '../../chats/AlertChat';
 import TableData from './data/data';
+import { fetchAssisstantData } from 'src/store/user/chatbots/assisstantUserSlice'
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 
 interface FilmsData {
   title: string;
+}
+interface PropsData {
+
+  chatbotId: number,
+  chatbotName: string,
+  modelName: string,
+  avatar: string,
+  badgeUrl: string,
+  exp: number,
+  expMax: number,
+  isActive: boolean,
+  conversionRate: number,
+  customer: number,
+  conversion: number,
+  totalIncome: number,
+  gmv: number,
+  aov: number
+
 }
 
 const FilmsData: FilmsData[] = [
@@ -50,16 +71,29 @@ const FilmsData: FilmsData[] = [
   { title: 'Cấp Rank' },
   { title: 'Tổng doanh thu' },
 ];
+
+
 const ListAssistant = () => {
   const theme = useTheme();
   const successlight = theme.palette.success.light;
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
   const [alertText, setAlertText] = useState('');
 
+  const assisstant = useSelector((state: AppState) => state.assisstant.dataa);
+
+  const [assisstantData, setAssisstantData] = useState<PropsData[]>([]);
+
+  useEffect(() => {
+    dispatch(fetchAssisstantData())
+    setAssisstantData(assisstant.result)
+  }, [])
+
+  console.log('loadloadload: ', assisstant);
+
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
       const isRankChecked = prevChecked.includes(rank.id);
-      setAlertText(isRankChecked ? 'tắt' : 'bật'); // Set alert text based on rank status
+      setAlertText(isRankChecked ? 'tắt' : 'bật');
       setOpenChartAlert(true);
       return isRankChecked ? prevChecked.filter((id) => id !== rank.id) : [...prevChecked, rank.id];
     });
@@ -175,7 +209,7 @@ const ListAssistant = () => {
       </Grid>
       <Grid item sm={12}>
         <Grid container spacing={2}>
-          {TableData?.map((rank, index) => (
+          {Array.isArray(assisstantData) && assisstantData.map((rank, index) => (
             <Grid item xs={12} sm={12} md={6} key={index}>
               <Card
                 sx={{
@@ -199,7 +233,7 @@ const ListAssistant = () => {
                 >
                   <Box
                     component="img"
-                    src={rank.rankImage}
+                    src={rank.badgeUrl}
                     alt=""
                     sx={{
                       maxWidth: '250px',
@@ -231,7 +265,7 @@ const ListAssistant = () => {
                       mt={1.3}
                       sx={{ fontSize: { xs: '20px', sm: '18px', md: '16px', lg: '16px' } }}
                     >
-                      {rank.fullName}
+                      {rank.chatbotName}
                     </Typography>
                     <Typography
                       variant="body2"
@@ -241,7 +275,7 @@ const ListAssistant = () => {
                         fontSize: { xs: '14px', sm: '14px', md: '12px', lg: '14px' },
                       }}
                     >
-                      {rank.model}
+                      {rank.modelName}
                     </Typography>
                   </Box>
                   <Grid
@@ -257,13 +291,13 @@ const ListAssistant = () => {
                       <Button
                         onClick={() => onHandleCheckOnOrOff(rank)}
                         sx={{
-                          backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
+                          backgroundColor: checkedRanks.includes(`${rank.chatbotId}`) ? '#38D955' : '#FF2023',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           height: '100%',
                           ':hover': {
-                            backgroundColor: checkedRanks.includes(rank.id) ? '#38D955' : '#FF2023',
+                            backgroundColor: checkedRanks.includes(`${rank.chatbotId}`) ? '#38D955' : '#FF2023',
                             boxShadow: 'none',
                           },
                           boxShadow: 'none',
@@ -301,7 +335,7 @@ const ListAssistant = () => {
                           ':hover': { backgroundColor: '#FFB300' },
                         }}
                         component={Link}
-                        to={`/assistants/detail/${rank.id}`}
+                        to={`/assistants/detail/${rank.chatbotId}`}
                       >
                         <IconStackBack stroke={2} />
                       </Button>
@@ -319,7 +353,7 @@ const ListAssistant = () => {
                               <Typography variant="h6">Tỉ lệ chuyển đổi</Typography>
                               <Stack direction="row" spacing={1} mt={1} alignItems="center">
                                 <Typography variant="h4" mt={1} fontWeight={600}>
-                                  50%
+                                  {rank.conversionRate}
                                 </Typography>
                                 <Avatar sx={{ bgcolor: successlight, width: 27, height: 27 }}>
                                   <IconArrowUpRight width={20} color="#39B69A" />
@@ -385,7 +419,7 @@ const ListAssistant = () => {
                                       px: { md: '10px', lg: '15px' },
                                     }}
                                   >
-                                    Khách hàng: {rank.cc}
+                                    Khách hàng: {rank.customer}
                                   </Button>
                                 </Tooltip>
                               </Grid>
@@ -400,7 +434,7 @@ const ListAssistant = () => {
                                       px: { md: '10px', lg: '5px' },
                                     }}
                                   >
-                                    Chuyển đổi : {rank.oc}
+                                    Chuyển đổi : {rank.conversion}
                                   </Button>
                                 </Tooltip>
                               </Grid>
@@ -439,11 +473,11 @@ const ListAssistant = () => {
                                       width: 55,
                                       height: 24,
                                     }}
-                                    label={`${rank.sale}%`}
+                                    label={`${rank.exp}%`}
                                   />
                                 </Stack>
                                 <LinearProgress
-                                  value={rank.sale}
+                                  value={rank.expMax}
                                   variant="determinate"
                                   color="primary"
                                 />
