@@ -61,7 +61,7 @@ const GenChartAdmin = ({ text, menuItems }: { text: any; menuItems: any }) => {
       categories: categories,
       labels: {
         show: true,
-        formatter: (value: string, opts?: any) => {
+        formatter: (value: string, _timestamp: string, opts?: any) => {
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
