@@ -219,18 +219,17 @@ const CustomerList2 = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Badge badgeContent={column.length - dataSelect.length} color={'primary'}>
-                          <FilterListIcon color="action" />
-                        </Badge>
+                        <IconButton aria-label="filter" sx={{ mr: 2 }}>
+                          <Badge badgeContent={column.length - dataSelect.length} color="primary">
+                            <FilterListIcon />
+                          </Badge>
+                        </IconButton>
                         <Select
                           multiple
                           value={dataSelect}
                           displayEmpty
                           onChange={handleColumnChange}
                           renderValue={() => 'Sửa đổi cột'}
-                          sx={{
-                            marginRight: 2,
-                          }}
                           size="small"
                           MenuProps={{
                             PaperProps: {
@@ -262,12 +261,26 @@ const CustomerList2 = () => {
                             },
                           }}
                         >
-                          {column.map((header: any) => {
-                            const isSelected = dataSelect.includes(header.dataIndex);
-
+                          <MenuItem>
+                            <Checkbox
+                              checked={!(dataSelect.length === column.length)}
+                              indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                              onChange={() => {
+                                if (dataSelect.length < column.length) {
+                                  const allColumns = column.map((header: Column) => header.dataIndex);
+                                  setDataSelect(allColumns);
+                                } else {
+                                  setDataSelect([]);
+                                }
+                              }}
+                            />
+                            <ListItemText primary="Chọn tất cả" />
+                          </MenuItem>
+                          {column.map((header: Column) => {
+                            const isSelected = !dataSelect.includes(header.dataIndex);
                             return (
                               <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                                <Checkbox checked={!isSelected} />
+                                <Checkbox checked={isSelected} />
                                 <ListItemText primary={header.title} />
                               </MenuItem>
                             );

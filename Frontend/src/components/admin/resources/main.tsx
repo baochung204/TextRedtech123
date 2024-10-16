@@ -141,13 +141,17 @@ const Main = () => {
           title: 'Tóm tắt',
         },
         {
+          dataIndex: 'functionName',
+          title: 'Tên function',
+        },
+        {
+          dataIndex: 'badge',
+          title: 'Huy hiệu',
+        },
+        {
           dataIndex: 'functionCode',
           title: 'Code function',
         },
-        // {
-        //   dataIndex: 'creator',
-        //   title: 'Người tạo',
-        // },
         {
           dataIndex: 'actions',
           title: 'Hoạt động',
@@ -323,8 +327,8 @@ const Main = () => {
           <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
             <Grid item>
               <Badge
-                badgeContent={dataSelect.length !== 0 && dataSelect.length}
-                color={dataSelect.length !== 0 ? 'primary' : undefined}
+                badgeContent={column[value].length - dataSelect.length}
+                color="primary"
               >
                 <FilterListIcon color="action" />
               </Badge>
@@ -367,11 +371,23 @@ const Main = () => {
                   },
                 }}
               >
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column[value].length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
+                    onChange={() => {
+                      if (dataSelect.length < column[value].length) {
+                        const allColumns = column[value].map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
                 {column[value].map((header: Column) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
                   const isSelected = dataSelect.includes(header.dataIndex);
-
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
                       <Checkbox checked={!isSelected} />

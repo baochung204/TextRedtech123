@@ -58,23 +58,6 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
       dataIndex: 'summary',
       title: 'Tóm tắt',
     },
-    // {
-    //   dataIndex: 'functionCode',
-    //   title: 'Code function',
-    // },
-    // {
-    //   dataIndex: 'creator',
-    //   title: 'Người tạo',
-    // },
-    // {
-    //   dataIndex: 'status',
-    //   title: 'Trạng thái',
-    //   render: (_row: any, value: any) => (
-    //     <Typography color="textSecondary" variant="subtitle2">
-    //       <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
-    //     </Typography>
-    //   ),
-    // },
     {
       dataIndex: 'actions',
       title: 'Hoạt động',
@@ -89,9 +72,7 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            {/* <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton> */}
+            
           </Tooltip>
         </Box>
       ),

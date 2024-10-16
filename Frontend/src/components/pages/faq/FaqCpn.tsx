@@ -241,8 +241,8 @@ const Faq = () => {
                     <Checkbox
                       checked={!(dataSelect.length === column[value].length)}
                       indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
-                      onChange={(e) => {
-                        if (e.target.checked) {
+                      onChange={() => {
+                        if (dataSelect.length < column[value].length) {
                           const allColumns = column[value].map((header: Column) => header.dataIndex);
                           setDataSelect(allColumns);
                         } else {
