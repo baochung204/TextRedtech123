@@ -5,7 +5,7 @@ import { hoverSidebar, toggleMobileSidebar } from 'src/store/customizer/Customiz
 import Logo from '../../shared/logo/Logo';
 import LogoAdmin from '../../shared/logo/LogoAdmin';
 import SidebarAdminitems from './SidebarAdminItems';
-import { Profile } from './SidebarProfile/Profile';
+// import { Profile } from './SidebarProfile/Profile';
 
 const SidebarAdmin = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
