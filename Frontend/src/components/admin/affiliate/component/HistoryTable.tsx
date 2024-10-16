@@ -54,13 +54,13 @@ const FilmsData: FilmsData[] = [
   { id: 16, title: 'Thông báo' },
 ];
 const HistoryTable = () => {
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: number) => {
     switch (status) {
-      case 'Chờ duyệt':
+      case 1:
         return 'warning'; // Yellow or custom color
-      case 'Từ chối':
+      case 2:
         return 'error'; // Red or custom color
-      case 'Đã đi tiền':
+      case 3:
         return 'success'; // Green or custom color
       default:
         return 'default'; // Gray or default color

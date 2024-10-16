@@ -16,13 +16,13 @@ import {
 import { IconSearch } from '@tabler/icons-react';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { Dayjs } from 'dayjs';
+// import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import publisher from 'src/assets/Adminphoto/Publisher.png';
 import notpaid from 'src/assets/Adminphoto/chua thanh toan.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
-import commission from 'src/assets/Adminphoto/hoa hong.png';
 import user from 'src/assets/Adminphoto/khách hàng.png';
+import commission from 'src/assets/Adminphoto/hoa hong.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -146,13 +146,15 @@ const DataBox = [
 const getStatusAccountColor = (status: number) => {
   switch (status) {
     case 1:
-      return 'success'; // Green for approved
+      return 'success';
     case 2:
-      return 'warning'; // Yellow for pending approval
+      return 'warning';
     case 3:
-      return 'error'; // Red for rejected
+      return 'error';
+    case 4:
+      return 'error';
     default:
-      return 'default'; // Default color for unknown statuses
+      return 'default';
   }
 };
 
@@ -165,6 +167,7 @@ interface Column {
 
 const PublisherAffiliate = () => {
   // const [selectedItems] = useState<number[]>([]);
+  // const [open, setOpen] = useState<boolean>(false);
 
   const column = useMemo<Column[]>(
     () => [
@@ -208,8 +211,8 @@ const PublisherAffiliate = () => {
         title: 'Loại hình',
         dataIndex: 'email_publisher',
         render: (_row: any, value: any) => (
-          <Typography style={{ width: '100px' }} variant="subtitle2">
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography style={{ width: '110px' }} variant="subtitle2">
+            <Box sx={{ display: 'flex', justifyContent: 'center', px: 1 }}>
               <Typography style={{ width: '200px' }} variant="subtitle2">
                 <Chip
                   label={value.type ? 'Doanh nghiệp' : 'Cá nhân'}
@@ -237,6 +240,8 @@ const PublisherAffiliate = () => {
                 ? 'Chờ duyệt'
                 : value.type_account === 3
                 ? 'Bị từ chối'
+                : value.type_account === 4
+                ? 'Bị cấm'
                 : ''
             }
             color={getStatusAccountColor(value.type_account)}
@@ -246,14 +251,17 @@ const PublisherAffiliate = () => {
       {
         title: 'Rank',
         dataIndex: 'rank',
+        render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
       {
-        title: 'Số lượng khách hàng',
+        title: 'Số khách hàng',
         dataIndex: 'total_Customers',
+        render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
       {
-        title: 'Số lượng đơn hàng',
+        title: 'Số đơn hàng',
         dataIndex: 'total_Order',
+        render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
       // {
       //   title: 'Hồ sơ',
@@ -282,10 +290,16 @@ const PublisherAffiliate = () => {
       {
         title: 'Tổng hoa hồng',
         dataIndex: 'total_commission',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
       {
         title: 'Click',
         dataIndex: 'click',
+        render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
       // {
       //   title: 'Khách hàng',
@@ -302,18 +316,38 @@ const PublisherAffiliate = () => {
       {
         title: 'CVR',
         dataIndex: 'cvr',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value} <Box>%</Box>
+          </Box>
+        ),
       },
       {
         title: 'Số dư ví',
         dataIndex: 'account_balance',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
       {
         title: 'Đang xử lý',
         dataIndex: 'processing',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
       {
         title: 'Tổng rút',
         dataIndex: 'paid',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
     ],
     [],
@@ -359,16 +393,6 @@ const PublisherAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item >
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"

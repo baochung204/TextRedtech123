@@ -39,6 +39,7 @@ const Faq = () => {
   const [open, setOpen] = useState<boolean>(false);
   const theme = useTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [checkOption, setCheckOption] = useState<string | null>(null)
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
@@ -50,6 +51,7 @@ const Faq = () => {
     setSearch(!search);
   };
   const [dataSelect, setDataSelect] = useState<string[]>([]);
+
 
   const column: { [key: string]: Column[] } = useMemo(
     () => ({
@@ -237,7 +239,7 @@ const Faq = () => {
                 >
                   <MenuItem>
                     <Checkbox
-                      checked={dataSelect.length === column[value].length}
+                      checked={!(dataSelect.length === column[value].length)}
                       indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
                       onChange={(e) => {
                         if (e.target.checked) {
@@ -254,7 +256,7 @@ const Faq = () => {
                     const isSelected = dataSelect.includes(header.dataIndex);
                     return (
                       <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                        <Checkbox checked={isSelected} />
+                        <Checkbox checked={!isSelected} />
                         <ListItemText primary={header.title} />
                       </MenuItem>
                     );
@@ -296,7 +298,7 @@ const Faq = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                    onClick={() => setOpen(true)}
+                    onClick={() => { setOpen(true); setCheckOption('add') }}
                     sx={{
                       pr: 1.5,
                     }}
@@ -352,16 +354,16 @@ const Faq = () => {
               <Tab2 />
             </TabPanel>
             <TabPanel value="3" sx={{ px: 0 }}>
-              <Tab3 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
+              <Tab3 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} checkOption={checkOption} setCheckOption={setCheckOption} />
             </TabPanel>
             <TabPanel value="4" sx={{ px: 0 }}>
               <Tab4 dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel value="5" sx={{ px: 0 }}>
-              <Tab5 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
+              <Tab5 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} checkOption={checkOption} setCheckOption={setCheckOption} />
             </TabPanel>
             <TabPanel value="6" sx={{ px: 0 }}>
-              <Tab6 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
+              <Tab6 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} checkOption={checkOption} setCheckOption={setCheckOption} />
             </TabPanel>
           </TabContext>
         </Box>

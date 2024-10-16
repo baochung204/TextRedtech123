@@ -32,7 +32,6 @@ import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
 
-import { useNavigate } from 'react-router';
 import Iconlike from 'src/assets/ICON/like.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 
@@ -139,11 +138,11 @@ interface Column {
   isValids?: boolean;
 }
 const BlogAdmin = () => {
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const handleIconClick = () => {
-    nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
-  };
+  // const handleIconClick = () => {
+  //   nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
+  // };
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
@@ -181,13 +180,13 @@ const BlogAdmin = () => {
           ));
         },
       },
-      { title: 'Đường dẫn url', dataIndex: 'url' },
+      // { title: 'Đường dẫn url', dataIndex: 'url' },
       {
         title: 'Mô tả',
         dataIndex: 'description',
         render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
       },
-      { title: 'Nội dung', dataIndex: 'content' },
+      // { title: 'Nội dung', dataIndex: 'content' },
       {
         title: 'Giá Point',
         dataIndex: 'pricePoint',
@@ -252,9 +251,9 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
-            <IconButton onClick={handleIconClick}>
+            {/* <IconButton onClick={handleIconClick}>
               <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-            </IconButton>
+            </IconButton> */}
             <Link
               to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
             >

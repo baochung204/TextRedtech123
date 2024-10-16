@@ -15,7 +15,7 @@ interface PropsTabFunction {
 }
 
 const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
-  const [selectId, setSelectId] = useState<string>;
+  const [selectId, setSelectId] = useState<string>();
   const ModelCells: HeadCell[] = [
     {
       dataIndex: 'id',
@@ -71,7 +71,7 @@ const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   return (
     <BlankCard>
       <CustomTable columns={ModelCells} dataSource={ModelRows} dataSelect={dataSelect} />
-      <DialogModelView open={open} setOpen={setOpen} value={selectId} />
+      <DialogModelView open={open} setOpen={setOpen} value={selectId as any} />
     </BlankCard>
   );
 };

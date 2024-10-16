@@ -15,7 +15,7 @@ interface PropsTabFunction {
 }
 
 const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
-  const [selectId, setSelectId] = useState<string>;
+  const [selectId, setSelectId] = useState<string>();
   const FunctionCells: HeadCell[] = [
     {
       dataIndex: 'id',
@@ -101,7 +101,7 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   return (
     <BlankCard>
       <CustomTable columns={FunctionCells} dataSource={FunctionRows} dataSelect={dataSelect} />
-      <DialogFuncView open={open} setOpen={setOpen} value={selectId} />
+      <DialogFuncView open={open} setOpen={setOpen} value={selectId as any} />
     </BlankCard>
   );
 };

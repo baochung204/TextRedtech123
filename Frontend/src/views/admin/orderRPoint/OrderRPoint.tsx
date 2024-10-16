@@ -404,7 +404,7 @@ const OrderRPoint = () => {
       {
         dataIndex: 'details',
         title: 'Chi tiết',
-        render: (_value, row) => (
+        render: () => (
           <>
             <IconButton
               onClick={() => {

@@ -1,4 +1,15 @@
 import axios from 'axios';
+import { registrationV2 } from 'src/types/auth/auth';
+
+interface UserRole {
+    permission: string;
+    create: boolean;
+    read: boolean;
+    update: boolean;
+    delete: boolean;
+}
+
+type ActionType = 'create' | 'read' | 'update' | 'delete';
 
 export default class ApiService {
     static BASE_URL = 'https://redai02-4af4309fd76b.herokuapp.com'; // Dựa trên URL API của bạn
@@ -88,6 +99,17 @@ export default class ApiService {
         return response.data;
     }
 
+    static async registerV2User(registration: registrationV2) {
+        try {
+            const response = await axios.post(`${this.BASE_URL}/api/v1/auth/register-v2`, registration);
+            return response.data;
+        } catch (error: any) {
+            // Xử lý lỗi
+            console.error('Error logging register-v2:', error);
+            return error.response.data;
+        }
+    }
+
     static async loginWithGoogle(googleCode: string) {
         try {
             const response = await axios.post(
@@ -152,6 +174,19 @@ export default class ApiService {
         return response.data;
     }
 
+    static async refreshToken() {
+        try {
+            const response = await axios.post(`${this.BASE_URL}/api/v1/auth/refresh-token`, {}, { withCredentials: true });
+            return response.data;
+        } catch (error: any) {
+            // Xử lý lỗi
+            console.error('Error logging refresh-token:', error);
+            return error.response.data;
+        }
+    }
+
+    
+
     // General methods for authentication
     static logout() {
         localStorage.removeItem('accessToken');
@@ -197,5 +232,22 @@ export default class ApiService {
     static isUser() {
         const roles = JSON.parse(localStorage.getItem('roles') || '[]'); // Lấy mảng roles từ localStorage
         return roles.includes('USER'); // Kiểm tra nếu mảng chứa 'USER'
+    }
+
+
+    static userPermissions = {
+        employeeRoles: [
+            { permission: "USER", create: true, read: true, update: true, delete: true },
+            { permission: "EMPLOYEE", create: true, read: true, update: true, delete: true },
+            { permission: "BLOG", create: true, read: true, update: true, delete: false }, // Example: no delete permission
+        ] as UserRole[],
+    };
+
+    static hasPermission(permission: string, action: ActionType): boolean {
+        const role = ApiService.userPermissions.employeeRoles.find(r => r.permission === permission);
+        
+        if (!role) return false;
+        
+        return role[action];
     }
 }

@@ -12,9 +12,9 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography,
+  Tooltip,
 } from '@mui/material';
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -25,6 +25,7 @@ import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
 import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { DataHistoryTable } from './datatable/OrderTableData';
+import DialogViewHistory from './dialog/DialogViewHistory';
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -120,16 +121,30 @@ const dataSource = [
   },
 ];
 
-const getStatusColor = (status: string) => {
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case 'Chờ duyệt':
+//       return 'warning'; // Yellow or custom color
+//     case 'Từ chối':
+//       return 'error'; // Red or custom color
+//     case 'Đã đi tiền':
+//       return 'success'; // Green or custom color
+//     default:
+//       return 'default'; // Gray or default color
+//   }
+// };
+const getStatusColor = (status: number) => {
   switch (status) {
-    case 'Chờ duyệt':
-      return 'warning'; // Yellow or custom color
-    case 'Từ chối':
-      return 'error'; // Red or custom color
-    case 'Đã đi tiền':
-      return 'success'; // Green or custom color
+    case 1:
+      return 'success';
+    case 2:
+      return 'warning';
+    case 3:
+      return 'error';
+    case 4:
+      return 'error';
     default:
-      return 'default'; // Gray or default color
+      return 'default';
   }
 };
 interface Column {
@@ -141,6 +156,8 @@ interface Column {
 
 const HistoryAffiliate = () => {
   // const [selectedItems] = useState<number[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -149,7 +166,16 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'Publisher',
-        dataIndex: 'publisher',
+        dataIndex: 'type_publisher',
+        render: (value: any) => (
+          <Box sx={{ display: 'flex', width: '110px' }}>
+            <Chip
+              label={value === 1 ? 'Doanh nghiệp' : value === 2 ? 'Cá nhân' : ''}
+              color={value === 1 ? 'success' : value === 2 ? 'warning' : 'default'}
+              variant="outlined"
+            />
+          </Box>
+        ),
       },
       {
         title: 'Khách hàng',
@@ -174,6 +200,11 @@ const HistoryAffiliate = () => {
       {
         title: 'Số tiền rút',
         dataIndex: 'bank_amount',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', px: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
       },
       {
         title: 'Số tài khoản',
@@ -200,38 +231,69 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'Trạng thái',
-        dataIndex: '',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2">
-            <Chip label={value.status} color={getStatusColor(value.status)} />
-          </Typography>
+        dataIndex: 'status',
+        render: (value: any) => (
+          <Chip
+            label={
+              value === 1
+                ? 'Đã đi tiền '
+                : value === 2
+                ? 'Chờ duyệt'
+                : value === 3
+                ? 'Từ chối'
+                : value === 4
+                ? 'Chưa đi tiền'
+                : ''
+            }
+            color={getStatusColor(value)}
+          />
         ),
       },
-      {
-        title: 'Duyệt hóa đơn',
-        dataIndex: '',
-        // render: (_row:any, value: any) => (
-        render: () => (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Checkbox defaultChecked />
-          </Box>
-        ),
-      },
-      {
-        title: 'Đã thanh toán',
-        dataIndex: '',
-        // render: (row, value: any) => (
-        render: () => (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Checkbox defaultChecked />
-          </Box>
-        ),
-      },
+
+      // {
+      //   title: 'Duyệt hóa đơn',
+      //   dataIndex: '',
+      //   // render: (_row:any, value: any) => (
+      //   render: () => (
+      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      //       <Checkbox defaultChecked />
+      //     </Box>
+      //   ),
+      // },
+      // {
+      //   title: 'Đã thanh toán',
+      //   dataIndex: '',
+      //   // render: (row, value: any) => (
+      //   render: () => (
+      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      //       <Checkbox defaultChecked />
+      //     </Box>
+      //   ),
+      // },
       {
         title: 'Thông báo',
         dataIndex: '',
         // render: (row, value: any) => <Button>Gửi email</Button>,
         render: () => <Button>Gửi email</Button>,
+      },
+      {
+        dataIndex: 'actions',
+        title: 'Hoạt động',
+        render: () => (
+          // console.log(value)
+          <Box display={'flex'} sx={{ justifyContent: 'center' }}>
+            <Tooltip title="Xem" placement="right">
+              <IconButton
+                onClick={() => {
+                  setOpen(!open);
+                  // setSelectId(value.id);
+                }}
+              >
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        ),
       },
     ],
     [],
@@ -363,8 +425,6 @@ const HistoryAffiliate = () => {
                 }}
               >
                 {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
                   const isSelected = dataSelect.includes(header.dataIndex);
 
                   return (
@@ -388,6 +448,7 @@ const HistoryAffiliate = () => {
           <CustomTable columns={column} dataSource={DataHistoryTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogViewHistory open={open} setOpen={setOpen} />
     </>
   );
 };

@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@mui/material';
 import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
+// import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import revenueperproduct from 'src/assets/Adminphoto/doanh thu san pham.png';
 import product from 'src/assets/Adminphoto/san pham.png';
@@ -46,7 +46,7 @@ const DataBox = [
     title: 'Sản phẩm',
     total: (
       <>
-        <Typography variant="h6">1236</Typography>
+        <Typography variant="h6">999.999.999.999</Typography>
       </>
     ),
     icons: (
@@ -73,7 +73,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">165</Typography>
+          <Typography variant="h6">999.999.999.999</Typography>
         </Box>
       </>
     ),
@@ -101,8 +101,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">5.432.234</Typography>
-          <img src={iconPoint} alt="" width={17} />
+          <Typography variant="h6">999.999.999.999₫</Typography>
         </Box>
       </>
     ),
@@ -159,7 +158,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">1245</Typography>
+          <Typography variant="h6">999.999.999.999</Typography>
           <img src={iconPoint} alt="" width={17} />
         </Box>
       </>
@@ -188,7 +187,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">23.423đ</Typography>
+          <Typography variant="h6">999.999.999.999₫</Typography>
         </Box>
       </>
     ),
@@ -361,8 +360,8 @@ const BuyPoints = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+  // const [value, setValue] = useState<Dayjs | null>(null);
+  // const [value1, setValue1] = useState<Dayjs | null>(null);
   return (
     <>
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />

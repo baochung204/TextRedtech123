@@ -13,7 +13,6 @@ import {
   Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import { default as iconPoint, default as point } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';

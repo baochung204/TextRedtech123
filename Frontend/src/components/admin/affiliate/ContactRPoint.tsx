@@ -129,7 +129,6 @@ interface Column {
 }
 
 const ContactRPoint = () => {
-  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -156,8 +155,8 @@ const ContactRPoint = () => {
         render: (_row: any, value: any) => (
           <Typography style={{ width: '150px' }} variant="subtitle2">
             <Chip
-              label={value.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
-              color={value.type_company ? 'success' : 'warning'}
+              label={value.type_company ? 'Doanh nghiệp' : ''}
+              sx={{ color: value.type_company ? 'success' : '' }}
               variant="outlined"
             />
           </Typography>
@@ -284,15 +283,6 @@ const ContactRPoint = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    // onClick={() => setOpen(true)}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -394,7 +384,6 @@ const ContactRPoint = () => {
             dataSource={DataContactPointTable}
             dataSelect={dataSelect}
           />
-          ;
         </Grid>
       </Grid>
     </>

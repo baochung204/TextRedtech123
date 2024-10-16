@@ -7,6 +7,7 @@ import {
   Checkbox,
   Chip,
   Grid,
+  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
@@ -16,8 +17,9 @@ import {
   Typography,
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons-react';
-import * as React from 'react';
+import {ChangeEvent, useEffect, useMemo, useState} from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { Column } from 'src/components/ComponentTables/ColumnInterface';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
@@ -99,26 +101,21 @@ const TableData: PropsTable[] = [
   },
 ];
 
-interface Column {
-  title: string;
-  dataIndex: string;
-  render?: (value: any, row?: any) => React.ReactNode;
-  isValids?: boolean;
-}
+
 const CustomerListOrder = () => {
-  const [month, setMonth] = React.useState('1');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [month, setMonth] = useState('1');
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
 
-  const [dataSelect, setDataSelect] = React.useState<string[]>([]);
+  const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
     { to: '/', title: 'Chuyển đổi' },
   ];
 
-  const columns = React.useMemo<Column[]>(
+  const columns = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
@@ -194,7 +191,7 @@ const CustomerListOrder = () => {
     [],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const hasIsValids = columns.some((col) => 'isValids' in col);
     if (hasIsValids) {
       const hiddenColumns = columns
@@ -265,22 +262,17 @@ const CustomerListOrder = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Badge
-                          badgeContent={columns.length - dataSelect.length}
-                          color={'primary'}
-                          sx={{ margin: '0px 10px' }}
-                        >
-                          <FilterListIcon color="action" />
-                        </Badge>
+                        <IconButton aria-label="filter" sx={{ mr: 2 }}>
+                          <Badge badgeContent={columns.length - dataSelect.length} color="primary">
+                            <FilterListIcon />
+                          </Badge>
+                        </IconButton>
                         <Select
                           multiple
                           value={dataSelect}
                           displayEmpty
                           onChange={handleColumnChange}
                           renderValue={() => 'Sửa đổi cột'}
-                          sx={{
-                            marginRight: 2,
-                          }}
                           size="small"
                           MenuProps={{
                             PaperProps: {
@@ -312,17 +304,26 @@ const CustomerListOrder = () => {
                             },
                           }}
                         >
-                          {columns.map((header: any) => {
-                            // console.log(
-                            //   `check ${header.title}`,
-                            //   dataSelect.includes(header.dataIndex),
-                            // );
-
-                            const isSelected = dataSelect.includes(header.dataIndex);
-
+                          <MenuItem>
+                            <Checkbox
+                              checked={!(dataSelect.length === columns.length)}
+                              indeterminate={dataSelect.length > 0 && dataSelect.length < columns.length}
+                              onChange={() => {
+                                if (dataSelect.length < columns.length) {
+                                  const allColumns = columns.map((header: Column) => header.dataIndex);
+                                  setDataSelect(allColumns);
+                                } else {
+                                  setDataSelect([]);
+                                }
+                              }}
+                            />
+                            <ListItemText primary="Chọn tất cả" />
+                          </MenuItem>
+                          {columns.map((header: Column) => {
+                            const isSelected = !dataSelect.includes(header.dataIndex);
                             return (
                               <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                                <Checkbox checked={!isSelected} />
+                                <Checkbox checked={isSelected} />
                                 <ListItemText primary={header.title} />
                               </MenuItem>
                             );

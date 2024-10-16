@@ -26,6 +26,7 @@ const Affilatechartadmin5 = ({ menuItems }: { menuItems: any }) => {
       foreColor: '#adb0bb',
       events: {
         dataPointMouseEnter: (event: any, chartContext: any, config: any) => {
+          console.log('dataPointMouseEnter', event, chartContext, config);
           const seriesIndex = config.dataPointIndex;
 
           if (seriesIndex >= 0 && seriesIndex < seriespiechart.length) {

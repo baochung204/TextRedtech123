@@ -207,7 +207,7 @@ const dataSource = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu',
-    total: '234.567đ',
+    total: '234.567₫',
     icons: (
       <Box
         textAlign="center"
@@ -374,7 +374,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu',
-    total: '123.456.789đ',
+    total: '123.456.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -394,7 +394,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
     title: 'Hoa hồng',
-    total: '123.456.789đ',
+    total: '123.456.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -414,7 +414,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
     title: 'Số dư Publisher',
-    total: '234.567đ',
+    total: '234.567₫',
     icons: (
       <Box
         textAlign="center"
@@ -434,7 +434,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
     title: 'Đã thanh toán',
-    total: '123.456.789đ',
+    total: '123.456.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -454,7 +454,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
     title: 'Chờ xử lý',
-    total: '234.567.789đ',
+    total: '234.567.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -514,7 +514,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu / Publisher',
-    total: '789.567đ',
+    total: '789.567₫',
     icons: (
       <Box
         textAlign="center"
@@ -534,7 +534,7 @@ const dataSource_affiliate = [
   {
     bgColor: 'primary.light',
     title: 'Hoa hồng / Publisher',
-    total: '456.789đ',
+    total: '456.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -682,7 +682,7 @@ const dataSource_sale = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu',
-    total: '123.456đ',
+    total: '123.456₫',
     icons: (
       <Box
         textAlign="center"
