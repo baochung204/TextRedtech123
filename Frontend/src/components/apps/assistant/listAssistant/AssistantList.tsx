@@ -39,7 +39,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import IconCrv from 'src/assets/ICON/cvr.png';
 import AlertChat from '../../chats/AlertChat';
-import BlankCard from '../AssistantEditor/BlankCard';
 import TableData from './data/data';
 
 interface FilmsData {
@@ -314,26 +313,24 @@ const ListAssistant = () => {
                   <Box>
                     <Grid container spacing={2.5}>
                       <Grid item xs={12}>
-                        <BlankCard>
-                          <CardContent sx={{ padding: '18px !important' }}>
-                            <Grid container spacing={3} alignItems="center">
-                              <Grid item xs={8}>
-                                <Typography variant="h6">Tỉ lệ chuyển đổi</Typography>
-                                <Stack direction="row" spacing={1} mt={1} alignItems="center">
-                                  <Typography variant="h4" mt={1} fontWeight={600}>
-                                    50%
-                                  </Typography>
-                                  <Avatar sx={{ bgcolor: successlight, width: 27, height: 27 }}>
-                                    <IconArrowUpRight width={20} color="#39B69A" />
-                                  </Avatar>
-                                </Stack>
-                              </Grid>
-                              <Grid item xs={4} container justifyContent="flex-end" sx={{ px: 2 }}>
-                                <img src={IconCrv} width={50} alt="" />
-                              </Grid>
+                        <CardContent sx={{ padding: '18px !important' }}>
+                          <Grid container spacing={3} alignItems="center">
+                            <Grid item xs={8}>
+                              <Typography variant="h6">Tỉ lệ chuyển đổi</Typography>
+                              <Stack direction="row" spacing={1} mt={1} alignItems="center">
+                                <Typography variant="h4" mt={1} fontWeight={600}>
+                                  50%
+                                </Typography>
+                                <Avatar sx={{ bgcolor: successlight, width: 27, height: 27 }}>
+                                  <IconArrowUpRight width={20} color="#39B69A" />
+                                </Avatar>
+                              </Stack>
                             </Grid>
-                          </CardContent>
-                        </BlankCard>
+                            <Grid item xs={4} container justifyContent="flex-end" sx={{ px: 2 }}>
+                              <img src={IconCrv} width={50} alt="" />
+                            </Grid>
+                          </Grid>
+                        </CardContent>
                       </Grid>
                       <Grid item xs={12} spacing={2}>
                         <Grid container spacing={2}>

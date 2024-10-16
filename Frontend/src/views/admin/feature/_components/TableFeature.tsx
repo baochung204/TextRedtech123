@@ -14,7 +14,6 @@ import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import DataFeature from '../data/DataFeuture';
 
 interface Column {
@@ -171,9 +170,9 @@ const TableFeature = () => {
           </Grid>
         </Grid>
       </Grid>
-      <BlankCard>
+      <Grid item xs={12}>
         <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} />
-      </BlankCard>
+      </Grid>
     </>
   );
 };

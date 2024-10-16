@@ -1,11 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
+import { CardContent, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { CardContent, Typography, Stack } from '@mui/material';
-import BlankCard from '../../shared/BlankCard';
-import { Props } from 'react-apexcharts';
+import Chart, { Props } from 'react-apexcharts';
 
 const Earned = () => {
   // chart color
@@ -62,7 +59,7 @@ const Earned = () => {
   ];
 
   return (
-    <BlankCard>
+    <>
       <CardContent sx={{ p: '30px' }}>
         <Typography variant="h4">2,545</Typography>
         <Stack direction="row" spacing={2} justifyContent="space-between">
@@ -75,7 +72,7 @@ const Earned = () => {
         </Stack>
       </CardContent>
       <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="90px" />
-    </BlankCard>
+    </>
   );
 };
 

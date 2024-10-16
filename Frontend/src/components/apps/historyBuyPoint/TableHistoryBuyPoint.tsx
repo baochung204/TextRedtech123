@@ -2,10 +2,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Box, Button, Grid, Typography } from '@mui/material';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
-import TableData from './data/data';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import TableData from './data/data';
 const TableHistoryBuyPoint = () => {
   const columns = [
     {
@@ -91,9 +90,7 @@ const TableHistoryBuyPoint = () => {
 
   return (
     <Grid item xs={12} sx={{ mt: 3 }}>
-      <BlankCard>
-        <CustomTable columns={columns} dataSource={TableData} />
-      </BlankCard>
+      <CustomTable columns={columns} dataSource={TableData} />
     </Grid>
   );
 };
