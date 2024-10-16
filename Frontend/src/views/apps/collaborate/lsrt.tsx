@@ -8,7 +8,7 @@ import { tabledh } from 'src/components/tables/tabledh';
 const FilmsData: any = [
   {
     id: 1,
-    title: 'ID thanh toán',
+    title: 'ID yêu cầu',
     dataIndex: 'MHD',
   },
   {
