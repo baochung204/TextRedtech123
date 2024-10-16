@@ -239,7 +239,7 @@ const Faq = () => {
                 >
                   <MenuItem>
                     <Checkbox
-                      checked={dataSelect.length === column[value].length}
+                      checked={!(dataSelect.length === column[value].length)}
                       indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
                       onChange={(e) => {
                         if (e.target.checked) {
@@ -256,7 +256,7 @@ const Faq = () => {
                     const isSelected = dataSelect.includes(header.dataIndex);
                     return (
                       <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                        <Checkbox checked={isSelected} />
+                        <Checkbox checked={!isSelected} />
                         <ListItemText primary={header.title} />
                       </MenuItem>
                     );
