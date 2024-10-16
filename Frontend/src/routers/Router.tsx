@@ -234,8 +234,7 @@ const Router = [
       { path: '/user_profile', element: <ProtectedRoute element={UserProfile} /> },
       { path: '/pointhistory', element: <ProtectedRoute element={Pointhistory} /> },
       { path: '/purchasehistory', element: <ProtectedRoute element={Purchasehistory} /> },
-      // { path: '/apps/support', element: <ProtectedRoute element={Aisupport} /> },
-      // { path: '/apps/calendar', element: <ProtectedRoute element={Calendar} /> },
+
       { path: '/pages/faq', element: <ProtectedRoute element={Faq} /> },
       {
         path: '/user_profile/assistants',

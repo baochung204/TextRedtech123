@@ -39,7 +39,7 @@ const FileUploadForm: React.FC = () => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       {({ setFieldValue }) => (
         <Form>
-          <CustomFormLabel sx={{ color: 'red', fontSize: 18, marginLeft: 36, width: 850 }} htmlFor="name">
+          <CustomFormLabel sx={{ fontSize: 18, marginLeft: 36, width: 850 }} htmlFor="name">
             Files
           </CustomFormLabel>
           <Box mb={2}>
@@ -55,12 +55,7 @@ const FileUploadForm: React.FC = () => {
                     sx={{
                       marginLeft: 36,
                       width: 850,
-                      backgroundColor: '#fff5f5',
-                      borderColor: 'red',
-                      color: 'red',
-                      '&:hover': {
-                        backgroundColor: '#ffe0e0',
-                      },
+                     
                     }}
                   >
                     <MenuItem value="" disabled>
@@ -77,22 +72,22 @@ const FileUploadForm: React.FC = () => {
           </Box>
 
           {selectedOption === 'file' && (
-            <Box sx={{ marginLeft: 32, width: 850 }} mb={2}>
-              <Typography sx={{  marginLeft: 32, width: 850, color: 'red' }}>Chọn file:</Typography>
+            <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
+              <Typography >Chọn file:</Typography>
               <input
                 type="file"
                 multiple
                 onChange={handleFileChange}
-                style={{ marginLeft: 36, width: 850, padding: '10px', border: '2px solid red', borderRadius: '8px', color: 'red' }}
+                style={{ marginLeft: 5, width: 850, padding: '10px', border: '2px solid red', borderRadius: '8px', }}
               />
               {fileNames.length > 0 && (
-                <Box mt={1} sx={{ marginLeft: 36 }}>
+                <Box mt={1} sx={{ marginLeft: 5 }}>
                   <Typography variant="body1" color="textSecondary">
                     File đã chọn:
                   </Typography>
                   <ul>
                     {fileNames.map((fileName, index) => (
-                      <li key={index} style={{ color: 'red' }}>
+                      <li key={index} >
                         {fileName}
                       </li>
                     ))}
@@ -104,7 +99,7 @@ const FileUploadForm: React.FC = () => {
 
           {selectedOption === 'dungluong' && (
             <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
-              <Typography sx={{ color: 'red' }}>Nhập dung lượng:</Typography>
+              <Typography >Nhập dung lượng:</Typography>
               <TextField
                 placeholder="Nhập dung lượng (MB)"
                 fullWidth
@@ -124,7 +119,7 @@ const FileUploadForm: React.FC = () => {
 
           {selectedOption === 'slot' && (
             <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
-              <Typography sx={{ color: 'red' }}>Nhập số lượng slot:</Typography>
+              <Typography >Nhập số lượng slot:</Typography>
               <TextField
                 placeholder="Nhập số lượng slot"
                 fullWidth
@@ -141,22 +136,6 @@ const FileUploadForm: React.FC = () => {
               />
             </Box>
           )}
-
-          <Box sx={{ marginLeft: 36, width: 850, display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                backgroundColor: 'red',
-                color: '#fff',
-                '&:hover': {
-                  backgroundColor: '#ff6666',
-                },
-              }}
-            >
-              Gửi
-            </Button>
-          </Box>
         </Form>
       )}
     </Formik>

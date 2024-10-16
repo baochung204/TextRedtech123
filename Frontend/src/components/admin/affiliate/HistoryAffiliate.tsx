@@ -13,7 +13,6 @@ import {
   Select,
   TextField,
   Tooltip,
-  Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -280,7 +279,7 @@ const HistoryAffiliate = () => {
       {
         dataIndex: 'actions',
         title: 'Hoạt động',
-        render: (_row: any, value: any) => (
+        render: () => (
           // console.log(value)
           <Box display={'flex'} sx={{ justifyContent: 'center' }}>
             <Tooltip title="Xem" placement="right">
@@ -292,9 +291,6 @@ const HistoryAffiliate = () => {
               >
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
-              {/* <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton> */}
             </Tooltip>
           </Box>
         ),
@@ -390,7 +386,6 @@ const HistoryAffiliate = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -428,12 +423,26 @@ const HistoryAffiliate = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );

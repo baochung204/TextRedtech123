@@ -129,7 +129,6 @@ interface Column {
 }
 
 const ContactRPoint = () => {
-  // const [selectedItems] = useState<number[]>([]);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -157,7 +156,7 @@ const ContactRPoint = () => {
           <Typography style={{ width: '150px' }} variant="subtitle2">
             <Chip
               label={value.type_company ? 'Doanh nghiệp' : ''}
-              color={value.type_company ? 'success' : ''}
+              sx={{ color: value.type_company ? 'success' : '' }}
               variant="outlined"
             />
           </Typography>
@@ -221,7 +220,7 @@ const ContactRPoint = () => {
       },
       {
         title: 'Hợp đồng',
-        dataIndex: 'status',
+        dataIndex: 'contract',
         render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             {value.status === 1 ? (
@@ -284,15 +283,6 @@ const ContactRPoint = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    // onClick={() => setOpen(true)}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -328,7 +318,6 @@ const ContactRPoint = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -366,14 +355,26 @@ const ContactRPoint = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );
@@ -394,7 +395,6 @@ const ContactRPoint = () => {
             dataSource={DataContactPointTable}
             dataSelect={dataSelect}
           />
-          ;
         </Grid>
       </Grid>
     </>
