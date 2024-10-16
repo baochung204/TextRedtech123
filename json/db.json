@@ -338,19 +338,17 @@
       "id": 15,
       "name": "hello",
       "size": "5 KB",
-      "url": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/hello.txt",
       "dateTime": "2024-09-26T14:44:49",
       "typeFile": "TXT",
-      "delete": true
+      "isCheck": true
     },
     {
       "id": 16,
       "name": "hello",
       "size": "5 KB",
-      "url": "https://pub-3992f39f3ad54912b3917f6b00805c2e.r2.dev/hello.txt",
       "dateTime": "2024-09-26T14:44:49",
       "typeFile": "TXT",
-      "delete": true
+      "isCheck": true
     }
   ],
   "userpersonalinformation": [
