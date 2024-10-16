@@ -23,7 +23,7 @@ const Affilatechartadmin1 = ({ menuItems }: { menuItems: any }) => {
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       foreColor: '#adb0bb',
       events: {
-        dataPointMouseEnter: (config: any) => {
+        dataPointMouseEnter: (_event: any, _chartContext: any, config: any) => {
           const seriesIndex = config.dataPointIndex;
 
           if (seriesIndex >= 0 && seriesIndex < seriespiechart.length) {
