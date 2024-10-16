@@ -1,39 +1,58 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import userApi from 'src/api/userResource/UserResource';
 
-export const fetchAllUsers = createAsyncThunk('users/fetchAll', async () => {
-    const response = await userApi.getAllFiles();
-    return response.data; // Giả sử dữ liệu trả về nằm trong `data`
-});
 
-interface UsersState {
-    users: any[];
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error: string | undefined;
+interface PropsData {
+    fileId: number,
+    name: string,
+    size: string,
+    date: Date,
+    type: string,
+    action: boolean
 }
 
-const initialState: UsersState = {
-    users: [],
-    status: 'idle',
-    error: undefined,
+
+interface StrState {
+    dataa: PropsData[];
+    loading: boolean;
+    error: string | null;
+}
+
+const initialState: StrState = {
+    dataa: [],
+    loading: false,
+    error: null,
 };
 
+export const fetchStrData = createAsyncThunk(
+    'str/fetchData',
+    async ({ page = 0, size = 25 }: { page?: number; size?: number }, thunkAPI) => {
+        try {
+            const response = await userApi.getAllFiles(page, size); 
+            return response.data; 
+        } catch (error: any) {
+            return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
+        }
+    }
+);
+
 const userSlice = createSlice({
-    name: 'users',
+    name: 'str',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchAllUsers.pending, (state) => {
-                state.status = 'loading';
+            .addCase(fetchStrData.pending, (state) => {
+                state.loading = true;
+                state.error = null;
             })
-            .addCase(fetchAllUsers.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.users = action.payload;
+            .addCase(fetchStrData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.dataa = action.payload;
             })
-            .addCase(fetchAllUsers.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.error.message;
+            .addCase(fetchStrData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
             });
     },
 });

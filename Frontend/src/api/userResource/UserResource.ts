@@ -3,8 +3,8 @@ import { axiosAPI } from "../axiosApi";
 const url = 'user-resources'
 
 const userApi = {
-    getAllFiles: () => {
-        return axiosAPI.get(`/${url}/files`);
+    getAllFiles: (page?: number, size?: number) => {
+        return axiosAPI.get(`/${url}/files?file=${page}&size=${size}`);
     },
     getAllURL: () => {
         return axiosAPI.get(`/${url}/urls`);
