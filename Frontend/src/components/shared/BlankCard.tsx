@@ -1,7 +1,6 @@
 import { Card } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { AppState, useSelector } from 'src/store/Store';
 
@@ -23,12 +22,9 @@ const BlankCard = ({ children, className, sx }: Props) => {
         p: 0,
         border: !customizer.isCardShadow ? `1px solid ${borderColor}` : 'none',
         position: 'relative',
-        // paddingBottom: 6,
         sx,
       }}
       className={className}
-      // elevation={customizer.isCardShadow ? 9 : 0}
-      // variant={!customizer.isCardShadow ? 'outlined' : undefined}
     >
       {children}
     </Card>

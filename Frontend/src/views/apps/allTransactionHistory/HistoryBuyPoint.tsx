@@ -21,7 +21,6 @@ import React, { useState } from 'react';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import ContentBuyPoint from './content/conTentBuyPoint';
 import { tablepayment } from './data/data';
 const Transition = React.forwardRef(function Transition(
@@ -177,9 +176,7 @@ const HistoryBuyPoint = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <BlankCard>
-            <CustomTable columns={columns} dataSource={tablepayment} />
-          </BlankCard>
+          <CustomTable columns={columns} dataSource={tablepayment} />
         </Grid>
       </Grid>
 

@@ -12,7 +12,6 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import BlankCard from 'src/components/shared/BlankCard';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 
 // Hàm so sánh giảm dần
@@ -118,90 +117,88 @@ const TableList: React.FC<TableListProps> = ({ headCells, dataRows }) => {
 
   return (
     <Grid item xs={12}>
-      <BlankCard>
-        <Box mb={2} sx={{ mb: 2 }}>
-          <TableContainer sx={{ px: 2 }}>
-            <Scrollbar_x>
-              <Table
-                sx={{ minWidth: 750 }}
-                aria-labelledby="tableTitle"
-                size={dense ? 'small' : 'medium'}
-              >
-                <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
-                  <TableRow>
-                    {(headCells || []).map((headCell) => (
-                      <TableCell
-                        key={headCell.dataIndex}
-                        align={headCell.numeric ? 'right' : 'left'}
-                        padding={headCell.disablePadding ? 'none' : 'normal'}
-                        sortDirection={orderBy === headCell.dataIndex ? order : false}
-                        sx={{ whiteSpace: 'nowrap' }}
+      <Box mb={2} sx={{ mb: 2 }}>
+        <TableContainer sx={{ px: 2 }}>
+          <Scrollbar_x>
+            <Table
+              sx={{ minWidth: 750 }}
+              aria-labelledby="tableTitle"
+              size={dense ? 'small' : 'medium'}
+            >
+              <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
+                <TableRow>
+                  {(headCells || []).map((headCell) => (
+                    <TableCell
+                      key={headCell.dataIndex}
+                      align={headCell.numeric ? 'right' : 'left'}
+                      padding={headCell.disablePadding ? 'none' : 'normal'}
+                      sortDirection={orderBy === headCell.dataIndex ? order : false}
+                      sx={{ whiteSpace: 'nowrap' }}
+                    >
+                      <TableSortLabel
+                        active={orderBy === headCell.dataIndex}
+                        direction={orderBy === headCell.dataIndex ? order : 'asc'}
+                        onClick={(event) =>
+                          handleRequestSort(event, headCell.dataIndex as keyof DataRow)
+                        }
                       >
-                        <TableSortLabel
-                          active={orderBy === headCell.dataIndex}
-                          direction={orderBy === headCell.dataIndex ? order : 'asc'}
-                          onClick={(event) =>
-                            handleRequestSort(event, headCell.dataIndex as keyof DataRow)
-                          }
-                        >
-                          <Typography variant="h6">{headCell.label}</Typography>
-                        </TableSortLabel>
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {stableSort(dataRows ?? [], getComparator(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row: DataRow) => {
-                      const isItemSelected = selected.indexOf(row.id) !== -1;
-                      const rowColor = getRowColor(row);
+                        <Typography variant="h6">{headCell.label}</Typography>
+                      </TableSortLabel>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {stableSort(dataRows ?? [], getComparator(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row: DataRow) => {
+                    const isItemSelected = selected.indexOf(row.id) !== -1;
+                    const rowColor = getRowColor(row);
 
-                      return (
-                        <TableRow
-                          hover
-                          onClick={(event) => handleClick(event, row.id)}
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.id}
-                          selected={isItemSelected}
-                          sx={{ backgroundColor: rowColor }} // Áp dụng màu sắc
-                        >
-                          {(headCells ?? []).map((cell: HeadCell) => (
-                            <TableCell
-                              key={cell.dataIndex}
-                              align={cell.numeric ? 'right' : 'left'}
-                              sx={{ whiteSpace: 'nowrap' }}
-                            >
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row[cell.dataIndex] !== undefined && row[cell.dataIndex]}
-                              </Typography>
-                            </TableCell>
-                          ))}
-                        </TableRow>
-                      );
-                    })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                      <TableCell colSpan={headCells?.length ?? 0} />
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </Scrollbar_x>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={dataRows?.length ?? 0}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Hàng trên mỗi trang"
-          />
-        </Box>
-      </BlankCard>
+                    return (
+                      <TableRow
+                        hover
+                        onClick={(event) => handleClick(event, row.id)}
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.id}
+                        selected={isItemSelected}
+                        sx={{ backgroundColor: rowColor }} // Áp dụng màu sắc
+                      >
+                        {(headCells ?? []).map((cell: HeadCell) => (
+                          <TableCell
+                            key={cell.dataIndex}
+                            align={cell.numeric ? 'right' : 'left'}
+                            sx={{ whiteSpace: 'nowrap' }}
+                          >
+                            <Typography color="textSecondary" variant="subtitle2">
+                              {row[cell.dataIndex] !== undefined && row[cell.dataIndex]}
+                            </Typography>
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                    <TableCell colSpan={headCells?.length ?? 0} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </Scrollbar_x>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={dataRows?.length ?? 0}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Hàng trên mỗi trang"
+        />
+      </Box>
     </Grid>
   );
 };

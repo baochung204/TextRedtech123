@@ -2,7 +2,6 @@ import { Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import DialogModelView from '../dialog/DialogModelView';
 import { ModelRows } from '../mockData/TableModel';
 import { HeadCell } from '../types/HeadCell';
@@ -69,10 +68,10 @@ const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   ];
 
   return (
-    <BlankCard>
+    <>
       <CustomTable columns={ModelCells} dataSource={ModelRows} dataSelect={dataSelect} />
       <DialogModelView open={open} setOpen={setOpen} value={selectId as any} />
-    </BlankCard>
+    </>
   );
 };
 

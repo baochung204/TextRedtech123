@@ -19,7 +19,6 @@ import Tab from '@mui/material/Tab';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import DialogFunction from './dialog/DialogFunction';
 import DialogFile from './dialog/DialogModel';
@@ -496,22 +495,16 @@ const Main = () => {
               <TabFunction value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">
-              <BlankCard>
-                <CustomTable columns={FileCells} dataSource={data} dataSelect={dataSelect} />
-              </BlankCard>
+              <CustomTable columns={FileCells} dataSource={data} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="4">
               <TabModel value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="5">
-              <BlankCard>
-                <CustomTable columns={ImageCells} dataSource={ImageRows} dataSelect={dataSelect} />
-              </BlankCard>
+              <CustomTable columns={ImageCells} dataSource={ImageRows} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="6">
-              <BlankCard>
-                <CustomTable columns={UrlCells} dataSource={UrlRows} dataSelect={dataSelect} />
-              </BlankCard>
+              <CustomTable columns={UrlCells} dataSource={UrlRows} dataSelect={dataSelect} />
             </TabPanel>
           </TabContext>
         </Box>

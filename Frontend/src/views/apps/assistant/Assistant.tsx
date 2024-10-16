@@ -6,7 +6,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
 import ProductTableList from 'src/components/apps/assistant/Assiatant/Assistant';
 import PageContainer from 'src/components/container/PageContainer';
-import BlankCard from 'src/components/shared/BlankCard';
 
 const Assistant = () => {
   const nav = useNavigate();
@@ -25,12 +24,10 @@ const Assistant = () => {
         Thêm mới
       </Button>
 
-      <BlankCard>
-        {/* ------------------------------------------- */}
-        {/* Left part */}
-        {/* ------------------------------------------- */}
-        <ProductTableList />
-      </BlankCard>
+      {/* ------------------------------------------- */}
+      {/* Left part */}
+      {/* ------------------------------------------- */}
+      <ProductTableList />
     </PageContainer>
   );
 };

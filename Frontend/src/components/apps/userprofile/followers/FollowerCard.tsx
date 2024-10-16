@@ -1,22 +1,21 @@
 import {
-  CardContent,
-  Box,
-  Stack,
   Avatar,
-  Grid,
+  Box,
   Button,
-  Typography,
+  CardContent,
   Chip,
-  TextField,
+  Grid,
   InputAdornment,
+  Stack,
+  TextField,
+  Typography,
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
-import BlankCard from 'src/components/shared/BlankCard';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { fetchFollwores, onToggleFollow } from 'src/store/apps/userProfile/UserProfileSlice';
 import { IconMapPin, IconSearch } from '@tabler/icons-react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { fetchFollwores, onToggleFollow } from 'src/store/apps/userProfile/UserProfileSlice';
 import { userType } from 'src/types/apps/users';
 
 const FollowerCard = () => {
@@ -73,46 +72,44 @@ const FollowerCard = () => {
         {getFollowers.map((profile) => {
           return (
             <Grid item xs={12} lg={4} key={profile.id}>
-              <BlankCard>
-                <CardContent>
-                  <Stack direction={'row'} gap={2} alignItems="center">
-                    <Avatar alt="Remy Sharp" src={profile.avatar} />
-                    <Box>
-                      <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                        {profile.name}
-                      </Typography>
-                      <Typography
-                        variant="caption"
-                        sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+              <CardContent>
+                <Stack direction={'row'} gap={2} alignItems="center">
+                  <Avatar alt="Remy Sharp" src={profile.avatar} />
+                  <Box>
+                    <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
+                      {profile.name}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                    >
+                      <IconMapPin size="14" />
+                      {profile.country}
+                    </Typography>
+                  </Box>
+                  <Box ml="auto">
+                    {profile.isFollowed ? (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        onClick={() => dispatch(onToggleFollow(profile.id))}
                       >
-                        <IconMapPin size="14" />
-                        {profile.country}
-                      </Typography>
-                    </Box>
-                    <Box ml="auto">
-                      {profile.isFollowed ? (
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          size="small"
-                          onClick={() => dispatch(onToggleFollow(profile.id))}
-                        >
-                          Followed
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="outlined"
-                          color="primary"
-                          size="small"
-                          onClick={() => dispatch(onToggleFollow(profile.id))}
-                        >
-                          Follow
-                        </Button>
-                      )}
-                    </Box>
-                  </Stack>
-                </CardContent>
-              </BlankCard>
+                        Followed
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        size="small"
+                        onClick={() => dispatch(onToggleFollow(profile.id))}
+                      >
+                        Follow
+                      </Button>
+                    )}
+                  </Box>
+                </Stack>
+              </CardContent>
             </Grid>
           );
         })}

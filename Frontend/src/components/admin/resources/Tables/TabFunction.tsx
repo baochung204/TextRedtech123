@@ -2,7 +2,6 @@ import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import DialogFuncView from '../dialog/DialogFuncView';
 import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
@@ -80,10 +79,10 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   ];
 
   return (
-    <BlankCard>
+    <>
       <CustomTable columns={FunctionCells} dataSource={FunctionRows} dataSelect={dataSelect} />
       <DialogFuncView open={open} setOpen={setOpen} value={selectId as any} />
-    </BlankCard>
+    </>
   );
 };
 

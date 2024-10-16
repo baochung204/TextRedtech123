@@ -14,8 +14,6 @@ import {
 import { IconPlus, IconPower, IconTrash } from '@tabler/icons-react';
 import { useState } from 'react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
-import BlankCard from 'src/components/apps/integration/BlankCard';
-// import FacebookIcon from '@mui/icons-material/Facebook';
 
 const Integration = () => {
   const [connect, setConnect] = useState<boolean>(false);
@@ -41,58 +39,49 @@ const Integration = () => {
         </Grid>
       </Grid>
       <Grid item xs={12} lg={12} mt={2} mb={1}>
-        <BlankCard>
-          <CardContent>
-            <Stack direction={'row'} gap={2} alignItems="center">
-              <Avatar alt="Remy Sharp" src={img1} />
-              <Box>
-                <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                  Redfood
-                </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
-                >
-                  <Box
-                    sx={{
-                      backgroundColor: connect ? theme.palette.success.main : 'gray',
-                      borderRadius: '100%',
-                      height: '10px',
-                      width: '10px',
-                    }}
-                  />
-                  565835121
-                </Typography>
-              </Box>
-              <Box ml="auto">
-                {/* <Button
-                  variant={connect ? 'contained' : 'outlined'}
-                  color="primary"
-                  size="small"
-                  onClick={handleConnection}
-                > */}
-                {/* {connect ? 'Đã kết nối' : 'Kết nối'} */} {/* </Button> */}
-                <Grid container>
-                  <Grid item xs={6}>
-                    <Tooltip title={connect ? 'Đã kết nối' : 'Tắt kết nối'} placement="top">
-                      <IconButton onClick={handleConnection}>
-                        <IconPower
-                          style={{ cursor: 'pointer' }}
-                          color={connect ? '#13DEB9' : 'gray'}
-                        />
-                      </IconButton>
-                    </Tooltip>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <IconButton>
-                      <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+        <CardContent>
+          <Stack direction={'row'} gap={2} alignItems="center">
+            <Avatar alt="Remy Sharp" src={img1} />
+            <Box>
+              <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
+                Redfood
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+              >
+                <Box
+                  sx={{
+                    backgroundColor: connect ? theme.palette.success.main : 'gray',
+                    borderRadius: '100%',
+                    height: '10px',
+                    width: '10px',
+                  }}
+                />
+                565835121
+              </Typography>
+            </Box>
+            <Box ml="auto">
+              <Grid container>
+                <Grid item xs={6}>
+                  <Tooltip title={connect ? 'Đã kết nối' : 'Tắt kết nối'} placement="top">
+                    <IconButton onClick={handleConnection}>
+                      <IconPower
+                        style={{ cursor: 'pointer' }}
+                        color={connect ? '#13DEB9' : 'gray'}
+                      />
                     </IconButton>
-                  </Grid>
+                  </Tooltip>
                 </Grid>
-              </Box>
-            </Stack>
-          </CardContent>
-        </BlankCard>
+                <Grid item xs={6}>
+                  <IconButton>
+                    <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Box>
+          </Stack>
+        </CardContent>
       </Grid>
     </Paper>
   );

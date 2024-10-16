@@ -17,13 +17,12 @@ import {
   Typography,
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons-react';
-import {ChangeEvent, useEffect, useMemo, useState} from 'react';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { Column } from 'src/components/ComponentTables/ColumnInterface';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
@@ -100,7 +99,6 @@ const TableData: PropsTable[] = [
     misc: 'fb',
   },
 ];
-
 
 const CustomerListOrder = () => {
   const [month, setMonth] = useState('1');
@@ -307,10 +305,14 @@ const CustomerListOrder = () => {
                           <MenuItem>
                             <Checkbox
                               checked={!(dataSelect.length === columns.length)}
-                              indeterminate={dataSelect.length > 0 && dataSelect.length < columns.length}
+                              indeterminate={
+                                dataSelect.length > 0 && dataSelect.length < columns.length
+                              }
                               onChange={() => {
                                 if (dataSelect.length < columns.length) {
-                                  const allColumns = columns.map((header: Column) => header.dataIndex);
+                                  const allColumns = columns.map(
+                                    (header: Column) => header.dataIndex,
+                                  );
                                   setDataSelect(allColumns);
                                 } else {
                                   setDataSelect([]);
@@ -338,9 +340,7 @@ const CustomerListOrder = () => {
                 </Grid>
 
                 <Grid item xs={12} mx={0.3}>
-                  <BlankCard>
-                    <CustomTable columns={columns} dataSource={TableData} dataSelect={dataSelect} />
-                  </BlankCard>
+                  <CustomTable columns={columns} dataSource={TableData} dataSelect={dataSelect} />
                 </Grid>
               </Grid>
             </TabPanel>
