@@ -22,8 +22,9 @@ interface BlogTable {
     content: string
     pricePoint: number;
     status: string;
-    view: number
-    like: number
+    view: number,
+    like: number,
+    createdFix: Date
 }
 
 const images = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10];
@@ -47,7 +48,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã đăng",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '2',
@@ -62,7 +64,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã đăng",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '3',
@@ -77,7 +80,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã đăng",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '4',
@@ -92,7 +96,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã đăng",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '5',
@@ -107,7 +112,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã ẩn",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '6',
@@ -122,7 +128,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Chưa duyệt",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '7',
@@ -137,7 +144,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã ẩn",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '8',
@@ -152,7 +160,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Chưa duyệt",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '9',
@@ -167,7 +176,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã đăng",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
     {
         id: '10',
@@ -182,7 +192,8 @@ const BlogTable: BlogTable[] = [
         pricePoint: 25.99,
         status: "Đã đăng",
         view: 200,
-        like: 150
+        like: 150,
+        createdFix: new Date('2023-11-22'),
     },
 ];
 

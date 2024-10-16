@@ -182,12 +182,12 @@ const PageFeature = () => {
               value === 1
                 ? 'Đã xem'
                 : value === 2
-                ? 'Đanh dấu'
-                : value === 3
-                ? 'Updated'
-                : value === 4
-                ? 'Chưa xem'
-                : ''
+                  ? 'Đanh dấu'
+                  : value === 3
+                    ? 'Updated'
+                    : value === 4
+                      ? 'Chưa xem'
+                      : ''
             }
             color={getStatusColor(value)}
           />
@@ -295,7 +295,6 @@ const PageFeature = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -333,12 +332,26 @@ const PageFeature = () => {
                   },
                 }}
               >
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
                 {column.map((header: Column) => {
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );
