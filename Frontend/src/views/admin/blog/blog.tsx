@@ -32,7 +32,6 @@ import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
 
-import { useNavigate } from 'react-router';
 import Iconlike from 'src/assets/ICON/like.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 
@@ -139,11 +138,11 @@ interface Column {
   isValids?: boolean;
 }
 const BlogAdmin = () => {
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const handleIconClick = () => {
-    nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
-  };
+  // const handleIconClick = () => {
+  //   nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
+  // };
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
@@ -151,7 +150,10 @@ const BlogAdmin = () => {
   const tagColors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFC300', '#DAF7A6', '#C70039'];
   const column = useMemo<Column[]>(
     () => [
-      { title: 'ID', dataIndex: 'id' },
+      {
+        title: 'ID',
+        dataIndex: 'id'
+      },
       {
         title: 'Ngày tạo',
         dataIndex: 'createdAt',
@@ -181,13 +183,11 @@ const BlogAdmin = () => {
           ));
         },
       },
-      // { title: 'Đường dẫn url', dataIndex: 'url' },
       {
         title: 'Mô tả',
         dataIndex: 'description',
         render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
       },
-      // { title: 'Nội dung', dataIndex: 'content' },
       {
         title: 'Giá Point',
         dataIndex: 'pricePoint',
@@ -236,14 +236,13 @@ const BlogAdmin = () => {
             style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
           >
             {value}
-            {/* <Favorite color="error" /> */}
             <img src={Iconlike} alt="" width={18} />
           </Typography>
         ),
       },
       {
         title: 'Ngày sửa',
-        dataIndex: 'createdAt',
+        dataIndex: 'createdFix',
         render: (value: any) => value.toLocaleDateString(),
       },
       {
@@ -362,7 +361,6 @@ const BlogAdmin = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -400,14 +398,26 @@ const BlogAdmin = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );

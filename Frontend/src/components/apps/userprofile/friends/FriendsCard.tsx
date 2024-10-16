@@ -1,22 +1,18 @@
 import {
-  CardContent,
-  Box,
-  Stack,
   Avatar,
-  Grid,
-  Typography,
+  Box,
+  CardContent,
   Chip,
-  TextField,
-  InputAdornment,
   Divider,
+  Grid,
   IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
-import BlankCard from 'src/components/shared/BlankCard';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { fetchFollwores } from 'src/store/apps/userProfile/UserProfileSlice';
 import {
   IconBrandFacebook,
   IconBrandGithub,
@@ -24,6 +20,9 @@ import {
   IconBrandTwitter,
   IconSearch,
 } from '@tabler/icons-react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { fetchFollwores } from 'src/store/apps/userProfile/UserProfileSlice';
 import { userType } from 'src/types/apps/users';
 
 interface socialType {
@@ -104,27 +103,25 @@ const FriendsCard = () => {
         {getFriends.map((profile) => {
           return (
             <Grid item xs={12} lg={4} key={profile.id}>
-              <BlankCard className="hoverCard">
-                <CardContent>
-                  <Stack direction={'column'} gap={2} alignItems="center">
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={profile.avatar}
-                      sx={{ width: '80px', height: '80px' }}
-                    />
-                    <Box textAlign={'center'}>
-                      <Typography variant="h5">{profile.name}</Typography>
-                      <Typography variant="caption">{profile.role}</Typography>
-                    </Box>
-                  </Stack>
-                </CardContent>
-                <Divider />
-                <Box p={2} py={1} textAlign={'center'} sx={{ backgroundColor: 'grey.100' }}>
-                  {SocialIcons.map((sicon) => {
-                    return <IconButton key={sicon.name}>{sicon.icon}</IconButton>;
-                  })}
-                </Box>
-              </BlankCard>
+              <CardContent>
+                <Stack direction={'column'} gap={2} alignItems="center">
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={profile.avatar}
+                    sx={{ width: '80px', height: '80px' }}
+                  />
+                  <Box textAlign={'center'}>
+                    <Typography variant="h5">{profile.name}</Typography>
+                    <Typography variant="caption">{profile.role}</Typography>
+                  </Box>
+                </Stack>
+              </CardContent>
+              <Divider />
+              <Box p={2} py={1} textAlign={'center'} sx={{ backgroundColor: 'grey.100' }}>
+                {SocialIcons.map((sicon) => {
+                  return <IconButton key={sicon.name}>{sicon.icon}</IconButton>;
+                })}
+              </Box>
             </Grid>
           );
         })}

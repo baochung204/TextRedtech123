@@ -1,28 +1,27 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import {
-  Stack,
   Avatar,
   Box,
-  Typography,
+  Button,
   CardMedia,
+  Divider,
+  Fab,
   Grid,
   IconButton,
-  Fab,
-  Tooltip,
+  Stack,
   TextField,
-  Button,
-  Divider,
+  Tooltip,
+  Typography,
 } from '@mui/material';
 import { IconCircle, IconMessage2, IconShare, IconThumbUp } from '@tabler/icons-react';
 import uniqueId from 'lodash/uniqueId';
 import { useDispatch, useSelector } from 'src/store/Store';
-import { likePosts, addComment } from 'src/store/apps/userProfile/UserProfileSlice';
-import PostComments from './PostComments';
-import BlankCard from '../../../shared/BlankCard';
+import { addComment, likePosts } from 'src/store/apps/userProfile/UserProfileSlice';
 import { Comment as CommentType, PostType } from 'src/types/apps/userProfile';
+import PostComments from './PostComments';
 
 interface Props {
   post: PostType;
@@ -61,7 +60,7 @@ const PostItem = ({ post }: Props) => {
   };
 
   return (
-    <BlankCard>
+    <>
       <Box p={3}>
         <Stack direction={'row'} gap={2} alignItems="center">
           <Avatar alt="Remy Sharp" src={post?.profile.avatar} />
@@ -174,7 +173,7 @@ const PostItem = ({ post }: Props) => {
           </Button>
         </Stack>
       </Box>
-    </BlankCard>
+    </>
   );
 };
 

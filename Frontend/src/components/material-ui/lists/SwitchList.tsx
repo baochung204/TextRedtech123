@@ -1,10 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
 import { List, ListItem, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
-import BlankCard from '../../shared/BlankCard';
+import React from 'react';
 
-import { IconWifi, IconBluetooth } from '@tabler/icons-react';
+import { IconBluetooth, IconWifi } from '@tabler/icons-react';
 
 import CustomSwitch from '../../forms/theme-elements/CustomSwitch';
 
@@ -26,38 +25,36 @@ const SwitchList = () => {
 
   return (
     <>
-      <BlankCard>
-        <List subheader={<ListSubheader>Settings</ListSubheader>}>
-          <ListItem>
-            <ListItemIcon>
-              <IconWifi width={20} height={20} />
-            </ListItemIcon>
-            <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
-            <CustomSwitch
-              edge="end"
-              onChange={handleToggle('wifi')}
-              checked={checked.indexOf('wifi') !== -1}
-              inputProps={{
-                'aria-labelledby': 'switch-list-label-wifi',
-              }}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <IconBluetooth width={20} height={20} />
-            </ListItemIcon>
-            <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
-            <CustomSwitch
-              edge="end"
-              onChange={handleToggle('bluetooth')}
-              checked={checked.indexOf('bluetooth') !== -1}
-              inputProps={{
-                'aria-labelledby': 'switch-list-label-bluetooth',
-              }}
-            />
-          </ListItem>
-        </List>
-      </BlankCard>
+      <List subheader={<ListSubheader>Settings</ListSubheader>}>
+        <ListItem>
+          <ListItemIcon>
+            <IconWifi width={20} height={20} />
+          </ListItemIcon>
+          <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
+          <CustomSwitch
+            edge="end"
+            onChange={handleToggle('wifi')}
+            checked={checked.indexOf('wifi') !== -1}
+            inputProps={{
+              'aria-labelledby': 'switch-list-label-wifi',
+            }}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <IconBluetooth width={20} height={20} />
+          </ListItemIcon>
+          <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
+          <CustomSwitch
+            edge="end"
+            onChange={handleToggle('bluetooth')}
+            checked={checked.indexOf('bluetooth') !== -1}
+            inputProps={{
+              'aria-labelledby': 'switch-list-label-bluetooth',
+            }}
+          />
+        </ListItem>
+      </List>
     </>
   );
 };

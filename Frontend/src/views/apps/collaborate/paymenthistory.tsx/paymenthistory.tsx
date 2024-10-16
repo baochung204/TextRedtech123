@@ -23,7 +23,6 @@ import DateSelect from 'src/components/apps/date/DateSelect';
 import SearchInput from 'src/components/apps/search/search';
 import PageContainer from 'src/components/container/PageContainer';
 import Afletpoint from 'src/components/material-ui/dialog/Alertpoint';
-import BlankCard from 'src/components/shared/BlankCard';
 import { tablepayment } from 'src/components/tables/tablepayment';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -230,240 +229,106 @@ const Paymenthistory = () => {
           </Box>
         </Grid>
       </Grid>
-      <BlankCard>
-        <Box mb={2} sx={{ mb: 2 }}>
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
-            >
-              <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-              />
-              <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any) => {
-                    // const isItemSelected = isSelected(row.name);
-                    // const labelId = `enhanced-table-checkbox-${index}`;
 
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        // aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={row.id}
-                        // selected={isItemSelected}
-                      >
-                        <TableCell style={{ width: '25%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.MHD}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell style={{ width: '25%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.createdAt), 'MM/dd/yyyy')}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell style={{ width: '25%' }}>
-                          <Stack spacing={2} direction="row">
-                            {/* <Box >
-                              <Typography
-                                color="textSecondary"
-                                variant="subtitle2"
-                                display={'flex'}
-                                gap={'5px'}
-                                alignItems={'center'}
-                              >
-                                {row.point} <img src={pointimg} alt="" width={'20px'} />
-                              </Typography>
-                            </Box> */}
-                            <Box width={'60px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                              <Typography
-                                color="textSecondary"
-                                variant="subtitle2"
-                                sx={{ display: 'flex', gap: 0.5 }}
-                              >
-                                {row.point}{' '}
-                                <img
-                                  src={pointimg}
-                                  alt=""
-                                  width={20}
-                                  height={20}
-                                  style={{ borderRadius: 50 }}
-                                />
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        {/* <TableCell style={{ width: '20%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {getStatusTextAndColor(row.status)}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell> */}
-
-                        <TableCell style={{ width: '15%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Afletpoint row={row}></Afletpoint>
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-              {/* <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
-                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                      .map((row: any, index) => {
-                        const isItemSelected = isSelected(row.name);
-                        const labelId = `enhanced-table-checkbox-${index}`;
-    
-                        return (
-                          <TableRow
-                            hover
-                            onClick={(event) => handleClick(event, row.name)}
-                            role="checkbox"
-                            aria-checked={isItemSelected}
-                            tabIndex={-1}
-                            key={row.id}
-                            selected={isItemSelected}
-                          >
-                            <TableCell padding="checkbox">
-                              <CustomCheckbox
-                                checked={isItemSelected}
-                                inputProps={{
-                                  'aria-labelledby': labelId,
-                                }}
+      <Box mb={2} sx={{ mb: 2 }}>
+        <TableContainer>
+          <Table
+            sx={{ minWidth: 750 }}
+            aria-labelledby="tableTitle"
+            size={dense ? 'small' : 'medium'}
+          >
+            <EnhancedTableHead
+              numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              rowCount={rows.length}
+            />
+            <TableBody>
+              {stableSort(rows, getComparator(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row: any) => {
+                  return (
+                    <TableRow
+                      hover
+                      onClick={(event) => handleClick(event, row.name)}
+                      role="checkbox"
+                      // aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={row.id}
+                      // selected={isItemSelected}
+                    >
+                      <TableCell style={{ width: '25%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>
+                            <Typography color="textSecondary" variant="subtitle2">
+                              {row.MHD}
+                            </Typography>
+                          </Box>
+                        </Stack>
+                      </TableCell>
+                      <TableCell style={{ width: '25%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>
+                            <Typography color="textSecondary" variant="subtitle2">
+                              {format(new Date(row.createdAt), 'MM/dd/yyyy')}
+                            </Typography>
+                          </Box>
+                        </Stack>
+                      </TableCell>
+                      <TableCell style={{ width: '25%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box width={'60px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                            <Typography
+                              color="textSecondary"
+                              variant="subtitle2"
+                              sx={{ display: 'flex', gap: 0.5 }}
+                            >
+                              {row.point}{' '}
+                              <img
+                                src={pointimg}
+                                alt=""
+                                width={20}
+                                height={20}
+                                style={{ borderRadius: 50 }}
                               />
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={2} direction="row">
-                                <Avatar
-                                  alt="text"
-                                  src={row.imgsrc}
-                                  sx={{
-                                    width: '35px',
-                                    height: '35px',
-                                  }}
-                                />
-                                <Box>
-                                  <Typography variant="h6" fontWeight="600">
-                                    {row.name}
-                                  </Typography>
-                                  <Typography color="textSecondary" variant="subtitle2">
-                                    {row.email}
-                                  </Typography>
-                                </Box>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
-                                {row.pname}
-                              </Typography>
-                            </TableCell>
-                            <TableCell>
-                              <Stack direction="row">
-                                <AvatarGroup>
-                                  {row.teams.map((team: any) => (
-                                    <Avatar
-                                      key={team.id}
-                                      sx={{
-                                        width: '35px',
-                                        height: '35px',
-                                        bgcolor: team.color,
-                                      }}
-                                    >
-                                      {team.text}
-                                    </Avatar>
-                                  ))}
-                                </AvatarGroup>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Stack spacing={1} direction="row" alignItems="center">
-                                <Badge
-                                  color={
-                                    row.status === 'Active'
-                                      ? 'success'
-                                      : row.status === 'Pending'
-                                      ? 'warning'
-                                      : row.status === 'Completed'
-                                      ? 'primary'
-                                      : row.status === 'Cancel'
-                                      ? 'error'
-                                      : 'secondary'
-                                  }
-                                  variant="dot"
-                                ></Badge>
-                                <Typography color="textSecondary" variant="body1">
-                                  {row.status}
-                                </Typography>
-                              </Stack>
-                            </TableCell>
-                            <TableCell>
-                              <Typography color="textSecondary" variant="body1">
-                                {row.weeks}
-                              </Typography>
-                            </TableCell>
-                            <TableCell>
-                              <Typography variant="h6">${row.budget}k</Typography>
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    {emptyRows > 0 && (
-                      <TableRow
-                        style={{
-                          height: (dense ? 33 : 53) * emptyRows,
-                        }}
-                      >
-                        <TableCell colSpan={6} />
-                      </TableRow>
-                    )}
-                  </TableBody> */}
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Số hàng trên trang"
-          />
-        </Box>
-      </BlankCard>
+                            </Typography>
+                          </Box>
+                        </Stack>
+                      </TableCell>
+
+                      <TableCell style={{ width: '15%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Afletpoint row={row}></Afletpoint>
+                        </Stack>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              {emptyRows > 0 && (
+                <TableRow
+                  style={{
+                    height: (dense ? 33 : 53) * emptyRows,
+                  }}
+                >
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên trang"
+        />
+      </Box>
     </PageContainer>
   );
 };

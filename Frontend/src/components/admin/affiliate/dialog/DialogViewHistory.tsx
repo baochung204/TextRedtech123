@@ -88,9 +88,9 @@ const DialogViewHistory: React.FC<PropsDialog> = ({ open, setOpen }) => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const handleBackToHome = () => {
-    console.log('Quay lại trang chính');
-  };
+  // const handleBackToHome = () => {
+  //   console.log('Quay lại trang chính');
+  // };
   const handleSteps = (step: number) => {
     switch (step) {
       case 0:
@@ -250,57 +250,6 @@ const DialogViewHistory: React.FC<PropsDialog> = ({ open, setOpen }) => {
                 <Typography variant="h5" component="div" align="center">
                   Xác Nhận Hoàn Tất Thanh Toán
                 </Typography>
-
-                {/* <Typography variant="body1" sx={{ mt: 2, textAlign: 'center' }}>
-                  Vui lòng hãy xem lại thông tin giao dịch dưới đây
-                </Typography>
-                <Grid container>
-                  <Grid item xs={4}>
-                    <Grid container>
-                      <Grid item xs={4}>
-                        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-                          Tên tài khoản :
-                        </Typography>
-                      </Grid>{' '}
-                      <Grid item xs={8}>
-                        {' '}
-                        <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                          CTTNHH ABC
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Grid container>
-                      <Grid item xs={4}>
-                        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-                          Số tài khoản :
-                        </Typography>
-                      </Grid>{' '}
-                      <Grid item xs={8}>
-                        {' '}
-                        <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                          01236547892
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Grid container>
-                      <Grid item xs={4}>
-                        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-                          Số tiền :
-                        </Typography>
-                      </Grid>{' '}
-                      <Grid item xs={8}>
-                        {' '}
-                        <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                          {money.toLocaleString('vi-VN')} ₫
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid> */}
               </CardContent>
             </Card>
           </Box>

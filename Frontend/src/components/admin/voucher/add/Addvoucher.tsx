@@ -1,21 +1,10 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  MenuItem,
-  Radio,
-  RadioGroup,
-} from '@mui/material';
+import LoopIcon from '@mui/icons-material/Loop';
+import { Box, Button, Grid, MenuItem } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import LoopIcon from '@mui/icons-material/Loop';
-import VndCouponService from 'src/service/VndCouponService';
-import { FormCreateVndCoupon, VndCouponScopeEnum, VndCouponTypeEnum } from 'src/types/apps/vnd_coupon';
+import { VndCouponScopeEnum, VndCouponTypeEnum } from 'src/types/apps/vnd_coupon';
 
 interface CurrencyType {
   value: VndCouponTypeEnum;
@@ -27,15 +16,19 @@ const currencies: CurrencyType[] = [
   { value: VndCouponTypeEnum.PERCENT, label: 'Phần trăm' },
 ];
 
-const AddVoucher:React.FC<{handleSubmit: any}> = (props) => {
-  const [discountType, setDiscountType] = React.useState<VndCouponTypeEnum>(currencies[0]?.value || VndCouponTypeEnum.VALUE);
+const AddVoucher: React.FC<{ handleSubmit: any }> = () => {
+  const [discountType, setDiscountType] = React.useState<VndCouponTypeEnum>(
+    currencies[0]?.value || VndCouponTypeEnum.VALUE,
+  );
   const [Name, setName] = React.useState('');
   const [quantity, setQuantity] = React.useState('');
   const [discountCode, setDiscountCode] = React.useState('');
   const [discountValue, setDiscountValue] = React.useState('');
   const [minOrderValue, setMinOrderValue] = React.useState('');
   const [maxDiscountAmount, setMaxDiscountAmount] = React.useState('');
-  const [scopeEnum, setScopeEnum] = React.useState<VndCouponScopeEnum>(VndCouponScopeEnum.IN_SYSTEM);
+  const [scopeEnum, setScopeEnum] = React.useState<VndCouponScopeEnum>(
+    VndCouponScopeEnum.IN_SYSTEM,
+  );
   const [startDate, setStartDate] = React.useState('');
   const [endDate, setEndDate] = React.useState('');
 
@@ -58,32 +51,35 @@ const AddVoucher:React.FC<{handleSubmit: any}> = (props) => {
     setScopeEnum(event.target.value as VndCouponScopeEnum);
   };
 
-  const handleChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setter(event.target.value);
-  };
-
-  const handleSubmit = async () => {
-    const vndCoupon: FormCreateVndCoupon = {
-      name: Name,
-      quantity: Number(quantity),
-      type: discountType,
-      code: discountCode,
-      scopeEnum: scopeEnum,
-      start: new Date(startDate),
-      end: new Date(endDate),
-      value: discountType === VndCouponTypeEnum.VALUE ? Number(discountValue) : undefined,
-      percent: discountType === VndCouponTypeEnum.PERCENT ? Number(discountValue) : undefined,
-      lowerBound: Number(minOrderValue),
-      upperBound: discountType === VndCouponTypeEnum.PERCENT ? Number(maxDiscountAmount) : undefined,
+  const handleChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
     };
 
-    try {
-      const data = await VndCouponService.createVndCoupon(vndCoupon);
-      console.log('Coupon created successfully', data);
-    } catch (error) {
-      console.error('Error occurred while submitting the form.', error);
-    }
-  };
+  // const handleSubmit = async () => {
+  //   const vndCoupon: FormCreateVndCoupon = {
+  //     name: Name,
+  //     quantity: Number(quantity),
+  //     type: discountType,
+  //     code: discountCode,
+  //     scopeEnum: scopeEnum,
+  //     start: new Date(startDate),
+  //     end: new Date(endDate),
+  //     value: discountType === VndCouponTypeEnum.VALUE ? Number(discountValue) : undefined,
+  //     percent: discountType === VndCouponTypeEnum.PERCENT ? Number(discountValue) : undefined,
+  //     lowerBound: Number(minOrderValue),
+  //     upperBound:
+  //       discountType === VndCouponTypeEnum.PERCENT ? Number(maxDiscountAmount) : undefined,
+  //   };
+
+  //   try {
+  //     const data = await VndCouponService.createVndCoupon(vndCoupon);
+  //     console.log('Coupon created successfully', data);
+  //   } catch (error) {
+  //     console.error('Error occurred while submitting the form.', error);
+  //   }
+  // };
 
   return (
     <div>
@@ -192,7 +188,9 @@ const AddVoucher:React.FC<{handleSubmit: any}> = (props) => {
                   onChange={handleChange(setDiscountValue)}
                 />
 
-                <CustomFormLabel htmlFor="max-discount-amount">Số tiền giảm tối đa (VNĐ)</CustomFormLabel>
+                <CustomFormLabel htmlFor="max-discount-amount">
+                  Số tiền giảm tối đa (VNĐ)
+                </CustomFormLabel>
                 <CustomTextField
                   id="max-discount-amount"
                   variant="outlined"
@@ -204,7 +202,9 @@ const AddVoucher:React.FC<{handleSubmit: any}> = (props) => {
               </>
             ) : (
               <>
-                <CustomFormLabel htmlFor="discount-amount">Giảm bao nhiêu tiền (VNĐ)</CustomFormLabel>
+                <CustomFormLabel htmlFor="discount-amount">
+                  Giảm bao nhiêu tiền (VNĐ)
+                </CustomFormLabel>
                 <CustomTextField
                   id="discount-amount"
                   variant="outlined"
@@ -216,7 +216,9 @@ const AddVoucher:React.FC<{handleSubmit: any}> = (props) => {
               </>
             )}
 
-            <CustomFormLabel htmlFor="min-order-value">Giá trị đơn hàng tối thiểu (VNĐ) để áp dụng</CustomFormLabel>
+            <CustomFormLabel htmlFor="min-order-value">
+              Giá trị đơn hàng tối thiểu (VNĐ) để áp dụng
+            </CustomFormLabel>
             <CustomTextField
               id="min-order-value"
               variant="outlined"

@@ -15,15 +15,15 @@ import ReactQuill from 'react-quill';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-interface StrategyProps {
-  values: {
-    nhomStrategy: string;
-    levelStrategy: string;
-    noidungStrategy: string;
-  };
-}
+// interface StrategyProps {
+//   values: {
+//     nhomStrategy: string;
+//     levelStrategy: string;
+//     noidungStrategy: string;
+//   };
+// }
 
-const Strategy = ({ values }: StrategyProps) => {
+const Strategy = () => {
   const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
   const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
     images: [],
@@ -121,11 +121,11 @@ const Strategy = ({ values }: StrategyProps) => {
             variant="outlined"
             InputProps={{
               sx: {
-                height: 40, 
+                height: 40,
               },
             }}
             sx={{
-              width: '100%', 
+              width: '100%',
             }}
           />
           <ErrorMessage name="levelStrategy">
@@ -140,7 +140,7 @@ const Strategy = ({ values }: StrategyProps) => {
           variant="outlined"
           fullWidth
           name="name"
-          sx={{ marginLeft: 2,marginTop: 3  ,width: '830px', }}
+          sx={{ marginLeft: 2, marginTop: 3, width: '830px' }}
         />
       </Grid>
       <Grid item xs={12}>

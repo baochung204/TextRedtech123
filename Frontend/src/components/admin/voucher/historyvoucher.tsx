@@ -11,14 +11,12 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-// components
-// import { styled } from '@mui/system';
+
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 
 interface DataRow2 {
   id: string;
@@ -195,8 +193,7 @@ const HistoryVoucher = () => {
 
   // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows2.length) : 0;
   return (
-    <div>
-      {' '}
+    <>
       <Grid item xs={12}>
         <Grid container sx={{ alignItems: 'center' }} spacing={2}>
           <Grid
@@ -245,7 +242,6 @@ const HistoryVoucher = () => {
                 <FilterListIcon />
               </Badge>
             </IconButton>
-
             <Select
               multiple
               value={dataSelect}
@@ -283,14 +279,26 @@ const HistoryVoucher = () => {
                 },
               }}
             >
-              {column.map((header: any) => {
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                const isSelected = dataSelect.includes(header.dataIndex);
-
+              <MenuItem>
+                <Checkbox
+                  checked={!(dataSelect.length === column.length)}
+                  indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                  onChange={() => {
+                    if (dataSelect.length < column.length) {
+                      const allColumns = column.map((header: Column) => header.dataIndex);
+                      setDataSelect(allColumns);
+                    } else {
+                      setDataSelect([]);
+                    }
+                  }}
+                />
+                <ListItemText primary="Chọn tất cả" />
+              </MenuItem>
+              {column.map((header: Column) => {
+                const isSelected = !dataSelect.includes(header.dataIndex);
                 return (
                   <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                    <Checkbox checked={!isSelected} />
+                    <Checkbox checked={isSelected} />
                     <ListItemText primary={header.title} />
                   </MenuItem>
                 );
@@ -305,148 +313,10 @@ const HistoryVoucher = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <BlankCard>
-          <CustomTable columns={column} dataSource={dataRows2} dataSelect={dataSelect} />
-        </BlankCard>
+        <CustomTable columns={column} dataSource={dataRows2} dataSelect={dataSelect} />
       </Grid>
-    </div>
+    </>
   );
 };
 
 export default HistoryVoucher;
-
-// type Order = 'asc' | 'desc';
-
-// const [order, setOrder] = useState<Order>('asc');
-// const [orderBy, setOrderBy] = useState<any>('calories');
-// const [selected, setSelected] = useState<readonly string[]>([]);
-// const [page, setPage] = useState(0);
-// const [dense] = useState(false);
-// const [dense, setDense] = useState(false);
-// const [rowsPerPage, setRowsPerPage] = useState(5);
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
-//   const selectedIndex = selected.indexOf(name);
-//   let newSelected: readonly string[] = [];
-
-//   if (selectedIndex === -1) {
-//     newSelected = newSelected.concat(selected, name);
-//   } else if (selectedIndex === 0) {
-//     newSelected = newSelected.concat(selected.slice(1));
-//   } else if (selectedIndex === selected.length - 1) {
-//     newSelected = newSelected.concat(selected.slice(0, -1));
-//   } else if (selectedIndex > 0) {
-//     newSelected = newSelected.concat(
-//       selected.slice(0, selectedIndex),
-//       selected.slice(selectedIndex + 1),
-//     );
-//   }
-
-//   setSelected(newSelected);
-// };
-// const handleChangePage = (_event: unknown, newPage: number) => {
-//   setPage(newPage);
-// };
-
-// const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-//   setRowsPerPage(parseInt(event.target.value, 10));
-//   setPage(0);
-// };
-// const handleRequestSort = (_event: React.MouseEvent<unknown>, property: string) => {
-//   const isAsc = orderBy === property && order === 'asc';
-//   setOrder(isAsc ? 'desc' : 'asc');
-//   setOrderBy(property);
-// };
-
-// const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-//   if (event.target.checked) {
-//     const newSelecteds = dataRows2.map((n: any) => n.name);
-//     setSelected(newSelecteds);
-
-//     return;
-//   }
-//   setSelected([]);
-// };
-
-// const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-// const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
-// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-//   if (b[orderBy] < a[orderBy]) {
-//     return -1;
-//   }
-//   if (b[orderBy] > a[orderBy]) {
-//     return 1;
-//   }
-
-//   return 0;
-// }
-
-// type Order = 'asc' | 'desc';
-
-// function getComparator<Key extends keyof any>(
-//   order: Order,
-//   orderBy: Key,
-// ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-//   return order === 'desc'
-//     ? (a, b) => descendingComparator(a, b, orderBy)
-//     : (a, b) => -descendingComparator(a, b, orderBy);
-// }
-// interface EnhancedTableProps {
-//   numSelected: number;
-//   order: 'asc' | 'desc';
-//   orderBy: string;
-//   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-//   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
-//   rowCount: number;
-// }
-
-// function EnhancedTableHead2(props: EnhancedTableProps) {
-//   const { order, orderBy, onRequestSort } = props;
-//   const createSortHandler = (property: keyof DataRow2) => (event: React.MouseEvent<unknown>) => {
-//     onRequestSort(event, property);
-//   };
-//   return (
-//     <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
-//       <TableRow>
-//         {headCells2.map((headCell: any) => (
-//           <TableCell
-//             key={headCell.id}
-//             align={headCell.numeric ? 'right' : 'left'}
-//             padding={headCell.disablePadding ? 'none' : 'normal'}
-//             sortDirection={orderBy === headCell.id ? order : false}
-//             sx={{ whiteSpace: 'nowrap' }}
-//           >
-//             <TableSortLabel
-//               active={orderBy === headCell.id}
-//               direction={orderBy === headCell.id ? order : 'asc'}
-//               onClick={createSortHandler(headCell.id)}
-//             >
-//               <Typography variant="h6">{headCell.label}</Typography>
-//               {/* {orderBy === headCell.id ? (
-//                   <Box component="span">
-//                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-//                   </Box>
-//                 ) : null} */}
-//             </TableSortLabel>
-//           </TableCell>
-//         ))}
-//       </TableRow>
-//     </TableHead>
-//   );
-// }
-
-// function stableSort2<T>(array: any[], comparator: (a: T, b: T) => number) {
-//   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-//   stabilizedThis.sort((a, b) => {
-//     const order = comparator(a[0], b[0]);
-//     if (order !== 0) {
-//       return order;
-//     }
-
-//     return a[1] - b[1];
-//   });
-
-//   return stabilizedThis.map((el) => el[0]);
-// }

@@ -33,7 +33,6 @@ import img3 from 'src/assets/images/profile/user-3.jpg';
 import img4 from 'src/assets/images/profile/user-4.jpg';
 import img5 from 'src/assets/images/profile/user-5.jpg';
 import ParentCard from 'src/components/shared/ParentCard';
-import BlankCard from '../../../shared/BlankCard';
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -218,123 +217,117 @@ const Assistant = () => {
   return (
     <PageContainer title="Quản lý Trợ lý" description="this is Pagination Table page">
       <ParentCard title="Quản lý Trợ lý" description="This is the description">
-        <BlankCard>
-          <TableContainer>
-            <Table
-              aria-label="custom pagination table"
-              sx={{
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <Typography variant="h6">Id</Typography>
+        <TableContainer>
+          <Table
+            aria-label="custom pagination table"
+            sx={{
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Typography variant="h6">Id</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Tên</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Model</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">Tích hợp</Typography>
+                </TableCell>
+
+                <TableCell>
+                  <Typography variant="h6">Ngày tạo</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6"></Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : rows
+              ).map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell onClick={handleInfor}>
+                    <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
+                      {row.id}
+                    </Typography>
                   </TableCell>
-                  <TableCell>
-                    <Typography variant="h6">Tên</Typography>
+                  <TableCell onClick={handleInfor}>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+
+                      <Link to={'/assistant/:id'}>
+                        <Typography sx={{ cursor: 'pointer' }} variant="subtitle2" fontWeight="600">
+                          {row.customer}
+                        </Typography>
+                      </Link>
+                    </Stack>
                   </TableCell>
-                  <TableCell>
-                    <Typography variant="h6">Model</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="h6">Tích hợp</Typography>
+                  <TableCell onClick={handleInfor}>
+                    <Typography
+                      sx={{ cursor: 'pointer' }}
+                      color="textSecondary"
+                      variant="h6"
+                      fontWeight="400"
+                    >
+                      {row.model}
+                    </Typography>
                   </TableCell>
 
-                  <TableCell>
-                    <Typography variant="h6">Ngày tạo</Typography>
+                  <TableCell onClick={handleInfor}>
+                    <Typography
+                      sx={{ cursor: 'pointer' }}
+                      color="textSecondary"
+                      variant="h6"
+                      fontWeight="400"
+                    >
+                      {row.connect}
+                    </Typography>
                   </TableCell>
-                  <TableCell>
-                    <Typography variant="h6"></Typography>
+
+                  <TableCell onClick={handleInfor}>
+                    <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
+                      {row.date}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ cursor: 'pointer', color: 'steelblue' }}>
+                    <IconEdit />
+                    {/* <DeleteIcon sx={{marginRight: '10px', cursor: "pointer"}}/> */}
                   </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : rows
-                ).map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell onClick={handleInfor}>
-                      <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
-                        {row.id}
-                      </Typography>
-                    </TableCell>
-                    <TableCell onClick={handleInfor}>
-                      <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar src={row.imgsrc} alt={row.imgsrc} sx={{ width: 30, height: 30 }} />
+              ))}
 
-                        <Link to={'/assistant/:id'}>
-                          <Typography
-                            sx={{ cursor: 'pointer' }}
-                            variant="subtitle2"
-                            fontWeight="600"
-                          >
-                            {row.customer}
-                          </Typography>
-                        </Link>
-                      </Stack>
-                    </TableCell>
-                    <TableCell onClick={handleInfor}>
-                      <Typography
-                        sx={{ cursor: 'pointer' }}
-                        color="textSecondary"
-                        variant="h6"
-                        fontWeight="400"
-                      >
-                        {row.model}
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell onClick={handleInfor}>
-                      <Typography
-                        sx={{ cursor: 'pointer' }}
-                        color="textSecondary"
-                        variant="h6"
-                        fontWeight="400"
-                      >
-                        {row.connect}
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell onClick={handleInfor}>
-                      <Typography sx={{ cursor: 'pointer' }} variant="subtitle2">
-                        {row.date}
-                      </Typography>
-                    </TableCell>
-                    <TableCell sx={{ cursor: 'pointer', color: 'steelblue' }}>
-                      <IconEdit />
-                      {/* <DeleteIcon sx={{marginRight: '10px', cursor: "pointer"}}/> */}
-                    </TableCell>
-                  </TableRow>
-                ))}
-
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                    colSpan={6}
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
                 </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
-        </BlankCard>
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                  colSpan={6}
+                  count={rows.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    native: true,
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
       </ParentCard>
     </PageContainer>
   );

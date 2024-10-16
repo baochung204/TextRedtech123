@@ -1,31 +1,29 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { useSelector, useDispatch } from 'src/store/Store';
 import {
+  Avatar,
   Box,
   Button,
-  TextField,
-  Typography,
-  Avatar,
   Divider,
+  Grid,
   IconButton,
   Stack,
-  Grid,
+  TextField,
   Tooltip,
-  useTheme
+  Typography,
+  useTheme,
 } from '@mui/material';
-import {
-  isEdit,
-  UpdateContact,
-  DeleteContact,
-  toggleStarredContact,
-} from 'src/store/apps/contacts/ContactSlice';
-import BlankCard from '../../shared/BlankCard';
-import { ContactType } from 'src/types/apps/contact';
-import { IconPencil, IconStar, IconTrash, IconDeviceFloppy } from '@tabler/icons-react';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import { IconDeviceFloppy, IconPencil, IconStar, IconTrash } from '@tabler/icons-react';
 import emailIcon from 'src/assets/images/breadcrumb/emailSv.png';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import {
+  DeleteContact,
+  isEdit,
+  toggleStarredContact,
+  UpdateContact,
+} from 'src/store/apps/contacts/ContactSlice';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { ContactType } from 'src/types/apps/contact';
 
 const ContactDetails = () => {
   const contactDetail: ContactType = useSelector(
@@ -236,38 +234,36 @@ const ContactDetails = () => {
               </Box>
             ) : (
               <>
-                <BlankCard sx={{ p: 0 }}>
-                  <Scrollbar sx={{ height: { lg: 'calc(100vh - 360px)', md: '100vh' } }}>
-                    <Box pt={1}>
-                      {tableData.map((data) => (
-                        <Box key={data.id} px={3} py={1.5}>
-                          <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
-                            {data.title}
-                          </Typography>
-                          <TextField
-                            id="firstname"
-                            size="small"
-                            fullWidth
-                            type="text"
-                            value={data.gdata}
-                            onChange={(e) =>
-                              dispatch(UpdateContact(contactDetail.id, data.alias, e.target.value))
-                            }
-                          />
-                        </Box>
-                      ))}
-                      <Box p={3}>
-                        <Button
-                          color="primary"
-                          variant="contained"
-                          onClick={() => dispatch(isEdit())}
-                        >
-                          Save Contact
-                        </Button>
+                <Scrollbar sx={{ height: { lg: 'calc(100vh - 360px)', md: '100vh' } }}>
+                  <Box pt={1}>
+                    {tableData.map((data) => (
+                      <Box key={data.id} px={3} py={1.5}>
+                        <Typography variant="subtitle1" fontWeight={600} mb={0.5}>
+                          {data.title}
+                        </Typography>
+                        <TextField
+                          id="firstname"
+                          size="small"
+                          fullWidth
+                          type="text"
+                          value={data.gdata}
+                          onChange={(e) =>
+                            dispatch(UpdateContact(contactDetail.id, data.alias, e.target.value))
+                          }
+                        />
                       </Box>
+                    ))}
+                    <Box p={3}>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={() => dispatch(isEdit())}
+                      >
+                        Save Contact
+                      </Button>
                     </Box>
-                  </Scrollbar>
-                </BlankCard>
+                  </Box>
+                </Scrollbar>
               </>
             )}
           </Box>
