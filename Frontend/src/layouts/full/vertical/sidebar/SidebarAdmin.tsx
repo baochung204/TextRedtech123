@@ -71,7 +71,6 @@ const SidebarAdmin = () => {
             {/* Logo */}
             {/* ------------------------------------------- */}
             <Box px={3} pb={2}>
-              {/* <Logo /> */}
               <LogoAdmin />
             </Box>
             {/* <Scrollbar sx={{ height: 'calc(100% - 210px)' }}> */}
