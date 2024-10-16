@@ -298,9 +298,7 @@ const HistoryAffiliate = () => {
     ],
     [],
   );
-
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
