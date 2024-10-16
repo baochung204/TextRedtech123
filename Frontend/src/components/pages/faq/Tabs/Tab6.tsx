@@ -13,9 +13,11 @@ interface PropsTab6 {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dataSelect: string[];
+  checkOption: string | null;
+  setCheckOption: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
+const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect, checkOption, setCheckOption }) => {
   // const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
   //   null,
   // );

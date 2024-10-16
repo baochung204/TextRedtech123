@@ -124,6 +124,7 @@ interface INotification {
   views: number; // Lượt xem
   interactions: number; // Tương tác
   status: JSX.Element; // Trạng thái của thông báo
+  description: string;
 }
 
 const getStatusTextAndColor = (status: number) => {
@@ -156,6 +157,7 @@ const dataRows: INotification[] = [
     views: 1200,
     interactions: 340,
     status: renderStatus(2),
+    description: 'mô tả 1',
   },
   {
     id: '2',
@@ -168,6 +170,7 @@ const dataRows: INotification[] = [
     views: 950,
     interactions: 210,
     status: renderStatus(1),
+    description: 'mô tả 2',
   },
   {
     id: '3',
@@ -179,6 +182,7 @@ const dataRows: INotification[] = [
     views: 1500,
     interactions: 450,
     status: renderStatus(2),
+    description: 'mô tả 3',
   },
   {
     id: '4',
@@ -190,6 +194,7 @@ const dataRows: INotification[] = [
     views: 600,
     interactions: 120,
     status: renderStatus(1),
+    description: 'mô tả 3',
   },
 ];
 
@@ -244,13 +249,14 @@ const ContentNotification = () => {
         title: 'Tags',
       },
       {
+        dataIndex: 'description',
+        title: 'Mô tả',
+      },
+      {
         dataIndex: 'content',
         title: 'Nội dung thông báo',
       },
-      {
-        dataIndex: 'moreLink',
-        title: 'Link xem thêm',
-      },
+
       // {
       //   dataIndex: 'views',
       //   title: 'Lượt xem',

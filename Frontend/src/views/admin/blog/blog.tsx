@@ -181,13 +181,13 @@ const BlogAdmin = () => {
           ));
         },
       },
-      { title: 'Đường dẫn url', dataIndex: 'url' },
+      // { title: 'Đường dẫn url', dataIndex: 'url' },
       {
         title: 'Mô tả',
         dataIndex: 'description',
         render: (value: any) => <Typography variant="subtitle2">{value}</Typography>,
       },
-      { title: 'Nội dung', dataIndex: 'content' },
+      // { title: 'Nội dung', dataIndex: 'content' },
       {
         title: 'Giá Point',
         dataIndex: 'pricePoint',
@@ -252,9 +252,9 @@ const BlogAdmin = () => {
         // render: (value: any) => (
         render: () => (
           <>
-            <IconButton onClick={handleIconClick}>
+            {/* <IconButton onClick={handleIconClick}>
               <IconEye stroke={2} style={{ color: '#b1ffb3' }} />
-            </IconButton>
+            </IconButton> */}
             <Link
               to={'/blog/detail/c-trnh-by-bi-max-rushden-vi-barry-glendenning-philippe-acclaim'}
             >

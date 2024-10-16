@@ -286,8 +286,7 @@ const ProductAdmin = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+
   return (
     <>
       <PageContainer title="Đơn hàng sản phẩm" description="this is  page">

@@ -3,6 +3,7 @@ import {
   Badge,
   Box,
   Checkbox,
+  Chip,
   Grid,
   IconButton,
   InputAdornment,
@@ -24,6 +25,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import rating1 from 'src/assets/Adminphoto/đanh gia.png';
 
 const BCrumb = [
   {
@@ -292,6 +294,21 @@ const Ticket = () => {
       {
         dataIndex: 'rating',
         title: 'Đánh giá',
+        render: (value: any) => (
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              justifyContent: 'flex-start',
+            }}
+          >
+            <Box>{value}</Box>
+            <IconButton sx={{ padding: '0' }}>
+              <img src={rating1} width={16} alt="Rating" />
+            </IconButton>
+          </Box>
+        ),
       },
       {
         dataIndex: 'email',
@@ -308,6 +325,12 @@ const Ticket = () => {
       {
         dataIndex: 'status',
         title: 'Trạng thái',
+        render: (_row: any, value: any) => (
+          <Chip
+            label={value.rating > 3 ? 'Đã xử lý' : 'Chưa xử lý'}
+            color={value.rating > 3 ? 'success' : 'error'}
+          />
+        ),
       },
     ],
     [],

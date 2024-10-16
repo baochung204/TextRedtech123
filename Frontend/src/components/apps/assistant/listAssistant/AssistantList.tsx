@@ -106,7 +106,7 @@ const ListAssistant = () => {
             <Tooltip title="Thêm">
               <Link to={`/assistants/add`}>
                 <IconButton color="primary" aria-label="Add to cart">
-                  <AddCircleIcon sx={{ fontSize: 50 }} />
+                  <AddCircleIcon sx={{ fontSize: 30 }} />
                 </IconButton>
               </Link>
             </Tooltip>

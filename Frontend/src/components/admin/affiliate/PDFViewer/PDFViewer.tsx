@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { useEffect, useRef } from 'react';
 
 const PDFViewer = ({ base64Data }: any) => {
@@ -12,13 +13,18 @@ const PDFViewer = ({ base64Data }: any) => {
   }, [base64Data]);
 
   return (
-    <div style={{ width: '100%', height: '100vh' }}>
+    <Box
+      sx={{
+        width: '100%',
+        height: '65vh',
+      }}
+    >
       <iframe
         ref={iframeRef}
         title="PDF Viewer"
         style={{ width: '100%', height: '100%', border: 'none' }}
       />
-    </div>
+    </Box>
   );
 };
 

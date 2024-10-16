@@ -11,6 +11,11 @@ const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
+  const handleSubmit = () => {
+
+    setIsPopupOpen(false);
+  }
   return (
     <Box>
       <Dialog
@@ -32,11 +37,11 @@ const AddDialogvoucher = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
         <Box>
           <DialogTitle padding={'10px'}>Tạo mã khuyến mãi</DialogTitle>
           <DialogContent>
-            <AddVoucher />
+            <AddVoucher handleSubmit={handleSubmit} />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClosePopup}>Hủy</Button>
-            <Button onClick={handleClosePopup} variant="contained" color="primary">
+            <Button onClick={handleSubmit} variant="contained" color="primary">
               Lưu
             </Button>
           </DialogActions>
