@@ -38,9 +38,9 @@ interface PropUp {
 //   dataIndex: string;
 // }
 
-const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#FFBB33', '#33FFBB', '#BB33FF'];
+// const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#FFBB33', '#33FFBB', '#BB33FF'];
 
-const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+// const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
 interface Tag {
   title: string;

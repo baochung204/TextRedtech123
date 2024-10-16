@@ -13,7 +13,6 @@ import {
   Select,
   TextField,
   Tooltip,
-  Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -280,7 +279,7 @@ const HistoryAffiliate = () => {
       {
         dataIndex: 'actions',
         title: 'Hoạt động',
-        render: (_row: any, value: any) => (
+        render: () => (
           // console.log(value)
           <Box display={'flex'} sx={{ justifyContent: 'center' }}>
             <Tooltip title="Xem" placement="right">
@@ -292,9 +291,6 @@ const HistoryAffiliate = () => {
               >
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
-              {/* <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton> */}
             </Tooltip>
           </Box>
         ),

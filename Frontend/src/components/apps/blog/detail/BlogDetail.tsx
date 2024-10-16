@@ -15,12 +15,11 @@ import {
 } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import like from 'src/assets/ICON/like.png';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import type { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../../shared/BlankCard';
-import reaction from 'src/assets/Adminphoto/luot timm.png';
-import like from 'src/assets/ICON/like.png';
 const BlogDetail = () => {
   const dispatch = useDispatch();
   const title = useLocation();

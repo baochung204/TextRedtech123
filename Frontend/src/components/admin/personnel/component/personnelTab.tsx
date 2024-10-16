@@ -87,7 +87,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
         dataIndex: 'status',
         title: 'Trạng thái',
         validate: true,
-        render: (value: any, row: any) => (
+        render: (_value: any, row: any) => (
           <Typography color={selectedIds.includes(row.id) ? '#13DEB9' : 'gray'} variant="subtitle2">
             {selectedIds.includes(row.id) ? 'Hoạt động' : 'Tắt'}
           </Typography>

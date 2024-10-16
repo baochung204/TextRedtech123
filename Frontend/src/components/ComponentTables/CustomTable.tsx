@@ -16,7 +16,6 @@ import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { Column } from './ColumnInterface';
 
-
 interface CustomTableProps {
   columns: Column[];
   dataSource: any[];
@@ -98,10 +97,10 @@ const CustomTable: React.FC<CustomTableProps> = ({
                         <Typography
                           variant="subtitle2"
                           style={{
-                            whiteSpace: 'nowrap', 
-                            overflow: 'hidden',    
-                            textOverflow: 'ellipsis', 
-                            maxWidth: '200px',    
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            maxWidth: '200px',
                           }}
                         >
                           {column.render ? column.render(value, row, rowIndex) : value}
