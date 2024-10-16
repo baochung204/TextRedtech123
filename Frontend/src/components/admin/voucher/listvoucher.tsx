@@ -173,7 +173,6 @@ const ListVoucher = () => {
           );
         },
       },
-      
     ],
     [],
   );
@@ -204,7 +203,7 @@ const ListVoucher = () => {
     <div>
       {' '}
       <Grid item xs={12}>
-        <Grid container sx={{ alignItems: 'center' }} spacing={2}>
+        <Grid container sx={{ alignItems: 'center', mt: '1px' }} spacing={2}>
           <Grid
             item
             xs={4}

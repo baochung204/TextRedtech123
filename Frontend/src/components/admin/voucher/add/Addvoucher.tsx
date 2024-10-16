@@ -1,30 +1,37 @@
-import { Box, Button, Checkbox, FormControl, FormControlLabel, Grid, MenuItem, Radio, RadioGroup } from '@mui/material';
+import LoopIcon from '@mui/icons-material/Loop';
+import { Box, Button, Grid, MenuItem } from '@mui/material';
 import React from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
-import LoopIcon from '@mui/icons-material/Loop';
+import { VndCouponScopeEnum, VndCouponTypeEnum } from 'src/types/apps/vnd_coupon';
 
 interface CurrencyType {
-  value: string;
+  value: VndCouponTypeEnum;
   label: string;
 }
 
 const currencies: CurrencyType[] = [
-  { value: 'dong', label: 'Đồng' },
-  { value: 'percent', label: 'Phần trăm' },
+  { value: VndCouponTypeEnum.VALUE, label: 'Đồng' },
+  { value: VndCouponTypeEnum.PERCENT, label: 'Phần trăm' },
 ];
 
-const AddVoucher = () => {
-  const [discountType, setDiscountType] = React.useState(currencies[0]?.value || '');
+const AddVoucher: React.FC<{ handleSubmit: any }> = () => {
+  const [discountType, setDiscountType] = React.useState<VndCouponTypeEnum>(
+    currencies[0]?.value || VndCouponTypeEnum.VALUE,
+  );
   const [Name, setName] = React.useState('');
-  const [companyPhone, setCompanyPhone] = React.useState('');
+  const [quantity, setQuantity] = React.useState('');
   const [discountCode, setDiscountCode] = React.useState('');
   const [discountValue, setDiscountValue] = React.useState('');
   const [minOrderValue, setMinOrderValue] = React.useState('');
   const [maxDiscountAmount, setMaxDiscountAmount] = React.useState('');
-  const [externalCode, setExternalCode] = React.useState(false);
-  const [internalCode, setInternalCode] = React.useState(false);
+  const [scopeEnum, setScopeEnum] = React.useState<VndCouponScopeEnum>(
+    VndCouponScopeEnum.IN_SYSTEM,
+  );
+  const [startDate, setStartDate] = React.useState('');
+  const [endDate, setEndDate] = React.useState('');
+
   // Generate random code with current date (ddMM format)
   const generateRandomCode = () => {
     const today = new Date();
@@ -35,16 +42,44 @@ const AddVoucher = () => {
   };
 
   const handleDiscountTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setDiscountType(event.target.value as string);
+    setDiscountType(event.target.value as VndCouponTypeEnum);
     setDiscountValue(''); // Reset discount value when switching discount type
     setMaxDiscountAmount(''); // Reset max discount amount when switching
   };
 
+  const handleScopeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setScopeEnum(event.target.value as VndCouponScopeEnum);
+  };
+
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        setter(event.target.value);
-      };
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value);
+    };
+
+  // const handleSubmit = async () => {
+  //   const vndCoupon: FormCreateVndCoupon = {
+  //     name: Name,
+  //     quantity: Number(quantity),
+  //     type: discountType,
+  //     code: discountCode,
+  //     scopeEnum: scopeEnum,
+  //     start: new Date(startDate),
+  //     end: new Date(endDate),
+  //     value: discountType === VndCouponTypeEnum.VALUE ? Number(discountValue) : undefined,
+  //     percent: discountType === VndCouponTypeEnum.PERCENT ? Number(discountValue) : undefined,
+  //     lowerBound: Number(minOrderValue),
+  //     upperBound:
+  //       discountType === VndCouponTypeEnum.PERCENT ? Number(maxDiscountAmount) : undefined,
+  //   };
+
+  //   try {
+  //     const data = await VndCouponService.createVndCoupon(vndCoupon);
+  //     console.log('Coupon created successfully', data);
+  //   } catch (error) {
+  //     console.error('Error occurred while submitting the form.', error);
+  //   }
+  // };
 
   return (
     <div>
@@ -61,14 +96,14 @@ const AddVoucher = () => {
               onChange={handleChange(setName)}
             />
 
-            <CustomFormLabel htmlFor="phone-text">Số lượng mã</CustomFormLabel>
+            <CustomFormLabel htmlFor="quantity">Số lượng mã</CustomFormLabel>
             <CustomTextField
-              id="phone-text"
+              id="quantity"
               variant="outlined"
               fullWidth
-              value={companyPhone}
+              value={quantity}
               placeholder="Nhập số lượng mã"
-              onChange={handleChange(setCompanyPhone)}
+              onChange={handleChange(setQuantity)}
             />
 
             <CustomFormLabel htmlFor="discount-type-select">Loại giảm giá</CustomFormLabel>
@@ -104,24 +139,18 @@ const AddVoucher = () => {
                 </Button>
               </Grid>
             </Grid>
-            <FormControl component="fieldset">
-              <RadioGroup
-                name="discountType"
-                value={discountType}
-                onChange={handleDiscountTypeChange}
-              >
-                <FormControlLabel
-                  value="external"
-                  control={<Radio color="primary" />}
-                  label="Mã giảm bên ngoài hệ thống"
-                />
-                <FormControlLabel
-                  value="internal"
-                  control={<Radio color="primary" />}
-                  label="Mã giảm bên trong hệ thống"
-                />
-              </RadioGroup>
-            </FormControl>
+
+            <CustomFormLabel htmlFor="scope-select">Phạm vi mã</CustomFormLabel>
+            <CustomSelect
+              id="scope-select"
+              value={scopeEnum}
+              onChange={handleScopeChange}
+              fullWidth
+              variant="outlined"
+            >
+              <MenuItem value={VndCouponScopeEnum.IN_SYSTEM}>Trong hệ thống</MenuItem>
+              <MenuItem value={VndCouponScopeEnum.OUT_OF_SYSTEM}>Ngoài hệ thống</MenuItem>
+            </CustomSelect>
           </Grid>
 
           <Grid item lg={6} md={12}>
@@ -131,6 +160,8 @@ const AddVoucher = () => {
               type="date"
               variant="outlined"
               fullWidth
+              value={startDate}
+              onChange={handleChange(setStartDate)}
               InputLabelProps={{ shrink: true }}
             />
 
@@ -140,10 +171,12 @@ const AddVoucher = () => {
               type="date"
               variant="outlined"
               fullWidth
+              value={endDate}
+              onChange={handleChange(setEndDate)}
               InputLabelProps={{ shrink: true }}
             />
 
-            {discountType === 'percent' ? (
+            {discountType === VndCouponTypeEnum.PERCENT ? (
               <>
                 <CustomFormLabel htmlFor="discount-percentage">Giảm bao nhiêu %</CustomFormLabel>
                 <CustomTextField
@@ -169,7 +202,9 @@ const AddVoucher = () => {
               </>
             ) : (
               <>
-                <CustomFormLabel htmlFor="discount-amount">Giảm bao nhiêu tiền (VNĐ)</CustomFormLabel>
+                <CustomFormLabel htmlFor="discount-amount">
+                  Giảm bao nhiêu tiền (VNĐ)
+                </CustomFormLabel>
                 <CustomTextField
                   id="discount-amount"
                   variant="outlined"

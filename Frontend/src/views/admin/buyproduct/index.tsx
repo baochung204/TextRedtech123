@@ -101,7 +101,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">999.999.999.999đ</Typography>
+          <Typography variant="h6">999.999.999.999₫</Typography>
         </Box>
       </>
     ),
@@ -187,7 +187,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">999.999.999.999đ</Typography>
+          <Typography variant="h6">999.999.999.999₫</Typography>
         </Box>
       </>
     ),
@@ -309,7 +309,7 @@ const BuyPoints = () => {
               </IconButton>
             </Grid>
             <Grid item xs={4}>
-              <IconButton onClick={() => { }}>
+              <IconButton onClick={() => {}}>
                 <IconTrash stroke={2} style={{ color: '#FA896B' }} />
               </IconButton>
             </Grid>
@@ -367,7 +367,7 @@ const BuyPoints = () => {
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={5} />
+          <TopCard dataSource={DataBox} totalColumn={3} />
         </Grid>
 
         <Grid item xs={12}>

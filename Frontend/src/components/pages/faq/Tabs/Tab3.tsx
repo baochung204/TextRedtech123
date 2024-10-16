@@ -16,14 +16,10 @@ interface PropsTab3 {
   setCheckOption: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const Tab3 = ({
-  value,
-  open,
-  setOpen,
-  // checkOption,
-  // setCheckOption,
-  dataSelect
-}: PropsTab3) => {
+const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
+  // const Tab3 = ({ value, open, setOpen, checkOption, setCheckOption }: PropsTab3) => {
+  // const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const [dataSelect] = useState<string[]>([]);
   const dispatch = useDispatch<AppDispatch>();
   const dataFile = useSelector((state: AppState) => state.file.data);
   useEffect(() => {

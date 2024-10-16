@@ -43,7 +43,7 @@ const dataRows2: DataRow2[] = [
     email: 'toan2ho@gmail.com',
     phone: '08686759866',
     expiry: '09/05/2024',
-    TypeVoucher: 'phân trăm',
+    TypeVoucher: 'Phần trăm',
     sale: 23,
     ID_order: '#09341341',
   },
@@ -56,7 +56,7 @@ const dataRows2: DataRow2[] = [
     email: 'tranb@gmail.com',
     phone: '0987654321',
     expiry: '09/03/2024',
-    TypeVoucher: 'đồng',
+    TypeVoucher: 'Đồng',
     sale: 99,
     ID_order: '#09341342',
   },
@@ -69,7 +69,7 @@ const dataRows2: DataRow2[] = [
     email: 'lec@gmail.com',
     phone: '0912345678',
     expiry: '09/03/2024',
-    TypeVoucher: 'phân trăm',
+    TypeVoucher: 'Phần trăm',
     sale: 10,
     ID_order: '#09341343',
   },
@@ -82,7 +82,7 @@ const dataRows2: DataRow2[] = [
     email: 'phamd@gmail.com',
     phone: '0901234567',
     expiry: '09/03/2024 ',
-    TypeVoucher: 'đồng',
+    TypeVoucher: 'Đồng',
     sale: 100,
     ID_order: '#09341344',
   },
@@ -95,7 +95,7 @@ const dataRows2: DataRow2[] = [
     email: 'nguyene@gmail.com',
     phone: '0897654321',
     expiry: '10/03/2025',
-    TypeVoucher: 'phân trăm',
+    TypeVoucher: 'Phần trăm',
     sale: 20,
     ID_order: '#09341345',
   },
@@ -108,7 +108,7 @@ const dataRows2: DataRow2[] = [
     email: 'tranf@gmail.com',
     phone: '0887654321',
     expiry: '09/03/2025',
-    TypeVoucher: 'phân trăm',
+    TypeVoucher: 'Phần trăm',
     sale: 10,
     ID_order: '#09341346',
   },
@@ -122,6 +122,7 @@ interface Column {
 }
 const HistoryVoucher = () => {
   // const [selectedItems] = useState<number[]>([]);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -157,7 +158,7 @@ const HistoryVoucher = () => {
               label={value}
               sx={{
                 color: 'white',
-                backgroundColor: value === 'phân trăm' ? 'success.main' : 'error.main',
+                backgroundColor: value === 'Phần trăm' ? 'success.main' : 'error.main',
               }}
             />
           );

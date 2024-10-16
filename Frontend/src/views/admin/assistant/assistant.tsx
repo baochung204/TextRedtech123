@@ -270,10 +270,7 @@ const FilmsData: FilmsData[] = [
   { id: 7, title: 'Chiến lược' },
 ];
 const AssistantAdmin = () => {
-
-
   const navigate = useNavigate();
-
 
   const column = useMemo<Column[]>(
     () => [
@@ -287,16 +284,14 @@ const AssistantAdmin = () => {
         render: (value) => {
           const createdDate = new Date(value);
           return createdDate.toLocaleDateString('vi-VN');
-        }
+        },
       },
       {
         dataIndex: 'assistantImage',
         title: 'Ảnh trợ lý',
         render: (value) => {
-          return (
-            <Avatar src={value} alt={value} sx={{ width: '30px', height: '30px' }} />
-          )
-        }
+          return <Avatar src={value} alt={value} sx={{ width: '30px', height: '30px' }} />;
+        },
       },
       {
         dataIndex: 'assistantName',
@@ -329,65 +324,57 @@ const AssistantAdmin = () => {
       {
         dataIndex: 'level', //
         title: 'Level',
-        isValids: false
+        isValids: false,
       },
       {
         dataIndex: 'experience', //
         title: 'Experience',
-        isValids: false
+        isValids: false,
       },
       {
         dataIndex: 'token',
         title: 'Token huấn luyện',
-        isValids: false
+        isValids: false,
       },
       {
         dataIndex: 'vqtb',
         title: 'Vòng quay trung bình',
-        isValids: false
-
+        isValids: false,
       },
       {
         dataIndex: 'cl',
         title: 'Chiến lược',
-        isValids: false
-
+        isValids: false,
       },
       {
         dataIndex: 'function',
         title: 'Functions',
-        isValids: false
-
+        isValids: false,
       },
       {
         dataIndex: 'files',
         title: 'Files',
-        isValids: false
-
+        isValids: false,
       },
       {
         dataIndex: 'dungluong',
         title: 'Dung lượng',
-        isValids: false
-
+        isValids: false,
       },
       {
         dataIndex: 'cpdt',
         title: 'Chi phí/ doanh thu',
-        isValids: false
-
+        isValids: false,
       },
       {
         dataIndex: 'cpdh',
         title: 'Chi phí / chuyển đổi',
-        isValids: false
-
+        isValids: false,
       },
       {
         dataIndex: 'cpkh',
         title: 'Chi phí / khách hàng',
-        isValids: false
-
+        isValids: false,
       },
       {
         title: 'Xem chi tiết',
@@ -481,8 +468,7 @@ const AssistantAdmin = () => {
       setDataSelect([]);
     }
   }, [column]);
-  // const [value, setValue] = useState<Dayjs | null>(null);
-  // const [value1, setValue1] = useState<Dayjs | null>(null);
+
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
@@ -509,13 +495,6 @@ const AssistantAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item xs={2}>
-                  <Link to="/admin/assistanteditoradmin">
-                    <IconButton color="primary" aria-label="Add to cart">
-                      <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton>
-                  </Link>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"

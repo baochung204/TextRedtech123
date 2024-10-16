@@ -15,9 +15,6 @@ const Assistant = () => {
   };
   return (
     <PageContainer title="Trợ lý" description="this is page">
-      {/* breadcrumb */}
-      {/* <BannerPage title="Quản lý sản phẩm  " items={BCrumb} /> */}
-
       <Button
         onClick={handleAdd}
         variant="contained"
@@ -27,6 +24,7 @@ const Assistant = () => {
         <AddIcon fontSize="small" style={{ marginRight: '8px' }} />
         Thêm mới
       </Button>
+
       <BlankCard>
         {/* ------------------------------------------- */}
         {/* Left part */}

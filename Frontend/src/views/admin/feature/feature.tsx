@@ -193,7 +193,7 @@ const PageFeature = () => {
           />
         ),
       },
-      { title: 'Ghi chú', dataIndex: 'note' },
+      // { title: 'Ghi chú', dataIndex: 'note' },
       {
         title: 'Thao tác',
         dataIndex: 'action',

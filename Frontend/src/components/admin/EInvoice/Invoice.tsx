@@ -74,7 +74,7 @@ const dataSource = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu',
-    total: '123.456.789đ',
+    total: '123.456.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -94,7 +94,7 @@ const dataSource = [
   {
     bgColor: 'primary.light',
     title: 'Hoa hồng',
-    total: '123.456.789đ',
+    total: '123.456.789₫',
     icons: (
       <Box
         textAlign="center"
