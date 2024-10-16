@@ -3,11 +3,10 @@
 import { useNavigate } from 'react-router-dom';
 
 import AddIcon from '@mui/icons-material/Add';
-import { Button, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import ProductTableList from 'src/components/apps/assistant/Assiatant/Assistant';
 import PageContainer from 'src/components/container/PageContainer';
 import BlankCard from 'src/components/shared/BlankCard';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const Assistant = () => {
   const nav = useNavigate();
@@ -16,9 +15,6 @@ const Assistant = () => {
   };
   return (
     <PageContainer title="Trợ lý" description="this is page">
-      {/* breadcrumb */}
-      {/* <BannerPage title="Quản lý sản phẩm  " items={BCrumb} /> */}
-
       <Button
         onClick={handleAdd}
         variant="contained"

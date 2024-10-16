@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import {
-  fetchImageById,
   fetchImages,
-  removeImage,
+  removeImage
 } from 'src/store/apps/resources/image/ImageSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DialogImage from '../dialog/DialogImage';

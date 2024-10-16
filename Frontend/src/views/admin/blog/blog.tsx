@@ -32,7 +32,6 @@ import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
 
-import { useNavigate } from 'react-router';
 import Iconlike from 'src/assets/ICON/like.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 
@@ -139,11 +138,11 @@ interface Column {
   isValids?: boolean;
 }
 const BlogAdmin = () => {
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const handleIconClick = () => {
-    nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
-  };
+  // const handleIconClick = () => {
+  //   nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
+  // };
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);

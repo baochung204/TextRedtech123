@@ -22,9 +22,8 @@ import { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../shared/BlankCard';
 // import crown from 'src/assets/images/icon.png/crown.png';
 import { IconEye } from '@tabler/icons-react';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
-import reaction from 'src/assets/Adminphoto/luot timm.png';
 import like from 'src/assets/ICON/like.png';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 interface Btype {
   post: BlogPostType;
   index?: number;

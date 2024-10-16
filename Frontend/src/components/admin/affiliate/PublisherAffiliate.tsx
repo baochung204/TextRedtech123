@@ -167,7 +167,7 @@ interface Column {
 
 const PublisherAffiliate = () => {
   // const [selectedItems] = useState<number[]>([]);
-  const [open, setOpen] = useState<boolean>(false);
+  // const [open, setOpen] = useState<boolean>(false);
 
   const column = useMemo<Column[]>(
     () => [
@@ -393,16 +393,6 @@ const PublisherAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item >
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
