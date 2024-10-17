@@ -87,7 +87,7 @@ export default class ApiService {
 
     // Authentication APIs
     static async loginUser(account: string, password: string) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/login`, {
+        const response = await axios.post(`${this.BASE_URL}/auth/login`, {
             account: account,
             password: password,
         });
@@ -197,31 +197,27 @@ export default class ApiService {
 
     static isAuthenticated() {
         const token = localStorage.getItem('accessToken');
-        // const tokenExpired = localStorage.getItem('tokenExpired');
-        // console.log("Token:", token);
-        // console.log("Token Expired:", tokenExpired);
+        const tokenExpired = localStorage.getItem('tokenExpired');
         
-        // if (!token || !tokenExpired) {
-        //     return false; // Không có token hoặc thời gian hết hạn
-        // }
+        if (!token || !tokenExpired) {
+            return false; // Không có token hoặc thời gian hết hạn
+        }
     
-        // // Chuyển đổi tokenExpired từ chuỗi thành đối tượng Date
-        // const expirationTime = new Date(tokenExpired);
-        // console.log("Expiration Time:", expirationTime);
+        // Chuyển đổi tokenExpired từ chuỗi thành đối tượng Date
+        const expirationTime = new Date(tokenExpired);
+        console.log("Expiration Time:", expirationTime);
         
-        // // Kiểm tra xem expirationTime có hợp lệ không
-        // if (isNaN(expirationTime.getTime())) {
-        //     console.log("Expiration time is invalid");
-        //     return false; // Nếu không phải là ngày hợp lệ, trả về false
-        // }
+        // Kiểm tra xem expirationTime có hợp lệ không
+        if (isNaN(expirationTime.getTime())) {
+            console.log("Expiration time is invalid");
+            return false; // Nếu không phải là ngày hợp lệ, trả về false
+        }
     
-        // const currentTime = new Date();
-        // console.log("Current Time:", currentTime);
+        const currentTime = new Date();
     
-        // // So sánh thời gian hiện tại với thời gian hết hạn
-        // const isValid = currentTime < expirationTime;
-        // console.log("Is Valid:", isValid);
-        return !!token;
+        // So sánh thời gian hiện tại với thời gian hết hạn
+        const isValid = currentTime < expirationTime;
+        return isValid;
     }    
 
     static isAdmin() {
