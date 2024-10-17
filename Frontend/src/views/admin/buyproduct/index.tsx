@@ -46,7 +46,7 @@ const DataBox = [
     title: 'Sản phẩm',
     total: (
       <>
-        <Typography variant="h6">1236</Typography>
+        <Typography variant="h6">999.999.999</Typography>
       </>
     ),
     icons: (
@@ -73,7 +73,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">165</Typography>
+          <Typography variant="h6">999.999.999.999</Typography>
         </Box>
       </>
     ),
@@ -91,35 +91,6 @@ const DataBox = [
           }}
         >
           <img src={amountcheckout} width={30} alt="Amount Checkout" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Tổng doanh thu',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">5.432.234</Typography>
-          <img src={iconPoint} alt="" width={17} />
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={sale} width={30} alt="Sale" />
         </Box>
       </>
     ),
@@ -159,8 +130,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">1245</Typography>
-          <img src={iconPoint} alt="" width={17} />
+          <Typography variant="h6">999</Typography>
         </Box>
       </>
     ),
@@ -188,7 +158,7 @@ const DataBox = [
     total: (
       <>
         <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">23.423đ</Typography>
+          <Typography variant="h6">999.999.999.999₫</Typography>
         </Box>
       </>
     ),
@@ -368,7 +338,7 @@ const BuyPoints = () => {
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
       <Grid container rowSpacing={3}>
         <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={3} />
+          <TopCard dataSource={DataBox} totalColumn={5} />
         </Grid>
 
         <Grid item xs={12}>
@@ -431,7 +401,6 @@ const BuyPoints = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -469,14 +438,26 @@ const BuyPoints = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );

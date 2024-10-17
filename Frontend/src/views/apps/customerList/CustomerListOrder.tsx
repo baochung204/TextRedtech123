@@ -7,15 +7,17 @@ import {
   Checkbox,
   Chip,
   Grid,
+  IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
   Stack,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import * as React from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -24,6 +26,7 @@ import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import DialogDetailListOrder from './dialogDetailListOrder/dialogDetailListOrder';
 
 interface PropsTable {
   id: string;
@@ -112,6 +115,7 @@ const CustomerListOrder = () => {
   };
 
   const [dataSelect, setDataSelect] = React.useState<string[]>([]);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
@@ -162,15 +166,24 @@ const CustomerListOrder = () => {
         title: 'Trợ lý',
         dataIndex: 'assistant',
       },
-      {
-        title: 'Tags',
-        dataIndex: 'channel',
-        render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
-      },
+      // {
+      //   title: 'Tên sản phẩm',
+      //   dataIndex: 'channel',
+      //   // render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
+      // },
+      // {
+      //   title: 'Đơn vị tính',
+      //   dataIndex: 'channel',
+      //   // render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
+      // },
+      // {
+      //   title: 'Tag sản phẩm',
+      //   dataIndex: 'channel',
+      //   render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
+      // },
       {
         title: 'Giá trị đơn hàng',
         dataIndex: 'pricePoint',
-
         render: (value: string) => (
           <Box
             sx={{
@@ -186,9 +199,36 @@ const CustomerListOrder = () => {
           </Box>
         ),
       },
+      // {
+      //   title: 'Số lượng sản phẩm',
+      //   dataIndex: 'assistant',
+      // },
+      // {
+      //   title: 'Đánh giá',
+      //   dataIndex: 'assistant',
+      // },
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+      },
+      {
+        dataIndex: 'actions',
+        title: 'Chi tiết',
+        render: (_row: any, value: any) => (
+          // console.log(value)
+          <Box display={'flex'} sx={{ justifyContent: 'center' }}>
+            <Tooltip title="Xem" placement="right">
+              <IconButton
+                onClick={() => {
+                  setOpen(!open);
+                  // setSelectId(value.id);
+                }}
+              >
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        ),
       },
     ],
     [],
@@ -361,6 +401,7 @@ const CustomerListOrder = () => {
           <AddOrder />
         </DialogContent>
       </Dialog> */}
+      <DialogDetailListOrder open={open} setOpen={setOpen} />
     </PageContainer>
   );
 };

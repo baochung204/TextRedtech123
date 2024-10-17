@@ -1,12 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
+import { Avatar, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { CardContent, Typography, Avatar, Grid, Stack } from '@mui/material';
-import BlankCard from '../../shared/BlankCard';
 import { IconArrowDownRight } from '@tabler/icons-react';
-import { Props } from 'react-apexcharts';
+import Chart, { Props } from 'react-apexcharts';
 
 const PageImpressions = () => {
   // chart color
@@ -28,7 +25,14 @@ const PageImpressions = () => {
         enabled: true,
       },
     },
-    colors: [secondarylight, secondarylight, secondary, secondarylight, secondarylight, secondarylight],
+    colors: [
+      secondarylight,
+      secondarylight,
+      secondary,
+      secondarylight,
+      secondarylight,
+      secondarylight,
+    ],
     plotOptions: {
       bar: {
         borderRadius: 4,
@@ -78,37 +82,36 @@ const PageImpressions = () => {
   ];
 
   return (
-    <BlankCard>
-      <CardContent sx={{ p: '30px' }}>
-        <Typography variant="h5">Page Impressions</Typography>
+    <CardContent sx={{ p: '30px' }}>
+      <Typography variant="h5">Page Impressions</Typography>
 
-        <Grid container spacing={3}>
-          <Grid item xs={5}>
-            
-            <Typography variant="h4" mt={3} fontWeight={600}>$456,120</Typography>
-            <Typography variant="subtitle2" fontSize="12px" color="textSecondary">
-              (Change Yesterday)
+      <Grid container spacing={3}>
+        <Grid item xs={5}>
+          <Typography variant="h4" mt={3} fontWeight={600}>
+            $456,120
+          </Typography>
+          <Typography variant="subtitle2" fontSize="12px" color="textSecondary">
+            (Change Yesterday)
+          </Typography>
+          <Stack direction="row" spacing={1} mt={1} alignItems="center">
+            <Avatar sx={{ bgcolor: 'error.light', width: 20, height: 20 }}>
+              <IconArrowDownRight width={16} color="#FA896B" />
+            </Avatar>
+            <Typography variant="subtitle2" color="textSecondary">
+              +9%
             </Typography>
-            <Stack direction="row" spacing={1} mt={1} alignItems="center">
-              <Avatar sx={{ bgcolor: 'error.light', width: 20, height: 20 }}>
-                <IconArrowDownRight width={16} color="#FA896B" />
-              </Avatar>
-              <Typography variant="subtitle2" color="textSecondary">
-                +9%
-              </Typography>
-            </Stack>
-          </Grid>
-          <Grid item xs={7}>
-            <Chart
-              options={optionscolumnchart}
-              series={seriescolumnchart}
-              type="bar"
-              height="100px"
-            />
-          </Grid>
+          </Stack>
         </Grid>
-      </CardContent>
-    </BlankCard>
+        <Grid item xs={7}>
+          <Chart
+            options={optionscolumnchart}
+            series={seriescolumnchart}
+            type="bar"
+            height="100px"
+          />
+        </Grid>
+      </Grid>
+    </CardContent>
   );
 };
 

@@ -74,7 +74,7 @@ const dataSource = [
   {
     bgColor: 'primary.light',
     title: 'Doanh thu',
-    total: '123.456.789đ',
+    total: '123.456.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -94,7 +94,7 @@ const dataSource = [
   {
     bgColor: 'primary.light',
     title: 'Hoa hồng',
-    total: '123.456.789đ',
+    total: '123.456.789₫',
     icons: (
       <Box
         textAlign="center"
@@ -283,7 +283,7 @@ const Invoice = () => {
 
       {
         title: 'Hóa đơn',
-        dataIndex: 'phone_number',
+        dataIndex: 'bill',
         // render: (_row:any, value: any) => <Button>Xuất ngay</Button>,
         render: () => <Button>Xuất ngay</Button>,
       },
@@ -387,7 +387,6 @@ const Invoice = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -425,12 +424,26 @@ const Invoice = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-                  const isSelected = dataSelect.includes(header.dataIndex);
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );

@@ -1,5 +1,6 @@
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
+  Avatar,
   Badge,
   Box,
   Checkbox,
@@ -12,7 +13,6 @@ import {
   TextField,
 } from '@mui/material';
 import { IconChartBar, IconEye, IconSearch } from '@tabler/icons-react';
-import { Dayjs } from 'dayjs';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cvr from 'src/assets/Adminphoto/cvr.png';
@@ -161,129 +161,101 @@ interface Column {
   isValids?: boolean;
 }
 interface AssistantData {
-  assistantId: string; // ID trợ lý
   customerId: string; // ID khách hàng
-  assistantImage: JSX.Element; // Ảnh trợ lý
+  ngaytao: Date; // Ngày tạo
+  assistantImage: string; // Ảnh trợ lý
   assistantName: string; // Tên trợ lý
-  level: number; // Level trợ lý
-  experience: number; // Exp (kinh nghiệm)
-  file: string; // File liên quan
-  fileSize: string; // Dung lượng file
-  functions: string[]; // Danh sách các chức năng
-  trainingToken: string; // Token huấn luyện
-  createdDate: string; // Ngày tạo
-  averageRotation: number; // Vòng quay trung bình
-  customer: string; // Thông tin khách hàng
-  order: string; // Đơn hàng
+  assistantId: string; // ID trợ lý
+  kh: string; // Khách hàngnpm run
+  dh: string; // Đơn hàng
   cvr: number; // CVR (Conversion Rate)
   gmv: number; // GMV (Gross Merchandise Value)
-  cost: number; // Chi phí
-  costToRevenueRatio: number; // Chi phí/Doanh thu
-  costPerOrder: number; // Chi phí/Đơn hàng
-  costPerCustomer: number; // Chi phí/Khách hàng
-  strategy: string; // Chiến lược
+  cp: number; // Chi phí
+  level: number; // Level trợ lý
+  experience: number; // Kinh nghiệm (experience)
+  token: string; // Token huấn luyện
+  vqtb: number; // Vòng quay trung bình
+  cl: string; // Chiến lược
+  functions: string[]; // Danh sách chức năng
+  files: string[]; // Files liên quan
+  dungluong: string; // Dung lượng file
+  cpdt: number;
+  cpdh: number;
+  cpkh: number;
 }
+
 const dataRows: AssistantData[] = [
   {
     assistantId: 'A001',
     customerId: 'C001',
-    assistantImage: (
-      <>
-        <img
-          src="https://picsum.photos/300/300"
-          width={50}
-          height={'auto'}
-          style={{ borderRadius: '50%' }}
-          alt=""
-        />
-      </>
-    ),
+    assistantImage: 'https://picsum.photos/300/300',
     assistantName: 'Trợ lý 1',
     level: 5,
     experience: 1200,
-    file: 'file001.pdf',
-    fileSize: '2MB',
     functions: ['Chức năng A', 'Chức năng B'],
-    trainingToken: 'Token001',
-    createdDate: '2023-01-15',
-    averageRotation: 120,
-    customer: 'Khách hàng A',
-    order: 'Đơn hàng 001',
+    token: 'Token001', // Changed `trainingToken` to `token`
+    ngaytao: new Date('2023-01-15'), // Changed `createdDate` to `ngaytao`
+    vqtb: 120, // Changed `averageRotation` to `vqtb`
+    kh: 'Khách hàng A', // Changed `customer` to `kh`
+    dh: 'Đơn hàng 001', // Changed `order` to `dh`
     cvr: 2.5,
     gmv: 15000,
-    cost: 2000,
-    costToRevenueRatio: 0.13,
-    costPerOrder: 25,
-    costPerCustomer: 100,
-    strategy: 'Chiến lược A',
+    cp: 2000, // Changed `cost` to `cp`
+    cpdt: 0.13, // Changed `costToRevenueRatio` to `cpdt`
+    cpdh: 50, // Added `cpdh`
+    cpkh: 100, // Changed `costPerCustomer` to `cpkh`
+    cl: 'Chiến lược Vòng Quay A', // Added `cl`
+    files: ['file001.pdf', 'file002.ppt'], // Changed `files` to an array
+    dungluong: '2MB', // Changed `fileSize` to `dungluong`
   },
   {
     assistantId: 'A002',
     customerId: 'C002',
-    assistantImage: (
-      <>
-        <img
-          src="https://picsum.photos/300/300"
-          width={50}
-          height={'auto'}
-          style={{ borderRadius: '50%' }}
-          alt=""
-        />
-      </>
-    ),
+    assistantImage: 'https://picsum.photos/300/300',
     assistantName: 'Trợ lý 2',
     level: 7,
     experience: 2500,
-    file: 'file002.docx',
-    fileSize: '3.5MB',
     functions: ['Chức năng C', 'Chức năng D'],
-    trainingToken: 'Token002',
-    createdDate: '2023-03-22',
-    averageRotation: 150,
-    customer: 'Khách hàng B',
-    order: 'Đơn hàng 002',
+    token: 'Token002',
+    ngaytao: new Date('2023-03-22'),
+    vqtb: 150,
+    kh: 'Khách hàng B',
+    dh: 'Đơn hàng 002',
     cvr: 3.2,
     gmv: 18000,
-    cost: 3000,
-    costToRevenueRatio: 0.17,
-    costPerOrder: 30,
-    costPerCustomer: 120,
-    strategy: 'Chiến lược B',
+    cp: 3000,
+    cpdt: 0.17,
+    cpdh: 60,
+    cpkh: 120,
+    cl: 'Chiến lược Vòng Quay B',
+    files: ['file003.docx', 'file004.xlsx'],
+    dungluong: '3.5MB',
   },
   {
     assistantId: 'A003',
     customerId: 'C003',
-    assistantImage: (
-      <>
-        <img
-          src="https://picsum.photos/300/300"
-          width={50}
-          height={'auto'}
-          style={{ borderRadius: '50%' }}
-          alt=""
-        />
-      </>
-    ),
+    assistantImage: 'https://picsum.photos/300/300',
     assistantName: 'Trợ lý 3',
     level: 3,
     experience: 500,
-    file: 'file003.xlsx',
-    fileSize: '1.2MB',
     functions: ['Chức năng E', 'Chức năng F'],
-    trainingToken: 'Token003',
-    createdDate: '2023-05-10',
-    averageRotation: 100,
-    customer: 'Khách hàng C',
-    order: 'Đơn hàng 003',
+    token: 'Token003',
+    ngaytao: new Date('2023-05-10'),
+    vqtb: 100,
+    kh: 'Khách hàng C',
+    dh: 'Đơn hàng 003',
     cvr: 1.8,
     gmv: 12000,
-    cost: 1500,
-    costToRevenueRatio: 0.12,
-    costPerOrder: 20,
-    costPerCustomer: 80,
-    strategy: 'Chiến lược C',
+    cp: 1500,
+    cpdt: 0.12,
+    cpdh: 45,
+    cpkh: 80,
+    cl: 'Chiến lược Vòng Quay C',
+    files: ['file005.xlsx'],
+    dungluong: '1.2MB',
   },
 ];
+
 interface FilmsData {
   id: number;
   title: string;
@@ -298,6 +270,8 @@ const FilmsData: FilmsData[] = [
   { id: 7, title: 'Chiến lược' },
 ];
 const AssistantAdmin = () => {
+  const navigate = useNavigate();
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -307,10 +281,17 @@ const AssistantAdmin = () => {
       {
         dataIndex: 'ngaytao',
         title: 'Ngày tạo',
+        render: (value) => {
+          const createdDate = new Date(value);
+          return createdDate.toLocaleDateString('vi-VN');
+        },
       },
       {
         dataIndex: 'assistantImage',
         title: 'Ảnh trợ lý',
+        render: (value) => {
+          return <Avatar src={value} alt={value} sx={{ width: '30px', height: '30px' }} />;
+        },
       },
       {
         dataIndex: 'assistantName',
@@ -341,11 +322,65 @@ const AssistantAdmin = () => {
         title: 'Chi phí',
       },
       {
+        dataIndex: 'level', //
+        title: 'Level',
+        isValids: false,
+      },
+      {
+        dataIndex: 'experience', //
+        title: 'Experience',
+        isValids: false,
+      },
+      {
+        dataIndex: 'token',
+        title: 'Token huấn luyện',
+        isValids: false,
+      },
+      {
+        dataIndex: 'vqtb',
+        title: 'Vòng quay trung bình',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cl',
+        title: 'Chiến lược',
+        isValids: false,
+      },
+      {
+        dataIndex: 'function',
+        title: 'Functions',
+        isValids: false,
+      },
+      {
+        dataIndex: 'files',
+        title: 'Files',
+        isValids: false,
+      },
+      {
+        dataIndex: 'dungluong',
+        title: 'Dung lượng',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdt',
+        title: 'Chi phí/ doanh thu',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdh',
+        title: 'Chi phí / chuyển đổi',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpkh',
+        title: 'Chi phí / khách hàng',
+        isValids: false,
+      },
+      {
         title: 'Xem chi tiết',
-        dataIndex: 'action',
+        dataIndex: 'actions',
         render: (_row: any, value: any) => {
           // eslint-disable-next-line react-hooks/rules-of-hooks
-          const navigate = useNavigate();
 
           const handleRedirect = () => {
             navigate(`/assistants/detail/${value.customerId}`);
@@ -353,7 +388,7 @@ const AssistantAdmin = () => {
 
           return (
             <>
-              <IconButton onClick={() => handleRedirect()}>
+              <IconButton onClick={handleRedirect}>
                 {' '}
                 {/* Using value.id for redirection */}
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
@@ -433,8 +468,7 @@ const AssistantAdmin = () => {
       setDataSelect([]);
     }
   }, [column]);
-  const [value, setValue] = useState<Dayjs | null>(null);
-  const [value1, setValue1] = useState<Dayjs | null>(null);
+
   const handleColumnChange = (event: any) => {
     const {
       target: { value },
@@ -461,13 +495,6 @@ const AssistantAdmin = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item xs={2}>
-                  <Link to="/admin/assistanteditoradmin">
-                    <IconButton color="primary" aria-label="Add to cart">
-                      <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton>
-                  </Link>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -503,7 +530,6 @@ const AssistantAdmin = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -541,14 +567,26 @@ const AssistantAdmin = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );

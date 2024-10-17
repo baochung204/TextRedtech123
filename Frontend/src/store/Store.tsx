@@ -27,6 +27,8 @@ import functionReducer from './apps/resources/function/functionSlice';
 import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
+import userSlice from './user/user-resources/userSlice'
+import assisstantSlice from './user/chatbots/assisstantUserSlice';
 
 export const store = configureStore({
   reducer: {
@@ -51,6 +53,8 @@ export const store = configureStore({
     str: StrReducer,
     function: functionReducer,
     file: fileReducer,
+    test: userSlice,
+    assisstant: assisstantSlice
   },
 });
 
@@ -76,6 +80,8 @@ const rootReducer = combineReducers({
   str: StrReducer,
   function: functionReducer,
   file: fileReducer,
+  test: userSlice,
+  assisstant: assisstantSlice
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

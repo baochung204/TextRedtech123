@@ -12,18 +12,12 @@ interface PropsTab3 {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dataSelect?: string[];
+  checkOption: string | null;
+  setCheckOption: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-// interface ItemTable3 {
-//   fileName: string;
-//   datas: string;
-//   creationDate: Date;
-//   formats: string;
-//   idCode: string;
-//   isCheck: boolean;
-// }
-
 const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
+  // const Tab3 = ({ value, open, setOpen, checkOption, setCheckOption }: PropsTab3) => {
   // const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [dataSelect] = useState<string[]>([]);
   const dispatch = useDispatch<AppDispatch>();

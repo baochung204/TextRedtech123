@@ -1,18 +1,17 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import { Avatar, Box, CardContent, Container, Rating, Stack, Typography } from '@mui/material';
 import React from 'react';
-import { Avatar, Box, CardContent, Container, Typography, Rating, Stack } from '@mui/material';
-import TestimonialTitle from './TestimonialTitle';
-import BlankCard from '../../shared/BlankCard';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
 import AnimationFadeIn from '../animation/Animation';
+import TestimonialTitle from './TestimonialTitle';
 
 //Carousel slider for product
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import './testimonial.css';
 
 interface SliderType {
@@ -115,53 +114,51 @@ const Testimonial = () => {
             <Slider {...settings}>
               {SliderData.map((slider, index) => (
                 <Box p="15px" key={index}>
-                  <BlankCard>
-                    <CardContent>
-                      <Stack direction="row">
-                        <Avatar src={slider.avatar} alt="user" sx={{ width: 40, height: 40 }} />
-                        <Box ml={2}>
-                          <Typography
-                            variant="h6"
-                            style={{
-                              width: '160px',
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                            }}
-                          >
-                            {slider.title}
-                          </Typography>
-                          <Typography
-                            color="textSecondary"
-                            variant="subtitle1"
-                            style={{
-                              width: '160px',
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                            }}
-                          >
-                            {slider.subtitle}
-                          </Typography>
-                        </Box>
-                        <Box ml="auto">
-                          <Rating
-                            size="small"
-                            name="simple-controlled"
-                            value={value}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-ignore
-                            onChange={(event, newValue) => {
-                              setValue(newValue);
-                            }}
-                          />
-                        </Box>
-                      </Stack>
-                      <Typography fontSize="15px" color="textSecondary" mt={3}>
-                        {slider.subtext}
-                      </Typography>
-                    </CardContent>
-                  </BlankCard>
+                  <CardContent>
+                    <Stack direction="row">
+                      <Avatar src={slider.avatar} alt="user" sx={{ width: 40, height: 40 }} />
+                      <Box ml={2}>
+                        <Typography
+                          variant="h6"
+                          style={{
+                            width: '160px',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}
+                        >
+                          {slider.title}
+                        </Typography>
+                        <Typography
+                          color="textSecondary"
+                          variant="subtitle1"
+                          style={{
+                            width: '160px',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}
+                        >
+                          {slider.subtitle}
+                        </Typography>
+                      </Box>
+                      <Box ml="auto">
+                        <Rating
+                          size="small"
+                          name="simple-controlled"
+                          value={value}
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
+                          onChange={(event, newValue) => {
+                            setValue(newValue);
+                          }}
+                        />
+                      </Box>
+                    </Stack>
+                    <Typography fontSize="15px" color="textSecondary" mt={3}>
+                      {slider.subtext}
+                    </Typography>
+                  </CardContent>
                 </Box>
               ))}
             </Slider>

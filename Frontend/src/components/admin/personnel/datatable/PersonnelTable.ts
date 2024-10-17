@@ -35,6 +35,7 @@ interface PersonnelTables {
     position: string,
     isValidate: boolean,
     // permissions?: Permissions
+    articleCount1: string
 }
 
 const images = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10];
@@ -63,6 +64,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: true, sua: false, xoa: true, khong: false },
         //     'Chức năng 2': { xem: true, them: true, sua: false, xoa: false, khong: true }
@@ -81,6 +83,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: false },
         //     'Chức năng 2': { xem: true, them: true, sua: false, xoa: true, khong: false }
@@ -99,6 +102,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: true, them: false, sua: true, xoa: false, khong: true },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: true }
@@ -117,6 +121,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -135,6 +140,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -153,6 +159,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -171,6 +178,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -189,6 +197,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -207,6 +216,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -225,6 +235,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -243,6 +254,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -261,6 +273,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -279,6 +292,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -297,6 +311,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -315,6 +330,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -333,6 +349,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -351,6 +368,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -369,6 +387,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -387,6 +406,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }
@@ -405,6 +425,7 @@ const PersonnelTable: PersonnelTables[] = [
         avt: getRandomImage(),
         position: getRandomPosition(),
         isValidate: true,
+        articleCount1: 'test'
         // permissions: {
         //     'Chức năng 1': { xem: false, them: false, sua: false, xoa: false, khong: false },
         //     'Chức năng 2': { xem: false, them: true, sua: false, xoa: false, khong: false }

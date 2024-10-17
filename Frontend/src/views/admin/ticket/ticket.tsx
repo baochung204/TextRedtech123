@@ -19,13 +19,12 @@ import processing from 'src/assets/Adminphoto/chua xu ly.png';
 import rating from 'src/assets/Adminphoto/DANH GIA.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import ticket from 'src/assets/Adminphoto/ticket.png';
+import rating1 from 'src/assets/Adminphoto/đanh gia.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
-import BlankCard from 'src/components/shared/BlankCard';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import rating1 from 'src/assets/Adminphoto/đanh gia.png';
 
 const BCrumb = [
   {
@@ -413,7 +412,6 @@ const Ticket = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -451,14 +449,26 @@ const Ticket = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  // console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );
@@ -473,9 +483,7 @@ const Ticket = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <BlankCard>
-            <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
-          </BlankCard>
+          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </PageContainer>

@@ -1,12 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
+import { Box, Button, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, CardContent, Grid, Typography, Stack } from '@mui/material';
-import BlankCard from '../../shared/BlankCard';
-import { Props } from 'react-apexcharts';
-
+import Chart, { Props } from 'react-apexcharts';
 
 const CurrentValue = () => {
   // chart color
@@ -216,102 +212,94 @@ const CurrentValue = () => {
   const seriescolumn3chart = [55, 55, 55];
 
   return (
-    <BlankCard>
-      <CardContent sx={{ p: '30px' }}>
-        <Stack direction="row" spacing={2} justifyContent="space-between">
-          <Typography variant="h5">Current Value</Typography>
-          <Stack spacing={1} direction="row">
-            <Button color="primary" variant="contained">
-              Buy
-            </Button>
-            <Button color="primary" variant="outlined">
-              Sell
-            </Button>
-          </Stack>
+    <CardContent sx={{ p: '30px' }}>
+      <Stack direction="row" spacing={2} justifyContent="space-between">
+        <Typography variant="h5">Current Value</Typography>
+        <Stack spacing={1} direction="row">
+          <Button color="primary" variant="contained">
+            Buy
+          </Button>
+          <Button color="primary" variant="outlined">
+            Sell
+          </Button>
         </Stack>
+      </Stack>
 
-        <Grid container spacing={3} mt={2}>
-          {/* 1 */}
-          <Grid item xs={12} sm={4}>
-            <BlankCard>
-              <CardContent sx={{ p: '30px' }}>
-                <Box>
-                  <Chart
-                    options={optionscolumnchart}
-                    series={seriescolumnchart}
-                    type="bar"
-                    height="200px"
-                  />
-                </Box>
-                <Box mt={4}>
-                  <Typography variant="h6" fontWeight={400} mb={1}>
-                    Income
-                  </Typography>
-                  <Stack direction="row" spacing={2} justifyContent="space-between">
-                    <Typography variant="h4">$25,260</Typography>
-                    <Typography variant="subtitle1" color="success.main">
-                      +1.25%
-                    </Typography>
-                  </Stack>
-                </Box>
-              </CardContent>
-            </BlankCard>
-          </Grid>
-          {/* 2 */}
-          <Grid item xs={12} sm={4}>
-            <BlankCard>
-              <CardContent sx={{ p: '30px' }}>
-                <Box>
-                  <Chart
-                    options={optionscolumn2chart}
-                    series={seriescolumn2chart}
-                    type="bar"
-                    height="200px"
-                  />
-                </Box>
-                <Box mt={4}>
-                  <Typography variant="h6" fontWeight={400} mb={1}>
-                    Expance
-                  </Typography>
-                  <Stack direction="row" spacing={2} justifyContent="space-between">
-                    <Typography variant="h4">$12,260</Typography>
-                    <Typography variant="subtitle1" color="success.main">
-                      +4.25%
-                    </Typography>
-                  </Stack>
-                </Box>
-              </CardContent>
-            </BlankCard>
-          </Grid>
-          {/* 3 */}
-          <Grid item xs={12} sm={4}>
-            <BlankCard>
-              <CardContent sx={{ p: '30px' }}>
-                <Box>
-                  <Chart
-                    options={optionscolumn3chart}
-                    series={seriescolumn3chart}
-                    type="donut"
-                    height="220px"
-                  />
-                </Box>
-                <Box mt={4}>
-                  <Typography variant="h6" fontWeight={400} mb={1}>
-                    Current Year
-                  </Typography>
-                  <Stack direction="row" spacing={2} justifyContent="space-between">
-                    <Typography variant="h4">$98,260</Typography>
-                    <Typography variant="subtitle1" color="success.main">
-                      +2.5%
-                    </Typography>
-                  </Stack>
-                </Box>
-              </CardContent>
-            </BlankCard>
-          </Grid>
+      <Grid container spacing={3} mt={2}>
+        {/* 1 */}
+        <Grid item xs={12} sm={4}>
+          <CardContent sx={{ p: '30px' }}>
+            <Box>
+              <Chart
+                options={optionscolumnchart}
+                series={seriescolumnchart}
+                type="bar"
+                height="200px"
+              />
+            </Box>
+            <Box mt={4}>
+              <Typography variant="h6" fontWeight={400} mb={1}>
+                Income
+              </Typography>
+              <Stack direction="row" spacing={2} justifyContent="space-between">
+                <Typography variant="h4">$25,260</Typography>
+                <Typography variant="subtitle1" color="success.main">
+                  +1.25%
+                </Typography>
+              </Stack>
+            </Box>
+          </CardContent>
         </Grid>
-      </CardContent>
-    </BlankCard>
+        {/* 2 */}
+        <Grid item xs={12} sm={4}>
+          <CardContent sx={{ p: '30px' }}>
+            <Box>
+              <Chart
+                options={optionscolumn2chart}
+                series={seriescolumn2chart}
+                type="bar"
+                height="200px"
+              />
+            </Box>
+            <Box mt={4}>
+              <Typography variant="h6" fontWeight={400} mb={1}>
+                Expance
+              </Typography>
+              <Stack direction="row" spacing={2} justifyContent="space-between">
+                <Typography variant="h4">$12,260</Typography>
+                <Typography variant="subtitle1" color="success.main">
+                  +4.25%
+                </Typography>
+              </Stack>
+            </Box>
+          </CardContent>
+        </Grid>
+        {/* 3 */}
+        <Grid item xs={12} sm={4}>
+          <CardContent sx={{ p: '30px' }}>
+            <Box>
+              <Chart
+                options={optionscolumn3chart}
+                series={seriescolumn3chart}
+                type="donut"
+                height="220px"
+              />
+            </Box>
+            <Box mt={4}>
+              <Typography variant="h6" fontWeight={400} mb={1}>
+                Current Year
+              </Typography>
+              <Stack direction="row" spacing={2} justifyContent="space-between">
+                <Typography variant="h4">$98,260</Typography>
+                <Typography variant="subtitle1" color="success.main">
+                  +2.5%
+                </Typography>
+              </Stack>
+            </Box>
+          </CardContent>
+        </Grid>
+      </Grid>
+    </CardContent>
   );
 };
 

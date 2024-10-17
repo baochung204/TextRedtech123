@@ -17,94 +17,93 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import AddDialogvoucher from './add/addDialog';
 
 interface DataRow {
   id: string;
-  creationTime: string;
-  voucherName: string;
-  endTime: string;
-  Mavoucher: string;
-  quantity: number;
-  customerId: string;
-  customerName: string;
-  tag: 'Hoạt động' | 'Đang hoạt động' | 'Ẩn';
-  use: number;
+  startDate: string;
+  name: string;
+  endDate: string;
+  code: string;
+  totalCoupon: number;
+  type: string;
+  valueCoupon: string;
+  status: 'Hoạt động' | 'Đang hoạt động' | 'Ẩn';
+  totalUsed: number;
 }
 
 const dataRows: DataRow[] = [
   {
     id: 'MA001',
-    creationTime: '2024-09-01',
-    voucherName: 'Sản phẩm mới',
-    endTime: '2024-09-03',
-    Mavoucher: 'JDEwJG5zZ3J1c2',
-    quantity: 234,
-    customerId: 'Đồng',
-    customerName: '19.000 đ',
-    tag: 'Hoạt động',
-    use: 23,
+    startDate: '2024-09-01',
+    name: 'Sản phẩm mới',
+    endDate: '2024-09-03',
+    code: 'JDEwJG5zZ3J1c2',
+    totalCoupon: 234,
+    type: 'Đồng',
+    valueCoupon: '19.000 đ',
+    status: 'Hoạt động',
+    totalUsed: 23,
   },
   {
     id: 'MA002',
-    creationTime: '2024-09-02',
-    voucherName: 'Mã giảm giá',
-    endTime: '2025-10-12',
-    Mavoucher: 'DFG3554F3TT4F',
-    quantity: 680,
-    customerId: 'Đồng',
-    customerName: '99.000 đ',
-    tag: 'Đang hoạt động',
-    use: 41,
+    startDate: '2024-09-02',
+    name: 'Mã giảm giá',
+    endDate: '2025-10-12',
+    code: 'DFG3554F3TT4F',
+    totalCoupon: 680,
+    type: 'Đồng',
+    valueCoupon: '99.000 đ',
+    status: 'Đang hoạt động',
+    totalUsed: 41,
   },
   {
     id: 'MA003',
-    creationTime: '2024-09-03',
-    voucherName: 'khách hàng thân thiết',
-    endTime: '2024-09-03',
-    Mavoucher: 'DG335534TTGGE',
-    quantity: 32,
-    customerId: 'Phần trăm',
-    customerName: '10%',
-    tag: 'Đang hoạt động',
-    use: 21,
+    startDate: '2024-09-03',
+    name: 'khách hàng thân thiết',
+    endDate: '2024-09-03',
+    code: 'DG335534TTGGE',
+    totalCoupon: 32,
+    type: 'Phần trăm',
+    valueCoupon: '10%',
+    status: 'Đang hoạt động',
+    totalUsed: 21,
   },
   {
     id: 'MA004',
-    creationTime: '2024-09-04',
-    voucherName: 'mini-game',
-    endTime: '2024-09-03',
-    Mavoucher: '44FV43TG4V34G',
-    quantity: 54,
-    customerId: 'Phần trăm',
-    customerName: '10%',
-    tag: 'Ẩn',
-    use: 3,
+    startDate: '2024-09-04',
+    name: 'mini-game',
+    endDate: '2024-09-03',
+    code: '44FV43TG4V34G',
+    totalCoupon: 54,
+    type: 'Phần trăm',
+    valueCoupon: '10%',
+    status: 'Ẩn',
+    totalUsed: 3,
   },
   {
     id: 'MA005',
-    creationTime: '2024-09-05',
-    voucherName: ' sự kiện',
-    endTime: '2024-09-03',
-    Mavoucher: 'DGH34T53167D5',
-    quantity: 23,
-    customerId: 'Phần trăm',
-    customerName: '20%',
-    tag: 'Ẩn',
-    use: 7,
+    startDate: '2024-09-05',
+    name: ' sự kiện',
+    endDate: '2024-09-03',
+    code: 'DGH34T53167D5',
+    totalCoupon: 23,
+    type: 'Phần trăm',
+    valueCoupon: '20%',
+    status: 'Ẩn',
+    totalUsed: 7,
   },
   {
     id: 'MA006',
-    creationTime: '2024-09-06',
-    voucherName: 'khách hàng thân thiết',
-    endTime: '2024-09-03',
-    Mavoucher: 'RH56YH563226TYB',
-    quantity: 424,
-    customerId: 'Phần trăm',
-    customerName: '10%',
-    tag: 'Đang hoạt động',
-    use: 23,
+    startDate: '2024-09-06',
+    name: 'khách hàng thân thiết',
+    endDate: '2024-09-03',
+    code: 'RH56YH563226TYB',
+    totalCoupon: 424,
+    type: 'Phần trăm',
+    valueCoupon: '10%',
+    status: 'Đang hoạt động',
+    totalUsed: 23,
   },
 ];
 
@@ -126,42 +125,42 @@ const ListVoucher = () => {
       },
       {
         title: 'Tên chiến dịch',
-        dataIndex: 'voucherName',
+        dataIndex: 'name',
       },
       {
         title: 'Ngày tạo',
-        dataIndex: 'creationTime',
+        dataIndex: 'startDate',
       },
       {
         title: 'Hạn sửa dụng',
-        dataIndex: 'endTime',
+        dataIndex: 'endDate',
       },
       {
         title: 'Mã khuyến mãi',
-        dataIndex: 'Mavoucher',
+        dataIndex: 'code',
       },
       {
         title: 'Số lượng mã',
-        dataIndex: 'quantity',
+        dataIndex: 'totalCoupon',
       },
       {
         title: 'Đã sử dụng',
-        dataIndex: 'use',
+        dataIndex: 'totalUsed',
       },
       {
         title: 'Loại giảm giá',
-        dataIndex: 'customerId',
+        dataIndex: 'type',
         render: (value: any) => {
           return <Chip label={value} color={value === 'Đồng' ? 'primary' : 'secondary'} />;
         },
       },
       {
         title: 'Giá trị giảm',
-        dataIndex: 'customerName',
+        dataIndex: 'valueCoupon',
       },
       {
         title: 'Trạng thái',
-        dataIndex: 'tag',
+        dataIndex: 'status',
         render: (value: any) => {
           return (
             <Chip
@@ -173,7 +172,6 @@ const ListVoucher = () => {
           );
         },
       },
-      
     ],
     [],
   );
@@ -201,10 +199,10 @@ const ListVoucher = () => {
   };
 
   return (
-    <div>
+    <>
       {' '}
       <Grid item xs={12}>
-        <Grid container sx={{ alignItems: 'center' }} spacing={2}>
+        <Grid container sx={{ alignItems: 'center', mt: '1px' }} spacing={2}>
           <Grid
             item
             xs={4}
@@ -260,7 +258,6 @@ const ListVoucher = () => {
                 <FilterListIcon />
               </Badge>
             </IconButton>
-
             <Select
               multiple
               value={dataSelect}
@@ -298,14 +295,26 @@ const ListVoucher = () => {
                 },
               }}
             >
-              {column.map((header: any) => {
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                const isSelected = dataSelect.includes(header.dataIndex);
-
+              <MenuItem>
+                <Checkbox
+                  checked={!(dataSelect.length === column.length)}
+                  indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                  onChange={() => {
+                    if (dataSelect.length < column.length) {
+                      const allColumns = column.map((header: Column) => header.dataIndex);
+                      setDataSelect(allColumns);
+                    } else {
+                      setDataSelect([]);
+                    }
+                  }}
+                />
+                <ListItemText primary="Chọn tất cả" />
+              </MenuItem>
+              {column.map((header: Column) => {
+                const isSelected = !dataSelect.includes(header.dataIndex);
                 return (
                   <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                    <Checkbox checked={!isSelected} />
+                    <Checkbox checked={isSelected} />
                     <ListItemText primary={header.title} />
                   </MenuItem>
                 );
@@ -320,78 +329,11 @@ const ListVoucher = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <BlankCard>
-          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
-        </BlankCard>
+        <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
       </Grid>
       <AddDialogvoucher isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
-    </div>
+    </>
   );
 };
 
 export default ListVoucher;
-
-// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-//   if (b[orderBy] < a[orderBy]) {
-//     return -1;
-//   }
-//   if (b[orderBy] > a[orderBy]) {
-//     return 1;
-//   }
-
-//   return 0;
-// }
-
-// type Order = 'asc' | 'desc';
-
-// function getComparator<Key extends keyof any>(
-//   order: Order,
-//   orderBy: Key,
-// ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-//   return order === 'desc'
-//     ? (a, b) => descendingComparator(a, b, orderBy)
-//     : (a, b) => -descendingComparator(a, b, orderBy);
-// }
-// interface EnhancedTableProps {
-//   numSelected: number;
-//   order: 'asc' | 'desc';
-//   orderBy: string;
-//   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-//   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
-//   rowCount: number;
-// }
-
-// function EnhancedTableHead(props: EnhancedTableProps) {
-//   const { order, orderBy, onRequestSort } = props;
-//   const createSortHandler = (property: keyof DataRow) => (event: React.MouseEvent<unknown>) => {
-//     onRequestSort(event, property);
-//   };
-//   return (
-//     <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
-//       <TableRow>
-//         {headCells.map((headCell: any) => (
-//           <TableCell
-//             key={headCell.id}
-//             align={headCell.numeric ? 'right' : 'left'}
-//             padding={headCell.disablePadding ? 'none' : 'normal'}
-//             sortDirection={orderBy === headCell.id ? order : false}
-//             sx={{ whiteSpace: 'nowrap' }}
-//           >
-//             <TableSortLabel
-//               active={orderBy === headCell.id}
-//               direction={orderBy === headCell.id ? order : 'asc'}
-//               onClick={createSortHandler(headCell.id)}
-//             >
-//               <Typography variant="h6">{headCell.label}</Typography>
-//               {/* {orderBy === headCell.id ? (
-//                     <Box component="span">
-//                       {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-//                     </Box>
-//                   ) : null} */}
-//             </TableSortLabel>
-//           </TableCell>
-//         ))}
-//       </TableRow>
-//     </TableHead>
-//   );
-// }

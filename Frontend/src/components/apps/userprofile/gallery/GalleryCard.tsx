@@ -1,23 +1,22 @@
 import {
   Box,
-  Stack,
-  Grid,
-  Typography,
-  Chip,
-  TextField,
-  InputAdornment,
-  IconButton,
   CardMedia,
-  Skeleton
+  Chip,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Skeleton,
+  Stack,
+  TextField,
+  Typography,
 } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
-import BlankCard from 'src/components/shared/BlankCard';
-import { useSelector, useDispatch } from 'src/store/Store';
-import { fetchPhotos } from 'src/store/apps/userProfile/UserProfileSlice';
 import { IconDotsVertical, IconSearch } from '@tabler/icons-react';
 import { format } from 'date-fns';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'src/store/Store';
+import { fetchPhotos } from 'src/store/apps/userProfile/UserProfileSlice';
 import { GallaryType } from 'src/types/apps/users';
 
 const GalleryCard = () => {
@@ -42,7 +41,7 @@ const GalleryCard = () => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 500);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -81,35 +80,33 @@ const GalleryCard = () => {
         {getPhotos.map((photo) => {
           return (
             <Grid item xs={12} lg={4} key={photo.id}>
-              <BlankCard className="hoverCard">
-                {isLoading ? (
-                  <>
-                    <Skeleton
-                      variant="rectangular"
-                      animation="wave"
-                      width="100%"
-                      height={220}
-                    ></Skeleton>
-                  </>
-                ) : (
-                  <CardMedia component={'img'} height="220" alt="Remy Sharp" src={photo.cover} />
-                )}
-                <Box p={3}>
-                  <Stack direction="row" gap={1}>
-                    <Box>
-                      <Typography variant="h6">{photo.name}jpg</Typography>
-                      <Typography variant="caption">
-                        {format(new Date(photo.time), 'E, MMM d, yyyy')}
-                      </Typography>
-                    </Box>
-                    <Box ml={'auto'}>
-                      <IconButton>
-                        <IconDotsVertical size="16" />
-                      </IconButton>
-                    </Box>
-                  </Stack>
-                </Box>
-              </BlankCard>
+              {isLoading ? (
+                <>
+                  <Skeleton
+                    variant="rectangular"
+                    animation="wave"
+                    width="100%"
+                    height={220}
+                  ></Skeleton>
+                </>
+              ) : (
+                <CardMedia component={'img'} height="220" alt="Remy Sharp" src={photo.cover} />
+              )}
+              <Box p={3}>
+                <Stack direction="row" gap={1}>
+                  <Box>
+                    <Typography variant="h6">{photo.name}jpg</Typography>
+                    <Typography variant="caption">
+                      {format(new Date(photo.time), 'E, MMM d, yyyy')}
+                    </Typography>
+                  </Box>
+                  <Box ml={'auto'}>
+                    <IconButton>
+                      <IconDotsVertical size="16" />
+                    </IconButton>
+                  </Box>
+                </Stack>
+              </Box>
             </Grid>
           );
         })}

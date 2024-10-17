@@ -12,9 +12,9 @@ import {
   MenuItem,
   Select,
   TextField,
-  Typography,
+  Tooltip,
 } from '@mui/material';
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -25,6 +25,7 @@ import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
 import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { DataHistoryTable } from './datatable/OrderTableData';
+import DialogViewHistory from './dialog/DialogViewHistory';
 const dataSource = [
   {
     bgColor: 'primary.light',
@@ -155,6 +156,8 @@ interface Column {
 
 const HistoryAffiliate = () => {
   // const [selectedItems] = useState<number[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -246,38 +249,56 @@ const HistoryAffiliate = () => {
           />
         ),
       },
-      {
-        title: 'Duyệt hóa đơn',
-        dataIndex: '',
-        // render: (_row:any, value: any) => (
-        render: () => (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Checkbox defaultChecked />
-          </Box>
-        ),
-      },
-      {
-        title: 'Đã thanh toán',
-        dataIndex: '',
-        // render: (row, value: any) => (
-        render: () => (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Checkbox defaultChecked />
-          </Box>
-        ),
-      },
+
+      // {
+      //   title: 'Duyệt hóa đơn',
+      //   dataIndex: '',
+      //   // render: (_row:any, value: any) => (
+      //   render: () => (
+      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      //       <Checkbox defaultChecked />
+      //     </Box>
+      //   ),
+      // },
+      // {
+      //   title: 'Đã thanh toán',
+      //   dataIndex: '',
+      //   // render: (row, value: any) => (
+      //   render: () => (
+      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      //       <Checkbox defaultChecked />
+      //     </Box>
+      //   ),
+      // },
       {
         title: 'Thông báo',
         dataIndex: '',
         // render: (row, value: any) => <Button>Gửi email</Button>,
         render: () => <Button>Gửi email</Button>,
       },
+      {
+        dataIndex: 'actions',
+        title: 'Hoạt động',
+        render: () => (
+          // console.log(value)
+          <Box display={'flex'} sx={{ justifyContent: 'center' }}>
+            <Tooltip title="Xem" placement="right">
+              <IconButton
+                onClick={() => {
+                  setOpen(!open);
+                  // setSelectId(value.id);
+                }}
+              >
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        ),
+      },
     ],
     [],
   );
-
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -363,7 +384,6 @@ const HistoryAffiliate = () => {
                   <FilterListIcon />
                 </Badge>
               </IconButton>
-
               <Select
                 multiple
                 value={dataSelect}
@@ -401,12 +421,26 @@ const HistoryAffiliate = () => {
                   },
                 }}
               >
-                {column.map((header: any) => {
-                  const isSelected = dataSelect.includes(header.dataIndex);
-
+                <MenuItem>
+                  <Checkbox
+                    checked={!(dataSelect.length === column.length)}
+                    indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                    onChange={() => {
+                      if (dataSelect.length < column.length) {
+                        const allColumns = column.map((header: Column) => header.dataIndex);
+                        setDataSelect(allColumns);
+                      } else {
+                        setDataSelect([]);
+                      }
+                    }}
+                  />
+                  <ListItemText primary="Chọn tất cả" />
+                </MenuItem>
+                {column.map((header: Column) => {
+                  const isSelected = !dataSelect.includes(header.dataIndex);
                   return (
                     <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                      <Checkbox checked={!isSelected} />
+                      <Checkbox checked={isSelected} />
                       <ListItemText primary={header.title} />
                     </MenuItem>
                   );
@@ -425,6 +459,7 @@ const HistoryAffiliate = () => {
           <CustomTable columns={column} dataSource={DataHistoryTable} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogViewHistory open={open} setOpen={setOpen} />
     </>
   );
 };
