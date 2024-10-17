@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { ApiResponse } from 'src/types/apps/file';
 const URL_GET = 'https://redai02-4af4309fd76b.herokuapp.com/user-resources'
-const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoiQUNDRVNTIiwic3ViIjoiMTA4MCIsImlhdCI6MTcyODcwMjU5OSwiZXhwIjoxNzI4NzM4NTk5fQ.j-u5sSppU8Ih5IGBcWw61F-q4v_L7ip5SEtBAZCjZcw'
+const token = localStorage.getItem('accessToken')
 interface FileState {
   data: ApiResponse[];
   loading: boolean;
@@ -18,7 +18,7 @@ export const fetchFile = createAsyncThunk('file/fetchFile', async () => {
   const res = await axios.get(`${URL_GET}/files`,
     {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );

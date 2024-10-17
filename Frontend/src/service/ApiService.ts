@@ -87,7 +87,7 @@ export default class ApiService {
 
     // Authentication APIs
     static async loginUser(account: string, password: string) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/login`, {
+        const response = await axios.post(`${this.BASE_URL}/auth/login`, {
             account: account,
             password: password,
         });
