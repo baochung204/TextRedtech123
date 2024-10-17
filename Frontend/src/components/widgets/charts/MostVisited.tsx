@@ -1,12 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
+import { Box, CardContent, MenuItem, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { CardContent, Typography, MenuItem, Stack, Box } from '@mui/material';
-import BlankCard from '../../shared/BlankCard';
+import React from 'react';
+import Chart, { Props } from 'react-apexcharts';
 import CustomSelect from '../../forms/theme-elements/CustomSelect';
-import { Props } from 'react-apexcharts';
 
 const MostVisited = () => {
   // for select
@@ -82,55 +80,53 @@ const MostVisited = () => {
   ];
 
   return (
-    <BlankCard>
-      <CardContent sx={{ p: '30px' }}>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography variant="h5">Most Visited</Typography>
-          <CustomSelect
-            labelId="month-dd"
-            id="month-dd"
-            size="small"
-            value={month}
-            onChange={handleChange}
-          >
-            <MenuItem value={1}>March 2023</MenuItem>
-            <MenuItem value={2}>April 2023</MenuItem>
-            <MenuItem value={3}>May 2023</MenuItem>
-          </CustomSelect>
-        </Stack>
+    <CardContent sx={{ p: '30px' }}>
+      <Stack direction="row" justifyContent="space-between">
+        <Typography variant="h5">Most Visited</Typography>
+        <CustomSelect
+          labelId="month-dd"
+          id="month-dd"
+          size="small"
+          value={month}
+          onChange={handleChange}
+        >
+          <MenuItem value={1}>March 2023</MenuItem>
+          <MenuItem value={2}>April 2023</MenuItem>
+          <MenuItem value={3}>May 2023</MenuItem>
+        </CustomSelect>
+      </Stack>
 
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="250px" />
+      <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="250px" />
 
-        <Stack direction="row" spacing={2} justifyContent="center">
-          <Box display="flex" alignItems="center" gap={1}>
-            <Box
-              sx={{
-                width: '8px',
-                height: '8px',
-                backgroundColor: 'primary.main',
-                borderRadius: '100%',
-              }}
-            ></Box>
-            <Typography variant="subtitle2" color="textSecondary">
-              San Francisco
-            </Typography>
-          </Box>
-          <Box display="flex" alignItems="center" gap={1}>
-            <Box
-              sx={{
-                width: '8px',
-                height: '8px',
-                backgroundColor: 'secondary.main',
-                borderRadius: '100%',
-              }}
-            ></Box>
-            <Typography variant="subtitle2" color="textSecondary">
-              Diego
-            </Typography>
-          </Box>
-        </Stack>
-      </CardContent>
-    </BlankCard>
+      <Stack direction="row" spacing={2} justifyContent="center">
+        <Box display="flex" alignItems="center" gap={1}>
+          <Box
+            sx={{
+              width: '8px',
+              height: '8px',
+              backgroundColor: 'primary.main',
+              borderRadius: '100%',
+            }}
+          ></Box>
+          <Typography variant="subtitle2" color="textSecondary">
+            San Francisco
+          </Typography>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Box
+            sx={{
+              width: '8px',
+              height: '8px',
+              backgroundColor: 'secondary.main',
+              borderRadius: '100%',
+            }}
+          ></Box>
+          <Typography variant="subtitle2" color="textSecondary">
+            Diego
+          </Typography>
+        </Box>
+      </Stack>
+    </CardContent>
   );
 };
 

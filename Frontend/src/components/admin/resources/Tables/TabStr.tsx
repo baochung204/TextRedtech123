@@ -2,7 +2,6 @@ import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import DialogStrView from '../dialog/DialogStrView';
 import { StrategyRows } from '../mockData/TableStr';
 import { HeadCell } from '../types/HeadCell';
@@ -66,20 +65,11 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
       dataIndex: 'creator',
       title: 'Người tạo',
     },
-    // {
-    //   dataIndex: 'status',
-    //   title: 'Trạng thái',
-    //   render: (_row: any, value: any) => (
-    //     <Typography color="textSecondary" variant="subtitle2">
-    //       <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
-    //     </Typography>
-    //   ),
-    // },
+
     {
       dataIndex: 'actions',
       title: 'Hoạt động',
       render: (_row: any, value: any) => (
-        // console.log(value)
         <Box display={'flex'} sx={{ justifyContent: 'center' }}>
           <Tooltip title="Xem" placement="right">
             <IconButton
@@ -90,9 +80,6 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            {/* <IconButton>
-            <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-          </IconButton> */}
           </Tooltip>
         </Box>
       ),
@@ -100,10 +87,10 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
   ];
 
   return (
-    <BlankCard>
+    <>
       <CustomTable columns={StrategyCells} dataSource={StrategyRows} dataSelect={dataSelect} />
       <DialogStrView open={open} setOpen={setOpen} value={selectId as any} />
-    </BlankCard>
+    </>
   );
 };
 

@@ -22,48 +22,13 @@ import { visuallyHidden } from '@mui/utils';
 import { format } from 'date-fns';
 import React from 'react';
 import PageContainer from 'src/components/container/PageContainer';
-import BlankCard from 'src/components/shared/BlankCard';
-// import { EnTableType } from 'src/components/tables/tableData';
 import { tablepoin } from 'src/components/tables/tablepoin';
 
-// const BCrumb = [
-//   {
-//     to: '/',
-//     title: 'Home',
-//   },
-//   {
-//     title: 'Checkout',
-//   },
-// ];
-// import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// import CustomSelect from '../../forms/theme-elements/CustomSelect';
-// import DashboardCard from '../../shared/DashboardCard';
-
-// import Slide from '@mui/material/Slide';
-// import { TransitionProps } from '@mui/material/transitions';
 import pointimg from 'src/assets/images/icon.png/point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import SearchInput from 'src/components/apps/search/search';
 import Afletpoint1 from 'src/components/material-ui/dialog/Alertpoint1';
 
-// const BCrumb = [
-//   {
-//     to: '/',
-//     title: 'Trang chủ',
-//   },
-//   { to: '/buy/point', title: 'Quy đổi ngân lượng' },
-//   { title: 'Lịch sử quy đổi ' },
-// ];
-// const Transition = React.forwardRef(function Transition(
-//   props: TransitionProps & {
-//     children: React.ReactElement;
-//   },
-//   ref: React.Ref<unknown>,
-// ) {
-//   return <Slide direction="up" ref={ref} {...props} />;
-// });
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -323,232 +288,118 @@ const Lspoin = () => {
           </Box>
         </Grid>
       </Grid>
-      <BlankCard>
-        <Box mb={2} sx={{ mb: 2 }}>
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
-            >
-              <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-              />
-              <TableBody>
-                {stableSort(rows, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any) => {
-                    // const isItemSelected = isSelected(row.name);
-                    // const labelId = `enhanced-table-checkbox-${index}`;
 
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, row.name)}
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.id}
-                      >
-                        <TableCell style={{ width: '10%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.MHD}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell style={{ width: '12%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {format(new Date(row.createdAt), 'MM/dd/yyyy')}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell style={{ width: '15%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography
-                                color="textSecondary"
-                                variant="subtitle2"
-                                display={'flex'}
-                                gap={'5px'}
-                                alignItems={'center'}
-                              >
-                                {row.point} <img src={pointimg} alt="" width={'25px'} />
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell style={{ width: '15%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>
-                              <Typography color="textSecondary" variant="subtitle2">
-                                {row.amount.toLocaleString()} đ
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </TableCell>
-
-                        <TableCell style={{ width: '18%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>{getStatusTextAndColor(row.status)}</Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell style={{ width: '18%' }}>
-                          <Stack spacing={2} direction="row">
-                            <Box>{getInvoiceTextAndColor(row.invoice)}</Box>
-                          </Stack>
-                        </TableCell>
-                        <TableCell style={{ width: '18%' }}>
-                          <Stack>
-                            <Afletpoint1 row={row}></Afletpoint1>
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-              {/* <TableBody>
-                  {stableSort(rows, getComparator(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row: any, index) => {
-                      const isItemSelected = isSelected(row.name);
-                      const labelId = `enhanced-table-checkbox-${index}`;
-  
-                      return (
-                        <TableRow
-                          hover
-                          onClick={(event) => handleClick(event, row.name)}
-                          role="checkbox"
-                          aria-checked={isItemSelected}
-                          tabIndex={-1}
-                          key={row.id}
-                          selected={isItemSelected}
-                        >
-                          <TableCell padding="checkbox">
-                            <CustomCheckbox
-                              checked={isItemSelected}
-                              inputProps={{
-                                'aria-labelledby': labelId,
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Stack spacing={2} direction="row">
-                              <Avatar
-                                alt="text"
-                                src={row.imgsrc}
-                                sx={{
-                                  width: '35px',
-                                  height: '35px',
-                                }}
-                              />
-                              <Box>
-                                <Typography variant="h6" fontWeight="600">
-                                  {row.name}
-                                </Typography>
-                                <Typography color="textSecondary" variant="subtitle2">
-                                  {row.email}
-                                </Typography>
-                              </Box>
-                            </Stack>
-                          </TableCell>
-                          <TableCell>
-                            <Typography color="textSecondary" variant="subtitle2" fontWeight="400">
-                              {row.pname}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Stack direction="row">
-                              <AvatarGroup>
-                                {row.teams.map((team: any) => (
-                                  <Avatar
-                                    key={team.id}
-                                    sx={{
-                                      width: '35px',
-                                      height: '35px',
-                                      bgcolor: team.color,
-                                    }}
-                                  >
-                                    {team.text}
-                                  </Avatar>
-                                ))}
-                              </AvatarGroup>
-                            </Stack>
-                          </TableCell>
-                          <TableCell>
-                            <Stack spacing={1} direction="row" alignItems="center">
-                              <Badge
-                                color={
-                                  row.status === 'Active'
-                                    ? 'success'
-                                    : row.status === 'Pending'
-                                    ? 'warning'
-                                    : row.status === 'Completed'
-                                    ? 'primary'
-                                    : row.status === 'Cancel'
-                                    ? 'error'
-                                    : 'secondary'
-                                }
-                                variant="dot"
-                              ></Badge>
-                              <Typography color="textSecondary" variant="body1">
-                                {row.status}
-                              </Typography>
-                            </Stack>
-                          </TableCell>
-                          <TableCell>
-                            <Typography color="textSecondary" variant="body1">
-                              {row.weeks}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography variant="h6">${row.budget}k</Typography>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  {emptyRows > 0 && (
+      <Box mb={2} sx={{ mb: 2 }}>
+        <TableContainer>
+          <Table
+            sx={{ minWidth: 750 }}
+            aria-labelledby="tableTitle"
+            size={dense ? 'small' : 'medium'}
+          >
+            <EnhancedTableHead
+              numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              rowCount={rows.length}
+            />
+            <TableBody>
+              {stableSort(rows, getComparator(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row: any) => {
+                  return (
                     <TableRow
-                      style={{
-                        height: (dense ? 33 : 53) * emptyRows,
-                      }}
+                      hover
+                      onClick={(event) => handleClick(event, row.name)}
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.id}
                     >
-                      <TableCell colSpan={6} />
+                      <TableCell style={{ width: '10%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>
+                            <Typography color="textSecondary" variant="subtitle2">
+                              {row.MHD}
+                            </Typography>
+                          </Box>
+                        </Stack>
+                      </TableCell>
+                      <TableCell style={{ width: '12%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>
+                            <Typography color="textSecondary" variant="subtitle2">
+                              {format(new Date(row.createdAt), 'MM/dd/yyyy')}
+                            </Typography>
+                          </Box>
+                        </Stack>
+                      </TableCell>
+                      <TableCell style={{ width: '15%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>
+                            <Typography
+                              color="textSecondary"
+                              variant="subtitle2"
+                              display={'flex'}
+                              gap={'5px'}
+                              alignItems={'center'}
+                            >
+                              {row.point} <img src={pointimg} alt="" width={'25px'} />
+                            </Typography>
+                          </Box>
+                        </Stack>
+                      </TableCell>
+                      <TableCell style={{ width: '15%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>
+                            <Typography color="textSecondary" variant="subtitle2">
+                              {row.amount.toLocaleString()} đ
+                            </Typography>
+                          </Box>
+                        </Stack>
+                      </TableCell>
+
+                      <TableCell style={{ width: '18%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>{getStatusTextAndColor(row.status)}</Box>
+                        </Stack>
+                      </TableCell>
+                      <TableCell style={{ width: '18%' }}>
+                        <Stack spacing={2} direction="row">
+                          <Box>{getInvoiceTextAndColor(row.invoice)}</Box>
+                        </Stack>
+                      </TableCell>
+                      <TableCell style={{ width: '18%' }}>
+                        <Stack>
+                          <Afletpoint1 row={row}></Afletpoint1>
+                        </Stack>
+                      </TableCell>
                     </TableRow>
-                  )}
-                </TableBody> */}
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Số hàng trên trang"
-          />
-        </Box>
-      </BlankCard>
+                  );
+                })}
+              {emptyRows > 0 && (
+                <TableRow
+                  style={{
+                    height: (dense ? 33 : 53) * emptyRows,
+                  }}
+                >
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Số hàng trên trang"
+        />
+      </Box>
     </PageContainer>
   );
 };

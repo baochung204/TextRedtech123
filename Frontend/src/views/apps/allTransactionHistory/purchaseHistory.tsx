@@ -19,7 +19,6 @@ import React, { useState } from 'react';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import ContentPurchaseHistory from './content/conTentPurchaseHistory';
 import { tableOrder } from './data/data';
 
@@ -133,9 +132,7 @@ const PurchaseHistoryInProfile = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <BlankCard>
-            <CustomTable columns={columns} dataSource={tableOrder} />
-          </BlankCard>
+          <CustomTable columns={columns} dataSource={tableOrder} />
         </Grid>
       </Grid>
 

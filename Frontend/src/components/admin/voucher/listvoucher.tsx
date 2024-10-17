@@ -17,7 +17,6 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import AddDialogvoucher from './add/addDialog';
 
 interface DataRow {
@@ -200,7 +199,7 @@ const ListVoucher = () => {
   };
 
   return (
-    <div>
+    <>
       {' '}
       <Grid item xs={12}>
         <Grid container sx={{ alignItems: 'center', mt: '1px' }} spacing={2}>
@@ -259,7 +258,6 @@ const ListVoucher = () => {
                 <FilterListIcon />
               </Badge>
             </IconButton>
-
             <Select
               multiple
               value={dataSelect}
@@ -297,14 +295,26 @@ const ListVoucher = () => {
                 },
               }}
             >
-              {column.map((header: any) => {
-                console.log(`check ${header.title}`, dataSelect.includes(header.dataIndex));
-
-                const isSelected = dataSelect.includes(header.dataIndex);
-
+              <MenuItem>
+                <Checkbox
+                  checked={!(dataSelect.length === column.length)}
+                  indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                  onChange={() => {
+                    if (dataSelect.length < column.length) {
+                      const allColumns = column.map((header: Column) => header.dataIndex);
+                      setDataSelect(allColumns);
+                    } else {
+                      setDataSelect([]);
+                    }
+                  }}
+                />
+                <ListItemText primary="Chọn tất cả" />
+              </MenuItem>
+              {column.map((header: Column) => {
+                const isSelected = !dataSelect.includes(header.dataIndex);
                 return (
                   <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                    <Checkbox checked={!isSelected} />
+                    <Checkbox checked={isSelected} />
                     <ListItemText primary={header.title} />
                   </MenuItem>
                 );
@@ -319,78 +329,11 @@ const ListVoucher = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <BlankCard>
-          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
-        </BlankCard>
+        <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
       </Grid>
       <AddDialogvoucher isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
-    </div>
+    </>
   );
 };
 
 export default ListVoucher;
-
-// function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-//   if (b[orderBy] < a[orderBy]) {
-//     return -1;
-//   }
-//   if (b[orderBy] > a[orderBy]) {
-//     return 1;
-//   }
-
-//   return 0;
-// }
-
-// type Order = 'asc' | 'desc';
-
-// function getComparator<Key extends keyof any>(
-//   order: Order,
-//   orderBy: Key,
-// ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-//   return order === 'desc'
-//     ? (a, b) => descendingComparator(a, b, orderBy)
-//     : (a, b) => -descendingComparator(a, b, orderBy);
-// }
-// interface EnhancedTableProps {
-//   numSelected: number;
-//   order: 'asc' | 'desc';
-//   orderBy: string;
-//   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-//   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
-//   rowCount: number;
-// }
-
-// function EnhancedTableHead(props: EnhancedTableProps) {
-//   const { order, orderBy, onRequestSort } = props;
-//   const createSortHandler = (property: keyof DataRow) => (event: React.MouseEvent<unknown>) => {
-//     onRequestSort(event, property);
-//   };
-//   return (
-//     <TableHead sx={{ overflowX: 'auto', width: '100%' }}>
-//       <TableRow>
-//         {headCells.map((headCell: any) => (
-//           <TableCell
-//             key={headCell.id}
-//             align={headCell.numeric ? 'right' : 'left'}
-//             padding={headCell.disablePadding ? 'none' : 'normal'}
-//             sortDirection={orderBy === headCell.id ? order : false}
-//             sx={{ whiteSpace: 'nowrap' }}
-//           >
-//             <TableSortLabel
-//               active={orderBy === headCell.id}
-//               direction={orderBy === headCell.id ? order : 'asc'}
-//               onClick={createSortHandler(headCell.id)}
-//             >
-//               <Typography variant="h6">{headCell.label}</Typography>
-//               {/* {orderBy === headCell.id ? (
-//                     <Box component="span">
-//                       {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-//                     </Box>
-//                   ) : null} */}
-//             </TableSortLabel>
-//           </TableCell>
-//         ))}
-//       </TableRow>
-//     </TableHead>
-//   );
-// }

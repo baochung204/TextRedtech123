@@ -1,11 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import Chart from 'react-apexcharts';
+import { CardContent, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { CardContent, Typography, Stack } from '@mui/material';
-import BlankCard from '../../shared/BlankCard';
-import { Props } from 'react-apexcharts';
+import Chart, { Props } from 'react-apexcharts';
 
 const Views = () => {
   // chart color
@@ -89,20 +86,18 @@ const Views = () => {
   ];
 
   return (
-    <BlankCard>
-      <CardContent sx={{ p: '30px' }}>
-        <Typography variant="h4">15,480</Typography>
-        <Stack direction="row" spacing={2} justifyContent="space-between" mb={2}>
-          <Typography variant="subtitle2" color="textSecondary">
-            Views
-          </Typography>
-          <Typography variant="subtitle2" color="error.main">
-            -4.150%
-          </Typography>
-        </Stack>
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="80px" />
-      </CardContent>
-    </BlankCard>
+    <CardContent sx={{ p: '30px' }}>
+      <Typography variant="h4">15,480</Typography>
+      <Stack direction="row" spacing={2} justifyContent="space-between" mb={2}>
+        <Typography variant="subtitle2" color="textSecondary">
+          Views
+        </Typography>
+        <Typography variant="subtitle2" color="error.main">
+          -4.150%
+        </Typography>
+      </Stack>
+      <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="80px" />
+    </CardContent>
   );
 };
 

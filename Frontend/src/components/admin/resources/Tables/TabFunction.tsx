@@ -2,7 +2,6 @@ import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import BlankCard from 'src/components/shared/BlankCard';
 import DialogFuncView from '../dialog/DialogFuncView';
 import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
@@ -58,23 +57,6 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
       dataIndex: 'summary',
       title: 'Tóm tắt',
     },
-    // {
-    //   dataIndex: 'functionCode',
-    //   title: 'Code function',
-    // },
-    // {
-    //   dataIndex: 'creator',
-    //   title: 'Người tạo',
-    // },
-    // {
-    //   dataIndex: 'status',
-    //   title: 'Trạng thái',
-    //   render: (_row: any, value: any) => (
-    //     <Typography color="textSecondary" variant="subtitle2">
-    //       <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
-    //     </Typography>
-    //   ),
-    // },
     {
       dataIndex: 'actions',
       title: 'Hoạt động',
@@ -89,9 +71,7 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            {/* <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton> */}
+            
           </Tooltip>
         </Box>
       ),
@@ -99,10 +79,10 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   ];
 
   return (
-    <BlankCard>
+    <>
       <CustomTable columns={FunctionCells} dataSource={FunctionRows} dataSelect={dataSelect} />
       <DialogFuncView open={open} setOpen={setOpen} value={selectId as any} />
-    </BlankCard>
+    </>
   );
 };
 

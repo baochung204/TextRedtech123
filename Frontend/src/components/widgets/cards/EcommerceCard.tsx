@@ -1,14 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import {
+  CardContent,
+  Fab,
+  Grid,
+  Rating,
+  Skeleton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { IconBasket } from '@tabler/icons-react';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CardContent, Typography, Grid, Rating, Tooltip, Fab, Stack, Skeleton } from '@mui/material';
+import img4 from 'src/assets/images/products/s11.jpg';
 import img1 from 'src/assets/images/products/s4.jpg';
 import img2 from 'src/assets/images/products/s5.jpg';
 import img3 from 'src/assets/images/products/s7.jpg';
-import img4 from 'src/assets/images/products/s11.jpg';
-import BlankCard from '../../shared/BlankCard';
-import { IconBasket } from '@tabler/icons-react';
 
 interface ecocardType {
   title: string;
@@ -69,36 +77,34 @@ const EcommerceCard = () => {
     <Grid container spacing={3}>
       {ecoCard.map((product, index) => (
         <Grid item xs={12} sm={4} lg={3} key={index}>
-          <BlankCard>
-            <Typography component={Link} to="/">
-              {isLoading ? (
-                <Skeleton variant="rectangular" animation="wave" width="100%" height={270}></Skeleton>
-              ) : (
-                <img src={product.photo} alt="img" width="100%" />
-              )}
-            </Typography>
-            <Tooltip title="Add To Cart">
-              <Fab
-                size="small"
-                color="primary"
-                sx={{ bottom: '75px', right: '15px', position: 'absolute' }}
-              >
-                <IconBasket size="16" />
-              </Fab>
-            </Tooltip>
-            <CardContent sx={{ p: 3, pt: 2 }}>
-              <Typography variant="h6">{product.title}</Typography>
-              <Stack direction="row" alignItems="center" justifyContent="space-between" mt={1}>
-                <Stack direction="row" alignItems="center">
-                  <Typography variant="h6">${product.price}</Typography>
-                  <Typography color="textSecondary" ml={1} sx={{ textDecoration: 'line-through' }}>
-                    ${product.salesPrice}
-                  </Typography>
-                </Stack>
-                <Rating name="read-only" size="small" value={product.rating} readOnly />
+          <Typography component={Link} to="/">
+            {isLoading ? (
+              <Skeleton variant="rectangular" animation="wave" width="100%" height={270}></Skeleton>
+            ) : (
+              <img src={product.photo} alt="img" width="100%" />
+            )}
+          </Typography>
+          <Tooltip title="Add To Cart">
+            <Fab
+              size="small"
+              color="primary"
+              sx={{ bottom: '75px', right: '15px', position: 'absolute' }}
+            >
+              <IconBasket size="16" />
+            </Fab>
+          </Tooltip>
+          <CardContent sx={{ p: 3, pt: 2 }}>
+            <Typography variant="h6">{product.title}</Typography>
+            <Stack direction="row" alignItems="center" justifyContent="space-between" mt={1}>
+              <Stack direction="row" alignItems="center">
+                <Typography variant="h6">${product.price}</Typography>
+                <Typography color="textSecondary" ml={1} sx={{ textDecoration: 'line-through' }}>
+                  ${product.salesPrice}
+                </Typography>
               </Stack>
-            </CardContent>
-          </BlankCard>
+              <Rating name="read-only" size="small" value={product.rating} readOnly />
+            </Stack>
+          </CardContent>
         </Grid>
       ))}
     </Grid>

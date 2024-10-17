@@ -1,16 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
 import {
-  CardContent,
-  Typography,
-  Grid,
-  IconButton,
-  Divider,
   Avatar,
   Box,
-  Stack,
+  CardContent,
+  Divider,
+  Grid,
+  IconButton,
   Skeleton,
+  Stack,
+  Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -19,10 +18,10 @@ import {
   IconBrandInstagram,
   IconBrandTwitter,
 } from '@tabler/icons-react';
+import React, { useEffect } from 'react';
 import img1 from 'src/assets/images/profile/user-1.jpg';
 import img2 from 'src/assets/images/profile/user-2.jpg';
 import img3 from 'src/assets/images/profile/user-3.jpg';
-import BlankCard from '../../shared/BlankCard';
 
 interface SocialIcon {
   name: string;
@@ -88,43 +87,37 @@ const ProfileCard = () => {
     <Grid container spacing={3}>
       {profileCard.map((card, index) => (
         <Grid item xs={12} sm={4} key={index}>
-          <BlankCard>
-            <CardContent>
-              <Stack direction={'column'} gap={2} alignItems="center">
-                {isLoading ? (
-                  <Skeleton
-                    variant="rectangular"
-                    animation="wave"
-                    width="100%"
-                    height={160}
-                  ></Skeleton>
-                ) : (
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={card.avatar}
-                    sx={{ width: '80px', height: '80px' }}
-                  />
-                )}
-                <Box textAlign={'center'}>
-                  <Typography variant="h5">{card.name}</Typography>
-                  <Typography variant="caption">{card.role}</Typography>
-                </Box>
-              </Stack>
-            </CardContent>
-            <Divider />
-            <Box
-              p={2}
-              py={1}
-              textAlign={'center'}
-              sx={{
-                backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.05)' : 'grey.100',
-              }}
-            >
-              {SocialIcons.map((sicon) => {
-                return <IconButton key={sicon.name}>{sicon.icon}</IconButton>;
-              })}
-            </Box>
-          </BlankCard>
+          <CardContent>
+            <Stack direction={'column'} gap={2} alignItems="center">
+              {isLoading ? (
+                <Skeleton
+                  variant="rectangular"
+                  animation="wave"
+                  width="100%"
+                  height={160}
+                ></Skeleton>
+              ) : (
+                <Avatar alt="Remy Sharp" src={card.avatar} sx={{ width: '80px', height: '80px' }} />
+              )}
+              <Box textAlign={'center'}>
+                <Typography variant="h5">{card.name}</Typography>
+                <Typography variant="caption">{card.role}</Typography>
+              </Box>
+            </Stack>
+          </CardContent>
+          <Divider />
+          <Box
+            p={2}
+            py={1}
+            textAlign={'center'}
+            sx={{
+              backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.05)' : 'grey.100',
+            }}
+          >
+            {SocialIcons.map((sicon) => {
+              return <IconButton key={sicon.name}>{sicon.icon}</IconButton>;
+            })}
+          </Box>
         </Grid>
       ))}
     </Grid>

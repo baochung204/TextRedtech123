@@ -1,28 +1,26 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {
-  CardContent,
-  Typography,
   Avatar,
-  Grid,
+  Box,
+  CardContent,
   CardMedia,
+  Chip,
+  Grid,
+  Skeleton,
   Stack,
   Tooltip,
-  Chip,
-  Box,
-  Skeleton,
+  Typography,
 } from '@mui/material';
-import { IconMessage2, IconEye, IconPoint } from '@tabler/icons-react';
-import user1 from 'src/assets/images/profile/user-1.jpg';
-import user2 from 'src/assets/images/profile/user-2.jpg';
-import user3 from 'src/assets/images/profile/user-3.jpg';
+import { IconEye, IconMessage2, IconPoint } from '@tabler/icons-react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import img1 from 'src/assets/images/blog/blog-img1.jpg';
 import img2 from 'src/assets/images/blog/blog-img2.jpg';
 import img3 from 'src/assets/images/blog/blog-img3.jpg';
-
-import BlankCard from '../../shared/BlankCard';
+import user1 from 'src/assets/images/profile/user-1.jpg';
+import user2 from 'src/assets/images/profile/user-2.jpg';
+import user3 from 'src/assets/images/profile/user-3.jpg';
 
 interface cardType {
   avatar: string;
@@ -83,65 +81,63 @@ const ComplexCard = () => {
     <Grid container spacing={3}>
       {complexCard.map((author, index) => (
         <Grid item xs={12} sm={4} key={index}>
-          <BlankCard className="hoverCard">
-            <>
-              <Typography component={Link} to="/">
-                {isLoading ? (
-                  <Skeleton
-                    variant="rectangular"
-                    animation="wave"
-                    width="100%"
-                    height={240}
-                  ></Skeleton>
-                ) : (
-                  <CardMedia
-                    component="img"
-                    height="240"
-                    image={author.coveravatar}
-                    alt="green iguana"
-                  />
-                )}
-              </Typography>
-              <CardContent>
-                <Stack direction="row" sx={{ marginTop: '-45px' }}>
-                  <Tooltip title={author.name} placement="top">
-                    <Avatar aria-label="recipe" src={author.avatar}></Avatar>
-                  </Tooltip>
-                  <Chip
-                    sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-                    label="2 min Read"
-                    size="small"
-                  ></Chip>
+          <>
+            <Typography component={Link} to="/">
+              {isLoading ? (
+                <Skeleton
+                  variant="rectangular"
+                  animation="wave"
+                  width="100%"
+                  height={240}
+                ></Skeleton>
+              ) : (
+                <CardMedia
+                  component="img"
+                  height="240"
+                  image={author.coveravatar}
+                  alt="green iguana"
+                />
+              )}
+            </Typography>
+            <CardContent>
+              <Stack direction="row" sx={{ marginTop: '-45px' }}>
+                <Tooltip title={author.name} placement="top">
+                  <Avatar aria-label="recipe" src={author.avatar}></Avatar>
+                </Tooltip>
+                <Chip
+                  sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
+                  label="2 min Read"
+                  size="small"
+                ></Chip>
+              </Stack>
+              <Chip label={author.category} size="small" sx={{ marginTop: 2 }}></Chip>
+              <Box my={3}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  color="inherit"
+                  sx={{ textDecoration: 'none' }}
+                  component={Link}
+                  to="/"
+                >
+                  {author.title}
+                </Typography>
+              </Box>
+              <Stack direction="row" gap={3} alignItems="center">
+                <Stack direction="row" gap={1} alignItems="center">
+                  <IconEye size="18" /> {author.view}
                 </Stack>
-                <Chip label={author.category} size="small" sx={{ marginTop: 2 }}></Chip>
-                <Box my={3}>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    color="inherit"
-                    sx={{ textDecoration: 'none' }}
-                    component={Link}
-                    to="/"
-                  >
-                    {author.title}
-                  </Typography>
-                </Box>
-                <Stack direction="row" gap={3} alignItems="center">
-                  <Stack direction="row" gap={1} alignItems="center">
-                    <IconEye size="18" /> {author.view}
-                  </Stack>
-                  <Stack direction="row" gap={1} alignItems="center">
-                    <IconMessage2 size="18" /> {author.comments}
-                  </Stack>
+                <Stack direction="row" gap={1} alignItems="center">
+                  <IconMessage2 size="18" /> {author.comments}
+                </Stack>
 
-                  <Stack direction="row" ml="auto" alignItems="center">
-                    <IconPoint size="16" />
-                    <small>{author.time}</small>
-                  </Stack>
+                <Stack direction="row" ml="auto" alignItems="center">
+                  <IconPoint size="16" />
+                  <small>{author.time}</small>
                 </Stack>
-              </CardContent>
-            </>
-          </BlankCard>
+              </Stack>
+            </CardContent>
+          </>
         </Grid>
       ))}
     </Grid>
