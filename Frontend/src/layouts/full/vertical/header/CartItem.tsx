@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, Avatar, Stack, ButtonGroup, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
@@ -8,12 +8,30 @@ import { useSelector, useDispatch } from 'src/store/Store';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
 import { increment, decrement } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { AppState } from 'src/store/Store';
+import { fetchCartData } from 'src/store/user/cart/cartSlice';
+
+interface PropsData {
+  product_id: number;
+  name: string;
+  point: number;
+  image_url: string;
+  quantity: number;
+}
 
 const CartItems = () => {
+  const [cartData, setCartData] = useState<PropsData[]>([]);
   const dispatch = useDispatch();
+  const cart = useSelector((state: AppState) => state.cart.dataa);
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setCartData(cart);
+  }, [cart]);
 
   // Get Products
-  const Cartproduct = useSelector((state: AppState) => state.ecommerceReducer.cart);
+  // const Cartproduct = useSelector((state: AppState) => state.ecommerceReducer.cart);
 
   const Increase = (productId: string) => {
     dispatch(increment(productId));
@@ -25,9 +43,9 @@ const CartItems = () => {
 
   return (
     <Box px={3}>
-      {Cartproduct.length > 0 ? (
+      {cartData.product.length > 0 ? (
         <>
-          {Cartproduct.map((product: any, index: number) => (
+          {cartData.product.map((product: any, index: number) => (
             <Box key={product.id + index * index}>
               <Stack direction="row" spacing={2} py={3}>
                 <Avatar

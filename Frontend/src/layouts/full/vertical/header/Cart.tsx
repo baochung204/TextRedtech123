@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
-import { sum } from 'lodash';
+import { Badge, Box, Button, IconButton, Stack, Typography } from '@mui/material';
 import { IconShoppingCart, IconX } from '@tabler/icons-react';
-import { Box, Typography, Badge, IconButton, Button, Stack } from '@mui/material';
-import { useSelector } from 'src/store/Store';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CartItems from './CartItem';
-import { AppState } from 'src/store/Store';
-import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
+import Scrollbar from 'src/components/custom-scroll/Scrollbar';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchCartData } from 'src/store/user/cart/cartSlice';
+import CartItems from './CartItem';
+interface PropsData {
+  product_id: number;
+  name: string;
+  point: number;
+  image_url: string;
+  quantity: number;
+}
+
 const Cart = () => {
-  const Cartproduct = useSelector((state: AppState) => state.ecommerceReducer.cart);
-  const bcount = Cartproduct.length > 0 ? Cartproduct.length : '0';
-
-  const checkout = useSelector((state: AppState) => state.ecommerceReducer.cart);
-  const total = sum(checkout.map((product: any) => product.point * product.qty));
-
+  const [cartData, setCartData] = useState<PropsData[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const cart = useSelector((state: AppState) => state.cart.dataa);
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setCartData(cart);
+  }, [cart]);
 
   const handleMouseEnter = () => {
     setIsDropdownOpen(true);
@@ -27,6 +37,10 @@ const Cart = () => {
       setIsDropdownOpen(false);
     }
   };
+
+  // const totalPoints = cartData.products.reduce((sum, item) => sum + item.point * item.quantity, 0);
+
+  console.log(cartData.products);
 
   return (
     <Box
@@ -47,7 +61,7 @@ const Cart = () => {
         }}
       >
         <Button size="large" color="inherit">
-          <Badge color="error" badgeContent={bcount}>
+          <Badge color="error" badgeContent={cartData.count}>
             <IconShoppingCart size="21" stroke="1.5" />
           </Badge>
         </Button>
@@ -66,20 +80,10 @@ const Cart = () => {
             padding: '14px 35px',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
             width: '400px',
-            // maxHeight: '400px',
-            // Set the maximum height of the dropdown
-            // overflowY: 'auto',
-            // Allow vertical scroll if content overflows
           }}
           onMouseLeave={handleMouseLeave}
         >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            p={2}
-            // sx={{ bgcolor: 'transparent', color: 'text.secondary' }}
-          >
+          <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
             <Typography variant="h5" fontWeight={600}>
               Giỏ hàng
             </Typography>
@@ -101,7 +105,7 @@ const Cart = () => {
 
           {/* Total and Checkout */}
           <Box mt={2}>
-            {Cartproduct.length > 0 ? (
+            {cartData.products.length > 0 ? (
               <>
                 <Stack direction="row" justifyContent="space-between" mb={3}>
                   <Typography variant="subtitle2" fontWeight={400}>
@@ -112,7 +116,7 @@ const Cart = () => {
                     fontWeight={600}
                     style={{ display: 'flex', alignItems: 'center' }}
                   >
-                    {total.toLocaleString('vi-VN')}{' '}
+                    {/* {totalPoints.toLocaleString('vi-VN')} */}
                     <img
                       src={logoPoint}
                       alt={logoPoint}

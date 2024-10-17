@@ -7,9 +7,8 @@ const ProductChecout = () => {
   return (
     <Box>
       <>
-        {' '}
         <Box my={3}>
-          <AddToCart />{' '}
+          <AddToCart />
         </Box>
         {/* ------------------------------------------- */}
         {/* Tổng giỏ hàng */}
