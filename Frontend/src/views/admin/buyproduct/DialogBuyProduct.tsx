@@ -52,8 +52,25 @@ interface Options {
   values: number;
   subOptions?: { label: string; values: string }[];
 }
-
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: PropUp) => {
+  const [tags, setTags] = useState([]);
+
+  const handleTagChange = (event:any, newValue: any) => {
+    // Assign a random color to each new tag
+    const updatedTags = newValue.map((tag: any) => ({
+      title: tag.title || tag, 
+      color: tag.color || getRandomColor()  
+    }));
+    setTags(updatedTags);
+  };
   const emptyInitialValues = useMemo(
     () => ({
       danhmuc: '',
@@ -189,8 +206,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
           anhStrategy: Array.isArray(data.anhStrategy)
             ? data.anhStrategy
             : data.anhStrategy
-            ? [data.anhStrategy]
-            : [],
+              ? [data.anhStrategy]
+              : [],
           nhomStrategy: data.nhomStrategy ?? '',
           tenStrategy: data.tenStrategy ?? '',
           khachhangStrategy: data.khachhangStrategy ?? '',
@@ -241,7 +258,7 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
 
   // ];
   //   const [tags, setTags] = useState<Tag[]>([]);
-  const [tags] = useState<Tag[]>([]);
+  // const [tags] = useState<Tag[]>([]);
 
   //   const [gianiemyet, setGianiemyet] = useState<Tag[]>([]);
 
@@ -282,13 +299,13 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
     },
   ];
   return (
-    <Dialog open={open} onClose={() => handleClose(() => {})} fullWidth maxWidth="lg">
+    <Dialog open={open} onClose={() => handleClose(() => { })} fullWidth maxWidth="lg">
       <DialogTitle sx={{ textAlign: 'center' }}>
         {checkValue === 'add'
           ? 'Thêm sản phẩm'
           : checkValue === 'view'
-          ? 'Xem sản phẩm'
-          : 'Sửa sản phẩm'}
+            ? 'Xem sản phẩm'
+            : 'Sửa sản phẩm'}
       </DialogTitle>
 
       <Formik
@@ -421,52 +438,52 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
 
                     {/* Giá niêm yết and Giá khuyến mại */}
                     <Grid item xs={6}>
-                      <CustomFormLabel htmlFor="name">Giá niêm yết</CustomFormLabel>
+                      <CustomFormLabel htmlFor="gianiemyet">Giá niêm yết</CustomFormLabel>
                       <TextField
                         fullWidth
                         required
-                        // label="Giá niêm yết"
+                        type="number"
                         value={values.gianiemyet}
                         error={Boolean(errors.gianiemyet && touched.gianiemyet)}
-                        helperText={
-                          errors.gianiemyet && touched.gianiemyet ? errors.gianiemyet : ''
-                        }
+                        helperText={errors.gianiemyet && touched.gianiemyet ? errors.gianiemyet : ''}
                         onChange={(e) => setFieldValue('gianiemyet', e.target.value)}
                       />
                     </Grid>
+
                     <Grid item xs={6}>
-                      <CustomFormLabel htmlFor="name">Giá khuyến mại</CustomFormLabel>
+                      <CustomFormLabel htmlFor="giakhuyenmai">Giá khuyến mại</CustomFormLabel>
                       <TextField
                         fullWidth
                         required
-                        // label="Giá khuyến mại"
+                        type="number"
                         value={values.giakhuyenmai}
                         error={Boolean(errors.giakhuyenmai && touched.giakhuyenmai)}
-                        helperText={
-                          errors.giakhuyenmai && touched.giakhuyenmai ? errors.giakhuyenmai : ''
-                        }
+                        helperText={errors.giakhuyenmai && touched.giakhuyenmai ? errors.giakhuyenmai : ''}
                         onChange={(e) => setFieldValue('giakhuyenmai', e.target.value)}
                       />
                     </Grid>
 
                     {/* Tags and Danh mục */}
                     <Grid item xs={6}>
-                      <CustomFormLabel htmlFor="name">Tags</CustomFormLabel>
+                      <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
                       <Autocomplete
                         multiple
+                        freeSolo
                         options={[]}
                         value={tags}
-                        renderTags={(value, getTagProps) =>
+                        onChange={handleTagChange}
+                        getOptionLabel={(option: Tag | string) => typeof option === 'string' ? option : option.title}
+                        renderTags={(value: (Tag | string)[], getTagProps) =>
                           value.map((option, index) => (
                             <Chip
-                              label={option.title}
+                              label={typeof option === 'string' ? option : option.title}
                               {...getTagProps({ index })}
-                              style={{ backgroundColor: option.color, color: '#fff' }}
+                              style={{ backgroundColor: typeof option === 'string' ? '#000' : option.color, color: '#fff' }}
                             />
                           ))
                         }
                         renderInput={(params) => (
-                          <TextField {...params} label="Tags" placeholder="Enter tags" />
+                          <TextField {...params}  placeholder="Enter tags" />
                         )}
                       />
                     </Grid>
@@ -526,15 +543,15 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                 type="submit"
                 color="primary"
                 variant="contained"
-                // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
+              // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
               >
                 {checkValue === 'add'
                   ? 'Xác nhận'
                   : checkValue === 'sub'
-                  ? 'Thêm'
-                  : checkValue === 'view'
-                  ? 'Sửa'
-                  : checkValue === 'fix' && ' Lưu'}
+                    ? 'Thêm'
+                    : checkValue === 'view'
+                      ? 'Sửa'
+                      : checkValue === 'fix' && ' Lưu'}
               </Button>
             </DialogActions>
           </Form>

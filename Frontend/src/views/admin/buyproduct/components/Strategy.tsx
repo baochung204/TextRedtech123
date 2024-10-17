@@ -115,6 +115,7 @@ const Strategy = ({ values }: StrategyProps) => {
         {/* Input cho Giá trị chiến lược */}
         <Grid item xs>
           <Field
+          type="number"
             name="levelStrategy"
             as={TextField}
             placeholder="Level chiến lược"
