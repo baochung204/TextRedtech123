@@ -1,17 +1,38 @@
 import { Box, Button, Switch, Typography, useTheme } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchStatusTwoFaData } from 'src/store/user/2-factor-authentication/twofaSlice';
+
+interface PropsData {
+  google_authenticator: boolean;
+  sms: boolean;
+  email: boolean;
+}
 
 const TwoFactorSecurity = () => {
   const nav = useNavigate();
-  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
-  const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState(false);
+  const [status, setStatus] = useState<PropsData[]>([]);
+  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(status.google_authenticator);
+  const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState(status.email);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const twofa = useSelector((state: AppState) => state.twofa.dataa);
   const theme = useTheme();
+
+  useEffect(() => {
+    dispatch(fetchStatusTwoFaData());
+    setStatus(twofa.result.options);
+  }, []);
+
+  console.log('Users from Redux:', status);
 
   const handleToggleTwoFactor = () => {
     setIsTwoFactorEnabled(!isTwoFactorEnabled);
-    
+
     // Navigate to /auth/two-steps when the switch is turned on
     if (!isTwoFactorEnabled) {
       nav('/auth/two-steps');
@@ -47,7 +68,8 @@ const TwoFactorSecurity = () => {
       >
         <WarningIcon sx={{ mr: 2 }} />
         <Typography variant="body1">
-          Chúng tôi khuyên bạn nên bật xác thực hai yếu tố để cung cấp thêm một lớp bảo mật cho tài khoản của bạn.
+          Chúng tôi khuyên bạn nên bật xác thực hai yếu tố để cung cấp thêm một lớp bảo mật cho tài
+          khoản của bạn.
         </Typography>
       </Box>
 

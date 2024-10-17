@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import twoFA from 'src/api/2-factor-authentication/twofa';
+import twoFA from 'src/api/2-factor-authentication/TwoFa';
 
 interface PropsData {
   google_authenticator: boolean;
@@ -19,7 +19,7 @@ const initialState: StrState = {
   error: null,
 };
 
-export const fetchStrData = createAsyncThunk('str/fetchData', async (thunkAPI) => {
+export const fetchStatusTwoFaData = createAsyncThunk('str/fetchData', async (thunkAPI) => {
   try {
     const response = await twoFA.getStatus2fa();
     return response.data;
@@ -34,15 +34,15 @@ const twofaSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchStrData.pending, (state) => {
+      .addCase(fetchStatusTwoFaData.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchStrData.fulfilled, (state, action) => {
+      .addCase(fetchStatusTwoFaData.fulfilled, (state, action) => {
         state.loading = false;
         state.dataa = action.payload;
       })
-      .addCase(fetchStrData.rejected, (state, action) => {
+      .addCase(fetchStatusTwoFaData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
