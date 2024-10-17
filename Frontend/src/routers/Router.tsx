@@ -180,16 +180,9 @@ const Router = [
         exact: true,
         element: <ProtectedRoute element={ContractOrderUser} />,
       },
-<<<<<<< HEAD
-      { path: '/dashboards/ecommerce', exact: true, element: <ProtectedRoute element={EcommerceDash} /> },
-=======
 
-      {
-        path: '/dashboards/ecommerce',
-        exact: true,
-        element: <ProtectedRoute element={EcommerceDash} />,
-      },
->>>>>>> 826a85b15c123f6f270ae2206ea43668f19736e4
+      { path: '/dashboards/ecommerce', exact: true, element: <ProtectedRoute element={EcommerceDash} /> },
+
       { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
       { path: '/apps/list-assistant', element: <ProtectedRoute element={Assistant} /> },
       { path: '/apps/assistant', element: <ProtectedRoute element={Assistant} /> },
@@ -234,7 +227,8 @@ const Router = [
       { path: '/user_profile', element: <ProtectedRoute element={UserProfile} /> },
       { path: '/pointhistory', element: <ProtectedRoute element={Pointhistory} /> },
       { path: '/purchasehistory', element: <ProtectedRoute element={Purchasehistory} /> },
-
+      // { path: '/apps/support', element: <ProtectedRoute element={Aisupport} /> },
+      // { path: '/apps/calendar', element: <ProtectedRoute element={Calendar} /> },
       { path: '/pages/faq', element: <ProtectedRoute element={Faq} /> },
       {
         path: '/user_profile/assistants',
