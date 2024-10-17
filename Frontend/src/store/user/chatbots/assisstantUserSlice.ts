@@ -4,7 +4,6 @@ import assisstantAPi from "src/api/chatbots/assistantsUser";
 
 
 interface PropsData {
-
     chatbotId: number,
     chatbotName: string,
     modelName: string,

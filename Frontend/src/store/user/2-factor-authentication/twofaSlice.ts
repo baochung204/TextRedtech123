@@ -2,29 +2,38 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import twoFA from 'src/api/2-factor-authentication/TwoFa';
 
 interface PropsData {
-  google_authenticator: boolean;
-  sms: boolean;
-  email: boolean;
+  google_authenticator: boolean | null;
+  sms: boolean | null;
+  email: boolean | null;
 }
 
 interface StrState {
-  dataa: PropsData[];
+  dataa: PropsData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  dataa: [],
+  dataa: { google_authenticator: null, sms: null, email: null },
   loading: false,
   error: null,
 };
 
-export const fetchStatusTwoFaData = createAsyncThunk('str/fetchData', async (thunkAPI) => {
+// export const fetchStatusTwoFaData = createAsyncThunk('str/fetchData', async (thunkAPI) => {
+//   try {
+//     const response = await twoFA.getStatus2fa();
+//     return response.data;
+//   } catch (error: any) {
+//     return thunkAPI;
+//   }
+// });
+
+export const fetchStatusTwoFaData = createAsyncThunk('fetch2FA', async (_, thunkAPI) => {
   try {
     const response = await twoFA.getStatus2fa();
-    return response.data;
+    return response.data.result.options;
   } catch (error: any) {
-    return thunkAPI;
+    return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
   }
 });
 

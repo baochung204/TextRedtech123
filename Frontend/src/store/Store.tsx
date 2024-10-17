@@ -27,9 +27,10 @@ import functionReducer from './apps/resources/function/functionSlice';
 import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
-import userSlice from './user/user-resources/userSlice'
+import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
-import twofaSlice from './user/2-factor-authentication/twofaSlice'
+import twofaSlice from './user/2-factor-authentication/twofaSlice';
+import cartSlice from './user/cart/cartSlice';
 
 export const store = configureStore({
   reducer: {
@@ -57,6 +58,7 @@ export const store = configureStore({
     test: userSlice,
     assisstant: assisstantSlice,
     twofa: twofaSlice,
+    cart: cartSlice,
   },
 });
 
@@ -85,6 +87,7 @@ const rootReducer = combineReducers({
   test: userSlice,
   assisstant: assisstantSlice,
   twofa: twofaSlice,
+  cart: cartSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
