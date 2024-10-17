@@ -3,13 +3,19 @@ import { Box, Button, MenuItem, Select, Typography, TextField } from '@mui/mater
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-
+interface File {
+  values: {
+    file: string;
+    dungluong: string;
+    slot: string;
+  };
+}
 // Validation schema using Yup
 const validationSchema = Yup.object({
   option: Yup.string().required('Bạn phải chọn một tùy chọn'),
 });
 
-const FileUploadForm: React.FC = () => {
+const FileUploadForm = ({ values }: File) => {
   const [selectedOption, setSelectedOption] = useState<string>(''); // State to hold selected option
   const [fileNames, setFileNames] = useState<string[]>([]); // Lưu trữ danh sách file đã chọn
 
