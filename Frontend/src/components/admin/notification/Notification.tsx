@@ -3,12 +3,14 @@ import {
   Badge,
   Box,
   Checkbox,
+  Chip,
   Grid,
   IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
+  Switch,
   TextField,
   Typography,
 } from '@mui/material';
@@ -225,6 +227,14 @@ interface Column {
 
 const ContentNotification = () => {
   // const [selectedItems] = useState<number[]>([]);
+  const [isCheckSwitchIds, setIsCheckSwitchIds] = useState<string[]>([]);
+  const handleCheckSwitch = (id: string) => {
+    setIsCheckSwitchIds((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((selectedId) => selectedId !== id)
+        : [...prevSelected, id],
+    );
+  };
 
   const column = useMemo<Column[]>(
     () => [
@@ -262,22 +272,28 @@ const ContentNotification = () => {
       //   title: 'Tương tác',
       // },
       {
-        dataIndex: 'status',
         title: 'Trạng thái',
-        render: (value: any) => (
-          <Typography sx={{ color: value === 1 ? '#13DEB9' : '#ff9800' }} variant="subtitle2">
-            {value === 1 ? 'Đăng' : 'Nháp'}
-          </Typography>
-        ),
+        dataIndex: 'status',
+        render: (_value, row) => {
+          const isActive = isCheckSwitchIds.includes(row.id);
+          return <Chip label={isActive ? 'Đăng' : 'Nháp'} color={isActive ? 'success' : 'error'} />;
+        },
       },
       {
         id: 'statusAction',
         title: 'Thao tác',
-        dataIndex: 'status',
-        render: (value: any) => <CustomSwitch color="primary" checked={value === 1} />,
+        dataIndex: 'statuss',
+        render: (_value: any, row: any) => (
+          <CustomSwitch
+            color="primary"
+            checked={isCheckSwitchIds.includes(row.id)}
+            onChange={() => handleCheckSwitch(row.id)}
+            inputProps={{ 'aria-label': 'controlled' }}
+          />
+        ),
       },
     ],
-    [],
+    [isCheckSwitchIds],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);

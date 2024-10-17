@@ -14,14 +14,15 @@ import {
   TextField,
   Tooltip,
 } from '@mui/material';
-import { IconEye, IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PublisherTable from './datatable/Publisher';
 import RPointDialog from './dialog/RPointDialog';
-
+import { Formik, Field, useFormik } from 'formik';
+import * as Yup from 'yup';
 interface Column {
   title: string;
   dataIndex: string;
@@ -52,11 +53,12 @@ const PublisherTablePage: React.FC = () => {
         title: 'Số Points',
         dataIndex: 'points',
         render: (value: string) => (
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
             {value}
             <img src={icontext} alt="" width={20} />
           </Box>
         ),
+        sort: true,
       },
       {
         title: 'Model',
@@ -66,12 +68,15 @@ const PublisherTablePage: React.FC = () => {
         title: 'Giá tiền',
         dataIndex: 'money',
         render: (value: string) => (
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>{value} VNĐ</Box>
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>{value} ₫</Box>
         ),
+        sort: true,
       },
       {
         title: 'Số lượt mua',
         dataIndex: 'totalBuy',
+        render: (value: any) => <Box sx={{ textAlign: 'center' }}>{value}</Box>,
+        sort: true,
       },
       {
         dataIndex: 'isActive',
@@ -87,9 +92,9 @@ const PublisherTablePage: React.FC = () => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            {/* <IconButton>
+            <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton> */}
+            </IconButton>
           </>
         ),
       },
@@ -117,6 +122,23 @@ const PublisherTablePage: React.FC = () => {
     ],
     [],
   );
+  const validationSchema = Yup.object().shape({
+    pointRate: Yup.number()
+      .positive('Vui lòng nhập số dương') // Kiểm tra số dương
+      .required('Vui lòng nhập tỉ giá'), // Bắt buộc nhập
+  });
+  const formik = useFormik({
+    initialValues: {
+      pointRate: '',
+    },
+    validationSchema: validationSchema,
+    validateOnChange: true,
+    validateOnBlur: false,
+    onSubmit: (values, formikBag) => {
+      console.log(values);
+      formikBag.resetForm(); // <-- Sử dụng formikBag.resetForm()
+    },
+  });
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
@@ -197,18 +219,36 @@ const PublisherTablePage: React.FC = () => {
           >
             <Grid container sx={{ alignItems: 'center' }}>
               <Grid item xs={7} sx={{ display: 'flex', gap: 1.5 }}>
-                <Tooltip title="Nhập tỉ giá Point/Vnd ">
-                  <TextField
-                    id="outlined-search"
-                    placeholder="Point/Vnd"
-                    size="small"
-                    type="search"
-                    variant="outlined"
-                    inputProps={{ 'aria-label': 'Search Followers' }}
-                    sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' }, width: 150 }}
-                  />
-                </Tooltip>
-                <Button variant="contained">Lưu</Button>
+                <form onSubmit={formik.handleSubmit}>
+                  <Tooltip title="Nhập tỉ giá Point/Vnd ">
+                    <TextField
+                      id="outlined-search"
+                      placeholder="Point/Vnd"
+                      size="small"
+                      type="number"
+                      variant="outlined"
+                      inputProps={{ 'aria-label': 'Search Followers' }}
+                      sx={{ fontSize: { xs: '10px', sm: '16px', md: '16px' }, width: 150 }}
+                      name="pointRate"
+                      value={formik.values.pointRate}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      error={formik.touched.pointRate && Boolean(formik.errors.pointRate)}
+                    />
+                  </Tooltip>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    disabled={!formik.isValid || formik.isSubmitting}
+                    sx={{
+                      backgroundColor:
+                        formik.isValid && !formik.isSubmitting ? 'red' : 'primary.main', // Màu đỏ khi hợp lệ và chưa submit
+                      color: formik.isValid && !formik.isSubmitting ? 'white' : 'black',
+                    }}
+                  >
+                    Lưu
+                  </Button>
+                </form>
               </Grid>
 
               <Grid item xs={5} sx={{ display: 'flex' }}>

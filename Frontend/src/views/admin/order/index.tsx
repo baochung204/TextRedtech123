@@ -304,11 +304,11 @@ const OrderAdminPages = () => {
       {
         title: 'Hành động',
         dataIndex: 'action',
-        render: (_row, value: any) => (
+        render: (_value, row: any) => (
           <>
             <IconButton
               onClick={() => {
-                setSelectID(value.id);
+                setSelectID(row.id);
                 setOpen(true);
                 setCheckValue('view');
               }}
@@ -316,11 +316,11 @@ const OrderAdminPages = () => {
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
 
-            <Tooltip title={selectedIds.includes(value.id) ? 'Hoạt động' : 'Tắt'} placement="top">
-              <IconButton onClick={() => handleConnection(value.id)}>
+            <Tooltip title={selectedIds.includes(row.id) ? 'Hoạt động' : 'Tắt'} placement="top">
+              <IconButton onClick={() => handleConnection(row.id)}>
                 <IconPower
                   style={{ cursor: 'pointer' }}
-                  color={selectedIds.includes(value.id) ? '#13DEB9' : 'gray'}
+                  color={selectedIds.includes(row.id) ? '#13DEB9' : 'gray'}
                 />
               </IconButton>
             </Tooltip>
@@ -328,7 +328,7 @@ const OrderAdminPages = () => {
         ),
       },
     ],
-    [],
+    [selectedIds],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);

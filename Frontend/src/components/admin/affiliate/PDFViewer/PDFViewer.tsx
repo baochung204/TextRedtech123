@@ -16,7 +16,7 @@ const PDFViewer = ({ base64Data }: any) => {
     <Box
       sx={{
         width: '100%',
-        height: '65vh',
+        height: '60vh',
       }}
     >
       <iframe
