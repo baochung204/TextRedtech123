@@ -33,8 +33,62 @@ const CartItems = () => {
   return (
     <Box px={3}>
       {(cartData?.products ?? []).length > 0 ? (
-        cartData.products.map((product, index) => (
-          <Box key={product.id + index * index}>{/* Render product */}</Box>
+        cartData.products.map((product: any, index: any) => (
+          <Box key={product.id + index * index}>
+            <Stack direction="row" spacing={2} py={3}>
+              <Avatar
+                src={product.image_url}
+                alt={product.image_url}
+                sx={{
+                  borderRadius: '10px',
+                  height: '75px',
+                  width: '95px',
+                }}
+              />
+              <Box>
+                <Typography variant="subtitle2" color="black" fontWeight={600}>
+                  {product.name}
+                </Typography>{' '}
+                <Typography color="textSecondary" fontSize="12px">
+                  {' '}
+                  {product.category}
+                </Typography>
+                <Stack direction="row" alignItems="center" spacing={2} mt="5px">
+                  <Typography variant="subtitle2" fontWeight="500">
+                    {(product.point * product.quantity).toLocaleString()}
+                  </Typography>
+                  <ButtonGroup size="small" aria-label="small button group">
+                    <Button
+                      color="success"
+                      className="btn-xs"
+                      variant="text"
+                      sx={{ bgcolor: 'transparent', color: 'text.secondary' }}
+                      // onClick={() => Decrease(product.id)}
+                      disabled={product.quantity < 2}
+                    >
+                      <IconMinus stroke={1.5} size="0.8rem" />
+                    </Button>
+                    <Button
+                      color="inherit"
+                      sx={{ bgcolor: 'transparent', color: 'text.secondary' }}
+                      variant="text"
+                    >
+                      {product.quantity}
+                    </Button>
+                    <Button
+                      color="success"
+                      sx={{ bgcolor: 'transparent', color: 'text.secondary' }}
+                      className="btn-xs"
+                      variant="text"
+                      // onClick={() => Increase(product.id)}
+                    >
+                      <IconPlus stroke={1.5} size="0.8rem" />
+                    </Button>
+                  </ButtonGroup>
+                </Stack>
+              </Box>
+            </Stack>
+          </Box>
         ))
       ) : (
         <Box textAlign="center" mb={3}>
