@@ -97,9 +97,18 @@ const TwoFactorSecurity = () => {
             Google Authenticator
           </Typography>
         </Box>
-        <Button variant="outlined" color="primary">
-          Cài đặt
-        </Button>
+        {isTwoFactorEnabled && isTwoFactorEnabledEmail ? (
+          <Switch
+            sx={{ border: '3px' }}
+            checked={isTwoFactorEnabled}
+            onChange={handleToggleTwoFactor}
+            color="primary"
+          />
+        ) : (
+          <Button variant="outlined" color="primary">
+            Cài đặt
+          </Button>
+        )}
       </Box>
 
       <Box sx={{ mb: 4, display: 'flex', alignItems: 'center' }}>
