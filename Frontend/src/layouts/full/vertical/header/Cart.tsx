@@ -19,45 +19,37 @@ const Cart = () => {
   const [cartData, setCartData] = useState<PropsData[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const cart = useSelector((state: AppState) => state.cart.dataa);
+
   useEffect(() => {
     dispatch(fetchCartData());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
-    setCartData(cart);
+    setCartData(cart || { count: 0, products: [] }); // Default value
   }, [cart]);
 
-  const handleMouseEnter = () => {
-    setIsDropdownOpen(true);
-  };
+  const totalPoints = (cartData.products ?? []).reduce(
+    (sum, item) => sum + item.point * item.quantity,
+    0,
+  );
 
+  const handleMouseEnter = () => setIsDropdownOpen(true);
   const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
     const relatedTarget = event.relatedTarget as HTMLElement;
-    if (!relatedTarget.closest('.cart-dropdown')) {
-      setIsDropdownOpen(false);
-    }
+    if (!relatedTarget.closest('.cart-dropdown')) setIsDropdownOpen(false);
   };
-
-  // const totalPoints = cartData.products.reduce((sum, item) => sum + item.point * item.quantity, 0);
-
-  console.log(cartData.products);
 
   return (
     <Box
-      onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      component="div"
-      className="cart-dropdown-wrapper"
+      onMouseLeave={handleMouseLeave}
       sx={{ position: 'relative', display: 'inline-block' }}
     >
       <IconButton
         size="large"
         color="inherit"
         sx={{
-          color: 'text.secondary',
-          ...(isDropdownOpen && {
-            color: 'primary.main',
-          }),
+          color: isDropdownOpen ? 'primary.main' : 'text.secondary',
         }}
       >
         <Button size="large" color="inherit">
@@ -81,7 +73,6 @@ const Cart = () => {
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
             width: '400px',
           }}
-          onMouseLeave={handleMouseLeave}
         >
           <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
             <Typography variant="h5" fontWeight={600}>
@@ -90,20 +81,16 @@ const Cart = () => {
             <IconButton
               color="inherit"
               onClick={() => setIsDropdownOpen(false)}
-              sx={{
-                color: (theme) => theme.palette.grey.A200,
-              }}
+              sx={{ color: (theme) => theme.palette.grey.A200 }}
             >
               <IconX size="1rem" />
             </IconButton>
           </Box>
 
-          {/* Cart Items */}
           <Scrollbar sx={{ height: '300px', overflow: 'auto', maxHeight: '600px' }}>
             <CartItems />
           </Scrollbar>
 
-          {/* Total and Checkout */}
           <Box mt={2}>
             {cartData.products.length > 0 ? (
               <>
@@ -114,15 +101,15 @@ const Cart = () => {
                   <Typography
                     variant="subtitle2"
                     fontWeight={600}
-                    style={{ display: 'flex', alignItems: 'center' }}
+                    sx={{ display: 'flex', alignItems: 'center' }}
                   >
-                    {/* {totalPoints.toLocaleString('vi-VN')} */}
+                    {totalPoints.toLocaleString('vi-VN')}
                     <img
                       src={logoPoint}
-                      alt={logoPoint}
+                      alt="Logo"
                       width={20}
                       height={20}
-                      style={{ borderRadius: 50, marginLeft: '4px' }}
+                      style={{ borderRadius: '50%', marginLeft: '4px' }}
                     />
                   </Typography>
                 </Stack>
@@ -131,7 +118,9 @@ const Cart = () => {
                 </Button>
               </>
             ) : (
-              ''
+              <Typography variant="body2" textAlign="center">
+                Không có sản phẩm nào trong giỏ hàng
+              </Typography>
             )}
           </Box>
         </Box>
