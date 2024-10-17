@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
-import { fetchStrData } from 'src/store/user-resources/userSlice';
+import { fetchStrData } from 'src/store/user/user-resources/userSlice';
 import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
 
@@ -45,45 +45,6 @@ const Tab1 = () => {
   }, [dispatch, page, rowsPerPage]);
 
   console.log('Users from Redux:', users);
-
-  // const fetchData = async (page = 0, size = 25) => {
-  //   try {
-  //     // Get accessToken from localStorage
-  //     const accessToken = localStorage.getItem('accessToken');
-
-  //     if (!accessToken) {
-  //       console.error('No access token found');
-  //       return;
-  //     }
-
-  //     // Call the API with Authorization header
-  //     const response = await axios.get(`https://redai02-4af4309fd76b.herokuapp.com/user-resources/files`, {
-  //       params: { file: page, size: size },
-  //       headers: {
-  //         'Authorization': `Bearer ${accessToken}` // Include the access token
-  //       }
-  //     });
-
-  //     console.log('Response:', response.data);
-
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const accessToken = localStorage.getItem('accessToken');
-  //   console.log('accessToken:', accessToken);
-  //   fetchData(); // Call the function to fetch data
-  // }, []);
-
-  // const { dataa, loading, error } = useSelector((state: AppState) => state.test);
-
-  // console.log('dataa: ', dataa);
-
-  // useEffect(() => {
-  //   console.log('Users from Redux:', users);
-  // }, [users]);
   const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState<PropsData[]>([
     {

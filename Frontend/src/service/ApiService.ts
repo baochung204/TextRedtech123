@@ -24,7 +24,7 @@ export default class ApiService {
 
     // Cart
     static async getCartByUser() {
-        const response = await axios.get(`${this.BASE_URL}/api/v1/carts/me`, {
+        const response = await axios.get(`${this.BASE_URL}/carts/me`, {
             headers: this.getHeader(),
         });
         return response.data;
@@ -32,14 +32,14 @@ export default class ApiService {
 
     // Products
     static async getProductById(productId: any) {
-        const response = await axios.get(`${this.BASE_URL}/api/v1/products/${productId}`, {
+        const response = await axios.get(`${this.BASE_URL}/products/${productId}`, {
             headers: this.getHeader(),
         });
         return response.data;
     }
 
     static async getProductByTagId(tagId: any) {
-        const response = await axios.get(`${this.BASE_URL}/api/v1/products/tag/${tagId}`, {
+        const response = await axios.get(`${this.BASE_URL}/products/tag/${tagId}`, {
             headers: this.getHeader(),
         });
         return response.data;
@@ -47,7 +47,7 @@ export default class ApiService {
 
     static async getProductByCategoryId(categoryId: any) {
         const response = await axios.get(
-            `${this.BASE_URL}/api/v1/categories/${categoryId}/products`,
+            `${this.BASE_URL}/categories/${categoryId}/products`,
             {
                 headers: this.getHeader(),
             },
@@ -57,7 +57,7 @@ export default class ApiService {
 
     // Categories
     static async getAllCategories() {
-        const response = await axios.get(`${this.BASE_URL}/api/v1/categories/get-all`, {
+        const response = await axios.get(`${this.BASE_URL}/categories/get-all`, {
             headers: this.getHeader(),
         });
         return response.data;
@@ -65,21 +65,21 @@ export default class ApiService {
 
     // User-related APIs
     static async getMy2FA() {
-        const response = await axios.get(`${this.BASE_URL}/api/v1/users/me/2fa`, {
+        const response = await axios.get(`${this.BASE_URL}/users/me/2fa`, {
             headers: this.getHeader(),
         });
         return response.data;
     }
 
     static async getMyInfo() {
-        const response = await axios.get(`${this.BASE_URL}/api/v1/users/me`, {
+        const response = await axios.get(`${this.BASE_URL}/users/me`, {
             headers: this.getHeader(),
         });
         return response.data;
     }
 
     static async getAllUsers() {
-        const response = await axios.get(`${this.BASE_URL}/api/v1/users`, {
+        const response = await axios.get(`${this.BASE_URL}/users`, {
             headers: this.getHeader(),
         });
         return response.data;
@@ -95,13 +95,13 @@ export default class ApiService {
     }
 
     static async registerUser(registration: any) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/register`, registration);
+        const response = await axios.post(`${this.BASE_URL}/auth/register`, registration);
         return response.data;
     }
 
     static async registerV2User(registration: registrationV2) {
         try {
-            const response = await axios.post(`${this.BASE_URL}/api/v1/auth/register-v2`, registration);
+            const response = await axios.post(`${this.BASE_URL}/auth/register-v2`, registration);
             return response.data;
         } catch (error: any) {
             // Xử lý lỗi
@@ -113,7 +113,7 @@ export default class ApiService {
     static async loginWithGoogle(googleCode: string) {
         try {
             const response = await axios.post(
-                `${this.BASE_URL}/api/v1/auth/login-google?code=${googleCode}`,
+                `${this.BASE_URL}/auth/login-google?code=${googleCode}`,
             );
             return response.data;
         } catch (error: any) {
@@ -125,7 +125,7 @@ export default class ApiService {
 
     // 2FA APIs
     static async send2FA(account: string, type: string) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/send-2fa`, {
+        const response = await axios.post(`${this.BASE_URL}/auth/send-2fa`, {
             account,
             type,
         });
@@ -133,7 +133,7 @@ export default class ApiService {
     }
 
     static async verify2FA(account: string, type: string, code: string) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/verify-2fa`, {
+        const response = await axios.post(`${this.BASE_URL}/auth/verify-2fa`, {
             account,
             type,
             code,
@@ -142,13 +142,13 @@ export default class ApiService {
     }
 
     static async set2FA(type: string) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/setting-2fa`, { type });
+        const response = await axios.post(`${this.BASE_URL}/auth/setting-2fa`, { type });
         return response.data;
     }
 
     // Password APIs
     static async changePassword(oldPassword: string, password: string, confirmPassword: string) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/change-password`, {
+        const response = await axios.post(`${this.BASE_URL}/auth/change-password`, {
             oldPassword,
             password,
             confirmPassword,
@@ -157,7 +157,7 @@ export default class ApiService {
     }
 
     static async forgotPassword(email: string) {
-        const response = await axios.post(`${this.BASE_URL}/api/v1/auth/forgot-password`, {
+        const response = await axios.post(`${this.BASE_URL}/auth/forgot-password`, {
             email,
         });
         return response.data;
@@ -166,7 +166,7 @@ export default class ApiService {
     // Bookings
     static async getBookingByConfirmationCode(confirmationCode: any) {
         const response = await axios.get(
-            `${this.BASE_URL}/api/v1/bookings/get-by-confirmation-code/${confirmationCode}`,
+            `${this.BASE_URL}/bookings/get-by-confirmation-code/${confirmationCode}`,
             {
                 headers: this.getHeader(),
             },
@@ -176,7 +176,7 @@ export default class ApiService {
 
     static async refreshToken() {
         try {
-            const response = await axios.post(`${this.BASE_URL}/api/v1/auth/refresh-token`, {}, { withCredentials: true });
+            const response = await axios.post(`${this.BASE_URL}/auth/refresh-token`, {}, { withCredentials: true });
             return response.data;
         } catch (error: any) {
             // Xử lý lỗi
