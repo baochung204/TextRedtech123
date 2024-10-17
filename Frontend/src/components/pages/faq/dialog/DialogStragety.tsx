@@ -11,12 +11,12 @@ import {
 } from '@mui/material';
 
 interface PropsX {
-  content: string;
+  campaignName: string;
   badgeUrl: string;
-  productId: string;
+  campaignId: string;
   level: string;
-  tomtat: string;
-  nhom: string;
+  summary: string;
+  groupCampaignName: string;
 }
 
 interface PropsDialog {
@@ -51,13 +51,13 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Grid item xs={12}>
-                    <span style={{ fontWeight: 600 }}>ID:</span> {item.productId}
+                    <span style={{ fontWeight: 600 }}>ID:</span> {item.campaignId}
                   </Grid>
                   <Grid item xs={12}>
-                    <span style={{ fontWeight: 600 }}>Tên chiến lược:</span> {item.content}
+                    <span style={{ fontWeight: 600 }}>Tên chiến lược:</span> {item.campaignName}
                   </Grid>
                   <Grid item xs={12}>
-                    <span style={{ fontWeight: 600 }}>Nhóm:</span> {item.nhom}
+                    <span style={{ fontWeight: 600 }}>Nhóm:</span> {item.groupCampaignName}
                   </Grid>
                   <Grid item xs={12}>
                     <span style={{ fontWeight: 600 }}>Level:</span> {item.level}
@@ -68,7 +68,7 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
             <Grid item xs={8}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <span style={{ fontWeight: 600 }}>Tóm tắt:</span> {item.tomtat}
+                  <span style={{ fontWeight: 600 }}>Tóm tắt:</span> {item.summary}
                 </Grid>
               </Grid>
             </Grid>

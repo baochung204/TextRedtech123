@@ -1,16 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import userApi from 'src/api/userResource/UserResource';
 
-
 interface PropsData {
-    fileId: number,
-    name: string,
-    size: string,
-    date: Date,
-    type: string,
-    action: boolean
+    fileId: number;
+    name: string;
+    size: string;
+    date: Date;
+    type: string;
+    action: boolean;
 }
-
 
 interface StrState {
     dataa: PropsData[];
@@ -24,12 +22,19 @@ const initialState: StrState = {
     error: null,
 };
 
+// Define a type for the thunk parameters
+interface FetchParams {
+    page: number;
+    size: number;
+}
+
+// Create the async thunk with an object payload
 export const fetchStrData = createAsyncThunk(
     'str/fetchData',
-    async ({ page = 0, size = 25 }: { page?: number; size?: number }, thunkAPI) => {
+    async ({ page, size }: FetchParams, thunkAPI) => {
         try {
-            const response = await userApi.getAllFiles(page, size); 
-            return response.data; 
+            const response = await userApi.getAllFiles(page, size);
+            return response.data;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
         }

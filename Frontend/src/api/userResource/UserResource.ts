@@ -6,20 +6,20 @@ const userApi = {
     getAllFiles: (page?: number, size?: number) => {
         return axiosAPI.get(`/${url}/files?file=${page}&size=${size}`);
     },
-    getAllURL: () => {
+    getAllURL: (page?: number, size?: number) => {
         return axiosAPI.get(`/${url}/urls`);
     },
-    getAllModels: () => {
+    getAllModels: (page?: number, size?: number) => {
         return axiosAPI.get(`/${url}/models`);
     },
-    getAllImages: () => {
+    getAllImages: (page?: number, size?: number) => {
         return axiosAPI.get(`/${url}/images`);
     },
-    getAllFunction: () => {
-        return axiosAPI.get(`/${url}/function`);
+    getAllFunction: (page?: number, size?: number) => {
+        return axiosAPI.get(`/${url}/functions?functions=${page}&size=${size}`);
     },
-    getAllCampaigns: () => {
-        return axiosAPI.get(`/${url}/campaigns`);
+    getAllCampaigns: (page?: number, size?: number) => {
+        return axiosAPI.get(`/${url}/campaigns?campaigns=${page}&size=${size}`);
     },
 };
 

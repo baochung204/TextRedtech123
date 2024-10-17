@@ -1,8 +1,8 @@
 export interface Str {
-    content: string;
+    campaignName: string;
     badgeUrl: string;
-    productId: string;
+    campaignId: string;
     level: string;
-    tomtat: string;
-    nhom: string
+    summary: string;
+    groupCampaignName: string;
 }

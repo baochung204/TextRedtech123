@@ -1,8 +1,8 @@
 export interface Functions {
-    id: string;
-    name: string;
-    level: string;
+    functionId: string;
+    functionName: string;
     badgeUrl: string;
-    nhom: string;
-    tomtat: string
+    level: string;
+    summary: string;
+    groupFunctionName: string;
 }

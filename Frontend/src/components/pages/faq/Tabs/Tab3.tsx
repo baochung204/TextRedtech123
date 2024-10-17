@@ -6,7 +6,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { fetchFile } from 'src/store/apps/resources/file/fileSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DialogFile from '../dialog/DialogFile';
-
 interface PropsTab3 {
   value: string;
   open: boolean;
@@ -21,14 +20,17 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
   // const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [dataSelect] = useState<string[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  const dataFile = useSelector((state: AppState) => state.file.data);
+  const dataFile = useSelector((state: AppState) => state.file.data?.result?.content || []);
+
   useEffect(() => {
     dispatch(fetchFile());
   }, [dispatch]);
+
+  console.log('Dữ liệu content:', dataFile);
   const column = [
     {
       title: 'ID',
-      dataIndex: 'id',
+      dataIndex: 'fileId',
     },
     {
       title: 'Tên file',
@@ -40,12 +42,12 @@ const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
     },
     {
       title: 'Ngày tải',
-      dataIndex: 'dateTime',
+      dataIndex: 'date',
       render: (value: Date) => new Date(value).toLocaleDateString(),
     },
     {
       title: 'Định dạng',
-      dataIndex: 'typeFile',
+      dataIndex: 'type',
     },
     {
       title: 'Hành động',
