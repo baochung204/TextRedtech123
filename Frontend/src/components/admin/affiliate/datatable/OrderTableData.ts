@@ -89,7 +89,7 @@ export interface ContactPointTable {
   icon: string;
   createdate: string;
   confirmdate: string;
-  type_company: boolean;
+  type_company: string;
   name_company: string;
   tax_code: number;
   address: string;
@@ -107,7 +107,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon1.png',
     createdate: '2023-01-10',
     confirmdate: '2023-01-12',
-    type_company: true,
+    type_company: 'BUSINESS',
     name_company: 'RedTech',
     tax_code: 1234567890,
     address: 'Hà Nội',
@@ -123,7 +123,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon2.png',
     createdate: '2023-02-05',
     confirmdate: '2023-02-07',
-    type_company: true,
+    type_company: 'BUSINESS',
     name_company: 'GreenTech',
     tax_code: 9876543210,
     address: 'Hồ Chí Minh',
@@ -139,7 +139,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon3.png',
     createdate: '2023-03-12',
     confirmdate: '2023-03-15',
-    type_company: true,
+    type_company: 'BUSINESS',
     name_company: 'BlueTech',
     tax_code: 1928374650,
     address: 'Đà Nẵng',
@@ -155,7 +155,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon4.png',
     createdate: '2023-04-10',
     confirmdate: '2023-04-13',
-    type_company: true,
+    type_company: 'BUSINESS',
     name_company: 'GreyTech',
     tax_code: 5647382910,
     address: 'Bình Định',
@@ -171,7 +171,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon5.png',
     createdate: '2023-05-08',
     confirmdate: '2023-05-10',
-    type_company: true,
+    type_company: 'BUSINESS',
     name_company: 'PinkTech',
     tax_code: 1092837465,
     address: 'Nha Trang',
@@ -187,7 +187,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon6.png',
     createdate: '2023-06-15',
     confirmdate: '2023-06-18',
-    type_company: true,
+    type_company: 'BUSINESS',
     name_company: 'WhiteTech',
     tax_code: 8765432109,
     address: 'Thái Bình',
@@ -203,7 +203,7 @@ const DataContactPointTable: ContactPointTable[] = [
     icon: 'https://example.com/icon7.png',
     createdate: '2023-07-09',
     confirmdate: '2023-07-12',
-    type_company: true,
+    type_company: 'BUSINESS',
     name_company: 'BlackTech',
     tax_code: 3456789012,
     address: 'Hà Nội',

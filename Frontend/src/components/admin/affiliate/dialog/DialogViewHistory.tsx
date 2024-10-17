@@ -5,6 +5,7 @@ import {
   Button,
   Card,
   CardContent,
+  Checkbox,
   Divider,
   Grid,
   Stack,
@@ -32,6 +33,11 @@ const DialogViewHistory: React.FC<PropsDialog> = ({ open, setOpen }) => {
   const [skipped, setSkipped] = useState(new Set<number>());
   const handleClose = () => {
     setOpen(false);
+  };
+  const [isCheckInvoice, setIsCheckInvoice] = useState(false);
+
+  const handleCheckInvoice = (event: any) => {
+    setIsCheckInvoice(event.target.checked);
   };
 
   const formik = useFormik({
@@ -83,6 +89,12 @@ const DialogViewHistory: React.FC<PropsDialog> = ({ open, setOpen }) => {
       //   setIsSubmitting(false);
     }
   };
+  const onHandleComfirm = () => {
+    const confirmed = window.confirm('Bạn có chắc chắn muốn từ chối hay không?');
+    if (confirmed) {
+      handleClose();
+    }
+  };
 
   const isStepSkipped = (step: number) => skipped.has(step);
   const handleBack = () => {
@@ -98,6 +110,38 @@ const DialogViewHistory: React.FC<PropsDialog> = ({ open, setOpen }) => {
           <>
             <Box sx={{ width: '100%', padding: '20px' }}>
               <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={6}>
+                      <Typography
+                        variant="h6"
+                        fontWeight="500"
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                      >
+                        Matbao duyệt hóa đơn:{' '}
+                        <Typography variant="h6" fontWeight="500" color="error" sx={{ ml: 1 }}>
+                          Hóa đơn không hợp lệ
+                        </Typography>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Typography
+                        variant="h6"
+                        fontWeight="500"
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                      >
+                        Kế toán duyệt hóa đơn:{' '}
+                        <Checkbox
+                          sx={{ ml: 1 }}
+                          checked={isCheckInvoice}
+                          onChange={handleCheckInvoice}
+                        />{' '}
+                        Hợp lệ
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+
                 <Grid item xs={12}>
                   <PDFViewer base64Data={base64String} />
                 </Grid>
@@ -314,15 +358,14 @@ const DialogViewHistory: React.FC<PropsDialog> = ({ open, setOpen }) => {
 
                   {activeStep === 0 && (
                     <Box sx={{ display: 'flex', gap: 3 }}>
-                      <Button onClick={handleClose} variant="contained" color="error">
+                      <Button onClick={onHandleComfirm} variant="contained" color="error">
                         Từ chối
                       </Button>
                       <Button
-                        onClick={() => {
-                          formik.handleSubmit();
-                        }}
+                        onClick={() => formik.handleSubmit()}
                         variant="contained"
-                        color="secondary"
+                        color={isCheckInvoice ? 'secondary' : 'secondary'}
+                        disabled={!isCheckInvoice}
                       >
                         Xác nhận
                       </Button>

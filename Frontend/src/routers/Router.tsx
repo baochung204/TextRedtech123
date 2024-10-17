@@ -37,7 +37,6 @@ const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assi
 const AssistantEditorAdmin = Loadable(
   lazy(() => import('src/views/admin/assistant/AssistantEditorAdmin')),
 );
-
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import { ProtectedRoute } from 'src/service/guard';
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
