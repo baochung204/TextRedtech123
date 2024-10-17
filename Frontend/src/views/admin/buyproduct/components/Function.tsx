@@ -169,6 +169,7 @@ const Function = ({ values }: FunctionProps) => {
 
         <Grid item xs>
           <Field
+          type="number"
             name="levelx"
             as={TextField}
             placeholder="Level function"

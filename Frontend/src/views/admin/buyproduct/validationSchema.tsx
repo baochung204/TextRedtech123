@@ -5,17 +5,27 @@ export const validationSchema2 = Yup.object({
     codeFunction: Yup.string().required("Bắt buộc nhập code Function"),
     levelx: Yup.string().required("Bắt buộc nhập levelx"),
 });
-
 export const validationSchema1 = Yup.object({
     tensanpham: Yup.string().required("Bắt buộc nhập tên sản phẩm"),
-    gianiemyet: Yup.string()
-        .required("Bắt buộc nhập giá niêm yết")
-        .matches(/^\d+$/, "Giá niêm yết phải là số"),
-    giakhuyenmai: Yup.string()
-        .required("Bắt buộc nhập giá khuyến mại")
-        .matches(/^\d+$/, "Giá khuyến mãi phải là số"),
-});
-
+    gianiemyet: Yup.number()
+      .typeError("Giá niêm yết phải là số")
+      .required("Bắt buộc nhập giá niêm yết")
+      .min(0, "Giá niêm yết không được âm"),  
+    giakhuyenmai: Yup.number()
+      .typeError("Giá khuyến mại phải là số")
+      .required("Bắt buộc nhập giá khuyến mại")
+      .min(0, "Giá khuyến mại không được âm") 
+      .test(
+        'is-less-than-list-price',
+        'Giá khuyến mại phải nhỏ hơn giá niêm yết',
+        function (value: any) {
+          const { gianiemyet } = this.parent;
+          return gianiemyet && value < gianiemyet;
+        }
+      ),
+  });
+  
+  
 export const validationSchema3 = Yup.object({
     nhomStrategy: Yup.string().required("Bắt buộc nhập nhóm Strategy"),
     tenStrategy: Yup.string().required("Bắt buộc nhập tên Strategy"),
