@@ -39,8 +39,6 @@ interface FunctionProps {
   permissions: PropsPosition;
 }
 
-
-
 const InfoRow: React.FC<{ label: string; value: string | number }> = ({ label, value }) => (
   <Grid item xs={12}>
     <Grid container xs={12}>
@@ -88,12 +86,11 @@ const Decentralization = () => {
   const handleOpenDialog = () => setOpenDialog(true);
   const handleCloseDialog = () => setOpenDialog(false);
 
-
   const handleSelectEmployee = (employee: any) => {
     setSelectedEmployee(employee);
-    setFunctions([])
-    setSelectedFunctions({})
-    setSelectedPermissions({})
+    setFunctions([]);
+    setSelectedFunctions({});
+    setSelectedPermissions({});
     handleCloseDialog();
   };
   // const handleSearch = () => {
@@ -104,7 +101,7 @@ const Decentralization = () => {
       title: 'Chức năng',
       dataIndex: 'chucnang',
       render: (_, __, rowIndex) => (
-        <FormControl fullWidth>
+        <FormControl fullWidth sx={{ mt: 1 }}>
           <InputLabel id={`select-label-${rowIndex}`}>Chức năng</InputLabel>
           <Select
             labelId={`select-label-${rowIndex}`}
@@ -217,7 +214,7 @@ const Decentralization = () => {
         >
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Grid container spacing={2} sx={{paddingY: 2}}>
+              <Grid container spacing={2} sx={{ paddingY: 2 }}>
                 <Grid item xs={8}>
                   <TextField
                     id="outlined-search"
@@ -245,7 +242,7 @@ const Decentralization = () => {
                   />
                 </Grid>
                 <Grid item xs={4}>
-                  <FormControl sx={{minWidth: 120 }} size="small">
+                  <FormControl sx={{ minWidth: 120 }} size="small">
                     <InputLabel id="demo-select-small-label">Bộ lọc</InputLabel>
                     <Select
                       labelId="demo-select-small-label"
@@ -255,9 +252,7 @@ const Decentralization = () => {
                       label="Bộ lọc"
                       onChange={handleChange1}
                     >
-                      <MenuItem value="all">
-                        Tất cả
-                      </MenuItem>
+                      <MenuItem value="all">Tất cả</MenuItem>
                       <MenuItem value={'department'}>Phòng ban</MenuItem>
                       <MenuItem value={'createDay'}>Ngày tạo</MenuItem>
                       <MenuItem value={'ban'}>Đã khóa</MenuItem>
@@ -279,7 +274,6 @@ const Decentralization = () => {
               </List>
             </Grid>
           </Grid>
-
         </DialogContent>
         <DialogActions>
           <Button variant="contained" color="error" onClick={handleCloseDialog}>

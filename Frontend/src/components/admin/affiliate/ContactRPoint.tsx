@@ -108,19 +108,6 @@ const dataSource = [
   },
 ];
 
-const getStatusColor = (status: number) => {
-  switch (status) {
-    case 1:
-      return 'success';
-    case 2:
-      return 'warning';
-    case 3:
-      return 'error';
-    default:
-      return 'default';
-  }
-};
-
 interface Column {
   title: string;
   dataIndex: string;
@@ -154,11 +141,15 @@ const ContactRPoint = () => {
         dataIndex: 'type_company',
         render: (_row: any, value: any) => (
           <Typography style={{ width: '150px' }} variant="subtitle2">
-            <Chip
-              label={value.type_company ? 'Doanh nghiệp' : ''}
-              sx={{ color: value.type_company ? 'success' : '' }}
-              variant="outlined"
-            />
+            {value.type_company === 'BUSINESS' ? (
+              <Chip
+                label="Doanh nghiệp"
+                sx={{ color: 'success.main', borderColor: 'success.main' }}
+                variant="outlined"
+              />
+            ) : (
+              ''
+            )}
           </Typography>
         ),
       },
@@ -204,7 +195,15 @@ const ContactRPoint = () => {
                 ? 'Bị từ chối'
                 : 'Chưa ký'
             }
-            color={getStatusColor(value.status)}
+            color={
+              value.status === 1
+                ? 'success'
+                : value.status === 2
+                ? 'warning'
+                : value.status === 3
+                ? 'error'
+                : 'default'
+            }
           />
         ),
       },

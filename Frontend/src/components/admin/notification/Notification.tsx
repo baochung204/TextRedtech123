@@ -21,6 +21,7 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 // import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import AddNotification from './add/AddNotification';
+import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 
 const DataBox = [
   {
@@ -122,7 +123,7 @@ interface INotification {
   moreLink: string; // Link xem thêm
   views: number; // Lượt xem
   interactions: number; // Tương tác
-  status: JSX.Element; // Trạng thái của thông báo
+  status: number; // Trạng thái của thông báo
   description: string;
 }
 
@@ -137,14 +138,6 @@ const getStatusTextAndColor = (status: number) => {
   }
 };
 
-const renderStatus = (status: number) => {
-  const { text, color } = getStatusTextAndColor(status);
-  return (
-    <Typography style={{ color }} variant="subtitle2">
-      {text}
-    </Typography>
-  );
-};
 const dataRows: INotification[] = [
   {
     id: '1',
@@ -155,8 +148,9 @@ const dataRows: INotification[] = [
     moreLink: 'https://example.com/chinh-sach-bao-mat',
     views: 1200,
     interactions: 340,
-    status: renderStatus(2),
-    description: 'mô tả 1',
+    status: 1,
+    description:
+      'Chúng tôi đã cập nhật chính sách bảo mật nhằm đảm bảo quyền riêng tư và an toàn dữ liệu cho tất cả người dùng. Các thay đổi bao gồm việc làm rõ cách thức chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân, đồng thời cập nhật các biện pháp bảo mật mới nhất để ngăn chặn các truy cập trái phép.',
   },
   {
     id: '2',
@@ -168,8 +162,9 @@ const dataRows: INotification[] = [
     moreLink: 'https://example.com/cua-hang-moi',
     views: 950,
     interactions: 210,
-    status: renderStatus(1),
-    description: 'mô tả 2',
+    status: 2,
+    description:
+      'Chúng tôi đã cập nhật chính sách bảo mật nhằm đảm bảo quyền riêng tư và an toàn dữ liệu cho tất cả người dùng. Các thay đổi bao gồm việc làm rõ cách thức chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân, đồng thời cập nhật các biện pháp bảo mật mới nhất để ngăn chặn các truy cập trái phép.',
   },
   {
     id: '3',
@@ -180,8 +175,9 @@ const dataRows: INotification[] = [
     moreLink: 'https://example.com/giam-gia-cuoi-tuan',
     views: 1500,
     interactions: 450,
-    status: renderStatus(2),
-    description: 'mô tả 3',
+    status: 1,
+    description:
+      'Chúng tôi đã cập nhật chính sách bảo mật nhằm đảm bảo quyền riêng tư và an toàn dữ liệu cho tất cả người dùng. Các thay đổi bao gồm việc làm rõ cách thức chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân, đồng thời cập nhật các biện pháp bảo mật mới nhất để ngăn chặn các truy cập trái phép.',
   },
   {
     id: '4',
@@ -192,8 +188,9 @@ const dataRows: INotification[] = [
     moreLink: 'https://example.com/thay-doi-gio-lam-viec',
     views: 600,
     interactions: 120,
-    status: renderStatus(1),
-    description: 'mô tả 3',
+    status: 2,
+    description:
+      'Chúng tôi đã cập nhật chính sách bảo mật nhằm đảm bảo quyền riêng tư và an toàn dữ liệu cho tất cả người dùng. Các thay đổi bao gồm việc làm rõ cách thức chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân, đồng thời cập nhật các biện pháp bảo mật mới nhất để ngăn chặn các truy cập trái phép.',
   },
 ];
 
@@ -267,6 +264,17 @@ const ContentNotification = () => {
       {
         dataIndex: 'status',
         title: 'Trạng thái',
+        render: (value: any) => (
+          <Typography sx={{ color: value === 1 ? '#13DEB9' : '#ff9800' }} variant="subtitle2">
+            {value === 1 ? 'Đăng' : 'Nháp'}
+          </Typography>
+        ),
+      },
+      {
+        id: 'statusAction',
+        title: 'Thao tác',
+        dataIndex: 'status',
+        render: (value: any) => <CustomSwitch color="primary" checked={value === 1} />,
       },
     ],
     [],
