@@ -127,10 +127,6 @@ const ListVoucher = () => {
   };
   const column = useMemo<Column[]>(
     () => [
-      // {
-      //   title: 'ID',
-      //   dataIndex: 'id',
-      // },
       {
         title: 'Tên chiến dịch',
         dataIndex: 'name',

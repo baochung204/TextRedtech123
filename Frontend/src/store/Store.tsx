@@ -31,9 +31,12 @@ import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
+import blogSlice from './admin/blog/overview/blogSlice';
+import counponSlice from './admin/counpon/overview/counponSlice';
 
 export const store = configureStore({
   reducer: {
+    //user
     customizer: CustomizerReducer,
     ecommerceReducer: EcommerceReducer,
     chatReducer: ChatsReducer,
@@ -59,10 +62,14 @@ export const store = configureStore({
     assisstant: assisstantSlice,
     twofa: twofaSlice,
     cart: cartSlice,
+    //admin
+    overview_blog: blogSlice,
+    overview_counpon: counponSlice,
   },
 });
 
 const rootReducer = combineReducers({
+  //user
   customizer: CustomizerReducer,
   ecommerceReducer: EcommerceReducer,
   chatReducer: ChatsReducer,
@@ -88,6 +95,9 @@ const rootReducer = combineReducers({
   assisstant: assisstantSlice,
   twofa: twofaSlice,
   cart: cartSlice,
+  //admin
+  overview_blog: blogSlice,
+  overview_counpon: counponSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
