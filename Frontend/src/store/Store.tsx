@@ -30,7 +30,7 @@ import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice'
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice'
-
+import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
 export const store = configureStore({
   reducer: {
     customizer: CustomizerReducer,
@@ -57,6 +57,7 @@ export const store = configureStore({
     test: userSlice,
     assisstant: assisstantSlice,
     twofa: twofaSlice,
+    adminTicker: adminTicketSlice,
   },
 });
 
@@ -85,6 +86,7 @@ const rootReducer = combineReducers({
   test: userSlice,
   assisstant: assisstantSlice,
   twofa: twofaSlice,
+  adminTicker: adminTicketSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
