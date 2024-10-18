@@ -323,6 +323,7 @@ const CustomerListOrder = () => {
                           }}
                           size="small"
                           MenuProps={{
+                            autoFocus: false,
                             PaperProps: {
                               sx: {
                                 marginTop: 1,

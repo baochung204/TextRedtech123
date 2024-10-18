@@ -1,31 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import assisstantAPi from "src/api/chatbots/assistantsUser";
+import { PropsDataAssisstant } from "src/store/Interface/user/assisstant/PropsAssisstant";
 
 
-
-interface PropsData {
-
-    chatbotId: number,
-    chatbotName: string,
-    modelName: string,
-    avatar: string,
-    badgeUrl: string,
-    exp: number,
-    expMax: number,
-    isActive: boolean,
-    conversionRate: number,
-    customer: number,
-    conversion: number,
-    totalIncome: number,
-    gmv: number,
-    aov: number
-
-}
 
 
 
 interface StrState {
-    dataa: PropsData[];
+    dataa: PropsDataAssisstant[];
     loading: boolean;
     error: string | null;
 }
@@ -41,7 +23,7 @@ export const fetchAssisstantData = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await assisstantAPi.getAllAssisstant();
-            return response.data;
+            return response.data.result;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
         }

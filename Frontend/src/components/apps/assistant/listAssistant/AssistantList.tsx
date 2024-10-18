@@ -41,25 +41,10 @@ import IconCrv from 'src/assets/ICON/cvr.png';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchAssisstantData } from 'src/store/user/chatbots/assisstantUserSlice';
 import AlertChat from '../../chats/AlertChat';
+import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
 
 interface FilmsData {
   title: string;
-}
-interface PropsData {
-  chatbotId: number;
-  chatbotName: string;
-  modelName: string;
-  avatar: string;
-  badgeUrl: string;
-  exp: number;
-  expMax: number;
-  isActive: boolean;
-  conversionRate: number;
-  customer: number;
-  conversion: number;
-  totalIncome: number;
-  gmv: number;
-  aov: number;
 }
 
 const FilmsData: FilmsData[] = [
@@ -76,14 +61,27 @@ const ListAssistant = () => {
 
   const assisstant = useSelector((state: AppState) => state.assisstant.dataa);
 
-  const [assisstantData, setAssisstantData] = useState<PropsData[]>([]);
+  const [assisstantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
+
+
+  // useEffect(() => {
+  //   dispatch(fetchAssisstantData());
+  //   setAssisstantData(assisstant);
+  // }, [dispatch, assisstant]);
+
 
   useEffect(() => {
     dispatch(fetchAssisstantData());
-    setAssisstantData(assisstant.result);
-  }, []);
+  }, [dispatch]);  
 
-  console.log('loadloadload: ', assisstant);
+  useEffect(() => {
+    if (assisstant !== assisstantData) {
+      setAssisstantData(assisstant);
+    }
+  }, [assisstant, assisstantData]);
+
+
+  console.log('loadloadload: ', assisstantData);
 
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
@@ -287,7 +285,8 @@ const ListAssistant = () => {
                         <Button
                           onClick={() => onHandleCheckOnOrOff(rank)}
                           sx={{
-                            backgroundColor: checkedRanks.includes(`${rank.chatbotId}`)
+                            // backgroundColor: checkedRanks.includes(`${rank.chatbotId}`)
+                            backgroundColor: checkedRanks.includes(`${index}`)
                               ? '#38D955'
                               : '#FF2023',
                             display: 'flex',
@@ -295,7 +294,8 @@ const ListAssistant = () => {
                             justifyContent: 'center',
                             height: '100%',
                             ':hover': {
-                              backgroundColor: checkedRanks.includes(`${rank.chatbotId}`)
+                              // backgroundColor: checkedRanks.includes(`${rank.chatbotId}`)
+                              backgroundColor: checkedRanks.includes(`${index}`)
                                 ? '#38D955'
                                 : '#FF2023',
                               boxShadow: 'none',
@@ -335,7 +335,8 @@ const ListAssistant = () => {
                             ':hover': { backgroundColor: '#FFB300' },
                           }}
                           component={Link}
-                          to={`/assistants/detail/${rank.chatbotId}`}
+                          // to={`/assistants/detail/${rank.chatbotId}`}
+                          to={`/assistants/detail/${index}`}
                         >
                           <IconStackBack stroke={2} />
                         </Button>

@@ -411,6 +411,7 @@ const HistoryAffiliate = () => {
                       },
                     },
                   },
+                  autoFocus: false,
                   anchorOrigin: {
                     vertical: 'bottom',
                     horizontal: 'right',
