@@ -64,7 +64,8 @@ const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')))
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
-const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
+const AssistantAdd = Loadable(lazy(() => import('src/views/apps/assistant/AssistantAdd')));
+const AssistantEdit = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEdit')));
 const AssistantInfor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
@@ -171,8 +172,9 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
       { path: '/apps/list-assistant', element: <ProtectedRoute element={Assistant} /> },
       { path: '/apps/assistant', element: <ProtectedRoute element={Assistant} /> },
-      { path: '/assistants/add', element: <ProtectedRoute element={AssistantEditor} /> },
-      { path: '//assistants/detail/:id', element: <ProtectedRoute element={AssistantInfor} /> },
+      { path: '/assistants/add', element: <ProtectedRoute element={AssistantAdd} /> },
+      { path: '/assistants/edit/:id', element: <ProtectedRoute element={AssistantEdit} /> },
+      { path: '/assistants/detail/:id', element: <ProtectedRoute element={AssistantInfor} /> },
       { path: '/integrations', element: <ProtectedRoute element={Integration} /> },
       { path: '/products', element: <ProtectedRoute element={Product} /> },
       { path: '/conversions', element: <ProtectedRoute element={CustomerListOrder} /> },
