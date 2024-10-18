@@ -1,8 +1,10 @@
 // src/redux/integrationSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import userApi from 'src/api/userResource/UserResource';
 import { Functions } from 'src/types/apps/function';
 // Define the slice state interface
+
 interface FunctionState {
   data: Functions[]; // List of integrations
   loading: boolean; // Loading state for API requests
@@ -15,14 +17,24 @@ const initialState: FunctionState = {
   loading: false,
   error: null,
 };
-
+interface FetchParams {
+  page: number;
+  size: number;
+}
 // Thunk to fetch integration data
-export const fetchFunction = createAsyncThunk('function/fetchFunction', async () => {
-  const response = await axios.get('http://localhost:9999/function');
-  // console.log('function', response.data);
+export const fetchFunction = createAsyncThunk(
+  'function/fetchFunction',
+  async ({ page, size }: FetchParams) => {
+    try {
+      const response = await userApi.getAllFunction(page, size);
+      console.log('function', response.data);
 
-  return response.data;
-});
+      return response.data.result;
+
+    } catch (error) {
+      console.log("Error", error)
+    }
+  });
 
 // Slice
 // eslint-disable-next-line react-refresh/only-export-components

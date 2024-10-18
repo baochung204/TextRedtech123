@@ -12,61 +12,56 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
-import { fetchStrData } from 'src/store/user/user-resources/userSlice';
+// import { fetchStrData } from 'src/store/user/user-resources/userSlice';
 import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
-
-interface PropsData {
-  content: string;
-  badgeUrl: string;
-  productId: string;
-  level: string;
-  tomtat: string;
-  nhom: string;
-}
+import { Str } from 'src/types/apps/str'
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
-  const dataStr = useSelector((state: AppState) => state.str.data);
+  const dataStr = useSelector((state: AppState) => state.str.data || []);
+  console.log('aaa', dataStr)
+
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
-  const users = useSelector((state: AppState) => state.test.dataa);
+
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
   useEffect(() => {
-    dispatch(fetchStr());
-    dispatch(fetchStrData({ page, size: rowsPerPage }));
+    dispatch(fetchStr({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
 
-  console.log('Users from Redux:', users);
+
+
+
   const [open, setOpen] = useState<boolean>(false);
-  const [data, setData] = useState<PropsData[]>([
+  const [data, setData] = useState<Str[]>([
     {
-      content: '',
-      badgeUrl: '',
-      productId: '',
-      level: '',
-      tomtat: '',
-      nhom: '',
+      badgeUrl: "",
+      campaignId: '',
+      campaignName: "",
+      groupCampaignName: "",
+      level: "",
+      summary: "",
     },
   ]);
 
-  const handleClick = (items: PropsData) => {
+  const handleClick = (items: Str) => {
     setOpen(true);
     setData([
       {
-        content: items.content,
         badgeUrl: items.badgeUrl,
-        productId: items.productId,
+        campaignId: items.campaignId,
+        campaignName: items.campaignName,
         level: items.level,
-        tomtat: items.tomtat,
-        nhom: items.nhom,
+        groupCampaignName: items.groupCampaignName,
+        summary: items.summary,
       },
     ]);
   };
@@ -74,8 +69,9 @@ const Tab1 = () => {
   return (
     <>
       <Grid container spacing={2}>
-        {dataStr.map((items, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+        {dataStr.content?.map((items: any) => (
+
+          <Grid item xs={12} sm={6} md={4} key={items.campaignId}>
             <CardContent
               onClick={() => handleClick(items)}
               sx={{
@@ -86,7 +82,7 @@ const Tab1 = () => {
                 <Avatar alt="Remy Sharp" src={items.badgeUrl} />
                 <Box>
                   <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                    {items.content}
+                    {items.campaignName}
                   </Typography>
                   <Typography
                     variant="caption"
@@ -97,7 +93,7 @@ const Tab1 = () => {
                 </Box>
                 <Box ml="auto">
                   <Button variant="outlined" color="primary" size="small">
-                    {items.productId}
+                    {items.campaignId}
                   </Button>
                 </Box>
               </Stack>

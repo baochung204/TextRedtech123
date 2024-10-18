@@ -8,16 +8,19 @@ import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchStatusTwoFaData } from 'src/store/user/2-factor-authentication/twofaSlice';
 
 interface PropsData {
-  google_authenticator: boolean;
-  sms: boolean;
-  email: boolean;
+  google_authenticator?: boolean | null;
+  sms?: boolean | null;
+  email?: boolean | null;
 }
 
 const TwoFactorSecurity = () => {
   const nav = useNavigate();
-  const [status, setStatus] = useState<PropsData[]>([]);
-  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(status.google_authenticator);
-  const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState(status.email);
+  const [status, setStatus] = useState<PropsData>();
+  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState<boolean | undefined>(false);
+
+  const [isTwoFactorEnabledEmail, setIsTwoFactorEnabledEmail] = useState<boolean | undefined>(
+    false,
+  );
 
   const dispatch = useDispatch<AppDispatch>();
   const twofa = useSelector((state: AppState) => state.twofa.dataa);
@@ -25,10 +28,21 @@ const TwoFactorSecurity = () => {
 
   useEffect(() => {
     dispatch(fetchStatusTwoFaData());
-    setStatus(twofa.result.options);
-  }, []);
+  }, [dispatch]);
 
-  console.log('Users from Redux:', status);
+  useEffect(() => {
+    setStatus(twofa);
+    setIsTwoFactorEnabledEmail(
+      status?.google_authenticator ? status.google_authenticator : undefined,
+    );
+    setIsTwoFactorEnabled(status?.google_authenticator ? status.google_authenticator : undefined);
+  }, [twofa, status]);
+
+  console.log(
+    'Status from redux status:',
+    status?.google_authenticator ? status.google_authenticator : undefined,
+  );
+  console.log('Status from redux email:', status?.email);
 
   const handleToggleTwoFactor = () => {
     setIsTwoFactorEnabled(!isTwoFactorEnabled);
