@@ -193,6 +193,7 @@ export default class ApiService {
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('roles');
         localStorage.removeItem('userId');
+        localStorage.removeItem('tokenExpired');
     }
 
     static isAuthenticated() {
