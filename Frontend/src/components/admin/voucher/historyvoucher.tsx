@@ -119,14 +119,8 @@ interface Column {
   isValids?: boolean;
 }
 const HistoryVoucher = () => {
-  // const [selectedItems] = useState<number[]>([]);
-
   const column = useMemo<Column[]>(
     () => [
-      // {
-      //   title: 'ID',
-      //   dataIndex: 'id',
-      // },
       {
         title: 'ID đơn hàng',
         dataIndex: 'ID_order',
@@ -191,7 +185,6 @@ const HistoryVoucher = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
-  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows2.length) : 0;
   return (
     <>
       <Grid item xs={12}>

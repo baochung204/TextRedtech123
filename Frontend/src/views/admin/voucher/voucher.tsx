@@ -13,7 +13,7 @@ import FlashSale from './../../../components/admin/voucher/flashsale';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, AppState } from 'src/store/Store';
-import { fetchOverviewCounponData } from 'src/store/admin/counpon/overview/counponSlice';
+import { fetchOverviewCounponData } from 'src/store/admin/counpon/counponlist/overview/counponSlice';
 
 const BCrumb = [
   {
@@ -159,9 +159,6 @@ const VoucherAdmin = () => {
     <PageContainer title="Mã khuyến mãi" description="this is page">
       <BannerPage title="Mã khuyến mãi" items={BCrumb} />
       <Grid container spacing={3}>
-        {/* <Grid item xs={12}>
-          <TopCard dataSource={DataBox} totalColumn={4} />
-        </Grid> */}
         <Grid item xs={12}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider', maxWidth: 'auto' }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -171,19 +168,19 @@ const VoucherAdmin = () => {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ margin: '30px 0' }}>
               <TopCard dataSource={DataBox} totalColumn={4} />
             </Grid>
             <ListVoucher />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ margin: '30px 0' }}>
               <TopCard dataSource={DataBox} totalColumn={4} />
             </Grid>
             <HistoryVoucher />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ margin: '30px 0' }}>
               <TopCard dataSource={DataBox} totalColumn={4} />
             </Grid>
             <FlashSale />

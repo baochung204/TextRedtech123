@@ -32,7 +32,8 @@ import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 import blogSlice from './admin/blog/overview/blogSlice';
-import counponSlice from './admin/counpon/overview/counponSlice';
+import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
+import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
 
 export const store = configureStore({
   reducer: {
@@ -65,6 +66,7 @@ export const store = configureStore({
     //admin
     overview_blog: blogSlice,
     overview_counpon: counponSlice,
+    counpon_history: counponhistorySlice,
   },
 });
 
@@ -98,6 +100,7 @@ const rootReducer = combineReducers({
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
+  counpon_history: counponhistorySlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
