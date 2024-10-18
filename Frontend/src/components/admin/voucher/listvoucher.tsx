@@ -17,6 +17,7 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import AddDialogvoucher from './add/addDialog';
 
 interface DataRow {
@@ -28,7 +29,7 @@ interface DataRow {
   totalCoupon: number;
   type: string;
   valueCoupon: string;
-  status: 'Hoạt động' | 'Đang hoạt động' | 'Ẩn';
+  status: boolean;
   totalUsed: number;
 }
 
@@ -42,7 +43,7 @@ const dataRows: DataRow[] = [
     totalCoupon: 234,
     type: 'Đồng',
     valueCoupon: '19.000 đ',
-    status: 'Hoạt động',
+    status: true,
     totalUsed: 23,
   },
   {
@@ -54,7 +55,7 @@ const dataRows: DataRow[] = [
     totalCoupon: 680,
     type: 'Đồng',
     valueCoupon: '99.000 đ',
-    status: 'Đang hoạt động',
+    status: true,
     totalUsed: 41,
   },
   {
@@ -66,7 +67,7 @@ const dataRows: DataRow[] = [
     totalCoupon: 32,
     type: 'Phần trăm',
     valueCoupon: '10%',
-    status: 'Đang hoạt động',
+    status: false,
     totalUsed: 21,
   },
   {
@@ -78,7 +79,7 @@ const dataRows: DataRow[] = [
     totalCoupon: 54,
     type: 'Phần trăm',
     valueCoupon: '10%',
-    status: 'Ẩn',
+    status: true,
     totalUsed: 3,
   },
   {
@@ -90,7 +91,7 @@ const dataRows: DataRow[] = [
     totalCoupon: 23,
     type: 'Phần trăm',
     valueCoupon: '20%',
-    status: 'Ẩn',
+    status: false,
     totalUsed: 7,
   },
   {
@@ -102,7 +103,7 @@ const dataRows: DataRow[] = [
     totalCoupon: 424,
     type: 'Phần trăm',
     valueCoupon: '10%',
-    status: 'Đang hoạt động',
+    status: false,
     totalUsed: 23,
   },
 ];
@@ -116,13 +117,20 @@ interface Column {
 
 const ListVoucher = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  const [isCheckSwitchIds, setIsCheckSwitchIds] = useState<string[]>([]);
+  const handleCheckSwitch = (id: string) => {
+    setIsCheckSwitchIds((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((selectedId) => selectedId !== id)
+        : [...prevSelected, id],
+    );
+  };
   const column = useMemo<Column[]>(
     () => [
-      {
-        title: 'ID',
-        dataIndex: 'id',
-      },
+      // {
+      //   title: 'ID',
+      //   dataIndex: 'id',
+      // },
       {
         title: 'Tên chiến dịch',
         dataIndex: 'name',
@@ -161,19 +169,28 @@ const ListVoucher = () => {
       {
         title: 'Trạng thái',
         dataIndex: 'status',
-        render: (value: any) => {
+        render: (_value, row) => {
+          const isActive = isCheckSwitchIds.includes(row.id);
           return (
-            <Chip
-              label={value}
-              color={
-                value === 'Hoạt động' ? 'primary' : value === 'Đang hoạt động' ? 'success' : 'error'
-              }
-            />
+            <Chip label={isActive ? 'Hoạt động' : 'Ẩn'} color={isActive ? 'success' : 'error'} />
           );
         },
       },
+      {
+        id: 'statusAction',
+        title: 'Thao tác',
+        dataIndex: 'statuss',
+        render: (_value: any, row: any) => (
+          <CustomSwitch
+            color="primary"
+            checked={isCheckSwitchIds.includes(row.id)}
+            onChange={() => handleCheckSwitch(row.id)}
+            inputProps={{ 'aria-label': 'controlled' }}
+          />
+        ),
+      },
     ],
-    [],
+    [isCheckSwitchIds],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);

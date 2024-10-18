@@ -221,8 +221,8 @@ const CollaboratePost = () => {
                 >
                   <span>
                     Redtech tiến hành chi trả hoa hồng (tối thiểu từ 2.000.000đ) cho đối tác từ ngày
-                    16-20 hàng tháng.Đối tác doanh nghiệp vui lòng xuất VAT & gửi về RedTech trước
-                    ngày 16 hàng tháng
+                    "16-20" hàng tháng. Đối tác doanh nghiệp vui lòng xuất VAT & gửi về RedTech
+                    trước ngày 16 hàng tháng
                   </span>
                 </Typography>
               </Box>

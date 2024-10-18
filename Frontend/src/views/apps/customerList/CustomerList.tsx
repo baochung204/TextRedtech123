@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Checkbox,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
@@ -95,6 +96,15 @@ const CustomerList = () => {
       {
         title: 'Loại khách hàng',
         dataIndex: 'typeofcustomer',
+        render: (value: any) => (
+          <Box>
+            <Chip
+              label={value === 1 ? 'Miễn phí' : 'Trả phí'}
+              color={value === 1 ? 'warning' : 'success'}
+            />
+          </Box>
+        ),
+        sort: true,
       },
     ],
     [],
@@ -204,10 +214,14 @@ const CustomerList = () => {
                           <MenuItem>
                             <Checkbox
                               checked={!(dataSelect.length === column.length)}
-                              indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                              indeterminate={
+                                dataSelect.length > 0 && dataSelect.length < column.length
+                              }
                               onChange={() => {
                                 if (dataSelect.length < column.length) {
-                                  const allColumns = column.map((header: Column) => header.dataIndex);
+                                  const allColumns = column.map(
+                                    (header: Column) => header.dataIndex,
+                                  );
                                   setDataSelect(allColumns);
                                 } else {
                                   setDataSelect([]);

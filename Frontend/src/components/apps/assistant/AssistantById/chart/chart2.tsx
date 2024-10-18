@@ -183,9 +183,9 @@ const Chart2 = () => {
               value={month}
               onChange={handleChange}
             >
-              <MenuItem value={1}>Doanh thu</MenuItem>
+              <MenuItem value={3}>Doanh thu </MenuItem>
               <MenuItem value={2}>Khách hàng </MenuItem>
-              <MenuItem value={3}>Đơn Hàng </MenuItem>
+              <MenuItem value={1}>Chuyển đổi</MenuItem>
             </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
               <DateSelect />

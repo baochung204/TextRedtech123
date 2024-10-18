@@ -50,7 +50,7 @@ const AddNotification = () => {
   const validateSchema = Yup.object().shape({
     title: Yup.string().required('Tiêu đề là bắt buộc'),
     tags: Yup.array().min(1, 'Tags là bắt buộc').required('Tags là bắt buộc'),
-    url: Yup.string().url('Đường dẫn không hợp lệ').required('Đường dẫn là bắt buộc'),
+    description: Yup.string().required('Mô tả bắt buộc'),
     content: Yup.string().required('Nội dung là bắt buộc'),
     status: Yup.string().required('Trạng thái là bắt buộc'),
   });
@@ -59,7 +59,7 @@ const AddNotification = () => {
     initialValues: {
       title: '',
       tags: '',
-      url: '',
+      description: '',
       content: '',
       status: '',
       // tags: [],
@@ -109,10 +109,29 @@ const AddNotification = () => {
           },
         }}
       >
-        <Box>
-          <form onSubmit={formik.handleSubmit}>
-            <DialogTitle padding={'10px'}>Tạo thông báo</DialogTitle>
-            <DialogContent>
+        <DialogTitle padding={'10px'}>Tạo thông báo</DialogTitle>
+        <DialogContent
+          sx={{
+            overflowY: 'auto',
+            height: '100%',
+            '&::-webkit-scrollbar': {
+              width: '10px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'none',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#E3E3E3',
+              borderRadius: '10px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#d6d6d6',
+            },
+            maxHeight: '90vh',
+          }}
+        >
+          <Box sx={{ border: 'none' }}>
+            <form onSubmit={formik.handleSubmit}>
               <Box
                 mb={4}
                 p={3}
@@ -137,20 +156,28 @@ const AddNotification = () => {
                     <CustomFormLabel htmlFor="tags">Tags</CustomFormLabel>
                     <Tags />
                   </Grid>
-                  {/* <Grid item lg={12} md={12}>
-                    <CustomFormLabel htmlFor="url">Đường dẫn xem thêm</CustomFormLabel>
+                  <Grid item lg={12} md={12}>
+                    <CustomFormLabel htmlFor="description">Mô tả</CustomFormLabel>
                     <CustomTextField
-                      id="url"
+                      id="description"
                       variant="outlined"
                       fullWidth
-                      placeholder="VD: https://example.com/thong-bao-so-1"
-                      value={formik.values.url}
-                      name="url"
+                      placeholder="VD: Thông báo về tính năng ABC"
+                      value={formik.values.description}
+                      name="description"
                       onChange={formik.handleChange}
-                      error={formik.touched.url && Boolean(formik.errors.url)}
-                      helperText={formik.touched.url && formik.errors.url}
+                      error={formik.touched.description && Boolean(formik.errors.description)}
+                      helperText={formik.touched.description && formik.errors.description}
+                      rows={4}
+                      multiline
+                      InputProps={{
+                        sx: {
+                          padding: 0,
+                        },
+                      }}
                     />
-                  </Grid> */}
+                  </Grid>
+
                   <Grid item lg={12} md={12}>
                     <CustomFormLabel htmlFor="content">Nội dung</CustomFormLabel>
                     <Paper sx={{ border: `1px solid ${borderColor}` }} variant="outlined">
@@ -188,15 +215,15 @@ const AddNotification = () => {
                   </Grid>
                 </Grid>
               </Box>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClosePopup}>Hủy</Button>
-              <Button variant="contained" type="submit" color="primary">
-                Lưu
-              </Button>
-            </DialogActions>
-          </form>
-        </Box>
+              <DialogActions sx={{ mt: '-20px', mr: '-8px' }}>
+                <Button onClick={handleClosePopup}>Hủy</Button>
+                <Button variant="contained" type="submit" color="primary">
+                  Lưu
+                </Button>
+              </DialogActions>
+            </form>
+          </Box>
+        </DialogContent>
       </Dialog>
 
       {/* Snackbar hiển thị thông báo */}

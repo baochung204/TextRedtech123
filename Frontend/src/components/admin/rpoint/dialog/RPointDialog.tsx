@@ -113,10 +113,10 @@ const RPointDialog = ({ open, setOpen, checkValue, selectID }: PropsDialog) => {
       title: 'Tên gói R-Point',
       dataIndex: 'package',
     },
-    {
-      title: 'Model',
-      dataIndex: 'model',
-    },
+    // {
+    //   title: 'Model',
+    //   dataIndex: 'model',
+    // },
     {
       title: 'Số Points',
       dataIndex: 'points',
@@ -176,7 +176,7 @@ const RPointDialog = ({ open, setOpen, checkValue, selectID }: PropsDialog) => {
               <Grid container spacing={2}>
                 {form.map((item, index) => {
                   return (
-                    <Grid item xs={6} key={index}>
+                    <Grid item xs={4} key={index}>
                       <Typography variant="h6">{item.title}</Typography>
                       <Field
                         as={TextField}

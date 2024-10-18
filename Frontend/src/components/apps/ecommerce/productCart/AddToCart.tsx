@@ -14,10 +14,10 @@ import {
   Typography,
 } from '@mui/material';
 import { IconMinus, IconPlus, IconTrash } from '@tabler/icons-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
-import { useDispatch, useSelector } from 'src/store/Store';
+import { dispatch, useSelector } from 'src/store/Store';
 // import { ProductType } from 'src/types/apps/eCommerce';
 import { decrement, deleteCart, increment } from '../../../../store/apps/eCommerce/ECommerceSlice';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -32,20 +32,38 @@ import Slide from '@mui/material/Slide';
 import Snackbar from '@mui/material/Snackbar';
 import Afletpoint2 from 'src/components/material-ui/dialog/Alertpoint2';
 import FirstStep from '../productCheckout/FirstStep';
-// import Afletpoint from '../productCheckout/FinalStep';
+
+import { AppState } from 'src/store/Store';
+import { fetchCartData } from 'src/store/user/cart/cartSlice';
 
 function SlideTransition(props: any) {
   return <Slide {...props} direction="left" />;
 }
 
+interface PropsData {
+  product_id: number;
+  name: string;
+  point: number;
+  image_url: string;
+  quantity: number;
+}
+
 const AddToCart = () => {
   const [open, setOpen] = useState(false);
 
+  const cart = useSelector((state: AppState) => state.cart.dataa);
+
+  const [cartData, setCartData] = useState<PropsData[]>([]);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+    setCartData(cart);
+  }, [dispatch, cart.products]);
+
+  console.log(cartData);
+
   const handleClick = () => {
     setOpen(true);
-    // setTimeout(() => {
-    //   navigate('/apps/ecommerce/shop');
-    // }, 2000);
   };
 
   const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
@@ -54,7 +72,7 @@ const AddToCart = () => {
     }
     setOpen(false);
   };
-  const dispatch = useDispatch();
+
   // Lấy sản phẩm từ giỏ hàng
   const Cartproduct: any = useSelector((state) => state.ecommerceReducer.cart);
   const total = sum(Cartproduct.map((product: any) => product?.point ?? 0 * product?.qty ?? 0));
@@ -68,7 +86,7 @@ const AddToCart = () => {
   };
   return (
     <Box>
-      {Cartproduct.length > 0 ? (
+      {cartData.length > 0 ? (
         <>
           <Box>
             <TableContainer sx={{ minWidth: 350 }}>
@@ -97,35 +115,19 @@ const AddToCart = () => {
                 </TableHead>
 
                 <TableBody>
-                  {Cartproduct.map((product: any) => (
+                  {cartData.map((product: any) => (
                     <TableRow key={product.id}>
-                      {/* ------------------------------------------- */}
-                      {/* Hình ảnh và tiêu đề sản phẩm */}
-                      {/* ------------------------------------------- */}
                       <TableCell align="center">
                         <Stack direction="row" alignItems="center" gap={2}>
                           <Avatar
-                            src={product.thumbnailUrl}
-                            alt={product.thumbnailUrl}
+                            src={product.image_url}
+                            alt={product.image_url}
                             sx={{
                               borderRadius: '10px',
                               height: '80px',
                               width: '90px',
                             }}
                           />
-                          {/* <Box>
-                            <Typography variant="h6">{product.title}</Typography>{' '}
-                            <Typography color="textSecondary" variant="body1">
-                              {product.category}
-                            </Typography>
-                            <IconButton
-                              size="small"
-                              color="error"
-                              onClick={() => dispatch(deleteCart(product.id))}
-                            >
-                              <IconTrash size="1rem" />
-                            </IconButton>
-                          </Box> */}
                         </Stack>
                       </TableCell>
                       <TableCell align="center">
@@ -148,7 +150,7 @@ const AddToCart = () => {
                           <Button onClick={() => Decrease(product.id)} disabled={product.qty < 2}>
                             <IconMinus stroke={1.5} size="0.8rem" />
                           </Button>
-                          <Button>{product.qty}</Button>
+                          <Button>{product.quantity}</Button>
                           <Button onClick={() => Increase(product.id)}>
                             <IconPlus stroke={1.5} size="0.8rem" />
                           </Button>
@@ -163,8 +165,7 @@ const AddToCart = () => {
                           justifyContent={'center'}
                           gap="2px"
                         >
-                          {' '}
-                          {(product.point * product.qty).toLocaleString('vn-VN')}{' '}
+                          {(product.point * product.quantity).toLocaleString('vn-VN')}
                           <img
                             src={logoPoint}
                             alt={logoPoint}
@@ -183,7 +184,7 @@ const AddToCart = () => {
                           justifyContent={'center'}
                           gap="2px"
                         >
-                          {(product.discount * product.qty).toLocaleString('vn-VN')}{' '}
+                          {(product.point * product.quantity).toLocaleString('vn-VN')}
                           <img
                             src={logoPoint}
                             alt={logoPoint}
@@ -202,9 +203,7 @@ const AddToCart = () => {
                           justifyContent={'center'}
                           gap="2px"
                         >
-                          {((product.point - product.discount) * product.qty).toLocaleString(
-                            'vn-VN',
-                          )}
+                          {((product.point - 0) * product.quantity).toLocaleString('vn-VN')}
                           <img
                             src={logoPoint}
                             alt={logoPoint}
@@ -229,7 +228,6 @@ const AddToCart = () => {
 
               <a onClick={handleClick}>
                 <Afletpoint2 Cartproduct={Cartproduct} total={total} Discount={Discount}>
-                  {' '}
                   Thanh toán
                 </Afletpoint2>
               </a>
@@ -244,7 +242,7 @@ const AddToCart = () => {
               <Alert onClose={handleClose} severity={'success'} variant="filled">
                 Thanh toán thành công
               </Alert>
-            </Snackbar>{' '}
+            </Snackbar>
           </Box>
         </>
       ) : (

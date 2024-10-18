@@ -5,7 +5,6 @@ import {
   Badge,
   Box,
   Checkbox,
-  Chip,
   Grid,
   IconButton,
   InputAdornment,
@@ -210,6 +209,7 @@ const CustomerListOrder = () => {
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+        render: (value: any) => <> {value.length > 50 ? value.slice(0, 47) + '…' : value}</>,
       },
       {
         dataIndex: 'actions',
