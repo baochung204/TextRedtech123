@@ -15,14 +15,15 @@ import { AppDispatch, AppState } from 'src/store/Store';
 // import { fetchStrData } from 'src/store/user/user-resources/userSlice';
 import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
-import { Str } from 'src/types/apps/str'
+import { Str } from 'src/types/apps/str';
+import BlankCard from 'src/components/shared/BlankCard';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
   const dataStr = useSelector((state: AppState) => state.str.data || []);
-  console.log('aaa', dataStr)
+  console.log('aaa', dataStr);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -37,18 +38,15 @@ const Tab1 = () => {
     dispatch(fetchStr({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
 
-
-
-
   const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState<Str[]>([
     {
-      badgeUrl: "",
+      badgeUrl: '',
       campaignId: '',
-      campaignName: "",
-      groupCampaignName: "",
-      level: "",
-      summary: "",
+      campaignName: '',
+      groupCampaignName: '',
+      level: '',
+      summary: '',
     },
   ]);
 
@@ -70,34 +68,35 @@ const Tab1 = () => {
     <>
       <Grid container spacing={2}>
         {dataStr.content?.map((items: any) => (
-
           <Grid item xs={12} sm={6} md={4} key={items.campaignId}>
-            <CardContent
-              onClick={() => handleClick(items)}
-              sx={{
-                cursor: 'pointer',
-              }}
-            >
-              <Stack direction={'row'} gap={2} alignItems="center">
-                <Avatar alt="Remy Sharp" src={items.badgeUrl} />
-                <Box>
-                  <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                    {items.campaignName}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
-                  >
-                    {items.level}
-                  </Typography>
-                </Box>
-                <Box ml="auto">
-                  <Button variant="outlined" color="primary" size="small">
-                    {items.campaignId}
-                  </Button>
-                </Box>
-              </Stack>
-            </CardContent>
+            <BlankCard>
+              <CardContent
+                onClick={() => handleClick(items)}
+                sx={{
+                  cursor: 'pointer',
+                }}
+              >
+                <Stack direction={'row'} gap={2} alignItems="center">
+                  <Avatar alt="Remy Sharp" src={items.badgeUrl} />
+                  <Box>
+                    <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
+                      {items.campaignName}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                    >
+                      {items.level}
+                    </Typography>
+                  </Box>
+                  <Box ml="auto">
+                    <Button variant="outlined" color="primary" size="small">
+                      {items.campaignId}
+                    </Button>
+                  </Box>
+                </Stack>
+              </CardContent>
+            </BlankCard>
           </Grid>
         ))}
       </Grid>

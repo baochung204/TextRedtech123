@@ -3,7 +3,7 @@
 import PageContainer from 'src/components/container/PageContainer';
 
 // import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/AssistantEditor';
-import Assistant_Add from 'src/components/apps/assistant/AssistantEditor/main/main';
+import Assistant_Edit from 'src/components/apps/assistant/AssistantEdit/main/main';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 
 const BCrumb = [
@@ -17,13 +17,13 @@ const BCrumb = [
   },
 ];
 
-const AssistantEditor = () => {
+const AssistantAdd = () => {
   return (
-    <PageContainer title="Tạo trợ lý" description="this is page">
-      <BannerPage title="Tạo Assistant" items={BCrumb} />
-      <Assistant_Add />
+    <PageContainer title="Sửa trợ lý" description="this is page">
+      <BannerPage title="Sửa trợ lý" items={BCrumb} />
+      <Assistant_Edit />
     </PageContainer>
   );
 };
 
-export default AssistantEditor;
+export default AssistantAdd;

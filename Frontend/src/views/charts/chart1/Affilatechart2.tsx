@@ -62,7 +62,7 @@ const Affilatechart2 = () => {
   const seriesradialchart: any = [27]; // Replace with dynamic series data if needed
 
   return (
-    <Affilatec1 title=" Đơn hàng" text="Chi phí / khách hàng" description={''}>
+    <Affilatec1 title=" Đơn hàng" text="Chi phí / Khách hàng" description={''}>
       <div>
         <div id="chart">
           <Chart

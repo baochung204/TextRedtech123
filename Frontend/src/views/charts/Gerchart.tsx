@@ -169,9 +169,10 @@ const GerChart = () => {
             value={month}
             onChange={handleChange}
           >
-            <MenuItem value={1}>Tất cả</MenuItem>
-            <MenuItem value={2}>Assistant 1</MenuItem>
-            <MenuItem value={3}>Assistant 2</MenuItem>
+            <MenuItem value={3}>Khách hàng</MenuItem>
+
+            <MenuItem value={1}>Chuyển đổi</MenuItem>
+            <MenuItem value={2}>GMV</MenuItem>
           </CustomSelect>
         </Box>
         <Chart
