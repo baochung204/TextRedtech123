@@ -9,20 +9,13 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import { Str } from 'src/types/apps/str';
 
-interface PropsX {
-  campaignName: string;
-  badgeUrl: string;
-  campaignId: string;
-  level: string;
-  summary: string;
-  groupCampaignName: string;
-}
 
 interface PropsDialog {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: PropsX[];
+  data: Str[];
 }
 
 const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {

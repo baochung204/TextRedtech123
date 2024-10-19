@@ -219,6 +219,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
               renderValue={() => 'Sửa đổi cột'}
               size="small"
               MenuProps={{
+                autoFocus: false,
                 PaperProps: {
                   sx: {
                     marginTop: 1,

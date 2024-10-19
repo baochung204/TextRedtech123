@@ -226,6 +226,7 @@ const PaginationTable = () => {
               renderValue={() => 'Sửa đổi cột'}
               size="small"
               MenuProps={{
+                autoFocus: false,
                 PaperProps: {
                   sx: {
                     marginTop: 1,

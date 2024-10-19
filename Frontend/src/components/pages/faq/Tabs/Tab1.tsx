@@ -12,18 +12,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
-// import { fetchStrData } from 'src/store/user/user-resources/userSlice';
 import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
-import { Str } from 'src/types/apps/str';
+import {  Str } from 'src/types/apps/str'
 import BlankCard from 'src/components/shared/BlankCard';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
-  const dataStr = useSelector((state: AppState) => state.str.data || []);
-  console.log('aaa', dataStr);
+  const dataStr = useSelector((state: AppState) => state.str.data);
+  const [datax, setDatax] = useState<Str[]>([])
+  // console.log('aaa', dataStr)
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -38,36 +38,37 @@ const Tab1 = () => {
     dispatch(fetchStr({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
 
+  useEffect(() => {
+    if (datax !== dataStr.content) {
+      setDatax(dataStr.content)
+    }
+  }, [dataStr, datax])
+
+  
+  console.log('data in redux', datax);
+
   const [open, setOpen] = useState<boolean>(false);
-  const [data, setData] = useState<Str[]>([
-    {
-      badgeUrl: '',
-      campaignId: '',
-      campaignName: '',
-      groupCampaignName: '',
-      level: '',
-      summary: '',
-    },
-  ]);
 
   const handleClick = (items: Str) => {
     setOpen(true);
-    setData([
-      {
-        badgeUrl: items.badgeUrl,
-        campaignId: items.campaignId,
-        campaignName: items.campaignName,
-        level: items.level,
-        groupCampaignName: items.groupCampaignName,
-        summary: items.summary,
-      },
-    ]);
+    console.log(items);
+    
+    // setData([
+    //   {
+    //     badgeUrl: items.badgeUrl,
+    //     campaignId: items.campaignId,
+    //     campaignName: items.campaignName,
+    //     level: items.level,
+    //     groupCampaignName: items.groupCampaignName,
+    //     summary: items.summary,
+    //   },
+    // ]);
   };
 
   return (
     <>
       <Grid container spacing={2}>
-        {dataStr.content?.map((items: any) => (
+        {datax?.map((items) => (
           <Grid item xs={12} sm={6} md={4} key={items.campaignId}>
             <BlankCard>
               <CardContent
@@ -110,7 +111,7 @@ const Tab1 = () => {
         onRowsPerPageChange={handleChangeRowsPerPage}
         labelRowsPerPage="Số hàng trên mỗi trang"
       />
-      <DialogStragety open={open} setOpen={setOpen} data={data} />
+      <DialogStragety open={open} setOpen={setOpen} data={datax} />
     </>
   );
 };

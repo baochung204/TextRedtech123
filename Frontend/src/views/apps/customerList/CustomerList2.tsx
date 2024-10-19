@@ -8,6 +8,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  FormControlLabel,
   Grid,
   IconButton,
   InputAdornment,
@@ -175,6 +176,7 @@ const CustomerList2 = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
+
   return (
     <PageContainer title="Danh sách khách hàng">
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
@@ -220,7 +222,7 @@ const CustomerList2 = () => {
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                          <Badge badgeContent={column.length - dataSelect.length} color="primary">
+                          <Badge badgeContent={column.length - dataSelect.filter(item => item !== 'all').length} color="primary">
                             <FilterListIcon />
                           </Badge>
                         </IconButton>
@@ -232,6 +234,7 @@ const CustomerList2 = () => {
                           renderValue={() => 'Sửa đổi cột'}
                           size="small"
                           MenuProps={{
+                            autoFocus: false,
                             PaperProps: {
                               sx: {
                                 marginTop: 1,
@@ -304,7 +307,6 @@ const CustomerList2 = () => {
         </TabContext>
       </ChildCard>
 
-      {/* Popup Thêm khách hàng */}
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
