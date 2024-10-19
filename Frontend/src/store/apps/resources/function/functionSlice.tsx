@@ -1,6 +1,5 @@
 // src/redux/integrationSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import userApi from 'src/api/userResource/UserResource';
 import { Functions } from 'src/types/apps/function';
 // Define the slice state interface

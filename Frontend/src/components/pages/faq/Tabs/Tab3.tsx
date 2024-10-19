@@ -16,15 +16,19 @@ interface PropsTab3 {
 }
 
 const Tab3 = ({ value, open, setOpen }: PropsTab3) => {
-  // const Tab3 = ({ value, open, setOpen, checkOption, setCheckOption }: PropsTab3) => {
-  // const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
   const [dataSelect] = useState<string[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  const dataFile = useSelector((state: AppState) => state.file.data?.result?.content || []);
+  const dataFile = useSelector((state: AppState) => state.file.data || []);
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
 
   useEffect(() => {
-    dispatch(fetchFile());
-  }, [dispatch]);
+    dispatch(fetchFile({page, size:rowsPerPage}));
+  }, [dispatch,page, rowsPerPage]);
 
   console.log('Dữ liệu content:', dataFile);
   const column = [
