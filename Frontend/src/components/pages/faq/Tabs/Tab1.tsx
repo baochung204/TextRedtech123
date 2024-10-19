@@ -14,7 +14,7 @@ import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
-import {  Str } from 'src/types/apps/str'
+import { Str } from 'src/types/apps/str'
 import BlankCard from 'src/components/shared/BlankCard';
 
 const Tab1 = () => {
@@ -23,7 +23,7 @@ const Tab1 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataStr = useSelector((state: AppState) => state.str.data);
   const [datax, setDatax] = useState<Str[]>([])
-
+  const [dataView, setDataView] = useState<Str>()
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -43,24 +43,25 @@ const Tab1 = () => {
     }
   }, [dataStr, datax])
 
-  
+
   console.log('data in redux', datax);
 
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleClick = (items: Str) => {
+  const handleClick = (items: number) => {
     setOpen(true);
-    console.log(items);
+    // console.log(items);
+    setDataView(datax[items])
   };
 
   return (
     <>
       <Grid container spacing={2}>
-        {datax?.map((items) => (
+        {datax?.map((items, index) => (
           <Grid item xs={12} sm={6} md={4} key={items.campaignId}>
             <BlankCard>
               <CardContent
-                onClick={() => handleClick(items)}
+                onClick={() => handleClick(index)}
                 sx={{
                   cursor: 'pointer',
                 }}
@@ -99,7 +100,7 @@ const Tab1 = () => {
         onRowsPerPageChange={handleChangeRowsPerPage}
         labelRowsPerPage="Số hàng trên mỗi trang"
       />
-      <DialogStragety open={open} setOpen={setOpen} data={datax} />
+      <DialogStragety open={open} setOpen={setOpen} data={dataView} />
     </>
   );
 };
