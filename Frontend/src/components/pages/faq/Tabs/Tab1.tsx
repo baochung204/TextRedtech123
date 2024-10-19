@@ -23,7 +23,6 @@ const Tab1 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataStr = useSelector((state: AppState) => state.str.data);
   const [datax, setDatax] = useState<Str[]>([])
-  // console.log('aaa', dataStr)
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -52,17 +51,6 @@ const Tab1 = () => {
   const handleClick = (items: Str) => {
     setOpen(true);
     console.log(items);
-    
-    // setData([
-    //   {
-    //     badgeUrl: items.badgeUrl,
-    //     campaignId: items.campaignId,
-    //     campaignName: items.campaignName,
-    //     level: items.level,
-    //     groupCampaignName: items.groupCampaignName,
-    //     summary: items.summary,
-    //   },
-    // ]);
   };
 
   return (
