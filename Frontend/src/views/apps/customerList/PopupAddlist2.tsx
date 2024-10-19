@@ -178,7 +178,7 @@ const PopupAddList2 = () => {
               {/* Ngày sinh và giới tính theo hàng dọc */}
               <Grid item xs={12} md={6}>
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <CustomFormLabel htmlFor="dob">Ngày sinh</CustomFormLabel>
                     <CustomTextField
                       id="dob"
@@ -193,7 +193,7 @@ const PopupAddList2 = () => {
                       helperText={formik.touched.dob && formik.errors.dob}
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <CustomFormLabel htmlFor="gender">Giới tính</CustomFormLabel>
                     <CustomSelect
                       placeholder="Chọn giới tính"
@@ -210,6 +210,25 @@ const PopupAddList2 = () => {
                         </MenuItem>
                       ))}
                     </CustomSelect>
+                    {formik.touched.gender && Boolean(formik.errors.gender) && (
+                      <Typography color="error" variant="body2">
+                        {formik.errors.gender}
+                      </Typography>
+                    )}
+                  </Grid>
+                  <Grid item xs={12}>
+                    <CustomFormLabel htmlFor="gender">Địa chỉ</CustomFormLabel>
+                    <CustomTextField
+                      placeholder="VD: Số 123, Đường abc,Phường xyz, Phố abc ,Hà nội "
+                      id="name"
+                      variant="outlined"
+                      fullWidth
+                      value={formik.values.name}
+                      onChange={formik.handleChange}
+                      name="name"
+                      error={formik.touched.name && Boolean(formik.errors.name)}
+                      helperText={formik.touched.name && formik.errors.name}
+                    />
                     {formik.touched.gender && Boolean(formik.errors.gender) && (
                       <Typography color="error" variant="body2">
                         {formik.errors.gender}
@@ -238,7 +257,6 @@ const PopupAddList2 = () => {
               </Grid>
             </Grid>
           </Box>
-
 
           {/* Thông tin trợ lý và kênh */}
           <Box
@@ -328,7 +346,6 @@ const PopupAddList2 = () => {
             </Grid>
           </Box>
 
-
           {/* Thông tin công ty */}
           <Box
             mb={4}
@@ -384,7 +401,7 @@ const PopupAddList2 = () => {
                   Mã số thuế
                 </CustomFormLabel>
                 <CustomTextField
-                 placeholder="1234567890"
+                  placeholder="1234567890"
                   id="taxId"
                   variant="outlined"
                   fullWidth
@@ -398,7 +415,7 @@ const PopupAddList2 = () => {
               <Grid item xs={12} md={6}>
                 <CustomFormLabel htmlFor="companyEmail">Email công ty</CustomFormLabel>
                 <CustomTextField
-                 placeholder="redon@gmail.com"
+                  placeholder="redon@gmail.com"
                   id="companyEmail"
                   type="email"
                   variant="outlined"
@@ -413,7 +430,7 @@ const PopupAddList2 = () => {
                   Số điện thoại công ty
                 </CustomFormLabel>
                 <CustomTextField
-                 placeholder="0987654321"
+                  placeholder="0987654321"
                   id="companyPhone"
                   variant="outlined"
                   fullWidth
@@ -427,7 +444,7 @@ const PopupAddList2 = () => {
                   Website công ty
                 </CustomFormLabel>
                 <CustomTextField
-                 placeholder="http://shop972980.vnn.mn/"
+                  placeholder="http://shop972980.vnn.mn/"
                   id="companyWebsite"
                   variant="outlined"
                   fullWidth

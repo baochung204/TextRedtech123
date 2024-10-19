@@ -1,8 +1,18 @@
 export interface Str {
-    content: string;
+    campaignName: string;
     badgeUrl: string;
-    productId: string;
+    campaignId: number;
     level: string;
-    tomtat: string;
-    nhom: string
+    summary: string;
+    groupCampaignName: string;
+}
+
+
+export interface ApiResponse {
+    content: Str[];
+    last: boolean;
+    pageNo: number;
+    pageSize: number;
+    totalElements: number;
+    totalPages: number;
 }

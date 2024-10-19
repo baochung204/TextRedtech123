@@ -25,6 +25,7 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import DialogDetailOrderRpoint from './DialogDetailOrderRpoint/DialogDetailOrderRpoint';
 
 const BCrumb = [
   {
@@ -137,7 +138,6 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-
 interface RechargeTransaction {
   id: string; // ID giao dịch
   rechargeDate: string; // Ngày nạp
@@ -184,7 +184,6 @@ const dataRows: RechargeTransaction[] = [
     phoneNumber: '0123456789',
     packageName: 'Gói cơ bản',
     points: 100,
-
     listedPrice: '200.000',
     promotionCode: 'PROMO10',
     paymentAmount: '20.000',
@@ -304,6 +303,7 @@ const FilmsData: FilmsData[] = [
 ];
 const OrderRPoint = () => {
   // const [selectedItems] = useState<number[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -409,7 +409,7 @@ const OrderRPoint = () => {
             <IconButton
               onClick={() => {
                 // setSelectID(row.id);
-                // setOpen(true);
+                setOpen(true);
                 // setCheckValue('view');
               }}
             >
@@ -584,6 +584,7 @@ const OrderRPoint = () => {
           <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
         </Grid>
       </Grid>
+      <DialogDetailOrderRpoint open={open} setOpen={setOpen} />
     </PageContainer>
   );
 };

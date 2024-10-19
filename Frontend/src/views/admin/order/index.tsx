@@ -3,6 +3,7 @@ import {
   Badge,
   Box,
   Checkbox,
+  Chip,
   Grid,
   IconButton,
   InputAdornment,
@@ -10,9 +11,10 @@ import {
   MenuItem,
   Select,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
+import { IconEye, IconPower, IconSearch, IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import personorcompany from 'src/assets/Adminphoto/cn dn.png';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
@@ -168,7 +170,15 @@ const OrderAdminPages = () => {
   const [selectID, setSelectID] = useState<string | null>(null);
   const [checkValue, setCheckValue] = useState<string | null>(null);
   const [open, setOpen] = useState<boolean>(false);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
+  const handleConnection = (id: string) => {
+    setSelectedIds((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((selectedId) => selectedId !== id)
+        : [...prevSelected, id],
+    );
+  };
   const column = useMemo<Column[]>(
     () => [
       {
@@ -191,6 +201,20 @@ const OrderAdminPages = () => {
       {
         title: 'Loại tài khoản',
         dataIndex: 'typeacc',
+        sort: true,
+        render: (value: any) => (
+          <Typography style={{ width: '110px' }} variant="subtitle2">
+            <Box sx={{ display: 'flex', justifyContent: 'center', px: 1 }}>
+              <Typography style={{ width: '200px' }} variant="subtitle2">
+                <Chip
+                  label={value === 'BUSINESS' ? 'Doanh nghiệp' : 'Cá nhân'}
+                  color={value === 'BUSINESS' ? 'success' : 'warning'}
+                  variant="outlined"
+                />
+              </Typography>
+            </Box>
+          </Typography>
+        ),
       },
       {
         title: 'Số lượng trợ lý',
@@ -198,13 +222,14 @@ const OrderAdminPages = () => {
       },
       {
         title: 'Tổng nạp',
+        sort: true,
         dataIndex: 'tongnap',
       },
       {
         title: 'Số dư',
         dataIndex: 'sodu',
         render: (_row, value: any) => (
-          <Box width={'80px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+          <Box width={'auto'} sx={{ display: 'flex', justifyContent: 'end' }}>
             <Typography
               color="textSecondary"
               variant="subtitle2"
@@ -224,26 +249,7 @@ const OrderAdminPages = () => {
         title: 'Publisher',
         dataIndex: 'publisher',
       },
-      {
-        title: 'Hành động',
-        dataIndex: 'action',
-        render: (_row, value: any) => (
-          <>
-            <IconButton
-              onClick={() => {
-                setSelectID(value.id);
-                setOpen(true);
-                setCheckValue('view');
-              }}
-            >
-              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
-            <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton>
-          </>
-        ),
-      },
+
       {
         title: 'Ngày tạo',
         dataIndex: 'date',
@@ -295,8 +301,34 @@ const OrderAdminPages = () => {
         dataIndex: 'cv',
         isValids: false,
       },
+      {
+        title: 'Hành động',
+        dataIndex: 'action',
+        render: (_value, row: any) => (
+          <>
+            <IconButton
+              onClick={() => {
+                setSelectID(row.id);
+                setOpen(true);
+                setCheckValue('view');
+              }}
+            >
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+
+            <Tooltip title={selectedIds.includes(row.id) ? 'Hoạt động' : 'Tắt'} placement="top">
+              <IconButton onClick={() => handleConnection(row.id)}>
+                <IconPower
+                  style={{ cursor: 'pointer' }}
+                  color={selectedIds.includes(row.id) ? '#13DEB9' : 'gray'}
+                />
+              </IconButton>
+            </Tooltip>
+          </>
+        ),
+      },
     ],
-    [],
+    [selectedIds],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
@@ -348,7 +380,7 @@ const OrderAdminPages = () => {
                   <Grid item xs={10}>
                     <TextField
                       id="outlined-search"
-                      placeholder="Tìm kiếm khách hàng"
+                      placeholder="Tìm kiếm tên, số điện thoại khách hàng"
                       size="small"
                       type="search"
                       variant="outlined"

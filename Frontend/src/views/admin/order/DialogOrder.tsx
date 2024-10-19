@@ -230,30 +230,158 @@ const DialogOrder = ({ open, setOpen, selectID, checkValue, setCheckValue }: Pro
                       Cá nhân
                     </Typography>
                     <Grid container spacing={2}>
-                      {form1.map((item, index) => {
-                        return (
-                          <Grid item xs={4} key={index}>
+                      <Grid item xs={6}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12}>
                             <Typography variant="h6" fontWeight={400}>
-                              {item.title}
+                              ID
                             </Typography>
                             <Field
                               as={TextField}
-                              name={item.dataIndex}
+                              name="id"
                               fullWidth
                               margin="normal"
-                              InputProps={{
-                                readOnly: checkValue === 'view' ? true : false,
-                              }}
+                              InputProps={{ readOnly: checkValue === 'view' }}
                               helperText={
-                                <ErrorMessage name={item.dataIndex}>
+                                <ErrorMessage name={form1[0].dataIndex}>
                                   {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
                                 </ErrorMessage>
                               }
                               FormHelperTextProps={{ sx: { ml: 0 } }}
                             />
                           </Grid>
-                        );
-                      })}
+                          <Grid item xs={12}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Họ và tên
+                            </Typography>
+                            <Field
+                              as={TextField}
+                              name="name"
+                              fullWidth
+                              margin="normal"
+                              InputProps={{ readOnly: checkValue === 'view' }}
+                              helperText={
+                                <ErrorMessage name={form1[1].dataIndex}>
+                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                </ErrorMessage>
+                              }
+                              FormHelperTextProps={{ sx: { ml: 0 } }}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Mã số thuế
+                            </Typography>
+                            <Field
+                              as={TextField}
+                              name="mstcn"
+                              fullWidth
+                              margin="normal"
+                              InputProps={{ readOnly: checkValue === 'view' }}
+                              helperText={
+                                <ErrorMessage name={form1[6].dataIndex}>
+                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                </ErrorMessage>
+                              }
+                              FormHelperTextProps={{ sx: { ml: 0 } }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Giới tính
+                            </Typography>
+                            <Field
+                              as={TextField}
+                              name="sex"
+                              fullWidth
+                              margin="normal"
+                              InputProps={{ readOnly: checkValue === 'view' }}
+                              helperText={
+                                <ErrorMessage name={form1[2].dataIndex}>
+                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                </ErrorMessage>
+                              }
+                              FormHelperTextProps={{ sx: { ml: 0 } }}
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Ngày sinh
+                            </Typography>
+                            <Field
+                              as={TextField}
+                              name="date"
+                              fullWidth
+                              margin="normal"
+                              InputProps={{ readOnly: checkValue === 'view' }}
+                              helperText={
+                                <ErrorMessage name={form1[3].dataIndex}>
+                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                </ErrorMessage>
+                              }
+                              FormHelperTextProps={{ sx: { ml: 0 } }}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Số điện thoại
+                            </Typography>
+                            <Field
+                              as={TextField}
+                              name="phone"
+                              fullWidth
+                              margin="normal"
+                              InputProps={{ readOnly: checkValue === 'view' }}
+                              helperText={
+                                <ErrorMessage name={form1[5].dataIndex}>
+                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                </ErrorMessage>
+                              }
+                              FormHelperTextProps={{ sx: { ml: 0 } }}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Email
+                            </Typography>
+                            <Field
+                              as={TextField}
+                              name="email"
+                              fullWidth
+                              margin="normal"
+                              InputProps={{ readOnly: checkValue === 'view' }}
+                              helperText={
+                                <ErrorMessage name={form1[4].dataIndex}>
+                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                                </ErrorMessage>
+                              }
+                              FormHelperTextProps={{ sx: { ml: 0 } }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Địa chỉ
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="adress"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form1[3].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
@@ -261,30 +389,79 @@ const DialogOrder = ({ open, setOpen, selectID, checkValue, setCheckValue }: Pro
                       Thông tin tài khoản
                     </Typography>
                     <Grid container spacing={2}>
-                      {form2.map((item, index) => {
-                        return (
-                          <Grid item xs={6} key={index}>
-                            <Typography variant="h6" fontWeight={400}>
-                              {item.title}
-                            </Typography>
-                            <Field
-                              as={TextField}
-                              name={item.dataIndex}
-                              fullWidth
-                              margin="normal"
-                              InputProps={{
-                                readOnly: checkValue === 'view' ? true : false,
-                              }}
-                              helperText={
-                                <ErrorMessage name={item.dataIndex}>
-                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
-                                </ErrorMessage>
-                              }
-                              FormHelperTextProps={{ sx: { ml: 0 } }}
-                            />
-                          </Grid>
-                        );
-                      })}
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Loại tài khoản
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="typeacc"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form2[0].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Tổng nạp
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="tongnap"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form2[2].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Trợ lý
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="troly"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form2[1].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Số dư
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="sodu"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form2[3].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
@@ -292,30 +469,135 @@ const DialogOrder = ({ open, setOpen, selectID, checkValue, setCheckValue }: Pro
                       Công ty
                     </Typography>
                     <Grid container spacing={2}>
-                      {form3.map((item, index) => {
-                        return (
-                          <Grid item xs={6} key={index}>
-                            <Typography variant="h6" fontWeight={400}>
-                              {item.title}
-                            </Typography>
-                            <Field
-                              as={TextField}
-                              name={item.dataIndex}
-                              fullWidth
-                              margin="normal"
-                              InputProps={{
-                                readOnly: checkValue === 'view' ? true : false,
-                              }}
-                              helperText={
-                                <ErrorMessage name={item.dataIndex}>
-                                  {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
-                                </ErrorMessage>
-                              }
-                              FormHelperTextProps={{ sx: { ml: 0 } }}
-                            />
-                          </Grid>
-                        );
-                      })}
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Tên công ty
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="tct"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form3[0].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Mã số thuế
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="mstdn"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form3[4].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Người đại diện
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="ndd"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form3[1].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Chức vụ
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="ndd"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form3[1].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Địa chỉ
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="dcct"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form3[2].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+
+                      <Grid item xs={6}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Email
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="ect"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form3[3].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
+
+                      <Grid item xs={12}>
+                        <Typography variant="h6" fontWeight={400}>
+                          Xuất VAT
+                        </Typography>
+                        <Field
+                          as={TextField}
+                          name="xvat"
+                          fullWidth
+                          margin="normal"
+                          InputProps={{ readOnly: checkValue === 'view' }}
+                          helperText={
+                            <ErrorMessage name={form3[5].dataIndex}>
+                              {(msg) => <Typography sx={{ color: 'red' }}>{msg}</Typography>}
+                            </ErrorMessage>
+                          }
+                          FormHelperTextProps={{ sx: { ml: 0 } }}
+                        />
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>

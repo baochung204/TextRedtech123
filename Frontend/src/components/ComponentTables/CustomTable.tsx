@@ -68,7 +68,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
                           <Typography
                             variant="subtitle2"
                             fontWeight={600}
-                            sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}
+                            sx={{ flexGrow: 1, whiteSpace: 'nowrap', pl: 1 }}
                           >
                             {column.title}
                           </Typography>

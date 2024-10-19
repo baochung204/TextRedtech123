@@ -37,7 +37,6 @@ const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assi
 const AssistantEditorAdmin = Loadable(
   lazy(() => import('src/views/admin/assistant/AssistantEditorAdmin')),
 );
-
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import { ProtectedRoute } from 'src/service/guard';
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
@@ -96,7 +95,6 @@ const Faq = Loadable(lazy(() => import('../views/pages/faq/Faq')));
 
 // authentication
 const Login = Loadable(lazy(() => import('../views/authentication/auth1/Login')));
-const Login2 = Loadable(lazy(() => import('../views/authentication/auth2/Login2')));
 const Register = Loadable(lazy(() => import('../views/authentication/auth1/Register')));
 const Register2 = Loadable(lazy(() => import('../views/authentication/auth2/Register2')));
 const ForgotPassword = Loadable(lazy(() => import('../views/authentication/auth1/ForgotPassword')));
@@ -250,7 +248,7 @@ const Router = [
     children: [
       { path: '/error/404', element: <Error /> },
       { path: '/auth/login', element: <Login /> },
-      { path: '/auth/login2', element: <Login2 /> },
+
       { path: '/auth/register', element: <Register /> },
       { path: '/auth/register2', element: <Register2 /> },
       { path: '/auth/forgot-password2', element: <ForgotPassword /> },

@@ -123,10 +123,10 @@ const HistoryVoucher = () => {
 
   const column = useMemo<Column[]>(
     () => [
-      {
-        title: 'ID',
-        dataIndex: 'id',
-      },
+      // {
+      //   title: 'ID',
+      //   dataIndex: 'id',
+      // },
       {
         title: 'ID đơn hàng',
         dataIndex: 'ID_order',

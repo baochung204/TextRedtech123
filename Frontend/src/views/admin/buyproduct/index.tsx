@@ -11,6 +11,7 @@ import {
   ListItemText,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from '@mui/material';
@@ -19,7 +20,6 @@ import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import revenueperproduct from 'src/assets/Adminphoto/doanh thu san pham.png';
 import product from 'src/assets/Adminphoto/san pham.png';
-import sale from 'src/assets/Adminphoto/so flash sale.png';
 import amountcheckout from 'src/assets/Adminphoto/so luong mua.png';
 import totalrevenue from 'src/assets/Adminphoto/tong doanh thu.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
@@ -38,7 +38,16 @@ const BCrumb = [
   },
   { to: 'admin/buy/products', title: 'Danh sách sản phẩm' },
 ];
+interface FilmsData {
+  title: string;
+}
 
+const FilmsData: FilmsData[] = [
+  { title: 'Quần áo bộ ' },
+  { title: 'Áo hoodie' },
+  { title: 'Váy' },
+  { title: 'Dép' },
+];
 const DataBox = [
   {
     bgColor: 'primary.light',
@@ -253,15 +262,33 @@ const BuyPoints = () => {
       {
         title: 'Số lượng mua',
         dataIndex: 'soluongmua',
+        sort: true,
+        render: (value: any) => (
+          <Box
+            sx={{
+              textAlign: 'center',
+            }}
+          >
+            <Typography variant="subtitle2">{value}</Typography>
+          </Box>
+        ),
       },
 
       {
         title: 'Doanh thu',
         dataIndex: 'tongdoanhthu',
+        render: (value) => (
+          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+          </Box>
+        ),
+        sort: true,
       },
       {
         title: 'Tỉ trọng doanh thu',
+
         dataIndex: 'titrongdoanthu',
+        sort: true,
       },
       {
         title: 'Hoạt động',
@@ -310,7 +337,17 @@ const BuyPoints = () => {
     ],
     [],
   );
-
+  const [selectedItems, setSelectedItems] = useState<string>('');
+  const handleChange1 = (event: SelectChangeEvent<string>) => {
+    setSelectedItems(event.target.value);
+  };
+  const handleItemClick1 = (title: string) => {
+    if (selectedItems === title) {
+      setSelectedItems('');
+    } else {
+      setSelectedItems(title);
+    }
+  };
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   useEffect(() => {
     const selectedColumns = column || [];
@@ -396,7 +433,26 @@ const BuyPoints = () => {
                 alignItems: 'center',
               }}
             >
-              <IconButton aria-label="filter" sx={{ mr: 2 }}>
+              {' '}
+              <Select
+                value={selectedItems}
+                onChange={handleChange1}
+                displayEmpty
+                renderValue={(selected) => (selected === '' ? 'Lọc danh mục' : `${selectedItems}`)}
+                size="small"
+                style={{ minWidth: 50 }}
+              >
+                {FilmsData.map((film) => (
+                  <MenuItem
+                    key={film.title}
+                    value={film.title}
+                    onClick={() => handleItemClick1(film.title)}
+                  >
+                    <ListItemText primary={film.title} />
+                  </MenuItem>
+                ))}
+              </Select>
+              <IconButton aria-label="filter" sx={{ mx: 2 }}>
                 <Badge badgeContent={column.length - dataSelect.length} color="primary">
                   <FilterListIcon />
                 </Badge>

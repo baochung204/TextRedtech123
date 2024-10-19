@@ -304,22 +304,28 @@ const AssistantAdmin = () => {
       {
         dataIndex: 'kh',
         title: 'Khách hàng',
+        sort: true,
       },
       {
         dataIndex: 'dh',
-        title: 'Đơn hàng',
+        title: 'Chuyển đổi',
+        sort: true,
       },
+
       {
         dataIndex: 'cvr',
         title: 'CVR',
+        sort: true,
       },
       {
         dataIndex: 'gmv',
         title: 'GMV',
+        sort: true,
       },
       {
         dataIndex: 'cp',
         title: 'Chi phí',
+        sort: true,
       },
       {
         dataIndex: 'level', //
@@ -328,6 +334,62 @@ const AssistantAdmin = () => {
       },
       {
         dataIndex: 'experience', //
+        title: 'Experience',
+        isValids: false,
+      },
+      {
+        dataIndex: 'token',
+        title: 'Token huấn luyện',
+        isValids: false,
+      },
+      {
+        dataIndex: 'vqtb',
+        title: 'Vòng quay trung bình',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cl',
+        title: 'Chiến lược',
+        isValids: false,
+      },
+      {
+        dataIndex: 'function',
+        title: 'Functions',
+        isValids: false,
+      },
+      {
+        dataIndex: 'files',
+        title: 'Files',
+        isValids: false,
+      },
+      {
+        dataIndex: 'dungluong',
+        title: 'Dung lượng',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdt',
+        title: 'Chi phí/ doanh thu',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpdh',
+        title: 'Chi phí / chuyển đổi',
+        isValids: false,
+      },
+      {
+        dataIndex: 'cpkh',
+        title: 'Chi phí / khách hàng',
+        isValids: false,
+      },
+
+      {
+        dataIndex: 'level',
+        title: 'Level',
+        isValids: false,
+      },
+      {
+        dataIndex: 'experience',
         title: 'Experience',
         isValids: false,
       },
@@ -396,61 +458,6 @@ const AssistantAdmin = () => {
             </>
           );
         },
-      },
-      {
-        dataIndex: 'level',
-        title: 'Level',
-        isValids: false,
-      },
-      {
-        dataIndex: 'experience',
-        title: 'Experience',
-        isValids: false,
-      },
-      {
-        dataIndex: 'token',
-        title: 'Token huấn luyện',
-        isValids: false,
-      },
-      {
-        dataIndex: 'vqtb',
-        title: 'Vòng quay trung bình',
-        isValids: false,
-      },
-      {
-        dataIndex: 'cl',
-        title: 'Chiến lược',
-        isValids: false,
-      },
-      {
-        dataIndex: 'function',
-        title: 'Functions',
-        isValids: false,
-      },
-      {
-        dataIndex: 'files',
-        title: 'Files',
-        isValids: false,
-      },
-      {
-        dataIndex: 'dungluong',
-        title: 'Dung lượng',
-        isValids: false,
-      },
-      {
-        dataIndex: 'cpdt',
-        title: 'Chi phí/ doanh thu',
-        isValids: false,
-      },
-      {
-        dataIndex: 'cpdh',
-        title: 'Chi phí / chuyển đổi',
-        isValids: false,
-      },
-      {
-        dataIndex: 'cpkh',
-        title: 'Chi phí / khách hàng',
-        isValids: false,
       },
     ],
     [],

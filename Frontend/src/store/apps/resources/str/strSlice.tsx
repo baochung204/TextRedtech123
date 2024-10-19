@@ -1,28 +1,45 @@
 // src/redux/integrationSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { Str } from 'src/types/apps/str';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import userApi from 'src/api/userResource/UserResource';
+import { ApiResponse } from 'src/types/apps/str';
+
 // Define the slice state interface
 interface StrState {
-  data: Str[]; // List of integrations
+  data: ApiResponse; // List of integrations
   loading: boolean; // Loading state for API requests
   error: string | null; // Error state for failed requests
 }
 
 // Initial state
 const initialState: StrState = {
-  data: [], // Initially an empty array
+  data: {
+    content: [],
+    last: false,
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0
+  }, 
   loading: false,
   error: null,
 };
-
+interface FetchParams {
+  page: number;
+  size: number;
+}
 // Thunk to fetch integration data
-export const fetchStr = createAsyncThunk('str/fetchStr', async () => {
-  const response = await axios.get('http://localhost:9999/campaign');
-  // console.log('tet', response.data);
+export const fetchStr = createAsyncThunk(
+  'str/fetchStr',
+  async ({ page, size }: FetchParams) => {
+    try {
+      const response = await userApi.getAllCampaigns(page, size);
+      // console.log('cam', response.data);
+      return response.data.result;
 
-  return response.data;
-});
+    } catch (error) {
+      console.log("Error", error)
+    }
+  });
 
 // Slice
 // eslint-disable-next-line react-refresh/only-export-components
@@ -38,7 +55,7 @@ const StrSlice = createSlice({
     });
 
     // Handle fulfilled state (API request succeeded)
-    builder.addCase(fetchStr.fulfilled, (state, action: PayloadAction<Str[]>) => {
+    builder.addCase(fetchStr.fulfilled, (state, action: PayloadAction<ApiResponse>) => {
       state.loading = false;
       state.data = action.payload;
     });

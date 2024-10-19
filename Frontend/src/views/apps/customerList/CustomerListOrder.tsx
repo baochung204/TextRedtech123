@@ -5,7 +5,6 @@ import {
   Badge,
   Box,
   Checkbox,
-  Chip,
   Grid,
   IconButton,
   InputAdornment,
