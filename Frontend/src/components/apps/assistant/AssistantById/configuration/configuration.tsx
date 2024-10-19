@@ -88,8 +88,8 @@ const Configuration = () => {
                   <Box>
                     <Typography variant="h6">{sell.product}</Typography>
                     <Typography variant="subtitle2" color="textSecondary">
-                      {sell.parameter}
-                      {sell.product == 'File' ? 'file' : sell.product == 'Dung lượng' ? 'MB' : ''}
+                      {sell.parameter}{' '}
+                      {sell.product == 'File' ? ' File' : sell.product == 'Dung lượng' ? ' MB' : ''}
                     </Typography>
                   </Box>
                   <Chip

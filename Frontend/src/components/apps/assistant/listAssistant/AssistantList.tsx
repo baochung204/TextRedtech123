@@ -47,11 +47,7 @@ interface FilmsData {
   title: string;
 }
 
-const FilmsData: FilmsData[] = [
-  { title: 'Tỉ lệ chuyển đổi' },
-  { title: 'Cấp Rank' },
-  { title: 'Tổng doanh thu' },
-];
+const FilmsData: FilmsData[] = [{ title: 'Khách hàng' }, { title: 'AOV' }, { title: 'Chuyển đổi' }];
 
 const ListAssistant = () => {
   const theme = useTheme();
@@ -320,6 +316,8 @@ const ListAssistant = () => {
                             minWidth: 'auto',
                             ':hover': { backgroundColor: '#1976D2' },
                           }}
+                          component={Link}
+                          to={`/assistants/edit/${rank.chatbotId}`}
                         >
                           <IconEdit color="white" />
                         </Button>

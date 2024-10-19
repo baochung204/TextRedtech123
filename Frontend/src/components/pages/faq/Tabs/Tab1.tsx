@@ -98,7 +98,6 @@ const Tab1 = () => {
                 </Stack>
               </CardContent>
             </BlankCard>
-
           </Grid>
         ))}
       </Grid>

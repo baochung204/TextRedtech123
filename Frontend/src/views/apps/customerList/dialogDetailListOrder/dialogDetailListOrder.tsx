@@ -65,7 +65,7 @@ const DialogDetailListOrder: React.FC<PropsDialog> = ({ open, setOpen }) => {
           }}
         >
           <DialogContentText id="alert-dialog-slide-description">
-            <Grid container>
+            <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Box
                   display={'flex'}
@@ -77,217 +77,220 @@ const DialogDetailListOrder: React.FC<PropsDialog> = ({ open, setOpen }) => {
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Box my={3}>
+                <Box>
                   <ChildCard>
-                    <Box p={{ sx: 0 }}>
-                      <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                          <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                              <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Mã chuyển đổi :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        OD10JSNJHU09939
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Ngày tạo :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        12/02/2024
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Kênh marketing :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        Facebook
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Trợ lý :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        Trợ lý số
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Đánh giá :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        Tuyệt vời
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Ghi chú :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        (Không có ghi chú)
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Tên khách hàng :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        Nguyễn Văn A
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Số điện thoại :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        0123456789
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Email :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        nguyenvana@gmail.com
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs={12}>
-                                  <Grid container>
-                                    <Grid item xs={4}>
-                                      <Typography
-                                        variant="h6"
-                                        fontWeight="500"
-                                        sx={{ width: '150px' }}
-                                      >
-                                        Địa chỉ :
-                                      </Typography>
-                                    </Grid>{' '}
-                                    <Grid item xs={8}>
-                                      {' '}
-                                      <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                                        Số 123, Đường Lê Lợi, Phường Bến Thành, Quận 1, Thành phố Hồ
-                                        Chí Minh, Việt Nam
-                                      </Typography>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                              </Grid>
-                            </Grid>
+                    <Grid container spacing={2}>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Mã chuyển đổi :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              OD10JSNJHU09939
+                            </Typography>
                           </Grid>
                         </Grid>
                       </Grid>
-                    </Box>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Ngày tạo :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              12/02/2024
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Kênh marketing :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              Facebook
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Trợ lý :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              Trợ lý số
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
                   </ChildCard>
                 </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box>
+                  <ChildCard>
+                    <Grid container spacing={2}>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Tên khách hàng :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              Nguyễn Khương Đinh Văn
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Số điện thoại :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              0123456789
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Email :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              nguyenvana@gmail.com
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Địa chỉ :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={8}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              Số 123, Đường Lê Lợi, Phường Bến Thành, Quận 1, Thành phố Hồ Chí Minh,
+                              Việt Nam
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </ChildCard>
+                </Box>
+              </Grid>
+              <Grid item xs={6}>
+                <Box>
+                  <ChildCard>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={3}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Đánh giá :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={9}>
+                            <Grid container>
+                              <Grid item xs={4}>
+                                <img
+                                  src="https://picsum.photos/300/300"
+                                  alt=""
+                                  width={70}
+                                  height={70}
+                                />
+                              </Grid>
+                              <Grid item xs={4}>
+                                {' '}
+                                <img
+                                  src="https://picsum.photos/300/300"
+                                  alt=""
+                                  width={70}
+                                  height={70}
+                                />
+                              </Grid>
+                              <Grid item xs={4}>
+                                <img
+                                  src="https://picsum.photos/300/300"
+                                  alt=""
+                                  width={70}
+                                  height={70}
+                                />
+                              </Grid>
+                            </Grid>{' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              Sản phẩm chất lượng tuyệt vời, vượt xa mong đợi của mình. Đóng gói rất
+                              cẩn thận, giao hàng nhanh chóng. Sẽ tiếp tục ủng hộ shop trong tương
+                              lai!
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </ChildCard>
+                </Box>
+              </Grid>
+              <Grid item xs={6}>
+                <Box>
+                  <ChildCard>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={2}>
+                            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+                              Ghi chú :
+                            </Typography>
+                          </Grid>{' '}
+                          <Grid item xs={10}>
+                            {' '}
+                            <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                              Đây là quà tặng, vui lòng đóng gói cẩn thận và đẹp mắt. Nếu có thể,
+                              xin thêm thiệp chúc mừng với nội dung: 'Gửi tặng người đặc biệt nhất,
+                              chúc em luôn vui vẻ và hạnh phúc. Yêu em!'
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </ChildCard>
+                </Box>
+              </Grid>
+
+              <Grid item xs={12}>
                 <Box my={3}>
                   <ChildCard>
                     <Grid container>

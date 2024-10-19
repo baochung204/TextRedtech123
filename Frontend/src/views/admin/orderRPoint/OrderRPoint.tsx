@@ -25,7 +25,7 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import DialogDetailOrderRpoint from './DialogDetailOrderRpoint/DialogDetailOrderRpoint';
+import DialogDetailOrderRpoint from './Digloa/DialogDetailOrderRpoint';
 
 const BCrumb = [
   {

@@ -48,7 +48,7 @@ export interface CustomerListAffiliateTable {
   email: string;
   phone: string;
   createdAt: string;
-  typeofcustomer: string;
+  typeofcustomer: number;
   imgsrc?: string;
 }
 const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
@@ -58,7 +58,7 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
     email: 'duc.lt@redon.com',
     phone: '0987654321',
     createdAt: '2024-07-18',
-    typeofcustomer: 'Miễn phí',
+    typeofcustomer: 1,
     imgsrc: img1,
   },
   {
@@ -67,7 +67,7 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
     email: 'linh.nt@redon.com',
     phone: '0965842361',
     createdAt: '2024-07-19',
-    typeofcustomer: 'Trả phí',
+    typeofcustomer: 2,
     imgsrc: img2,
   },
   {
@@ -76,7 +76,7 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
     email: 'duc.lt@redon.com',
     phone: '0987654321',
     createdAt: '2024-07-18',
-    typeofcustomer: 'Miễn phí',
+    typeofcustomer: 1,
     imgsrc: img1,
   },
   {
@@ -85,7 +85,7 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
     email: 'linh.nt@redon.com',
     phone: '0965842361',
     createdAt: '2024-07-19',
-    typeofcustomer: 'Trả phí',
+    typeofcustomer: 2,
     imgsrc: img2,
   },
   {
@@ -94,7 +94,7 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
     email: 'duc.lt@redon.com',
     phone: '0987654321',
     createdAt: '2024-07-18',
-    typeofcustomer: 'Miễn phí',
+    typeofcustomer: 1,
     imgsrc: img1,
   },
   {
@@ -103,7 +103,7 @@ const DataCustomerListAffiliateTable: CustomerListAffiliateTable[] = [
     email: 'linh.nt@redon.com',
     phone: '0965842361',
     createdAt: '2024-07-19',
-    typeofcustomer: 'Trả phí',
+    typeofcustomer: 2,
     imgsrc: img2,
   },
 ];

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://redai02-4af4309fd76b.herokuapp.com/api/v1',
+  baseURL: 'https://redai02-4af4309fd76b.herokuapp.com',
   headers: {
     'Content-Type': 'application/json',
   },
