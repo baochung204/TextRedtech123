@@ -56,6 +56,8 @@ const FirstStep = () => {
 
   console.log('countdownTime', flashSaleRandom);
 
+  console.log(selectedPackage);
+
   const handleSelectPackage = (pkg: any) => {
     if (selectedPackage === pkg.id) {
       setSelectedPackage(null);
