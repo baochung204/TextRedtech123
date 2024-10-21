@@ -9,6 +9,7 @@ import {
 } from 'src/store/apps/resources/image/ImageSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DialogImage from '../dialog/DialogImage';
+import { Column } from 'src/components/ComponentTables/ColumnInterface';
 
 interface PropsTab5 {
   value: string;
@@ -30,19 +31,16 @@ const Tab5: React.FC<PropsTab5> = ({ value, open, setOpen, dataSelect, checkOpti
   }, [dispatch]);
 
   const onHandleOpenImageById = (id: string) => {
-    // dispatch(fetchImageById(id));
     setKey(id);
     setOpen(true);
     setCheckOption('view')
   };
 
   const onHandleRemove = (id: string) => {
-    // console.log(id);
-
     dispatch(removeImage(id));
   };
 
-  const column = [
+  const column: Column[] = [
     {
       title: 'ID',
       dataIndex: 'id',

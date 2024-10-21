@@ -25,7 +25,7 @@ import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import DialogDetailListOrder from './dialogDetailListOrder/dialogDetailListOrder';
+import DialogDetailListOrder from './dialog/dialogDetailListOrder';
 
 interface PropsTable {
   id: string;
@@ -323,6 +323,7 @@ const CustomerListOrder = () => {
                           }}
                           size="small"
                           MenuProps={{
+                            autoFocus: false,
                             PaperProps: {
                               sx: {
                                 marginTop: 1,

@@ -18,13 +18,39 @@ import BlankCard from '../../../shared/BlankCard';
 import { Link } from 'react-router-dom';
 import { IconCameraBolt } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
+<<<<<<< HEAD
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'src/store/Store';
 import { useSelector } from 'react-redux';
 import { AppState } from 'src/store/Store';
 import { fetchUserMeData } from 'src/store/user/userme/usermeSlice';
+=======
+import { useSelector } from 'react-redux';
+import { dispatch } from 'src/store/Store';
+import { fetchaffiliateaccount } from 'src/store/user/affiliate-account/affiliate-account';
+// import { use } from 'i18next';
+// import { type } from './../../../../types/apps/userProfile';
+>>>>>>> 141dbc7a449b5d99b9db92841f1caeb87c96f961
 
 const ProfileBanner = () => {
+  const affiliate = useSelector((state: any) => state.affiliate.data);
+  console.log('affiliate', affiliate);
+  interface AffiliateData {
+    step?: number;
+    type?: string;
+    // Add other properties of affiliate data here
+  }
+
+  const [datax, setdatax] = useState<AffiliateData>({});
+
+  useEffect(() => {
+    dispatch(fetchaffiliateaccount());
+  }, [dispatch]);
+  useEffect(() => {
+    if (datax !== affiliate) {
+      setdatax(affiliate);
+    }
+  }, [datax, affiliate]);
   const [bannerImage] = useState(profilecover);
   const [avatarImage, setAvatarImage] = useState(userimg);
   const theme = useTheme();
@@ -207,15 +233,22 @@ const ProfileBanner = () => {
             }}
           >
             <Stack direction={'row'} gap={2} my={2} px={2} spacing={2}>
-              <Link to={'/user_profile/affiliate/register'}>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px' } }}
-                >
-                  Đăng ký affiliate
-                </Button>
-              </Link>
+              {/* <Link to={'/user_profile/affiliate/register'}> */}
+              <Button
+                color="primary"
+                variant="contained"
+                component={Link}
+                to={`${
+                  datax.type === 'BUSINESS'
+                    ? '/company-affiliate'
+                    : datax.type === 'CUSTOMER'
+                    ? '/person-affiliate '
+                    : '/user_profile/affiliate/register'
+                }`}
+                sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px' } }}
+              >
+                Đăng ký affiliate
+              </Button>
             </Stack>
           </Grid>
         </Grid>

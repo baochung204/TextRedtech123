@@ -34,6 +34,10 @@ import BlogTable from './data/datablog';
 
 import Iconlike from 'src/assets/ICON/like.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchOverviewBlogData } from 'src/store/admin/blog/overview/blogSlice';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -42,107 +46,134 @@ const BCrumb = [
 
 interface StyleProps {
   bgColor: string;
-
   title: string;
   total: string;
   icons: JSX.Element;
 }
 // topcard
-const DataBox: StyleProps[] = [
-  {
-    bgColor: 'primary.light',
-    title: 'Bài viết ',
-    total: '120',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={blog} width={30} alt="Blog Icon" />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Lượt xem',
-    total: '5',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={view} width={30} alt="View Icon" />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu',
-    total: '52.200.200 ₫ ',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={revenue} width={30} alt="Revenue Icon" />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Lượt like',
-    total: '120',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {/* <img width={30} src={reaction} alt="Reaction" /> */}
-        <img width={30} src={Iconlike} alt="Like Icon" />
-      </Box>
-    ),
-  },
-];
+
 interface Column {
   title: string;
   dataIndex: string;
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
+
 const BlogAdmin = () => {
-  // const nav = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataStr = useSelector((state: AppState) => state.overview_blog.dataa || []);
+  useEffect(() => {
+    dispatch(fetchOverviewBlogData());
+  }, [dispatch]);
+
   // const handleIconClick = () => {
   //   nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
   // };
+
+  console.log(dataStr);
+
+  const countBlog = dataStr.countBlog;
+
+  const sumView = dataStr.sumView;
+
+  const sumPoint = dataStr.sumPoint;
+
+  // Format as VND
+  const formattedVND = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  }).format(sumPoint);
+
+  console.log(formattedVND);
+
+  const sumLike = dataStr.sumLike;
+
+  const DataBox: StyleProps[] = [
+    {
+      bgColor: 'primary.light',
+      title: 'Bài viết ',
+      total: `${countBlog}`,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={blog} width={30} alt="Blog Icon" />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Lượt xem',
+      total: `${sumView}`,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={view} width={30} alt="View Icon" />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Doanh thu',
+      total: `${formattedVND}`,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={revenue} width={30} alt="Revenue Icon" />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Lượt like',
+      total: `${sumLike}`,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          {/* <img width={30} src={reaction} alt="Reaction" /> */}
+          <img width={30} src={Iconlike} alt="Like Icon" />
+        </Box>
+      ),
+    },
+  ];
+
+  // console.log(dataStr);
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
@@ -152,7 +183,7 @@ const BlogAdmin = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id'
+        dataIndex: 'id',
       },
       {
         title: 'Ngày tạo',

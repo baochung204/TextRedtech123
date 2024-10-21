@@ -32,11 +32,29 @@ import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice'
 import cartSlice from './user/cart/cartSlice';
 
+<<<<<<< HEAD
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
+=======
+import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
+
+import blogSlice from './admin/blog/overview/blogSlice';
+import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
+import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
+import flashsaleoverviewSlice from './admin/counpon/flashsale/overview/flashsaleOverviewSlice';
+import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice';
+
+import affiliateApiSlice from './user/affiliate-account/affiliate-account';
+import BlogSlice from './user/blogs/blog';
+
+import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
+import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
+
+>>>>>>> 141dbc7a449b5d99b9db92841f1caeb87c96f961
 export const store = configureStore({
   reducer: {
+    //user
     customizer: CustomizerReducer,
     ecommerceReducer: EcommerceReducer,
     chatReducer: ChatsReducer,
@@ -63,12 +81,29 @@ export const store = configureStore({
     twofa: twofaSlice,
     adminTicker: adminTicketSlice,
     cart: cartSlice,
+<<<<<<< HEAD
     // overViewTicket: overViewTicketSlice,
     userme: usermeSlice,
   }
 })
+=======
+    staff: staffSlice,
+    affiliate: affiliateApiSlice,
+    blogs: BlogSlice,
+    //admin
+    overview_blog: blogSlice,
+    overview_counpon: counponSlice,
+    counpon_history: counponhistorySlice,
+    overview_flashsale: flashsaleoverviewSlice,
+    counpon_list: counponlistSlice,
+    flashsale_list: flashsaleSlice,
+    overview_staff: staffoverviewSlice,
+  },
+});
+>>>>>>> 141dbc7a449b5d99b9db92841f1caeb87c96f961
 
 const rootReducer = combineReducers({
+  //user
   customizer: CustomizerReducer,
   ecommerceReducer: EcommerceReducer,
   chatReducer: ChatsReducer,
@@ -95,8 +130,24 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
   cart: cartSlice,
+<<<<<<< HEAD
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
+=======
+  blogs: BlogSlice,
+  affiliate: affiliateApiSlice,
+  //admin
+  overview_blog: blogSlice,
+  overview_counpon: counponSlice,
+  counpon_history: counponhistorySlice,
+  overview_flashsale: flashsaleoverviewSlice,
+  counpon_list: counponlistSlice,
+
+  staff: staffSlice,
+
+  flashsale_list: flashsaleSlice,
+  overview_staff: staffoverviewSlice,
+>>>>>>> 141dbc7a449b5d99b9db92841f1caeb87c96f961
 
 });
 

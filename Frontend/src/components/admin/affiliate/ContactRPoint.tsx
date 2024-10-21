@@ -344,6 +344,7 @@ const ContactRPoint = () => {
                       },
                     },
                   },
+                  autoFocus: false,
                   anchorOrigin: {
                     vertical: 'bottom',
                     horizontal: 'right',

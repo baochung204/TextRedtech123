@@ -1,5 +1,8 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
+import Loadable from '../layouts/full/shared/loadable/Loadable';
+import { ProtectedRoute } from 'src/service/guard';
+
 const ChangePassword = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
 );
@@ -37,8 +40,7 @@ const AssistantAdmin = Loadable(lazy(() => import('../views/admin/assistant/assi
 const AssistantEditorAdmin = Loadable(
   lazy(() => import('src/views/admin/assistant/AssistantEditorAdmin')),
 );
-import Loadable from '../layouts/full/shared/loadable/Loadable';
-import { ProtectedRoute } from 'src/service/guard';
+
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
 const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
 const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')));
