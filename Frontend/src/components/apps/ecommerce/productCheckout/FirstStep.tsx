@@ -15,16 +15,13 @@ import {
 // @ts-ignore
 import { IconChevronDown } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import products2 from 'src/assets/images/products/s24.jpg';
-import products from 'src/assets/images/products/s25.jpg';
 import Countdown from 'src/components/countdown/countdown';
-import ChildCard from '../../../shared/ChildCard';
-import { useSelector } from 'react-redux';
 import { AppState } from 'src/store/Store';
-import { useDispatch } from 'react-redux';
 import { fetchFlashSaleData } from 'src/store/user/flashsale-random/flashsaleSlice';
+import ChildCard from '../../../shared/ChildCard';
 
 declare interface Package {
   flashSaleId: number;
@@ -36,33 +33,13 @@ declare interface Package {
   percent: number;
   displayTime: number;
 }
-const packages = [
-  {
-    id: 5,
-    img: products,
-    title: 'Chatbot marketing',
-    point: 115,
-    discount: 100,
-    sale: 80,
-    timeFlash: 16,
-  },
-  {
-    id: 6,
-    img: products2,
-    title: 'Chatbot hỗ trợ khách hàng',
-    point: 210,
-    discount: 199,
-    sale: 80,
-    timeFlash: 16,
-  },
-];
 
 const FirstStep = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const dispatch = useDispatch();
   // const theme = useTheme();
   // const [pointsEarned, setPointsEarned] = useState(0);
-  const [pointsEarned, setPointsEarned] = useState<number | null>(null);
+  // const [pointsEarned, setPointsEarned] = useState<number | null>(null);
   const [countdownTime, setCountdownTime] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackage2, setSelectedPackage2] = useState(true);
@@ -77,13 +54,15 @@ const FirstStep = () => {
 
   console.log('flashsale', flashSaleRandom);
 
+  console.log('countdownTime', flashSaleRandom);
+
   const handleSelectPackage = (pkg: any) => {
     if (selectedPackage === pkg.id) {
       setSelectedPackage(null);
-      setPointsEarned(null);
+      // setPointsEarned(null);
     } else {
       setSelectedPackage(pkg.id);
-      setPointsEarned(pkg.point);
+      // setPointsEarned(pkg.point);
     }
   };
   const handleAccordionClick = () => {
@@ -91,7 +70,7 @@ const FirstStep = () => {
     setTimeout(() => {
       setSelectedPackage2(false);
       setSelectedPackage(null);
-      setPointsEarned(null);
+      // setPointsEarned(null);
     }, 3600000);
   };
   return (
@@ -201,7 +180,6 @@ const FirstStep = () => {
                                 </Typography>
 
                                 <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                                  {' '}
                                   <Typography
                                     sx={{
                                       mb: 1,
@@ -228,7 +206,6 @@ const FirstStep = () => {
                                       gap: '3px',
                                     }}
                                   >
-                                    {' '}
                                     {pkg.point}
                                     <img
                                       src={logoPoint}
@@ -284,67 +261,66 @@ const FirstStep = () => {
                 </AccordionDetails>
               </Accordion>
             )}
-            {/* Tổng cộng */}
-            <Stack direction="row" justifyContent="space-between" mb={3}>
-              <Typography variant="h6" fontWeight={400}>
-                Giá trị đơn hàng
-              </Typography>
-              <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
-                {cart.totalPoint}
-                <img
-                  src={logoPoint}
-                  alt={logoPoint}
-                  width={20}
-                  height={20}
-                  style={{ borderRadius: 50 }}
-                />
-              </Typography>
-            </Stack>
-
-            {/* Giảm giá */}
-            <Stack direction="row" justifyContent="space-between" mb={3}>
-              <Typography variant="h6" fontWeight={400}>
-                Khuyến mãi
-              </Typography>
-              <Typography
-                variant="h6"
-                color="error"
-                display={'flex'}
-                alignItems={'center'}
-                gap="3px"
-              >
-                {cart.totalAmountDiscount}
-                <img
-                  src={logoPoint}
-                  alt={logoPoint}
-                  width={20}
-                  height={20}
-                  style={{ borderRadius: 50 }}
-                />
-              </Typography>
-            </Stack>
-            {/* Vận chuyển */}
-
-            {/* Tổng cộng */}
-            <Stack direction="row" justifyContent="space-between" mb={1}>
-              <Typography variant="h6">Tổng thanh toán</Typography>
-              <Typography
-                variant="h5"
-                color="success"
-                display={'flex'}
-                alignItems={'center'}
-                gap="3px"
-              >
-                {cart.totalPriceAfterDiscount}
-                <img
-                  src={logoPoint}
-                  alt={logoPoint}
-                  width={20}
-                  height={20}
-                  style={{ borderRadius: 50 }}
-                />
-              </Typography>
-            </Stack>
+            <Box>
+              {/* Tổng cộng */}
+              <Stack direction="row" justifyContent="space-between" mb={3}>
+                <Typography variant="h6" fontWeight={400}>
+                  Giá trị đơn hàng
+                </Typography>
+                <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
+                  {cart.totalPoint}
+                  <img
+                    src={logoPoint}
+                    alt={logoPoint}
+                    width={20}
+                    height={20}
+                    style={{ borderRadius: 50 }}
+                  />
+                </Typography>
+              </Stack>
+              {/* Giảm giá */}
+              <Stack direction="row" justifyContent="space-between" mb={3}>
+                <Typography variant="h6" fontWeight={400}>
+                  Khuyến mãi
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="error"
+                  display={'flex'}
+                  alignItems={'center'}
+                  gap="3px"
+                >
+                  {cart.totalAmountDiscount}
+                  <img
+                    src={logoPoint}
+                    alt={logoPoint}
+                    width={20}
+                    height={20}
+                    style={{ borderRadius: 50 }}
+                  />
+                </Typography>
+              </Stack>
+              {/* Tổng cộng */}
+              <Stack direction="row" justifyContent="space-between" mb={1}>
+                <Typography variant="h6">Tổng thanh toán</Typography>
+                <Typography
+                  variant="h5"
+                  color="success"
+                  display={'flex'}
+                  alignItems={'center'}
+                  gap="3px"
+                >
+                  {cart.totalPriceAfterDiscount}
+                  <img
+                    src={logoPoint}
+                    alt={logoPoint}
+                    width={20}
+                    height={20}
+                    style={{ borderRadius: 50 }}
+                  />
+                </Typography>
+              </Stack>
+            </Box>
           </Box>
         </ChildCard>
       </Box>
