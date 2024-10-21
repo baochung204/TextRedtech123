@@ -39,6 +39,7 @@ import flashsaleoverviewSlice from './admin/counpon/flashsale/overview/flashsale
 import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
+import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
 
 export const store = configureStore({
   reducer: {
@@ -67,6 +68,7 @@ export const store = configureStore({
     test: userSlice,
     assisstant: assisstantSlice,
     twofa: twofaSlice,
+    flashsale_random: flashSaleRandomSlice,
     cart: cartSlice,
     staff: staffSlice,
     //admin
@@ -105,6 +107,7 @@ const rootReducer = combineReducers({
   file: fileReducer,
   test: userSlice,
   assisstant: assisstantSlice,
+  flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   cart: cartSlice,
   staff: staffSlice,

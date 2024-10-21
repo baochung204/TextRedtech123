@@ -14,17 +14,27 @@ import {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { IconChevronDown } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';
 import products from 'src/assets/images/products/s25.jpg';
 import Countdown from 'src/components/countdown/countdown';
 import ChildCard from '../../../shared/ChildCard';
-interface Props {
-  total: number;
-  Discount: number;
-  qty: number;
+import { useSelector } from 'react-redux';
+import { AppState } from 'src/store/Store';
+import { useDispatch } from 'react-redux';
+import { fetchFlashSaleData } from 'src/store/user/flashsale-random/flashsaleSlice';
+
+declare interface Package {
+  flashSaleId: number;
+  productId: number;
+  productName: string;
+  productImgUrl: string;
+  point: number;
+  priceAfterFlashSale: number;
+  percent: number;
+  displayTime: number;
 }
 const packages = [
   {
@@ -46,15 +56,30 @@ const packages = [
     timeFlash: 16,
   },
 ];
-const FirstStep = ({ total, Discount }: Props) => {
-  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
+const FirstStep = () => {
+  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
+  const dispatch = useDispatch();
   // const theme = useTheme();
   // const [pointsEarned, setPointsEarned] = useState(0);
   const [pointsEarned, setPointsEarned] = useState<number | null>(null);
   const [countdownTime, setCountdownTime] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackage2, setSelectedPackage2] = useState(true);
+  const cart = useSelector((state: AppState) => state.cart.dataa);
+  const flashSaleRandom = useSelector((state: AppState) => state.flashsale_random.dataa);
+
+  useEffect(() => {
+    dispatch(fetchFlashSaleData());
+  }, [dispatch]);
+
+  console.log('cart', cart);
+
+  console.log('flashsale', flashSaleRandom);
+
+  // useEffect(() => {
+  //   dispatch(fetchCartData());
+  // }, [dispatch]);
 
   const handleSelectPackage = (pkg: any) => {
     if (selectedPackage === pkg.id) {
@@ -113,14 +138,14 @@ const FirstStep = ({ total, Discount }: Props) => {
                   }}
                 >
                   <Grid container spacing={1}>
-                    {packages.map((pkg) => (
-                      <Grid item xs={12} md={12} key={pkg.id}>
+                    {flashSaleRandom.map((pkg) => (
+                      <Grid item xs={12} md={12} key={pkg.flashSaleId}>
                         <Card
                           sx={{
                             borderRadius: '15px',
                             overflow: 'hidden',
                             boxShadow:
-                              selectedPackage === pkg.id
+                              selectedPackage === pkg.flashSaleId
                                 ? '0 6px 18px rgba(128, 128, 128, 0.4)'
                                 : '0 6px 18px rgba(0,0,0,0.1)',
                             transition: 'transform 0.3s',
@@ -128,7 +153,8 @@ const FirstStep = ({ total, Discount }: Props) => {
                             marginY: '0px',
                             paddingY: '0px',
 
-                            transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
+                            transform:
+                              selectedPackage === pkg.flashSaleId ? 'scale(1.02) ' : 'scale(1)',
                           }}
                           onClick={() => handleSelectPackage(pkg)}
                         >
@@ -147,7 +173,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                               <Typography component={Link} to={`/shop/detail/11`}>
                                 {lgUp ? (
                                   <img
-                                    src={pkg.img}
+                                    src={pkg.productImgUrl}
                                     alt={''}
                                     style={{
                                       borderRadius: '10px',
@@ -156,7 +182,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                   />
                                 ) : (
                                   <img
-                                    src={pkg.img}
+                                    src={pkg.productImgUrl}
                                     alt={''}
                                     style={{
                                       borderRadius: '10px',
@@ -173,7 +199,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                     mb: 1,
                                   }}
                                 >
-                                  {pkg.title}
+                                  {pkg.productName}
                                 </Typography>
 
                                 <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
@@ -187,7 +213,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                       gap: '3px',
                                     }}
                                   >
-                                    <del>{pkg.discount.toLocaleString()} </del>
+                                    <del>{pkg.percent} </del>
                                     <img
                                       src={logoPoint}
                                       alt={logoPoint}
@@ -205,7 +231,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                     }}
                                   >
                                     {' '}
-                                    {pkg.point.toLocaleString()}{' '}
+                                    {pkg.point}
                                     <img
                                       src={logoPoint}
                                       alt={logoPoint}
@@ -226,7 +252,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                       mt: 3.4,
                                     }}
                                   >
-                                    {pkg.sale}%
+                                    {pkg.percent}%
                                   </Button>
                                 </Box>
                               </div>
@@ -266,7 +292,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                 Giá trị đơn hàng
               </Typography>
               <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
-                {(total + (pointsEarned === null ? 0 : pointsEarned)).toLocaleString('vn-VN')}{' '}
+                {cart.totalPoint}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -289,7 +315,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                 alignItems={'center'}
                 gap="3px"
               >
-                -{Discount.toLocaleString('vn-VN')}{' '}
+                {cart.totalAmountDiscount}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -311,9 +337,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                 alignItems={'center'}
                 gap="3px"
               >
-                {(total - Discount + (pointsEarned === null ? 0 : pointsEarned)).toLocaleString(
-                  'vn-VN',
-                )}{' '}
+                {cart.totalPriceAfterDiscount}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
