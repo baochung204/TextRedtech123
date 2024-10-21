@@ -38,7 +38,7 @@ import counponhistorySlice from './admin/counpon/counponhistory/table/counponthi
 import flashsaleoverviewSlice from './admin/counpon/flashsale/overview/flashsaleOverviewSlice';
 import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
-
+import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
 export const store = configureStore({
   reducer: {
     //user
@@ -68,6 +68,7 @@ export const store = configureStore({
     twofa: twofaSlice,
     cart: cartSlice,
     staff: staffSlice,
+    resources_Campaigns: CampaignsSlice,
     //admin
     overview_blog: blogSlice,
     overview_counpon: counponSlice,
@@ -106,6 +107,7 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   cart: cartSlice,
   staff: staffSlice,
+  resources_Campaigns: CampaignsSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
