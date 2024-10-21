@@ -31,13 +31,14 @@ import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
-import staffSlice from './Staff/Staff'; // Adjust the import path as necessary
+import staffSlice from 'src/api/admin/staff/Staff'; // Adjust the import path as necessary
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
 import flashsaleoverviewSlice from './admin/counpon/flashsale/overview/flashsaleOverviewSlice';
 import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
+import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
 
 export const store = configureStore({
   reducer: {
@@ -75,6 +76,7 @@ export const store = configureStore({
     overview_flashsale: flashsaleoverviewSlice,
     counpon_list: counponlistSlice,
     flashsale_list: flashsaleSlice,
+    overview_staff: staffoverviewSlice,
   },
 });
 
@@ -113,6 +115,7 @@ const rootReducer = combineReducers({
   overview_flashsale: flashsaleoverviewSlice,
   counpon_list: counponlistSlice,
   flashsale_list: flashsaleSlice,
+  overview_staff: staffoverviewSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
