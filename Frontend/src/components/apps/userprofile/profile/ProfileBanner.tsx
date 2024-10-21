@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Grid,
   Box,
@@ -18,11 +18,50 @@ import BlankCard from '../../../shared/BlankCard';
 import { Link } from 'react-router-dom';
 import { IconCameraBolt } from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { AppState } from 'src/store/Store';
+import { fetchUserMeData } from 'src/store/user/userme/usermeSlice';
 
 const ProfileBanner = () => {
   const [bannerImage] = useState(profilecover);
   const [avatarImage, setAvatarImage] = useState(userimg);
   const theme = useTheme();
+  const dispatch = useDispatch<AppDispatch>()
+  const userme = useSelector((state: AppState) => state.userme.result);
+  console.log('Userme:', userme);
+  useEffect(() => {
+    dispatch(fetchUserMeData());
+  }, [dispatch])
+  // console.log('Userme:', userme);
+  // const [data, setData] = useState<UserMe[]>([
+  //   {
+  //     userId: 0,
+  //     point: 0,
+  //     email: '',
+  //     phoneNumber: '',
+  //     dateOfBirth: new Date(),
+  //     name: '',
+  //     gender: '',
+  //     address: '',
+  //   }
+  // ])
+  // const handleClick = (items: UserMe) => {
+  //   // setOpen(true);
+  //   setData([
+  //     {
+  //       userId: items.userId,
+  //       point: items.point,
+  //       email: items.email,
+  //       phoneNumber: items.phoneNumber,
+  //       dateOfBirth: items.dateOfBirth,
+  //       name: items.name,
+  //       gender: items.gender,
+  //       address: items.address,
+  //     },
+  //   ]);
+  // };
   const primary = theme.palette.primary.light;
 
   const ProfileImage = styled(Box)(() => ({
@@ -59,8 +98,8 @@ const ProfileBanner = () => {
             }}
           />
         </Box>
-
-        <Grid
+        {userme.data?.map((items: any) => (
+          <Grid
           container
           spacing={0}
           sx={{
@@ -68,6 +107,7 @@ const ProfileBanner = () => {
             alignItems: 'center',
             display: { xs: 'flex', sm: 'flex' },
           }}
+          key={items.userId}
         >
           {/* about profile */}
           <Grid
@@ -95,7 +135,7 @@ const ProfileBanner = () => {
               <Box textAlign="center">
                 <ProfileImage>
                   <Avatar
-                    src={avatarImage}
+                    src={items.avatarUrl}
                     alt="User avatar"
                     sx={{
                       borderRadius: '50%',
@@ -135,7 +175,7 @@ const ProfileBanner = () => {
 
                 <Box mt={1}>
                   <Typography fontWeight={600} variant="h5" display="flex" alignItems="center">
-                    Nguyễn Đăng Hòa
+                    {items.name}
                     <VerifiedIcon sx={{ color: '#1DA1F2', fontSize: '20px', ml: 1 }} />
                   </Typography>
 
@@ -145,13 +185,13 @@ const ProfileBanner = () => {
                     fontWeight={400}
                     sx={{ color: '#757575' }}
                   >
-                    0981522873
+                    {items.phoneNumber}
                   </Typography>
                 </Box>
               </Box>
             </Box>
           </Grid>
-
+        
           {/* friends following buttons */}
           <Grid
             style={{ position: 'absolute', bottom: 55, right: 0 }}
@@ -179,6 +219,8 @@ const ProfileBanner = () => {
             </Stack>
           </Grid>
         </Grid>
+        ))}
+        
 
         <ProfileTab />
       </BlankCard>

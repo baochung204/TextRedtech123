@@ -29,14 +29,12 @@ import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
-<<<<<<< HEAD
 import twofaSlice from './user/2-factor-authentication/twofaSlice'
-import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
-=======
-import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 
->>>>>>> fc017e62eb0771e0cbf83fe535d29072115dc0e5
+import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
+// import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
+import usermeSlice from 'src/store/user/userme/usermeSlice';
 export const store = configureStore({
   reducer: {
     customizer: CustomizerReducer,
@@ -63,13 +61,12 @@ export const store = configureStore({
     test: userSlice,
     assisstant: assisstantSlice,
     twofa: twofaSlice,
-<<<<<<< HEAD
     adminTicker: adminTicketSlice,
-=======
     cart: cartSlice,
->>>>>>> fc017e62eb0771e0cbf83fe535d29072115dc0e5
-  },
-});
+    // overViewTicket: overViewTicketSlice,
+    userme: usermeSlice,
+  }
+})
 
 const rootReducer = combineReducers({
   customizer: CustomizerReducer,
@@ -96,11 +93,11 @@ const rootReducer = combineReducers({
   test: userSlice,
   assisstant: assisstantSlice,
   twofa: twofaSlice,
-<<<<<<< HEAD
   adminTicker: adminTicketSlice,
-=======
   cart: cartSlice,
->>>>>>> fc017e62eb0771e0cbf83fe535d29072115dc0e5
+  // overViewTicket: overViewTicketSlice,
+  userme: usermeSlice,
+
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
