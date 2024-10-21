@@ -60,7 +60,7 @@ const VoucherAdmin = () => {
 
   // console.log(dataStr);
 
-  // console.log(dataHistoryOverview);
+  console.log(dataHistoryOverview);
 
   //list sale
   const totalVndCouponId = dataCounponOverview.totalVndCouponId;

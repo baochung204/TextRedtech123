@@ -38,15 +38,7 @@ const initialState: StrState = {
   loading: false,
   error: null,
 };
-interface FetchParams {
-  page_no?: number;
-  page_size?: number;
-  sort_by?: string;
-  sort_dir?: string;
-  search_key?: string;
-  begin?: string;
-  end?: string;
-}
+
 export const fetchstaffData = createAsyncThunk('fetchDatastaff', async (_, thunkApi) => {
   try {
     const res = await staffApi.getAllstaff();
