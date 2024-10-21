@@ -132,7 +132,7 @@ const FirstStep = () => {
                               selectedPackage === pkg.flashSaleId ? 'scale(1.02) ' : 'scale(1)',
                           }}
                           onClick={() => {
-                            handleSelectPackage(pkg), console.log('pkg', selectedPackage);
+                            handleSelectPackage(pkg);
                           }}
                         >
                           <CardContent
@@ -146,8 +146,9 @@ const FirstStep = () => {
                               },
                             }}
                           >
+                            {/* flashsale here */}
                             <div style={{ display: 'flex', gap: '20px' }}>
-                              <Typography component={Link} to={`/shop/detail/11`}>
+                              <Typography component={Link} to={`/shop/detail/${pkg.productId}`}>
                                 {lgUp ? (
                                   <img
                                     src={pkg.productImgUrl}
@@ -234,23 +235,26 @@ const FirstStep = () => {
                             </div>
                             <Box>
                               {lgUp && countdownTime && (
-                                <Countdown initialSeconds={countdownTime} onTimeUp={() => {}} />
+                                <Countdown initialSeconds={pkg.displayTime} onTimeUp={() => {}} />
                               )}
+
                               <Button
-                                variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
+                                variant={
+                                  selectedPackage === pkg.flashSaleId ? 'contained' : 'outlined'
+                                }
                                 color="warning"
                                 sx={{
                                   display: { xs: 'none', md: 'block' },
                                   width: '123.86px',
                                   backgroundImage:
-                                    selectedPackage === pkg.id
+                                    selectedPackage === pkg.flashSaleId
                                       ? 'linear-gradient(45deg, #ff6f61, #ff9a76)'
                                       : 'none',
                                   borderColor:
-                                    selectedPackage === pkg.id ? 'transparent' : '#FFD60A',
+                                    selectedPackage === pkg.flashSaleId ? 'transparent' : '#FFD60A',
                                 }}
                               >
-                                {selectedPackage === pkg.id ? 'Đã chọn' : 'Chọn Mua'}
+                                {selectedPackage === pkg.flashSaleId ? 'Đã chọn' : 'Chọn Mua'}
                               </Button>
                             </Box>
                           </CardContent>
