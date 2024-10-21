@@ -22,7 +22,11 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { AppDispatch, AppState } from 'src/store/Store';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchStr } from 'src/store/apps/resources/str/strSlice';
+import { fetchstaffData } from 'src/store/Staff/Staff';
 interface PropsItem {
   value: string;
   open: boolean;
@@ -36,11 +40,32 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
+interface DataRow {
+  id: number;
+  ngayTao: string;
+  nhanVien: string;
+  phongBan: string;
+  email: string;
+  soDienThoai: string;
+  baiViet: number;
+  trangThai: string;
+}
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
-  // const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
-  // const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataStaff = useSelector((state: AppState) => state.staff.dataa);
+  console.log('dataStaff1', dataStaff);
+  const [datax, setDatax] = useState<DataRow[]>([]);
+  useEffect(() => {
+    dispatch(fetchstaffData());
+  }, [dispatch]);
+  useEffect(() => {
+    if (datax !== dataStaff.content) {
+      setDatax(dataStaff.content);
+    }
+  }, [dataStaff, datax]);
+  console.log('dataStaff', datax);
 
   const handleConnection = (id: string) => {
     setSelectedIds((prevSelected) =>
@@ -54,7 +79,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     () => [
       {
         dataIndex: `id`,
-        title: 'ID'
+        title: 'ID',
       },
       {
         dataIndex: 'createdAt',
@@ -135,7 +160,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     } else {
       setDataSelect([]);
     }
-
   }, [column]);
 
   const handleColumnChange = (event: any) => {
@@ -146,7 +170,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   };
 
   console.log('dataselect', dataSelect.length);
-
 
   return (
     <>
@@ -274,7 +297,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -283,7 +305,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
           </Grid>
         </Grid>
       </Grid>
-      <CustomTable columns={column} dataSource={PersonnelTable} dataSelect={dataSelect} />
+      <CustomTable columns={column} dataSource={datax} dataSelect={dataSelect} />
       <DialogPersonel
         open={open}
         value={value}

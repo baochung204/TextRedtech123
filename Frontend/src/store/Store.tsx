@@ -31,6 +31,7 @@ import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
+import staffSlice from './Staff/Staff'; // Adjust the import path as necessary
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
@@ -66,6 +67,7 @@ export const store = configureStore({
     assisstant: assisstantSlice,
     twofa: twofaSlice,
     cart: cartSlice,
+    staff: staffSlice,
     //admin
     overview_blog: blogSlice,
     overview_counpon: counponSlice,
@@ -103,6 +105,7 @@ const rootReducer = combineReducers({
   assisstant: assisstantSlice,
   twofa: twofaSlice,
   cart: cartSlice,
+  staff: staffSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
