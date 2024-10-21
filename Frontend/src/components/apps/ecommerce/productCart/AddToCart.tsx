@@ -60,7 +60,7 @@ const AddToCart = () => {
     setCartData(cart);
   }, [dispatch, cart.products]);
 
-  console.log(cartData);
+  console.log(cart);
 
   const handleClick = () => {
     setOpen(true);
