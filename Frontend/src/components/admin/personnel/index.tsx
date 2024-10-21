@@ -16,9 +16,8 @@ import { fetchOverviewStaffData } from 'src/store/admin/Staff/overview/overviewS
 
 interface StyleProps {
   bgColor: string;
-
   title: string;
-  total: string;
+  total: number;
   icons: JSX.Element;
 }
 
