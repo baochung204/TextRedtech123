@@ -17,7 +17,7 @@ import DialogStragety from '../dialog/DialogStragety';
 import { Str } from 'src/types/apps/str';
 import BlankCard from 'src/components/shared/BlankCard';
 import { fetchCampaigns } from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
-import { CampaingsType } from 'src/store/user/user-resources/campaigns/Type/campaignsType';
+import { CampaignsType } from 'src/store/user/user-resources/campaigns/Type/campaignsType';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
@@ -30,7 +30,7 @@ const Tab1 = () => {
     setPage(newPage);
   };
   const campaigns = useSelector((state: AppState) => state.resourcesCampaigns.data);
-  const [campaignsData, setCampaignsData] = useState<CampaingsType>();
+  const [campaignsData, setCampaignsData] = useState<CampaignsType>();
   useEffect(() => {
     dispatch(fetchCampaigns({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);

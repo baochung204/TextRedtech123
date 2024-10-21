@@ -1,4 +1,4 @@
-import campaignsApi from 'src/api/userResource/text';
+import campaignsApi from 'src/api/userResource/campaignsApi';
 import { CampaignsType } from './Type/campaignsType';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
