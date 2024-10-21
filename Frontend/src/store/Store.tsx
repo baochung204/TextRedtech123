@@ -68,7 +68,7 @@ export const store = configureStore({
     twofa: twofaSlice,
     cart: cartSlice,
     staff: staffSlice,
-    resources_Campaigns: CampaignsSlice,
+    resourcesCampaigns: CampaignsSlice,
     //admin
     overview_blog: blogSlice,
     overview_counpon: counponSlice,
@@ -107,7 +107,7 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   cart: cartSlice,
   staff: staffSlice,
-  resources_Campaigns: CampaignsSlice,
+  resourcesCampaigns: CampaignsSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,

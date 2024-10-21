@@ -1,12 +1,12 @@
 interface DataType {
-  campaignId: number;
-  campaignName: string;
+  functionId: number;
+  functionName: string;
   level: string;
   badgeUrl: string;
   summary: string;
-  groupCampaignName: string;
+  groupFunctionName: string;
 }
-export interface CampaignsType {
+export interface FunctionsType {
   content: DataType[];
   pageNo: number;
   pageSize: number;

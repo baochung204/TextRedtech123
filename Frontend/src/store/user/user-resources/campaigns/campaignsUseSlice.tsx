@@ -1,45 +1,62 @@
-import campaignsApi from 'src/api/userResource/UserResource';
+import campaignsApi from 'src/api/userResource/text';
 import { CampaignsType } from './Type/campaignsType';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CampaignsI {
-  data: CampaignsType[];
+  data: CampaignsType;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: CampaignsI = {
-  data: [],
+  data: {
+    content: [],
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+    last: false,
+  },
   loading: false,
   error: null,
 };
 
-export const fetchCampaingns = createAsyncThunk('fetchDataCampaigns', async (_, thunkAPI) => {
-  try {
-    const response = await campaignsApi.getAllCampaigns();
-    return response.data.result;
-  } catch (error: any) {
-    return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
-  }
-});
-const CampaignsSlice = createSlice({
+interface FetchParams {
+  page?: number;
+  size?: number;
+}
+
+export const fetchCampaigns = createAsyncThunk<CampaignsType, FetchParams>(
+  'campaigns/fetchData',
+  async ({ page, size }: FetchParams, thunkAPI) => {
+    try {
+      const response = await campaignsApi.getAllCampaigns(page, size);
+      return response.data.result;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
+
+const campaignsSlice = createSlice({
   name: 'campaigns',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCampaingns.pending, (state) => {
+      .addCase(fetchCampaigns.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchCampaingns.fulfilled, (state, action) => {
+      .addCase(fetchCampaigns.fulfilled, (state, action: PayloadAction<CampaignsType>) => {
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(fetchCampaingns.rejected, (state, action) => {
+      .addCase(fetchCampaigns.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
   },
 });
-export default CampaignsSlice.reducer;
+
+export default campaignsSlice.reducer;
