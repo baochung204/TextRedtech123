@@ -455,6 +455,7 @@ const PublisherAffiliate = () => {
                       },
                     },
                   },
+                  autoFocus: false,
                   anchorOrigin: {
                     vertical: 'bottom',
                     horizontal: 'right',

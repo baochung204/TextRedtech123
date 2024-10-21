@@ -9,20 +9,12 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-
-interface PropsX {
-  campaignName: string;
-  badgeUrl: string;
-  campaignId: string;
-  level: string;
-  summary: string;
-  groupCampaignName: string;
-}
+import { Str } from 'src/types/apps/str';
 
 interface PropsDialog {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: PropsX[];
+  data: Str | undefined;
 }
 
 const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
@@ -33,8 +25,14 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
       </DialogTitle>
 
       <DialogContentText>
-        {data.map((item, index) => (
-          <Grid container key={index} spacing={2} sx={{ paddingTop: 5 }}>
+        {/* {data.map((item, index) => ( */}
+        {data && (
+          <Grid
+            container
+            // key={index}
+            spacing={2}
+            sx={{ paddingTop: 5 }}
+          >
             <Grid
               item
               xs={4}
@@ -43,24 +41,24 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
               <Box>
                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                   <Avatar
-                    src={item.badgeUrl}
-                    alt={item.badgeUrl}
+                    src={data.badgeUrl}
+                    alt={data.badgeUrl}
                     variant="rounded"
                     sx={{ width: 100, height: 100, marginBottom: '10px' }}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Grid item xs={12}>
-                    <span style={{ fontWeight: 600 }}>ID:</span> {item.campaignId}
+                    <span style={{ fontWeight: 600 }}>ID:</span> {data.campaignId}
                   </Grid>
                   <Grid item xs={12}>
-                    <span style={{ fontWeight: 600 }}>Tên chiến lược:</span> {item.campaignName}
+                    <span style={{ fontWeight: 600 }}>Tên chiến lược:</span> {data.campaignName}
                   </Grid>
                   <Grid item xs={12}>
-                    <span style={{ fontWeight: 600 }}>Nhóm:</span> {item.groupCampaignName}
+                    <span style={{ fontWeight: 600 }}>Nhóm:</span> {data.groupCampaignName}
                   </Grid>
                   <Grid item xs={12}>
-                    <span style={{ fontWeight: 600 }}>Level:</span> {item.level}
+                    <span style={{ fontWeight: 600 }}>Level:</span> {data.level}
                   </Grid>
                 </Grid>
               </Box>
@@ -68,12 +66,13 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
             <Grid item xs={8}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <span style={{ fontWeight: 600 }}>Tóm tắt:</span> {item.summary}
+                  <span style={{ fontWeight: 600 }}>Tóm tắt:</span> {data.summary}
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-        ))}
+        )}
+        {/* ))} */}
       </DialogContentText>
       <DialogActions>
         <Button onClick={() => setOpen(false)}>Đóng</Button>
