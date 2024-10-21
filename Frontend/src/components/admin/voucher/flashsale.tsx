@@ -101,8 +101,10 @@ const FlashSale = () => {
             />
 
             <Box>
-              <Typography variant="subtitle2">{value.product}</Typography>
-              <Typography style={{ fontSize: '12px', color: '#ccc' }}>{value.productId}</Typography>
+              <Typography variant="subtitle2">{value.productName}</Typography>
+              <Typography style={{ fontSize: '12px', color: '#ccc' }}>
+                #{value.productId}
+              </Typography>
             </Box>
           </Box>
         ),
@@ -110,7 +112,7 @@ const FlashSale = () => {
       {
         id: 'listed',
         title: 'Giá niêm yết',
-        dataIndex: 'listed',
+        dataIndex: 'price',
         render: (value: number) => {
           const formattedValue = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
@@ -126,7 +128,7 @@ const FlashSale = () => {
       {
         id: 'sale',
         title: 'Giảm giá',
-        dataIndex: 'sale',
+        dataIndex: 'percent',
         render: (value: number) => {
           const formattedValue = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
@@ -142,7 +144,7 @@ const FlashSale = () => {
       {
         id: 'flashSale',
         title: 'Giá Flash-Sale',
-        dataIndex: 'flashSale',
+        dataIndex: 'priceAfterFlashSale',
         render: (value: number) => {
           const formattedValue = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
@@ -190,7 +192,7 @@ const FlashSale = () => {
       {
         id: 'status',
         title: 'Trạng thái',
-        dataIndex: 'status',
+        dataIndex: 'isUsed',
         render: (_text: any, value: any) => (
           <Typography color="textSecondary" variant="subtitle2">
             <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
