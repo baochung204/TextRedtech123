@@ -32,9 +32,15 @@ import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 import staffSlice from './Staff/Staff'; // Adjust the import path as necessary
+import blogSlice from './admin/blog/overview/blogSlice';
+import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
+import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
+import flashsaleSlice from './admin/counpon/flashsale/overview/flashsaleOverviewSlice';
+import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice';
 
 export const store = configureStore({
   reducer: {
+    //user
     customizer: CustomizerReducer,
     ecommerceReducer: EcommerceReducer,
     chatReducer: ChatsReducer,
@@ -61,10 +67,17 @@ export const store = configureStore({
     twofa: twofaSlice,
     cart: cartSlice,
     staff: staffSlice,
+    //admin
+    overview_blog: blogSlice,
+    overview_counpon: counponSlice,
+    counpon_history: counponhistorySlice,
+    overview_flashsale: flashsaleSlice,
+    counpon_list: counponlistSlice,
   },
 });
 
 const rootReducer = combineReducers({
+  //user
   customizer: CustomizerReducer,
   ecommerceReducer: EcommerceReducer,
   chatReducer: ChatsReducer,
@@ -91,6 +104,12 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   cart: cartSlice,
   staff: staffSlice,
+  //admin
+  overview_blog: blogSlice,
+  overview_counpon: counponSlice,
+  counpon_history: counponhistorySlice,
+  overview_flashsale: flashsaleSlice,
+  counpon_list: counponlistSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

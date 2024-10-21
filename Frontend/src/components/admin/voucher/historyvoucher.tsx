@@ -17,100 +17,20 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchCounponHistoryData } from 'src/store/admin/counpon/counponhistory/table/counponthistorySlice';
 
 interface DataRow2 {
-  id: string;
-  creationTime: string;
-  voucherName: string;
-  startTime: string;
-  user: string;
+  orderVndId: number;
+  vndCouponName: string;
+  userName: string;
   email: string;
-  phone: string;
-  expiry: string;
-  TypeVoucher: string;
-  sale: number;
-  ID_order: string;
+  phoneNumber: string;
+  type: string;
+  valueCoupon: number | null;
+  percentCoupon: number | null;
+  value: string;
 }
-const dataRows2: DataRow2[] = [
-  {
-    id: 'MA001',
-    creationTime: '2024-09-01',
-    voucherName: 'Sản phẩm mới',
-    startTime: '2024-09-03',
-    user: 'Nguyễn văn Toản',
-    email: 'toan2ho@gmail.com',
-    phone: '08686759866',
-    expiry: '09/05/2024',
-    TypeVoucher: 'Phần trăm',
-    sale: 23,
-    ID_order: '#09341341',
-  },
-  {
-    id: 'MA002',
-    creationTime: '2024-09-02',
-    voucherName: 'Mã giảm giá',
-    startTime: '2025-10-12',
-    user: 'Trần Văn B',
-    email: 'tranb@gmail.com',
-    phone: '0987654321',
-    expiry: '09/03/2024',
-    TypeVoucher: 'Đồng',
-    sale: 99,
-    ID_order: '#09341342',
-  },
-  {
-    id: 'MA003',
-    creationTime: '2024-09-03',
-    voucherName: 'khách hàng thân thiết',
-    startTime: '2024-09-03',
-    user: 'Lê Thị C',
-    email: 'lec@gmail.com',
-    phone: '0912345678',
-    expiry: '09/03/2024',
-    TypeVoucher: 'Phần trăm',
-    sale: 10,
-    ID_order: '#09341343',
-  },
-  {
-    id: 'MA004',
-    creationTime: '2024-09-04',
-    voucherName: 'mini-game',
-    startTime: '2024-09-03 ',
-    user: 'Phạm Văn D',
-    email: 'phamd@gmail.com',
-    phone: '0901234567',
-    expiry: '09/03/2024 ',
-    TypeVoucher: 'Đồng',
-    sale: 100,
-    ID_order: '#09341344',
-  },
-  {
-    id: 'MA005',
-    creationTime: '2024-09-05',
-    voucherName: 'sự kiện',
-    startTime: '2024-09-03',
-    user: 'Nguyễn Thị E',
-    email: 'nguyene@gmail.com',
-    phone: '0897654321',
-    expiry: '10/03/2025',
-    TypeVoucher: 'Phần trăm',
-    sale: 20,
-    ID_order: '#09341345',
-  },
-  {
-    id: 'MA006',
-    creationTime: '2024-09-06',
-    voucherName: 'khách hàng thân thiết',
-    startTime: '2024-09-03',
-    user: 'Trần Thị F',
-    email: 'tranf@gmail.com',
-    phone: '0887654321',
-    expiry: '09/03/2025',
-    TypeVoucher: 'Phần trăm',
-    sale: 10,
-    ID_order: '#09341346',
-  },
-];
 
 interface Column {
   title: string;
@@ -119,25 +39,34 @@ interface Column {
   isValids?: boolean;
 }
 const HistoryVoucher = () => {
-  // const [selectedItems] = useState<number[]>([]);
+  const historyvoucher = useSelector((state: AppState) => state.counpon_history.dataa);
 
+  const [historyVoucherData, setHistoryVoucherData] = useState<DataRow2[]>([]);
+
+  useEffect(() => {
+    dispatch(fetchCounponHistoryData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (historyVoucherData !== historyvoucher.content) {
+      setHistoryVoucherData(historyvoucher.content);
+    }
+  }, [historyVoucherData, historyvoucher]);
+
+  console.log(historyVoucherData);
   const column = useMemo<Column[]>(
     () => [
-      // {
-      //   title: 'ID',
-      //   dataIndex: 'id',
-      // },
       {
         title: 'ID đơn hàng',
-        dataIndex: 'ID_order',
+        dataIndex: 'orderVndId',
       },
       {
         title: 'Tên chiến dịch',
-        dataIndex: 'voucherName',
+        dataIndex: 'vndCouponName',
       },
       {
         title: 'Khách hàng',
-        dataIndex: 'user',
+        dataIndex: 'userName',
       },
       {
         title: 'Email',
@@ -145,18 +74,19 @@ const HistoryVoucher = () => {
       },
       {
         title: 'Số điện thoại',
-        dataIndex: 'phone',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Loại giảm giá',
-        dataIndex: 'TypeVoucher',
+        dataIndex: 'type',
         render: (value: any) => {
+          const label = value === 'VALUE' ? 'đ' : '%';
           return (
             <Chip
-              label={value}
+              label={label}
               sx={{
                 color: 'white',
-                backgroundColor: value === 'Phần trăm' ? 'success.main' : 'error.main',
+                backgroundColor: value === 'VALUE' ? 'success.main' : 'error.main',
               }}
             />
           );
@@ -164,7 +94,14 @@ const HistoryVoucher = () => {
       },
       {
         title: 'Giá trị giảm',
-        dataIndex: 'sale',
+        dataIndex: 'value',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
     ],
     [],
@@ -191,7 +128,6 @@ const HistoryVoucher = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
-  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows2.length) : 0;
   return (
     <>
       <Grid item xs={12}>
@@ -314,7 +250,7 @@ const HistoryVoucher = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={dataRows2} dataSelect={dataSelect} />
+        <CustomTable columns={column} dataSource={historyVoucherData} dataSelect={dataSelect} />
       </Grid>
     </>
   );

@@ -40,40 +40,33 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
+interface DataRow {
+  id: number;
+  ngayTao: string;
+  nhanVien: string;
+  phongBan: string;
+  email: string;
+  soDienThoai: string;
+  baiViet: number;
+  trangThai: string;
+}
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const dataStaff = useSelector((state: AppState) => state.staff.dataa);
-  const [datax, setDatax] = useState<any>([]);
-  const page_no = 1; // Initialize page_no
-  const rowsPerPage = 10; // Initialize rowsPerPage
-  const sort_by = 'employeeId'; // Initialize employeeId
-  const sort_dir = 'asc'; // Initialize sort_dir
-  const search_key = ''; // Initialize search_key
-  const begin = '10/10/2024'; // Initialize begin
-  const end = '20/10/2024'; // Initialize end
+  console.log('dataStaff1', dataStaff);
+  const [datax, setDatax] = useState<DataRow[]>([]);
   useEffect(() => {
-    dispatch(
-      fetchstaffData({
-        page_no: page_no,
-        page_size: rowsPerPage,
-        sort_by: sort_by,
-        sort_dir: sort_dir,
-        search_key: search_key,
-        begin: begin,
-        end: end,
-      }),
-    ); // Use correct parameter names
-  }, [dispatch, page_no, rowsPerPage, sort_by, sort_dir, search_key, begin, end]); // Add missing dependencies
+    dispatch(fetchstaffData());
+  }, [dispatch]);
   useEffect(() => {
-    if (datax !== dataStaff) {
-      setDatax(dataStaff);
+    if (datax !== dataStaff.content) {
+      setDatax(dataStaff.content);
     }
   }, [dataStaff, datax]);
-  // const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
-  // const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
   console.log('dataStaff', datax);
+
   const handleConnection = (id: string) => {
     setSelectedIds((prevSelected) =>
       prevSelected.includes(id)
@@ -312,7 +305,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
           </Grid>
         </Grid>
       </Grid>
-      <CustomTable columns={column} dataSource={PersonnelTable} dataSelect={dataSelect} />
+      <CustomTable columns={column} dataSource={datax} dataSelect={dataSelect} />
       <DialogPersonel
         open={open}
         value={value}
