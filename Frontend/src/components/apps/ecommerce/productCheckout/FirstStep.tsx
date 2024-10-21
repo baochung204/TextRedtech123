@@ -77,10 +77,6 @@ const FirstStep = () => {
 
   console.log('flashsale', flashSaleRandom);
 
-  // useEffect(() => {
-  //   dispatch(fetchCartData());
-  // }, [dispatch]);
-
   const handleSelectPackage = (pkg: any) => {
     if (selectedPackage === pkg.id) {
       setSelectedPackage(null);
@@ -91,12 +87,12 @@ const FirstStep = () => {
     }
   };
   const handleAccordionClick = () => {
-    setCountdownTime(15);
+    setCountdownTime(3600000);
     setTimeout(() => {
       setSelectedPackage2(false);
       setSelectedPackage(null);
       setPointsEarned(null);
-    }, 15000);
+    }, 3600000);
   };
   return (
     <>
@@ -156,7 +152,9 @@ const FirstStep = () => {
                             transform:
                               selectedPackage === pkg.flashSaleId ? 'scale(1.02) ' : 'scale(1)',
                           }}
-                          onClick={() => handleSelectPackage(pkg)}
+                          onClick={() => {
+                            handleSelectPackage(pkg), console.log('pkg', selectedPackage);
+                          }}
                         >
                           <CardContent
                             sx={{
