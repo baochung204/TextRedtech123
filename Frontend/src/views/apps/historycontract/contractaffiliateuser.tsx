@@ -96,6 +96,15 @@ const ContractAffiliateUser = () => {
                       Ký OTP
                     </Button>
                   </Box>
+                  <Box sx={{ margin: '10px 17px' }}>
+                    <Typography>
+                      Tải phần mềm ký hợp đồng USB
+                      <a href="https://demo-kyfile.matbao.in/Demo-Signature-v-X132.zip?v=20240416-002">
+                        {' '}
+                        tại đây
+                      </a>
+                    </Typography>
+                  </Box>
                 </DialogContent>
               </Dialog>
 
