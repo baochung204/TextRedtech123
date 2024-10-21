@@ -63,7 +63,7 @@ const Chart6 = () => {
   const seriesradialchart: any = [50]; // Replace with dynamic series data if needed
 
   return (
-    <Affilatec1 title=" Đơn hàng" text="Chi phí /doanh thu" description={''}>
+    <Affilatec1 title=" Đơn hàng" text="Chi phí / Doanh thu" description={''}>
       <div>
         <div id="chart">
           <Chart

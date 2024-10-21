@@ -79,8 +79,6 @@ const ListAssistant = () => {
     setAssisstantData(assisstant.result);
   }, []);
 
-  console.log('loadloadload: ', assisstant);
-
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
       const isRankChecked = prevChecked.includes(rank.id);
