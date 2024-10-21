@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import staffApi from 'src/api/admin/staff/Staff';
+
 
 interface PropsData {
   id: number;

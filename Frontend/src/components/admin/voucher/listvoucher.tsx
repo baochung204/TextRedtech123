@@ -80,16 +80,18 @@ const ListVoucher = () => {
         title: 'Ngày tạo',
         dataIndex: 'startDate',
         render: (value: string) => {
-          const formattedDate = value.split('T')[0]; // Extract the date part
-          return formattedDate;
+          if (!value) return 'N/A'; // Handle undefined or invalid values
+          const date = new Date(value);
+          return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
         },
       },
       {
         title: 'Hạn sửa dụng',
         dataIndex: 'endDate',
         render: (value: string) => {
-          const formattedDate = value.split('T')[0]; // Extract the date part
-          return formattedDate;
+          if (!value) return 'N/A'; // Handle undefined or invalid values
+          const date = new Date(value);
+          return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
         },
       },
       {

@@ -11,11 +11,10 @@ import {
 } from '@mui/material';
 import { Str } from 'src/types/apps/str';
 
-
 interface PropsDialog {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: Str;
+  data: Str | undefined;
 }
 
 const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
@@ -27,10 +26,13 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
 
       <DialogContentText>
         {/* {data.map((item, index) => ( */}
-        {data &&
-          <Grid container
+        {data && (
+          <Grid
+            container
             // key={index}
-            spacing={2} sx={{ paddingTop: 5 }}>
+            spacing={2}
+            sx={{ paddingTop: 5 }}
+          >
             <Grid
               item
               xs={4}
@@ -69,7 +71,7 @@ const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {
               </Grid>
             </Grid>
           </Grid>
-        }
+        )}
         {/* ))} */}
       </DialogContentText>
       <DialogActions>

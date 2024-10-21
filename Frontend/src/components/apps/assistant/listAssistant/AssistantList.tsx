@@ -59,23 +59,20 @@ const ListAssistant = () => {
 
   const [assisstantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
 
-
   // useEffect(() => {
   //   dispatch(fetchAssisstantData());
   //   setAssisstantData(assisstant);
   // }, [dispatch, assisstant]);
 
-
   useEffect(() => {
     dispatch(fetchAssisstantData());
-  }, [dispatch]);  
+  }, [dispatch]);
 
   useEffect(() => {
     if (assisstant !== assisstantData) {
       setAssisstantData(assisstant);
     }
   }, [assisstant, assisstantData]);
-
 
   console.log('loadloadload: ', assisstantData);
 

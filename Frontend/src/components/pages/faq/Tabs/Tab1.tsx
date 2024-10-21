@@ -14,7 +14,7 @@ import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
-import { Str } from 'src/types/apps/str'
+import { Str } from 'src/types/apps/str';
 import BlankCard from 'src/components/shared/BlankCard';
 
 const Tab1 = () => {
@@ -22,8 +22,8 @@ const Tab1 = () => {
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
   const dataStr = useSelector((state: AppState) => state.str.data);
-  const [datax, setDatax] = useState<Str[]>([])
-  const [dataView, setDataView] = useState<Str>()
+  const [datax, setDatax] = useState<Str[]>([]);
+  const [dataView, setDataView] = useState<Str | undefined>();
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -39,10 +39,9 @@ const Tab1 = () => {
 
   useEffect(() => {
     if (datax !== dataStr.content) {
-      setDatax(dataStr.content)
+      setDatax(dataStr.content);
     }
-  }, [dataStr, datax])
-
+  }, [dataStr, datax]);
 
   console.log('data in redux', datax);
 
@@ -51,7 +50,7 @@ const Tab1 = () => {
   const handleClick = (items: number) => {
     setOpen(true);
     // console.log(items);
-    setDataView(datax[items])
+    setDataView(datax[items]);
   };
 
   return (
