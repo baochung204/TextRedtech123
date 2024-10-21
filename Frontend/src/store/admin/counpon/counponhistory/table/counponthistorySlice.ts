@@ -1,28 +1,42 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import CounponHistoryApi from 'src/api/admin/counpon/historycounpon/historycounpon';
 
 interface PropsData {
-  id: number;
-  name: string;
-  startDate: Date;
-  endDate: Date;
-  code: string;
-  totalCoupon: number;
+  orderVndId: number;
+  vndCouponName: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
   type: string;
-  valueCoupon: number;
-  status: string;
-  totalUsed: number;
-  open: boolean;
+  valueCoupon: number | null;
+  percentCoupon: number | null;
+  value: string;
+}
+
+interface VoucherData {
+  content: PropsData[];
+  pageNo: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
 }
 
 interface StrState {
-  dataa: PropsData[];
+  dataa: VoucherData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  dataa: [],
+  dataa: {
+    content: [],
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+    last: false,
+  },
   loading: false,
   error: null,
 };
@@ -47,7 +61,7 @@ const counponhistorySlice = createSlice({
     [fetchCounponHistoryData.pending.type]: (state) => {
       state.loading = true;
     },
-    [fetchCounponHistoryData.fulfilled.type]: (state, action) => {
+    [fetchCounponHistoryData.fulfilled.type]: (state, action: PayloadAction<VoucherData>) => {
       state.loading = false;
       state.dataa = action.payload;
     },

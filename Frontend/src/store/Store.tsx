@@ -34,6 +34,8 @@ import cartSlice from './user/cart/cartSlice';
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
+import flashsaleSlice from './admin/counpon/flashsale/overview/flashsaleOverviewSlice';
+import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice';
 
 export const store = configureStore({
   reducer: {
@@ -67,6 +69,8 @@ export const store = configureStore({
     overview_blog: blogSlice,
     overview_counpon: counponSlice,
     counpon_history: counponhistorySlice,
+    overview_flashsale: flashsaleSlice,
+    counpon_list: counponlistSlice,
   },
 });
 
@@ -101,6 +105,8 @@ const rootReducer = combineReducers({
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
   counpon_history: counponhistorySlice,
+  overview_flashsale: flashsaleSlice,
+  counpon_list: counponlistSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

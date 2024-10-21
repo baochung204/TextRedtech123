@@ -1,5 +1,6 @@
 import { Box, Grid, Tab, Tabs } from '@mui/material';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import used from 'src/assets/MaKhuyenMai/da su dung.png';
 import sale from 'src/assets/MaKhuyenMai/ma khuyen mai.png';
 import amountticket from 'src/assets/MaKhuyenMai/so luong ma.png';
@@ -9,11 +10,10 @@ import ListVoucher from 'src/components/admin/voucher/listvoucher';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import FlashSale from './../../../components/admin/voucher/flashsale';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchOverviewCounponData } from 'src/store/admin/counpon/counponlist/overview/counponSlice';
+import FlashSale from './../../../components/admin/voucher/flashsale';
+import { fetchOverviewFlashsaleData } from 'src/store/admin/counpon/flashsale/overview/flashsaleOverviewSlice';
 
 const BCrumb = [
   {
@@ -48,19 +48,33 @@ function CustomTabPanel(props: any) {
 const VoucherAdmin = () => {
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch<AppDispatch>();
-  const dataStr = useSelector((state: AppState) => state.overview_counpon.dataa || []);
+  const dataCounponOverview = useSelector((state: AppState) => state.overview_counpon.dataa);
+  const dataHistoryOverview = useSelector((state: AppState) => state.overview_flashsale.dataa);
   useEffect(() => {
     dispatch(fetchOverviewCounponData());
   }, [dispatch]);
 
-  console.log(dataStr);
+  useEffect(() => {
+    dispatch(fetchOverviewFlashsaleData());
+  }, [dispatch]);
 
-  const totalVndCouponId = dataStr.totalVndCouponId;
-  const totalVndCoupon = dataStr.totalVndCoupon;
-  const totalUsed = dataStr.totalUsed;
-  const percentUsed = dataStr.percentUsed;
+  // console.log(dataStr);
 
-  const DataBox = [
+  // console.log(dataHistoryOverview);
+
+  //list sale
+  const totalVndCouponId = dataCounponOverview.totalVndCouponId;
+  const totalVndCoupon = dataCounponOverview.totalVndCoupon;
+  const totalUsed = dataCounponOverview.totalUsed;
+  const percentUsed = dataCounponOverview.percentUsed;
+
+  //list flash-sale
+  const totalFlashSale = dataHistoryOverview.totalFlashSale;
+  const totalQuantity = dataHistoryOverview.totalQuantity;
+  const totalUsedFlashsle = dataHistoryOverview.totalUsed;
+  const percentUsedFlashsale = dataHistoryOverview.percentUsed;
+
+  const DataCounpon = [
     {
       bgColor: 'primary.light',
       title: 'Mã khuyến mãi',
@@ -151,6 +165,97 @@ const VoucherAdmin = () => {
     },
   ];
 
+  const DataHistory = [
+    {
+      bgColor: 'primary.light',
+      title: 'Tổng Flash-sale',
+      total: `${totalFlashSale}`,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={sale} width={30} alt="Mã khuyến mãi" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Số lượng mã',
+      total: `${totalQuantity}`,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={amountticket} width={30} alt="Số lượng mã" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Đã sử dụng',
+      total: `${totalUsedFlashsle}`,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={used} width={30} alt="Đã sử dụng" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Tỉ lệ sử dụng',
+      total: `${percentUsedFlashsale}`,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={usagerate} width={30} alt="Tỉ lệ sử dụng" />
+          </Box>
+        </>
+      ),
+    },
+  ];
+
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -169,19 +274,19 @@ const VoucherAdmin = () => {
           </Box>
           <CustomTabPanel value={value} index={0}>
             <Grid item xs={12} sx={{ margin: '30px 0' }}>
-              <TopCard dataSource={DataBox} totalColumn={4} />
+              <TopCard dataSource={DataCounpon} totalColumn={4} />
             </Grid>
             <ListVoucher />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
             <Grid item xs={12} sx={{ margin: '30px 0' }}>
-              <TopCard dataSource={DataBox} totalColumn={4} />
+              <TopCard dataSource={DataCounpon} totalColumn={4} />
             </Grid>
             <HistoryVoucher />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
             <Grid item xs={12} sx={{ margin: '30px 0' }}>
-              <TopCard dataSource={DataBox} totalColumn={4} />
+              <TopCard dataSource={DataHistory} totalColumn={4} />
             </Grid>
             <FlashSale />
           </CustomTabPanel>
