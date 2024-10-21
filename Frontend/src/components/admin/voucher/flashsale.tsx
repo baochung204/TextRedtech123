@@ -114,13 +114,13 @@ const FlashSale = () => {
         title: 'Giá niêm yết',
         dataIndex: 'price',
         render: (value: number) => {
-          const formattedValue = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-          }).format(value);
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
           return (
             <>
-              {formattedValue} <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              <Box sx={{ display: 'flex' }}>
+                <Typography>{formattedValue} </Typography>
+                <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              </Box>
             </>
           );
         },
@@ -130,15 +130,8 @@ const FlashSale = () => {
         title: 'Giảm giá',
         dataIndex: 'percent',
         render: (value: number) => {
-          const formattedValue = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-          }).format(value);
-          return (
-            <>
-              {formattedValue} <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
-            </>
-          );
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
+          return <Typography>{formattedValue} %</Typography>;
         },
       },
       {
@@ -146,13 +139,13 @@ const FlashSale = () => {
         title: 'Giá Flash-Sale',
         dataIndex: 'priceAfterFlashSale',
         render: (value: number) => {
-          const formattedValue = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-          }).format(value);
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
           return (
             <>
-              {formattedValue} <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              <Box sx={{ display: 'flex' }}>
+                <Typography>{formattedValue} </Typography>
+                <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              </Box>
             </>
           );
         },
@@ -160,31 +153,24 @@ const FlashSale = () => {
       {
         id: 'buy',
         title: 'Số lượt mua',
-        dataIndex: 'buy',
+        dataIndex: 'totalBuyFlashSales',
         render: (value: number) => {
-          const formattedValue = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-          }).format(value);
-          return (
-            <>
-              {formattedValue} <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
-            </>
-          );
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
+          return <Typography>{formattedValue} </Typography>;
         },
       },
       {
         id: 'TypeVoucher',
         title: 'Doanh thu',
-        dataIndex: 'TypeVoucher',
+        dataIndex: 'totalRevenue',
         render: (value: number) => {
-          const formattedValue = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-          }).format(value);
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
           return (
             <>
-              {formattedValue} <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              <Box sx={{ display: 'flex' }}>
+                <Typography>{formattedValue} </Typography>
+                <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              </Box>
             </>
           );
         },
