@@ -19,14 +19,14 @@ import { IconEye, IconPower, IconSearch } from '@tabler/icons-react';
 // import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import PersonnelTable from '../datatable/PersonnelTable';
+// import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchStr } from 'src/store/apps/resources/str/strSlice';
-import { fetchstaffData } from 'src/store/Staff/Staff';
+// import { fetchStr } from 'src/store/apps/resources/str/strSlice';
+import { fetchstaffData } from 'src/store/admin/Staff/Staff';
 interface PropsItem {
   value: string;
   open: boolean;
@@ -82,12 +82,12 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
         title: 'ID',
       },
       {
-        dataIndex: 'createdAt',
+        dataIndex: 'ngayTao',
         title: 'Ngày tạo',
-        render: (value: any) => value.toLocaleDateString(),
+        render: (value: any) => new Date(value).toLocaleDateString(),
       },
       {
-        dataIndex: 'employeeName',
+        dataIndex: 'nhanVien',
         title: 'Nhân viên',
         render: (row: any, value: any) => (
           <Stack direction="row" spacing={2}>
@@ -104,12 +104,12 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
         ),
         validate: true,
       },
-      { dataIndex: 'department', title: 'Phòng ban' },
+      { dataIndex: 'phongBan', title: 'Phòng ban' },
       { dataIndex: 'email', title: 'Email' },
-      { dataIndex: 'phoneNumber', title: 'Số điện thoại' },
-      { dataIndex: 'articleCount', title: 'Bài viết' },
+      { dataIndex: 'soDienThoai', title: 'Số điện thoại' },
+      { dataIndex: 'baiViet', title: 'Bài viết' },
       {
-        dataIndex: 'status',
+        dataIndex: 'trangThai',
         title: 'Trạng thái',
         validate: true,
         render: (_value: any, row: any) => (
