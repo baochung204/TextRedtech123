@@ -22,7 +22,11 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PersonnelTable from '../datatable/PersonnelTable';
 import DialogPersonel from '../dialog/DialogPersonel';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { AppDispatch, AppState } from 'src/store/Store';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchStr } from 'src/store/apps/resources/str/strSlice';
+import { fetchstaffData } from 'src/store/Staff/Staff';
 interface PropsItem {
   value: string;
   open: boolean;
@@ -39,9 +43,37 @@ interface Column {
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataStaff = useSelector((state: AppState) => state.staff.dataa);
+  const [datax, setDatax] = useState<any>([]);
+  const page_no = 1; // Initialize page_no
+  const rowsPerPage = 10; // Initialize rowsPerPage
+  const sort_by = 'employeeId'; // Initialize employeeId
+  const sort_dir = 'asc'; // Initialize sort_dir
+  const search_key = ''; // Initialize search_key
+  const begin = '10/10/2024'; // Initialize begin
+  const end = '20/10/2024'; // Initialize end
+  useEffect(() => {
+    dispatch(
+      fetchstaffData({
+        page_no: page_no,
+        page_size: rowsPerPage,
+        sort_by: sort_by,
+        sort_dir: sort_dir,
+        search_key: search_key,
+        begin: begin,
+        end: end,
+      }),
+    ); // Use correct parameter names
+  }, [dispatch, page_no, rowsPerPage, sort_by, sort_dir, search_key, begin, end]); // Add missing dependencies
+  useEffect(() => {
+    if (datax !== dataStaff) {
+      setDatax(dataStaff);
+    }
+  }, [dataStaff, datax]);
   // const [valueTime1, setValueTime1] = useState<Dayjs | null>(null);
   // const [valueTime2, setValueTime2] = useState<Dayjs | null>(null);
-
+  console.log('dataStaff', datax);
   const handleConnection = (id: string) => {
     setSelectedIds((prevSelected) =>
       prevSelected.includes(id)
@@ -54,7 +86,7 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     () => [
       {
         dataIndex: `id`,
-        title: 'ID'
+        title: 'ID',
       },
       {
         dataIndex: 'createdAt',
@@ -135,7 +167,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
     } else {
       setDataSelect([]);
     }
-
   }, [column]);
 
   const handleColumnChange = (event: any) => {
@@ -146,7 +177,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
   };
 
   console.log('dataselect', dataSelect.length);
-
 
   return (
     <>
@@ -274,7 +304,6 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
                 );
               })}
             </Select>
-
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

@@ -31,6 +31,7 @@ import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
+import staffSlice from './Staff/Staff'; // Adjust the import path as necessary
 
 export const store = configureStore({
   reducer: {
@@ -59,6 +60,7 @@ export const store = configureStore({
     assisstant: assisstantSlice,
     twofa: twofaSlice,
     cart: cartSlice,
+    staff: staffSlice,
   },
 });
 
@@ -88,6 +90,7 @@ const rootReducer = combineReducers({
   assisstant: assisstantSlice,
   twofa: twofaSlice,
   cart: cartSlice,
+  staff: staffSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
