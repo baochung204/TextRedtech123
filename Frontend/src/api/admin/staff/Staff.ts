@@ -1,4 +1,6 @@
-import { axiosAPI } from 'src/api/axiosApi';
+
+import { axiosAPI } from '../../axiosApi';
+
 
 const url = 'nhan-vien';
 
