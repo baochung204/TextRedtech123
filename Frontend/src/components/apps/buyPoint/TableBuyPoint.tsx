@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Input, styled, Typography, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 
 import { AppDispatch, AppState } from 'src/store/Store';
@@ -18,6 +18,7 @@ const BoxStyled = styled(Box)(() => ({
 
 const TableBuyPoint = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [clickedId, setClickedId] = useState<string | null>(null);
   const [totalPrice, setTotalPrice] = useState<number | string>(0);
   const [click, setClick] = useState<boolean>(false);
@@ -44,12 +45,23 @@ const TableBuyPoint = () => {
     const inputValue = e.target.value.replace(/\D/g, '');
     const number = parseInt(inputValue, 10);
     if (!isNaN(number)) {
-      setToggle(number * 300);
+      setToggle(number);
+      setTotalPrice(number);
     } else {
       setToggle(null);
     }
     setValue(formatNumber(inputValue));
   };
+
+  const handleCheckout = (totalPrice, clickedId) => {
+    if (totalPrice >= 1000000) {
+      alert('Checkout');
+    } else {
+      navigate(`/pay/checkout_point/${clickedId}`);
+    }
+  };
+
+  console.log('toggle', toggle);
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -71,9 +83,9 @@ const TableBuyPoint = () => {
                   gap: '-10px',
                   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                   backgroundColor: theme.palette.mode === 'dark' ? '#303C50' : '',
-                  onClick: () => {
-                    console.log('Clicked item:', clickedId);
-                  },
+                  // onClick: () => {
+                  //   console.log('Clicked item:', clickedId);
+                  // },
                 }}
               >
                 <BoxStyled
@@ -155,33 +167,41 @@ const TableBuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              {Number.isFinite(totalPrice) ? (
+              {/* {Number.isFinite(totalPrice) ? (
                 totalPrice.toLocaleString('vi-VN')
               ) : (
                 <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
               )}
-              ₫
+              ₫ */}
+              {totalPrice.toLocaleString('vi-VN')} ₫
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Link to={`/pay/checkout_point/${clickedId}`} style={{ textDecoration: 'none' }}>
-              <Button
-                variant="contained"
-                disableElevation
-                sx={{
-                  px: 5,
-                  py: 1,
-                  backgroundColor: '#FC2032',
-                  fontWeight: 700,
-                  fontSize: 18,
-                  ':hover': {
-                    backgroundColor: '#F22A51',
-                  },
-                }}
+            <Button
+              variant="contained"
+              disableElevation
+              sx={{
+                px: 5,
+                py: 1,
+                backgroundColor: '#FC2032',
+                fontWeight: 700,
+                fontSize: 18,
+                ':hover': {
+                  backgroundColor: '#F22A51',
+                },
+                // onClick: () => {
+                //   handleCheckout(totalPrice, clickedId);
+                // },
+              }}
+            >
+              {/* <Link
+                to={`/pay/checkout_point/${clickedId}`}
+                style={{ textDecoration: 'none', color: 'white' }}
               >
-                Thanh toán ngay
-              </Button>
-            </Link>
+                
+              </Link> */}
+              Thanh toán ngay
+            </Button>
           </Grid>
         </Grid>
       </Grid>
