@@ -4,6 +4,7 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
+  Avatar,
   Badge,
   Box,
   Checkbox,
@@ -22,6 +23,7 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import { fetchProduct } from '../../../store/apps/products/productsSlice';
 import AddDialog from './layout/addDialog';
+import { IconTrash } from '@tabler/icons-react';
 
 interface Column {
   title: string;
@@ -40,6 +42,9 @@ const PaginationTable = () => {
       {
         title: 'Ảnh',
         dataIndex: 'shopProductImageUrl',
+        render: (value: any) => (
+          <Avatar src={value} alt={value} sx={{ width: 70, height: 70, borderRadius: 1 }} />
+        ),
       },
       {
         title: '	Tên sản phẩm',
@@ -52,18 +57,27 @@ const PaginationTable = () => {
       {
         title: '	Giá niêm yết',
         dataIndex: 'price',
-        render: (row) => (
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography>{row.price} đ</Typography>
+        // render: (row) => (
+        //   <Box sx={{ display: 'flex' }}>
+        //     <Typography>{row.toLocaleString('vi-VN')}₫</Typography>
+        //   </Box>
+        // ),
+        render: (value: any) => (
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: 110 }}>
+            <Typography variant="subtitle2" sx={{ textAlign: 'right' }}>
+              112.112.{value.toLocaleString('vi-VN')}₫
+            </Typography>
           </Box>
         ),
       },
       {
         title: 'Giá khuyến mãi',
         dataIndex: 'discount',
-        render: (_value: string, row) => (
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography>{row.discount} đ</Typography>
+        render: (row: any) => (
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: 120 }}>
+            <Typography variant="subtitle2" sx={{ textAlign: 'right' }}>
+              112.112.0 {row.toLocaleString('vi-VN')}₫
+            </Typography>
           </Box>
         ),
       },
@@ -72,11 +86,7 @@ const PaginationTable = () => {
         dataIndex: 'mota',
         isValids: false,
       },
-      {
-        title: 'Ảnh sản phẩm',
-        dataIndex: 'anhsanpham',
-        isValids: false,
-      },
+
       {
         title: 'Đơn vị tính',
         dataIndex: 'donvitinh',
@@ -106,6 +116,19 @@ const PaginationTable = () => {
         title: 'Kiểu dáng',
         dataIndex: 'kieudang',
         isValids: false,
+      },
+      {
+        title: 'Hoạt động',
+        dataIndex: 'action',
+        render: (_row: any, value: any) => (
+          <Grid container spacing={2}>
+            <Grid item xs={9} sx={{ textAlign: 'center' }}>
+              <IconButton onClick={() => {}}>
+                <IconTrash stroke={2} style={{ color: '#FA896B' }} />
+              </IconButton>
+            </Grid>
+          </Grid>
+        ),
       },
     ],
     [],
@@ -203,6 +226,7 @@ const PaginationTable = () => {
               renderValue={() => 'Sửa đổi cột'}
               size="small"
               MenuProps={{
+                autoFocus: false,
                 PaperProps: {
                   sx: {
                     marginTop: 1,

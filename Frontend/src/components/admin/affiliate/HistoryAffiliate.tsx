@@ -140,7 +140,7 @@ const getStatusColor = (status: number) => {
     case 2:
       return 'warning';
     case 3:
-      return 'error';
+      return 'secondary';
     case 4:
       return 'error';
     default:
@@ -240,9 +240,9 @@ const HistoryAffiliate = () => {
                 : value === 2
                 ? 'Chờ duyệt'
                 : value === 3
-                ? 'Từ chối'
+                ? 'Hợp đồng hợp lệ'
                 : value === 4
-                ? 'Chưa đi tiền'
+                ? 'Từ chối'
                 : ''
             }
             color={getStatusColor(value)}
@@ -298,9 +298,7 @@ const HistoryAffiliate = () => {
     ],
     [],
   );
-
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
   useEffect(() => {
     const selectedColumns = column || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -413,6 +411,7 @@ const HistoryAffiliate = () => {
                       },
                     },
                   },
+                  autoFocus: false,
                   anchorOrigin: {
                     vertical: 'bottom',
                     horizontal: 'right',

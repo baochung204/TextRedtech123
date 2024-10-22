@@ -11,7 +11,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import s24 from 'src/assets/images/products/s24.jpg';
 // components
 // import { styled } from '@mui/system';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -19,111 +18,27 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import icontext from 'src/assets/images/logos/R-Point.png';
-import s22 from 'src/assets/images/products/s22.jpg';
-import s25 from 'src/assets/images/products/s23.jpg';
-import s23 from 'src/assets/images/products/s25.jpg';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
+import { fetchFlashSaleListData } from 'src/store/admin/counpon/flashsale/table/flashsaleSlice';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
 import AddDflashsale from './add/addflashsale';
 
 interface DataRow3 {
-  id: string;
-  voucherName: string;
-  quantityFS: number;
-  product: string;
-  listed: number;
-  buy: number;
-  img: any;
-  TypeVoucher: number;
-  flashSale: number;
-  sale: number;
-  status: boolean;
+  id: number;
+  name: string;
+  quantity: number;
+  productName: string;
+  productId: number;
+  productImage: string;
+  price: number;
+  percent: number;
+  priceAfterFlashSale: number;
+  totalBuyFlashSales: number;
+  totalRevenue: number;
+  isUsed: boolean;
 }
-const dataRows3: DataRow3[] = [
-  {
-    id: 'MA001',
-    voucherName: 'Sản phẩm mới',
-    quantityFS: 2,
-    product: 'chat bot AI',
-    listed: 120000,
-    buy: 1900,
-    img: s24,
-    TypeVoucher: 19338000,
-    flashSale: 28832,
-    sale: 23,
-    status: true,
-  },
-  {
-    id: 'MA002',
-    voucherName: 'Mã giảm giá',
-    quantityFS: 5,
-    product: 'dịch vụ SEO',
-    listed: 150000,
-    buy: 2500,
-    img: s23,
-    TypeVoucher: 37500000,
-    flashSale: 45000,
-    sale: 30,
-    status: false,
-  },
-  {
-    id: 'MA003',
-    voucherName: 'khách hàng thân thiết',
-    quantityFS: 3,
-    product: 'dịch vụ quảng cáo',
-    listed: 200000,
-    buy: 3000,
-    img: s22,
-
-    TypeVoucher: 60000000,
-    flashSale: 60000,
-    sale: 25,
-    status: true,
-  },
-  {
-    id: 'MA004',
-    voucherName: 'mini-game',
-    quantityFS: 1,
-    product: 'dịch vụ thiết kế',
-    listed: 100000,
-    buy: 1500,
-    img: s25,
-
-    TypeVoucher: 15000000,
-    flashSale: 15000,
-    sale: 10,
-    status: true,
-  },
-  {
-    id: 'MA005',
-    voucherName: 'sự kiện',
-    quantityFS: 4,
-    product: 'dịch vụ hosting',
-    listed: 50000,
-    buy: 1000,
-    img: s23,
-
-    TypeVoucher: 5000000,
-    flashSale: 5000,
-    sale: 15,
-    status: true,
-  },
-  {
-    id: 'MA006',
-    voucherName: 'khách hàng thân thiết',
-    quantityFS: 6,
-    product: 'dịch vụ bảo trì',
-    listed: 75000,
-    buy: 1200,
-    img: s24,
-
-    TypeVoucher: 9000000,
-    flashSale: 9000,
-    sale: 20,
-    status: true,
-  },
-];
 
 interface Column {
   title: string;
@@ -135,6 +50,22 @@ interface Column {
 const FlashSale = () => {
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const flashsalelist = useSelector((state: AppState) => state.flashsale_list.dataa);
+
+  const [flashSaleData, setFlashSaleData] = useState<DataRow3[]>([]);
+
+  useEffect(() => {
+    dispatch(fetchFlashSaleListData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (flashSaleData !== flashsalelist.content) {
+      setFlashSaleData(flashsalelist.content);
+    }
+  }, [flashSaleData, flashsalelist]);
+
+  console.log(flashSaleData);
+
   const column = useMemo<Column[]>(
     () => [
       {
@@ -145,22 +76,22 @@ const FlashSale = () => {
       {
         id: 'voucherName',
         title: 'Tên chiến dịch',
-        dataIndex: 'voucherName',
+        dataIndex: 'name',
       },
       {
         id: 'quantityFS',
         title: 'Số lượng FS',
-        dataIndex: 'quantityFS',
+        dataIndex: 'quantity',
       },
       {
         id: 'product',
         title: 'Sản phẩm',
-        dataIndex: 'product',
+        dataIndex: 'productName',
         render: (_text: any, value: any) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {/* Avatar on the left */}
             <img
-              src={value.img}
+              src={value.productImage}
               style={{
                 width: '40px',
                 height: '40px',
@@ -170,9 +101,9 @@ const FlashSale = () => {
             />
 
             <Box>
-              <Typography variant="subtitle2">{value.product}</Typography>
+              <Typography variant="subtitle2">{value.productName}</Typography>
               <Typography style={{ fontSize: '12px', color: '#ccc' }}>
-                {'MKT000' + value.id}
+                #{value.productId}
               </Typography>
             </Box>
           </Box>
@@ -181,84 +112,73 @@ const FlashSale = () => {
       {
         id: 'listed',
         title: 'Giá niêm yết',
-        dataIndex: 'listed',
-        render: (_text: any, value: any) => (
-          <Typography
-            color="textSecondary"
-            variant="subtitle2"
-            display={'flex'}
-            gap={'2px'}
-            style={{ whiteSpace: 'nowrap' }}
-          >
-            {value.listed.toLocaleString()} <img src={icontext} alt="" width={22} />
-          </Typography>
-        ),
+        dataIndex: 'price',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
+          return (
+            <>
+              <Box sx={{ display: 'flex' }}>
+                <Typography>{formattedValue} </Typography>
+                <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              </Box>
+            </>
+          );
+        },
       },
       {
         id: 'sale',
         title: 'Giảm giá',
-        dataIndex: 'sale',
-        render: (_text: any, value: any) => (
-          <Typography
-            color="textSecondary"
-            variant="subtitle2"
-            display={'flex'}
-            gap={'2px'}
-            style={{ whiteSpace: 'nowrap' }}
-          >
-            {value.sale.toLocaleString()} %{/* <img src={icontext} alt="" width={22} /> */}
-          </Typography>
-        ),
+        dataIndex: 'percent',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
+          return <Typography>{formattedValue} %</Typography>;
+        },
       },
       {
         id: 'flashSale',
         title: 'Giá Flash-Sale',
-        dataIndex: 'flashSale',
-        render: (_text: any, value: any) => {
-          const calculatedFlashSale = value.listed * (1 - value.sale / 100);
+        dataIndex: 'priceAfterFlashSale',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
           return (
-            <Typography
-              color="textSecondary"
-              variant="subtitle2"
-              display={'flex'}
-              gap={'2px'}
-              style={{ whiteSpace: 'nowrap' }}
-            >
-              {calculatedFlashSale.toLocaleString()} <img src={icontext} alt="" width={22} />
-            </Typography>
+            <>
+              <Box sx={{ display: 'flex' }}>
+                <Typography>{formattedValue} </Typography>
+                <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              </Box>
+            </>
           );
         },
       },
       {
         id: 'buy',
         title: 'Số lượt mua',
-        dataIndex: 'buy',
-        render: (_text: any, value: any) => (
-          <Typography color="textSecondary" variant="subtitle2">
-            {value.buy.toLocaleString()}
-          </Typography>
-        ),
+        dataIndex: 'totalBuyFlashSales',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
+          return <Typography>{formattedValue} </Typography>;
+        },
       },
       {
         id: 'TypeVoucher',
         title: 'Doanh thu',
-        dataIndex: 'TypeVoucher',
-        render: (_text: any, value: any) => (
-          <Typography
-            color="textSecondary"
-            variant="subtitle2"
-            display={'flex'}
-            gap={'2px'}
-            style={{ whiteSpace: 'nowrap' }}
-          >
-            {value.TypeVoucher.toLocaleString()} <img src={icontext} alt="" width={22} />
-          </Typography>
-        ),
+        dataIndex: 'totalRevenue',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
+          return (
+            <>
+              <Box sx={{ display: 'flex' }}>
+                <Typography>{formattedValue} </Typography>
+                <img src={icontext} alt="" width={22} style={{ marginLeft: 4 }} />
+              </Box>
+            </>
+          );
+        },
       },
       {
         id: 'status',
         title: 'Trạng thái',
-        dataIndex: 'status',
+        dataIndex: 'isUsed',
         render: (_text: any, value: any) => (
           <Typography color="textSecondary" variant="subtitle2">
             <CustomSwitch color="primary" defaultChecked={value.status ? true : false} />
@@ -286,7 +206,7 @@ const FlashSale = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows3.length) : 0;
+
   return (
     <div>
       {' '}
@@ -355,6 +275,7 @@ const FlashSale = () => {
               renderValue={() => 'Sửa đổi cột'}
               size="small"
               MenuProps={{
+                autoFocus: false,
                 PaperProps: {
                   sx: {
                     marginTop: 1,
@@ -418,7 +339,7 @@ const FlashSale = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={dataRows3} dataSelect={dataSelect} />
+        <CustomTable columns={column} dataSource={flashSaleData} dataSelect={dataSelect} />
       </Grid>
       <AddDflashsale isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </div>

@@ -1,6 +1,6 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Grid, Tab } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import admin from 'src/assets/Adminphoto/admin.png';
 import online from 'src/assets/Adminphoto/hoat dong.png';
 import course from 'src/assets/Adminphoto/khóa.png';
@@ -8,107 +8,122 @@ import employee from 'src/assets/Adminphoto/nhan vien.png';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import Decentralization from './component/Decentralization';
 import PersonnelTab from './component/personnelTab';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchOverviewStaffData } from 'src/store/admin/Staff/overview/overviewStaffSlice';
 // import Decentralization2 from './component/Decentralization2';
 
 interface StyleProps {
   bgColor: string;
-
   title: string;
-  total: string;
+  total: number;
   icons: JSX.Element;
 }
-
-const DataBox: StyleProps[] = [
-  {
-    bgColor: 'primary.light',
-    title: 'Nhân viên',
-    total: '120',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={employee} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Admin',
-    total: '5',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {/* <IconChartBar color="white" size={30} /> */}
-        <img src={admin} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Hoạt động',
-    total: '52',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={online} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khóa',
-    total: '12',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {/* <IconChartBar color="white" size={30} /> */}
-        <img src={course} width={30} />
-      </Box>
-    ),
-  },
-];
 
 const Personnels = () => {
   const [value, setValue] = useState('1');
   const [open, setOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataStaffOverview = useSelector((state: AppState) => state.overview_staff.dataa);
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+  useEffect(() => {
+    dispatch(fetchOverviewStaffData());
+  }, [dispatch]);
+
+  const employeeActive = dataStaffOverview.employeeActive;
+  const employeeBlock = dataStaffOverview.employeeBlock;
+  const totalAdmin = dataStaffOverview.totalAdmin;
+  const totalEmployee = dataStaffOverview.totalEmployee;
+
+  const DataBox: StyleProps[] = [
+    {
+      bgColor: 'primary.light',
+      title: 'Nhân viên',
+      total: totalEmployee,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={employee} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Admin',
+      total: totalAdmin,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={admin} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Hoạt động',
+      total: employeeActive,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={online} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khóa',
+      total: employeeBlock,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          {/* <IconChartBar color="white" size={30} /> */}
+          <img src={course} width={30} />
+        </Box>
+      ),
+    },
+  ];
+
+  console.log(dataStaffOverview);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   return (
     <Grid container spacing={3}>

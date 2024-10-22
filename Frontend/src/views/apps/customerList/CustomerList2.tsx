@@ -2,12 +2,14 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { TabContext, TabPanel } from '@mui/lab';
 import {
+  Avatar,
   Badge,
   Box,
   Checkbox,
   Dialog,
   DialogContent,
   DialogTitle,
+  FormControlLabel,
   Grid,
   IconButton,
   InputAdornment,
@@ -15,12 +17,13 @@ import {
   MenuItem,
   Select,
   Slide,
+  Stack,
   TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { IconSearch } from '@tabler/icons-react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -31,6 +34,8 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 import PopupAddList2 from './PopupAddlist2';
+import DialogDetailCustomer from './dialog/dialogDetailCustomer';
+import avt6 from 'src/assets/images/profile/user-6.jpg';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -52,6 +57,7 @@ interface Column {
 const CustomerList2 = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const [openDetail, setOpenDetail] = useState(false);
   const dataCustomer = useSelector((state: AppState) => state.customer.data);
   useEffect(() => {
     dispatch(fetchCustomer());
@@ -75,6 +81,24 @@ const CustomerList2 = () => {
         render: (value: any) => value || 'Không có dữ liệu',
       },
       {
+        title: 'Kênh',
+        dataIndex: 'misc',
+        render: (value: string) => (
+          <Stack direction="row" spacing={1}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Avatar src={avt6} alt={value} />
+            </Box>
+            <Box>
+              <Typography variant="subtitle1"> Nguyễn Đức Nhật </Typography>
+              <Typography variant="subtitle2" fontSize={12}>
+                {' '}
+                #123456
+              </Typography>
+            </Box>
+          </Stack>
+        ),
+      },
+      {
         title: 'Số điện thoại',
         dataIndex: 'phoneNumber',
         render: (value: any) => value || 'Không có dữ liệu',
@@ -84,68 +108,81 @@ const CustomerList2 = () => {
         dataIndex: 'assistant',
         render: (value: any) => value || 'Không có dữ liệu',
       },
-      {
-        title: 'Tags',
-        dataIndex: 'tag',
-        render: (value: any) => value || 'Không có dữ liệu',
-      },
+      // {
+      //   title: 'Tags',
+      //   dataIndex: 'tag',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
 
-      {
-        title: 'Tổng chi tiêu',
-        dataIndex: 'orderValue',
-        render: (_row: any, value: any) => (
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography>
-              {value?.totalSpend ? `${value.totalSpend} đ` : 'Không có dữ liệu'}
-            </Typography>
-          </Box>
-        ),
-      },
+      // {
+      //   title: 'Tổng chi tiêu',
+      //   dataIndex: 'orderValue',
+      //   render: (_row: any, value: any) => (
+      //     <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      //       <Typography>
+      //         {value?.totalSpend ? `${value.totalSpend} đ` : 'Không có dữ liệu'}
+      //       </Typography>
+      //     </Box>
+      //   ),
+      // },
 
-      {
-        title: 'Địa chỉ',
-        dataIndex: 'address',
-        render: (value: any) => value || 'Không có dữ liệu',
-      },
+      // {
+      //   title: 'Địa chỉ',
+      //   dataIndex: 'address',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
       {
         title: 'Email',
         dataIndex: 'email',
         render: (value: any) => value || 'Không có dữ liệu',
       },
+      // {
+      //   title: 'Tên công ty',
+      //   dataIndex: 'companyname',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
+      // {
+      //   title: 'Email công ty',
+      //   dataIndex: 'companyemail',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
+      // {
+      //   title: 'Số điện thoại công ty',
+      //   dataIndex: 'company_phone_number',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
+      // {
+      //   title: 'Địa chỉ công ty',
+      //   dataIndex: 'company_address',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
+      // {
+      //   title: 'Mã số thuế',
+      //   dataIndex: 'tax_code',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
+      // {
+      //   title: 'Website công ty',
+      //   dataIndex: 'company_website',
+      //   render: (value: any) => value || 'Không có dữ liệu',
+      // },
       {
-        title: 'Tên công ty',
-        dataIndex: 'companyname',
-        render: (value: any) => value || 'Không có dữ liệu',
-      },
-      {
-        title: 'Email công ty',
-        dataIndex: 'companyemail',
-        render: (value: any) => value || 'Không có dữ liệu',
-      },
-      {
-        title: 'Số điện thoại công ty',
-        dataIndex: 'company_phone_number',
-        render: (value: any) => value || 'Không có dữ liệu',
-      },
-      {
-        title: 'Địa chỉ công ty',
-        dataIndex: 'company_address',
-        render: (value: any) => value || 'Không có dữ liệu',
-      },
-      {
-        title: 'Mã số thuế',
-        dataIndex: 'tax_code',
-        render: (value: any) => value || 'Không có dữ liệu',
-      },
-      {
-        title: 'Website công ty',
-        dataIndex: 'company_website',
-        render: (value: any) => value || 'Không có dữ liệu',
+        title: 'Xem chi tiết',
+        dataIndex: 'actions',
+        render: (_row: any, value: any) => (
+          <Box sx={{ px: 4 }}>
+            <IconButton onClick={handleDetail}>
+              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+            </IconButton>
+          </Box>
+        ),
       },
     ],
     [],
   );
-
+  const handleDetail = () => {
+    setOpenDetail(!openDetail);
+  };
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
   };
@@ -174,6 +211,7 @@ const CustomerList2 = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
+
 
   return (
     <PageContainer title="Danh sách khách hàng">
@@ -220,7 +258,7 @@ const CustomerList2 = () => {
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                          <Badge badgeContent={column.length - dataSelect.length} color="primary">
+                          <Badge badgeContent={column.length - dataSelect.filter(item => item !== 'all').length} color="primary">
                             <FilterListIcon />
                           </Badge>
                         </IconButton>
@@ -232,6 +270,7 @@ const CustomerList2 = () => {
                           renderValue={() => 'Sửa đổi cột'}
                           size="small"
                           MenuProps={{
+                            autoFocus: false,
                             PaperProps: {
                               sx: {
                                 marginTop: 1,
@@ -264,10 +303,14 @@ const CustomerList2 = () => {
                           <MenuItem>
                             <Checkbox
                               checked={!(dataSelect.length === column.length)}
-                              indeterminate={dataSelect.length > 0 && dataSelect.length < column.length}
+                              indeterminate={
+                                dataSelect.length > 0 && dataSelect.length < column.length
+                              }
                               onChange={() => {
                                 if (dataSelect.length < column.length) {
-                                  const allColumns = column.map((header: Column) => header.dataIndex);
+                                  const allColumns = column.map(
+                                    (header: Column) => header.dataIndex,
+                                  );
                                   setDataSelect(allColumns);
                                 } else {
                                   setDataSelect([]);
@@ -304,7 +347,6 @@ const CustomerList2 = () => {
         </TabContext>
       </ChildCard>
 
-      {/* Popup Thêm khách hàng */}
       <Dialog
         open={isPopupOpen}
         onClose={handleClosePopup}
@@ -327,6 +369,8 @@ const CustomerList2 = () => {
           <PopupAddList2 />
         </DialogContent>
       </Dialog>
+      {/* Popup Chi tiết khách hàng */}
+      <DialogDetailCustomer openDetail={openDetail} setOpenDetail={setOpenDetail} />
     </PageContainer>
   );
 };

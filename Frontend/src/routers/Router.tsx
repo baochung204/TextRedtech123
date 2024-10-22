@@ -1,5 +1,8 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
+import Loadable from '../layouts/full/shared/loadable/Loadable';
+import { ProtectedRoute } from 'src/service/guard';
+
 const ChangePassword = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
 );
@@ -38,8 +41,6 @@ const AssistantEditorAdmin = Loadable(
   lazy(() => import('src/views/admin/assistant/AssistantEditorAdmin')),
 );
 
-import Loadable from '../layouts/full/shared/loadable/Loadable';
-import { ProtectedRoute } from 'src/service/guard';
 const BlogAdmin = Loadable(lazy(() => import('src/views/admin/blog/blog')));
 const PageFeature = Loadable(lazy(() => import('src/views/admin/feature/feature')));
 const ErrorAdmin = Loadable(lazy(() => import('src/views/authentication/ErrorAdmin')));
@@ -65,7 +66,8 @@ const Contacts = Loadable(lazy(() => import('../views/apps/contacts/Contacts')))
 const Collaborate = Loadable(lazy(() => import('../views/apps/collaborate/Collaborate')));
 const CustomerList = Loadable(lazy(() => import('../views/apps/customerList/CustomerList')));
 const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant')));
-const AssistantEditor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEditor')));
+const AssistantAdd = Loadable(lazy(() => import('src/views/apps/assistant/AssistantAdd')));
+const AssistantEdit = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEdit')));
 const AssistantInfor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantById')));
 // const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
@@ -109,7 +111,6 @@ const Faq = Loadable(lazy(() => import('../views/pages/faq/Faq')));
 
 // authentication
 const Login = Loadable(lazy(() => import('../views/authentication/auth1/Login')));
-const Login2 = Loadable(lazy(() => import('../views/authentication/auth2/Login2')));
 const Register = Loadable(lazy(() => import('../views/authentication/auth1/Register')));
 const Register2 = Loadable(lazy(() => import('../views/authentication/auth2/Register2')));
 const ForgotPassword = Loadable(lazy(() => import('../views/authentication/auth1/ForgotPassword')));
@@ -186,8 +187,9 @@ const Router = [
       { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
       { path: '/apps/list-assistant', element: <ProtectedRoute element={Assistant} /> },
       { path: '/apps/assistant', element: <ProtectedRoute element={Assistant} /> },
-      { path: '/assistants/add', element: <ProtectedRoute element={AssistantEditor} /> },
-      { path: '//assistants/detail/:id', element: <ProtectedRoute element={AssistantInfor} /> },
+      { path: '/assistants/add', element: <ProtectedRoute element={AssistantAdd} /> },
+      { path: '/assistants/edit/:id', element: <ProtectedRoute element={AssistantEdit} /> },
+      { path: '/assistants/detail/:id', element: <ProtectedRoute element={AssistantInfor} /> },
       { path: '/integrations', element: <ProtectedRoute element={Integration} /> },
       { path: '/products', element: <ProtectedRoute element={Product} /> },
       { path: '/conversions', element: <ProtectedRoute element={CustomerListOrder} /> },
@@ -263,7 +265,7 @@ const Router = [
     children: [
       { path: '/error/404', element: <Error /> },
       { path: '/auth/login', element: <Login /> },
-      { path: '/auth/login2', element: <Login2 /> },
+
       { path: '/auth/register', element: <Register /> },
       { path: '/auth/register2', element: <Register2 /> },
       { path: '/auth/forgot-password2', element: <ForgotPassword /> },

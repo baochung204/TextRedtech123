@@ -1,45 +1,18 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { useTheme } from '@mui/material/styles';
 import Chart from 'react-apexcharts';
 
 import { Props } from 'react-apexcharts';
 
 import { Box, MenuItem, Typography } from '@mui/material';
-import { useState } from 'react';
-import DateSelect from 'src/components/apps/date/DateSelect';
-import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import { ChangeEvent, useState } from 'react';
+import DateSelect from 'src/components/apps/date/DateSelect';
 
-// const BCrumb = [
-//   {
-//     to: '/',
-//     title: 'Home',
-//   },
-//   {
-//     title: 'Gradient Chart',
-//   },
-// ];
-// const monthsInVietnamese = [
-//   'Tháng 1',
-//   'Tháng 2',
-//   'Tháng 3',
-//   'Tháng 4',
-//   'Tháng 5',
-//   'Tháng 6',
-//   'Tháng 7',
-//   'Tháng 8',
-//   'Tháng 9',
-//   'Tháng 10',
-//   'Tháng 11',
-//   'Tháng 12',
-// ];
 const Chart2 = () => {
-  // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
-
   const categories = [
     '1/11/2000',
     '2/11/2000',
@@ -60,7 +33,13 @@ const Chart2 = () => {
     '5/11/2001',
     '6/11/2001',
   ];
-
+  const seriesgredientchart: any = [
+    {
+      name: 'Points',
+      data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
+    },
+  ];
+  const maxYValue = Math.max(...seriesgredientchart[0].data) + 5;
   const optionsgredientchart: Props = {
     chart: {
       height: 350,
@@ -78,18 +57,23 @@ const Chart2 = () => {
         blur: 3,
         opacity: 0.4,
       },
+      zoom: {
+        enabled: true,
+      },
+      offsetX: 0,
     },
     stroke: {
       width: 7,
       curve: 'smooth',
     },
-
     xaxis: {
       type: 'datetime',
       categories: categories,
       labels: {
         show: true,
-        formatter: (value: string, opts?: any) => {
+        formatter: (value: string, _time: string, opts?: any) => {
+          console.log('opts:', opts.i);
+
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -109,7 +93,7 @@ const Chart2 = () => {
         type: 'horizontal',
         opacityFrom: 1,
         opacityTo: 0.9,
-        stops: [0, 100, 100, 100],
+        stops: [0, 100],
         colorStops: [
           {
             offset: 0,
@@ -131,14 +115,13 @@ const Chart2 = () => {
       colors: [primary],
       strokeColor: '#fff',
       strokeWidth: 2,
-
       hover: {
         size: 7,
       },
     },
     yaxis: {
       min: 0,
-      max: 40,
+      max: maxYValue,
     },
     tooltip: {
       theme: 'dark',
@@ -149,16 +132,27 @@ const Chart2 = () => {
         right: 30,
       },
     },
+    responsive: [
+      {
+        breakpoint: 600,
+        options: {
+          chart: {
+            height: 250,
+          },
+          xaxis: {
+            labels: {
+              rotate: -30,
+              style: {
+                fontSize: '8px',
+              },
+            },
+          },
+        },
+      },
+    ],
   };
-  const seriesgredientchart: any = [
-    {
-      name: 'Points',
-      data: [4, 3, 10, 9, 35, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5],
-    },
-  ];
   const [month, setMonth] = useState('1');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
 
@@ -183,15 +177,16 @@ const Chart2 = () => {
               value={month}
               onChange={handleChange}
             >
-              <MenuItem value={1}>Doanh thu</MenuItem>
+              <MenuItem value={3}>Doanh thu </MenuItem>
               <MenuItem value={2}>Khách hàng </MenuItem>
-              <MenuItem value={3}>Đơn Hàng </MenuItem>
+              <MenuItem value={1}>Chuyển đổi</MenuItem>
             </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
               <DateSelect />
             </Box>
           </Box>
         </Box>
+
         <Chart
           options={optionsgredientchart}
           series={seriesgredientchart}

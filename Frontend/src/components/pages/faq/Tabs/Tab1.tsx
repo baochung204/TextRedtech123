@@ -12,135 +12,94 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
-import { fetchStrData } from 'src/store/user-resources/userSlice';
 import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
-
-interface PropsData {
-  content: string;
-  badgeUrl: string;
-  productId: string;
-  level: string;
-  tomtat: string;
-  nhom: string;
-}
+import { Str } from 'src/types/apps/str';
+import BlankCard from 'src/components/shared/BlankCard';
+import { fetchCampaigns } from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
+import { CampaignsType } from 'src/store/user/user-resources/campaigns/Type/campaignsType';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
-  const dataStr = useSelector((state: AppState) => state.str.data);
+  const campaigns = useSelector((state: AppState) => state.resourcesCampaigns.data);
+  const [campaignsData, setCampaignsData] = useState<CampaignsType>();
+  useEffect(() => {
+    dispatch(fetchCampaigns({ page, size: rowsPerPage }));
+  }, [dispatch, page, rowsPerPage]);
+  useEffect(() => {
+    if (campaigns !== campaignsData) {
+      setCampaignsData(campaigns);
+    }
+  }, [campaigns, campaignsData]);
+  // const dataStr = useSelector((state: AppState) => state.str.data);
+  // const [datax, setDatax] = useState<Str[]>([]);
+  const [dataView, setDataView] = useState<Str | undefined>();
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
-  const users = useSelector((state: AppState) => state.test.dataa);
+
+  // console.log('load data', campaignsData);
+
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  useEffect(() => {
-    dispatch(fetchStr());
-    dispatch(fetchStrData({ page, size: rowsPerPage }));
-  }, [dispatch, page, rowsPerPage]);
+  // useEffect(() => {
+  //   dispatch(fetchStr({ page, size: rowsPerPage }));
+  // }, [dispatch, page, rowsPerPage]);
 
-  console.log('Users from Redux:', users);
-
-  // const fetchData = async (page = 0, size = 25) => {
-  //   try {
-  //     // Get accessToken from localStorage
-  //     const accessToken = localStorage.getItem('accessToken');
-
-  //     if (!accessToken) {
-  //       console.error('No access token found');
-  //       return;
-  //     }
-
-  //     // Call the API with Authorization header
-  //     const response = await axios.get(`https://redai02-4af4309fd76b.herokuapp.com/user-resources/files`, {
-  //       params: { file: page, size: size },
-  //       headers: {
-  //         'Authorization': `Bearer ${accessToken}` // Include the access token
-  //       }
-  //     });
-
-  //     console.log('Response:', response.data);
-
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
+  // useEffect(() => {
+  //   if (datax !== dataStr.content) {
+  //     setDatax(dataStr.content);
   //   }
-  // };
+  // }, [dataStr, datax]);
 
-  // useEffect(() => {
-  //   const accessToken = localStorage.getItem('accessToken');
-  //   console.log('accessToken:', accessToken);
-  //   fetchData(); // Call the function to fetch data
-  // }, []);
+  // console.log('data in redux', datax);
 
-  // const { dataa, loading, error } = useSelector((state: AppState) => state.test);
-
-  // console.log('dataa: ', dataa);
-
-  // useEffect(() => {
-  //   console.log('Users from Redux:', users);
-  // }, [users]);
   const [open, setOpen] = useState<boolean>(false);
-  const [data, setData] = useState<PropsData[]>([
-    {
-      content: '',
-      badgeUrl: '',
-      productId: '',
-      level: '',
-      tomtat: '',
-      nhom: '',
-    },
-  ]);
 
-  const handleClick = (items: PropsData) => {
+  const handleClick = (items: number) => {
     setOpen(true);
-    setData([
-      {
-        content: items.content,
-        badgeUrl: items.badgeUrl,
-        productId: items.productId,
-        level: items.level,
-        tomtat: items.tomtat,
-        nhom: items.nhom,
-      },
-    ]);
+    // console.log(items);
+    setDataView(datax[items]);
   };
 
   return (
     <>
       <Grid container spacing={2}>
-        {dataStr.map((items, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <CardContent
-              onClick={() => handleClick(items)}
-              sx={{
-                cursor: 'pointer',
-              }}
-            >
-              <Stack direction={'row'} gap={2} alignItems="center">
-                <Avatar alt="Remy Sharp" src={items.badgeUrl} />
-                <Box>
-                  <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
-                    {items.content}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
-                  >
-                    {items.level}
-                  </Typography>
-                </Box>
-                <Box ml="auto">
-                  <Button variant="outlined" color="primary" size="small">
-                    {items.productId}
-                  </Button>
-                </Box>
-              </Stack>
-            </CardContent>
+        {campaignsData?.content?.map((items, index) => (
+          <Grid item xs={12} sm={6} md={4} key={items.campaignId}>
+            <BlankCard>
+              <CardContent
+                onClick={() => handleClick(index)}
+                sx={{
+                  cursor: 'pointer',
+                }}
+              >
+                <Stack direction={'row'} gap={2} alignItems="center">
+                  <Avatar alt="Remy Sharp" src={items.badgeUrl} />
+                  <Box>
+                    <Typography variant="h6" textOverflow={'ellipsis'} noWrap>
+                      {items.campaignName}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+                    >
+                      {items.level}
+                    </Typography>
+                  </Box>
+                  <Box ml="auto">
+                    <Button variant="outlined" color="primary" size="small">
+                      {items.campaignId}
+                    </Button>
+                  </Box>
+                </Stack>
+              </CardContent>
+            </BlankCard>
           </Grid>
         ))}
       </Grid>
@@ -154,7 +113,7 @@ const Tab1 = () => {
         onRowsPerPageChange={handleChangeRowsPerPage}
         labelRowsPerPage="Số hàng trên mỗi trang"
       />
-      <DialogStragety open={open} setOpen={setOpen} data={data} />
+      <DialogStragety open={open} setOpen={setOpen} data={dataView} />
     </>
   );
 };

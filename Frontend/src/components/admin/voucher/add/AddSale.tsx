@@ -1,4 +1,4 @@
-import { Box, Grid, MenuItem } from '@mui/material';
+import { Avatar, Box, Grid, MenuItem, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
@@ -55,7 +55,8 @@ const AddFlashSale = () => {
       setFinalPrice(newPrice);
     }
   }, [discount, selectedValue]);
-
+  const text =
+    ' Dao Chạm Khắc Thủ Công Chuyên Dụng Cao Cấp Dao Chạm Khắc Thủ Công Chuyên Dụng Cao Cấp';
   return (
     <div>
       {/* Thông tin cá nhân */}
@@ -92,7 +93,20 @@ const AddFlashSale = () => {
             >
               {options.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
-                  {option.label}_{option.price}
+                  {/* {option.label}_{option.price} */}
+                  <Grid container>
+                    <Grid item xs={1.5}>
+                      <Avatar
+                        src="https://picsum.photos/300/300"
+                        sx={{ height: 40, borderRadius: '5px' }}
+                      />
+                    </Grid>
+                    <Grid item xs={10.5}>
+                      <Typography variant="body1">
+                        {text.length > 50 ? text.slice(0, 47) + '…' : text}
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </MenuItem>
               ))}
             </CustomTextField>

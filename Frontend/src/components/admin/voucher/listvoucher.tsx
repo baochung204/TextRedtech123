@@ -17,95 +17,23 @@ import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import AddDialogvoucher from './add/addDialog';
+import { useSelector } from 'react-redux';
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchCounponListData } from 'src/store/admin/counpon/counponlist/table/counponlistSlice';
 
 interface DataRow {
-  id: string;
-  startDate: string;
-  name: string;
-  endDate: string;
-  code: string;
-  totalCoupon: number;
+  orderVndId: number;
+  vndCouponName: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
   type: string;
-  valueCoupon: string;
-  status: 'Hoạt động' | 'Đang hoạt động' | 'Ẩn';
-  totalUsed: number;
+  valueCoupon: number | null;
+  percentCoupon: number | null;
+  value: string;
 }
-
-const dataRows: DataRow[] = [
-  {
-    id: 'MA001',
-    startDate: '2024-09-01',
-    name: 'Sản phẩm mới',
-    endDate: '2024-09-03',
-    code: 'JDEwJG5zZ3J1c2',
-    totalCoupon: 234,
-    type: 'Đồng',
-    valueCoupon: '19.000 đ',
-    status: 'Hoạt động',
-    totalUsed: 23,
-  },
-  {
-    id: 'MA002',
-    startDate: '2024-09-02',
-    name: 'Mã giảm giá',
-    endDate: '2025-10-12',
-    code: 'DFG3554F3TT4F',
-    totalCoupon: 680,
-    type: 'Đồng',
-    valueCoupon: '99.000 đ',
-    status: 'Đang hoạt động',
-    totalUsed: 41,
-  },
-  {
-    id: 'MA003',
-    startDate: '2024-09-03',
-    name: 'khách hàng thân thiết',
-    endDate: '2024-09-03',
-    code: 'DG335534TTGGE',
-    totalCoupon: 32,
-    type: 'Phần trăm',
-    valueCoupon: '10%',
-    status: 'Đang hoạt động',
-    totalUsed: 21,
-  },
-  {
-    id: 'MA004',
-    startDate: '2024-09-04',
-    name: 'mini-game',
-    endDate: '2024-09-03',
-    code: '44FV43TG4V34G',
-    totalCoupon: 54,
-    type: 'Phần trăm',
-    valueCoupon: '10%',
-    status: 'Ẩn',
-    totalUsed: 3,
-  },
-  {
-    id: 'MA005',
-    startDate: '2024-09-05',
-    name: ' sự kiện',
-    endDate: '2024-09-03',
-    code: 'DGH34T53167D5',
-    totalCoupon: 23,
-    type: 'Phần trăm',
-    valueCoupon: '20%',
-    status: 'Ẩn',
-    totalUsed: 7,
-  },
-  {
-    id: 'MA006',
-    startDate: '2024-09-06',
-    name: 'khách hàng thân thiết',
-    endDate: '2024-09-03',
-    code: 'RH56YH563226TYB',
-    totalCoupon: 424,
-    type: 'Phần trăm',
-    valueCoupon: '10%',
-    status: 'Đang hoạt động',
-    totalUsed: 23,
-  },
-];
 
 interface Column {
   title: string;
@@ -114,15 +42,36 @@ interface Column {
   isValids?: boolean;
 }
 
+// hello
+
 const ListVoucher = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isCheckSwitchIds, setIsCheckSwitchIds] = useState<string[]>([]);
+  const counponList = useSelector((state: AppState) => state.counpon_list.dataa);
 
+  const [counponListData, setCounponListData] = useState<DataRow[]>([]);
+
+  useEffect(() => {
+    dispatch(fetchCounponListData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (counponListData !== counponList.content) {
+      setCounponListData(counponList.content);
+    }
+  }, [counponListData, counponList]);
+
+  console.log('sdf', counponListData);
+
+  const handleCheckSwitch = (id: string) => {
+    setIsCheckSwitchIds((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((selectedId) => selectedId !== id)
+        : [...prevSelected, id],
+    );
+  };
   const column = useMemo<Column[]>(
     () => [
-      {
-        title: 'ID',
-        dataIndex: 'id',
-      },
       {
         title: 'Tên chiến dịch',
         dataIndex: 'name',
@@ -130,10 +79,20 @@ const ListVoucher = () => {
       {
         title: 'Ngày tạo',
         dataIndex: 'startDate',
+        render: (value: string) => {
+          if (!value) return 'N/A'; // Handle undefined or invalid values
+          const date = new Date(value);
+          return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Hạn sửa dụng',
         dataIndex: 'endDate',
+        render: (value: string) => {
+          if (!value) return 'N/A'; // Handle undefined or invalid values
+          const date = new Date(value);
+          return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Mã khuyến mãi',
@@ -151,29 +110,55 @@ const ListVoucher = () => {
         title: 'Loại giảm giá',
         dataIndex: 'type',
         render: (value: any) => {
-          return <Chip label={value} color={value === 'Đồng' ? 'primary' : 'secondary'} />;
+          const label = value === 'VALUE' ? 'đ' : '%';
+          return (
+            <Chip
+              label={label}
+              sx={{
+                color: 'white',
+                backgroundColor: value === 'VALUE' ? 'success.main' : 'error.main',
+              }}
+            />
+          );
         },
       },
       {
         title: 'Giá trị giảm',
         dataIndex: 'valueCoupon',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
       {
         title: 'Trạng thái',
         dataIndex: 'status',
-        render: (value: any) => {
+        render: (_value, row) => {
+          const isActive = isCheckSwitchIds.includes(row.id);
           return (
-            <Chip
-              label={value}
-              color={
-                value === 'Hoạt động' ? 'primary' : value === 'Đang hoạt động' ? 'success' : 'error'
-              }
-            />
+            <Chip label={isActive ? 'Hoạt động' : 'Ẩn'} color={isActive ? 'success' : 'error'} />
           );
         },
       },
+      {
+        id: 'statusAction',
+        title: 'Thao tác',
+        dataIndex: 'open',
+        render: (_value: any, row: any) => (
+          <CustomSwitch
+            color="primary"
+            // checked={isCheckSwitchIds.includes(row.id)}
+            checked={open}
+            onChange={() => handleCheckSwitch(row.id)}
+            inputProps={{ 'aria-label': 'controlled' }}
+          />
+        ),
+      },
     ],
-    [],
+    [isCheckSwitchIds],
   );
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
@@ -200,7 +185,6 @@ const ListVoucher = () => {
 
   return (
     <>
-      {' '}
       <Grid item xs={12}>
         <Grid container sx={{ alignItems: 'center', mt: '1px' }} spacing={2}>
           <Grid
@@ -266,6 +250,7 @@ const ListVoucher = () => {
               renderValue={() => 'Sửa đổi cột'}
               size="small"
               MenuProps={{
+                autoFocus: false,
                 PaperProps: {
                   sx: {
                     marginTop: 1,
@@ -329,7 +314,7 @@ const ListVoucher = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
+        <CustomTable columns={column} dataSource={counponListData} dataSelect={dataSelect} />
       </Grid>
       <AddDialogvoucher isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </>

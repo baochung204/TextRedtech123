@@ -89,7 +89,7 @@ const PopupAdd = () => {
         {/* Thông tin trợ lý và kênh */}
         {/* <Scrollbar_y sx={{ maxHeight: '400px', overflowX: 'hidden' }}> */}
         {/* Set maxHeight for scrolling */}
-        <Box mb={4} p={3}>
+        <Box mb={4} paddingY={3}>
           <Typography variant="h6" sx={{ fontSize: '1.1rem' }}>
             Chi tiết sản phẩm
           </Typography>
@@ -192,12 +192,19 @@ const PopupAdd = () => {
                   variant="outlined"
                   fullWidth
                   multiline
-                  rows={4.4}
+                  rows={6}
                   placeholder="Nhập mô tả sản phẩm . . ."
+                  InputProps={{
+                    sx: {
+                      padding: 0,
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
-                <CustomFormLabel htmlFor="material-text">Chất liệu</CustomFormLabel>
+                <CustomFormLabel htmlFor="material-text" sx={{ mt: '27px' }}>
+                  Chất liệu
+                </CustomFormLabel>
                 <CustomTextField
                   id="material-text"
                   variant="outlined"
@@ -220,7 +227,7 @@ const PopupAdd = () => {
                   multiple
                   onChange={handleImageUpload}
                 />
-                <Button variant="contained" component="span" sx={{ mb: 1 }}>
+                <Button variant="contained" component="span">
                   Thêm ảnh sản phẩm
                 </Button>
               </label>
@@ -252,6 +259,24 @@ const PopupAdd = () => {
                   </Grid>
                 </Grid>
               )}
+            </Grid>
+            <Grid item xs={12}>
+              <CustomFormLabel htmlFor="shipping-cost" sx={{ mt: 0 }}>
+                Chi phí giao hàng
+              </CustomFormLabel>
+              <CustomTextField
+                id="shipping-cost"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={4.4}
+                placeholder="VD: Nội thành 25.000 ₫, Ngoại thành 50.000 ₫, Ngoại tỉnh 50.000 ₫"
+                InputProps={{
+                  sx: {
+                    padding: 0,
+                  },
+                }}
+              />
             </Grid>
           </Grid>
         </Box>

@@ -5,7 +5,6 @@ import {
   Badge,
   Box,
   Checkbox,
-  Chip,
   Grid,
   IconButton,
   InputAdornment,
@@ -14,17 +13,19 @@ import {
   Select,
   Stack,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import { IconSearch } from '@tabler/icons-react';
-import { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import { IconEye, IconSearch } from '@tabler/icons-react';
+import * as React from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import { Column } from 'src/components/ComponentTables/ColumnInterface';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
+import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import DialogDetailListOrder from './dialog/dialogDetailListOrder';
 
 interface PropsTable {
   id: string;
@@ -100,20 +101,27 @@ const TableData: PropsTable[] = [
   },
 ];
 
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 const CustomerListOrder = () => {
-  const [month, setMonth] = useState('1');
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const [month, setMonth] = React.useState('1');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
 
-  const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const [dataSelect, setDataSelect] = React.useState<string[]>([]);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   const BCrumb = [
     { to: '/', title: 'Trang Chủ' },
     { to: '/', title: 'Chuyển đổi' },
   ];
 
-  const columns = useMemo<Column[]>(
+  const columns = React.useMemo<Column[]>(
     () => [
       {
         title: 'ID',
@@ -157,15 +165,24 @@ const CustomerListOrder = () => {
         title: 'Trợ lý',
         dataIndex: 'assistant',
       },
-      {
-        title: 'Tags',
-        dataIndex: 'channel',
-        render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
-      },
+      // {
+      //   title: 'Tên sản phẩm',
+      //   dataIndex: 'channel',
+      //   // render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
+      // },
+      // {
+      //   title: 'Đơn vị tính',
+      //   dataIndex: 'channel',
+      //   // render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
+      // },
+      // {
+      //   title: 'Tag sản phẩm',
+      //   dataIndex: 'channel',
+      //   render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
+      // },
       {
         title: 'Giá trị đơn hàng',
         dataIndex: 'pricePoint',
-
         render: (value: string) => (
           <Box
             sx={{
@@ -181,15 +198,43 @@ const CustomerListOrder = () => {
           </Box>
         ),
       },
+      // {
+      //   title: 'Số lượng sản phẩm',
+      //   dataIndex: 'assistant',
+      // },
+      // {
+      //   title: 'Đánh giá',
+      //   dataIndex: 'assistant',
+      // },
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
+        render: (value: any) => <> {value.length > 50 ? value.slice(0, 47) + '…' : value}</>,
+      },
+      {
+        dataIndex: 'actions',
+        title: 'Chi tiết',
+        render: (_row: any, value: any) => (
+          // console.log(value)
+          <Box display={'flex'} sx={{ justifyContent: 'center' }}>
+            <Tooltip title="Xem" placement="right">
+              <IconButton
+                onClick={() => {
+                  setOpen(!open);
+                  // setSelectId(value.id);
+                }}
+              >
+                <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        ),
       },
     ],
     [],
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     const hasIsValids = columns.some((col) => 'isValids' in col);
     if (hasIsValids) {
       const hiddenColumns = columns
@@ -260,19 +305,25 @@ const CustomerListOrder = () => {
 
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                          <Badge badgeContent={columns.length - dataSelect.length} color="primary">
-                            <FilterListIcon />
-                          </Badge>
-                        </IconButton>
+                        <Badge
+                          badgeContent={columns.length - dataSelect.length}
+                          color={'primary'}
+                          sx={{ margin: '0px 10px' }}
+                        >
+                          <FilterListIcon color="action" />
+                        </Badge>
                         <Select
                           multiple
                           value={dataSelect}
                           displayEmpty
                           onChange={handleColumnChange}
                           renderValue={() => 'Sửa đổi cột'}
+                          sx={{
+                            marginRight: 2,
+                          }}
                           size="small"
                           MenuProps={{
+                            autoFocus: false,
                             PaperProps: {
                               sx: {
                                 marginTop: 1,
@@ -302,30 +353,17 @@ const CustomerListOrder = () => {
                             },
                           }}
                         >
-                          <MenuItem>
-                            <Checkbox
-                              checked={!(dataSelect.length === columns.length)}
-                              indeterminate={
-                                dataSelect.length > 0 && dataSelect.length < columns.length
-                              }
-                              onChange={() => {
-                                if (dataSelect.length < columns.length) {
-                                  const allColumns = columns.map(
-                                    (header: Column) => header.dataIndex,
-                                  );
-                                  setDataSelect(allColumns);
-                                } else {
-                                  setDataSelect([]);
-                                }
-                              }}
-                            />
-                            <ListItemText primary="Chọn tất cả" />
-                          </MenuItem>
-                          {columns.map((header: Column) => {
-                            const isSelected = !dataSelect.includes(header.dataIndex);
+                          {columns.map((header: any) => {
+                            // console.log(
+                            //   `check ${header.title}`,
+                            //   dataSelect.includes(header.dataIndex),
+                            // );
+
+                            const isSelected = dataSelect.includes(header.dataIndex);
+
                             return (
                               <MenuItem key={header.dataIndex} value={header.dataIndex}>
-                                <Checkbox checked={isSelected} />
+                                <Checkbox checked={!isSelected} />
                                 <ListItemText primary={header.title} />
                               </MenuItem>
                             );
@@ -340,7 +378,9 @@ const CustomerListOrder = () => {
                 </Grid>
 
                 <Grid item xs={12} mx={0.3}>
-                  <CustomTable columns={columns} dataSource={TableData} dataSelect={dataSelect} />
+                  <BlankCard>
+                    <CustomTable columns={columns} dataSource={TableData} dataSelect={dataSelect} />
+                  </BlankCard>
                 </Grid>
               </Grid>
             </TabPanel>
@@ -362,6 +402,7 @@ const CustomerListOrder = () => {
           <AddOrder />
         </DialogContent>
       </Dialog> */}
+      <DialogDetailListOrder open={open} setOpen={setOpen} />
     </PageContainer>
   );
 };

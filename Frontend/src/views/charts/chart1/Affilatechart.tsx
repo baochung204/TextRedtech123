@@ -5,7 +5,7 @@ import Affilatec1 from 'src/components/shared/Affilatec1';
 const Affilatechart = () => {
   const theme = useTheme();
   const warning = theme.palette.warning.main;
-  const labels = ['Chi phí /doanh thu'];
+  const labels = ['Chi phí / Doanh thu'];
 
   const optionsradialchart: Props = {
     chart: {
@@ -60,7 +60,7 @@ const Affilatechart = () => {
   const seriesradialchart: any = [96]; // Replace with dynamic series data if needed
 
   return (
-    <Affilatec1 title=" Đơn hàng" text="Chi phí /doanh thu" description={''}>
+    <Affilatec1 title=" Đơn hàng" text="Chi phí / Doanh thu" description={''}>
       <div>
         <div id="chart">
           <Chart
