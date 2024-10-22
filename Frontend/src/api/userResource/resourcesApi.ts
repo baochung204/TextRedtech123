@@ -6,15 +6,15 @@ const resourcesApi = {
   getAllFiles: (page?: number | undefined, size?: number | undefined) => {
     return axiosAPI.get(`/${url}/files?page=${page}&size=${size}`);
   },
-  //   getAllURL: (page?: number, size?: number) => {
-  //     return axiosAPI.get(`/${url}/urls`);
-  //   },
-  //   getAllModels: (page?: number, size?: number) => {
-  //     return axiosAPI.get(`/${url}/models`);
-  //   },
-  //   getAllImages: (page?: number, size?: number) => {
-  //     return axiosAPI.get(`/${url}/images`);
-  //   },
+  getAllURL: (page?: number | undefined, size?: number | undefined) => {
+    return axiosAPI.get(`/${url}/urls?page=${page}&size=${size}`);
+  },
+  getAllModels: (page?: number | undefined, size?: number | undefined) => {
+    return axiosAPI.get(`/${url}/models?page=${page}&size=${size}`);
+  },
+  getAllImages: (page?: number | undefined, size?: number | undefined) => {
+    return axiosAPI.get(`/${url}/images?page=${page}&size=${size}`);
+  },
   getAllFunctions: (page?: number | undefined, size?: number | undefined) => {
     return axiosAPI.get(`/${url}/functions?page=${page}&size=${size}`);
   },

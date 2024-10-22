@@ -34,8 +34,22 @@ import File from './configuration/file';
 import Function from './configuration/function';
 import InFor from './infor/infor';
 import Topcardassistant from './topcard/Topcardassistant';
+import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+import { AppState, dispatch } from 'src/store/Store';
+import { useEffect } from 'react';
+import { fetchAssistantById } from 'src/store/user/chatbots/assisstantUserSlice';
 
 const AssistantInfor = () => {
+  const { id } = useParams();
+  const AssistantById = useSelector((state: AppState) =>
+    state.assisstant.dataa.find((assistant) => assistant.chatBotInfo.chatbotid === id),
+  );
+  useEffect(() => {
+    dispatch(fetchAssistantById(id as string));
+  }, [dispatch, id]);
+  console.log('chi tiet', AssistantById);
+
   return (
     <PageContainer title="Thông tin trợ lý" description="this is page">
       <Box mt={3}>
