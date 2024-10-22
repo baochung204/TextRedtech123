@@ -49,7 +49,8 @@ import BlogSlice from './user/blogs/blog';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
 import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
-
+import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
+import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
 export const store = configureStore({
   reducer: {
     //user
@@ -83,6 +84,8 @@ export const store = configureStore({
     userme: usermeSlice,
     staff: staffSlice,
     resourcesCampaigns: CampaignsSlice,
+    resourcesFunctions: functionsSlice,
+    resourcesFiles: filesSlice,
     affiliate: affiliateApiSlice,
     blogs: BlogSlice,
     //admin
@@ -126,6 +129,8 @@ const rootReducer = combineReducers({
   cart: cartSlice,
   staff: staffSlice,
   resourcesCampaigns: CampaignsSlice,
+  resourcesFunctions: functionsSlice,
+  resourcesFiles: filesSlice,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,

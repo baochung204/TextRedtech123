@@ -1,14 +1,14 @@
-import resourcesApi from 'src/api/userResource/resourcesApi';
-import { CampaignsType } from './Type/campaignsType';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { FilesType } from './type/fileType';
+import resourcesApi from 'src/api/userResource/resourcesApi';
 
-interface CampaignsI {
-  data: CampaignsType;
+interface FileI {
+  data: FilesType;
   loading: boolean;
   error: string | null;
 }
 
-const initialState: CampaignsI = {
+const initialState: FileI = {
   data: {
     content: [],
     pageNo: 0,
@@ -26,11 +26,11 @@ interface FetchParams {
   size?: number;
 }
 
-export const fetchCampaigns = createAsyncThunk<CampaignsType, FetchParams>(
-  'campaigns/fetchData',
+export const fetchFiles = createAsyncThunk<FilesType, FetchParams>(
+  'files/fetchData',
   async ({ page, size }: FetchParams, thunkAPI) => {
     try {
-      const response = await resourcesApi.getAllCampaigns(page, size);
+      const response = await resourcesApi.getAllFiles(page, size);
       return response.data.result;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
@@ -38,25 +38,25 @@ export const fetchCampaigns = createAsyncThunk<CampaignsType, FetchParams>(
   },
 );
 
-const campaignsSlice = createSlice({
-  name: 'campaigns',
+const filesSlice = createSlice({
+  name: 'files',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCampaigns.pending, (state) => {
+      .addCase(fetchFiles.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchCampaigns.fulfilled, (state, action: PayloadAction<CampaignsType>) => {
+      .addCase(fetchFiles.fulfilled, (state, action: PayloadAction<FilesType>) => {
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(fetchCampaigns.rejected, (state, action) => {
+      .addCase(fetchFiles.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
   },
 });
 
-export default campaignsSlice.reducer;
+export default filesSlice.reducer;

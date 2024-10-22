@@ -23,12 +23,6 @@ const Tab1 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
-  // const dataStr = useSelector((state: AppState) => state.str.data);
-  // const [datax, setDatax] = useState<Str[]>([]);
-  const [dataView, setDataView] = useState<Str | undefined>();
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
   const campaigns = useSelector((state: AppState) => state.resourcesCampaigns.data);
   const [campaignsData, setCampaignsData] = useState<CampaignsType>();
   useEffect(() => {
@@ -39,6 +33,13 @@ const Tab1 = () => {
       setCampaignsData(campaigns);
     }
   }, [campaigns, campaignsData]);
+  // const dataStr = useSelector((state: AppState) => state.str.data);
+  // const [datax, setDatax] = useState<Str[]>([]);
+  const [dataView, setDataView] = useState<Str | undefined>();
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
   // console.log('load data', campaignsData);
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {

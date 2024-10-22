@@ -2,8 +2,8 @@ import { axiosAPI } from '../axiosApi';
 
 const url = 'user-resources';
 
-const campaignsApi = {
-  getAllFiles: (page?: number, size?: number) => {
+const resourcesApi = {
+  getAllFiles: (page?: number | undefined, size?: number | undefined) => {
     return axiosAPI.get(`/${url}/files?page=${page}&size=${size}`);
   },
   //   getAllURL: (page?: number, size?: number) => {
@@ -15,11 +15,11 @@ const campaignsApi = {
   //   getAllImages: (page?: number, size?: number) => {
   //     return axiosAPI.get(`/${url}/images`);
   //   },
-  getAllFunction: (page?: number, size?: number) => {
+  getAllFunctions: (page?: number | undefined, size?: number | undefined) => {
     return axiosAPI.get(`/${url}/functions?page=${page}&size=${size}`);
   },
   getAllCampaigns: (page?: number | undefined, size?: number | undefined) => {
     return axiosAPI.get(`/${url}/campaigns?page=${page}&size=${size}`);
   },
 };
-export default campaignsApi;
+export default resourcesApi;

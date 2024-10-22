@@ -1,4 +1,4 @@
-interface DataType {
+export interface DataType {
   functionId: number;
   functionName: string;
   level: string;

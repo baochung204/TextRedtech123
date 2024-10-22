@@ -35,7 +35,10 @@ interface PropsDialog {
 }
 
 const validationSchema = Yup.object().shape({
-  file: Yup.mixed().required('File không được bỏ trống'),
+  file: Yup.mixed().when('showLinkInput', {
+    is: false,
+    then: Yup.mixed().required('File không được bỏ trống'),
+  }),
   linkTCT: Yup.string().when('showLinkInput', {
     is: true,
     then: Yup.string().required('Link TCT không được bỏ trống'),
@@ -44,7 +47,6 @@ const validationSchema = Yup.object().shape({
 
 const DialogUpload = ({ open, setOpen }: PropsDialog) => {
   const [fileName, setFileName] = useState<string | null>(null);
-  const [prevFileName, setPrevFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showLinkInput, setShowLinkInput] = useState(false);
 
@@ -55,38 +57,44 @@ const DialogUpload = ({ open, setOpen }: PropsDialog) => {
       showLinkInput: false,
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: (values, { resetForm }) => {
+      if (values.showLinkInput) {
+        console.log('Sending link:', values.linkTCT);
+      } else {
+        console.log('Sending file:', values.file);
+      }
       setOpen(false);
+      resetForm();
+      setFileName(null);
+      setShowLinkInput(false);
     },
   });
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files?.[0];
     if (file) {
-      if (fileName) {
-        setPrevFileName(fileName);
-      }
+      formik.setFieldValue('linkTCT', '');
+      setShowLinkInput(false);
       formik.setFieldValue('file', file);
       setFileName(file.name);
     }
   };
 
   const handleRemoveFile = () => {
-    if (prevFileName) {
-      formik.setFieldValue('file', prevFileName);
-      setFileName(prevFileName);
-      setPrevFileName(prevFileName);
-    } else {
-      formik.setFieldValue('file', null);
-      setFileName(null);
-    }
+    formik.setFieldValue('file', null);
+    setFileName(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
   };
 
   const toggleLinkInput = () => {
+    if (showLinkInput) {
+      formik.setFieldValue('file', null);
+      setFileName(null);
+    } else {
+      formik.setFieldValue('linkTCT', '');
+    }
     setShowLinkInput(!showLinkInput);
     formik.setFieldValue('showLinkInput', !showLinkInput);
   };
@@ -108,76 +116,74 @@ const DialogUpload = ({ open, setOpen }: PropsDialog) => {
                 </Box>
               </Grid>
               {!showLinkInput && (
-                <>
-                  <Grid item xs={12}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={6}>
-                        <Button
-                          component="label"
-                          variant="contained"
-                          startIcon={<CloudUploadIcon />}
-                          fullWidth
-                        >
-                          Tải file lên
-                          <VisuallyHiddenInput
-                            ref={fileInputRef}
-                            type="file"
-                            onChange={handleFileChange}
-                            accept=".txt, .docx, .pdf, .pptx, .xlsx, .csv"
-                          />
-                        </Button>
-                        {formik.touched.file && formik.errors.file && (
-                          <Typography color="error">{formik.errors.file}</Typography>
-                        )}
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          fullWidth
-                          onClick={toggleLinkInput}
-                          disabled={!!fileName}
+                <Grid item xs={12}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                      <Button
+                        component="label"
+                        variant="contained"
+                        startIcon={<CloudUploadIcon />}
+                        fullWidth
+                      >
+                        Tải file lên
+                        <VisuallyHiddenInput
+                          ref={fileInputRef}
+                          type="file"
+                          onChange={handleFileChange}
+                          accept=".txt, .docx, .pdf, .pptx, .xlsx, .csv"
+                        />
+                      </Button>
+                      {formik.touched.file && formik.errors.file && (
+                        <Typography color="error">{formik.errors.file}</Typography>
+                      )}
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        fullWidth
+                        onClick={toggleLinkInput}
+                        disabled={!!fileName}
+                        sx={{
+                          backgroundColor: fileName ? 'gray' : 'error',
+                        }}
+                      >
+                        Link thuế TCT
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      {fileName && (
+                        <Grid
+                          item
+                          xs={12}
                           sx={{
-                            backgroundColor: fileName ? 'gray' : 'error',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
                           }}
                         >
-                          Link thuế TCT
+                          <AttachFileIcon />
+                          <Typography>{fileName}</Typography>
+                          <IconButton onClick={handleRemoveFile} sx={{ ml: 1 }}>
+                            <DeleteIcon color="error" />
+                          </IconButton>
+                        </Grid>
+                      )}
+                    </Grid>
+                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      {fileName && (
+                        <Button
+                          type="submit"
+                          color="secondary"
+                          variant="contained"
+                          disabled={!(formik.isValid && formik.dirty)}
+                        >
+                          Xác nhận
                         </Button>
-                      </Grid>
-                      <Grid item xs={12}>
-                        {fileName && (
-                          <Grid
-                            item
-                            xs={12}
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                            }}
-                          >
-                            <AttachFileIcon />
-                            <Typography>{fileName}</Typography>
-                            <IconButton onClick={handleRemoveFile} sx={{ ml: 1 }}>
-                              <DeleteIcon color="error" />
-                            </IconButton>
-                          </Grid>
-                        )}
-                      </Grid>
-                      <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        {fileName && (
-                          <Button
-                            type="submit"
-                            color="secondary"
-                            variant="contained"
-                            disabled={!(formik.isValid && formik.dirty)}
-                          >
-                            Xác nhận
-                          </Button>
-                        )}
-                      </Grid>
+                      )}
                     </Grid>
                   </Grid>
-                </>
+                </Grid>
               )}
               {showLinkInput && (
                 <>
@@ -201,7 +207,12 @@ const DialogUpload = ({ open, setOpen }: PropsDialog) => {
                     <Button variant="outlined" onClick={toggleLinkInput}>
                       Quay lại
                     </Button>
-                    <Button type="submit" color="secondary" variant="contained">
+                    <Button
+                      type="submit"
+                      color="secondary"
+                      variant="contained"
+                      disabled={!(formik.isValid && formik.dirty)}
+                    >
                       Xác nhận
                     </Button>
                   </Grid>
