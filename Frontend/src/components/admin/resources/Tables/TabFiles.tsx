@@ -1,13 +1,12 @@
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import DialogModelView from '../dialog/DialogModelView';
-import { ModelRows } from '../mockData/TableModel';
-import { HeadCell } from '../types/HeadCell';
 import { useSelector } from 'react-redux';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch } from 'src/store/Store';
-import { fetchModelListData } from 'src/store/admin/resources/model/table/modelListSlice';
+import { fetchFilesListData } from 'src/store/admin/resources/files/table/filesListSlice';
+import DialogModelView from '../dialog/DialogModelView';
+import { HeadCell } from '../types/HeadCell';
 
 interface PropsTabFunction {
   value: string;
@@ -16,43 +15,39 @@ interface PropsTabFunction {
   dataSelect?: string[];
 }
 
-const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
+const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   const [selectId, setSelectId] = useState<string>();
-  const modelList = useSelector((state: AppState) => state.model_list.dataa);
+  const filesList = useSelector((state: AppState) => state.files_list.dataa);
 
   useEffect(() => {
-    dispatch(fetchModelListData());
+    dispatch(fetchFilesListData());
   }, [dispatch]);
 
-  console.log(modelList);
-  const ModelCells: HeadCell[] = [
+  console.log(filesList);
+  const FilesCells: HeadCell[] = [
     {
       dataIndex: 'productId',
       title: 'ID',
     },
     {
+      dataIndex: 'nameProduct',
+      title: 'Tên file',
+    },
+    {
+      dataIndex: 'customer',
+      title: 'Khách hàng',
+    },
+    {
+      dataIndex: 'type',
+      title: 'Định dạng',
+    },
+    {
+      dataIndex: 'size',
+      title: 'Dung lượng',
+    },
+    {
       dataIndex: 'createDate',
-      title: 'Ngày tạo',
-    },
-    {
-      dataIndex: 'modelName',
-      title: 'Tên model',
-    },
-    {
-      dataIndex: 'baseModel',
-      title: 'Model gốc',
-    },
-    {
-      dataIndex: 'trainingToken',
-      title: 'Training tokens',
-    },
-    {
-      dataIndex: 'totalOwnership',
-      title: 'Khách hàng sở hữu',
-    },
-    {
-      dataIndex: 'totalApplicationAssistant',
-      title: 'Trợ lý áp dụng',
+      title: 'Ngày tải',
     },
     {
       dataIndex: 'actions',
@@ -79,10 +74,10 @@ const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
 
   return (
     <>
-      <CustomTable columns={ModelCells} dataSource={modelList} dataSelect={dataSelect} />
+      <CustomTable columns={FilesCells} dataSource={filesList} dataSelect={dataSelect} />
       <DialogModelView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );
 };
 
-export default TabModel;
+export default TabFiles;

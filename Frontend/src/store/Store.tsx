@@ -32,7 +32,6 @@ import cartSlice from './user/cart/cartSlice';
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-
 import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
@@ -44,13 +43,21 @@ import BlogSlice from './user/blogs/blog';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
 import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
+import CampaignSlice from './admin/resources/campaign/overview/campaignSlice';
 import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
 import modelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
 import imagesSlice from 'src/store/user/user-resources/images/imagesUesSlice';
 import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
-import urlsSlice from 'src/store/user/user-resources/urls/urlsUseSlice';
+import functionSlice from './admin/resources/function/overview/functionSlice';
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
+import urlsSlice from 'src/store/user/user-resources/urls/urlsUseSlice';
+import fileSlice from './admin/resources/files/overview/filesSlice';
 import listPointSlice from './user/points/listPointSlice';
+import modelSlice from './admin/resources/model/overview/modelSlice';
+import CampaignListSlice from './admin/resources/campaign/table/campaignListSlice';
+import fileListSlice from './admin/resources/files/table/filesListSlice';
+import functionListSlice from './admin/resources/function/table/functionListSlice';
+import modelListSlice from './admin/resources/model/table/modelListSlice';
 
 export const store = configureStore({
   reducer: {
@@ -101,6 +108,14 @@ export const store = configureStore({
     counpon_list: counponlistSlice,
     flashsale_list: flashsaleSlice,
     overview_staff: staffoverviewSlice,
+    overview_campaign: CampaignSlice,
+    overview_function: functionSlice,
+    overview_files: fileSlice,
+    overview_models: modelSlice,
+    campaign_list: CampaignListSlice,
+    files_list: fileListSlice,
+    function_list: functionListSlice,
+    model_list: modelListSlice,
   },
 });
 
@@ -150,6 +165,15 @@ const rootReducer = combineReducers({
   counpon_list: counponlistSlice,
   flashsale_list: flashsaleSlice,
   overview_staff: staffoverviewSlice,
+  overview_campaign: CampaignSlice,
+  overview_function: functionSlice,
+  overview_files: fileSlice,
+  overview_models: modelSlice,
+  campaign_list: CampaignListSlice,
+  files_list: fileListSlice,
+  function_list: functionListSlice,
+  model_list: modelListSlice,
+
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

@@ -23,16 +23,16 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import DialogFunction from './dialog/DialogFunction';
 import DialogFile from './dialog/DialogModel';
 import DialogStr from './dialog/DialogStr';
-import { FileCells, Files } from './mockData/TableFile';
-import { Function } from './mockData/TableFunction';
+import TableFile from './mockData/TableFile';
+import TabbleFunction from './mockData/TableFunction';
 import { Image, ImageCells, ImageRows } from './mockData/TableImage';
-import { Model } from './mockData/TableModel';
-import { Strategy } from './mockData/TableStr';
+import TableModel from './mockData/TableModel';
+import TableStr from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
-
 import TabFunction from './Tables/TabFunction';
 import TabModel from './Tables/TabModel';
 import TabStr from './Tables/TabStr';
+import TabFiles from './Tables/TabFiles';
 interface Column {
   title: string;
   dataIndex: string;
@@ -51,6 +51,13 @@ const Main = () => {
     setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
     setOpen(false);
   };
+
+  const { Strategy, StrategyRows } = TableStr();
+  const { Function, FunctionRows } = TabbleFunction();
+  const { Files, FileCells } = TableFile();
+  const { Model, ModelCells, ModelRows } = TableModel();
+
+  // console.log(StrategyRows);
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const handleColumnChange = (event: any) => {
@@ -325,10 +332,7 @@ const Main = () => {
         <Grid item>
           <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
             <Grid item>
-              <Badge
-                badgeContent={column[value].length - dataSelect.length}
-                color="primary"
-              >
+              <Badge badgeContent={column[value].length - dataSelect.length} color="primary">
                 <FilterListIcon color="action" />
               </Badge>
             </Grid>
@@ -374,7 +378,9 @@ const Main = () => {
                 <MenuItem>
                   <Checkbox
                     checked={!(dataSelect.length === column[value].length)}
-                    indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
+                    indeterminate={
+                      dataSelect.length > 0 && dataSelect.length < column[value].length
+                    }
                     onChange={() => {
                       if (dataSelect.length < column[value].length) {
                         const allColumns = column[value].map((header: Column) => header.dataIndex);
@@ -496,7 +502,8 @@ const Main = () => {
               <TabFunction value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">
-              <CustomTable columns={FileCells} dataSource={data} dataSelect={dataSelect} />
+              <TabFiles value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
+              {/* <CustomTable columns={FileCells} dataSource={data} dataSelect={dataSelect} /> */}
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="4">
               <TabModel value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
