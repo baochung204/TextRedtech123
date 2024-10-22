@@ -1,8 +1,7 @@
 import { Box, Button, Grid, Input, styled, Typography, useTheme } from '@mui/material';
-import { link } from 'fs';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 
 import { AppDispatch, AppState } from 'src/store/Store';
@@ -64,6 +63,8 @@ const TableBuyPoint = () => {
       } else {
         setErrorMessage('Số point cần lớn hơn 1.000.000'); // Set the error message
       }
+    } else if (clickedId == null) {
+      setErrorMessage('Vui lòng chọn gói point');
     } else {
       navigate(`/pay/checkout_point/${clickedId}`);
     }
@@ -184,7 +185,7 @@ const TableBuyPoint = () => {
             sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}
           >
             {errorMessage && (
-              <Typography color="error" sx={{ mb: 2 }}>
+              <Typography color="error" sx={{ mb: 2, fontSize: 20 }}>
                 {errorMessage}
               </Typography>
             )}
