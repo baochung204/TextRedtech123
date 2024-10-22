@@ -240,6 +240,11 @@ const FirstStep = () => {
                               {lgUp && countdownTime && (
                                 <Countdown initialSeconds={pkg.displayTime} onTimeUp={() => {}} />
                               )}
+                              {lgUp && countdownTime && (
+                                <Countdown initialSeconds={countdownTime} onTimeUp={() => {}} />
+                                // console.log('Countdown finished');
+                                // Thực hiện hành động khi hết thời gian
+                              )}
 
                               <Button
                                 variant={
