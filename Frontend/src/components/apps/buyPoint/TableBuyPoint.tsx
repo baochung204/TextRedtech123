@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import { fetchPoints } from 'src/store/apps/point/PointSlice';
+
 import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchListPointData } from 'src/store/user/points/listPointSlice';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -23,14 +24,15 @@ const TableBuyPoint = () => {
   const [value, setValue] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number | null>(null);
   const dispatch = useDispatch<AppDispatch>();
-  const dataPoints = useSelector((state: AppState) => state.points.points);
+  const listPoints = useSelector((state: AppState) => state.point_list.dataa);
   useEffect(() => {
-    dispatch(fetchPoints());
+    dispatch(fetchListPointData());
   }, [dispatch]);
-  // console.log(dataPoint);
+
+  console.log(listPoints);
 
   const handlePackageClick = (items: any) => {
-    setClickedId(items.id);
+    setClickedId(items.pointType);
     setTotalPrice(items.cash);
   };
 
@@ -52,13 +54,15 @@ const TableBuyPoint = () => {
     <Grid container>
       <Grid item xs={12}>
         <Grid container spacing={3} textAlign="center" sx={{ pt: 4 }}>
-          {dataPoints.map((items) => (
-            <Grid item lg={3} sm={6} xs={12} key={items.id}>
+          {listPoints.map((items) => (
+            <Grid item lg={3} sm={6} xs={12}>
               <BoxStyled
-                onClick={() => handlePackageClick(items)}
+                onClick={() => {
+                  handlePackageClick(items);
+                }}
                 sx={{
                   borderWidth: 1,
-                  border: `2px solid ${clickedId === items.id ? '#ff0000' : 'none'}`,
+                  border: `2px solid ${clickedId === items.pointType ? '#ff0000' : 'none'}`,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -67,6 +71,9 @@ const TableBuyPoint = () => {
                   gap: '-10px',
                   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                   backgroundColor: theme.palette.mode === 'dark' ? '#303C50' : '',
+                  onClick: () => {
+                    console.log('Clicked item:', clickedId);
+                  },
                 }}
               >
                 <BoxStyled

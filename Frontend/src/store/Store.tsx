@@ -12,7 +12,6 @@ import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/productsSlice';
 import UrlSlice from './apps/resources/url/UrlSlice';
-import PointSlice from './apps/point/PointSlice';
 import {
   TypedUseSelectorHook,
   useDispatch as useAppDispatch,
@@ -21,7 +20,6 @@ import {
 import { combineReducers } from 'redux';
 import CustomerReducer from './apps/customer/customerSlice';
 import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
-
 import StrReducer from './apps/resources/str/strSlice';
 import functionReducer from './apps/resources/function/functionSlice';
 import fileReducer from './apps/resources/file/fileSlice';
@@ -29,30 +27,23 @@ import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
-import twofaSlice from './user/2-factor-authentication/twofaSlice'
+import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
-
-
-import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
+import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-
 import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
-
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
 import flashsaleoverviewSlice from './admin/counpon/flashsale/overview/flashsaleOverviewSlice';
 import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice';
-
 import affiliateApiSlice from './user/affiliate-account/affiliate-account';
 import BlogSlice from './user/blogs/blog';
-
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
-
-
+import listPointSlice from './user/points/listPointSlice';
 export const store = configureStore({
   reducer: {
     //user
@@ -72,7 +63,6 @@ export const store = configureStore({
     imageResources: ImageSlice,
     product: productReducer,
     customeraffiliate: CustomerAffiliate,
-    points: PointSlice,
     vnd_coupons: vndCouponsSlice,
     str: StrReducer,
     function: functionReducer,
@@ -80,21 +70,15 @@ export const store = configureStore({
     test: userSlice,
     assisstant: assisstantSlice,
     twofa: twofaSlice,
-
     flashsale_random: flashSaleRandomSlice,
-
     adminTicker: adminTicketSlice,
-
     cart: cartSlice,
-
     // overViewTicket: overViewTicketSlice,
     userme: usermeSlice,
-  }
-})
-
     staff: staffSlice,
     affiliate: affiliateApiSlice,
     blogs: BlogSlice,
+    point_list: listPointSlice,
     //admin
     overview_blog: blogSlice,
     overview_counpon: counponSlice,
@@ -105,7 +89,6 @@ export const store = configureStore({
     overview_staff: staffoverviewSlice,
   },
 });
-
 
 const rootReducer = combineReducers({
   //user
@@ -124,7 +107,6 @@ const rootReducer = combineReducers({
   urlResources: UrlSlice,
   imageResources: ImageSlice,
   customeraffiliate: CustomerAffiliate,
-  points: PointSlice,
   vnd_coupons: vndCouponsSlice,
   product: productReducer,
   str: StrReducer,
@@ -136,25 +118,20 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
   cart: cartSlice,
-
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
-
   blogs: BlogSlice,
   affiliate: affiliateApiSlice,
+  point_list: listPointSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
   counpon_history: counponhistorySlice,
   overview_flashsale: flashsaleoverviewSlice,
   counpon_list: counponlistSlice,
-
   staff: staffSlice,
-
   flashsale_list: flashsaleSlice,
   overview_staff: staffoverviewSlice,
-
-
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
