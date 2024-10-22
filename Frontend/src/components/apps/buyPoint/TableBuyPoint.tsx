@@ -126,8 +126,11 @@ const TableBuyPoint = () => {
                       color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
                     }}
                   >
-                    Hỗ trợ số lượng lớn
-                    {/* {toggle === null ? items.cash : <>{toggle.toLocaleString('vi-VN')} ₫</>} */}
+                    {click
+                      ? toggle === null
+                        ? items.cash.toLocaleString('vi-VN')
+                        : `${toggle.toLocaleString('vi-VN')} ₫`
+                      : 'Hỗ trợ số lượng lớn'}
                   </Typography>
                 ) : (
                   <Typography
