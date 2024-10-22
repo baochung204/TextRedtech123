@@ -22,6 +22,7 @@ const TableBuyPoint = () => {
   const navigate = useNavigate();
   const [clickedId, setClickedId] = useState<string | null>(null);
   const [totalPrice, setTotalPrice] = useState<number | string>(0);
+  const [errorMessage, setErrorMessage] = useState('');
   const [click, setClick] = useState<boolean>(false);
   const [value, setValue] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number | null>(null);
@@ -54,13 +55,17 @@ const TableBuyPoint = () => {
     setValue(formatNumber(inputValue));
   };
 
-  const handleCheckout = (totalPrice, clickedId, pointType) => {
-    if (pointType === 'CUSTOMIZE') {
-      if (totalPrice >= 1000000) {
-        alert('Checkout');
-      } else {
+  const handleCheckout = (totalPrice: number | string, clickedId: string | null) => {
+    if (clickedId === 'CUSTOMIZE') {
+      if (totalPrice >= 50000000) {
         navigate(`/pay/checkout_point/${clickedId}`);
+        // console.log('totalPrice', totalPrice);
+        setErrorMessage('');
+      } else {
+        setErrorMessage('Số point cần lớn hơn 1.000.000'); // Set the error message
       }
+    } else {
+      navigate(`/pay/checkout_point/${clickedId}`);
     }
   };
 
@@ -86,9 +91,9 @@ const TableBuyPoint = () => {
                   gap: '-10px',
                   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                   backgroundColor: theme.palette.mode === 'dark' ? '#303C50' : '',
-                  onClick: () => {
-                    console.log('Clicked item:', clickedId);
-                  },
+                  // onClick: () => {
+                  //   console.log('Clicked item:', clickedId);
+                  // },
                 }}
               >
                 <BoxStyled
@@ -143,7 +148,7 @@ const TableBuyPoint = () => {
                   >
                     {click
                       ? toggle === null
-                        ? items.cash.toLocaleString('vi-VN')
+                        ? `${items.cash.toLocaleString('vi-VN')} ₫`
                         : `${toggle.toLocaleString('vi-VN')} ₫`
                       : 'Hỗ trợ số lượng lớn'}
                   </Typography>
@@ -170,16 +175,19 @@ const TableBuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              {/* {Number.isFinite(totalPrice) ? (
-                totalPrice.toLocaleString('vi-VN')
-              ) : (
-                <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
-              )}
-              ₫ */}
               {totalPrice.toLocaleString('vi-VN')} ₫
             </Typography>
           </Grid>
-          <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Grid
+            item
+            xs={12}
+            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}
+          >
+            {errorMessage && (
+              <Typography color="error" sx={{ mb: 2 }}>
+                {errorMessage}
+              </Typography>
+            )}
             <Button
               variant="contained"
               disableElevation
@@ -192,17 +200,11 @@ const TableBuyPoint = () => {
                 ':hover': {
                   backgroundColor: '#F22A51',
                 },
-                onClick: () => {
-                  handleCheckout(totalPrice, clickedId, listPoints[0].pointType);
-                },
+              }}
+              onClick={() => {
+                handleCheckout(totalPrice, clickedId);
               }}
             >
-              {/* <Link
-                to={`/pay/checkout_point/${clickedId}`}
-                style={{ textDecoration: 'none', color: 'white' }}
-              >
-                
-              </Link> */}
               Thanh toán ngay
             </Button>
           </Grid>
