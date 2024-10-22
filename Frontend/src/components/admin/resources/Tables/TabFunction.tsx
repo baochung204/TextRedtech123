@@ -1,7 +1,10 @@
 import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchFunctionListData } from 'src/store/admin/resources/function/table/functionListSlice';
 import DialogFuncView from '../dialog/DialogFuncView';
 import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
@@ -14,26 +17,33 @@ interface PropsTabFunction {
 }
 
 const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
+  const functionList = useSelector((state: AppState) => state.function_list.dataa);
+
+  useEffect(() => {
+    dispatch(fetchFunctionListData());
+  }, [dispatch]);
+
+  console.log(functionList);
   const [selectId, setSelectId] = useState<string>();
   const FunctionCells: HeadCell[] = [
     {
-      dataIndex: 'id',
+      dataIndex: 'productId',
       title: 'ID',
     },
     {
-      dataIndex: 'creationTime',
+      dataIndex: 'createDate',
       title: 'Ngày tạo',
     },
     {
-      dataIndex: 'functionGroup',
+      dataIndex: 'nameGroupFunction',
       title: 'Nhóm function',
     },
     {
-      dataIndex: 'functionName',
+      dataIndex: 'nameProduct',
       title: 'Tên function',
     },
     {
-      dataIndex: 'badge',
+      dataIndex: 'badgeUrl',
       title: 'Huy hiệu',
       render: (value: string) => (
         <>
@@ -46,15 +56,15 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
       title: 'Level',
     },
     {
-      dataIndex: 'ownedCustomers',
+      dataIndex: 'customer',
       title: 'Khách hàng sở hữu',
     },
     {
-      dataIndex: 'appliedAssistants',
+      dataIndex: 'applicationAssistant',
       title: 'Trợ lý áp dụng',
     },
     {
-      dataIndex: 'summary',
+      dataIndex: 'sammary',
       title: 'Tóm tắt',
     },
     {
@@ -71,7 +81,6 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            
           </Tooltip>
         </Box>
       ),
@@ -80,7 +89,7 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
 
   return (
     <>
-      <CustomTable columns={FunctionCells} dataSource={FunctionRows} dataSelect={dataSelect} />
+      <CustomTable columns={FunctionCells} dataSource={functionList} dataSelect={dataSelect} />
       <DialogFuncView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );

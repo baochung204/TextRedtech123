@@ -4,98 +4,11 @@ import functionimg from 'src/assets/Function/FUNCTION.png';
 import customer from 'src/assets/Function/KHACH HANG SO HUU.png';
 import functiongroup from 'src/assets/Function/NHOM FUNCTION.png';
 import { Functions } from '../types/Functions';
-
-export const Function = [
-  {
-    bgColor: 'primary.light',
-    title: 'Nhóm Function',
-    total: '52',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={functiongroup} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Functions',
-    total: '189',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={functionimg} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng sở hữu',
-    total: '32.415',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={customer} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Trợ lý áp dụng',
-    total: '11.415',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={assistant} width={30} />
-        </Box>
-      </>
-    ),
-  },
-];
-
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchOverviewFunctionData } from 'src/store/admin/resources/function/overview/functionSlice';
 
 export const FunctionRows: Functions[] = [
   {
@@ -103,7 +16,7 @@ export const FunctionRows: Functions[] = [
     creationTime: '2024-09-01',
     functionGroup: 'Nhóm A',
     functionName: 'Nguyen van chi',
-    badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
+    badge: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 1',
     ownedCustomers: '25',
     appliedAssistants: '3',
@@ -111,14 +24,13 @@ export const FunctionRows: Functions[] = [
     summary: 'Hỗ trợ phân tích dữ liệu',
     functionCode: 'analyzeData2024()',
     creator: 'Nguyễn Văn A',
-
   },
   {
     id: 'FUNC002',
     creationTime: '2024-09-02',
     functionGroup: 'Nhóm B',
     functionName: 'Nguyen van chi',
-    badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
+    badge: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 2',
     ownedCustomers: '15',
     appliedAssistants: '4',
@@ -126,14 +38,13 @@ export const FunctionRows: Functions[] = [
     summary: 'Quản lý khách hàng tự động',
     functionCode: 'autoManageCustomer()',
     creator: 'Trần Thị B',
-
   },
   {
     id: 'FUNC003',
     creationTime: '2024-09-03',
     functionGroup: 'Nhóm A',
     functionName: 'Nguyen van chi',
-    badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
+    badge: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 1',
     ownedCustomers: '10',
     appliedAssistants: '2',
@@ -141,14 +52,13 @@ export const FunctionRows: Functions[] = [
     summary: 'Phân tích và dự đoán xu hướng',
     functionCode: 'trendPrediction()',
     creator: 'Lê Văn C',
-
   },
   {
     id: 'FUNC004',
     creationTime: '2024-09-04',
     functionGroup: 'Nhóm C',
     functionName: 'Nguyen van chi',
-    badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
+    badge: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 3',
     ownedCustomers: '30',
     appliedAssistants: '5',
@@ -156,14 +66,13 @@ export const FunctionRows: Functions[] = [
     summary: 'Phát triển kênh phân phối',
     functionCode: 'channelDevelopment()',
     creator: 'Hoàng Thị D',
-
   },
   {
     id: 'FUNC005',
     creationTime: '2024-09-05',
     functionGroup: 'Nhóm B',
     functionName: 'Nguyen van chi',
-    badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
+    badge: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 2',
     ownedCustomers: '20',
     appliedAssistants: '3',
@@ -171,14 +80,13 @@ export const FunctionRows: Functions[] = [
     summary: 'Tối ưu hóa quy trình vận hành',
     functionCode: 'optimizeOperation()',
     creator: 'Phạm Văn E',
-
   },
   {
     id: 'FUNC006',
     creationTime: '2024-09-06',
     functionGroup: 'Nhóm A',
     functionName: 'Nguyen van chi',
-    badge:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
+    badge: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Mimus_polyglottus1_cropped.png',
     level: 'Cấp 3',
     ownedCustomers: '40',
     appliedAssistants: '6',
@@ -186,6 +94,113 @@ export const FunctionRows: Functions[] = [
     summary: 'Nâng cao thương hiệu',
     functionCode: 'enhanceBranding()',
     creator: 'Ngô Thị F',
-
   },
 ];
+
+const TableFunction = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const dataFunctionOverview = useSelector((state: AppState) => state.overview_function.dataa);
+
+  useEffect(() => {
+    dispatch(fetchOverviewFunctionData());
+  }, [dispatch]);
+
+  const totalApplicationAsisstant = dataFunctionOverview.totalApplicationAsisstant;
+  const totalCustomerOwnership = dataFunctionOverview.totalCustomerOwnership;
+  const totalFunction = dataFunctionOverview.totalFunction;
+  const totalGroupFunction = dataFunctionOverview.totalGroupFunction;
+
+  const Function = [
+    {
+      bgColor: 'primary.light',
+      title: 'Nhóm Function',
+      total: totalGroupFunction,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={functiongroup} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Functions',
+      total: totalFunction,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={functionimg} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khách hàng sở hữu',
+      total: totalCustomerOwnership,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={customer} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Trợ lý áp dụng',
+      total: totalApplicationAsisstant,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={assistant} width={30} />
+          </Box>
+        </>
+      ),
+    },
+  ];
+  return { Function, FunctionRows };
+};
+
+export default TableFunction;
