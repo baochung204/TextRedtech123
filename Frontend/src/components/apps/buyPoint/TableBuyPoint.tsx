@@ -1,10 +1,12 @@
 import { Box, Button, Grid, Input, styled, Typography, useTheme } from '@mui/material';
+import { link } from 'fs';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import { fetchPoints } from 'src/store/apps/point/PointSlice';
+
 import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchListPointData } from 'src/store/user/points/listPointSlice';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -17,20 +19,23 @@ const BoxStyled = styled(Box)(() => ({
 
 const TableBuyPoint = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [clickedId, setClickedId] = useState<string | null>(null);
   const [totalPrice, setTotalPrice] = useState<number | string>(0);
+  const [errorMessage, setErrorMessage] = useState('');
   const [click, setClick] = useState<boolean>(false);
   const [value, setValue] = useState<string | null>(null);
   const [toggle, setToggle] = useState<number | null>(null);
   const dispatch = useDispatch<AppDispatch>();
-  const dataPoints = useSelector((state: AppState) => state.points.points);
+  const listPoints = useSelector((state: AppState) => state.point_list.dataa);
   useEffect(() => {
-    dispatch(fetchPoints());
+    dispatch(fetchListPointData());
   }, [dispatch]);
-  // console.log(dataPoint);
+
+  console.log(listPoints);
 
   const handlePackageClick = (items: any) => {
-    setClickedId(items.id);
+    setClickedId(items.pointType);
     setTotalPrice(items.cash);
   };
 
@@ -42,23 +47,42 @@ const TableBuyPoint = () => {
     const inputValue = e.target.value.replace(/\D/g, '');
     const number = parseInt(inputValue, 10);
     if (!isNaN(number)) {
-      setToggle(number * 300);
+      setToggle(number);
+      setTotalPrice(number);
     } else {
       setToggle(null);
     }
     setValue(formatNumber(inputValue));
   };
+
+  const handleCheckout = (totalPrice: number | string, clickedId: string | null) => {
+    if (clickedId === 'CUSTOMIZE') {
+      if (totalPrice >= 50000000) {
+        navigate(`/pay/checkout_point/${clickedId}`);
+        // console.log('totalPrice', totalPrice);
+        setErrorMessage('');
+      } else {
+        setErrorMessage('Số point cần lớn hơn 1.000.000'); // Set the error message
+      }
+    } else {
+      navigate(`/pay/checkout_point/${clickedId}`);
+    }
+  };
+
+  console.log('toggle', toggle);
   return (
     <Grid container>
       <Grid item xs={12}>
         <Grid container spacing={3} textAlign="center" sx={{ pt: 4 }}>
-          {dataPoints.map((items) => (
-            <Grid item lg={3} sm={6} xs={12} key={items.id}>
+          {listPoints.map((items) => (
+            <Grid item lg={3} sm={6} xs={12}>
               <BoxStyled
-                onClick={() => handlePackageClick(items)}
+                onClick={() => {
+                  handlePackageClick(items);
+                }}
                 sx={{
                   borderWidth: 1,
-                  border: `2px solid ${clickedId === items.id ? '#ff0000' : 'none'}`,
+                  border: `2px solid ${clickedId === items.pointType ? '#ff0000' : 'none'}`,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -67,6 +91,9 @@ const TableBuyPoint = () => {
                   gap: '-10px',
                   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                   backgroundColor: theme.palette.mode === 'dark' ? '#303C50' : '',
+                  // onClick: () => {
+                  //   console.log('Clicked item:', clickedId);
+                  // },
                 }}
               >
                 <BoxStyled
@@ -78,11 +105,12 @@ const TableBuyPoint = () => {
                     padding: '0',
                   }}
                 >
-                  {typeof items.point === 'string' ? (
+                  {items.pointType === 'CUSTOMIZE' ? (
                     <>
                       <Typography variant="h3" sx={{ fontWeight: 700 }}>
                         {!click ? (
-                          <div onClick={() => setClick(!click)}>{items.point}</div>
+                          // <div onClick={() => setClick(!click)}>{items.point}</div>
+                          <Box onClick={() => setClick(!click)}>Tùy chọn</Box>
                         ) : (
                           <Input
                             value={value}
@@ -110,7 +138,7 @@ const TableBuyPoint = () => {
                   )}
                   <img src={logoPoint} alt="" width={30} height={30} style={{ borderRadius: 50 }} />
                 </BoxStyled>
-                {typeof items.point === 'string' ? (
+                {items.pointType === 'CUSTOMIZE' ? (
                   <Typography
                     variant="h6"
                     sx={{
@@ -118,7 +146,11 @@ const TableBuyPoint = () => {
                       color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
                     }}
                   >
-                    {toggle === null ? items.cash : <>{toggle.toLocaleString('vi-VN')} ₫</>}
+                    {click
+                      ? toggle === null
+                        ? `${items.cash.toLocaleString('vi-VN')} ₫`
+                        : `${toggle.toLocaleString('vi-VN')} ₫`
+                      : 'Hỗ trợ số lượng lớn'}
                   </Typography>
                 ) : (
                   <Typography
@@ -143,33 +175,38 @@ const TableBuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              {Number.isFinite(totalPrice) ? (
-                totalPrice.toLocaleString('vi-VN')
-              ) : (
-                <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
-              )}
-              ₫
+              {totalPrice.toLocaleString('vi-VN')} ₫
             </Typography>
           </Grid>
-          <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Link to={`/pay/checkout_point/${clickedId}`} style={{ textDecoration: 'none' }}>
-              <Button
-                variant="contained"
-                disableElevation
-                sx={{
-                  px: 5,
-                  py: 1,
-                  backgroundColor: '#FC2032',
-                  fontWeight: 700,
-                  fontSize: 18,
-                  ':hover': {
-                    backgroundColor: '#F22A51',
-                  },
-                }}
-              >
-                Thanh toán ngay
-              </Button>
-            </Link>
+          <Grid
+            item
+            xs={12}
+            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}
+          >
+            {errorMessage && (
+              <Typography color="error" sx={{ mb: 2 }}>
+                {errorMessage}
+              </Typography>
+            )}
+            <Button
+              variant="contained"
+              disableElevation
+              sx={{
+                px: 5,
+                py: 1,
+                backgroundColor: '#FC2032',
+                fontWeight: 700,
+                fontSize: 18,
+                ':hover': {
+                  backgroundColor: '#F22A51',
+                },
+              }}
+              onClick={() => {
+                handleCheckout(totalPrice, clickedId);
+              }}
+            >
+              Thanh toán ngay
+            </Button>
           </Grid>
         </Grid>
       </Grid>
