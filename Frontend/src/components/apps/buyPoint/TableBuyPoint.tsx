@@ -85,11 +85,12 @@ const TableBuyPoint = () => {
                     padding: '0',
                   }}
                 >
-                  {typeof items.point === 'string' ? (
+                  {items.pointType === 'CUSTOMIZE' ? (
                     <>
                       <Typography variant="h3" sx={{ fontWeight: 700 }}>
                         {!click ? (
-                          <div onClick={() => setClick(!click)}>{items.point}</div>
+                          // <div onClick={() => setClick(!click)}>{items.point}</div>
+                          <div onClick={() => setClick(!click)}>Tùy chỉnh số lượng</div>
                         ) : (
                           <Input
                             value={value}
