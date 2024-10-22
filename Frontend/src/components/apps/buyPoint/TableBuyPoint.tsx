@@ -90,7 +90,7 @@ const TableBuyPoint = () => {
                       <Typography variant="h3" sx={{ fontWeight: 700 }}>
                         {!click ? (
                           // <div onClick={() => setClick(!click)}>{items.point}</div>
-                          <div onClick={() => setClick(!click)}>Tùy chỉnh số lượng</div>
+                          <Box onClick={() => setClick(!click)}>Tùy chọn</Box>
                         ) : (
                           <Input
                             value={value}
@@ -118,7 +118,7 @@ const TableBuyPoint = () => {
                   )}
                   <img src={logoPoint} alt="" width={30} height={30} style={{ borderRadius: 50 }} />
                 </BoxStyled>
-                {typeof items.point === 'string' ? (
+                {items.pointType === 'CUSTOMIZE' ? (
                   <Typography
                     variant="h6"
                     sx={{
@@ -126,7 +126,8 @@ const TableBuyPoint = () => {
                       color: theme.palette.mode === 'dark' ? '#ffffff' : '#16182380',
                     }}
                   >
-                    {toggle === null ? items.cash : <>{toggle.toLocaleString('vi-VN')} ₫</>}
+                    Hỗ trợ số lượng lớn
+                    {/* {toggle === null ? items.cash : <>{toggle.toLocaleString('vi-VN')} ₫</>} */}
                   </Typography>
                 ) : (
                   <Typography
