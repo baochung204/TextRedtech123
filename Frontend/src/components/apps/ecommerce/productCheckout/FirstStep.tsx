@@ -58,15 +58,16 @@ const FirstStep = () => {
 
   console.log(selectedPackage);
 
-  const handleSelectPackage = (pkg: any) => {
-    if (selectedPackage === pkg.id) {
+  const handleSelectPackage = (pkg: Package) => {
+    if (selectedPackage === pkg.flashSaleId) {
       setSelectedPackage(null);
-      setPointsEarned(null);
+      setPointsEarned(0);
     } else {
-      setSelectedPackage(pkg.id);
+      setSelectedPackage(pkg.flashSaleId);
       setPointsEarned(pkg.point);
     }
   };
+
   const handleAccordionClick = () => {
     setTimeout(() => {
       setSelectedPackage2(false);
@@ -255,79 +256,89 @@ const FirstStep = () => {
                                   borderColor:
                                     selectedPackage === pkg.flashSaleId ? 'transparent' : '#FFD60A',
                                 }}
+                                onClick={() => {
+                                  handleSelectPackage(pkg);
+                                  console.log('selectedPackage', pkg.flashSaleId);
+                                }}
                               >
                                 {selectedPackage === pkg.flashSaleId ? 'Đã chọn' : 'Chọn Mua'}
                               </Button>
                             </Box>
                           </CardContent>
                         </Card>
+                        <Box>
+                          {/* Tổng cộng */}
+                          <Stack direction="row" justifyContent="space-between" mb={3}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Giá trị đơn hàng
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              display={'flex'}
+                              alignItems={'center'}
+                              gap="3px"
+                            >
+                              {cart.totalPoint + (pointsEarned === null ? 0 : pointsEarned)}
+                              <img
+                                src={logoPoint}
+                                alt={logoPoint}
+                                width={20}
+                                height={20}
+                                style={{ borderRadius: 50 }}
+                              />
+                            </Typography>
+                          </Stack>
+                          {/* Giảm giá */}
+                          <Stack direction="row" justifyContent="space-between" mb={3}>
+                            <Typography variant="h6" fontWeight={400}>
+                              Khuyến mãi
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              color="error"
+                              display={'flex'}
+                              alignItems={'center'}
+                              gap="3px"
+                            >
+                              {cart.totalAmountDiscount}
+                              <img
+                                src={logoPoint}
+                                alt={logoPoint}
+                                width={20}
+                                height={20}
+                                style={{ borderRadius: 50 }}
+                              />
+                            </Typography>
+                          </Stack>
+                          {/* Tổng cộng */}
+                          <Stack direction="row" justifyContent="space-between" mb={1}>
+                            <Typography variant="h6">Tổng thanh toán</Typography>
+                            <Typography
+                              variant="h5"
+                              color="success"
+                              display={'flex'}
+                              alignItems={'center'}
+                              gap="3px"
+                            >
+                              {cart.totalPriceAfterDiscount +
+                                (pointsEarned === null ? 0 : pointsEarned)}
+
+                              <img
+                                src={logoPoint}
+                                alt={logoPoint}
+                                width={20}
+                                height={20}
+                                style={{ borderRadius: 50 }}
+                              />
+                            </Typography>
+                          </Stack>
+                        </Box>
                       </Grid>
                     ))}
                   </Grid>
                 </AccordionDetails>
               </Accordion>
             )}
-            <Box>
-              {/* Tổng cộng */}
-              <Stack direction="row" justifyContent="space-between" mb={3}>
-                <Typography variant="h6" fontWeight={400}>
-                  Giá trị đơn hàng
-                </Typography>
-                <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
-                  {cart.totalPoint + (pointsEarned === null ? 0 : pointsEarned)}
-                  <img
-                    src={logoPoint}
-                    alt={logoPoint}
-                    width={20}
-                    height={20}
-                    style={{ borderRadius: 50 }}
-                  />
-                </Typography>
-              </Stack>
-              {/* Giảm giá */}
-              <Stack direction="row" justifyContent="space-between" mb={3}>
-                <Typography variant="h6" fontWeight={400}>
-                  Khuyến mãi
-                </Typography>
-                <Typography
-                  variant="h6"
-                  color="error"
-                  display={'flex'}
-                  alignItems={'center'}
-                  gap="3px"
-                >
-                  {cart.totalAmountDiscount}
-                  <img
-                    src={logoPoint}
-                    alt={logoPoint}
-                    width={20}
-                    height={20}
-                    style={{ borderRadius: 50 }}
-                  />
-                </Typography>
-              </Stack>
-              {/* Tổng cộng */}
-              <Stack direction="row" justifyContent="space-between" mb={1}>
-                <Typography variant="h6">Tổng thanh toán</Typography>
-                <Typography
-                  variant="h5"
-                  color="success"
-                  display={'flex'}
-                  alignItems={'center'}
-                  gap="3px"
-                >
-                  {cart.totalPriceAfterDiscount + (pointsEarned === null ? 0 : pointsEarned)}
-
-                  <img
-                    src={logoPoint}
-                    alt={logoPoint}
-                    width={20}
-                    height={20}
-                    style={{ borderRadius: 50 }}
-                  />
-                </Typography>
-              </Stack>
-            </Box>
           </Box>
         </ChildCard>
       </Box>
