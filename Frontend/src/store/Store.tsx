@@ -28,7 +28,7 @@ import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice';
-import assisstantSlice from './user/chatbots/assisstantUserSlice';
+import assistantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 
@@ -50,9 +50,11 @@ import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
 import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
 import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
+import modelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
+import imagesSlice from 'src/store/user/user-resources/images/imagesUesSlice';
 import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
+import urlsSlice from 'src/store/user/user-resources/urls/urlsUseSlice';
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
-
 
 export const store = configureStore({
   reducer: {
@@ -79,7 +81,7 @@ export const store = configureStore({
     function: functionReducer,
     file: fileReducer,
     test: userSlice,
-    assisstant: assisstantSlice,
+    assisstant: assistantSlice,
     twofa: twofaSlice,
 
     flashsale_random: flashSaleRandomSlice,
@@ -93,6 +95,9 @@ export const store = configureStore({
     resourcesCampaigns: CampaignsSlice,
     resourcesFunctions: functionsSlice,
     resourcesFiles: filesSlice,
+    resourcesModels: modelsSlice,
+    resourcesImages: imagesSlice,
+    resourcesUrls: urlsSlice,
     affiliate: affiliateApiSlice,
     blogs: BlogSlice,
     //admin
@@ -105,7 +110,6 @@ export const store = configureStore({
     overview_staff: staffoverviewSlice,
   },
 });
-
 
 const rootReducer = combineReducers({
   //user
@@ -131,7 +135,8 @@ const rootReducer = combineReducers({
   function: functionReducer,
   file: fileReducer,
   test: userSlice,
-  assisstant: assisstantSlice,
+  //assistant
+  assisstant: assistantSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
@@ -140,6 +145,10 @@ const rootReducer = combineReducers({
   resourcesCampaigns: CampaignsSlice,
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
+  resourcesModels: modelsSlice,
+  resourcesImages: imagesSlice,
+  resourcesUrls: urlsSlice,
+
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,

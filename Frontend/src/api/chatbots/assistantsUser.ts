@@ -1,14 +1,14 @@
-import { axiosAPI } from "../axiosApi";
+import { axiosAPI } from '../axiosApi';
 
+const url = 'chatbots';
 
-const url = 'chatbots'
+const assistantAPi = {
+  getAllAssistant: () => {
+    return axiosAPI.get(`/${url}`);
+  },
+  getAssistantById: (id: number) => {
+    return axiosAPI.get(`/${url}/${id}`);
+  },
+};
 
-
-const assisstantAPi = {
-    getAllAssisstant: () => {
-        return axiosAPI.get(`/${url}`);
-    }
-}
-
-
-export default assisstantAPi
+export default assistantAPi;
