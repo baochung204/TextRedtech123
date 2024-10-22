@@ -29,10 +29,9 @@ import userSlice from './user/user-resources/userSlice';
 import assistantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
-import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
+import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-
 
 import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
 import blogSlice from './admin/blog/overview/blogSlice';
@@ -50,17 +49,11 @@ import functionsSlice from 'src/store/user/user-resources/functions/functionsUse
 import modelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
 import imagesSlice from 'src/store/user/user-resources/images/imagesUesSlice';
 import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
-<<<<<<< HEAD
 import urlsSlice from 'src/store/user/user-resources/urls/urlsUseSlice';
-import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
-
-=======
-
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
 
 import listPointSlice from './user/points/listPointSlice';
 
->>>>>>> e9f4a8e93ce8bd995b0ab15c5271808839ee5371
 export const store = configureStore({
   reducer: {
     //user
@@ -163,11 +156,9 @@ const rootReducer = combineReducers({
   counpon_history: counponhistorySlice,
   overview_flashsale: flashsaleoverviewSlice,
   counpon_list: counponlistSlice,
-
   staff: staffSlice,
   flashsale_list: flashsaleSlice,
   overview_staff: staffoverviewSlice,
-
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
