@@ -18,8 +18,8 @@ const initialState: StrState = {
     pageNo: 0,
     pageSize: 0,
     totalElements: 0,
-    totalPages: 0
-  }, 
+    totalPages: 0,
+  },
   loading: false,
   error: null,
 };
@@ -28,18 +28,15 @@ interface FetchParams {
   size: number;
 }
 // Thunk to fetch integration data
-export const fetchStr = createAsyncThunk(
-  'str/fetchStr',
-  async ({ page, size }: FetchParams) => {
-    try {
-      const response = await userApi.getAllCampaigns(page, size);
-      // console.log('cam', response.data);
-      return response.data.result;
-
-    } catch (error) {
-      console.log("Error", error)
-    }
-  });
+export const fetchStr = createAsyncThunk('str/fetchStr', async ({ page, size }: FetchParams) => {
+  try {
+    const response = await userApi.getAllCampaigns(page, size);
+    // console.log('cam', response.data);
+    return response.data.result;
+  } catch (error) {
+    console.log('Error', error);
+  }
+});
 
 // Slice
 // eslint-disable-next-line react-refresh/only-export-components

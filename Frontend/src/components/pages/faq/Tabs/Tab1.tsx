@@ -16,34 +16,48 @@ import DataTab1 from '../DataTable/TableTab1';
 import DialogStragety from '../dialog/DialogStragety';
 import { Str } from 'src/types/apps/str';
 import BlankCard from 'src/components/shared/BlankCard';
+import { fetchCampaigns } from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
+import { CampaignsType } from 'src/store/user/user-resources/campaigns/Type/campaignsType';
 
 const Tab1 = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
-  const dataStr = useSelector((state: AppState) => state.str.data);
-  const [datax, setDatax] = useState<Str[]>([]);
+  const campaigns = useSelector((state: AppState) => state.resourcesCampaigns.data);
+  const [campaignsData, setCampaignsData] = useState<CampaignsType>();
+  useEffect(() => {
+    dispatch(fetchCampaigns({ page, size: rowsPerPage }));
+  }, [dispatch, page, rowsPerPage]);
+  useEffect(() => {
+    if (campaigns !== campaignsData) {
+      setCampaignsData(campaigns);
+    }
+  }, [campaigns, campaignsData]);
+  // const dataStr = useSelector((state: AppState) => state.str.data);
+  // const [datax, setDatax] = useState<Str[]>([]);
   const [dataView, setDataView] = useState<Str | undefined>();
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
+
+  // console.log('load data', campaignsData);
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  useEffect(() => {
-    dispatch(fetchStr({ page, size: rowsPerPage }));
-  }, [dispatch, page, rowsPerPage]);
+  // useEffect(() => {
+  //   dispatch(fetchStr({ page, size: rowsPerPage }));
+  // }, [dispatch, page, rowsPerPage]);
 
-  useEffect(() => {
-    if (datax !== dataStr.content) {
-      setDatax(dataStr.content);
-    }
-  }, [dataStr, datax]);
+  // useEffect(() => {
+  //   if (datax !== dataStr.content) {
+  //     setDatax(dataStr.content);
+  //   }
+  // }, [dataStr, datax]);
 
-  console.log('data in redux', datax);
+  // console.log('data in redux', datax);
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -56,7 +70,7 @@ const Tab1 = () => {
   return (
     <>
       <Grid container spacing={2}>
-        {datax?.map((items, index) => (
+        {campaignsData?.content?.map((items, index) => (
           <Grid item xs={12} sm={6} md={4} key={items.campaignId}>
             <BlankCard>
               <CardContent

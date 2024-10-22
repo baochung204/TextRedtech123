@@ -29,9 +29,11 @@ import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
-import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
+import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
+
+
 import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
@@ -41,9 +43,16 @@ import counponlistSlice from './admin/counpon/counponlist/table/counponlistSlice
 import affiliateApiSlice from './user/affiliate-account/affiliate-account';
 import BlogSlice from './user/blogs/blog';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
+import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
+
+import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
+import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
+
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
+
 import listPointSlice from './user/points/listPointSlice';
+
 export const store = configureStore({
   reducer: {
     //user
@@ -75,7 +84,11 @@ export const store = configureStore({
     cart: cartSlice,
     // overViewTicket: overViewTicketSlice,
     userme: usermeSlice,
+
     staff: staffSlice,
+    resourcesCampaigns: CampaignsSlice,
+    resourcesFunctions: functionsSlice,
+    resourcesFiles: filesSlice,
     affiliate: affiliateApiSlice,
     blogs: BlogSlice,
     point_list: listPointSlice,
@@ -118,6 +131,11 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
   cart: cartSlice,
+
+  staff: staffSlice,
+  resourcesCampaigns: CampaignsSlice,
+  resourcesFunctions: functionsSlice,
+  resourcesFiles: filesSlice,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,
@@ -129,9 +147,11 @@ const rootReducer = combineReducers({
   counpon_history: counponhistorySlice,
   overview_flashsale: flashsaleoverviewSlice,
   counpon_list: counponlistSlice,
+
   staff: staffSlice,
   flashsale_list: flashsaleSlice,
   overview_staff: staffoverviewSlice,
+
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

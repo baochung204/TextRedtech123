@@ -76,7 +76,7 @@ const DialogImage: React.FC<PropsDialog> = ({
     <Dialog fullWidth={true} maxWidth="md" open={value === '5' && open} onClose={handleClose}>
       <DialogTitle sx={{ textAlign: 'center' }}>
         <Typography fontWeight={600} variant="h3">
-          Thêm ảnh
+          Chi tiết ảnh
         </Typography>
       </DialogTitle>
       <DialogContent>
