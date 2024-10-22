@@ -32,17 +32,9 @@ import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 
-<<<<<<< HEAD
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-=======
-
-import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
-// import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
-import usermeSlice from 'src/store/user/userme/usermeSlice';
-
->>>>>>> e7478e04895638f4c91a9d16a6247c883f8a42e0
 import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
 
 import blogSlice from './admin/blog/overview/blogSlice';
@@ -57,14 +49,11 @@ import BlogSlice from './user/blogs/blog';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
 import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUseSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
-<<<<<<< HEAD
 import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
 import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
-=======
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
 
 
->>>>>>> e7478e04895638f4c91a9d16a6247c883f8a42e0
 export const store = configureStore({
   reducer: {
     //user
@@ -98,17 +87,8 @@ export const store = configureStore({
     adminTicker: adminTicketSlice,
 
     cart: cartSlice,
-<<<<<<< HEAD
     // overViewTicket: overViewTicketSlice,
     userme: usermeSlice,
-=======
-
-    // overViewTicket: overViewTicketSlice,
-    userme: usermeSlice,
-  }
-})
-
->>>>>>> e7478e04895638f4c91a9d16a6247c883f8a42e0
     staff: staffSlice,
     resourcesCampaigns: CampaignsSlice,
     resourcesFunctions: functionsSlice,
@@ -125,10 +105,7 @@ export const store = configureStore({
     overview_staff: staffoverviewSlice,
   },
 });
-<<<<<<< HEAD
-=======
 
->>>>>>> e7478e04895638f4c91a9d16a6247c883f8a42e0
 
 const rootReducer = combineReducers({
   //user
@@ -159,19 +136,12 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
   cart: cartSlice,
-<<<<<<< HEAD
   staff: staffSlice,
   resourcesCampaigns: CampaignsSlice,
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
-=======
-
-  // overViewTicket: overViewTicketSlice,
-  userme: usermeSlice,
-
->>>>>>> e7478e04895638f4c91a9d16a6247c883f8a42e0
   blogs: BlogSlice,
   affiliate: affiliateApiSlice,
   //admin
@@ -185,11 +155,6 @@ const rootReducer = combineReducers({
 
   flashsale_list: flashsaleSlice,
   overview_staff: staffoverviewSlice,
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e7478e04895638f4c91a9d16a6247c883f8a42e0
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
