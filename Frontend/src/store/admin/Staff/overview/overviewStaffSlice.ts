@@ -9,13 +9,18 @@ interface PropsData {
 }
 
 interface StrState {
-  dataa: PropsData[];
+  dataa: PropsData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  dataa: [],
+  dataa: {
+    totalEmployee: 0,
+    totalAdmin: 0,
+    employeeActive: 0,
+    employeeBlock: 0,
+  },
   loading: false,
   error: null,
 };
