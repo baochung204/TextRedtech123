@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Input, styled, Typography, useTheme } from '@mui/material';
+import { link } from 'fs';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -53,11 +54,13 @@ const TableBuyPoint = () => {
     setValue(formatNumber(inputValue));
   };
 
-  const handleCheckout = (totalPrice, clickedId) => {
-    if (totalPrice >= 1000000) {
-      alert('Checkout');
-    } else {
-      navigate(`/pay/checkout_point/${clickedId}`);
+  const handleCheckout = (totalPrice, clickedId, pointType) => {
+    if (pointType === 'CUSTOMIZE') {
+      if (totalPrice >= 1000000) {
+        alert('Checkout');
+      } else {
+        navigate(`/pay/checkout_point/${clickedId}`);
+      }
     }
   };
 
@@ -83,9 +86,9 @@ const TableBuyPoint = () => {
                   gap: '-10px',
                   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
                   backgroundColor: theme.palette.mode === 'dark' ? '#303C50' : '',
-                  // onClick: () => {
-                  //   console.log('Clicked item:', clickedId);
-                  // },
+                  onClick: () => {
+                    console.log('Clicked item:', clickedId);
+                  },
                 }}
               >
                 <BoxStyled
@@ -189,9 +192,9 @@ const TableBuyPoint = () => {
                 ':hover': {
                   backgroundColor: '#F22A51',
                 },
-                // onClick: () => {
-                //   handleCheckout(totalPrice, clickedId);
-                // },
+                onClick: () => {
+                  handleCheckout(totalPrice, clickedId, listPoints[0].pointType);
+                },
               }}
             >
               {/* <Link
