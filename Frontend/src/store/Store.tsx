@@ -62,6 +62,7 @@ import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
 import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
+import couponRandomSlice from './user/points/couponRandomSlice';
 
 export const store = configureStore({
   reducer: {
@@ -124,6 +125,7 @@ export const store = configureStore({
     overview_product: productAdminSlice,
     overview_order: orderProductAdminSlice,
     overview_ticket: ticketOverviewSlice,
+    randomcoupon: couponRandomSlice,
   },
 });
 
@@ -185,6 +187,7 @@ const rootReducer = combineReducers({
   overview_product: productAdminSlice,
   overview_order: orderProductAdminSlice,
   overview_ticket: ticketOverviewSlice,
+  randomcoupon: couponRandomSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

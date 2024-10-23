@@ -26,6 +26,7 @@ import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
 import { fetchVndCouponById, fetchVndCoupons } from 'src/store/apps/vnd_coupons/Vnd_CouponsSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import * as Yup from 'yup';
+import { fetchListRandomCouponData } from 'src/store/user/points/couponRandomSlice';
 const BoxStyled = styled(Box)(() => ({
   padding: '30px',
   transition: '0.1s ease-in',
@@ -58,13 +59,20 @@ const OrderInformation = () => {
     state.point_list.dataa.find((p) => p.pointType === id),
   );
 
-  const dataVndCoupons = useSelector((state: AppState) => state.vnd_coupons.vnd_coupons);
+  const dataVndCoupons = useSelector((state: AppState) => state.randomcoupon.dataa);
 
   const selectedVoucherDetail = useSelector((state: AppState) =>
     state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
   );
 
+  console.log(dataVndCoupons);
+
   console.log(dataPoint);
+
+  useEffect(() => {
+    dispatch(fetchListRandomCouponData(dataPoint?.point));
+  }, [dispatch]);
+
   useEffect(() => {
     dispatch(fetchVndCoupons());
     // dispatch(fetchPointById(id as string));
