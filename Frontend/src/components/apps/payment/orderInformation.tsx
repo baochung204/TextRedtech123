@@ -73,48 +73,58 @@ const OrderInformation = () => {
 
   useEffect(() => {
     dispatch(fetchListRandomCouponData(dataPoint?.point));
-  }, [dispatch]);
+  }, [dispatch, dataPoint]);
 
   useEffect(() => {
     dispatch(fetchVndCoupons());
     // dispatch(fetchPointById(id as string));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    if (selectedVoucher) {
-      dispatch(fetchVndCouponById(selectedVoucher));
-    }
-  }, [dispatch, selectedVoucher]);
+  // useEffect(() => {
+  //   if (selectedVoucher) {
+  //     dispatch(fetchVndCouponById(selectedVoucher));
+  //   }
+  // }, [dispatch, selectedVoucher]);
 
-  const handleSelectedVoucherId = (item: any) => {
-    if (selectedVoucher === item.id) {
+  // const handleSelectedVoucherId = (item: any) => {
+  //   if (selectedVoucher === item.code) {
+  //     setSelectedVoucher(null);
+  //     setCouponValue(undefined);
+  //   } else {
+  //     setSelectedVoucher(item.id);
+  //     if (item.type === 'VALUE' || item.type === 'PERCENT') {
+  //       setCouponValue(item.value);
+  //     }
+  //   }
+  // };
+
+  const handleSelectedVoucherId = (code: string) => {
+    if (selectedVoucher === code) {
+      // Deselect if the same voucher is clicked again
       setSelectedVoucher(null);
-      setCouponValue(undefined);
     } else {
-      setSelectedVoucher(item.id);
-      if (item.type === 'VALUE' || item.type === 'PERCENT') {
-        setCouponValue(item.value);
-      }
+      // Select the voucher
+      setSelectedVoucher(code);
     }
   };
 
   const originalOrderTotal = dataPoint?.cash || 0;
 
-  const calculateFinalOrderTotal = () => {
-    if (!couponValue || !selectedVoucherDetail) {
-      return originalOrderTotal;
-    }
+  // const calculateFinalOrderTotal = () => {
+  //   if (!couponValue || !selectedVoucherDetail) {
+  //     return originalOrderTotal;
+  //   }
 
-    if (selectedVoucherDetail.type === 'PERCENT') {
-      const discount = (originalOrderTotal * couponValue) / 100;
-      return originalOrderTotal - discount;
-    } else if (selectedVoucherDetail.type === 'VALUE') {
-      return originalOrderTotal - couponValue;
-    }
-    return originalOrderTotal;
-  };
+  //   if (selectedVoucherDetail.type === 'PERCENT') {
+  //     const discount = (originalOrderTotal * couponValue) / 100;
+  //     return originalOrderTotal - discount;
+  //   } else if (selectedVoucherDetail.type === 'VALUE') {
+  //     return originalOrderTotal - couponValue;
+  //   }
+  //   return originalOrderTotal;
+  // };
 
-  const finalOrderTotal = calculateFinalOrderTotal();
+  // const finalOrderTotal = calculateFinalOrderTotal();
 
   const [expanded, setExpanded] = useState<string | false>(false);
   const handleChange5 = (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -424,12 +434,12 @@ const OrderInformation = () => {
                                     </Typography>
                                     <Button
                                       variant={
-                                        selectedVoucher === item.id ? 'contained' : 'outlined'
+                                        selectedVoucher === item.code ? 'contained' : 'outlined'
                                       }
                                       color="primary"
-                                      onClick={() => handleSelectedVoucherId(item)}
+                                      onClick={() => handleSelectedVoucherId(item.code)}
                                     >
-                                      {selectedVoucher === item.id ? 'Bỏ chọn' : 'Chọn'}
+                                      {selectedVoucher === item.code ? 'Bỏ chọn' : 'Chọn'}
                                     </Button>
                                   </Box>
                                 </Grid>
@@ -483,13 +493,13 @@ const OrderInformation = () => {
                 <Typography variant="subtitle1" fontWeight={600}>
                   Khuyến mại
                 </Typography>
-                <Typography variant="subtitle1" fontWeight={600} sx={{ px: 1 }}>
+                {/* <Typography variant="subtitle1" fontWeight={600} sx={{ px: 1 }}>
                   {dataVndCoupons?.type === 'VALUE'
                     ? `${dataVndCoupons.value.toLocaleString('vi-VN')}₫`
                     : dataVndCoupons?.type === 'PERCENT'
                     ? `${dataVndCoupons.value}%`
                     : 'Không có khuyến mại'}
-                </Typography>
+                </Typography> */}
               </Box>
 
               <Box
@@ -528,7 +538,7 @@ const OrderInformation = () => {
             <Box sx={{ mt: 2, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="h4">Tổng cộng</Typography>
               <Typography variant="h4" fontWeight="bold" sx={{ color: '#FC3242' }}>
-                {finalOrderTotal.toLocaleString('vi-VN')}₫
+                {/* {finalOrderTotal.toLocaleString('vi-VN')}₫ */}
               </Typography>
             </Box>
           </BoxStyled>
