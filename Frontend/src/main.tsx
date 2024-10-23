@@ -5,18 +5,23 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { store } from './store/Store';
+import { store, persistor } from './store/Store';
 import Spinner from './views/spinner/Spinner';
 import './utils/i18n';
 import './_mockApis';
 import 'react-quill/dist/quill.snow.css';
+import { PersistGate } from 'redux-persist/integration/react';
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-    <Suspense fallback={<Spinner />}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Suspense>
+    <PersistGate loading={null} persistor={persistor}>
+      <Suspense fallback={<Spinner />}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Suspense>
+    </PersistGate>
   </Provider>,
 )

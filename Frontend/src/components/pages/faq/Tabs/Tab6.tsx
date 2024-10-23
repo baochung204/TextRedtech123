@@ -1,12 +1,11 @@
 import { Box, IconButton } from '@mui/material';
 import { IconTrash } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import { AppDispatch, AppState, dispatch } from 'src/store/Store';
-import DialogURL from '../dialog/DIalogURL';
+import { AppState, dispatch } from 'src/store/Store';
 import { fetchUrls } from 'src/store/user/user-resources/urls/urlsUseSlice';
-import { UrlType } from 'src/store/user/user-resources/urls/type/urlType';
+import DialogURL from '../dialog/DIalogURL';
 // import DialogURL from '../dialog/DialogURL';
 
 interface PropsTab6 {
@@ -20,8 +19,8 @@ interface PropsTab6 {
 
 const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
-  const Urls = useSelector((state: AppState) => state.resourcesUrls.data);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const data = useSelector((state: AppState) => state.resourcesUrls.data);
   // const [urlsData, setUrlsData] = useState<UrlType>();
 
   useEffect(() => {
@@ -77,13 +76,14 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
   return (
     <Box sx={{ paddingTop: 1 }}>
       <CustomTable
-        dataSource={Urls?.content}
+        dataSource={data.content}
         columns={columns}
         dataSelect={dataSelect}
+        count={data.totalElements}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
       />
 
       <DialogURL open={open} setOpen={setOpen} value={value} />

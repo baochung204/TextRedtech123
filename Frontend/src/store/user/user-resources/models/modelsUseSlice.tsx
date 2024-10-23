@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ModelType } from './type/modelsType';
 import resourcesApi from 'src/api/userResource/resourcesApi';
@@ -20,8 +21,8 @@ const initialState: ModelI = {
   error: null,
 };
 interface FetchParams {
-  page?: number | undefined;
-  size?: number | undefined;
+  page: number;
+  size: number;
 }
 export const fetchModels = createAsyncThunk<ModelType, FetchParams>(
   'models/fetchData',
@@ -34,6 +35,8 @@ export const fetchModels = createAsyncThunk<ModelType, FetchParams>(
     }
   },
 );
+// eslint-disable-next-line react-refresh/only-export-components
+
 const ModelsSlice = createSlice({
   name: 'models',
   initialState,

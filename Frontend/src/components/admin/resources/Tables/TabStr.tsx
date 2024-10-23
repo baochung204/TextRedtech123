@@ -83,6 +83,11 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
     {
       dataIndex: 'createDate',
       title: 'Ngày tạo',
+      render: (value: string) => {
+        if (!value) return 'N/A'; // Handle undefined or invalid values
+        const date = new Date(value);
+        return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+      },
     },
     {
       dataIndex: 'nameEmployee',
