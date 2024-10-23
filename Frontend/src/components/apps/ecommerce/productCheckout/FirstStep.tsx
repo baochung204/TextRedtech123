@@ -14,59 +14,61 @@ import {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { IconChevronDown } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import products2 from 'src/assets/images/products/s24.jpg';
-import products from 'src/assets/images/products/s25.jpg';
 import Countdown from 'src/components/countdown/countdown';
+import { AppState } from 'src/store/Store';
+import { fetchFlashSaleData } from 'src/store/user/flashsale-random/flashsaleSlice';
 import ChildCard from '../../../shared/ChildCard';
-interface Props {
-  total: number;
-  Discount: number;
-  qty: number;
-}
-const packages = [
-  {
-    id: 5,
-    img: products,
-    title: 'Chatbot marketing',
-    point: 115,
-    discount: 100,
-    sale: 80,
-    timeFlash: 16,
-  },
-  {
-    id: 6,
-    img: products2,
-    title: 'Chatbot hỗ trợ khách hàng',
-    point: 210,
-    discount: 199,
-    sale: 80,
-    timeFlash: 16,
-  },
-];
-const FirstStep = ({ total, Discount }: Props) => {
-  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
+declare interface Package {
+  flashSaleId: number;
+  productId: number;
+  productName: string;
+  productImgUrl: string;
+  point: number;
+  priceAfterFlashSale: number;
+  percent: number;
+  displayTime: number;
+}
+
+const FirstStep = () => {
+  const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
+  const dispatch = useDispatch();
   // const theme = useTheme();
-  // const [pointsEarned, setPointsEarned] = useState(0);
-  const [pointsEarned, setPointsEarned] = useState<number | null>(null);
-  const [countdownTime, setCountdownTime] = useState<number | null>(null);
+  const [pointsEarned, setPointsEarned] = useState(0);
+
+  // const [countdownTime, setCountdownTime] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedPackage2, setSelectedPackage2] = useState(true);
+  const cart = useSelector((state: AppState) => state.cart.dataa);
+  const flashSaleRandom = useSelector((state: AppState) => state.flashsale_random.dataa);
 
-  const handleSelectPackage = (pkg: any) => {
-    if (selectedPackage === pkg.id) {
+  useEffect(() => {
+    dispatch(fetchFlashSaleData());
+  }, [dispatch]);
+
+  console.log('cart', cart);
+
+  console.log('flashsale', flashSaleRandom);
+
+  console.log('countdownTime', flashSaleRandom);
+
+  console.log(selectedPackage);
+
+  const handleSelectPackage = (pkg: Package) => {
+    if (selectedPackage === pkg.flashSaleId) {
       setSelectedPackage(null);
-      setPointsEarned(null);
+      setPointsEarned(0);
     } else {
-      setSelectedPackage(pkg.id);
+      setSelectedPackage(pkg.flashSaleId);
       setPointsEarned(pkg.point);
     }
   };
+
   const handleAccordionClick = () => {
-    setCountdownTime(15);
     setTimeout(() => {
       setSelectedPackage2(false);
       setSelectedPackage(null);
@@ -113,14 +115,14 @@ const FirstStep = ({ total, Discount }: Props) => {
                   }}
                 >
                   <Grid container spacing={1}>
-                    {packages.map((pkg) => (
-                      <Grid item xs={12} md={12} key={pkg.id}>
+                    {flashSaleRandom.map((pkg) => (
+                      <Grid item xs={12} md={12} key={pkg.flashSaleId}>
                         <Card
                           sx={{
                             borderRadius: '15px',
                             overflow: 'hidden',
                             boxShadow:
-                              selectedPackage === pkg.id
+                              selectedPackage === pkg.flashSaleId
                                 ? '0 6px 18px rgba(128, 128, 128, 0.4)'
                                 : '0 6px 18px rgba(0,0,0,0.1)',
                             transition: 'transform 0.3s',
@@ -128,9 +130,13 @@ const FirstStep = ({ total, Discount }: Props) => {
                             marginY: '0px',
                             paddingY: '0px',
 
-                            transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
+                            transform:
+                              selectedPackage === pkg.flashSaleId ? 'scale(1.02) ' : 'scale(1)',
                           }}
-                          onClick={() => handleSelectPackage(pkg)}
+                          onClick={() => {
+                            handleSelectPackage(pkg),
+                              console.log('selectedPackage', selectedPackage);
+                          }}
                         >
                           <CardContent
                             sx={{
@@ -143,11 +149,12 @@ const FirstStep = ({ total, Discount }: Props) => {
                               },
                             }}
                           >
+                            {/* flashsale here */}
                             <div style={{ display: 'flex', gap: '20px' }}>
-                              <Typography component={Link} to={`/shop/detail/11`}>
+                              <Typography component={Link} to={`/shop/detail/${pkg.productId}`}>
                                 {lgUp ? (
                                   <img
-                                    src={pkg.img}
+                                    src={pkg.productImgUrl}
                                     alt={''}
                                     style={{
                                       borderRadius: '10px',
@@ -156,7 +163,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                   />
                                 ) : (
                                   <img
-                                    src={pkg.img}
+                                    src={pkg.productImgUrl}
                                     alt={''}
                                     style={{
                                       borderRadius: '10px',
@@ -173,11 +180,10 @@ const FirstStep = ({ total, Discount }: Props) => {
                                     mb: 1,
                                   }}
                                 >
-                                  {pkg.title}
+                                  {pkg.productName}
                                 </Typography>
 
                                 <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                                  {' '}
                                   <Typography
                                     sx={{
                                       mb: 1,
@@ -187,7 +193,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                       gap: '3px',
                                     }}
                                   >
-                                    <del>{pkg.discount.toLocaleString()} </del>
+                                    <del>{pkg.percent} </del>
                                     <img
                                       src={logoPoint}
                                       alt={logoPoint}
@@ -204,8 +210,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                                       gap: '3px',
                                     }}
                                   >
-                                    {' '}
-                                    {pkg.point.toLocaleString()}{' '}
+                                    {pkg.point}
                                     <img
                                       src={logoPoint}
                                       alt={logoPoint}
@@ -226,30 +231,37 @@ const FirstStep = ({ total, Discount }: Props) => {
                                       mt: 3.4,
                                     }}
                                   >
-                                    {pkg.sale}%
+                                    {pkg.percent}%
                                   </Button>
                                 </Box>
                               </div>
                             </div>
                             <Box>
-                              {lgUp && countdownTime && (
-                                <Countdown initialSeconds={countdownTime} onTimeUp={() => {}} />
+                              {lgUp && pkg.displayTime && (
+                                <Countdown initialSeconds={pkg.displayTime} onTimeUp={() => {}} />
                               )}
+
                               <Button
-                                variant={selectedPackage === pkg.id ? 'contained' : 'outlined'}
+                                variant={
+                                  selectedPackage === pkg.flashSaleId ? 'contained' : 'outlined'
+                                }
                                 color="warning"
                                 sx={{
                                   display: { xs: 'none', md: 'block' },
                                   width: '123.86px',
                                   backgroundImage:
-                                    selectedPackage === pkg.id
+                                    selectedPackage === pkg.flashSaleId
                                       ? 'linear-gradient(45deg, #ff6f61, #ff9a76)'
                                       : 'none',
                                   borderColor:
-                                    selectedPackage === pkg.id ? 'transparent' : '#FFD60A',
+                                    selectedPackage === pkg.flashSaleId ? 'transparent' : '#FFD60A',
+                                }}
+                                onClick={() => {
+                                  handleSelectPackage(pkg);
+                                  console.log('selectedPackage', pkg.flashSaleId);
                                 }}
                               >
-                                {selectedPackage === pkg.id ? 'Đã chọn' : 'Chọn Mua'}
+                                {selectedPackage === pkg.flashSaleId ? 'Đã chọn' : 'Chọn Mua'}
                               </Button>
                             </Box>
                           </CardContent>
@@ -260,13 +272,15 @@ const FirstStep = ({ total, Discount }: Props) => {
                 </AccordionDetails>
               </Accordion>
             )}
+          </Box>
+          <Box>
             {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={3}>
               <Typography variant="h6" fontWeight={400}>
                 Giá trị đơn hàng
               </Typography>
               <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
-                {(total + (pointsEarned === null ? 0 : pointsEarned)).toLocaleString('vn-VN')}{' '}
+                {cart.totalPoint + (pointsEarned === null ? 0 : pointsEarned)}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -276,7 +290,6 @@ const FirstStep = ({ total, Discount }: Props) => {
                 />
               </Typography>
             </Stack>
-
             {/* Giảm giá */}
             <Stack direction="row" justifyContent="space-between" mb={3}>
               <Typography variant="h6" fontWeight={400}>
@@ -289,7 +302,7 @@ const FirstStep = ({ total, Discount }: Props) => {
                 alignItems={'center'}
                 gap="3px"
               >
-                -{Discount.toLocaleString('vn-VN')}{' '}
+                {cart.totalAmountDiscount}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -299,8 +312,6 @@ const FirstStep = ({ total, Discount }: Props) => {
                 />
               </Typography>
             </Stack>
-            {/* Vận chuyển */}
-
             {/* Tổng cộng */}
             <Stack direction="row" justifyContent="space-between" mb={1}>
               <Typography variant="h6">Tổng thanh toán</Typography>
@@ -311,9 +322,8 @@ const FirstStep = ({ total, Discount }: Props) => {
                 alignItems={'center'}
                 gap="3px"
               >
-                {(total - Discount + (pointsEarned === null ? 0 : pointsEarned)).toLocaleString(
-                  'vn-VN',
-                )}{' '}
+                {cart.totalPriceAfterDiscount + (pointsEarned === null ? 0 : pointsEarned)}
+
                 <img
                   src={logoPoint}
                   alt={logoPoint}

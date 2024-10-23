@@ -15,8 +15,3 @@ export interface Result {
     content: File[];  // Generic type for content
 }
 
-export interface ApiResponse {
-    code: number;
-    message: string;
-    result: Result[];
-}

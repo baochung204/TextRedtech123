@@ -69,6 +69,7 @@ const Assistant = Loadable(lazy(() => import('../views/apps/assistant/Assistant'
 const AssistantAdd = Loadable(lazy(() => import('src/views/apps/assistant/AssistantAdd')));
 const AssistantEdit = Loadable(lazy(() => import('src/views/apps/assistant/AssistantEdit')));
 const AssistantInfor = Loadable(lazy(() => import('src/views/apps/assistant/AssistantById')));
+// const AssistantById = Loadable(lazy(() => import('../views/apps/assistant/AssistantById')));
 const Integration = Loadable(lazy(() => import('../views/apps/integration/Integration')));
 const Product = Loadable(lazy(() => import('../views/apps/sell/Product')));
 const Chats = Loadable(lazy(() => import('../views/apps/chat/Chat')));
@@ -83,6 +84,7 @@ const EcomProductCheckout = Loadable(
 const Detailpoint = Loadable(lazy(() => import('../views/apps/collaborate/point/detailpoint')));
 const Aff = Loadable(lazy(() => import('../views/apps/contract/Affiliate')));
 const Client = Loadable(lazy(() => import('../views/apps/contract/Client')));
+// const Calendar = Loadable(lazy(() => import('../views/apps/calendar/BigCalendar')));
 const UserProfile = Loadable(lazy(() => import('../views/apps/user-profile/UserProfile')));
 const Purchasehistory = Loadable(lazy(() => import('../views/apps/history/purchase-history')));
 const Pointhistory = Loadable(lazy(() => import('../views/apps/history/point-history')));
@@ -93,8 +95,19 @@ const Email = Loadable(lazy(() => import('../views/apps/email/Email')));
 
 //affiliate
 const Affiliate = Loadable(lazy(() => import('../views/apps/user-profile/Affiliate')));
+//Ai ticket
+// const Aisupport = Loadable(lazy(() => import('../views/apps/support/Aisupport')));
+//update page
+// const Update = Loadable(lazy(() => import('../views/apps/update/update')));
+// ui components
 
 const Faq = Loadable(lazy(() => import('../views/pages/faq/Faq')));
+
+// charts
+
+// tables
+
+// widget
 
 // authentication
 const Login = Loadable(lazy(() => import('../views/authentication/auth1/Login')));
@@ -129,6 +142,9 @@ const ListAssistantInProfile = Loadable(
 );
 const OrderRPoint = Loadable(lazy(() => import('../views/admin/orderRPoint/OrderRPoint')));
 const Ticket = Loadable(lazy(() => import('../views/admin/ticket/ticket')));
+// const AssistantList = Loadable(
+//   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
+// );import Blog from './../views/apps/blog/Blog';
 
 //admin affiliate
 const OrderAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/orderaffiliate')));
@@ -166,11 +182,8 @@ const Router = [
         element: <ProtectedRoute element={ContractOrderUser} />,
       },
 
-      {
-        path: '/dashboards/ecommerce',
-        exact: true,
-        element: <ProtectedRoute element={EcommerceDash} />,
-      },
+      { path: '/dashboards/ecommerce', exact: true, element: <ProtectedRoute element={EcommerceDash} /> },
+
       { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
       { path: '/apps/list-assistant', element: <ProtectedRoute element={Assistant} /> },
       { path: '/apps/assistant', element: <ProtectedRoute element={Assistant} /> },
@@ -216,7 +229,8 @@ const Router = [
       { path: '/user_profile', element: <ProtectedRoute element={UserProfile} /> },
       { path: '/pointhistory', element: <ProtectedRoute element={Pointhistory} /> },
       { path: '/purchasehistory', element: <ProtectedRoute element={Purchasehistory} /> },
-
+      // { path: '/apps/support', element: <ProtectedRoute element={Aisupport} /> },
+      // { path: '/apps/calendar', element: <ProtectedRoute element={Calendar} /> },
       { path: '/pages/faq', element: <ProtectedRoute element={Faq} /> },
       {
         path: '/user_profile/assistants',
@@ -232,7 +246,6 @@ const Router = [
       { path: '/pay/point', element: <ProtectedRoute element={PaymentPoint} /> },
       { path: '/pay/checkout_point/:id', element: <ProtectedRoute element={PaymentPoint2} /> },
       { path: '/history/buy-point', element: <ProtectedRoute element={HistoryBuyPoint} /> },
-
       {
         path: '/user_profile/point/transaction_point_history',
         element: <ProtectedRoute element={HistoryBuyPointInProfile} />,
@@ -279,6 +292,7 @@ const Router = [
       { path: '/admin/pointdetail', element: <Pointdetail /> },
       { path: '/admin/voucher', element: <VoucherAdmin /> },
       { path: '/admin/affiliate/affiliatepro', element: <Affiliatepro /> },
+      // { path: '/admin/affiliate/history', element: <History /> },
       { path: '/admin/staff', element: <Staff /> },
       { path: '/admin/feature', element: <PageFeature /> },
       { path: '/admin/point/packagepoint', element: <RPoints /> },

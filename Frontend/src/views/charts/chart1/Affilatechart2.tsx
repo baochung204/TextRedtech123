@@ -4,7 +4,7 @@ import Affilatec1 from 'src/components/shared/Affilatec1';
 const Affilatechart2 = () => {
   // const theme = useTheme();
   // const warning = theme.palette.warning.main;
-  const labels = ['Chi phí /khách hàng'];
+  const labels = ['Chi phí / Khách hàng'];
 
   const optionsradialchart: Props = {
     chart: {

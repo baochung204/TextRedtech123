@@ -1,100 +1,16 @@
 import { IconButton, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
 import { IconEye } from '@tabler/icons-react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import assisstant from 'src/assets/Adminphoto/tro ly ap dung.png';
 import customer from 'src/assets/Function/KHACH HANG SO HUU.png';
 import model from 'src/assets/Model/MODEL.png';
 import trainingtoken from 'src/assets/Model/Tranning tokens.png';
-export const Model = [
-  {
-    bgColor: 'primary.light',
-    title: 'Model',
-    total: '52',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={model} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Tranning tokens',
-    total: '189',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={trainingtoken} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng sở hữu',
-    total: '32.415',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={customer} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Trợ lý áp dụng',
-    total: '11.415',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={assisstant} width={30} />
-        </Box>
-      </>
-    ),
-  },
-];
+import { fetchOverviewModelData } from 'src/store/admin/resources/model/overview/modelSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+
 export const ModelCells: any = [
   {
     dataIndex: 'id',
@@ -198,3 +114,117 @@ export const ModelRows = [
     appliedAssistants: '6',
   },
 ];
+
+const TableModel = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const dataModelOverview = useSelector((state: AppState) => state.overview_models.dataa);
+
+  useEffect(() => {
+    dispatch(fetchOverviewModelData());
+  }, [dispatch]);
+
+  // totalApplicationAsisstant: 7;
+  // totalModel: 11;
+  // totalOwnership: 3;
+  // totalTranningToken: 450;
+  const totalModel = dataModelOverview.totalModel;
+  const totalTranningToken = dataModelOverview.totalTranningToken;
+  const totalOwnership = dataModelOverview.totalOwnership;
+  const totalApplicationAsisstant = dataModelOverview.totalApplicationAsisstant;
+
+  // console.log(dataModelOverview);
+
+  const Model = [
+    {
+      bgColor: 'primary.light',
+      title: 'Model',
+      total: totalModel,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={model} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Tranning tokens',
+      total: totalTranningToken,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={trainingtoken} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khách hàng sở hữu',
+      total: totalOwnership,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={customer} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Trợ lý áp dụng',
+      total: totalApplicationAsisstant,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={assisstant} width={30} />
+          </Box>
+        </>
+      ),
+    },
+  ];
+  return { Model, ModelCells, ModelRows };
+};
+
+export default TableModel;
