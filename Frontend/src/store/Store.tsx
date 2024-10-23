@@ -26,13 +26,12 @@ import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice';
-import assisstantSlice from './user/chatbots/assisstantUserSlice';
+import assistantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-
 import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
@@ -46,9 +45,12 @@ import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUse
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
 import CampaignSlice from './admin/resources/campaign/overview/campaignSlice';
 import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
+import modelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
+import imagesSlice from 'src/store/user/user-resources/images/imagesUesSlice';
 import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
 import functionSlice from './admin/resources/function/overview/functionSlice';
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
+import urlsSlice from 'src/store/user/user-resources/urls/urlsUseSlice';
 import fileSlice from './admin/resources/files/overview/filesSlice';
 import listPointSlice from './user/points/listPointSlice';
 import modelSlice from './admin/resources/model/overview/modelSlice';
@@ -84,18 +86,20 @@ export const store = configureStore({
     function: functionReducer,
     file: fileReducer,
     test: userSlice,
-    assisstant: assisstantSlice,
+    assisstant: assistantSlice,
     twofa: twofaSlice,
     flashsale_random: flashSaleRandomSlice,
     adminTicker: adminTicketSlice,
     cart: cartSlice,
     // overViewTicket: overViewTicketSlice,
     userme: usermeSlice,
-
     staff: staffSlice,
     resourcesCampaigns: CampaignsSlice,
     resourcesFunctions: functionsSlice,
     resourcesFiles: filesSlice,
+    resourcesModels: modelsSlice,
+    resourcesImages: imagesSlice,
+    resourcesUrls: urlsSlice,
     affiliate: affiliateApiSlice,
     blogs: BlogSlice,
     point_list: listPointSlice,
@@ -144,7 +148,8 @@ const rootReducer = combineReducers({
   function: functionReducer,
   file: fileReducer,
   test: userSlice,
-  assisstant: assisstantSlice,
+  //assistant
+  assisstant: assistantSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
