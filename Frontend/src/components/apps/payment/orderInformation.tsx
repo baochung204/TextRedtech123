@@ -188,7 +188,6 @@ const OrderInformation = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Grid container spacing={3} sx={{ padding: 3 }}>
-            {' '}
             <Grid item xs={12} lg={6}>
               <Grid container>
                 <Grid item xs={12} sx={{ pb: 3 }}>

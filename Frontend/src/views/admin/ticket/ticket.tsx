@@ -69,11 +69,6 @@ const Ticket = () => {
     dispatch(fetchOverViewTicket());
   }, [dispatch]);
 
-  // avg_rate: 3.4375;
-  // countIsSolve: 8;
-  // countTicket: 16;
-  // countUserId: 4;
-
   const avg_rate = overviewTickets.avg_rate;
   const countIsSolve = overviewTickets.countIsSolve;
   const countTicket = overviewTickets.countTicket;
@@ -82,7 +77,7 @@ const Ticket = () => {
   const DataBox = [
     {
       bgColor: 'primary.light',
-      title: 
+      title: 'Ticket',
       total: countTicket,
       icons: (
         <Box
