@@ -31,7 +31,7 @@ export const fetchFile = createAsyncThunk(
       console.log('file', res.data);
       return res.data.result;
     } catch (error) {
-      console.log(error)
+      console.log('lỗi',error)
     }
     
   });

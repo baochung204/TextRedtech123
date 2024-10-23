@@ -25,7 +25,7 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
   const { content = [], totalElements = 0 }: Result = useSelector(
     (state: AppState) => state.file.data || {}
   );
-
+// console.log('cặc',content)
   useEffect(() => {
     dispatch(fetchFile({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
