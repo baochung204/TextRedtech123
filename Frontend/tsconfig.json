@@ -2,14 +2,23 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "src/*": ["src/*"]
+      "src/*": [
+        "src/*"
+      ]
     },
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
-
+    "typeRoots": [
+      "./node_modules/@types",
+      "./path-to-your-declarations-directory"
+    ],
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -17,7 +26,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -25,10 +33,14 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src", 
-    "Router.tsx", 
+    "src",
+    "Router.tsx",
     "src/views/apps/allTransactionHistory/purchaseHistory.tsx",
     "src/theme.d.ts"
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

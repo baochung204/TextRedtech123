@@ -61,69 +61,19 @@ import modelListSlice from './admin/resources/model/table/modelListSlice';
 import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
 
-export const store = configureStore({
-  reducer: {
-    //user
-    customizer: CustomizerReducer,
-    ecommerceReducer: EcommerceReducer,
-    chatReducer: ChatsReducer,
-    emailReducer: EmailReducer,
-    notesReducer: NotesReducer,
-    contactsReducer: ContactsReducer,
-    ticketReducer: TicketReducer,
-    userpostsReducer: UserProfileReducer,
-    blogReducer: BlogReducer,
-    selectReducer: SelectedReducer,
-    integration: integrationReducer,
-    customer: CustomerReducer,
-    urlResources: UrlSlice,
-    imageResources: ImageSlice,
-    product: productReducer,
-    customeraffiliate: CustomerAffiliate,
-    vnd_coupons: vndCouponsSlice,
-    str: StrReducer,
-    function: functionReducer,
-    file: fileReducer,
-    test: userSlice,
-    assisstant: assistantSlice,
-    twofa: twofaSlice,
-    flashsale_random: flashSaleRandomSlice,
-    adminTicker: adminTicketSlice,
-    cart: cartSlice,
-    // overViewTicket: overViewTicketSlice,
-    userme: usermeSlice,
-    staff: staffSlice,
-    resourcesCampaigns: CampaignsSlice,
-    resourcesFunctions: functionsSlice,
-    resourcesFiles: filesSlice,
-    resourcesModels: ModelsSlice,
-    resourcesImages: imagesSlice,
-    resourcesUrls: urlsSlice,
-    affiliate: affiliateApiSlice,
-    blogs: BlogSlice,
-    point_list: listPointSlice,
-    //admin
-    overview_blog: blogSlice,
-    overview_counpon: counponSlice,
-    counpon_history: counponhistorySlice,
-    overview_flashsale: flashsaleoverviewSlice,
-    counpon_list: counponlistSlice,
-    flashsale_list: flashsaleSlice,
-    overview_staff: staffoverviewSlice,
-    overview_campaign: CampaignSlice,
-    overview_function: functionSlice,
-    overview_files: fileSlice,
-    overview_models: modelSlice,
-    campaign_list: CampaignListSlice,
-    files_list: fileListSlice,
-    function_list: functionListSlice,
-    model_list: modelListSlice,
-    overview_customer: customerAdminSlice,
-    overview_product: productAdminSlice,
-    overview_order: orderProductAdminSlice,
-  },
-});
+
+
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['customizer', 'ecommerce'],
+};
+
+
 
 const rootReducer = combineReducers({
   //user
@@ -186,6 +136,80 @@ const rootReducer = combineReducers({
   overview_product: productAdminSlice,
   overview_order: orderProductAdminSlice,
 });
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// export const store = configureStore({
+//   reducer: {
+//     //user
+//     customizer: CustomizerReducer,
+//     ecommerceReducer: EcommerceReducer,
+//     chatReducer: ChatsReducer,
+//     emailReducer: EmailReducer,
+//     notesReducer: NotesReducer,
+//     contactsReducer: ContactsReducer,
+//     ticketReducer: TicketReducer,
+//     userpostsReducer: UserProfileReducer,
+//     blogReducer: BlogReducer,
+//     selectReducer: SelectedReducer,
+//     integration: integrationReducer,
+//     customer: CustomerReducer,
+//     urlResources: UrlSlice,
+//     imageResources: ImageSlice,
+//     product: productReducer,
+//     customeraffiliate: CustomerAffiliate,
+//     vnd_coupons: vndCouponsSlice,
+//     str: StrReducer,
+//     function: functionReducer,
+//     file: fileReducer,
+//     test: userSlice,
+//     assisstant: assistantSlice,
+//     twofa: twofaSlice,
+//     flashsale_random: flashSaleRandomSlice,
+//     adminTicker: adminTicketSlice,
+//     cart: cartSlice,
+//     // overViewTicket: overViewTicketSlice,
+//     userme: usermeSlice,
+//     staff: staffSlice,
+//     resourcesCampaigns: CampaignsSlice,
+//     resourcesFunctions: functionsSlice,
+//     resourcesFiles: filesSlice,
+//     resourcesModels: ModelsSlice,
+//     resourcesImages: imagesSlice,
+//     resourcesUrls: urlsSlice,
+//     affiliate: affiliateApiSlice,
+//     blogs: BlogSlice,
+//     point_list: listPointSlice,
+//     //admin
+//     overview_blog: blogSlice,
+//     overview_counpon: counponSlice,
+//     counpon_history: counponhistorySlice,
+//     overview_flashsale: flashsaleoverviewSlice,
+//     counpon_list: counponlistSlice,
+//     flashsale_list: flashsaleSlice,
+//     overview_staff: staffoverviewSlice,
+//     overview_campaign: CampaignSlice,
+//     overview_function: functionSlice,
+//     overview_files: fileSlice,
+//     overview_models: modelSlice,
+//     campaign_list: CampaignListSlice,
+//     files_list: fileListSlice,
+//     function_list: functionListSlice,
+//     model_list: modelListSlice,
+//     overview_customer: customerAdminSlice,
+//     overview_product: productAdminSlice,
+//     overview_order: orderProductAdminSlice,
+//   },
+// });
+
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false, 
+    }),
+});
+export const persistor = persistStore(store);
 
 export type AppState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
