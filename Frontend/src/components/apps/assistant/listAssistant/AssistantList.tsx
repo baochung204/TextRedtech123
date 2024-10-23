@@ -39,7 +39,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import IconCrv from 'src/assets/ICON/cvr.png';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
-import { fetchAssisstantData } from 'src/store/user/chatbots/assisstantUserSlice';
+import { fetchAssistantData } from 'src/store/user/chatbots/assisstantUserSlice';
 import AlertChat from '../../chats/AlertChat';
 import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
 
@@ -55,29 +55,24 @@ const ListAssistant = () => {
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
   const [alertText, setAlertText] = useState('');
 
-  const assisstant = useSelector((state: AppState) => state.assisstant.dataa);
+  const assistant = useSelector((state: AppState) => state.assisstant.dataa);
 
-  const [assisstantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
-
+  const [assistantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
 
   // useEffect(() => {
-  //   dispatch(fetchAssisstantData());
+  //   dispatch(fetchAssistantData());
   //   setAssisstantData(assisstant);
   // }, [dispatch, assisstant]);
 
+  useEffect(() => {
+    dispatch(fetchAssistantData());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchAssisstantData());
-  }, [dispatch]);  
-
-  useEffect(() => {
-    if (assisstant !== assisstantData) {
-      setAssisstantData(assisstant);
+    if (assistant !== assistantData) {
+      setAssisstantData(assistant);
     }
-  }, [assisstant, assisstantData]);
-
-
-  console.log('loadloadload: ', assisstantData);
+  }, [assistant, assistantData]);
 
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
@@ -198,8 +193,8 @@ const ListAssistant = () => {
       </Grid>
       <Grid item sm={12}>
         <Grid container spacing={2}>
-          {Array.isArray(assisstantData) &&
-            assisstantData.map((rank, index) => (
+          {Array.isArray(assistantData) &&
+            assistantData.map((rank, index) => (
               <Grid item xs={12} sm={12} md={6} key={index}>
                 <Card
                   sx={{
@@ -334,7 +329,7 @@ const ListAssistant = () => {
                           }}
                           component={Link}
                           // to={`/assistants/detail/${rank.chatbotId}`}
-                          to={`/assistants/detail/${index}`}
+                          to={`/assistants/detail/${rank?.chatbotId}`}
                         >
                           <IconStackBack stroke={2} />
                         </Button>

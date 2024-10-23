@@ -1,22 +1,48 @@
 import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import DataTable4 from '../DataTable/TableTab4';
-
-
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchModels } from 'src/store/user/user-resources/models/modelsUseSlice';
+import { ModelType } from 'src/store/user/user-resources/models/type/modelsType';
 
 interface PropsData {
   dataSelect?: string[];
 }
 
 const Tab4 = ({ dataSelect }: PropsData) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
+  const Models = useSelector((state: AppState) => state.resourcesModels?.data);
+  const { totalElements = 0 }:ModelType= useSelector((state: AppState) => state.resourcesModels?.data);
+  // const [modelsData, setModelsData] = useState<ModelType>();
+  useEffect(() => {
+    dispatch(fetchModels({ page, size: rowsPerPage }));
+  }, [dispatch, page, rowsPerPage]);
+  // useEffect(() => {
+  //   if (Models !== modelsData) {
+  //     setModelsData(Models);
+  //   }
+  // }, [Models, modelsData]);
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newSize = parseInt(event.target.value, 10);
+    setRowsPerPage(newSize);
+    setPage(0);
+  };
+  // console.log('data models', modelsData);
+
   const column = [
     {
       title: 'ID',
-      dataIndex: 'idCode',
+      dataIndex: 'modelId',
     },
     {
       title: 'Ngày tạo',
-      dataIndex: 'creationDate',
+      dataIndex: 'publishDate',
       render: (value: Date) => {
         return new Date(value).toLocaleDateString();
       },
@@ -27,11 +53,11 @@ const Tab4 = ({ dataSelect }: PropsData) => {
     },
     {
       title: 'Model gốc',
-      dataIndex: 'modelLocal',
+      dataIndex: 'baseModel',
     },
     {
       title: 'Token huấn luyện',
-      dataIndex: 'trainedTokens',
+      dataIndex: 'trainedToken',
     },
     // {
     //   title: 'Hành động',
@@ -65,7 +91,16 @@ const Tab4 = ({ dataSelect }: PropsData) => {
         paddingTop: 1,
       }}
     >
-      <CustomTable dataSource={DataTable4} columns={column} dataSelect={dataSelect} />
+      <CustomTable
+        dataSource={Models?.content}
+        columns={column}
+        dataSelect={dataSelect}
+        count={totalElements}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </Box>
   );
 };

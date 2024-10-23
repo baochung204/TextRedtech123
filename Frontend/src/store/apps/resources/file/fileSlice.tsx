@@ -1,30 +1,40 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { ApiResponse } from 'src/types/apps/file';
-const URL_GET = 'https://redai02-4af4309fd76b.herokuapp.com/user-resources'
-const token = localStorage.getItem('accessToken')
+import userApi from 'src/api/userResource/UserResource';
+import { Result } from 'src/types/apps/file';
+
 interface FileState {
-  data: ApiResponse[];
+  data: Result;
   loading: boolean;
   error: string | null;
 }
 const initialState: FileState = {
-  data: [],
+  data: {
+    content: [],
+    last: false,
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0
+  }, 
   loading: false,
   error: null,
 };
-
-export const fetchFile = createAsyncThunk('file/fetchFile', async () => {
-  const res = await axios.get(`${URL_GET}/files`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+interface FetchParams {
+  page: number;
+  size: number;
+}
+export const fetchFile = createAsyncThunk(
+  'file/fetchFile',
+  async ({page,size}:FetchParams) => {
+    try {
+      const res = await userApi.getAllFiles(page,size)
+      console.log('file', res.data);
+      return res.data.result;
+    } catch (error) {
+      console.log('lỗi',error)
     }
-  );
-  console.log('file', res.data);
-  return res.data;
-});
+    
+  });
 
 const FileSlice = createSlice({
   name: 'file',
@@ -35,7 +45,7 @@ const FileSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(fetchFile.fulfilled, (state, action: PayloadAction<ApiResponse[]>) => {
+    builder.addCase(fetchFile.fulfilled, (state, action: PayloadAction<Result>) => {
       state.loading = false;
       state.data = action.payload;
     });

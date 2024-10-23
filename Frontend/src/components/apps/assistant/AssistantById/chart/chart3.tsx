@@ -1,44 +1,17 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { useTheme } from '@mui/material/styles';
 import Chart from 'react-apexcharts';
 
 import { Props } from 'react-apexcharts';
 
 import { Box, Typography } from '@mui/material';
+import { ChangeEvent, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
-// const BCrumb = [
-//   {
-//     to: '/',
-//     title: 'Home',
-//   },
-//   {
-//     title: 'Gradient Chart',
-//   },
-// ];
-
 const Chart3 = () => {
-  // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
-  // const monthsInVietnamese = [
-  //   'Tháng 1',
-  //   'Tháng 2',
-  //   'Tháng 3',
-  //   'Tháng 4',
-  //   'Tháng 5',
-  //   'Tháng 6',
-  //   'Tháng 7',
-  //   'Tháng 8',
-  //   'Tháng 9',
-  //   'Tháng 10',
-  //   'Tháng 11',
-  //   'Tháng 12',
-  // ];
-
   const categories = [
     '1/11/2000',
     '2/11/2000',
@@ -59,8 +32,14 @@ const Chart3 = () => {
     '5/11/2001',
     '6/11/2001',
   ];
-
-  const optionsgredientchart2: Props = {
+  const seriesgredientchart: any = [
+    {
+      name: 'Points',
+      data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
+    },
+  ];
+  const maxYValue = Math.max(...seriesgredientchart[0].data) + 5;
+  const optionsgredientchart: Props = {
     chart: {
       height: 350,
       type: 'line',
@@ -77,18 +56,23 @@ const Chart3 = () => {
         blur: 3,
         opacity: 0.4,
       },
+      zoom: {
+        enabled: true,
+      },
+      offsetX: 0,
     },
     stroke: {
       width: 7,
       curve: 'smooth',
     },
-
     xaxis: {
       type: 'datetime',
       categories: categories,
       labels: {
         show: true,
-        formatter: (value: string, opts?: any) => {
+        formatter: (value: string, _time: string, opts?: any) => {
+          console.log('opts:', opts.i);
+
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -108,7 +92,7 @@ const Chart3 = () => {
         type: 'horizontal',
         opacityFrom: 1,
         opacityTo: 0.9,
-        stops: [0, 100, 100, 100],
+        stops: [0, 100],
         colorStops: [
           {
             offset: 0,
@@ -130,14 +114,13 @@ const Chart3 = () => {
       colors: [primary],
       strokeColor: '#fff',
       strokeWidth: 2,
-
       hover: {
         size: 7,
       },
     },
     yaxis: {
       min: 0,
-      max: 40,
+      max: maxYValue,
     },
     tooltip: {
       theme: 'dark',
@@ -148,20 +131,35 @@ const Chart3 = () => {
         right: 30,
       },
     },
+    responsive: [
+      {
+        breakpoint: 600,
+        options: {
+          chart: {
+            height: 250,
+          },
+          xaxis: {
+            labels: {
+              rotate: -30,
+              style: {
+                fontSize: '8px',
+              },
+            },
+          },
+        },
+      },
+    ],
   };
-  const seriesgredientchart2: any = [
-    {
-      name: 'Points',
-      data: [4, 5, 9, 10, 20, 13, 22, 9, 12, 7, 19, 8, 15, 21, 18, 20, 30, 34],
-    },
-  ];
+  // const [month, setMonth] = useState('1');
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setMonth(event.target.value);
+  // };
 
   return (
     <DashboardCard>
       <Box>
-        <Box sx={{ marginTop: '-15px' }}>
-          <Typography variant="h4">Báo cáo chi tiêu trợ lý</Typography>
-
+        <Box sx={{}}>
+          <Typography variant="h4">Báo cáo công việc</Typography>
           <Box
             sx={{
               display: 'flex',
@@ -176,9 +174,10 @@ const Chart3 = () => {
             </Box>
           </Box>
         </Box>
+
         <Chart
-          options={optionsgredientchart2}
-          series={seriesgredientchart2}
+          options={optionsgredientchart}
+          series={seriesgredientchart}
           type="line"
           height="300px"
         />

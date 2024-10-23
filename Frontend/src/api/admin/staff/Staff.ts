@@ -1,0 +1,13 @@
+
+import { axiosAPI } from '../../axiosApi';
+
+
+const url = 'nhan-vien';
+
+const userApi = {
+  getAllstaff: () => {
+    return axiosAPI.get(`/${url}/danh-sach`);
+  },
+};
+
+export default userApi;

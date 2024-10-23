@@ -20,7 +20,7 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DataOrderProduct from './data/DataOrderProduct';
 
-import aov from 'src/assets/Adminphoto/aov.png';
+import aovpicture from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 import sale from 'src/assets/Adminphoto/khuyen mai.png';
 import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
@@ -28,157 +28,14 @@ import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
 import DialogDetailOrder from './DialogDetailOrder';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchOverviewOrderProductData } from 'src/store/admin/sell/orderproduct/overview/orderproductSlice';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
   { to: '/admin/buy/orderproducts', title: 'Danh sách đơn hàng' },
-];
-
-const DataBox = [
-  {
-    bgColor: 'primary.light',
-
-    title: 'Đơn hàng',
-    total: (
-      <>
-        <Typography variant="h6">1236</Typography>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={bill} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Tổng giá trị',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">16.146.515</Typography>
-          <img src={iconPoint} alt="" width={17} />
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={totalvalue} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khuyến mại',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">5.432.234</Typography>
-          <img src={iconPoint} alt="" width={17} />
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={sale} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Tổng thanh toán',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">12.423.423 </Typography>
-          <img src={iconPoint} alt="" width={17} />
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={totalcheckout} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'AOV',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">23.423 </Typography>
-          <img src={iconPoint} alt="" width={17} />
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconChartBar color="white" size={30} /> */}
-          <img src={aov} width={30} />
-        </Box>
-      </>
-    ),
-  },
 ];
 
 interface Column {
@@ -192,6 +49,173 @@ const ProductAdmin = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [, setSelectID] = useState<string | null>(null);
   const [, setCheckValue] = useState<string | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataOrderProductOverview = useSelector((state: AppState) => state.overview_order.dataa);
+
+  // "totalOrder": 8,
+  //   "totalValue": 7009,
+  //   "totalPromotion": 1509,
+  //   "totalPayment": 5500,
+  //   "aov": 687.5
+
+  const totalOrder = dataOrderProductOverview.totalOrder;
+  const totalValue = dataOrderProductOverview.totalValue;
+  const totalPromotion = dataOrderProductOverview.totalPromotion;
+  const totalPayment = dataOrderProductOverview.totalPayment;
+  const aov = dataOrderProductOverview.aov;
+
+  const DataBox = [
+    {
+      bgColor: 'primary.light',
+
+      title: 'Đơn hàng',
+      total: (
+        <>
+          <Typography variant="h6">{totalOrder}</Typography>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={bill} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Tổng giá trị',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{totalValue}</Typography>
+            <img src={iconPoint} alt="" width={17} />
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={totalvalue} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khuyến mại',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{totalPromotion}</Typography>
+            <img src={iconPoint} alt="" width={17} />
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={sale} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Tổng thanh toán',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{totalPayment}</Typography>
+            <img src={iconPoint} alt="" width={17} />
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={totalcheckout} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'AOV',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{aov}</Typography>
+            <img src={iconPoint} alt="" width={17} />
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {/* <IconChartBar color="white" size={30} /> */}
+            <img src={aovpicture} width={30} />
+          </Box>
+        </>
+      ),
+    },
+  ];
+
+  useEffect(() => {
+    dispatch(fetchOverviewOrderProductData());
+  }, [dispatch]);
+
+  console.log(dataOrderProductOverview);
 
   const column = useMemo<Column[]>(
     () => [

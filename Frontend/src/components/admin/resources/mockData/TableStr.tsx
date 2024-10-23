@@ -4,97 +4,11 @@ import strategy from 'src/assets/ChienLuoc/chien luoc.png';
 import strategicgroup from 'src/assets/ChienLuoc/nhom chien luoc.png';
 import assistantstrategy from 'src/assets/ChienLuoc/tro ly ap dung.png';
 import { Strategys } from '../types/Str';
-
-export const Strategy = [
-  {
-    bgColor: 'primary.light',
-    title: 'Nhóm chiến lược',
-    total: '52',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={strategicgroup} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Chiến lược',
-    total: '189',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={strategy} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng sở hữu',
-    total: '32.415',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={assistantstrategy} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Trợ lý áp dụng',
-    total: '11.415',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img width={30} src={customer} />
-        </Box>
-      </>
-    ),
-  },
-];
+import { useEffect } from 'react';
+import { fetchOverviewCampaignData } from 'src/store/admin/resources/campaign/overview/campaignSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export const StrategyRows: Strategys[] = [
   {
@@ -190,3 +104,111 @@ export const StrategyRows: Strategys[] = [
     status: true,
   },
 ];
+
+const TableStr = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const dataCampaignOverview = useSelector((state: AppState) => state.overview_campaign.dataa);
+
+  useEffect(() => {
+    dispatch(fetchOverviewCampaignData());
+  }, [dispatch]);
+  const totalApplicationAsisstant = dataCampaignOverview.totalApplicationAsisstant;
+  const totalCompaign = dataCampaignOverview.totalCompaign;
+  const totalCustomerOwnership = dataCampaignOverview.totalCustomerOwnership;
+  const totalGroupCompaign = dataCampaignOverview.totalGroupCompaign;
+
+  const Strategy = [
+    {
+      bgColor: 'primary.light',
+      title: 'Nhóm chiến lược',
+      total: totalGroupCompaign,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={strategicgroup} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Chiến lược',
+      total: totalCompaign,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={strategy} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khách hàng sở hữu',
+      total: totalCustomerOwnership,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={assistantstrategy} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Trợ lý áp dụng',
+      total: totalApplicationAsisstant,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img width={30} src={customer} />
+          </Box>
+        </>
+      ),
+    },
+  ];
+
+  return { Strategy, StrategyRows };
+};
+
+export default TableStr;
