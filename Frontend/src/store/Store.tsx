@@ -58,6 +58,9 @@ import CampaignListSlice from './admin/resources/campaign/table/campaignListSlic
 import fileListSlice from './admin/resources/files/table/filesListSlice';
 import functionListSlice from './admin/resources/function/table/functionListSlice';
 import modelListSlice from './admin/resources/model/table/modelListSlice';
+import customerAdminSlice from './admin/customer/overview/customerSlice';
+import productAdminSlice from './admin/sell/product/overview/productSlice';
+import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
 
 export const store = configureStore({
   reducer: {
@@ -116,6 +119,9 @@ export const store = configureStore({
     files_list: fileListSlice,
     function_list: functionListSlice,
     model_list: modelListSlice,
+    overview_customer: customerAdminSlice,
+    overview_product: productAdminSlice,
+    overview_order: orderProductAdminSlice,
   },
 });
 
@@ -173,7 +179,9 @@ const rootReducer = combineReducers({
   files_list: fileListSlice,
   function_list: functionListSlice,
   model_list: modelListSlice,
-
+  overview_customer: customerAdminSlice,
+  overview_product: productAdminSlice,
+  overview_order: orderProductAdminSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

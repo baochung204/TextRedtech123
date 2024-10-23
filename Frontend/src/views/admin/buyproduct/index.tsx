@@ -18,6 +18,7 @@ import {
 import { IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 // import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import revenueperproduct from 'src/assets/Adminphoto/doanh thu san pham.png';
 import product from 'src/assets/Adminphoto/san pham.png';
 import amountcheckout from 'src/assets/Adminphoto/so luong mua.png';
@@ -28,6 +29,8 @@ import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import { fetchOverviewProductData } from 'src/store/admin/sell/product/overview/productSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 import ProductTable from '../product/ProductData';
 import DialogBuyProduct from './DialogBuyProduct';
 
@@ -48,149 +51,6 @@ const FilmsData: FilmsData[] = [
   { title: 'Váy' },
   { title: 'Dép' },
 ];
-const DataBox = [
-  {
-    bgColor: 'primary.light',
-
-    title: 'Sản phẩm',
-    total: (
-      <>
-        <Typography variant="h6">999.999.999</Typography>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={product} width={30} alt="Product" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Số lượng mua',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">999.999.999.999</Typography>
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={amountcheckout} width={30} alt="Amount Checkout" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">12.423.423 </Typography>
-          <img src={iconPoint} alt="" width={17} />
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={totalcheckout} width={30} alt="Total Checkout" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Lượt mua / sản phẩm',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">999</Typography>
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={totalrevenue} width={30} alt="Total Revenue" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu / sản phẩm',
-    total: (
-      <>
-        <Box display="flex" alignItems="center" gap={0.4}>
-          <Typography variant="h6">999.999.999.999₫</Typography>
-        </Box>
-      </>
-    ),
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconChartBar color="white" size={30} /> */}
-          <img src={revenueperproduct} width={30} alt="Revenue per Product" />
-        </Box>
-      </>
-    ),
-  },
-];
 
 interface Column {
   title: string;
@@ -203,6 +63,164 @@ const BuyPoints = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [checkValue, setCheckValue] = useState<string | null>(null);
   const [selectID, setSelectID] = useState<string | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const productOverview = useSelector((state: AppState) => state.overview_product.dataa);
+
+  useEffect(() => {
+    dispatch(fetchOverviewProductData());
+  }, [dispatch]);
+
+  // "totalProduct": 63,
+  // "totalQuantity": 13,
+  // "totalRevenue": 5500,
+  // "quantityOnProduct": 0,
+  // "revenueOnProduct": 87
+
+  // console.log('hello' + productOverview);
+
+  const totalProduct = productOverview.totalProduct;
+  const totalQuantity = productOverview.totalQuantity;
+  const totalRevenue = productOverview.totalRevenue;
+  const quantityOnProduct = productOverview.quantityOnProduct;
+  const revenueOnProduct = productOverview.revenueOnProduct;
+
+  const DataBox = [
+    {
+      bgColor: 'primary.light',
+      title: 'Sản phẩm',
+      total: `${totalProduct}`,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={product} width={30} alt="Product" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Số lượng mua',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{totalQuantity}</Typography>
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={amountcheckout} width={30} alt="Amount Checkout" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Doanh thu',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{totalRevenue}</Typography>
+            <img src={iconPoint} alt="" width={17} />
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={totalcheckout} width={30} alt="Total Checkout" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Lượt mua / sản phẩm',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{quantityOnProduct}</Typography>
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={totalrevenue} width={30} alt="Total Revenue" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Doanh thu / sản phẩm',
+      total: (
+        <>
+          <Box display="flex" alignItems="center" gap={0.4}>
+            <Typography variant="h6">{revenueOnProduct}₫</Typography>
+          </Box>
+        </>
+      ),
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={revenueperproduct} width={30} alt="Revenue per Product" />
+          </Box>
+        </>
+      ),
+    },
+  ];
 
   const column = useMemo<Column[]>(
     () => [
@@ -368,8 +386,7 @@ const BuyPoints = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-  // const [value, setValue] = useState<Dayjs | null>(null);
-  // const [value1, setValue1] = useState<Dayjs | null>(null);
+
   return (
     <>
       <BannerPage title="Quản lý sản phẩm" items={BCrumb} />
