@@ -23,7 +23,7 @@ const Tab1 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataStr = useSelector((state: AppState) => state.str.data);
   const [datax, setDatax] = useState<Str[]>([])
-  const [dataView, setDataView] = useState<Str>()
+  const [dataView, setDataView] = useState<Str | undefined>()
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
