@@ -58,7 +58,7 @@ import CampaignListSlice from './admin/resources/campaign/table/campaignListSlic
 import fileListSlice from './admin/resources/files/table/filesListSlice';
 import functionListSlice from './admin/resources/function/table/functionListSlice';
 import modelListSlice from './admin/resources/model/table/modelListSlice';
-
+import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 export const store = configureStore({
   reducer: {
     //user
@@ -83,7 +83,9 @@ export const store = configureStore({
     function: functionReducer,
     file: fileReducer,
     test: userSlice,
+    //assistant
     assisstant: assistantSlice,
+    assistantById: assistantByIdSlice,
     twofa: twofaSlice,
     flashsale_random: flashSaleRandomSlice,
     adminTicker: adminTicketSlice,
@@ -100,6 +102,7 @@ export const store = configureStore({
     affiliate: affiliateApiSlice,
     blogs: BlogSlice,
     point_list: listPointSlice,
+
     //admin
     overview_blog: blogSlice,
     overview_counpon: counponSlice,
@@ -144,6 +147,7 @@ const rootReducer = combineReducers({
   test: userSlice,
   //assistant
   assisstant: assistantSlice,
+  assistantById: assistantByIdSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
@@ -173,7 +177,6 @@ const rootReducer = combineReducers({
   files_list: fileListSlice,
   function_list: functionListSlice,
   model_list: modelListSlice,
-
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

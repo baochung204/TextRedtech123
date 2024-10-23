@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-
 import {
   Avatar,
   Box,
@@ -18,11 +15,14 @@ import userImg from 'src/assets/images/profile/user-1.jpg';
 
 import PageContainer from 'src/components/container/PageContainer';
 
-// import icon1 from 'src/assets/images/svgs/icon-connect.svg';
 import badge from 'src/assets/ICON/c1.png';
 
-// import bannercl from 'src/assets/images/banner/banner_assistant.png';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchAssistantById } from 'src/store/user/chatbots/assistantByIdUseSlice';
 import Chart1 from './chart/chart1';
 import Chart2 from './chart/chart2';
 import Chart3 from './chart/chart3';
@@ -34,28 +34,43 @@ import File from './configuration/file';
 import Function from './configuration/function';
 import InFor from './infor/infor';
 import Topcardassistant from './topcard/Topcardassistant';
-import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
-import { AppState, dispatch } from 'src/store/Store';
-import { useEffect } from 'react';
-import { fetchAssistantById } from 'src/store/user/chatbots/assisstantUserSlice';
+import {
+  ChatBotIndexType,
+  ChatBotInfoType,
+  ChatBotResourceType,
+} from 'src/store/user/chatbots/type/assistantByIdType';
 
 const AssistantInfor = () => {
   const { id } = useParams();
-  const AssistantById = useSelector((state: AppState) =>
-    state.assisstant.dataa.find((assistant) => assistant.chatBotInfo.chatbotid === id),
-  );
+  const chatBotById = useSelector((state: AppState) => state.assistantById.data);
   useEffect(() => {
-    dispatch(fetchAssistantById(id as string));
+    if (id !== null) {
+      dispatch(fetchAssistantById(id));
+    }
   }, [dispatch, id]);
-  console.log('chi tiet', AssistantById);
-
+  const [chatBotInfo, setChatBotInfo] = useState<ChatBotInfoType | null>(null);
+  const [chatBotIndex, setChatBotIndex] = useState<ChatBotIndexType | null>(null);
+  const [chatBotResource, setChatBotResource] = useState<ChatBotResourceType | null>(null);
+  // const chatBotInfo = chatBotById ? chatBotById.chatBotInfo : null;
+  // const chatBotIndex = chatBotById ? chatBotById.chatBotIndex : null;
+  // const chatBotResource = chatBotById ? chatBotById.chatBotResource : null;
+  useEffect(() => {
+    if (chatBotById?.chatBotInfo) {
+      setChatBotInfo(chatBotById.chatBotInfo);
+    }
+    if (chatBotById?.chatBotIndex) {
+      setChatBotIndex(chatBotById.chatBotIndex);
+    }
+    if (chatBotById?.chatBotResource) {
+      setChatBotResource(chatBotById.chatBotResource);
+    }
+  }, [chatBotById]);
   return (
     <PageContainer title="Thông tin trợ lý" description="this is page">
       <Box mt={3}>
         <Grid container spacing={3}>
           {/* column */}
-          <Grid item xs={12} sm={8} md={8} lg={8}>
+          <Grid item xs={12} sm={chatBotInfo?.campaignName ? 8 : 12}>
             <Card
               elevation={0}
               sx={{ backgroundColor: (theme) => theme.palette.primary.light, py: 0 }}
@@ -93,7 +108,7 @@ const AssistantInfor = () => {
                         <Tooltip title="Tỉ lệ chuyển đổi" placement="top">
                           <Box>
                             <Typography variant="h2" whiteSpace="nowrap">
-                              35%
+                              {chatBotIndex?.cvr}%
                               <span>
                                 <IconArrowUpRight width={18} color="#39B69A" />
                               </span>
@@ -115,79 +130,81 @@ const AssistantInfor = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={4} md={4} lg={4}>
-            <Box
-              height="100%"
-              bgcolor="error.light"
-              sx={{
-                padding: 2,
-                borderRadius: 2,
-              }}
-            >
-              <Typography
-                variant="h5"
-                sx={{
-                  py: 2,
-                  fontWeight: 600,
-                  color: '#FA896B',
-                  fontSize: { sm: 16, md: 18 },
-                }}
-              >
-                Chiến lược của trợ lý
-              </Typography>
+          {chatBotInfo?.campaignName && (
+            <Grid item xs={12} sm={4} md={4} lg={4}>
               <Box
+                height="100%"
+                bgcolor="error.light"
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  width: '100%',
+                  padding: 2,
+                  borderRadius: 2,
                 }}
               >
-                <Grid container spacing={2}>
-                  <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Box
-                      sx={{
-                        width: '100%',
-                        maxWidth: '100px',
-                        borderRadius: 1,
-                        overflow: 'hidden',
-                      }}
-                    >
-                      <img
-                        src={badge}
-                        alt="Banner chiến lược"
-                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={8}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center', // Center vertically
-                        justifyContent: 'center', // Center horizontally
-                        height: '100%',
-                        textAlign: 'center', // Ensure the Box takes full height of the parent Grid item
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        fontWeight={500}
+                <Typography
+                  variant="h5"
+                  sx={{
+                    py: 2,
+                    fontWeight: 600,
+                    color: '#FA896B',
+                    fontSize: { sm: 16, md: 18 },
+                  }}
+                >
+                  Chiến lược của trợ lý
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                  }}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item xs={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Box
                         sx={{
-                          lineHeight: 1.5,
+                          width: '100%',
+                          maxWidth: '100px',
+                          borderRadius: 1,
+                          overflow: 'hidden',
                         }}
                       >
-                        Chiến lược Tích Hợp Dịch Vụ Bên Thứ Ba
-                      </Typography>
-                    </Box>
+                        <img
+                          src={chatBotInfo?.campaignBadge}
+                          alt="Banner chiến lược"
+                          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                        />
+                      </Box>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          height: '100%',
+                          textAlign: 'center',
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          fontWeight={500}
+                          sx={{
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {chatBotInfo?.campaignName}
+                        </Typography>
+                      </Box>
+                    </Grid>
                   </Grid>
-                </Grid>
+                </Box>
               </Box>
-            </Box>
-          </Grid>
+            </Grid>
+          )}
           {/* column */}
-          <InFor />
-          <Topcardassistant />
+          <InFor chatBotInfo={chatBotInfo} />
+          <Topcardassistant chatBotIndex={chatBotIndex} />
           {/* column */}
           <Grid item xs={12} sm={12} md={4} lg={4}>
             <Chart1 />
@@ -197,13 +214,13 @@ const AssistantInfor = () => {
           </Grid>
           {/* column */}
           <Grid item xs={12} sm={12} md={4} lg={4}>
-            <Configuration />
+            <Configuration chatBotResource={chatBotResource} />
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={4}>
-            <Function />
+            <Function chatBotResource={chatBotResource} />
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={4}>
-            <File />
+            <File chatBotResource={chatBotResource} />
           </Grid>
           {/* column */}
           <Grid item xs={12} md={8} lg={8}>

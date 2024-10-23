@@ -18,11 +18,11 @@ interface PropsTab5 {
 }
 
 const Tab5: React.FC<PropsTab5> = ({
-  value,
-  open,
+  // value,
+  // open,
   setOpen,
   dataSelect,
-  checkOption,
+  // checkOption,
   setCheckOption,
 }) => {
   const [key, setKey] = useState<string | null>(null);
@@ -110,7 +110,7 @@ const Tab5: React.FC<PropsTab5> = ({
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      {/* <DialogImage
+      <DialogImage
         open={open}
         setOpen={setOpen}
         value={value}
@@ -119,7 +119,7 @@ const Tab5: React.FC<PropsTab5> = ({
         dataImages={dataImages}
         checkOption={checkOption}
         setCheckOption={setCheckOption}
-      /> */}
+      />
     </Box>
   );
 };
