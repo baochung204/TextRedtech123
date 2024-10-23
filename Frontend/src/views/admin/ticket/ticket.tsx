@@ -146,11 +146,18 @@ const Ticket = () => {
   const dispatch = useDispatch<AppDispatch>();
   const adminTickets = useSelector((state: AppState) => state.adminTicker.result);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const [tickets, setTickets] = useState<AdminTicket[]>([]);
 
   useEffect(() => {
     dispatch(fetchTicketsData());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (tickets !== adminTickets.result) {
+      setTickets(adminTickets.result);
+    }
+  }, [adminTickets, tickets]);
+  console.log(adminTickets)
   const columns = useMemo(
     () => [
       { dataIndex: 'ticketId', title: 'ID' },
@@ -194,22 +201,22 @@ const Ticket = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
-  const dataRows = Array.isArray(adminTickets)
-    ? adminTickets.map((item: any) => ({
-        ticketId: item.ticketId,
-        create_date: new Date(item.create_date),
-        messageTime: item.messageTime ? new Date(item.messageTime) : null,
-        rate: item.rate,
-        status: item.status,
-        title: item.title,
-        user_id: item.user_id,
-        user_name: item.user_name,
-        email: item.email,
-        phone_number: item.phone_number,
-      }))
-    : [];
+  // const dataRows = Array.isArray(adminTickets)
+  //   ? adminTickets.map((item: any) => ({
+  //       ticketId: item.ticketId,
+  //       create_date: new Date(item.create_date),
+  //       messageTime: item.messageTime ? new Date(item.messageTime) : null,
+  //       rate: item.rate,
+  //       status: item.status,
+  //       title: item.title,
+  //       user_id: item.user_id,
+  //       user_name: item.user_name,
+  //       email: item.email,
+  //       phone_number: item.phone_number,
+  //     }))
+  //   : [];
 
-  console.log(adminTickets); // Log dữ liệu để kiểm tra
+    // console.log(adminTickets);
 
   return (
     <PageContainer title="Quản lý ticket" description="this is page">
@@ -289,7 +296,7 @@ const Ticket = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={dataRows} />
+          <CustomTable columns={columns} dataSource={tickets} dataSelect={dataSelect} />
         </Grid>
       </Grid>
     </PageContainer>

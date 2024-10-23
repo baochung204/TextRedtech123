@@ -24,11 +24,12 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DialogPersonel from '../dialog/DialogPersonel';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { fetchStr } from 'src/store/apps/resources/str/strSlice';
 import { fetchstaffData } from 'src/store/admin/Staff/Staff';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DateSelect from 'src/components/apps/date/DateSelect';
 
 interface PropsItem {
   value: string;
