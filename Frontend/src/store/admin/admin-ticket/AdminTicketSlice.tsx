@@ -13,15 +13,30 @@ interface AdminTicket {
     email: string;
     phone_number: string;
 }
+interface StaffData {
+    result: AdminTicket[];
+    pageNo: number;
+    pageSize: number;
+    totalElements: number;
+    totalPages: number;
+    last: boolean;
+}
 
 interface StrState {
-    result: AdminTicket[];
+    result: StaffData;
     loading: boolean;
     error: string | null;
 }
 
 const initialState: StrState = {
-    result: [],
+    result: {
+        result: [],
+        pageNo: 0,
+        pageSize: 0,
+        totalElements: 0,
+        totalPages: 0,
+        last: false,
+    },
     loading: false,
     error: null,
 };

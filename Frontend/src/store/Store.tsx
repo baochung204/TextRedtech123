@@ -31,12 +31,10 @@ import userSlice from './user/user-resources/userSlice';
 import assisstantSlice from './user/chatbots/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice'
 import cartSlice from './user/cart/cartSlice';
-
-<<<<<<< HEAD
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice'
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-=======
+
 import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
 
 import blogSlice from './admin/blog/overview/blogSlice';
@@ -51,7 +49,6 @@ import BlogSlice from './user/blogs/blog';
 import flashsaleSlice from './admin/counpon/flashsale/table/flashsaleSlice';
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
 
->>>>>>> 141dbc7a449b5d99b9db92841f1caeb87c96f961
 export const store = configureStore({
   reducer: {
     //user
@@ -81,12 +78,9 @@ export const store = configureStore({
     twofa: twofaSlice,
     adminTicker: adminTicketSlice,
     cart: cartSlice,
-<<<<<<< HEAD
     // overViewTicket: overViewTicketSlice,
     userme: usermeSlice,
-  }
-})
-=======
+
     staff: staffSlice,
     affiliate: affiliateApiSlice,
     blogs: BlogSlice,
@@ -100,7 +94,6 @@ export const store = configureStore({
     overview_staff: staffoverviewSlice,
   },
 });
->>>>>>> 141dbc7a449b5d99b9db92841f1caeb87c96f961
 
 const rootReducer = combineReducers({
   //user
@@ -130,10 +123,8 @@ const rootReducer = combineReducers({
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
   cart: cartSlice,
-<<<<<<< HEAD
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
-=======
   blogs: BlogSlice,
   affiliate: affiliateApiSlice,
   //admin
@@ -147,7 +138,6 @@ const rootReducer = combineReducers({
 
   flashsale_list: flashsaleSlice,
   overview_staff: staffoverviewSlice,
->>>>>>> 141dbc7a449b5d99b9db92841f1caeb87c96f961
 
 });
 
