@@ -7,7 +7,7 @@ import DashboardCard from 'src/components/shared/DashboardCard';
 import avt9 from 'src/assets/images/profile/user-9.jpg';
 import rank8 from 'src/assets/images/rank/rank8.png';
 import bot from 'src/assets/images/backgrounds/bot.svg';
-
+import { ChatBotInfoType } from 'src/store/user/chatbots/type/assistantByIdType';
 interface sellsData {
   product: string;
   percent: number;
@@ -43,7 +43,11 @@ const BoxStyled = styled(Box)(() => ({
   boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
   border: '1px solid #EFEFEF',
 }));
-const InFor = () => {
+interface IProps {
+  chatBotInfo: ChatBotInfoType | null;
+}
+const chipColors = ['primary', 'secondary', 'error', 'warning', 'info', 'success'];
+const InFor = ({ chatBotInfo }: IProps) => {
   return (
     <>
       <Grid item xs={12} sm={5} md={5} lg={4}>
@@ -58,7 +62,7 @@ const InFor = () => {
             }}
           >
             <img
-              src={rank8}
+              src={chatBotInfo?.badgeUrl}
               alt=""
               style={{
                 width: '100%',
@@ -70,7 +74,7 @@ const InFor = () => {
             />
 
             <img
-              src={avt9}
+              src={chatBotInfo?.avatar}
               alt=""
               style={{
                 height: '61%',
@@ -92,10 +96,10 @@ const InFor = () => {
               mb={1}
               sx={{ fontSize: { xs: '16px', sm: '16px', md: '18px', lg: '18px' }, mt: 3 }}
             >
-              {inforBot.name}
+              {chatBotInfo?.name}
             </Typography>
             <Tooltip title="Model" placement="top">
-              <Chip label={inforBot.model} color="warning" sx={{ my: 1 }} />
+              <Chip label={chatBotInfo?.modelName} color="warning" sx={{ my: 1 }} />
             </Tooltip>
           </Box>
           <Box
@@ -110,7 +114,7 @@ const InFor = () => {
               <Typography variant="h6" sx={{ display: 'flex', gap: 1 }}>
                 Token huấn luyện :
                 <Typography color="textSecondary" variant="h6" fontWeight="400">
-                  1.604.142
+                  {chatBotInfo?.totalToken}
                 </Typography>
               </Typography>
             </Grid>
@@ -125,7 +129,7 @@ const InFor = () => {
           >
             <Grid item>
               <Typography variant="h6" sx={{ display: 'flex', gap: 1 }}>
-                Level 1
+                {chatBotInfo?.level}
               </Typography>
             </Grid>
           </Box>
@@ -145,34 +149,47 @@ const InFor = () => {
               }}
             >
               <Stack spacing={3}>
-                {sells.map((sell: any) => (
-                  <Box>
-                    <Stack
-                      direction="row"
-                      mb={2}
-                      justifyContent="space-between"
-                      alignItems="center"
-                    >
-                      <Box>
-                        <Typography variant="h6">Kinh nghiệm</Typography>
-                        <Typography variant="subtitle2" color="textSecondary">
-                          {sell.total}
-                        </Typography>
-                      </Box>
-                      <Chip
-                        sx={{
-                          backgroundColor: 'primary',
-                          color: 'primary',
-                          borderRadius: '4px',
-                          width: 55,
-                          height: 24,
-                        }}
-                        label={sell.percent + '%'}
-                      />
-                    </Stack>
-                    <LinearProgress value={sell.percent} variant="determinate" color="primary" />
-                  </Box>
-                ))}
+                <Box>
+                  <Stack direction="row" mb={2} justifyContent="space-between" alignItems="center">
+                    <Box>
+                      <Typography variant="h6">Kinh nghiệm</Typography>
+                      {/* <Typography variant="subtitle2" color="textSecondary">
+                        {`EXP Max: ${chatBotInfo?.expMax || 0}`}
+                      </Typography> */}
+                    </Box>
+                    <Chip
+                      sx={{
+                        backgroundColor: (theme) => theme.palette.primary.main,
+                        color: (theme) => theme.palette.primary.contrastText,
+                        borderRadius: '4px',
+                        width: 'auto',
+                        height: 24,
+                      }}
+                      label={`${
+                        chatBotInfo?.exp && chatBotInfo?.expMax
+                          ? ((chatBotInfo.exp / chatBotInfo.expMax) * 100).toFixed(1)
+                          : 0
+                      }%`}
+                    />
+                  </Stack>
+                  <LinearProgress
+                    variant="determinate"
+                    value={
+                      chatBotInfo?.exp && chatBotInfo?.expMax
+                        ? (chatBotInfo.exp / chatBotInfo.expMax) * 100
+                        : 0
+                    }
+                    sx={{
+                      height: 5,
+                      borderRadius: 5,
+                      backgroundColor: (theme) => theme.palette.grey[300],
+                      '& .MuiLinearProgress-bar': {
+                        borderRadius: 5,
+                        backgroundColor: 'red',
+                      },
+                    }}
+                  />
+                </Box>
               </Stack>
             </Box>
           </Paper>
@@ -188,7 +205,7 @@ const InFor = () => {
                 </CustomFormLabel>
               </Grid>
               <Grid item xs={7}>
-                <Typography>11/08/2025</Typography>
+                <Typography>{chatBotInfo?.dateOfBirth}</Typography>
               </Grid>
             </Grid>
             <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
@@ -198,7 +215,7 @@ const InFor = () => {
                 </CustomFormLabel>
               </Grid>
               <Grid item xs={7}>
-                <Typography>Nữ</Typography>
+                <Typography>{chatBotInfo?.gender}</Typography>
               </Grid>
             </Grid>
             <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
@@ -208,7 +225,7 @@ const InFor = () => {
                 </CustomFormLabel>
               </Grid>
               <Grid item xs={7}>
-                <Typography>Việt Nam</Typography>
+                <Typography>{chatBotInfo?.nation}</Typography>
               </Grid>
             </Grid>
             <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
@@ -218,7 +235,7 @@ const InFor = () => {
                 </CustomFormLabel>
               </Grid>
               <Grid item xs={7}>
-                <Typography>Tiếng Việt</Typography>
+                <Typography>{chatBotInfo?.language}</Typography>
               </Grid>
             </Grid>
             <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
@@ -228,9 +245,24 @@ const InFor = () => {
                 </CustomFormLabel>
               </Grid>
               <Grid item xs={7}>
-                <Typography>Đại học</Typography>
+                <Typography>{chatBotInfo?.education}</Typography>
               </Grid>
             </Grid>
+            {/* <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
+              <Grid item xs={5}>
+                <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                  Chuyên môn
+                </CustomFormLabel>
+              </Grid>
+              <Grid item xs={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {chatBotInfo?.chatBotPersonalities?.map((item: string) =>
+                  console.log('item', item),
+                )}
+                <Chip label="Tương tác đa phương tiện" color="primary" sx={{ px: 1 }} />
+                <Chip label="Phân tích dữ liệu và báo cáo" color="error" sx={{ px: 1 }} />
+                <Chip label="Hỗ trợ đa ngôn ngữ" color="warning" sx={{ px: 1 }} />
+              </Grid>
+            </Grid> */}
             <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
               <Grid item xs={5}>
                 <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
@@ -238,9 +270,14 @@ const InFor = () => {
                 </CustomFormLabel>
               </Grid>
               <Grid item xs={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                <Chip label="Tương tác đa phương tiện" color="primary" sx={{ px: 1 }} />
-                <Chip label="Phân tích dữ liệu và báo cáo" color="error" sx={{ px: 1 }} />
-                <Chip label="Hỗ trợ đa ngôn ngữ" color="warning" sx={{ px: 1 }} />
+                {chatBotInfo?.chatBotPersonalities?.map((item: string, index: number) => (
+                  <Chip
+                    key={index}
+                    label={item}
+                    color={chipColors[index % chipColors.length]}
+                    sx={{ px: 1 }}
+                  />
+                ))}
               </Grid>
             </Grid>
             <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
@@ -250,11 +287,20 @@ const InFor = () => {
                 </CustomFormLabel>
               </Grid>
               <Grid item xs={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                <Chip variant="outlined" label="Vui vẻ" color="primary" sx={{ px: 1 }} />
+                {chatBotInfo?.chatBotExpertises?.map((item: string, index: number) => (
+                  <Chip
+                    key={index}
+                    label={item}
+                    variant="outlined"
+                    color={chipColors[index % chipColors.length]}
+                    sx={{ px: 1 }}
+                  />
+                ))}
+                {/* <Chip variant="outlined" label="Vui vẻ" color="primary" sx={{ px: 1 }} />
                 <Chip variant="outlined" label="Tận tâm" color="error" sx={{ px: 1 }} />
                 <Chip variant="outlined" label="Cởi mở" color="warning" sx={{ px: 1 }} />
                 <Chip variant="outlined" label="Thân thiện" color="success" sx={{ px: 1 }} />
-                <Chip variant="outlined" label="Hướng ngoại" color="default" sx={{ px: 1 }} />
+                <Chip variant="outlined" label="Hướng ngoại" color="default" sx={{ px: 1 }} /> */}
               </Grid>
             </Grid>
           </Grid>

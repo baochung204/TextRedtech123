@@ -11,8 +11,11 @@ import {
   useTheme,
 } from '@mui/material';
 import Banner from 'src/assets/images/banner/trangbịtroly.png';
-
-const Configuration = () => {
+import { ChatBotResourceType } from 'src/store/user/chatbots/type/assistantByIdType';
+interface IProps {
+  chatBotResource: ChatBotResourceType | null;
+}
+const Configuration = ({ chatBotResource }: IProps) => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primarylight = theme.palette.primary.light;

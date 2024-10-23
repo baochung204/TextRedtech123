@@ -19,11 +19,11 @@ interface PropsTab5 {
 }
 
 const Tab5: React.FC<PropsTab5> = ({
-  value,
-  open,
+  // value,
+  // open,
   setOpen,
   dataSelect,
-  checkOption,
+  // checkOption,
   setCheckOption,
 }) => {
   const [key, setKey] = useState<number | null>(null);

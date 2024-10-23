@@ -60,20 +60,16 @@ import functionListSlice from './admin/resources/function/table/functionListSlic
 import modelListSlice from './admin/resources/model/table/modelListSlice';
 import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
+import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-
-
-
 
 const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['customizer', 'ecommerce'],
 };
-
-
 
 const rootReducer = combineReducers({
   //user
@@ -102,6 +98,7 @@ const rootReducer = combineReducers({
   resourcesUrls: urlsSlice,
   //assistant
   assisstant: assistantSlice,
+  assistantById: assistantByIdSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
@@ -201,12 +198,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 //   },
 // });
 
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false, 
+      serializableCheck: false,
     }),
 });
 export const persistor = persistStore(store);
