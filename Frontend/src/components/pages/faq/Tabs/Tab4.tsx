@@ -1,10 +1,9 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import { AppState, dispatch } from 'src/store/Store';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchModels } from 'src/store/user/user-resources/models/modelsUseSlice';
-import { ModelType } from 'src/store/user/user-resources/models/type/modelsType';
 
 interface PropsData {
   dataSelect?: string[];
@@ -12,9 +11,9 @@ interface PropsData {
 
 const Tab4 = ({ dataSelect }: PropsData) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
-  const Models = useSelector((state: AppState) => state.resourcesModels?.data);
-  const { totalElements = 0 }:ModelType= useSelector((state: AppState) => state.resourcesModels?.data);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const data = useSelector((state: AppState) => state.resourcesModels.data);
+  // const { totalElements = 0 }:ModelType= useSelector((state: AppState) => state.resourcesModels.data);
   // const [modelsData, setModelsData] = useState<ModelType>();
   useEffect(() => {
     dispatch(fetchModels({ page, size: rowsPerPage }));
@@ -24,16 +23,15 @@ const Tab4 = ({ dataSelect }: PropsData) => {
   //     setModelsData(Models);
   //   }
   // }, [Models, modelsData]);
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (_event: unknown, newPage: number) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSize = parseInt(event.target.value, 10);
-    setRowsPerPage(newSize);
-    setPage(0);
-  };
-  // console.log('data models', modelsData);
+  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newSize = parseInt(event.target.value, 10);
+  //   setRowsPerPage(newSize);
+  //   setPage(0);
+  // };
 
   const column = [
     {
@@ -92,14 +90,14 @@ const Tab4 = ({ dataSelect }: PropsData) => {
       }}
     >
       <CustomTable
-        dataSource={Models?.content}
+        dataSource={data?.content}
         columns={column}
         dataSelect={dataSelect}
-        count={totalElements}
+        count={data.totalElements}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
       />
     </Box>
   );

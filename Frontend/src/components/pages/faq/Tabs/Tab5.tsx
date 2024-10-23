@@ -6,7 +6,8 @@ import { Column } from 'src/components/ComponentTables/ColumnInterface';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchImages } from 'src/store/user/user-resources/images/imagesUesSlice';
-import { ModelType } from 'src/store/user/user-resources/models/type/modelsType';
+import DialogImage from '../dialog/DialogImage';
+// import { ModelType } from 'src/store/user/user-resources/models/type/modelsType';
 
 interface PropsTab5 {
   value: string;
@@ -25,17 +26,18 @@ const Tab5: React.FC<PropsTab5> = ({
   checkOption,
   setCheckOption,
 }) => {
-  const [key, setKey] = useState<string | null>(null);
+  const [key, setKey] = useState<number | null>(null);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
-  const Images = useSelector((state: AppState) => state.resourcesImages.data);
-  const {totalElements=0}:ModelType = useSelector((state: AppState) => state.resourcesImages.data);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const data = useSelector((state: AppState) => state.resourcesImages.data);
+  // const {totalElements=0}:ModelType = useSelector((state: AppState) => state.resourcesImages.data);
+  console.log(data);
 
   useEffect(() => {
     dispatch(fetchImages({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
 
-  const onHandleOpenImageById = (id: string) => {
+  const onHandleOpenImageById = (id: number) => {
     setKey(id);
     setOpen(true);
     setCheckOption('view');
@@ -44,15 +46,16 @@ const Tab5: React.FC<PropsTab5> = ({
   // const onHandleRemove = (id: string) => {
   //   dispatch(removeImage(id));
   // };
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (_event: unknown, newPage: number) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSize = parseInt(event.target.value, 10);
-    setRowsPerPage(newSize);
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newSize = parseInt(event.target.value, 10);
+  //   setRowsPerPage(newSize);
+  //   setPage(0);
+  // };
+
   const column: Column[] = [
     {
       title: 'ID',
@@ -85,12 +88,11 @@ const Tab5: React.FC<PropsTab5> = ({
       render: (_row: any, value: any) => (
         <Grid container>
           <Grid item xs={4}>
-            <IconButton onClick={() => onHandleOpenImageById(value.id)}>
+            <IconButton onClick={() => { onHandleOpenImageById(value.imageId)}}>
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
           </Grid>
           <Grid item xs={4}>
-            {/* <IconButton onClick={() => onHandleRemove(value.id)}> */}
             <IconButton>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
             </IconButton>
@@ -103,25 +105,25 @@ const Tab5: React.FC<PropsTab5> = ({
   return (
     <Box sx={{ paddingTop: 1 }}>
       <CustomTable
-        dataSource={Images?.content}
+        dataSource={data.content}
         columns={column}
         dataSelect={dataSelect}
-        count={totalElements}
+        count={data.totalElements}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
       />
-      {/* <DialogImage
+      <DialogImage
         open={open}
         setOpen={setOpen}
         value={value}
         selectedItemId1={key}
         setSelectedItemId1={setKey}
-        dataImages={dataImages}
+        dataImages={data.content}
         checkOption={checkOption}
         setCheckOption={setCheckOption}
-      /> */}
+      />
     </Box>
   );
 };

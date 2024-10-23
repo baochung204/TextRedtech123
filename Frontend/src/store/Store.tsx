@@ -45,7 +45,7 @@ import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUse
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
 import CampaignSlice from './admin/resources/campaign/overview/campaignSlice';
 import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
-import modelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
+import ModelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
 import imagesSlice from 'src/store/user/user-resources/images/imagesUesSlice';
 import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
 import functionSlice from './admin/resources/function/overview/functionSlice';
@@ -97,7 +97,7 @@ export const store = configureStore({
     resourcesCampaigns: CampaignsSlice,
     resourcesFunctions: functionsSlice,
     resourcesFiles: filesSlice,
-    resourcesModels: modelsSlice,
+    resourcesModels: ModelsSlice,
     resourcesImages: imagesSlice,
     resourcesUrls: urlsSlice,
     affiliate: affiliateApiSlice,
@@ -148,6 +148,8 @@ const rootReducer = combineReducers({
   function: functionReducer,
   file: fileReducer,
   test: userSlice,
+  resourcesModels: ModelsSlice,
+  resourcesUrls: urlsSlice,
   //assistant
   assisstant: assistantSlice,
   flashsale_random: flashSaleRandomSlice,
@@ -158,6 +160,7 @@ const rootReducer = combineReducers({
   resourcesCampaigns: CampaignsSlice,
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
+  resourcesImages: imagesSlice,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,
