@@ -1,12 +1,12 @@
 import { Box, Grid, IconButton } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import { AppDispatch, AppState, dispatch } from 'src/store/Store';
-import DialogImage from '../dialog/DialogImage';
+import { useSelector } from 'react-redux';
 import { Column } from 'src/components/ComponentTables/ColumnInterface';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { AppState, dispatch } from 'src/store/Store';
 import { fetchImages } from 'src/store/user/user-resources/images/imagesUesSlice';
+import { ModelType } from 'src/store/user/user-resources/models/type/modelsType';
 
 interface PropsTab5 {
   value: string;
@@ -29,6 +29,7 @@ const Tab5: React.FC<PropsTab5> = ({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const Images = useSelector((state: AppState) => state.resourcesImages.data);
+  const {totalElements=0}:ModelType = useSelector((state: AppState) => state.resourcesImages.data);
 
   useEffect(() => {
     dispatch(fetchImages({ page, size: rowsPerPage }));
@@ -105,6 +106,7 @@ const Tab5: React.FC<PropsTab5> = ({
         dataSource={Images?.content}
         columns={column}
         dataSelect={dataSelect}
+        count={totalElements}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

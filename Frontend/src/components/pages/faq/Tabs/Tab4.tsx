@@ -1,9 +1,8 @@
 import { Box } from '@mui/material';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import DataTable4 from '../DataTable/TableTab4';
-import { useSelector } from 'react-redux';
-import { AppState, dispatch } from 'src/store/Store';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { AppState, dispatch } from 'src/store/Store';
 import { fetchModels } from 'src/store/user/user-resources/models/modelsUseSlice';
 import { ModelType } from 'src/store/user/user-resources/models/type/modelsType';
 
@@ -14,8 +13,9 @@ interface PropsData {
 const Tab4 = ({ dataSelect }: PropsData) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
-  const Models = useSelector((state: AppState) => state.resourcesModels.data);
-  const [modelsData, setModelsData] = useState<ModelType>();
+  const Models = useSelector((state: AppState) => state.resourcesModels?.data);
+  const { totalElements = 0 }:ModelType= useSelector((state: AppState) => state.resourcesModels?.data);
+  // const [modelsData, setModelsData] = useState<ModelType>();
   useEffect(() => {
     dispatch(fetchModels({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
@@ -95,6 +95,7 @@ const Tab4 = ({ dataSelect }: PropsData) => {
         dataSource={Models?.content}
         columns={column}
         dataSelect={dataSelect}
+        count={totalElements}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
