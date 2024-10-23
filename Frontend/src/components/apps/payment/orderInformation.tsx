@@ -194,7 +194,7 @@ const OrderInformation = () => {
     }, 2000);
     return () => clearInterval(interval);
   }, [open]);
-
+  console.log(selectedVoucher);
   return (
     <>
       <Grid container spacing={3}>
@@ -412,7 +412,11 @@ const OrderInformation = () => {
                                     }}
                                   >
                                     <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
-                                      {item.coupons_code} - {item.name}
+                                      {item.type === 'VALUE'
+                                        ? `${item.code} - Giảm ${item.value} đ`
+                                        : item.type === 'PERCENT'
+                                        ? `${item.code} - Giảm ${item.couponPercent}%`
+                                        : null}
                                     </Typography>
                                     <Button
                                       variant={
