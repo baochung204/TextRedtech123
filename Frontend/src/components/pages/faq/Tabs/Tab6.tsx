@@ -19,9 +19,8 @@ interface PropsTab6 {
 
 const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
-  const Urls = useSelector((state: AppState) => state.resourcesUrls.data);
-  const {totalElements=0} = useSelector((state: AppState) => state.resourcesUrls.data);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const data = useSelector((state: AppState) => state.resourcesUrls.data);
   // const [urlsData, setUrlsData] = useState<UrlType>();
 
   useEffect(() => {
@@ -77,14 +76,14 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
   return (
     <Box sx={{ paddingTop: 1 }}>
       <CustomTable
-        dataSource={Urls?.content}
+        dataSource={data.content}
         columns={columns}
         dataSelect={dataSelect}
-        count={totalElements}
+        count={data.totalElements}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
       />
 
       <DialogURL open={open} setOpen={setOpen} value={value} />

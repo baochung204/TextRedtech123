@@ -7,14 +7,15 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import React, { useEffect, useState } from 'react';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
+import { DataType } from 'src/store/user/user-resources/images/type/imageType';
 
 interface PropsDialog {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedItemId1: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedItemId1: React.Dispatch<React.SetStateAction<number | null>>;
   value: string;
-  selectedItemId1: string | null;
-  dataImages: any[];
+  selectedItemId1: number | null;
+  dataImages?: DataType[];
   checkOption: string | null;
   setCheckOption: React.Dispatch<React.SetStateAction<string | null>>;
 }
@@ -28,38 +29,49 @@ const DialogImage: React.FC<PropsDialog> = ({
   dataImages,
   checkOption,
 }) => {
-  const [dataImage, setDataImage] = useState<
-    {
-      id?: string;
-      dateTime?: string;
-      imageURL: string;
-      name: string;
-      title: string;
-      description?: string;
-    }[]
-  >([]);
+  // const [dataImage, setDataImage] = useState<
+  //   {
+  //     imageId?: number;
+  //     date?: string;
+  //     imageUrl: string;
+  //     name: string;
+  //     title: string;
+  //     description?: string;
+  //   }[]
+  // >([]);
+  // useEffect(() => {
+  //   if (selectedItemId1) {
+  //     const item = dataImages.find((item) => item.imageId === selectedItemId1);
+  //     if (item) {
+  //       setDataImage([
+  //         {
+  //           imageId: item.imageId,
+  //           date: item.date,
+  //           imageUrl: item.imageUrl,
+  //           name: item.name,
+  //           title: item.title,
+  //           description: item.description,
+  //         },
+  //       ]);
+  //     }
+  //   } else {
+  //     setDataImage([]);
+  //   }
+  // }, [selectedItemId1, dataImages]);
+  const [dataImage, setDataImage] = useState<DataType[]>([]);
 
   useEffect(() => {
     if (selectedItemId1) {
-      const item = dataImages.find((item) => item.id === selectedItemId1);
-      console.log(item);
-
+      const item = dataImages?.find((item) => item.imageId === selectedItemId1);
       if (item) {
-        setDataImage([
-          {
-            id: item.id,
-            dateTime: item.dateTime,
-            imageURL: item.imageURL,
-            name: item.name,
-            title: item.title,
-            description: item.description,
-          },
-        ]);
+        setDataImage([item]);
+      } else {
+        setDataImage([]);
       }
-    } else {
-      setDataImage([]);
     }
   }, [selectedItemId1, dataImages]);
+
+
 
   const handleClose = () => {
     setOpen(false);
@@ -94,8 +106,8 @@ const DialogImage: React.FC<PropsDialog> = ({
                     >
                       <Avatar
                         sx={{ width: '190px', height: '190px' }}
-                        src={item.imageURL}
-                        alt={item.imageURL}
+                        src={item.imageUrl}
+                        alt={item.imageUrl}
                       />
                     </Grid>
 
@@ -124,10 +136,10 @@ const DialogImage: React.FC<PropsDialog> = ({
                     <Grid item xs={12} lg={5} md={6} mt={2} key={index}>
                       <Box display="flex" flexDirection="column" justifyContent="space-between">
                         <Box display="flex" alignItems="center" height="40px">
-                          <Box>{item.id}</Box>
+                          <Box>{item.imageId}</Box>
                         </Box>
                         <Box display="flex" alignItems="center" height="40px">
-                          <Box>{item.dateTime}</Box>
+                          <Box>{item.date}</Box>
                         </Box>
                         <Box display="flex" alignItems="center" minHeight="40px">
                           <Box>{item.name}</Box>
@@ -170,7 +182,7 @@ const DialogImage: React.FC<PropsDialog> = ({
                                       if (e.target.files) {
                                         const initialData = Array.from(e.target.files).map(
                                           (file) => ({
-                                            imageURL: URL.createObjectURL(file),
+                                            imageUrl: URL.createObjectURL(file),
                                             name: file.name,
                                             title: '',
                                             description: '',
@@ -198,8 +210,8 @@ const DialogImage: React.FC<PropsDialog> = ({
                                       sx={{ display: 'flex', alignItems: 'center' }}
                                     >
                                       <Avatar
-                                        src={item.imageURL}
-                                        alt={item.imageURL}
+                                        src={item.imageUrl}
+                                        alt={item.imageUrl}
                                         variant="rounded"
                                         sx={{ width: 56, height: 56 }}
                                       />
@@ -267,7 +279,7 @@ const DialogImage: React.FC<PropsDialog> = ({
                 )}
               </Grid>
             ) : (
-              <>suawr</>
+              <>Sửa</>
             )}
           </DialogContentText>
         </Scrollbar_y>

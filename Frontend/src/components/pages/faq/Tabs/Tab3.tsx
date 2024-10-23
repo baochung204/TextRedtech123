@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { fetchFile } from 'src/store/apps/resources/file/fileSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
-import { Result } from 'src/types/apps/file';
 import DialogFile from '../dialog/DialogFile';
+import { Result } from 'src/types/apps/file';
+
 
 interface PropsTab3 {
   value: string;
@@ -18,33 +19,23 @@ interface PropsTab3 {
 }
 
 const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
+  const [page, setPage] = useState<number>(0);
+  const [pageSize, setPageSize] = useState<number>(5);
   const dispatch = useDispatch<AppDispatch>();
+  const [data, setData] = useState<Result | undefined>()
 
-  const { content = [], totalElements = 0 }: Result = useSelector(
-    (state: AppState) => state.file.data || {}
-  );
-// console.log('cặc',content)
-  useEffect(() => {
-    dispatch(fetchFile({ page, size: rowsPerPage }));
-  }, [dispatch, page, rowsPerPage]);
+  const datax = useSelector((state: AppState) => state.file.data)
 
   useEffect(() => {
-    if (page > 0 && page * rowsPerPage >= totalElements) {
-      setPage(Math.max(0, Math.ceil(totalElements / rowsPerPage) - 1));
-    }
-  }, [totalElements, rowsPerPage, page]);
+    dispatch(fetchFile({ page, pageSize }));
+  }, [dispatch, page, pageSize]);
 
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSize = parseInt(event.target.value, 10);
-    setRowsPerPage(newSize);
-    setPage(0);
-  };
+  useEffect(() => {
+      setData(datax)
+  }, [data, datax])
+  
+  console.log('update', page);
+  console.log('datanew: ', data);
 
   const columns = [
     { title: 'ID', dataIndex: 'fileId' },
@@ -74,13 +65,13 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
   return (
     <Box sx={{ paddingTop: 1 }}>
       <CustomTable
-        dataSource={content}       // Array of File objects
-        columns={columns}           // Array of Column objects
-        count={totalElements}       // Total number of elements
-        rowsPerPage={rowsPerPage}   // Rows per page
-        page={page}                 // Current page
-        onPageChange={handleChangePage}         // Page change handler
-        onRowsPerPageChange={handleChangeRowsPerPage} 
+        dataSource={data?.content ? data.content : []} 
+        columns={columns} 
+        count={data?.totalElements ? data.totalElements : 0} 
+        rowsPerPage={pageSize} 
+        page={page} 
+        setPage={setPage}
+        setRowsPerPage={setPageSize}
       />
       <DialogFile open={open} setOpen={setOpen} value={value} />
     </Box>

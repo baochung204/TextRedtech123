@@ -1,10 +1,10 @@
 export interface DataType {
-  imageId: number;
+  imageId?: number;
   name: string;
   title: string;
   imageUrl: string;
   description: string;
-  date: string;
+  date?: string;
 }
 export interface ImageType {
   content: DataType[];

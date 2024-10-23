@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Table,
   TableBody,
@@ -17,13 +17,13 @@ import Scrollbar_x from 'src/components/custom-scroll/Scrollbar_x';
 import { Column } from './ColumnInterface';
 
 interface CustomTableProps {
-  columns: Column[];   // Ensure the columns prop is an array of Column
-  dataSource: any[];    // Ensure this matches the type in Tab3 (File[])
-  count: number;        // Total elements to support pagination
+  columns: Column[];
+  dataSource: any[];
+  count: number;
   rowsPerPage: number;
   page: number;
-  onPageChange: (_event: unknown, newPage: number) => void;
-  onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setPage: React.Dispatch<React.SetStateAction<number>>,
+  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>,
   rowsPerPageOptions?: number[];
   dataSelect?: string[];
 }
@@ -31,15 +31,28 @@ interface CustomTableProps {
 const CustomTable: React.FC<CustomTableProps> = ({
   columns,
   dataSource,
-  count,//
-  rowsPerPage,//
-  page,//
-  onPageChange,//
-  onRowsPerPageChange,//
+  count,
+  rowsPerPage,
+  page,
+  setPage,
+  setRowsPerPage,
   rowsPerPageOptions = [5, 10, 25],
   dataSelect = [],
 }) => {
-  const paginatedData = dataSource.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
+
+
+
+  const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedValue = parseInt(event.target.value, 10);
+    console.log('Số hàng được chọn:', event.target.value);
+    setRowsPerPage(selectedValue);
+  };
+  const handlePageChange = (_event: unknown, newPage: number) => {
+    console.log(newPage);
+    setPage(newPage);
+  };
+
 
   return (
     <TableContainer component={Paper} sx={{ px: 2 }}>
@@ -76,7 +89,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedData.map((row, rowIndex) => (
+            {dataSource.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => {
                   const value = column.dataIndex ? row[column.dataIndex] : undefined;
@@ -110,11 +123,12 @@ const CustomTable: React.FC<CustomTableProps> = ({
         count={count}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={onPageChange}
-        onRowsPerPageChange={onRowsPerPageChange}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
         labelRowsPerPage="Số hàng trên trang"
         labelDisplayedRows={({ from, to, count }) =>
-          `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
+          // `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
+          `Trang ${page + 1}`
         }
       />
     </TableContainer>

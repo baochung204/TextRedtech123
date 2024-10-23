@@ -15,27 +15,28 @@ const initialState: FileState = {
     pageSize: 0,
     totalElements: 0,
     totalPages: 0
-  }, 
+  },
   loading: false,
   error: null,
 };
 interface FetchParams {
   page: number;
-  size: number;
+  pageSize: number;
 }
 export const fetchFile = createAsyncThunk(
   'file/fetchFile',
-  async ({page,size}:FetchParams) => {
+  async ({ page = 0, pageSize = 5 }: FetchParams) => {
     try {
-      const res = await userApi.getAllFiles(page,size)
+      const res = await userApi.getAllFiles(page, pageSize)
       console.log('file', res.data);
       return res.data.result;
     } catch (error) {
-      console.log('lỗi',error)
+      console.log('lỗi', error)
     }
-    
+
   });
 
+// eslint-disable-next-line react-refresh/only-export-components
 const FileSlice = createSlice({
   name: 'file',
   initialState,
