@@ -22,7 +22,7 @@ import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
 import logoVnpay from 'src/assets/images/logoPay/logoVnpay.png';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import CustomCheckbox from 'src/components/forms/theme-elements/CustomCheckbox';
-import { fetchPointById } from 'src/store/apps/point/PointSlice';
+// import { fetchPointById } from 'src/store/apps/point/PointSlice';
 import { fetchVndCouponById, fetchVndCoupons } from 'src/store/apps/vnd_coupons/Vnd_CouponsSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import * as Yup from 'yup';
@@ -53,7 +53,10 @@ const OrderInformation = () => {
   const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
   const [couponValue, setCouponValue] = useState<number | undefined>(undefined);
 
-  const dataPoint = useSelector((state: AppState) => state.points.points.find((p) => p.id === id));
+  // const dataPoint = useSelector((state: AppState) => state.points.points.find((p) => p.id === id));
+  const dataPoint = useSelector((state: AppState) =>
+    state.point_list.dataa.find((p) => p.pointType === id),
+  );
 
   const dataVndCoupons = useSelector((state: AppState) => state.vnd_coupons.vnd_coupons);
 
@@ -61,9 +64,10 @@ const OrderInformation = () => {
     state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
   );
 
+  console.log(dataPoint);
   useEffect(() => {
     dispatch(fetchVndCoupons());
-    dispatch(fetchPointById(id as string));
+    // dispatch(fetchPointById(id as string));
   }, [dispatch, id]);
 
   useEffect(() => {
