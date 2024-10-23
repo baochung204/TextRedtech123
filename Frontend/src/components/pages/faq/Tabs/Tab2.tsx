@@ -22,7 +22,7 @@ const Tab2 = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   // Fetching content and pagination details from Redux state
-  const { content = [], totalElements, pageNo, pageSize } =
+  const { content = [], totalElements } =
     useSelector((state: AppState) => state.function.data || {});
 
   const [open, setOpen] = useState<boolean>(false);

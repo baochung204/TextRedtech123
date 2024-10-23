@@ -15,7 +15,7 @@ import { Str } from 'src/types/apps/str';
 interface PropsDialog {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: Str;
+  data: Str | undefined;
 }
 
 const DialogStragety = ({ open, setOpen, data }: PropsDialog) => {

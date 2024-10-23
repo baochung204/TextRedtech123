@@ -1,11 +1,11 @@
 // src/redux/integrationSlice.ts
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import userApi from 'src/api/userResource/UserResource';
-import { ApiResponse } from 'src/types/apps/str';
+import { Result } from 'src/types/apps/str';
 
 // Define the slice state interface
 interface StrState {
-  data: ApiResponse; // List of integrations
+  data: Result; // List of integrations
   loading: boolean; // Loading state for API requests
   error: string | null; // Error state for failed requests
 }
@@ -55,7 +55,7 @@ const StrSlice = createSlice({
     });
 
     // Handle fulfilled state (API request succeeded)
-    builder.addCase(fetchStr.fulfilled, (state, action: PayloadAction<ApiResponse>) => {
+    builder.addCase(fetchStr.fulfilled, (state, action: PayloadAction<Result>) => {
       state.loading = false;
       state.data = action.payload;
     });

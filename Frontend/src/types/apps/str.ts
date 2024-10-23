@@ -8,7 +8,7 @@ export interface Str {
 }
 
 
-export interface ApiResponse {
+export interface Result {
     content: Str[];
     last: boolean;
     pageNo: number;
