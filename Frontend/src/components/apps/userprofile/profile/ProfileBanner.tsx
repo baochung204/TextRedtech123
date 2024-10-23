@@ -40,8 +40,6 @@ const ProfileBanner = () => {
   const theme = useTheme();
   const dispatch = useDispatch<AppDispatch>();
   const userme = useSelector((state: AppState) => state.userme.result);
-  const usermeError = useSelector((state: AppState) => state.userme.error);
-  const usermeLoading = useSelector((state: AppState) => state.userme.loading);
 
   console.log('Userme:', userme);
 
@@ -74,15 +72,7 @@ const ProfileBanner = () => {
   return (
     <>
       <BlankCard>
-        {usermeLoading ? (
-          <Typography variant="h6" align="center">
-            Đang tải dữ liệu người dùng...
-          </Typography>
-        ) : usermeError ? (
-          <Typography variant="h6" align="center" color="error">
-            Đã xảy ra lỗi: {usermeError}
-          </Typography>
-        ) : userme ? (
+        { userme ? (
           <Box sx={{ position: 'relative' }}>
             <CardMedia
               component="img"
@@ -178,7 +168,7 @@ const ProfileBanner = () => {
                         variant="h5"
                         display="flex"
                         alignItems="center"
-                        sx={{ textAlign: 'center' }} // Căn giữa văn bản
+                        sx={{ textAlign: 'center' }} 
                       >
                         {userme.name || 'Tên người dùng'}
                       </Typography>
@@ -189,7 +179,7 @@ const ProfileBanner = () => {
                       color="textSecondary"
                       variant="h6"
                       fontWeight={400}
-                      sx={{ color: '#757575', textAlign: 'center' }} // Căn giữa số điện thoại
+                      sx={{ color: '#757575', textAlign: 'center' }}
                     >
                       {userme.phoneNumber || 'Số điện thoại'}
                     </Typography>
