@@ -27,6 +27,7 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchTicketsData } from 'src/store/admin/admin-ticket/AdminTicketSlice';
+import { fetchOverViewTicket } from 'src/store/admin/admin-ticket/OverViewTicketSlice';
 interface AdminTicket {
   ticketId: string;
   create_date: Date;
@@ -39,103 +40,15 @@ interface AdminTicket {
   email: string;
   phone_number: string;
 } // Define interface AdminTicket
-const BCrumb = [
-  { to: '/', title: 'Trang chủ' },
-  { title: 'Danh sách trợ lý' },
-];
-
-const DataBox = [
-  {
-    bgColor: 'primary.light',
-    title: 'Ticket',
-    total: '2.415',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={ticket} width={30} alt="Ticket" />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng',
-    total: '1.369',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={customer} width={30} alt="Customer" />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Đánh giá',
-    total: '4.7/5',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={rating} width={30} alt="Rating" />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Chưa xử lý',
-    total: '236',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={processing} width={30} alt="Processing" />
-      </Box>
-    ),
-  },
-];
-
-
+const BCrumb = [{ to: '/', title: 'Trang chủ' }, { title: 'Danh sách trợ lý' }];
 
 const getStatusTextAndColor = (status: string) => {
   switch (status) {
-    case "Chưa xử lý":
+    case 'Chưa xử lý':
       return { text: 'Chưa xử lý', color: 'red' };
-    case "Đang xử lý":
+    case 'Đang xử lý':
       return { text: 'Đang xử lý', color: 'orange' };
-    case "Đã xử lý":
+    case 'Đã xử lý':
       return { text: 'Đã xử lý', color: 'green' };
     default:
       return { text: 'Không xác định', color: 'gray' };
@@ -145,11 +58,111 @@ const getStatusTextAndColor = (status: string) => {
 const Ticket = () => {
   const dispatch = useDispatch<AppDispatch>();
   const adminTickets = useSelector((state: AppState) => state.adminTicker.result);
+  const overviewTickets = useSelector((state: AppState) => state.overview_ticket.result);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
 
   useEffect(() => {
     dispatch(fetchTicketsData());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchOverViewTicket());
+  }, [dispatch]);
+
+  // avg_rate: 3.4375;
+  // countIsSolve: 8;
+  // countTicket: 16;
+  // countUserId: 4;
+
+  const avg_rate = overviewTickets.avg_rate;
+  const countIsSolve = overviewTickets.countIsSolve;
+  const countTicket = overviewTickets.countTicket;
+  const countUserId = overviewTickets.countUserId;
+
+  const DataBox = [
+    {
+      bgColor: 'primary.light',
+      title: 
+      total: countTicket,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={ticket} width={30} alt="Ticket" />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khách hàng',
+      total: countUserId,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={customer} width={30} alt="Customer" />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Đánh giá',
+      total: avg_rate,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={rating} width={30} alt="Rating" />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Chưa xử lý',
+      total: countIsSolve,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={processing} width={30} alt="Processing" />
+        </Box>
+      ),
+    },
+  ];
+
+  console.log(overviewTickets); // Log dữ liệu để kiểm tra
 
   const columns = useMemo(
     () => [
@@ -160,7 +173,8 @@ const Ticket = () => {
       {
         dataIndex: 'messageTime',
         title: 'Tương tác gần đây',
-        render: (value: any) => (value ? new Date(value).toLocaleDateString() : 'Chưa có tương tác'),
+        render: (value: any) =>
+          value ? new Date(value).toLocaleDateString() : 'Chưa có tương tác',
       },
       {
         dataIndex: 'rate',

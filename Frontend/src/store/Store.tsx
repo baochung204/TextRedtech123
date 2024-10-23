@@ -61,6 +61,7 @@ import modelListSlice from './admin/resources/model/table/modelListSlice';
 import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
+import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
 
 export const store = configureStore({
   reducer: {
@@ -122,6 +123,7 @@ export const store = configureStore({
     overview_customer: customerAdminSlice,
     overview_product: productAdminSlice,
     overview_order: orderProductAdminSlice,
+    overview_ticket: ticketOverviewSlice,
   },
 });
 
@@ -182,6 +184,7 @@ const rootReducer = combineReducers({
   overview_customer: customerAdminSlice,
   overview_product: productAdminSlice,
   overview_order: orderProductAdminSlice,
+  overview_ticket: ticketOverviewSlice,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
