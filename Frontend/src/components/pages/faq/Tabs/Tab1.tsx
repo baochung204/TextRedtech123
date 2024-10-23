@@ -29,6 +29,8 @@ const Tab1 = () => {
     setPage(newPage);
   };
 
+  // console.log('load data', campaignsData);
+
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -40,19 +42,18 @@ const Tab1 = () => {
 
   useEffect(() => {
     if (datax !== dataStr.content) {
-      setDatax(dataStr.content)
+      setDatax(dataStr.content);
     }
-  }, [dataStr, datax])
+  }, [dataStr, datax]);
 
-
-  console.log('data in redux', datax);
+  // console.log('data in redux', datax);
 
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClick = (items: number) => {
     setOpen(true);
     // console.log(items);
-    setDataView(datax[items])
+    setDataView(datax[items]);
   };
 
   return (

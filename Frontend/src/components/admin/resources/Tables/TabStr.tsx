@@ -1,9 +1,11 @@
 import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchCampaignListData } from 'src/store/admin/resources/campaign/table/campaignListSlice';
 import DialogStrView from '../dialog/DialogStrView';
-import { StrategyRows } from '../mockData/TableStr';
 import { HeadCell } from '../types/HeadCell';
 
 interface PropsTabStr {
@@ -12,8 +14,29 @@ interface PropsTabStr {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dataSelect?: string[];
 }
+interface DataRow {
+  id: number;
+  groupCompaignName: string;
+  badgeUrl: string;
+  nameProduc: string;
+  level: number;
+  customOwnership: number;
+  applicationAssistant: number;
+  sammary: string;
+  content: string;
+  createDate: string;
+  nameEmployee: string;
+}
 
 const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
+  const campaignList = useSelector((state: AppState) => state.campaign_list.dataa);
+
+  useEffect(() => {
+    dispatch(fetchCampaignListData());
+  }, [dispatch]);
+
+  console.log(campaignList);
+
   const [selectId, setSelectId] = useState<string | null>(null);
   const StrategyCells: HeadCell[] = [
     {
@@ -21,11 +44,11 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
       title: 'ID',
     },
     {
-      dataIndex: 'strategyGroup',
+      dataIndex: 'groupCompaignName',
       title: 'Nhóm chiến lược',
     },
     {
-      dataIndex: 'badge',
+      dataIndex: 'badgeUrl',
       title: 'Huy hiệu',
       render: (value: string) => (
         <>
@@ -34,7 +57,7 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
       ),
     },
     {
-      dataIndex: 'strategyName',
+      dataIndex: 'nameProduc',
       title: 'Tên chiến lược',
     },
     {
@@ -42,15 +65,15 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
       title: 'Level',
     },
     {
-      dataIndex: 'ownedCustomers',
+      dataIndex: 'customOwnership',
       title: 'Khách hàng sở hữu',
     },
     {
-      dataIndex: 'appliedAssistants',
+      dataIndex: 'applicationAssistant',
       title: 'Trợ lý áp dụng',
     },
     {
-      dataIndex: 'summary',
+      dataIndex: 'sammary',
       title: 'Tóm tắt',
     },
     {
@@ -58,11 +81,11 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
       title: 'Nội dung',
     },
     {
-      dataIndex: 'creationTime',
+      dataIndex: 'createDate',
       title: 'Ngày tạo',
     },
     {
-      dataIndex: 'creator',
+      dataIndex: 'nameEmployee',
       title: 'Người tạo',
     },
 
@@ -88,7 +111,7 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
 
   return (
     <>
-      <CustomTable columns={StrategyCells} dataSource={StrategyRows} dataSelect={dataSelect} />
+      <CustomTable columns={StrategyCells} dataSource={campaignList} dataSelect={dataSelect} />
       <DialogStrView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );

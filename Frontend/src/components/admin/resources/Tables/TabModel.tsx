@@ -1,10 +1,13 @@
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DialogModelView from '../dialog/DialogModelView';
 import { ModelRows } from '../mockData/TableModel';
 import { HeadCell } from '../types/HeadCell';
+import { useSelector } from 'react-redux';
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchModelListData } from 'src/store/admin/resources/model/table/modelListSlice';
 
 interface PropsTabFunction {
   value: string;
@@ -15,13 +18,20 @@ interface PropsTabFunction {
 
 const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   const [selectId, setSelectId] = useState<string>();
+  const modelList = useSelector((state: AppState) => state.model_list.dataa);
+
+  useEffect(() => {
+    dispatch(fetchModelListData());
+  }, [dispatch]);
+
+  console.log(modelList);
   const ModelCells: HeadCell[] = [
     {
-      dataIndex: 'id',
+      dataIndex: 'productId',
       title: 'ID',
     },
     {
-      dataIndex: 'creationTime',
+      dataIndex: 'createDate',
       title: 'Ngày tạo',
     },
     {
@@ -33,15 +43,15 @@ const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
       title: 'Model gốc',
     },
     {
-      dataIndex: 'trainingTokens',
+      dataIndex: 'trainingToken',
       title: 'Training tokens',
     },
     {
-      dataIndex: 'ownedCustomers',
+      dataIndex: 'totalOwnership',
       title: 'Khách hàng sở hữu',
     },
     {
-      dataIndex: 'appliedAssistants',
+      dataIndex: 'totalApplicationAssistant',
       title: 'Trợ lý áp dụng',
     },
     {
@@ -69,7 +79,7 @@ const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
 
   return (
     <>
-      <CustomTable columns={ModelCells} dataSource={ModelRows} dataSelect={dataSelect} />
+      <CustomTable columns={ModelCells} dataSource={modelList} dataSelect={dataSelect} />
       <DialogModelView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );

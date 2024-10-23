@@ -1,14 +1,21 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import userApi from 'src/api/userResource/UserResource';
-import { ApiResponse } from 'src/types/apps/file';
+import { Result } from 'src/types/apps/file';
 
 interface FileState {
-  data: ApiResponse[];
+  data: Result;
   loading: boolean;
   error: string | null;
 }
 const initialState: FileState = {
-  data: [],
+  data: {
+    content: [],
+    last: false,
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0
+  }, 
   loading: false,
   error: null,
 };
@@ -38,7 +45,7 @@ const FileSlice = createSlice({
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(fetchFile.fulfilled, (state, action: PayloadAction<ApiResponse[]>) => {
+    builder.addCase(fetchFile.fulfilled, (state, action: PayloadAction<Result>) => {
       state.loading = false;
       state.data = action.payload;
     });
