@@ -61,13 +61,15 @@ const OrderInformation = () => {
 
   const dataVndCoupons = useSelector((state: AppState) => state.randomcoupon.dataa);
 
-  const selectedVoucherDetail = useSelector((state: AppState) =>
-    state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
-  );
+  // const selectedVoucherDetail = useSelector((state: AppState) =>
+  //   state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
+  // );
 
   console.log(dataVndCoupons);
 
   console.log(dataPoint);
+
+  console.log(selectedVoucher);
 
   useEffect(() => {
     dispatch(fetchListRandomCouponData(dataPoint?.point));
@@ -194,7 +196,7 @@ const OrderInformation = () => {
     }, 2000);
     return () => clearInterval(interval);
   }, [open]);
-  console.log(selectedVoucher);
+
   return (
     <>
       <Grid container spacing={3}>
@@ -401,14 +403,16 @@ const OrderInformation = () => {
                                   <Box
                                     sx={{
                                       border:
-                                        selectedVoucher === item.id ? 'none' : '2px solid #FFEBEB',
+                                        selectedVoucher === item.code
+                                          ? 'none'
+                                          : '2px solid #FFEBEB',
                                       display: 'flex',
                                       justifyContent: 'space-between',
                                       alignItems: 'center',
                                       padding: '8px 16px',
                                       borderRadius: '10px',
                                       backgroundColor:
-                                        selectedVoucher === item.id ? 'primary.light' : 'white',
+                                        selectedVoucher === item.code ? 'primary.light' : 'white',
                                     }}
                                   >
                                     <Typography sx={{ fontWeight: 600, fontSize: 14 }}>
@@ -480,10 +484,10 @@ const OrderInformation = () => {
                   Khuyến mại
                 </Typography>
                 <Typography variant="subtitle1" fontWeight={600} sx={{ px: 1 }}>
-                  {selectedVoucherDetail?.type === 'VALUE'
-                    ? `${selectedVoucherDetail.value.toLocaleString('vi-VN')}₫`
-                    : selectedVoucherDetail?.type === 'PERCENT'
-                    ? `${selectedVoucherDetail.value}%`
+                  {dataVndCoupons?.type === 'VALUE'
+                    ? `${dataVndCoupons.value.toLocaleString('vi-VN')}₫`
+                    : dataVndCoupons?.type === 'PERCENT'
+                    ? `${dataVndCoupons.value}%`
                     : 'Không có khuyến mại'}
                 </Typography>
               </Box>
