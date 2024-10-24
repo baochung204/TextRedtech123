@@ -18,11 +18,11 @@ import { filter, orderBy } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
-import { useDispatch, useSelector } from 'src/store/Store';
+import { AppState, dispatch, useDispatch, useSelector } from 'src/store/Store';
 import { ProductType } from 'src/types/apps/eCommerce';
 import {
   addToCart,
-  fetchProducts,
+  // fetchProducts,
   filterReset,
 } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import BlankCard from '../../../shared/BlankCard';
@@ -30,16 +30,23 @@ import AlertCart from '../productCart/AlertCart';
 import ProductSearch from './ProductSearch';
 import ProductSelect from './ProductSelect';
 import logo from 'src/assets/images/logos/R-Point.png';
+import { fetchProducts } from 'src/store/user/products/productsUseSlice';
 
 interface Props {
   onClick: (event: React.SyntheticEvent | Event) => void;
 }
 
 const ProductList = ({ onClick }: Props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [sortDir, setSortDir] = useState(true);
+  const Products = useSelector((state: AppState) => state.products.data);
+  useEffect(() => {
+    dispatch(fetchProducts({ page, size: rowsPerPage, sortDir }));
+  }, [dispatch, page, rowsPerPage, sortDir]);
+  // console.log('products:', Products);
 
   const handleChangePage = (newPage: number) => {
     setPage(newPage);
@@ -50,9 +57,9 @@ const ProductList = ({ onClick }: Props) => {
     setPage(0);
   };
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
 
   const getVisibleProduct = (
     products: ProductType[],
@@ -172,8 +179,8 @@ const ProductList = ({ onClick }: Props) => {
 
       {/* Product Listing */}
       <Grid container spacing={3}>
-        {paginatedData.length > 0 ? (
-          paginatedData.map((product) => (
+        {Products?.content?.length > 0 ? (
+          Products?.content?.map((product) => (
             <Grid
               item
               xs={12}
@@ -182,7 +189,7 @@ const ProductList = ({ onClick }: Props) => {
               sm={6}
               display="flex"
               alignItems="stretch"
-              key={product.id}
+              key={product?.productId}
             >
               {isLoading ? (
                 <Skeleton
@@ -193,8 +200,23 @@ const ProductList = ({ onClick }: Props) => {
                 />
               ) : (
                 <BlankCard className="hoverCard" sx={{ position: 'relative' }}>
-                  <Typography component={Link} to={`/shop/detail/${product.id}`}>
-                    <img src={product.thumbnailUrl} alt={product.name} width="100%" />
+                  <Typography component={Link} to={`/shop/detail/${product?.productId}`}>
+                    <Box
+                      component="img"
+                      src={product?.imageUrl}
+                      alt={product?.productName}
+                      sx={{
+                        width: '100%',
+                        height: 250,
+                        objectFit: 'cover',
+                        // borderRadius: 1,
+                        // boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                        // '&:hover': {
+                        //   transform: 'scale(1.02)',
+                        //   transition: 'transform 0.3s ease',
+                        // },
+                      }}
+                    />
                   </Typography>
                   <CardContent
                     sx={{
@@ -206,7 +228,7 @@ const ProductList = ({ onClick }: Props) => {
                     }}
                   >
                     <Typography variant="h6" sx={{ fontSize: '16px' }}>
-                      {product.name}
+                      {product?.productName}
                     </Typography>
                     <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -222,7 +244,7 @@ const ProductList = ({ onClick }: Props) => {
                             my={1}
                             sx={{ textDecoration: 'line-through' }}
                           >
-                            {product.discount}{' '}
+                            {product.price}{' '}
                           </Typography>
                           <img
                             src={logo}
@@ -236,7 +258,9 @@ const ProductList = ({ onClick }: Props) => {
                             alignItems: 'center',
                           }}
                         >
-                          <Typography variant="h6">{product.point.toLocaleString()}</Typography>
+                          <Typography variant="h6">
+                            {product?.discount?.toLocaleString()}
+                          </Typography>
                           <img
                             src={logo}
                             alt="Logo"
@@ -252,7 +276,7 @@ const ProductList = ({ onClick }: Props) => {
                         </Typography> */}
                       </Stack>
                       <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
-                        {product.category.map((category: any, index: number) => (
+                        {/* {product.category.map((category: any, index: number) => (
                           <Stack direction="row" spacing={1} alignItems="center" key={index}>
                             <Chip
                               sx={{
@@ -287,7 +311,37 @@ const ProductList = ({ onClick }: Props) => {
                               </Tooltip>
                             )}
                           </Stack>
-                        ))}
+                        ))} */}
+                        <Stack direction="row" spacing={1} alignItems="center">
+                          <Chip
+                            sx={{
+                              backgroundColor: '#13DEB9',
+                              width: 'auto',
+                              textAlign: 'center',
+                              overflow: 'hidden',
+                              whiteSpace: 'nowrap',
+                              color: 'white',
+                              display: 'block', // Ensures each Chip is on a new line
+                            }}
+                            label={product?.categoryName || 'tất cả'}
+                            size="small"
+                          />
+                          <Tooltip title="Thêm giỏ hàng">
+                            <Fab
+                              size="small"
+                              color="primary"
+                              onClick={() => dispatch(addToCart(product as any)) && handleClick()}
+                              sx={{
+                                position: 'absolute',
+                                right: 0,
+                                top: 0,
+                                transform: 'translateY(-15%)',
+                              }}
+                            >
+                              <IconBasket size="16" />
+                            </Fab>
+                          </Tooltip>
+                        </Stack>
                       </Stack>
                       <Typography sx={{ fontWeight: 'bold' }}></Typography>
                     </Stack>

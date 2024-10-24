@@ -58,7 +58,7 @@ const AssistantProduct = () => {
         </Stack>
         <Grid container spacing={2}>
           {/* Cột 1 */}
-          <Grid item xs={12} sm={12} lg={8}>
+          <Grid item xs={12} sm={12} lg={12}>
             <Grid item xs={12} sm={12} lg={12}>
               <AddInforProduct />
             </Grid>
@@ -77,16 +77,19 @@ const AssistantProduct = () => {
                   <Typography variant="h6">Cấu hình</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Grid container spacing={0}>
+                  <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} lg={12}>
                       <AddModelProduct />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
+                      <Strategy />
+                    </Grid>
+                    <Grid item xs={12} sm={6} lg={12}>
                       <AddTextProduct />
                     </Grid>
-                      <Grid item xs={12} sm={6} lg={12}>
-                        <SliderProduct />
-                      </Grid>
+                    <Grid item xs={12} sm={6} lg={12}>
+                      <SliderProduct />
+                    </Grid>
                     <Grid item xs={12} mt={2}>
                       <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} lg={6}>
@@ -116,14 +119,14 @@ const AssistantProduct = () => {
           </Grid>
 
           {/* Cột 2 */}
-          <Grid container item xs={12} sm={12} lg={4} sx={{ height: '100%' }}>
-            {/* <Grid item xs={12}>
+          {/* <Grid container item xs={12} sm={12} lg={4} sx={{ height: '100%' }}> */}
+          {/* <Grid item xs={12}>
                 <ChatBot />
               </Grid> */}
-            {/* <Grid item xs={12}>
+          {/* <Grid item xs={12}>
                 <Integration />
               </Grid> */}
-            <Grid item xs={12}>
+          {/* <Grid item xs={12}>
               <Strategy />
             </Grid>
             <Grid item xs={12}>
@@ -131,8 +134,8 @@ const AssistantProduct = () => {
             </Grid>
             <Grid item xs={12}>
               <AddUrl />
-            </Grid>
-          </Grid>
+            </Grid> */}
+          {/* </Grid> */}
         </Grid>
       </Box>
     </PageContainer>

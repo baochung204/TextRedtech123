@@ -24,10 +24,12 @@ import { IconMinus, IconPlus } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { default as logo, default as logoPoint } from 'src/assets/images/logos/R-Point.png';
-import { useDispatch, useSelector } from 'src/store/Store';
+import { AppState, dispatch, useDispatch, useSelector } from 'src/store/Store';
 import { addToCart, fetchProducts } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';
 import FlashSaleInDetailProduct from './flashSale/FlashSaleInDetailProduct';
+import { fetchProductById } from 'src/store/user/products/productByIdUseSlice';
+import { ProductInfoType } from 'src/store/user/products/type/productByIdType';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children: React.ReactElement },
@@ -35,10 +37,12 @@ const Transition = React.forwardRef(function Transition(
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
-const ProductDetail = () => {
+interface IProps {
+  productInfo: ProductInfoType | null;
+}
+const ProductDetail = ({ productInfo }: IProps) => {
   const theme = useTheme();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
@@ -76,15 +80,14 @@ const ProductDetail = () => {
 
   return (
     <Box p={2}>
-      {product ? (
+      {productInfo ? (
         <>
           {/* Title and description */}
           <Typography fontWeight="600" variant="h4" mt={1}>
-            {product.name}
+            {productInfo?.name}
           </Typography>
           <Typography variant="subtitle2" mt={1} color={theme.palette.text.secondary}>
-            Superintelligent AI: Là AI thông minh hơn con người trong mọi lĩnh vực. Đây là một khái
-            niệm tương lai.
+            {productInfo?.description}
           </Typography>
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
@@ -101,7 +104,7 @@ const ProductDetail = () => {
                   ml={1}
                   sx={{ textDecoration: 'line-through', opacity: 0.6 }}
                 >
-                  {product.discount.toLocaleString()}
+                  {productInfo?.point?.toLocaleString()}
                 </Typography>
               </Box>
               <Box
@@ -110,7 +113,9 @@ const ProductDetail = () => {
                   alignItems: 'center',
                 }}
               >
-                <Typography variant="h4">{product.point.toLocaleString()}</Typography>
+                <Typography variant="h4">
+                  {productInfo?.priceAfterDiscount?.toLocaleString()}
+                </Typography>
                 <img
                   src={logo}
                   alt="Logo"
@@ -121,51 +126,55 @@ const ProductDetail = () => {
           </Typography>
           <Divider sx={{ marginTop: '20px' }} />
           {/* Quantity selection */}
-          <Stack direction="row" alignItems="center" pb={5} sx={{ marginTop: '40px' }}>
-            <Typography variant="h6" mr={4}>
-              Số lượng:
-            </Typography>
-            <Box>
-              <ButtonGroup size="small" color="secondary" aria-label="small button group">
-                <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
-                  <IconMinus size="1.1rem" />
-                </Button>
-                <Button key="two">{count}</Button>
-                <Button key="three" onClick={() => setCount(count + 1)}>
-                  <IconPlus size="1.1rem" />
-                </Button>
-              </ButtonGroup>
-            </Box>
-          </Stack>
+          {productInfo?.isQuantity && (
+            <Stack direction="row" alignItems="center" pb={5} sx={{ marginTop: '40px' }}>
+              <Typography variant="h6" mr={4}>
+                Số lượng:
+              </Typography>
+              <Box>
+                <ButtonGroup size="small" color="secondary" aria-label="small button group">
+                  <Button key="one" onClick={() => setCount(count < 2 ? count : count - 1)}>
+                    <IconMinus size="1.1rem" />
+                  </Button>
+                  <Button key="two">{count}</Button>
+                  <Button key="three" onClick={() => setCount(count + 1)}>
+                    <IconPlus size="1.1rem" />
+                  </Button>
+                </ButtonGroup>
+              </Box>
+            </Stack>
+          )}
           <Divider />
           {/* Action buttons */}
-          <Grid container spacing={2} mt={5}>
-            <Grid item xs={12} lg={4} md={6}>
-              <Button
-                color="primary"
-                size="large"
-                fullWidth
-                variant="contained"
-                onClick={handleBuyNowClick}
-              >
-                Mua ngay
-              </Button>
+          {!productInfo?.isOwn && (
+            <Grid container spacing={2} mt={5}>
+              <Grid item xs={12} lg={4} md={6}>
+                <Button
+                  color="primary"
+                  size="large"
+                  fullWidth
+                  variant="contained"
+                  onClick={handleBuyNowClick}
+                >
+                  Mua ngay
+                </Button>
+              </Grid>
+              <Grid item xs={12} lg={4} md={6}>
+                <Button
+                  color="error"
+                  size="large"
+                  fullWidth
+                  variant="contained"
+                  onClick={() => {
+                    dispatch(addToCart(product as any));
+                    handleClick();
+                  }}
+                >
+                  Thêm giỏ hàng
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={12} lg={4} md={6}>
-              <Button
-                color="error"
-                size="large"
-                fullWidth
-                variant="contained"
-                onClick={() => {
-                  dispatch(addToCart(product as any));
-                  handleClick();
-                }}
-              >
-                Thêm giỏ hàng
-              </Button>
-            </Grid>
-          </Grid>
+          )}
           {/* Alert When click on add to cart */}
           <AlertCart handleClose={handleCloseCartAlert} openCartAlert={cartalert} />
           {/* Dialog for "Mua ngay" */}{' '}
@@ -246,11 +255,8 @@ const ProductDetail = () => {
                           </TableHead>
 
                           <TableBody>
-                            <TableRow key={product.id}>
-                              {/* ------------------------------------------- */}
-                              {/* Hình ảnh và tiêu đề sản phẩm */}
-                              {/* ------------------------------------------- */}
-                              <TableCell align="center">
+                            {/* <TableRow key={product.id}> */}
+                            {/* <TableCell align="center">
                                 <Stack direction="row" alignItems="center" gap={2}>
                                   <Avatar
                                     src={product.thumbnailUrl}
@@ -262,32 +268,27 @@ const ProductDetail = () => {
                                     }}
                                   />
                                 </Stack>
-                              </TableCell>
-                              <TableCell align="center">
+                              </TableCell> */}
+                            {/* <TableCell align="center">
                                 <Box>
                                   <Typography variant="h6">{product.name}</Typography>{' '}
                                   <Typography color="textSecondary" variant="body1">
                                     {product.category}
                                   </Typography>
                                 </Box>
-                              </TableCell>
-                              <TableCell align="center">
+                              </TableCell> */}
+                            {/* <TableCell align="center">
                                 <ButtonGroup
                                   size="small"
                                   color="success"
                                   aria-label="small button group"
                                 >
-                                  {/* <Button>
-                      <IconMinus stroke={1.5} size="0.8rem" />
-                    </Button> */}
+                                
                                   <Button>{product.qty}</Button>
-                                  {/* <Button>
-                      <IconPlus stroke={1.5} size="0.8rem" />
-                    </Button> */}
+                                
                                 </ButtonGroup>
-                              </TableCell>
-
-                              <TableCell align="center">
+                              </TableCell> */}
+                            {/* <TableCell align="center">
                                 <Typography
                                   variant="h6"
                                   sx={{ display: 'flex', justifyContent: 'center' }}
@@ -301,9 +302,8 @@ const ProductDetail = () => {
                                     style={{ borderRadius: 50 }}
                                   />
                                 </Typography>
-                              </TableCell>
-
-                              <TableCell align="center">
+                              </TableCell> */}
+                            {/* <TableCell align="center">
                                 <Typography
                                   variant="h6"
                                   sx={{ display: 'flex', justifyContent: 'center' }}
@@ -316,10 +316,10 @@ const ProductDetail = () => {
                                     height={20}
                                     style={{ borderRadius: 50 }}
                                   />
-                                  {/* ${product.salesPrice * product.qty - product.price * product.qty} */}
+                                  ${product.salesPrice * product.qty - product.price * product.qty}
                                 </Typography>
-                              </TableCell>
-                              <TableCell align="center">
+                              </TableCell> */}
+                            {/* <TableCell align="center">
                                 <Typography
                                   variant="h6"
                                   sx={{ display: 'flex', justifyContent: 'center' }}
@@ -336,8 +336,8 @@ const ProductDetail = () => {
                                     style={{ borderRadius: 50 }}
                                   />
                                 </Typography>
-                              </TableCell>
-                            </TableRow>
+                              </TableCell> */}
+                            {/* </TableRow> */}
                           </TableBody>
                         </Table>{' '}
                       </TableContainer>

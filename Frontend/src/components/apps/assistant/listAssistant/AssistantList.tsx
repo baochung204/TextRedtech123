@@ -97,7 +97,6 @@ const ListAssistant = () => {
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
   const handleClickIcon = () => {
     setIconIndex((pre) => (pre + 1) % icons.length);
-    console.log(7 % 7);
   };
   const SelectedIcon = icons[iconIndex];
 

@@ -62,6 +62,8 @@ import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
+import ProductsSlice from 'src/store/user/products/productsUseSlice';
+import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 
@@ -96,9 +98,12 @@ const rootReducer = combineReducers({
   test: userSlice,
   resourcesModels: ModelsSlice,
   resourcesUrls: urlsSlice,
-  //assistant
+  //Assistant
   assisstant: assistantSlice,
   assistantById: assistantByIdSlice,
+  //Products
+  products: ProductsSlice,
+  productById: ProductByIdSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
