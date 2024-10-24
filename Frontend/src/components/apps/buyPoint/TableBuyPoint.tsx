@@ -176,7 +176,12 @@ const TableBuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              {totalPrice.toLocaleString('vi-VN')} ₫
+              {Number.isFinite(totalPrice) ? (
+                totalPrice.toLocaleString('vi-VN')
+              ) : (
+                <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
+              )}
+              ₫
             </Typography>
           </Grid>
           <Grid
