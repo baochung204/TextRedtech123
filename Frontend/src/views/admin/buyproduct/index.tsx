@@ -308,6 +308,27 @@ const BuyPoints = () => {
         dataIndex: 'titrongdoanthu',
         sort: true,
       },
+
+      {
+        title: 'Thông tin sản phẩm',
+        dataIndex: 'ttsp',
+        isValids: false,
+      },
+      {
+        title: 'Hình ảnh',
+        dataIndex: 'ha',
+        isValids: false,
+      },
+      {
+        title: 'Secretkey',
+        dataIndex: 'secretkey',
+        isValids: false,
+      },
+      {
+        title: 'Hướng dẫn sử dụng',
+        dataIndex: 'hdsd',
+        isValids: false,
+      },
       {
         title: 'Hoạt động',
         dataIndex: 'action',
@@ -331,26 +352,6 @@ const BuyPoints = () => {
             </Grid>
           </Grid>
         ),
-      },
-      {
-        title: 'Thông tin sản phẩm',
-        dataIndex: 'ttsp',
-        isValids: false,
-      },
-      {
-        title: 'Hình ảnh',
-        dataIndex: 'ha',
-        isValids: false,
-      },
-      {
-        title: 'Secretkey',
-        dataIndex: 'secretkey',
-        isValids: false,
-      },
-      {
-        title: 'Hướng dẫn sử dụng',
-        dataIndex: 'hdsd',
-        isValids: false,
       },
     ],
     [],
