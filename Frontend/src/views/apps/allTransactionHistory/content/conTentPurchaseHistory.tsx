@@ -48,8 +48,9 @@ const ContentPurchaseHistory = () => {
   };
 
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
+  const flashSaleArray = [orderhistorydetail.flashSaleResponse];
 
-  console.log('orderhistorydetail hello', orderhistorydetail.flashSaleResponse);
+  console.log('orderhistorydetail hello', flashSaleArray);
   return (
     <div>
       {/* <ProductChecout /> */}
@@ -207,14 +208,14 @@ const ContentPurchaseHistory = () => {
                   }}
                 >
                   <Grid container spacing={1}>
-                    {packages.map((pkg) => (
-                      <Grid item xs={12} md={12} key={pkg.id}>
+                    {flashSaleArray.map((pkg) => (
+                      <Grid item xs={12} md={12} key={pkg.flashSaleId}>
                         <Card
                           sx={{
                             borderRadius: '15px',
                             overflow: 'hidden',
                             boxShadow:
-                              selectedPackage === pkg.id
+                              selectedPackage === pkg.flashSaleId
                                 ? '0 6px 18px rgba(128, 128, 128, 0.4)'
                                 : '0 6px 18px rgba(0,0,0,0.1)',
                             transition: 'transform 0.3s',
@@ -222,106 +223,11 @@ const ContentPurchaseHistory = () => {
                             marginY: '0px',
                             paddingY: '0px',
 
-                            transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
+                            transform:
+                              selectedPackage === pkg.flashSaleId ? 'scale(1.02) ' : 'scale(1)',
                           }}
-                          onClick={() => handleSelectPackage(pkg.id)}
-                        >
-                          <CardContent
-                            sx={{
-                              p: 2,
-                              display: 'flex',
-                              justifyContent: 'space-between',
-                              alignItems: 'end',
-                              '&:last-child': {
-                                pb: 2,
-                              },
-                            }}
-                          >
-                            <div style={{ display: 'flex', gap: '20px' }}>
-                              <Typography component={Link} to={`/shop/detail/11`}>
-                                <img
-                                  src={pkg.img}
-                                  alt={''}
-                                  width="120"
-                                  style={{ borderRadius: '10px' }}
-                                />
-                              </Typography>
-                              <Box>
-                                <Typography
-                                  variant="h6"
-                                  sx={{
-                                    fontWeight: 'bold',
-                                    mb: 1,
-                                  }}
-                                >
-                                  {pkg.title}
-                                </Typography>
-
-                                <Box
-                                  sx={{
-                                    display: 'flex',
-                                    gap: 1.5,
-                                    marginTop: '10px',
-                                  }}
-                                >
-                                  <Typography
-                                    variant="h6"
-                                    sx={{
-                                      fontWeight: 'bold',
-                                      gap: 1,
-                                      display: 'flex',
-                                      justifyContent: 'center',
-                                    }}
-                                  >
-                                    {' '}
-                                    {pkg.price.toLocaleString()}
-                                    <img
-                                      src={logoPoint}
-                                      alt={logoPoint}
-                                      width={20}
-                                      height={20}
-                                      style={{ borderRadius: 50 }}
-                                    />
-                                  </Typography>{' '}
-                                  <Typography
-                                    sx={{
-                                      mb: 1,
-                                      color: '#888',
-                                      fontSize: '12px',
-                                      display: 'flex',
-                                      justifyContent: 'center',
-                                      alignItems: 'center',
-                                      gap: 1,
-                                    }}
-                                  >
-                                    <del>{pkg.discount.toLocaleString()} </del>
-                                    <img
-                                      src={logoPoint}
-                                      alt={logoPoint}
-                                      width={20}
-                                      height={20}
-                                      style={{ borderRadius: 50 }}
-                                    />
-                                  </Typography>
-                                </Box>
-                                <Box>
-                                  <Button
-                                    variant={'outlined'}
-                                    color="warning"
-                                    sx={{
-                                      display: { xs: 'none', md: 'block' },
-                                      backgroundImage: 'none',
-                                      ':hover': { backgroundColor: 'none' },
-                                      mt: 3.4,
-                                    }}
-                                  >
-                                    {pkg.sale}%
-                                  </Button>
-                                </Box>
-                              </Box>
-                            </div>
-                          </CardContent>
-                        </Card>
+                          onClick={() => handleSelectPackage(pkg.flashSaleId)}
+                        ></Card>
                       </Grid>
                     ))}
                   </Grid>
