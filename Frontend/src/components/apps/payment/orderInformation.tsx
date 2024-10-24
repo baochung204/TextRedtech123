@@ -53,6 +53,7 @@ const OrderInformation = () => {
 
   const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
   const [couponValue, setCouponValue] = useState<number | undefined>(undefined);
+  const [couponPercent, setCouponPercent] = useState<number | null>(null);
 
   // const dataPoint = useSelector((state: AppState) => state.points.points.find((p) => p.id === id));
   const dataPoint = useSelector((state: AppState) =>
@@ -70,6 +71,10 @@ const OrderInformation = () => {
   console.log(dataPoint);
 
   console.log(selectedVoucher);
+
+  console.log(couponValue);
+
+  console.log(couponPercent);
 
   useEffect(() => {
     dispatch(fetchListRandomCouponData(dataPoint?.point));
@@ -98,13 +103,21 @@ const OrderInformation = () => {
   //   }
   // };
 
-  const handleSelectedVoucherId = (code: string) => {
+  const handleSelectedVoucherId = (
+    code: string,
+    value: number,
+    type: string,
+    couponPercent: number | null,
+  ) => {
     if (selectedVoucher === code) {
-      // Deselect if the same voucher is clicked again
       setSelectedVoucher(null);
     } else {
-      // Select the voucher
       setSelectedVoucher(code);
+      if (type === 'VALUE') {
+        setCouponValue(value);
+      } else if (type === 'PERCENT') {
+        setCouponPercent(couponPercent);
+      }
     }
   };
 
@@ -437,7 +450,14 @@ const OrderInformation = () => {
                                         selectedVoucher === item.code ? 'contained' : 'outlined'
                                       }
                                       color="primary"
-                                      onClick={() => handleSelectedVoucherId(item.code)}
+                                      onClick={() =>
+                                        handleSelectedVoucherId(
+                                          item.code,
+                                          item.value,
+                                          item.type,
+                                          item.couponPercent,
+                                        )
+                                      }
                                     >
                                       {selectedVoucher === item.code ? 'Bỏ chọn' : 'Chọn'}
                                     </Button>
@@ -493,13 +513,13 @@ const OrderInformation = () => {
                 <Typography variant="subtitle1" fontWeight={600}>
                   Khuyến mại
                 </Typography>
-                {/* <Typography variant="subtitle1" fontWeight={600} sx={{ px: 1 }}>
-                  {dataVndCoupons?.type === 'VALUE'
-                    ? `${dataVndCoupons.value.toLocaleString('vi-VN')}₫`
+                <Typography variant="subtitle1" fontWeight={600} sx={{ px: 1 }}>
+                  {/* {dataVndCoupons === 'VALUE'
+                    ? `${dataVndCoupons.toLocaleString('vi-VN')}₫`
                     : dataVndCoupons?.type === 'PERCENT'
                     ? `${dataVndCoupons.value}%`
-                    : 'Không có khuyến mại'}
-                </Typography> */}
+                    : 'Không có khuyến mại'} */}
+                </Typography>
               </Box>
 
               <Box
