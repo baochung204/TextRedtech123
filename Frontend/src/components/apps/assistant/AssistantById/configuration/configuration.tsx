@@ -18,37 +18,12 @@ interface IProps {
 const Configuration = ({ chatBotResource }: IProps) => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
-  const primarylight = theme.palette.primary.light;
+  const primaryLight = theme.palette.primary.light;
+  const warning = theme.palette.warning.main;
+  const warningLight = theme.palette.warning.light;
   const secondary = theme.palette.secondary.main;
-  const secondarylight = theme.palette.secondary.light;
+  const secondaryLight = theme.palette.secondary.light;
   const borderColor = theme.palette.divider;
-  interface sellssData {
-    product: string;
-    parameter: number;
-    percent: number;
-    color: string;
-  }
-
-  const sellss: sellssData[] = [
-    {
-      product: 'File',
-      parameter: `${chatBotResource?.fileSlot}`,
-      percent: 75,
-      color: 'primary',
-    },
-    {
-      product: 'Dung lượng',
-      parameter: 289,
-      percent: 55,
-      color: 'warning',
-    },
-    {
-      product: 'Function',
-      parameter: `${chatBotResource?.functionSlot}`,
-      percent: 20,
-      color: 'secondary',
-    },
-  ];
   return (
     <Paper
       sx={{
@@ -79,36 +54,6 @@ const Configuration = ({ chatBotResource }: IProps) => {
       >
         <Box p={3}>
           <Stack spacing={3}>
-            {/* {sellss.map((sell: any, i: number) => (
-              <Box key={i}>
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  mb={1}
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Box>
-                    <Typography variant="h6">{sell.product}</Typography>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {sell.parameter}{' '}
-                      {sell.product == 'File' ? ' File' : sell.product == 'Dung lượng' ? ' MB' : ''}
-                    </Typography>
-                  </Box>
-                  <Chip
-                    sx={{
-                      backgroundColor: sell.color === 'primary' ? primarylight : secondarylight,
-                      color: sell.color === 'primary' ? primary : secondary,
-                      borderRadius: '4px',
-                      width: 55,
-                      height: 24,
-                    }}
-                    label={sell.percent + '%'}
-                  />
-                </Stack>
-                <LinearProgress value={sell.percent} variant="determinate" color={sell.color} />
-              </Box>
-            ))} */}
             <Box>
               <Stack
                 direction="row"
@@ -118,22 +63,111 @@ const Configuration = ({ chatBotResource }: IProps) => {
                 alignItems="center"
               >
                 <Box>
-                  <Typography variant="h6">File</Typography>
+                  <Typography variant="h6">Files</Typography>
                   <Typography variant="subtitle2" color="textSecondary">
                     {chatBotResource?.fileSlot} File
                   </Typography>
                 </Box>
                 <Chip
                   sx={{
-                    backgroundColor: primarylight,
+                    backgroundColor: primaryLight,
                     color: primary,
-                    width: 55,
+                    width: 'auto',
                     height: 24,
                   }}
-                  label={70 + '%'}
+                  label={`${
+                    chatBotResource?.fileSlot && chatBotResource?.fileSlotMax
+                      ? Math.floor(
+                          (chatBotResource?.fileSlot / chatBotResource?.fileSlotMax) * 100,
+                        ) ===
+                        (chatBotResource?.fileSlot / chatBotResource?.fileSlotMax) * 100
+                        ? (chatBotResource?.fileSlot / chatBotResource?.fileSlotMax) * 100
+                        : (
+                            (chatBotResource?.fileSlot / chatBotResource?.fileSlotMax) *
+                            100
+                          ).toFixed(1)
+                      : 0
+                  }%`}
                 />
               </Stack>
-              <LinearProgress value={70} variant="determinate" color="primary" />
+              <LinearProgress
+                // value={70}
+                value={
+                  chatBotResource?.fileSlot && chatBotResource?.fileSlotMax
+                    ? (chatBotResource?.fileSlot / chatBotResource?.fileSlotMax) * 100
+                    : 0
+                }
+                variant="determinate"
+                color="primary"
+              />
+            </Box>
+            <Box>
+              <Stack
+                direction="row"
+                spacing={2}
+                mb={1}
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Box>
+                  <Typography variant="h6">Dung lượng </Typography>
+                  <Typography variant="subtitle2" color="textSecondary">
+                    {chatBotResource?.storageFile}
+                  </Typography>
+                </Box>
+                <Chip
+                  sx={{
+                    backgroundColor: warningLight,
+                    color: warning,
+                    width: 'auto',
+                    height: 24,
+                  }}
+                  label={`${
+                    chatBotResource?.storage && chatBotResource?.storageMax
+                      ? Math.floor(
+                          (chatBotResource?.storage / chatBotResource?.storageMax) * 100,
+                        ) ===
+                        (chatBotResource?.storage / chatBotResource?.storageMax) * 100
+                        ? (chatBotResource?.storage / chatBotResource?.storageMax) * 100
+                        : ((chatBotResource?.storage / chatBotResource?.storageMax) * 100).toFixed(
+                            1,
+                          )
+                      : 0
+                  }%`}
+                />
+              </Stack>
+              <LinearProgress
+                // value={70}
+                value={
+                  chatBotResource?.storage && chatBotResource?.storageMax
+                    ? (chatBotResource?.storage / chatBotResource?.storageMax) * 100
+                    : 0
+                }
+                variant="determinate"
+                color="warning"
+              />
+            </Box>
+            <Box>
+              <Stack
+                direction="row"
+                spacing={2}
+                mb={1}
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Box>
+                  <Typography variant="h6">Functions </Typography>
+                </Box>
+                <Chip
+                  sx={{
+                    backgroundColor: secondaryLight,
+                    color: secondary,
+                    width: 'auto',
+                    height: 24,
+                  }}
+                  label={chatBotResource?.functionSlot}
+                />
+              </Stack>
             </Box>
           </Stack>
         </Box>

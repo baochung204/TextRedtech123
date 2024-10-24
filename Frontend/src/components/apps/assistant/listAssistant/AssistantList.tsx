@@ -501,7 +501,10 @@ const ListAssistant = () => {
                                         }}
                                         label={`${
                                           rank?.exp && rank?.expMax
-                                            ? ((rank.exp / rank.expMax) * 100).toFixed(1)
+                                            ? Math.floor((rank.exp / rank.expMax) * 100) ===
+                                              (rank.exp / rank.expMax) * 100
+                                              ? (rank.exp / rank.expMax) * 100
+                                              : ((rank.exp / rank.expMax) * 100).toFixed(1)
                                             : 0
                                         }%`}
                                       />

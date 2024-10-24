@@ -94,12 +94,12 @@ const InFor = ({ chatBotInfo }: IProps) => {
             <Typography
               variant="h6"
               mb={1}
-              sx={{ fontSize: { xs: '16px', sm: '16px', md: '18px', lg: '18px' }, mt: 3 }}
+              sx={{ fontSize: { xs: '16px', sm: '16px', md: '18px', lg: '18px' }, mt: 2 }}
             >
               {chatBotInfo?.name}
             </Typography>
             <Tooltip title="Model" placement="top">
-              <Chip label={chatBotInfo?.modelName} color="warning" sx={{ my: 1 }} />
+              <Chip label={chatBotInfo?.modelName} color="warning" sx={{ my: 0.5 }} />
             </Tooltip>
           </Box>
           <Box
@@ -124,7 +124,7 @@ const InFor = ({ chatBotInfo }: IProps) => {
               display: 'flex',
               justifyContent: 'center',
 
-              mt: 1.5,
+              mt: 2,
             }}
           >
             <Grid item>
@@ -144,7 +144,7 @@ const InFor = ({ chatBotInfo }: IProps) => {
           >
             <Box
               sx={{
-                p: { xs: 2, sm: 2, md: 1.7, lg: 3 },
+                p: { xs: 2, sm: 2, md: 1.7, lg: 2 },
                 boxShadow: ' 0px  4px 6px rgba(0, 0, 0, 0.055)',
               }}
             >
@@ -167,7 +167,10 @@ const InFor = ({ chatBotInfo }: IProps) => {
                       }}
                       label={`${
                         chatBotInfo?.exp && chatBotInfo?.expMax
-                          ? ((chatBotInfo.exp / chatBotInfo.expMax) * 100).toFixed(1)
+                          ? Math.floor((chatBotInfo?.exp / chatBotInfo?.expMax) * 100) ===
+                            (chatBotInfo?.exp / chatBotInfo?.expMax) * 100
+                            ? (chatBotInfo?.exp / chatBotInfo?.expMax) * 100
+                            : ((chatBotInfo?.exp / chatBotInfo?.expMax) * 100).toFixed(1)
                           : 0
                       }%`}
                     />
@@ -176,7 +179,7 @@ const InFor = ({ chatBotInfo }: IProps) => {
                     variant="determinate"
                     value={
                       chatBotInfo?.exp && chatBotInfo?.expMax
-                        ? (chatBotInfo.exp / chatBotInfo.expMax) * 100
+                        ? (chatBotInfo?.exp / chatBotInfo?.expMax) * 100
                         : 0
                     }
                     sx={{
