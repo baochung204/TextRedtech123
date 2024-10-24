@@ -110,10 +110,18 @@ const OrderInformation = () => {
     }
 
     if (selectedVoucherDetail.type === 'PERCENT') {
-      const discount = (originalOrderTotal * (couponPercent ?? 0)) / 100;
-      return originalOrderTotal - discount;
+      const discount = (originalOrderTotal * couponPercent) / 100;
+      if (discount > originalOrderTotal) {
+        return 0;
+      } else {
+        return originalOrderTotal - discount;
+      }
     } else if (selectedVoucherDetail.type === 'VALUE') {
-      return originalOrderTotal - couponValue;
+      if (couponValue > originalOrderTotal) {
+        return 0;
+      } else {
+        return originalOrderTotal - couponValue;
+      }
     }
     return originalOrderTotal;
   };
@@ -539,8 +547,7 @@ const OrderInformation = () => {
             <Box sx={{ mt: 2, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="h4">Tổng cộng</Typography>
               <Typography variant="h4" fontWeight="bold" sx={{ color: '#FC3242' }}>
-                {/* {dataPoint?.cash < finalOrderTotal ? 0 : finalOrderTotal.toLocaleString('vi-VN')} */}
-                {dataPoint?.cash < finalOrderTotal ? 0 : finalOrderTotal.toLocaleString('vi-VN')}
+                {finalOrderTotal.toLocaleString('vi-VN')}
               </Typography>
             </Box>
           </BoxStyled>
