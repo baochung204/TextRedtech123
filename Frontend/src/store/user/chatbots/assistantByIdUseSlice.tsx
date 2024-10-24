@@ -21,6 +21,7 @@ const ChatBotDataI: ChatBotData = {
     chatBotExpertises: [],
     campaignName: '',
     campaignBadge: '',
+    badgeUrl: '',
   },
   chatBotIndex: {
     customer: 0,
@@ -37,6 +38,7 @@ const ChatBotDataI: ChatBotData = {
     fileSlot: 0,
     fileSlotMax: 0,
     functionSlot: 0,
+    storageFile: '',
     storage: 0,
     storageMax: 0,
     chatBotFunctions: [],

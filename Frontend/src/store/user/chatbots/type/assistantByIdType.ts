@@ -48,7 +48,7 @@ export interface ChatBotResourceType {
   functionSlot: number;
   storage: number;
   storageMax: number;
-  storageFile: string;
+  storageFile: number;
   chatBotFunctions: ChatBotFunction[];
   chatbotFiles: ChatbotFile[];
 }

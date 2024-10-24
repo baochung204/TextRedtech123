@@ -36,7 +36,7 @@ const File = ({ chatBotResource }: IProps) => {
     <DashboardCard title="File" subtitle="File được trang bị cho trợ lý">
       <Box>
         {/* <Typography variant="h6">Total: {totalMB.toFixed(2)} MB</Typography> */}
-        <Typography variant="h6">Total: {chatBotResource?.storageFile}</Typography>
+        <Typography variant="h6">Tổng dung lương: {chatBotResource?.storageFile}</Typography>
         <SimpleBar style={{ maxHeight: '410px', overflowX: 'hidden' }}>
           <Box>
             <Stack spacing={3} mt={'26px'}>
