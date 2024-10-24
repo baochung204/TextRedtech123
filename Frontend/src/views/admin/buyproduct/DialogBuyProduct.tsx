@@ -63,11 +63,11 @@ const getRandomColor = () => {
 const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: PropUp) => {
   const [tags, setTags] = useState([]);
 
-  const handleTagChange = (event:any, newValue: any) => {
+  const handleTagChange = (event: any, newValue: any) => {
     // Assign a random color to each new tag
     const updatedTags = newValue.map((tag: any) => ({
-      title: tag.title || tag, 
-      color: tag.color || getRandomColor()  
+      title: tag.title || tag,
+      color: tag.color || getRandomColor(),
     }));
     setTags(updatedTags);
   };
@@ -206,8 +206,8 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
           anhStrategy: Array.isArray(data.anhStrategy)
             ? data.anhStrategy
             : data.anhStrategy
-              ? [data.anhStrategy]
-              : [],
+            ? [data.anhStrategy]
+            : [],
           nhomStrategy: data.nhomStrategy ?? '',
           tenStrategy: data.tenStrategy ?? '',
           khachhangStrategy: data.khachhangStrategy ?? '',
@@ -299,13 +299,37 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
     },
   ];
   return (
-    <Dialog open={open} onClose={() => handleClose(() => { })} fullWidth maxWidth="lg">
+    <Dialog
+      open={open}
+      onClose={() => handleClose(() => {})}
+      fullWidth
+      maxWidth="md"
+      sx={{
+        '& .MuiDialog-paper': {
+          maxHeight: '80vh',
+          overflowY: 'auto',
+          '&::-webkit-scrollbar': {
+            width: '10px',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: 'none',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#E3E3E3',
+            borderRadius: '10px',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: '#d6d6d6',
+          },
+        },
+      }}
+    >
       <DialogTitle sx={{ textAlign: 'center' }}>
         {checkValue === 'add'
           ? 'Thêm sản phẩm'
           : checkValue === 'view'
-            ? 'Xem sản phẩm'
-            : 'Sửa sản phẩm'}
+          ? 'Xem sản phẩm'
+          : 'Sửa sản phẩm'}
       </DialogTitle>
 
       <Formik
@@ -445,7 +469,9 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                         type="number"
                         value={values.gianiemyet}
                         error={Boolean(errors.gianiemyet && touched.gianiemyet)}
-                        helperText={errors.gianiemyet && touched.gianiemyet ? errors.gianiemyet : ''}
+                        helperText={
+                          errors.gianiemyet && touched.gianiemyet ? errors.gianiemyet : ''
+                        }
                         onChange={(e) => setFieldValue('gianiemyet', e.target.value)}
                       />
                     </Grid>
@@ -458,7 +484,9 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                         type="number"
                         value={values.giakhuyenmai}
                         error={Boolean(errors.giakhuyenmai && touched.giakhuyenmai)}
-                        helperText={errors.giakhuyenmai && touched.giakhuyenmai ? errors.giakhuyenmai : ''}
+                        helperText={
+                          errors.giakhuyenmai && touched.giakhuyenmai ? errors.giakhuyenmai : ''
+                        }
                         onChange={(e) => setFieldValue('giakhuyenmai', e.target.value)}
                       />
                     </Grid>
@@ -472,19 +500,22 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                         options={[]}
                         value={tags}
                         onChange={handleTagChange}
-                        getOptionLabel={(option: Tag | string) => typeof option === 'string' ? option : option.title}
+                        getOptionLabel={(option: Tag | string) =>
+                          typeof option === 'string' ? option : option.title
+                        }
                         renderTags={(value: (Tag | string)[], getTagProps) =>
                           value.map((option, index) => (
                             <Chip
                               label={typeof option === 'string' ? option : option.title}
                               {...getTagProps({ index })}
-                              style={{ backgroundColor: typeof option === 'string' ? '#000' : option.color, color: '#fff' }}
+                              style={{
+                                backgroundColor: typeof option === 'string' ? '#000' : option.color,
+                                color: '#fff',
+                              }}
                             />
                           ))
                         }
-                        renderInput={(params) => (
-                          <TextField {...params}  placeholder="Enter tags" />
-                        )}
+                        renderInput={(params) => <TextField {...params} placeholder="Enter tags" />}
                       />
                     </Grid>
                     <Grid item xs={6}>
@@ -536,23 +567,26 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
               </Grid>
             </DialogContent>
             <DialogActions>
-              <Button onClick={() => handleClose(resetForm)} color="primary">
-                Hủy
-              </Button>
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-              // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
-              >
-                {checkValue === 'add'
-                  ? 'Xác nhận'
-                  : checkValue === 'sub'
+              <Box sx={{ px: 2 }}>
+                {' '}
+                <Button onClick={() => handleClose(resetForm)} color="primary" sx={{ mx: 2 }}>
+                  Hủy
+                </Button>
+                <Button
+                  type="submit"
+                  color="primary"
+                  variant="contained"
+                  // onClick={() => { checkValue === 'view' && setCheckValue('fix')}}
+                >
+                  {checkValue === 'add'
+                    ? 'Xác nhận'
+                    : checkValue === 'sub'
                     ? 'Thêm'
                     : checkValue === 'view'
-                      ? 'Sửa'
-                      : checkValue === 'fix' && ' Lưu'}
-              </Button>
+                    ? 'Sửa'
+                    : checkValue === 'fix' && ' Lưu'}
+                </Button>
+              </Box>
             </DialogActions>
           </Form>
         )}

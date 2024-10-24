@@ -60,10 +60,10 @@ const PublisherTablePage: React.FC = () => {
         ),
         sort: true,
       },
-      {
-        title: 'Model',
-        dataIndex: 'model',
-      },
+      // {
+      //   title: 'Model',
+      //   dataIndex: 'model',
+      // },
       {
         title: 'Giá tiền',
         dataIndex: 'money',
