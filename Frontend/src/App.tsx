@@ -8,6 +8,7 @@ import Router from './routers/Router';
 import { AppState } from './store/Store';
 import GlobalScrollbar from 'src/components/custom-scroll/GlobalScrollbar';
 
+
 function App() {
   const routing = useRoutes(Router);
   const theme = ThemeSettings();

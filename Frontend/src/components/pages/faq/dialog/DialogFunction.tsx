@@ -8,13 +8,13 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import { DataType } from 'src/store/user/user-resources/functions/type/functionsType';
+
 import { Functions } from 'src/types/apps/function';
 
 interface PropsDialog {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: DataType[];
+  data: Functions[];
 }
 
 const DialogFunction = ({ open, setOpen, data }: PropsDialog) => {

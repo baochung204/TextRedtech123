@@ -13,6 +13,14 @@ interface AdminTicket {
   email: string;
   phone_number: string;
 }
+interface StaffData {
+    result: AdminTicket[];
+    pageNo: number;
+    pageSize: number;
+    totalElements: number;
+    totalPages: number;
+    last: boolean;
+}
 
 interface StrState {
   result: AdminTicket[];
@@ -24,7 +32,7 @@ const initialState: StrState = {
   result: [],
   loading: false,
   error: null,
-};
+}
 
 // Tạo async thunk để lấy dữ liệu ticket
 export const fetchTicketsData = createAsyncThunk('str/fetchedTickets', async (_, thunkAPI) => {

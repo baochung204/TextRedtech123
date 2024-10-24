@@ -9,7 +9,7 @@ const resourcesApi = {
   getAllURL: (page?: number | undefined, size?: number | undefined) => {
     return axiosAPI.get(`/${url}/urls?page=${page}&size=${size}`);
   },
-  getAllModels: (page?: number | undefined, size?: number | undefined) => {
+  getAllModels: (page: number, size: number) => {
     return axiosAPI.get(`/${url}/models?page=${page}&size=${size}`);
   },
   getAllImages: (page?: number | undefined, size?: number | undefined) => {

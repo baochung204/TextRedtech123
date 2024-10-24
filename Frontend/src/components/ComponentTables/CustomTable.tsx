@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Table,
   TableBody,
@@ -19,6 +19,11 @@ import { Column } from './ColumnInterface';
 interface CustomTableProps {
   columns: Column[];
   dataSource: any[];
+  count: number;
+  rowsPerPage: number;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>,
+  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>,
   rowsPerPageOptions?: number[];
   dataSelect?: string[];
 }
@@ -26,24 +31,28 @@ interface CustomTableProps {
 const CustomTable: React.FC<CustomTableProps> = ({
   columns,
   dataSource,
+  count,
+  rowsPerPage,
+  page,
+  setPage,
+  setRowsPerPage,
   rowsPerPageOptions = [5, 10, 25],
   dataSelect = [],
 }) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[0]);
-  const handleChangePage = (
-    _event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
+
+
+
+
+  const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedValue = parseInt(event.target.value, 10);
+    console.log('Số hàng được chọn:', event.target.value);
+    setRowsPerPage(selectedValue);
+  };
+  const handlePageChange = (_event: unknown, newPage: number) => {
+    console.log(newPage);
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const paginatedData = dataSource?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <TableContainer component={Paper} sx={{ px: 2 }}>
@@ -51,46 +60,40 @@ const CustomTable: React.FC<CustomTableProps> = ({
         <Table>
           <TableHead>
             <TableRow>
-              {columns?.map((column, index) => {
-                const isColumnVisible = !dataSelect.includes(column.dataIndex ?? '');
+              {columns.map((column, index) => {
+                const isColumnVisible = !dataSelect.includes(column.dataIndex);
                 const isSortable = column.sort ?? false;
                 return (
-                  <>
-                    {isColumnVisible && (
-                      <TableCell key={index}>
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                          }}
+                  isColumnVisible && (
+                    <TableCell key={index}>
+                      <Box
+                        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                      >
+                        <Typography
+                          variant="subtitle2"
+                          fontWeight={600}
+                          sx={{ flexGrow: 1, whiteSpace: 'nowrap', pl: 1 }}
                         >
-                          <Typography
-                            variant="subtitle2"
-                            fontWeight={600}
-                            sx={{ flexGrow: 1, whiteSpace: 'nowrap', pl: 1 }}
-                          >
-                            {column.title}
-                          </Typography>
-                          {isSortable && (
-                            <IconButton>
-                              <SwapVertIcon />
-                            </IconButton>
-                          )}
-                        </Box>
-                      </TableCell>
-                    )}
-                  </>
+                          {column.title}
+                        </Typography>
+                        {isSortable && (
+                          <IconButton>
+                            <SwapVertIcon />
+                          </IconButton>
+                        )}
+                      </Box>
+                    </TableCell>
+                  )
                 );
               })}
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedData?.map((row, rowIndex) => (
+            {dataSource.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => {
                   const value = column.dataIndex ? row[column.dataIndex] : undefined;
-                  const isColumnVisible = !dataSelect.includes(column.dataIndex ?? '');
+                  const isColumnVisible = !dataSelect.includes(column.dataIndex);
                   return (
                     isColumnVisible && (
                       <TableCell key={colIndex} sx={{ whiteSpace: 'nowrap' }}>
@@ -117,14 +120,15 @@ const CustomTable: React.FC<CustomTableProps> = ({
       <TablePagination
         rowsPerPageOptions={rowsPerPageOptions}
         component="div"
-        count={dataSource.length}
+        count={count}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
         labelRowsPerPage="Số hàng trên trang"
         labelDisplayedRows={({ from, to, count }) =>
-          `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
+          // `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
+          `Trang ${page + 1}`
         }
       />
     </TableContainer>

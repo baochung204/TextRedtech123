@@ -1,16 +1,23 @@
 // src/redux/integrationSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import userApi from 'src/api/userResource/UserResource';
-import { Functions } from 'src/types/apps/function';
+import { Result } from 'src/types/apps/function';
 
 interface FunctionState {
-  data: Functions[]; 
+  data: Result; 
   loading: boolean; 
   error: string | null;
 }
 
 const initialState: FunctionState = {
-  data: [], 
+  data: {
+    content: [],
+    last: false,
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0
+  }, 
   loading: false,
   error: null,
 };
@@ -43,7 +50,7 @@ const FunctionSlice = createSlice({
       state.error = null;
     });
 
-    builder.addCase(fetchFunction.fulfilled, (state, action: PayloadAction<Functions[]>) => {
+    builder.addCase(fetchFunction.fulfilled, (state, action: PayloadAction<Result>) => {
       state.loading = false;
       state.data = action.payload;
     });

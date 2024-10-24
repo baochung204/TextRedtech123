@@ -45,7 +45,7 @@ import CampaignsSlice from 'src/store/user/user-resources/campaigns/campaignsUse
 import staffoverviewSlice from './admin/Staff/overview/overviewStaffSlice';
 import CampaignSlice from './admin/resources/campaign/overview/campaignSlice';
 import functionsSlice from 'src/store/user/user-resources/functions/functionsUseSlice';
-import modelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
+import ModelsSlice from 'src/store/user/user-resources/models/modelsUseSlice';
 import imagesSlice from 'src/store/user/user-resources/images/imagesUesSlice';
 import filesSlice from 'src/store/user/user-resources/files/filesUseSlice';
 import functionSlice from './admin/resources/function/overview/functionSlice';
@@ -60,74 +60,12 @@ import functionListSlice from './admin/resources/function/table/functionListSlic
 import modelListSlice from './admin/resources/model/table/modelListSlice';
 import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
+import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
+
 import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
 import couponRandomSlice from './user/points/couponRandomSlice';
 
-export const store = configureStore({
-  reducer: {
-    //user
-    customizer: CustomizerReducer,
-    ecommerceReducer: EcommerceReducer,
-    chatReducer: ChatsReducer,
-    emailReducer: EmailReducer,
-    notesReducer: NotesReducer,
-    contactsReducer: ContactsReducer,
-    ticketReducer: TicketReducer,
-    userpostsReducer: UserProfileReducer,
-    blogReducer: BlogReducer,
-    selectReducer: SelectedReducer,
-    integration: integrationReducer,
-    customer: CustomerReducer,
-    urlResources: UrlSlice,
-    imageResources: ImageSlice,
-    product: productReducer,
-    customeraffiliate: CustomerAffiliate,
-    vnd_coupons: vndCouponsSlice,
-    str: StrReducer,
-    function: functionReducer,
-    file: fileReducer,
-    test: userSlice,
-    assisstant: assistantSlice,
-    twofa: twofaSlice,
-    flashsale_random: flashSaleRandomSlice,
-    adminTicker: adminTicketSlice,
-    cart: cartSlice,
-    // overViewTicket: overViewTicketSlice,
-    userme: usermeSlice,
-    staff: staffSlice,
-    resourcesCampaigns: CampaignsSlice,
-    resourcesFunctions: functionsSlice,
-    resourcesFiles: filesSlice,
-    resourcesModels: modelsSlice,
-    resourcesImages: imagesSlice,
-    resourcesUrls: urlsSlice,
-    affiliate: affiliateApiSlice,
-    blogs: BlogSlice,
-    point_list: listPointSlice,
-    //admin
-    overview_blog: blogSlice,
-    overview_counpon: counponSlice,
-    counpon_history: counponhistorySlice,
-    overview_flashsale: flashsaleoverviewSlice,
-    counpon_list: counponlistSlice,
-    flashsale_list: flashsaleSlice,
-    overview_staff: staffoverviewSlice,
-    overview_campaign: CampaignSlice,
-    overview_function: functionSlice,
-    overview_files: fileSlice,
-    overview_models: modelSlice,
-    campaign_list: CampaignListSlice,
-    files_list: fileListSlice,
-    function_list: functionListSlice,
-    model_list: modelListSlice,
-    overview_customer: customerAdminSlice,
-    overview_product: productAdminSlice,
-    overview_order: orderProductAdminSlice,
-    overview_ticket: ticketOverviewSlice,
-    randomcoupon: couponRandomSlice,
-  },
-});
 
 const rootReducer = combineReducers({
   //user
@@ -152,8 +90,11 @@ const rootReducer = combineReducers({
   function: functionReducer,
   file: fileReducer,
   test: userSlice,
+  resourcesModels: ModelsSlice,
+  resourcesUrls: urlsSlice,
   //assistant
   assisstant: assistantSlice,
+  assistantById: assistantByIdSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
@@ -162,6 +103,7 @@ const rootReducer = combineReducers({
   resourcesCampaigns: CampaignsSlice,
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
+  resourcesImages: imagesSlice,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,
@@ -188,7 +130,20 @@ const rootReducer = combineReducers({
   overview_order: orderProductAdminSlice,
   overview_ticket: ticketOverviewSlice,
   randomcoupon: couponRandomSlice,
+
 });
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
+export const persistor = persistStore(store);
 
 export type AppState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
