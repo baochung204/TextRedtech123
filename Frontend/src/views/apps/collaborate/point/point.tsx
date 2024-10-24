@@ -264,7 +264,7 @@ const Lspoin = () => {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
+    <PageContainer title="Enhanced Table ne" description="this is Enhanced Table page">
       {/* breadcrumb */}
       <Grid
         item

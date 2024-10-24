@@ -62,13 +62,15 @@ import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
-import ProductsSlice from 'src/store/user/products/productsUseSlice';
-import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistStore, persistReducer } from 'redux-persist';
-
 import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
 import couponRandomSlice from './user/points/couponRandomSlice';
+import historyOrderListSlice from './user/historyorder/historyOrderSlice';
+import historyDialogSlice from './user/historyorder/historyDialogSlice';
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
+import ProductsSlice from 'src/store/user/products/productsUseSlice';
+import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
+
 
 const rootReducer = combineReducers({
   //user
@@ -115,6 +117,8 @@ const rootReducer = combineReducers({
   blogs: BlogSlice,
   affiliate: affiliateApiSlice,
   point_list: listPointSlice,
+  historyorder_list: historyOrderListSlice,
+  historyorder_detail: historyDialogSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
@@ -137,6 +141,16 @@ const rootReducer = combineReducers({
   overview_ticket: ticketOverviewSlice,
   randomcoupon: couponRandomSlice,
 });
+
+
+const whitelistReducers = [
+  'randomcoupon',
+  'point_list',
+  'historyorder_detail',
+  'historyorder_list',
+];
+
+
 const persistConfig = {
   key: 'root',
   storage,
