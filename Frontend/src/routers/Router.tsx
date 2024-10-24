@@ -142,9 +142,6 @@ const ListAssistantInProfile = Loadable(
 );
 const OrderRPoint = Loadable(lazy(() => import('../views/admin/orderRPoint/OrderRPoint')));
 const Ticket = Loadable(lazy(() => import('../views/admin/ticket/ticket')));
-// const AssistantList = Loadable(
-//   lazy(() => import('../components/apps/assistant/listAssistant/AssistantList')),
-// );import Blog from './../views/apps/blog/Blog';
 
 //admin affiliate
 const OrderAffiliate = Loadable(lazy(() => import('../views/admin/affiliate/orderaffiliate')));
@@ -182,7 +179,11 @@ const Router = [
         element: <ProtectedRoute element={ContractOrderUser} />,
       },
 
-      { path: '/dashboards/ecommerce', exact: true, element: <ProtectedRoute element={EcommerceDash} /> },
+      {
+        path: '/dashboards/ecommerce',
+        exact: true,
+        element: <ProtectedRoute element={EcommerceDash} />,
+      },
 
       { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
       { path: '/apps/list-assistant', element: <ProtectedRoute element={Assistant} /> },
