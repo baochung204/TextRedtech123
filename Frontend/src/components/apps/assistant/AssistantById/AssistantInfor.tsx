@@ -15,14 +15,17 @@ import userImg from 'src/assets/images/profile/user-1.jpg';
 
 import PageContainer from 'src/components/container/PageContainer';
 
-import badge from 'src/assets/ICON/c1.png';
-
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import SpeedometerChart from 'src/components/charrts/SpeedometerChart';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchAssistantById } from 'src/store/user/chatbots/assistantByIdUseSlice';
+import {
+  ChatBotIndexType,
+  ChatBotInfoType,
+  ChatBotResourceType,
+} from 'src/store/user/chatbots/type/assistantByIdType';
 import Chart1 from './chart/chart1';
 import Chart2 from './chart/chart2';
 import Chart3 from './chart/chart3';
@@ -34,11 +37,6 @@ import File from './configuration/file';
 import Function from './configuration/function';
 import InFor from './infor/infor';
 import Topcardassistant from './topcard/Topcardassistant';
-import {
-  ChatBotIndexType,
-  ChatBotInfoType,
-  ChatBotResourceType,
-} from 'src/store/user/chatbots/type/assistantByIdType';
 
 const AssistantInfor = () => {
   const { id } = useParams();

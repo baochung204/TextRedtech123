@@ -32,7 +32,7 @@ const Configuration = ({ chatBotResource }: IProps) => {
   const sellss: sellssData[] = [
     {
       product: 'File',
-      parameter: 14,
+      parameter: `${chatBotResource?.fileSlot}`,
       percent: 75,
       color: 'primary',
     },
@@ -44,7 +44,7 @@ const Configuration = ({ chatBotResource }: IProps) => {
     },
     {
       product: 'Function',
-      parameter: 57,
+      parameter: `${chatBotResource?.functionSlot}`,
       percent: 20,
       color: 'secondary',
     },
@@ -79,7 +79,7 @@ const Configuration = ({ chatBotResource }: IProps) => {
       >
         <Box p={3}>
           <Stack spacing={3}>
-            {sellss.map((sell: any, i: number) => (
+            {/* {sellss.map((sell: any, i: number) => (
               <Box key={i}>
                 <Stack
                   direction="row"
@@ -108,7 +108,33 @@ const Configuration = ({ chatBotResource }: IProps) => {
                 </Stack>
                 <LinearProgress value={sell.percent} variant="determinate" color={sell.color} />
               </Box>
-            ))}
+            ))} */}
+            <Box>
+              <Stack
+                direction="row"
+                spacing={2}
+                mb={1}
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Box>
+                  <Typography variant="h6">File</Typography>
+                  <Typography variant="subtitle2" color="textSecondary">
+                    {chatBotResource?.fileSlot} File
+                  </Typography>
+                </Box>
+                <Chip
+                  sx={{
+                    backgroundColor: primarylight,
+                    color: primary,
+                    width: 55,
+                    height: 24,
+                  }}
+                  label={70 + '%'}
+                />
+              </Stack>
+              <LinearProgress value={70} variant="determinate" color="primary" />
+            </Box>
           </Stack>
         </Box>
       </Paper>
