@@ -15,12 +15,15 @@ import {
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import ContentPurchaseHistory from './content/conTentPurchaseHistory';
 import { tableOrder } from './data/data';
+import { useSelector } from 'react-redux';
+import { AppState, dispatch } from 'src/store/Store';
+import { fetchHistoryOrderListData } from 'src/store/user/historyorder/historyOrderSlice';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -30,6 +33,14 @@ const Transition = React.forwardRef(function Transition(
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
+interface DataRow3 {
+  orderId: number;
+  date: Date;
+  point: number;
+  amountDiscount: number;
+  priceAfterDiscount: number;
+}
 
 const PurchaseHistoryInProfile = () => {
   const [open, setOpen] = useState(false);
@@ -41,7 +52,7 @@ const PurchaseHistoryInProfile = () => {
   };
   const columns = [
     {
-      dataIndex: 'id',
+      dataIndex: 'orderId',
       numeric: false,
       disablePadding: false,
       title: 'ID',
@@ -51,12 +62,12 @@ const PurchaseHistoryInProfile = () => {
       title: 'Ngày mua hàng',
     },
     {
-      dataIndex: 'voucher',
+      dataIndex: 'priceAfterDiscount',
       title: 'Giảm giá',
     },
     {
       title: 'Số Point',
-      dataIndex: 'amount',
+      dataIndex: 'point',
       render: (value: string) => (
         <Box
           sx={{
@@ -76,25 +87,28 @@ const PurchaseHistoryInProfile = () => {
     {
       title: 'Chi tiết',
       dataIndex: 'invoice',
-      render: (value: number) => (
-        <Box>
-          {value === 1 ? (
-            <Button color="success" onClick={handleOpen}>
-              Chi tiết
-            </Button>
-          ) : value === 2 ? (
-            <Typography sx={{ color: '#ff9800' }} variant="subtitle2">
-              Chờ xử lý
-            </Typography>
-          ) : (
-            <Typography sx={{ color: '#f44336' }} variant="subtitle2">
-              Không xác định
-            </Typography>
-          )}
-        </Box>
+      render: () => (
+        <Button color="success" onClick={handleOpen}>
+          Chi tiết
+        </Button>
       ),
     },
   ];
+  const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
+
+  const [orderHistoryData, setOrderHistoryData] = useState<DataRow3[]>([]);
+
+  useEffect(() => {
+    dispatch(fetchHistoryOrderListData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (orderHistoryData !== orderhistorylist.content) {
+      setOrderHistoryData(orderhistorylist.content);
+    }
+  }, [orderHistoryData, orderhistorylist]);
+
+  console.log('hello', orderHistoryData);
 
   return (
     <>
@@ -132,7 +146,7 @@ const PurchaseHistoryInProfile = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={tableOrder} />
+          <CustomTable columns={columns} dataSource={orderHistoryData} />
         </Grid>
       </Grid>
 

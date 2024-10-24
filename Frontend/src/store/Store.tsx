@@ -62,10 +62,11 @@ import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
-
 import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
 import couponRandomSlice from './user/points/couponRandomSlice';
-
+import historyOrderListSlice from './user/historyorder/historyOrderSlice';
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
 
 const rootReducer = combineReducers({
   //user
@@ -109,6 +110,7 @@ const rootReducer = combineReducers({
   blogs: BlogSlice,
   affiliate: affiliateApiSlice,
   point_list: listPointSlice,
+  historyorder_list: historyOrderListSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
@@ -130,11 +132,17 @@ const rootReducer = combineReducers({
   overview_order: orderProductAdminSlice,
   overview_ticket: ticketOverviewSlice,
   randomcoupon: couponRandomSlice,
-
 });
+
+const whitelistReducers = ['randomcoupon', 'point_list'];
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: whitelistReducers,
+};
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-
 
 export const store = configureStore({
   reducer: persistedReducer,
