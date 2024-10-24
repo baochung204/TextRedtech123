@@ -60,10 +60,29 @@ const PurchaseHistoryInProfile = () => {
     {
       dataIndex: 'date',
       title: 'Ngày mua hàng',
+      render: (value: string) => {
+        if (!value) return 'N/A'; // Handle undefined or invalid values
+        const date = new Date(value);
+        return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+      },
     },
     {
       dataIndex: 'priceAfterDiscount',
       title: 'Giảm giá',
+      render: (value: string) => (
+        <Box
+          sx={{
+            px: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'end',
+            gap: 0.5,
+            width: '70px',
+          }}
+        >
+          {value} <img src={IconPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+        </Box>
+      ),
     },
     {
       title: 'Số Point',
