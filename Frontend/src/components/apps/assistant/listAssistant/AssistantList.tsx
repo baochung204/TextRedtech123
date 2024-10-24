@@ -58,7 +58,6 @@ const ListAssistant = () => {
   const assistant = useSelector((state: AppState) => state.assisstant.dataa);
 
   const [assistantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
-
   // useEffect(() => {
   //   dispatch(fetchAssistantData());
   //   setAssisstantData(assisstant);
@@ -274,7 +273,9 @@ const ListAssistant = () => {
                     >
                       <Grid item xs={4}>
                         <Button
-                          onClick={() => onHandleCheckOnOrOff(rank)}
+                          onClick={() => {
+                            onHandleCheckOnOrOff(rank);
+                          }}
                           sx={{
                             // backgroundColor: checkedRanks.includes(`${rank.chatbotId}`)
                             backgroundColor: checkedRanks.includes(`${index}`)
@@ -447,7 +448,7 @@ const ListAssistant = () => {
                           >
                             <Box sx={{ p: { xs: 2, sm: 2.5, md: 1.7, lg: 2 } }}>
                               <Stack spacing={3}>
-                                <Box>
+                                {/* <Box>
                                   <Stack
                                     direction="row"
                                     justifyContent="space-between"
@@ -475,7 +476,58 @@ const ListAssistant = () => {
                                     variant="determinate"
                                     color="primary"
                                   />
-                                </Box>
+                                </Box> */}
+                                <Stack spacing={3}>
+                                  <Box>
+                                    <Stack
+                                      direction="row"
+                                      mb={2}
+                                      justifyContent="space-between"
+                                      alignItems="center"
+                                    >
+                                      <Box>
+                                        <Typography variant="h6">Kinh nghiệm</Typography>
+                                        {/* <Typography variant="subtitle2" color="textSecondary">
+                        {`EXP Max: ${rank?.expMax || 0}`}
+                      </Typography> */}
+                                      </Box>
+                                      <Chip
+                                        sx={{
+                                          backgroundColor: (theme) => theme.palette.primary.main,
+                                          color: (theme) => theme.palette.primary.contrastText,
+                                          borderRadius: '4px',
+                                          width: 'auto',
+                                          height: 24,
+                                        }}
+                                        label={`${
+                                          rank?.exp && rank?.expMax
+                                            ? Math.floor((rank.exp / rank.expMax) * 100) ===
+                                              (rank.exp / rank.expMax) * 100
+                                              ? (rank.exp / rank.expMax) * 100
+                                              : ((rank.exp / rank.expMax) * 100).toFixed(1)
+                                            : 0
+                                        }%`}
+                                      />
+                                    </Stack>
+                                    <LinearProgress
+                                      variant="determinate"
+                                      value={
+                                        rank?.exp && rank?.expMax
+                                          ? (rank.exp / rank.expMax) * 100
+                                          : 0
+                                      }
+                                      sx={{
+                                        height: 5,
+                                        borderRadius: 5,
+                                        backgroundColor: (theme) => theme.palette.grey[300],
+                                        '& .MuiLinearProgress-bar': {
+                                          borderRadius: 5,
+                                          backgroundColor: 'red',
+                                        },
+                                      }}
+                                    />
+                                  </Box>
+                                </Stack>
                               </Stack>
                             </Box>
                           </Paper>

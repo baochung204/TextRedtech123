@@ -9,11 +9,15 @@ const assistantAPi = {
   getAssistantById: (id: number) => {
     return axiosAPI.get(`/${url}/${id}`);
   },
-  getChartByID: (chatbotID: number, startDate?: Date, endDate?: Date) => {
-    const urls = `${url}/${chatbotID}/chart`;
+  getChartByID: (chatbotID: number, typeChart: string, startDate?: Date, endDate?: Date, ) => {
+    const urls = `${url}/${chatbotID}/chart?type-chart=${typeChart}`;
     if (startDate) {
-      return axiosAPI.get(`/${urls}?start-date=${startDate}/type-chart='revenue'`)
+      if (endDate) {
+        return axiosAPI.get(`/${urls}?start-date=${startDate}/end-dat${endDate}`)
+      }
+      return axiosAPI.get(`/${urls}?start-date=${startDate}`)
     }
+    return axiosAPI.get(`/${urls}`)
   }
 };
 

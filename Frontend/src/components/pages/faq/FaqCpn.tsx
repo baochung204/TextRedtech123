@@ -165,6 +165,7 @@ const Faq = () => {
     [],
   );
 
+
   useEffect(() => {
     const selectedColumns = column[value] || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);

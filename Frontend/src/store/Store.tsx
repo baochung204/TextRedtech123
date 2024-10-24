@@ -1,3 +1,6 @@
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
+
 import { configureStore } from '@reduxjs/toolkit';
 import BlogReducer from './apps/blog/BlogSlice';
 import ChatsReducer from './apps/chat/ChatSlice';
@@ -60,9 +63,12 @@ import functionListSlice from './admin/resources/function/table/functionListSlic
 import modelListSlice from './admin/resources/model/table/modelListSlice';
 import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
+import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistStore, persistReducer } from 'redux-persist';
+import ChartAssisstantSlice from './user/chatbots/chart/chartAssisstantByID/chartAssisstantByIDSlice';
+
+
+
 
 const rootReducer = combineReducers({
   //user
@@ -91,6 +97,7 @@ const rootReducer = combineReducers({
   resourcesUrls: urlsSlice,
   //assistant
   assisstant: assistantSlice,
+  assistantById: assistantByIdSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
@@ -100,6 +107,7 @@ const rootReducer = combineReducers({
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
   resourcesImages: imagesSlice,
+  chartAssisstantID: ChartAssisstantSlice,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,
