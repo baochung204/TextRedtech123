@@ -20,11 +20,12 @@ import {
 } from '@mui/material';
 import { IconChevronDown } from '@tabler/icons-react';
 import { useState } from 'react'; // Correctly importing useState
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import products2 from 'src/assets/images/products/s24.jpg';
-import products from 'src/assets/images/products/s25.jpg';
 import ChildCard from 'src/components/shared/ChildCard';
+import { AppState } from 'src/store/Store';
 
 const ContentPurchaseHistory = () => {
   // Changed function name to follow PascalCase
@@ -45,6 +46,10 @@ const ContentPurchaseHistory = () => {
   const handleSelectPackage = (pkgId: number) => {
     setSelectedPackage(selectedPackage === pkgId ? null : pkgId);
   };
+
+  const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
+
+  console.log('orderhistorydetail hello', orderhistorydetail.flashSaleResponse);
   return (
     <div>
       {/* <ProductChecout /> */}
@@ -56,7 +61,6 @@ const ContentPurchaseHistory = () => {
           <Table>
             <TableHead>
               <TableRow>
-                {' '}
                 <TableCell align="center">
                   <Typography variant="h6"></Typography>
                 </TableCell>
@@ -79,225 +83,92 @@ const ContentPurchaseHistory = () => {
             </TableHead>
 
             <TableBody>
-              <TableRow>
-                <TableCell align="center">
-                  <Stack direction="row" alignItems="center" gap={2}>
-                    <Avatar
-                      src={products}
-                      alt={products}
-                      sx={{
-                        borderRadius: '10px',
-                        height: '80px',
-                        width: '90px',
-                      }}
-                    />
-                  </Stack>
-                </TableCell>
-                <TableCell align="center">
-                  <Box>
-                    <Typography variant="h6">GTP-3</Typography>{' '}
-                    <Typography color="textSecondary" variant="body1">
-                      toys
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell align="center">
-                  <ButtonGroup size="small" color="success" aria-label="small button group">
-                    {/* <Button>
-                        <IconMinus stroke={1.5} size="0.8rem" />
-                      </Button> */}
-                    <Button>{'5'}</Button>
-                    {/* <Button>
-                        <IconPlus stroke={1.5} size="0.8rem" />
-                      </Button> */}
-                  </ButtonGroup>
-                </TableCell>
-
-                <TableCell align="center">
-                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Typography
-                      color="textSecondary"
-                      variant="h6"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      123
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
+              {orderhistorydetail?.orderLines?.map((product) => (
+                <TableRow key={product.orderLineId}>
+                  <TableCell align="center">
+                    <Stack direction="row" alignItems="center" gap={2}>
+                      <Avatar
+                        src={product.productImage}
+                        alt={product.productName}
+                        sx={{
+                          borderRadius: '10px',
+                          height: '80px',
+                          width: '90px',
+                        }}
                       />
-                    </Typography>
-                  </Box>
-                </TableCell>
-
-                <TableCell align="center">
-                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Typography
-                      color="textSecondary"
-                      variant="h6"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      123
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell align="center">
-                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Typography
-                      color="textSecondary"
-                      variant="h6"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      12321
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography>
-                  </Box>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                {/* ------------------------------------------- */}
-                {/* Hình ảnh và tiêu đề sản phẩm */}
-                {/* ------------------------------------------- */}
-                <TableCell align="center">
-                  <Stack direction="row" alignItems="center" gap={2}>
-                    <Avatar
-                      src={products2}
-                      alt={products2}
-                      sx={{
-                        borderRadius: '10px',
-                        height: '80px',
-                        width: '90px',
-                      }}
-                    />
-                  </Stack>
-                </TableCell>
-                <TableCell align="center">
-                  <Box>
-                    <Typography variant="h6">GTP-4</Typography>{' '}
-                    <Typography color="textSecondary" variant="body1">
-                      toys
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell align="center">
-                  <ButtonGroup size="small" color="success" aria-label="small button group">
-                    {/* <Button>
-                        <IconMinus stroke={1.5} size="0.8rem" />
-                      </Button> */}
-                    <Button>{'2'}</Button>
-                    {/* <Button>
-                        <IconPlus stroke={1.5} size="0.8rem" />
-                      </Button> */}
-                  </ButtonGroup>
-                </TableCell>
-
-                <TableCell align="center">
-                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Typography
-                      color="textSecondary"
-                      variant="h6"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      12321
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography>
-                  </Box>
-                  {/* <Typography
-                      variant="h6"
-                      sx={{ display: 'flex', justifyContent: 'end', gap: 0.5 }}
-                    >
-                      1022{' '}
-                      <img
-                        src={logoPoint}
-                        alt={logoPoint}
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography> */}
-                </TableCell>
-
-                <TableCell align="center">
-                  {/* <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
-                      255{' '}
-                      <img
-                        src={logoPoint}
-                        alt={logoPoint}
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                       ${product.salesPrice * product.qty - product.price * product.qty} 
-                    </Typography> */}
-                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Typography
-                      color="textSecondary"
-                      variant="h6"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      1232
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell align="center">
-                  {/* <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
-                      767{' '}
-                      <img
-                        src={logoPoint}
-                        alt={logoPoint}
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography> */}
-                  <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Typography
-                      color="textSecondary"
-                      variant="h6"
-                      sx={{ display: 'flex', gap: 0.5 }}
-                    >
-                      1232
-                      <img
-                        src={logoPoint}
-                        alt=""
-                        width={20}
-                        height={20}
-                        style={{ borderRadius: 50 }}
-                      />
-                    </Typography>
-                  </Box>
-                </TableCell>
-              </TableRow>
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Box>
+                      <Typography variant="h6">{product.productName}</Typography>
+                      <Typography color="textSecondary" variant="body1">
+                        {product.category}
+                      </Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell align="center">
+                    <ButtonGroup size="small" color="success" aria-label="small button group">
+                      <Button>{product.quantity}</Button>
+                    </ButtonGroup>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                      <Typography
+                        color="textSecondary"
+                        variant="h6"
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {product.point}
+                        <img
+                          src={logoPoint}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                      <Typography
+                        color="textSecondary"
+                        variant="h6"
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {product.amountDiscount}
+                        <img
+                          src={logoPoint}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Box width={'150px'} sx={{ display: 'flex', justifyContent: 'end' }}>
+                      <Typography
+                        color="textSecondary"
+                        variant="h6"
+                        sx={{ display: 'flex', gap: 0.5 }}
+                      >
+                        {product.priceAfterDiscount}
+                        <img
+                          src={logoPoint}
+                          alt=""
+                          width={20}
+                          height={20}
+                          style={{ borderRadius: 50 }}
+                        />
+                      </Typography>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
-          </Table>{' '}
+          </Table>
         </TableContainer>
         <Box my={3}>
           <ChildCard>
@@ -375,7 +246,7 @@ const ContentPurchaseHistory = () => {
                                   style={{ borderRadius: '10px' }}
                                 />
                               </Typography>
-                              <div>
+                              <Box>
                                 <Typography
                                   variant="h6"
                                   sx={{
@@ -447,23 +318,9 @@ const ContentPurchaseHistory = () => {
                                     {pkg.sale}%
                                   </Button>
                                 </Box>
-                              </div>
+                              </Box>
                             </div>
                           </CardContent>
-                          {/* <Box
-                                style={{
-                                  position: 'absolute',
-                                  top: '-15px',
-  
-                                  padding: '5px 10px',
-                                  color: 'white',
-                                  borderRadius: '0px 0px 10px 10px',
-                                  fontWeight: 'bold',
-                                }}
-                                sx={{ right: { xs: '-15px', md: '45px' } }}
-                              >
-                                <img src={sale} alt="" style={{ width: '70px' }} />
-                              </Box> */}
                         </Card>
                       </Grid>
                     ))}
@@ -491,7 +348,7 @@ const ContentPurchaseHistory = () => {
                   Giá trị đơn hàng :
                 </Typography>
                 <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-                  900{' '}
+                  900
                   <img
                     src={logoPoint}
                     alt={logoPoint}
@@ -516,7 +373,7 @@ const ContentPurchaseHistory = () => {
                     gap: 1,
                   }}
                 >
-                  -500{' '}
+                  -500
                   <img
                     src={logoPoint}
                     alt={logoPoint}
@@ -541,7 +398,7 @@ const ContentPurchaseHistory = () => {
                     alignItems: 'center',
                   }}
                 >
-                  400{' '}
+                  400
                   <img
                     src={logoPoint}
                     alt={logoPoint}

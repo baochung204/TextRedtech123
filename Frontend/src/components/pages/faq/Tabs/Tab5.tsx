@@ -19,11 +19,11 @@ interface PropsTab5 {
 }
 
 const Tab5: React.FC<PropsTab5> = ({
-  // value,
-  // open,
+  value,
+  open,
   setOpen,
   dataSelect,
-  // checkOption,
+  checkOption,
   setCheckOption,
 }) => {
   const [key, setKey] = useState<number | null>(null);
@@ -88,7 +88,11 @@ const Tab5: React.FC<PropsTab5> = ({
       render: (_row: any, value: any) => (
         <Grid container>
           <Grid item xs={4}>
-            <IconButton onClick={() => { onHandleOpenImageById(value.imageId)}}>
+            <IconButton
+              onClick={() => {
+                onHandleOpenImageById(value.imageId);
+              }}
+            >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
           </Grid>

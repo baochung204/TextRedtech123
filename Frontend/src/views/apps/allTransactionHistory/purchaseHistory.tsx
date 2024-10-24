@@ -11,19 +11,18 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { Column } from 'src/components/ComponentTables/ColumnInterface';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import ContentPurchaseHistory from './content/conTentPurchaseHistory';
-import { tableOrder } from './data/data';
-import { useSelector } from 'react-redux';
-import { AppState, dispatch } from 'src/store/Store';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchHistoryOrderDetailData } from 'src/store/user/historyorder/historyDialogSlice';
 import { fetchHistoryOrderListData } from 'src/store/user/historyorder/historyOrderSlice';
+import ContentPurchaseHistory from './content/conTentPurchaseHistory';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -34,27 +33,26 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-interface DataRow3 {
-  orderId: number;
-  date: Date;
-  point: number;
-  amountDiscount: number;
-  priceAfterDiscount: number;
-}
 
 const PurchaseHistoryInProfile = () => {
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+  const handleOpen = (id: number) => {
+    setOpen(true);
+
+    dispatch(fetchHistoryOrderDetailData(id));
+  };
+
   const handleCloseDialog = () => {
     setOpen(!open);
   };
-  const columns = [
+  const columns: Column[] = [
     {
       dataIndex: 'orderId',
-      numeric: false,
-      disablePadding: false,
+      // numeric: false,
+      // disablePadding: false,
       title: 'ID',
     },
     {
@@ -67,7 +65,7 @@ const PurchaseHistoryInProfile = () => {
       },
     },
     {
-      dataIndex: 'priceAfterDiscount',
+      dataIndex: 'amountDiscount',
       title: 'Giảm giá',
       render: (value: string) => (
         <Box
@@ -86,7 +84,7 @@ const PurchaseHistoryInProfile = () => {
     },
     {
       title: 'Số Point',
-      dataIndex: 'point',
+      dataIndex: 'priceAfterDiscount',
       render: (value: string) => (
         <Box
           sx={{
@@ -106,28 +104,31 @@ const PurchaseHistoryInProfile = () => {
     {
       title: 'Chi tiết',
       dataIndex: 'invoice',
-      render: () => (
-        <Button color="success" onClick={handleOpen}>
+      render: (_, value: { orderId: number }) => (
+        <Button color="success" onClick={() => handleOpen(value.orderId)}>
           Chi tiết
         </Button>
       ),
     },
   ];
   const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
+  const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
-  const [orderHistoryData, setOrderHistoryData] = useState<DataRow3[]>([]);
+  console.log('orderhistorydetail', orderhistorydetail);
+
+  // const [orderHistoryData, setOrderHistoryData] = useState<PropsData[]>([]);
 
   useEffect(() => {
     dispatch(fetchHistoryOrderListData());
-  }, [dispatch]);
+  }, []);
 
-  useEffect(() => {
-    if (orderHistoryData !== orderhistorylist.content) {
-      setOrderHistoryData(orderhistorylist.content);
-    }
-  }, [orderHistoryData, orderhistorylist]);
+  // useEffect(() => {
+  //   if (orderHistoryData !== orderhistorylist.content) {
+  //     setOrderHistoryData(orderhistorylist.content);
+  //   }
+  // }, [orderHistoryData, orderhistorylist]);
 
-  console.log('hello', orderHistoryData);
+  // console.log('hello', orderHistoryData);
 
   return (
     <>
@@ -165,7 +166,15 @@ const PurchaseHistoryInProfile = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={orderHistoryData} />
+          <CustomTable
+            columns={columns}
+            dataSource={orderhistorylist.content}
+            count={orderhistorylist.totalElements}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+          />
         </Grid>
       </Grid>
 

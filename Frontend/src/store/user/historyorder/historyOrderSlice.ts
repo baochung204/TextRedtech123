@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import OrderHistoryListApi from 'src/api/user/orderhistory/orderhistory';
 
-interface PropsData {
+export interface PropsData {
   orderId: number;
   date: Date;
-  point: number;
+  // point: number;
   amountDiscount: number;
   priceAfterDiscount: number;
 }
@@ -57,7 +57,7 @@ const orderHistoryListSlice = createSlice({
     [fetchHistoryOrderListData.pending.type]: (state) => {
       state.loading = true;
     },
-    [fetchHistoryOrderListData.fulfilled.type]: (state, action) => {
+    [fetchHistoryOrderListData.fulfilled.type]: (state, action: PayloadAction<VoucherData> ) => {
       state.loading = false;
       state.dataa = action.payload;
     },

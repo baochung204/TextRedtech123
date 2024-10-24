@@ -65,6 +65,7 @@ import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderprod
 import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
 import couponRandomSlice from './user/points/couponRandomSlice';
 import historyOrderListSlice from './user/historyorder/historyOrderSlice';
+import historyDialogSlice from './user/historyorder/historyDialogSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 
@@ -111,6 +112,7 @@ const rootReducer = combineReducers({
   affiliate: affiliateApiSlice,
   point_list: listPointSlice,
   historyorder_list: historyOrderListSlice,
+  historyorder_detail: historyDialogSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
@@ -134,7 +136,12 @@ const rootReducer = combineReducers({
   randomcoupon: couponRandomSlice,
 });
 
-const whitelistReducers = ['randomcoupon', 'point_list'];
+const whitelistReducers = [
+  'randomcoupon',
+  'point_list',
+  'historyorder_detail',
+  'historyorder_list',
+];
 
 const persistConfig = {
   key: 'root',
