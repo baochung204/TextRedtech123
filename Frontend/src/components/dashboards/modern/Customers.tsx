@@ -40,9 +40,9 @@ const Customers = () => {
       type: 'solid',
       opacity: 0.05,
     },
-    markers: {
-      size: 0,
-    },
+    // markers: {
+    //   size: 0,
+    // },
     tooltip: {
       theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
       x: {

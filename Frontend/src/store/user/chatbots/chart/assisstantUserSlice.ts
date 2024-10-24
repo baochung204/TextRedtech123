@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import assistantAPi from 'src/api/chatbots/assistantsUser';
 import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
-// import { AssistantType } from '../type/assistantType';
+import { AssistantType } from '../type/assistantType';
 
 interface StrState {
   dataa: PropsDataAssisstant[];

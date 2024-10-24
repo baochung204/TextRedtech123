@@ -21,15 +21,13 @@ const Tab1 = () => {
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const dispatch = useDispatch<AppDispatch>();
   const dataStr = useSelector((state: AppState) => state.str.data);
-  const {content = [], totalElements } =
-    useSelector((state: AppState) => state.str.data || {});
+  const {content = [], totalElements } = useSelector((state: AppState) => state.str.data || {});
   const [datax, setDatax] = useState<Str[]>([])
   const [dataView, setDataView] = useState<Str | undefined>()
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  // console.log('load data', campaignsData);
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));

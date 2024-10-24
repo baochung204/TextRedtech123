@@ -109,16 +109,16 @@ const Chart2 = () => {
       },
     },
     colors: [primary],
-    markers: {
-      size: 4,
-      opacity: 0.9,
-      colors: [primary],
-      strokeColor: '#fff',
-      strokeWidth: 2,
-      hover: {
-        size: 7,
-      },
-    },
+    // markers: {
+    //   size: 4,
+    //   opacity: 0.9,
+    //   colors: [primary],
+    //   strokeColor: '#fff',
+    //   strokeWidth: 2,
+    //   hover: {
+    //     size: 7,
+    //   },
+    // },
     yaxis: {
       min: 0,
       max: maxYValue,

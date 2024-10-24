@@ -26,7 +26,7 @@ import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice';
-import assistantSlice from './user/chatbots/assisstantUserSlice';
+import assistantSlice from './user/chatbots/chart/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
@@ -63,17 +63,6 @@ import productAdminSlice from './admin/sell/product/overview/productSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-
-
-
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['customizer', 'ecommerce'],
-};
-
-
 
 const rootReducer = combineReducers({
   //user
@@ -136,7 +125,47 @@ const rootReducer = combineReducers({
   overview_product: productAdminSlice,
   overview_order: orderProductAdminSlice,
 });
+
+const whitelistReducers = [
+  ''
+];
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: whitelistReducers,
+};
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
+export const persistor = persistStore(store);
+export type AppState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
+export const { dispatch } = store;
+export const useDispatch = () => useAppDispatch<AppDispatch>();
+export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
+export default store;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // export const store = configureStore({
 //   reducer: {
@@ -201,20 +230,3 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 //   },
 // });
 
-
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false, 
-    }),
-});
-export const persistor = persistStore(store);
-
-export type AppState = ReturnType<typeof rootReducer>;
-export type AppDispatch = typeof store.dispatch;
-export const { dispatch } = store;
-export const useDispatch = () => useAppDispatch<AppDispatch>();
-export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
-
-export default store;
