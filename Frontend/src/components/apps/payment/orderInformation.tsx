@@ -66,6 +66,12 @@ const OrderInformation = () => {
   //   state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
   // );
 
+  const dataVndCoupons = useSelector((state: AppState) => state.vnd_coupons.vnd_coupons);
+
+  const selectedVoucherDetail = useSelector((state: AppState) =>
+    state.vnd_coupons.vnd_coupons.find((voucher) => voucher.id === selectedVoucher),
+  );
+
   console.log(dataVndCoupons);
 
   console.log(dataPoint);
