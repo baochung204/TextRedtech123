@@ -48,8 +48,8 @@ const CustomTable: React.FC<CustomTableProps> = ({
     console.log('Số hàng được chọn:', event.target.value);
     setRowsPerPage(selectedValue);
   };
-  const handlePageChange = (_event: unknown, newPage: number) => {
-    console.log(newPage);
+  const handlePageChange = (event: unknown, newPage: number) => {
+
     setPage(newPage);
   };
 
@@ -89,7 +89,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {dataSource.map((row, rowIndex) => (
+            {dataSource?.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => {
                   const value = column.dataIndex ? row[column.dataIndex] : undefined;
@@ -126,9 +126,9 @@ const CustomTable: React.FC<CustomTableProps> = ({
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
         labelRowsPerPage="Số hàng trên trang"
-        labelDisplayedRows={({ from, to, count }) =>
+        labelDisplayedRows={({ count }) =>
           // `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
-          `Trang ${page + 1}`
+          `Trang ${count + 1}`
         }
       />
     </TableContainer>

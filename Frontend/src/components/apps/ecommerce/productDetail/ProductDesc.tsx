@@ -39,8 +39,10 @@ const a11yProps = (index: number) => {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 };
-
-const ProductDesc = () => {
+interface IProps {
+  productDetailInformation: string | null;
+}
+const ProductDesc = ({ productDetailInformation }: IProps) => {
   const [value, setValue] = React.useState(0);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -54,7 +56,7 @@ const ProductDesc = () => {
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  console.log(product?.description);
+  const dataDetailInformation = productDetailInformation;
   return (
     <ChildCard>
       <Box>
@@ -77,7 +79,7 @@ const ProductDesc = () => {
         {/* ------------------------------------------- */}
         <TabPanel value={value} index={0}>
           <Typography color="textSecondary" mt={4}>
-            {product?.description}
+            {dataDetailInformation}
           </Typography>
         </TabPanel>
         {/* ------------------------------------------- */}

@@ -18,7 +18,7 @@ interface PropsTab6 {
 }
 
 const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const data = useSelector((state: AppState) => state.resourcesUrls.data);
   // const [urlsData, setUrlsData] = useState<UrlType>();
@@ -33,15 +33,15 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
   // }, [Urls, urlsData]);
   // console.log('data urls', Urls);
 
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (_event: unknown, newPage: number) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSize = parseInt(event.target.value, 10);
-    setRowsPerPage(newSize);
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newSize = parseInt(event.target.value, 10);
+  //   setRowsPerPage(newSize);
+  //   setPage(0);
+  // };
   const columns = [
     {
       title: 'ID',

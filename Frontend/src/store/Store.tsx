@@ -1,7 +1,14 @@
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-
 import { configureStore } from '@reduxjs/toolkit';
+import {
+  TypedUseSelectorHook,
+  useDispatch as useAppDispatch,
+  useSelector as useAppSelector,
+} from 'react-redux';
+import { combineReducers } from 'redux';
+
+
 import BlogReducer from './apps/blog/BlogSlice';
 import ChatsReducer from './apps/chat/ChatSlice';
 import ContactsReducer from './apps/contacts/ContactSlice';
@@ -15,12 +22,6 @@ import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/productsSlice';
 import UrlSlice from './apps/resources/url/UrlSlice';
-import {
-  TypedUseSelectorHook,
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
-} from 'react-redux';
-import { combineReducers } from 'redux';
 import CustomerReducer from './apps/customer/customerSlice';
 import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
 import StrReducer from './apps/resources/str/strSlice';
@@ -35,7 +36,7 @@ import cartSlice from './user/cart/cartSlice';
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
+import staffSlice from './admin/Staff/Staff'; 
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
@@ -65,9 +66,13 @@ import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
-import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice';
-
-
+import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
+import couponRandomSlice from './user/points/couponRandomSlice';
+import historyOrderListSlice from './user/historyorder/historyOrderSlice';
+import historyDialogSlice from './user/historyorder/historyDialogSlice';
+import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
+import ProductsSlice from 'src/store/user/products/productsUseSlice';
+import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
 
 
 const rootReducer = combineReducers({
@@ -95,9 +100,12 @@ const rootReducer = combineReducers({
   test: userSlice,
   resourcesModels: ModelsSlice,
   resourcesUrls: urlsSlice,
-  //assistant
+  //Assistant
   assisstant: assistantSlice,
   assistantById: assistantByIdSlice,
+  //Products
+  products: ProductsSlice,
+  productById: ProductByIdSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
@@ -113,6 +121,8 @@ const rootReducer = combineReducers({
   blogs: BlogSlice,
   affiliate: affiliateApiSlice,
   point_list: listPointSlice,
+  historyorder_list: historyOrderListSlice,
+  historyorder_detail: historyDialogSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
@@ -132,11 +142,17 @@ const rootReducer = combineReducers({
   overview_customer: customerAdminSlice,
   overview_product: productAdminSlice,
   overview_order: orderProductAdminSlice,
+  overview_ticket: ticketOverviewSlice,
+  randomcoupon: couponRandomSlice,
 });
 
 const whitelistReducers = [
-  ''
+  'randomcoupon',
+  'point_list',
+  'historyorder_detail',
+  'historyorder_list',
 ];
+
 
 const persistConfig = {
   key: 'root',
@@ -145,6 +161,10 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+
+
+
 
 export const store = configureStore({
   reducer: persistedReducer,

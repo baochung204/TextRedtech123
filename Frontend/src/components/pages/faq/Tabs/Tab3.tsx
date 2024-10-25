@@ -5,7 +5,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { fetchFile } from 'src/store/apps/resources/file/fileSlice';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import DialogFile from '../dialog/DialogFile';
-import { Result } from 'src/types/apps/file';
 
 
 interface PropsTab3 {
@@ -18,19 +17,15 @@ interface PropsTab3 {
 }
 
 const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
-  const [page, setPage] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
-  const [data, setData] = useState<Result | undefined>()
 
-  const datax = useSelector((state: AppState) => state.file.data)
+  const data = useSelector((state: AppState) => state.file.data)
 
   useEffect(() => {
-    dispatch(fetchFile({ page, pageSize }));
+    dispatch(fetchFile({ page_no: page, page_size: pageSize }));
   }, [page, pageSize]);
 
-  useEffect(() => {
-    setData(datax)
-  }, [data, datax])
 
   const columns = [
     { title: 'ID', dataIndex: 'fileId' },
@@ -60,9 +55,9 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
   return (
     <Box sx={{ paddingTop: 1 }}>
       <CustomTable
-        dataSource={data?.content ? data.content : []}
+        dataSource={data.content}
         columns={columns}
-        count={data?.totalElements ? data.totalElements : 0}
+        count={data.totalElements}
         rowsPerPage={pageSize}
         page={page}
         setPage={setPage}

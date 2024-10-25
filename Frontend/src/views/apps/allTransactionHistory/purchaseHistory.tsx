@@ -11,18 +11,20 @@ import {
   InputAdornment,
   Slide,
   TextField,
-  Typography,
 } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import { IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { Column } from 'src/components/ComponentTables/ColumnInterface';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchHistoryOrderDetailData } from 'src/store/user/historyorder/historyDialogSlice';
+import { fetchHistoryOrderListData } from 'src/store/user/historyorder/historyOrderSlice';
 import ContentPurchaseHistory from './content/conTentPurchaseHistory';
-import { tableOrder } from './data/data';
+import { TransitionProps } from '@mui/material/transitions';
 
-const Transition = React.forwardRef(function Transition(
+const Transition = forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement;
   },
@@ -31,33 +33,74 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const PurchaseHistoryInProfile = () => {
-  const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+
+const PurchaseHistoryInProfile = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
+  const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
+
+
+  console.log('orderhistoryxlist', orderhistorylist.content);
+  console.log('orderhistoryxdetail', orderhistorydetail);
+
+
+  useEffect(() => {
+    dispatch(fetchHistoryOrderListData({}));
+  }, []);
+
+
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchHistoryOrderDetailData(id));
+    // dispatch(fetchHistoryOrderListData({ page_no: 1, sort_dir: 'asc' }));
+  };
+
   const handleCloseDialog = () => {
     setOpen(!open);
   };
-  const columns = [
+  const columns: Column[] = [
     {
-      dataIndex: 'id',
-      numeric: false,
-      disablePadding: false,
+      dataIndex: 'orderId',
       title: 'ID',
     },
     {
       dataIndex: 'date',
       title: 'Ngày mua hàng',
+      // render: (value: string) => {
+      //   if (!value) return 'N/A'; 
+      //   const date = new Date(value);
+      //   return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+      // },
+      render: (value: string) => {
+        const values = new Date(value);
+        return values.toLocaleDateString('vi-VN');
+      },
     },
     {
-      dataIndex: 'voucher',
+      dataIndex: 'amountDiscount',
       title: 'Giảm giá',
+      render: (value: number) => (
+        <Box
+          sx={{
+            px: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'end',
+            gap: 0.5,
+            width: '70px',
+          }}
+        >
+          {value} <img src={IconPoint} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
+        </Box>
+      ),
     },
     {
       title: 'Số Point',
-      dataIndex: 'amount',
-      render: (value: string) => (
+      dataIndex: 'priceAfterDiscount',
+      render: (value: number) => (
         <Box
           sx={{
             px: 1,
@@ -75,26 +118,15 @@ const PurchaseHistoryInProfile = () => {
 
     {
       title: 'Chi tiết',
-      dataIndex: 'invoice',
-      render: (value: number) => (
-        <Box>
-          {value === 1 ? (
-            <Button color="success" onClick={handleOpen}>
-              Chi tiết
-            </Button>
-          ) : value === 2 ? (
-            <Typography sx={{ color: '#ff9800' }} variant="subtitle2">
-              Chờ xử lý
-            </Typography>
-          ) : (
-            <Typography sx={{ color: '#f44336' }} variant="subtitle2">
-              Không xác định
-            </Typography>
-          )}
-        </Box>
+      dataIndex: 'action',
+      render: (_, value: any) => (
+        <Button color="success" onClick={() => handleOpen(value.orderId)}>
+          Chi tiết
+        </Button>
       ),
     },
   ];
+
 
   return (
     <>
@@ -132,7 +164,15 @@ const PurchaseHistoryInProfile = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={tableOrder} />
+          <CustomTable
+            columns={columns}
+            dataSource={orderhistorylist.content}
+            count={orderhistorylist.pageNo}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+          />
         </Grid>
       </Grid>
 

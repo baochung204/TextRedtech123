@@ -27,7 +27,7 @@ const Tab5: React.FC<PropsTab5> = ({
   setCheckOption,
 }) => {
   const [key, setKey] = useState<number | null>(null);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const data = useSelector((state: AppState) => state.resourcesImages.data);
   // const {totalElements=0}:ModelType = useSelector((state: AppState) => state.resourcesImages.data);
@@ -88,7 +88,11 @@ const Tab5: React.FC<PropsTab5> = ({
       render: (_row: any, value: any) => (
         <Grid container>
           <Grid item xs={4}>
-            <IconButton onClick={() => { onHandleOpenImageById(value.imageId)}}>
+            <IconButton
+              onClick={() => {
+                onHandleOpenImageById(value.imageId);
+              }}
+            >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
           </Grid>

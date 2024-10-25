@@ -56,12 +56,12 @@ const TableBuyPoint = () => {
 
   const handleCheckout = (totalPrice: number | string, clickedId: string | null) => {
     if (clickedId === 'CUSTOMIZE') {
-      if (totalPrice >= 50000000) {
+      if (Number(totalPrice) >= 50000000) {
         navigate(`/pay/checkout_point/${clickedId}`);
         // console.log('totalPrice', totalPrice);
         setErrorMessage('');
       } else {
-        setErrorMessage('Số point cần lớn hơn 1.000.000'); // Set the error message
+        setErrorMessage('Số point cần lớn hơn 50.000.000'); // Set the error message
       }
     } else if (clickedId == null) {
       setErrorMessage('Vui lòng chọn gói point');
@@ -176,7 +176,12 @@ const TableBuyPoint = () => {
               Tổng tiền :
             </Typography>
             <Typography variant="h3" sx={{ color: '#FC2032', fontWeight: 700, fontSize: 20 }}>
-              {totalPrice.toLocaleString('vi-VN')} ₫
+              {Number.isFinite(totalPrice) ? (
+                totalPrice.toLocaleString('vi-VN')
+              ) : (
+                <> {toggle === null ? '0' : toggle.toLocaleString('vi-VN')}</>
+              )}
+              ₫
             </Typography>
           </Grid>
           <Grid

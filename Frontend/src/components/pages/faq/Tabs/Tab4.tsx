@@ -10,7 +10,7 @@ interface PropsData {
 }
 
 const Tab4 = ({ dataSelect }: PropsData) => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const data = useSelector((state: AppState) => state.resourcesModels.data);
   // const { totalElements = 0 }:ModelType= useSelector((state: AppState) => state.resourcesModels.data);

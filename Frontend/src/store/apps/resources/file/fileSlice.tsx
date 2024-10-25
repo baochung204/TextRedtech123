@@ -20,15 +20,14 @@ const initialState: FileState = {
   error: null,
 };
 interface FetchParams {
-  page: number;
-  pageSize: number;
+  page_no?: number;
+  page_size?: number;
 }
 export const fetchFile = createAsyncThunk(
-  'file/fetchFile',
-  async ({ page = 0, pageSize = 5 }: FetchParams) => {
+  'files/fetchFile',
+  async ({ page_no, page_size }: FetchParams) => {
     try {
-      const res = await userApi.getAllFiles(page, pageSize)
-      console.log('file', res.data);
+      const res = await userApi.getAllFiles(page_no, page_size)
       return res.data.result;
     } catch (error) {
       console.log('lỗi', error)

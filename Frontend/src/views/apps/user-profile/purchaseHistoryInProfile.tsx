@@ -10,7 +10,7 @@ import PurchaseHistory from '../allTransactionHistory/purchaseHistory'; // Renam
 const PurchaseHistoryInProfilePage = () => {
   // Renamed component
   return (
-    <PageContainer title="Enhanced Table" description="this is Enhanced Table page">
+    <PageContainer title="Lịch sử mua hàng" description="this is Enhanced Table page">
       <Grid container>
         <Grid item xs={12}>
           <ProfileBanner />
