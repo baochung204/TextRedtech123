@@ -33,7 +33,6 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 const PurchaseHistoryInProfile = () => {
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(0);
@@ -114,21 +113,9 @@ const PurchaseHistoryInProfile = () => {
   const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
-  console.log('orderhistorydetail', orderhistorydetail);
-
-  // const [orderHistoryData, setOrderHistoryData] = useState<PropsData[]>([]);
-
   useEffect(() => {
     dispatch(fetchHistoryOrderListData());
   }, []);
-
-  // useEffect(() => {
-  //   if (orderHistoryData !== orderhistorylist.content) {
-  //     setOrderHistoryData(orderhistorylist.content);
-  //   }
-  // }, [orderHistoryData, orderhistorylist]);
-
-  // console.log('hello', orderHistoryData);
 
   return (
     <>

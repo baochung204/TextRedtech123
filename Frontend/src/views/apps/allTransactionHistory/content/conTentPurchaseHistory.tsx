@@ -23,23 +23,11 @@ import { useState } from 'react'; // Correctly importing useState
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import products2 from 'src/assets/images/products/s24.jpg';
 import ChildCard from 'src/components/shared/ChildCard';
 import { AppState } from 'src/store/Store';
 
 const ContentPurchaseHistory = () => {
   // Changed function name to follow PascalCase
-  const packages = [
-    {
-      id: 7,
-      img: products2,
-      title: 'Chatbot thương mại điện tử',
-      price: 520,
-      discount: 499,
-      sale: 80,
-      timeFlash: 180,
-    },
-  ];
 
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 
@@ -48,8 +36,9 @@ const ContentPurchaseHistory = () => {
   };
 
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
+  const flashSaleArray = [orderhistorydetail.flashSaleResponse];
 
-  console.log('orderhistorydetail hello', orderhistorydetail.flashSaleResponse);
+  console.log('orderhistorydetail hello', orderhistorydetail);
   return (
     <div>
       {/* <ProductChecout /> */}
@@ -173,128 +162,173 @@ const ContentPurchaseHistory = () => {
         <Box my={3}>
           <ChildCard>
             <Box p={2}>
-              <Typography variant="h5" fontWeight={600} mb={0}>
+              <Typography variant="h5" fontWeight={600} mb={1}>
                 Đơn hàng
               </Typography>
               {/* Tổng cộng */}
-              <Accordion
-                sx={{
-                  border: 'none',
-                  boxShadow: 'none',
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={<IconChevronDown />}
+              {flashSaleArray?.length > 1 && (
+                <Accordion
                   sx={{
-                    fontSize: 15,
-                    px: 0,
                     border: 'none',
                     boxShadow: 'none',
                   }}
                 >
-                  <Typography variant="body2" sx={{ fontSize: 16, fontWeight: 500 }}>
-                    Flash-sale
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails
-                  sx={{
-                    border: 'none',
-                    boxShadow: 'none',
-                    display: 'flex',
-                    flexDirection: 'column',
-
-                    px: 0,
-                  }}
-                >
-                  <Grid container spacing={1}>
-                    {packages.map((pkg) => (
-                      <Grid item xs={12} md={12} key={pkg.id}>
-                        <Card
-                          sx={{
-                            borderRadius: '15px',
-                            overflow: 'hidden',
-                            boxShadow:
-                              selectedPackage === pkg.id
-                                ? '0 6px 18px rgba(128, 128, 128, 0.4)'
-                                : '0 6px 18px rgba(0,0,0,0.1)',
-                            transition: 'transform 0.3s',
-                            height: 'auto',
-                            marginY: '0px',
-                            paddingY: '0px',
-
-                            transform: selectedPackage === pkg.id ? 'scale(1.02) ' : 'scale(1)',
-                          }}
-                          onClick={() => handleSelectPackage(pkg.id)}
-                        >
-                          <CardContent
+                  <AccordionSummary
+                    expandIcon={<IconChevronDown />}
+                    sx={{
+                      fontSize: 15,
+                      px: 0,
+                      border: 'none',
+                      boxShadow: 'none',
+                    }}
+                  >
+                    <Typography variant="body2" sx={{ fontSize: 16, fontWeight: 500 }}>
+                      Flash-sale
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails
+                    sx={{
+                      border: 'none',
+                      boxShadow: 'none',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      px: 0,
+                    }}
+                  >
+                    <Grid container spacing={1}>
+                      {flashSaleArray.map((pkg) => (
+                        <Grid item xs={12} md={12} key={pkg?.productId}>
+                          <Card
                             sx={{
-                              p: 2,
-                              display: 'flex',
-                              justifyContent: 'space-between',
-                              alignItems: 'end',
-                              '&:last-child': {
-                                pb: 2,
-                              },
+                              borderRadius: '15px',
+                              overflow: 'hidden',
+                              boxShadow:
+                                selectedPackage === pkg?.productId
+                                  ? '0 6px 18px rgba(128, 128, 128, 0.4)'
+                                  : '0 6px 18px rgba(0,0,0,0.1)',
+                              transition: 'transform 0.3s',
+                              height: 'auto',
+                              marginY: '0px',
+                              paddingY: '0px',
+                              transform:
+                                selectedPackage === pkg?.productId ? 'scale(1.02)' : 'scale(1)',
                             }}
+                            onClick={() => handleSelectPackage(pkg?.productId)}
                           >
-                            <div style={{ display: 'flex', gap: '20px' }}>
-                              <Typography component={Link} to={`/shop/detail/11`}>
-                                <img
-                                  src={pkg.img}
-                                  alt={''}
-                                  width="120"
-                                  style={{ borderRadius: '10px' }}
-                                />
-                              </Typography>
-                              <Box>
-                                <Typography
-                                  variant="h6"
-                                  sx={{
-                                    fontWeight: 'bold',
-                                    mb: 1,
-                                  }}
-                                >
-                                  {pkg.title}
-                                </Typography>
+                            <CardContent
+                              sx={{
+                                p: 2,
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'end',
+                                '&:last-child': {
+                                  pb: 2,
+                                },
+                              }}
+                            >
+                              <Box
+                                sx={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  width: '100%', // Ensure the Box takes the full width of its container
+                                }}
+                              >
+                                {/* box1 */}
+                                <Box sx={{ display: 'flex' }}>
+                                  <Typography component={Link} to={`/shop/detail/11`}>
+                                    <img
+                                      src={pkg?.productImgUrl}
+                                      alt={pkg?.productName}
+                                      width="120"
+                                      style={{ borderRadius: '10px' }}
+                                    />
+                                  </Typography>
+                                  <Box sx={{ marginLeft: '10px' }}>
+                                    <Typography
+                                      variant="h6"
+                                      sx={{
+                                        fontWeight: 'bold',
+                                        mb: 1,
+                                      }}
+                                    >
+                                      {pkg?.productName}
+                                    </Typography>
 
-                                <Box
-                                  sx={{
-                                    display: 'flex',
-                                    gap: 1.5,
-                                    marginTop: '10px',
-                                  }}
-                                >
+                                    <Box
+                                      sx={{
+                                        display: 'flex',
+                                        gap: 1.5,
+                                        marginTop: '10px',
+                                      }}
+                                    >
+                                      <Typography
+                                        variant="h6"
+                                        sx={{
+                                          fontWeight: 'bold',
+                                          gap: 1,
+                                          display: 'flex',
+                                          justifyContent: 'center',
+                                        }}
+                                      >
+                                        {pkg?.point}
+                                        <img
+                                          src={logoPoint}
+                                          alt="Logo Point"
+                                          width={20}
+                                          height={20}
+                                          style={{ borderRadius: 50 }}
+                                        />
+                                      </Typography>
+                                      <Typography
+                                        sx={{
+                                          mb: 1,
+                                          color: '#888',
+                                          fontSize: '12px',
+                                          display: 'flex',
+                                          justifyContent: 'center',
+                                          alignItems: 'center',
+                                          gap: 1,
+                                        }}
+                                      >
+                                        <del>{pkg?.priceAfterFlashSale}</del>
+                                        <img
+                                          src={logoPoint}
+                                          alt="Logo Point"
+                                          width={20}
+                                          height={20}
+                                          style={{ borderRadius: 50 }}
+                                        />
+                                      </Typography>
+                                    </Box>
+                                    <Box>
+                                      <Button
+                                        variant={'outlined'}
+                                        color="warning"
+                                        sx={{
+                                          display: { xs: 'none', md: 'block' },
+                                          backgroundImage: 'none',
+                                          ':hover': { backgroundColor: 'none' },
+                                          mt: 3.4,
+                                        }}
+                                      >
+                                        {pkg?.percent}%
+                                      </Button>
+                                    </Box>
+                                  </Box>
+                                </Box>
+                                {/* box2 */}
+                                <Box>
+                                  <Typography variant="h5">Tổng giá gói</Typography>
                                   <Typography
                                     variant="h6"
                                     sx={{
-                                      fontWeight: 'bold',
-                                      gap: 1,
-                                      display: 'flex',
-                                      justifyContent: 'center',
-                                    }}
-                                  >
-                                    {' '}
-                                    {pkg.price.toLocaleString()}
-                                    <img
-                                      src={logoPoint}
-                                      alt={logoPoint}
-                                      width={20}
-                                      height={20}
-                                      style={{ borderRadius: 50 }}
-                                    />
-                                  </Typography>{' '}
-                                  <Typography
-                                    sx={{
-                                      mb: 1,
-                                      color: '#888',
-                                      fontSize: '12px',
                                       display: 'flex',
                                       justifyContent: 'center',
                                       alignItems: 'center',
-                                      gap: 1,
+                                      marginTop: '10px',
                                     }}
                                   >
-                                    <del>{pkg.discount.toLocaleString()} </del>
+                                    499
                                     <img
                                       src={logoPoint}
                                       alt={logoPoint}
@@ -304,51 +338,22 @@ const ContentPurchaseHistory = () => {
                                     />
                                   </Typography>
                                 </Box>
-                                <Box>
-                                  <Button
-                                    variant={'outlined'}
-                                    color="warning"
-                                    sx={{
-                                      display: { xs: 'none', md: 'block' },
-                                      backgroundImage: 'none',
-                                      ':hover': { backgroundColor: 'none' },
-                                      mt: 3.4,
-                                    }}
-                                  >
-                                    {pkg.sale}%
-                                  </Button>
-                                </Box>
                               </Box>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </AccordionDetails>
-                <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography variant="h5">Tổng giá gói : </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                  >
-                    499{' '}
-                    <img
-                      src={logoPoint}
-                      alt={logoPoint}
-                      width={20}
-                      height={20}
-                      style={{ borderRadius: 50 }}
-                    />
-                  </Typography>
-                </Box>{' '}
-              </Accordion>
+                            </CardContent>
+                          </Card>
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </AccordionDetails>
+                </Accordion>
+              )}
+
               <Stack direction="row" justifyContent="space-between" mb={2}>
                 <Typography variant="h6" fontWeight={400}>
                   Giá trị đơn hàng :
                 </Typography>
                 <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-                  900
+                  {orderhistorydetail.point}
                   <img
                     src={logoPoint}
                     alt={logoPoint}
@@ -373,7 +378,7 @@ const ContentPurchaseHistory = () => {
                     gap: 1,
                   }}
                 >
-                  -500
+                  {orderhistorydetail.amountDiscount}
                   <img
                     src={logoPoint}
                     alt={logoPoint}
@@ -383,7 +388,6 @@ const ContentPurchaseHistory = () => {
                   />
                 </Typography>
               </Stack>
-              {/* Vận chuyển */}
 
               {/* Tổng cộng */}
               <Stack direction="row" justifyContent="space-between" mb={1}>
@@ -398,7 +402,7 @@ const ContentPurchaseHistory = () => {
                     alignItems: 'center',
                   }}
                 >
-                  400
+                  {orderhistorydetail.priceAfterDiscount}
                   <img
                     src={logoPoint}
                     alt={logoPoint}
