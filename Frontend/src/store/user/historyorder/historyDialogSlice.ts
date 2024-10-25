@@ -1,7 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import OrderHistoryListApi from 'src/api/user/orderhistory/orderhistory';
 
-// Define the order line interface
 interface OrderLine {
   orderLineId: number;
   productName: string;
@@ -13,7 +12,6 @@ interface OrderLine {
   priceAfterDiscount: number;
 }
 
-// Define the response structure for flash sale (empty here, but could be expanded if needed)
 interface FlashSaleResponse {
   flashSaleId: number;
   productId: number;
@@ -24,10 +22,9 @@ interface FlashSaleResponse {
   percent: number;
 }
 
-// Define the main order data interface
 interface OrderData {
   orderId: number;
-  date: string; // Date as string in ISO format
+  date: string;
   point: number;
   amountDiscount: number;
   priceAfterDiscount: number;
@@ -35,14 +32,12 @@ interface OrderData {
   orderLines: OrderLine[];
 }
 
-// Define the state interface
 interface StrState {
   dataa: OrderData;
   loading: boolean;
   error: string | null;
 }
 
-// Set the initial state with the correct types
 const initialState: StrState = {
   dataa: {
     orderId: 0,
@@ -65,11 +60,12 @@ const initialState: StrState = {
   error: null,
 };
 
+
 export const fetchHistoryOrderDetailData = createAsyncThunk(
-  'fetchHistoryOrderList',
-  async (id: number, thunkApi) => {
+  'fetchHistoryOrderDetail',
+  async (orderId: number, thunkApi) => {
     try {
-      const response = await OrderHistoryListApi.getOrderHistoryDetail(id);
+      const response = await OrderHistoryListApi.getOrderHistoryDetail(orderId);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
@@ -78,21 +74,23 @@ export const fetchHistoryOrderDetailData = createAsyncThunk(
 );
 
 const orderHistoryDetailListSlice = createSlice({
-  name: 'user',
+  name: 'fetchHistoryOrderDetail',
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchHistoryOrderDetailData.pending.type]: (state) => {
-      state.loading = true;
-    },
-    [fetchHistoryOrderDetailData.fulfilled.type]: (state, action) => {
-      state.loading = false;
-      state.dataa = action.payload;
-    },
-    [fetchHistoryOrderDetailData.rejected.type]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchHistoryOrderDetailData.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchHistoryOrderDetailData.fulfilled, (state, action: PayloadAction<OrderData>) => {
+        state.loading = false;
+        state.dataa = action.payload;
+      })
+      .addCase(fetchHistoryOrderDetailData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 export default orderHistoryDetailListSlice.reducer;

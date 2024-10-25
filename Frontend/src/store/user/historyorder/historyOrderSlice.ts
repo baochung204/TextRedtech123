@@ -1,15 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import OrderHistoryListApi from 'src/api/user/orderhistory/orderhistory';
+import OrderHistoryListApi, { PropOrderHistoryList } from 'src/api/user/orderhistory/orderhistory';
+
+
 
 export interface PropsData {
   orderId: number;
-  date: Date;
-  // point: number;
+  date: string;
   amountDiscount: number;
   priceAfterDiscount: number;
+  point: number;
 }
 
-interface VoucherData {
+interface PropsHistoryOderList {
   content: PropsData[];
   pageNo: number;
   pageSize: number;
@@ -18,13 +20,13 @@ interface VoucherData {
   last: boolean;
 }
 
-interface StrState {
-  dataa: VoucherData;
+interface PropsHistoryOrderListResult {
+  dataa: PropsHistoryOderList;
   loading: boolean;
   error: string | null;
 }
 
-const initialState: StrState = {
+const initialState: PropsHistoryOrderListResult = {
   dataa: {
     content: [],
     pageNo: 0,
@@ -39,9 +41,9 @@ const initialState: StrState = {
 
 export const fetchHistoryOrderListData = createAsyncThunk(
   'fetchHistoryOrderList',
-  async (_, thunkApi) => {
+  async (object: PropOrderHistoryList = {}, thunkApi) => {
     try {
-      const response = await OrderHistoryListApi.getOrderHistoryList();
+      const response = await OrderHistoryListApi.getOrderHistoryList(object);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
@@ -50,21 +52,23 @@ export const fetchHistoryOrderListData = createAsyncThunk(
 );
 
 const orderHistoryListSlice = createSlice({
-  name: 'user',
+  name: 'fetchHistoryOrderList',
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchHistoryOrderListData.pending.type]: (state) => {
-      state.loading = true;
-    },
-    [fetchHistoryOrderListData.fulfilled.type]: (state, action: PayloadAction<VoucherData> ) => {
-      state.loading = false;
-      state.dataa = action.payload;
-    },
-    [fetchHistoryOrderListData.rejected.type]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchHistoryOrderListData.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchHistoryOrderListData.fulfilled, (state, action: PayloadAction<OrderData>) => {
+        state.loading = false;
+        state.dataa = action.payload;
+      })
+      .addCase(fetchHistoryOrderListData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 export default orderHistoryListSlice.reducer;

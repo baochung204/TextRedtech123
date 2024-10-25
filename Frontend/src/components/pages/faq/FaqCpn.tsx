@@ -26,6 +26,8 @@ import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
 import Tab6 from './Tabs/Tab6';
+import { AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
 
 interface Column {
   title: string;
@@ -40,7 +42,6 @@ const Faq = () => {
   const theme = useTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [checkOption, setCheckOption] = useState<string | null>(null)
-
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
     setOpen(false);
@@ -51,7 +52,6 @@ const Faq = () => {
     setSearch(!search);
   };
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-
 
   const column: { [key: string]: Column[] } = useMemo(
     () => ({
@@ -164,6 +164,7 @@ const Faq = () => {
     }),
     [],
   );
+
 
   useEffect(() => {
     const selectedColumns = column[value] || [];

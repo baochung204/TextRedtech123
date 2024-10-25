@@ -10,20 +10,19 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import BlankCard from 'src/components/shared/BlankCard';
-
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchFunction } from 'src/store/apps/resources/function/functionSlice';
-import { AppDispatch, AppState } from 'src/store/Store';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
 import DialogFunction from '../dialog/DialogFunction';
 import { Functions, Result } from 'src/types/apps/function';
 
+
+
 const Tab2 = () => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<Functions[]>([]);
 
-  const dispatch = useDispatch<AppDispatch>();
 
   const { content = [], totalElements = 0 }: Result = useSelector(
     (state: AppState) => state.function.data || {}
@@ -33,22 +32,13 @@ const Tab2 = () => {
     dispatch(fetchFunction({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
 
-
-  useEffect(() => {
-    if (page > 0 && page * rowsPerPage >= totalElements) {
-      setPage(Math.max(0, Math.ceil(totalElements / rowsPerPage) - 1));
-    }
-  }, [totalElements, rowsPerPage, page]);
-
-
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSize = parseInt(event.target.value, 10);
-    setRowsPerPage(newSize);
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
@@ -94,7 +84,7 @@ const Tab2 = () => {
       <TablePagination
         rowsPerPageOptions={[15, 18, 21]}
         component="div"
-        count={totalElements} // Total number of elements
+        count={totalElements} 
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

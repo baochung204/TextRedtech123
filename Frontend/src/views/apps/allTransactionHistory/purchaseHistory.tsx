@@ -12,9 +12,8 @@ import {
   Slide,
   TextField,
 } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
 import { IconSearch } from '@tabler/icons-react';
-import React, { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import IconPoint from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { Column } from 'src/components/ComponentTables/ColumnInterface';
@@ -23,8 +22,9 @@ import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchHistoryOrderDetailData } from 'src/store/user/historyorder/historyDialogSlice';
 import { fetchHistoryOrderListData } from 'src/store/user/historyorder/historyOrderSlice';
 import ContentPurchaseHistory from './content/conTentPurchaseHistory';
+import { TransitionProps } from '@mui/material/transitions';
 
-const Transition = React.forwardRef(function Transition(
+const Transition = forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement;
   },
@@ -33,15 +33,29 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+
+
 const PurchaseHistoryInProfile = () => {
-  const [open, setOpen] = useState(false);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [open, setOpen] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
+  const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
+
+
+  console.log('orderhistoryxlist', orderhistorylist.content);
+  console.log('orderhistoryxdetail', orderhistorydetail);
+
+
+  useEffect(() => {
+    dispatch(fetchHistoryOrderListData({}));
+  }, []);
+
 
   const handleOpen = (id: number) => {
     setOpen(true);
-
     dispatch(fetchHistoryOrderDetailData(id));
+    // dispatch(fetchHistoryOrderListData({ page_no: 1, sort_dir: 'asc' }));
   };
 
   const handleCloseDialog = () => {
@@ -50,23 +64,25 @@ const PurchaseHistoryInProfile = () => {
   const columns: Column[] = [
     {
       dataIndex: 'orderId',
-      // numeric: false,
-      // disablePadding: false,
       title: 'ID',
     },
     {
       dataIndex: 'date',
       title: 'Ngày mua hàng',
+      // render: (value: string) => {
+      //   if (!value) return 'N/A'; 
+      //   const date = new Date(value);
+      //   return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+      // },
       render: (value: string) => {
-        if (!value) return 'N/A'; // Handle undefined or invalid values
-        const date = new Date(value);
-        return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+        const values = new Date(value);
+        return values.toLocaleDateString('vi-VN');
       },
     },
     {
       dataIndex: 'amountDiscount',
       title: 'Giảm giá',
-      render: (value: string) => (
+      render: (value: number) => (
         <Box
           sx={{
             px: 1,
@@ -84,7 +100,7 @@ const PurchaseHistoryInProfile = () => {
     {
       title: 'Số Point',
       dataIndex: 'priceAfterDiscount',
-      render: (value: string) => (
+      render: (value: number) => (
         <Box
           sx={{
             px: 1,
@@ -102,20 +118,15 @@ const PurchaseHistoryInProfile = () => {
 
     {
       title: 'Chi tiết',
-      dataIndex: 'invoice',
-      render: (_, value: { orderId: number }) => (
+      dataIndex: 'action',
+      render: (_, value: any) => (
         <Button color="success" onClick={() => handleOpen(value.orderId)}>
           Chi tiết
         </Button>
       ),
     },
   ];
-  const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
-  const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
-  useEffect(() => {
-    dispatch(fetchHistoryOrderListData());
-  }, []);
 
   return (
     <>
@@ -156,7 +167,7 @@ const PurchaseHistoryInProfile = () => {
           <CustomTable
             columns={columns}
             dataSource={orderhistorylist.content}
-            count={orderhistorylist.totalElements}
+            count={orderhistorylist.pageNo}
             rowsPerPage={rowsPerPage}
             page={page}
             setPage={setPage}

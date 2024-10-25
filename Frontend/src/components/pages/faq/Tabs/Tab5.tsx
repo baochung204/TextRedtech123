@@ -27,7 +27,7 @@ const Tab5: React.FC<PropsTab5> = ({
   setCheckOption,
 }) => {
   const [key, setKey] = useState<number | null>(null);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const data = useSelector((state: AppState) => state.resourcesImages.data);
   // const {totalElements=0}:ModelType = useSelector((state: AppState) => state.resourcesImages.data);

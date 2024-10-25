@@ -89,17 +89,17 @@ const Affiliatedetail2 = () => {
         stops: [0, 100, 100, 100],
       },
     },
-    markers: {
-      size: 4,
-      opacity: 0.9,
-      colors: ['#8ca6db'],
-      strokeColor: '#8ca6db',
-      strokeWidth: 2,
+    // markers: {
+    //   size: 4,
+    //   opacity: 0.9,
+    //   colors: ['#8ca6db'],
+    //   strokeColor: '#8ca6db',
+    //   strokeWidth: 2,
 
-      hover: {
-        size: 7,
-      },
-    },
+    //   hover: {
+    //     size: 7,
+    //   },
+    // },
     yaxis: {
       min: 0,
       max: 40,

@@ -60,9 +60,9 @@ const initialState: StrState = {
 
 export const fetchAssistantById = createAsyncThunk(
   'fetchAssistantById',
-  async (id: number | null, thunkAPI) => {
+  async ({ id }: { id: number }, thunkAPI) => {
     try {
-      const response = await assistantAPi.getAssistantById(id as number | null);
+      const response = await assistantAPi.getAssistantById(id);
       return response.data.result;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');

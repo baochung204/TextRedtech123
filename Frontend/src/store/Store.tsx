@@ -1,4 +1,14 @@
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
+import {
+  TypedUseSelectorHook,
+  useDispatch as useAppDispatch,
+  useSelector as useAppSelector,
+} from 'react-redux';
+import { combineReducers } from 'redux';
+
+
 import BlogReducer from './apps/blog/BlogSlice';
 import ChatsReducer from './apps/chat/ChatSlice';
 import ContactsReducer from './apps/contacts/ContactSlice';
@@ -12,12 +22,6 @@ import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/productsSlice';
 import UrlSlice from './apps/resources/url/UrlSlice';
-import {
-  TypedUseSelectorHook,
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
-} from 'react-redux';
-import { combineReducers } from 'redux';
 import CustomerReducer from './apps/customer/customerSlice';
 import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
 import StrReducer from './apps/resources/str/strSlice';
@@ -26,13 +30,13 @@ import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice';
-import assistantSlice from './user/chatbots/assisstantUserSlice';
+import assistantSlice from './user/chatbots/chart/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
+import staffSlice from './admin/Staff/Staff';
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
@@ -69,8 +73,7 @@ import historyOrderListSlice from './user/historyorder/historyOrderSlice';
 import historyDialogSlice from './user/historyorder/historyDialogSlice';
 import historyPaymentSlice from './user/affiliate/overview/historyPaymentSlice';
 import listOrderSlice from './user/affiliate/overview/listOrderSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistStore, persistReducer } from 'redux-persist';
+import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
 import ProductsSlice from 'src/store/user/products/productsUseSlice';
 import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
 
@@ -114,6 +117,7 @@ const rootReducer = combineReducers({
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
   resourcesImages: imagesSlice,
+  chartAssisstantID: ChartAssisstantReducer,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,
@@ -162,6 +166,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+
+
+
+
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -170,11 +178,87 @@ export const store = configureStore({
     }),
 });
 export const persistor = persistStore(store);
-
 export type AppState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 export const { dispatch } = store;
 export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
-
 export default store;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const store = configureStore({
+//   reducer: {
+//     //user
+//     customizer: CustomizerReducer,
+//     ecommerceReducer: EcommerceReducer,
+//     chatReducer: ChatsReducer,
+//     emailReducer: EmailReducer,
+//     notesReducer: NotesReducer,
+//     contactsReducer: ContactsReducer,
+//     ticketReducer: TicketReducer,
+//     userpostsReducer: UserProfileReducer,
+//     blogReducer: BlogReducer,
+//     selectReducer: SelectedReducer,
+//     integration: integrationReducer,
+//     customer: CustomerReducer,
+//     urlResources: UrlSlice,
+//     imageResources: ImageSlice,
+//     product: productReducer,
+//     customeraffiliate: CustomerAffiliate,
+//     vnd_coupons: vndCouponsSlice,
+//     str: StrReducer,
+//     function: functionReducer,
+//     file: fileReducer,
+//     test: userSlice,
+//     assisstant: assistantSlice,
+//     twofa: twofaSlice,
+//     flashsale_random: flashSaleRandomSlice,
+//     adminTicker: adminTicketSlice,
+//     cart: cartSlice,
+//     // overViewTicket: overViewTicketSlice,
+//     userme: usermeSlice,
+//     staff: staffSlice,
+//     resourcesCampaigns: CampaignsSlice,
+//     resourcesFunctions: functionsSlice,
+//     resourcesFiles: filesSlice,
+//     resourcesModels: ModelsSlice,
+//     resourcesImages: imagesSlice,
+//     resourcesUrls: urlsSlice,
+//     affiliate: affiliateApiSlice,
+//     blogs: BlogSlice,
+//     point_list: listPointSlice,
+//     //admin
+//     overview_blog: blogSlice,
+//     overview_counpon: counponSlice,
+//     counpon_history: counponhistorySlice,
+//     overview_flashsale: flashsaleoverviewSlice,
+//     counpon_list: counponlistSlice,
+//     flashsale_list: flashsaleSlice,
+//     overview_staff: staffoverviewSlice,
+//     overview_campaign: CampaignSlice,
+//     overview_function: functionSlice,
+//     overview_files: fileSlice,
+//     overview_models: modelSlice,
+//     campaign_list: CampaignListSlice,
+//     files_list: fileListSlice,
+//     function_list: functionListSlice,
+//     model_list: modelListSlice,
+//     overview_customer: customerAdminSlice,
+//     overview_product: productAdminSlice,
+//     overview_order: orderProductAdminSlice,
+//   },
+// });
+

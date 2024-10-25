@@ -40,9 +40,9 @@ const Growth = () => {
       type: 'solid',
       opacity: 0.05,
     },
-    markers: {
-      size: 0,
-    },
+    // markers: {
+    //   size: 0,
+    // },
     tooltip: {
       theme: 'dark',
       x: {

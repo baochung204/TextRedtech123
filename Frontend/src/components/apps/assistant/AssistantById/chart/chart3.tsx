@@ -71,7 +71,6 @@ const Chart3 = () => {
       labels: {
         show: true,
         formatter: (value: string, _time: string, opts?: any) => {
-          console.log('opts:', opts.i);
 
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
@@ -108,16 +107,16 @@ const Chart3 = () => {
       },
     },
     colors: [primary],
-    markers: {
-      size: 4,
-      opacity: 0.9,
-      colors: [primary],
-      strokeColor: '#fff',
-      strokeWidth: 2,
-      hover: {
-        size: 7,
-      },
-    },
+    // markers: {
+    //   size: 4,
+    //   opacity: 0.9,
+    //   colors: [primary],
+    //   strokeColor: '#fff',
+    //   strokeWidth: 2,
+    //   hover: {
+    //     size: 7,
+    //   },
+    // },
     yaxis: {
       min: 0,
       max: maxYValue,

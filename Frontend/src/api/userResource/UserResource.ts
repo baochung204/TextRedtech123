@@ -2,6 +2,11 @@ import { axiosAPI } from '../axiosApi';
 
 const url = 'user-resources';
 
+// interface PropFileResource {
+//   page: number | null | undefined;
+//   size: 
+// }
+
 const userApi = {
   getAllFiles: (page?: number, size?: number) => {
     return axiosAPI.get(`/${url}/files?page=${page}&size=${size}`);

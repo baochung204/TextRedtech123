@@ -9,27 +9,23 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import BlankCard from 'src/components/shared/BlankCard';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
-import { AppDispatch, AppState } from 'src/store/Store';
+import {  AppState, dispatch, useSelector } from 'src/store/Store';
 import { Str } from 'src/types/apps/str';
 import DialogStragety from '../dialog/DialogStragety';
 
 const Tab1 = () => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
-  const dispatch = useDispatch<AppDispatch>();
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const dataStr = useSelector((state: AppState) => state.str.data);
-  const {content = [], totalElements } =
-    useSelector((state: AppState) => state.str.data || {});
+  const {content = [], totalElements } = useSelector((state: AppState) => state.str.data || {});
   const [datax, setDatax] = useState<Str[]>([])
   const [dataView, setDataView] = useState<Str | undefined>()
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  // console.log('load data', campaignsData);
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
