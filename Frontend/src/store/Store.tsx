@@ -68,6 +68,9 @@ import historyOrderListSlice from './user/historyorder/historyOrderSlice';
 import historyDialogSlice from './user/historyorder/historyDialogSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
+import ProductsSlice from 'src/store/user/products/productsUseSlice';
+import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
+
 
 const rootReducer = combineReducers({
   //user
@@ -94,9 +97,12 @@ const rootReducer = combineReducers({
   test: userSlice,
   resourcesModels: ModelsSlice,
   resourcesUrls: urlsSlice,
-  //assistant
+  //Assistant
   assisstant: assistantSlice,
   assistantById: assistantByIdSlice,
+  //Products
+  products: ProductsSlice,
+  productById: ProductByIdSlice,
   flashsale_random: flashSaleRandomSlice,
   twofa: twofaSlice,
   adminTicker: adminTicketSlice,
@@ -136,12 +142,14 @@ const rootReducer = combineReducers({
   randomcoupon: couponRandomSlice,
 });
 
+
 const whitelistReducers = [
   'randomcoupon',
   'point_list',
   'historyorder_detail',
   'historyorder_list',
 ];
+
 
 const persistConfig = {
   key: 'root',
