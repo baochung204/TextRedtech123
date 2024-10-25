@@ -26,7 +26,7 @@ import OrderData from 'src/components/admin/order/data/OrderData';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
-import TopCard from 'src/components/widgets/cards/TopCard';
+import TopCard, { StyleProps } from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DialogOrder from './DialogOrder';
 import { useDispatch } from 'react-redux';
@@ -42,13 +42,13 @@ const BCrumb = [
   { to: 'admin/order', title: 'Quản lý khách hàng' },
 ];
 
-interface StyleProps {
-  bgColor: string;
+// interface StyleProps {
+//   bgColor: string;
 
-  title: string;
-  total: number;
-  icons: JSX.Element;
-}
+//   title: string;
+//   total: number | string | JSX.Element;
+//   icons: JSX.Element;
+// }
 
 interface Column {
   title: string;
@@ -73,6 +73,8 @@ const OrderAdminPages = () => {
   const totalPayingCustomers = dataCustomerOverview.totalPayingCustomers;
   const totalPaypeesCustomers = dataCustomerOverview.totalPaypeesCustomers;
   const percent = dataCustomerOverview.percent;
+
+  const customerPay = [totalPayingCustomers, `(${percent}%)`];
 
   const DataBox: StyleProps[] = [
     {
@@ -122,7 +124,15 @@ const OrderAdminPages = () => {
     {
       bgColor: 'primary.light',
       title: 'Khách hàng trả phí',
-      total: totalPayingCustomers,
+      total: (
+        <Box sx={{ display: 'flex' }}>
+          {customerPay.map((item, index) => (
+            <Typography sx={{ marginLeft: '10px' }} key={index} variant="subtitle1">
+              {item}
+            </Typography>
+          ))}
+        </Box>
+      ),
       icons: (
         <>
           <Box

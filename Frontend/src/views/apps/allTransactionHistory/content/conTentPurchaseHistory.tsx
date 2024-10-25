@@ -23,7 +23,6 @@ import { useState } from 'react'; // Correctly importing useState
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import products2 from 'src/assets/images/products/s24.jpg';
 import ChildCard from 'src/components/shared/ChildCard';
 import { AppState } from 'src/store/Store';
 
@@ -379,7 +378,7 @@ const ContentPurchaseHistory = () => {
                     gap: 1,
                   }}
                 >
-                  -{orderhistorydetail.amountDiscount}
+                  {orderhistorydetail.amountDiscount}
                   <img
                     src={logoPoint}
                     alt={logoPoint}
