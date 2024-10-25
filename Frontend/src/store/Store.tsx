@@ -65,7 +65,7 @@ import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
-import ChartAssisstantSlice from './user/chatbots/chart/chartAssisstantByID/chartAssisstantByIDSlice';
+import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice';
 
 
 
@@ -107,7 +107,7 @@ const rootReducer = combineReducers({
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
   resourcesImages: imagesSlice,
-  chartAssisstantID: ChartAssisstantSlice,
+  chartAssisstantID: ChartAssisstantReducer,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,

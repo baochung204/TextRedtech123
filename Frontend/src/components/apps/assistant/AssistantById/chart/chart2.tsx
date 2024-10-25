@@ -1,42 +1,50 @@
 import { useTheme } from '@mui/material/styles';
 import Chart from 'react-apexcharts';
-
 import { Props } from 'react-apexcharts';
-
 import { Box, MenuItem, Typography } from '@mui/material';
 import DashboardCard from 'src/components/shared/DashboardCard';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { useParams } from 'react-router';
+import { fetchChartAssisstant } from 'src/store/user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice';
+
+
+
+
 
 const Chart2 = () => {
+
+  const { id } = useParams();
+
+  const [month, setMonth] = useState<string>('revenue');
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setMonth(event.target.value);
+  };
+
+  const data = useSelector((state: AppState) => state.chartAssisstantID.data)
+
+
+  useEffect(() => {
+    if (id !== undefined) {
+      const chatbotID = Number(id);
+      if (!isNaN(chatbotID)) {
+        dispatch(fetchChartAssisstant({ chatbotID, typeChart: month }));
+      }
+    }
+  }, [id, month])
+  // console.log(data);
+
+
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primary2 = theme.palette.primary.start;
-  const categories = [
-    '1/11/2000',
-    '2/11/2000',
-    '3/11/2000',
-    '4/11/2000',
-    '5/11/2000',
-    '6/11/2000',
-    '7/11/2000',
-    '8/11/2000',
-    '9/11/2000',
-    '10/11/2000',
-    '11/11/2000',
-    '12/11/2000',
-    '1/11/2001',
-    '2/11/2001',
-    '3/11/2001',
-    '4/11/2001',
-    '5/11/2001',
-    '6/11/2001',
-  ];
+  const categories = Object.keys(data);
   const seriesgredientchart: any = [
     {
       name: 'Points',
-      data: [19, 3, 10, 1, 3, 35, 17, 2, 27, 7, 5, 7, 13, 9, 30, 2, 7, 5],
+      data: Object.values(data)
     },
   ];
   const maxYValue = Math.max(...seriesgredientchart[0].data) + 5;
@@ -72,9 +80,12 @@ const Chart2 = () => {
       labels: {
         show: true,
         formatter: (value: string, _time: string, opts?: any) => {
-          console.log('opts:', opts.i);
+          // console.log(value, _time, opts);
+
 
           const date = new Date(value);
+          // console.log('date', date.getDay());
+
           if (opts.i === 0 || opts.i === categories.length - 1) {
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
           }
@@ -84,6 +95,8 @@ const Chart2 = () => {
       tickAmount: categories.length - 1,
       tickPlacement: 'on',
     },
+
+
     fill: {
       type: 'gradient',
       gradient: {
@@ -151,10 +164,7 @@ const Chart2 = () => {
       },
     ],
   };
-  const [month, setMonth] = useState('1');
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setMonth(event.target.value);
-  };
+
 
   return (
     <DashboardCard>
@@ -177,9 +187,9 @@ const Chart2 = () => {
               value={month}
               onChange={handleChange}
             >
-              <MenuItem value={3}>Doanh thu </MenuItem>
-              <MenuItem value={2}>Khách hàng </MenuItem>
-              <MenuItem value={1}>Chuyển đổi</MenuItem>
+              <MenuItem value={'revenue'}>Doanh thu </MenuItem>
+              <MenuItem value={'customers'}>Khách hàng </MenuItem>
+              <MenuItem value={'conversion'}>Chuyển đổi</MenuItem>
             </CustomSelect>
             <Box style={{ width: '60%' }} display={'flex'} alignItems={'center'} gap="5px">
               <DateSelect />

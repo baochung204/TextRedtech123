@@ -12,9 +12,7 @@ import {
 import { IconArrowUpRight } from '@tabler/icons-react';
 import welcomeImg from 'src/assets/images/backgrounds/welcome-bg.svg';
 import userImg from 'src/assets/images/profile/user-1.jpg';
-
 import PageContainer from 'src/components/container/PageContainer';
-
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -38,14 +36,22 @@ import Function from './configuration/function';
 import InFor from './infor/infor';
 import Topcardassistant from './topcard/Topcardassistant';
 
+
 const AssistantInfor = () => {
   const { id } = useParams();
   const chatBotById = useSelector((state: AppState) => state.assistantById.data);
+
   useEffect(() => {
-    if (id !== null) {
-      dispatch(fetchAssistantById(id));
+    if (id !== undefined) {
+      const numericId = Number(id);
+      if (!isNaN(numericId)) {
+        dispatch(fetchAssistantById({ id: numericId }));
+      }
     }
   }, [dispatch, id]);
+
+ 
+
   const [chatBotInfo, setChatBotInfo] = useState<ChatBotInfoType | null>(null);
   const [chatBotIndex, setChatBotIndex] = useState<ChatBotIndexType | null>(null);
   const [chatBotResource, setChatBotResource] = useState<ChatBotResourceType | null>(null);

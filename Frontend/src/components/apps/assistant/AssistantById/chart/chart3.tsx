@@ -71,7 +71,6 @@ const Chart3 = () => {
       labels: {
         show: true,
         formatter: (value: string, _time: string, opts?: any) => {
-          console.log('opts:', opts.i);
 
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
