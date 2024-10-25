@@ -14,7 +14,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { IconEye, IconPower, IconSearch, IconTrash } from '@tabler/icons-react';
+import { IconEye, IconPower, IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import personorcompany from 'src/assets/Adminphoto/cn dn.png';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
@@ -29,6 +29,10 @@ import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import DialogOrder from './DialogOrder';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchOverviewCustomerData } from 'src/store/admin/customer/overview/customerSlice';
 
 const BCrumb = [
   {
@@ -42,123 +46,10 @@ interface StyleProps {
   bgColor: string;
 
   title: string;
-  total: string;
+  total: number;
   icons: JSX.Element;
 }
 
-const DataBox: StyleProps[] = [
-  {
-    bgColor: 'primary.light',
-
-    title: 'Khách hàng',
-    total: '6251',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={customer} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu',
-    total: '15.126.422.555 ₫',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={revenue} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng trả phí',
-    total: '1204 (33%)',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={customerpaid} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'CN/DN',
-    total: '3251/3000',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={personorcompany} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Số dư R-Point',
-    total: '52.126.422',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={rpointblance} width={30} />
-        </Box>
-      </>
-    ),
-  },
-];
 interface Column {
   title: string;
   dataIndex: string;
@@ -171,6 +62,134 @@ const OrderAdminPages = () => {
   const [checkValue, setCheckValue] = useState<string | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const dataCustomerOverview = useSelector((state: AppState) => state.overview_customer.dataa);
+
+  const totalRevenue = dataCustomerOverview.totalRevenue;
+  const totalIndividual = dataCustomerOverview.totalIndividual;
+  const totalBusiness = dataCustomerOverview.totalBusiness;
+  const totalPointBalance = dataCustomerOverview.totalPointBalance;
+  const totalPayingCustomers = dataCustomerOverview.totalPayingCustomers;
+  const totalPaypeesCustomers = dataCustomerOverview.totalPaypeesCustomers;
+  const percent = dataCustomerOverview.percent;
+
+  const DataBox: StyleProps[] = [
+    {
+      bgColor: 'primary.light',
+      title: 'Khách hàng',
+      total: totalPaypeesCustomers,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={customer} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Doanh thu',
+      total: totalRevenue,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={revenue} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khách hàng trả phí',
+      total: totalPayingCustomers,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={customerpaid} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'CN/DN',
+      total: totalIndividual / totalBusiness,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={personorcompany} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Số dư R-Point',
+      total: totalPointBalance,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={rpointblance} width={30} />
+          </Box>
+        </>
+      ),
+    },
+  ];
+
+  useEffect(() => {
+    dispatch(fetchOverviewCustomerData());
+  }, [dispatch]);
 
   const handleConnection = (id: string) => {
     setSelectedIds((prevSelected) =>
