@@ -1,49 +1,61 @@
 import { Box, Grid } from '@mui/material';
 
 import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
-import { tabledh } from 'src/components/tables/tabledh';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchOrderListData } from 'src/store/user/affiliate/overview/listOrderSlice';
 
 const columns = [
   {
     title: 'STT',
-    dataIndex: 'id',
+    dataIndex: 'stt',
   },
   {
     title: 'Mã đơn hàng',
-    dataIndex: 'MHD',
+    dataIndex: 'orderId',
   },
   {
     title: 'Khách hàng',
-    dataIndex: 'username',
+    dataIndex: 'customerName',
   },
   {
     title: 'Email',
-    dataIndex: 'email',
+    dataIndex: 'customerEmail',
   },
   {
     title: 'Số điện thoại',
-    dataIndex: 'phone',
+    dataIndex: 'customerPhone',
   },
   {
     title: 'Ngày đặt hàng',
-    dataIndex: 'createdAt',
+    dataIndex: 'orderDate',
     render: (value: any) => (value ? dayjs(value).format('DD/MM/YYYY') : ''),
   },
   {
     title: 'Giá trị đơn hàng',
-    dataIndex: 'amount',
-    render: (value: number) => `${value.toLocaleString()} VND`,
+    dataIndex: 'totalValue',
+    render: (value: number) => `${value.toLocaleString()} đ`,
   },
   {
     title: 'Hoa hồng',
-    dataIndex: 'money',
-    render: (value: number) => `${value.toLocaleString()} VND`,
+    dataIndex: 'commission',
+    render: (value: number) => `${value.toLocaleString()} đ`,
   },
 ];
 const Danhsachdh = () => {
+  const [page, setPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(5);
+  const orderList = useSelector((state: AppState) => state.list_order.dataa);
+
+  useEffect(() => {
+    dispatch(fetchOrderListData({ page, pageSize }));
+  }, [dispatch, page, pageSize]);
+
+  console.log('orderlist', orderList.content);
+
   return (
     <>
       <Box
@@ -60,7 +72,15 @@ const Danhsachdh = () => {
         </Box>
       </Box>
       <Grid item xs={12}>
-        <CustomTable columns={columns} dataSource={tabledh} />
+        <CustomTable
+          columns={columns}
+          dataSource={orderList?.content}
+          count={orderList?.totalElements ? orderList.totalElements : 0}
+          rowsPerPage={pageSize}
+          page={page}
+          setPage={setPage}
+          setRowsPerPage={setPageSize}
+        />
       </Grid>
     </>
   );

@@ -36,7 +36,7 @@ import cartSlice from './user/cart/cartSlice';
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-import staffSlice from './admin/Staff/Staff'; 
+import staffSlice from './admin/Staff/Staff';
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
@@ -68,12 +68,14 @@ import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
 import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
 import couponRandomSlice from './user/points/couponRandomSlice';
+import listCustomerSlice from './user/affiliate/customer/listCustomerSlice';
 import historyOrderListSlice from './user/historyorder/historyOrderSlice';
 import historyDialogSlice from './user/historyorder/historyDialogSlice';
+import historyPaymentSlice from './user/affiliate/overview/historyPaymentSlice';
+import listOrderSlice from './user/affiliate/overview/listOrderSlice';
 import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
 import ProductsSlice from 'src/store/user/products/productsUseSlice';
 import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
-
 
 const rootReducer = combineReducers({
   //user
@@ -123,6 +125,9 @@ const rootReducer = combineReducers({
   point_list: listPointSlice,
   historyorder_list: historyOrderListSlice,
   historyorder_detail: historyDialogSlice,
+  list_order: listOrderSlice,
+  list_paymenthistory: historyPaymentSlice,
+  list_customer: listCustomerSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
@@ -152,7 +157,6 @@ const whitelistReducers = [
   'historyorder_detail',
   'historyorder_list',
 ];
-
 
 const persistConfig = {
   key: 'root',
