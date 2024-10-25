@@ -1,37 +1,46 @@
 import { Box, Button, Typography } from '@mui/material';
 import format from 'date-fns/format/index.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
-import { tabledh } from 'src/components/tables/tabledh';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchHistoryPaymentData } from 'src/store/user/affiliate/overview/historyPaymentSlice';
 import DialogUpload from './dialogUpload/dialogUpload';
 
 const HistoryMoney = () => {
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(5);
+  const paymentHistory = useSelector((state: AppState) => state.list_paymenthistory.dataa);
+  useEffect(() => {
+    dispatch(fetchHistoryPaymentData({ page, pageSize }));
+  }, [dispatch, page, pageSize]);
+
+  console.log('paymentHistory', paymentHistory);
 
   const FilmsData: any = [
     {
       id: 1,
       title: 'ID yêu cầu',
-      dataIndex: 'MHD',
+      dataIndex: 'affiliateWithdrawHistoryId',
     },
     {
       id: 2,
       title: 'Ngày yêu cầu',
-      dataIndex: 'createdAt',
+      dataIndex: 'requestDate',
       render: (value: any) => format(new Date(value), 'dd/MM/yyyy'),
     },
     {
       id: 3,
       title: 'Ngày hoàn tất',
-      dataIndex: 'completedAt',
+      dataIndex: 'finishDate',
       render: (value: any) => format(new Date(value), 'dd/MM/yyyy'),
     },
     {
       id: 4,
       title: 'Số tiền',
-      dataIndex: 'money',
+      dataIndex: 'withdrawalAmount',
       render: (value: any) => `${value} đ`,
     },
     {
@@ -39,17 +48,17 @@ const HistoryMoney = () => {
       title: 'Trạng thái',
       dataIndex: 'status',
 
-      render: (value: number) => (
+      render: (value: string) => (
         <Box>
-          {value === 1 ? (
+          {value === 'DA_THANH_TOAN' ? (
             <Typography sx={{ color: '#13DEB9' }} variant="subtitle2">
               Đã thanh toán
             </Typography>
-          ) : value === 2 ? (
+          ) : value === 'CHO_XU_LY' ? (
             <Typography sx={{ color: '#ff9800' }} variant="subtitle2">
               Chờ xử lý
             </Typography>
-          ) : value === 3 ? (
+          ) : value === 'KHONG_HOP_LE' ? (
             <Typography sx={{ color: '#f44336' }} variant="subtitle2">
               Không hợp lệ
             </Typography>
@@ -65,17 +74,17 @@ const HistoryMoney = () => {
     {
       id: 7,
       title: 'Hóa đơn',
-      dataIndex: 'status',
+      dataIndex: 'bill',
 
-      render: (value: number) => (
+      render: (value: string) => (
         <Box>
-          {value === 1 || value === 2 ? (
+          {value === 'DA_TAI' ? (
             <Typography sx={{ color: '#13DEB9' }} variant="subtitle2">
               Đã tải
             </Typography>
-          ) : value === 3 ? (
+          ) : value === 'TAI_LAI' ? (
             <Button color="error" variant="text" sx={{ width: 70 }}>
-              Tải lại{' '}
+              Tải lại
             </Button>
           ) : (
             <Button
@@ -110,7 +119,15 @@ const HistoryMoney = () => {
           <DateSelect />
         </Box>
       </Box>
-      <CustomTable columns={FilmsData} dataSource={tabledh} />
+      <CustomTable
+        columns={FilmsData}
+        dataSource={paymentHistory?.content}
+        count={paymentHistory?.totalElements ? paymentHistory.totalElements : 0}
+        rowsPerPage={pageSize}
+        page={page}
+        setPage={setPage}
+        setRowsPerPage={setPageSize}
+      />
       <DialogUpload open={open} setOpen={setOpen} />
     </PageContainer>
   );

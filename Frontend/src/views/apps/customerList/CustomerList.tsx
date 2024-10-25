@@ -33,7 +33,9 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
 import PopupAdd from './PopupAdd';
+import { fetchListCustomerData } from 'src/store/user/affiliate/customer/listCustomerSlice';
 
 const Transition = React.forwardRef<unknown, TransitionProps & { children: React.ReactElement }>(
   (props, ref) => (
@@ -64,7 +66,7 @@ const CustomerList = () => {
     () => [
       {
         title: 'STT',
-        dataIndex: 'id',
+        dataIndex: 'userId',
       },
       {
         title: 'Họ và tên',
@@ -72,7 +74,7 @@ const CustomerList = () => {
         render: (_row, value: any) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={value?.imgsrc}
+              src={value?.avatar}
               alt=""
               style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '10px' }}
             />
@@ -91,16 +93,21 @@ const CustomerList = () => {
       },
       {
         title: 'Ngày đăng ký',
-        dataIndex: 'createdAt',
+        dataIndex: 'createDate',
+        render: (value: string) => {
+          if (!value) return 'N/A'; // Handle undefined or invalid values
+          const date = new Date(value);
+          return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Loại khách hàng',
-        dataIndex: 'typeofcustomer',
-        render: (value: any) => (
+        dataIndex: 'typeCustomer',
+        render: (value: string) => (
           <Box>
             <Chip
-              label={value === 1 ? 'Miễn phí' : 'Trả phí'}
-              color={value === 1 ? 'warning' : 'success'}
+              label={value === 'MIEN_PHI' ? 'Miễn phí' : 'Trả phí'}
+              color={value === 'MIEN_PHI' ? 'warning' : 'success'}
             />
           </Box>
         ),
@@ -131,6 +138,15 @@ const CustomerList = () => {
     } = event;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
+  const [page, setPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(5);
+  const customerList = useSelector((state: AppState) => state.list_customer.dataa);
+
+  useEffect(() => {
+    dispatch(fetchListCustomerData({ page, pageSize }));
+  }, [dispatch, page, pageSize]);
+
+  console.log('customerlist', customerList.content);
 
   return (
     <PageContainer title="Danh sách khách hàng">
@@ -253,8 +269,13 @@ const CustomerList = () => {
                 <Grid item xs={12}>
                   <CustomTable
                     columns={column}
-                    dataSource={DataCustomerListAffiliateTable}
+                    dataSource={customerList?.content}
                     dataSelect={dataSelect}
+                    count={customerList?.totalElements ? customerList.totalElements : 0}
+                    rowsPerPage={pageSize}
+                    page={page}
+                    setPage={setPage}
+                    setRowsPerPage={setPageSize}
                   />
                 </Grid>
               </Grid>
