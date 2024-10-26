@@ -18,8 +18,8 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { IconCopy, IconPackage } from '@tabler/icons-react';
-import React, { useState } from 'react';
-import RankA from 'src/assets/ICON/c1.png';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import clickicon from 'src/assets/ICON/click.png';
 import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 import revenueicon from 'src/assets/ICON/doanh thu.png';
@@ -30,6 +30,8 @@ import PageContainer from 'src/components/container/PageContainer';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchAffiliateOverviewData } from 'src/store/user/affiliate/overview/overviewSlice';
 import icon6 from '../../../assets/ICON/cvr.png';
 import icon4 from '../../../assets/ICON/dơn hang.png';
 import icon3 from '../../../assets/ICON/khách hàng.png';
@@ -40,51 +42,75 @@ import HistoryMoney from './lsrt';
 interface cardType {
   icon: string;
   title: string;
-  digits: string;
+  digits: number | string;
   bgcolor: string;
 }
-const topcards: cardType[] = [
-  {
-    icon: clickicon,
-    title: 'Clicks',
-    digits: '96',
-    bgcolor: 'error.light',
-  },
-  {
-    icon: icon3,
-    title: 'Khách hàng',
-    digits: '3.650',
-    bgcolor: 'error.light',
-  },
-  {
-    icon: icon4,
-    title: 'Đơn hàng',
-    digits: '3850',
-    bgcolor: 'error.light',
-  },
 
-  {
-    icon: revenueicon,
-    title: 'Doanh Thu',
-    digits: '96 tỉ',
-    bgcolor: 'error.light',
-  },
-  {
-    icon: icon6,
-    title: 'CVR',
-    digits: '26%',
-    bgcolor: 'error.light',
-  },
-];
 const CollaboratePost = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
-
   const [value, setValue] = React.useState('1');
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = React.useState(false);
   const [usdValue, setUsdValue] = useState<number | null>(null);
-  const [link] = useState('https://redtech.ai.vn?ref=RT1209');
+
   const [openChartAlert, setOpenChartAlert] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataAffiliateOverview = useSelector((state: AppState) => state.overview_affiliate.dataa);
+
+  useEffect(() => {
+    dispatch(fetchAffiliateOverviewData());
+  }, [dispatch]);
+
+  const { click, customer, order, revenue, cvr, linkGioiThieu } = dataAffiliateOverview.overview;
+
+  const [link, setLink] = useState<string>(linkGioiThieu || '');
+
+  useEffect(() => {
+    if (linkGioiThieu) {
+      setLink(linkGioiThieu);
+    }
+  }, [linkGioiThieu]);
+
+  const array = [
+    {
+      ...dataAffiliateOverview.info,
+    },
+  ];
+  const topcards: cardType[] = [
+    {
+      icon: clickicon,
+      title: 'Clicks',
+      digits: click,
+      bgcolor: 'error.light',
+    },
+    {
+      icon: icon3,
+      title: 'Khách hàng',
+      digits: customer,
+      bgcolor: 'error.light',
+    },
+    {
+      icon: icon4,
+      title: 'Đơn hàng',
+      digits: order,
+      bgcolor: 'error.light',
+    },
+
+    {
+      icon: revenueicon,
+      title: 'Doanh Thu',
+      digits: revenue,
+      bgcolor: 'error.light',
+    },
+    {
+      icon: icon6,
+      title: 'CVR',
+      digits: `${cvr}%`,
+      bgcolor: 'error.light',
+    },
+  ];
+
+  console.log(array);
 
   const handleCloseAlert = (_event: React.SyntheticEvent | any) => {
     setOpenChartAlert(false);
@@ -137,20 +163,18 @@ const CollaboratePost = () => {
   return (
     <PageContainer title="Tổng quan affiliate" description="this is  page">
       <Box>
-        {/* <Breadcrumb title="Blog Detail" items={BCrumb} />{' '} */}
         <Grid container style={{ display: 'flex', justifyContent: 'end' }}>
           <Grid item xs={4.24}>
-            <div
+            <Box
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                // margin: '20px 10px 20px 0',
                 paddingBottom: 24,
               }}
             >
               <DateSelect />
-            </div>
+            </Box>
           </Grid>
         </Grid>
         <Box display="flex" width="100%" flexWrap="wrap">
@@ -265,6 +289,7 @@ const CollaboratePost = () => {
                   <CustomOutlinedInput
                     id="http"
                     placeholder="http://s"
+                    // value={link}
                     value={link}
                     fontSize="17px"
                     fullWidth
@@ -283,7 +308,6 @@ const CollaboratePost = () => {
                 </Grid>
               </Grid>
 
-              {/* <Snackbar open={openChartAlert} autoHideDuration={3000} onClose={handleCloseAlert}> */}
               <AlertChat
                 handleClose={handleCloseAlert}
                 openChartAlert={openChartAlert}
@@ -293,129 +317,133 @@ const CollaboratePost = () => {
             </Box>
             <Box paddingTop="30px">
               <Grid container spacing={2}>
-                {/* Left section - 3 columns */}
-                <Grid item xs={12} md={4}>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center', // Center horizontally
-                      justifyContent: 'center', // Center vertically
-                      backgroundColor: 'error.light',
-                      padding: '20px',
-                      borderRadius: '14px',
-                    }}
-                  >
-                    <ProfileImage>
-                      <Avatar
-                        src={userimg}
-                        alt={userimg}
+                {array.map((item, index) => (
+                  <React.Fragment key={index}>
+                    {/* Left section - 3 columns */}
+                    <Grid item xs={12} md={4}>
+                      <Box
                         sx={{
-                          borderRadius: '50%',
-                          width: '100px',
-                          height: '100px',
-                          border: '4px solid #fff',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center', // Center horizontally
+                          justifyContent: 'center', // Center vertically
+                          backgroundColor: 'error.light',
+                          padding: '20px',
+                          borderRadius: '14px',
                         }}
-                      />
-                    </ProfileImage>
-                    <Box sx={{ marginTop: '10px', textAlign: 'center' }}>
-                      <Typography fontWeight={600} variant="h5">
-                        Nguyễn Đăng Hòa
-                      </Typography>
-                      <Typography
-                        color="textSecondary"
-                        variant="h6"
-                        fontWeight={400}
-                        sx={{ color: 'main.light', margin: '10px 0' }}
                       >
-                        Đối tác cá nhân
-                      </Typography>
-                      <Chip label="Hoạt động" color="success" />
-                    </Box>
-                  </Box>
-                </Grid>
-                {/* Left section - 9 columns */}
-                <Grid item xs={12} md={8}>
-                  <Box
-                    height="100%"
-                    bgcolor="error.light"
-                    sx={{
-                      padding: 2,
-                      borderRadius: 2,
-                    }}
-                  >
-                    <Grid container spacing={2} alignItems="center">
-                      {/* Left Column */}
-                      <Grid
-                        item
-                        xs={4}
-                        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-                      >
-                        {/* "Trạng thái đối tác" centered above the icon */}
-                        <Typography
-                          variant="h5"
-                          sx={{
-                            py: 2,
-                            fontWeight: 600,
-                            color: '#FA896B',
-                            textAlign: 'center', // Center the text
-                          }}
-                        >
-                          Trạng thái đối tác
-                        </Typography>
-
-                        {/* Icon */}
-                        <Box
-                          sx={{
-                            width: '100%',
-                            maxWidth: '150px',
-                            borderRadius: 1,
-                            overflow: 'hidden',
-                            mb: 1, // Margin below the image
-                          }}
-                        >
-                          <img
-                            src={RankA}
-                            alt="Banner chiến lược"
-                            style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                        <ProfileImage>
+                          <Avatar
+                            src={userimg}
+                            alt={userimg}
+                            sx={{
+                              borderRadius: '50%',
+                              width: '100px',
+                              height: '100px',
+                              border: '4px solid #fff',
+                            }}
                           />
+                        </ProfileImage>
+                        <Box sx={{ marginTop: '10px', textAlign: 'center' }}>
+                          <Typography fontWeight={600} variant="h5">
+                            {item.affiliateName}
+                          </Typography>
+                          <Typography
+                            color="textSecondary"
+                            variant="h6"
+                            fontWeight={400}
+                            sx={{ color: 'main.light', margin: '10px 0' }}
+                          >
+                            {item.type}
+                          </Typography>
+                          <Chip label={item.status} color="success" />
                         </Box>
-                      </Grid>
+                      </Box>
+                    </Grid>
+                    {/* Left section - 9 columns */}
+                    <Grid item xs={12} md={8}>
+                      <Box
+                        height="100%"
+                        bgcolor="error.light"
+                        sx={{
+                          padding: 2,
+                          borderRadius: 2,
+                        }}
+                      >
+                        <Grid container spacing={2} alignItems="center">
+                          {/* Left Column */}
+                          <Grid
+                            item
+                            xs={4}
+                            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                          >
+                            {/* "Trạng thái đối tác" centered above the icon */}
+                            <Typography
+                              variant="h5"
+                              sx={{
+                                py: 2,
+                                fontWeight: 600,
+                                color: '#FA896B',
+                                textAlign: 'center', // Center the text
+                              }}
+                            >
+                              Trạng thái đối tác
+                            </Typography>
 
-                      {/* Right Column */}
-                      <Grid item xs={4}>
-                        <Typography
-                          variant="h6"
-                          fontSize="30px"
-                          sx={{
-                            lineHeight: 1.5,
-                            textAlign: 'center', // Center the paragraph
-                          }}
-                        >
-                          Rank A
-                          <Tooltip
-                            title="Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
+                            {/* Icon */}
+                            <Box
+                              sx={{
+                                width: '100%',
+                                maxWidth: '150px',
+                                borderRadius: 1,
+                                overflow: 'hidden',
+                                mb: 1, // Margin below the image
+                              }}
+                            >
+                              <img
+                                src={item.rankUrl}
+                                alt="Banner chiến lược"
+                                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                              />
+                            </Box>
+                          </Grid>
+
+                          {/* Right Column */}
+                          <Grid item xs={4}>
+                            <Typography
+                              variant="h6"
+                              fontSize="30px"
+                              sx={{
+                                lineHeight: 1.5,
+                                textAlign: 'center', // Center the paragraph
+                              }}
+                            >
+                              {item.rankName}
+                              <Tooltip
+                                title="Đối tác Affiliate có cấp bậc rank càng cao sẽ được ảnh hưởng các quyền lợi
                         tốt hơn các đối tác thông thường. Khi đó, bạn có thể thắt chặt thêm quan hệ
                         đối tác chiến lược với RedTech và tận hưởng nhiều lợi ích tốt hơn."
-                            placement="top"
-                            arrow
-                          >
-                            <Box
-                              component="img"
-                              src={IconDescriptionAfl}
-                              alt="Description of the image"
-                              width={20}
-                              sx={{
-                                borderRadius: '8px',
-                                ml: 1,
-                              }}
-                            />
-                          </Tooltip>
-                        </Typography>
-                      </Grid>
+                                placement="top"
+                                arrow
+                              >
+                                <Box
+                                  component="img"
+                                  src={IconDescriptionAfl}
+                                  alt="Description of the image"
+                                  width={20}
+                                  sx={{
+                                    borderRadius: '8px',
+                                    ml: 1,
+                                  }}
+                                />
+                              </Tooltip>
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Box>
                     </Grid>
-                  </Box>
-                </Grid>
+                  </React.Fragment>
+                ))}
               </Grid>
             </Box>
           </Box>
