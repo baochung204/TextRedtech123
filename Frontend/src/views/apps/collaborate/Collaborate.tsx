@@ -19,7 +19,7 @@ import {
 } from '@mui/material';
 import { IconCopy, IconPackage } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
-import RankA from 'src/assets/ICON/c1.png';
+import { useDispatch, useSelector } from 'react-redux';
 import clickicon from 'src/assets/ICON/click.png';
 import IconDescriptionAfl from 'src/assets/ICON/descriptionAfl.png';
 import revenueicon from 'src/assets/ICON/doanh thu.png';
@@ -30,6 +30,8 @@ import PageContainer from 'src/components/container/PageContainer';
 import MonthlyEarnings from 'src/components/dashboards/modern/MonthlyEarnings';
 import MonthlyEarnings1 from 'src/components/dashboards/modern/MonthlyEarnings1';
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchAffiliateOverviewData } from 'src/store/user/affiliate/overview/overviewSlice';
 import icon6 from '../../../assets/ICON/cvr.png';
 import icon4 from '../../../assets/ICON/dơn hang.png';
 import icon3 from '../../../assets/ICON/khách hàng.png';
@@ -37,10 +39,6 @@ import PopupConvert from '../customerList/Popupconvert';
 import Popupwithdrawmoney from '../customerList/Popupwithdrawmoney';
 import Danhsachdh from './dsdh';
 import HistoryMoney from './lsrt';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { fetchAffiliateOverviewData } from 'src/store/user/affiliate/overview/overviewSlice';
 interface cardType {
   icon: string;
   title: string;
@@ -64,9 +62,14 @@ const CollaboratePost = () => {
   }, [dispatch]);
 
   const { click, customer, order, revenue, cvr, linkGioiThieu } = dataAffiliateOverview.overview;
-  const [link] = useState(`${linkGioiThieu}`);
 
-  console.log(link);
+  const [link, setLink] = useState<string>(linkGioiThieu || '');
+
+  useEffect(() => {
+    if (linkGioiThieu) {
+      setLink(linkGioiThieu);
+    }
+  }, [linkGioiThieu]);
 
   const array = [
     {

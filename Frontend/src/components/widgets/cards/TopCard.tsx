@@ -41,7 +41,7 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
         </Typography>
       ));
     }
-    return <Typography variant={typeof item === 'string' ? 'h6' : 'body1'}>{item}</Typography>;
+    return <Typography sx={{ fontWeight: 'bold' }}>{item}</Typography>;
   };
 
   return (

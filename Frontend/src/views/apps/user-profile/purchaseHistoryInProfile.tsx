@@ -8,7 +8,6 @@ import ProfileBanner from 'src/components/apps/userprofile/profile/ProfileBanner
 import PurchaseHistory from '../allTransactionHistory/purchaseHistory'; // Renamed import
 
 const PurchaseHistoryInProfilePage = () => {
-  // Renamed component
   return (
     <PageContainer title="Lịch sử mua hàng" description="this is Enhanced Table page">
       <Grid container>
@@ -16,7 +15,7 @@ const PurchaseHistoryInProfilePage = () => {
           <ProfileBanner />
         </Grid>
         <Grid item xs={12}>
-          <PurchaseHistory /> {/* Updated to the renamed component */}
+          <PurchaseHistory />
         </Grid>
       </Grid>
     </PageContainer>

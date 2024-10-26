@@ -24,112 +24,11 @@ import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataAffiliateTable } from './datatable/OrderTableData';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchOverviewOrderAffiliateData } from 'src/store/admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
 
-const dataSource = [
-  {
-    bgColor: 'primary.light',
-    title: 'Đơn hàng',
-    total: '1907',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 45,
-            height: 45,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconBox color="white" size={30} /> */}
-          <img src={bill} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'R-Point',
-    total: '190.720.030',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 45,
-            height: 45,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconWashDrycleanOff color="white" size={30} /> */}{' '}
-          <img src={RPoint} alt="RPoint" style={{ width: '30px', height: '30px' }} />,
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu',
-    total: '123.456.789đ',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {/* <IconChartBar color="white" size={30} /> */}
-        <img src={revenue} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Hoa hồng',
-    total: '123.456.789đ',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {/* <IconZoomMoney color="white" size={30} /> */}
-        <img src={commission} width={30} />
-      </Box>
-    ),
-  },
-];
-
-// const getStatusAccountColor = (status: string) => {
-//   switch (status) {
-//     case 'Hoạt động':
-//       return 'success'; // Green for approved
-//     case 'Chờ duyệt':
-//       return 'warning'; // Yellow for pending approval
-//     case 'Từ chối':
-//       return 'error'; // Red for rejected
-//     case 'Chưa đăng ký':
-//       return 'default'; // Gray for not yet sent
-//     default:
-//       return 'default'; // Gray for any unrecognized status
-//   }
-// };
 interface Column {
   title: string;
   dataIndex: string;
@@ -137,7 +36,105 @@ interface Column {
   isValids?: boolean;
 }
 const OrderAffiliate = () => {
-  // const [selectedItems] = useState<number[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataOrderAffiliateOverview = useSelector(
+    (state: AppState) => state.overview_order_affiliate.dataa,
+  );
+  useEffect(() => {
+    dispatch(fetchOverviewOrderAffiliateData());
+  }, [dispatch]);
+
+  const totalOrders = dataOrderAffiliateOverview.totalOrders;
+  const totalRPoints = dataOrderAffiliateOverview.totalRPoints;
+  const totalRevenue = dataOrderAffiliateOverview.totalRevenue;
+  const totalCommission = dataOrderAffiliateOverview.totalCommission;
+
+  const dataSource = [
+    {
+      bgColor: 'primary.light',
+      title: 'Đơn hàng',
+      total: totalOrders,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 45,
+              height: 45,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={bill} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'R-Point',
+      total: totalRPoints,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 45,
+              height: 45,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={RPoint} alt="RPoint" style={{ width: '30px', height: '30px' }} />,
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Doanh thu',
+      total: totalRevenue,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={revenue} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Hoa hồng',
+      total: totalCommission,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={commission} width={30} />
+        </Box>
+      ),
+    },
+  ];
 
   const column = useMemo<Column[]>(
     () => [
@@ -231,13 +228,6 @@ const OrderAffiliate = () => {
           </Box>
         ),
       },
-      // {
-      //   title: 'Trạng thái',
-      //   dataIndex: '',
-      //   render: (_row: any, value: any) => (
-      //     <Chip label={value.status} color={getStatusAccountColor(value.status)} />
-      //   ),
-      // },
     ],
     [],
   );
@@ -283,16 +273,6 @@ const OrderAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item >
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"

@@ -25,89 +25,10 @@ import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataContactAffiliateTable } from './datatable/OrderTableData';
-
-const dataSource = [
-  {
-    bgColor: 'primary.light',
-    title: 'Hợp đồng',
-    total: '190',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={contract} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Từ chối',
-    total: '190',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={contractreject} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Đã ký',
-    total: '123',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={contractdone} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Chờ ký',
-    total: '23',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 40,
-          height: 40,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={contractwait} width={30} />
-      </Box>
-    ),
-  },
-];
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchOverviewContractAffiliateData } from 'src/store/admin/contract/contractaffiliate/overview/contractAffiliateSlice';
 
 const getStatusColor = (status: number) => {
   switch (status) {
@@ -128,7 +49,102 @@ interface Column {
   isValids?: boolean;
 }
 const ContactAffiliate = () => {
-  // const [selectedItems] = useState<number[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const contractAffiliateOverview = useSelector(
+    (state: AppState) => state.overview_contractaffiliate.dataa,
+  );
+  useEffect(() => {
+    dispatch(fetchOverviewContractAffiliateData());
+  }, [dispatch]);
+
+  const pendingContract = contractAffiliateOverview.pendingContract;
+  const rejectedContract = contractAffiliateOverview.rejectedContract;
+  const signedContract = contractAffiliateOverview.signedContract;
+  const totalContract = contractAffiliateOverview.totalContract;
+  const dataSource = [
+    {
+      bgColor: 'primary.light',
+      title: 'Hợp đồng',
+      total: totalContract,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={contract} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Từ chối',
+      total: rejectedContract,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={contractreject} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Đã ký',
+      total: signedContract,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={contractdone} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Chờ ký',
+      total: pendingContract,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 40,
+            height: 40,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={contractwait} width={30} />
+        </Box>
+      ),
+    },
+  ];
+
   const column = useMemo<Column[]>(
     () => [
       {

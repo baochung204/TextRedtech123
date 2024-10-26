@@ -14,9 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons-react';
-
 import FilterListIcon from '@mui/icons-material/FilterList';
-// import { Dayjs } from 'dayjs';
 import React, { useEffect, useMemo, useState } from 'react';
 import publisher from 'src/assets/Adminphoto/Publisher.png';
 import notpaid from 'src/assets/Adminphoto/chua thanh toan.png';
@@ -27,121 +25,10 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataPublishersTable } from './datatable/OrderTableData';
-const DataBox = [
-  {
-    bgColor: 'primary.light',
-    title: 'Publisher',
-    total: '1907',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={publisher} width={30} alt="Publisher" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Đơn hàng',
-    total: '8386',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconBox color="white" size={30} /> */}
-          <img src={bill} width={30} alt="Đơn hàng" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Khách hàng',
-    total: '8386',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconBox color="white" size={30} /> */}
-          <img src={user} width={30} alt="Đơn hàng" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Hoa hồng',
-    total: '123.406.369 ₫',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconCoins color="white" size={30} /> */}
-          <img src={commission} width={30} alt="Hoa hồng" />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Chưa thanh toán',
-    total: '11.415.123 ₫',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img width={30} src={notpaid} alt="Chưa thanh toán" />
-        </Box>
-      </>
-    ),
-  },
-];
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchOverviewPublisherData } from 'src/store/admin/affiliate/publisher/overview/publisherOverviewSlice';
 
 const getStatusAccountColor = (status: number) => {
   switch (status) {
@@ -166,8 +53,133 @@ interface Column {
 }
 
 const PublisherAffiliate = () => {
-  // const [selectedItems] = useState<number[]>([]);
-  // const [open, setOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataPublisherOverview = useSelector((state: AppState) => state.overview_publisher.dataa);
+  useEffect(() => {
+    dispatch(fetchOverviewPublisherData());
+  }, [dispatch]);
+
+  const totalPublisher = dataPublisherOverview.totalPublisher;
+  const totalOrder = dataPublisherOverview.totalOrder;
+  const totalCustomers = dataPublisherOverview.totalCustomers;
+  const totalCommission = dataPublisherOverview.totalCommission;
+  const totalOutstanding = dataPublisherOverview.totalOutstanding;
+
+  const DataBox = [
+    {
+      bgColor: 'primary.light',
+      title: 'Publisher',
+      total: totalPublisher,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={publisher} width={30} alt="Publisher" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Đơn hàng',
+      total: totalOrder,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {/* <IconBox color="white" size={30} /> */}
+            <img src={bill} width={30} alt="Đơn hàng" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Khách hàng',
+      total: totalCustomers,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {/* <IconBox color="white" size={30} /> */}
+            <img src={user} width={30} alt="Đơn hàng" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Hoa hồng',
+      total: totalCommission,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {/* <IconCoins color="white" size={30} /> */}
+            <img src={commission} width={30} alt="Hoa hồng" />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Chưa thanh toán',
+      total: totalOutstanding,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img width={30} src={notpaid} alt="Chưa thanh toán" />
+          </Box>
+        </>
+      ),
+    },
+  ];
 
   const column = useMemo<Column[]>(
     () => [
@@ -263,30 +275,6 @@ const PublisherAffiliate = () => {
         dataIndex: 'total_Order',
         render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
-      // {
-      //   title: 'Hồ sơ',
-      //   dataIndex: '',
-      //   render: (_row: any, value: any) => (
-      //     <Typography style={{ width: '100px' }} variant="subtitle2">
-      //       <Chip label={value.contract} color={getStatusColor(value.contract)} />
-      //     </Typography>
-      //   ),
-      // },
-      // {
-      //   title: 'Hợp đồng Affiliate',
-      //   dataIndex: '',
-      //   render: (_row: any, value: any) => (
-      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      //       <Typography style={{ width: '100px' }} variant="subtitle2">
-      //         <Chip
-      //           label={value.brief ? 'Đã ký' : 'Chưa ký'}
-      //           color={value.brief ? 'success' : 'warning'}
-      //           variant="outlined"
-      //         />
-      //       </Typography>
-      //     </Box>
-      //   ),
-      // },
       {
         title: 'Tổng hoa hồng',
         dataIndex: 'total_commission',
@@ -301,18 +289,6 @@ const PublisherAffiliate = () => {
         dataIndex: 'click',
         render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
-      // {
-      //   title: 'Khách hàng',
-      //   dataIndex: 'customer',
-      // },
-      // {
-      //   title: 'Số đơn hàng',
-      //   dataIndex: 'order',
-      // },
-      // {
-      //   title: 'Doanh thu',
-      //   dataIndex: 'revenue',
-      // },
       {
         title: 'CVR',
         dataIndex: 'cvr',
