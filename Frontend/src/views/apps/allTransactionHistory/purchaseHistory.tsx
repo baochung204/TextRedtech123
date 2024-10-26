@@ -33,8 +33,6 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-
 const PurchaseHistoryInProfile = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
@@ -42,15 +40,12 @@ const PurchaseHistoryInProfile = () => {
   const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
-
   console.log('orderhistoryxlist', orderhistorylist.content);
   console.log('orderhistoryxdetail', orderhistorydetail);
 
-
   useEffect(() => {
-    dispatch(fetchHistoryOrderListData({}));
-  }, []);
-
+    dispatch(fetchHistoryOrderListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const handleOpen = (id: number) => {
     setOpen(true);
@@ -69,11 +64,6 @@ const PurchaseHistoryInProfile = () => {
     {
       dataIndex: 'date',
       title: 'Ngày mua hàng',
-      // render: (value: string) => {
-      //   if (!value) return 'N/A'; 
-      //   const date = new Date(value);
-      //   return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
-      // },
       render: (value: string) => {
         const values = new Date(value);
         return values.toLocaleDateString('vi-VN');
@@ -127,7 +117,6 @@ const PurchaseHistoryInProfile = () => {
     },
   ];
 
-
   return (
     <>
       <Grid container>
@@ -167,7 +156,7 @@ const PurchaseHistoryInProfile = () => {
           <CustomTable
             columns={columns}
             dataSource={orderhistorylist.content}
-            count={orderhistorylist.pageNo}
+            count={orderhistorylist.totalElements}
             rowsPerPage={rowsPerPage}
             page={page}
             setPage={setPage}
