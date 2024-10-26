@@ -286,6 +286,7 @@ const CollaboratePost = () => {
                   <CustomOutlinedInput
                     id="http"
                     placeholder="http://s"
+                    // value={link}
                     value={link}
                     fontSize="17px"
                     fullWidth
