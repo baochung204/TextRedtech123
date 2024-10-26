@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import resourcesApi from 'src/api/userResource/resourcesApi';
 import { UrlType } from './type/urlType';
@@ -24,7 +25,7 @@ interface FetchParams {
   size?: number | undefined;
 }
 export const fetchUrls = createAsyncThunk<UrlType, FetchParams>(
-  'models/fetchData',
+  'models/fetchDataUrlsUser',
   async ({ page, size }: FetchParams, thunkAPI) => {
     try {
       const response = await resourcesApi.getAllURL(page, size);
@@ -35,7 +36,7 @@ export const fetchUrls = createAsyncThunk<UrlType, FetchParams>(
   },
 );
 const UrlsSlice = createSlice({
-  name: 'models',
+  name: 'urlsFetch',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import userApi from 'src/api/userResource/UserResource';
+import userApi, { PropFileResource } from 'src/api/userResource/UserResource';
 import { Result } from 'src/types/apps/file';
 
 interface FileState {
@@ -19,18 +19,15 @@ const initialState: FileState = {
   loading: false,
   error: null,
 };
-interface FetchParams {
-  page_no?: number;
-  page_size?: number;
-}
+
 export const fetchFile = createAsyncThunk(
   'files/fetchFile',
-  async ({ page_no, page_size }: FetchParams) => {
+  async (object: PropFileResource = {}, { rejectWithValue }) => {
     try {
-      const res = await userApi.getAllFiles(page_no, page_size)
+      const res = await userApi.getAllFiles(object)
       return res.data.result;
-    } catch (error) {
-      console.log('lỗi', error)
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || 'Something went wrong');
     }
 
   });

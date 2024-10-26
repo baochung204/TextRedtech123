@@ -4,6 +4,7 @@ export const axiosAPI = axios.create({
   baseURL: 'https://redai02-4af4309fd76b.herokuapp.com',
   headers: {
     'Content-Type': 'application/json',
+    'accept': '*/*'
   },
 });
 

@@ -47,10 +47,11 @@ const CustomTable: React.FC<CustomTableProps> = ({
     const selectedValue = parseInt(event.target.value, 10);
     console.log('Số hàng được chọn:', event.target.value);
     setRowsPerPage(selectedValue);
+    setPage(1)
   };
-  const handlePageChange = (event: unknown, newPage: number) => {
+  const handlePageChange = (_event: unknown, newPage: number) => {
 
-    setPage(newPage);
+    setPage(newPage + 1);
   };
 
 
@@ -72,7 +73,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
                         <Typography
                           variant="subtitle2"
                           fontWeight={600}
-                          sx={{ flexGrow: 1, whiteSpace: 'nowrap', pl: 1 }}
+                          sx={{ flexGrow: 1, whiteSpace: 'nowrap'}}
                         >
                           {column.title}
                         </Typography>
@@ -122,13 +123,13 @@ const CustomTable: React.FC<CustomTableProps> = ({
         component="div"
         count={count}
         rowsPerPage={rowsPerPage}
-        page={page}
+        page={page - 1}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
         labelRowsPerPage="Số hàng trên trang"
-        labelDisplayedRows={({ count }) =>
+        labelDisplayedRows={({ page }) =>
           // `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
-          `Trang ${count + 1}`
+          `Trang ${page + 1}`
         }
       />
     </TableContainer>
