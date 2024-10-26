@@ -10,7 +10,7 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  TextField
+  TextField,
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons-react';
 import { useEffect, useMemo, useState } from 'react';
@@ -22,8 +22,9 @@ import TopCard from 'src/components/widgets/cards/TopCard';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import { fetchOverviewNotificationData } from 'src/store/admin/notification/overview/notificationSlice';
-import { AppState, useDispatch, useSelector } from 'src/store/Store';
+import { AppDispatch, AppState, useSelector } from 'src/store/Store';
 import AddNotification from './add/AddNotification';
+import { useDispatch } from 'react-redux';
 
 interface INotification {
   id: string; // ID thông báo
@@ -124,14 +125,19 @@ interface Column {
 }
 
 const ContentNotification = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const notificationOverview = useSelector((state: AppState) => state.overview_notification.dataa);
 
   useEffect(() => {
     dispatch(fetchOverviewNotificationData());
   }, [dispatch]);
 
+  // "totalNotificationUpdate": 0,
+  //   "totalTag": 0
   console.log(notificationOverview);
+
+  const totalNotificationUpdate = notificationOverview.totalNotificationUpdate;
+  const totalTag = notificationOverview.totalTag;
 
   const [isCheckSwitchIds, setIsCheckSwitchIds] = useState<string[]>([]);
   const handleCheckSwitch = (id: string) => {
@@ -146,7 +152,7 @@ const ContentNotification = () => {
     {
       bgColor: 'primary.light',
       title: 'Thông báo',
-      total: '120',
+      total: totalNotificationUpdate,
       icons: (
         <>
           <Box
@@ -168,7 +174,7 @@ const ContentNotification = () => {
     {
       bgColor: 'primary.light',
       title: 'Tags',
-      total: '39',
+      total: totalTag,
       icons: (
         <>
           <Box
@@ -183,50 +189,6 @@ const ContentNotification = () => {
             }}
           >
             <img src={tags} width={30} />
-          </Box>
-        </>
-      ),
-    },
-    {
-      bgColor: 'primary.light',
-      title: 'Lượt xem',
-      total: '21.369',
-      icons: (
-        <>
-          <Box
-            textAlign="center"
-            padding={1}
-            sx={{
-              width: 40,
-              height: 40,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <img src={view} width={30} />
-          </Box>
-        </>
-      ),
-    },
-    {
-      bgColor: 'primary.light',
-      title: 'Tương tác',
-      total: '236',
-      icons: (
-        <>
-          <Box
-            textAlign="center"
-            padding={1}
-            sx={{
-              width: 40,
-              height: 40,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <img src={interact} width={30} />
           </Box>
         </>
       ),

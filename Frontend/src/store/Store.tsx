@@ -74,6 +74,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import ProductsSlice from 'src/store/user/products/productsUseSlice';
 import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
 import overviewNotificationSlice from './admin/notification/overview/notificationSlice';
+import overviewAffiliateSlice from './user/affiliate/overview/overviewSlice';
 
 const rootReducer = combineReducers({
   //user
@@ -147,6 +148,7 @@ const rootReducer = combineReducers({
   overview_ticket: ticketOverviewSlice,
   randomcoupon: couponRandomSlice,
   overview_notification: overviewNotificationSlice,
+  overview_affiliate: overviewAffiliateSlice,
 });
 
 const whitelistReducers = [

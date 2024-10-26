@@ -1,6 +1,6 @@
 import { axiosAPI } from 'src/api/axiosApi';
 
-const url = '/redtech/notifications';
+const url = 'redtech/notifications';
 
 const notificationAdminApi = {
   getOverviewNotification: () => {
