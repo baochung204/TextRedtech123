@@ -57,9 +57,9 @@ const WeeklyStats: React.FC = () => {
         stops: [20, 180],
       },
     },
-    markers: {
-      size: 0,
-    },
+    // markers: {
+    //   size: 0,
+    // },
     tooltip: {
       theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
       x: {

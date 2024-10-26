@@ -9,35 +9,34 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import BlankCard from 'src/components/shared/BlankCard';
 import { fetchStr } from 'src/store/apps/resources/str/strSlice';
-import { AppDispatch, AppState } from 'src/store/Store';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { Str } from 'src/types/apps/str';
 import DialogStragety from '../dialog/DialogStragety';
 
 const Tab1 = () => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(15);
-  const dispatch = useDispatch<AppDispatch>();
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const dataStr = useSelector((state: AppState) => state.str.data);
-  const {content = [], totalElements } =
-    useSelector((state: AppState) => state.str.data || {});
+  const { content = [], totalElements } = useSelector((state: AppState) => state.str.data || {});
   const [datax, setDatax] = useState<Str[]>([])
   const [dataView, setDataView] = useState<Str | undefined>()
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
+
+  const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedValue = parseInt(event.target.value, 10);
+    // console.log('Số hàng được chọn:', event.target.value);
+    setPage(1)
+    setRowsPerPage(selectedValue);
   };
+  const handlePageChange = (_event: unknown, newPage: number) => {
 
-  // console.log('load data', campaignsData);
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    setPage(newPage + 1);
   };
-
   useEffect(() => {
+   
     dispatch(fetchStr({ page, size: rowsPerPage }));
+
   }, [dispatch, page, rowsPerPage]);
 
   useEffect(() => {
@@ -59,7 +58,7 @@ const Tab1 = () => {
   return (
     <>
       <Grid container spacing={2}>
-        {content?.map((items, index) => (
+        {content.map((items, index) => (
           <Grid item xs={12} sm={6} md={4} key={items.campaignId}>
             <BlankCard>
               <CardContent
@@ -93,14 +92,18 @@ const Tab1 = () => {
         ))}
       </Grid>
       <TablePagination
-        rowsPerPageOptions={[15, 18, 21]}
+        rowsPerPageOptions={[5, 10, 15]}
         component="div"
         count={totalElements}
         rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        page={page - 1}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
         labelRowsPerPage="Số hàng trên mỗi trang"
+        labelDisplayedRows={({ page }) =>
+          // `${from}–${to} của ${count !== -1 ? count : `hơn ${to}`}`
+          `Trang ${page + 1}`
+        }
       />
       <DialogStragety open={open} setOpen={setOpen} data={dataView} />
     </>

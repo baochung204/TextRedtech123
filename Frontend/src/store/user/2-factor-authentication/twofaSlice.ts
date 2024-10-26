@@ -19,15 +19,6 @@ const initialState: StrState = {
   error: null,
 };
 
-// export const fetchStatusTwoFaData = createAsyncThunk('str/fetchData', async (thunkAPI) => {
-//   try {
-//     const response = await twoFA.getStatus2fa();
-//     return response.data;
-//   } catch (error: any) {
-//     return thunkAPI;
-//   }
-// });
-
 export const fetchStatusTwoFaData = createAsyncThunk('fetch2FA', async (_, thunkAPI) => {
   try {
     const response = await twoFA.getStatus2fa();

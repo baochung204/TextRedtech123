@@ -1,4 +1,14 @@
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
+import {
+  TypedUseSelectorHook,
+  useDispatch as useAppDispatch,
+  useSelector as useAppSelector,
+} from 'react-redux';
+import { combineReducers } from 'redux';
+
+
 import BlogReducer from './apps/blog/BlogSlice';
 import ChatsReducer from './apps/chat/ChatSlice';
 import ContactsReducer from './apps/contacts/ContactSlice';
@@ -11,13 +21,6 @@ import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/productsSlice';
-import UrlSlice from './apps/resources/url/UrlSlice';
-import {
-  TypedUseSelectorHook,
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
-} from 'react-redux';
-import { combineReducers } from 'redux';
 import CustomerReducer from './apps/customer/customerSlice';
 import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
 import StrReducer from './apps/resources/str/strSlice';
@@ -26,13 +29,13 @@ import fileReducer from './apps/resources/file/fileSlice';
 import ImageSlice from './apps/resources/image/ImageSlice';
 import vndCouponsSlice from './apps/vnd_coupons/Vnd_CouponsSlice';
 import userSlice from './user/user-resources/userSlice';
-import assistantSlice from './user/chatbots/assisstantUserSlice';
+import assistantSlice from './user/chatbots/chart/assisstantUserSlice';
 import twofaSlice from './user/2-factor-authentication/twofaSlice';
 import cartSlice from './user/cart/cartSlice';
 import adminTicketSlice from './admin/admin-ticket/AdminTicketSlice';
 // import overViewTicketSlice from './admin/admin-ticket/OverViewTicket';
 import usermeSlice from 'src/store/user/userme/usermeSlice';
-import staffSlice from './admin/Staff/Staff'; // Adjust the import path as necessary
+import staffSlice from './admin/Staff/Staff';
 import blogSlice from './admin/blog/overview/blogSlice';
 import counponSlice from './admin/counpon/counponlist/overview/counponSlice';
 import counponhistorySlice from './admin/counpon/counponhistory/table/counponthistorySlice';
@@ -62,14 +65,24 @@ import customerAdminSlice from './admin/customer/overview/customerSlice';
 import productAdminSlice from './admin/sell/product/overview/productSlice';
 import assistantByIdSlice from 'src/store/user/chatbots/assistantByIdUseSlice';
 import orderProductAdminSlice from './admin/sell/orderproduct/overview/orderproductSlice';
-import ProductsSlice from 'src/store/user/products/productsUseSlice';
-import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistStore, persistReducer } from 'redux-persist';
-
 import ticketOverviewSlice from './admin/admin-ticket/OverViewTicketSlice';
 import couponRandomSlice from './user/points/couponRandomSlice';
-
+import listCustomerSlice from './user/affiliate/customer/listCustomerSlice';
+import historyOrderListSlice from './user/historyorder/historyOrderSlice';
+import historyDialogSlice from './user/historyorder/historyDialogSlice';
+import historyPaymentSlice from './user/affiliate/overview/historyPaymentSlice';
+import listOrderSlice from './user/affiliate/overview/listOrderSlice';
+import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
+import ProductsSlice from 'src/store/user/products/productsUseSlice';
+import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
+import overviewNotificationSlice from './admin/notification/overview/notificationSlice';
+import overviewAffiliateSlice from './user/affiliate/overview/overviewSlice';
+import overviewBillSlice from './admin/contract/bill/overview/billOverviewSlice';
+import overviewContractRuleSlice from './admin/contract/contractrule/overview/contractRuleSlice';
+import overviewContractAffiliateSlice from './admin/contract/contractaffiliate/overview/contractAffiliateSlice';
+import overviewWithdrawalHistory from './admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
+import overviewPublisher from './admin/affiliate/publisher/overview/publisherOverviewSlice';
+import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -84,7 +97,6 @@ const rootReducer = combineReducers({
   selectReducer: SelectedReducer,
   integration: integrationReducer,
   customer: CustomerReducer,
-  urlResources: UrlSlice,
   imageResources: ImageSlice,
   customeraffiliate: CustomerAffiliate,
   vnd_coupons: vndCouponsSlice,
@@ -110,11 +122,17 @@ const rootReducer = combineReducers({
   resourcesFunctions: functionsSlice,
   resourcesFiles: filesSlice,
   resourcesImages: imagesSlice,
+  chartAssisstantID: ChartAssisstantReducer,
   // overViewTicket: overViewTicketSlice,
   userme: usermeSlice,
   blogs: BlogSlice,
   affiliate: affiliateApiSlice,
   point_list: listPointSlice,
+  historyorder_list: historyOrderListSlice,
+  historyorder_detail: historyDialogSlice,
+  list_order: listOrderSlice,
+  list_paymenthistory: historyPaymentSlice,
+  list_customer: listCustomerSlice,
   //admin
   overview_blog: blogSlice,
   overview_counpon: counponSlice,
@@ -136,9 +154,26 @@ const rootReducer = combineReducers({
   overview_order: orderProductAdminSlice,
   overview_ticket: ticketOverviewSlice,
   randomcoupon: couponRandomSlice,
+  overview_notification: overviewNotificationSlice,
+  overview_affiliate: overviewAffiliateSlice,
+  overview_contractaffiliate: overviewContractAffiliateSlice,
+  overview_bill: overviewBillSlice,
+  overview_contractrule: overviewContractRuleSlice,
+  overview_withdrawal_history: overviewWithdrawalHistory,
+  overview_publisher: overviewPublisher,
+  overview_order_affiliate: overviewOrderAffiliate,
 });
 
+<<<<<<< HEAD
 const whitelistReducers = [''];
+=======
+const whitelistReducers = [
+  'randomcoupon',
+  'point_list',
+  'historyorder_detail',
+  'historyorder_list',
+];
+>>>>>>> cf48844e2fd00197f9edb4e2a62b4066415b6e16
 
 const persistConfig = {
   key: 'root',
@@ -148,6 +183,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+
+
+
+
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -156,11 +195,87 @@ export const store = configureStore({
     }),
 });
 export const persistor = persistStore(store);
-
 export type AppState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 export const { dispatch } = store;
 export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
-
 export default store;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const store = configureStore({
+//   reducer: {
+//     //user
+//     customizer: CustomizerReducer,
+//     ecommerceReducer: EcommerceReducer,
+//     chatReducer: ChatsReducer,
+//     emailReducer: EmailReducer,
+//     notesReducer: NotesReducer,
+//     contactsReducer: ContactsReducer,
+//     ticketReducer: TicketReducer,
+//     userpostsReducer: UserProfileReducer,
+//     blogReducer: BlogReducer,
+//     selectReducer: SelectedReducer,
+//     integration: integrationReducer,
+//     customer: CustomerReducer,
+//     urlResources: UrlSlice,
+//     imageResources: ImageSlice,
+//     product: productReducer,
+//     customeraffiliate: CustomerAffiliate,
+//     vnd_coupons: vndCouponsSlice,
+//     str: StrReducer,
+//     function: functionReducer,
+//     file: fileReducer,
+//     test: userSlice,
+//     assisstant: assistantSlice,
+//     twofa: twofaSlice,
+//     flashsale_random: flashSaleRandomSlice,
+//     adminTicker: adminTicketSlice,
+//     cart: cartSlice,
+//     // overViewTicket: overViewTicketSlice,
+//     userme: usermeSlice,
+//     staff: staffSlice,
+//     resourcesCampaigns: CampaignsSlice,
+//     resourcesFunctions: functionsSlice,
+//     resourcesFiles: filesSlice,
+//     resourcesModels: ModelsSlice,
+//     resourcesImages: imagesSlice,
+//     resourcesUrls: urlsSlice,
+//     affiliate: affiliateApiSlice,
+//     blogs: BlogSlice,
+//     point_list: listPointSlice,
+//     //admin
+//     overview_blog: blogSlice,
+//     overview_counpon: counponSlice,
+//     counpon_history: counponhistorySlice,
+//     overview_flashsale: flashsaleoverviewSlice,
+//     counpon_list: counponlistSlice,
+//     flashsale_list: flashsaleSlice,
+//     overview_staff: staffoverviewSlice,
+//     overview_campaign: CampaignSlice,
+//     overview_function: functionSlice,
+//     overview_files: fileSlice,
+//     overview_models: modelSlice,
+//     campaign_list: CampaignListSlice,
+//     files_list: fileListSlice,
+//     function_list: functionListSlice,
+//     model_list: modelListSlice,
+//     overview_customer: customerAdminSlice,
+//     overview_product: productAdminSlice,
+//     overview_order: orderProductAdminSlice,
+//   },
+// });
+

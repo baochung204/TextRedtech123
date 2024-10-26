@@ -8,6 +8,8 @@ import { IconArrowDownRight, IconCurrencyDollar } from '@tabler/icons-react';
 
 import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
+import { useSelector } from 'react-redux';
+import { AppState } from 'src/store/Store';
 
 const MonthlyEarnings = () => {
   // Màu sắc biểu đồ
@@ -41,9 +43,9 @@ const MonthlyEarnings = () => {
       type: 'solid',
       opacity: 0.05,
     },
-    markers: {
-      size: 0,
-    },
+    // markers: {
+    //   size: 0,
+    // },
     tooltip: {
       theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
       x: {
@@ -58,6 +60,14 @@ const MonthlyEarnings = () => {
       data: [25, 66, 20, 40, 12, 58, 20],
     },
   ];
+  const dataAffiliateOverview = useSelector((state: AppState) => state.overview_affiliate.dataa);
+  const data = [
+    {
+      ...dataAffiliateOverview.info,
+    },
+  ];
+
+  console.log('data');
 
   return (
     <DashboardCard
@@ -72,20 +82,24 @@ const MonthlyEarnings = () => {
       }
     >
       <>
-        <Typography variant="h3" fontWeight="700" mt="-20px">
-          6.830.205đ
-        </Typography>
-        <Stack direction="row" spacing={1} my={1} alignItems="center">
-          <Avatar sx={{ bgcolor: errorlight, width: 27, height: 27 }}>
-            <IconArrowDownRight width={20} color="#FA896B" />
-          </Avatar>
-          <Typography variant="subtitle2" fontWeight="600">
-            +9%
-          </Typography>
-          <Typography variant="subtitle2" color="textSecondary">
-            cùng kỳ
-          </Typography>
-        </Stack>
+        {data.map((item, index) => (
+          <React.Fragment key={index}>
+            <Typography variant="h3" fontWeight="700" mt="-20px">
+              {item.totalCommission.toLocaleString()} đ
+            </Typography>
+            <Stack direction="row" spacing={1} my={1} alignItems="center">
+              <Avatar sx={{ bgcolor: errorlight, width: 27, height: 27 }}>
+                <IconArrowDownRight width={20} color="#FA896B" />
+              </Avatar>
+              <Typography variant="subtitle2" fontWeight="600">
+                {item.totalCommission}%
+              </Typography>
+              <Typography variant="subtitle2" color="textSecondary">
+                cùng kỳ
+              </Typography>
+            </Stack>
+          </React.Fragment>
+        ))}
       </>
     </DashboardCard>
   );

@@ -59,6 +59,9 @@ const DialogImage: React.FC<PropsDialog> = ({
   //   }
   // }, [selectedItemId1, dataImages]);
   const [dataImage, setDataImage] = useState<DataType[]>([]);
+  const [dataImageArr, setDataImageArr] = useState<FileList>()
+
+  console.log('dataImageArr', dataImageArr);
 
   useEffect(() => {
     if (selectedItemId1) {
@@ -180,6 +183,8 @@ const DialogImage: React.FC<PropsDialog> = ({
                                     accept="image/*"
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                       if (e.target.files) {
+                                        console.log('fileupload: ', e.target.files);
+                                        setDataImageArr(e.target.files)
                                         const initialData = Array.from(e.target.files).map(
                                           (file) => ({
                                             imageUrl: URL.createObjectURL(file),

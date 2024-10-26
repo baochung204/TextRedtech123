@@ -2,9 +2,26 @@ import { axiosAPI } from '../axiosApi';
 
 const url = 'user-resources';
 
+export interface PropFileResource {
+  page?: number | null | undefined;
+  size?: number | null | undefined;
+  search_name?: string | null | undefined;
+}
+
 const userApi = {
-  getAllFiles: (page?: number, size?: number) => {
-    return axiosAPI.get(`/${url}/files?page=${page}&size=${size}`);
+  // getAllFiles: (page?: number, size?: number) => {
+  //   return axiosAPI.get(`/${url}/files?page=${page}&size=${size}`);
+  // },
+  getAllFiles: (object: PropFileResource = {}) => {
+    const urls = `/${url}/files`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
   },
   // getAllURL: (page?: number, size?: number) => {
   //   return axiosAPI.get(`/${url}/urls`);

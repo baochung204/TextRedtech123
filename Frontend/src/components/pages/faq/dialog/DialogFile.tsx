@@ -1,4 +1,4 @@
-import  React ,{useState} from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,6 +10,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Typography, Box, Snackbar, Alert } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import { dispatch } from 'src/store/Store';
+import { uploadFile } from 'src/store/user/user-resources/files/UploadFiles';
 
 interface PropsDialog {
     value: string,
@@ -34,21 +36,52 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         setOpen(false);
     };
     const [open1, setOpen1] = useState(false);
-    const [name, setName] = React.useState<string | null>(null);
-    const hanldeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files !== null) {
-            setName(event.target.files[0].name);
+    // const [name, setName] = useState<string | null>(null);
+    // const [dataform, setDataform] = useState<File>();
+    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (event.target.files !== null) {
+    //         console.log(event.target.files);
+    //         setName(event.target.files[0].name);
+    //         setDataform(event.target.files[0])
+    //     }
+    // }
+    // const handleSubmit = () => {
+    //     if (dataform) {
+    //         const formData = new FormData();
+    //         formData.append('file', dataform);
+    //         dispatch(uploadFile(formData))
+    //         handleClose();
+    //         setOpen1(true);
+    //         setTimeout(() => {
+    //             setOpen1(false);
+    //         }, 3000);
+    //     }
+    // };
+
+    const [files, setFiles] = useState<File[]>([]);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const selectedFiles = Array.from(event.target.files);
+            setFiles(selectedFiles);
         }
-
-    }
-    const handleSubmit = () => {
-
-        handleClose();
-        setOpen1(true);
-        setTimeout(() => {
-            setOpen1(false);
-        }, 3000);
     };
+
+    const handleSubmit = () => {
+        
+        if (files.length > 0) {     
+            const formData = new FormData();
+            files.forEach(file => formData.append('file', file));
+            dispatch(uploadFile(formData));
+            handleClose();
+            setOpen1(true);
+
+            setTimeout(() => {
+                setOpen1(false);
+            }, 3000);
+        }
+    };
+
     return (
         <>
             <Dialog
@@ -97,7 +130,8 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                             Tải file lên
                                             <VisuallyHiddenInput
                                                 type="file"
-                                                onChange={hanldeChange}
+                                                onChange={handleChange}
+                                                multiple
                                                 accept=".txt, .docx, .pdf, .pptx, .xlsx, .csv"
                                             />
                                         </Button>
@@ -105,7 +139,7 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                             Hỗ trợ: .txt, .docx, .pdf, .xlsx, .csv...
                                         </Typography>
                                     </Grid>
-                                    {name !== null &&
+                                    {files.length > 0 &&
                                         <Grid
                                             item
                                             sx={{
@@ -119,7 +153,14 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                                 sx={{ fontSize: 20 }}
                                             />
                                             <Typography >
-                                                {name}
+                                                {/* {name} tên */}
+                                                {files.map((item, index) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            {item.name}
+                                                        </div>
+                                                    )
+                                                })}
                                             </Typography>
                                         </Grid>
                                     }

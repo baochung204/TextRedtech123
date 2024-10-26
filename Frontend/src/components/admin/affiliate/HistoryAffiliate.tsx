@@ -26,113 +26,11 @@ import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import { DataHistoryTable } from './datatable/OrderTableData';
 import DialogViewHistory from './dialog/DialogViewHistory';
-const dataSource = [
-  {
-    bgColor: 'primary.light',
-    title: 'Số yêu cầu',
-    total: '1907',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconNumber color="white" size={30} /> */}
-          <img src={amountrequest} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Số tiền rút',
-    total: '190.720.030đ',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconBrandCashapp color="white" size={30} /> */}
-          <img src={amountwithdrawth} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Đã xử lý',
-    total: '123.406.789đ',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconBrandGumroad color="white" size={30} /> */}
-          <img src={done} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Chờ xử lý',
-    total: '123.406.789đ',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {/* <IconChartArcs color="white" size={30} /> */}
-          <img src={pending} width={30} />
-        </Box>
-      </>
-    ),
-  },
-];
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchOverviewWithdrawalHistoryData } from 'src/store/admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
 
-// const getStatusColor = (status: string) => {
-//   switch (status) {
-//     case 'Chờ duyệt':
-//       return 'warning'; // Yellow or custom color
-//     case 'Từ chối':
-//       return 'error'; // Red or custom color
-//     case 'Đã đi tiền':
-//       return 'success'; // Green or custom color
-//     default:
-//       return 'default'; // Gray or default color
-//   }
-// };
 const getStatusColor = (status: number) => {
   switch (status) {
     case 1:
@@ -155,8 +53,116 @@ interface Column {
 }
 
 const HistoryAffiliate = () => {
-  // const [selectedItems] = useState<number[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const dataWithdrawalHistoryOverview = useSelector(
+    (state: AppState) => state.overview_withdrawal_history.dataa,
+  );
+
+  useEffect(() => {
+    dispatch(fetchOverviewWithdrawalHistoryData());
+  }, [dispatch]);
   const [open, setOpen] = useState<boolean>(false);
+
+  // "totalRequests": 5,
+  // "totalWithdrawals": 8799.25,
+  // "totalProcessed": 3199.75,
+  // "totalPending": 5599.5
+
+  const totalRequests = dataWithdrawalHistoryOverview.totalRequests;
+  const totalWithdrawals = dataWithdrawalHistoryOverview.totalWithdrawals;
+  const totalProcessed = dataWithdrawalHistoryOverview.totalProcessed;
+  const totalPending = dataWithdrawalHistoryOverview.totalPending;
+
+  const dataSource = [
+    {
+      bgColor: 'primary.light',
+      title: 'Số yêu cầu',
+      total: totalRequests,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={amountrequest} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Số tiền rút',
+      total: totalWithdrawals,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={amountwithdrawth} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Đã xử lý',
+      total: totalProcessed,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={done} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Chờ xử lý',
+      total: totalPending,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={pending} width={30} />
+          </Box>
+        </>
+      ),
+    },
+  ];
 
   const column = useMemo<Column[]>(
     () => [
