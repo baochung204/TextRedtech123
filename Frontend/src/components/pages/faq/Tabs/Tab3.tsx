@@ -23,9 +23,8 @@ const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
   const data = useSelector((state: AppState) => state.file.data)
 
   useEffect(() => {
-    dispatch(fetchFile({ page_no: page, page_size: pageSize }));
+    dispatch(fetchFile({ page: page, size: pageSize }));
   }, [page, pageSize]);
-
 
   const columns = [
     { title: 'ID', dataIndex: 'fileId' },

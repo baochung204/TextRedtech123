@@ -21,7 +21,6 @@ import UserProfileReducer from './apps/userProfile/UserProfileSlice';
 import CustomizerReducer from './customizer/CustomizerSlice';
 import SelectedReducer from './RouterSlice';
 import productReducer from './apps/products/productsSlice';
-import UrlSlice from './apps/resources/url/UrlSlice';
 import CustomerReducer from './apps/customer/customerSlice';
 import CustomerAffiliate from './apps/customer/customerSliceAffiliate';
 import StrReducer from './apps/resources/str/strSlice';
@@ -98,7 +97,6 @@ const rootReducer = combineReducers({
   selectReducer: SelectedReducer,
   integration: integrationReducer,
   customer: CustomerReducer,
-  urlResources: UrlSlice,
   imageResources: ImageSlice,
   customeraffiliate: CustomerAffiliate,
   vnd_coupons: vndCouponsSlice,

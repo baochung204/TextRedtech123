@@ -32,16 +32,16 @@ const Tab2 = () => {
     dispatch(fetchFunction({ page, size: rowsPerPage }));
   }, [dispatch, page, rowsPerPage]);
 
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
+  const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedValue = parseInt(event.target.value, 10);
+    // console.log('Số hàng được chọn:', event.target.value);
+    setPage(1)
+    setRowsPerPage(selectedValue);
   };
+  const handlePageChange = (_event: unknown, newPage: number) => {
 
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    setPage(newPage + 1);
   };
-
 
   const handleClick = (item: Functions) => {
     setOpen(true);
@@ -61,7 +61,7 @@ const Tab2 = () => {
                 <Stack direction="row" gap={2} alignItems="center">
                   <Avatar
                     alt={item.functionName}
-                    src={item.badgeUrl || '/default-avatar.png'} // Fallback image
+                    src={item.badgeUrl || '/default-avatar.png'} 
                   />
                   <Box>
                     <Typography variant="h6" noWrap>
@@ -82,14 +82,17 @@ const Tab2 = () => {
       </Grid>
 
       <TablePagination
-        rowsPerPageOptions={[15, 18, 21]}
+        rowsPerPageOptions={[5, 10, 15]}
         component="div"
         count={totalElements} 
         rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        page={page - 1}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
         labelRowsPerPage="Số hàng trên mỗi trang"
+        labelDisplayedRows={({ page }) =>
+          `Trang ${page + 1}`
+        }
       />
 
       <DialogFunction open={open} setOpen={setOpen} data={data} />
