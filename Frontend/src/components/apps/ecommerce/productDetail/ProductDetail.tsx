@@ -1,8 +1,8 @@
 import {
-  Avatar,
   Box,
   Button,
   ButtonGroup,
+  Chip,
   Dialog,
   DialogContent,
   DialogContentText,
@@ -23,13 +23,11 @@ import { TransitionProps } from '@mui/material/transitions';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { default as logo, default as logoPoint } from 'src/assets/images/logos/R-Point.png';
-import { AppState, dispatch, useDispatch, useSelector } from 'src/store/Store';
+import { default as logo } from 'src/assets/images/logos/R-Point.png';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { addToCart, fetchProducts } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import AlertCart from '../productCart/AlertCart';
 import FlashSaleInDetailProduct from './flashSale/FlashSaleInDetailProduct';
-import { fetchProductById } from 'src/store/user/products/productByIdUseSlice';
-import { ProductInfoType } from 'src/store/user/products/type/productByIdType';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children: React.ReactElement },
@@ -37,14 +35,11 @@ const Transition = React.forwardRef(function Transition(
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-interface IProps {
-  productInfo: ProductInfoType | null;
-}
-const ProductDetail = ({ productInfo }: IProps) => {
-  const theme = useTheme();
-  // const dispatch = useDispatch();
-  const { id } = useParams();
 
+const ProductDetail = () => {
+  const theme = useTheme();
+  const productData = useSelector((state: AppState) => state.productById.data);
+  const { id } = useParams();
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
@@ -80,14 +75,20 @@ const ProductDetail = ({ productInfo }: IProps) => {
 
   return (
     <Box p={2}>
-      {productInfo ? (
+      {productData?.productInfo ? (
         <>
           {/* Title and description */}
+          <Chip
+            color="success"
+            label={productData?.productInfo?.category}
+            sx={{ width: 'auto', mt: '-20px', py: 1, px: 1 }}
+            variant="filled"
+          />
           <Typography fontWeight="600" variant="h4" mt={1}>
-            {productInfo?.name}
+            {productData?.productInfo?.name}
           </Typography>
           <Typography variant="subtitle2" mt={1} color={theme.palette.text.secondary}>
-            {productInfo?.description}
+            {productData?.productInfo?.description}
           </Typography>
           {/* Price */}
           <Typography mt={2} variant="h4" fontWeight={600}>
@@ -104,7 +105,7 @@ const ProductDetail = ({ productInfo }: IProps) => {
                   ml={1}
                   sx={{ textDecoration: 'line-through', opacity: 0.6 }}
                 >
-                  {productInfo?.point?.toLocaleString()}
+                  {productData?.productInfo?.point?.toLocaleString()}
                 </Typography>
               </Box>
               <Box
@@ -114,7 +115,7 @@ const ProductDetail = ({ productInfo }: IProps) => {
                 }}
               >
                 <Typography variant="h4">
-                  {productInfo?.priceAfterDiscount?.toLocaleString()}
+                  {productData?.productInfo?.priceAfterDiscount?.toLocaleString()}
                 </Typography>
                 <img
                   src={logo}
@@ -126,7 +127,7 @@ const ProductDetail = ({ productInfo }: IProps) => {
           </Typography>
           <Divider sx={{ marginTop: '20px' }} />
           {/* Quantity selection */}
-          {productInfo?.isQuantity && (
+          {productData?.productInfo?.isQuantity && (
             <Stack direction="row" alignItems="center" pb={5} sx={{ marginTop: '40px' }}>
               <Typography variant="h6" mr={4}>
                 Số lượng:
@@ -146,7 +147,7 @@ const ProductDetail = ({ productInfo }: IProps) => {
           )}
           <Divider />
           {/* Action buttons */}
-          {!productInfo?.isOwn && (
+          {!productData?.productInfo?.isOwn ? (
             <Grid container spacing={2} mt={5}>
               <Grid item xs={12} lg={4} md={6}>
                 <Button
@@ -172,6 +173,25 @@ const ProductDetail = ({ productInfo }: IProps) => {
                 >
                   Thêm giỏ hàng
                 </Button>
+              </Grid>
+            </Grid>
+          ) : (
+            <Grid container spacing={2} mt={2}>
+              <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                <Typography variant="h5" mt={1} mb={2} sx={{ color: '#FFAE1F' }} fontWeight={500}>
+                  Bạn đã sở hữu chatbot này!
+                </Typography>
+                <Typography
+                  variant="h6"
+                  mt={1}
+                  mb={2}
+                  color="warning"
+                  fontWeight={500}
+                  sx={{ color: 'gray' }}
+                >
+                  Nếu bạn cần thêm tính năng hoặc muốn mở rộng khả năng của mình, hãy xem xét việc
+                  mua thêm một chatbot khác để tận dụng tối đa lợi ích mà chúng mang lại.
+                </Typography>
               </Grid>
             </Grid>
           )}

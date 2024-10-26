@@ -137,6 +137,9 @@ const rootReducer = combineReducers({
   overview_ticket: ticketOverviewSlice,
   randomcoupon: couponRandomSlice,
 });
+
+const whitelistReducers = [''];
+
 const persistConfig = {
   key: 'root',
   storage,
