@@ -42,14 +42,6 @@ const BCrumb = [
   { to: 'admin/order', title: 'Quản lý khách hàng' },
 ];
 
-// interface StyleProps {
-//   bgColor: string;
-
-//   title: string;
-//   total: number | string | JSX.Element;
-//   icons: JSX.Element;
-// }
-
 interface Column {
   title: string;
   dataIndex: string;

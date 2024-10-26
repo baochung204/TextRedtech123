@@ -75,7 +75,14 @@ import listOrderSlice from './user/affiliate/overview/listOrderSlice';
 import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
 import ProductsSlice from 'src/store/user/products/productsUseSlice';
 import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
-
+import overviewNotificationSlice from './admin/notification/overview/notificationSlice';
+import overviewAffiliateSlice from './user/affiliate/overview/overviewSlice';
+import overviewBillSlice from './admin/contract/bill/overview/billOverviewSlice';
+import overviewContractRuleSlice from './admin/contract/contractrule/overview/contractRuleSlice';
+import overviewContractAffiliateSlice from './admin/contract/contractaffiliate/overview/contractAffiliateSlice';
+import overviewWithdrawalHistory from './admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
+import overviewPublisher from './admin/affiliate/publisher/overview/publisherOverviewSlice';
+import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -147,6 +154,14 @@ const rootReducer = combineReducers({
   overview_order: orderProductAdminSlice,
   overview_ticket: ticketOverviewSlice,
   randomcoupon: couponRandomSlice,
+  overview_notification: overviewNotificationSlice,
+  overview_affiliate: overviewAffiliateSlice,
+  overview_contractaffiliate: overviewContractAffiliateSlice,
+  overview_bill: overviewBillSlice,
+  overview_contractrule: overviewContractRuleSlice,
+  overview_withdrawal_history: overviewWithdrawalHistory,
+  overview_publisher: overviewPublisher,
+  overview_order_affiliate: overviewOrderAffiliate,
 });
 
 const whitelistReducers = [

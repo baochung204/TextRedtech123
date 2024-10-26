@@ -26,132 +26,11 @@ import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import { DataInvoiceTable } from './datatable/InvoiceTableData';
-const dataSource = [
-  {
-    bgColor: 'primary.light',
-    title: 'Hóa đơn',
-    total: '1907',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 45,
-            height: 45,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={bill} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'R-Point',
-    total: '190.720.030',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 45,
-            height: 45,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={RPoint} alt="RPoint" style={{ width: '30px', height: '30px' }} />,
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Doanh thu',
-    total: '123.456.789₫',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={revenue} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Hoa hồng',
-    total: '123.456.789₫',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={commission} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Đã xuất',
-    total: '123456',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={IconWaitingForExport} width={30} />
-      </Box>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Chờ xuất',
-    total: '1235',
-    icons: (
-      <Box
-        textAlign="center"
-        padding={1}
-        sx={{
-          width: 45,
-          height: 45,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <img src={IconExport} width={30} />
-      </Box>
-    ),
-  },
-];
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useSelector } from 'react-redux';
+import { fetchOverviewBillData } from 'src/store/admin/contract/bill/overview/billOverviewSlice';
+
 interface Column {
   title: string;
   dataIndex: string;
@@ -160,13 +39,158 @@ interface Column {
 }
 
 const Invoice = () => {
-  // const [selectedItems] = useState<number[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const dataBillOverview = useSelector((state: AppState) => state.overview_bill.dataa);
+  useEffect(() => {
+    dispatch(fetchOverviewBillData());
+  }, [dispatch]);
+
+  // "totalEInvoice": 10,
+  //   "totalPoint": 9000000,
+  //   "totalRevenue": 8040000,
+  //   "commission": 8040000,
+  //   "daXuat": 1,
+  //   "choXuat": 9
+
+  const totalEInvoice = dataBillOverview.totalEInvoice;
+  const totalPoint = dataBillOverview.totalPoint;
+  const totalRevenue = dataBillOverview.totalRevenue;
+  const commissiondata = dataBillOverview.commission;
+  const daXuat = dataBillOverview.daXuat;
+  const choXuat = dataBillOverview.choXuat;
+
+  const dataSource = [
+    {
+      bgColor: 'primary.light',
+      title: 'Hóa đơn',
+      total: totalEInvoice,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 45,
+              height: 45,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={bill} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'R-Point',
+      total: totalPoint,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 45,
+              height: 45,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={RPoint} alt="RPoint" style={{ width: '30px', height: '30px' }} />,
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Doanh thu',
+      total: totalRevenue,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={revenue} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Hoa hồng',
+      total: commissiondata,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={commission} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Đã xuất',
+      total: daXuat,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={IconWaitingForExport} width={30} />
+        </Box>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Chờ xuất',
+      total: choXuat,
+      icons: (
+        <Box
+          textAlign="center"
+          padding={1}
+          sx={{
+            width: 45,
+            height: 45,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src={IconExport} width={30} />
+        </Box>
+      ),
+    },
+  ];
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
         dataIndex: 'id_bill',
-        // isValids: true,
       },
 
       {

@@ -10,9 +10,7 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Switch,
   TextField,
-  Typography,
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons-react';
 import { useEffect, useMemo, useState } from 'react';
@@ -22,99 +20,11 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 // import DialogAddNotification from 'src/views/admin/notification/dialog/DialogAddNotification';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import AddNotification from './add/AddNotification';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
-
-const DataBox = [
-  {
-    bgColor: 'primary.light',
-    title: 'Thông báo',
-    total: '120',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={notification} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  {
-    bgColor: 'primary.light',
-    title: 'Tags',
-    total: '39',
-    icons: (
-      <>
-        <Box
-          textAlign="center"
-          padding={1}
-          sx={{
-            width: 40,
-            height: 40,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img src={tags} width={30} />
-        </Box>
-      </>
-    ),
-  },
-  // {
-  //   bgColor: 'primary.light',
-  //   title: 'Lượt xem',
-  //   total: '21.369',
-  //   icons: (
-  //     <>
-  //       <Box
-  //         textAlign="center"
-  //         padding={1}
-  //         sx={{
-  //           width: 40,
-  //           height: 40,
-  //           display: 'flex',
-  //           justifyContent: 'center',
-  //           alignItems: 'center',
-  //         }}
-  //       >
-  //         <img src={view} width={30} />
-  //       </Box>
-  //     </>
-  //   ),
-  // },
-  // {
-  //   bgColor: 'primary.light',
-  //   title: 'Tương tác',
-  //   total: '236',
-  //   icons: (
-  //     <>
-  //       <Box
-  //         textAlign="center"
-  //         padding={1}
-  //         sx={{
-  //           width: 40,
-  //           height: 40,
-  //           display: 'flex',
-  //           justifyContent: 'center',
-  //           alignItems: 'center',
-  //         }}
-  //       >
-  //         <img src={interact} width={30} />
-  //       </Box>
-  //     </>
-  //   ),
-  // },
-];
+import { fetchOverviewNotificationData } from 'src/store/admin/notification/overview/notificationSlice';
+import { AppDispatch, AppState, useSelector } from 'src/store/Store';
+import AddNotification from './add/AddNotification';
+import { useDispatch } from 'react-redux';
 
 interface INotification {
   id: string; // ID thông báo
@@ -128,17 +38,6 @@ interface INotification {
   status: number; // Trạng thái của thông báo
   description: string;
 }
-
-const getStatusTextAndColor = (status: number) => {
-  switch (status) {
-    case 1:
-      return { text: 'Đã đăng', color: '#13DEB9' };
-    case 2:
-      return { text: 'Nháp', color: '#ff9800' };
-    default:
-      return { text: 'Không xác định', color: '#000000' };
-  }
-};
 
 const dataRows: INotification[] = [
   {
@@ -226,7 +125,20 @@ interface Column {
 }
 
 const ContentNotification = () => {
-  // const [selectedItems] = useState<number[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const notificationOverview = useSelector((state: AppState) => state.overview_notification.dataa);
+
+  useEffect(() => {
+    dispatch(fetchOverviewNotificationData());
+  }, [dispatch]);
+
+  // "totalNotificationUpdate": 0,
+  //   "totalTag": 0
+  console.log(notificationOverview);
+
+  const totalNotificationUpdate = notificationOverview.totalNotificationUpdate;
+  const totalTag = notificationOverview.totalTag;
+
   const [isCheckSwitchIds, setIsCheckSwitchIds] = useState<string[]>([]);
   const handleCheckSwitch = (id: string) => {
     setIsCheckSwitchIds((prevSelected) =>
@@ -235,6 +147,53 @@ const ContentNotification = () => {
         : [...prevSelected, id],
     );
   };
+
+  const DataBox = [
+    {
+      bgColor: 'primary.light',
+      title: 'Thông báo',
+      total: totalNotificationUpdate,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={notification} width={30} />
+          </Box>
+        </>
+      ),
+    },
+    {
+      bgColor: 'primary.light',
+      title: 'Tags',
+      total: totalTag,
+      icons: (
+        <>
+          <Box
+            textAlign="center"
+            padding={1}
+            sx={{
+              width: 40,
+              height: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <img src={tags} width={30} />
+          </Box>
+        </>
+      ),
+    },
+  ];
 
   const column = useMemo<Column[]>(
     () => [
