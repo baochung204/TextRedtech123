@@ -37,19 +37,14 @@ const Transition = forwardRef(function Transition(
 
 const PurchaseHistoryInProfile = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [page, setPage] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
-
-  console.log('orderhistoryxlist', orderhistorylist.content);
-  console.log('orderhistoryxdetail', orderhistorydetail);
-
-
   useEffect(() => {
-    dispatch(fetchHistoryOrderListData({}));
-  }, []);
+    dispatch(fetchHistoryOrderListData({page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
 
   const handleOpen = (id: number) => {
@@ -61,6 +56,11 @@ const PurchaseHistoryInProfile = () => {
   const handleCloseDialog = () => {
     setOpen(!open);
   };
+
+
+  console.log(orderhistorylist.pageNo);
+
+
   const columns: Column[] = [
     {
       dataIndex: 'orderId',
@@ -167,7 +167,7 @@ const PurchaseHistoryInProfile = () => {
           <CustomTable
             columns={columns}
             dataSource={orderhistorylist.content}
-            count={orderhistorylist.pageNo}
+            count={orderhistorylist.totalElements}
             rowsPerPage={rowsPerPage}
             page={page}
             setPage={setPage}

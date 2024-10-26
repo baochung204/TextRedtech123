@@ -1,78 +1,58 @@
+
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import { Typography, Box, TextField, Snackbar, Alert, IconButton } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography, Box, TextField, Snackbar, Alert, IconButton, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
+import { Formik, FieldArray, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { PropsForm } from 'src/api/user/resources/PostResourceUser';
+import { dispatch } from 'src/store/Store';
+import { uploadUrls } from 'src/store/user/user-resources/files/UploadUrl';
+
 
 interface PropsDialog {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     value: string;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-interface PropsForm {
-    url: string,
-    title: string,
-    describe: string,
-}
 
-const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
-    const [formData, setFormData] = useState<PropsForm[]>([{
-        url: '',
-        title: '',
-        describe: '',
-    }]);
-    const [open1, setOpen1] = useState(false);
 
-    // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const { name, value } = event.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value,
-    //     });
-    // };
+const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen, setPage }) => {
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+
 
     const handleClose = () => {
         setOpen(false);
-        resetForm();
     };
 
-    const handleSubmit = () => {
-        console.log(formData);
+    const handleSnackbarClose = () => {
+        setOpenSnackbar(false);
+    };
+
+    const handleSubmit = (values: any[]) => {
+        dispatch(uploadUrls(values))
+        setOpenSnackbar(true);
+        setPage(1)
         handleClose();
-        setOpen1(true);
         setTimeout(() => {
-            setOpen1(false);
+            setOpenSnackbar(false);
         }, 3000);
     };
 
-    const resetForm = () => {
-        setFormData([{
-            url: '',
-            title: '',
-            describe: '',
-        }]);
-    };
-
-    console.log('formdata: ', formData.length);
+    // console.log(formData);
 
 
-    const handleClick = () => {
-        const data = [...formData];
-        data.push({
-            url: '',
-            title: '',
-            describe: '',
-        })
-        setFormData(data)
-        console.log('formdata: ', formData.length);
-
-    }
+    const validationSchema = Yup.object().shape({
+        formData: Yup.array().of(
+            Yup.object().shape({
+                url: Yup.string().required("URL không được để trống"),
+                title: Yup.string().required("Tiêu đề không được để trống"),
+                description: Yup.string().required("Mô tả không được để trống"),
+            })
+        ),
+    });
 
     return (
         <>
@@ -88,11 +68,7 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                         justifyContent: 'center'
                     }}
                 >
-                    <Box
-                        sx={{
-                            paddingBottom: 2
-                        }}
-                    >
+                    <Box sx={{ paddingBottom: 2 }}>
                         <Typography fontWeight={600} variant='h3'>
                             Thêm URL
                         </Typography>
@@ -100,94 +76,119 @@ const DialogURL: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                 </DialogTitle>
                 <Scrollbar_y sx={{ maxHeight: 500 }}>
                     <DialogContent>
-                        {formData.map((item, index) => {
-                            return (
-                                <Grid container spacing={2} key={index}>
-                                    <Grid item xs={4}>
-                                        <Typography fontWeight={600}>URL</Typography>
-                                        <TextField
-                                            name="url"
-                                            value={item.url}
-                                            onChange={(e) => {
-                                                const data = [...formData];
-                                                data[index].url = e.target.value;
-                                                setFormData(data)
-                                            }}
-                                            fullWidth
-                                            margin="normal"
-                                        />
-                                    </Grid>
-                                    <Grid item xs={4}>
-                                        <Typography fontWeight={600}>Tiêu đề</Typography>
-                                        <TextField
-                                            name="title"
-                                            value={item.title}
-                                            onChange={(e) => {
-                                                const data = [...formData];
-                                                data[index].title = e.target.value;
-                                                setFormData(data)
-                                            }}
-                                            fullWidth
-                                            margin="normal"
-                                        />
-                                    </Grid>
-                                    <Grid item xs={4}>
-                                        <Typography fontWeight={600}>Mô tả</Typography>
-                                        <TextField
-                                            name="url"
-                                            value={item.describe}
-                                            onChange={(e) => {
-                                                const data = [...formData];
-                                                data[index].describe = e.target.value;
-                                                setFormData(data)
-                                            }}
-                                            fullWidth
-                                            margin="normal"
-                                        />
-                                    </Grid>
-                                </Grid>
-
-                            )
-                        })}
-                        <IconButton
-                            sx={{
-                                backgroundColor: 'error.light',
-                                color: 'error.main',
-                                "&: hover": {
-                                    backgroundColor: 'error.main',
-                                    color: 'white'
-                                }
+                        <Formik
+                            initialValues={{
+                                formData: [{ url: '', title: '', description: '' }] as PropsForm[],
                             }}
-                            onClick={handleClick}
-
+                            onSubmit={(values) => handleSubmit(values.formData)}
+                            validationSchema={validationSchema}
                         >
-                            <AddIcon sx={{ fontSize: '15px' }} />
-                        </IconButton>
+                            {({ values, errors, touched }) => (
+                                <Form>
+                                    <FieldArray name="formData">
+
+                                        {({ push }) => (
+                                            <>
+                                                {values.formData && values.formData.length > 0 ? (
+                                                    values.formData.map((_item, index) => (
+                                                        <Grid container spacing={2} key={index}>
+                                                            <Grid item xs={4}>
+                                                                <Typography fontWeight={600}>URL</Typography>
+                                                                <Field
+                                                                    name={`formData[${index}].url`}
+                                                                    as={TextField}
+                                                                    fullWidth
+                                                                    margin="normal"
+                                                                    error={
+                                                                        touched.formData && touched.formData[index]?.url &&
+                                                                        errors.formData && (errors.formData[index] as any)?.url
+                                                                    }
+                                                                    helperText={
+                                                                        touched.formData && touched.formData[index]?.url &&
+                                                                        <ErrorMessage name={`formData[${index}].url`} />
+                                                                    }
+                                                                />
+                                                            </Grid>
+                                                            <Grid item xs={4}>
+                                                                <Typography fontWeight={600}>Tiêu đề</Typography>
+                                                                <Field
+                                                                    name={`formData[${index}].title`}
+                                                                    as={TextField}
+                                                                    fullWidth
+                                                                    margin="normal"
+                                                                    error={
+                                                                        touched.formData && touched.formData[index]?.title &&
+                                                                        errors.formData && (errors.formData[index] as any)?.title
+                                                                    }
+                                                                    helperText={
+                                                                        touched.formData && touched.formData[index]?.title &&
+                                                                        <ErrorMessage name={`formData[${index}].title`} />
+                                                                    }
+                                                                />
+                                                            </Grid>
+                                                            <Grid item xs={4}>
+                                                                <Typography fontWeight={600}>Mô tả</Typography>
+                                                                <Field
+                                                                    name={`formData[${index}].description`}
+                                                                    as={TextField}
+                                                                    fullWidth
+                                                                    margin="normal"
+                                                                    error={
+                                                                        touched.formData && touched.formData[index]?.description &&
+                                                                        errors.formData && (errors.formData[index] as any)?.description
+                                                                    }
+                                                                    helperText={
+                                                                        touched.formData && touched.formData[index]?.description &&
+                                                                        <ErrorMessage name={`formData[${index}].description`} />
+                                                                    }
+                                                                />
+                                                            </Grid>
+                                                        </Grid>
+                                                    ))
+                                                ) : (
+                                                    <Typography>No items available. Please add a new URL entry.</Typography>
+                                                )}
+                                                <IconButton
+                                                    sx={{
+                                                        backgroundColor: 'error.light',
+                                                        color: 'error.main',
+                                                        "&:hover": {
+                                                            backgroundColor: 'error.main',
+                                                            color: 'white'
+                                                        }
+                                                    }}
+                                                    onClick={() => push({ url: '', title: '', description: '' })}
+                                                >
+                                                    <AddIcon sx={{ fontSize: '15px' }} />
+                                                </IconButton>
+                                            </>
+                                        )}
+
+                                    </FieldArray>
+                                    <DialogActions>
+                                        <Button color="primary" variant="contained" type="submit">
+                                            Thêm
+                                        </Button>
+                                        <Button onClick={handleClose}>Đóng</Button>
+                                    </DialogActions>
+                                </Form>
+                            )}
+
+                        </Formik>
                     </DialogContent>
                 </Scrollbar_y>
 
-                <DialogActions>
-                    <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={handleSubmit}
-                    >
-                        Thêm
-                    </Button>
-                    <Button onClick={handleClose}>Đóng</Button>
-                </DialogActions>
+                <Snackbar
+                    open={openSnackbar}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                    onClose={handleSnackbarClose}
+                    autoHideDuration={3000}
+                >
+                    <Alert variant="filled" severity="success" sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+                        Thành công!
+                    </Alert>
+                </Snackbar>
             </Dialog>
-
-            <Snackbar
-                open={open1}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            >
-                <Alert variant="filled" severity="success" sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-                    Thành công!
-                </Alert>
-            </Snackbar>
-
-
         </>
     );
 };

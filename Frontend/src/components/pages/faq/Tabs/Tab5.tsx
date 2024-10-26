@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton } from '@mui/material';
+import { Box,  Grid, IconButton } from '@mui/material';
 import { IconEye, IconTrash } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,10 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchImages } from 'src/store/user/user-resources/images/imagesUesSlice';
 import DialogImage from '../dialog/DialogImage';
-// import { ModelType } from 'src/store/user/user-resources/models/type/modelsType';
+import Checkbox from '@mui/material/Checkbox';
+import { DeleteResourceActionImage } from 'src/store/user/user-resources/files/DeleteResourceUser';
+
+
 
 interface PropsTab5 {
   value: string;
@@ -29,13 +32,13 @@ const Tab5: React.FC<PropsTab5> = ({
   const [key, setKey] = useState<number | null>(null);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const data = useSelector((state: AppState) => state.resourcesImages.data);
-  // const {totalElements=0}:ModelType = useSelector((state: AppState) => state.resourcesImages.data);
   console.log(data);
-
+  const [check, setCheck] = useState<boolean>(false)
   useEffect(() => {
     dispatch(fetchImages({ page, size: rowsPerPage }));
-  }, [dispatch, page, rowsPerPage]);
+  }, [page, rowsPerPage]);
 
   const onHandleOpenImageById = (id: number) => {
     setKey(id);
@@ -43,20 +46,62 @@ const Tab5: React.FC<PropsTab5> = ({
     setCheckOption('view');
   };
 
-  // const onHandleRemove = (id: string) => {
-  //   dispatch(removeImage(id));
-  // };
-  // const handleChangePage = (_event: unknown, newPage: number) => {
-  //   setPage(newPage);
+  // const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.checked) {
+  //     const allIds = data.content.map((item: any) => item.imageId);
+  //     setSelectedIds(allIds);
+  //   } else {
+  //     setSelectedIds([]);
+  //   }
   // };
 
-  // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newSize = parseInt(event.target.value, 10);
-  //   setRowsPerPage(newSize);
-  //   setPage(0);
-  // };
+  const handleSelect = (id: number) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  };
+
+  const handleDelete = () => {
+    dispatch(DeleteResourceActionImage(selectedIds))
+    console.log('dataselect', selectedIds);
+
+  }
 
   const column: Column[] = [
+    ...(check ? [
+      {
+        title:
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+          >
+            <IconButton
+              disabled={selectedIds.length > 0 ? false : true}
+              onClick={handleDelete}
+            >
+              <IconTrash
+                stroke={2}
+                style={{ color: selectedIds.length > 0 ? '#FA896B' : '#8A909A' }}
+              />
+            </IconButton>
+          </Box>,
+        dataIndex: 'selectAll',
+        render: (_: any, value: any) =>
+          <Checkbox
+            sx={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+            size="small"
+            checked={selectedIds.includes(value.imageId)}
+            onChange={() => handleSelect(value.imageId)}
+          />
+      },
+    ] : []),
     {
       title: 'ID',
       dataIndex: 'imageId',
@@ -68,7 +113,9 @@ const Tab5: React.FC<PropsTab5> = ({
     {
       title: 'Hình ảnh',
       dataIndex: 'imageUrl',
-      render: (value: string) => <Box component="img" src={value} alt="" width={50} height={50} />,
+      render: (value: string) => (
+        <Box component="img" src={value} alt="" width={50} height={50} />
+      ),
     },
     {
       title: 'Tên ảnh',
@@ -88,16 +135,12 @@ const Tab5: React.FC<PropsTab5> = ({
       render: (_row: any, value: any) => (
         <Grid container>
           <Grid item xs={4}>
-            <IconButton
-              onClick={() => {
-                onHandleOpenImageById(value.imageId);
-              }}
-            >
+            <IconButton onClick={() => onHandleOpenImageById(value.imageId)}>
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
           </Grid>
           <Grid item xs={4}>
-            <IconButton>
+            <IconButton onClick={() => setCheck(!check)}>
               <IconTrash stroke={2} style={{ color: '#FA896B' }} />
             </IconButton>
           </Grid>

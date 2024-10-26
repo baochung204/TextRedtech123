@@ -16,7 +16,7 @@ export interface PropOrderHistoryList {
 
 const OrderHistoryListApi = {
   getOrderHistoryList: (object: PropOrderHistoryList = {}) => {
-    const urls = `/${url}/list-order-v2`
+    const urls = `/${url}/list-order-v2`;
     const query = Object.entries(object)
       .filter(([, value]) => value !== null && value !== undefined)
       .map(([key, value]) => `${key}=${value}`)

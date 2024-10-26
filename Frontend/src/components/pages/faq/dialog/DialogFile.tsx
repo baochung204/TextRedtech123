@@ -36,31 +36,52 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
         setOpen(false);
     };
     const [open1, setOpen1] = useState(false);
-    const [name, setName] = useState<string | null>(null);
-    const [dataform, setDataform] = useState<File>();
-    const hanldeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files !== null) {
-            console.log(event.target.files);
+    // const [name, setName] = useState<string | null>(null);
+    // const [dataform, setDataform] = useState<File>();
+    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (event.target.files !== null) {
+    //         console.log(event.target.files);
+    //         setName(event.target.files[0].name);
+    //         setDataform(event.target.files[0])
+    //     }
+    // }
+    // const handleSubmit = () => {
+    //     if (dataform) {
+    //         const formData = new FormData();
+    //         formData.append('file', dataform);
+    //         dispatch(uploadFile(formData))
+    //         handleClose();
+    //         setOpen1(true);
+    //         setTimeout(() => {
+    //             setOpen1(false);
+    //         }, 3000);
+    //     }
+    // };
 
-            setName(event.target.files[0].name);
-            setDataform(event.target.files[0])
+    const [files, setFiles] = useState<File[]>([]);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const selectedFiles = Array.from(event.target.files);
+            setFiles(selectedFiles);
         }
-    }
+    };
+
     const handleSubmit = () => {
-        console.log('dataform', dataform);
-        if (dataform) {
-
+        
+        if (files.length > 0) {     
             const formData = new FormData();
-            formData.append('file', dataform);
-
-            dispatch(uploadFile(formData))
+            files.forEach(file => formData.append('file', file));
+            dispatch(uploadFile(formData));
             handleClose();
             setOpen1(true);
+
             setTimeout(() => {
                 setOpen1(false);
             }, 3000);
         }
     };
+
     return (
         <>
             <Dialog
@@ -109,7 +130,8 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                             Tải file lên
                                             <VisuallyHiddenInput
                                                 type="file"
-                                                onChange={hanldeChange}
+                                                onChange={handleChange}
+                                                multiple
                                                 accept=".txt, .docx, .pdf, .pptx, .xlsx, .csv"
                                             />
                                         </Button>
@@ -117,7 +139,7 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                             Hỗ trợ: .txt, .docx, .pdf, .xlsx, .csv...
                                         </Typography>
                                     </Grid>
-                                    {name !== null &&
+                                    {files.length > 0 &&
                                         <Grid
                                             item
                                             sx={{
@@ -131,7 +153,14 @@ const DialogFile: React.FC<PropsDialog> = ({ value, open, setOpen }) => {
                                                 sx={{ fontSize: 20 }}
                                             />
                                             <Typography >
-                                                {name}
+                                                {/* {name} tên */}
+                                                {files.map((item, index) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            {item.name}
+                                                        </div>
+                                                    )
+                                                })}
                                             </Typography>
                                         </Grid>
                                     }
