@@ -164,12 +164,16 @@ const rootReducer = combineReducers({
   overview_order_affiliate: overviewOrderAffiliate,
 });
 
+<<<<<<< HEAD
+const whitelistReducers = [''];
+=======
 const whitelistReducers = [
   'randomcoupon',
   'point_list',
   'historyorder_detail',
   'historyorder_list',
 ];
+>>>>>>> cf48844e2fd00197f9edb4e2a62b4066415b6e16
 
 const persistConfig = {
   key: 'root',

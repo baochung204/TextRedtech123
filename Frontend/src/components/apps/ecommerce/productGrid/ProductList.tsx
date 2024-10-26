@@ -39,8 +39,8 @@ interface Props {
 const ProductList = ({ onClick }: Props) => {
   // const dispatch = useDispatch();
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(9);
   const [sortDir, setSortDir] = useState(true);
   const Products = useSelector((state: AppState) => state.products.data);
   useEffect(() => {

@@ -262,7 +262,7 @@ const PopupAdd = () => {
             </Grid>
             <Grid item xs={12}>
               <CustomFormLabel htmlFor="shipping-cost" sx={{ mt: 0 }}>
-                Chi phí giao hàng
+                Thời gian và phương thức giao hàng
               </CustomFormLabel>
               <CustomTextField
                 id="shipping-cost"

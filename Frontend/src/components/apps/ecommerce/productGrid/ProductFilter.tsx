@@ -60,22 +60,28 @@ const ProductFilter = () => {
       icon: IconHanger,
     },
     {
-      id: 9,
+      id: 4,
       name: 'Function',
       sort: 'chatbox',
       icon: IconNotebook,
     },
     {
-      id: 10,
+      id: 5,
       name: 'Files',
       sort: 'openai',
       icon: IconMoodSmile,
     },
     {
-      id: 11,
+      id: 6,
       name: 'Model',
       sort: 'electronics',
       icon: IconDeviceLaptop,
+    },
+    {
+      id: 7,
+      name: 'Trợ lý',
+      sort: 'assistants',
+      icon: IconMoodSmile,
     },
     {
       id: 6,
