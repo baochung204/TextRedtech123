@@ -32,6 +32,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { useSelector } from 'react-redux';
 import { fetchOverviewOrderProductData } from 'src/store/admin/sell/orderproduct/overview/orderproductSlice';
+import { fetchOrderProductListData } from 'src/store/admin/sell/orderproduct/table/listOrderProductSlice';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -51,12 +52,13 @@ const ProductAdmin = () => {
   const [, setCheckValue] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const dataOrderProductOverview = useSelector((state: AppState) => state.overview_order.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
-  // "totalOrder": 8,
-  //   "totalValue": 7009,
-  //   "totalPromotion": 1509,
-  //   "totalPayment": 5500,
-  //   "aov": 687.5
+  const orderProductList = useSelector((state: AppState) => state.list_order_product.dataa);
+  useEffect(() => {
+    dispatch(fetchOrderProductListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const totalOrder = dataOrderProductOverview.totalOrder;
   const totalValue = dataOrderProductOverview.totalValue;
@@ -217,62 +219,77 @@ const ProductAdmin = () => {
 
   console.log(dataOrderProductOverview);
 
+  console.log(orderProductList);
+
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_don_hang',
+        dataIndex: 'orderId',
       },
       {
         title: 'Ngày mua',
-        dataIndex: 'createdAt',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.createdAt.toLocaleDateString()}
-          </Typography>
-        ),
+        dataIndex: 'date',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'ID',
-        dataIndex: 'id_khach_hang',
+        dataIndex: 'userId',
       },
       {
         title: 'Tên khách hàng',
-        dataIndex: 'ten_khach_hang',
+        dataIndex: 'nameUser',
       },
       {
         title: 'Giá niêm yết',
-        dataIndex: 'gia_niem_yet',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.gia_niem_yet}
-            <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
-          </Typography>
-        ),
+        dataIndex: 'point',
+        render: (_row: any, value: any) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value.point);
+
+          return (
+            <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+              {formattedValue}
+              <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+            </Typography>
+          );
+        },
       },
       {
         title: 'Khuyến mại',
-        dataIndex: 'khuyen_mai',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.khuyen_mai}
-            <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
-          </Typography>
-        ),
+        dataIndex: 'promotion',
+        render: (_row: any, value: any) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value.promotion);
+
+          return (
+            <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+              {formattedValue}
+              <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+            </Typography>
+          );
+        },
       },
       {
         title: 'Thanh toán',
-        dataIndex: 'thanh_toan',
+        dataIndex: 'payment',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.thanh_toan}
+            {value.payment}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
           </Typography>
         ),
       },
       {
         title: 'Thao tác',
-        dataIndex: 'thaotac',
+        dataIndex: '',
         render: (_value: any, row: any) => (
           <IconButton
             onClick={() => {
@@ -332,18 +349,7 @@ const ProductAdmin = () => {
                 }}
               >
                 <Grid container sx={{ alignItems: 'center' }}>
-                  <Grid item>
-                    {/* <IconButton
-                      color="primary"
-                      aria-label="Add to cart"
-                      onClick={() => {
-                        setOpen(true);
-                        setCheckValue('add');
-                      }}
-                    >
-                      <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton> */}
-                  </Grid>
+                  <Grid item></Grid>
                   <Grid item>
                     <TextField
                       id="outlined-search"
@@ -452,16 +458,18 @@ const ProductAdmin = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
+            <CustomTable
+              columns={column}
+              dataSelect={dataSelect}
+              dataSource={orderProductList.content}
+              count={orderProductList.totalElements}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              setPage={setPage}
+              setRowsPerPage={setRowsPerPage}
+            />
           </Grid>
         </Grid>
-        {/* <DialogProduct
-          open={open}
-          setOpen={setOpen}
-          checkValue={checkValue}
-          setCheckValue={setCheckValue}
-          selectID={selectID}
-        /> */}
         <DialogDetailOrder open={open} setOpen={setOpen} />
       </PageContainer>
     </>

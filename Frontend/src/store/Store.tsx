@@ -8,7 +8,6 @@ import {
 } from 'react-redux';
 import { combineReducers } from 'redux';
 
-
 import BlogReducer from './apps/blog/BlogSlice';
 import ChatsReducer from './apps/chat/ChatSlice';
 import ContactsReducer from './apps/contacts/ContactSlice';
@@ -72,7 +71,7 @@ import historyOrderListSlice from './user/historyorder/historyOrderSlice';
 import historyDialogSlice from './user/historyorder/historyDialogSlice';
 import historyPaymentSlice from './user/affiliate/overview/historyPaymentSlice';
 import listOrderSlice from './user/affiliate/overview/listOrderSlice';
-import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
+import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice';
 import ProductsSlice from 'src/store/user/products/productsUseSlice';
 import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
 import overviewNotificationSlice from './admin/notification/overview/notificationSlice';
@@ -83,6 +82,13 @@ import overviewContractAffiliateSlice from './admin/contract/contractaffiliate/o
 import overviewWithdrawalHistory from './admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
 import overviewPublisher from './admin/affiliate/publisher/overview/publisherOverviewSlice';
 import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
+import listContractAffiliateSlice from './admin/contract/contractaffiliate/table/contractAffiliateListSlice';
+import listContractRuleSlice from './admin/contract/contractrule/table/contractRuleSlice';
+import listOrderAffiliateSlice from './admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
+import listPublisherSlice from './admin/affiliate/publisher/table/listPublisherSlice';
+import historyWithdrawalSlice from './admin/affiliate/historywithdrawal/table/historyWithdrawalSlice';
+import orderProductListSlice from './admin/sell/orderproduct/table/listOrderProductSlice';
+import listBillSlice from './admin/contract/bill/table/listBillSlice';
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -162,6 +168,13 @@ const rootReducer = combineReducers({
   overview_withdrawal_history: overviewWithdrawalHistory,
   overview_publisher: overviewPublisher,
   overview_order_affiliate: overviewOrderAffiliate,
+  list_contract_affiliate: listContractAffiliateSlice,
+  list_contract_rule: listContractRuleSlice,
+  list_order_affiliate: listOrderAffiliateSlice,
+  list_publisher: listPublisherSlice,
+  list_withdrawal_history: historyWithdrawalSlice,
+  list_order_product: orderProductListSlice,
+  list_bill: listBillSlice,
 });
 // const whitelistReducers = [''];
 const whitelistReducers = [
@@ -179,10 +192,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-
-
-
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -197,81 +206,3 @@ export const { dispatch } = store;
 export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
 export default store;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const store = configureStore({
-//   reducer: {
-//     //user
-//     customizer: CustomizerReducer,
-//     ecommerceReducer: EcommerceReducer,
-//     chatReducer: ChatsReducer,
-//     emailReducer: EmailReducer,
-//     notesReducer: NotesReducer,
-//     contactsReducer: ContactsReducer,
-//     ticketReducer: TicketReducer,
-//     userpostsReducer: UserProfileReducer,
-//     blogReducer: BlogReducer,
-//     selectReducer: SelectedReducer,
-//     integration: integrationReducer,
-//     customer: CustomerReducer,
-//     urlResources: UrlSlice,
-//     imageResources: ImageSlice,
-//     product: productReducer,
-//     customeraffiliate: CustomerAffiliate,
-//     vnd_coupons: vndCouponsSlice,
-//     str: StrReducer,
-//     function: functionReducer,
-//     file: fileReducer,
-//     test: userSlice,
-//     assisstant: assistantSlice,
-//     twofa: twofaSlice,
-//     flashsale_random: flashSaleRandomSlice,
-//     adminTicker: adminTicketSlice,
-//     cart: cartSlice,
-//     // overViewTicket: overViewTicketSlice,
-//     userme: usermeSlice,
-//     staff: staffSlice,
-//     resourcesCampaigns: CampaignsSlice,
-//     resourcesFunctions: functionsSlice,
-//     resourcesFiles: filesSlice,
-//     resourcesModels: ModelsSlice,
-//     resourcesImages: imagesSlice,
-//     resourcesUrls: urlsSlice,
-//     affiliate: affiliateApiSlice,
-//     blogs: BlogSlice,
-//     point_list: listPointSlice,
-//     //admin
-//     overview_blog: blogSlice,
-//     overview_counpon: counponSlice,
-//     counpon_history: counponhistorySlice,
-//     overview_flashsale: flashsaleoverviewSlice,
-//     counpon_list: counponlistSlice,
-//     flashsale_list: flashsaleSlice,
-//     overview_staff: staffoverviewSlice,
-//     overview_campaign: CampaignSlice,
-//     overview_function: functionSlice,
-//     overview_files: fileSlice,
-//     overview_models: modelSlice,
-//     campaign_list: CampaignListSlice,
-//     files_list: fileListSlice,
-//     function_list: functionListSlice,
-//     model_list: modelListSlice,
-//     overview_customer: customerAdminSlice,
-//     overview_product: productAdminSlice,
-//     overview_order: orderProductAdminSlice,
-//   },
-// });
-

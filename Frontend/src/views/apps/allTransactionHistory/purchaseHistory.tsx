@@ -33,14 +33,15 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-
 const PurchaseHistoryInProfile = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
+
+  console.log('orderhistoryxlist', orderhistorylist.content);
+  console.log('orderhistoryxdetail', orderhistorydetail);
 
   useEffect(() => {
     dispatch(fetchHistoryOrderListData({page_no: page, page_size: rowsPerPage }));
@@ -69,11 +70,6 @@ const PurchaseHistoryInProfile = () => {
     {
       dataIndex: 'date',
       title: 'Ngày mua hàng',
-      // render: (value: string) => {
-      //   if (!value) return 'N/A'; 
-      //   const date = new Date(value);
-      //   return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
-      // },
       render: (value: string) => {
         const values = new Date(value);
         return values.toLocaleDateString('vi-VN');
@@ -126,7 +122,6 @@ const PurchaseHistoryInProfile = () => {
       ),
     },
   ];
-
 
   return (
     <>
