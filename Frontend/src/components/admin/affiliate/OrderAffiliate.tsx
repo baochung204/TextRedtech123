@@ -36,6 +36,10 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
+const formatCurrency = (value: number) => {
+  return new Intl.NumberFormat('vi-VN').format(value);
+};
+
 const OrderAffiliate = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [page, setPage] = useState<number>(1);
@@ -214,23 +218,23 @@ const OrderAffiliate = () => {
         render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex' }}>
             <Typography variant="subtitle2">{value.point}</Typography>
-            <img style={{ width: '20px', height: '20px' }} src={Point} />
-          </Box>
-        ),
-      },
-      {
-        title: 'Giá trị đơn hàng',
-        dataIndex: 'total',
-        render: (value) => (
-          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value} <Box>₫</Box>
-          </Box>
-        ),
-      },
-      {
-        title: 'Hoa hồng',
-        dataIndex: 'commission',
-        render: (value) => (
+            title: 'Giá trị đơn hàng',
+            dataIndex: 'total',
+            render: (value) => (
+              <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
+                {formatCurrency(value)} <Box>₫</Box>
+              </Box>
+            ),
+            <Box/>
+          },
+          {
+           
+          ),
+              },
+              {
+          title: 'Hoa hồng',
+          dataIndex: 'commission',
+          render: (value) => (
           <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
             {value} <Box>₫</Box>
           </Box>
