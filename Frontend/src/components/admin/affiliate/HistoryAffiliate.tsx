@@ -178,11 +178,11 @@ const HistoryAffiliate = () => {
       {
         title: 'Publisher',
         dataIndex: 'publisherType',
-        render: (value: any) => (
+        render: (value: string) => (
           <Box sx={{ display: 'flex', width: '110px' }}>
             <Chip
-              label={value === 1 ? 'Doanh nghiệp' : value === 2 ? 'Cá nhân' : ''}
-              color={value === 1 ? 'success' : value === 2 ? 'warning' : 'default'}
+              label={value === 'BUSINESS' ? 'Doanh nghiệp' : 'Cá nhân'}
+              color={value === 'BUSINESS' ? 'success' : 'warning'}
               variant="outlined"
             />
           </Box>
@@ -195,10 +195,18 @@ const HistoryAffiliate = () => {
       {
         title: 'Ngày yêu cầu',
         dataIndex: 'requestDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Ngày hoàn tất',
         dataIndex: 'completeDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Email',
