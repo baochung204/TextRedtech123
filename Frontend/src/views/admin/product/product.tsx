@@ -52,12 +52,6 @@ const ProductAdmin = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataOrderProductOverview = useSelector((state: AppState) => state.overview_order.dataa);
 
-  // "totalOrder": 8,
-  //   "totalValue": 7009,
-  //   "totalPromotion": 1509,
-  //   "totalPayment": 5500,
-  //   "aov": 687.5
-
   const totalOrder = dataOrderProductOverview.totalOrder;
   const totalValue = dataOrderProductOverview.totalValue;
   const totalPromotion = dataOrderProductOverview.totalPromotion;
@@ -455,13 +449,6 @@ const ProductAdmin = () => {
             <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
           </Grid>
         </Grid>
-        {/* <DialogProduct
-          open={open}
-          setOpen={setOpen}
-          checkValue={checkValue}
-          setCheckValue={setCheckValue}
-          selectID={selectID}
-        /> */}
         <DialogDetailOrder open={open} setOpen={setOpen} />
       </PageContainer>
     </>

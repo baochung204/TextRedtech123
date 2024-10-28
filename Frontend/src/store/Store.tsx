@@ -8,7 +8,6 @@ import {
 } from 'react-redux';
 import { combineReducers } from 'redux';
 
-
 import BlogReducer from './apps/blog/BlogSlice';
 import ChatsReducer from './apps/chat/ChatSlice';
 import ContactsReducer from './apps/contacts/ContactSlice';
@@ -72,7 +71,7 @@ import historyOrderListSlice from './user/historyorder/historyOrderSlice';
 import historyDialogSlice from './user/historyorder/historyDialogSlice';
 import historyPaymentSlice from './user/affiliate/overview/historyPaymentSlice';
 import listOrderSlice from './user/affiliate/overview/listOrderSlice';
-import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
+import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice';
 import ProductsSlice from 'src/store/user/products/productsUseSlice';
 import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
 import overviewNotificationSlice from './admin/notification/overview/notificationSlice';
@@ -83,6 +82,7 @@ import overviewContractAffiliateSlice from './admin/contract/contractaffiliate/o
 import overviewWithdrawalHistory from './admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
 import overviewPublisher from './admin/affiliate/publisher/overview/publisherOverviewSlice';
 import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
+import listContractAffiliateSlice from './admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -162,6 +162,7 @@ const rootReducer = combineReducers({
   overview_withdrawal_history: overviewWithdrawalHistory,
   overview_publisher: overviewPublisher,
   overview_order_affiliate: overviewOrderAffiliate,
+  list_contract_affiliate: listContractAffiliateSlice,
 });
 
 const whitelistReducers = [
@@ -179,10 +180,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-
-
-
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -197,20 +194,6 @@ export const { dispatch } = store;
 export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
 export default store;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export const store = configureStore({
 //   reducer: {
@@ -274,4 +257,3 @@ export default store;
 //     overview_order: orderProductAdminSlice,
 //   },
 // });
-

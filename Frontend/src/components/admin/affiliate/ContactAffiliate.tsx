@@ -17,6 +17,7 @@ import { IconSearch } from '@tabler/icons-react';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import contractwait from 'src/assets/Contract/HOP DONG CHO XU LY.png';
 import contractdone from 'src/assets/Contract/HOP DONG DA KY.png';
 import contractreject from 'src/assets/Contract/HOP DONG TU CHOI.png';
@@ -24,19 +25,17 @@ import contract from 'src/assets/Contract/hop dong.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { DataContactAffiliateTable } from './datatable/OrderTableData';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchOrderAffiliateListData } from 'src/store/admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
 import { fetchOverviewContractAffiliateData } from 'src/store/admin/contract/contractaffiliate/overview/contractAffiliateSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 
-const getStatusColor = (status: number) => {
+const getStatusColor = (status: string) => {
   switch (status) {
-    case 1:
+    case 'DA_KY':
       return 'success';
-    case 2:
+    case 'KY_MOT_CHIEU':
       return 'warning';
-    case 3:
+    case 'TU_CHOI':
       return 'error';
     default:
       return 'default';
@@ -49,7 +48,16 @@ interface Column {
   isValids?: boolean;
 }
 const ContactAffiliate = () => {
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const dispatch = useDispatch<AppDispatch>();
+
+  const contractAffiliateList = useSelector(
+    (state: AppState) => state.list_contract_affiliate.dataa,
+  );
+  useEffect(() => {
+    dispatch(fetchOrderAffiliateListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const contractAffiliateOverview = useSelector(
     (state: AppState) => state.overview_contractaffiliate.dataa,
@@ -149,30 +157,38 @@ const ContactAffiliate = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_contract',
+        dataIndex: 'affiliateId',
       },
 
       {
         title: 'Mã khách hàng',
-        dataIndex: 'id_customer',
+        dataIndex: 'userId',
       },
       {
         title: 'Ngày tạo',
-        dataIndex: 'createdate',
+        dataIndex: 'createDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
 
       {
         title: 'Ngày ký',
-        dataIndex: 'confirmdate',
+        dataIndex: 'signedDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Loại tài khoản',
-        dataIndex: 'type_company',
+        dataIndex: 'accountType',
         render: (_row: any, value: any) => (
           <Typography style={{ width: '150px' }} variant="subtitle2">
             <Chip
-              label={value.type_company ? 'Doanh nghiệp' : 'Cá nhân'}
-              color={value.type_company ? 'success' : 'warning'}
+              label={value.accountType === 'CUSTOMER' ? 'Cá nhân' : 'Doanh nghiệp'}
+              color={value.accountType === 'CUSTOMER' ? 'success' : 'warning'}
               variant="outlined"
             />
           </Typography>
@@ -180,11 +196,11 @@ const ContactAffiliate = () => {
       },
       {
         title: 'Tên công ty',
-        dataIndex: 'name_company',
+        dataIndex: 'companyName',
       },
       {
         title: 'Mã số thuế',
-        dataIndex: 'tax_code',
+        dataIndex: 'taxCode',
       },
       {
         title: 'Địa chỉ',
@@ -192,19 +208,19 @@ const ContactAffiliate = () => {
       },
       {
         title: 'Người đại diện',
-        dataIndex: 'representative',
+        dataIndex: 'representativeName',
       },
       {
         title: 'Chức vụ',
-        dataIndex: 'position',
+        dataIndex: 'representativePosition',
       },
       {
         title: 'Số điện thoại',
-        dataIndex: 'phone_number',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Email công ty',
-        dataIndex: 'email',
+        dataIndex: 'emailCompany',
       },
       {
         title: 'Trạng thái',
@@ -212,11 +228,11 @@ const ContactAffiliate = () => {
         render: (_row: any, value: any) => (
           <Chip
             label={
-              value.status === 1
+              value.status === 'DA_KY'
                 ? 'Đã ký'
-                : value.status === 2
+                : value.status === 'KY_MOT_CHIEU'
                 ? 'Ký một chiều'
-                : value.status === 3
+                : value.status === 'TU_CHOI'
                 ? 'Bị từ chối'
                 : 'Chưa ký'
             }
@@ -239,11 +255,11 @@ const ContactAffiliate = () => {
         dataIndex: 'contract',
         render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            {value.status === 1 ? (
+            {value.status === 'DA_KY' ? (
               <Button color="success" variant="contained" style={{ width: '100px' }}>
                 Xem
               </Button>
-            ) : value.status === 2 ? (
+            ) : value.status === 'KY_MOT_CHIEU' ? (
               <Button color="warning" variant="text" style={{ width: '100px' }}>
                 Ký ngay
               </Button>
@@ -298,15 +314,6 @@ const ContactAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item>
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                    // onClick={() => setOpen(true)}
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -416,8 +423,12 @@ const ContactAffiliate = () => {
         <Grid item xs={12}>
           <CustomTable
             columns={column}
-            dataSource={DataContactAffiliateTable}
-            dataSelect={dataSelect}
+            dataSource={contractAffiliateList.content}
+            count={contractAffiliateList.totalElements}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
           />
         </Grid>
       </Grid>
