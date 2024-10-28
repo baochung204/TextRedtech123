@@ -1,18 +1,17 @@
 import { Grid } from '@mui/material';
 import ProductCarousel from 'src/components/apps/ecommerce/productDetail/ProductCarousel';
-import PageContainer from 'src/components/container/PageContainer';
-import ProductDetail from 'src/components/apps/ecommerce/productDetail/ProductDetail';
 import ProductDesc from 'src/components/apps/ecommerce/productDetail/ProductDesc';
+import ProductDetail from 'src/components/apps/ecommerce/productDetail/ProductDetail';
 import ProductRelated from 'src/components/apps/ecommerce/productDetail/ProductRelated';
+import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchProductById } from 'src/store/user/products/productByIdUseSlice';
-import { ProductInfoType } from 'src/store/user/products/type/productByIdType';
 
 const EcommerceDetail = () => {
   const { id } = useParams();

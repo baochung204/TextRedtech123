@@ -36,21 +36,14 @@ import Function from './configuration/function';
 import InFor from './infor/infor';
 import Topcardassistant from './topcard/Topcardassistant';
 
-
 const AssistantInfor = () => {
   const { id } = useParams();
   const chatBotById = useSelector((state: AppState) => state.assistantById.data);
+  console.log('assistant', chatBotById);
 
   useEffect(() => {
-    if (id !== undefined) {
-      const numericId = Number(id);
-      if (!isNaN(numericId)) {
-        dispatch(fetchAssistantById({ id: numericId }));
-      }
-    }
+    dispatch(fetchAssistantById({ id }));
   }, [dispatch, id]);
-
- 
 
   const [chatBotInfo, setChatBotInfo] = useState<ChatBotInfoType | null>(null);
   const [chatBotIndex, setChatBotIndex] = useState<ChatBotIndexType | null>(null);

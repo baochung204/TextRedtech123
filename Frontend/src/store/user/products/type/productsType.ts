@@ -1,4 +1,4 @@
-interface DataType {
+interface DataProductType {
   productId: number;
   productName: string;
   categoryName: string;
@@ -8,10 +8,11 @@ interface DataType {
   isOwn: boolean;
 }
 export interface ProductsType {
-  content: DataType[];
+  content: DataProductType[];
   pageNo: number;
   pageSize: number;
   totalElements: number;
   totalPages: number;
   last: boolean;
+  category: string;
 }

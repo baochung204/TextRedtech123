@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { useDispatch, useSelector } from 'src/store/Store';
+import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import {
   ListItemText,
   ListItemButton,
@@ -10,7 +10,7 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import { filterProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+// import { filterProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import {
   IconHanger,
   IconCircles,
@@ -19,12 +19,12 @@ import {
   IconDeviceLaptop,
 } from '@tabler/icons-react';
 import { ProductFiterType } from 'src/types/apps/eCommerce';
+import { fetchProducts } from 'src/store/user/products/productsUseSlice';
 
 const ProductFilter = () => {
   const dispatch = useDispatch();
   // const products = useSelector((state) => state.ecommerceReducer.products);
-  const active = useSelector((state) => state.ecommerceReducer.filters);
-
+  const active = useSelector((state: AppState) => state.products.data);
   const customizer = useSelector((state) => state.customizer);
   const br = `${customizer.borderRadius}px`;
 
@@ -50,41 +50,47 @@ const ProductFilter = () => {
     {
       id: 2,
       name: 'Tất cả',
-      sort: 'All',
+      sort: '',
       icon: IconCircles,
     },
     {
       id: 3,
       name: 'Chiến lược',
-      sort: 'fashion',
+      sort: 'campaign',
       icon: IconHanger,
     },
     {
       id: 4,
       name: 'Function',
-      sort: 'chatbox',
+      sort: 'function',
       icon: IconNotebook,
     },
     {
       id: 5,
-      name: 'Files',
-      sort: 'openai',
+      name: 'Dung lượng File',
+      sort: 'knowledge_file',
       icon: IconMoodSmile,
     },
     {
       id: 6,
-      name: 'Model',
-      sort: 'electronics',
-      icon: IconDeviceLaptop,
+      name: 'Số lượng File ',
+      sort: 'storage_knowledge',
+      icon: IconMoodSmile,
     },
     {
       id: 7,
+      name: 'Model',
+      sort: 'model',
+      icon: IconDeviceLaptop,
+    },
+    {
+      id: 8,
       name: 'Trợ lý',
-      sort: 'assistants',
+      sort: 'assistant_pack',
       icon: IconMoodSmile,
     },
     {
-      id: 6,
+      id: 9,
       devider: true,
     },
   ];
@@ -107,7 +113,7 @@ const ProductFilter = () => {
             <ListItemButton
               sx={{ mb: 1, mx: 3, borderRadius: br }}
               selected={active.category === `${filter.sort}`}
-              onClick={() => dispatch(filterProducts({ category: `${filter.sort}` }))}
+              onClick={() => dispatch(fetchProducts({ category: `${filter.sort}` }))}
               key={filter.id}
             >
               <ListItemIcon sx={{ minWidth: '30px' }}>
