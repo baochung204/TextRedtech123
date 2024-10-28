@@ -26,10 +26,20 @@ const contractApi = {
     const fullUrl = query ? `${urls}?${query}` : urls;
 
     return axiosAPI.get(`${fullUrl}`);
-    // return axiosAPI.get(`/${url}/affiliate/page`);
   },
   getOverviewContractRule: () => {
     return axiosAPI.get(`/${url}/nguyen-tac/overview`);
+  },
+  getListContractRule: (object: PropsContractAffiliate = {}) => {
+    const urls = `/${url}/nguyen-tac/page`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
   },
 };
 

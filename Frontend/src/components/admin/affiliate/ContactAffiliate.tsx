@@ -25,8 +25,8 @@ import contract from 'src/assets/Contract/hop dong.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { fetchOrderAffiliateListData } from 'src/store/admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
 import { fetchOverviewContractAffiliateData } from 'src/store/admin/contract/contractaffiliate/overview/contractAffiliateSlice';
+import { fetchContractAffiliateListData } from 'src/store/admin/contract/contractaffiliate/table/contractAffiliateListSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 
 const getStatusColor = (status: string) => {
@@ -56,7 +56,7 @@ const ContactAffiliate = () => {
     (state: AppState) => state.list_contract_affiliate.dataa,
   );
   useEffect(() => {
-    dispatch(fetchOrderAffiliateListData({ page_no: page, page_size: rowsPerPage }));
+    dispatch(fetchContractAffiliateListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
 
   const contractAffiliateOverview = useSelector(
@@ -246,7 +246,8 @@ const ContactAffiliate = () => {
         // render: (_row: any, value: any) => (
         render: () => (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Checkbox defaultChecked />
+            {/* <Checkbox defaultChecked /> */}
+            <Checkbox />
           </Box>
         ),
       },
@@ -423,6 +424,7 @@ const ContactAffiliate = () => {
         <Grid item xs={12}>
           <CustomTable
             columns={column}
+            dataSelect={dataSelect}
             dataSource={contractAffiliateList.content}
             count={contractAffiliateList.totalElements}
             rowsPerPage={rowsPerPage}

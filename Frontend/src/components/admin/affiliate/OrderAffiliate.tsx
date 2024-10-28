@@ -28,6 +28,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { useSelector } from 'react-redux';
 import { fetchOverviewOrderAffiliateData } from 'src/store/admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
+import { fetchOrderAffiliateListData } from 'src/store/admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
 
 interface Column {
   title: string;
@@ -37,6 +38,13 @@ interface Column {
 }
 const OrderAffiliate = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const orderAffiliateList = useSelector((state: AppState) => state.list_order_affiliate.dataa);
+  useEffect(() => {
+    dispatch(fetchOrderAffiliateListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
+
   const dataOrderAffiliateOverview = useSelector(
     (state: AppState) => state.overview_order_affiliate.dataa,
   );
@@ -140,32 +148,32 @@ const OrderAffiliate = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_order',
+        dataIndex: 'orderId',
       },
 
       {
         title: 'ID Publisher',
-        dataIndex: 'id_publisher',
+        dataIndex: 'publisherId',
       },
       {
         title: 'Ngày mua',
-        dataIndex: 'createdate',
+        dataIndex: 'createDate',
       },
       {
         title: 'Tên Publisher',
-        dataIndex: 'name_publisher',
+        dataIndex: 'publisherName',
       },
       {
         title: 'Email Publisher',
-        dataIndex: 'email_publisher',
+        dataIndex: 'emailPublisher',
       },
       {
         title: 'SĐT Publisher',
-        dataIndex: 'phonenumber_publisher',
+        dataIndex: 'phonePublisher',
       },
       {
         title: 'Khách hàng',
-        dataIndex: 'number',
+        dataIndex: '',
 
         render: (_row: any, value: any) => (
           <Box
@@ -176,9 +184,9 @@ const OrderAffiliate = () => {
             }}
           >
             <Avatar
-              src={value.imgsrc}
+              src={value.customerImage}
               variant="rounded"
-              alt={value.imgsrc}
+              alt={value.customerImage}
               sx={{ width: 48, height: 48 }}
             />
             <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
@@ -189,33 +197,33 @@ const OrderAffiliate = () => {
       },
       {
         title: 'Email',
-        dataIndex: 'email_customer',
+        dataIndex: 'customerEmail',
       },
       {
         title: 'SDT',
-        dataIndex: 'phonenumber_customer',
+        dataIndex: 'customerPhone',
       },
       {
         title: 'Tên gói nạp',
-        dataIndex: 'package',
+        dataIndex: 'pointName',
       },
       {
         title: 'Số point',
-        dataIndex: 'branch',
+        dataIndex: 'point',
 
         render: (_row: any, value: any) => (
           <Box sx={{ display: 'flex' }}>
-            <Typography variant="subtitle2">{value.numberpoint}</Typography>
+            <Typography variant="subtitle2">{value.point}</Typography>
             <img style={{ width: '20px', height: '20px' }} src={Point} />
           </Box>
         ),
       },
       {
         title: 'Giá trị đơn hàng',
-        dataIndex: 'value',
+        dataIndex: 'total',
         render: (value) => (
           <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+            {value} <Box>₫</Box>
           </Box>
         ),
       },
@@ -224,7 +232,7 @@ const OrderAffiliate = () => {
         dataIndex: 'commission',
         render: (value) => (
           <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value.toLocaleString('vi-VN')} <Box>₫</Box>
+            {value} <Box>₫</Box>
           </Box>
         ),
       },
@@ -381,7 +389,16 @@ const OrderAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={DataAffiliateTable} dataSelect={dataSelect} />
+          <CustomTable
+            columns={column}
+            dataSelect={dataSelect}
+            dataSource={orderAffiliateList.content}
+            count={orderAffiliateList.totalElements}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+          />
         </Grid>
       </Grid>
     </>
