@@ -30,6 +30,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { useSelector } from 'react-redux';
 import { fetchOverviewBillData } from 'src/store/admin/contract/bill/overview/billOverviewSlice';
+import { fetchBillListData } from 'src/store/admin/contract/bill/table/listBillSlice';
 
 interface Column {
   title: string;
@@ -40,18 +41,18 @@ interface Column {
 
 const Invoice = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  const billList = useSelector((state: AppState) => state.list_bill.dataa);
+  useEffect(() => {
+    dispatch(fetchBillListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const dataBillOverview = useSelector((state: AppState) => state.overview_bill.dataa);
   useEffect(() => {
     dispatch(fetchOverviewBillData());
   }, [dispatch]);
-
-  // "totalEInvoice": 10,
-  //   "totalPoint": 9000000,
-  //   "totalRevenue": 8040000,
-  //   "commission": 8040000,
-  //   "daXuat": 1,
-  //   "choXuat": 9
 
   const totalEInvoice = dataBillOverview.totalEInvoice;
   const totalPoint = dataBillOverview.totalPoint;
@@ -190,30 +191,34 @@ const Invoice = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_bill',
+        dataIndex: 'einvoiceId',
       },
 
       {
         title: 'ID đơn hàng',
-        dataIndex: 'id_order',
+        dataIndex: 'orderId',
       },
       {
         title: 'ID khách hàng',
-        dataIndex: 'id_customer',
+        dataIndex: 'userId',
       },
       {
         title: 'Ngày tạo',
-        dataIndex: 'createdate',
+        dataIndex: 'createAt',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
 
       {
         title: 'Loại tài khoản',
-        dataIndex: 'loai',
+        dataIndex: 'userType',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2">
             <Chip
-              label={value.type_account ? 'Doanh nghiệp' : 'Cá nhân'}
-              color={value.type_account ? 'success' : 'warning'}
+              label={value.userType === 'BUSINESS' ? 'Doanh nghiệp' : 'Cá nhân'}
+              color={value.userType === 'BUSINESS' ? 'success' : 'warning'}
               variant="outlined"
             />
           </Typography>
@@ -221,17 +226,17 @@ const Invoice = () => {
       },
       {
         title: 'Tên công ty',
-        dataIndex: 'name_company',
+        dataIndex: 'companyName',
         isValids: false,
       },
       {
         title: 'Mã số thuế',
-        dataIndex: 'tax_code',
+        dataIndex: 'taxCode',
         isValids: false,
       },
       {
         title: 'Nội dung hóa đơn',
-        dataIndex: 'content_bill',
+        dataIndex: 'einvoiceOrderInfo',
         isValids: false,
       },
       {
@@ -241,17 +246,17 @@ const Invoice = () => {
       },
       {
         title: 'Số lượng',
-        dataIndex: 'amount',
+        dataIndex: 'quantity',
         isValids: false,
       },
       {
         title: 'Đơn giá',
-        dataIndex: 'price',
+        dataIndex: 'donGia',
         isValids: false,
       },
       {
         title: 'Thành tiền',
-        dataIndex: 'into_money',
+        dataIndex: 'thanhTien',
         isValids: false,
       },
 
@@ -262,45 +267,45 @@ const Invoice = () => {
       },
       {
         title: 'Tổng(VAT)',
-        dataIndex: 'total_vat',
+        dataIndex: 'tongVat',
         isValids: false,
       },
       {
         title: 'Địa chỉ',
-        dataIndex: 'address',
+        dataIndex: 'diaChi',
         isValids: false,
       },
       {
         title: 'Người đại diện',
-        dataIndex: 'presentative',
+        dataIndex: 'nguoiDaiDien',
         isValids: false,
       },
       {
         title: 'Chức vụ',
-        dataIndex: 'position',
+        dataIndex: 'chucVu',
         isValids: false,
       },
       {
         title: 'SĐT công ty',
-        dataIndex: 'phone_number',
+        dataIndex: 'sdtCongTy',
         isValids: false,
       },
       {
         title: 'Email công ty',
-        dataIndex: 'email',
+        dataIndex: 'emailCongTy',
         isValids: false,
       },
       {
         title: 'Trạng thái',
-        dataIndex: 'action',
+        dataIndex: 'trangThai',
         render: (_row: any, value: any) => (
           <Typography
             sx={{
-              color: value.status ? 'success.main' : 'warning.main',
+              color: value.trangThai === 'DA_XUAT' ? 'success.main' : 'warning.main',
             }}
             variant="subtitle2"
           >
-            {value.status ? 'Đã xuất' : 'Chưa xuất'}
+            {value.trangThai === 'DA_XUAT' ? 'Đã xuất' : 'Chưa xuất'}
           </Typography>
         ),
       },
@@ -308,13 +313,11 @@ const Invoice = () => {
       {
         title: 'Hóa đơn',
         dataIndex: 'bill',
-        // render: (_row:any, value: any) => <Button>Xuất ngay</Button>,
         render: () => <Button>Xuất ngay</Button>,
       },
       {
         title: 'Hoạt động',
         dataIndex: '',
-        // render: (_row:any, value: any) => (
         render: () => (
           <IconButton>
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
@@ -366,16 +369,6 @@ const Invoice = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item >
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -484,7 +477,16 @@ const Invoice = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={DataInvoiceTable} dataSelect={dataSelect} />
+          <CustomTable
+            columns={column}
+            dataSelect={dataSelect}
+            dataSource={billList.content}
+            count={billList.totalElements}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+          />
         </Grid>
       </Grid>
     </>

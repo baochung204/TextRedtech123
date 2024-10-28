@@ -1,15 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import OrderHistoryListApi, { PropOrderHistoryList } from 'src/api/user/orderhistory/orderhistory';
+import { PropsAffiliate } from 'src/api/admin/affiliate/affiliate';
+import sellAdminApi from 'src/api/admin/sell/sell';
 
 export interface PropsData {
   orderId: number;
-  date: string;
-  amountDiscount: number;
-  priceAfterDiscount: number;
+  date: Date;
+  userId: number;
+  nameUser: string;
   point: number;
+  promotion: number;
+  payment: number;
 }
 
-interface PropsHistoryOderList {
+interface PropsAffiliateOderList {
   content: PropsData[];
   pageNo: number;
   pageSize: number;
@@ -18,13 +21,13 @@ interface PropsHistoryOderList {
   last: boolean;
 }
 
-interface PropsHistoryOrderListResult {
-  dataa: PropsHistoryOderList;
+interface PropsOrderAffiliateList {
+  dataa: PropsAffiliateOderList;
   loading: boolean;
   error: string | null;
 }
 
-const initialState: PropsHistoryOrderListResult = {
+const initialState: PropsOrderAffiliateList = {
   dataa: {
     content: [],
     pageNo: 0,
@@ -37,11 +40,11 @@ const initialState: PropsHistoryOrderListResult = {
   error: null,
 };
 
-export const fetchHistoryOrderListData = createAsyncThunk(
-  'fetchHistoryOrderList',
-  async (object: PropOrderHistoryList = {}, thunkApi) => {
+export const fetchOrderProductListData = createAsyncThunk(
+  'fetchOrderProductList',
+  async (object: PropsAffiliate = {}, thunkApi) => {
     try {
-      const response = await OrderHistoryListApi.getOrderHistoryList(object);
+      const response = await sellAdminApi.getListOrderSell(object);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
@@ -49,27 +52,27 @@ export const fetchHistoryOrderListData = createAsyncThunk(
   },
 );
 
-const orderHistoryListSlice = createSlice({
-  name: 'fetchHistoryOrderList',
+const orderProductListSlice = createSlice({
+  name: 'orderAffiliateList',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHistoryOrderListData.pending, (state) => {
+      .addCase(fetchOrderProductListData.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(
-        fetchHistoryOrderListData.fulfilled,
-        (state, action: PayloadAction<PropsHistoryOderList>) => {
+        fetchOrderProductListData.fulfilled,
+        (state, action: PayloadAction<PropsAffiliateOderList>) => {
           state.loading = false;
           state.dataa = action.payload;
         },
       )
-      .addCase(fetchHistoryOrderListData.rejected, (state, action) => {
+      .addCase(fetchOrderProductListData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
   },
 });
-export default orderHistoryListSlice.reducer;
+export default orderProductListSlice.reducer;

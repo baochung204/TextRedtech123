@@ -28,6 +28,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchOverviewContractRuleData } from 'src/store/admin/contract/contractrule/overview/contractRuleSlice';
+import { fetchContractRuleListData } from 'src/store/admin/contract/contractrule/table/contractRuleSlice';
 
 interface Column {
   title: string;
@@ -41,6 +42,13 @@ const ContactRPoint = () => {
   const dataContractRuleOverview = useSelector(
     (state: AppState) => state.overview_contractrule.dataa,
   );
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  const contractRuleList = useSelector((state: AppState) => state.list_contract_rule.dataa);
+  useEffect(() => {
+    dispatch(fetchContractRuleListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const totalContract = dataContractRuleOverview.totalContract;
   const rejectedContract = dataContractRuleOverview.rejectedContract;
@@ -136,28 +144,36 @@ const ContactRPoint = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_contract',
+        dataIndex: 'businessId',
       },
 
       {
         title: 'Mã khách hàng',
-        dataIndex: 'id_customer',
+        dataIndex: 'userId',
       },
       {
         title: 'Ngày tạo',
-        dataIndex: 'createdate',
+        dataIndex: 'createdDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
 
       {
         title: 'Ngày ký',
-        dataIndex: 'confirmdate',
+        dataIndex: 'signedDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Loại tài khoản',
-        dataIndex: 'type_company',
+        dataIndex: 'accountType',
         render: (_row: any, value: any) => (
           <Typography style={{ width: '150px' }} variant="subtitle2">
-            {value.type_company === 'BUSINESS' ? (
+            {value.accountType === 'BUSINESS' ? (
               <Chip
                 label="Doanh nghiệp"
                 sx={{ color: 'success.main', borderColor: 'success.main' }}
@@ -171,11 +187,11 @@ const ContactRPoint = () => {
       },
       {
         title: 'Tên công ty',
-        dataIndex: 'name_company',
+        dataIndex: 'companyName',
       },
       {
         title: 'Mã số thuế',
-        dataIndex: 'tax_code',
+        dataIndex: 'taxCode',
       },
       {
         title: 'Địa chỉ',
@@ -183,19 +199,19 @@ const ContactRPoint = () => {
       },
       {
         title: 'Người đại diện',
-        dataIndex: 'representative',
+        dataIndex: 'representativeName',
       },
       {
         title: 'Chức vụ',
-        dataIndex: 'position',
+        dataIndex: 'representativePosition',
       },
       {
         title: 'Số điện thoại',
-        dataIndex: 'phone_number',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Email công ty',
-        dataIndex: 'email',
+        dataIndex: 'emailCompany',
       },
       {
         title: 'Trạng thái',
@@ -408,8 +424,13 @@ const ContactRPoint = () => {
         <Grid item xs={12}>
           <CustomTable
             columns={column}
-            dataSource={DataContactPointTable}
             dataSelect={dataSelect}
+            dataSource={contractRuleList.content}
+            count={contractRuleList.totalElements}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
           />
         </Grid>
       </Grid>

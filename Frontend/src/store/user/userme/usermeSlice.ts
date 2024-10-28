@@ -8,6 +8,9 @@ interface UserMeData {
   phoneNumber: string;
   name: string;
   avatarUrl:string
+  gender: string
+  dateOfBirth: string
+  address: string
 }
 
 interface UserMeState {
