@@ -10,10 +10,13 @@ import {
 } from '@mui/material';
 import { IconCheck, IconEdit, IconLock, IconUserCircle } from '@tabler/icons-react';
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
 import { setSelected } from 'src/store/RouterSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { fetchUserMeData } from 'src/store/user/userme/usermeSlice';
 
 import * as yup from 'yup';
 
@@ -25,7 +28,7 @@ const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
-
+  
   // Validation schema
   const validationSchema = yup.object({
     phone: yup
@@ -43,11 +46,16 @@ const AccountInformation = () => {
     onSubmit: () => {
       setEditing(null);
       setShowAlert({ message: 'Cập nhật thông tin thành công!', type: 'success' });
-      setOpen(true); 
+      setOpen(true);
     },
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const accountInfor = useSelector((state: AppState) => state.userme.result);
+  console.log('ádasd:', accountInfor);
+  useEffect(() => {
+    dispatch(fetchUserMeData());
+  },[dispatch])
 
   const handleButtonClick = (id: number) => {
     if (id === 2) {
@@ -78,9 +86,6 @@ const AccountInformation = () => {
 
   const renderField = (field: string, label: string, isEditable: boolean) => (
     <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-        {label}:
-      </Typography>
       {field === 'email' ? (
         <Typography variant="body1" sx={{ flexGrow: 1 }}>
           nqton301004@gmail.com 
@@ -137,26 +142,70 @@ const AccountInformation = () => {
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
         <IconUserCircle /> <span>Thông tin tài khoản</span>
       </Typography>
-      {renderField('email', 'Email', false)} {/* Email không thể chỉnh sửa */}
-      {renderField('phone', 'Số điện thoại', true)} {/* Số điện thoại có thể chỉnh sửa */}
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-          Mật khẩu:
-        </Typography>
-        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {formik.values.password}
-          </Typography>
-          <Button
-            onClick={() => handleEditClick('password')}
-            variant="outlined"
-            color="primary"
-            startIcon={<IconLock />}
-          >
-            Đổi mật khẩu
-          </Button>
-        </Box>
-      </Box>
+     {accountInfor ? (
+       <>
+         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+           <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+             Email:
+           </Typography>
+           {editing ? (
+             <TextField
+               name="name"
+               value={accountInfor.email}
+              //  onChange={handleInputChange}
+               sx={{ flexGrow: 1, mr: 1 }}
+               size="small"
+             />
+           ) : (
+             <Typography variant="body1" sx={{ flexGrow: 1 }}>
+               {accountInfor.email}
+             </Typography>
+           )}
+         </Box>
+
+         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+           <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+             Số điện thoại :
+           </Typography>
+           {editing ? (
+             <TextField
+               name="name"
+               value={accountInfor.phoneNumber}
+               // onChange={handleInputChange}
+               sx={{ flexGrow: 1, mr: 1 }}
+               size="small"
+             />
+           ) : (
+             <Typography variant="body1" sx={{ flexGrow: 1 }}>
+               {accountInfor.phoneNumber}
+             </Typography>
+           )}
+         </Box>
+
+         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+           <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+             Mật khẩu:
+           </Typography>
+           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+             <Typography variant="body1" sx={{ flexGrow: 1 }}>
+               {formik.values.password}
+             </Typography>
+             <Button
+               onClick={() => handleEditClick('password')}
+               variant="outlined"
+               color="primary"
+               startIcon={<IconLock />}
+             >
+               Đổi mật khẩu
+             </Button>
+           </Box>
+         </Box>
+       </>
+     ) : (
+       <Typography variant="h6" align="center" color="textSecondary">
+         Không có thông tin người dùng
+       </Typography>
+     )}
 
       {/* Hiển thị Alert khi có sự thay đổi */}
       <Snackbar
