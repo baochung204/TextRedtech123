@@ -1,127 +1,211 @@
-import { Box, CardContent, Chip, Grid, Skeleton, Stack, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {
+  Box,
+  CardContent,
+  Chip,
+  Fab,
+  Grid,
+  Skeleton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { IconBasket } from '@tabler/icons-react';
+import { Link, useParams } from 'react-router-dom';
 import logo from 'src/assets/images/logos/R-Point.png';
-import { useDispatch, useSelector } from 'src/store/Store';
-import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import { ProductType } from 'src/types/apps/eCommerce';
+import BlankCard from 'src/components/shared/BlankCard';
+import { addToCart } from 'src/store/apps/eCommerce/ECommerceSlice';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchProductById } from 'src/store/user/products/productByIdUseSlice';
+import { fetchProducts } from 'src/store/user/products/productsUseSlice';
+import AlertCart from '../productCart/AlertCart';
+import Slider from 'react-slick';
+
+interface DataProductType {
+  productId: number;
+  productName: string;
+  categoryName: string;
+  price: number;
+  discount: number;
+  imageUrl: string;
+  isOwn: boolean;
+}
 
 const ProductRelated = () => {
-  const dispatch = useDispatch();
+  const { id } = useParams();
+  const productById = useSelector((state: AppState) => state.productById.data);
+  const categoryName = productById?.productInfo.category;
+  const productData = useSelector((state: AppState) => state.products.data);
+  const [rowsPerPage] = useState<number>(8);
+  const [cartalert, setCartalert] = React.useState(false);
+  const [relatedProducts, setRelatedProducts] = useState<DataProductType[]>([]);
+  const [isLoading, setLoading] = React.useState(true);
 
-  // Get Product
-  React.useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+    dispatch(fetchProducts({ size: rowsPerPage, category: categoryName }));
+  }, [dispatch, id, categoryName, rowsPerPage]);
 
-  const filterRelatedProduct = (products: ProductType[]) => {
-    if (products) return products.filter((t) => t.related);
+  useEffect(() => {
+    if (productData?.content) {
+      const filteredProducts = productData.content.filter(
+        (product: DataProductType) => product.productId !== parseInt(id as string, 10),
+      );
 
-    return products;
+      const shuffled = filteredProducts.sort(() => 0.5 - Math.random());
+      const selectedProducts = shuffled.slice(0, 8);
+      setRelatedProducts(selectedProducts);
+    }
+  }, [productData, id]);
+
+  const handleClose = (reason: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setCartalert(false);
   };
 
-  // Get Products
-  const Relatedproducts = useSelector((state: any) =>
-    filterRelatedProduct(state.ecommerceReducer.products),
-  );
-
-  // Skeleton
-  const [isLoading, setLoading] = React.useState(true);
+  const handleClick = () => {
+    setCartalert(true);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 700);
-
     return () => clearTimeout(timer);
   }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false, // Add this line to disable default arrows
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <Box>
       <Typography variant="h4" mb={2} mt={5}>
         Sản phẩm liên quan
       </Typography>
-      <Grid container spacing={3}>
-        {Relatedproducts.map((product) => (
-          <Grid item xs={12} lg={3} sm={4} display="flex" alignItems="stretch" key={product.id}>
-            <Typography component={Link} to={`/shop/detail/${product.id}`}>
-              {isLoading ? (
-                <Skeleton
-                  variant="rectangular"
-                  animation="wave"
-                  width="100%"
-                  height={270}
-                ></Skeleton>
-              ) : (
-                <img src={product.thumbnailUrl} alt="img" width="100%" />
-              )}
-            </Typography>
-            <CardContent sx={{ p: 3, pt: 2 }}>
-              <Typography fontWeight={600}>{product.name}</Typography>
-              <Stack direction="column" spacing={1} mt={1}>
-                {/* <Stack direction="row" alignItems="center" justifyContent="space-between">
-                    <Typography variant="h5">{product.price.toLocaleString()} point</Typography>
-                    <Typography color={'GrayText'} ml={1} sx={{ textDecoration: 'line-through' }}>
-                      {product.salesPrice.toLocaleString()} point
-                    </Typography>
-                  </Stack> */}
-                {/* <Rating name="read-only" size="small" value={product.rating} readOnly /> */}
-                <Stack direction="row" alignItems="center" justifyContent="space-between">
+      <Slider {...settings}>
+        {relatedProducts.map((product: DataProductType) => (
+          <Box key={product?.productId} sx={{ px: 1 }}>
+            {isLoading ? (
+              <Skeleton
+                variant="rectangular"
+                width={250}
+                height={300}
+                sx={{ borderRadius: (theme) => theme.shape.borderRadius / 5 }}
+              />
+            ) : (
+              <BlankCard className="hoverCard" sx={{ position: 'relative', px: 2 }}>
+                <Typography component={Link} to={`/shop/detail/${product?.productId}`}>
                   <Box
+                    component="img"
+                    src={product?.imageUrl}
+                    alt={product?.productName}
                     sx={{
-                      display: 'flex',
-                      alignItems: 'center',
+                      width: '100%',
+                      height: 250,
+                      objectFit: 'cover',
                     }}
-                  >
-                    <Typography
-                      color="textSecondary"
-                      ml={1}
-                      sx={{ textDecoration: 'line-through' }}
-                    >
-                      {product.discount.toLocaleString()}{' '}
-                    </Typography>
-                    <img
-                      src={logo}
-                      alt="Logo"
-                      style={{ width: '18px', height: '18px', marginLeft: '5px' }}
-                    />
-                  </Box>{' '}
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Typography variant="h6">{product.point.toLocaleString()}</Typography>
-                    <img
-                      src={logo}
-                      alt="Logo"
-                      style={{ width: '22px', height: '22px', marginLeft: '10px' }}
-                    />
-                  </Box>
-                </Stack>
-                <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <Chip
-                      sx={{
-                        backgroundColor: '#13DEB9',
-                        width: '100px',
-                        textAlign: 'center',
-                        overflow: 'hidden',
-                        whiteSpace: 'nowrap',
-                        color: 'white',
-                        display: 'block', // Ensures each Chip is on a new line
-                      }}
-                      label={product.category}
-                      size="small"
-                    />
+                  />
+                </Typography>
+                <CardContent sx={{ p: 3, pt: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Typography variant="h6" sx={{ fontSize: '16px' }}>
+                    {product?.productName}
+                  </Typography>
+                  <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
+                    <Stack direction="row" alignItems="center" justifyContent="space-between">
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Typography
+                          color="textSecondary"
+                          ml={1}
+                          my={1}
+                          sx={{ textDecoration: 'line-through' }}
+                        >
+                          {product.price}{' '}
+                        </Typography>
+                        <img
+                          src={logo}
+                          alt="Logo"
+                          style={{ width: '18px', height: '18px', marginLeft: '5px' }}
+                        />
+                      </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Typography variant="h6">{product?.discount?.toLocaleString()}</Typography>
+                        <img
+                          src={logo}
+                          alt="Logo"
+                          style={{ width: '22px', height: '22px', marginLeft: '10px' }}
+                        />
+                      </Box>
+                    </Stack>
+                    <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <Chip
+                          sx={{
+                            backgroundColor: '#13DEB9',
+                            color: 'white',
+                            display: 'block',
+                          }}
+                          label={product?.categoryName || 'tất cả'}
+                          size="small"
+                        />
+                        <Tooltip title="Thêm giỏ hàng">
+                          <Fab
+                            size="small"
+                            color="primary"
+                            onClick={() => {
+                              dispatch(addToCart(product?.productId));
+                              handleClick();
+                            }}
+                            sx={{
+                              position: 'absolute',
+                              right: 0,
+                              top: 0,
+                              transform: 'translateY(-15%)',
+                            }}
+                          >
+                            <IconBasket size="16" />
+                          </Fab>
+                        </Tooltip>
+                      </Stack>
+                    </Stack>
                   </Stack>
-                </Stack>
-              </Stack>
-            </CardContent>
-          </Grid>
+                </CardContent>
+              </BlankCard>
+            )}
+            <AlertCart handleClose={handleClose} openCartAlert={cartalert} />
+          </Box>
         ))}
-      </Grid>
+      </Slider>
     </Box>
   );
 };

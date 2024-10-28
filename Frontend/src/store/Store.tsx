@@ -8,7 +8,6 @@ import {
 } from 'react-redux';
 import { combineReducers } from 'redux';
 
-
 import BlogReducer from './apps/blog/BlogSlice';
 import ChatsReducer from './apps/chat/ChatSlice';
 import ContactsReducer from './apps/contacts/ContactSlice';
@@ -72,7 +71,7 @@ import historyOrderListSlice from './user/historyorder/historyOrderSlice';
 import historyDialogSlice from './user/historyorder/historyDialogSlice';
 import historyPaymentSlice from './user/affiliate/overview/historyPaymentSlice';
 import listOrderSlice from './user/affiliate/overview/listOrderSlice';
-import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice'
+import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice';
 import ProductsSlice from 'src/store/user/products/productsUseSlice';
 import ProductByIdSlice from 'src/store/user/products/productByIdUseSlice';
 import overviewNotificationSlice from './admin/notification/overview/notificationSlice';
@@ -164,16 +163,12 @@ const rootReducer = combineReducers({
   overview_order_affiliate: overviewOrderAffiliate,
 });
 
-<<<<<<< HEAD
-const whitelistReducers = [''];
-=======
 const whitelistReducers = [
   'randomcoupon',
   'point_list',
   'historyorder_detail',
   'historyorder_list',
 ];
->>>>>>> cf48844e2fd00197f9edb4e2a62b4066415b6e16
 
 const persistConfig = {
   key: 'root',
@@ -182,10 +177,6 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-
-
-
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -201,20 +192,6 @@ export const { dispatch } = store;
 export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
 export default store;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export const store = configureStore({
 //   reducer: {
@@ -278,4 +255,3 @@ export default store;
 //     overview_order: orderProductAdminSlice,
 //   },
 // });
-
