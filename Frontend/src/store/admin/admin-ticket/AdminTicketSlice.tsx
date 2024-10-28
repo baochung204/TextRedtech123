@@ -4,7 +4,7 @@ import overviewTicketApi from 'src/api/admin/ticket/ticket';
 interface AdminTicket {
   ticketId: string;
   create_date: Date;
-  messageTime: Date | null; // Thêm null để xử lý giá trị không có
+  messageTime: Date | null; 
   rate: number;
   status: string;
   title: string;
@@ -23,13 +23,20 @@ interface StaffData {
 }
 
 interface StrState {
-  result: AdminTicket[];
+  result: StaffData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  result: [],
+  result: {
+    result: [],
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+    last: false,
+  },
   loading: false,
   error: null,
 }
