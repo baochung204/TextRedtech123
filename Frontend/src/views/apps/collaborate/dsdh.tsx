@@ -47,14 +47,13 @@ const columns = [
 ];
 const Danhsachdh = () => {
   const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const orderList = useSelector((state: AppState) => state.list_order.dataa);
-
   useEffect(() => {
-    dispatch(fetchOrderListData({ page, pageSize }));
-  }, [dispatch, page, pageSize]);
+    dispatch(fetchOrderListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
-  console.log('orderlist', orderList.content);
+  console.log('orderlist here', orderList.content);
 
   return (
     <>
@@ -74,12 +73,12 @@ const Danhsachdh = () => {
       <Grid item xs={12}>
         <CustomTable
           columns={columns}
-          dataSource={orderList?.content}
-          count={orderList?.totalElements ? orderList.totalElements : 0}
-          rowsPerPage={pageSize}
+          dataSource={orderList.content}
+          count={orderList.totalElements}
+          rowsPerPage={rowsPerPage}
           page={page}
           setPage={setPage}
-          setRowsPerPage={setPageSize}
+          setRowsPerPage={setRowsPerPage}
         />
       </Grid>
     </>

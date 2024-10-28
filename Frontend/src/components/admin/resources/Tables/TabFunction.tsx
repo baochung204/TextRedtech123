@@ -19,9 +19,12 @@ interface PropsTabFunction {
 const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   const functionList = useSelector((state: AppState) => state.function_list.dataa);
 
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
   useEffect(() => {
-    dispatch(fetchFunctionListData());
-  }, [dispatch]);
+    dispatch(fetchFunctionListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   console.log(functionList);
   const [selectId, setSelectId] = useState<string>();
@@ -94,7 +97,16 @@ const TabFunction = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
 
   return (
     <>
-      <CustomTable columns={FunctionCells} dataSource={functionList} dataSelect={dataSelect} />
+      <CustomTable
+        columns={FunctionCells}
+        dataSelect={dataSelect}
+        dataSource={functionList.content}
+        count={functionList.totalElements}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
       <DialogFuncView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );
