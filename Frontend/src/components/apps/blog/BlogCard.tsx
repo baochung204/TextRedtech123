@@ -23,19 +23,15 @@ import BlankCard from '../../shared/BlankCard';
 // import crown from 'src/assets/images/icon.png/crown.png';
 import { IconEye } from '@tabler/icons-react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
-import like from 'src/assets/ICON/like.png';
+import likes from 'src/assets/ICON/like.png';
 interface Btype {
   post: BlogPostType;
   index?: number;
 }
 
-const BlogCard = ({ post }: Btype) => {
+const BlogCard = ({ post }: any) => {
   const dispatch = useDispatch();
-  const { coverImg, title, view, category, author, crowns }: any = post;
-  const linkTo = title
-    .toLowerCase()
-    .replace(/ /g, '-')
-    .replace(/[^\w-]+/g, '');
+  const { thumbnailUrl, name, views, tags, point, author, avatarUrl, like, productId }: any = post;
 
   // skeleton
   const [isLoading, setLoading] = React.useState(true);
@@ -65,8 +61,8 @@ const BlogCard = ({ post }: Btype) => {
           <>
             <Typography
               component={Link}
-              to={`/blog/detail/${linkTo}`}
-              onClick={() => dispatch(fetchBlogPost(linkTo))}
+              to={`/blog/detail/${productId}`}
+              onClick={() => dispatch(fetchBlogPost(productId))}
               style={{ position: 'relative' }}
             >
               {' '}
@@ -90,7 +86,7 @@ const BlogCard = ({ post }: Btype) => {
                       paddingTop: '1px',
                     }}
                   >
-                    {crowns}
+                    {point.toLocaleString()}
                   </Typography>
                   <img
                     src={logoPoint}
@@ -112,12 +108,12 @@ const BlogCard = ({ post }: Btype) => {
               >
                 <Chip
                   // icon={<IconEye />}
-                  label={`${view} lượt xem `}
+                  label={`${views.toLocaleString()} lượt xem `}
                   size="small"
                   style={{ background: 'white' }}
                 ></Chip>
               </Stack>
-              <CardMedia component="img" height="240" image={coverImg} alt="green iguana" />
+              <CardMedia component="img" height="240" image={thumbnailUrl} alt="green iguana" />
             </Typography>
             <CardContent>
               <Box>
@@ -127,10 +123,10 @@ const BlogCard = ({ post }: Btype) => {
                   color="inherit"
                   sx={{ textDecoration: 'none' }}
                   component={Link}
-                  to={`/blog/detail/${linkTo}`}
-                  onClick={() => dispatch(fetchBlogPost(linkTo))}
+                  to={`/blog/detail/${productId}`}
+                  onClick={() => dispatch(fetchBlogPost(productId))}
                 >
-                  {title.length > 60 ? title.slice(0, 60) + '…' : title}
+                  {name.length > 60 ? name.slice(0, 60) + '…' : name}
                 </Typography>
               </Box>
               <Box
@@ -144,7 +140,7 @@ const BlogCard = ({ post }: Btype) => {
               >
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Chip
-                    label={category}
+                    label={tags[0]}
                     size="small"
                     sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 0 }} // Thay marginBottom là 0
                   />
@@ -152,12 +148,12 @@ const BlogCard = ({ post }: Btype) => {
 
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Typography sx={{ marginRight: '5px' }} fontWeight={500}>
-                    159
+                    {like}
                   </Typography>
                   <Box sx={{ marginTop: '0px' }}>
                     {' '}
                     {/* Thay marginTop là 0 */}
-                    <img src={like} width={15} height={15} />
+                    <img src={likes} width={15} height={15} />
                   </Box>
                 </Box>
               </Box>
@@ -173,8 +169,8 @@ const BlogCard = ({ post }: Btype) => {
                   py: 2,
                 }}
               >
-                <Tooltip title={author?.name} placement="top">
-                  <Avatar aria-label="recipe" src={author?.avatar} />
+                <Tooltip title={author} placement="top">
+                  <Avatar aria-label="recipe" src={avatarUrl} />
                 </Tooltip>
                 <Box
                   sx={{
@@ -186,7 +182,7 @@ const BlogCard = ({ post }: Btype) => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Typography variant="body2">Nguyễn Mạnh Cường</Typography>
+                  <Typography variant="body2">{author}</Typography>
                 </Box>
 
                 <Stack direction="row" ml="auto" alignItems="center" width="30%">

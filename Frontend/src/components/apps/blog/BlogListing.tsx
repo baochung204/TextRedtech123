@@ -60,6 +60,8 @@ const BlogListing = () => {
     }
   }, [datax, blogs]);
   console.log('blogs', datax.data);
+  const blog = datax?.data?.content;
+  console.log('blog', blog);
   console.log('blogPosts', blogPosts);
 
   // const featuredPost = useSelector((state) => filterFeaturedpost(state.blogReducer.blogposts));
@@ -69,8 +71,8 @@ const BlogListing = () => {
       {/* {featuredPost.map((post, index) => {
         return <BlogFeaturedCard index={index} post={post} key={post.title} />;
       })} */}
-      {blogPosts.map((post) => {
-        return <BlogCard post={post} key={post.id} />;
+      {blog?.map((post: any) => {
+        return <BlogCard post={post} key={post.productId} />;
       })}
       <Grid item lg={12} sm={12} mt={3}>
         <Pagination count={10} color="primary" sx={{ display: 'flex', justifyContent: 'center' }} />

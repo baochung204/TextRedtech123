@@ -82,6 +82,7 @@ import overviewContractAffiliateSlice from './admin/contract/contractaffiliate/o
 import overviewWithdrawalHistory from './admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
 import overviewPublisher from './admin/affiliate/publisher/overview/publisherOverviewSlice';
 import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
+
 import listContractAffiliateSlice from './admin/contract/contractaffiliate/table/contractAffiliateListSlice';
 import listContractRuleSlice from './admin/contract/contractrule/table/contractRuleSlice';
 import listOrderAffiliateSlice from './admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
@@ -89,6 +90,7 @@ import listPublisherSlice from './admin/affiliate/publisher/table/listPublisherS
 import historyWithdrawalSlice from './admin/affiliate/historywithdrawal/table/historyWithdrawalSlice';
 import orderProductListSlice from './admin/sell/orderproduct/table/listOrderProductSlice';
 import listBillSlice from './admin/contract/bill/table/listBillSlice';
+
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -176,7 +178,7 @@ const rootReducer = combineReducers({
   list_order_product: orderProductListSlice,
   list_bill: listBillSlice,
 });
-// const whitelistReducers = [''];
+
 const whitelistReducers = [
   'randomcoupon',
   'point_list',
@@ -206,3 +208,4 @@ export const { dispatch } = store;
 export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
 export default store;
+
