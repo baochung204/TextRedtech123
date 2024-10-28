@@ -18,8 +18,8 @@ import { default as iconPoint, default as point } from 'src/assets/images/logos/
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import DataOrderProduct from './data/DataOrderProduct';
 
+import { useDispatch, useSelector } from 'react-redux';
 import aovpicture from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 import sale from 'src/assets/Adminphoto/khuyen mai.png';
@@ -27,12 +27,10 @@ import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
-import DialogDetailOrder from './DialogDetailOrder';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
 import { fetchOverviewOrderProductData } from 'src/store/admin/sell/orderproduct/overview/orderproductSlice';
 import { fetchOrderProductListData } from 'src/store/admin/sell/orderproduct/table/listOrderProductSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogDetailOrder from './DialogDetailOrder';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -219,7 +217,7 @@ const ProductAdmin = () => {
 
   console.log(dataOrderProductOverview);
 
-  console.log(orderProductList);
+  console.log('hello', orderProductList);
 
   const column = useMemo<Column[]>(
     () => [

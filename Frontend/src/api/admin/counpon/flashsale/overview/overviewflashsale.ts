@@ -1,10 +1,10 @@
 import { axiosAPI } from 'src/api/axiosApi';
 
-const url = 'flash-sale/overview-flashsale';
+const url = '/admin/flash-sale/overview-flashsale';
 
 const overviewFlashsaleApi = {
   getAllOverviewFlashsale: () => {
-    return axiosAPI.get(`/${url}`);
+    return axiosAPI.get(`${url}`);
   },
 };
 

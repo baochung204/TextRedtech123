@@ -74,6 +74,8 @@ const VoucherAdmin = () => {
   const totalUsedFlashsle = dataHistoryOverview.totalUsed;
   const percentUsedFlashsale = dataHistoryOverview.percentUsed;
 
+  console.log('dataHistoryOverview', dataHistoryOverview);
+
   const DataCounpon = [
     {
       bgColor: 'primary.light',

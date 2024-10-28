@@ -33,6 +33,8 @@ import TabFunction from './Tables/TabFunction';
 import TabModel from './Tables/TabModel';
 import TabStr from './Tables/TabStr';
 import TabFiles from './Tables/TabFiles';
+import TabGallary from './Tables/TabGallary';
+import TabUrl from './Tables/TabUrl';
 interface Column {
   title: string;
   dataIndex: string;
@@ -42,7 +44,6 @@ interface Column {
 
 const Main = () => {
   const [value, setValue] = useState<'1' | '2' | '3' | '4' | '5' | '6'>('1');
-  const [data] = useState([]);
   const [open, setOpen] = useState<boolean>(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,12 +53,10 @@ const Main = () => {
     setOpen(false);
   };
 
-  const { Strategy, StrategyRows } = TableStr();
-  const { Function, FunctionRows } = TabbleFunction();
-  const { Files, FileCells } = TableFile();
-  const { Model, ModelCells, ModelRows } = TableModel();
-
-  // console.log(StrategyRows);
+  const { Strategy } = TableStr();
+  const { Function } = TabbleFunction();
+  const { Files } = TableFile();
+  const { Model } = TableModel();
 
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const handleColumnChange = (event: any) => {
@@ -405,8 +404,7 @@ const Main = () => {
             </Grid>
           </Grid>
         </Grid>
-        {/* )} */}
-        {/* {(value === '3' || value === '4' || value === '5' || value === '6') && ( */}
+
         <Grid item>
           <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
             <Grid item>
@@ -503,16 +501,17 @@ const Main = () => {
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="3">
               <TabFiles value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
-              {/* <CustomTable columns={FileCells} dataSource={data} dataSelect={dataSelect} /> */}
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="4">
               <TabModel value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="5">
               <CustomTable columns={ImageCells} dataSource={ImageRows} dataSelect={dataSelect} />
+              {/* <TabGallary value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} /> */}
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="6">
               <CustomTable columns={UrlCells} dataSource={UrlRows} dataSelect={dataSelect} />
+              {/* <TabUrl value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} /> */}
             </TabPanel>
           </TabContext>
         </Box>
