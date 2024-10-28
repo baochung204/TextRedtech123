@@ -82,6 +82,15 @@ import overviewContractAffiliateSlice from './admin/contract/contractaffiliate/o
 import overviewWithdrawalHistory from './admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
 import overviewPublisher from './admin/affiliate/publisher/overview/publisherOverviewSlice';
 import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
+
+import listContractAffiliateSlice from './admin/contract/contractaffiliate/table/contractAffiliateListSlice';
+import listContractRuleSlice from './admin/contract/contractrule/table/contractRuleSlice';
+import listOrderAffiliateSlice from './admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
+import listPublisherSlice from './admin/affiliate/publisher/table/listPublisherSlice';
+import historyWithdrawalSlice from './admin/affiliate/historywithdrawal/table/historyWithdrawalSlice';
+import orderProductListSlice from './admin/sell/orderproduct/table/listOrderProductSlice';
+import listBillSlice from './admin/contract/bill/table/listBillSlice';
+
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -161,6 +170,13 @@ const rootReducer = combineReducers({
   overview_withdrawal_history: overviewWithdrawalHistory,
   overview_publisher: overviewPublisher,
   overview_order_affiliate: overviewOrderAffiliate,
+  list_contract_affiliate: listContractAffiliateSlice,
+  list_contract_rule: listContractRuleSlice,
+  list_order_affiliate: listOrderAffiliateSlice,
+  list_publisher: listPublisherSlice,
+  list_withdrawal_history: historyWithdrawalSlice,
+  list_order_product: orderProductListSlice,
+  list_bill: listBillSlice,
 });
 
 const whitelistReducers = [
@@ -193,6 +209,7 @@ export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
 export default store;
 
+<<<<<<< HEAD
 // export const store = configureStore({
 //   reducer: {
 //     //user
@@ -255,3 +272,5 @@ export default store;
 //     overview_order: orderProductAdminSlice,
 //   },
 // });
+=======
+>>>>>>> b2f9fe38e3d4e12b755253c9f1e4dddac6540d6c

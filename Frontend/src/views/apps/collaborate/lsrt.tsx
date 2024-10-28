@@ -11,11 +11,11 @@ import DialogUpload from './dialogUpload/dialogUpload';
 const HistoryMoney = () => {
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const paymentHistory = useSelector((state: AppState) => state.list_paymenthistory.dataa);
   useEffect(() => {
-    dispatch(fetchHistoryPaymentData({ page, pageSize }));
-  }, [dispatch, page, pageSize]);
+    dispatch(fetchHistoryPaymentData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   console.log('paymentHistory', paymentHistory);
 
@@ -121,12 +121,13 @@ const HistoryMoney = () => {
       </Box>
       <CustomTable
         columns={FilmsData}
-        dataSource={paymentHistory?.content}
-        count={paymentHistory?.totalElements ? paymentHistory.totalElements : 0}
-        rowsPerPage={pageSize}
+        // dataSelect={dataSelect}
+        dataSource={paymentHistory.content}
+        count={paymentHistory.totalElements}
+        rowsPerPage={rowsPerPage}
         page={page}
         setPage={setPage}
-        setRowsPerPage={setPageSize}
+        setRowsPerPage={setRowsPerPage}
       />
       <DialogUpload open={open} setOpen={setOpen} />
     </PageContainer>

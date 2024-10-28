@@ -1,13 +1,12 @@
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { IconEye } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import DialogModelView from '../dialog/DialogModelView';
-import { ModelRows } from '../mockData/TableModel';
-import { HeadCell } from '../types/HeadCell';
 import { useSelector } from 'react-redux';
+import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchModelListData } from 'src/store/admin/resources/model/table/modelListSlice';
+import DialogModelView from '../dialog/DialogModelView';
+import { HeadCell } from '../types/HeadCell';
 
 interface PropsTabFunction {
   value: string;
@@ -19,10 +18,12 @@ interface PropsTabFunction {
 const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   const [selectId, setSelectId] = useState<string>();
   const modelList = useSelector((state: AppState) => state.model_list.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
   useEffect(() => {
-    dispatch(fetchModelListData());
-  }, [dispatch]);
+    dispatch(fetchModelListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   console.log(modelList);
   const ModelCells: HeadCell[] = [
@@ -73,9 +74,6 @@ const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            {/* <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton> */}
           </Tooltip>
         </Box>
       ),
@@ -84,7 +82,15 @@ const TabModel = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
 
   return (
     <>
-      <CustomTable columns={ModelCells} dataSource={modelList} dataSelect={dataSelect} />
+      <CustomTable
+        columns={ModelCells}
+        dataSource={modelList.content}
+        dataSelect={dataSelect}
+        count={modelList.totalElements}
+        page={page}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
       <DialogModelView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );

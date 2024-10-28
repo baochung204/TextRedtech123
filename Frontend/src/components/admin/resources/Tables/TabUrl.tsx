@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch } from 'src/store/Store';
-import { fetchFilesListData } from 'src/store/admin/resources/files/table/filesListSlice';
+import { fetchModelListData } from 'src/store/admin/resources/model/table/modelListSlice';
 import DialogModelView from '../dialog/DialogModelView';
 import { HeadCell } from '../types/HeadCell';
 
@@ -15,46 +15,50 @@ interface PropsTabFunction {
   dataSelect?: string[];
 }
 
-const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
+const TabUrl = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   const [selectId, setSelectId] = useState<string>();
-  const filesList = useSelector((state: AppState) => state.files_list.dataa);
+  const modelList = useSelector((state: AppState) => state.model_list.dataa);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
   useEffect(() => {
-    dispatch(fetchFilesListData({ page_no: page, page_size: rowsPerPage }));
+    dispatch(fetchModelListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
 
-  console.log(filesList);
-  const FilesCells: HeadCell[] = [
+  console.log(modelList);
+  const ModelCells: HeadCell[] = [
     {
       dataIndex: 'productId',
       title: 'ID',
     },
     {
-      dataIndex: 'nameProduct',
-      title: 'Tên file',
-    },
-    {
-      dataIndex: 'customer',
-      title: 'Khách hàng',
-    },
-    {
-      dataIndex: 'type',
-      title: 'Định dạng',
-    },
-    {
-      dataIndex: 'size',
-      title: 'Dung lượng',
-    },
-    {
       dataIndex: 'createDate',
-      title: 'Ngày tải',
+      title: 'Ngày tạo',
       render: (value: string) => {
         if (!value) return 'N/A'; // Handle undefined or invalid values
         const date = new Date(value);
         return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
       },
+    },
+    {
+      dataIndex: 'modelName',
+      title: 'Tên model',
+    },
+    {
+      dataIndex: 'baseModel',
+      title: 'Model gốc',
+    },
+    {
+      dataIndex: 'trainingToken',
+      title: 'Training tokens',
+    },
+    {
+      dataIndex: 'totalOwnership',
+      title: 'Khách hàng sở hữu',
+    },
+    {
+      dataIndex: 'totalApplicationAssistant',
+      title: 'Trợ lý áp dụng',
     },
     {
       dataIndex: 'actions',
@@ -79,10 +83,10 @@ const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   return (
     <>
       <CustomTable
-        columns={FilesCells}
-        dataSource={filesList.content}
+        columns={ModelCells}
+        dataSource={modelList.content}
         dataSelect={dataSelect}
-        count={filesList.totalElements}
+        count={modelList.totalElements}
         page={page}
         setPage={setPage}
         setRowsPerPage={setRowsPerPage}
@@ -92,4 +96,4 @@ const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   );
 };
 
-export default TabFiles;
+export default TabUrl;
