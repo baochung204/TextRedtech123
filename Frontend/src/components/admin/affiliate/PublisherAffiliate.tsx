@@ -29,16 +29,17 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch, AppState } from 'src/store/Store';
 import { useSelector } from 'react-redux';
 import { fetchOverviewPublisherData } from 'src/store/admin/affiliate/publisher/overview/publisherOverviewSlice';
+import { fetchPublisherListData } from 'src/store/admin/affiliate/publisher/table/listPublisherSlice';
 
-const getStatusAccountColor = (status: number) => {
+const getStatusAccountColor = (status: string) => {
   switch (status) {
-    case 1:
+    case 'ACCEPT':
       return 'success';
-    case 2:
+    case 'PENDING':
       return 'warning';
-    case 3:
+    case 'REJECT':
       return 'error';
-    case 4:
+    case 'BAN':
       return 'error';
     default:
       return 'default';
@@ -55,6 +56,14 @@ interface Column {
 const PublisherAffiliate = () => {
   const dispatch = useDispatch<AppDispatch>();
   const dataPublisherOverview = useSelector((state: AppState) => state.overview_publisher.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  const publisherList = useSelector((state: AppState) => state.list_publisher.dataa);
+  useEffect(() => {
+    dispatch(fetchPublisherListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
+
   useEffect(() => {
     dispatch(fetchOverviewPublisherData());
   }, [dispatch]);
@@ -185,12 +194,12 @@ const PublisherAffiliate = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_publisher',
+        dataIndex: 'id',
       },
 
       {
         title: 'Đối tác',
-        dataIndex: 'doitac',
+        dataIndex: '',
         render: (_row: any, value: any) => (
           <Box
             sx={{
@@ -206,7 +215,7 @@ const PublisherAffiliate = () => {
               sx={{ width: 48, height: 48 }}
             />
             <Typography style={{ marginLeft: '10px' }} variant="subtitle2">
-              {value.name_partner}
+              {value.name}
             </Typography>
           </Box>
         ),
@@ -217,18 +226,18 @@ const PublisherAffiliate = () => {
       },
       {
         title: 'SĐT',
-        dataIndex: 'phone_number',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Loại hình',
-        dataIndex: 'email_publisher',
+        dataIndex: 'type',
         render: (_row: any, value: any) => (
           <Typography style={{ width: '110px' }} variant="subtitle2">
             <Box sx={{ display: 'flex', justifyContent: 'center', px: 1 }}>
               <Typography style={{ width: '200px' }} variant="subtitle2">
                 <Chip
-                  label={value.type ? 'Doanh nghiệp' : 'Cá nhân'}
-                  color={value.type ? 'success' : 'warning'}
+                  label={value.type === 'BUSINESS' ? 'Doanh nghiệp' : 'Cá nhân'}
+                  color={value.type === 'BUSINESS' ? 'success' : 'warning'}
                   variant="outlined"
                 />
               </Typography>
@@ -238,25 +247,29 @@ const PublisherAffiliate = () => {
       },
       {
         title: 'Ngày đăng ký',
-        dataIndex: 'create_date',
+        dataIndex: 'registerDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Trạng thái tài khoản',
-        dataIndex: '',
+        dataIndex: 'accountStatus',
         render: (_row: any, value: any) => (
           <Chip
             label={
-              value.type_account === 1
+              value.accountStatus === 'ACCEPT'
                 ? 'Hoạt động'
-                : value.type_account === 2
+                : value.accountStatus === 'PENDING'
                 ? 'Chờ duyệt'
-                : value.type_account === 3
+                : value.accountStatus === 'REJECT'
                 ? 'Bị từ chối'
-                : value.type_account === 4
+                : value.accountStatus === 'BAN'
                 ? 'Bị cấm'
                 : ''
             }
-            color={getStatusAccountColor(value.type_account)}
+            color={getStatusAccountColor(value.accountStatus)}
           />
         ),
       },
@@ -267,26 +280,28 @@ const PublisherAffiliate = () => {
       },
       {
         title: 'Số khách hàng',
-        dataIndex: 'total_Customers',
+        dataIndex: 'totalCustomer',
         render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
       {
         title: 'Số đơn hàng',
-        dataIndex: 'total_Order',
+        dataIndex: 'totalOrder',
         render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
       {
         title: 'Tổng hoa hồng',
-        dataIndex: 'total_commission',
-        render: (value) => (
-          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value.toLocaleString('vi-VN')} <Box>₫</Box>
-          </Box>
-        ),
+        dataIndex: 'totalCommission',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
       {
         title: 'Click',
-        dataIndex: 'click',
+        dataIndex: 'totalClick',
         render: (value) => <Box sx={{ display: 'flex', justifyContent: 'center' }}>{value}</Box>,
       },
       {
@@ -300,30 +315,36 @@ const PublisherAffiliate = () => {
       },
       {
         title: 'Số dư ví',
-        dataIndex: 'account_balance',
-        render: (value) => (
-          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value.toLocaleString('vi-VN')} <Box>₫</Box>
-          </Box>
-        ),
+        dataIndex: 'balance',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
       {
         title: 'Đang xử lý',
-        dataIndex: 'processing',
-        render: (value) => (
-          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value.toLocaleString('vi-VN')} <Box>₫</Box>
-          </Box>
-        ),
+        dataIndex: 'inProcessing',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
       {
         title: 'Tổng rút',
-        dataIndex: 'paid',
-        render: (value) => (
-          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value.toLocaleString('vi-VN')} <Box>₫</Box>
-          </Box>
-        ),
+        dataIndex: 'totalAmountWithdrawn',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
     ],
     [],
@@ -477,7 +498,16 @@ const PublisherAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={DataPublishersTable} dataSelect={dataSelect} />
+          <CustomTable
+            columns={column}
+            dataSelect={dataSelect}
+            dataSource={publisherList.content}
+            count={publisherList.totalElements}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+          />
         </Grid>
       </Grid>
     </>

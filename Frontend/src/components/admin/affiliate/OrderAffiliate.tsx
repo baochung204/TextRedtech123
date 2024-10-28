@@ -36,9 +36,6 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat('vi-VN').format(value);
-};
 
 const OrderAffiliate = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -162,6 +159,10 @@ const OrderAffiliate = () => {
       {
         title: 'Ngày mua',
         dataIndex: 'createDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Tên Publisher',
@@ -214,31 +215,25 @@ const OrderAffiliate = () => {
       {
         title: 'Số point',
         dataIndex: 'point',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
+      },
 
-        render: (_row: any, value: any) => (
-          <Box sx={{ display: 'flex' }}>
-            <Typography variant="subtitle2">{value.point}</Typography>
-            title: 'Giá trị đơn hàng',
-            dataIndex: 'total',
-            render: (value) => (
-              <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-                {formatCurrency(value)} <Box>₫</Box>
-              </Box>
-            ),
-            <Box/>
-          },
-          {
-           
-          ),
-              },
-              {
-          title: 'Hoa hồng',
-          dataIndex: 'commission',
-          render: (value) => (
-          <Box sx={{ display: 'flex', justifyContent: 'end', pr: 1, gap: '4px' }}>
-            {value} <Box>₫</Box>
-          </Box>
-        ),
+      {
+        title: 'Hoa hồng',
+        dataIndex: 'commission',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
     ],
     [],

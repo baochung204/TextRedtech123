@@ -159,7 +159,6 @@ const ContactAffiliate = () => {
         title: 'ID',
         dataIndex: 'affiliateId',
       },
-
       {
         title: 'Mã khách hàng',
         dataIndex: 'userId',
@@ -172,7 +171,6 @@ const ContactAffiliate = () => {
           return values.toLocaleDateString('vi-VN');
         },
       },
-
       {
         title: 'Ngày ký',
         dataIndex: 'signedDate',

@@ -34,6 +34,28 @@ const overviewAffiliateApi = {
 
     return axiosAPI.get(`${fullUrl}`);
   },
+  getListPublisherAffiliate: (object: PropsAffiliate = {}) => {
+    const urls = `/${url}/list-publisher`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
+  },
+  getListWithdrawalHistory: (object: PropsAffiliate = {}) => {
+    const urls = `/${url}/list-withdrawal-history`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
+  },
 };
 
 export default overviewAffiliateApi;

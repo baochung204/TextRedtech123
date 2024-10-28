@@ -85,6 +85,8 @@ import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/ord
 import listContractAffiliateSlice from './admin/contract/contractaffiliate/table/contractAffiliateListSlice';
 import listContractRuleSlice from './admin/contract/contractrule/table/contractRuleSlice';
 import listOrderAffiliateSlice from './admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
+import listPublisherSlice from './admin/affiliate/publisher/table/listPublisherSlice';
+import historyWithdrawalSlice from './admin/affiliate/historywithdrawal/table/historyWithdrawalSlice';
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -167,6 +169,8 @@ const rootReducer = combineReducers({
   list_contract_affiliate: listContractAffiliateSlice,
   list_contract_rule: listContractRuleSlice,
   list_order_affiliate: listOrderAffiliateSlice,
+  list_publisher: listPublisherSlice,
+  list_withdrawal_history: historyWithdrawalSlice,
 });
 
 const whitelistReducers = [
