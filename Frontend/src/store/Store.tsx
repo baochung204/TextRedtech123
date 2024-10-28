@@ -209,7 +209,6 @@ export const useDispatch = () => useAppDispatch<AppDispatch>();
 export const useSelector: TypedUseSelectorHook<AppState> = useAppSelector;
 export default store;
 
-<<<<<<< HEAD
 // export const store = configureStore({
 //   reducer: {
 //     //user
@@ -272,5 +271,3 @@ export default store;
 //     overview_order: orderProductAdminSlice,
 //   },
 // });
-=======
->>>>>>> b2f9fe38e3d4e12b755253c9f1e4dddac6540d6c
