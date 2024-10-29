@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { axiosAPI } from 'src/api/axiosApi';
 import BlogApi from 'src/api/user/blog/blog';
 
 interface Blog {
@@ -31,6 +32,18 @@ export const fetchBlogs = createAsyncThunk('blogs', async (_, thunkApi) => {
     return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
   }
 });
+export const fetchBlogPost = createAsyncThunk(
+  'blog/fetchBlogPost',
+  async (id: string, thunkApi) => {
+    try {
+      const response = await axiosAPI.get(`/redtech/user/blogs/${id}`);
+      return response.data;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
+
 const BlogSlice = createSlice({
   name: 'blogs',
   initialState,
@@ -44,6 +57,17 @@ const BlogSlice = createSlice({
       state.data = action.payload;
     },
     [fetchBlogs.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload as string;
+    },
+    [fetchBlogPost.pending.type]: (state) => {
+      state.loading = true;
+    },
+    [fetchBlogPost.fulfilled.type]: (state, action) => {
+      state.loading = false;
+      state.data.result = [action.payload]; // Lưu chi tiết blog vào `result`
+    },
+    [fetchBlogPost.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload as string;
     },

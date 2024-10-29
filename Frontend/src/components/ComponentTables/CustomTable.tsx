@@ -22,8 +22,8 @@ interface CustomTableProps {
   count: number;
   rowsPerPage: number;
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>,
-  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>,
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
   rowsPerPageOptions?: number[];
   dataSelect?: string[];
 }
@@ -39,21 +39,15 @@ const CustomTable: React.FC<CustomTableProps> = ({
   rowsPerPageOptions = [5, 10, 25],
   dataSelect = [],
 }) => {
-
-
-
-
   const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedValue = parseInt(event.target.value, 10);
     console.log('Số hàng được chọn:', event.target.value);
     setRowsPerPage(selectedValue);
-    setPage(1)
+    setPage(1);
   };
   const handlePageChange = (_event: unknown, newPage: number) => {
-
     setPage(newPage + 1);
   };
-
 
   return (
     <TableContainer component={Paper} sx={{ px: 2 }}>
@@ -68,12 +62,16 @@ const CustomTable: React.FC<CustomTableProps> = ({
                   isColumnVisible && (
                     <TableCell key={index}>
                       <Box
-                        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                        }}
                       >
                         <Typography
                           variant="subtitle2"
                           fontWeight={600}
-                          sx={{ flexGrow: 1, whiteSpace: 'nowrap'}}
+                          sx={{ flexGrow: 1, whiteSpace: 'nowrap' }}
                         >
                           {column.title}
                         </Typography>
