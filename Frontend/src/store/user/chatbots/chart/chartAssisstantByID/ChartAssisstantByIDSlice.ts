@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import assistantAPi from "src/api/chatbots/assistantsUser";
+import assistantAPi, { PropsData } from "src/api/chatbots/assistantsUser";
 import { TypeChartAssisstant } from "./TypeChart";
 
 
@@ -11,23 +11,19 @@ interface ChartAssisstant {
 }
 
 const initialState: ChartAssisstant = {
-    data: {},
+    data: {
+        status: null,
+        chart: []
+    },
     loading: false,
     error: null,
 };
 
-interface PropsData {
-    chatbotID: number,
-    typeChart: string,
-    startDate?: Date,
-    endDate?: Date
-}
-
 export const fetchChartAssisstant = createAsyncThunk(
     'fetchChartAssisstant',
-    async ({ chatbotID, typeChart, startDate, endDate }: PropsData, thunkAPI) => {
+    async ({ chatbot_id, object = {} }: { chatbot_id: number, object?: PropsData }, thunkAPI) => {
         try {
-            const res = await assistantAPi.getChartByID(chatbotID, typeChart, startDate, endDate);
+            const res = await assistantAPi.getChartByID(chatbot_id, object);
             return res.data.result
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');

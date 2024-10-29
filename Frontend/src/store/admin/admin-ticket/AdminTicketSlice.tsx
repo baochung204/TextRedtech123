@@ -4,7 +4,7 @@ import overviewTicketApi from 'src/api/admin/ticket/ticket';
 interface AdminTicket {
   ticketId: string;
   create_date: Date;
-  messageTime: Date | null; // Thêm null để xử lý giá trị không có
+  messageTime: Date | null; 
   rate: number;
   status: string;
   title: string;
@@ -14,7 +14,7 @@ interface AdminTicket {
   phone_number: string;
 }
 interface StaffData {
-    result: AdminTicket[];
+    content: AdminTicket[];
     pageNo: number;
     pageSize: number;
     totalElements: number;
@@ -23,22 +23,30 @@ interface StaffData {
 }
 
 interface StrState {
-  result: AdminTicket[];
+  result: StaffData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  result: [],
+  result: {
+    content: [],
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+    last: false,
+  },
   loading: false,
   error: null,
 }
 
 // Tạo async thunk để lấy dữ liệu ticket
-export const fetchTicketsData = createAsyncThunk('str/fetchedTickets', async (_, thunkAPI) => {
+export const fetchTicketsData = createAsyncThunk('fetchedTickets', 
+  async (object: Partial<AdminTicket> = {}, thunkAPI) => {
   try {
-    const response = await overviewTicketApi.getAllTicketData();
-    return response.data; // Giả định rằng response.data chứa mảng các ticket
+    const response = await overviewTicketApi.getAllTicketData(object);
+    return response.data.result; // Giả định rằng response.data chứa mảng các ticket
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message); // Trả về thông điệp lỗi
   }

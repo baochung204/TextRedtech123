@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Typography,
@@ -15,6 +15,10 @@ import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { SelectChangeEvent } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { AppDispatch, AppState, dispatch } from 'src/store/Store';
+import { useDispatch } from 'react-redux';
+import { fetchUserMeData } from 'src/store/user/userme/usermeSlice';
 
 function SlideTransition(props: any) {
   return <Slide {...props} direction="left" />;
@@ -31,7 +35,12 @@ const PersonalInformation = () => {
     dob: new Date('2004-10-30'),
     address: '123 Đường ABC, TP. Hồ Chí Minh',
   });
-
+  const dispatch = useDispatch<AppDispatch>()
+  const inFormation = useSelector((state: AppState) => state.userme.result)
+  console.log('Userme:', inFormation);
+useEffect(() => {
+  dispatch(fetchUserMeData());
+},[dispatch])
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo({
       ...userInfo,
@@ -87,95 +96,102 @@ const PersonalInformation = () => {
       </Typography>
 
       {/* Tên */}
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-          Họ và tên:
-        </Typography>
-        {editing ? (
-          <TextField
-            name="name"
-            value={userInfo.name}
-            onChange={handleInputChange}
-            sx={{ flexGrow: 1, mr: 1 }}
-            size="small"
-          />
-        ) : (
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {userInfo.name}
-          </Typography>
-        )}
-      </Box>
+      { inFormation ? (
+        <>
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+              Họ và tên:
+            </Typography>
+            {editing ? (
+              <TextField
+                name="name"
+                value={inFormation.name}
+                onChange={handleInputChange}
+                sx={{ flexGrow: 1, mr: 1 }}
+                size="small"
+              />
+            ) : (
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                {inFormation.name}
+              </Typography>
+            )}
+          </Box>
 
-      
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-          Giới tính:
-        </Typography>
-        {editing ? (
-          <Select
-            value={userInfo.gender}
-            onChange={handleGenderChange}
-            sx={{ flexGrow: 1, mr: 1 }}
-            size="small"
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+              Giới tính:
+            </Typography>
+            {editing ? (
+              <Select
+                value={inFormation.gender}
+                onChange={handleGenderChange}
+                sx={{ flexGrow: 1, mr: 1 }}
+                size="small"
+              >
+                <MenuItem value="Nam">Nam</MenuItem>
+                <MenuItem value="Nữ">Nữ</MenuItem>
+                <MenuItem value="Khác">Khác</MenuItem>
+              </Select>
+            ) : (
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                {inFormation.gender}
+              </Typography>
+            )}
+          </Box>
+
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+              Ngày sinh:
+            </Typography>
+            {editing ? (
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  value={inFormation.dateOfBirth}
+                  onChange={handleDateChange}
+                  renderInput={(params) => (
+                    <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />
+                  )}
+                />
+              </LocalizationProvider>
+            ) : (
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                {inFormation.dateOfBirth}
+              </Typography>
+            )}
+          </Box>
+
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+              Địa chỉ:
+            </Typography>
+            {editing ? (
+              <TextField
+                name="address"
+                value={inFormation.address}
+                onChange={handleInputChange}
+                sx={{ flexGrow: 1, mr: 1 }}
+                size="small"
+              />
+            ) : (
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                {inFormation.address}
+              </Typography>
+            )}
+          </Box>
+
+          <Button
+            variant="contained"
+            onClick={editing ? handleSaveClick : handleEditClick}
+            sx={{ mt: 2, marginLeft: 'auto', display: 'block' }}  
           >
-            <MenuItem value="Nam">Nam</MenuItem>
-            <MenuItem value="Nữ">Nữ</MenuItem>
-            <MenuItem value="Khác">Khác</MenuItem>
-          </Select>
-        ) : (
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {userInfo.gender}
-          </Typography>
-        )}
-      </Box>
-
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            {editing ? 'Lưu' : 'Sửa'}
+          </Button>
+        </>
+      ) : (
         <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-          Ngày sinh:
+          Loading...
         </Typography>
-        {editing ? (
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={userInfo.dob}
-              onChange={handleDateChange}
-              renderInput={(params) => (
-                <TextField {...params} size="small" sx={{ flexGrow: 1, mr: 1 }} />
-              )}
-            />
-          </LocalizationProvider>
-        ) : (
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {userInfo.dob.toLocaleDateString()}
-          </Typography>
-        )}
-      </Box>
-
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-        <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-          Địa chỉ:
-        </Typography>
-        {editing ? (
-          <TextField
-            name="address"
-            value={userInfo.address}
-            onChange={handleInputChange}
-            sx={{ flexGrow: 1, mr: 1 }}
-            size="small"
-          />
-        ) : (
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {userInfo.address}
-          </Typography>
-        )}
-      </Box>
-
-      <Button
-        variant="contained"
-        onClick={editing ? handleSaveClick : handleEditClick}
-        sx={{ mt: 2, marginLeft: 'auto', display: 'block' }}  
-      >
-        {editing ? 'Lưu' : 'Sửa'}
-      </Button>
+      )}
 
       <Snackbar
         open={open}

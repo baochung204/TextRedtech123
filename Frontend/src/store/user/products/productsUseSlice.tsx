@@ -1,6 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductsType } from './type/productsType';
-import productsApi from 'src/api/userProducts/products';
+import productsApi, { PropProducts } from 'src/api/userProducts/products';
 
 interface ShopI {
   data: ProductsType;
@@ -15,20 +16,17 @@ const initialState: ShopI = {
     totalElements: 0,
     totalPages: 0,
     last: false,
+    category: '',
   },
   loading: false,
   error: null,
 };
-interface FetchParams {
-  page?: number | undefined;
-  size?: number | undefined;
-  sortDir?: boolean | undefined;
-}
-export const fetchProducts = createAsyncThunk<ProductsType, FetchParams>(
+
+export const fetchProducts = createAsyncThunk<ProductsType, PropProducts>(
   'products/fetchData',
-  async ({ page, size, sortDir }: FetchParams, thunkAPI) => {
+  async (data: PropProducts = {}, thunkAPI) => {
     try {
-      const response = await productsApi.getAllProducts(page, size, sortDir);
+      const response = await productsApi.getAllProducts(data);
       return response.data.result;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');

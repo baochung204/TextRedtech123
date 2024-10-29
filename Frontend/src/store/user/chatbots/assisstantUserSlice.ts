@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import assistantAPi from 'src/api/chatbots/assistantsUser';
+import assistantAPi, { PropsAssistant } from 'src/api/chatbots/assistantsUser';
 import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
 // import { AssistantType } from '../type/assistantType';
 
@@ -15,14 +15,17 @@ const initialState: StrState = {
   error: null,
 };
 
-export const fetchAssistantData = createAsyncThunk('fetchDataAssistant', async (_, thunkAPI) => {
-  try {
-    const response = await assistantAPi.getAllAssistant();
-    return response.data.result;
-  } catch (error: any) {
-    return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
-  }
-});
+export const fetchAssistantData = createAsyncThunk<PropsDataAssisstant[], PropsAssistant>(
+  'fetchDataAssistant',
+  async (data: PropsAssistant = {}, thunkAPI) => {
+    try {
+      const response = await assistantAPi.getAllAssistant(data);
+      return response.data.result;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
 const assistantSlice = createSlice({
   name: 'assistant',
   initialState,

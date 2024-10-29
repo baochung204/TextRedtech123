@@ -1,46 +1,31 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
-import { useDispatch, useSelector } from 'src/store/Store';
 import {
-  ListItemText,
-  ListItemButton,
-  List,
   Divider,
+  List,
+  ListItemButton,
   ListItemIcon,
+  ListItemText,
   Typography,
 } from '@mui/material';
-import { filterProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+// import { filterProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
 import {
-  IconHanger,
   IconCircles,
-  IconNotebook,
-  IconMoodSmile,
   IconDeviceLaptop,
+  IconHanger,
+  IconMoodSmile,
+  IconNotebook,
 } from '@tabler/icons-react';
+import { setSelectedCategory } from 'src/store/RouterSlice';
 import { ProductFiterType } from 'src/types/apps/eCommerce';
-
 const ProductFilter = () => {
-  const dispatch = useDispatch();
-  // const products = useSelector((state) => state.ecommerceReducer.products);
-  const active = useSelector((state) => state.ecommerceReducer.filters);
-
   const customizer = useSelector((state) => state.customizer);
   const br = `${customizer.borderRadius}px`;
-
-  // const getUniqueData = (data: string[], attr: any) => {
-  //   let newVal = data.map((curElem) => {
-  //     return curElem[attr];
-  //   });
-  //   if (attr === 'colors') {
-  //     newVal = newVal.flat();
-  //   }
-
-  //   return (newVal = ['All', ...Array.from(new Set(newVal))]);
-  // };
-
-  // const filterbyGender = getUniqueData(products, 'gender');
-  // const filterbyColors = getUniqueData(products, 'colors');
+  const selectedCategory = useSelector((state: AppState) => state.selectReducer.selectcategory);
+  const handleClickItem = (item: string | null | undefined) => {
+    if (item) dispatch(setSelectedCategory(item));
+  };
 
   const filterCategory: ProductFiterType[] = [
     {
@@ -50,35 +35,47 @@ const ProductFilter = () => {
     {
       id: 2,
       name: 'Tất cả',
-      sort: 'All',
+      sort: 'all',
       icon: IconCircles,
     },
     {
       id: 3,
       name: 'Chiến lược',
-      sort: 'fashion',
+      sort: 'campaign',
       icon: IconHanger,
     },
     {
-      id: 9,
+      id: 4,
       name: 'Function',
-      sort: 'chatbox',
+      sort: 'function',
       icon: IconNotebook,
     },
     {
-      id: 10,
-      name: 'Files',
-      sort: 'openai',
+      id: 5,
+      name: 'Dung lượng File',
+      sort: 'knowledge_file',
       icon: IconMoodSmile,
     },
     {
-      id: 11,
+      id: 6,
+      name: 'Số lượng File ',
+      sort: 'storage_knowledge',
+      icon: IconMoodSmile,
+    },
+    {
+      id: 7,
       name: 'Model',
-      sort: 'electronics',
+      sort: 'model',
       icon: IconDeviceLaptop,
     },
     {
-      id: 6,
+      id: 8,
+      name: 'Trợ lý',
+      sort: 'assistant_pack',
+      icon: IconMoodSmile,
+    },
+    {
+      id: 9,
       devider: true,
     },
   ];
@@ -100,8 +97,9 @@ const ProductFilter = () => {
           return (
             <ListItemButton
               sx={{ mb: 1, mx: 3, borderRadius: br }}
-              selected={active.category === `${filter.sort}`}
-              onClick={() => dispatch(filterProducts({ category: `${filter.sort}` }))}
+              // selected={active.category === `${filter.sort}`}
+              selected={selectedCategory === `${filter.sort}`}
+              onClick={() => handleClickItem(filter.sort)}
               key={filter.id}
             >
               <ListItemIcon sx={{ minWidth: '30px' }}>
