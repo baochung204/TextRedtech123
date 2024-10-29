@@ -48,9 +48,9 @@ const AssistantInfor = () => {
         dispatch(fetchAssistantById({ id: numericId }));
       }
     }
-  }, [dispatch, id]);
+  }, [id]);
 
- 
+
 
   const [chatBotInfo, setChatBotInfo] = useState<ChatBotInfoType | null>(null);
   const [chatBotIndex, setChatBotIndex] = useState<ChatBotIndexType | null>(null);
@@ -214,7 +214,7 @@ const AssistantInfor = () => {
             <Chart1 />
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
-            <Chart2 />
+            <Chart2 id={id} />
           </Grid>
           {/* column */}
           <Grid item xs={12} sm={12} md={4} lg={4}>
