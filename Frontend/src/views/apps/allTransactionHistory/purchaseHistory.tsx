@@ -40,27 +40,18 @@ const PurchaseHistoryInProfile = () => {
   const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
-  console.log('orderhistoryxlist', orderhistorylist.content);
-  console.log('orderhistoryxdetail', orderhistorydetail);
-
   useEffect(() => {
-    dispatch(fetchHistoryOrderListData({page_no: page, page_size: rowsPerPage }));
+    dispatch(fetchHistoryOrderListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
-
 
   const handleOpen = (id: number) => {
     setOpen(true);
     dispatch(fetchHistoryOrderDetailData(id));
-    // dispatch(fetchHistoryOrderListData({ page_no: 1, sort_dir: 'asc' }));
   };
 
   const handleCloseDialog = () => {
     setOpen(!open);
   };
-
-
-  console.log(orderhistorylist.pageNo);
-
 
   const columns: Column[] = [
     {

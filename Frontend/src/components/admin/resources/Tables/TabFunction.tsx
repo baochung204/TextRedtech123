@@ -6,7 +6,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchFunctionListData } from 'src/store/admin/resources/function/table/functionListSlice';
 import DialogFuncView from '../dialog/DialogFuncView';
-import { FunctionRows } from '../mockData/TableFunction';
 import { HeadCell } from '../types/HeadCell';
 
 interface PropsTabFunction {

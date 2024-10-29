@@ -27,8 +27,6 @@ import ChildCard from 'src/components/shared/ChildCard';
 import { AppState } from 'src/store/Store';
 
 const ContentPurchaseHistory = () => {
-  // Changed function name to follow PascalCase
-
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 
   const handleSelectPackage = (pkgId: number) => {
@@ -38,10 +36,9 @@ const ContentPurchaseHistory = () => {
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
   const flashSaleArray = [orderhistorydetail.flashSaleResponse];
 
-  console.log('orderhistorydetail hello', orderhistorydetail);
+  // console.log('orderhistorydetail hello', orderhistorydetail);
   return (
-    <div>
-      {/* <ProductChecout /> */}
+    <>
       <Box display={'flex'} alignItems="center" justifyContent={'center'} marginBottom={5}>
         <Typography variant="h3">Chi tiết đơn hàng </Typography>
       </Box>
@@ -416,7 +413,7 @@ const ContentPurchaseHistory = () => {
           </ChildCard>
         </Box>
       </Box>
-    </div>
+    </>
   );
 };
 
