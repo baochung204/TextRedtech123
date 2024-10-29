@@ -1,6 +1,6 @@
 import { axiosAPI } from 'src/api/axiosApi';
 
-export interface PropsCustomerAdmin {
+export interface PropsConvertAdmin {
   page_no?: number | null | undefined;
   page_size?: number | null | undefined;
   sort_by?: string | null | undefined;
@@ -10,17 +10,14 @@ export interface PropsCustomerAdmin {
   end?: string | null | undefined;
 }
 
-const url = 'redtech/customer';
+const url = 'converts';
 
-const customerAdminApi = {
-  getOverviewCustomer: () => {
-    return axiosAPI.get(`/${url}/overview`);
+const convertApi = {
+  getDetailConvertList: (id: number) => {
+    return axiosAPI.get(`/${url}/history/${id}/detail`);
   },
-  getOverviewFunction: () => {
-    return axiosAPI.get(`/${url}/functionOverview`);
-  },
-  getCustomerListAdmin: (object: PropsCustomerAdmin = {}) => {
-    const urls = `/${url}/customers`;
+  getConvertList: (object: PropsConvertAdmin = {}) => {
+    const urls = `/${url}/history`;
     const query = Object.entries(object)
       .filter(([, value]) => value !== null && value !== undefined)
       .map(([key, value]) => `${key}=${value}`)
@@ -32,4 +29,4 @@ const customerAdminApi = {
   },
 };
 
-export default customerAdminApi;
+export default convertApi;

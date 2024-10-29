@@ -19,18 +19,17 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 // import HistoryTable from './component/HistoryTable';
+import { useDispatch, useSelector } from 'react-redux';
 import pending from 'src/assets/Adminphoto/cho xu ly.png';
 import done from 'src/assets/Adminphoto/da xu ly.png';
 import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
 import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import { DataHistoryTable } from './datatable/OrderTableData';
-import DialogViewHistory from './dialog/DialogViewHistory';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
 import { fetchOverviewWithdrawalHistoryData } from 'src/store/admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
 import { fetchWithdrawalHistoryListData } from 'src/store/admin/affiliate/historywithdrawal/table/historyWithdrawalSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogViewHistory from './dialog/DialogViewHistory';
+import { fetchDetailWithdrawalHistoryData } from 'src/store/admin/affiliate/historywithdrawal/withdrawaldetail/withdrawalDetailSlice';
 
 const getStatusColor = (status: number) => {
   switch (status) {
@@ -64,6 +63,7 @@ const HistoryAffiliate = () => {
   const withdrawalHistoryList = useSelector(
     (state: AppState) => state.list_withdrawal_history.dataa,
   );
+
   useEffect(() => {
     dispatch(fetchWithdrawalHistoryListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
@@ -168,6 +168,10 @@ const HistoryAffiliate = () => {
       ),
     },
   ];
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchDetailWithdrawalHistoryData(id));
+  };
 
   const column = useMemo<Column[]>(
     () => [
@@ -278,14 +282,10 @@ const HistoryAffiliate = () => {
       {
         dataIndex: 'actions',
         title: 'Hoạt động',
-        render: () => (
+        render: (_, value: any) => (
           <Box display={'flex'} sx={{ justifyContent: 'center' }}>
             <Tooltip title="Xem" placement="right">
-              <IconButton
-                onClick={() => {
-                  setOpen(!open);
-                }}
-              >
+              <IconButton onClick={() => handleOpen(value.withdrawId)}>
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
             </Tooltip>

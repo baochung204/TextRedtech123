@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import resourcesAdminApi, { PropsAffiliate } from 'src/api/admin/resources/resources';
+import { PropsContractAffiliate } from 'src/api/admin/accountant/accountant';
+import convertApi from 'src/api/admin/convert/convert';
+import notificationAdminApi from 'src/api/admin/notification/notification';
 
+//not correct
 interface PropsData {
-  productId: number;
-  nameProduct: string;
-  customer: number;
+  userId: number;
+  name: string;
+  email: string;
+  phoneNumber: number;
   type: string;
-  size: number;
-  createDate: Date;
+  totalChatBot: number;
+  totalRecharge: number;
+  totalPointBalence: number;
+  representativeName: string | null;
+  publisher: string | null;
 }
 
 interface VoucherData {
@@ -38,11 +45,11 @@ const initialState: StrState = {
   error: null,
 };
 
-export const fetchFilesListData = createAsyncThunk(
-  'fetchFilesListData',
-  async (object: PropsAffiliate = {}, thunkApi) => {
+export const fetchConvertHistoryListData = createAsyncThunk(
+  'fetchConvertHistoryList',
+  async (object: PropsContractAffiliate = {}, thunkApi) => {
     try {
-      const response = await resourcesAdminApi.getAllDataFiles(object);
+      const response = await convertApi.getConvertList(object);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
@@ -50,22 +57,22 @@ export const fetchFilesListData = createAsyncThunk(
   },
 );
 
-const fileListSlice = createSlice({
+const convertHistoryListSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchFilesListData.pending.type]: (state) => {
+    [fetchConvertHistoryListData.pending.type]: (state) => {
       state.loading = true;
     },
-    [fetchFilesListData.fulfilled.type]: (state, action) => {
+    [fetchConvertHistoryListData.fulfilled.type]: (state, action) => {
       state.loading = false;
       state.dataa = action.payload;
     },
-    [fetchFilesListData.rejected.type]: (state, action) => {
+    [fetchConvertHistoryListData.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
-export default fileListSlice.reducer;
+export default convertHistoryListSlice.reducer;

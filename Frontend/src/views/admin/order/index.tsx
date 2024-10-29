@@ -16,23 +16,22 @@ import {
 } from '@mui/material';
 import { IconEye, IconPower, IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import personorcompany from 'src/assets/Adminphoto/cn dn.png';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import customerpaid from 'src/assets/Adminphoto/khach tra phi.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import rpointblance from 'src/assets/Adminphoto/so du r poi.png';
 import icontext from 'src/assets/images/logos/R-Point.png';
-import OrderData from 'src/components/admin/order/data/OrderData';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard, { StyleProps } from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import DialogOrder from './DialogOrder';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
 import { fetchOverviewCustomerData } from 'src/store/admin/customer/overview/customerSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogOrder from './DialogOrder';
+import { fetchCustomerAdminListData } from 'src/store/admin/customer/table/listCustomerSlice';
 
 const BCrumb = [
   {
@@ -57,6 +56,14 @@ const OrderAdminPages = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const dataCustomerOverview = useSelector((state: AppState) => state.overview_customer.dataa);
+
+  const customerlist = useSelector((state: AppState) => state.listCustomer.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  useEffect(() => {
+    dispatch(fetchCustomerAdminListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const totalRevenue = dataCustomerOverview.totalRevenue;
   const totalIndividual = dataCustomerOverview.totalIndividual;
@@ -204,7 +211,7 @@ const OrderAdminPages = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id',
+        dataIndex: 'userId',
       },
 
       {
@@ -217,11 +224,11 @@ const OrderAdminPages = () => {
       },
       {
         title: 'Số điện thoại',
-        dataIndex: 'phone',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Loại tài khoản',
-        dataIndex: 'typeacc',
+        dataIndex: 'type',
         sort: true,
         render: (value: any) => (
           <Typography style={{ width: '110px' }} variant="subtitle2">
@@ -239,16 +246,15 @@ const OrderAdminPages = () => {
       },
       {
         title: 'Số lượng trợ lý',
-        dataIndex: 'soluongtroly',
+        dataIndex: 'totalChatBot',
       },
       {
         title: 'Tổng nạp',
-        sort: true,
-        dataIndex: 'tongnap',
+        dataIndex: 'totalRecharge',
       },
       {
         title: 'Số dư',
-        dataIndex: 'sodu',
+        dataIndex: 'totalPointBalence',
         render: (_row, value: any) => (
           <Box width={'auto'} sx={{ display: 'flex', justifyContent: 'end' }}>
             <Typography
@@ -256,7 +262,7 @@ const OrderAdminPages = () => {
               variant="subtitle2"
               sx={{ display: 'flex', gap: 0.5 }}
             >
-              {value.sodu}{' '}
+              {value.totalPointBalence}
               <img src={icontext} alt="" width={20} height={20} style={{ borderRadius: 50 }} />
             </Typography>
           </Box>
@@ -264,7 +270,7 @@ const OrderAdminPages = () => {
       },
       {
         title: 'Người đại diện',
-        dataIndex: 'ndd',
+        dataIndex: 'representativeName',
       },
       {
         title: 'Publisher',
@@ -504,7 +510,16 @@ const OrderAdminPages = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <CustomTable columns={column} dataSource={OrderData} dataSelect={dataSelect} />
+            <CustomTable
+              columns={column}
+              dataSelect={dataSelect}
+              dataSource={customerlist.content}
+              count={customerlist.totalElements}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              setPage={setPage}
+              setRowsPerPage={setRowsPerPage}
+            />
           </Grid>
         </Grid>
         <DialogOrder

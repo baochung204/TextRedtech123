@@ -1,6 +1,6 @@
 import { axiosAPI } from 'src/api/axiosApi';
 
-export interface PropsCustomerAdmin {
+export interface PropsNotificationAdmin {
   page_no?: number | null | undefined;
   page_size?: number | null | undefined;
   sort_by?: string | null | undefined;
@@ -10,16 +10,10 @@ export interface PropsCustomerAdmin {
   end?: string | null | undefined;
 }
 
-const url = 'redtech/customer';
+const url = 'converts';
 
-const customerAdminApi = {
-  getOverviewCustomer: () => {
-    return axiosAPI.get(`/${url}/overview`);
-  },
-  getOverviewFunction: () => {
-    return axiosAPI.get(`/${url}/functionOverview`);
-  },
-  getCustomerListAdmin: (object: PropsCustomerAdmin = {}) => {
+const customerUserApi = {
+  getListCustomerUser: (object: PropsNotificationAdmin = {}) => {
     const urls = `/${url}/customers`;
     const query = Object.entries(object)
       .filter(([, value]) => value !== null && value !== undefined)
@@ -30,6 +24,9 @@ const customerAdminApi = {
 
     return axiosAPI.get(`${fullUrl}`);
   },
+  getDetailCustomerUser: (id: number) => {
+    return axiosAPI.get(`/${url}/customers/${id}/detail`);
+  },
 };
 
-export default customerAdminApi;
+export default customerUserApi;
