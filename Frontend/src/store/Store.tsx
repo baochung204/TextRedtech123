@@ -92,6 +92,7 @@ import historyOrderListSlice from './user/historyorder/historyOrderSlice';
 import couponRandomSlice from './user/points/couponRandomSlice';
 import listPointSlice from './user/points/listPointSlice';
 import withdrawalDetailSlice from './admin/affiliate/historywithdrawal/withdrawaldetail/withdrawalDetailSlice';
+import orderProductDetailSlice from './admin/sell/orderproduct/detailorderproduct/detailOrderProductSlice';
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -182,6 +183,7 @@ const rootReducer = combineReducers({
   list_bill: listBillSlice,
   list_product_flashsale: listProductFlashSaleSlice,
   detailWithdrawal: withdrawalDetailSlice,
+  detailOrderProduct: orderProductDetailSlice,
 });
 
 const whitelistReducers = [

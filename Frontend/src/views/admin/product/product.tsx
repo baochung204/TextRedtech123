@@ -31,6 +31,7 @@ import { fetchOverviewOrderProductData } from 'src/store/admin/sell/orderproduct
 import { fetchOrderProductListData } from 'src/store/admin/sell/orderproduct/table/listOrderProductSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DialogDetailOrder from './DialogDetailOrder';
+import { fetchOrderProductDetailData } from 'src/store/admin/sell/orderproduct/detailorderproduct/detailOrderProductSlice';
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -46,8 +47,6 @@ interface Column {
 
 const ProductAdmin = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [, setSelectID] = useState<string | null>(null);
-  const [, setCheckValue] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const dataOrderProductOverview = useSelector((state: AppState) => state.overview_order.dataa);
   const [page, setPage] = useState<number>(1);
@@ -63,6 +62,11 @@ const ProductAdmin = () => {
   const totalPromotion = dataOrderProductOverview.totalPromotion;
   const totalPayment = dataOrderProductOverview.totalPayment;
   const aov = dataOrderProductOverview.aov;
+
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchOrderProductDetailData(id));
+  };
 
   const DataBox = [
     {
@@ -215,10 +219,6 @@ const ProductAdmin = () => {
     dispatch(fetchOverviewOrderProductData());
   }, [dispatch]);
 
-  console.log(dataOrderProductOverview);
-
-  console.log('hello', orderProductList);
-
   const column = useMemo<Column[]>(
     () => [
       {
@@ -288,14 +288,8 @@ const ProductAdmin = () => {
       {
         title: 'Thao tác',
         dataIndex: '',
-        render: (_value: any, row: any) => (
-          <IconButton
-            onClick={() => {
-              setSelectID(row.id_don_hang);
-              setOpen(!open);
-              setCheckValue('show');
-            }}
-          >
+        render: (_, value: any) => (
+          <IconButton onClick={() => handleOpen(value.orderId)}>
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
         ),

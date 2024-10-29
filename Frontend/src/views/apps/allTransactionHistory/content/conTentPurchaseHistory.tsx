@@ -36,7 +36,6 @@ const ContentPurchaseHistory = () => {
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
   const flashSaleArray = [orderhistorydetail.flashSaleResponse];
 
-  // console.log('orderhistorydetail hello', orderhistorydetail);
   return (
     <>
       <Box display={'flex'} alignItems="center" justifyContent={'center'} marginBottom={5}>
