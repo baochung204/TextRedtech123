@@ -39,7 +39,7 @@ interface AdminTicket {
   user_name: string;
   email: string;
   phone_number: string;
-} // Define interface AdminTicket
+}
 interface Column {
   title: string;
   dataIndex: string;
@@ -67,16 +67,14 @@ const Ticket = () => {
   const overviewTickets = useSelector((state: AppState) => state.overview_ticket.result);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [datax, setDatax] = useState<AdminTicket[]>([]);
-  // const dataStaff = { content: [] }; // Replace with actual data source
-  // const [tickets, setTickets] = useState<AdminTicket[]>([]);
   console.log('fdafdsfsd:',adminTickets); // Log dữ liệu để kiểm tra
 
   useEffect(() => {
     dispatch(fetchTicketsData());
   }, [dispatch]);
   useEffect(() => {
-    if (datax !== adminTickets.result) {
-      setDatax(adminTickets.result);
+    if (datax !== adminTickets.content) {
+      setDatax(adminTickets.content);
     }
   }, [adminTickets, datax]);
   console.log('dataStaff', datax);
@@ -301,9 +299,9 @@ const Ticket = () => {
         <Grid item xs={12}>
           <CustomTable 
             columns={columns} 
-            dataSource={datax} 
+            dataSource={adminTickets.content} 
             dataSelect={dataSelect} 
-            count={datax.length} 
+            count={adminTickets.totalElements} 
             rowsPerPage={10} 
             page={0} 
             setPage={() => {}} 
