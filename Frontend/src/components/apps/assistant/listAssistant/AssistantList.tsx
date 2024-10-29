@@ -42,37 +42,35 @@ import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchAssistantData } from 'src/store/user/chatbots/assisstantUserSlice';
 import AlertChat from '../../chats/AlertChat';
 import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
+import { setSelectedCategory } from 'src/store/RouterSlice';
 
 interface FilmsData {
+  id: number;
+  name: string;
   title: string;
 }
 
-const FilmsData: FilmsData[] = [{ title: 'Khách hàng' }, { title: 'AOV' }, { title: 'Chuyển đổi' }];
+const FilmsData: FilmsData[] = [
+  { id: 1, name: 'customer', title: 'Khách hàng' },
+  { id: 2, name: 'aov', title: 'AOV' },
+  { id: 3, name: 'order', title: 'Chuyển đổi' },
+];
 
 const ListAssistant = () => {
   const theme = useTheme();
   const successlight = theme.palette.success.light;
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
   const [alertText, setAlertText] = useState('');
-
   const assistant = useSelector((state: AppState) => state.assisstant.dataa);
-
   const [assistantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
-  // useEffect(() => {
-  //   dispatch(fetchAssistantData());
-  //   setAssisstantData(assisstant);
-  // }, [dispatch, assisstant]);
-
   useEffect(() => {
     dispatch(fetchAssistantData());
   }, [dispatch]);
-
   useEffect(() => {
     if (assistant !== assistantData) {
       setAssisstantData(assistant);
     }
   }, [assistant, assistantData]);
-
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
       const isRankChecked = prevChecked.includes(rank.id);
@@ -104,6 +102,10 @@ const ListAssistant = () => {
     setOpenChartAlert(false);
   };
 
+  const handleClickSelect = () => {
+    dispatch(setSelectedCategory('assistant_pack'));
+  };
+
   return (
     <Grid container spacing={3}>
       <Grid item sm={12} lg={12}>
@@ -119,8 +121,8 @@ const ListAssistant = () => {
             }}
           >
             <Tooltip title="Thêm">
-              <Link to={`/assistants/add`}>
-                <IconButton color="primary" aria-label="Add to cart">
+              <Link to={`/shops`}>
+                <IconButton color="primary" aria-label="Add to cart" onClick={handleClickSelect}>
                   <AddCircleIcon sx={{ fontSize: 40 }} />
                 </IconButton>
               </Link>

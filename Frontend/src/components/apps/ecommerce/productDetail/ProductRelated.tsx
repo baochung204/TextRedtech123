@@ -36,7 +36,7 @@ const ProductRelated = () => {
   const productById = useSelector((state: AppState) => state.productById.data);
   const categoryName = productById?.productInfo.category;
   const productData = useSelector((state: AppState) => state.products.data);
-  const [rowsPerPage] = useState<number>(8);
+  const [rowsPerPage] = useState<number>(16);
   const [cartalert, setCartalert] = React.useState(false);
   const [relatedProducts, setRelatedProducts] = useState<DataProductType[]>([]);
   const [isLoading, setLoading] = React.useState(true);
@@ -53,7 +53,7 @@ const ProductRelated = () => {
       );
 
       const shuffled = filteredProducts.sort(() => 0.5 - Math.random());
-      const selectedProducts = shuffled.slice(0, 8);
+      const selectedProducts = shuffled.slice(0, 16);
       setRelatedProducts(selectedProducts);
     }
   }, [productData, id]);
@@ -81,7 +81,7 @@ const ProductRelated = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     arrows: false, // Add this line to disable default arrows
     responsive: [
       {
