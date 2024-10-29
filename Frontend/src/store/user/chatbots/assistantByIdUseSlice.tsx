@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import assistantApi from 'src/api/chatbots/assistantsUser';
-import { ChatBotIndex, ChatBotInfo, ChatBotResource } from '../products/type/productByIdType';
+import { ChatBotInfo, ChatBotIndex, ChatBotResource } from './type/assistantByIdType';
 
 const initialChatBotInfo: ChatBotInfo = {
   chatBotId: 0,

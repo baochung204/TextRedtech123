@@ -39,11 +39,18 @@ import Topcardassistant from './topcard/Topcardassistant';
 const AssistantInfor = () => {
   const { id } = useParams();
   const chatBotById = useSelector((state: AppState) => state.assistantById.data);
-  console.log('assistant', chatBotById);
 
+  // console.log('dataaaaaaa', chatBotById.startDate);
+  
+
+  const numericId = Number(id);
   useEffect(() => {
-    dispatch(fetchAssistantById({ id }));
-  }, [dispatch, id]);
+    if (!isNaN(numericId)) {
+      dispatch(fetchAssistantById({ id: numericId }));
+    }
+  }, [numericId]);
+
+
 
   const [chatBotInfo, setChatBotInfo] = useState<ChatBotInfoType | null>(null);
   const [chatBotIndex, setChatBotIndex] = useState<ChatBotIndexType | null>(null);
@@ -62,6 +69,10 @@ const AssistantInfor = () => {
       setChatBotResource(chatBotById.chatBotResource);
     }
   }, [chatBotById]);
+
+
+
+
   return (
     <PageContainer title="Thông tin trợ lý" description="this is page">
       <Box mt={3}>
@@ -207,7 +218,7 @@ const AssistantInfor = () => {
             <Chart1 />
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
-            <Chart2 />
+            <Chart2 id={numericId} />
           </Grid>
           {/* column */}
           <Grid item xs={12} sm={12} md={4} lg={4}>
