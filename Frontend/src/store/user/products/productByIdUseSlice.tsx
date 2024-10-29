@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import productsApi from 'src/api/userProducts/products';
 import { ProductType } from './type/productByIdType';
@@ -22,54 +23,56 @@ const initialState: ShopI = {
       isQuantity: false,
       isOwn: false,
     },
-    detailInformation: '',
     userManual: '',
-    campaign: {
-      badgeUrl: '',
-      campaignName: '',
-      groupCampaign: '',
-      level: 0,
-    },
-    model: {
-      modelName: '',
-      baseModel: '',
-      trainedToken: 0,
-    },
-    function: {
-      name: '',
-      badgeUrl: '',
-    },
-    knowledgeFile: {
-      fileName: '',
-      size: '',
-      type: '',
-    },
-    assistantPack: {
-      name: '',
-      gender: '',
-      dateOfBirth: '',
-      education: '',
-      nation: '',
-      language: '',
-      maxFileQuantity: '',
-      maxStorage: '',
-      expertise: [],
-      personality: [],
-      fileNames: [],
-      functionNames: [],
-      model: {
-        modelName: '',
-        baseModel: '',
-        trainedToken: 0,
-      },
+    detailInformation: {
+      detailInformation: '',
       campaign: {
         badgeUrl: '',
         campaignName: '',
         groupCampaign: '',
         level: 0,
       },
+      model: {
+        modelName: '',
+        baseModel: '',
+        trainedToken: 0,
+      },
+      function: {
+        name: '',
+        badgeUrl: '',
+      },
+      knowledgeFile: {
+        fileName: '',
+        size: '',
+        type: '',
+      },
+      assistantPack: {
+        name: '',
+        gender: '',
+        dateOfBirth: '',
+        education: '',
+        nation: '',
+        language: '',
+        maxFileQuantity: '',
+        maxStorage: '',
+        expertise: [],
+        personality: [],
+        fileNames: [],
+        functionNames: [],
+        model: {
+          modelName: '',
+          baseModel: '',
+          trainedToken: 0,
+        },
+        campaign: {
+          badgeUrl: '',
+          campaignName: '',
+          groupCampaign: '',
+          level: 0,
+        },
+      },
+      unit: '',
     },
-    unit: '',
   },
   loading: false,
   error: null,

@@ -40,13 +40,13 @@ const BlogListing = () => {
   //   return (posts = posts.filter((t) => t.featured));
   // };
 
-  const blogPosts = useSelector((state) =>
-    filterBlogs(
-      state.blogReducer.blogposts,
-      state.blogReducer.sortBy,
-      state.blogReducer.blogSearch,
-    ),
-  );
+  // const blogPosts = useSelector((state) =>
+  //   filterBlogs(
+  //     state.blogReducer.blogposts,
+  //     state.blogReducer.sortBy,
+  //     state.blogReducer.blogSearch,
+  //   ),
+  // );
   const blogs = useSelector((state) => state);
   // console.log('blogs1', blogs);
   const [datax, setdatax] = useState<any>([]);
@@ -59,10 +59,10 @@ const BlogListing = () => {
       setdatax(blogs.blogs);
     }
   }, [datax, blogs]);
-  console.log('blogs', datax.data);
+  // console.log('blogs', datax.data);
   const blog = datax?.data?.content;
-  console.log('blog', blog);
-  console.log('blogPosts', blogPosts);
+  // console.log('blog', blog);
+  // console.log('blogPosts', blogPosts);
 
   // const featuredPost = useSelector((state) => filterFeaturedpost(state.blogReducer.blogposts));
 
