@@ -63,9 +63,10 @@ const ListAssistant = () => {
   const [alertText, setAlertText] = useState('');
   const assistant = useSelector((state: AppState) => state.assisstant.dataa);
   const [assistantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
+  const [sortBy, setSortBy] = useState<string>('');
   useEffect(() => {
-    dispatch(fetchAssistantData());
-  }, [dispatch]);
+    dispatch(fetchAssistantData({ sort_by: sortBy }));
+  }, [dispatch, sortBy]);
   useEffect(() => {
     if (assistant !== assistantData) {
       setAssisstantData(assistant);
@@ -84,13 +85,16 @@ const ListAssistant = () => {
   const handleChange1 = (event: SelectChangeEvent<string>) => {
     setSelectedItems(event.target.value);
   };
-  const handleItemClick1 = (title: string) => {
-    if (selectedItems === title) {
+  const handleItemClick1 = (film: any) => {
+    if (selectedItems === film.title) {
       setSelectedItems('');
     } else {
-      setSelectedItems(title);
+      setSelectedItems(film.title);
+      setSortBy(film.name);
     }
   };
+  console.log('123213211', sortBy);
+
   const [iconIndex, setIconIndex] = useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
   const handleClickIcon = () => {
@@ -167,13 +171,13 @@ const ListAssistant = () => {
               displayEmpty
               renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
               size="small"
-              style={{ minWidth: 50 }}
+              sx={{ width: 150 }}
             >
               {FilmsData.map((film) => (
                 <MenuItem
-                  key={film.title}
-                  value={film.title}
-                  onClick={() => handleItemClick1(film.title)}
+                  key={film.id}
+                  value={film.title} // Sử dụng film.title cho giá trị
+                  onClick={() => handleItemClick1(film)} // Sử dụng film.title cho sự kiện click
                 >
                   <ListItemText primary={film.title} />
                 </MenuItem>
