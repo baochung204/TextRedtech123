@@ -23,26 +23,12 @@ import { useSelector } from 'react-redux';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchCounponListData } from 'src/store/admin/counpon/counponlist/table/counponlistSlice';
 
-interface DataRow {
-  orderVndId: number;
-  vndCouponName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  type: string;
-  valueCoupon: number | null;
-  percentCoupon: number | null;
-  value: string;
-}
-
 interface Column {
   title: string;
   dataIndex: string;
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-
-// hello
 
 const ListVoucher = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);

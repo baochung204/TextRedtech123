@@ -1,27 +1,13 @@
 import { Avatar, Box, Grid, MenuItem, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import { fetchListProductSelectData } from 'src/store/admin/counpon/flashsale/addflashsale/listProductSelectSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 
-// interface CurrencyType {
-//   value: string;
-//   label: string;
-// }
-
-// const currencies: CurrencyType[] = [
-//   { value: 'female', label: 'Đồng' },
-//   { value: 'male', label: 'Phần trăm' },
-//   // { value: 'other', label: 'Khác' },
-// ];
-
-// const channels: CurrencyType[] = [
-//   { value: 'mkt', label: 'MKT' },
-//   { value: 'zl', label: 'Zalo' },
-//   { value: 'fb', label: 'Facebook' },
-//   { value: 'inst', label: 'Instagram' },
-//   { value: 'other', label: 'Other' },
-// ];
 const options = [
   { id: 1, label: 'GPT4.0', price: 20000 },
   { id: 2, label: 'Gitcopilot', price: 3000 },
@@ -41,13 +27,18 @@ const AddFlashSale = () => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setter(event.target.value);
     };
-  // const handleCalculateDiscount = (selectedValue) => {
-  //   const product = options.find((option: any) => option.id === selectedValue);
-  //   if (product && discount > 0 && discount <= 100) {
-  //     const newPrice = product.price - (product.price * discount) / 100;
-  //     setFinalPrice(newPrice);
-  //   }
-  // };
+
+  const dispatch = useDispatch<AppDispatch>();
+  const dataListProductSelect = useSelector(
+    (state: AppState) => state.list_product_flashsale.dataa,
+  );
+
+  useEffect(() => {
+    dispatch(fetchListProductSelectData());
+  }, [dispatch]);
+
+  console.log(dataListProductSelect);
+
   useEffect(() => {
     const product = options.find((option: any) => option.id === selectedValue);
     if (product && discount && discount > 0 && discount <= 100) {
@@ -58,8 +49,7 @@ const AddFlashSale = () => {
   const text =
     ' Dao Chạm Khắc Thủ Công Chuyên Dụng Cao Cấp Dao Chạm Khắc Thủ Công Chuyên Dụng Cao Cấp';
   return (
-    <div>
-      {/* Thông tin cá nhân */}
+    <>
       <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>
         <Grid container spacing={3}>
           <Grid item lg={6} md={12}>
@@ -91,9 +81,8 @@ const AddFlashSale = () => {
               value={selectedValue}
               onChange={(e: any) => setSelectedValue(e.target.value)}
             >
-              {options.map((option) => (
+              {dataListProductSelect.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
-                  {/* {option.label}_{option.price} */}
                   <Grid container>
                     <Grid item xs={1.5}>
                       <Avatar
@@ -103,7 +92,7 @@ const AddFlashSale = () => {
                     </Grid>
                     <Grid item xs={10.5}>
                       <Typography variant="body1">
-                        {text.length > 50 ? text.slice(0, 47) + '…' : text}
+                        {option.name.length > 50 ? option.name.slice(0, 47) + '…' : option.name}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -150,9 +139,7 @@ const AddFlashSale = () => {
           </Grid>
         </Grid>
       </Box>
-
-      {/* Thông tin trợ lý và kênh */}
-    </div>
+    </>
   );
 };
 

@@ -25,7 +25,6 @@ const DateSelect = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        {/* Start Date Picker */}
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             value={startDate}
@@ -47,7 +46,6 @@ const DateSelect = () => {
           />
         </LocalizationProvider>
         tới
-        {/* End Date Picker */}
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             value={endDate}

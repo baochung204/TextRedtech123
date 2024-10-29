@@ -1,5 +1,8 @@
-
+interface TypeChart {
+    [key: string]: number
+}
 
 export interface TypeChartAssisstant {
-    [key: string]: number
+    status: string | null,
+    chart: TypeChart[]
 }

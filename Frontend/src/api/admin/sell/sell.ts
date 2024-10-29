@@ -30,6 +30,9 @@ const sellAdminApi = {
 
     return axiosAPI.get(`${fullUrl}`);
   },
+  getDetailOrderProduct: (id: number) => {
+    return axiosAPI.get(`/${url}/order/orders-v2/${id}`);
+  },
 };
 
 export default sellAdminApi;

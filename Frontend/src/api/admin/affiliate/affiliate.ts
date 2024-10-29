@@ -56,6 +56,9 @@ const overviewAffiliateApi = {
 
     return axiosAPI.get(`${fullUrl}`);
   },
+  getDetailWithdrawalHistory: (id: number) => {
+    return axiosAPI.get(`${url}/info-payment/${id}`);
+  },
 };
 
 export default overviewAffiliateApi;

@@ -29,12 +29,10 @@ import { Image, ImageCells, ImageRows } from './mockData/TableImage';
 import TableModel from './mockData/TableModel';
 import TableStr from './mockData/TableStr';
 import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
+import TabFiles from './Tables/TabFiles';
 import TabFunction from './Tables/TabFunction';
 import TabModel from './Tables/TabModel';
 import TabStr from './Tables/TabStr';
-import TabFiles from './Tables/TabFiles';
-import TabGallary from './Tables/TabGallary';
-import TabUrl from './Tables/TabUrl';
 interface Column {
   title: string;
   dataIndex: string;

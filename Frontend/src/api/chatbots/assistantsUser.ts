@@ -1,4 +1,13 @@
+
 import { axiosAPI } from '../axiosApi';
+
+
+export interface PropsData {
+  type_chart?: string | null | undefined,
+  start_date?: string | null | undefined,
+  end_date?: string | null | undefined
+}
+
 
 const url = 'chatbots';
 
@@ -17,16 +26,19 @@ const assistantAPi = {
   getAssistantById: (id: number) => {
     return axiosAPI.get(`/${url}/${id}`);
   },
-  getChartByID: (chatbotID: number, typeChart: string, startDate?: Date, endDate?: Date) => {
-    const urls = `${url}/${chatbotID}/chart?type-chart=${typeChart}`;
-    if (startDate) {
-      if (endDate) {
-        return axiosAPI.get(`/${urls}?start-date=${startDate}/end-dat${endDate}`);
-      }
-      return axiosAPI.get(`/${urls}?start-date=${startDate}`);
+  getChartByID: (chatbot_id: number, object?: PropsData) => {
+    const urls = `${url}/${chatbot_id}/chart`;
+    if (object) {
+      const query = Object.entries(object)
+        .filter(([, value]) => value !== null && value !== undefined)
+        .map(([key, value]) => `${key}=${value}`)
+        .join('&');
+      const fullUrl = query ? `${urls}?${query}` : urls;
+      return axiosAPI.get(`${fullUrl}`);
     }
-    return axiosAPI.get(`/${urls}`);
-  },
+    return axiosAPI.get(`${urls}`);
+
+  }
 };
 
 export default assistantAPi;

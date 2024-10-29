@@ -1,19 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { PropsAffiliate } from 'src/api/admin/affiliate/affiliate';
-import resourcesAdminApi from 'src/api/admin/resources/resources';
-type PropsData = {
-  id: number;
-  groupCompaignName: string;
-  badgeUrl: string;
-  nameProduc: string;
-  level: number;
-  customOwnership: number;
-  applicationAssistant: number;
-  sammary: string;
-  content: string;
-  createDate: Date;
-  nameEmployee: string;
-};
+import { PropsContractAffiliate } from 'src/api/admin/accountant/accountant';
+import customerUserApi from 'src/api/admin/customeruser/customeruser';
+
+//not correct
+interface PropsData {
+  userId: number;
+  name: string;
+  email: string;
+  phoneNumber: number;
+  type: string;
+  totalChatBot: number;
+  totalRecharge: number;
+  totalPointBalence: number;
+  representativeName: string | null;
+  publisher: string | null;
+}
 
 interface VoucherData {
   content: PropsData[];
@@ -43,11 +44,11 @@ const initialState: StrState = {
   error: null,
 };
 
-export const fetchCampaignListData = createAsyncThunk(
-  'fetchCampaignListData',
-  async (object: PropsAffiliate = {}, thunkApi) => {
+export const fetchCustomerUserListData = createAsyncThunk(
+  'fetchCustomerUserList',
+  async (object: PropsContractAffiliate = {}, thunkApi) => {
     try {
-      const response = await resourcesAdminApi.getAllDataCampaign(object);
+      const response = await customerUserApi.getListCustomerUser(object);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
@@ -55,22 +56,22 @@ export const fetchCampaignListData = createAsyncThunk(
   },
 );
 
-const campaignListSlice = createSlice({
+const customerUserListSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchCampaignListData.pending.type]: (state) => {
+    [fetchCustomerUserListData.pending.type]: (state) => {
       state.loading = true;
     },
-    [fetchCampaignListData.fulfilled.type]: (state, action) => {
+    [fetchCustomerUserListData.fulfilled.type]: (state, action) => {
       state.loading = false;
       state.dataa = action.payload;
     },
-    [fetchCampaignListData.rejected.type]: (state, action) => {
+    [fetchCustomerUserListData.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
-export default campaignListSlice.reducer;
+export default customerUserListSlice.reducer;
