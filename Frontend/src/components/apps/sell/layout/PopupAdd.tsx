@@ -1,5 +1,14 @@
 import ClearIcon from '@mui/icons-material/Clear';
-import { Box, Button, Divider, Grid, InputAdornment, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  InputAdornment,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
 import React, { useState } from 'react';
 import Classify from 'src/components/apps/sell/layout/classify';
 import Scrollbar_y from 'src/components/custom-scroll/Scrollbar_y';
@@ -7,17 +16,20 @@ import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel
 import CustomOutlinedInput from 'src/components/forms/theme-elements/CustomOutlinedInput';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 import Tags from './Tags';
-
+import iconWarning from 'src/assets/images/icon.png/icon_warning.svg';
 const PopupAdd = () => {
   const [tags, setTags] = React.useState('');
-
   const [images, setImages] = useState<File[]>([]);
-
+  const [selectOption, setSelectOption] = useState('');
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const filesArray = Array.from(event.target.files);
       setImages((prevImages) => [...prevImages, ...filesArray]);
     }
+  };
+  const handleSelectChange = (event: any) => {
+    const value = event.target.value;
+    setSelectOption(selectOption === value ? 0 : value);
   };
 
   const handleRemoveImage = (index: number) => {
@@ -262,21 +274,42 @@ const PopupAdd = () => {
             </Grid>
             <Grid item xs={12}>
               <CustomFormLabel htmlFor="shipping-cost" sx={{ mt: 0 }}>
-                Chi phí giao hàng
+                Thời gian và phương thức giao hàng
               </CustomFormLabel>
-              <CustomTextField
-                id="shipping-cost"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={4.4}
-                placeholder="VD: Nội thành 25.000 ₫, Ngoại thành 50.000 ₫, Ngoại tỉnh 50.000 ₫"
-                InputProps={{
-                  sx: {
-                    padding: 0,
-                  },
-                }}
-              />
+              <Select
+                value={selectOption}
+                onChange={handleSelectChange}
+                displayEmpty
+                autoWidth
+                sx={{ marginBottom: '16px' }}
+              >
+                <MenuItem value="" disabled>
+                  Chọn phương thức
+                </MenuItem>
+                <MenuItem value="2">Thanh toán sau</MenuItem>
+                <MenuItem value="1">Thanh toán trước</MenuItem>
+              </Select>
+              {selectOption === '1' && (
+                <Box sx={{ display: 'flex', gap: '6px', p: 2, alignItems: 'center' }}>
+                  <img src={iconWarning} alt="" />
+                  <Typography variant="h6">Tính năng đang được cập nhật</Typography>
+                </Box>
+              )}
+              {selectOption === '2' && (
+                <CustomTextField
+                  id="shipping-cost"
+                  variant="outlined"
+                  fullWidth
+                  multiline
+                  rows={4.4}
+                  placeholder="VD: Nội thành 25.000 ₫, Ngoại thành 50.000 ₫, Ngoại tỉnh 50.000 ₫"
+                  InputProps={{
+                    sx: {
+                      padding: 0,
+                    },
+                  }}
+                />
+              )}{' '}
             </Grid>
           </Grid>
         </Box>

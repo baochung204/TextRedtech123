@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import resourcesAdminApi from 'src/api/admin/resources/resources';
+import resourcesAdminApi, { PropsAffiliate } from 'src/api/admin/resources/resources';
 
 interface PropsData {
   productId: number;
@@ -22,14 +22,17 @@ const initialState: StrState = {
   error: null,
 };
 
-export const fetchFilesListData = createAsyncThunk('fetchFilesListData', async (_, thunkApi) => {
-  try {
-    const response = await resourcesAdminApi.getAllDataFiles();
-    return response.data.result;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
-  }
-});
+export const fetchFilesListData = createAsyncThunk(
+  'fetchFilesListData',
+  async (object: PropsAffiliate = {}, thunkApi) => {
+    try {
+      const response = await resourcesAdminApi.getAllDataFiles(object);
+      return response.data.result;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
 
 const fileListSlice = createSlice({
   name: 'user',

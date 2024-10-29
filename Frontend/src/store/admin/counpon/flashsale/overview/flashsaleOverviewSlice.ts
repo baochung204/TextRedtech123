@@ -16,10 +16,10 @@ interface StrState {
 
 const initialState: StrState = {
   dataa: {
-    totalFlashSale: null,
-    totalQuantity: null,
-    totalUsed: null,
-    percentUsed: null,
+    totalFlashSale: 0,
+    totalQuantity: 0,
+    totalUsed: 0,
+    percentUsed: 0,
   },
   loading: false,
   error: null,

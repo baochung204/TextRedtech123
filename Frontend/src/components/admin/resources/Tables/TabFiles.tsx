@@ -18,10 +18,12 @@ interface PropsTabFunction {
 const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
   const [selectId, setSelectId] = useState<string>();
   const filesList = useSelector((state: AppState) => state.files_list.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
   useEffect(() => {
-    dispatch(fetchFilesListData());
-  }, [dispatch]);
+    dispatch(fetchFilesListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   console.log(filesList);
   const FilesCells: HeadCell[] = [
@@ -68,9 +70,6 @@ const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
             >
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
-            {/* <IconButton>
-              <IconTrash stroke={2} style={{ color: '#FA896B' }} />
-            </IconButton> */}
           </Tooltip>
         </Box>
       ),
@@ -79,7 +78,15 @@ const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
 
   return (
     <>
-      <CustomTable columns={FilesCells} dataSource={filesList} dataSelect={dataSelect} />
+      <CustomTable
+        columns={FilesCells}
+        dataSource={filesList.content}
+        dataSelect={dataSelect}
+        count={filesList.totalElements}
+        page={page}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
       <DialogModelView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );

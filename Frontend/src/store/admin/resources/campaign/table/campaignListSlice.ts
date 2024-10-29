@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PropsAffiliate } from 'src/api/admin/affiliate/affiliate';
 import resourcesAdminApi from 'src/api/admin/resources/resources';
 type PropsData = {
   id: number;
@@ -28,9 +29,9 @@ const initialState: StrState = {
 
 export const fetchCampaignListData = createAsyncThunk(
   'fetchCampaignListData',
-  async (_, thunkApi) => {
+  async (object: PropsAffiliate = {}, thunkApi) => {
     try {
-      const response = await resourcesAdminApi.getAllDataCampaign();
+      const response = await resourcesAdminApi.getAllDataCampaign(object);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');

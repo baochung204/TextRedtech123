@@ -20,18 +20,6 @@ import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchCounponHistoryData } from 'src/store/admin/counpon/counponhistory/table/counponthistorySlice';
 
-interface DataRow2 {
-  orderVndId: number;
-  vndCouponName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  type: string;
-  valueCoupon: number | null;
-  percentCoupon: number | null;
-  value: string;
-}
-
 interface Column {
   title: string;
   dataIndex: string;
@@ -39,21 +27,13 @@ interface Column {
   isValids?: boolean;
 }
 const HistoryVoucher = () => {
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const historyvoucher = useSelector((state: AppState) => state.counpon_history.dataa);
-
-  const [historyVoucherData, setHistoryVoucherData] = useState<DataRow2[]>([]);
-
   useEffect(() => {
-    dispatch(fetchCounponHistoryData());
-  }, [dispatch]);
+    dispatch(fetchCounponHistoryData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
-  useEffect(() => {
-    if (historyVoucherData !== historyvoucher.content) {
-      setHistoryVoucherData(historyvoucher.content);
-    }
-  }, [historyVoucherData, historyvoucher]);
-
-  console.log(historyVoucherData);
   const column = useMemo<Column[]>(
     () => [
       {
@@ -250,7 +230,16 @@ const HistoryVoucher = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={historyVoucherData} dataSelect={dataSelect} />
+        <CustomTable
+          columns={column}
+          dataSelect={dataSelect}
+          dataSource={historyvoucher.content}
+          count={historyvoucher.totalElements}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          setPage={setPage}
+          setRowsPerPage={setRowsPerPage}
+        />
       </Grid>
     </>
   );

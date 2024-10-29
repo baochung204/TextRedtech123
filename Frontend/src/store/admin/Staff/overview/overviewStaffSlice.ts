@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import overviewStaffApi from 'src/api/admin/staff/overview/overviewStaff';
+import overviewStaffApi from 'src/api/admin/staff/overview/overviewstaff';
 
 interface PropsData {
   totalEmployee: number;

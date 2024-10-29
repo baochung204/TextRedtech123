@@ -39,7 +39,13 @@ interface AdminTicket {
   user_name: string;
   email: string;
   phone_number: string;
-} // Define interface AdminTicket
+}
+interface Column {
+  title: string;
+  dataIndex: string;
+  render?: (value: any, row?: any) => React.ReactNode;
+  isValids?: boolean;
+}
 const BCrumb = [{ to: '/', title: 'Trang chủ' }, { title: 'Danh sách trợ lý' }];
 
 const getStatusTextAndColor = (status: string) => {
@@ -60,11 +66,19 @@ const Ticket = () => {
   const adminTickets = useSelector((state: AppState) => state.adminTicker.result);
   const overviewTickets = useSelector((state: AppState) => state.overview_ticket.result);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
-  const [tickets, setTickets] = useState<AdminTicket[]>([]);
+  const [datax, setDatax] = useState<AdminTicket[]>([]);
+  console.log('fdafdsfsd:',adminTickets); // Log dữ liệu để kiểm tra
 
   useEffect(() => {
     dispatch(fetchTicketsData());
   }, [dispatch]);
+  useEffect(() => {
+    if (datax !== adminTickets.content) {
+      setDatax(adminTickets.content);
+    }
+  }, [adminTickets, datax]);
+  console.log('dataStaff', datax);
+
 
   useEffect(() => {
     dispatch(fetchOverViewTicket());
@@ -161,7 +175,7 @@ const Ticket = () => {
   console.log(overviewTickets); // Log dữ liệu để kiểm tra
 
 
-  const columns = useMemo(
+  const columns = useMemo<Column[]>(
     () => [
       { dataIndex: 'ticketId', title: 'ID' },
       { dataIndex: 'create_date', title: 'Thời gian tạo' },
@@ -204,23 +218,6 @@ const Ticket = () => {
     const { value } = event.target;
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
-  // const dataRows = Array.isArray(adminTickets)
-  //   ? adminTickets.map((item: any) => ({
-  //       ticketId: item.ticketId,
-  //       create_date: new Date(item.create_date),
-  //       messageTime: item.messageTime ? new Date(item.messageTime) : null,
-  //       rate: item.rate,
-  //       status: item.status,
-  //       title: item.title,
-  //       user_id: item.user_id,
-  //       user_name: item.user_name,
-  //       email: item.email,
-  //       phone_number: item.phone_number,
-  //     }))
-  //   : [];
-
-    // console.log(adminTickets);
 
   return (
     <PageContainer title="Quản lý ticket" description="this is page">
@@ -300,7 +297,16 @@ const Ticket = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={tickets} dataSelect={dataSelect} />
+          <CustomTable 
+            columns={columns} 
+            dataSource={adminTickets.content} 
+            dataSelect={dataSelect} 
+            count={adminTickets.totalElements} 
+            rowsPerPage={10} 
+            page={0} 
+            setPage={() => {}} 
+            setRowsPerPage={() => {}} 
+          />
         </Grid>
       </Grid>
     </PageContainer>
