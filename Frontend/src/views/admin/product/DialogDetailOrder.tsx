@@ -26,7 +26,11 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
 import { AppState } from 'src/store/Store';
 
-const DialogDetailOrder = () => {
+interface IProp {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const DialogDetailOrder = ({ open, setOpen }: IProp) => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 
   const handleSelectPackage = (pkgId: number) => {
