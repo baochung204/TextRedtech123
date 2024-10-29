@@ -3,17 +3,21 @@ import {
   Badge,
   Box,
   Checkbox,
+  Dialog,
+  DialogContent,
+  DialogContentText,
   Grid,
   IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
+  Slide,
   TextField,
   Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import { default as iconPoint, default as point } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -32,6 +36,16 @@ import { fetchOrderProductListData } from 'src/store/admin/sell/orderproduct/tab
 import { AppDispatch, AppState } from 'src/store/Store';
 import DialogDetailOrder from './DialogDetailOrder';
 import { fetchOrderProductDetailData } from 'src/store/admin/sell/orderproduct/detailorderproduct/detailOrderProductSlice';
+import { TransitionProps } from '@mui/material/transitions';
+
+const Transition = forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -56,6 +70,10 @@ const ProductAdmin = () => {
   useEffect(() => {
     dispatch(fetchOrderProductListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
+
+  const handleCloseDialog = () => {
+    setOpen(!open);
+  };
 
   const totalOrder = dataOrderProductOverview.totalOrder;
   const totalValue = dataOrderProductOverview.totalValue;
@@ -462,7 +480,43 @@ const ProductAdmin = () => {
             />
           </Grid>
         </Grid>
-        <DialogDetailOrder open={open} setOpen={setOpen} />
+
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          aria-describedby="alert-dialog-slide-description"
+          fullWidth
+          maxWidth="lg"
+          sx={{
+            maxHeight: '90vh',
+          }}
+          onClose={handleCloseDialog}
+        >
+          <DialogContent
+            sx={{
+              overflowY: 'auto',
+              height: '100%',
+              '&::-webkit-scrollbar': {
+                width: '10px',
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: 'none',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#E3E3E3',
+                borderRadius: '10px',
+              },
+              '&::-webkit-scrollbar-thumb:hover': {
+                backgroundColor: '#d6d6d6',
+              },
+            }}
+          >
+            <DialogContentText id="alert-dialog-slide-description">
+              <DialogDetailOrder />
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
       </PageContainer>
     </>
   );

@@ -26,11 +26,7 @@ import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
 import { AppState } from 'src/store/Store';
 
-interface IProp {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-const DialogDetailOrder = ({ open, setOpen }: IProp) => {
+const DialogDetailOrder = () => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 
   const handleSelectPackage = (pkgId: number) => {
@@ -40,6 +36,7 @@ const DialogDetailOrder = ({ open, setOpen }: IProp) => {
   const orderProductDetail = useSelector((state: AppState) => state.detailOrderProduct.dataa);
   const flashSaleArray = [orderProductDetail.flashSaleResponse];
 
+  console.log('flashSaleArray', flashSaleArray);
   return (
     <>
       <Box display={'flex'} alignItems="center" justifyContent={'center'} marginBottom={5}>
@@ -166,7 +163,7 @@ const DialogDetailOrder = ({ open, setOpen }: IProp) => {
                 Đơn hàng
               </Typography>
               {/* Tổng cộng */}
-              {flashSaleArray?.length > 1 && (
+              {flashSaleArray?.filter((pkg) => Object.keys(pkg).length > 0).length > 0 && (
                 <Accordion
                   sx={{
                     border: 'none',

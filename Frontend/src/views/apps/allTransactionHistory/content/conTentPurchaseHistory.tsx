@@ -162,7 +162,7 @@ const ContentPurchaseHistory = () => {
                 Đơn hàng
               </Typography>
               {/* Tổng cộng */}
-              {flashSaleArray?.length > 1 && (
+              {flashSaleArray?.filter((pkg) => Object.keys(pkg).length > 0).length > 0 && (
                 <Accordion
                   sx={{
                     border: 'none',
