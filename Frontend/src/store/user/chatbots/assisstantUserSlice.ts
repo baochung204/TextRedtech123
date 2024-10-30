@@ -17,9 +17,9 @@ const initialState: StrState = {
 
 export const fetchAssistantData = createAsyncThunk<PropsDataAssisstant[], PropsAssistant>(
   'fetchDataAssistant',
-  async (data: PropsAssistant = {}, thunkAPI) => {
+  async (dataa: PropsAssistant = {}, thunkAPI) => {
     try {
-      const response = await assistantAPi.getAllAssistant(data);
+      const response = await assistantAPi.getAllAssistant(dataa);
       return response.data.result;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
