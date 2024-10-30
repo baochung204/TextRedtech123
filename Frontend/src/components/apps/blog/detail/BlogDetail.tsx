@@ -30,7 +30,7 @@ const BlogDetail = () => {
   }, [dispatch]);
 
   const { data, loading, error } = useSelector((state) => state?.blogs);
-
+  const color = ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'default'];
   // Lấy bài viết
   const post: BlogPostType | any = useSelector((state: AppState) => state.blogReducer.selectedPost);
   // console.log('post', post);
@@ -44,12 +44,14 @@ const BlogDetail = () => {
   useEffect(() => {
     if (datax !== data) {
       setdatax(data);
+      setLoading(false);
     }
   }, [datax, data]);
-  console.log('datax', datax);
+
   const detail = datax?.result?.[0]?.result;
 
-  console.log('detail', detail);
+  const createdAt = new Date(detail?.createdAt).toISOString().split('T')[0];
+  const date = createdAt.split('-').reverse().join('-');
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -111,25 +113,19 @@ const BlogDetail = () => {
           </Box>
           <Stack direction="row" gap={3} alignItems="center">
             <Stack direction="row" gap={1} alignItems="center" mx={'20px'}>
-              {/* {detail?.tags &&
-                detail?.tags?.map((item) => (
-                  <Chip
-                    label={item}
-                    color="success"
-                    // onDelete={handleDelete}
-                  />
-                ))} */}
-              <Chip label="Ứng Dụng Chat GPT" color="warning" />
+              {detail?.tags &&
+                detail?.tags?.map((item: any) => <Chip label={item} color={color as any} />)}
+              {/* <Chip label="Ứng Dụng Chat GPT" color="warning" />
               <Chip
                 label="Giao Tiếp AI"
                 color="warning"
                 // onDelete={handleDelete}
               />
-              <Chip label="Trợ Lý Ảo" color="error" />
+              <Chip label="Trợ Lý Ảo" color="error" /> */}
             </Stack>
 
             <Stack direction="row" ml="auto" alignItems="center">
-              <small>T4,06/09/2024 </small>
+              <small>{date} </small>
             </Stack>
           </Stack>
         </CardContent>
@@ -137,13 +133,13 @@ const BlogDetail = () => {
         <CardContent>
           <Typography variant="h2">Chatbot: Công Cụ Đột Phá Trong Thời Đại Số</Typography>
           <p>{detail?.content}</p>
-          {/* <p>
+          <p>
             Tương lai của Chatbot Với sự phát triển không ngừng của công nghệ AI, chatbot ngày càng
             trở nên thông minh hơn. Trong tương lai, chatbot sẽ có khả năng hiểu và phản hồi như con
             người, đồng thời được tích hợp vào nhiều nền tảng và ứng dụng hơn. Điều này sẽ giúp
             doanh nghiệp tối ưu hóa quy trình vận hành, tăng cường tương tác khách hàng và tạo ra
             nhiều giá trị hơn.
-          </p> */}
+          </p>
           <Typography fontWeight={600}>Trợ lý ảo Redtech</Typography>
           <Typography fontStyle="italic">Trợ lý ảo Redtech</Typography>
         </CardContent>

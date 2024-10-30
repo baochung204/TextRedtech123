@@ -31,11 +31,25 @@ interface Btype {
 
 const BlogCard = ({ post }: any) => {
   const dispatch = useDispatch();
-  const { thumbnailUrl, name, views, tags, point, author, avatarUrl, like, productId }: any = post;
+  const {
+    thumbnailUrl,
+    name,
+    views,
+    tags,
+    point,
+    author,
+    avatarUrl,
+    like,
+    productId,
+    created_at,
+  }: any = post;
 
   // skeleton
   const [isLoading, setLoading] = React.useState(true);
+  const createdAt = new Date(created_at).toISOString().split('T')[0];
+  const date = createdAt.split('-').reverse().join('-');
 
+  // console.log(date);
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -186,7 +200,7 @@ const BlogCard = ({ post }: any) => {
                 </Box>
 
                 <Stack direction="row" ml="auto" alignItems="center" width="30%">
-                  <small>01-09-2024</small>
+                  <small>{date}</small>
                 </Stack>
               </Box>
             </CardContent>
