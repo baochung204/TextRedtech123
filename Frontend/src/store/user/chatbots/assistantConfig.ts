@@ -1,12 +1,13 @@
-import { loading } from 'src/assets/images/certificate/loadingre.png';
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { chatbotConfigType } from './type/assistantConfigById';
+import assistantApi from 'src/api/chatbots/assistantsUser';
 
 interface StateI {
   data: chatbotConfigType;
   loading: boolean;
   error: string | null;
 }
+
 const initialState: StateI = {
   data: {
     chatBotInfoInConfigResponse: {
@@ -98,3 +99,41 @@ const initialState: StateI = {
   loading: false,
   error: null,
 };
+
+export const fetchAssistantConfigById = createAsyncThunk(
+  'fetchData/AssistantConfigById',
+  async ({ id }: { id: number }, thunkAPI) => {
+    try {
+      const response = await assistantApi.getAssistantConfigById(id);
+      return response.data.result;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
+
+const assistantConfigByIdSlice = createSlice({
+  name: 'assistantConfigById',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAssistantConfigById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        fetchAssistantConfigById.fulfilled,
+        (state, action: PayloadAction<chatbotConfigType>) => {
+          state.loading = false;
+          state.data = action.payload;
+        },
+      )
+      .addCase(fetchAssistantConfigById.rejected, (state, action: PayloadAction<string | null>) => {
+        state.loading = false;
+        state.error = action.payload || 'Failed to fetch data';
+      });
+  },
+});
+
+export default assistantConfigByIdSlice.reducer;
