@@ -157,7 +157,7 @@ const PurchaseHistoryInProfile = () => {
             setRowsPerPage={setRowsPerPage}
           />
         </Grid>
-      </Grid>
+      </Grid> 
 
       <Dialog
         open={open}

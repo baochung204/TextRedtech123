@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { PropsContractAffiliate } from 'src/api/admin/accountant/accountant';
 import convertApi from 'src/api/admin/convert/convert';
-import notificationAdminApi from 'src/api/admin/notification/notification';
 
 //not correct
 interface PropsData {

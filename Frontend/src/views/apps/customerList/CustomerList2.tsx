@@ -30,7 +30,7 @@ import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import { AppDispatch, AppState } from 'src/store/Store';
+import { AppState, dispatch } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 import { fetchCustomerUserListData } from 'src/store/user/customer/listcustomer/listCustomerUserSlice';
 import PopupAddList2 from './PopupAddlist2';
@@ -55,15 +55,18 @@ interface Column {
 }
 const CustomerList2 = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
   const [openDetail, setOpenDetail] = useState(false);
-
   const customerUserList = useSelector((state: AppState) => state.listCustomerUser.dataa);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
+  const handleOpen = (id: number) => {
+    setOpenDetail(true);
+    dispatch(fetchCustomerUserDetailData(id));
+  };
+
   useEffect(() => {
-    dispatch(fetchCustomerUserListData({ page_no: page, page_size: rowsPerPage }));
+    dispatch(fetchCustomerUserListData({ page: page, size: rowsPerPage }));
   }, [rowsPerPage, page]);
   useEffect(() => {
     dispatch(fetchCustomer());
@@ -133,7 +136,7 @@ const CustomerList2 = () => {
         dataIndex: 'actions',
         render: (_row: any, value: any) => (
           <Box sx={{ px: 4 }}>
-            <IconButton onClick={handleDetail}>
+            <IconButton onClick={() => handleOpen(value.customerId)}>
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
           </Box>
@@ -142,9 +145,7 @@ const CustomerList2 = () => {
     ],
     [],
   );
-  const handleDetail = () => {
-    setOpenDetail(!openDetail);
-  };
+
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
   };
@@ -344,6 +345,7 @@ const CustomerList2 = () => {
           <PopupAddList2 />
         </DialogContent>
       </Dialog>
+
       <DialogDetailCustomer openDetail={openDetail} setOpenDetail={setOpenDetail} />
     </PageContainer>
   );

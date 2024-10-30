@@ -12,21 +12,29 @@ import {
   IconRelationManyToMany,
 } from '@tabler/icons-react';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import avt6 from 'src/assets/images/profile/user-6.jpg';
+import { AppState } from 'src/store/Store';
+
 interface PropsDialog {
   openDetail: boolean;
   setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children: React.ReactElement },
   ref: React.Ref<unknown>,
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
 const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail }) => {
+  const customerDetail = useSelector((state: AppState) => state.detailCustomerUser.dataa);
   const handleClose = () => {
     setOpenDetail(!openDetail);
   };
+
+  console.log('customerDetail', customerDetail.phoneNumber);
 
   return (
     <>
@@ -101,101 +109,99 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                 </Grid>
               </Grid>
             </Grid>
-            <Box sx={{ width: '100%' }}>
-              <Grid container spacing={1}>
-                <Grid item xs={12} mt={2}>
-                  <Typography variant="h6" fontWeight={600}>
-                    Thông tin khách hàng
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} mt={1}>
-                  <Grid container>
-                    <Grid item xs={1} mt={1}>
-                      <IconPhoneCall color="#9C9C9C" size={25} />
-                    </Grid>
-                    <Grid item xs={3} mt={1}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        Số điện thoại
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={8} mt={1} sx={{ display: 'flex', justifyContent: 'end' }}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        0359774443
-                      </Typography>
-                    </Grid>
+            <Grid container spacing={1}>
+              <Grid item xs={12} mt={2}>
+                <Typography variant="h6" fontWeight={600}>
+                  Thông tin khách hàng
+                </Typography>
+              </Grid>
+              <Grid item xs={12} mt={1}>
+                <Grid container>
+                  <Grid item xs={1} mt={1}>
+                    <IconPhoneCall color="#9C9C9C" size={25} />
                   </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <Grid item xs={1}>
-                      <IconMail color="#9C9C9C" size={25} />
-                    </Grid>
-                    <Grid item xs={3}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        Email
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        chungkbph38477@fpt.edu.vn
-                      </Typography>
-                    </Grid>
+                  <Grid item xs={3} mt={1}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      Số điện thoại
+                    </Typography>
                   </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <Grid item xs={1}>
-                      <IconMapPin color="#9C9C9C" size={25} />
-                    </Grid>
-                    <Grid item xs={3}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        Địa chỉ
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        Cần Kiệm, Thạch Thất, Hà Nội
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <Grid item xs={1}>
-                      <IconGenderBigender color="#9C9C9C" size={25} />
-                    </Grid>
-                    <Grid item xs={3}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        Giới tính
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        Name
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <Grid container>
-                    <Grid item xs={1}>
-                      <IconRelationManyToMany color="#9C9C9C" size={25} />
-                    </Grid>
-                    <Grid item xs={3}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2}>
-                        PSID
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end', gap: 1 }}>
-                      <Typography variant="h6" fontWeight="500" mt={0.2} color={'#FF3333'}>
-                        77080886675960335
-                      </Typography>
-                      <IconCopy size={18} color={'#FF3333'} />
-                    </Grid>
+                  <Grid item xs={8} mt={1} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      {customerDetail.phoneNumber}
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
-            </Box>
+              <Grid item xs={12}>
+                <Grid container>
+                  <Grid item xs={1}>
+                    <IconMail color="#9C9C9C" size={25} />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      Email
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      {customerDetail.email}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container>
+                  <Grid item xs={1}>
+                    <IconMapPin color="#9C9C9C" size={25} />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      Địa chỉ
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      {customerDetail.address}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container>
+                  <Grid item xs={1}>
+                    <IconGenderBigender color="#9C9C9C" size={25} />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      Giới tính
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      {customerDetail.gender}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container>
+                  <Grid item xs={1}>
+                    <IconRelationManyToMany color="#9C9C9C" size={25} />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2}>
+                      PSID
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end', gap: 1 }}>
+                    <Typography variant="h6" fontWeight="500" mt={0.2} color={'#FF3333'}>
+                      {customerDetail.psid}
+                    </Typography>
+                    <IconCopy size={18} color={'#FF3333'} />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </DialogContent>
       </Dialog>

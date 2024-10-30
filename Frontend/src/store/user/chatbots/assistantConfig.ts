@@ -7,7 +7,6 @@ interface StateI {
   loading: boolean;
   error: string | null;
 }
-
 const initialState: StateI = {
   data: {
     chatBotInfoInConfigResponse: {
@@ -99,7 +98,6 @@ const initialState: StateI = {
   loading: false,
   error: null,
 };
-
 export const fetchAssistantConfigById = createAsyncThunk(
   'fetchData/AssistantConfigById',
   async ({ id }: { id: number }, thunkAPI) => {
@@ -111,8 +109,7 @@ export const fetchAssistantConfigById = createAsyncThunk(
     }
   },
 );
-
-const assistantConfigByIdSlice = createSlice({
+const assistantConfigById = createSlice({
   name: 'assistantConfigById',
   initialState,
   reducers: {},
@@ -129,11 +126,10 @@ const assistantConfigByIdSlice = createSlice({
           state.data = action.payload;
         },
       )
-      .addCase(fetchAssistantConfigById.rejected, (state, action: PayloadAction<string | null>) => {
+      .addCase(fetchAssistantConfigById.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || 'Failed to fetch data';
+        state.error = action.payload as string;
       });
   },
 });
-
-export default assistantConfigByIdSlice.reducer;
+export default assistantConfigById.reducer;
