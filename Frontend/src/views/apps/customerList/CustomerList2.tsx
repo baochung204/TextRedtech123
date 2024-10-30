@@ -8,7 +8,6 @@ import {
   Checkbox,
   Dialog,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Grid,
   IconButton,
@@ -57,19 +56,14 @@ interface Column {
 }
 const CustomerList2 = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [open, setOpen] = useState<boolean>(false);
-  // const [openDetail, setOpenDetail] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
   const customerUserList = useSelector((state: AppState) => state.listCustomerUser.dataa);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
   const handleOpen = (id: number) => {
-    setOpen(true);
+    setOpenDetail(true);
     dispatch(fetchCustomerUserDetailData(id));
-  };
-
-  const handleCloseDialog = () => {
-    setOpen(!open);
   };
 
   useEffect(() => {
@@ -137,7 +131,7 @@ const CustomerList2 = () => {
         dataIndex: 'actions',
         render: (_row: any, value: any) => (
           <Box sx={{ px: 4 }}>
-            <IconButton onClick={() => handleOpen(value.orderId)}>
+            <IconButton onClick={() => handleOpen(value.customerId)}>
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
           </Box>

@@ -1,48 +1,51 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import customerUserApi from 'src/api/admin/customeruser/customeruser';
 
-//not correct
-interface PropsData {
-  userId: number;
+interface detailData {
   name: string;
-  email: string;
-  phoneNumber: number;
-  type: string;
-  totalChatBot: number;
-  totalRecharge: number;
-  totalPointBalence: number;
-  representativeName: string | null;
-  publisher: string | null;
+  content: [];
 }
 
-interface VoucherData {
-  content: PropsData[];
-  pageNo: number;
-  pageSize: number;
-  totalElements: number;
-  totalPages: number;
-  last: boolean;
+interface PropsData {
+  customerId: number;
+  date: Date;
+  name: string;
+  phoneNumber: number;
+  chatBotName: string;
+  email: string | null;
+  address: string | null;
+  psid: string | null;
+  facebookCode: string | null;
+  facebookName: string | null;
+  detail: detailData;
 }
 
 interface StrState {
-  dataa: VoucherData;
+  dataa: PropsData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
   dataa: {
-    content: [],
-    pageNo: 0,
-    pageSize: 0,
-    totalElements: 0,
-    totalPages: 0,
-    last: false,
+    customerId: 0,
+    date: new Date(),
+    name: '',
+    phoneNumber: 0,
+    chatBotName: '',
+    email: '',
+    facebookCode: '',
+    facebookName: '',
+    detail: {
+      name: '',
+      content: [],
+    },
+    psid: '',
+    address: '',
   },
   loading: false,
   error: null,
 };
-
 export const fetchCustomerUserDetailData = createAsyncThunk(
   'fetchCustomerUserDetail',
   async (id: number, thunkApi) => {
@@ -52,7 +55,7 @@ export const fetchCustomerUserDetailData = createAsyncThunk(
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
     }
-  },  
+  },
 );
 
 const customerUserDetailSlice = createSlice({
