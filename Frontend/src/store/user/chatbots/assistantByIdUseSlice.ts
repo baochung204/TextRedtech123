@@ -5,6 +5,7 @@ import { ChatBotIndexType, ChatBotInfoType, ChatBotResourceType } from './type/a
 const initialChatBotInfo: ChatBotInfoType = {
   chatBotId: 0,
   name: '',
+  startDate: '',
   avatar: '',
   modelName: '',
   totalToken: 0,
