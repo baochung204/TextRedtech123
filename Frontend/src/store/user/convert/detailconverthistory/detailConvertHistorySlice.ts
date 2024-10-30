@@ -1,43 +1,91 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import convertApi from 'src/api/admin/convert/convert';
 
-//not correct
-interface PropsData {
-  userId: number;
-  name: string;
-  email: string;
-  phoneNumber: number;
-  type: string;
-  totalChatBot: number;
-  totalRecharge: number;
-  totalPointBalence: number;
-  representativeName: string | null;
-  publisher: string | null;
+interface ConvertInfo {
+  conversationId: number;
+  date: string;
+  mediaChannel: string;
+  chatBotName: string;
 }
 
-interface VoucherData {
-  content: PropsData[];
-  pageNo: number;
-  pageSize: number;
-  totalElements: number;
-  totalPages: number;
-  last: boolean;
+interface CustomerInfo {
+  customerName: string;
+  phoneNumber: string;
+  address: string;
+}
+
+interface Note {
+  note: string;
+}
+
+interface Classification {
+  name: string;
+  image: string;
+  color: string;
+  price: string;
+}
+
+interface Product {
+  name: string;
+  classification: Classification;
+  quantity: number;
+  unitPrice: number;
+}
+
+interface PaymentMethod {
+  type: string;
+  detail: string | null;
+}
+
+interface OrderInfo {
+  product: Product[];
+  discount: number;
+  shippingCost: number;
+  totalPrice: number;
+  paymentMethod: PaymentMethod;
+}
+
+interface DetailConvert {
+  convertInfo: ConvertInfo;
+  customerInfo: CustomerInfo;
+  note: Note;
+  rate: number | null;
+  orderInfo: OrderInfo;
 }
 
 interface StrState {
-  dataa: VoucherData;
+  dataa: DetailConvert;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
   dataa: {
-    content: [],
-    pageNo: 0,
-    pageSize: 0,
-    totalElements: 0,
-    totalPages: 0,
-    last: false,
+    convertInfo: {
+      conversationId: 0,
+      date: '',
+      mediaChannel: '',
+      chatBotName: '',
+    },
+    customerInfo: {
+      customerName: '',
+      phoneNumber: '',
+      address: '',
+    },
+    note: {
+      note: '',
+    },
+    rate: null,
+    orderInfo: {
+      product: [],
+      discount: 0,
+      shippingCost: 0,
+      totalPrice: 0,
+      paymentMethod: {
+        type: '',
+        detail: null,
+      },
+    },
   },
   loading: false,
   error: null,

@@ -95,6 +95,7 @@ import listCustomerAdminSlice from './admin/customer/table/listCustomerSlice';
 import notificationListSlice from './admin/notification/table/notificationListSlice';
 import historyConvertSlice from './user/convert/listconverthistory/listConvertHistorySlice';
 import historyConvertDetailSlice from './user/convert/detailconverthistory/detailConvertHistorySlice';
+import listCustomerUserSlice from './user/customer/listcustomer/listCustomerUserSlice';
 
 const rootReducer = combineReducers({
   //user
@@ -191,6 +192,7 @@ const rootReducer = combineReducers({
   listNotification: notificationListSlice,
   listConvertHistory: historyConvertSlice,
   detailConvertHistory: historyConvertDetailSlice,
+  listCustomerUser: listCustomerUserSlice,
 });
 
 const whitelistReducers = [

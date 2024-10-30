@@ -1,7 +1,6 @@
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { TabContext, TabPanel } from '@mui/lab';
 import {
-  Avatar,
   Badge,
   Box,
   Checkbox,
@@ -15,10 +14,8 @@ import {
   MenuItem,
   Select,
   Slide,
-  Stack,
   TextField,
   Tooltip,
-  Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 import React, { forwardRef, useEffect, useState } from 'react';
@@ -53,7 +50,6 @@ interface Column {
 }
 const CustomerListOrder = () => {
   const convertHistoryList = useSelector((state: AppState) => state.listConvertHistory.dataa);
-  const convertHistoryDetail = useSelector((state: AppState) => state.detailConvertHistory.dataa);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
@@ -106,17 +102,20 @@ const CustomerListOrder = () => {
       },
       {
         title: 'Kênh',
-        dataIndex: '',
-        render: (value: any) => (
-          <Stack direction="row" spacing={1}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar src={value.avatarUrl} alt={'img'} />
-            </Box>
-            <Box>
-              <Typography variant="subtitle1">{value.facebookName}</Typography>
-            </Box>
-          </Stack>
-        ),
+        dataIndex: 'mediaChannel',
+        // render: (value: any) => (
+        //   <Stack direction="row" spacing={1}>
+        //     <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        //       <Avatar src={value?.avatarUrl} alt={'img'} />
+        //     </Box>
+        //     <Box>
+        //       <Typography variant="subtitle1">{value?.facebookName}</Typography>
+        //       <Typography variant="subtitle2" fontSize={12}>
+        //         {value?.facebookCode}
+        //       </Typography>
+        //     </Box>
+        //   </Stack>
+        // ),
       },
       {
         title: 'Trợ lý',
