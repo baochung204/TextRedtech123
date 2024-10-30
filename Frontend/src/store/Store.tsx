@@ -162,7 +162,7 @@ const rootReducer = combineReducers({
   list_paymenthistory: historyPaymentSlice,
   list_customer: listCustomerSlice,
   //admin
-  overview_blog: blogSlice,
+  // overview_blog: blogSlice,
   overview_counpon: counponSlice,
   counpon_history: counponhistorySlice,
   overview_flashsale: flashsaleoverviewSlice,
