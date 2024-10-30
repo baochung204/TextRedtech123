@@ -344,7 +344,6 @@ const CustomerList2 = () => {
           <PopupAddList2 />
         </DialogContent>
       </Dialog>
-      {/* Popup Chi tiết khách hàng */}
       <DialogDetailCustomer openDetail={openDetail} setOpenDetail={setOpenDetail} />
     </PageContainer>
   );
