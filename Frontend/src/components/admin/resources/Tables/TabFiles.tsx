@@ -25,7 +25,7 @@ const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
     dispatch(fetchFilesListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
 
-  console.log(filesList);
+  console.log('fileslist', filesList);
   const FilesCells: HeadCell[] = [
     {
       dataIndex: 'productId',
@@ -83,6 +83,7 @@ const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
         dataSource={filesList.content}
         dataSelect={dataSelect}
         count={filesList.totalElements}
+        rowsPerPage={rowsPerPage}
         page={page}
         setPage={setPage}
         setRowsPerPage={setRowsPerPage}

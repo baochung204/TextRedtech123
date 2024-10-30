@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductsType } from './type/productsType';
 import productsApi, { PropProducts } from 'src/api/userProducts/products';

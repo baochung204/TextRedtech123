@@ -3,17 +3,21 @@ import {
   Badge,
   Box,
   Checkbox,
+  Dialog,
+  DialogContent,
+  DialogContentText,
   Grid,
   IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
+  Slide,
   TextField,
   Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import { default as iconPoint, default as point } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
@@ -31,6 +35,17 @@ import { fetchOverviewOrderProductData } from 'src/store/admin/sell/orderproduct
 import { fetchOrderProductListData } from 'src/store/admin/sell/orderproduct/table/listOrderProductSlice';
 import { AppDispatch, AppState } from 'src/store/Store';
 import DialogDetailOrder from './DialogDetailOrder';
+import { fetchOrderProductDetailData } from 'src/store/admin/sell/orderproduct/detailorderproduct/detailOrderProductSlice';
+import { TransitionProps } from '@mui/material/transitions';
+
+const Transition = forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -46,8 +61,6 @@ interface Column {
 
 const ProductAdmin = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [, setSelectID] = useState<string | null>(null);
-  const [, setCheckValue] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const dataOrderProductOverview = useSelector((state: AppState) => state.overview_order.dataa);
   const [page, setPage] = useState<number>(1);
@@ -58,11 +71,20 @@ const ProductAdmin = () => {
     dispatch(fetchOrderProductListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
 
+  const handleCloseDialog = () => {
+    setOpen(!open);
+  };
+
   const totalOrder = dataOrderProductOverview.totalOrder;
   const totalValue = dataOrderProductOverview.totalValue;
   const totalPromotion = dataOrderProductOverview.totalPromotion;
   const totalPayment = dataOrderProductOverview.totalPayment;
   const aov = dataOrderProductOverview.aov;
+
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchOrderProductDetailData(id));
+  };
 
   const DataBox = [
     {
@@ -215,10 +237,6 @@ const ProductAdmin = () => {
     dispatch(fetchOverviewOrderProductData());
   }, [dispatch]);
 
-  console.log(dataOrderProductOverview);
-
-  console.log('hello', orderProductList);
-
   const column = useMemo<Column[]>(
     () => [
       {
@@ -288,14 +306,8 @@ const ProductAdmin = () => {
       {
         title: 'Thao tác',
         dataIndex: '',
-        render: (_value: any, row: any) => (
-          <IconButton
-            onClick={() => {
-              setSelectID(row.id_don_hang);
-              setOpen(!open);
-              setCheckValue('show');
-            }}
-          >
+        render: (_, value: any) => (
+          <IconButton onClick={() => handleOpen(value.orderId)}>
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
         ),
@@ -468,7 +480,43 @@ const ProductAdmin = () => {
             />
           </Grid>
         </Grid>
-        <DialogDetailOrder open={open} setOpen={setOpen} />
+
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          aria-describedby="alert-dialog-slide-description"
+          fullWidth
+          maxWidth="lg"
+          sx={{
+            maxHeight: '90vh',
+          }}
+          onClose={handleCloseDialog}
+        >
+          <DialogContent
+            sx={{
+              overflowY: 'auto',
+              height: '100%',
+              '&::-webkit-scrollbar': {
+                width: '10px',
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: 'none',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#E3E3E3',
+                borderRadius: '10px',
+              },
+              '&::-webkit-scrollbar-thumb:hover': {
+                backgroundColor: '#d6d6d6',
+              },
+            }}
+          >
+            <DialogContentText id="alert-dialog-slide-description">
+              <DialogDetailOrder />
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
       </PageContainer>
     </>
   );

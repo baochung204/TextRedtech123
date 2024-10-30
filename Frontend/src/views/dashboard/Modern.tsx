@@ -1,28 +1,37 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box, Grid, MenuItem } from '@mui/material';
+import { Box, Grid, ListItemText, MenuItem } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import PaymentGateways from 'src/components/dashboards/ecommerce/PaymentGateways';
 import SellingProducts from 'src/components/dashboards/modern/SellingProducts';
 import TopCards from 'src/components/dashboards/modern/TopCards';
 import WeeklyStats from 'src/components/dashboards/modern/WeeklyStats';
 import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import Welcome from 'src/layouts/full/shared/welcome/Welcome';
-
-// import Affiliatedetail from '../charts/affiliatedetail';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useDispatch, useSelector } from 'react-redux';
 import GerChart from '../charts/Gerchart';
 import PieCharts from '../charts/PieCharts';
 
 import DateSelect from 'src/components/apps/date/DateSelect';
 import Charts from './charts';
+import { fetchSelectAssistantData } from 'src/store/user/dashboard/filter/selectAssistantSlice';
 
 const Modern = () => {
   const [month, setMonth] = useState('1');
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
   };
+  const dispatch = useDispatch<AppDispatch>();
+  const dataAssistantSelect = useSelector((state: AppState) => state.selectAssistant.dataa);
+
+  useEffect(() => {
+    dispatch(fetchSelectAssistantData());
+  }, [dispatch]);
+
+  console.log(dataAssistantSelect);
 
   return (
     <PageContainer title="RedAI" description="this is page">
@@ -44,9 +53,14 @@ const Modern = () => {
                 value={month}
                 onChange={handleChange}
               >
-                <MenuItem value={1}>Tất cả</MenuItem>
-                <MenuItem value={2}>Assistant 1</MenuItem>
-                <MenuItem value={3}>Assistant 2</MenuItem>
+                <MenuItem value="1">
+                  <ListItemText primary="Chọn assistant" />
+                </MenuItem>
+                {dataAssistantSelect.map((option) => (
+                  <MenuItem key={option.chatBotId} value={option.chatBotId}>
+                    {option.chatBotName}
+                  </MenuItem>
+                ))}
               </CustomSelect>
               <DateSelect />
             </Box>

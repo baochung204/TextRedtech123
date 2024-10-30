@@ -13,14 +13,30 @@ interface PropsData {
   sammary: string;
 }
 
+interface VoucherData {
+  content: PropsData[];
+  pageNo: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+}
+
 interface StrState {
-  dataa: PropsData[];
+  dataa: VoucherData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  dataa: [],
+  dataa: {
+    content: [],
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+    last: false,
+  },
   loading: false,
   error: null,
 };

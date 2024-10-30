@@ -42,37 +42,36 @@ import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchAssistantData } from 'src/store/user/chatbots/assisstantUserSlice';
 import AlertChat from '../../chats/AlertChat';
 import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
+import { setSelectedCategory } from 'src/store/RouterSlice';
 
 interface FilmsData {
+  id: number;
+  name: string;
   title: string;
 }
 
-const FilmsData: FilmsData[] = [{ title: 'Khách hàng' }, { title: 'AOV' }, { title: 'Chuyển đổi' }];
+const FilmsData: FilmsData[] = [
+  { id: 1, name: 'customer', title: 'Khách hàng' },
+  { id: 2, name: 'aov', title: 'AOV' },
+  { id: 3, name: 'order', title: 'Chuyển đổi' },
+];
 
 const ListAssistant = () => {
   const theme = useTheme();
   const successlight = theme.palette.success.light;
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
   const [alertText, setAlertText] = useState('');
-
   const assistant = useSelector((state: AppState) => state.assisstant.dataa);
-
   const [assistantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
-  // useEffect(() => {
-  //   dispatch(fetchAssistantData());
-  //   setAssisstantData(assisstant);
-  // }, [dispatch, assisstant]);
-
+  const [sortBy, setSortBy] = useState<string>('');
   useEffect(() => {
-    dispatch(fetchAssistantData());
-  }, [dispatch]);
-
+    dispatch(fetchAssistantData({ sort_by: sortBy }));
+  }, [dispatch, sortBy]);
   useEffect(() => {
     if (assistant !== assistantData) {
       setAssisstantData(assistant);
     }
   }, [assistant, assistantData]);
-
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
       const isRankChecked = prevChecked.includes(rank.id);
@@ -86,13 +85,16 @@ const ListAssistant = () => {
   const handleChange1 = (event: SelectChangeEvent<string>) => {
     setSelectedItems(event.target.value);
   };
-  const handleItemClick1 = (title: string) => {
-    if (selectedItems === title) {
+  const handleItemClick1 = (film: any) => {
+    if (selectedItems === film.title) {
       setSelectedItems('');
     } else {
-      setSelectedItems(title);
+      setSelectedItems(film.title);
+      setSortBy(film.name);
     }
   };
+  console.log('123213211', sortBy);
+
   const [iconIndex, setIconIndex] = useState<number>(0);
   const icons = [SwapVertIcon, SouthIcon, NorthIcon];
   const handleClickIcon = () => {
@@ -102,6 +104,10 @@ const ListAssistant = () => {
 
   const handleCloseAlert = () => {
     setOpenChartAlert(false);
+  };
+
+  const handleClickSelect = () => {
+    dispatch(setSelectedCategory('assistant_pack'));
   };
 
   return (
@@ -119,8 +125,8 @@ const ListAssistant = () => {
             }}
           >
             <Tooltip title="Thêm">
-              <Link to={`/assistants/add`}>
-                <IconButton color="primary" aria-label="Add to cart">
+              <Link to={`/shops`}>
+                <IconButton color="primary" aria-label="Add to cart" onClick={handleClickSelect}>
                   <AddCircleIcon sx={{ fontSize: 40 }} />
                 </IconButton>
               </Link>
@@ -165,13 +171,13 @@ const ListAssistant = () => {
               displayEmpty
               renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
               size="small"
-              style={{ minWidth: 50 }}
+              sx={{ width: 150 }}
             >
               {FilmsData.map((film) => (
                 <MenuItem
-                  key={film.title}
-                  value={film.title}
-                  onClick={() => handleItemClick1(film.title)}
+                  key={film.id}
+                  value={film.title} // Sử dụng film.title cho giá trị
+                  onClick={() => handleItemClick1(film)} // Sử dụng film.title cho sự kiện click
                 >
                   <ListItemText primary={film.title} />
                 </MenuItem>

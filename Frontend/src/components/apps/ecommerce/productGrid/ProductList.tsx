@@ -24,6 +24,7 @@ import BlankCard from '../../../shared/BlankCard';
 import AlertCart from '../productCart/AlertCart';
 import ProductSearch from './ProductSearch';
 import ProductSelect from './ProductSelect';
+// import { slice } from 'lodash';
 
 interface Props {
   onClick: (event: React.SyntheticEvent | Event) => void;
@@ -33,12 +34,25 @@ const ProductList = ({ onClick }: Props) => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(9);
+  const [searchName, setSearchName] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('');
+  const [sortDir, setSortDir] = useState<string>('');
   const Products = useSelector((state: AppState) => state.products.data);
-
+  console.log('sortBy', sortBy);
+  console.log('sortDir', sortDir);
+  const selectedCategory = useSelector((state: AppState) => state.selectReducer.selectcategory);
   useEffect(() => {
-    dispatch(fetchProducts({ page: page, size: rowsPerPage }));
-  }, [page, rowsPerPage]);
-
+    dispatch(
+      fetchProducts({
+        page: page,
+        size: rowsPerPage,
+        search_name: searchName,
+        sort_dir: sortDir,
+        sort_by: sortBy,
+        category: selectedCategory,
+      }),
+    );
+  }, [page, rowsPerPage, searchName, sortDir, sortBy, selectedCategory]);
   const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedValue = parseInt(event.target.value, 10);
     setPage(1);
@@ -61,8 +75,10 @@ const ProductList = ({ onClick }: Props) => {
     }
     setCartalert(false);
   };
+  const onHandleSearch = (name: string) => {
+    setSearchName(name);
+  };
 
-  // Skeleton
   const [isLoading, setLoading] = React.useState(true);
 
   useEffect(() => {
@@ -89,8 +105,8 @@ const ProductList = ({ onClick }: Props) => {
         )}
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">
-            <ProductSelect />
-            <ProductSearch />
+            <ProductSelect setSortBy={setSortBy} setSortDir={setSortDir} />
+            <ProductSearch onSearch={onHandleSearch} />
           </Stack>
         </Box>
       </Stack>
@@ -140,7 +156,9 @@ const ProductList = ({ onClick }: Props) => {
                     }}
                   >
                     <Typography variant="h6" sx={{ fontSize: '16px' }}>
-                      {product?.productName}
+                      {product?.productName.length > 23
+                        ? product?.productName.slice(0, 23) + '...'
+                        : product?.productName}
                     </Typography>
                     <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -281,15 +299,15 @@ const ProductList = ({ onClick }: Props) => {
 
       <TablePagination
         component="div"
-        count={Products.totalElements} // Use totalElements for the count
-        rowsPerPageOptions={[9, 18, 27]}
+        count={Products.totalElements}
+        rowsPerPageOptions={[9, 18, 36]}
         rowsPerPage={rowsPerPage}
         page={page - 1}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
+        labelRowsPerPage="Số hàng trên mỗi trang"
       />
 
-      {/* Cart alert */}
       <AlertCart handleClose={handleClose} open={cartalert} />
     </Box>
   );

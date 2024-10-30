@@ -14,10 +14,11 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import like from 'src/assets/ICON/like.png';
-import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
+
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
+import { fetchBlogPost } from 'src/store/user/blogs/blog';
 import type { BlogPostType } from 'src/types/apps/blog';
 const BlogDetail = () => {
   const dispatch = useDispatch();
@@ -28,19 +29,29 @@ const BlogDetail = () => {
     dispatch(fetchBlogPost(getTitle));
   }, [dispatch]);
 
+  const { data, loading, error } = useSelector((state) => state?.blogs);
+
   // Lấy bài viết
   const post: BlogPostType | any = useSelector((state: AppState) => state.blogReducer.selectedPost);
-
+  // console.log('post', post);
   // skeleton
   const [isLoading, setLoading] = React.useState(true);
-
+  const { id } = useParams();
+  const [datax, setdatax] = React.useState<any>([]);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 700);
+    dispatch(fetchBlogPost(id as string));
+  }, [dispatch, id]);
+  useEffect(() => {
+    if (datax !== data) {
+      setdatax(data);
+    }
+  }, [datax, data]);
+  console.log('datax', datax);
+  const detail = datax?.result?.[0]?.result;
 
-    return () => clearTimeout(timer);
-  }, []);
+  console.log('detail', detail);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <Box>
@@ -56,25 +67,32 @@ const BlogDetail = () => {
             ></Skeleton>
           </>
         ) : (
-          <CardMedia component="img" height="440" image={post?.coverImg} alt="green iguana" />
+          <CardMedia
+            component="img"
+            height="440"
+            image={detail?.thumail_url ?? ''}
+            alt="green iguana"
+          />
         )}
         <CardContent>
           <Stack direction="row" sx={{ marginTop: '-45px' }}>
             <Tooltip title={post ? post?.author.name : ''} placement="top">
-              <Avatar aria-label="recipe" src={post?.author.avatar}></Avatar>
+              <Avatar aria-label="recipe" src={detail?.image_Url ?? ''}></Avatar>
             </Tooltip>
             <Chip
               sx={{ marginLeft: 'auto', marginTop: '-21px', backgroundColor: 'white' }}
-              label="2,203 lượt xem"
+              label={`${(detail?.views ?? 0).toLocaleString('vi-VN')} lượt xem`}
               size="small"
             ></Chip>
           </Stack>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box>
-              <Chip label={post?.author.name} size="small" sx={{ marginTop: 2 }} />
+              <Chip label={detail?.author ?? 0} size="small" sx={{ marginTop: 2 }} />
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography sx={{ marginRight: '5px' }}>159</Typography>
+              <Typography sx={{ marginRight: '5px' }}>
+                {(detail?.likes ?? 0).toLocaleString('vi-VN')}
+              </Typography>
               <Box sx={{ marginTop: '3px' }}>
                 <img src={like} width={15} height={15} />
               </Box>
@@ -88,16 +106,19 @@ const BlogDetail = () => {
               color="inherit"
               sx={{ textDecoration: 'none' }}
             >
-              Khám Phá Tiềm Năng Của ChatGPT Trong Cuộc Sống Và Công Việc
+              {detail?.name ?? ''}
             </Typography>
           </Box>
           <Stack direction="row" gap={3} alignItems="center">
             <Stack direction="row" gap={1} alignItems="center" mx={'20px'}>
-              <Chip
-                label="Trí Tuệ Nhân Tạo"
-                color="success"
-                // onDelete={handleDelete}
-              />
+              {/* {detail?.tags &&
+                detail?.tags?.map((item) => (
+                  <Chip
+                    label={item}
+                    color="success"
+                    // onDelete={handleDelete}
+                  />
+                ))} */}
               <Chip label="Ứng Dụng Chat GPT" color="warning" />
               <Chip
                 label="Giao Tiếp AI"
@@ -115,19 +136,14 @@ const BlogDetail = () => {
         <Divider />
         <CardContent>
           <Typography variant="h2">Chatbot: Công Cụ Đột Phá Trong Thời Đại Số</Typography>
-          <p>
-            Chatbot là chương trình máy tính được thiết kế để giao tiếp với con người qua tin nhắn
-            hoặc giọng nói. Chúng sử dụng trí tuệ nhân tạo (AI) để hiểu ngôn ngữ tự nhiên và đưa ra
-            phản hồi chính xác theo ngữ cảnh. Từ việc trả lời câu hỏi đơn giản đến hỗ trợ thực hiện
-            các giao dịch, chatbot có thể hoạt động 24/7 mà không cần nghỉ.
-          </p>
-          <p>
+          <p>{detail?.content}</p>
+          {/* <p>
             Tương lai của Chatbot Với sự phát triển không ngừng của công nghệ AI, chatbot ngày càng
             trở nên thông minh hơn. Trong tương lai, chatbot sẽ có khả năng hiểu và phản hồi như con
             người, đồng thời được tích hợp vào nhiều nền tảng và ứng dụng hơn. Điều này sẽ giúp
             doanh nghiệp tối ưu hóa quy trình vận hành, tăng cường tương tác khách hàng và tạo ra
             nhiều giá trị hơn.
-          </p>
+          </p> */}
           <Typography fontWeight={600}>Trợ lý ảo Redtech</Typography>
           <Typography fontStyle="italic">Trợ lý ảo Redtech</Typography>
         </CardContent>
