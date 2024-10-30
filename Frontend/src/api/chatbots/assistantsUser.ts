@@ -36,6 +36,9 @@ const assistantAPi = {
     }
     return axiosAPI.get(`${urls}`);
   },
+  getAssistantConfigById: (id: number) => {
+    return axiosAPI.get(`/${url}/${id}/config`);
+  },
 };
 
 export default assistantAPi;

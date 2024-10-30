@@ -36,7 +36,7 @@ const AssistantEdit = () => {
     setCheckId((prevCheckId) => !prevCheckId);
   };
   return (
-    <PageContainer title="Tạo Assistant" description="this is Custom Form page">
+    <PageContainer title="Sửa Assistant" description="this is Custom Form page">
       <Box>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}

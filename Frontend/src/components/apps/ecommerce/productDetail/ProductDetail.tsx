@@ -145,8 +145,7 @@ const ProductDetail = () => {
               </Box>
             </Stack>
           )}
-          <Divider />
-          {/* Action buttons */}
+          <Divider /> {/* Action buttons */}
           {!productData?.productInfo?.isOwn ? (
             <Grid container spacing={2} mt={5}>
               <Grid item xs={12} lg={4} md={6}>

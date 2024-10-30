@@ -7,7 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   Paper,
-  useTheme
+  useTheme,
 } from '@mui/material';
 import {
   IconChevronLeft,
@@ -47,35 +47,22 @@ const items: any = [
   },
   {
     id: 5,
-    title: 'Tên sản phẩm',
+    title: 'Thông tin sản phẩm',
   },
   {
     id: 6,
-    title: 'Đơn giá',
-  },
-  {
-    id: 7,
-    title: 'Số lượng',
-  },
-  {
-    id: 8,
-    title: 'Thành tiền tổng',
-  },
-
-  {
-    id: 9,
     title: 'Đáng giá',
   },
   {
-    id: 10,
+    id: 7,
     title: 'Ghi chú',
   },
 ];
 
 const AddFunction = () => {
   const [checked, setChecked] = useState<readonly any[]>([]);
-  const [left, setLeft] = useState<readonly any[]>(items.slice(0, 5));
-  const [right, setRight] = useState<readonly any[]>(items.slice(5));
+  const [left, setLeft] = useState<readonly any[]>(items.slice(0, 4));
+  const [right, setRight] = useState<readonly any[]>(items.slice(4));
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -197,7 +184,11 @@ const AddFunction = () => {
                 style={{ marginBottom: '0px' }}
                 onClick={handleClick}
               >
-                {isClicked ? <DoneIcon fontSize="small" color='success' style={{ marginRight: '0px' }} /> : 'Lưu'}
+                {isClicked ? (
+                  <DoneIcon fontSize="small" color="success" style={{ marginRight: '0px' }} />
+                ) : (
+                  'Lưu'
+                )}
               </Button>
             </Grid>
           </Grid>
