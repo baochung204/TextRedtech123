@@ -15,20 +15,17 @@ import {
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import revenue from 'src/assets/Adminphoto/doanh thu.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 import commission from 'src/assets/Adminphoto/hoa hong.png';
-import Point from 'src/assets/images/icon.png/point.png';
 import RPoint from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { DataAffiliateTable } from './datatable/OrderTableData';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
 import { fetchOverviewOrderAffiliateData } from 'src/store/admin/affiliate/orderaffiliate/oveview/orderAffiliateOverviewSlice';
 import { fetchOrderAffiliateListData } from 'src/store/admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 
 interface Column {
   title: string;

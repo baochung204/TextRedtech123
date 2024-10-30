@@ -117,7 +117,7 @@ const TableStr = () => {
   const totalCustomerOwnership = dataCampaignOverview.totalCustomerOwnership;
   const totalGroupCompaign = dataCampaignOverview.totalGroupCompaign;
 
-  const Strategy = [
+  export const Strategy: any[] = [
     {
       bgColor: 'primary.light',
       title: 'Nhóm chiến lược',

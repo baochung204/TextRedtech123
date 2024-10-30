@@ -4,34 +4,7 @@ import { Box, Chip, Grid, LinearProgress, Paper, Stack, Tooltip, Typography } fr
 import { styled } from '@mui/system';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import DashboardCard from 'src/components/shared/DashboardCard';
-import avt9 from 'src/assets/images/profile/user-9.jpg';
-import rank8 from 'src/assets/images/rank/rank8.png';
-import bot from 'src/assets/images/backgrounds/bot.svg';
 import { ChatBotInfoType } from 'src/store/user/chatbots/type/assistantByIdType';
-interface sellsData {
-  product: string;
-  percent: number;
-  color: string;
-}
-const sells: sellsData[] = [
-  {
-    product: 'Kinh nghiệm',
-    percent: 90,
-    color: 'secondary',
-  },
-];
-interface IInforBot {
-  name: string;
-  date: string;
-  model: string;
-  avatar: string;
-}
-const inforBot: IInforBot = {
-  name: 'Chat Bot Message Of Facebook',
-  date: '18/8/2024',
-  model: 'GPT-4',
-  avatar: bot,
-};
 const BoxStyled = styled(Box)(() => ({
   padding: '22px',
   transition: '0.1s ease-in',
@@ -251,21 +224,7 @@ const InFor = ({ chatBotInfo }: IProps) => {
                 <Typography>{chatBotInfo?.education}</Typography>
               </Grid>
             </Grid>
-            {/* <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
-              <Grid item xs={5}>
-                <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
-                  Chuyên môn
-                </CustomFormLabel>
-              </Grid>
-              <Grid item xs={7} sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {chatBotInfo?.chatBotPersonalities?.map((item: string) =>
-                  console.log('item', item),
-                )}
-                <Chip label="Tương tác đa phương tiện" color="primary" sx={{ px: 1 }} />
-                <Chip label="Phân tích dữ liệu và báo cáo" color="error" sx={{ px: 1 }} />
-                <Chip label="Hỗ trợ đa ngôn ngữ" color="warning" sx={{ px: 1 }} />
-              </Grid>
-            </Grid> */}
+
             <Grid container sx={{ mt: { xs: 1, md: 2 } }}>
               <Grid item xs={5}>
                 <CustomFormLabel sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
@@ -299,11 +258,6 @@ const InFor = ({ chatBotInfo }: IProps) => {
                     sx={{ px: 1 }}
                   />
                 ))}
-                {/* <Chip variant="outlined" label="Vui vẻ" color="primary" sx={{ px: 1 }} />
-                <Chip variant="outlined" label="Tận tâm" color="error" sx={{ px: 1 }} />
-                <Chip variant="outlined" label="Cởi mở" color="warning" sx={{ px: 1 }} />
-                <Chip variant="outlined" label="Thân thiện" color="success" sx={{ px: 1 }} />
-                <Chip variant="outlined" label="Hướng ngoại" color="default" sx={{ px: 1 }} /> */}
               </Grid>
             </Grid>
           </Grid>

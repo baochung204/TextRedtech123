@@ -4,7 +4,6 @@ import Chart from 'react-apexcharts';
 import { Props } from 'react-apexcharts';
 
 import { Box, Typography } from '@mui/material';
-import { ChangeEvent, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import DashboardCard from 'src/components/shared/DashboardCard';
 
@@ -71,7 +70,6 @@ const Chart3 = () => {
       labels: {
         show: true,
         formatter: (value: string, _time: string, opts?: any) => {
-
           const date = new Date(value);
           if (opts.i === 0 || opts.i === categories.length - 1) {
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;

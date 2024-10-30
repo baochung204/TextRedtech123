@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import contractwait from 'src/assets/Contract/HOP DONG CHO XU LY.png';
 import contractdone from 'src/assets/Contract/HOP DONG DA KY.png';
 import contractreject from 'src/assets/Contract/HOP DONG TU CHOI.png';
@@ -23,12 +24,9 @@ import contract from 'src/assets/Contract/hop dong.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
-import { DataContactPointTable } from './datatable/OrderTableData';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchOverviewContractRuleData } from 'src/store/admin/contract/contractrule/overview/contractRuleSlice';
 import { fetchContractRuleListData } from 'src/store/admin/contract/contractrule/table/contractRuleSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
 
 interface Column {
   title: string;
