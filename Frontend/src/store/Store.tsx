@@ -133,7 +133,7 @@ const rootReducer = combineReducers({
   //Assistant
   assisstant: assistantSlice,
   assistantById: assistantByIdSlice,
-  assistantConfigById: assistantByIdSlice,
+  assistantConfigById: fetchAssistantConfigById,
   //Products
   products: ProductsSlice,
   productById: ProductByIdSlice,
