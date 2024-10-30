@@ -1,5 +1,6 @@
 export interface ChatBotInfoType {
   chatBotId: number;
+  startDate: string;
   name: string;
   badgeUrl: string;
   avatar: string;

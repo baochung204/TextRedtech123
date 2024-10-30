@@ -83,7 +83,7 @@ import listCustomerSlice from './user/affiliate/customer/listCustomerSlice';
 import historyPaymentSlice from './user/affiliate/overview/historyPaymentSlice';
 import listOrderSlice from './user/affiliate/overview/listOrderSlice';
 import overviewAffiliateSlice from './user/affiliate/overview/overviewSlice';
-import BlogSlice from './user/blogs/blog';
+import BlogSlice from './user/chatbots/chart/blogs/blog';
 import ChartAssisstantReducer from './user/chatbots/chart/chartAssisstantByID/ChartAssisstantByIDSlice';
 import selectAssistantSlice from './user/dashboard/filter/selectAssistantSlice';
 import flashSaleRandomSlice from './user/flashsale-random/flashsaleSlice';
@@ -162,7 +162,7 @@ const rootReducer = combineReducers({
   list_paymenthistory: historyPaymentSlice,
   list_customer: listCustomerSlice,
   //admin
-  overview_blog: blogSlice,
+  // overview_blog: blogSlice,
   overview_counpon: counponSlice,
   counpon_history: counponhistorySlice,
   overview_flashsale: flashsaleoverviewSlice,
