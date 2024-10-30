@@ -347,7 +347,7 @@ const CustomerList2 = () => {
         </DialogContent>
       </Dialog>
 
-      <DialogDetailCustomer />
+      <DialogDetailCustomer openDetail={openDetail} setOpenDetail={setOpenDetail} />
     </PageContainer>
   );
 };
