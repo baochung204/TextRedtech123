@@ -347,42 +347,7 @@ const CustomerList2 = () => {
         </DialogContent>
       </Dialog>
 
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        aria-describedby="alert-dialog-slide-description"
-        fullWidth
-        maxWidth="lg"
-        sx={{
-          maxHeight: '90vh',
-        }}
-        onClose={handleCloseDialog}
-      >
-        <DialogContent
-          sx={{
-            overflowY: 'auto',
-            height: '100%',
-            '&::-webkit-scrollbar': {
-              width: '10px',
-            },
-            '&::-webkit-scrollbar-track': {
-              backgroundColor: 'none',
-            },
-            '&::-webkit-scrollbar-thumb': {
-              backgroundColor: '#E3E3E3',
-              borderRadius: '10px',
-            },
-            '&::-webkit-scrollbar-thumb:hover': {
-              backgroundColor: '#d6d6d6',
-            },
-          }}
-        >
-          <DialogContentText id="alert-dialog-slide-description">
-            <DialogDetailCustomer />
-          </DialogContentText>
-        </DialogContent>
-      </Dialog>
+      <DialogDetailCustomer />
     </PageContainer>
   );
 };
