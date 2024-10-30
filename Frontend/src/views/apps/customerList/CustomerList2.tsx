@@ -58,7 +58,7 @@ interface Column {
 const CustomerList2 = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
-
+  // const [openDetail, setOpenDetail] = useState(false);
   const customerUserList = useSelector((state: AppState) => state.listCustomerUser.dataa);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
