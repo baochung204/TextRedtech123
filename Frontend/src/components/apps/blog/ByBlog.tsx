@@ -38,7 +38,7 @@ const ByBlog = ({
   productId,
 }: any) => {
   const [open, setOpen] = React.useState(false);
-
+  const color = ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'default'];
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -90,26 +90,32 @@ const ByBlog = ({
         <DialogContentText style={{ margin: '5px 20px' }}>
           {' '}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            {tags[0] && (
-              <Chip
-                label={tags[0]}
-                size="small"
-                sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 0 }} // Thay marginBottom là 0
-              />
-            )}
+            {tags &&
+              tags.map((item: any, index: number) => (
+                <Chip
+                  key={index}
+                  label={item}
+                  color={color[index % color.length] as any}
+                  style={{ margin: '0px 3px' }}
+                />
+              ))}
           </Box>
         </DialogContentText>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
+            ChatGPT là một mô hình ngôn ngữ AI do OpenAI phát triển, được huấn luyện trên lượng lớn
+            dữ liệu văn bản để có thể tạo ra các câu trả lời tự động. Nó có khả năng hiểu và phản
+            hồi câu hỏi, cung cấp thông tin, giải thích, và hỗ trợ trong các tác vụ khác nhau, từ
+            viết nội dung, dịch ngôn ngữ, đến lập trình. ChatGPT có thể hỗ trợ người dùng trong
+            nhiều lĩnh vực khác nhau, nhờ vào khả năng phân tích ngữ cảnh và đưa ra câu trả lời phù
+            hợp theo yêu cầu của người dùngss
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button color="error" onClick={handleClose}>
             Hủy
           </Button>
-          <Button onClick={() => console.log('ádfsdg')}>Thanh toán</Button>
+          <Button onClick={() => console.log('ádfsdg')}>Mua ngay</Button>
         </DialogActions>
       </Dialog>
     </>
