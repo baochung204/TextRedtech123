@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import cartAPI from 'src/api/cart/cart';
 import affiliateUserApi from 'src/api/user/affiliate/affiliate';
 
 // Interface for the "overview" object

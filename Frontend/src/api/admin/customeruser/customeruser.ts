@@ -1,8 +1,8 @@
 import { axiosAPI } from 'src/api/axiosApi';
 
-export interface PropsNotificationAdmin {
-  page_no?: number | null | undefined;
-  page_size?: number | null | undefined;
+export interface PropsCustomerUser {
+  page?: number | null | undefined;
+  size?: number | null | undefined;
   sort_by?: string | null | undefined;
   sort_dir?: string | null | undefined;
   search_key?: string | null | undefined;
@@ -13,7 +13,7 @@ export interface PropsNotificationAdmin {
 const url = 'converts';
 
 const customerUserApi = {
-  getListCustomerUser: (object: PropsNotificationAdmin = {}) => {
+  getListCustomerUser: (object: PropsCustomerUser = {}) => {
     const urls = `/${url}/customers`;
     const query = Object.entries(object)
       .filter(([, value]) => value !== null && value !== undefined)

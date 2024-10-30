@@ -1,19 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { PropsContractAffiliate } from 'src/api/admin/accountant/accountant';
-import customerUserApi from 'src/api/admin/customeruser/customeruser';
+import customerUserApi, { PropsCustomerUser } from 'src/api/admin/customeruser/customeruser';
 
-//not correct
 interface PropsData {
-  userId: number;
+  customerId: number;
+  date: Date;
   name: string;
+  phoneNumber: string;
+  chatBotName: string;
   email: string;
-  phoneNumber: number;
-  type: string;
-  totalChatBot: number;
-  totalRecharge: number;
-  totalPointBalence: number;
-  representativeName: string | null;
-  publisher: string | null;
+  avatarUrl: string;
+  facebookCode: string;
+  facebookName: string;
 }
 
 interface VoucherData {
@@ -46,8 +43,8 @@ const initialState: StrState = {
 
 export const fetchCustomerUserListData = createAsyncThunk(
   'fetchCustomerUserList',
-  async (object: PropsContractAffiliate = {}, thunkApi) => {
-    try { 
+  async (object: PropsCustomerUser = {}, thunkApi) => {
+    try {
       const response = await customerUserApi.getListCustomerUser(object);
       return response.data.result;
     } catch (error: any) {

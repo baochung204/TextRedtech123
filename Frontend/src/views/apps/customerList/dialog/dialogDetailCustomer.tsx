@@ -12,7 +12,9 @@ import {
   IconRelationManyToMany,
 } from '@tabler/icons-react';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import avt6 from 'src/assets/images/profile/user-6.jpg';
+import { AppState } from 'src/store/Store';
 interface PropsDialog {
   openDetail: boolean;
   setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,9 +26,12 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail }) => {
+  const customerDetail = useSelector((state: AppState) => state.detailCustomerUser.dataa);
   const handleClose = () => {
     setOpenDetail(!openDetail);
   };
+
+  console.log('customerDetail', customerDetail.phoneNumber);
 
   return (
     <>
@@ -80,9 +85,12 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                     <Avatar src={avt6} alt="" sx={{ width: 170, height: 170 }} />
                   </Grid>
                   <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Typography variant="h4" fontWeight="600" mt={0.2}>
-                      Nguyễn Đức Nhật
+                    <Typography variant="h4" fontWeight="600">
+                      {customerDetail.name}
                     </Typography>
+                    <Box sx={{ marginTop: '2px', marginLeft: '2px' }}>
+                      <IconDiscountCheck color={'#13DEB9'} />
+                    </Box>
                   </Grid>
                   <Grid
                     item
@@ -94,12 +102,7 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                       gap: 1,
                       mt: '-6px',
                     }}
-                  >
-                    <IconDiscountCheck color={'#13DEB9'} />
-                    <Typography variant="body1" fontWeight="400" color={'#13DEB9'}>
-                      Đã đăng ký
-                    </Typography>
-                  </Grid>
+                  ></Grid>
                 </Grid>
               </Grid>
               <Box sx={{ width: '100%' }}>
@@ -121,7 +124,7 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                       </Grid>
                       <Grid item xs={8} mt={1} sx={{ display: 'flex', justifyContent: 'end' }}>
                         <Typography variant="h6" fontWeight="500" mt={0.2}>
-                          0359774443
+                          {customerDetail.phoneNumber}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -138,7 +141,7 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                       </Grid>
                       <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
                         <Typography variant="h6" fontWeight="500" mt={0.2}>
-                          chungkbph38477@fpt.edu.vn
+                          {customerDetail.email}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -155,7 +158,7 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                       </Grid>
                       <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
                         <Typography variant="h6" fontWeight="500" mt={0.2}>
-                          Cần Kiệm, Thạch Thất, Hà Nội
+                          {customerDetail?.address}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -172,7 +175,7 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                       </Grid>
                       <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
                         <Typography variant="h6" fontWeight="500" mt={0.2}>
-                          Name
+                          {customerDetail?.gender}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -189,7 +192,7 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                       </Grid>
                       <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end', gap: 1 }}>
                         <Typography variant="h6" fontWeight="500" mt={0.2} color={'#FF3333'}>
-                          77080886675960335
+                          {customerDetail?.psid}
                         </Typography>
                         <IconCopy size={18} color={'#FF3333'} />
                       </Grid>
