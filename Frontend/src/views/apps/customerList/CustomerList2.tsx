@@ -8,6 +8,7 @@ import {
   Checkbox,
   Dialog,
   DialogContent,
+  DialogContentText,
   DialogTitle,
   Grid,
   IconButton,
@@ -24,18 +25,18 @@ import {
 import { TransitionProps } from '@mui/material/transitions';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import avt6 from 'src/assets/images/profile/user-6.jpg';
+import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import { AppDispatch, AppState } from 'src/store/Store';
+import { AppState, dispatch } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
+import { fetchCustomerUserDetailData } from 'src/store/user/customer/detailcustomer/detailCustomerUserSlice';
+import { fetchCustomerUserListData } from 'src/store/user/customer/listcustomer/listCustomerUserSlice';
 import PopupAddList2 from './PopupAddlist2';
 import DialogDetailCustomer from './dialog/dialogDetailCustomer';
-import { fetchCustomerUserListData } from 'src/store/user/customer/listcustomer/listCustomerUserSlice';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -56,15 +57,23 @@ interface Column {
 }
 const CustomerList2 = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
-  const [openDetail, setOpenDetail] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const customerUserList = useSelector((state: AppState) => state.listCustomerUser.dataa);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchCustomerUserDetailData(id));
+  };
+
+  const handleCloseDialog = () => {
+    setOpen(!open);
+  };
+
   useEffect(() => {
-    dispatch(fetchCustomerUserListData({ page_no: page, page_size: rowsPerPage }));
+    dispatch(fetchCustomerUserListData({ page: page, size: rowsPerPage }));
   }, [rowsPerPage, page]);
   useEffect(() => {
     dispatch(fetchCustomer());
@@ -128,7 +137,7 @@ const CustomerList2 = () => {
         dataIndex: 'actions',
         render: (_row: any, value: any) => (
           <Box sx={{ px: 4 }}>
-            <IconButton onClick={handleDetail}>
+            <IconButton onClick={() => handleOpen(value.orderId)}>
               <IconEye stroke={2} style={{ color: '#5D87FF' }} />
             </IconButton>
           </Box>
@@ -137,9 +146,7 @@ const CustomerList2 = () => {
     ],
     [],
   );
-  const handleDetail = () => {
-    setOpenDetail(!openDetail);
-  };
+
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
   };
@@ -339,7 +346,43 @@ const CustomerList2 = () => {
           <PopupAddList2 />
         </DialogContent>
       </Dialog>
-      <DialogDetailCustomer openDetail={openDetail} setOpenDetail={setOpenDetail} />
+
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        aria-describedby="alert-dialog-slide-description"
+        fullWidth
+        maxWidth="lg"
+        sx={{
+          maxHeight: '90vh',
+        }}
+        onClose={handleCloseDialog}
+      >
+        <DialogContent
+          sx={{
+            overflowY: 'auto',
+            height: '100%',
+            '&::-webkit-scrollbar': {
+              width: '10px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'none',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#E3E3E3',
+              borderRadius: '10px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#d6d6d6',
+            },
+          }}
+        >
+          <DialogContentText id="alert-dialog-slide-description">
+            <DialogDetailCustomer />
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
     </PageContainer>
   );
 };
