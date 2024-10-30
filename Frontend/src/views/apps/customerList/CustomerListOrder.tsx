@@ -5,19 +5,23 @@ import {
   Badge,
   Box,
   Checkbox,
+  Dialog,
+  DialogContent,
+  DialogContentText,
   Grid,
   IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
+  Slide,
   Stack,
   TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
-import * as React from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
@@ -25,81 +29,21 @@ import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import BlankCard from 'src/components/shared/BlankCard';
 import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchConvertHistoryListData } from 'src/store/user/convert/listconverthistory/listConvertHistorySlice';
 import DialogDetailListOrder from './dialog/dialogDetailListOrder';
 
-interface PropsTable {
-  id: string;
-  createdAt: string;
-  assistant: string;
-  pricePoint: number;
-  channel: string;
-  name: string;
-  phone: string;
-  address: string;
-  email: string;
-  orderInfo: string;
-  notes: string;
-  misc?: string;
-}
+import { TransitionProps } from '@mui/material/transitions';
+import { fetchConvertDetailData } from 'src/store/user/convert/detailconverthistory/detailConvertHistorySlice';
 
-const TableData: PropsTable[] = [
-  {
-    id: 'ORD001',
-    createdAt: '2024-09-01',
-    assistant: 'Trợ lý A',
-    pricePoint: 150000,
-    channel: 'Ngô Đình Toản',
-    name: 'Nguyễn Văn A',
-    phone: '0123456789',
-    address: 'Hà Nội',
-    email: 'a@example.com',
-    orderInfo: 'Thông tin đơn hàng A',
-    notes: 'Ghi chú A',
-    misc: 'fb',
+const Transition = forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
   },
-  {
-    id: 'ORD002',
-    createdAt: '2024-09-02',
-    assistant: 'Trợ lý B',
-    pricePoint: 10000,
-    channel: 'Trần Dần',
-    name: 'Trần Thị B',
-    phone: '0987654321',
-    address: 'Hồ Chí Minh',
-    email: 'b@example.com',
-    orderInfo: 'Thông tin đơn hàng B',
-    notes: 'Ghi chú B',
-    misc: 'fb',
-  },
-  {
-    id: 'ORD003',
-    createdAt: '2024-09-03',
-    assistant: 'Trợ lý C',
-    pricePoint: 150000,
-    channel: 'Nguyễn Văn Bình',
-    name: 'Phạm Văn C',
-    phone: '0981234567',
-    address: 'Đà Nẵng',
-    email: 'c@example.com',
-    orderInfo: 'Thông tin đơn hàng C',
-    notes: 'Ghi chú C',
-    misc: 'fb',
-  },
-  {
-    id: 'ORD004',
-    createdAt: '2024-09-04',
-    assistant: 'Trợ lý D',
-    pricePoint: 20250,
-    channel: 'Lê Văn Dũng',
-    name: 'Hoàng Thị D',
-    phone: '0912345678',
-    address: 'Cần Thơ',
-    email: 'd@example.com',
-    orderInfo: 'Thông tin đơn hàng D',
-    notes: 'Ghi chú D',
-    misc: 'fb',
-  },
-];
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 interface Column {
   title: string;
@@ -108,9 +52,22 @@ interface Column {
   isValids?: boolean;
 }
 const CustomerListOrder = () => {
+  const convertHistoryList = useSelector((state: AppState) => state.listConvertHistory.dataa);
+  const convertHistoryDetail = useSelector((state: AppState) => state.detailConvertHistory.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  useEffect(() => {
+    dispatch(fetchConvertHistoryListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
   const [month, setMonth] = React.useState('1');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMonth(event.target.value);
+  };
+
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchConvertDetailData(id));
   };
 
   const [dataSelect, setDataSelect] = React.useState<string[]>([]);
@@ -125,19 +82,23 @@ const CustomerListOrder = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'id',
+        dataIndex: 'conversationId',
       },
       {
         title: 'Ngày tạo',
-        dataIndex: 'createdAt',
+        dataIndex: 'date',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Tên khách hàng',
-        dataIndex: 'name',
+        dataIndex: 'customerName',
       },
       {
         title: 'Số điện thoại',
-        dataIndex: 'phone',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Email',
@@ -145,41 +106,22 @@ const CustomerListOrder = () => {
       },
       {
         title: 'Kênh',
-        dataIndex: 'misc',
-        render: (value: string) => (
+        dataIndex: '',
+        render: (value: any) => (
           <Stack direction="row" spacing={1}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar src={value} alt={value} />
+              <Avatar src={value.avatarUrl} alt={'img'} />
             </Box>
             <Box>
-              <Typography variant="subtitle1"> Facebook</Typography>
-              <Typography variant="subtitle2" fontSize={12}>
-                {' '}
-                #123456
-              </Typography>
+              <Typography variant="subtitle1">{value.facebookName}</Typography>
             </Box>
           </Stack>
         ),
       },
       {
         title: 'Trợ lý',
-        dataIndex: 'assistant',
+        dataIndex: 'chatBotName',
       },
-      // {
-      //   title: 'Tên sản phẩm',
-      //   dataIndex: 'channel',
-      //   // render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
-      // },
-      // {
-      //   title: 'Đơn vị tính',
-      //   dataIndex: 'channel',
-      //   // render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
-      // },
-      // {
-      //   title: 'Tag sản phẩm',
-      //   dataIndex: 'channel',
-      //   render: (value: string) => <Chip color="error" label={value} variant="outlined" />,
-      // },
       {
         title: 'Giá trị đơn hàng',
         dataIndex: 'pricePoint',
@@ -198,14 +140,6 @@ const CustomerListOrder = () => {
           </Box>
         ),
       },
-      // {
-      //   title: 'Số lượng sản phẩm',
-      //   dataIndex: 'assistant',
-      // },
-      // {
-      //   title: 'Đánh giá',
-      //   dataIndex: 'assistant',
-      // },
       {
         title: 'Địa chỉ',
         dataIndex: 'address',
@@ -215,15 +149,9 @@ const CustomerListOrder = () => {
         dataIndex: 'actions',
         title: 'Chi tiết',
         render: (_row: any, value: any) => (
-          // console.log(value)
           <Box display={'flex'} sx={{ justifyContent: 'center' }}>
             <Tooltip title="Xem" placement="right">
-              <IconButton
-                onClick={() => {
-                  setOpen(!open);
-                  // setSelectId(value.id);
-                }}
-              >
+              <IconButton onClick={() => handleOpen(value.conversationId)}>
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
             </Tooltip>
@@ -234,7 +162,11 @@ const CustomerListOrder = () => {
     [],
   );
 
-  React.useEffect(() => {
+  const handleCloseDialog = () => {
+    setOpen(!open);
+  };
+
+  useEffect(() => {
     const hasIsValids = columns.some((col) => 'isValids' in col);
     if (hasIsValids) {
       const hiddenColumns = columns
@@ -354,11 +286,6 @@ const CustomerListOrder = () => {
                           }}
                         >
                           {columns.map((header: any) => {
-                            // console.log(
-                            //   `check ${header.title}`,
-                            //   dataSelect.includes(header.dataIndex),
-                            // );
-
                             const isSelected = dataSelect.includes(header.dataIndex);
 
                             return (
@@ -379,7 +306,16 @@ const CustomerListOrder = () => {
 
                 <Grid item xs={12} mx={0.3}>
                   <BlankCard>
-                    <CustomTable columns={columns} dataSource={TableData} dataSelect={dataSelect} />
+                    <CustomTable
+                      columns={columns}
+                      dataSelect={dataSelect}
+                      dataSource={convertHistoryList.content}
+                      count={convertHistoryList.totalElements}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      setPage={setPage}
+                      setRowsPerPage={setRowsPerPage}
+                    />
                   </BlankCard>
                 </Grid>
               </Grid>
@@ -387,22 +323,42 @@ const CustomerListOrder = () => {
           </Box>
         </TabContext>
       </ChildCard>
-
-      {/* Add Order Popup */}
-      {/* <Dialog
-        open={isPopupOpen}
-        onClose={handleClosePopup}
-        fullWidth
-        maxWidth="lg"
+      <Dialog
+        open={open}
         TransitionComponent={Transition}
         keepMounted
+        aria-describedby="alert-dialog-slide-description"
+        fullWidth
+        maxWidth="lg"
+        sx={{
+          maxHeight: '90vh',
+        }}
+        onClose={handleCloseDialog}
       >
-        <DialogTitle padding="10px">Thêm đơn hàng</DialogTitle>
-        <DialogContent>
-          <AddOrder />
+        <DialogContent
+          sx={{
+            overflowY: 'auto',
+            height: '100%',
+            '&::-webkit-scrollbar': {
+              width: '10px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'none',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#E3E3E3',
+              borderRadius: '10px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#d6d6d6',
+            },
+          }}
+        >
+          <DialogContentText id="alert-dialog-slide-description">
+            <DialogDetailListOrder />
+          </DialogContentText>
         </DialogContent>
-      </Dialog> */}
-      <DialogDetailListOrder open={open} setOpen={setOpen} />
+      </Dialog>
     </PageContainer>
   );
 };
