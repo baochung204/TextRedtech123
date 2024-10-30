@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import assistantApi from 'src/api/chatbots/assistantsUser';
-import { ChatBotInfo, ChatBotIndex, ChatBotResource } from './type/assistantByIdType';
+import { ChatBotIndexType, ChatBotInfoType, ChatBotResourceType } from './type/assistantByIdType';
 
-const initialChatBotInfo: ChatBotInfo = {
+const initialChatBotInfo: ChatBotInfoType = {
   chatBotId: 0,
   name: '',
   avatar: '',
@@ -23,7 +23,7 @@ const initialChatBotInfo: ChatBotInfo = {
   badgeUrl: '',
 };
 
-const initialChatBotIndex: ChatBotIndex = {
+const initialChatBotIndex: ChatBotIndexType = {
   customer: 0,
   converts: 0,
   expense: 0,
@@ -35,7 +35,7 @@ const initialChatBotIndex: ChatBotIndex = {
   aov: 0,
 };
 
-const initialChatBotResource: ChatBotResource = {
+const initialChatBotResource: ChatBotResourceType = {
   fileSlot: 0,
   fileSlotMax: 0,
   functionSlot: 0,
@@ -53,7 +53,7 @@ const initialChatBotData = {
 };
 
 interface StrState {
-  data: typeof initialChatBotData; // Thay đổi kiểu dữ liệu ở đây
+  data: typeof initialChatBotData;
   loading: boolean;
   error: string | null;
 }
