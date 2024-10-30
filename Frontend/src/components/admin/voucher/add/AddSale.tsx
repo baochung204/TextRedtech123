@@ -46,8 +46,7 @@ const AddFlashSale = () => {
       setFinalPrice(newPrice);
     }
   }, [discount, selectedValue]);
-  const text =
-    ' Dao Chạm Khắc Thủ Công Chuyên Dụng Cao Cấp Dao Chạm Khắc Thủ Công Chuyên Dụng Cao Cấp';
+
   return (
     <>
       <Box mb={4} p={3} sx={{ border: '1px solid #ddd', borderRadius: '8px', boxShadow: 2 }}>

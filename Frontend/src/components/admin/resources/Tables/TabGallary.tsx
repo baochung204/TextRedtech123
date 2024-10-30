@@ -1,13 +1,10 @@
-import { Box, IconButton, Tooltip } from '@mui/material';
-import { IconEye } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchModelListData } from 'src/store/admin/resources/model/table/modelListSlice';
 import DialogModelView from '../dialog/DialogModelView';
-import { HeadCell } from '../types/HeadCell';
-import { Image, ImageCells, ImageRows } from './mockData/TableImage';
+import { ImageCells, ImageRows } from './mockData/TableImage';
 
 interface PropsTabFunction {
   value: string;

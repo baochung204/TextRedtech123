@@ -22,6 +22,7 @@ import ChatBot from 'src/components/apps/assistant/AssistantEditor/layout/ChatBo
 import Integration from 'src/components/apps/integration/Integration';
 import AddText from 'src/components/apps/assistant/AssistantEditor/layout/addText';
 import { Strategy } from '../resources/mockData/TableStr';
+// import { Strategy } from '../resources/mockData/TableStr';
 
 const AssistantEditer = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -119,7 +120,7 @@ const AssistantEditer = () => {
             <Grid item xs={12}>
               {' '}
               {/* 1/3 chiều cao của parent */}
-              {Strategy.map((item, index) => (
+              {Strategy.map((item: any, index: any) => (
                 <Box
                   key={index}
                   sx={{ backgroundColor: item.bgColor, padding: 2, marginBottom: 2 }}

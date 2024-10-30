@@ -2,7 +2,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
-import SwapVertIcon from '@mui/icons-material/SwapVert';
 import {
   // Autocomplete,
   // Autocomplete,
@@ -38,11 +37,11 @@ import {
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import IconCrv from 'src/assets/ICON/cvr.png';
+import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
+import { setSelectedCategory } from 'src/store/RouterSlice';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchAssistantData } from 'src/store/user/chatbots/assisstantUserSlice';
 import AlertChat from '../../chats/AlertChat';
-import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
-import { setSelectedCategory } from 'src/store/RouterSlice';
 
 interface FilmsData {
   id: number;
@@ -87,10 +86,8 @@ const ListAssistant = () => {
   const handleChange1 = (event: SelectChangeEvent<string>) => {
     const selectedValue = event.target.value;
     if (selectedValue === 'Đặt lại') {
-      // Thiết lập lại bộ lọc ngay lập tức
       setSelectedItems('');
       setSortBy('');
-      setSortDir(null);
     } else {
       setSelectedItems(selectedValue);
     }

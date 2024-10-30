@@ -24,7 +24,7 @@ import {
 import { TransitionProps } from '@mui/material/transitions';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
@@ -32,7 +32,6 @@ import ChildCard from 'src/components/shared/ChildCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
-import { fetchCustomerUserDetailData } from 'src/store/user/customer/detailcustomer/detailCustomerUserSlice';
 import { fetchCustomerUserListData } from 'src/store/user/customer/listcustomer/listCustomerUserSlice';
 import PopupAddList2 from './PopupAddlist2';
 import DialogDetailCustomer from './dialog/dialogDetailCustomer';
@@ -72,12 +71,14 @@ const CustomerList2 = () => {
   useEffect(() => {
     dispatch(fetchCustomer());
   }, [dispatch]);
+
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
         dataIndex: 'customerId',
-        render: (value: any) => value || 'Không có dữ liệu',
+        render: (value: any) =>
+          value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
       },
 
       {
@@ -91,7 +92,8 @@ const CustomerList2 = () => {
       {
         title: 'Tên khách hàng',
         dataIndex: 'name',
-        render: (value: any) => value || 'Không có dữ liệu',
+        render: (value: any) =>
+          value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
       },
       {
         title: 'Kênh',
@@ -113,18 +115,21 @@ const CustomerList2 = () => {
       {
         title: 'Số điện thoại',
         dataIndex: 'phoneNumber',
-        render: (value: any) => value || 'Không có dữ liệu',
+        render: (value: any) =>
+          value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
       },
       {
         title: 'Trợ lý',
         dataIndex: 'chatBotName',
-        render: (value: any) => value || 'Không có dữ liệu',
+        render: (value: any) =>
+          value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
       },
 
       {
         title: 'Email',
         dataIndex: 'email',
-        render: (value: any) => value || 'Không có dữ liệu',
+        render: (value: any) =>
+          value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
       },
       {
         title: 'Xem chi tiết',
