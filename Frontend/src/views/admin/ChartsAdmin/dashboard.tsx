@@ -45,6 +45,16 @@ import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { fetchOverviewTicketDashboardData } from 'src/store/admin/dashboard/overview/ticketOverviewSlice';
+import { fetchOverviewRpointData } from 'src/store/admin/dashboard/overview/rpointOverviewSlice';
+import { fetchOverviewBussinessDashboardData } from 'src/store/admin/dashboard/overview/bussinessOverviewSlice';
+import { fetchOverviewDiscountDashboardData } from 'src/store/admin/dashboard/overview/discountOverviewSlice';
+import { fetchOverviewBlogDashboardData } from 'src/store/admin/dashboard/overview/blogOverviewSlice';
+import { fetchOverviewAffiliateDashboardData } from 'src/store/admin/dashboard/overview/affiliateOverviewSlice';
 
 const dataFilter_bussiness = [
   { value: 1, label: 'Khách hàng' },
@@ -78,11 +88,9 @@ const dataFilter_affliate = [
 ];
 
 const dataFilter_sale = [
-  // { value: 1, label: 'Lượt áp mã' },
   { value: 1, label: 'Số tiền giảm' },
   { value: 2, label: 'Lượt mua Flash-sale' },
   { value: 3, label: 'Doanh thu Flash-sale' },
-  // { value: 1, label: 'Tỉ lệ mua Flash-sale' },
 ];
 
 const dataFilter_order_bill = [
@@ -91,31 +99,16 @@ const dataFilter_order_bill = [
   { value: 3, label: 'E-Invoice' },
 ];
 
-// const dataFilter_blog = [
-//   { value: 1, label: 'Lượt xem' },
-//   { value: 2, label: 'Doanh thu' },
-//   { value: 3, label: 'Số cảm xúc' },
-// ];
-
 const dataFilter_ticket = [
   { value: 1, label: 'Tickets' },
   { value: 2, label: 'Đánh giá > 3*' },
   { value: 3, label: 'Đánh giá ≤ 3*' },
-  // { value: 2, label: 'Khách hàng' },
 ];
-
-// const dataFilter_customer = [
-//   { value: 1, label: 'Doanh thu / Khách hàng(tất cả)' },
-//   { value: 2, label: 'Doanh thu / Khách hàng(trả phi)' },
-//   { value: 3, label: 'tỉ lệ khách hàng(doanh nghiệp)' },
-//   { value: 4, label: 'Tỉ lệ Khách hàng(trả phí)' },
-// ];
 
 const dataFilter_account = [
   { value: 1, label: 'Khách hàng' },
   { value: 2, label: 'Đơn hàng (point)' },
   { value: 3, label: 'Doanh thu (đ)' },
-  // { value: 4, label: 'Loại khách hàng' },
 ];
 
 const dataFilter_social = [
@@ -158,7 +151,6 @@ const dataSource = [
           alignItems: 'center',
         }}
       >
-        {/* <IconChartBar color="white" size={30} /> */}
         <img src={customer} width={30} />
       </Box>
     ),
@@ -949,11 +941,49 @@ const dataSource_ticket = [
 ];
 
 const DashboardAdmin = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  //ticket
+  const ticketOverview = useSelector((state: AppState) => state.overviewTicketDasboard.dataa);
+  useEffect(() => {
+    dispatch(fetchOverviewTicketDashboardData());
+  }, [dispatch]);
+
+  //rpoint
+  const rPointOverview = useSelector((state: AppState) => state.overviewRpointDasboard.dataa);
+  useEffect(() => {
+    dispatch(fetchOverviewRpointData());
+  }, [dispatch]);
+
+  //bussiness
+  const bussinessOverview = useSelector((state: AppState) => state.overviewBussinessDasboard.dataa);
+  useEffect(() => {
+    dispatch(fetchOverviewBussinessDashboardData());
+  }, [dispatch]);
+
+  //discount
+  const discountOverview = useSelector((state: AppState) => state.overviewDiscountDashboard.dataa);
+  useEffect(() => {
+    dispatch(fetchOverviewDiscountDashboardData());
+  }, [dispatch]);
+
+  const blogOverview = useSelector((state: AppState) => state.overviewBlogDashboard.dataa);
+  useEffect(() => {
+    dispatch(fetchOverviewBlogDashboardData());
+  }, [dispatch]);
+
+  const affiliateOverview = useSelector(
+    (state: AppState) => state.overviewAffiliateDashboard.dataa,
+  );
+  useEffect(() => {
+    dispatch(fetchOverviewAffiliateDashboardData());
+  }, [dispatch]);
+
   return (
     <PageContainer title="Modern Dashboard" description="this is Modern Dashboard page">
-      <div style={{ display: 'flex', justifyContent: 'end' }}>
+      <Box style={{ display: 'flex', justifyContent: 'end' }}>
         <DateSelect />
-      </div>
+      </Box>
       <Box>
         <Box sx={{ margin: '30px 0px' }}>
           <Typography variant={'h3'} sx={{ marginBottom: '10px' }}>
@@ -1035,20 +1065,9 @@ const DashboardAdmin = () => {
                   </Stack>
                 </Stack>
               </Box>
-              {/* <Affilatechartadmin13 /> */}
             </Grid>
           </Grid>
         </Box>
-        {/* <Box sx={{ marginTop: '30px' }}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={6}>
-              <Affilatechartadmin11 />
-            </Grid>
-            <Grid item xs={12} lg={6}>
-              <Affilatechartadmin12 />
-            </Grid>
-          </Grid>
-        </Box> */}
         <Box sx={{ margin: '30px 0px' }}>
           <Typography variant={'h3'} marginTop={'10px'}>
             Chi phí
@@ -1276,9 +1295,6 @@ const DashboardAdmin = () => {
           <Grid>
             <Grid item xs={12}>
               <Topcardadminhorizontal dataSource={dataSource_blog} totalColumn={3} />
-              {/* <Box sx={{ marginTop: '30px' }}>
-                <GenChartAdmin text={''} menuItems={dataFilter_blog} />
-              </Box> */}
             </Grid>
           </Grid>
         </Box>
