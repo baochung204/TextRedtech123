@@ -53,7 +53,8 @@ interface FilmsData {
 const FilmsData: FilmsData[] = [
   { id: 1, name: 'customer', title: 'Khách hàng' },
   { id: 2, name: 'aov', title: 'AOV' },
-  { id: 3, name: 'order', title: 'Chuyển đổi' },
+  { id: 3, name: 'convert', title: 'Chuyển đổi' },
+  { id: 4, name: '', title: 'Đặt lại' },
 ];
 
 const ListAssistant = () => {
@@ -64,9 +65,10 @@ const ListAssistant = () => {
   const assistant = useSelector((state: AppState) => state.assisstant.dataa);
   const [assistantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
   const [sortBy, setSortBy] = useState<string>('');
+  const [sortDir, setSortDir] = useState<boolean>(true);
   useEffect(() => {
-    dispatch(fetchAssistantData({ sort_by: sortBy }));
-  }, [dispatch, sortBy]);
+    dispatch(fetchAssistantData({ sort_by: sortBy, sort_dir: sortDir }));
+  }, [dispatch, sortBy, sortDir]);
   useEffect(() => {
     if (assistant !== assistantData) {
       setAssisstantData(assistant);
@@ -83,29 +85,45 @@ const ListAssistant = () => {
   const [openChartAlert, setOpenChartAlert] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string>('');
   const handleChange1 = (event: SelectChangeEvent<string>) => {
-    setSelectedItems(event.target.value);
-  };
-  const handleItemClick1 = (film: any) => {
-    if (selectedItems === film.title) {
+    const selectedValue = event.target.value;
+    if (selectedValue === 'Đặt lại') {
+      // Thiết lập lại bộ lọc ngay lập tức
       setSelectedItems('');
+      setSortBy('');
+      setSortDir(null);
     } else {
+      setSelectedItems(selectedValue);
+    }
+  };
+
+  const handleItemClick1 = (film: FilmsData) => {
+    if (film.name !== '') {
       setSelectedItems(film.title);
       setSortBy(film.name);
     }
   };
-  console.log('123213211', sortBy);
+  console.log('123132', selectedItems);
 
-  const [iconIndex, setIconIndex] = useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+  // const [iconIndex, setIconIndex] = useState<number>(0);
+  // const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+  // const handleClickIcon = () => {
+  //   setIconIndex((pre) => (pre + 1) % icons.length);
+  //   setSortDir(!sortDir);
+  // };
+  const [sortIconIndex, setSortIconIndex] = useState<number>(0);
+  const icons = [NorthIcon, SouthIcon];
   const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
+    setSortIconIndex((prevIndex) => (prevIndex + 1) % 2);
+    // setSortDir((prevDir) => (prevDir === null ? true : prevDir === true ? false : null));
+    setSortDir(!sortDir);
   };
-  const SelectedIcon = icons[iconIndex];
+  console.log('sort', sortDir);
 
+  const SelectedIcon = icons[sortIconIndex];
+  // const SelectedIcon = icons[iconIndex];
   const handleCloseAlert = () => {
     setOpenChartAlert(false);
   };
-
   const handleClickSelect = () => {
     dispatch(setSelectedCategory('assistant_pack'));
   };
@@ -161,7 +179,7 @@ const ListAssistant = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 1 }}>
-              <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
+              <Badge badgeContent={selectedItems === '' ? 0 : 1} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -174,11 +192,7 @@ const ListAssistant = () => {
               sx={{ width: 150 }}
             >
               {FilmsData.map((film) => (
-                <MenuItem
-                  key={film.id}
-                  value={film.title} // Sử dụng film.title cho giá trị
-                  onClick={() => handleItemClick1(film)} // Sử dụng film.title cho sự kiện click
-                >
+                <MenuItem key={film.id} value={film.title} onClick={() => handleItemClick1(film)}>
                   <ListItemText primary={film.title} />
                 </MenuItem>
               ))}

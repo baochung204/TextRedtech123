@@ -1,18 +1,16 @@
-
 import { axiosAPI } from '../axiosApi';
 
-
 export interface PropsData {
-  type_chart?: string | null | undefined,
-  start_date?: string | null | undefined,
-  end_date?: string | null | undefined
+  type_chart?: string | null | undefined;
+  start_date?: string | null | undefined;
+  end_date?: string | null | undefined;
 }
-
 
 const url = 'chatbots';
 
 export interface PropsAssistant {
   sort_by?: string | null | undefined;
+  sort_dir?: boolean | null | undefined;
 }
 const assistantAPi = {
   getAllAssistant: (object: PropsAssistant = {}) => {
@@ -37,8 +35,7 @@ const assistantAPi = {
       return axiosAPI.get(`${fullUrl}`);
     }
     return axiosAPI.get(`${urls}`);
-
-  }
+  },
 };
 
 export default assistantAPi;

@@ -39,10 +39,6 @@ import Topcardassistant from './topcard/Topcardassistant';
 const AssistantInfor = () => {
   const { id } = useParams();
   const chatBotById = useSelector((state: AppState) => state.assistantById.data);
-
-  // console.log('dataaaaaaa', chatBotById.startDate);
-  
-
   const numericId = Number(id);
   useEffect(() => {
     if (!isNaN(numericId)) {
@@ -50,14 +46,10 @@ const AssistantInfor = () => {
     }
   }, [numericId]);
 
-
-
   const [chatBotInfo, setChatBotInfo] = useState<ChatBotInfoType | null>(null);
   const [chatBotIndex, setChatBotIndex] = useState<ChatBotIndexType | null>(null);
   const [chatBotResource, setChatBotResource] = useState<ChatBotResourceType | null>(null);
-  // const chatBotInfo = chatBotById ? chatBotById.chatBotInfo : null;
-  // const chatBotIndex = chatBotById ? chatBotById.chatBotIndex : null;
-  // const chatBotResource = chatBotById ? chatBotById.chatBotResource : null;
+
   useEffect(() => {
     if (chatBotById?.chatBotInfo) {
       setChatBotInfo(chatBotById.chatBotInfo);
@@ -69,9 +61,6 @@ const AssistantInfor = () => {
       setChatBotResource(chatBotById.chatBotResource);
     }
   }, [chatBotById]);
-
-
-
 
   return (
     <PageContainer title="Thông tin trợ lý" description="this is page">
