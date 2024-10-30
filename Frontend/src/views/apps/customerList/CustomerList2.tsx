@@ -9,7 +9,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  FormControlLabel,
   Grid,
   IconButton,
   InputAdornment,
@@ -26,6 +25,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import avt6 from 'src/assets/images/profile/user-6.jpg';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
@@ -35,7 +35,7 @@ import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchCustomer } from 'src/store/apps/customer/customerSlice';
 import PopupAddList2 from './PopupAddlist2';
 import DialogDetailCustomer from './dialog/dialogDetailCustomer';
-import avt6 from 'src/assets/images/profile/user-6.jpg';
+import { fetchCustomerUserListData } from 'src/store/user/customer/listcustomer/listCustomerUserSlice';
 
 const BCrumb = [
   { to: '/', title: 'Trang Chủ' },
@@ -58,7 +58,14 @@ const CustomerList2 = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const [openDetail, setOpenDetail] = useState(false);
-  const dataCustomer = useSelector((state: AppState) => state.customer.data);
+
+  const customerUserList = useSelector((state: AppState) => state.listCustomerUser.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  useEffect(() => {
+    dispatch(fetchCustomerUserListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
   useEffect(() => {
     dispatch(fetchCustomer());
   }, [dispatch]);
@@ -66,33 +73,35 @@ const CustomerList2 = () => {
     () => [
       {
         title: 'ID',
-        dataIndex: 'idCustomer',
+        dataIndex: 'customerId',
         render: (value: any) => value || 'Không có dữ liệu',
       },
 
       {
         title: 'Ngày tạo',
-        dataIndex: 'dateTime',
-        render: (value: any) => value || 'Không có dữ liệu',
+        dataIndex: 'date',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Tên khách hàng',
-        dataIndex: 'nameCustomer',
+        dataIndex: 'name',
         render: (value: any) => value || 'Không có dữ liệu',
       },
       {
         title: 'Kênh',
         dataIndex: 'misc',
-        render: (value: string) => (
+        render: (_, value: any) => (
           <Stack direction="row" spacing={1}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar src={avt6} alt={value} />
+              <Avatar src={value?.avatarUrl} alt={value} />
             </Box>
             <Box>
-              <Typography variant="subtitle1"> Nguyễn Đức Nhật </Typography>
+              <Typography variant="subtitle1"> {value?.facebookName} </Typography>
               <Typography variant="subtitle2" fontSize={12}>
-                {' '}
-                #123456
+                {value?.facebookCode}
               </Typography>
             </Box>
           </Stack>
@@ -105,67 +114,15 @@ const CustomerList2 = () => {
       },
       {
         title: 'Trợ lý',
-        dataIndex: 'assistant',
+        dataIndex: 'chatBotName',
         render: (value: any) => value || 'Không có dữ liệu',
       },
-      // {
-      //   title: 'Tags',
-      //   dataIndex: 'tag',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
 
-      // {
-      //   title: 'Tổng chi tiêu',
-      //   dataIndex: 'orderValue',
-      //   render: (_row: any, value: any) => (
-      //     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      //       <Typography>
-      //         {value?.totalSpend ? `${value.totalSpend} đ` : 'Không có dữ liệu'}
-      //       </Typography>
-      //     </Box>
-      //   ),
-      // },
-
-      // {
-      //   title: 'Địa chỉ',
-      //   dataIndex: 'address',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
       {
         title: 'Email',
         dataIndex: 'email',
         render: (value: any) => value || 'Không có dữ liệu',
       },
-      // {
-      //   title: 'Tên công ty',
-      //   dataIndex: 'companyname',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
-      // {
-      //   title: 'Email công ty',
-      //   dataIndex: 'companyemail',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
-      // {
-      //   title: 'Số điện thoại công ty',
-      //   dataIndex: 'company_phone_number',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
-      // {
-      //   title: 'Địa chỉ công ty',
-      //   dataIndex: 'company_address',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
-      // {
-      //   title: 'Mã số thuế',
-      //   dataIndex: 'tax_code',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
-      // {
-      //   title: 'Website công ty',
-      //   dataIndex: 'company_website',
-      //   render: (value: any) => value || 'Không có dữ liệu',
-      // },
       {
         title: 'Xem chi tiết',
         dataIndex: 'actions',
@@ -212,7 +169,6 @@ const CustomerList2 = () => {
     setDataSelect(typeof value === 'string' ? value.split(',') : value);
   };
 
-
   return (
     <PageContainer title="Danh sách khách hàng">
       <BannerPage title="Danh sách khách hàng" items={BCrumb} />
@@ -258,7 +214,12 @@ const CustomerList2 = () => {
                     <Grid item xs={5.83}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <IconButton aria-label="filter" sx={{ mr: 2 }}>
-                          <Badge badgeContent={column.length - dataSelect.filter(item => item !== 'all').length} color="primary">
+                          <Badge
+                            badgeContent={
+                              column.length - dataSelect.filter((item) => item !== 'all').length
+                            }
+                            color="primary"
+                          >
                             <FilterListIcon />
                           </Badge>
                         </IconButton>
@@ -339,7 +300,16 @@ const CustomerList2 = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <CustomTable columns={column} dataSource={dataCustomer} dataSelect={dataSelect} />
+                  <CustomTable
+                    columns={column}
+                    dataSelect={dataSelect}
+                    dataSource={customerUserList.content}
+                    count={customerUserList.totalElements}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    setPage={setPage}
+                    setRowsPerPage={setRowsPerPage}
+                  />
                 </Grid>
               </Grid>
             </TabPanel>

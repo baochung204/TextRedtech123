@@ -15,7 +15,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import { useDispatch } from 'src/store/Store';
 import { BlogPostType } from 'src/types/apps/blog';
@@ -24,6 +24,8 @@ import BlankCard from '../../shared/BlankCard';
 import { IconEye } from '@tabler/icons-react';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import likes from 'src/assets/ICON/like.png';
+import ChildCard from 'src/components/shared/ChildCard';
+import ByBlog from './ByBlog';
 interface Btype {
   post: BlogPostType;
   index?: number;
@@ -45,10 +47,16 @@ const BlogCard = ({ post }: any) => {
   }: any = post;
 
   // skeleton
+
   const [isLoading, setLoading] = React.useState(true);
   const createdAt = new Date(created_at).toISOString().split('T')[0];
   const date = createdAt.split('-').reverse().join('-');
 
+  // const handleClick = (productId: any) => {
+  //   <ChildCard title="Transition">
+  //     <ByBlog />
+  //   </ChildCard>;
+  // };
   // console.log(date);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -74,8 +82,8 @@ const BlogCard = ({ post }: any) => {
         <BlankCard className="hoverCard">
           <>
             <Typography
-              component={Link}
-              to={`/blog/detail/${productId}`}
+              // component={Link}
+              // to={`/blog/detail/${productId}`}
               onClick={() => dispatch(fetchBlogPost(productId))}
               style={{ position: 'relative' }}
             >
@@ -126,8 +134,18 @@ const BlogCard = ({ post }: any) => {
                   size="small"
                   style={{ background: 'white' }}
                 ></Chip>
-              </Stack>
-              <CardMedia component="img" height="240" image={thumbnailUrl} alt="green iguana" />
+              </Stack>{' '}
+              <ByBlog
+                thumbnailUrl={thumbnailUrl}
+                name={name}
+                views={views}
+                tags={tags}
+                point={point}
+                author={author}
+                avatarUrl={avatarUrl}
+                like={like}
+                productId={productId}
+              />
             </Typography>
             <CardContent>
               <Box>
@@ -153,11 +171,13 @@ const BlogCard = ({ post }: any) => {
                 }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Chip
-                    label={tags[0]}
-                    size="small"
-                    sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 0 }} // Thay marginBottom là 0
-                  />
+                  {tags[0] && (
+                    <Chip
+                      label={tags[0]}
+                      size="small"
+                      sx={{ marginLeft: 'auto', marginTop: 0, marginBottom: 0 }} // Thay marginBottom là 0
+                    />
+                  )}
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>

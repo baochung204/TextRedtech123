@@ -25,7 +25,7 @@ import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ChildCard from 'src/components/shared/ChildCard';
 import { AppState } from 'src/store/Store';
-
+  
 const ContentPurchaseHistory = () => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 

@@ -47,7 +47,7 @@ const initialState: StrState = {
 export const fetchCustomerUserListData = createAsyncThunk(
   'fetchCustomerUserList',
   async (object: PropsContractAffiliate = {}, thunkApi) => {
-    try {
+    try { 
       const response = await customerUserApi.getListCustomerUser(object);
       return response.data.result;
     } catch (error: any) {

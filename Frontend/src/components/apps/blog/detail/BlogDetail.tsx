@@ -50,8 +50,9 @@ const BlogDetail = () => {
 
   const detail = datax?.result?.[0]?.result;
 
-  const createdAt = new Date(detail?.createdAt).toISOString().split('T')[0];
-  const date = createdAt.split('-').reverse().join('-');
+  // const createdAt = new Date(detail?.createdAt ?? '').toISOString().split('T')[0];
+  // const date = createdAt?.split('-')?.reverse()?.join('-');
+  // console.log('detail', createdAt);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -125,7 +126,7 @@ const BlogDetail = () => {
             </Stack>
 
             <Stack direction="row" ml="auto" alignItems="center">
-              <small>{date} </small>
+              <small>{detail?.createdAt} </small>
             </Stack>
           </Stack>
         </CardContent>
@@ -133,7 +134,7 @@ const BlogDetail = () => {
         <CardContent>
           <Typography variant="h2">Chatbot: Công Cụ Đột Phá Trong Thời Đại Số</Typography>
           <p>{detail?.content}</p>
-          <p>
+          {/* <p>
             Tương lai của Chatbot Với sự phát triển không ngừng của công nghệ AI, chatbot ngày càng
             trở nên thông minh hơn. Trong tương lai, chatbot sẽ có khả năng hiểu và phản hồi như con
             người, đồng thời được tích hợp vào nhiều nền tảng và ứng dụng hơn. Điều này sẽ giúp
@@ -141,7 +142,7 @@ const BlogDetail = () => {
             nhiều giá trị hơn.
           </p>
           <Typography fontWeight={600}>Trợ lý ảo Redtech</Typography>
-          <Typography fontStyle="italic">Trợ lý ảo Redtech</Typography>
+          <Typography fontStyle="italic">Trợ lý ảo Redtech</Typography> */}
         </CardContent>
       </>
     </Box>

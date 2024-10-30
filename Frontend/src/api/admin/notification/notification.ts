@@ -10,7 +10,7 @@ export interface PropsNotificationAdmin {
   end?: string | null | undefined;
 }
 
-const url = 'redtech/notifications';
+const url = '/admin/notifications';
 
 const notificationAdminApi = {
   getOverviewNotification: () => {

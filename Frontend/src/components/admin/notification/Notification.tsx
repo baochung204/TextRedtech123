@@ -132,8 +132,6 @@ const ContentNotification = () => {
     dispatch(fetchOverviewNotificationData());
   }, [dispatch]);
 
-  // "totalNotificationUpdate": 0,
-  //   "totalTag": 0
   console.log(notificationOverview);
 
   const totalNotificationUpdate = notificationOverview.totalNotificationUpdate;

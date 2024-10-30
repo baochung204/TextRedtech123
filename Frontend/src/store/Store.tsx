@@ -93,6 +93,9 @@ import withdrawalDetailSlice from './admin/affiliate/historywithdrawal/withdrawa
 import orderProductDetailSlice from './admin/sell/orderproduct/detailorderproduct/detailOrderProductSlice';
 import listCustomerAdminSlice from './admin/customer/table/listCustomerSlice';
 import notificationListSlice from './admin/notification/table/notificationListSlice';
+import historyConvertSlice from './user/convert/listconverthistory/listConvertHistorySlice';
+import historyConvertDetailSlice from './user/convert/detailconverthistory/detailConvertHistorySlice';
+import listCustomerUserSlice from './user/customer/listcustomer/listCustomerUserSlice';
 
 const rootReducer = combineReducers({
   //user
@@ -187,6 +190,9 @@ const rootReducer = combineReducers({
   detailOrderProduct: orderProductDetailSlice,
   listCustomer: listCustomerAdminSlice,
   listNotification: notificationListSlice,
+  listConvertHistory: historyConvertSlice,
+  detailConvertHistory: historyConvertDetailSlice,
+  listCustomerUser: listCustomerUserSlice,
 });
 
 const whitelistReducers = [
