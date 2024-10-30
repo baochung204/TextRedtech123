@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, Slide, Typography } from '@mui/material';
+import { Avatar, Grid, Slide, Typography } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import { TransitionProps } from '@mui/material/transitions';
@@ -15,27 +15,21 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import avt6 from 'src/assets/images/profile/user-6.jpg';
 import { AppState } from 'src/store/Store';
-
 interface PropsDialog {
   openDetail: boolean;
   setOpenDetail: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children: React.ReactElement },
   ref: React.Ref<unknown>,
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
 const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail }) => {
   const customerDetail = useSelector((state: AppState) => state.detailCustomerUser.dataa);
   const handleClose = () => {
     setOpenDetail(!openDetail);
   };
-
-  console.log('customerDetail', customerDetail.phoneNumber);
-
   return (
     <>
       <Dialog

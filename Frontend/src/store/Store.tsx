@@ -103,7 +103,7 @@ import bussinessOverviewDasboardSlice from './admin/dashboard/overview/bussiness
 import discountOverviewDasboardSlice from './admin/dashboard/overview/discountOverviewSlice';
 import blogOverviewDasboardSlice from './admin/dashboard/overview/blogOverviewSlice';
 import affiliateOverviewDasboardSlice from './admin/dashboard/overview/affiliateOverviewSlice';
-
+import fetchAssistantConfigById from './user/chatbots/assistantConfig';
 const rootReducer = combineReducers({
   //user
   customizer: CustomizerReducer,
@@ -133,6 +133,7 @@ const rootReducer = combineReducers({
   //Assistant
   assisstant: assistantSlice,
   assistantById: assistantByIdSlice,
+  assistantConfigById: assistantByIdSlice,
   //Products
   products: ProductsSlice,
   productById: ProductByIdSlice,
