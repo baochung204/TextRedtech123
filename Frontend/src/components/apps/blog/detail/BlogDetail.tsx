@@ -18,7 +18,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import like from 'src/assets/ICON/like.png';
 
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
-import { fetchBlogPost } from 'src/store/user/blogs/blog';
+import { fetchBlogPost } from 'src/store/user/chatbots/chart/blogs/blog';
 import type { BlogPostType } from 'src/types/apps/blog';
 const BlogDetail = () => {
   const dispatch = useDispatch();

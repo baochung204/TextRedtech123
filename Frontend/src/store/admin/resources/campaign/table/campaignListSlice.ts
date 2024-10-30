@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PropsAffiliate } from 'src/api/admin/affiliate/affiliate';
 import resourcesAdminApi from 'src/api/admin/resources/resources';
 type PropsData = {
   id: number;
@@ -14,23 +15,39 @@ type PropsData = {
   nameEmployee: string;
 };
 
+interface VoucherData {
+  content: PropsData[];
+  pageNo: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+}
+
 interface StrState {
-  dataa: PropsData[];
+  dataa: VoucherData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  dataa: [],
+  dataa: {
+    content: [],
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+    last: false,
+  },
   loading: false,
   error: null,
 };
 
 export const fetchCampaignListData = createAsyncThunk(
   'fetchCampaignListData',
-  async (_, thunkApi) => {
+  async (object: PropsAffiliate = {}, thunkApi) => {
     try {
-      const response = await resourcesAdminApi.getAllDataCampaign();
+      const response = await resourcesAdminApi.getAllDataCampaign(object);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');

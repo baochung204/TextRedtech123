@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle
-} from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 import AddFlashSale from './AddSale';
 
@@ -13,22 +6,12 @@ interface PropsUp {
   isPopupOpen: boolean;
   setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-// import * as React from 'react';
+
 const AddDflashsale = ({ isPopupOpen, setIsPopupOpen }: PropsUp) => {
-  // const [value, setValue] = useState('1');
-
-  // Function mở popup
-  // const handleOpenPopup = () => {
-  //   setIsPopupOpen(true);
-  // };
-
-  // Function đóng popup
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-  //   setValue(newValue);
-  // };
+       
   return (
     <Box>
       <Dialog

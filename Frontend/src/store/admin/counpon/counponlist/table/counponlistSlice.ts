@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PropsContractAffiliate } from 'src/api/admin/accountant/accountant';
 import counponListApi from 'src/api/admin/counpon/counponlist/Counponlist';
 
 interface PropsData {
@@ -41,14 +42,17 @@ const initialState: StrState = {
   error: null,
 };
 
-export const fetchCounponListData = createAsyncThunk('fetchCounponList', async (_, thunkApi) => {
-  try {
-    const response = await counponListApi.getCounponList();
-    return response.data.result;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
-  }
-});
+export const fetchCounponListData = createAsyncThunk(
+  'fetchCounponHistory',
+  async (object: PropsContractAffiliate = {}, thunkApi) => {
+    try {
+      const response = await counponListApi.getCounponList(object);
+      return response.data.result;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
 
 const counponListSlice = createSlice({
   name: 'user',

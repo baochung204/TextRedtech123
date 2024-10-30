@@ -33,8 +33,6 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-
 const PurchaseHistoryInProfile = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -43,23 +41,17 @@ const PurchaseHistoryInProfile = () => {
   const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
   useEffect(() => {
-    dispatch(fetchHistoryOrderListData({page_no: page, page_size: rowsPerPage }));
+    dispatch(fetchHistoryOrderListData({ page_no: page, page_size: rowsPerPage }));
   }, [rowsPerPage, page]);
-
 
   const handleOpen = (id: number) => {
     setOpen(true);
     dispatch(fetchHistoryOrderDetailData(id));
-    // dispatch(fetchHistoryOrderListData({ page_no: 1, sort_dir: 'asc' }));
   };
 
   const handleCloseDialog = () => {
     setOpen(!open);
   };
-
-
-  console.log(orderhistorylist.pageNo);
-
 
   const columns: Column[] = [
     {
@@ -69,11 +61,6 @@ const PurchaseHistoryInProfile = () => {
     {
       dataIndex: 'date',
       title: 'Ngày mua hàng',
-      // render: (value: string) => {
-      //   if (!value) return 'N/A'; 
-      //   const date = new Date(value);
-      //   return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString('vi-VN');
-      // },
       render: (value: string) => {
         const values = new Date(value);
         return values.toLocaleDateString('vi-VN');
@@ -126,7 +113,6 @@ const PurchaseHistoryInProfile = () => {
       ),
     },
   ];
-
 
   return (
     <>

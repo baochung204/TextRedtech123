@@ -44,32 +44,20 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-interface DataRow {
-  id: number;
-  ngayTao: string;
-  nhanVien: string;
-  phongBan: string;
-  email: string;
-  soDienThoai: string;
-  baiViet: number;
-  trangThai: string;
-}
+
 const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: PropsItem) => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isCheckFix, setIsCheckFix] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const dataStaff = useSelector((state: AppState) => state.staff.dataa);
   console.log('dataStaff1', dataStaff);
-  const [datax, setDatax] = useState<DataRow[]>([]);
+
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
   useEffect(() => {
-    dispatch(fetchstaffData());
-  }, [dispatch]);
-  useEffect(() => {
-    if (datax !== dataStaff.content) {
-      setDatax(dataStaff.content);
-    }
-  }, [dataStaff, datax]);
-  console.log('dataStaff', datax);
+    dispatch(fetchstaffData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const handleConnection = (id: string) => {
     setSelectedIds((prevSelected) =>
@@ -309,7 +297,16 @@ const PersonnelTab = ({ value, open, setOpen, setSelectedKey, selectedKey }: Pro
           </Grid>
         </Grid>
       </Grid>
-      <CustomTable columns={column} dataSource={datax} dataSelect={dataSelect} />
+      <CustomTable
+        columns={column}
+        dataSelect={dataSelect}
+        dataSource={dataStaff.content}
+        count={dataStaff.totalElements}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
       <DialogPersonel
         open={open}
         value={value}

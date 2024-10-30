@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PropsAffiliate } from 'src/api/admin/resources/resources';
 import affiliateUserApi from 'src/api/user/affiliate/affiliate';
 
 interface PropsData {
@@ -38,20 +39,15 @@ const initialState: StrState = {
   error: null,
 };
 
-interface FetchParams {
-  page: number;
-  pageSize: number;
-}
-
 export const fetchHistoryPaymentData = createAsyncThunk(
   'historypayment',
-  async ({ page = 1, pageSize = 5 }: FetchParams) => {
+  async (object: PropsAffiliate = {}, thunkApi) => {
     try {
-      const res = await affiliateUserApi.getPaymentHistoryList(page, pageSize);
+      const res = await affiliateUserApi.getPaymentHistoryList(object);
       console.log('historypayment', res.data);
       return res.data.result;
-    } catch (error) {
-      console.log('lỗi', error);
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
     }
   },
 );

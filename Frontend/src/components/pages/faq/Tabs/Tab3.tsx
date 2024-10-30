@@ -6,7 +6,6 @@ import { fetchFile } from 'src/store/apps/resources/file/fileSlice';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import DialogFile from '../dialog/DialogFile';
 
-
 interface PropsTab3 {
   value: string;
   open: boolean;
@@ -19,8 +18,7 @@ interface PropsTab3 {
 const Tab3: React.FC<PropsTab3> = ({ value, open, setOpen }) => {
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
-
-  const data = useSelector((state: AppState) => state.file.data)
+  const data = useSelector((state: AppState) => state.file.data);
 
   useEffect(() => {
     dispatch(fetchFile({ page: page, size: pageSize }));

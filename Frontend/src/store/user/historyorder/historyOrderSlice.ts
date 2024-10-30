@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import OrderHistoryListApi, { PropOrderHistoryList } from 'src/api/user/orderhistory/orderhistory';
 
-
-
 export interface PropsData {
   orderId: number;
   date: string;
@@ -61,10 +59,13 @@ const orderHistoryListSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchHistoryOrderListData.fulfilled, (state, action: PayloadAction<OrderData>) => {
-        state.loading = false;
-        state.dataa = action.payload;
-      })
+      .addCase(
+        fetchHistoryOrderListData.fulfilled,
+        (state, action: PayloadAction<PropsHistoryOderList>) => {
+          state.loading = false;
+          state.dataa = action.payload;
+        },
+      )
       .addCase(fetchHistoryOrderListData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;

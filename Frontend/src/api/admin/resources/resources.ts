@@ -1,5 +1,15 @@
 import { axiosAPI } from 'src/api/axiosApi';
 
+export interface PropsAffiliate {
+  page_no?: number | null | undefined;
+  page_size?: number | null | undefined;
+  sort_by?: string | null | undefined;
+  sort_dir?: string | null | undefined;
+  search_key?: string | null | undefined;
+  begin?: string | null | undefined;
+  end?: string | null | undefined;
+}
+
 const url = 'redtech/resources';
 
 const resourcesAdminApi = {
@@ -15,17 +25,49 @@ const resourcesAdminApi = {
   getOverviewModel: () => {
     return axiosAPI.get(`/${url}/modelOverview`);
   },
-  getAllDataCampaign: () => {
-    return axiosAPI.get(`/${url}/campaigns`);
+  getAllDataCampaign: (object: PropsAffiliate = {}) => {
+    const urls = `/${url}/campaigns`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
   },
-  getAllDataFunction: () => {
-    return axiosAPI.get(`/${url}/functions`);
+  getAllDataFunction: (object: PropsAffiliate = {}) => {
+    const urls = `/${url}/functions`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
   },
-  getAllDataFiles: () => {
-    return axiosAPI.get(`/${url}/files`);
+  getAllDataFiles: (object: PropsAffiliate = {}) => {
+    const urls = `/${url}/files`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
   },
-  getAllDataModel: () => {
-    return axiosAPI.get(`/${url}/models`);
+  getAllDataModel: (object: PropsAffiliate = {}) => {
+    const urls = `/${url}/models`;
+    const query = Object.entries(object)
+      .filter(([, value]) => value !== null && value !== undefined)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    const fullUrl = query ? `${urls}?${query}` : urls;
+
+    return axiosAPI.get(`${fullUrl}`);
   },
 };
 

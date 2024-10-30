@@ -14,26 +14,16 @@ interface PropsTabStr {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   dataSelect?: string[];
 }
-interface DataRow {
-  id: number;
-  groupCompaignName: string;
-  badgeUrl: string;
-  nameProduc: string;
-  level: number;
-  customOwnership: number;
-  applicationAssistant: number;
-  sammary: string;
-  content: string;
-  createDate: string;
-  nameEmployee: string;
-}
 
 const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
   const campaignList = useSelector((state: AppState) => state.campaign_list.dataa);
 
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
   useEffect(() => {
-    dispatch(fetchCampaignListData());
-  }, [dispatch]);
+    dispatch(fetchCampaignListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   console.log(campaignList);
 
@@ -116,7 +106,16 @@ const TabStr = ({ open, setOpen, dataSelect }: PropsTabStr) => {
 
   return (
     <>
-      <CustomTable columns={StrategyCells} dataSource={campaignList} dataSelect={dataSelect} />
+      <CustomTable
+        columns={StrategyCells}
+        dataSelect={dataSelect}
+        dataSource={campaignList.content}
+        count={campaignList.totalElements}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
       <DialogStrView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );

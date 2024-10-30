@@ -42,37 +42,38 @@ import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchAssistantData } from 'src/store/user/chatbots/assisstantUserSlice';
 import AlertChat from '../../chats/AlertChat';
 import { PropsDataAssisstant } from 'src/store/Interface/user/assisstant/PropsAssisstant';
+import { setSelectedCategory } from 'src/store/RouterSlice';
 
 interface FilmsData {
+  id: number;
+  name: string;
   title: string;
 }
 
-const FilmsData: FilmsData[] = [{ title: 'Khách hàng' }, { title: 'AOV' }, { title: 'Chuyển đổi' }];
+const FilmsData: FilmsData[] = [
+  { id: 1, name: 'customer', title: 'Khách hàng' },
+  { id: 2, name: 'aov', title: 'AOV' },
+  { id: 3, name: 'convert', title: 'Chuyển đổi' },
+  { id: 4, name: '', title: 'Đặt lại' },
+];
 
 const ListAssistant = () => {
   const theme = useTheme();
   const successlight = theme.palette.success.light;
   const [checkedRanks, setCheckedRanks] = useState<string[]>([]);
   const [alertText, setAlertText] = useState('');
-
   const assistant = useSelector((state: AppState) => state.assisstant.dataa);
-
   const [assistantData, setAssisstantData] = useState<PropsDataAssisstant[]>([]);
-  // useEffect(() => {
-  //   dispatch(fetchAssistantData());
-  //   setAssisstantData(assisstant);
-  // }, [dispatch, assisstant]);
-
+  const [sortBy, setSortBy] = useState<string>('');
+  const [sortDir, setSortDir] = useState<boolean>(true);
   useEffect(() => {
-    dispatch(fetchAssistantData());
-  }, [dispatch]);
-
+    dispatch(fetchAssistantData({ sort_by: sortBy, sort_dir: sortDir }));
+  }, [dispatch, sortBy, sortDir]);
   useEffect(() => {
     if (assistant !== assistantData) {
       setAssisstantData(assistant);
     }
   }, [assistant, assistantData]);
-
   const onHandleCheckOnOrOff = (rank: any) => {
     setCheckedRanks((prevChecked) => {
       const isRankChecked = prevChecked.includes(rank.id);
@@ -84,24 +85,47 @@ const ListAssistant = () => {
   const [openChartAlert, setOpenChartAlert] = useState(false);
   const [selectedItems, setSelectedItems] = useState<string>('');
   const handleChange1 = (event: SelectChangeEvent<string>) => {
-    setSelectedItems(event.target.value);
-  };
-  const handleItemClick1 = (title: string) => {
-    if (selectedItems === title) {
+    const selectedValue = event.target.value;
+    if (selectedValue === 'Đặt lại') {
+      // Thiết lập lại bộ lọc ngay lập tức
       setSelectedItems('');
+      setSortBy('');
+      setSortDir(null);
     } else {
-      setSelectedItems(title);
+      setSelectedItems(selectedValue);
     }
   };
-  const [iconIndex, setIconIndex] = useState<number>(0);
-  const icons = [SwapVertIcon, SouthIcon, NorthIcon];
-  const handleClickIcon = () => {
-    setIconIndex((pre) => (pre + 1) % icons.length);
-  };
-  const SelectedIcon = icons[iconIndex];
 
+  const handleItemClick1 = (film: FilmsData) => {
+    if (film.name !== '') {
+      setSelectedItems(film.title);
+      setSortBy(film.name);
+    }
+  };
+  console.log('123132', selectedItems);
+
+  // const [iconIndex, setIconIndex] = useState<number>(0);
+  // const icons = [SwapVertIcon, SouthIcon, NorthIcon];
+  // const handleClickIcon = () => {
+  //   setIconIndex((pre) => (pre + 1) % icons.length);
+  //   setSortDir(!sortDir);
+  // };
+  const [sortIconIndex, setSortIconIndex] = useState<number>(0);
+  const icons = [NorthIcon, SouthIcon];
+  const handleClickIcon = () => {
+    setSortIconIndex((prevIndex) => (prevIndex + 1) % 2);
+    // setSortDir((prevDir) => (prevDir === null ? true : prevDir === true ? false : null));
+    setSortDir(!sortDir);
+  };
+  console.log('sort', sortDir);
+
+  const SelectedIcon = icons[sortIconIndex];
+  // const SelectedIcon = icons[iconIndex];
   const handleCloseAlert = () => {
     setOpenChartAlert(false);
+  };
+  const handleClickSelect = () => {
+    dispatch(setSelectedCategory('assistant_pack'));
   };
 
   return (
@@ -119,8 +143,8 @@ const ListAssistant = () => {
             }}
           >
             <Tooltip title="Thêm">
-              <Link to={`/assistants/add`}>
-                <IconButton color="primary" aria-label="Add to cart">
+              <Link to={`/shops`}>
+                <IconButton color="primary" aria-label="Add to cart" onClick={handleClickSelect}>
                   <AddCircleIcon sx={{ fontSize: 40 }} />
                 </IconButton>
               </Link>
@@ -155,7 +179,7 @@ const ListAssistant = () => {
             }}
           >
             <IconButton aria-label="filter" sx={{ mr: 1 }}>
-              <Badge badgeContent={selectedItems ? 1 : 0} color="primary">
+              <Badge badgeContent={selectedItems === '' ? 0 : 1} color="primary">
                 <FilterListIcon />
               </Badge>
             </IconButton>
@@ -165,14 +189,10 @@ const ListAssistant = () => {
               displayEmpty
               renderValue={(selected) => (selected === '' ? 'Bộ Lọc' : `${selectedItems}`)}
               size="small"
-              style={{ minWidth: 50 }}
+              sx={{ width: 150 }}
             >
               {FilmsData.map((film) => (
-                <MenuItem
-                  key={film.title}
-                  value={film.title}
-                  onClick={() => handleItemClick1(film.title)}
-                >
+                <MenuItem key={film.id} value={film.title} onClick={() => handleItemClick1(film)}>
                   <ListItemText primary={film.title} />
                 </MenuItem>
               ))}

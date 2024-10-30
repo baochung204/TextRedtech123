@@ -36,28 +36,20 @@ import Function from './configuration/function';
 import InFor from './infor/infor';
 import Topcardassistant from './topcard/Topcardassistant';
 
-
 const AssistantInfor = () => {
   const { id } = useParams();
   const chatBotById = useSelector((state: AppState) => state.assistantById.data);
-
+  const numericId = Number(id);
   useEffect(() => {
-    if (id !== undefined) {
-      const numericId = Number(id);
-      if (!isNaN(numericId)) {
-        dispatch(fetchAssistantById({ id: numericId }));
-      }
+    if (!isNaN(numericId)) {
+      dispatch(fetchAssistantById({ id: numericId }));
     }
-  }, [dispatch, id]);
-
- 
+  }, [numericId]);
 
   const [chatBotInfo, setChatBotInfo] = useState<ChatBotInfoType | null>(null);
   const [chatBotIndex, setChatBotIndex] = useState<ChatBotIndexType | null>(null);
   const [chatBotResource, setChatBotResource] = useState<ChatBotResourceType | null>(null);
-  // const chatBotInfo = chatBotById ? chatBotById.chatBotInfo : null;
-  // const chatBotIndex = chatBotById ? chatBotById.chatBotIndex : null;
-  // const chatBotResource = chatBotById ? chatBotById.chatBotResource : null;
+
   useEffect(() => {
     if (chatBotById?.chatBotInfo) {
       setChatBotInfo(chatBotById.chatBotInfo);
@@ -69,6 +61,7 @@ const AssistantInfor = () => {
       setChatBotResource(chatBotById.chatBotResource);
     }
   }, [chatBotById]);
+
   return (
     <PageContainer title="Thông tin trợ lý" description="this is page">
       <Box mt={3}>
@@ -214,7 +207,7 @@ const AssistantInfor = () => {
             <Chart1 />
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
-            <Chart2 />
+            <Chart2 id={numericId} />
           </Grid>
           {/* column */}
           <Grid item xs={12} sm={12} md={4} lg={4}>

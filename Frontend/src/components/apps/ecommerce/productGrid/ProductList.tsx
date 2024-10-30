@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   CardContent,
   Chip,
   Fab,
@@ -14,116 +13,56 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { IconBasket, IconMenu2 } from '@tabler/icons-react';
-import { filter, orderBy } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from 'src/assets/images/logos/R-Point.png';
 import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
-import { AppState, dispatch, useDispatch, useSelector } from 'src/store/Store';
-import { ProductType } from 'src/types/apps/eCommerce';
-import {
-  addToCart,
-  // fetchProducts,
-  filterReset,
-} from '../../../../store/apps/eCommerce/ECommerceSlice';
+import { AppState, dispatch, useSelector } from 'src/store/Store';
+import { fetchProducts } from 'src/store/user/products/productsUseSlice';
+import { addToCart } from '../../../../store/apps/eCommerce/ECommerceSlice';
 import BlankCard from '../../../shared/BlankCard';
 import AlertCart from '../productCart/AlertCart';
 import ProductSearch from './ProductSearch';
 import ProductSelect from './ProductSelect';
-import logo from 'src/assets/images/logos/R-Point.png';
-import { fetchProducts } from 'src/store/user/products/productsUseSlice';
+// import { slice } from 'lodash';
 
 interface Props {
   onClick: (event: React.SyntheticEvent | Event) => void;
 }
 
 const ProductList = ({ onClick }: Props) => {
-  // const dispatch = useDispatch();
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(9);
-  const [sortDir, setSortDir] = useState(true);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(9);
+  const [searchName, setSearchName] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('');
+  const [sortDir, setSortDir] = useState<string>('');
   const Products = useSelector((state: AppState) => state.products.data);
+  console.log('sortBy', sortBy);
+  console.log('sortDir', sortDir);
+  const selectedCategory = useSelector((state: AppState) => state.selectReducer.selectcategory);
   useEffect(() => {
-    dispatch(fetchProducts({ page, size: rowsPerPage, sortDir }));
-  }, [dispatch, page, rowsPerPage, sortDir]);
-  // console.log('products:', Products);
-
-  const handleChangePage = (newPage: number) => {
-    setPage(newPage);
+    dispatch(
+      fetchProducts({
+        page: page,
+        size: rowsPerPage,
+        search_name: searchName,
+        sort_dir: sortDir,
+        sort_by: sortBy,
+        category: selectedCategory,
+      }),
+    );
+  }, [page, rowsPerPage, searchName, sortDir, sortBy, selectedCategory]);
+  const handleRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedValue = parseInt(event.target.value, 10);
+    setPage(1);
+    setRowsPerPage(selectedValue);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+  const handlePageChange = (_event: unknown, newPage: number) => {
+    setPage(newPage + 1);
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchProducts());
-  // }, [dispatch]);
-
-  const getVisibleProduct = (
-    products: ProductType[],
-    sortBy: string,
-    filters: any,
-    search: string,
-  ) => {
-    // SORT BY
-    if (sortBy === 'newest') {
-      products = orderBy(products, ['created'], ['desc']);
-    }
-    if (sortBy === 'pointDesc') {
-      products = orderBy(products, ['point'], ['desc']);
-    }
-    if (sortBy === 'pointAsc') {
-      products = orderBy(products, ['point'], ['asc']);
-    }
-    if (sortBy === 'discount') {
-      products = orderBy(products, ['discount'], ['desc']);
-    }
-
-    // FILTER PRODUCTS
-    if (filters.tag !== 'All') {
-      products = products.filter((_product) => _product.tag.includes(filters.tag));
-    }
-
-    // FILTER PRODUCTS BY GENDER
-    if (filters.gender !== 'All') {
-      products = filter(products, (_product) => _product.gender === filters.gender);
-    }
-
-    // FILTER PRODUCTS BY COLOR
-    if (filters.color !== 'All') {
-      products = products.filter((_product) => _product.colors.includes(filters.color));
-    }
-
-    // FILTER PRODUCTS BY SEARCH
-    if (search !== '') {
-      products = products.filter((_product) =>
-        _product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
-      );
-    }
-
-    // FILTER PRODUCTS BY PRICE
-    if (filters.point !== 'All') {
-      const minMax = filters.point ? filters.point.split('-') : '';
-      products = products.filter((_product) =>
-        filters.point ? _product.point >= minMax[0] && _product.point <= minMax[1] : true,
-      );
-    }
-
-    return products;
-  };
-
-  const getProducts = useSelector((state: any) =>
-    getVisibleProduct(
-      state.ecommerceReducer.products,
-      state.ecommerceReducer.sortBy,
-      state.ecommerceReducer.filters,
-      state.ecommerceReducer.productSearch,
-    ),
-  );
-
-  // for alert when added something to cart
   const [cartalert, setCartalert] = React.useState(false);
 
   const handleClick = () => {
@@ -136,23 +75,21 @@ const ProductList = ({ onClick }: Props) => {
     }
     setCartalert(false);
   };
+  const onHandleSearch = (name: string) => {
+    setSearchName(name);
+  };
 
-  // Skeleton
   const [isLoading, setLoading] = React.useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
-
     return () => clearTimeout(timer);
   }, []);
 
-  const paginatedData = getProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-
   return (
     <Box>
-      {/* Header */}
       <Stack direction="row" justifyContent="space-between" pb={3}>
         {lgUp ? (
           <Typography variant="h5">Sản phẩm</Typography>
@@ -168,19 +105,16 @@ const ProductList = ({ onClick }: Props) => {
         )}
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">
-            {/* ProductSelect (Sort dropdown) */}
-            <ProductSelect />
-
-            {/* Search Box */}
-            <ProductSearch />
+            <ProductSelect setSortBy={setSortBy} setSortDir={setSortDir} />
+            <ProductSearch onSearch={onHandleSearch} />
           </Stack>
         </Box>
       </Stack>
 
       {/* Product Listing */}
       <Grid container spacing={3}>
-        {Products?.content?.length > 0 ? (
-          Products?.content?.map((product) => (
+        {Products.content.length > 0 ? (
+          Products.content.map((product) => (
             <Grid
               item
               xs={12}
@@ -209,12 +143,6 @@ const ProductList = ({ onClick }: Props) => {
                         width: '100%',
                         height: 250,
                         objectFit: 'cover',
-                        // borderRadius: 1,
-                        // boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                        // '&:hover': {
-                        //   transform: 'scale(1.02)',
-                        //   transition: 'transform 0.3s ease',
-                        // },
                       }}
                     />
                   </Typography>
@@ -228,7 +156,9 @@ const ProductList = ({ onClick }: Props) => {
                     }}
                   >
                     <Typography variant="h6" sx={{ fontSize: '16px' }}>
-                      {product?.productName}
+                      {product?.productName.length > 23
+                        ? product?.productName.slice(0, 23) + '...'
+                        : product?.productName}
                     </Typography>
                     <Stack direction="column" spacing={1} mt={1} flexGrow={1}>
                       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -268,50 +198,50 @@ const ProductList = ({ onClick }: Props) => {
                           />
                         </Box>
                         {/* <Typography
-                          color="textSecondary"
-                          ml={1}
-                          sx={{ textDecoration: 'line-through' }}
-                        >
-                          {product.salesPrice}{' '}
-                        </Typography> */}
+                        color="textSecondary"
+                        ml={1}
+                        sx={{ textDecoration: 'line-through' }}
+                      >
+                        {product.salesPrice}{' '}
+                      </Typography> */}
                       </Stack>
                       <Stack direction="column" spacing={1} mt={1} sx={{ position: 'relative' }}>
                         {/* {product.category.map((category: any, index: number) => (
-                          <Stack direction="row" spacing={1} alignItems="center" key={index}>
-                            <Chip
-                              sx={{
-                                backgroundColor: '#13DEB9',
-                                width: '100px',
-                                textAlign: 'center',
-                                overflow: 'hidden',
-                                whiteSpace: 'nowrap',
-                                color: 'white',
-                                display: 'block', // Ensures each Chip is on a new line
-                              }}
-                              label={category || 'tất cả'}
-                              size="small"
-                            />
-                            {index === 0 && (
-                              <Tooltip title="Thêm giỏ hàng">
-                                <Fab
-                                  size="small"
-                                  color="primary"
-                                  onClick={() =>
-                                    dispatch(addToCart(product as any)) && handleClick()
-                                  }
-                                  sx={{
-                                    position: 'absolute',
-                                    right: 0,
-                                    top: 0,
-                                    transform: 'translateY(-15%)',
-                                  }}
-                                >
-                                  <IconBasket size="16" />
-                                </Fab>
-                              </Tooltip>
-                            )}
-                          </Stack>
-                        ))} */}
+                        <Stack direction="row" spacing={1} alignItems="center" key={index}>
+                          <Chip
+                            sx={{
+                              backgroundColor: '#13DEB9',
+                              width: '100px',
+                              textAlign: 'center',
+                              overflow: 'hidden',
+                              whiteSpace: 'nowrap',
+                              color: 'white',
+                              display: 'block', // Ensures each Chip is on a new line
+                            }}
+                            label={category || 'tất cả'}
+                            size="small"
+                          />
+                          {index === 0 && (
+                            <Tooltip title="Thêm giỏ hàng">
+                              <Fab
+                                size="small"
+                                color="primary"
+                                onClick={() =>
+                                  dispatch(addToCart(product as any)) && handleClick()
+                                }
+                                sx={{
+                                  position: 'absolute',
+                                  right: 0,
+                                  top: 0,
+                                  transform: 'translateY(-15%)',
+                                }}
+                              >
+                                <IconBasket size="16" />
+                              </Fab>
+                            </Tooltip>
+                          )}
+                        </Stack>
+                      ))} */}
                         <Stack direction="row" spacing={1} alignItems="center">
                           <Chip
                             sx={{
@@ -321,7 +251,7 @@ const ProductList = ({ onClick }: Props) => {
                               overflow: 'hidden',
                               whiteSpace: 'nowrap',
                               color: 'white',
-                              display: 'block', // Ensures each Chip is on a new line
+                              display: 'block',
                             }}
                             label={product?.categoryName || 'tất cả'}
                             size="small"
@@ -353,29 +283,32 @@ const ProductList = ({ onClick }: Props) => {
           ))
         ) : (
           <Grid item xs={12}>
-            <Box textAlign="center" mt={6}>
-              <img src={emptyCart} alt="cart" width="200px" />
-              <Typography variant="h2">Không tìm thấy</Typography>
-              <Typography variant="h6" mb={3}>
-                Sản phẩm bạn tìm kiếm không tồn tại
+            <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
+              <img
+                src={emptyCart}
+                alt="Empty Cart"
+                style={{ width: '40%', marginBottom: '16px' }}
+              />
+              <Typography variant="h6" color="textSecondary">
+                Không có sản phẩm nào
               </Typography>
-              <Button variant="contained" onClick={() => dispatch(filterReset())}>
-                Thử lại
-              </Button>
             </Box>
           </Grid>
         )}
       </Grid>
+
       <TablePagination
-        rowsPerPageOptions={[3, 6, 9]}
         component="div"
-        count={getProducts.length}
+        count={Products.totalElements}
+        rowsPerPageOptions={[9, 18, 36]}
         rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={(_event, newPage) => handleChangePage(newPage)}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        page={page - 1}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
         labelRowsPerPage="Số hàng trên mỗi trang"
       />
+
+      <AlertCart handleClose={handleClose} open={cartalert} />
     </Box>
   );
 };

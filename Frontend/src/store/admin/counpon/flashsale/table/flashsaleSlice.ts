@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PropsContractAffiliate } from 'src/api/admin/accountant/accountant';
 import FlashSaleListApi from 'src/api/admin/counpon/flashsale/table/listflashsale';
 
 interface PropsData {
@@ -44,14 +45,17 @@ const initialState: StrState = {
   error: null,
 };
 
-export const fetchFlashSaleListData = createAsyncThunk('fetchCounponList', async (_, thunkApi) => {
-  try {
-    const response = await FlashSaleListApi.getFlashSaleList();
-    return response.data.result;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
-  }
-});
+export const fetchFlashSaleListData = createAsyncThunk(
+  'fetchCounponList',
+  async (object: PropsContractAffiliate = {}, thunkApi) => {
+    try {
+      const response = await FlashSaleListApi.getFlashSaleList(object);
+      return response.data.result;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+  },
+);
 
 const flashsaleListSlice = createSlice({
   name: 'user',

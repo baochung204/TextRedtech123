@@ -3,23 +3,27 @@ import {
   Badge,
   Box,
   Checkbox,
+  Dialog,
+  DialogContent,
+  DialogContentText,
   Grid,
   IconButton,
   InputAdornment,
   ListItemText,
   MenuItem,
   Select,
+  Slide,
   TextField,
   Typography,
 } from '@mui/material';
 import { IconEye, IconSearch } from '@tabler/icons-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import { default as iconPoint, default as point } from 'src/assets/images/logos/R-Point.png';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
-import DataOrderProduct from './data/DataOrderProduct';
 
+import { useDispatch, useSelector } from 'react-redux';
 import aovpicture from 'src/assets/Adminphoto/aov.png';
 import bill from 'src/assets/Adminphoto/dơn hang.png';
 import sale from 'src/assets/Adminphoto/khuyen mai.png';
@@ -27,11 +31,21 @@ import totalvalue from 'src/assets/Adminphoto/tong gia tri.png';
 import totalcheckout from 'src/assets/Adminphoto/tong thanh toan.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
-import DialogDetailOrder from './DialogDetailOrder';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
 import { fetchOverviewOrderProductData } from 'src/store/admin/sell/orderproduct/overview/orderproductSlice';
+import { fetchOrderProductListData } from 'src/store/admin/sell/orderproduct/table/listOrderProductSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogDetailOrder from './DialogDetailOrder';
+import { fetchOrderProductDetailData } from 'src/store/admin/sell/orderproduct/detailorderproduct/detailOrderProductSlice';
+import { TransitionProps } from '@mui/material/transitions';
+
+const Transition = forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const BCrumb = [
   { to: '/admin/dashboard', title: 'Trang Chủ' },
@@ -47,22 +61,30 @@ interface Column {
 
 const ProductAdmin = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [, setSelectID] = useState<string | null>(null);
-  const [, setCheckValue] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const dataOrderProductOverview = useSelector((state: AppState) => state.overview_order.dataa);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
-  // "totalOrder": 8,
-  //   "totalValue": 7009,
-  //   "totalPromotion": 1509,
-  //   "totalPayment": 5500,
-  //   "aov": 687.5
+  const orderProductList = useSelector((state: AppState) => state.list_order_product.dataa);
+  useEffect(() => {
+    dispatch(fetchOrderProductListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
+
+  const handleCloseDialog = () => {
+    setOpen(!open);
+  };
 
   const totalOrder = dataOrderProductOverview.totalOrder;
   const totalValue = dataOrderProductOverview.totalValue;
   const totalPromotion = dataOrderProductOverview.totalPromotion;
   const totalPayment = dataOrderProductOverview.totalPayment;
   const aov = dataOrderProductOverview.aov;
+
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchOrderProductDetailData(id));
+  };
 
   const DataBox = [
     {
@@ -215,72 +237,77 @@ const ProductAdmin = () => {
     dispatch(fetchOverviewOrderProductData());
   }, [dispatch]);
 
-  console.log(dataOrderProductOverview);
-
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_don_hang',
+        dataIndex: 'orderId',
       },
       {
         title: 'Ngày mua',
-        dataIndex: 'createdAt',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.createdAt.toLocaleDateString()}
-          </Typography>
-        ),
+        dataIndex: 'date',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'ID',
-        dataIndex: 'id_khach_hang',
+        dataIndex: 'userId',
       },
       {
         title: 'Tên khách hàng',
-        dataIndex: 'ten_khach_hang',
+        dataIndex: 'nameUser',
       },
       {
         title: 'Giá niêm yết',
-        dataIndex: 'gia_niem_yet',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.gia_niem_yet}
-            <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
-          </Typography>
-        ),
+        dataIndex: 'point',
+        render: (_row: any, value: any) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value.point);
+
+          return (
+            <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+              {formattedValue}
+              <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+            </Typography>
+          );
+        },
       },
       {
         title: 'Khuyến mại',
-        dataIndex: 'khuyen_mai',
-        render: (_row: any, value: any) => (
-          <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.khuyen_mai}
-            <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
-          </Typography>
-        ),
+        dataIndex: 'promotion',
+        render: (_row: any, value: any) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value.promotion);
+
+          return (
+            <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
+              {formattedValue}
+              <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
+            </Typography>
+          );
+        },
       },
       {
         title: 'Thanh toán',
-        dataIndex: 'thanh_toan',
+        dataIndex: 'payment',
         render: (_row: any, value: any) => (
           <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center' }}>
-            {value.thanh_toan}
+            {value.payment}
             <img src={point} alt="" width={20} style={{ marginLeft: '8px' }} />
           </Typography>
         ),
       },
       {
         title: 'Thao tác',
-        dataIndex: 'thaotac',
-        render: (_value: any, row: any) => (
-          <IconButton
-            onClick={() => {
-              setSelectID(row.id_don_hang);
-              setOpen(!open);
-              setCheckValue('show');
-            }}
-          >
+        dataIndex: '',
+        render: (_, value: any) => (
+          <IconButton onClick={() => handleOpen(value.orderId)}>
             <IconEye stroke={2} style={{ color: '#5D87FF' }} />
           </IconButton>
         ),
@@ -332,18 +359,7 @@ const ProductAdmin = () => {
                 }}
               >
                 <Grid container sx={{ alignItems: 'center' }}>
-                  <Grid item>
-                    {/* <IconButton
-                      color="primary"
-                      aria-label="Add to cart"
-                      onClick={() => {
-                        setOpen(true);
-                        setCheckValue('add');
-                      }}
-                    >
-                      <AddCircleIcon sx={{ fontSize: 30 }} />
-                    </IconButton> */}
-                  </Grid>
+                  <Grid item></Grid>
                   <Grid item>
                     <TextField
                       id="outlined-search"
@@ -452,17 +468,55 @@ const ProductAdmin = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <CustomTable columns={column} dataSource={DataOrderProduct} dataSelect={dataSelect} />
+            <CustomTable
+              columns={column}
+              dataSelect={dataSelect}
+              dataSource={orderProductList.content}
+              count={orderProductList.totalElements}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              setPage={setPage}
+              setRowsPerPage={setRowsPerPage}
+            />
           </Grid>
         </Grid>
-        {/* <DialogProduct
+
+        <Dialog
           open={open}
-          setOpen={setOpen}
-          checkValue={checkValue}
-          setCheckValue={setCheckValue}
-          selectID={selectID}
-        /> */}
-        <DialogDetailOrder open={open} setOpen={setOpen} />
+          TransitionComponent={Transition}
+          keepMounted
+          aria-describedby="alert-dialog-slide-description"
+          fullWidth
+          maxWidth="lg"
+          sx={{
+            maxHeight: '90vh',
+          }}
+          onClose={handleCloseDialog}
+        >
+          <DialogContent
+            sx={{
+              overflowY: 'auto',
+              height: '100%',
+              '&::-webkit-scrollbar': {
+                width: '10px',
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: 'none',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#E3E3E3',
+                borderRadius: '10px',
+              },
+              '&::-webkit-scrollbar-thumb:hover': {
+                backgroundColor: '#d6d6d6',
+              },
+            }}
+          >
+            <DialogContentText id="alert-dialog-slide-description">
+              <DialogDetailOrder />
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
       </PageContainer>
     </>
   );

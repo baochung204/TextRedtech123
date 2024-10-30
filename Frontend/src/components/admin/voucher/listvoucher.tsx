@@ -23,18 +23,6 @@ import { useSelector } from 'react-redux';
 import { AppState, dispatch } from 'src/store/Store';
 import { fetchCounponListData } from 'src/store/admin/counpon/counponlist/table/counponlistSlice';
 
-interface DataRow {
-  orderVndId: number;
-  vndCouponName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  type: string;
-  valueCoupon: number | null;
-  percentCoupon: number | null;
-  value: string;
-}
-
 interface Column {
   title: string;
   dataIndex: string;
@@ -42,26 +30,15 @@ interface Column {
   isValids?: boolean;
 }
 
-// hello
-
 const ListVoucher = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isCheckSwitchIds, setIsCheckSwitchIds] = useState<string[]>([]);
   const counponList = useSelector((state: AppState) => state.counpon_list.dataa);
-
-  const [counponListData, setCounponListData] = useState<DataRow[]>([]);
-
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   useEffect(() => {
-    dispatch(fetchCounponListData());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (counponListData !== counponList.content) {
-      setCounponListData(counponList.content);
-    }
-  }, [counponListData, counponList]);
-
-  console.log('sdf', counponListData);
+    dispatch(fetchCounponListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const handleCheckSwitch = (id: string) => {
     setIsCheckSwitchIds((prevSelected) =>
@@ -314,7 +291,16 @@ const ListVoucher = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={counponListData} dataSelect={dataSelect} />
+        <CustomTable
+          columns={column}
+          dataSelect={dataSelect}
+          dataSource={counponList.content}
+          count={counponList.totalElements}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          setPage={setPage}
+          setRowsPerPage={setRowsPerPage}
+        />
       </Grid>
       <AddDialogvoucher isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </>

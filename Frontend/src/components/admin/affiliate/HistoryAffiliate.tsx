@@ -19,17 +19,17 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 // import HistoryTable from './component/HistoryTable';
+import { useDispatch, useSelector } from 'react-redux';
 import pending from 'src/assets/Adminphoto/cho xu ly.png';
 import done from 'src/assets/Adminphoto/da xu ly.png';
 import amountwithdrawth from 'src/assets/Adminphoto/so tien rut.png';
 import amountrequest from 'src/assets/Adminphoto/so uu cau.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import { DataHistoryTable } from './datatable/OrderTableData';
-import DialogViewHistory from './dialog/DialogViewHistory';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
 import { fetchOverviewWithdrawalHistoryData } from 'src/store/admin/affiliate/historywithdrawal/overview/historyWithdrawlOverviewSlice';
+import { fetchWithdrawalHistoryListData } from 'src/store/admin/affiliate/historywithdrawal/table/historyWithdrawalSlice';
+import { AppDispatch, AppState } from 'src/store/Store';
+import DialogViewHistory from './dialog/DialogViewHistory';
+import { fetchDetailWithdrawalHistoryData } from 'src/store/admin/affiliate/historywithdrawal/withdrawaldetail/withdrawalDetailSlice';
 
 const getStatusColor = (status: number) => {
   switch (status) {
@@ -57,16 +57,21 @@ const HistoryAffiliate = () => {
   const dataWithdrawalHistoryOverview = useSelector(
     (state: AppState) => state.overview_withdrawal_history.dataa,
   );
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  const withdrawalHistoryList = useSelector(
+    (state: AppState) => state.list_withdrawal_history.dataa,
+  );
+
+  useEffect(() => {
+    dispatch(fetchWithdrawalHistoryListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   useEffect(() => {
     dispatch(fetchOverviewWithdrawalHistoryData());
   }, [dispatch]);
   const [open, setOpen] = useState<boolean>(false);
-
-  // "totalRequests": 5,
-  // "totalWithdrawals": 8799.25,
-  // "totalProcessed": 3199.75,
-  // "totalPending": 5599.5
 
   const totalRequests = dataWithdrawalHistoryOverview.totalRequests;
   const totalWithdrawals = dataWithdrawalHistoryOverview.totalWithdrawals;
@@ -163,21 +168,25 @@ const HistoryAffiliate = () => {
       ),
     },
   ];
+  const handleOpen = (id: number) => {
+    setOpen(true);
+    dispatch(fetchDetailWithdrawalHistoryData(id));
+  };
 
   const column = useMemo<Column[]>(
     () => [
       {
         title: 'ID',
-        dataIndex: 'id_checkout',
+        dataIndex: 'withdrawId',
       },
       {
         title: 'Publisher',
-        dataIndex: 'type_publisher',
-        render: (value: any) => (
+        dataIndex: 'publisherType',
+        render: (value: string) => (
           <Box sx={{ display: 'flex', width: '110px' }}>
             <Chip
-              label={value === 1 ? 'Doanh nghiệp' : value === 2 ? 'Cá nhân' : ''}
-              color={value === 1 ? 'success' : value === 2 ? 'warning' : 'default'}
+              label={value === 'BUSINESS' ? 'Doanh nghiệp' : 'Cá nhân'}
+              color={value === 'BUSINESS' ? 'success' : 'warning'}
               variant="outlined"
             />
           </Box>
@@ -185,15 +194,23 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'Khách hàng',
-        dataIndex: 'name_publisher',
+        dataIndex: 'publisherName',
       },
       {
         title: 'Ngày yêu cầu',
-        dataIndex: 'date_request',
+        dataIndex: 'requestDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Ngày hoàn tất',
-        dataIndex: 'date_done',
+        dataIndex: 'completeDate',
+        render: (value: string) => {
+          const values = new Date(value);
+          return values.toLocaleDateString('vi-VN');
+        },
       },
       {
         title: 'Email',
@@ -201,38 +218,39 @@ const HistoryAffiliate = () => {
       },
       {
         title: 'SĐT',
-        dataIndex: 'phone_number',
+        dataIndex: 'phoneNumber',
       },
       {
         title: 'Số tiền rút',
-        dataIndex: 'bank_amount',
-        render: (value) => (
-          <Box sx={{ display: 'flex', justifyContent: 'end', px: 1, gap: '4px' }}>
-            {value.toLocaleString('vi-VN')} <Box>₫</Box>
-          </Box>
-        ),
+        dataIndex: 'amountWithdrawn',
+        render: (value: number) => {
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
+          return formattedValue;
+        },
       },
       {
         title: 'Số tài khoản',
-        dataIndex: 'bank_number',
+        dataIndex: 'bankAccount',
       },
       {
         title: 'Ngân hàng',
-        dataIndex: 'bank_name',
+        dataIndex: 'bankName',
       },
       {
         title: 'Chủ tài khoản',
-        dataIndex: 'own_bank',
+        dataIndex: 'accountOwnerName',
       },
       {
         title: 'Chi nhánh',
-        dataIndex: 'branch',
+        dataIndex: 'bankBranch',
       },
 
       {
         title: 'Hóa đơn',
-        dataIndex: 'vat',
-        // render: (row: any, value: any) => <Button>Tải xuống</Button>,
+        dataIndex: '',
         render: () => <Button color="success">Tải Xuống</Button>,
       },
       {
@@ -256,45 +274,18 @@ const HistoryAffiliate = () => {
         ),
       },
 
-      // {
-      //   title: 'Duyệt hóa đơn',
-      //   dataIndex: '',
-      //   // render: (_row:any, value: any) => (
-      //   render: () => (
-      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      //       <Checkbox defaultChecked />
-      //     </Box>
-      //   ),
-      // },
-      // {
-      //   title: 'Đã thanh toán',
-      //   dataIndex: '',
-      //   // render: (row, value: any) => (
-      //   render: () => (
-      //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      //       <Checkbox defaultChecked />
-      //     </Box>
-      //   ),
-      // },
       {
         title: 'Thông báo',
         dataIndex: '',
-        // render: (row, value: any) => <Button>Gửi email</Button>,
         render: () => <Button>Gửi email</Button>,
       },
       {
         dataIndex: 'actions',
         title: 'Hoạt động',
-        render: () => (
-          // console.log(value)
+        render: (_, value: any) => (
           <Box display={'flex'} sx={{ justifyContent: 'center' }}>
             <Tooltip title="Xem" placement="right">
-              <IconButton
-                onClick={() => {
-                  setOpen(!open);
-                  // setSelectId(value.id);
-                }}
-              >
+              <IconButton onClick={() => handleOpen(value.withdrawId)}>
                 <IconEye stroke={2} style={{ color: '#5D87FF' }} />
               </IconButton>
             </Tooltip>
@@ -345,16 +336,6 @@ const HistoryAffiliate = () => {
               }}
             >
               <Grid container sx={{ alignItems: 'center' }}>
-                {/* <Grid item >
-                  <IconButton
-                    color="primary"
-                    aria-label="Add to cart"
-                  // onClick={() => setOpen(true)}
-
-                  >
-                    <AddCircleIcon sx={{ fontSize: 30 }} />
-                  </IconButton>
-                </Grid> */}
                 <Grid item xs={10}>
                   <TextField
                     id="outlined-search"
@@ -463,7 +444,16 @@ const HistoryAffiliate = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={DataHistoryTable} dataSelect={dataSelect} />
+          <CustomTable
+            columns={column}
+            dataSelect={dataSelect}
+            dataSource={withdrawalHistoryList.content}
+            count={withdrawalHistoryList.totalElements}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+          />
         </Grid>
       </Grid>
       <DialogViewHistory open={open} setOpen={setOpen} />

@@ -25,21 +25,6 @@ import { fetchFlashSaleListData } from 'src/store/admin/counpon/flashsale/table/
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import AddDflashsale from './add/addflashsale';
 
-interface DataRow3 {
-  id: number;
-  name: string;
-  quantity: number;
-  productName: string;
-  productId: number;
-  productImage: string;
-  price: number;
-  percent: number;
-  priceAfterFlashSale: number;
-  totalBuyFlashSales: number;
-  totalRevenue: number;
-  isUsed: boolean;
-}
-
 interface Column {
   title: string;
   dataIndex: string;
@@ -51,20 +36,12 @@ const FlashSale = () => {
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const flashsalelist = useSelector((state: AppState) => state.flashsale_list.dataa);
-
-  const [flashSaleData, setFlashSaleData] = useState<DataRow3[]>([]);
-
-  useEffect(() => {
-    dispatch(fetchFlashSaleListData());
-  }, [dispatch]);
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
   useEffect(() => {
-    if (flashSaleData !== flashsalelist.content) {
-      setFlashSaleData(flashsalelist.content);
-    }
-  }, [flashSaleData, flashsalelist]);
-
-  console.log(flashSaleData);
+    dispatch(fetchFlashSaleListData({ page_no: page, page_size: rowsPerPage }));
+  }, [rowsPerPage, page]);
 
   const column = useMemo<Column[]>(
     () => [
@@ -89,7 +66,6 @@ const FlashSale = () => {
         dataIndex: 'productName',
         render: (_text: any, value: any) => (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            {/* Avatar on the left */}
             <img
               src={value.productImage}
               style={{
@@ -114,7 +90,10 @@ const FlashSale = () => {
         title: 'Giá niêm yết',
         dataIndex: 'price',
         render: (value: number) => {
-          const formattedValue = new Intl.NumberFormat('vi-VN').format(value); // No currency symbol
+          const formattedValue = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          }).format(value);
           return (
             <>
               <Box sx={{ display: 'flex' }}>
@@ -208,8 +187,7 @@ const FlashSale = () => {
   };
 
   return (
-    <div>
-      {' '}
+    <>
       <Grid item xs={12}>
         <Grid container sx={{ alignItems: 'center' }} spacing={2}>
           <Grid
@@ -339,10 +317,19 @@ const FlashSale = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={flashSaleData} dataSelect={dataSelect} />
+        <CustomTable
+          columns={column}
+          dataSelect={dataSelect}
+          dataSource={flashsalelist.content}
+          count={flashsalelist.totalElements}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          setPage={setPage}
+          setRowsPerPage={setRowsPerPage}
+        />
       </Grid>
       <AddDflashsale isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
-    </div>
+    </>
   );
 };
 

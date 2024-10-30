@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import resourcesAdminApi from 'src/api/admin/resources/resources';
+import resourcesAdminApi, { PropsAffiliate } from 'src/api/admin/resources/resources';
 
 interface PropsData {
   productId: number;
@@ -13,23 +13,39 @@ interface PropsData {
   sammary: string;
 }
 
+interface VoucherData {
+  content: PropsData[];
+  pageNo: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+}
+
 interface StrState {
-  dataa: PropsData[];
+  dataa: VoucherData;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: StrState = {
-  dataa: [],
+  dataa: {
+    content: [],
+    pageNo: 0,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+    last: false,
+  },
   loading: false,
   error: null,
 };
 
 export const fetchFunctionListData = createAsyncThunk(
   'fetchFunctionListData',
-  async (_, thunkApi) => {
+  async (object: PropsAffiliate = {}, thunkApi) => {
     try {
-      const response = await resourcesAdminApi.getAllDataFunction();
+      const response = await resourcesAdminApi.getAllDataFunction(object);
       return response.data.result;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
