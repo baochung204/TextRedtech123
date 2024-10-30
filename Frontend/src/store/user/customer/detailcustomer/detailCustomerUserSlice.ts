@@ -52,7 +52,7 @@ export const fetchCustomerUserDetailData = createAsyncThunk(
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.response?.data || 'Something went wrong');
     }
-  },
+  },  
 );
 
 const customerUserDetailSlice = createSlice({

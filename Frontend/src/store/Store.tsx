@@ -96,6 +96,13 @@ import notificationListSlice from './admin/notification/table/notificationListSl
 import historyConvertSlice from './user/convert/listconverthistory/listConvertHistorySlice';
 import historyConvertDetailSlice from './user/convert/detailconverthistory/detailConvertHistorySlice';
 import listCustomerUserSlice from './user/customer/listcustomer/listCustomerUserSlice';
+import detailCustomerSlice from './user/customer/detailcustomer/detailCustomerUserSlice';
+import ticketOverviewDasboardSlice from './admin/dashboard/overview/ticketOverviewSlice';
+import rpointOverviewDasboardSlice from './admin/dashboard/overview/rpointOverviewSlice';
+import bussinessOverviewDasboardSlice from './admin/dashboard/overview/bussinessOverviewSlice';
+import discountOverviewDasboardSlice from './admin/dashboard/overview/discountOverviewSlice';
+import blogOverviewDasboardSlice from './admin/dashboard/overview/blogOverviewSlice';
+import affiliateOverviewDasboardSlice from './admin/dashboard/overview/affiliateOverviewSlice';
 
 const rootReducer = combineReducers({
   //user
@@ -193,6 +200,14 @@ const rootReducer = combineReducers({
   listConvertHistory: historyConvertSlice,
   detailConvertHistory: historyConvertDetailSlice,
   listCustomerUser: listCustomerUserSlice,
+  detailCustomerUser: detailCustomerSlice,
+  //dashboard
+  overviewTicketDasboard: ticketOverviewDasboardSlice,
+  overviewRpointDasboard: rpointOverviewDasboardSlice,
+  overviewBussinessDasboard: bussinessOverviewDasboardSlice,
+  overviewDiscountDashboard: discountOverviewDasboardSlice,
+  overviewBlogDashboard: blogOverviewDasboardSlice,
+  overviewAffiliateDashboard: affiliateOverviewDasboardSlice,
 });
 
 const whitelistReducers = [
