@@ -4,14 +4,12 @@ import { ProtectedRoute } from 'src/service/guard';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import CustomerList2 from 'src/views/apps/customerList/CustomerList2';
 
+// Import các component bằng Loadable để tối ưu hóa tải trang
 const ChangePassword = Loadable(
   lazy(() => import('src/components/apps/userprofile/profile/ChangePassword')),
 );
-
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
-
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
-/* ****Pages***** */
 const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
 const EcommerceDash = Loadable(lazy(() => import('../views/dashboard/Ecommerce')));
 const List = Loadable(lazy(() => import('../views/dashboard/List')));
@@ -34,6 +32,7 @@ const ContractOrderUser = Loadable(
   lazy(() => import('../views/apps/historycontract/contractorderuser')),
 );
 
+// Cấu hình các route
 const Router = [
   {
     path: '/',
@@ -41,6 +40,13 @@ const Router = [
     children: [
       { path: '/', element: <Navigate to="/dashboards" /> },
       { path: '/dashboards', exact: true, element: <ProtectedRoute element={ModernDash} /> },
+      {
+        path: '/dashboards/ecommerce',
+        exact: true,
+        element: <ProtectedRoute element={EcommerceDash} />,
+      },
+      { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
+      { path: '/customers', element: <ProtectedRoute element={CustomerList2} /> },
       {
         path: '/user_profile/contract/contract_affiliate',
         exact: true,
@@ -51,34 +57,25 @@ const Router = [
         exact: true,
         element: <ProtectedRoute element={ContractOrderUser} />,
       },
-
-      {
-        path: '/dashboards/ecommerce',
-        exact: true,
-        element: <ProtectedRoute element={EcommerceDash} />,
-      },
-
-      { path: '/dashboards/list', exact: true, element: <ProtectedRoute element={List} /> },
-      { path: '/customers', element: <ProtectedRoute element={CustomerList2} /> },
     ],
   },
   {
     path: '/',
     element: <BlankLayout />,
     children: [
-      { path: '/error/404', element: <Error /> },
       { path: '/auth/login', element: <Login /> },
-
       { path: '/auth/register', element: <Register /> },
       { path: '/auth/register2', element: <Register2 /> },
-      { path: '/auth/forgot-password2', element: <ForgotPassword /> },
-      { path: '/auth/forgot-password', element: <ForgotPassword2 /> },
-      { path: 'user-profile/changepassword', element: <ChangePassword /> },
+      { path: '/auth/forgot-password', element: <ForgotPassword /> },
+      { path: '/auth/forgot-password2', element: <ForgotPassword2 /> },
       { path: '/auth/two-steps', element: <TwoSteps /> },
       { path: '/auth/two-steps2', element: <TwoSteps2 /> },
       { path: '/auth/maintenance', element: <Maintenance /> },
       { path: '/updating', element: <Updating /> },
-      { path: '*', element: <Navigate to="/auth/404" /> },
+      { path: '/error/404', element: <Error /> },
+      { path: 'user-profile/changepassword', element: <ChangePassword /> },
+      // Catch-all route chuyển đến trang lỗi 404 nếu không tìm thấy route nào khớp
+      { path: '*', element: <Navigate to="/error/404" /> },
     ],
   },
 ];
