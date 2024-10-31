@@ -90,6 +90,12 @@ const CustomerList2 = () => {
           value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
       },
       {
+        title: 'PSID',
+        dataIndex: 'psid',
+        render: (value: any) =>
+          value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
+      },
+      {
         title: 'Kênh',
         dataIndex: 'misc',
         render: (_, value: any) => (
