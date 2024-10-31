@@ -8,7 +8,6 @@ import React from 'react';
 // @ts-ignore
 
 import CloseIcon from '@mui/icons-material/Close';
-import Content from 'src/views/apps/collaborate/paymenthistory.tsx/content';
 // const BCrumb = [
 //   {
 //     to: '/',
@@ -78,9 +77,7 @@ const Afletpoint = ({ row }: any) => {
         </DialogActions>
         <DialogContent>
           {' '}
-          <DialogContentText id="alert-dialog-slide-description">
-            <Content />
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-slide-description"></DialogContentText>
         </DialogContent>
       </Dialog>
     </>

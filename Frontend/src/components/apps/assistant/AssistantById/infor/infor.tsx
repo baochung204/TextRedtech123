@@ -19,7 +19,6 @@ const BoxStyled = styled(Box)(() => ({
 interface IProps {
   chatBotInfo: ChatBotInfoType | null;
 }
-const chipColors = ['primary', 'secondary', 'error', 'warning', 'info', 'success'];
 const InFor = ({ chatBotInfo }: IProps) => {
   return (
     <>

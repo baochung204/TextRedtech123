@@ -32,7 +32,6 @@ const CustomTable: React.FC<CustomTableProps> = ({
   columns,
   dataSource,
   count,
-  rowsPerPage,
   page,
   setPage,
   setRowsPerPage,
@@ -120,7 +119,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
         rowsPerPageOptions={rowsPerPageOptions}
         component="div"
         count={count}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={20}
         page={page - 1}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}

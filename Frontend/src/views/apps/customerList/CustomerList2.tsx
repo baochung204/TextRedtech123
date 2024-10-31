@@ -22,7 +22,7 @@ import {
   Typography,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { IconEye, IconSearch } from '@tabler/icons-react';
+import { IconSearch } from '@tabler/icons-react';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
@@ -59,13 +59,6 @@ const CustomerList2 = () => {
   const customerUserList = useSelector((state: AppState) => state.listCustomerUser.dataa);
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-
-  // const handleOpen = (id: number) => {
-  const handleOpen = () => {
-    setOpenDetail(true);
-    // dispatch(fetchCustomerUserDetailData(id));
-  };
-
   useEffect(() => {
     dispatch(fetchCustomerUserListData({ page: page, size: rowsPerPage }));
   }, [rowsPerPage, page]);
@@ -132,17 +125,17 @@ const CustomerList2 = () => {
         render: (value: any) =>
           value || <Typography color={'#ff3333'}>Không có dữ liệu</Typography>,
       },
-      {
-        title: 'Xem chi tiết',
-        dataIndex: 'actions',
-        render: (_row: any, value: any) => (
-          <Box sx={{ px: 4 }}>
-            <IconButton onClick={() => handleOpen(value.customerId)}>
-              <IconEye stroke={2} style={{ color: '#5D87FF' }} />
-            </IconButton>
-          </Box>
-        ),
-      },
+      // {
+      //   title: 'Xem chi tiết',
+      //   dataIndex: 'actions',
+      //   render: (_row: any, value: any) => (
+      //     <Box sx={{ px: 4 }}>
+      //       <IconButton onClick={() => handleOpen(value.customerId)}>
+      //         <IconEye stroke={2} style={{ color: '#5D87FF' }} />
+      //       </IconButton>
+      //     </Box>
+      //   ),
+      // },
     ],
     [],
   );
@@ -312,7 +305,7 @@ const CustomerList2 = () => {
                     dataSelect={dataSelect}
                     dataSource={customerUserList.content}
                     count={customerUserList.totalElements}
-                    rowsPerPage={rowsPerPage}
+                    // rowsPerPage={rowsPerPage}
                     page={page}
                     setPage={setPage}
                     setRowsPerPage={setRowsPerPage}

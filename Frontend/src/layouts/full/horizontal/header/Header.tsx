@@ -13,7 +13,6 @@ import {
 
 import { IconMenu2 } from '@tabler/icons-react';
 import Logo from 'src/layouts/full/shared/logo/Logo';
-import Cart from 'src/layouts/full/vertical/header/Cart';
 import Language from 'src/layouts/full/vertical/header/Language';
 import Navigation from 'src/layouts/full/vertical/header/Navigation';
 import Notifications from 'src/layouts/full/vertical/header/Notification';
@@ -78,14 +77,13 @@ const Header = () => {
             <Navigation />
           </>
         ) : null}
-        
+
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
           <Language />
           {/* ------------------------------------------- */}
           {/* Ecommerce Dropdown */}
           {/* ------------------------------------------- */}
-          <Cart />
           {/* ------------------------------------------- */}
           {/* End Ecommerce Dropdown */}
           {/* ------------------------------------------- */}

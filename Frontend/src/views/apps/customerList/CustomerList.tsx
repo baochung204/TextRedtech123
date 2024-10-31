@@ -272,7 +272,6 @@ const CustomerList = () => {
                     dataSource={customerList?.content}
                     dataSelect={dataSelect}
                     count={customerList?.totalElements ? customerList.totalElements : 0}
-                    rowsPerPage={pageSize}
                     page={page}
                     setPage={setPage}
                     setRowsPerPage={setPageSize}

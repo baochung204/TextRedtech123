@@ -19,7 +19,6 @@ import {
   toggleSidebar,
 } from 'src/store/customizer/CustomizerSlice';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
-import Cart from './Cart';
 import Language from './Language';
 import Navigation from './Navigation';
 import Notifications from './Notification';
@@ -207,9 +206,7 @@ const Header = () => {
               cursor: 'pointer',
               transform: { xs: 'translateX(-30px)', md: 'translateX(0px)' },
             }}
-          >
-            <Cart />
-          </Box>
+          ></Box>
 
           {/* ------------------------------------------- */}
           {/* End Ecommerce Dropdown */}

@@ -310,7 +310,6 @@ const CustomerListOrder = () => {
                       dataSelect={dataSelect}
                       dataSource={convertHistoryList.content}
                       count={convertHistoryList.totalElements}
-                      rowsPerPage={rowsPerPage}
                       page={page}
                       setPage={setPage}
                       setRowsPerPage={setRowsPerPage}
