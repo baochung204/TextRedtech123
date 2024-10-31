@@ -42,7 +42,7 @@ const ProductCarousel = ({ productInfo }: IProps) => {
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     focusOnSelect: true,
-    arrows: productInfo?.productImages.length > 4,
+    // arrows: productInfo?.productImages.length > 4,
     centerPadding: '0px',
     swipeToSlide: true,
     asNavFor: nav1 ?? undefined,

@@ -50,7 +50,7 @@ import overviewOrderAffiliate from './admin/affiliate/orderaffiliate/oveview/ord
 import listOrderAffiliateSlice from './admin/affiliate/orderaffiliate/table/orderAffiliateSlice';
 import overviewPublisher from './admin/affiliate/publisher/overview/publisherOverviewSlice';
 import listPublisherSlice from './admin/affiliate/publisher/table/listPublisherSlice';
-import blogSlice from './admin/blog/overview/blogSlice';
+// import blogSlice from './admin/blog/overview/blogSlice';
 import overviewBillSlice from './admin/contract/bill/overview/billOverviewSlice';
 import listBillSlice from './admin/contract/bill/table/listBillSlice';
 import overviewContractAffiliateSlice from './admin/contract/contractaffiliate/overview/contractAffiliateSlice';

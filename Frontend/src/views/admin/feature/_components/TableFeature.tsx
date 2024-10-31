@@ -13,8 +13,8 @@ import {
 import { IconEdit, IconEye, IconSearch, IconTrash } from '@tabler/icons-react';
 import { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
-import DataFeature from '../data/DataFeuture';
+// import CustomTable from 'src/components/ComponentTables/CustomTable';
+// import DataFeature from '../data/DataFeuture';
 
 interface Column {
   title: string;
@@ -172,7 +172,7 @@ const TableFeature = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} />
+        {/* <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} /> */}
       </Grid>
     </>
   );

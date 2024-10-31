@@ -40,20 +40,20 @@ import Affilatechartadmin5 from './Affiliatechartadmin5';
 
 import Affilatechartadmin9 from './Affiliatechartadmin9';
 
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import DateSelect from 'src/components/apps/date/DateSelect';
+import { AppDispatch } from 'src/store/Store';
 import GenChartAdmin from './GenChartAdmin';
 import PieChartsAdmin from './PieChartsAdmin';
 import RadialbarChartAdmin from './RadialbarChartAdmin';
 import Topcardadminhorizontal from './topcardadminhorizontal';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { fetchOverviewTicketDashboardData } from 'src/store/admin/dashboard/overview/ticketOverviewSlice';
-import { fetchOverviewRpointData } from 'src/store/admin/dashboard/overview/rpointOverviewSlice';
-import { fetchOverviewBussinessDashboardData } from 'src/store/admin/dashboard/overview/bussinessOverviewSlice';
-import { fetchOverviewDiscountDashboardData } from 'src/store/admin/dashboard/overview/discountOverviewSlice';
-import { fetchOverviewBlogDashboardData } from 'src/store/admin/dashboard/overview/blogOverviewSlice';
+// import { useSelector } from 'react-redux';
+// import { fetchOverviewTicketDashboardData } from 'src/store/admin/dashboard/overview/ticketOverviewSlice';
+// import { fetchOverviewRpointData } from 'src/store/admin/dashboard/overview/rpointOverviewSlice';
+// import { fetchOverviewBussinessDashboardData } from 'src/store/admin/dashboard/overview/bussinessOverviewSlice';
+// import { fetchOverviewDiscountDashboardData } from 'src/store/admin/dashboard/overview/discountOverviewSlice';
+// import { fetchOverviewBlogDashboardData } from 'src/store/admin/dashboard/overview/blogOverviewSlice';
 import { fetchOverviewAffiliateDashboardData } from 'src/store/admin/dashboard/overview/affiliateOverviewSlice';
 
 const dataFilter_bussiness = [
@@ -944,37 +944,37 @@ const DashboardAdmin = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   //ticket
-  const ticketOverview = useSelector((state: AppState) => state.overviewTicketDasboard.dataa);
-  useEffect(() => {
-    dispatch(fetchOverviewTicketDashboardData());
-  }, [dispatch]);
+  // const ticketOverview = useSelector((state: AppState) => state.overviewTicketDasboard.dataa);
+  // useEffect(() => {
+  //   dispatch(fetchOverviewTicketDashboardData());
+  // }, [dispatch]);
 
   //rpoint
-  const rPointOverview = useSelector((state: AppState) => state.overviewRpointDasboard.dataa);
-  useEffect(() => {
-    dispatch(fetchOverviewRpointData());
-  }, [dispatch]);
+  // const rPointOverview = useSelector((state: AppState) => state.overviewRpointDasboard.dataa);
+  // useEffect(() => {
+  //   dispatch(fetchOverviewRpointData());
+  // }, [dispatch]);
 
   //bussiness
-  const bussinessOverview = useSelector((state: AppState) => state.overviewBussinessDasboard.dataa);
-  useEffect(() => {
-    dispatch(fetchOverviewBussinessDashboardData());
-  }, [dispatch]);
+  // const bussinessOverview = useSelector((state: AppState) => state.overviewBussinessDasboard.dataa);
+  // useEffect(() => {
+  //   dispatch(fetchOverviewBussinessDashboardData());
+  // }, [dispatch]);
 
   //discount
-  const discountOverview = useSelector((state: AppState) => state.overviewDiscountDashboard.dataa);
-  useEffect(() => {
-    dispatch(fetchOverviewDiscountDashboardData());
-  }, [dispatch]);
+  // const discountOverview = useSelector((state: AppState) => state.overviewDiscountDashboard.dataa);
+  // useEffect(() => {
+  //   dispatch(fetchOverviewDiscountDashboardData());
+  // }, [dispatch]);
 
-  const blogOverview = useSelector((state: AppState) => state.overviewBlogDashboard.dataa);
-  useEffect(() => {
-    dispatch(fetchOverviewBlogDashboardData());
-  }, [dispatch]);
+  // const blogOverview = useSelector((state: AppState) => state.overviewBlogDashboard.dataa);
+  // useEffect(() => {
+  //   dispatch(fetchOverviewBlogDashboardData());
+  // }, [dispatch]);
 
-  const affiliateOverview = useSelector(
-    (state: AppState) => state.overviewAffiliateDashboard.dataa,
-  );
+  // const affiliateOverview = useSelector(
+  //   (state: AppState) => state.overviewAffiliateDashboard.dataa,
+  // );
   useEffect(() => {
     dispatch(fetchOverviewAffiliateDashboardData());
   }, [dispatch]);

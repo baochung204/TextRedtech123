@@ -24,7 +24,7 @@ import {
 import { TransitionProps } from '@mui/material/transitions';
 import { IconEye, IconSearch } from '@tabler/icons-react';
 import { forwardRef, useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CustomTable from 'src/components/ComponentTables/CustomTable';
 import DateSelect from 'src/components/apps/date/DateSelect';
 import PageContainer from 'src/components/container/PageContainer';
@@ -60,9 +60,10 @@ const CustomerList2 = () => {
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
-  const handleOpen = (id: number) => {
+  // const handleOpen = (id: number) => {
+  const handleOpen = () => {
     setOpenDetail(true);
-    dispatch(fetchCustomerUserDetailData(id));
+    // dispatch(fetchCustomerUserDetailData(id));
   };
 
   useEffect(() => {

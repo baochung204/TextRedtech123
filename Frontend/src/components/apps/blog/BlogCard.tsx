@@ -7,7 +7,6 @@ import {
   Avatar,
   Box,
   CardContent,
-  CardMedia,
   Chip,
   Grid,
   Skeleton,
@@ -15,21 +14,14 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchBlogPost } from 'src/store/apps/blog/BlogSlice';
 import { useDispatch } from 'src/store/Store';
-import { BlogPostType } from 'src/types/apps/blog';
 import BlankCard from '../../shared/BlankCard';
 // import crown from 'src/assets/images/icon.png/crown.png';
-import { IconEye } from '@tabler/icons-react';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
 import likes from 'src/assets/ICON/like.png';
-import ChildCard from 'src/components/shared/ChildCard';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 import ByBlog from './ByBlog';
-interface Btype {
-  post: BlogPostType;
-  index?: number;
-}
 
 const BlogCard = ({ post }: any) => {
   const dispatch = useDispatch();

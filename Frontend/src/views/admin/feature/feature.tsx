@@ -26,12 +26,12 @@ import seen from 'src/assets/DeXuatTinhNang/chua xem.png';
 import mark from 'src/assets/DeXuatTinhNang/danh dau.png';
 import suggest from 'src/assets/DeXuatTinhNang/de xuat.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
+// import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import AddBlog from '../blog/_components/AddBlog';
 import PageContainer from './../../../components/container/PageContainer';
-import DataFeature from './data/DataFeuture';
+// import DataFeature from './data/DataFeuture';
 import DialogFeature from './dialog/DialogFeature';
 
 const BCrumb = [
@@ -182,12 +182,12 @@ const PageFeature = () => {
               value === 1
                 ? 'Đã xem'
                 : value === 2
-                  ? 'Đanh dấu'
-                  : value === 3
-                    ? 'Updated'
-                    : value === 4
-                      ? 'Chưa xem'
-                      : ''
+                ? 'Đanh dấu'
+                : value === 3
+                ? 'Updated'
+                : value === 4
+                ? 'Chưa xem'
+                : ''
             }
             color={getStatusColor(value)}
           />
@@ -367,7 +367,7 @@ const PageFeature = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} />
+          {/* <CustomTable columns={column} dataSource={DataFeature} dataSelect={dataSelect} /> */}
           <DialogFeature
             open={open}
             value="1" // Ensure this value matches the condition in DialogFeature

@@ -20,12 +20,6 @@ interface PropsDialog {
   setCheckOption: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-interface PropsTest {
-  name: string,
-  size: string,
-  type: string
-}
-
 const DialogImage: React.FC<PropsDialog> = ({
   value,
   open,
@@ -65,7 +59,7 @@ const DialogImage: React.FC<PropsDialog> = ({
   //   }
   // }, [selectedItemId1, dataImages]);
   const [dataImage, setDataImage] = useState<DataType[]>([]);
-  const [dataImageArr, setDataImageArr] = useState<FileList>()
+  const [dataImageArr, setDataImageArr] = useState<FileList>();
   // const [dataImage1, setDataImage1] = useState<PropsTest[]>([]);
   console.log('dataImageArr', dataImageArr);
 
@@ -81,16 +75,12 @@ const DialogImage: React.FC<PropsDialog> = ({
     if (dataImageArr instanceof FileList) {
       const images = Array.from(dataImageArr);
       console.log('vuivui: ', images);
-
     }
   }, [selectedItemId1, dataImages, dataImageArr]);
-
-
 
   const handleClose = () => {
     setOpen(false);
     setSelectedItemId1(null);
-
   };
 
   const handleSave = () => {
@@ -196,7 +186,7 @@ const DialogImage: React.FC<PropsDialog> = ({
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                       if (e.target.files) {
                                         console.log('fileupload: ', e.target.files);
-                                        setDataImageArr(e.target.files)
+                                        setDataImageArr(e.target.files);
                                         const initialData = Array.from(e.target.files).map(
                                           (file) => ({
                                             imageUrl: URL.createObjectURL(file),

@@ -21,7 +21,7 @@ import commission from 'src/assets/Adminphoto/hoa hong.png';
 import customer from 'src/assets/Adminphoto/khách hàng.png';
 import Point from 'src/assets/images/logos/R-Point.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
+// import CustomTable from 'src/components/ComponentTables/CustomTable';
 import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
@@ -138,147 +138,147 @@ interface Column {
   render?: (value: any, row?: any) => React.ReactNode;
   isValids?: boolean;
 }
-interface RechargeTransaction {
-  id: string; // ID giao dịch
-  rechargeDate: string; // Ngày nạp
-  customerName: string; // Tên khách hàng
-  email: string; // Email khách hàng
-  phoneNumber: string; // Số điện thoại
-  packageName: string; // Tên gói
-  points: number; // Số point
-  listedPrice: string; // Giá niêm yết
-  promotionCode?: string; // Mã khuyến mại (optional nếu có)
-  paymentAmount: string; // Số tiền
-  totalOrder: string; // Doanh thu
-  publisherId: string; // ID publisher
-  affiliateCommission: string; // Hoa hồng Affiliate
-  status: JSX.Element; // Trạng thái (ví dụ: Đã thanh toán, Chưa thanh toán)
-  invoice: string; // Hóa đơn
-}
+// interface RechargeTransaction {
+//   id: string; // ID giao dịch
+//   rechargeDate: string; // Ngày nạp
+//   customerName: string; // Tên khách hàng
+//   email: string; // Email khách hàng
+//   phoneNumber: string; // Số điện thoại
+//   packageName: string; // Tên gói
+//   points: number; // Số point
+//   listedPrice: string; // Giá niêm yết
+//   promotionCode?: string; // Mã khuyến mại (optional nếu có)
+//   paymentAmount: string; // Số tiền
+//   totalOrder: string; // Doanh thu
+//   publisherId: string; // ID publisher
+//   affiliateCommission: string; // Hoa hồng Affiliate
+//   status: JSX.Element; // Trạng thái (ví dụ: Đã thanh toán, Chưa thanh toán)
+//   invoice: string; // Hóa đơn
+// }
 
-const getStatusTextAndColor = (status: number) => {
-  switch (status) {
-    case 1:
-      return { text: 'Đã thanh toán', color: '#13DEB9' };
-    case 2:
-      return { text: 'Chưa thanh toán', color: '#ff9800' };
-    default:
-      return { text: 'Không xác định', color: '#000000' };
-  }
-};
+// const getStatusTextAndColor = (status: number) => {
+//   switch (status) {
+//     case 1:
+//       return { text: 'Đã thanh toán', color: '#13DEB9' };
+//     case 2:
+//       return { text: 'Chưa thanh toán', color: '#ff9800' };
+//     default:
+//       return { text: 'Không xác định', color: '#000000' };
+//   }
+// };
 
-const renderStatus = (status: number) => {
-  const { text, color } = getStatusTextAndColor(status);
-  return (
-    <Typography style={{ color }} variant="subtitle2">
-      {text}
-    </Typography>
-  );
-};
-const dataRows: RechargeTransaction[] = [
-  {
-    id: 'RT001',
-    rechargeDate: '2024-09-01',
-    customerName: 'Nguyễn Văn A',
-    email: 'nguyenvana@example.com',
-    phoneNumber: '0123456789',
-    packageName: 'Gói cơ bản',
-    points: 100,
-    listedPrice: '200.000',
-    promotionCode: 'PROMO10',
-    paymentAmount: '20.000',
-    totalOrder: '180.000',
-    publisherId: 'PUB001',
-    affiliateCommission: '20.000',
-    status: renderStatus(2),
-    invoice: 'INV001',
-  },
-  {
-    id: 'RT002',
-    rechargeDate: '2024-09-02',
-    customerName: 'Trần Thị B',
-    email: 'tranthib@example.com',
-    phoneNumber: '0987654321',
-    packageName: 'Gói nâng cao',
-    points: 200,
-    listedPrice: '250.000',
-    promotionCode: 'PROMO20',
-    paymentAmount: '50.000',
-    totalOrder: '200.000',
-    publisherId: 'PUB002',
-    affiliateCommission: '25.000',
-    status: renderStatus(2),
-    invoice: 'INV002',
-  },
-  {
-    id: 'RT003',
-    rechargeDate: '2024-09-03',
-    customerName: 'Lê Văn C',
-    email: 'levanc@example.com',
-    phoneNumber: '0123987654',
-    packageName: 'Gói VIP',
-    points: 300,
-    listedPrice: '230.000',
-    promotionCode: '',
-    paymentAmount: '50.000',
-    totalOrder: '180.000',
-    publisherId: 'PUB003',
-    affiliateCommission: '23.000',
-    status: renderStatus(1),
-    invoice: 'INV003',
-  },
-  {
-    id: 'RT004',
-    rechargeDate: '2024-09-04',
-    customerName: 'Hoàng Thị D',
-    email: 'hoangthid@example.com',
-    phoneNumber: '0234567890',
-    packageName: 'Gói khuyến mãi',
-    points: 400,
-    listedPrice: '350.000',
-    promotionCode: 'PROMO15',
-    paymentAmount: '20.000',
-    totalOrder: '330.000',
-    publisherId: 'PUB004',
-    affiliateCommission: '35.000 ',
-    status: renderStatus(1),
-    invoice: 'INV004',
-  },
-  {
-    id: 'RT005',
-    rechargeDate: '2024-09-05',
-    customerName: 'Phạm Văn E',
-    email: 'phamvane@example.com',
-    phoneNumber: '0345678901',
-    packageName: 'Gói thường',
-    points: 400,
-    listedPrice: '252.000',
-    promotionCode: '',
-    paymentAmount: '25.000',
-    totalOrder: '227.000',
-    publisherId: 'PUB005',
-    affiliateCommission: '25.200',
-    status: renderStatus(2),
-    invoice: 'INV005',
-  },
-  {
-    id: 'RT006',
-    rechargeDate: '2024-09-06',
-    customerName: 'Ngô Thị F',
-    email: 'ngothif@example.com',
-    phoneNumber: '0456789012',
-    packageName: 'Gói đặc biệt',
-    points: 50,
-    listedPrice: '600.000',
-    promotionCode: 'PROMO25',
-    paymentAmount: '300.000',
-    totalOrder: '300.000',
-    publisherId: 'PUB006',
-    affiliateCommission: '30.000',
-    status: renderStatus(2),
-    invoice: 'INV006',
-  },
-];
+// const renderStatus = (status: number) => {
+//   const { text, color } = getStatusTextAndColor(status);
+//   return (
+//     <Typography style={{ color }} variant="subtitle2">
+//       {text}
+//     </Typography>
+//   );
+// };
+// const dataRows: RechargeTransaction[] = [
+//   {
+//     id: 'RT001',
+//     rechargeDate: '2024-09-01',
+//     customerName: 'Nguyễn Văn A',
+//     email: 'nguyenvana@example.com',
+//     phoneNumber: '0123456789',
+//     packageName: 'Gói cơ bản',
+//     points: 100,
+//     listedPrice: '200.000',
+//     promotionCode: 'PROMO10',
+//     paymentAmount: '20.000',
+//     totalOrder: '180.000',
+//     publisherId: 'PUB001',
+//     affiliateCommission: '20.000',
+//     status: renderStatus(2),
+//     invoice: 'INV001',
+//   },
+//   {
+//     id: 'RT002',
+//     rechargeDate: '2024-09-02',
+//     customerName: 'Trần Thị B',
+//     email: 'tranthib@example.com',
+//     phoneNumber: '0987654321',
+//     packageName: 'Gói nâng cao',
+//     points: 200,
+//     listedPrice: '250.000',
+//     promotionCode: 'PROMO20',
+//     paymentAmount: '50.000',
+//     totalOrder: '200.000',
+//     publisherId: 'PUB002',
+//     affiliateCommission: '25.000',
+//     status: renderStatus(2),
+//     invoice: 'INV002',
+//   },
+//   {
+//     id: 'RT003',
+//     rechargeDate: '2024-09-03',
+//     customerName: 'Lê Văn C',
+//     email: 'levanc@example.com',
+//     phoneNumber: '0123987654',
+//     packageName: 'Gói VIP',
+//     points: 300,
+//     listedPrice: '230.000',
+//     promotionCode: '',
+//     paymentAmount: '50.000',
+//     totalOrder: '180.000',
+//     publisherId: 'PUB003',
+//     affiliateCommission: '23.000',
+//     status: renderStatus(1),
+//     invoice: 'INV003',
+//   },
+//   {
+//     id: 'RT004',
+//     rechargeDate: '2024-09-04',
+//     customerName: 'Hoàng Thị D',
+//     email: 'hoangthid@example.com',
+//     phoneNumber: '0234567890',
+//     packageName: 'Gói khuyến mãi',
+//     points: 400,
+//     listedPrice: '350.000',
+//     promotionCode: 'PROMO15',
+//     paymentAmount: '20.000',
+//     totalOrder: '330.000',
+//     publisherId: 'PUB004',
+//     affiliateCommission: '35.000 ',
+//     status: renderStatus(1),
+//     invoice: 'INV004',
+//   },
+//   {
+//     id: 'RT005',
+//     rechargeDate: '2024-09-05',
+//     customerName: 'Phạm Văn E',
+//     email: 'phamvane@example.com',
+//     phoneNumber: '0345678901',
+//     packageName: 'Gói thường',
+//     points: 400,
+//     listedPrice: '252.000',
+//     promotionCode: '',
+//     paymentAmount: '25.000',
+//     totalOrder: '227.000',
+//     publisherId: 'PUB005',
+//     affiliateCommission: '25.200',
+//     status: renderStatus(2),
+//     invoice: 'INV005',
+//   },
+//   {
+//     id: 'RT006',
+//     rechargeDate: '2024-09-06',
+//     customerName: 'Ngô Thị F',
+//     email: 'ngothif@example.com',
+//     phoneNumber: '0456789012',
+//     packageName: 'Gói đặc biệt',
+//     points: 50,
+//     listedPrice: '600.000',
+//     promotionCode: 'PROMO25',
+//     paymentAmount: '300.000',
+//     totalOrder: '300.000',
+//     publisherId: 'PUB006',
+//     affiliateCommission: '30.000',
+//     status: renderStatus(2),
+//     invoice: 'INV006',
+//   },
+// ];
 
 interface FilmsData {
   id: number;
@@ -581,7 +581,7 @@ const OrderRPoint = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
+          {/* <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} /> */}
         </Grid>
       </Grid>
       <DialogDetailOrderRpoint open={open} setOpen={setOpen} />

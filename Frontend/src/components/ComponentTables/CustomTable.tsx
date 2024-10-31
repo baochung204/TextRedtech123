@@ -20,7 +20,7 @@ interface CustomTableProps {
   columns: Column[];
   dataSource: any[];
   count: number;
-  rowsPerPage: number;
+  // rowsPerPage: number;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;

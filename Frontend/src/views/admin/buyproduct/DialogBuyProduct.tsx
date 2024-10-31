@@ -63,7 +63,7 @@ const getRandomColor = () => {
 const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }: PropUp) => {
   const [tags, setTags] = useState([]);
 
-  const handleTagChange = (event: any, newValue: any) => {
+  const handleTagChange = (newValue: any) => {
     // Assign a random color to each new tag
     const updatedTags = newValue.map((tag: any) => ({
       title: tag.title || tag,
@@ -558,9 +558,9 @@ const DialogBuyProduct = ({ open, setOpen, setCheckValue, selectID, checkValue }
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  {key && key === 1 && <Strategy values={values} />}
-                  {key && key === 2 && <Function values={values} />}
-                  {key && key === 3 && <File values={values} />}
+                  {/* {key && key === 1 && <Strategy values={values} />} */}
+                  {/* {key && key === 2 && <Function values={values} />} */}
+                  {/* {key && key === 3 && <File values={values} />} */}
                   {key && key === 4 && <Model values={values} />}
                   {key && key === 5 && <AssistantProduct />}
                 </Grid>

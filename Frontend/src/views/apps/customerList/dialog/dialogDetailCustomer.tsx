@@ -172,7 +172,7 @@ const DialogDetailCustomer: React.FC<PropsDialog> = ({ openDetail, setOpenDetail
                   </Grid>
                   <Grid item xs={8} sx={{ display: 'flex', justifyContent: 'end' }}>
                     <Typography variant="h6" fontWeight="500" mt={0.2}>
-                      {customerDetail.gender}
+                      {/* {customerDetail.gender} */}
                     </Typography>
                   </Grid>
                 </Grid>

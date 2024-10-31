@@ -65,7 +65,7 @@ const BuyPoints = () => {
   const [selectID, setSelectID] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
   const productOverview = useSelector((state: AppState) => state.overview_product.dataa);
-  const [page, setPage] = useState<number>(1);
+  // const [page, setPage] = useState<number>(1);
   useEffect(() => {
     dispatch(fetchOverviewProductData());
   }, [dispatch]);
@@ -547,7 +547,7 @@ const BuyPoints = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={ProductTable} dataSelect={dataSelect} />
+          {/* <CustomTable columns={column} dataSource={ProductTable} dataSelect={dataSelect} /> */}
         </Grid>
       </Grid>
       <DialogBuyProduct

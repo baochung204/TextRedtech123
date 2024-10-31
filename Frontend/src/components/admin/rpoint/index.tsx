@@ -331,7 +331,7 @@ const PublisherTablePage: React.FC = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={PublisherTable} dataSelect={dataSelect} />
+        {/* <CustomTable columns={column} dataSource={PublisherTable} dataSelect={dataSelect} /> */}
       </Grid>
       <RPointDialog
         open={open}

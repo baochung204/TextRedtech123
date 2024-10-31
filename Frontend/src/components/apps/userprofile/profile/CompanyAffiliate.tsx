@@ -128,8 +128,8 @@ const CompanyAffiliate = () => {
   const [openChartAlert, setOpenChartAlert] = useState(false); // State for alert
 
   // Begin Mắt Bão
-  const [pdfData, setPdfData] = useState<string | null>(null);
-  var _url_local_listener = 'http://127.0.0.1:22109';
+  // const [pdfData, setPdfData] = useState<string | null>(null);
+  // let _url_local_listener = 'http://127.0.0.1:22109';
 
   async function ___signPdfFile(pdfBase64: string) {
     const snv2_obj: SignatureObject = {
@@ -178,7 +178,8 @@ const CompanyAffiliate = () => {
     };
 
     try {
-      const response = await fetch(`${_url_local_listener}/sign_pdf_v3`, {
+      // const response = await fetch(`${_url_local_listener}/sign_pdf_v3`, {
+      const response = await fetch(`http://127.0.0.1:22109/sign_pdf_v3`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -190,7 +191,7 @@ const CompanyAffiliate = () => {
 
       if (datajson && datajson.status === 200) {
         alert('Ký thành công!');
-        setPdfData(datajson.data);
+        // setPdfData(datajson.data);
       } else {
         alert('Ký KHÔNG thành công! -> ' + datajson.error);
       }

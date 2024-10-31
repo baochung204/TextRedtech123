@@ -33,16 +33,16 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
   }, [totalColumn]);
 
   // Helper function to render single or multiple items
-  const renderMultipleItems = (item: string | JSX.Element | (string | JSX.Element)[]) => {
-    if (Array.isArray(item)) {
-      return item.map((subItem, index) => (
-        <Typography variant={typeof subItem === 'string' ? 'h6' : 'body1'} key={index}>
-          {subItem}
-        </Typography>
-      ));
-    }
-    return <Typography sx={{ fontWeight: 'bold' }}>{item}</Typography>;
-  };
+  // const renderMultipleItems = (item: string | JSX.Element | (string | JSX.Element)[]) => {
+  //   if (Array.isArray(item)) {
+  //     return item.map((subItem, index) => (
+  //       <Typography variant={typeof subItem === 'string' ? 'h6' : 'body1'} key={index}>
+  //         {subItem}
+  //       </Typography>
+  //     ));
+  //   }
+  //   return <Typography sx={{ fontWeight: 'bold' }}>{item}</Typography>;
+  // };
 
   return (
     <Grid container spacing={2}>
@@ -84,7 +84,7 @@ const TopCard = ({ dataSource, totalColumn }: TopCardProps) => {
                     )}
                   </Grid>
                   <Grid item xs={12}>
-                    {renderMultipleItems(items.total)}
+                    {/* {renderMultipleItems(items.total)} */}
                   </Grid>
                 </Grid>
               </Grid>

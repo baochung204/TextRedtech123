@@ -26,7 +26,7 @@ import PageContainer from 'src/components/container/PageContainer';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 import { AppDispatch, AppState } from 'src/store/Store';
-import { fetchTicketsData } from 'src/store/admin/admin-ticket/AdminTicketSlice';
+// import { fetchTicketsData } from 'src/store/admin/admin-ticket/AdminTicketSlice';
 import { fetchOverViewTicket } from 'src/store/admin/admin-ticket/OverViewTicketSlice';
 interface AdminTicket {
   ticketId: string;
@@ -67,10 +67,10 @@ const Ticket = () => {
   const overviewTickets = useSelector((state: AppState) => state.overview_ticket.result);
   const [dataSelect, setDataSelect] = useState<string[]>([]);
   const [datax, setDatax] = useState<AdminTicket[]>([]);
-  console.log('fdafdsfsd:',adminTickets); // Log dữ liệu để kiểm tra
+  console.log('fdafdsfsd:', adminTickets); // Log dữ liệu để kiểm tra
 
   useEffect(() => {
-    dispatch(fetchTicketsData());
+    // dispatch(fetchTicketsData());
   }, [dispatch]);
   useEffect(() => {
     if (datax !== adminTickets.content) {
@@ -78,7 +78,6 @@ const Ticket = () => {
     }
   }, [adminTickets, datax]);
   console.log('dataStaff', datax);
-
 
   useEffect(() => {
     dispatch(fetchOverViewTicket());
@@ -173,7 +172,6 @@ const Ticket = () => {
   ];
 
   console.log(overviewTickets); // Log dữ liệu để kiểm tra
-
 
   const columns = useMemo<Column[]>(
     () => [
@@ -297,15 +295,15 @@ const Ticket = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable 
-            columns={columns} 
-            dataSource={adminTickets.content} 
-            dataSelect={dataSelect} 
-            count={adminTickets.totalElements} 
-            rowsPerPage={10} 
-            page={0} 
-            setPage={() => {}} 
-            setRowsPerPage={() => {}} 
+          <CustomTable
+            columns={columns}
+            dataSource={adminTickets.content}
+            dataSelect={dataSelect}
+            count={adminTickets.totalElements}
+            rowsPerPage={10}
+            page={0}
+            setPage={() => {}}
+            setRowsPerPage={() => {}}
           />
         </Grid>
       </Grid>

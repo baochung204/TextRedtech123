@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  CardContent,
-  Chip,
-  Fab,
-  Grid,
-  Skeleton,
-  Stack,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Box, CardContent, Chip, Fab, Skeleton, Stack, Tooltip, Typography } from '@mui/material';
 import { IconBasket } from '@tabler/icons-react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Slider from 'react-slick';
 import logo from 'src/assets/images/logos/R-Point.png';
 import BlankCard from 'src/components/shared/BlankCard';
-import { addToCart } from 'src/store/apps/eCommerce/ECommerceSlice';
+// import { addToCart } from 'src/store/apps/eCommerce/ECommerceSlice';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchProductById } from 'src/store/user/products/productByIdUseSlice';
 import { fetchProducts } from 'src/store/user/products/productsUseSlice';
 import AlertCart from '../productCart/AlertCart';
-import Slider from 'react-slick';
 
 interface DataProductType {
   productId: number;
@@ -183,7 +173,7 @@ const ProductRelated = () => {
                             size="small"
                             color="primary"
                             onClick={() => {
-                              dispatch(addToCart(product?.productId));
+                              // dispatch(addToCart(product?.productId));
                               handleClick();
                             }}
                             sx={{

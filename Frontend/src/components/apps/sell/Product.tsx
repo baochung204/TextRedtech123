@@ -120,7 +120,7 @@ const PaginationTable = () => {
       {
         title: 'Hoạt động',
         dataIndex: 'action',
-        render: (_row: any, value: any) => (
+        render: () => (
           <Grid container spacing={2}>
             <Grid item xs={9} sx={{ textAlign: 'center' }}>
               <IconButton onClick={() => {}}>
@@ -285,7 +285,7 @@ const PaginationTable = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <CustomTable columns={column} dataSource={dataProduct} dataSelect={dataSelect} />
+        {/* <CustomTable columns={column} dataSource={dataProduct} dataSelect={dataSelect} /> */}
       </Grid>
       {/* <Dialogproduct open={open} setOpen={setOpen} /> */}
       <AddDialog isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />

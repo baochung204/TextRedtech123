@@ -83,7 +83,7 @@ const TabFiles = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
         dataSource={filesList.content}
         dataSelect={dataSelect}
         count={filesList.totalElements}
-        rowsPerPage={rowsPerPage}
+        // rowsPerPage={rowsPerPage}
         page={page}
         setPage={setPage}
         setRowsPerPage={setRowsPerPage}

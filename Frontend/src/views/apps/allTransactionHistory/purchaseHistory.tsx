@@ -35,7 +35,7 @@ const PurchaseHistoryInProfile = () => {
   const [page, setPage] = useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const orderhistorylist = useSelector((state: AppState) => state.historyorder_list.dataa);
-  const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
+  // const orderhistorydetail = useSelector((state: AppState) => state.historyorder_detail.dataa);
 
   useEffect(() => {
     dispatch(fetchHistoryOrderListData({ page_no: page, page_size: rowsPerPage }));
@@ -157,7 +157,7 @@ const PurchaseHistoryInProfile = () => {
             setRowsPerPage={setRowsPerPage}
           />
         </Grid>
-      </Grid> 
+      </Grid>
 
       <Dialog
         open={open}

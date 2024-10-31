@@ -110,7 +110,9 @@ const OrderInformation = () => {
     }
 
     if (selectedVoucherDetail.type === 'PERCENT') {
-      const discount = (originalOrderTotal * couponPercent) / 100;
+      // const discount = (originalOrderTotal * couponPercent) / 100;
+      const discount = (originalOrderTotal * (couponPercent != null ? couponPercent : 0)) / 100;
+
       if (discount > originalOrderTotal) {
         return 0;
       } else {

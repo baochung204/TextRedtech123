@@ -308,7 +308,7 @@ const ProductList = ({ onClick }: Props) => {
         labelRowsPerPage="Số hàng trên mỗi trang"
       />
 
-      <AlertCart handleClose={handleClose} open={cartalert} />
+      {/* <AlertCart handleClose={handleClose} open={cartalert} /> */}
     </Box>
   );
 };

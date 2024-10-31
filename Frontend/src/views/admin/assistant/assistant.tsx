@@ -609,7 +609,7 @@ const AssistantAdmin = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} />
+          {/* <CustomTable columns={column} dataSource={dataRows} dataSelect={dataSelect} /> */}
         </Grid>
       </Grid>
     </PageContainer>

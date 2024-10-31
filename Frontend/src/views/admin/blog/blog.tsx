@@ -32,12 +32,11 @@ import PageContainer from './../../../components/container/PageContainer';
 import AddBlog from './_components/AddBlog';
 import BlogTable from './data/datablog';
 
+import { useDispatch } from 'react-redux';
 import Iconlike from 'src/assets/ICON/like.png';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchOverviewBlogData } from 'src/store/admin/blog/overview/blogSlice';
+import { AppDispatch } from 'src/store/Store';
 
 const BCrumb = [
   { to: '/admin', title: 'Trang Chủ' },
@@ -62,7 +61,7 @@ interface Column {
 const BlogAdmin = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
-  const dataStr = useSelector((state: AppState) => state.overview_blog.dataa || []);
+  // const dataStr = useSelector((state: AppState) => state.overview_blog.dataa || []);
   useEffect(() => {
     dispatch(fetchOverviewBlogData());
   }, [dispatch]);
@@ -71,23 +70,23 @@ const BlogAdmin = () => {
   //   nav('/blog/detail/sc-mnh-ca-ai-i-mi-ngnh-cng-nghip-tng-thut-ton');
   // };
 
-  console.log(dataStr);
+  // console.log(dataStr);
 
-  const countBlog = dataStr.countBlog;
+  // const countBlog = dataStr.countBlog;
 
-  const sumView = dataStr.sumView;
+  // const sumView = dataStr.sumView;
 
-  const sumPoint = dataStr.sumPoint;
+  // const sumPoint = dataStr.sumPoint;
 
   // Format as VND
-  const formattedVND = new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-  }).format(sumPoint);
+  // const formattedVND = new Intl.NumberFormat('vi-VN', {
+  //   style: 'currency',
+  //   currency: 'VND',
+  // }).format(sumPoint);
 
-  console.log(formattedVND);
+  // console.log(formattedVND);
 
-  const sumLike = dataStr.sumLike;
+  // const sumLike = dataStr.sumLike;
 
   const DataBox: StyleProps[] = [
     {
@@ -463,7 +462,7 @@ const BlogAdmin = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect} />
+          {/* <CustomTable columns={column} dataSource={BlogTable} dataSelect={dataSelect} /> */}
         </Grid>
       </Grid>
       <Dialog

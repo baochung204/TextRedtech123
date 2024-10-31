@@ -1,21 +1,20 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
 import {
+  Box,
   Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Typography,
   CardMedia,
   Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@mui/material';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { Box } from '@mui/material';
+import React from 'react';
+import logoPoint from 'src/assets/images/logos/R-Point.png';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -29,14 +28,14 @@ const Transition = React.forwardRef(function Transition(
 const ByBlog = ({
   thumbnailUrl,
   name,
-  views,
+  // views,
   tags,
   point,
-  author,
-  avatarUrl,
-  like,
-  productId,
-}: any) => {
+}: // author,
+// avatarUrl,
+// like,
+// productId,
+any) => {
   const [open, setOpen] = React.useState(false);
   const color = ['primary', 'secondary', 'success', 'error', 'warning', 'info', 'default'];
   const handleClickOpen = () => {

@@ -82,7 +82,7 @@ const TabUrl = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
 
   return (
     <>
-      <CustomTable
+      {/* <CustomTable
         columns={ModelCells}
         dataSource={modelList.content}
         dataSelect={dataSelect}
@@ -90,7 +90,7 @@ const TabUrl = ({ open, setOpen, dataSelect }: PropsTabFunction) => {
         page={page}
         setPage={setPage}
         setRowsPerPage={setRowsPerPage}
-      />
+      /> */}
       <DialogModelView open={open} setOpen={setOpen} value={selectId as any} />
     </>
   );

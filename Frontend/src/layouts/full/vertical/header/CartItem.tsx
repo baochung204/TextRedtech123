@@ -1,10 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Avatar, Box, Button, ButtonGroup, Stack, Typography } from '@mui/material';
-import { IconMinus, IconPlus } from '@tabler/icons-react';
+// import { Avatar, Box, Button, ButtonGroup, Stack, Typography } from '@mui/material';
+// import { IconMinus, IconPlus } from '@tabler/icons-react';
+import { Box } from '@mui/material';
+
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
+// import { Link } from 'react-router-dom';
+// import emptyCart from 'src/assets/images/products/empty-shopping-cart.svg';
 import { AppState, useDispatch, useSelector } from 'src/store/Store';
 import { fetchCartData } from 'src/store/user/cart/cartSlice';
 
@@ -17,7 +19,8 @@ interface PropsData {
 }
 
 const CartItems = () => {
-  const [cartData, setCartData] = useState<PropsData[]>([]);
+  // const [cartData, setCartData] = useState<PropsData[]>([]);
+
   const dispatch = useDispatch();
   const cart = useSelector((state: AppState) => state.cart.dataa);
   useEffect(() => {
@@ -25,14 +28,12 @@ const CartItems = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setCartData(cart);
+    // setCartData(cart);
   }, [cart]);
-
-  console.log(cartData.products + 'hello');
 
   return (
     <Box px={3}>
-      {(cartData?.products ?? []).length > 0 ? (
+      {/* {(cartData?.products ?? []).length > 0 ? (
         cartData.products.map((product: any, index: any) => (
           <Box key={product.id + index * index}>
             <Stack direction="row" spacing={2} py={3}>
@@ -100,7 +101,7 @@ const CartItems = () => {
             Shopping ngay !
           </Button>
         </Box>
-      )}
+      )} */}
     </Box>
   );
 };

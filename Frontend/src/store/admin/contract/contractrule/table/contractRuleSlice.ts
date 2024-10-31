@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import contractApi, { PropsContractAffiliate } from 'src/api/admin/contract/contract';
 
 export interface PropsData {
@@ -67,13 +67,13 @@ const contractRuleListSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        fetchContractRuleListData.fulfilled,
-        (state, action: PayloadAction<PropsContractAffiliate>) => {
-          state.loading = false;
-          state.dataa = action.payload;
-        },
-      )
+      // .addCase(
+      //   fetchContractRuleListData.fulfilled,
+      //   (state, action: PayloadAction<PropsContractAffiliate>) => {
+      //     state.loading = false;
+      //     state.dataa = action.payload;
+      //   },
+      // )
       .addCase(fetchContractRuleListData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;

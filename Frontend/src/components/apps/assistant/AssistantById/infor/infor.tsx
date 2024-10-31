@@ -236,7 +236,7 @@ const InFor = ({ chatBotInfo }: IProps) => {
                   <Chip
                     key={index}
                     label={item}
-                    color={chipColors[index % chipColors.length]}
+                    // color={chipColors[index % chipColors.length]}
                     sx={{ px: 1 }}
                   />
                 ))}
@@ -254,7 +254,7 @@ const InFor = ({ chatBotInfo }: IProps) => {
                     key={index}
                     label={item}
                     variant="outlined"
-                    color={chipColors[index % chipColors.length]}
+                    // color={chipColors[index % chipColors.length]}
                     sx={{ px: 1 }}
                   />
                 ))}

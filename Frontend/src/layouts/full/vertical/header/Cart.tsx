@@ -1,8 +1,11 @@
-import { Badge, Box, Button, IconButton, Stack, Typography } from '@mui/material';
-import { IconShoppingCart, IconX } from '@tabler/icons-react';
+// import { Badge, Box, Button, IconButton, Stack, Typography } from '@mui/material';
+// import { IconShoppingCart, IconX } from '@tabler/icons-react';
+import { Box, Button, IconButton, Typography } from '@mui/material';
+import { IconX } from '@tabler/icons-react';
+
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import logoPoint from 'src/assets/images/logos/R-Point.png';
+// import { Link } from 'react-router-dom';
+// import logoPoint from 'src/assets/images/logos/R-Point.png';
 import Scrollbar from 'src/components/custom-scroll/Scrollbar';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import { fetchCartData } from 'src/store/user/cart/cartSlice';
@@ -16,7 +19,9 @@ interface PropsData {
 }
 
 const Cart = () => {
-  const [cartData, setCartData] = useState<PropsData[]>([]);
+  // const [cartData, setCartData] = useState<PropsData[]>([]);
+  // const [setCartData] = useState<PropsData[]>([]);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const cart = useSelector((state: AppState) => state.cart.dataa);
 
@@ -25,13 +30,13 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-    setCartData(cart || { count: 0, products: [] }); // Default value
+    // setCartData(cart || { count: 0, products: [] }); // Default value
   }, [cart]);
 
-  const totalPoints = (cartData.products ?? []).reduce(
-    (sum, item) => sum + item.point * item.quantity,
-    0,
-  );
+  // const totalPoints = (cartData.products ?? []).reduce(
+  //   (sum: any, item: any) => sum + item.point * item.quantity,
+  //   0,
+  // );
 
   const handleMouseEnter = () => setIsDropdownOpen(true);
   const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -53,9 +58,9 @@ const Cart = () => {
         }}
       >
         <Button size="large" color="inherit">
-          <Badge color="error" badgeContent={cartData.count}>
+          {/* <Badge color="error" badgeContent={cartData.count}>
             <IconShoppingCart size="21" stroke="1.5" />
-          </Badge>
+          </Badge> */}
         </Button>
       </IconButton>
 
@@ -91,7 +96,7 @@ const Cart = () => {
             <CartItems />
           </Scrollbar>
 
-          <Box mt={2}>
+          {/* <Box mt={2}>
             {cartData.products.length > 0 ? (
               <>
                 <Stack direction="row" justifyContent="space-between" mb={3}>
@@ -122,7 +127,7 @@ const Cart = () => {
                 Không có sản phẩm nào trong giỏ hàng
               </Typography>
             )}
-          </Box>
+          </Box> */}
         </Box>
       )}
     </Box>

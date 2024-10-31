@@ -36,7 +36,8 @@ const ProductCarousel = () => {
     focusOnSelect: true,
     arrows: false,
     infinite: false,
-    beforeChange: (current: any, next: any) => setSelectedIndex(next),
+    // beforeChange: (current: any, next: any) => setSelectedIndex(next),
+    beforeChange: (_: any, next: any) => setSelectedIndex(next),
   };
 
   const images = productData?.productInfo?.productImages || [];

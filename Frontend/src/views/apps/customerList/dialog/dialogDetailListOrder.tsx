@@ -135,7 +135,7 @@ const DialogDetailListOrder = () => {
                       </Grid>
                       <Grid item xs={8}>
                         <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                          {info?.email}
+                          {/* {info?.email} */}
                         </Typography>
                       </Grid>
                     </Grid>

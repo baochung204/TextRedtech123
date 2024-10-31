@@ -15,15 +15,15 @@ import ReactQuill from 'react-quill';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-interface StrategyProps {
-  values: {
-    nhomStrategy: string;
-    levelStrategy: string;
-    noidungStrategy: string;
-  };
-}
+// interface StrategyProps {
+//   values: {
+//     nhomStrategy: string;
+//     levelStrategy: string;
+//     noidungStrategy: string;
+//   };
+// }
 
-const Strategy = ({ values }: StrategyProps) => {
+const Strategy = () => {
   const [uploadedImages, setUploadedImages] = useState<{ [key: number]: string }>({}); // Để lưu URL ảnh đã upload
   const [classifications, setClassifications] = useState<{ images: (File | null)[] }>({
     images: [],
@@ -115,7 +115,7 @@ const Strategy = ({ values }: StrategyProps) => {
         {/* Input cho Giá trị chiến lược */}
         <Grid item xs>
           <Field
-          type="number"
+            type="number"
             name="levelStrategy"
             as={TextField}
             placeholder="Level chiến lược"

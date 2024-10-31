@@ -52,13 +52,14 @@ interface PropsData {
 const AddToCart = () => {
   const [open, setOpen] = useState(false);
   const cart = useSelector((state: AppState) => state.cart.dataa);
-  const [cartData, setCartData] = useState<PropsData[]>([]);
+  // const [cartData, setCartData] = useState<PropsData[]>([]);
+  const [cartData] = useState<PropsData[]>([]);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setCartData(cart.products ?? []);
-  }, [cart.products]);
+  // useEffect(() => {
+  //   setCartData(cart.products ?? []);
+  // }, [cart.products]);
 
   console.log('cart', cart);
 

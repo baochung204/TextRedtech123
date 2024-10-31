@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import accountantApi from 'src/api/admin/accountant/accountant';
-import contractApi, { PropsContractAffiliate } from 'src/api/admin/contract/contract';
+import { PropsContractAffiliate } from 'src/api/admin/contract/contract';
 
 export interface PropsData {
   einvoiceId: number;

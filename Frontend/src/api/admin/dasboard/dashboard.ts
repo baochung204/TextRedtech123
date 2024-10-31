@@ -14,7 +14,7 @@ const urlOverview = '/admin/dashboard/overview';
 
 const dashboardApi = {
   getListCustomerUser: (object: PropsNotificationAdmin = {}) => {
-    const urls = `/${url}/customers`;
+    const urls = `/${urlOverview}/customers`;
     const query = Object.entries(object)
       .filter(([, value]) => value !== null && value !== undefined)
       .map(([key, value]) => `${key}=${value}`)

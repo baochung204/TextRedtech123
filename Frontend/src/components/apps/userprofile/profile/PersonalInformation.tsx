@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react';
 import {
-  Box,
-  Typography,
-  Button,
-  TextField,
-  Select,
-  MenuItem,
   Alert,
-  Snackbar,
+  Box,
+  Button,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
   Slide,
+  Snackbar,
+  TextField,
+  Typography,
   useTheme,
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { SelectChangeEvent } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { AppDispatch, AppState, dispatch } from 'src/store/Store';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, AppState } from 'src/store/Store';
 import { fetchUserMeData } from 'src/store/user/userme/usermeSlice';
 
 function SlideTransition(props: any) {
@@ -28,19 +27,21 @@ const PersonalInformation = () => {
   const theme = useTheme();
   const [editing, setEditing] = useState(false); // Chỉ dùng một state cho chế độ chỉnh sửa
   const [open, setOpen] = useState(false);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
+    null,
+  );
   const [userInfo, setUserInfo] = useState({
     name: 'Ngô Quốc Toản',
     gender: 'Nam',
     dob: new Date('2004-10-30'),
     address: '123 Đường ABC, TP. Hồ Chí Minh',
   });
-  const dispatch = useDispatch<AppDispatch>()
-  const inFormation = useSelector((state: AppState) => state.userme.result)
+  const dispatch = useDispatch<AppDispatch>();
+  const inFormation = useSelector((state: AppState) => state.userme.result);
   console.log('Userme:', inFormation);
-useEffect(() => {
-  dispatch(fetchUserMeData());
-},[dispatch])
+  useEffect(() => {
+    dispatch(fetchUserMeData());
+  }, [dispatch]);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo({
       ...userInfo,
@@ -63,11 +64,11 @@ useEffect(() => {
   };
 
   const handleEditClick = () => {
-    setEditing(true); 
+    setEditing(true);
   };
 
   const handleSaveClick = () => {
-    setEditing(false); 
+    setEditing(false);
     setShowAlert({ type: 'success', message: 'Lưu thay đổi thành công!' });
     setOpen(true);
     setTimeout(() => setShowAlert(null), 3000);
@@ -96,7 +97,7 @@ useEffect(() => {
       </Typography>
 
       {/* Tên */}
-      { inFormation ? (
+      {inFormation ? (
         <>
           <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
             <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
@@ -182,7 +183,7 @@ useEffect(() => {
           <Button
             variant="contained"
             onClick={editing ? handleSaveClick : handleEditClick}
-            sx={{ mt: 2, marginLeft: 'auto', display: 'block' }}  
+            sx={{ mt: 2, marginLeft: 'auto', display: 'block' }}
           >
             {editing ? 'Lưu' : 'Sửa'}
           </Button>

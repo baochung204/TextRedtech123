@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import logoPoint from 'src/assets/images/logos/R-Point.png';
 import Countdown from 'src/components/countdown/countdown';
 import { AppState } from 'src/store/Store';
-import { fetchFlashSaleData } from 'src/store/user/flashsale-random/flashsaleSlice';
+// import { fetchFlashSaleData } from 'src/store/user/flashsale-random/flashsaleSlice';
 import ChildCard from '../../../shared/ChildCard';
 
 declare interface Package {
@@ -38,7 +38,7 @@ const FirstStep = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const dispatch = useDispatch();
   // const theme = useTheme();
-  const [pointsEarned, setPointsEarned] = useState(0);
+  // const [pointsEarned, setPointsEarned] = useState(0);
 
   // const [countdownTime, setCountdownTime] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
@@ -47,7 +47,7 @@ const FirstStep = () => {
   const flashSaleRandom = useSelector((state: AppState) => state.flashsale_random.dataa);
 
   useEffect(() => {
-    dispatch(fetchFlashSaleData());
+    // dispatch(fetchFlashSaleData());
   }, [dispatch]);
 
   console.log('cart', cart);
@@ -61,10 +61,10 @@ const FirstStep = () => {
   const handleSelectPackage = (pkg: Package) => {
     if (selectedPackage === pkg.flashSaleId) {
       setSelectedPackage(null);
-      setPointsEarned(0);
+      // setPointsEarned(0);
     } else {
-      setSelectedPackage(pkg.flashSaleId);
-      setPointsEarned(pkg.point);
+      // setSelectedPackage(pkg?.flashSaleId);
+      // setPointsEarned(pkg.point);
     }
   };
 
@@ -72,7 +72,7 @@ const FirstStep = () => {
     setTimeout(() => {
       setSelectedPackage2(false);
       setSelectedPackage(null);
-      setPointsEarned(null);
+      // setPointsEarned(null);
     }, 15000);
   };
   return (
@@ -280,7 +280,7 @@ const FirstStep = () => {
                 Giá trị đơn hàng
               </Typography>
               <Typography variant="h6" display={'flex'} alignItems={'center'} gap="3px">
-                {cart.totalPoint + (pointsEarned === null ? 0 : pointsEarned)}
+                {/* {cart.totalPoint + (pointsEarned === null ? 0 : pointsEarned)} */}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -302,7 +302,7 @@ const FirstStep = () => {
                 alignItems={'center'}
                 gap="3px"
               >
-                {cart.totalAmountDiscount}
+                {/* {cart.totalAmountDiscount} */}
                 <img
                   src={logoPoint}
                   alt={logoPoint}
@@ -322,7 +322,7 @@ const FirstStep = () => {
                 alignItems={'center'}
                 gap="3px"
               >
-                {cart.totalPriceAfterDiscount + (pointsEarned === null ? 0 : pointsEarned)}
+                {/* {cart.totalPriceAfterDiscount + (pointsEarned === null ? 0 : pointsEarned)} */}
 
                 <img
                   src={logoPoint}

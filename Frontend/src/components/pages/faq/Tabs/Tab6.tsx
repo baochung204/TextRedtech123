@@ -24,10 +24,10 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
 
   useEffect(() => {
     dispatch(fetchUrls({ page, size: rowsPerPage }));
-  }, [ page, rowsPerPage]);
+  }, [page, rowsPerPage]);
 
   const handleDelete = async (urlId: number) => {
-    await dispatch(DeleteResourceActionUrl(urlId)); 
+    await dispatch(DeleteResourceActionUrl(urlId));
     dispatch(fetchUrls({ page, size: rowsPerPage }));
   };
 
@@ -52,11 +52,9 @@ const Tab6: React.FC<PropsTab6> = ({ value, open, setOpen, dataSelect }) => {
     {
       title: 'Hành động',
       dataIndex: 'action',
-      render: (_, value: any) => (
+      render: (_: any, value: any) => (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <IconButton
-            onClick={() => handleDelete(value.urlId)}
-          >
+          <IconButton onClick={() => handleDelete(value.urlId)}>
             <IconTrash stroke={2} style={{ color: '#FA896B' }} />
           </IconButton>
         </Box>

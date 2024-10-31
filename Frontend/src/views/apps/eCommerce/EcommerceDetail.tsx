@@ -8,16 +8,15 @@ import ChildCard from 'src/components/shared/ChildCard';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { AppState, dispatch } from 'src/store/Store';
-import { fetchProductById } from 'src/store/user/products/productByIdUseSlice';
+import { dispatch } from 'src/store/Store';
+// import { fetchProductById } from 'src/store/user/products/productByIdUseSlice';
 
 const EcommerceDetail = () => {
   const { id } = useParams();
-  const productData = useSelector((state: AppState) => state.productById.data);
+  // const productData = useSelector((state: AppState) => state.productById.data);
   useEffect(() => {
-    dispatch(fetchProductById(id));
+    // dispatch(fetchProductById(id));
   }, [dispatch, id]);
   // const [productInfo, setProductInfo] = useState<ProductInfoType | null>(null);
   // const [productDetailInformation, setProductDetailInformation] = useState<string>('');

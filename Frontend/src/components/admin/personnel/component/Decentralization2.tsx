@@ -337,7 +337,7 @@ const Decentralization2 = () => {
                 Phân quyền
               </Typography>
 
-              <CustomTable columns={columns} dataSource={functions} />
+              {/* <CustomTable columns={columns} dataSource={functions} /> */}
 
               <Box
                 sx={{

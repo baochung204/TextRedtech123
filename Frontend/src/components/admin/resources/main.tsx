@@ -18,17 +18,16 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useMemo, useState } from 'react';
-import CustomTable from 'src/components/ComponentTables/CustomTable';
 import TopCard from 'src/components/widgets/cards/TopCard';
 import DialogFunction from './dialog/DialogFunction';
 import DialogFile from './dialog/DialogModel';
 import DialogStr from './dialog/DialogStr';
 import TableFile from './mockData/TableFile';
 import TabbleFunction from './mockData/TableFunction';
-import { Image, ImageCells, ImageRows } from './mockData/TableImage';
+import { Image } from './mockData/TableImage';
 import TableModel from './mockData/TableModel';
 import TableStr from './mockData/TableStr';
-import { Url, UrlCells, UrlRows } from './mockData/TableUrl';
+import { Url } from './mockData/TableUrl';
 import TabFiles from './Tables/TabFiles';
 import TabFunction from './Tables/TabFunction';
 import TabModel from './Tables/TabModel';
@@ -504,11 +503,11 @@ const Main = () => {
               <TabModel value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="5">
-              <CustomTable columns={ImageCells} dataSource={ImageRows} dataSelect={dataSelect} />
+              {/* <CustomTable columns={ImageCells} dataSource={ImageRows} dataSelect={dataSelect} /> */}
               {/* <TabGallary value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} /> */}
             </TabPanel>
             <TabPanel sx={{ p: 0, pt: 2 }} value="6">
-              <CustomTable columns={UrlCells} dataSource={UrlRows} dataSelect={dataSelect} />
+              {/* <CustomTable columns={UrlCells} dataSource={UrlRows} dataSelect={dataSelect} /> */}
               {/* <TabUrl value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} /> */}
             </TabPanel>
           </TabContext>

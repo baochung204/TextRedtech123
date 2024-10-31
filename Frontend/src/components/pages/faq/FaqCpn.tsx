@@ -26,8 +26,6 @@ import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
 import Tab6 from './Tabs/Tab6';
-import { AppState } from 'src/store/Store';
-import { useSelector } from 'react-redux';
 
 interface Column {
   title: string;
@@ -41,7 +39,7 @@ const Faq = () => {
   const [open, setOpen] = useState<boolean>(false);
   const theme = useTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const [checkOption, setCheckOption] = useState<string | null>(null)
+  const [checkOption, setCheckOption] = useState<string | null>(null);
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue as '1' | '2' | '3' | '4' | '5' | '6');
     setOpen(false);
@@ -165,7 +163,6 @@ const Faq = () => {
     [],
   );
 
-
   useEffect(() => {
     const selectedColumns = column[value] || [];
     const hasIsValids = selectedColumns.some((col) => col.isValids !== undefined);
@@ -193,10 +190,7 @@ const Faq = () => {
           <Grid item>
             <Grid container spacing={2} sx={{ display: 'flex', alignItems: 'center' }}>
               <Grid item>
-                <Badge
-                  badgeContent={column[value].length - dataSelect.length}
-                  color="primary"
-                >
+                <Badge badgeContent={column[value].length - dataSelect.length} color="primary">
                   <FilterListIcon color="action" />
                 </Badge>
               </Grid>
@@ -242,10 +236,14 @@ const Faq = () => {
                   <MenuItem>
                     <Checkbox
                       checked={!(dataSelect.length === column[value].length)}
-                      indeterminate={dataSelect.length > 0 && dataSelect.length < column[value].length}
+                      indeterminate={
+                        dataSelect.length > 0 && dataSelect.length < column[value].length
+                      }
                       onChange={() => {
                         if (dataSelect.length < column[value].length) {
-                          const allColumns = column[value].map((header: Column) => header.dataIndex);
+                          const allColumns = column[value].map(
+                            (header: Column) => header.dataIndex,
+                          );
                           setDataSelect(allColumns);
                         } else {
                           setDataSelect([]);
@@ -264,7 +262,6 @@ const Faq = () => {
                     );
                   })}
                 </Select>
-
               </Grid>
             </Grid>
           </Grid>
@@ -300,7 +297,10 @@ const Faq = () => {
                   <IconButton
                     color="primary"
                     aria-label="Add to cart"
-                    onClick={() => { setOpen(true); setCheckOption('add') }}
+                    onClick={() => {
+                      setOpen(true);
+                      setCheckOption('add');
+                    }}
                     sx={{
                       pr: 1.5,
                     }}
@@ -356,16 +356,37 @@ const Faq = () => {
               <Tab2 />
             </TabPanel>
             <TabPanel value="3" sx={{ px: 0 }}>
-              <Tab3 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} checkOption={checkOption} setCheckOption={setCheckOption} />
+              <Tab3
+                value={value}
+                open={open}
+                setOpen={setOpen}
+                dataSelect={dataSelect}
+                checkOption={checkOption}
+                setCheckOption={setCheckOption}
+              />
             </TabPanel>
             <TabPanel value="4" sx={{ px: 0 }}>
               <Tab4 dataSelect={dataSelect} />
             </TabPanel>
             <TabPanel value="5" sx={{ px: 0 }}>
-              <Tab5 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} checkOption={checkOption} setCheckOption={setCheckOption} />
+              <Tab5
+                value={value}
+                open={open}
+                setOpen={setOpen}
+                dataSelect={dataSelect}
+                checkOption={checkOption}
+                setCheckOption={setCheckOption}
+              />
             </TabPanel>
             <TabPanel value="6" sx={{ px: 0 }}>
-              <Tab6 value={value} open={open} setOpen={setOpen} dataSelect={dataSelect} checkOption={checkOption} setCheckOption={setCheckOption} />
+              <Tab6
+                value={value}
+                open={open}
+                setOpen={setOpen}
+                dataSelect={dataSelect}
+                checkOption={checkOption}
+                setCheckOption={setCheckOption}
+              />
             </TabPanel>
           </TabContext>
         </Box>

@@ -1,21 +1,21 @@
+import { Box, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import { Box, Button, MenuItem, Select, Typography, TextField } from '@mui/material';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
-interface File {
-  values: {
-    file: string;
-    dungluong: string;
-    slot: string;
-  };
-}
+import * as Yup from 'yup';
+// interface File {
+//   values: {
+//     file: string;
+//     dungluong: string;
+//     slot: string;
+//   };
+// }
 // Validation schema using Yup
 const validationSchema = Yup.object({
   option: Yup.string().required('Bạn phải chọn một tùy chọn'),
 });
 
-const FileUploadForm = ({ values }: File) => {
+const FileUploadForm = () => {
   const [selectedOption, setSelectedOption] = useState<string>(''); // State to hold selected option
   const [fileNames, setFileNames] = useState<string[]>([]); // Lưu trữ danh sách file đã chọn
 
@@ -42,7 +42,11 @@ const FileUploadForm = ({ values }: File) => {
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
       {({ setFieldValue }) => (
         <Form>
           <CustomFormLabel sx={{ fontSize: 18, marginLeft: 36, width: 850 }} htmlFor="name">
@@ -61,7 +65,6 @@ const FileUploadForm = ({ values }: File) => {
                     sx={{
                       marginLeft: 36,
                       width: 850,
-                     
                     }}
                   >
                     <MenuItem value="" disabled>
@@ -79,12 +82,18 @@ const FileUploadForm = ({ values }: File) => {
 
           {selectedOption === 'file' && (
             <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
-              <Typography >Chọn file:</Typography>
+              <Typography>Chọn file:</Typography>
               <input
                 type="file"
                 multiple
                 onChange={handleFileChange}
-                style={{ marginLeft: 5, width: 850, padding: '10px', border: '2px solid red', borderRadius: '8px', }}
+                style={{
+                  marginLeft: 5,
+                  width: 850,
+                  padding: '10px',
+                  border: '2px solid red',
+                  borderRadius: '8px',
+                }}
               />
               {fileNames.length > 0 && (
                 <Box mt={1} sx={{ marginLeft: 5 }}>
@@ -93,9 +102,7 @@ const FileUploadForm = ({ values }: File) => {
                   </Typography>
                   <ul>
                     {fileNames.map((fileName, index) => (
-                      <li key={index} >
-                        {fileName}
-                      </li>
+                      <li key={index}>{fileName}</li>
                     ))}
                   </ul>
                 </Box>
@@ -105,7 +112,7 @@ const FileUploadForm = ({ values }: File) => {
 
           {selectedOption === 'dungluong' && (
             <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
-              <Typography >Nhập dung lượng:</Typography>
+              <Typography>Nhập dung lượng:</Typography>
               <TextField
                 placeholder="Nhập dung lượng (MB)"
                 fullWidth
@@ -125,7 +132,7 @@ const FileUploadForm = ({ values }: File) => {
 
           {selectedOption === 'slot' && (
             <Box sx={{ marginLeft: 36, width: 850 }} mb={2}>
-              <Typography >Nhập số lượng slot:</Typography>
+              <Typography>Nhập số lượng slot:</Typography>
               <TextField
                 placeholder="Nhập số lượng slot"
                 fullWidth

@@ -21,7 +21,7 @@ import AddFunction from 'src/components/apps/assistant/AssistantEditor/layout/ad
 import ChatBot from 'src/components/apps/assistant/AssistantEditor/layout/ChatBot';
 import Integration from 'src/components/apps/integration/Integration';
 import AddText from 'src/components/apps/assistant/AssistantEditor/layout/addText';
-import { Strategy } from '../resources/mockData/TableStr';
+// import { Strategy } from '../resources/mockData/TableStr';
 // import { Strategy } from '../resources/mockData/TableStr';
 
 const AssistantEditer = () => {
@@ -117,9 +117,7 @@ const AssistantEditer = () => {
               {/* 1/3 chiều cao của parent */}
               <Integration />
             </Grid>
-            <Grid item xs={12}>
-              {' '}
-              {/* 1/3 chiều cao của parent */}
+            {/* <Grid item xs={12}>
               {Strategy.map((item: any, index: any) => (
                 <Box
                   key={index}
@@ -130,7 +128,7 @@ const AssistantEditer = () => {
                   {item.icons}
                 </Box>
               ))}
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Box>

@@ -1,17 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Box, Grid, Pagination, Tab } from '@mui/material';
-import { orderBy } from 'lodash';
+// import { orderBy } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'src/store/Store';
 import { fetchBlogPosts } from 'src/store/apps/blog/BlogSlice';
-import { BlogPostType } from 'src/types/apps/blog';
+// import { BlogPostType } from 'src/types/apps/blog';
 import BlogCard from './BlogCard';
 
-import { fetchBlogs } from 'src/store/user/blogs/blog';
+// import { fetchBlogs } from 'src/store/user/blogs/blog';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-
-
 
 const BlogListing = () => {
   const [value, setValue] = React.useState('1');
@@ -25,24 +23,24 @@ const BlogListing = () => {
   }, [dispatch]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const filterBlogs = (posts: BlogPostType[], sortBy: string, _cSearch: string) => {
-    // SORT BY
+  // const filterBlogs = (posts: BlogPostType[], sortBy: string, _cSearch: string) => {
+  //   // SORT BY
 
-    if (sortBy === 'newest') {
-      posts = orderBy(posts, ['createdAt'], ['desc']);
-    }
-    if (sortBy === 'oldest') {
-      posts = orderBy(posts, ['createdAt'], ['asc']);
-    }
-    if (sortBy === 'popular') {
-      posts = orderBy(posts, ['view'], ['desc']);
-    }
-    if (posts) {
-      return (posts = posts.filter((t) => t.featured === false));
-    }
+  //   if (sortBy === 'newest') {
+  //     posts = orderBy(posts, ['createdAt'], ['desc']);
+  //   }
+  //   if (sortBy === 'oldest') {
+  //     posts = orderBy(posts, ['createdAt'], ['asc']);
+  //   }
+  //   if (sortBy === 'popular') {
+  //     posts = orderBy(posts, ['view'], ['desc']);
+  //   }
+  //   if (posts) {
+  //     return (posts = posts.filter((t) => t.featured === false));
+  //   }
 
-    return posts;
-  };
+  //   return posts;
+  // };
 
   // const filterFeaturedpost = (posts: BlogPostType[]) => {
   //   return (posts = posts.filter((t) => t.featured));
@@ -60,7 +58,7 @@ const BlogListing = () => {
   const [datax, setdatax] = useState<any>([]);
   // console.log('blogs', blogs);
   useEffect(() => {
-    dispatch(fetchBlogs());
+    // dispatch(fetchBlogs());
   }, [dispatch]);
   useEffect(() => {
     if (datax !== blogs.blogs) {
@@ -69,8 +67,6 @@ const BlogListing = () => {
   }, [datax, blogs]);
   // console.log('blogs', datax.data);
   const blog = datax?.data?.content;
-
-  console.log('blogPosts', blog);
 
   // const featuredPost = useSelector((state) => filterFeaturedpost(state.blogReducer.blogposts));
 

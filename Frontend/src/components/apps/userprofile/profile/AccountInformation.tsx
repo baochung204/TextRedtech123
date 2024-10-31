@@ -1,14 +1,5 @@
-import {
-  Alert,
-  Box,
-  Button,
-  IconButton,
-  Slide,
-  Snackbar,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { IconCheck, IconEdit, IconLock, IconUserCircle } from '@tabler/icons-react';
+import { Alert, Box, Button, Slide, Snackbar, TextField, Typography } from '@mui/material';
+import { IconLock, IconUserCircle } from '@tabler/icons-react';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -27,8 +18,10 @@ function SlideTransition(props: any) {
 const AccountInformation = () => {
   const [editing, setEditing] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
-  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
-  
+  const [showAlert, setShowAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(
+    null,
+  );
+
   // Validation schema
   const validationSchema = yup.object({
     phone: yup
@@ -55,7 +48,7 @@ const AccountInformation = () => {
   console.log('ádasd:', accountInfor);
   useEffect(() => {
     dispatch(fetchUserMeData());
-  },[dispatch])
+  }, [dispatch]);
 
   const handleButtonClick = (id: number) => {
     if (id === 2) {
@@ -71,11 +64,11 @@ const AccountInformation = () => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      formik.handleSubmit();
-    }
-  };
+  // const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === 'Enter') {
+  //     formik.handleSubmit();
+  //   }
+  // };
 
   const handleClose = (_event: Event | React.SyntheticEvent<any, Event>, reason?: string) => {
     if (reason === 'clickaway') {
@@ -84,51 +77,51 @@ const AccountInformation = () => {
     setOpen(false);
   };
 
-  const renderField = (field: string, label: string, isEditable: boolean) => (
-    <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      {field === 'email' ? (
-        <Typography variant="body1" sx={{ flexGrow: 1 }}>
-          nqton301004@gmail.com 
-        </Typography>
-      ) : editing === field ? (
-        <>
-          <TextField
-            name={field}
-            value={formik.values[field as keyof typeof formik.values]}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched[field as keyof typeof formik.touched] &&
-              Boolean(formik.errors[field as keyof typeof formik.errors])
-            }
-            helperText={
-              formik.touched[field as keyof typeof formik.touched] &&
-              formik.errors[field as keyof typeof formik.errors]
-            }
-            onKeyDown={handleKeyDown}
-            sx={{ flexGrow: 1, mr: 1 }}
-            size="small"
-          />
-          <IconButton onClick={() => formik.handleSubmit()}>
-            <IconCheck />
-          </IconButton>
-        </>
-      ) : (
-        <>
-          <Typography variant="body1" sx={{ flexGrow: 1 }}>
-            {field === 'password'
-              ? '**********'
-              : formik.values[field as keyof typeof formik.values]}
-          </Typography>
-          {isEditable && (
-            <IconButton onClick={() => handleEditClick(field)}>
-              <IconEdit />
-            </IconButton>
-          )}
-        </>
-      )}
-    </Box>
-  );
+  // const renderField = (field: string, label: string, isEditable: boolean) => (
+  //   <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+  //     {field === 'email' ? (
+  //       <Typography variant="body1" sx={{ flexGrow: 1 }}>
+  //         nqton301004@gmail.com
+  //       </Typography>
+  //     ) : editing === field ? (
+  //       <>
+  //         <TextField
+  //           name={field}
+  //           value={formik.values[field as keyof typeof formik.values]}
+  //           onChange={formik.handleChange}
+  //           onBlur={formik.handleBlur}
+  //           error={
+  //             formik.touched[field as keyof typeof formik.touched] &&
+  //             Boolean(formik.errors[field as keyof typeof formik.errors])
+  //           }
+  //           helperText={
+  //             formik.touched[field as keyof typeof formik.touched] &&
+  //             formik.errors[field as keyof typeof formik.errors]
+  //           }
+  //           onKeyDown={handleKeyDown}
+  //           sx={{ flexGrow: 1, mr: 1 }}
+  //           size="small"
+  //         />
+  //         <IconButton onClick={() => formik.handleSubmit()}>
+  //           <IconCheck />
+  //         </IconButton>
+  //       </>
+  //     ) : (
+  //       <>
+  //         <Typography variant="body1" sx={{ flexGrow: 1 }}>
+  //           {field === 'password'
+  //             ? '**********'
+  //             : formik.values[field as keyof typeof formik.values]}
+  //         </Typography>
+  //         {isEditable && (
+  //           <IconButton onClick={() => handleEditClick(field)}>
+  //             <IconEdit />
+  //           </IconButton>
+  //         )}
+  //       </>
+  //     )}
+  //   </Box>
+  // );
 
   return (
     <Box
@@ -142,70 +135,72 @@ const AccountInformation = () => {
       <Typography mb={4} variant="h4" fontWeight="600" gutterBottom display={'flex'} gap={1}>
         <IconUserCircle /> <span>Thông tin tài khoản</span>
       </Typography>
-     {accountInfor ? (
-       <>
-         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-           <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-             Email:
-           </Typography>
-           {editing ? (
-             <TextField
-               name="name"
-               value={accountInfor.email}
-              //  onChange={handleInputChange}
-               sx={{ flexGrow: 1, mr: 1 }}
-               size="small"
-             />
-           ) : (
-             <Typography variant="body1" sx={{ flexGrow: 1 }}>
-               {accountInfor.email}
-             </Typography>
-           )}
-         </Box>
+      {accountInfor ? (
+        <>
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+              Email:
+            </Typography>
+            {editing ? (
+              <TextField
+                name="name"
+                value={accountInfor.email}
+                //  onChange={handleInputChange}
+                sx={{ flexGrow: 1, mr: 1 }}
+                size="small"
+              />
+            ) : (
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                {accountInfor.email}
+              </Typography>
+            )}
+          </Box>
 
-         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-           <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-             Số điện thoại :
-           </Typography>
-           {editing ? (
-             <TextField
-               name="name"
-               value={accountInfor.phoneNumber}
-               // onChange={handleInputChange}
-               sx={{ flexGrow: 1, mr: 1 }}
-               size="small"
-             />
-           ) : (
-             <Typography variant="body1" sx={{ flexGrow: 1 }}>
-               {accountInfor.phoneNumber}
-             </Typography>
-           )}
-         </Box>
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+              Số điện thoại :
+            </Typography>
+            {editing ? (
+              <TextField
+                name="name"
+                value={accountInfor.phoneNumber}
+                // onChange={handleInputChange}
+                sx={{ flexGrow: 1, mr: 1 }}
+                size="small"
+              />
+            ) : (
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                {accountInfor.phoneNumber}
+              </Typography>
+            )}
+          </Box>
 
-         <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-           <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
-             Mật khẩu:
-           </Typography>
-           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-             <Typography variant="body1" sx={{ flexGrow: 1 }}>
-               {formik.values.password}
-             </Typography>
-             <Button
-               onClick={() => handleEditClick('password')}
-               variant="outlined"
-               color="primary"
-               startIcon={<IconLock />}
-             >
-               Đổi mật khẩu
-             </Button>
-           </Box>
-         </Box>
-       </>
-     ) : (
-       <Typography variant="h6" align="center" color="textSecondary">
-         Không có thông tin người dùng
-       </Typography>
-     )}
+          <Box
+            sx={{ mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+          >
+            <Typography variant="h6" fontWeight="500" sx={{ width: '150px' }}>
+              Mật khẩu:
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+              <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                {formik.values.password}
+              </Typography>
+              <Button
+                onClick={() => handleEditClick('password')}
+                variant="outlined"
+                color="primary"
+                startIcon={<IconLock />}
+              >
+                Đổi mật khẩu
+              </Button>
+            </Box>
+          </Box>
+        </>
+      ) : (
+        <Typography variant="h6" align="center" color="textSecondary">
+          Không có thông tin người dùng
+        </Typography>
+      )}
 
       {/* Hiển thị Alert khi có sự thay đổi */}
       <Snackbar

@@ -32,7 +32,7 @@ import BannerPage from 'src/layouts/full/shared/breadcrumb/BannerPage';
 // import { AppDispatch, AppState } from 'src/store/Store';
 import { useEffect, useMemo, useState } from 'react';
 import DateSelect from 'src/components/apps/date/DateSelect';
-import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
+// import { DataCustomerListAffiliateTable } from 'src/components/tables/tableData';
 import { AppState, dispatch, useSelector } from 'src/store/Store';
 import PopupAdd from './PopupAdd';
 import { fetchListCustomerData } from 'src/store/user/affiliate/customer/listCustomerSlice';

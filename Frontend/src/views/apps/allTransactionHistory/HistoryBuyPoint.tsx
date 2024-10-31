@@ -176,7 +176,7 @@ const HistoryBuyPoint = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <CustomTable columns={columns} dataSource={tablepayment} />
+          {/* <CustomTable columns={columns} dataSource={tablepayment} /> */}
         </Grid>
       </Grid>
 

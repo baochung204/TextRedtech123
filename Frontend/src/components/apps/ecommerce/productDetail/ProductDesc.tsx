@@ -3,12 +3,10 @@
 import React, { useEffect } from 'react';
 
 import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
-import { useParams } from 'react-router';
 import ChildCard from 'src/components/shared/ChildCard';
 
 import { useDispatch, useSelector } from 'src/store/Store';
 import { fetchProducts } from 'src/store/apps/eCommerce/ECommerceSlice';
-import { DetailInformationType, ProductType } from 'src/store/user/products/type/productByIdType';
 
 interface TabProps {
   children: React.ReactNode;
